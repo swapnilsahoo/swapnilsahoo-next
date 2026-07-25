@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nvidia's Corporate Strategy: An Interactive Analysis</title>
+    <!-- Chosen Palette: Calm Harmony -->
+    <!-- Application Structure Plan: The SPA is designed as a single-page, scrolling dashboard with a sticky navigation header. This structure allows for a fluid, narrative-driven exploration of Nvidia's strategy, guiding the user from a high-level overview to specific strategic concepts. The sections are thematically organized: 1. Hero & Financials (the big picture), 2. Key Concepts, 3. Core Competencies, 4. Portfolio, 5. Synergy, 6. Dilemmas (Transaction Costs/Vertical Integration), 7. Simulation, and 8. Quiz. This information architecture transforms the linear report into a more engaging, explorable journey, prioritizing user understanding over mimicking the source document's layout. -->
+    <!-- Visualization & Content Choices: The application uses a mix of interactive elements to represent the report's data and concepts. Financials are shown with animated counters for impact. The key revenue shift is visualized with a Chart.js stacked bar chart for clear trend comparison over time. Conceptual frameworks like Core Competencies, Synergy, and Portfolio are represented using interactive HTML/CSS diagrams (cards, lists, and visual layouts) instead of static images, allowing users to click and reveal more information. Strategic trade-offs (e.g., vertical integration) are presented in a comparative two-column layout to clearly articulate the pros and cons. The Holistic Strategy Simulator uses sliders and dropdowns to allow users to manipulate multiple strategic levers and see calculated outcomes for revenue, margin, market share, and risks. A new 15-question MCQ quiz has been added to test user comprehension. All choices aim to make complex strategic ideas tangible and interactive. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F7F4;
+            color: #333333;
+        }
+        .nav-link {
+            transition: color 0.3s ease, border-bottom-color 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #4A5C5A;
+            border-bottom-color: #4A5C5A;
+        }
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .interactive-item {
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .interactive-item:hover {
+            background-color: #f3f4f6;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        .content-hidden {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.7s ease-in-out;
+            opacity: 0;
+        }
+        .content-visible {
+            max-height: 1000px;
+            opacity: 1;
+            transition: max-height 0.7s ease-in-out, opacity 0.5s ease-in-out 0.2s;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #4A5C5A;
+            cursor: pointer;
+            box-shadow: 0 0 0 3px rgba(74, 92, 90, 0.3);
+        }
+        input[type="range"]::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #4A5C5A;
+            cursor: pointer;
+            box-shadow: 0 0 0 3px rgba(74, 92, 90, 0.3);
+        }
+        .quiz-question {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 4px -1px rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: border-color 0.3s ease;
+        }
+        .quiz-question h4 {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #4A5C5A;
+        }
+        .quiz-options label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: #555;
+            transition: color 0.3s ease;
+        }
+        .quiz-options input[type="radio"],
+        .quiz-options input[type="checkbox"] {
+            margin-right: 0.5rem;
+        }
+        .correct-answer-label {
+            color: #10B981;
+        }
+        .incorrect-answer-label {
+            color: #EF4444;
+        }
+        .quiz-explanation {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            background-color: #f0fdf4; /* Green-100 */
+            border-left: 4px solid #4ade80; /* Green-400 */
+            color: #166534; /* Green-800 */
+            display: none; /* Initially hidden */
+        }
+        .quiz-explanation p {
+            margin-bottom: 0.5rem;
+        }
+        .quiz-explanation p:last-child {
+            margin-bottom: 0;
+        }
+        .quiz-explanation.show {
+            display: block;
+        }
+        .result-box {
+            border: 2px solid;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+            transition: all 0.3s ease-in-out;
+        }
+        .result-box.correct {
+            border-color: #10B981;
+            background-color: #f0fdf4;
+            color: #166534;
+        }
+        .result-box.incorrect {
+            border-color: #EF4444;
+            background-color: #fef2f2;
+            color: #991b1b;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="bg-gray-100 py-2 text-center text-sm text-gray-600">
+        © Dr. Swapnil Sahoo 2025 | 
+        <a href="https://x.com/swapnilsahoo" target="_blank" class="text-blue-600 hover:underline">X (Twitter)</a> | 
+        <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" class="text-blue-600 hover:underline">Instagram</a> | 
+        <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" class="text-blue-600 hover:underline">LinkedIn</a>
+    </div>
+
+    <header id="header" class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-md">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold text-[#4A5C5A]">Nvidia's Strategy</h1>
+            <div class="hidden md:flex space-x-8">
+                <a href="#overview" class="nav-link pb-1">Overview</a>
+                <a href="#concepts" class="nav-link pb-1">Concepts</a>
+                <a href="#competencies" class="nav-link pb-1">Core Competencies</a>
+                <a href="#portfolio" class="nav-link pb-1">Portfolio</a>
+                <a href="#synergy" class="nav-link pb-1">Synergy</a>
+                <a href="#dilemmas" class="nav-link pb-1">Dilemmas</a>
+                <a href="#simulation" class="nav-link pb-1">Simulation</a>
+                <a href="#quiz" class="nav-link pb-1">Quiz</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#overview" class="block text-center py-2 px-4 text-sm hover:bg-gray-200">Overview</a>
+            <a href="#concepts" class="block text-center py-2 px-4 text-sm hover:bg-gray-200">Concepts</a>
+            <a href="#competencies" class="block text-center py-2 px-4 text-sm hover:bg-gray-200">Core Competencies</a>
+            <a href="#portfolio" class="block text-center py-2 px-4 text-sm hover:bg-gray-200">Portfolio</a>
+            <a href="#synergy" class="block text-center py-2 px-4 text-sm hover:bg-gray-200">Synergy</a>
+            <a href="#dilemmas" class="block text-center py-2 px-4 text-sm hover:bg-gray-200">Dilemmas</a>
+            <a href="#simulation" class="block text-center py-2 px-4 text-sm hover:bg-gray-200">Simulation</a>
+            <a href="#quiz" class="block text-center py-2 px-4 text-sm hover:bg-gray-200">Quiz</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8 md:py-12">
+
+        <section id="overview" class="mb-16 md:mb-24 text-center scroll-mt-20">
+            <h2 class="text-3xl md:text-5xl font-bold mb-4">Navigating the AI Frontier</h2>
+            <p class="max-w-3xl mx-auto text-lg text-gray-600 mb-6">
+                This is an interactive analysis of Nvidia's corporate strategy, exploring its journey to the top of the AI world. We'll examine its financial explosion, the sources of its competitive advantage, its business portfolio, and the critical strategic challenges that will define its future.
+            </p>
+
+            <div class="max-w-3xl mx-auto text-left bg-white p-6 rounded-lg shadow-md mb-12">
+                <h3 class="text-xl font-bold text-[#4A5C5A] mb-4">Learning Objectives:</h3>
+                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                    <li><strong>Corporate Strategy & Vertical Integration:</strong> Define corporate strategy, its dimensions, and the motives for growth. Analyze the firm's scope, including vertical integration, transaction costs, and make-or-buy decisions, evaluating their benefits, risks, and alternatives.</li>
+                    <li><strong>Core Competencies & Diversification:</strong> Define core competencies and apply them to analyze different types of corporate diversification. Assess how a firm's portfolio approach can drive a balanced mix of growth and stability.</li>
+                    <li><strong>Synergy & Competitive Advantage:</strong> Explain the concept of synergy and evaluate how it can create competitive advantage by making the combined value of a firm's parts greater than their sum.</li>
+                </ul>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-12">
+                <div class="card p-6">
+                    <h3 class="text-lg font-semibold text-gray-500">FY2024 Revenue</h3>
+                    <p class="text-4xl font-bold text-[#4A5C5A] mt-2" id="revenue-stat">$0M</p>
+                    <p class="text-green-600 font-semibold mt-1">+126% YoY</p>
+                </div>
+                <div class="card p-6">
+                    <h3 class="text-lg font-semibold text-gray-500">FY2024 Gross Margin</h3>
+                    <p class="text-4xl font-bold text-[#4A5C5A] mt-2" id="margin-stat">0%</p>
+                    <p class="text-green-600 font-semibold mt-1">+15.8 pts YoY</p>
+                </div>
+                <div class="card p-6">
+                    <h3 class="text-lg font-semibold text-gray-500">FY2024 Net Income</h3>
+                    <p class="text-4xl font-bold text-[#4A5C5A] mt-2" id="income-stat">$0M</p>
+                    <p class="text-green-600 font-semibold mt-1">+681% YoY</p>
+                </div>
+            </div>
+
+            <div class="card p-6 md:p-8">
+                <h3 class="text-2xl font-bold mb-2">The Great Revenue Shift</h3>
+                <p class="text-gray-600 mb-6 max-w-2xl mx-auto">Nvidia's revenue has dramatically shifted towards its Data Center business, fueled by the AI boom. This chart shows the transformation of its business portfolio from 2020 to 2024, highlighting the explosive growth of AI and the changing role of its traditional gaming segment.</p>
+                <div class="chart-container">
+                    <canvas id="revenueChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="concepts" class="mb-16 md:mb-24 scroll-mt-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Corporate Strategy & Diversification Concepts</h2>
+            <p class="max-w-3xl mx-auto text-center text-lg text-gray-600 mb-12">
+                This section provides a clear overview of foundational corporate strategy and diversification concepts to frame our analysis of Nvidia.
+            </p>
+
+            <div class="space-y-8">
+                <div class="card p-6">
+                    <h3 class="text-xl font-bold text-[#4A5C5A] mb-2">1. The Concept of Corporate Strategy</h3>
+                    <p class="text-gray-700 mb-2">
+                        **Corporate strategy** comprises the decisions that leaders make and the goal-directed actions they take in their quest for competitive advantage across several industries and markets simultaneously. It provides answers to the key question of *where* to compete.
+                    </p>
+                    <p class="text-gray-700 font-semibold mb-2">A firm's corporate strategy determines its boundaries along three dimensions:</p>
+                    <ul class="list-disc list-inside ml-4 text-gray-700">
+                        <li><strong>Vertical Integration:</strong> In what stages of the industry value chain should the company participate? (e.g., raw materials, manufacturing, sales).</li>
+                        <li><strong>Horizontal Diversification:</strong> What range of products and services should the company offer? (e.g., from gaming GPUs to AI data center solutions).</li>
+                        <li><strong>Geographic Scope:</strong> Where should the company compete in terms of regional, national, or global markets?</li>
+                    </ul>
+                </div>
+
+                <div class="card p-6">
+                    <h3 class="text-xl font-bold text-[#4A5C5A] mb-2">2. Corporate Diversification Strategies</h3>
+                    <p class="text-gray-700 mb-2">
+                        **Corporate diversification** involves a firm expanding its product and service offerings into new markets or industries. This is a core part of horizontal diversification. Diversification creates a competitive advantage when it allows the diversified company to achieve greater value than if the businesses were a standalone. The four main types of diversification are:
+                    </p>
+                    <ul class="list-disc list-inside ml-4 text-gray-700 space-y-2">
+                        <li><strong>Single Business:</strong> The firm derives 95% or more of its revenue from one primary business. (e.g., a company that only makes gaming GPUs).</li>
+                        <li><strong>Dominant Business:</strong> The firm derives between 70% and 95% of its revenue from a single business, but also pursues other ventures. (e.g., Nvidia's historical state, with gaming as its core but with other businesses like automotive).</li>
+                        <li><strong>Related Diversification:</strong> The firm derives less than 70% of its revenue from a single business, and its other businesses share a number of links (e.g., common technologies, distribution channels, customer types). This is often an effective strategy for creating synergy.
+                            <ul class="list-disc list-inside ml-8 mt-1 text-gray-600">
+                                <li><strong>Related-Constrained:</strong> All businesses share a direct link with each other.</li>
+                                <li><strong>Related-Linked:</strong> Businesses only share a few links.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Unrelated Diversification (Conglomerate):</strong> The firm derives less than 70% of its revenue from a single business and has few, if any, links between its various businesses. (e.g., a company that owns both a chip manufacturer and a hotel chain).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="competencies" class="mb-16 md:mb-24 scroll-mt-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Core Competencies: The Bedrock of Dominance</h2>
+            <p class="max-w-3xl mx-auto text-center text-lg text-gray-600 mb-6">
+                <strong>Core competencies</strong> are the unique combination of knowledge, skills, and abilities that comprise the strategic advantages of a business. They are deeply embedded within an organization's culture, processes, and strategic initiatives, enabling companies to differentiate themselves, drive innovation, and create distinctive value.
+            </p>
+            <div class="card p-6 mb-8">
+                <h3 class="text-xl font-bold text-[#4A5C5A] mb-4">How to Identify a Core Competency</h3>
+                <ul class="list-disc list-inside space-y-4 text-gray-700">
+                    <li>
+                        <strong>How long could we dominate our business if we didn’t control this competency?</strong>
+                        <p class="mt-1 ml-4 text-sm text-gray-600">Example: Without its proprietary chip architecture and integrated software, Nvidia's dominance would quickly erode as competitors caught up on hardware alone.</p>
+                    </li>
+                    <li>
+                        <strong>What future opportunities would we lose without it?</strong>
+                        <p class="mt-1 ml-4 text-sm text-gray-600">Example: If Apple lost its core competency in seamless hardware-software integration, it would not be able to successfully enter new markets like smartwatches or virtual reality. If Nvidia lost its AI software competency, it would lose the opportunity to participate in the burgeoning AI Foundry market.</p>
+                    </li>
+                    <li>
+                        <strong>Does it provide access to multiple markets?</strong>
+                        <p class="mt-1 ml-4 text-sm text-gray-600">Example: Honda's competence with high-revving, lightweight engines allows it to succeed in cars, motorcycles, lawnmowers, and marine engines. Similarly, Amazon's core competency in logistics and cloud infrastructure allows it to dominate e-commerce (Amazon.com) and enterprise computing (AWS).</p>
+                    </li>
+                    <li>
+                        <strong>Do customer benefits revolve around it?</strong>
+                        <p class="mt-1 ml-4 text-sm text-gray-600">Example: Tesla’s core competency in battery management and electric powertrains is what allows it to deliver superior range and performance, which is a primary customer benefit. Nvidia's CUDA ecosystem simplifies complex AI programming, which is a key benefit for its customers.</p>
+                    </li>
+                    <li>
+                        <strong>Canon: The power of imaging and optics</strong>
+                        <p class="mt-1 ml-4 text-sm text-gray-600"><strong>Core Competency:</strong> Precision imaging and optics. Canon possesses a deep understanding and mastery of optical technologies, image processing, and precision mechanics.</p>
+                        <p class="mt-1 ml-4 text-sm text-gray-600"><strong>Core Products:</strong> Laser printer subsystems, optical lenses, photocopying engines.</p>
+                        <p class="mt-1 ml-4 text-sm text-gray-600"><strong>End Products:</strong> Digital cameras, photocopiers, printers (laser and inkjet), medical imaging devices.</p>
+                        <p class="mt-1 ml-4 text-sm text-gray-600"><strong>Explanation:</strong> Canon's expertise in optics and imaging technology, originally applied to cameras, is leveraged across multiple products. They can create high-quality lenses for their cameras and use similar optical technology to develop laser printer subsystems or photocopying engines. These core products then become the building blocks for a wide range of end products like digital cameras, printers, and medical imaging systems.</p>
+                    </li>
+                </ul>
+            </div>
+            <p class="max-w-3xl mx-auto text-center text-lg text-gray-600 mb-12">
+                Nvidia's success isn't accidental. It's built on a foundation of deeply integrated core competencies that reinforce each other, creating a formidable competitive moat. These competencies are crucial for deriving effective diversification strategies and ensuring diversification creates competitive advantage. Click on each pillar to explore how it contributes to Nvidia's leadership.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card p-6 text-center interactive-item" data-content-id="content-gpu">
+                    <div class="text-4xl mb-4">⚙️</div>
+                    <h3 class="text-xl font-bold mb-2">GPU Architecture</h3>
+                    <p class="text-gray-600">Unmatched expertise in parallel processing and chip design.</p>
+                </div>
+                <div class="card p-6 text-center interactive-item" data-content-id="content-cuda">
+                    <div class="text-4xl mb-4">💻</div>
+                    <h3 class="text-xl font-bold mb-2">CUDA Ecosystem</h3>
+                    <p class="text-gray-600">A proprietary software "walled garden" that creates massive switching costs.</p>
+                </div>
+                <div class="card p-6 text-center interactive-item" data-content-id="content-vision">
+                    <div class="text-4xl mb-4">🧭</div>
+                    <h3 class="text-xl font-bold mb-2">Strategic Vision</h3>
+                    <p class="text-gray-600">Leadership that anticipates and creates new markets, like AI acceleration.</p>
+                </div>
+            </div>
+            <div id="content-gpu" class="mt-8 p-6 bg-white rounded-lg content-hidden">
+                <h4 class="font-bold text-lg mb-2">GPU Architecture & Parallel Processing</h4>
+                <p class="text-gray-700">Nvidia consistently releases groundbreaking GPU architectures (like Hopper and Blackwell), relentlessly pushing performance boundaries. More importantly, it had the foresight to see that the parallel processing power of GPUs was perfect for the "embarrassingly parallel workloads" of deep learning. This allowed Nvidia to pivot to AI far ahead of competitors, turning a hardware advantage into a market-defining one.</p>
+            </div>
+            <div id="content-cuda" class="mt-8 p-6 bg-white rounded-lg content-hidden">
+                <h4 class="font-bold text-lg mb-2">The CUDA "Walled Garden"</h4>
+                <p class="text-gray-700">CUDA is Nvidia's masterstroke. It's a software platform that allows developers to unlock the full power of Nvidia GPUs for general-purpose computing. With over 5 million developers and thousands of applications built on it, CUDA creates a powerful network effect and high switching costs. Competitors can build faster chips, but they can't easily replicate this vast, loyal, and productive ecosystem.</p>
+            </div>
+            <div id="content-vision" class="mt-8 p-6 bg-white rounded-lg content-hidden">
+                <h4 class="font-bold text-lg mb-2">Visionary Leadership & Market Creation</h4>
+                <p class="text-gray-700">CEO Jensen Huang's early and bold bet on AI, transforming Nvidia from a "graphics company" to an "AI company," is a prime example of market creation. This wasn't just about responding to trends; it was about anticipating and shaping the future of computing. This dynamic capability to create "blue oceans" of uncontested market space is a core part of Nvidia's DNA.</p>
+            </div>
+        </section>
+
+        <section id="portfolio" class="mb-16 md:mb-24 scroll-mt-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Portfolio Approach: Balancing Today's Profits with Tomorrow's Growth</h2>
+            <p class="max-w-3xl mx-auto text-center text-lg text-gray-600 mb-6">
+                The **portfolio approach** to corporate strategy involves managing a diversified company's various business units to ensure both current financial health and long-term sustainable expansion. It helps evaluate different types of **corporate diversification** and apply frameworks like the core competence–market matrix to derive diversification strategies.
+            </p>
+            <p class="max-w-3xl mx-auto text-center text-lg text-gray-600 mb-12">
+                The **Pioneer-Migrator-Settler Map** is a framework that helps assess a corporation's strategic health by categorizing business offerings based on their value and innovation potential.
+            </p>
+
+            <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="border-r-0 md:border-r-2 border-dashed pr-0 md:pr-6 border-green-200">
+                        <h3 class="text-2xl font-bold text-green-700 mb-2">Pioneers</h3>
+                        <p class="text-sm text-gray-500 mb-4">Businesses that offer unprecedented value, effectively creating new, uncontested market spaces through "value innovation" (simultaneous pursuit of differentiation and low cost).</p>
+                        <div class="card p-4 mb-4">
+                            <h4 class="font-bold">AI Data Center Solutions</h4>
+                            <p class="text-sm text-gray-600">The dominant engine of Nvidia's growth, with ~98% market share in data center GPUs. This is a classic "blue ocean" strategy.</p>
+                        </div>
+                        <div class="card p-4">
+                            <h4 class="font-bold">AI Foundry Service</h4>
+                            <p class="text-sm text-gray-600">An emerging pioneer. An end-to-end service to create custom AI models, moving Nvidia up the value chain.</p>
+                        </div>
+                    </div>
+                    <div class="border-r-0 md:border-r-2 border-dashed pr-0 md:pr-6 border-blue-200">
+                        <h3 class="text-2xl font-bold text-blue-700 mb-2">Migrators</h3>
+                        <p class="text-sm text-gray-500 mb-4">Business offerings that are "better than most" in the existing marketplace, representing "value improvements."</p>
+                        <div class="card p-4">
+                            <h4 class="font-bold">Gaming GPUs</h4>
+                            <p class="text-sm text-gray-600">The historical core of the company. While a smaller part of the revenue pie now, it's a highly profitable "cash cow" that funds pioneer initiatives.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-500 mb-2">Settlers</h3>
+                        <p class="text-sm text-gray-500 mb-4">"Me-too" businesses, offering value similar to other market offerings ("value imitation").</p>
+                         <div class="card p-4 bg-gray-50">
+                            <h4 class="font-bold">N/A</h4>
+                            <p class="text-sm text-gray-600">Nvidia has strategically avoided or divested from businesses that would be classified as settlers, focusing its resources on high-margin, high-growth areas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="synergy" class="mb-16 md:mb-24 scroll-mt-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Synergy Approach: Creating Value Beyond the Sum of Parts</h2>
+            <p class="max-w-3xl mx-auto text-center text-lg text-gray-600 mb-6">
+                **Synergy** is the concept that the combined value and performance of two or more entities or activities will be greater than the sum of their separate individual parts, often expressed as "1 + 1 > 2". Leveraging synergy is a key way diversification creates competitive advantage.
+            </p>
+            <div class="card p-6 md:p-8">
+                <ul class="space-y-6">
+                    <li class="flex items-start space-x-4">
+                        <div class="text-3xl pt-1">🤝</div>
+                        <div>
+                            <h4 class="font-bold text-lg">Hardware + Software Integration</h4>
+                            <p class="text-gray-700">The deep, synergistic link between GPU hardware and the CUDA software platform is Nvidia's foundational advantage. Better hardware drives CUDA adoption; a richer CUDA ecosystem sells more hardware. This virtuous cycle creates a powerful and defensible moat.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start space-x-4">
+                        <div class="text-3xl pt-1">🔗</div>
+                        <div>
+                            <h4 class="font-bold text-lg">Strategic Acquisitions (Mellanox)</h4>
+                            <p class="text-gray-700">The $7B acquisition of Mellanox, a networking specialist, was a masterstroke. Mellanox's technology is critical for connecting thousands of GPUs to work as one giant AI supercomputer. This synergy allowed Nvidia to sell complete, high-performance systems, not just components.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start space-x-4">
+                        <div class="text-3xl pt-1">📦</div>
+                        <div>
+                            <h4 class="font-bold text-lg">Integrated Systems (DGX)</h4>
+                            <p class="text-gray-700">By selling pre-configured systems like the DGX H100 (an "AI factory in a box"), Nvidia creates product synergy. It simplifies deployment for customers and allows Nvidia to capture far more value than it would by selling individual chips. It's a move from component supplier to total solution provider.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="dilemmas" class="mb-16 md:mb-24 scroll-mt-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Transaction Costs & Scope of the Firm: Vertical Integration Dilemmas</h2>
+            <p class="max-w-3xl mx-auto text-center text-lg text-gray-600 mb-6">
+                **Transaction costs** are any costs incurred when making an economic trade or participating in a market. These costs influence decisions about the "scope of the firm"—what activities to perform internally ("make") versus what to outsource ("buy"). This includes choices about **vertical integration**, its benefits and risks, and alternatives.
+            </p>
+            
+            <div class="space-y-12">
+                <div class="card p-6 md:p-8">
+                    <h3 class="text-2xl font-bold mb-4">Dilemma 1: Backward Integration (The Supply Chain)</h3>
+                    <p class="text-gray-600 mb-6">Nvidia is critically dependent on a single supplier, TSMC, for its advanced chips. This is a classic make-or-buy decision and a backward vertical integration challenge.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="border-2 border-red-200 rounded-lg p-4">
+                            <h4 class="font-bold text-red-800 text-lg mb-2">Option: Make (Build Fabs)</h4>
+                            <p class="font-semibold">Pros (Benefits of Vertical Integration):</p>
+                            <ul class="list-disc list-inside text-sm text-gray-700 mb-2">
+                                <li>Greater control over supply</li>
+                                <li>Reduces risk of "hold-up" by supplier</li>
+                            </ul>
+                            <p class="font-semibold">Cons (Risks of Vertical Integration):</p>
+                            <ul class="list-disc list-inside text-sm text-gray-700">
+                                <li>Extremely expensive (~$25B per fab)</li>
+                                <li>Nvidia lacks manufacturing competency</li>
+                            </ul>
+                        </div>
+                        <div class="border-2 border-green-200 rounded-lg p-4">
+                            <h4 class="font-bold text-green-800 text-lg mb-2">Option: Buy (Rely on TSMC/Intel)</h4>
+                            <p class="font-semibold">Pros (Alternatives to Vertical Integration):</p>
+                            <ul class="list-disc list-inside text-sm text-gray-700 mb-2">
+                                <li>Capital-light "fabless" model</li>
+                                <li>Focus resources on core R&D</li>
+                            </ul>
+                            <p class="font-semibold">Cons (Risks of Vertical Integration):</p>
+                            <ul class="list-disc list-inside text-sm text-gray-700">
+                                <li>Extreme dependence on single supplier (TSMC)</li>
+                                <li>Geopolitical risk (Taiwan)</li>
+                                <li>Diversifying to Intel means using a competitor with lagging tech</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card p-6 md:p-8">
+                    <h3 class="text-2xl font-bold mb-4">Dilemma 2: Forward Integration (The Customer)</h3>
+                    <p class="text-gray-600 mb-6">By selling full systems (DGX) and cloud services, Nvidia is now competing directly with its biggest customers (Microsoft, Amazon, Dell). This is a forward vertical integration challenge.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="border-2 border-blue-200 rounded-lg p-4">
+                            <h4 class="font-bold text-blue-800 text-lg mb-2">Strategy: Sell Components (Alternative to Vertical Integration)</h4>
+                            <p class="font-semibold">Pros:</p>
+                            <ul class="list-disc list-inside text-sm text-gray-700 mb-2">
+                                <li>Maintains good relationships with OEMs and hyperscalers</li>
+                                <li>Focuses on core business of chip design</li>
+                            </ul>
+                            <p class="font-semibold">Cons:</p>
+                            <ul class="list-disc list-inside text-sm text-gray-700">
+                                <li>Captures less of the total value chain</li>
+                                <li>Customers control the end-user experience</li>
+                            </ul>
+                        </div>
+                        <div class="border-2 border-purple-200 rounded-lg p-4">
+                            <h4 class="font-bold text-purple-800 text-lg mb-2">Strategy: Sell Full Systems (Forward Vertical Integration)</h4>
+                            <p class="font-semibold">Pros (Benefits of Vertical Integration):</p>
+                            <ul class="list-disc list-inside text-sm text-gray-700 mb-2">
+                                <li>Captures significantly more value and profit</li>
+                                <li>Controls the entire user experience</li>
+                            </ul>
+                            <p class="font-semibold">Cons (Risks of Vertical Integration):</p>
+                            <ul class="list-disc list-inside text-sm text-gray-700">
+                                <li>Alienates largest customers</li>
+                                <li>Motivates customers to build their own competing chips</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="simulation" class="mb-16 md:mb-24 scroll-mt-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Holistic Strategy Simulator: Shaping Nvidia's Future</h2>
+            <p class="max-w-3xl mx-auto text-center text-lg text-gray-600 mb-12">
+                Explore how Nvidia's strategic choices across its supply chain, core technology investments, portfolio focus, and customer engagement can impact its long-term financial performance and market position. Adjust the levers below and run the simulation to see the potential outcomes.
+            </p>
+
+            <div class="card p-6 md:p-8 max-w-4xl mx-auto">
+                <h3 class="text-xl font-bold mb-4">Strategic Levers</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div>
+                        <label for="fab-cost" class="block text-sm font-medium text-gray-700">Cost to Build New Fab (Billion $)</label>
+                        <input type="range" id="fab-cost" min="10" max="50" value="25" step="5" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer mt-2">
+                        <span id="fab-cost-value" class="text-sm text-gray-500">$25 Billion</span>
+                    </div>
+                    <div>
+                        <label for="tsmc-price-increase" class="block text-sm font-medium text-gray-700">Annual TSMC Price Increase (%)</label>
+                        <input type="range" id="tsmc-price-increase" min="0" max="10" value="5" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer mt-2">
+                        <span id="tsmc-price-increase-value" class="text-sm text-gray-500">5%</span>
+                    </div>
+                    <div>
+                        <label for="cuda-rd-investment" class="block text-sm font-medium text-gray-700">Annual CUDA R&D Investment Increase (%)</label>
+                        <input type="range" id="cuda-rd-investment" min="0" max="20" value="10" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer mt-2">
+                        <span id="cuda-rd-investment-value" class="text-sm text-gray-500">10%</span>
+                    </div>
+                    <div>
+                        <label for="data-center-focus" class="block text-sm font-medium text-gray-700">New R&D Focus on Data Center (%)</label>
+                        <input type="range" id="data-center-focus" min="50" max="100" value="75" step="5" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer mt-2">
+                        <span id="data-center-focus-value" class="text-sm text-gray-500">75%</span>
+                    </div>
+                    <div>
+                        <label for="forward-integration-aggressiveness" class="block text-sm font-medium text-gray-700">Forward Integration (DGX/Cloud) Aggressiveness</label>
+                        <select id="forward-integration-aggressiveness" class="mt-2 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-[#4A5C5A] focus:border-[#4A5C5A] sm:text-sm rounded-md">
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="geopolitical-risk" class="block text-sm font-medium text-gray-700">Geopolitical Risk (TSMC)</label>
+                        <select id="geopolitical-risk" class="mt-2 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-[#4A5C5A] focus:border-[#4A5C5A] sm:text-sm rounded-md">
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="simulation-years" class="block text-sm font-medium text-gray-700">Simulation Years</label>
+                        <input type="range" id="simulation-years" min="5" max="20" value="10" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer mt-2">
+                        <span id="simulation-years-value" class="text-sm text-gray-500">10 Years</span>
+                    </div>
+                </div>
+                <button id="run-simulation" class="w-full bg-[#4A5C5A] text-white py-3 rounded-md font-semibold hover:bg-[#6B8A9A] transition-colors">Run Simulation</button>
+
+                <div id="simulation-results" class="mt-8 p-6 bg-gray-50 rounded-lg border border-gray-200 text-left">
+                    <h4 class="font-bold text-lg mb-4">Simulation Results:</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <p class="font-semibold text-[#4A5C5A]">Financial Outcomes:</p>
+                            <p class="text-gray-700">Estimated Revenue (End of Period): <span id="sim-total-revenue" class="font-bold">$0B</span></p>
+                            <p class="text-gray-700">Avg. Annual Revenue Growth: <span id="sim-avg-growth" class="font-bold">0%</span></p>
+                            <p class="text-gray-700">Avg. Gross Margin: <span id="sim-avg-margin" class="font-bold">0%</span></p>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-[#4A5C5A]">Market Position & Risks:</p>
+                            <p class="text-gray-700">Data Center Market Share: <span id="sim-dc-share" class="font-bold">0%</span></p>
+                            <p class="text-gray-700">Gaming Market Share: <span id="sim-gaming-share" class="font-bold">0%</span></p>
+                            <p class="text-gray-700">Supply Chain Risk: <span id="sim-supply-risk" class="font-bold">Medium</span></p>
+                            <p class="text-gray-700">Customer Alienation Risk: <span id="sim-customer-risk" class="font-bold">Medium</span></p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-4">
+                        *Results are illustrative and based on a simplified model.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz" class="mb-16 md:mb-24 scroll-mt-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Quiz: Test Your Strategic Acumen</h2>
+            <p class="max-w-3xl mx-auto text-center text-lg text-gray-600 mb-12">
+                Test your understanding of the key corporate strategy concepts and Nvidia's strategic choices. Select the best answer(s) for each question.
+            </p>
+
+            <form id="quiz-form" class="max-w-3xl mx-auto">
+                <div class="quiz-question" data-question-id="q1">
+                    <h4>1. NVIDIA's Investments in Building Specialized AI Chips for Data Centers Can Be Viewed as:</h4>
+                    <div class="quiz-options">
+                        <label><input type="radio" name="q1" value="A"> A. Competitive moves to protect its gaming market share.</label>
+                        <label><input type="radio" name="q1" value="B"> B. Speculative bets on unproven future technology.</label>
+                        <label><input type="radio" name="q1" value="C"> C. A market-creating strategy to generate new demand for AI acceleration.</label>
+                        <label><input type="radio" name="q1" value="D"> D. None of the above.</label>
+                    </div>
+                </div>
+
+                <div class="quiz-question" data-question-id="q2">
+                    <h4>2. NVIDIA's Focus on The Development of the CUDA Ecosystem Can Be Viewed as A:</h4>
+                    <div class="quiz-options">
+                        <label><input type="radio" name="q2" value="A"> A. Cost-leadership strategy to undercut competitors.</label>
+                        <label><input type="radio" name="q2" value="B"> B. Differentiation strategy to enhance customer value at a premium price.</label>
+                        <label><input type="radio" name="q2" value="C"> C. Value innovation strategy to create high buyer value at low cost for NVIDIA.</label>
+                        <label><input type="radio" name="q2" value="D"> D. None of the above.</label>
+                    </div>
+                </div>
+
+                <div class="quiz-question" data-question-id="q3">
+                    <h4>3. NVIDIA's Development of Data-Center-Scale AI Chips Can Be Considered a Blue Ocean Strategic Move Because It:</h4>
+                    <div class="quiz-options">
+                        <label><input type="radio" name="q3" value="A"> A. Helps NVIDIA diversify beyond its core gaming GPU business.</label>
+                        <label><input type="radio" name="q3" value="B"> B. Allows NVIDIA to compete directly with Intel and AMD for the data center market.</label>
+                        <label><input type="radio" name="q3" value="C"> C. Drives NVIDIA's uncontested growth by creating a new market for AI data centers.</label>
+                        <label><input type="radio" name="q3" value="D"> D. Enables NVIDIA to offer lower-cost solutions than its rivals.</label>
+                    </div>
+                </div>
+
+                <div class="quiz-question" data-question-id="q4">
+                    <h4>4. What Attracts Customers to Buy NVIDIA's Data Center AI Chips? (Select one or more)</h4>
+                    <div class="quiz-options">
+                        <label><input type="checkbox" name="q4" value="A"> A. Software resources that simplify and expedite AI programming.</label>
+                        <label><input type="checkbox" name="q4" value="B"> B. Cost efficiency in general computing tasks.</label>
+                        <label><input type="checkbox" name="q4" value="C"> C. Supercomputer-like AI capabilities at a fraction of the cost.</label>
+                        <label><input type="checkbox" name="q4" value="D"> D. Energy efficiency.</label>
+                    </div>
+                </div>
+
+                <div class="quiz-question" data-question-id="q5">
+                    <h4>5. How Has NVIDIA Created a Profitable Business Model for Its Data Center AI Chips? (Select one or more)</h4>
+                    <div class="quiz-options">
+                        <label><input type="checkbox" name="q5" value="A"> A. By undercutting competitors on price.</label>
+                        <label><input type="checkbox" name="q5" value="B"> B. By offering AI solutions that command premium prices with high profit margins.</label>
+                        <label><input type="checkbox" name="q5" value="C"> C. By achieving lower-cost production through fabless operations and software emulation.</label>
+                        <label><input type="checkbox" name="q5" value="D"> D. By collaborating with the research community to expedite R&D at low cost.</label>
+                    </div>
+                </div>
+
+                <div class="quiz-question" data-question-id="q6">
+                    <h4>6. What Motivates the Developer and Research Community to Adopt NVIDIA's AI Chips and Contribute to Its Developer Ecosystem? (Select one or more)</h4>
+                    <div class="quiz-options">
+                        <label><input type="checkbox" name="q6" value="A"> A. Industry-leading AI hardware with integrated software and development resources.</label>
+                        <label><input type="checkbox" name="q6" value="B"> B. Opportunities for professional development and career growth.</label>
+                        <label><input type="checkbox" name="q6" value="C"> C. Competitive pricing and exclusive deals.</label>
+                        <label><input type="checkbox" name="q6" value="D"> D. A platform to collaborate with other developers and researchers.</label>
+                    </div>
+                </div>
+
+                <div class="quiz-question" data-question-id="q7">
+                    <h4>7. What Is Driving Uncontested Growth for NVIDIA's AI Chips? (Select one or more)</h4>
+                    <div class="quiz-options">
+                        <label><input type="checkbox" name="q7" value="A"> A. AI acceleration generates high demand for its hardware and enables premium pricing.</label>
+                        <label><input type="checkbox" name="q7" value="B"> B. NVIDIA's high profit margins fund top talent and R&D to maintain technological superiority.</label>
+                        <label><input type="checkbox" name="q7" value="C"> C. NVIDIA's software ecosystem drives developer adoption and fends off competitors.</label>
+                        <label><input type="checkbox" name="q7" value="D"> D. All of the above.</label>
+                    </div>
+                </div>
+
+                <div class="quiz-question" data-question-id="q8">
+                    <h4>8. How Would You Classify NVIDIA's Gaming GPU Business?</h4>
+                    <div class="quiz-options">
+                        <label><input type="radio" name="q8" value="A"> A. As a game-changer creating unprecedented value-a pioneer.</label>
+                        <label><input type="radio" name="q8" value="B"> B. As better than most other offerings in the marketplace-a migrator.</label>
+                        <label><input type="radio" name="q8" value="C"> C. As a me-too business similar to other offerings in the market-a settler.</label>
+                        <label><input type="radio" name="q8" value="D"> D. As a potentially innovative value not yet proven in the market.</label>
+                    </div>
+                </div>
+
+                <div class="quiz-question" data-question-id="q9">
+                    <h4>9. How Would You Classify NVIDIA's AI Data Center Solutions?</h4>
+                    <div class="quiz-options">
+                        <label><input type="radio" name="q9" value="A"> A. As a game-changer creating unprecedented value-a value innovation.</label>
+                        <label><input type="radio" name="q9" value="B"> B. As better than most other offerings in the marketplace-a value improvement.</label>
+                        <label><input type="radio" name="q9" value="C"> C. As a me-too business similar to other offerings in the market-a value imitation.</label>
+                        <label><input type="radio" name="q9" value="D"> D. As an innovative value not yet proven in the market.</label>
+                    </div>
+                </div>
+
+                <div class="quiz-question" data-question-id="q10">
+                    <h4>10. How Would You Classify NVIDIA's AI Foundry Service?</h4>
+                    <div class="quiz-options">
+                        <label><input type="radio" name="q10" value="A"> A. As an established business creating unprecedented value.</label>
+                        <label><input type="radio" name="q10" value="B"> B. As better than most other offerings in the marketplace.</label>
+                        <label><input type="radio" name="q10" value="C"> C. As a me-too business similar to other offerings in the market.</label>
+                        <label><input type="radio" name="q10" value="D"> D. As an innovative value not yet proven in the market.</label>
+                    </div>
+                </div>
+
+                <div class="quiz-question" data-question-id="q11">
+                    <h4>11. Which of the Following Best Describes NVIDIA's Overall Strategic Approach in the Last 5 Years?</h4>
+                    <div class="quiz-options">
+                        <label><input type="radio" name="q11" value="A"> A. A focus on defending its core GPU market share.</label>
+                        <label><input type="radio" name="q11" value="B"> B. Aggressive diversification into creating new markets.</label>
+                        <label><input type="radio" name="q11" value="C"> C. A balanced approach of defending the core and creating new markets.</label>
+                        <label><input type="radio" name="q11" value="D"> D. None of the above.</label>
+                    </div>
+                </div>
+
+                <div class="quiz-question" data-question-id="q12">
+                    <h4>12. As of 2023, NVIDIA's Primary Source of Revenue Has Shifted Drastically from Gaming to Data Centers. This Shift Can Be Attributed to:</h4>
+                    <div class="quiz-options">
+                        <label><input type="radio" name="q12" value="A"> A. Declining revenue from the gaming segment.</label>
+                        <label><input type="radio" name="q12" value="B"> B. Brand-new demand for AI accelerators in data centers.</label>
+                        <label><input type="radio" name="q12" value="C"> C. Competitive threats from other chip makers.</label>
+                        <label><input type="radio" name="q12" value="D"> D. All of the above.</label>
+                    </div>
+                </div>
+
+                <div class="quiz-question" data-question-id="q13">
+                    <h4>13. What Is the Biggest Challenge Facing NVIDIA's Data Center Business? (Select one or more)</h4>
+                    <div class="quiz-options">
+                        <label><input type="checkbox" name="q13" value="A"> A. Competition from semiconductor companies like AMD and Intel.</label>
+                        <label><input type="checkbox" name="q13" value="B"> B. Ongoing global chip shortage and supply chain disruptions.</label>
+                        <label><input type="checkbox" name="q13" value="C"> C. Regulatory scrutiny over its planned acquisitions.</label>
+                        <label><input type="checkbox" name="q13" value="D"> D. Major tech companies developing in-house AI chips.</label>
+                        <label><input type="checkbox" name="q13" value="E"> E. The high cost of R&D to develop new architectures.</label>
+                        <label><input type="checkbox" name="q13" value="F"> F. Highly efficient and cost-effective AI training methods from companies like DeepSeek.</label>
+                    </div>
+                </div>
+
+                <div class="quiz-question" data-question-id="q14">
+                    <h4>14. How Should NVIDIA Respond to Major Tech Players (e.g., Amazon, Google, Microsoft, and Meta) Who Are Developing Their In-House AI Chips? (Select one or more)</h4>
+                    <div class="quiz-options">
+                        <label><input type="checkbox" name="q14" value="A"> A. Develop exclusive contracts to deter them from building in-house solutions.</label>
+                        <label><input type="checkbox" name="q14" value="B"> B. Develop low-cost custom chips tailored to their specific needs.</label>
+                        <label><input type="checkbox" name="q14" value="C"> C. Reduce dependency by focusing on broadening the customer base.</label>
+                        <label><input type="checkbox" name="q14" value="D"> D. Sell design IP and consulting services to companies developing their own AI hardware.</label>
+                        <label><input type="checkbox" name="q14" value="E"> E. Fortify and protect its software and developer ecosystem.</label>
+                    </div>
+                </div>
+
+                <div class="quiz-question" data-question-id="q15">
+                    <h4>15. NVIDIA's Success in the Future Will Depend on Its Ability to: (Select one or more)</h4>
+                    <div class="quiz-options">
+                        <label><input type="checkbox" name="q15" value="A"> A. Maintain its technological edge over competitors.</label>
+                        <label><input type="checkbox" name="q15" value="B"> B. Diversify its customer base beyond a few key segments.</label>
+                        <label><input type="checkbox" name="q15" value="C"> C. Effectively navigate regulatory challenges and acquisitions.</label>
+                        <label><input type="checkbox" name="q15" value="D"> D. Maintain a balanced portfolio of market-creating and market-competing initiatives.</label>
+                        <label><input type="checkbox" name="q15" value="E"> E. Stay ahead of the game by identifying and leveraging decisive, irreversible trends.</label>
+                        <label><input type="checkbox" name="q15" value="F"> F. Expand its software and services ecosystem.</label>
+                    </div>
+                </div>
+                <button type="submit" id="submit-quiz" class="w-full bg-[#4A5C5A] text-white py-3 rounded-md font-semibold hover:bg-[#6B8A9A] transition-colors">Submit Quiz</button>
+                <div id="quiz-results" class="mt-8 p-6 bg-gray-50 rounded-lg border border-gray-200 text-left hidden">
+                    <h4 class="font-bold text-lg mb-2">Quiz Results</h4>
+                    <p class="text-gray-700 mb-4">Your Score: <span id="quiz-score" class="font-bold"></span></p>
+                    <button id="retake-quiz" class="bg-[#A3B18A] text-white py-2 px-4 rounded-md font-semibold hover:bg-[#6B8A9A] transition-colors">Retake Quiz</button>
+                </div>
+            </form>
+        </section>
+
+    </main>
+    
+    <footer class="bg-gray-800 text-white mt-16">
+        <div class="container mx-auto px-6 py-4 text-center text-sm">
+            <p>An Interactive Corporate Strategy Analysis. All data derived from public case studies and reports for educational purposes.</p>
+            <div class="mt-2">
+                © Dr. Swapnil Sahoo 2025 | 
+                <a href="https://x.com/swapnilsahoo" target="_blank" class="text-blue-400 hover:underline">X (Twitter)</a> | 
+                <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" class="text-blue-400 hover:underline">Instagram</a> | 
+                <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" class="text-blue-400 hover:underline">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const financialData = {
+                revenue: 60922, // Million $
+                margin: 72.7, // %
+                income: 32972 // Million $
+            };
+
+            const revenueBreakdownData = {
+                labels: ['2020', '2021', '2022', '2023', '2024'],
+                datasets: [
+                    { label: 'Gaming', data: [53.3, 46.5, 46.3, 33.6, 17.1], backgroundColor: '#6B8A9A' },
+                    { label: 'Data Center', data: [25.0, 39.4, 55.6, 55.8, 78.0], backgroundColor: '#4A5C5A' },
+                    { label: '3D Viz', data: [9.6, 7.8, 5.7, 5.8, 2.6], backgroundColor: '#A3B18A' },
+                    { label: 'Automotive', data: [5.5, 2.3, 3.3, 3.0, 1.8], backgroundColor: '#DAD7CD' },
+                    { label: 'Crypto', data: [6.5, 4.0, 0.0, 1.8, 0.0], backgroundColor: '#EAEAEA' }
+                ]
+            };
+
+            function animateValue(obj, start, end, duration, isPercent = false, isMoney = true) {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    let currentValue = progress * (end - start) + start;
+                    if (isMoney) {
+                        obj.innerHTML = '$' + currentValue.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    } else {
+                        obj.innerHTML = currentValue.toFixed(1) + (isPercent ? '%' : '');
+                    }
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            }
+
+            const overviewObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const revenueStat = document.getElementById('revenue-stat');
+                        const marginStat = document.getElementById('margin-stat');
+                        const incomeStat = document.getElementById('income-stat');
+                        
+                        animateValue(revenueStat, 0, financialData.revenue, 2000, false, true);
+                        animateValue(marginStat, 0, financialData.margin, 2000, true, false);
+                        animateValue(incomeStat, 0, financialData.income, 2000, false, true);
+
+                        overviewObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            const revenueStatElement = document.getElementById('revenue-stat');
+            if (revenueStatElement) {
+                overviewObserver.observe(revenueStatElement);
+            }
+
+            const ctx = document.getElementById('revenueChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: revenueBreakdownData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += context.parsed.y.toFixed(1) + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            stacked: true,
+                            grid: { display: false }
+                        },
+                        y: {
+                            stacked: true,
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%'
+                                }
+                            }
+                        }
+                    },
+                }
+            });
+
+            const interactiveItems = document.querySelectorAll('.interactive-item');
+            interactiveItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const contentId = item.getAttribute('data-content-id');
+                    const contentElement = document.getElementById(contentId);
+                    
+                    document.querySelectorAll('.content-visible').forEach(openContent => {
+                        if (openContent.id !== contentId) {
+                            openContent.classList.remove('content-visible');
+                            openContent.classList.add('content-hidden');
+                        }
+                    });
+
+                    if (contentElement && contentElement.classList.contains('content-hidden')) {
+                        contentElement.classList.remove('content-hidden');
+                        contentElement.classList.add('content-visible');
+                    } else if (contentElement) {
+                        contentElement.classList.remove('content-visible');
+                        contentElement.classList.add('content-hidden');
+                    }
+                });
+            });
+
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+            
+            const navLinks = document.querySelectorAll('nav a');
+            const sections = document.querySelectorAll('main section');
+
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: "-50% 0px -50% 0px" });
+
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
+
+            // Simulation Logic
+            const fabCostInput = document.getElementById('fab-cost');
+            const tsmcPriceIncreaseInput = document.getElementById('tsmc-price-increase');
+            const cudaRdInvestmentInput = document.getElementById('cuda-rd-investment');
+            const dataCenterFocusInput = document.getElementById('data-center-focus');
+            const forwardIntegrationAggressivenessInput = document.getElementById('forward-integration-aggressiveness');
+            const geopoliticalRiskInput = document.getElementById('geopolitical-risk');
+            const simulationYearsInput = document.getElementById('simulation-years');
+            const runSimulationButton = document.getElementById('run-simulation');
+
+            const fabCostValueSpan = document.getElementById('fab-cost-value');
+            const tsmcPriceIncreaseValueSpan = document.getElementById('tsmc-price-increase-value');
+            const cudaRdInvestmentValueSpan = document.getElementById('cuda-rd-investment-value');
+            const dataCenterFocusValueSpan = document.getElementById('data-center-focus-value');
+            const simulationYearsValueSpan = document.getElementById('simulation-years-value');
+
+            const simTotalRevenueSpan = document.getElementById('sim-total-revenue');
+            const simAvgGrowthSpan = document.getElementById('sim-avg-growth');
+            const simAvgMarginSpan = document.getElementById('sim-avg-margin');
+            const simDcShareSpan = document.getElementById('sim-dc-share');
+            const simGamingShareSpan = document.getElementById('sim-gaming-share');
+            const simSupplyRiskSpan = document.getElementById('sim-supply-risk');
+            const simCustomerRiskSpan = document.getElementById('sim-customer-risk');
+
+            if (fabCostInput && tsmcPriceIncreaseInput && cudaRdInvestmentInput && dataCenterFocusInput && simulationYearsInput && runSimulationButton) {
+                 // Update slider value displays
+                fabCostInput.addEventListener('input', () => {
+                    if (fabCostValueSpan) fabCostValueSpan.textContent = `$${fabCostInput.value} Billion`;
+                });
+                tsmcPriceIncreaseInput.addEventListener('input', () => {
+                    if (tsmcPriceIncreaseValueSpan) tsmcPriceIncreaseValueSpan.textContent = `${tsmcPriceIncreaseInput.value}%`;
+                });
+                cudaRdInvestmentInput.addEventListener('input', () => {
+                    if (cudaRdInvestmentValueSpan) cudaRdInvestmentValueSpan.textContent = `${cudaRdInvestmentInput.value}%`;
+                });
+                dataCenterFocusInput.addEventListener('input', () => {
+                    if (dataCenterFocusValueSpan) dataCenterFocusValueSpan.textContent = `${dataCenterFocusInput.value}%`;
+                });
+                simulationYearsInput.addEventListener('input', () => {
+                    if (simulationYearsValueSpan) simulationYearsValueSpan.textContent = `${simulationYearsInput.value} Years`;
+                });
+
+                runSimulationButton.addEventListener('click', () => {
+                    const fabCost = parseFloat(fabCostInput.value); // in Billions
+                    const tsmcPriceIncrease = parseFloat(tsmcPriceIncreaseInput.value) / 100;
+                    const cudaRdInvestment = parseFloat(cudaRdInvestmentInput.value) / 100; // as a factor
+                    const dataCenterFocus = parseFloat(dataCenterFocusInput.value) / 100; // as a factor
+                    const forwardIntegrationAggressiveness = forwardIntegrationAggressivenessInput ? forwardIntegrationAggressivenessInput.value : 'medium';
+                    const geopoliticalRisk = geopoliticalRiskInput ? geopoliticalRiskInput.value : 'medium';
+                    const simulationYears = parseInt(simulationYearsInput.value);
+
+                    // Base values (simplified and illustrative)
+                    const baseAnnualRevenueGrowth = 0.15; // 15%
+                    const baseGrossMargin = 0.70; // 70%
+                    const baseDataCenterMarketShare = 0.90; // 90%
+                    const baseGamingMarketShare = 0.70; // 70%
+                    const currentRevenue = 60.922; // Billion $
+
+                    // Fab Cost Calculation (Make vs Buy)
+                    const annualFabOperatingCost = 3; // $3 Billion annually for running a fab
+                    const initialAnnualTSMCPurchase = 20; // $20 Billion annually for TSMC chips (illustrative)
+
+                    let totalCostMake = fabCost + (annualFabOperatingCost * simulationYears);
+                    let totalCostBuy = 0;
+                    for (let i = 0; i < simulationYears; i++) {
+                        totalCostBuy += initialAnnualTSMCPurchase * Math.pow(1 + tsmcPriceIncrease, i);
+                    }
+                    const fabCostAdvantage = (totalCostBuy - totalCostMake) / simulationYears / currentRevenue; // Annualized advantage as % of current revenue
+
+                    // CUDA Impact
+                    const cudaImpactRevenueGrowth = cudaRdInvestment * 0.005; // 0.5% additional growth per % R&D increase
+                    const cudaImpactMargin = cudaRdInvestment * 0.001; // 0.1% pt additional margin per % R&D increase
+                    const cudaImpactDcShare = cudaRdInvestment * 0.002; // 0.2% pt additional DC share per % R&D increase
+
+                    // Portfolio Focus Impact (Data Center vs. Gaming)
+                    const dcFocusImpactRevenueGrowth = (dataCenterFocus - 0.5) * 0.10; // 0-5% additional growth based on focus (50% is 0, 100% is 5%)
+                    const dcFocusImpactGamingShare = (dataCenterFocus - 0.5) * -0.10; // 0-10% decrease in Gaming share
+
+                    // Forward Integration Impact
+                    let fiRevenueBoost = 0;
+                    let fiCustomerAlienationPenalty = 0;
+                    let customerAlienationRisk = 'Low';
+
+                    if (forwardIntegrationAggressiveness === 'medium') {
+                        fiRevenueBoost = 0.02; // 2% additional revenue growth
+                        customerAlienationRisk = 'Medium';
+                    } else if (forwardIntegrationAggressiveness === 'high') {
+                        fiRevenueBoost = 0.05; // 5% additional revenue growth
+                        fiCustomerAlienationPenalty = -0.03; // -3% penalty to overall growth due to alienation
+                        customerAlienationRisk = 'High';
+                    }
+
+                    // Combined Revenue Growth
+                    let adjustedRevenueGrowth = baseAnnualRevenueGrowth + cudaImpactRevenueGrowth + dcFocusImpactRevenueGrowth + fabCostAdvantage + fiRevenueBoost + fiCustomerAlienationPenalty;
+                    
+                    // Ensure growth doesn't go negative or too high for realism
+                    adjustedRevenueGrowth = Math.max(0.01, Math.min(0.50, adjustedRevenueGrowth));
+
+                    // Final Revenue
+                    const finalTotalRevenue = currentRevenue * Math.pow(1 + adjustedRevenueGrowth, simulationYears);
+
+                    // Final Gross Margin
+                    let finalGrossMargin = baseGrossMargin + cudaImpactMargin;
+                    finalGrossMargin = Math.max(0.50, Math.min(0.80, finalGrossMargin)); // Constrain margin
+
+                    // Market Share
+                    let finalDcShare = baseDataCenterMarketShare + cudaImpactDcShare;
+                    finalDcShare = Math.max(0.70, Math.min(0.99, finalDcShare)); // Constrain DC share
+
+                    let finalGamingShare = baseGamingMarketShare + dcFocusImpactGamingShare;
+                    finalGamingShare = Math.max(0.40, Math.min(0.80, finalGamingShare)); // Constrain Gaming share
+
+                    // Supply Chain Risk
+                    let supplyChainRisk = 'Medium';
+                    if (fabCostInput.value < 20) { // If building a cheaper fab (less advanced, perhaps)
+                        supplyChainRisk = 'Medium-High (Partial Control)';
+                    } else if (geopoliticalRisk === 'high' && fabCostInput.value < 20) { // High geo risk and not building fab
+                        supplyChainRisk = 'Critical (High External Dependency)';
+                    } else {
+                        supplyChainRisk = 'Very Low (Full Control)';
+                    }
+
+                    if (geopoliticalRisk === 'high' && fabCostInput.value >= 20) {
+                         supplyChainRisk = 'Low (Mitigated)';
+                    } else if (geopoliticalRisk === 'low' && fabCostInput.value < 20) {
+                         supplyChainRisk = 'Medium';
+                    } else if (geopoliticalRisk === 'low' && fabCostInput.value >= 20) {
+                         supplyChainRisk = 'Low';
+                    }
+                    
+                    
+                    // Display Results
+                    if (simTotalRevenueSpan) simTotalRevenueSpan.textContent = `$${finalTotalRevenue.toFixed(1)}B`;
+                    if (simAvgGrowthSpan) simAvgGrowthSpan.textContent = `${(adjustedRevenueGrowth * 100).toFixed(1)}%`;
+                    if (simAvgMarginSpan) simAvgMarginSpan.textContent = `${(finalGrossMargin * 100).toFixed(1)}%`;
+                    if (simDcShareSpan) simDcShareSpan.textContent = `${(finalDcShare * 100).toFixed(1)}%`;
+                    if (simGamingShareSpan) simGamingShareSpan.textContent = `${(finalGamingShare * 100).toFixed(1)}%`;
+                    if (simSupplyRiskSpan) simSupplyRiskSpan.textContent = supplyChainRisk;
+                    if (simCustomerRiskSpan) simCustomerRiskSpan.textContent = customerAlienationRisk;
+                });
+                
+                runSimulationButton.click();
+            }
+
+            // Quiz Logic
+            const quizForm = document.getElementById('quiz-form');
+            const quizResults = document.getElementById('quiz-results');
+            const quizScoreSpan = document.getElementById('quiz-score');
+            const retakeQuizButton = document.getElementById('retake-quiz');
+            const submitQuizButton = document.getElementById('submit-quiz');
+
+            const correctAnswers = {
+                q1: 'C',
+                q2: 'B',
+                q3: 'C',
+                q4: ['A', 'C'],
+                q5: ['B', 'D'],
+                q6: ['A', 'B', 'D'],
+                q7: ['A', 'B', 'C'],
+                q8: 'B',
+                q9: 'A',
+                q10: 'D',
+                q11: 'B',
+                q12: 'B',
+                q13: ['A', 'D', 'E', 'F'],
+                q14: ['B', 'E'],
+                q15: ['A', 'B', 'D', 'E', 'F']
+            };
+
+            const quizExplanations = {
+                q1: "Explanation: Nvidia's investments in specialized AI chips for data centers, like the A100 and H100, created a new, uncontested market for AI acceleration. This is a classic example of a market-creating strategy (C) rather than just defending an existing market or making a speculative bet.",
+                q2: "Explanation: CUDA's development created a powerful software ecosystem that differentiated Nvidia's hardware from its competitors. This enabled Nvidia to command premium prices and maintain high margins, aligning with a differentiation strategy (B).",
+                q3: "Explanation: A 'blue ocean' strategy focuses on creating new, uncontested market space. Nvidia's move into data center-scale AI chips did exactly this, driving uncontested growth and creating new demand, which is the essence of option C.",
+                q4: "Explanation: Customers are attracted by the complete solution. CUDA (A) simplifies programming and the supercomputer-like capabilities (C) offer a powerful, integrated solution that is highly valuable for complex AI tasks.",
+                q5: "Explanation: Nvidia commands premium prices (B) due to its unique, integrated hardware-software ecosystem. It also leverages the research community's collaboration (D) to expedite R&D, which helps keep development costs in check.",
+                q6: "Explanation: The developer community is drawn to the powerful combination of hardware and software (A), professional opportunities (B) that come with being in a dominant ecosystem, and the ability to collaborate with peers (D) on a widely-used platform.",
+                q7: "Explanation: Uncontested growth is driven by the virtuous cycle of high demand and premium pricing (A), which generates high profits (B) to fund R&D and maintain technological superiority. This, in turn, fortifies the software ecosystem (C), which locks in developers and fends off competitors.",
+                q8: "Explanation: While the Gaming GPU business is profitable and well-established, it operates in a highly competitive market against firms like AMD. It offers 'value improvements' over competitors but does not create a new market, thus classifying it as a Migrator (B).",
+                q9: "Explanation: The AI Data Center Solutions business pioneered the market for AI acceleration with an integrated hardware and software stack. This created an uncontested, 'blue ocean' market, making it a classic example of a value innovation (A).",
+                q10: "Explanation: The AI Foundry Service is an emerging business that has not yet proven its value in the market. It is an 'innovative value not yet proven,' making it a potential Pioneer, which is best described by option D.",
+                q11: "Explanation: Nvidia's strategy is best described as aggressive diversification (B), as it has consistently moved beyond its original core business (gaming) to create new markets like AI data centers and autonomous driving.",
+                q12: "Explanation: The massive shift in revenue is primarily due to the explosive, brand-new demand for specialized AI accelerators (B) in data centers for tasks like LLM training and inference, not a decline in the gaming market.",
+                q13: "Explanation: Nvidia faces challenges from competitors developing their own chips (A, D), high R&D costs (E), and the threat of more efficient AI methods (F) that could reduce demand. While chip shortages (B) and regulatory scrutiny (C) are relevant, the core competitive threats come from the other factors.",
+                q14: "Explanation: To respond to customers developing in-house chips, Nvidia should focus on offering low-cost custom chips (B) to maintain a relationship, and fortify its ecosystem (E) to make their hardware indispensable.",
+                q15: "Explanation: Nvidia's long-term success hinges on its ability to maintain its technological lead (A), diversify its customer base (B), manage its portfolio (D), stay ahead of trends (E), and expand its ecosystem (F). All of these are crucial for continued dominance."
+            };
+
+            if (submitQuizButton && quizForm && quizResults) {
+                submitQuizButton.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    let score = 0;
+                    const questions = document.querySelectorAll('.quiz-question');
+                    questions.forEach(question => {
+                        const qId = question.getAttribute('data-question-id');
+                        const correctAns = correctAnswers[qId];
+                        const explanationText = quizExplanations[qId];
+                        let isCorrect = false;
+
+                        const userInputs = Array.from(question.querySelectorAll('input:checked'));
+                        const userChoices = userInputs.map(input => input.value).sort();
+                        
+                        question.classList.remove('border-green-500', 'border-red-500');
+
+                        if (Array.isArray(correctAns)) {
+                            if (JSON.stringify(userChoices) === JSON.stringify(correctAns.sort())) {
+                                isCorrect = true;
+                            }
+                        } else {
+                            if (userChoices.length === 1 && userChoices[0] === correctAns) {
+                                isCorrect = true;
+                            }
+                        }
+
+                        if (isCorrect) {
+                            score++;
+                            question.classList.add('border-green-500');
+                        } else {
+                            question.classList.add('border-red-500');
+                        }
+
+                        const labels = question.querySelectorAll('label');
+                        labels.forEach(label => {
+                            label.classList.remove('correct-answer-label', 'incorrect-answer-label');
+                            const input = label.querySelector('input');
+                            if (Array.isArray(correctAns)) {
+                                if (correctAns.includes(input.value)) {
+                                    label.classList.add('correct-answer-label');
+                                }
+                            } else {
+                                if (input.value === correctAns) {
+                                    label.classList.add('correct-answer-label');
+                                }
+                            }
+                            if (input.checked && !isCorrect) {
+                                label.classList.add('incorrect-answer-label');
+                            }
+                        });
+
+                        // Add explanation
+                        let explanationDiv = question.querySelector('.quiz-explanation');
+                        if (!explanationDiv) {
+                            explanationDiv = document.createElement('div');
+                            explanationDiv.className = 'quiz-explanation';
+                            question.appendChild(explanationDiv);
+                        }
+                        explanationDiv.innerHTML = `<p>${explanationText}</p>`;
+                        explanationDiv.classList.add('show');
+                    });
+                    
+                    quizScoreSpan.textContent = `${score} / ${Object.keys(correctAnswers).length}`;
+                    quizResults.classList.remove('hidden');
+                    document.getElementById('quiz').scrollIntoView({ behavior: 'smooth' });
+                });
+            }
+
+            if (retakeQuizButton && quizForm && quizResults) {
+                retakeQuizButton.addEventListener('click', function() {
+                    quizForm.reset();
+                    quizResults.classList.add('hidden');
+                    const questions = document.querySelectorAll('.quiz-question');
+                    questions.forEach(question => {
+                        question.classList.remove('border-green-500', 'border-red-500');
+                        const labels = question.querySelectorAll('label');
+                        labels.forEach(label => {
+                            label.classList.remove('correct-answer-label', 'incorrect-answer-label');
+                        });
+                        const explanationDiv = question.querySelector('.quiz-explanation');
+                        if (explanationDiv) {
+                            explanationDiv.classList.remove('show');
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

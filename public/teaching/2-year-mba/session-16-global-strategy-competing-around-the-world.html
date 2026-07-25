@@ -1,0 +1,2473 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Strategy: Competing Around the World</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-dark: #0f172a;
+            --accent-blue: #2563eb;
+            --ikea-blue: #0051ba;
+            --ikea-yellow: #ffda1a;
+            --neon-blue: #3b82f6;
+            --neon-red: #ef4444;
+            --neon-green: #22c55e;
+            --sim-bg: #1e293b;
+        }
+        
+        body {
+            font-family: 'Satoshi', sans-serif;
+            background-color: #fafafa;
+            color: #334155;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        h1, h2, h3, h4, .serif { font-family: 'Playfair Display', serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        #progress-bar {
+            position: fixed; top: 0; left: 0; height: 4px;
+            background: var(--accent-blue); width: 0%; z-index: 100; transition: width 0.1s;
+        }
+
+        #main-header { position: sticky; top: 0; z-index: 40; transition: all 0.3s ease; }
+        .nav-link { position: relative; font-weight: 500; color: #64748b; transition: color 0.2s; }
+        .nav-link:hover, .nav-link.active { color: var(--primary-dark); }
+        .nav-link.active::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 100%; height: 2px; background: var(--accent-blue);
+        }
+
+        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        .fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .paradox-card { background: white; border-radius: 1rem; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.08); transition: transform 0.3s ease; }
+        .paradox-card:hover { transform: translateY(-5px); }
+        .stat-pill { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 99px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+        .pill-global { background: #e2e8f0; color: #475569; }
+        .pill-india { background: #e0e7ff; color: #4338ca; }
+        .pill-china { background: #fee2e2; color: #991b1b; }
+
+        .hexagon-icon { position: relative; width: 24px; height: 24px; display: inline-block; vertical-align: middle; }
+        .hexagon-icon svg { width: 100%; height: 100%; animation: glow 3s infinite ease-in-out; }
+        .hexagon-path { stroke: #B91C1C; stroke-width: 1; }
+        .hexagon-s { font-family: 'Georgia', serif; font-weight: bold; font-size: 48px; fill: #facc15; text-anchor: middle; dominant-baseline: central; }
+        @keyframes glow { 0%, 100% { filter: drop-shadow(0 0 2px rgba(239, 68, 68, 0.5)); } 50% { filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.8)); } }
+        
+        .tab-btn { transition: all 0.2s; border-left: 4px solid transparent; }
+        .tab-btn.active { background: #eff6ff; border-left-color: var(--accent-blue); color: var(--accent-blue); }
+        
+        .continuum-arrow { height: 4px; background: linear-gradient(to right, #93c5fd, #2563eb); position: relative; border-radius: 2px; }
+        .continuum-arrow::after { content: ''; position: absolute; right: -5px; top: -4px; width: 0; height: 0; border-top: 6px solid transparent; border-bottom: 6px solid transparent; border-left: 10px solid #2563eb; }
+        
+        .strategy-table th { background-color: #f8fafc; color: #475569; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 1rem; }
+        .strategy-table td { padding: 1rem; vertical-align: top; font-size: 0.875rem; border-bottom: 1px solid #e2e8f0; }
+        .strategy-table tr:last-child td { border-bottom: none; }
+        .strategy-table tr:hover { background-color: #f8fafc; }
+
+        .hidden-section { display: none; }
+        .option-card { cursor: pointer; transition: all 0.2s; border: 1px solid #334155; }
+        .option-card:hover { border-color: var(--neon-blue); background-color: rgba(59, 130, 246, 0.05); }
+        .option-card.selected { border-color: var(--neon-blue); background-color: rgba(59, 130, 246, 0.1); box-shadow: 0 0 15px rgba(59, 130, 246, 0.3); }
+        
+        .quiz-option { transition: all 0.2s ease; cursor: pointer; border: 1px solid #e2e8f0; }
+        .quiz-option:hover { background-color: #f8fafc; border-color: #cbd5e1; }
+        .quiz-option.correct { background-color: #dcfce7; border-color: #22c55e; color: #15803d; }
+        .quiz-option.wrong { background-color: #fee2e2; border-color: #ef4444; color: #b91c1c; }
+        .quiz-option.disabled { pointer-events: none; }
+        
+        #image-modal { transition: opacity 0.3s ease; pointer-events: none; }
+        #image-modal.open { pointer-events: auto; opacity: 1; }
+        .zoomable { cursor: zoom-in; transition: transform 0.2s; }
+        .zoomable:hover { transform: scale(1.02); }
+
+        .socratic-msg-prof { background-color: #f8fafc; border-left: 4px solid #334155; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .socratic-msg-student { background-color: #eff6ff; border-right: 4px solid #2563eb; text-align: right; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .chart-container-ir { position: relative; width: 100%; height: 350px; }
+        .chart-container-growth { position: relative; width: 100%; height: 400px; }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <div id="progress-bar"></div>
+
+    <div id="image-modal" class="fixed inset-0 z-[100] bg-black/90 opacity-0 flex items-center justify-center p-4" onclick="closeImageModal()">
+        <button class="absolute top-4 right-4 text-white text-4xl font-bold hover:text-gray-300">&times;</button>
+        <img id="modal-image" src="" alt="Zoomed View" class="max-h-[90vh] max-w-full rounded-lg shadow-2xl object-contain cursor-zoom-out">
+        <p id="modal-caption" class="absolute bottom-8 left-0 right-0 text-center text-white text-sm bg-black/50 py-2 px-4"></p>
+    </div>
+
+    <nav id="main-header" class="bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="https://www.swapnilsahoo.com" target="_blank" class="flex items-center gap-3 group">
+                <div class="hexagon-icon">
+                    <svg viewBox="0 0 52 60">
+                        <defs><linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
+                        <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#redGradient)"/>
+                        <text class="hexagon-s" x="26" y="32">S</text>
+                    </svg>
+                </div>
+                <div class="leading-tight">
+                    <h1 class="font-bold text-slate-900 tracking-tight">Global Strategy</h1>
+                    <p class="text-xs text-slate-500 font-medium uppercase tracking-wider">© Prof. Swapnil Sahoo 2026 | All Rights Reserved</p>
+                </div>
+            </a>
+            
+            <div class="hidden xl:flex space-x-6 text-sm">
+                <a href="#paradox" class="nav-link active">The Paradox</a>
+                <a href="#ikea" class="nav-link text-yellow-600 font-bold">IKEA Case</a>
+                <a href="#basics" class="nav-link">Basics</a>
+                <a href="#why" class="nav-link">Why?</a>
+                <a href="#risks" class="nav-link">Risks</a>
+                <a href="#where" class="nav-link">Where (CAGE)</a>
+                <a href="#how" class="nav-link">How (Entry)</a>
+                <a href="#compete" class="nav-link">Strategies</a>
+                <a href="#national" class="nav-link">National Adv</a> 
+                <a href="#quiz" class="nav-link text-green-600 font-bold">Final Quiz</a>
+            </div>
+
+            <div class="flex items-center gap-5">
+                <a href="https://x.com/swapnilsahoo" target="_blank" class="text-slate-400 hover:text-blue-400 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" class="text-slate-400 hover:text-pink-600 transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" class="text-slate-400 hover:text-blue-600 transition-colors"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.chess.com/member/swapnilsahoo" target="_blank" class="text-slate-400 hover:text-green-600 transition-colors text-lg" title="Play Chess">
+                    <i class="fas fa-chess-king"></i>
+                </a>
+                <button class="xl:hidden text-slate-600"><i class="fas fa-bars text-xl"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <section id="context" class="mb-12 fade-up">
+            <div class="text-center max-w-4xl mx-auto">
+                <div class="flex items-center justify-center gap-4 text-sm text-slate-400 font-medium mb-6 uppercase tracking-wider">
+                    <span>Part 1: Analysis</span>
+                    <span class="text-slate-300">/</span>
+                    <span class="text-indigo-600 font-bold">Part 2: Formulation</span>
+                    <span class="text-slate-300">/</span>
+                    <span>Part 3: Implementation</span>
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-bold text-slate-900 mb-6 leading-tight font-serif">Session 16: Competing Around the World</h1>
+                <p class="text-xl text-slate-500 mb-8">The Third Dimension of Corporate Strategy</p>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-indigo-100 text-left relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-indigo-600"></div>
+                    <p class="text-lg text-slate-600 leading-relaxed mb-4">
+                        In previous sessions, we looked at the first two dimensions of corporate strategy: <strong>managing the degree of vertical integration</strong> and deciding which products and services to offer (the <strong>degree of diversification</strong>).
+                    </p>
+                    <p class="text-xl text-slate-800 font-medium leading-relaxed font-serif">
+                        Now we turn to the <span class="text-indigo-600 font-bold decoration-4 underline decoration-indigo-200">third dimension</span>: global strategy and competing effectively around the world.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW: LEARNING OUTCOMES SECTION -->
+        <section id="objectives" class="mb-24 fade-up">
+            <div class="max-w-4xl mx-auto bg-slate-900 text-white rounded-2xl shadow-xl border border-slate-700 p-8 md:p-10 relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-8 opacity-10">
+                    <i class="fas fa-bullseye text-8xl text-blue-400"></i>
+                </div>
+                <h3 class="text-2xl font-serif font-bold text-white mb-6 border-b border-slate-700 pb-4 relative z-10"><i class="fas fa-graduation-cap text-blue-400 mr-3"></i>Session 16 Objectives & Learning Outcomes</h3>
+                <ul class="grid md:grid-cols-2 gap-x-8 gap-y-4 text-sm text-slate-300 relative z-10">
+                    <li class="flex items-start"><i class="fas fa-check-circle text-blue-400 mt-1 mr-3 text-lg"></i><span><strong>LO 16-1:</strong> Define globalization, multinational enterprise (MNE), foreign direct investment (FDI), and global strategy.</span></li>
+                    <li class="flex items-start"><i class="fas fa-check-circle text-blue-400 mt-1 mr-3 text-lg"></i><span><strong>LO 16-2:</strong> Explain why companies compete abroad, evaluating the advantages and disadvantages.</span></li>
+                    <li class="flex items-start"><i class="fas fa-check-circle text-blue-400 mt-1 mr-3 text-lg"></i><span><strong>LO 16-3:</strong> Apply the CAGE distance framework to guide global expansion decisions.</span></li>
+                    <li class="flex items-start"><i class="fas fa-check-circle text-blue-400 mt-1 mr-3 text-lg"></i><span><strong>LO 16-4:</strong> Compare and contrast the different options MNEs have for entering foreign markets.</span></li>
+                    <li class="flex items-start"><i class="fas fa-check-circle text-blue-400 mt-1 mr-3 text-lg"></i><span><strong>LO 16-5:</strong> Analyze global strategy using the Integration-Responsiveness framework.</span></li>
+                    <li class="flex items-start"><i class="fas fa-check-circle text-blue-400 mt-1 mr-3 text-lg"></i><span><strong>LO 16-6:</strong> Apply Porter's Diamond framework to understand national competitive advantage.</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="paradox" class="mb-32 fade-up">
+            <div class="bg-white rounded-3xl p-8 md:p-12 text-slate-900 shadow-xl border border-slate-200 relative overflow-hidden">
+                <div class="relative z-10 text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">The Global Paradox</h2>
+                    <p class="text-lg text-slate-600 max-w-3xl mx-auto italic leading-relaxed">
+                        "If Strategy is about winning, and <span class="text-blue-600 font-bold">Walmart</span> is massively larger than <span class="text-yellow-600 font-bold">IKEA</span>, why do we consider IKEA the global winner?"
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 hover:bg-slate-100 transition-colors">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h3 class="text-2xl font-bold text-slate-800">Walmart</h3>
+                                <span class="text-xs text-slate-500 uppercase tracking-widest">The Financial Giant</span>
+                            </div>
+                            <div class="bg-[#0071ce] text-white font-bold px-3 py-1 rounded text-xs">USA</div>
+                        </div>
+                        <div class="space-y-4 text-sm">
+                            <div class="flex justify-between border-b border-slate-200 pb-2">
+                                <span class="text-slate-600">Revenue (2026)</span>
+                                <span class="font-mono font-bold text-green-600">~$650 Billion</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-200 pb-2">
+                                <span class="text-slate-600">Home Dependency</span>
+                                <span class="font-mono font-bold text-red-500">~84% (USA)</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-600">International Trend</span>
+                                <span class="text-right text-xs text-slate-500 max-w-[150px]">Declining (18%). Exited UK, Japan, Brazil.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 hover:bg-slate-100 transition-colors">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h3 class="text-2xl font-bold text-slate-800">IKEA</h3>
+                                <span class="text-xs text-slate-500 uppercase tracking-widest">The Global Winner</span>
+                            </div>
+                            <div class="bg-[#ffda1a] text-[#0051ba] font-bold px-3 py-1 rounded text-xs">Sweden</div>
+                        </div>
+                        <div class="space-y-4 text-sm">
+                            <div class="flex justify-between border-b border-slate-200 pb-2">
+                                <span class="text-slate-600">Revenue (2026)</span>
+                                <span class="font-mono font-bold text-green-600">€55 Billion</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-200 pb-2">
+                                <span class="text-slate-600">Home Dependency</span>
+                                <span class="font-mono font-bold text-green-600">< 1% (Sweden)</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-600">International Trend</span>
+                                <span class="text-right text-xs text-slate-500 max-w-[150px]">Dominant (>90%). Europe, USA, Asia.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-center mt-8 text-sm text-slate-500 italic">
+                    Lesson: Global Strategy is not about how much you sell globally, but how well you cross borders relative to your size.
+                </p>
+            </div>
+        </section>
+
+        <!-- FULLY REVAMPED IKEA SECTION INCORPORATING TEXTBOOK CONTENT -->
+        <section id="ikea" class="mb-32 fade-up">
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-100">
+                <div class="bg-[#0051ba] p-10 relative overflow-hidden">
+                    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffda1a 2px, transparent 2px); background-size: 20px 20px;"></div>
+                    <div class="relative z-10 flex flex-col md:flex-row items-center justify-between">
+                        <div class="text-white mb-6 md:mb-0">
+                            <div class="inline-block bg-[#ffda1a] text-[#0051ba] text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider mb-3">ChapterCase 16</div>
+                            <h2 class="text-4xl font-serif font-bold">IKEA: The World's Most Profitable Retailer</h2>
+                            <p class="text-blue-200 mt-2 max-w-xl text-sm leading-relaxed">From a small retail outlet in 1943 to a €55 billion global juggernaut shaping how the world furnishes its homes.</p>
+                        </div>
+                        <div class="bg-white text-[#0051ba] w-24 h-24 flex items-center justify-center rounded-full font-black text-3xl shadow-2xl transform rotate-3 border-4 border-[#ffda1a]">
+                            IKEA
+                        </div>
+                    </div>
+                </div>
+
+                <div class="max-w-5xl mx-auto mt-10 px-6 md:px-10">
+                    <div class="bg-yellow-50 border-l-4 border-yellow-500 p-5 mb-6 rounded-r-lg shadow-sm">
+                        <p class="text-sm text-yellow-800 font-bold uppercase tracking-wider mb-1"><i class="fas fa-chalkboard-teacher mr-2"></i>First Principle Inquiry</p>
+                        <p class="text-xl font-serif text-slate-800 italic">"How does a firm maintain a low-cost global standardization advantage while adapting to drastic demographic shifts like extreme urbanization?"</p>
+                    </div>
+                    
+                    <div class="border border-slate-200 rounded-lg overflow-hidden bg-white shadow-sm mb-6">
+                        <div class="bg-slate-100 px-4 py-3 border-b border-slate-200 flex items-center justify-between">
+                            <span class="font-bold text-slate-700 text-sm">Socratic Dialogue</span>
+                            <span class="text-xs text-slate-500"><i class="fas fa-user-tie mr-1"></i> Prof. Swapnil</span>
+                        </div>
+                        <div class="p-6 space-y-4 min-h-[150px] flex flex-col bg-slate-50/50" id="ikea-chat-area">
+                            <div class="socratic-msg-prof p-4 rounded-xl rounded-tl-none max-w-[85%]">
+                                <p class="text-slate-800 font-serif leading-relaxed">IKEA built its empire on massive suburban stores and 'build-it-yourself' flat-pack furniture. Yet, projections show that 70% of the world will live in dense cities by 2050, and younger generations loathe assembling furniture. Should IKEA abandon its core model entirely to survive?</p>
+                            </div>
+                            <div class="self-end w-full max-w-[85%] space-y-2 fade-in" id="ikea-chat-options">
+                                <button onclick="answerIkeaChat(1)" class="w-full text-left p-3 text-sm bg-white border border-yellow-300 hover:border-yellow-500 hover:bg-yellow-50 text-slate-700 rounded transition shadow-sm">Yes, they need to pivot completely to online sales and pre-assembled furniture delivery.</button>
+                                <button onclick="answerIkeaChat(2)" class="w-full text-left p-3 text-sm bg-white border border-yellow-300 hover:border-yellow-500 hover:bg-yellow-50 text-slate-700 rounded transition shadow-sm">No, they should reinvent the format—hybrid city-center stores, click-and-collect, and strategic acquisitions for assembly services while keeping flat-packs.</button>
+                            </div>
+                            <div id="ikea-chat-feedback" class="space-y-4"></div>
+                        </div>
+                    </div>
+
+                    <div id="ikea-sim-container" class="hidden mt-6 bg-white border border-slate-200 rounded-lg p-6 shadow-sm fade-in mb-8 border-t-4 border-t-blue-600">
+                        <h3 class="text-xl font-bold mb-4 text-slate-800"><i class="fas fa-tools text-blue-600 mr-2"></i>Simulation: The Urbanization Challenge</h3>
+                        <p class="mb-4 text-sm text-slate-600">Role-play: You are the CEO of IKEA. Foot traffic to your massive 320,000 sq. ft. suburban stores dropped from 1 billion pre-pandemic to around 850 million today. You must solve the "last-mile" and "assembly" friction points for urban Millennials. Choose your strategic initiative.</p>
+                        <div class="space-y-3">
+                            <button onclick="handleIkeaSim(1, this)" class="ikea-sim-btn w-full text-left p-4 bg-slate-50 border border-slate-200 rounded hover:bg-blue-50 hover:border-blue-400 transition text-sm">
+                                <strong class="text-blue-700 block mb-1">Initiative A:</strong> Increase traditional marketing spend and offer extreme discounts to force urban dwellers to drive to your suburban mega-stores.
+                            </button>
+                            <button onclick="handleIkeaSim(2, this)" class="ikea-sim-btn w-full text-left p-4 bg-slate-50 border border-slate-200 rounded hover:bg-blue-50 hover:border-blue-400 transition text-sm">
+                                <strong class="text-blue-700 block mb-1">Initiative B:</strong> Acquire an assembly marketplace (TaskRabbit), launch smaller city-center showrooms, and invest heavily in AR (Augmented Reality) online shopping.
+                            </button>
+                            <button onclick="handleIkeaSim(3, this)" class="ikea-sim-btn w-full text-left p-4 bg-slate-50 border border-slate-200 rounded hover:bg-blue-50 hover:border-blue-400 transition text-sm">
+                                <strong class="text-blue-700 block mb-1">Initiative C:</strong> Transition entirely away from retail, selling IKEA products exclusively wholesale through Amazon and local supermarkets.
+                            </button>
+                        </div>
+                        <div id="ikea-sim-feedback" class="mt-4 p-4 rounded hidden text-sm"></div>
+                    </div>
+                </div>
+
+                <div class="p-10 grid lg:grid-cols-12 gap-12 pt-0 mt-8">
+                    <div class="lg:col-span-7 space-y-8"> 
+                        <div class="prose prose-slate max-w-none text-sm leading-relaxed text-slate-600">
+                            <p>
+                                The world's most profitable global retailer is not Walmart but IKEA, a privately owned home-furnishings company from Sweden. By 2026, IKEA had nearly <strong>520 stores in over 60 countries</strong>, employed over 250,000 people, and had revenues of more than <strong>€55 billion</strong>. 
+                            </p>
+                            <p>
+                                Known today for its iconic blue-and-yellow big-box retail stores that highlight its Swedish origins, its build-it-yourself furniture, and its focus on flat-pack furniture boxes, IKEA was the brainchild of 17-year-old Ingvar Kamprad, who opened a small retail outlet in 1943. Though IKEA is today a global phenomenon, it was initially slow to internationalize. It took 20 years before the company expanded beyond Sweden to neighboring Norway.
+                            </p>
+                            <p>
+                                After honing and refining its core competencies of designing modern functional home furnishings at low cost and offering a unique retail experience in its home market, IKEA pursued an international strategy, expanding first throughout Europe and then beyond. This allowed IKEA to leverage its simple, straightforward design to sell the <em>same style of home furnishings across the globe</em> (Global-Standardization strategy). Its consistent product lines show that the IKEA aesthetic is welcome almost everywhere, growing quickly in developed markets and rapidly emerging economies such as China and India.
+                            </p>
+                            
+                            <h4 class="text-lg font-bold text-slate-800 mt-6 mb-2 border-b border-slate-200 pb-2">Supply Chain, Russia, and Geopolitics</h4>
+                            <p>
+                                From day one, IKEA strived to keep costs low to make products as affordable as possible without sacrificing design. To achieve economies of scale, they effectively manage a massive global supply chain. Although Asia accounts for a smaller fraction of IKEA's sales, this region provides roughly 35% of IKEA's inputs. 
+                            </p>
+                            <p class="bg-red-50 p-4 border-l-4 border-red-500 rounded text-slate-700 italic">
+                                <strong>Geopolitical Reality Check:</strong> To protest Russia's invasion of Ukraine, IKEA closed all of its stores in Russia. Although Russia accounted for a mere 4% of IKEA's sales, it was a major supplier of wood, the most critical input for furniture companies. 
+                            </p>
+
+                            <h4 class="text-lg font-bold text-slate-800 mt-6 mb-2 border-b border-slate-200 pb-2">Reinventing for the City & Solving the "Assembly" Pain Point</h4>
+                            <p>
+                                With projections that 70% of the world’s population will live in cities by 2050, IKEA is reinventing itself. It has firmly pushed toward newer retail formats, placing smaller stores in city centers like London, New York, and Paris. Despite the smaller format, IKEA offers its full range of products via a hybrid experience: in-store inventory coupled with online ordering for home delivery or click-and-collect locations. 
+                            </p>
+                            <p>
+                                Furthermore, research shows Millennials and Gen Z consumers are less inclined to spend frustrating hours assembling furniture. To address this major customer pain point, IKEA acquired <strong>TaskRabbit</strong>, a furniture assembly and delivery marketplace. They are even testing "IKEAbots" in Singapore to fully automate furniture assembly in the future.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 flex flex-col justify-start space-y-8">
+                        <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 shadow-sm">
+                            <h5 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4 text-center">Exhibit 16.1: IKEA Stores and Revenues (1974–2026)</h5>
+                            <div class="chart-container-growth">
+                                <canvas id="ikeaGrowthChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-slate-50 rounded-xl p-5 border border-slate-200 shadow-sm text-center">
+                                <h5 class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4">Exhibit 16.3: Sales by Region</h5>
+                                <div class="relative h-40 w-full">
+                                    <canvas id="ikeaRegionChart"></canvas>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-slate-50 rounded-xl p-5 border border-slate-200 shadow-sm">
+                                <h5 class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4 text-center">Exhibit 16.2: Top 5 Countries</h5>
+                                <div class="space-y-3 mt-4">
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="font-bold text-slate-700 w-16">Germany</span>
+                                        <div class="flex-1 bg-slate-200 h-3 rounded ml-2 mr-2"><div class="bg-[#0051ba] h-full rounded" style="width: 15%"></div></div>
+                                        <span class="text-slate-500 w-8 text-right">15%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="font-bold text-slate-700 w-16">USA</span>
+                                        <div class="flex-1 bg-slate-200 h-3 rounded ml-2 mr-2"><div class="bg-[#0051ba] h-full rounded opacity-90" style="width: 14%"></div></div>
+                                        <span class="text-slate-500 w-8 text-right">14%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="font-bold text-slate-700 w-16">France</span>
+                                        <div class="flex-1 bg-slate-200 h-3 rounded ml-2 mr-2"><div class="bg-[#0051ba] h-full rounded opacity-80" style="width: 9%"></div></div>
+                                        <span class="text-slate-500 w-8 text-right">9%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="font-bold text-slate-700 w-16">UK</span>
+                                        <div class="flex-1 bg-slate-200 h-3 rounded ml-2 mr-2"><div class="bg-[#0051ba] h-full rounded opacity-70" style="width: 7%"></div></div>
+                                        <span class="text-slate-500 w-8 text-right">7%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="font-bold text-slate-700 w-16">China</span>
+                                        <div class="flex-1 bg-slate-200 h-3 rounded ml-2 mr-2"><div class="bg-[#0051ba] h-full rounded opacity-60" style="width: 6%"></div></div>
+                                        <span class="text-slate-500 w-8 text-right">6%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BASICS: GLOBALIZATION -->
+        <section id="basics" class="mb-32 fade-up">
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <div>
+                    <span class="text-indigo-600 font-bold tracking-wide text-xs uppercase mb-2 block">16.1 Core Definitions</span>
+                    <h2 class="text-4xl font-serif font-bold text-slate-900 mb-6">What is Globalization?</h2>
+                    <p class="text-lg text-slate-600 mb-8 leading-relaxed">
+                        It is not just selling abroad. It is the process of closer integration and exchange between different countries and peoples, driven by falling trade barriers and better telecommunications.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex gap-4 group">
+                            <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center shrink-0 text-xl group-hover:scale-110 transition-transform"><i class="fas fa-globe"></i></div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">MNE (Multinational Enterprise)</h4>
+                                <p class="text-sm text-slate-500">A firm that deploys resources in at least two countries. <br><em>Examples: Boeing, Infosys, Samsung.</em></p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 group">
+                            <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center shrink-0 text-xl group-hover:scale-110 transition-transform"><i class="fas fa-plane-arrival"></i></div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">FDI (Foreign Direct Investment)</h4>
+                                <p class="text-sm text-slate-500">Investing in value chain activities abroad.</p>
+                                <div class="text-xs bg-slate-50 p-2 mt-2 rounded border-l-2 border-emerald-500">
+                                    <strong>Ex: Airbus (EU) in Alabama (USA)</strong><br>Invested $1B to be closer to customers (Delta) and avoid tariffs.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 group">
+                            <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-full flex items-center justify-center shrink-0 text-xl group-hover:scale-110 transition-transform"><i class="fas fa-layer-group"></i></div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">Stages of Globalization</h4>
+                                <div class="text-sm text-slate-500 space-y-1 mt-1">
+                                    <p><span class="font-bold">1.0 (1900-1941):</span> Sales/Operations. (Slow)</p>
+                                    <p><span class="font-bold">2.0 (1945-2000):</span> MNEs replicate home model. (Scale)</p>
+                                    <p><span class="font-bold">3.0 (21st Century):</span> Seamless global networks. (Integrated)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-slate-900 text-white p-8 rounded-2xl shadow-xl">
+                    <h3 class="text-xl font-bold mb-6 border-b border-slate-700 pb-4">The $85 Trillion World Economy</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center justify-between group">
+                            <div class="flex items-center gap-4">
+                                <span class="text-2xl">🇺🇸</span>
+                                <div><div class="font-bold">USA</div><div class="text-xs text-slate-400">$21T GDP</div></div>
+                            </div>
+                            <span class="text-2xl font-bold text-blue-400 group-hover:scale-110 transition-transform">25%</span>
+                        </div>
+                        <div class="flex items-center justify-between group">
+                            <div class="flex items-center gap-4">
+                                <span class="text-2xl">🇨🇳</span>
+                                <div><div class="font-bold">China</div><div class="text-xs text-slate-400">$15T GDP</div></div>
+                            </div>
+                            <span class="text-2xl font-bold text-red-400 group-hover:scale-110 transition-transform">18%</span>
+                        </div>
+                        <div class="flex items-center justify-between group">
+                            <div class="flex items-center gap-4">
+                                <span class="text-2xl">🇯🇵</span>
+                                <div><div class="font-bold">Japan</div><div class="text-xs text-slate-400">$5T GDP</div></div>
+                            </div>
+                            <span class="text-2xl font-bold text-slate-400 group-hover:scale-110 transition-transform">6%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 pt-6 border-t border-slate-700">
+                        <h4 class="text-sm font-bold text-slate-300 mb-3"><i class="fas fa-graduation-cap mr-2"></i>Globalization of Talent</h4>
+                        <p class="text-xs text-slate-400 mb-2">6 million students study abroad annually.</p>
+                        <div class="flex gap-4 text-xs">
+                            <span class="bg-slate-800 px-2 py-1 rounded">Top Destination: <strong>USA</strong></span>
+                            <span class="bg-slate-800 px-2 py-1 rounded">Top Sources: <strong>China, India</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- THE FABRIC OF GLOBALIZATION -->
+            <div class="mt-16 border-t border-slate-200 pt-16">
+                <div class="text-center mb-12">
+                    <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-800 text-xs font-bold rounded-full mb-2">Deep Dive</span>
+                    <h3 class="text-3xl font-serif font-bold text-slate-900">The Fabric of Globalization</h3>
+                    <p class="text-slate-600 max-w-3xl mx-auto mt-4 text-lg">
+                        Globalization is the process of increasing interconnectedness and interdependence among the world's economies, cultures, and populations.
+                    </p>
+                </div>
+
+                <!-- Dimensions and Drivers Grid -->
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <!-- Key Dimensions -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+                        <h4 class="text-xl font-bold text-slate-800 mb-6 flex items-center"><i class="fas fa-cubes text-indigo-600 mr-3"></i>Key Dimensions</h4>
+                        <ul class="space-y-4 text-sm text-slate-600">
+                            <li><strong class="text-slate-800">Economic:</strong> Integration of national economies through trade, foreign direct investment (FDI), and global supply chains.</li>
+                            <li><strong class="text-slate-800">Cultural:</strong> The exchange and blending of ideas, values, and artistic expressions, often leading to a more shared global culture.</li>
+                            <li><strong class="text-slate-800">Political:</strong> Growth of a worldwide political system and international organizations like the United Nations and WTO that manage global issues.</li>
+                            <li><strong class="text-slate-800">Technological:</strong> The spread of innovations like the internet, smartphones, and 5G that facilitate instant global communication and digital trade.</li>
+                        </ul>
+                    </div>
+                    <!-- Major Drivers -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+                        <h4 class="text-xl font-bold text-slate-800 mb-6 flex items-center"><i class="fas fa-rocket text-indigo-600 mr-3"></i>Major Drivers</h4>
+                        <ul class="space-y-4 text-sm text-slate-600">
+                            <li><strong class="text-slate-800">Trade Liberalization:</strong> Reducing or removing tariffs and trade barriers through agreements like the USMCA.</li>
+                            <li><strong class="text-slate-800">Transportation Innovations:</strong> The invention of shipping containers, jet engines, and high-speed rail has dramatically lowered the cost and time of moving goods and people.</li>
+                            <li><strong class="text-slate-800">Digital Connectivity:</strong> High-speed internet and mobile technology allow businesses to manage global workforces and reach international markets with ease.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Impact and Debate (Pros/Cons Table) -->
+                <div class="bg-slate-50 rounded-2xl p-8 border border-slate-200 mb-12">
+                    <h4 class="text-xl font-bold text-slate-800 mb-6 text-center">Impact and Debate: Pros vs. Cons</h4>
+                    <p class="text-center text-sm text-slate-500 mb-6">Globalization has delivered significant benefits but remains highly controversial.</p>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left bg-white rounded-lg overflow-hidden shadow-sm">
+                            <thead class="bg-slate-800 text-white">
+                                <tr>
+                                    <th class="p-4 font-semibold w-1/2 rounded-tl-lg"><i class="fas fa-plus-circle text-green-400 mr-2"></i>Pros (Benefits)</th>
+                                    <th class="p-4 font-semibold w-1/2 rounded-tr-lg"><i class="fas fa-minus-circle text-red-400 mr-2"></i>Cons (Challenges)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 text-sm">
+                                <tr>
+                                    <td class="p-4"><strong class="text-slate-800">Poverty Reduction:</strong> Lifted hundreds of millions out of poverty, particularly in Asia.</td>
+                                    <td class="p-4"><strong class="text-slate-800">Income Inequality:</strong> Gains are often unevenly distributed, widening the gap between rich and poor.</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4"><strong class="text-slate-800">Consumer Benefits:</strong> Access to a wider variety of products at lower prices.</td>
+                                    <td class="p-4"><strong class="text-slate-800">Job Displacement:</strong> Manufacturing and low-skilled jobs often move to countries with lower labor costs.</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4"><strong class="text-slate-800">Innovation:</strong> Faster sharing of technology and scientific research.</td>
+                                    <td class="p-4"><strong class="text-slate-800">Environmental Damage:</strong> Increased transportation and production contribute to carbon emissions and deforestation.</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4"><strong class="text-slate-800">Global Cooperation:</strong> Encourages nations to work together on issues like climate change and pandemics.</td>
+                                    <td class="p-4"><strong class="text-slate-800">Cultural Loss:</strong> Risk of cultural homogenization where local traditions are overshadowed by dominant global cultures.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Real-world Examples Grid -->
+                <h4 class="text-2xl font-bold text-slate-800 mb-8 text-center font-serif">Globalization in Daily Life: Prominent Examples</h4>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                    <!-- Economic -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-blue-500 hover:-translate-y-1 transition-transform">
+                        <div class="text-blue-500 mb-3 text-2xl"><i class="fas fa-chart-line"></i></div>
+                        <h5 class="font-bold text-slate-800 mb-3">1. Economic</h5>
+                        <ul class="text-xs text-slate-600 space-y-2">
+                            <li><strong>Supply Chains:</strong> An iPhone is designed in the U.S., uses chips from Taiwan and sensors from Germany, and is assembled in China.</li>
+                            <li><strong>MNCs:</strong> Brands like McDonald’s adapt menus locally (McAloo Tikki in India).</li>
+                            <li><strong>Outsourcing:</strong> A London company using a call center in Manila and IT in Bangalore.</li>
+                        </ul>
+                    </div>
+                    <!-- Cultural -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-pink-500 hover:-translate-y-1 transition-transform">
+                        <div class="text-pink-500 mb-3 text-2xl"><i class="fas fa-theater-masks"></i></div>
+                        <h5 class="font-bold text-slate-800 mb-3">2. Cultural</h5>
+                        <ul class="text-xs text-slate-600 space-y-2">
+                            <li><strong>Entertainment:</strong> Global popularity of K-Pop (BTS) and Anime via streaming platforms like Netflix.</li>
+                            <li><strong>Food Fusion:</strong> Finding sushi, tacos, and curry on the same street.</li>
+                            <li><strong>Language:</strong> The rise of English as a "lingua franca" for international business.</li>
+                        </ul>
+                    </div>
+                    <!-- Technological -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-purple-500 hover:-translate-y-1 transition-transform">
+                        <div class="text-purple-500 mb-3 text-2xl"><i class="fas fa-microchip"></i></div>
+                        <h5 class="font-bold text-slate-800 mb-3">3. Technological</h5>
+                        <ul class="text-xs text-slate-600 space-y-2">
+                            <li><strong>E-commerce:</strong> Living in rural France and buying a handmade rug from Morocco via Etsy, processed by PayPal.</li>
+                            <li><strong>Social Media:</strong> Platforms like TikTok allow a dance trend to go viral globally in hours.</li>
+                        </ul>
+                    </div>
+                    <!-- Political / Environmental -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-green-500 hover:-translate-y-1 transition-transform">
+                        <div class="text-green-500 mb-3 text-2xl"><i class="fas fa-globe-americas"></i></div>
+                        <h5 class="font-bold text-slate-800 mb-3">4. Enviro & Political</h5>
+                        <ul class="text-xs text-slate-600 space-y-2">
+                            <li><strong>Climate Agreements:</strong> The Paris Agreement is a political response to a problem no single nation can solve alone.</li>
+                            <li><strong>Global Health:</strong> The rapid sharing of genetic data and worldwide distribution of vaccines during the COVID-19 pandemic.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- NEW ROBUST SOCRATIC SIMULATION: Prof Swapnil's Inquiry -->
+                <div class="border border-indigo-200 rounded-lg overflow-hidden bg-white shadow-md max-w-4xl mx-auto">
+                    <div class="bg-indigo-50 px-4 py-3 border-b border-indigo-200 flex items-center justify-between">
+                        <span class="font-bold text-indigo-900 text-sm"><i class="fas fa-question-circle mr-2"></i>Prof. Swapnil's Inquiry</span>
+                        <span class="text-xs text-indigo-700 font-bold uppercase tracking-widest"><i class="fas fa-user-tie mr-1"></i> Interactive Socratic Session</span>
+                    </div>
+                    <div class="p-6 space-y-4 min-h-[200px] flex flex-col bg-slate-50/50" id="globalization-chat-area">
+                        <div class="socratic-msg-prof p-5 rounded-xl rounded-tl-none max-w-[85%] border-l-4 border-indigo-500 shadow-sm">
+                            <p class="text-slate-800 font-serif leading-relaxed">
+                                To provide the most relevant application of these concepts for you, consider the following:<br><br>
+                                <span class="block ml-4 text-sm mt-2 text-slate-700">
+                                    • Are you looking for examples for a specific case study or exam?<br>
+                                    • Are you more interested in mitigating the <strong>cons</strong> or maximizing the <strong>pros</strong> of these examples?<br>
+                                    • Should we focus our next strategic simulation on a specific industry (like fashion, tech, or food)?
+                                </span>
+                            </p>
+                        </div>
+                        <div class="self-end w-full max-w-[85%] space-y-3 fade-in mt-4" id="globalization-chat-options">
+                            <button onclick="answerGlobalizationChat(1)" class="w-full text-left p-4 text-sm bg-white border border-indigo-200 hover:border-indigo-500 hover:bg-indigo-50 text-slate-700 rounded-lg transition shadow-sm font-medium">
+                                Let's focus on maximizing the pros in the <strong class="text-indigo-700">Tech industry</strong> for an exam scenario.
+                            </button>
+                            <button onclick="answerGlobalizationChat(2)" class="w-full text-left p-4 text-sm bg-white border border-indigo-200 hover:border-indigo-500 hover:bg-indigo-50 text-slate-700 rounded-lg transition shadow-sm font-medium">
+                                I want to focus on mitigating the cons in the <strong class="text-indigo-700">Fashion industry</strong> (Supply Chain/Environment).
+                            </button>
+                            <button onclick="answerGlobalizationChat(3)" class="w-full text-left p-4 text-sm bg-white border border-indigo-200 hover:border-indigo-500 hover:bg-indigo-50 text-slate-700 rounded-lg transition shadow-sm font-medium">
+                                Let's look at the <strong class="text-indigo-700">Food industry</strong> and how cultural fusion impacts local case studies.
+                            </button>
+                        </div>
+                        <div id="globalization-chat-feedback" class="space-y-4 w-full"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY GO GLOBAL -->
+        <section id="why" class="mb-32 fade-up">
+            <h2 class="text-3xl font-serif font-bold text-slate-900 mb-10 text-center">16.2 Why Go Global? <span class="text-slate-400 font-sans text-lg font-normal ml-2">Three Strategic Drivers</span></h2>
+            
+            <div class="max-w-4xl mx-auto mb-12">
+                <div class="bg-blue-50 border-l-4 border-blue-600 p-5 mb-6 rounded-r-lg">
+                    <p class="text-sm text-blue-800 font-bold uppercase tracking-wider mb-1"><i class="fas fa-chalkboard-teacher mr-2"></i>First Principle Inquiry</p>
+                    <p class="text-xl font-serif text-slate-800 italic">"Why do firms exist beyond their native borders?"</p>
+                </div>
+                
+                <div class="border border-slate-200 rounded-lg overflow-hidden bg-white shadow-sm">
+                    <div class="bg-slate-100 px-4 py-3 border-b border-slate-200 flex items-center justify-between">
+                        <span class="font-bold text-slate-700 text-sm">Socratic Dialogue</span>
+                        <span class="text-xs text-slate-500"><i class="fas fa-user-tie mr-1"></i> Prof. Swapnil</span>
+                    </div>
+                    <div class="p-6 space-y-4 min-h-[150px] flex flex-col bg-slate-50/50" id="why-chat-area">
+                        <div class="socratic-msg-prof p-4 rounded-xl rounded-tl-none max-w-[85%]">
+                            <p class="text-slate-800 font-serif leading-relaxed">Welcome. A company operates perfectly well in its home country. Why take on the immense risk, cost, and complexity of expanding into a foreign market? What is the irreducible root cause?</p>
+                        </div>
+                        <div class="self-end w-full max-w-[85%] space-y-2 fade-in" id="why-chat-options">
+                            <button onclick="answerWhyChat(1)" class="w-full text-left p-3 text-sm bg-white border border-blue-200 hover:border-blue-500 hover:bg-blue-50 text-slate-700 rounded transition shadow-sm">To sell more products and make more money.</button>
+                            <button onclick="answerWhyChat(2)" class="w-full text-left p-3 text-sm bg-white border border-blue-200 hover:border-blue-500 hover:bg-blue-50 text-slate-700 rounded transition shadow-sm">To gain access to a larger market, lower value chain costs, and develop new competencies.</button>
+                        </div>
+                        <div id="why-chat-feedback" class="space-y-4"></div>
+                    </div>
+                </div>
+
+                <div id="why-sim-container" class="hidden mt-6 bg-white border border-slate-200 rounded-lg p-6 shadow-sm fade-in">
+                    <h3 class="text-xl font-bold mb-4 text-slate-800"><i class="fas fa-briefcase text-blue-600 mr-2"></i>Simulation: Boardroom Decision</h3>
+                    <p class="mb-4 text-sm text-slate-600">Role-play: You are the CEO of 'AeroBikes', a premium US e-bike manufacturer. Sales are plateauing. Review the proposals from your VP of Strategy. Which strategic move aligns with our First Principles?</p>
+                    <div class="space-y-3">
+                        <button onclick="handleIntroSim(1, this)" class="why-sim-btn w-full text-left p-4 bg-slate-50 border border-slate-200 rounded hover:bg-blue-50 hover:border-blue-400 transition text-sm">
+                            <strong class="text-blue-700 block mb-1">Proposal A:</strong> Expand sales to India to capitalize on a massive population, despite low average income for premium goods.
+                        </button>
+                        <button onclick="handleIntroSim(2, this)" class="why-sim-btn w-full text-left p-4 bg-slate-50 border border-slate-200 rounded hover:bg-blue-50 hover:border-blue-400 transition text-sm">
+                            <strong class="text-blue-700 block mb-1">Proposal B:</strong> Relocate R&D to Stuttgart, Germany, to tap into a highly skilled engineering cluster, even though labor costs are higher.
+                        </button>
+                        <button onclick="handleIntroSim(3, this)" class="why-sim-btn w-full text-left p-4 bg-slate-50 border border-slate-200 rounded hover:bg-blue-50 hover:border-blue-400 transition text-sm">
+                            <strong class="text-blue-700 block mb-1">Proposal C:</strong> Move manufacturing to a neighboring state in the US with slightly lower taxes to incrementally improve margins.
+                        </button>
+                    </div>
+                    <div id="intro-sim-feedback" class="mt-4 p-4 rounded hidden text-sm"></div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="paradox-card p-6 border-t-4 border-blue-500">
+                    <div class="bg-blue-50 w-12 h-12 rounded-lg flex items-center justify-center text-blue-600 text-xl mb-4"><i class="fas fa-users"></i></div>
+                    <h3 class="font-bold text-xl mb-6">1. Access Markets</h3>
+                    <div class="space-y-4">
+                        <div class="bg-slate-50 p-3 rounded border border-slate-100">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-bold text-slate-800">Netflix</span>
+                                <span class="stat-pill pill-global">Global</span>
+                            </div>
+                            <p class="text-xs text-slate-500">US market saturated. Future growth is 100% international.</p>
+                        </div>
+                        <div class="bg-slate-50 p-3 rounded border border-slate-100">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-bold text-indigo-600">Ola Cabs</span>
+                                <span class="stat-pill pill-india">India</span>
+                            </div>
+                            <p class="text-xs text-slate-500">Expanded to UK, Australia, NZ to find growth beyond India.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paradox-card p-6 border-t-4 border-green-500 transform hover:-translate-y-2 transition-all">
+                    <div class="bg-green-50 w-12 h-12 rounded-lg flex items-center justify-center text-green-600 text-xl mb-4"><i class="fas fa-coins"></i></div>
+                    <h3 class="font-bold text-xl mb-6">2. Low-Cost Inputs</h3>
+                    <div class="space-y-4">
+                        <div class="bg-slate-50 p-3 rounded border border-slate-100">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-bold text-red-900">China</span>
+                                <span class="stat-pill pill-china">Manufacturing</span>
+                            </div>
+                            <p class="text-xs text-slate-500">Powerhouse for decades. Now shifting to "Designed in China 2025" (AI, Robotics) as wages rise.</p>
+                        </div>
+                        <div class="bg-slate-50 p-3 rounded border border-slate-100">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-bold text-indigo-600">India</span>
+                                <span class="stat-pill pill-india">IT / Services</span>
+                            </div>
+                            <p class="text-xs text-slate-500"><strong>Infosys, TCS, Wipro.</strong> Built on English-speaking talent + cost arbitrage. US giants (IBM, Google) invest heavily in Bangalore.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paradox-card p-6 border-t-4 border-purple-500 transform hover:-translate-y-2 transition-all">
+                    <div class="bg-purple-50 w-12 h-12 rounded-lg flex items-center justify-center text-purple-600 text-xl mb-4"><i class="fas fa-lightbulb"></i></div>
+                    <h3 class="font-bold text-xl mb-6">3. New Competencies</h3>
+                    <div class="space-y-4">
+                        <div class="bg-slate-50 p-3 rounded border border-slate-100">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-bold text-slate-800">Communities of Learning</span>
+                            </div>
+                            <ul class="text-xs text-slate-500 list-disc pl-4 space-y-1">
+                                <li><strong>AstraZeneca:</strong> Moved to Boston (Biotech).</li>
+                                <li><strong>Unilever:</strong> Shanghai (Consumer insights).</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-50 p-3 rounded border border-slate-100">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-bold text-indigo-600">Polycentric Innovation</span>
+                            </div>
+                            <p class="text-xs text-slate-500"><strong>GE Healthcare (India):</strong> Created the $800 MAC 400 ECG in Bangalore (vs $2000 US models). A "Reverse Innovation" now sold globally.</p>
+                             
+                            <div class="mt-3 p-2 bg-purple-50 border-l-2 border-purple-300 text-[10px] text-slate-600 leading-tight">
+                                <p class="mb-2"><strong>The Shift to Globalization 3.0:</strong> Many MNEs are now replacing the one-way innovation flow from Western economies to developing markets with a <em>polycentric innovation strategy</em>.</p>
+                                <div class="flex gap-2 items-start">
+                                     <div class="w-1/3 shrink-0 border border-slate-200 rounded overflow-hidden zoomable" onclick="openImageModal(this)">
+                                        <img src="https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="GE Vscan conceptual medical technology" onerror="this.src='https://via.placeholder.com/800x600?text=GE+Vscan+Image'" class="w-full h-auto block object-cover">
+                                     </div>
+                                     <div>
+                                        <p>GE Global Research orchestrates a "network of excellence" with hubs in NY, Bangalore, Shanghai, and Munich. Emerging economies are becoming hotbeds for low-cost innovations like the <strong>MAC 400</strong> (India) and <strong>Vscan</strong> (China) that disrupt developed markets.</p>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="risks" class="mb-32 fade-up">
+            <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-lg flex flex-col md:flex-row">
+                <div class="md:w-1/3 bg-slate-50 p-8 border-r border-slate-200">
+                    <h3 class="text-2xl font-serif font-bold text-slate-900 mb-4">16.3 The Liability of Foreignness</h3>
+                    <p class="text-sm text-slate-600 mb-6">Expanding is dangerous. You don't know the culture, rules, or customers.</p>
+                    <div class="flex flex-col gap-2">
+                        <button class="tab-btn active w-full text-left px-4 py-3 rounded-lg text-sm font-bold text-slate-700 hover:bg-slate-100" onclick="openRisk('risk-culture', this)">
+                            <i class="fas fa-language w-6"></i> Cultural Failure
+                        </button>
+                        <button class="tab-btn w-full text-left px-4 py-3 rounded-lg text-sm font-bold text-slate-600 hover:bg-slate-100" onclick="openRisk('risk-rep', this)">
+                            <i class="fas fa-newspaper w-6"></i> Reputation Risk
+                        </button>
+                        <button class="tab-btn w-full text-left px-4 py-3 rounded-lg text-sm font-bold text-slate-600 hover:bg-slate-100" onclick="openRisk('risk-ip', this)">
+                            <i class="fas fa-unlock w-6"></i> IP Theft
+                        </button>
+                    </div>
+                </div>
+                <div class="md:w-2/3 p-8 relative min-h-[300px]">
+                    <div id="risk-culture" class="risk-pane transition-opacity duration-300">
+                        <h4 class="text-xl font-bold mb-6 text-red-600">Stranger in a Strange Land</h4>
+                        <div class="grid gap-6">
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 rounded-full bg-red-100 text-red-600 flex items-center justify-center font-bold shrink-0">W</div>
+                                <div>
+                                    <strong class="text-slate-900">Walmart in Germany</strong>
+                                    <p class="text-sm text-slate-600 mt-1">Disaster. Germans found "smiling greeters" creepy and hated having groceries bagged. Walmart lost billions.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center font-bold shrink-0">D</div>
+                                <div>
+                                    <strong class="text-slate-900">Dunkin' Donuts in India</strong>
+                                    <p class="text-sm text-slate-600 mt-1">Failed initially. Indians eat savory breakfasts (Idli, Dosa), not sweet donuts. Had to pivot to burgers.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="risk-rep" class="risk-pane hidden transition-opacity duration-300">
+                        <h4 class="text-xl font-bold mb-6 text-orange-600">Supply Chain Disasters</h4>
+                        <div class="grid gap-6">
+                            <div class="bg-orange-50 p-4 rounded-lg border-l-4 border-orange-400">
+                                <strong class="text-slate-800 block mb-1">Rana Plaza (Global)</strong>
+                                <p class="text-sm text-slate-600">1,100+ deaths in Bangladesh. Global brands faced massive backlash for poor supply chain oversight.</p>
+                            </div>
+                            <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
+                                <strong class="text-slate-800 block mb-1">Nestlé Maggi (India)</strong>
+                                <p class="text-sm text-slate-600">Banned nationwide due to lead allegations. A beloved staple lost trust overnight.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="risk-ip" class="risk-pane hidden transition-opacity duration-300">
+                        <h4 class="text-xl font-bold mb-6 text-slate-800">Creating Your Competitor</h4>
+                        <div class="grid gap-6">
+                            <div class="bg-slate-50 p-4 rounded-lg">
+                                <strong class="text-slate-900 block mb-1">High-Speed Rail</strong>
+                                <p class="text-sm text-slate-600">Siemens shared tech with China. China absorbed it and now exports cheaper trains.</p>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-lg">
+                                <strong class="text-slate-900 block mb-1">Coca-Cola (1977)</strong>
+                                <p class="text-sm text-slate-600">Exited India rather than share its secret formula with a government-mandated partner.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="where" class="mb-32 fade-up">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-serif font-bold text-slate-900">16.4 Where to Compete?</h2>
+                <p class="text-slate-500 mt-2">Distance is Not Just Miles (CAGE Framework)</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto mb-12">
+                <div class="bg-pink-50 border-l-4 border-pink-500 p-5 mb-6 rounded-r-lg">
+                    <p class="text-sm text-pink-800 font-bold uppercase tracking-wider mb-1"><i class="fas fa-chalkboard-teacher mr-2"></i>First Principle Inquiry</p>
+                    <p class="text-xl font-serif text-slate-800 italic">"What makes two places truly 'far' apart in business?"</p>
+                </div>
+                
+                <div class="border border-slate-200 rounded-lg overflow-hidden bg-white shadow-sm">
+                    <div class="bg-slate-100 px-4 py-3 border-b border-slate-200 flex items-center justify-between">
+                        <span class="font-bold text-slate-700 text-sm">Socratic Dialogue</span>
+                        <span class="text-xs text-slate-500"><i class="fas fa-user-tie mr-1"></i> Prof. Swapnil</span>
+                    </div>
+                    <div class="p-6 space-y-4 min-h-[150px] flex flex-col bg-slate-50/50" id="cage-chat-area">
+                        <div class="socratic-msg-prof p-4 rounded-xl rounded-tl-none max-w-[85%]">
+                            <p class="text-slate-800 font-serif leading-relaxed">Consider Target's catastrophic failure when expanding into Canada in 2013. Canada is right next door. They share a language, a border, and similar wealth. Why did Target lose billions?</p>
+                        </div>
+                        <div class="self-end w-full max-w-[85%] space-y-2 fade-in" id="cage-chat-options">
+                            <button onclick="answerCageChat(1)" class="w-full text-left p-3 text-sm bg-white border border-pink-200 hover:border-pink-500 hover:bg-pink-50 text-slate-700 rounded transition shadow-sm">They just had bad management and supply chain issues.</button>
+                            <button onclick="answerCageChat(2)" class="w-full text-left p-3 text-sm bg-white border border-pink-200 hover:border-pink-500 hover:bg-pink-50 text-slate-700 rounded transition shadow-sm">They underestimated non-geographic distances: subtle differences in consumer expectations, pricing, and local competition.</button>
+                        </div>
+                        <div id="cage-chat-feedback" class="space-y-4"></div>
+                    </div>
+                </div>
+
+                <div id="cage-sim-container" class="hidden mt-6 bg-white border border-slate-200 rounded-lg p-6 shadow-sm fade-in">
+                    <h3 class="text-xl font-bold mb-4 text-slate-800"><i class="fas fa-sliders-h text-pink-500 mr-2"></i>Simulation: CAGE Distance Calculator</h3>
+                    <p class="mb-4 text-sm text-slate-600">Select a target market to compare against the Home Market (United States). Observe how the dimensions of distance shift.</p>
+                    
+                    <div class="flex gap-4 mb-6">
+                        <select id="cage-selector" class="p-2 border border-slate-300 rounded bg-white w-full max-w-xs focus:outline-none focus:ring-2 focus:ring-pink-500" onchange="updateCage()">
+                            <option value="select">-- Select Target Market --</option>
+                            <option value="uk">United Kingdom</option>
+                            <option value="china">China</option>
+                            <option value="mexico">Mexico</option>
+                        </select>
+                    </div>
+
+                    <div id="cage-metrics" class="space-y-4 hidden text-sm">
+                    </div>
+                    <div id="cage-analysis" class="mt-6 p-4 bg-slate-50 border-l-4 border-slate-400 text-sm text-slate-700 hidden"></div>
+                </div>
+            </div>
+
+            <div class="my-8 p-6 bg-slate-50 border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+                <h4 class="text-center font-bold text-slate-800 mb-6 uppercase tracking-widest text-sm">The CAGE Distance Framework (Exhibit 16.4)</h4>
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4 relative max-w-3xl mx-auto">
+                     <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-slate-300 -translate-y-1/2 z-0"></div>
+                     <div class="bg-pink-100 border-4 border-pink-500 rounded-full w-20 h-20 md:w-24 md:h-24 flex items-center justify-center font-black text-pink-700 z-10 shadow-lg text-2xl md:text-3xl">C</div>
+                     <div class="bg-blue-100 border-4 border-blue-500 rounded-full w-20 h-20 md:w-24 md:h-24 flex items-center justify-center font-black text-blue-700 z-10 shadow-lg text-2xl md:text-3xl">A</div>
+                     <div class="bg-green-100 border-4 border-green-500 rounded-full w-20 h-20 md:w-24 md:h-24 flex items-center justify-center font-black text-green-700 z-10 shadow-lg text-2xl md:text-3xl">G</div>
+                     <div class="bg-yellow-100 border-4 border-yellow-500 rounded-full w-20 h-20 md:w-24 md:h-24 flex items-center justify-center font-black text-yellow-700 z-10 shadow-lg text-2xl md:text-3xl">E</div>
+                </div>
+                <div class="grid grid-cols-4 gap-2 md:gap-4 mt-4 text-center text-xs md:text-sm font-bold text-slate-600 max-w-3xl mx-auto">
+                    <div>Cultural<br>Distance</div>
+                    <div>Administrative<br>Distance</div>
+                    <div>Geographic<br>Distance</div>
+                    <div>Economic<br>Distance</div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+                <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-pink-500 hover:shadow-md transition-all">
+                    <h3 class="font-bold text-lg mb-2 text-slate-800">Cultural</h3>
+                    <p class="text-xs text-slate-400 mb-4">Values, Religion, Language</p>
+                    <p class="text-xs font-bold text-pink-600">Ex: Beef in India</p>
+                    <p class="text-xs text-slate-500 mt-1">McDonald's had to reinvent menu (Maharaja Mac).</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-blue-500 hover:shadow-md transition-all">
+                    <h3 class="font-bold text-lg mb-2 text-slate-800">Administrative</h3>
+                    <p class="text-xs text-slate-400 mb-4">Laws, Currency, Politics</p>
+                    <p class="text-xs font-bold text-blue-600">Ex: Eurozone</p>
+                    <p class="text-xs text-slate-500 mt-1">Low distance within EU. High distance for US-China.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-green-500 hover:shadow-md transition-all">
+                    <h3 class="font-bold text-lg mb-2 text-slate-800">Geographic</h3>
+                    <p class="text-xs text-slate-400 mb-4">Physical, Climate, Time</p>
+                    <p class="text-xs font-bold text-green-600">Ex: Himalayas</p>
+                    <p class="text-xs text-slate-500 mt-1">India & China are neighbors, but trade is hard.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-yellow-500 hover:shadow-md transition-all">
+                    <h3 class="font-bold text-lg mb-2 text-slate-800">Economic</h3>
+                    <p class="text-xs text-slate-400 mb-4">Income, Infrastructure</p>
+                    <p class="text-xs font-bold text-yellow-600">Ex: Luxury vs Value</p>
+                    <p class="text-xs text-slate-500 mt-1">Mercedes in Germany vs. Maruti in India.</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 grid lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="bg-slate-100 p-6 border-b border-slate-200">
+                        <span class="bg-white text-blue-700 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider mb-2 inline-block border border-blue-100">Strategy Highlight</span>
+                        <h4 class="text-2xl font-serif font-bold text-slate-800 mb-1">Cultural Distance</h4>
+                        <p class="text-sm text-slate-500 italic">Gillette's Sharp Lesson in India</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex flex-col gap-6">
+                            <div class="w-full h-48 bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center zoomable" onclick="openImageModal(this)">
+                                <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Indian man shaving with a handheld mirror concept" onerror="this.src='https://via.placeholder.com/800x600?text=Shaving+Image'" class="w-full h-full object-cover">
+                            </div>
+                            <div class="space-y-4">
+                                <div>
+                                    <h5 class="font-bold text-red-600 text-sm uppercase tracking-wide mb-1">The Failure: Vector (2002)</h5>
+                                    <p class="text-sm text-slate-600 leading-relaxed">
+                                        In 2002, P&G launched the Vector razor in India. Research showed Indian men had thicker hair, so they added a plastic unclogging bar. <strong class="text-slate-800">It flopped.</strong> Why? The research was done with Indian students at MIT, not in India. A crucial insight was missed: most Indian men don't have running water. They shave using a cup of water. Without running water to rinse it, the "unclogging" bar clogged the razor instantly.
+                                    </p>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-green-600 text-sm uppercase tracking-wide mb-1">The Success: Gillette Guard</h5>
+                                    <p class="text-sm text-slate-600 leading-relaxed">
+                                        Learning from the face-palm moment, Gillette sent 20 people to India to spend 3,000 hours with 1,000 consumers in their homes. The result was the <strong>Gillette Guard</strong>. It had a single blade (for safety, not just closeness), an easy-rinse design for cup shaving, and a low cost. It became a bestseller.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="bg-slate-100 p-6 border-b border-slate-200">
+                        <span class="bg-white text-purple-700 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider mb-2 inline-block border border-purple-100">Strategy Highlight</span>
+                        <h4 class="text-2xl font-serif font-bold text-slate-800 mb-1">Admin/Political Distance</h4>
+                        <p class="text-sm text-slate-500 italic">The Vodafone Tax Saga</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="space-y-6">
+                            <div>
+                                <h5 class="font-bold text-indigo-600 text-sm uppercase tracking-wide mb-1">The Context (2007)</h5>
+                                <p class="text-sm text-slate-600 leading-relaxed">
+                                    Vodafone acquired a 67% stake in Hutchison Essar, a major Indian telecom player. The deal took place offshore in the Cayman Islands between two foreign entities.
+                                </p>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-red-600 text-sm uppercase tracking-wide mb-1">The Regulatory Shock (2012)</h5>
+                                <p class="text-sm text-slate-600 leading-relaxed">
+                                    India's tax department demanded $2.2 billion in capital gains tax. When the Supreme Court ruled in Vodafone's favor, the government passed a <strong>retrospective tax law</strong> to override the court ruling and claim the money anyway.
+                                </p>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-700 text-sm uppercase tracking-wide mb-1">The Impact</h5>
+                                <p class="text-sm text-slate-600 leading-relaxed">
+                                    This move highlighted significant <strong>Administrative Distance</strong> risk. The unpredictability of India's regulatory environment spooked foreign investors, showing that legal institutions were not always independent of political will. (Note: The tax was finally scrapped in 2021).
+                                </p>
+                            </div>
+                             <div class="bg-purple-50 p-3 rounded border-l-4 border-purple-500">
+                                <p class="text-xs text-purple-900 font-medium"><strong>Key Takeaway:</strong> Administrative distance includes legal stability. Unpredictable regulations act as a massive barrier to foreign investment.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="bg-slate-100 p-6 border-b border-slate-200">
+                        <span class="bg-white text-green-700 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider mb-2 inline-block border border-green-100">Strategy Highlight</span>
+                        <h4 class="text-2xl font-serif font-bold text-slate-800 mb-1">Geographic Distance</h4>
+                        <p class="text-sm text-slate-500 italic">Amul's Fresh Milk Challenge</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="space-y-6">
+                            <div>
+                                <h5 class="font-bold text-indigo-600 text-sm uppercase tracking-wide mb-1">The Context</h5>
+                                <p class="text-sm text-slate-600 leading-relaxed">
+                                    Geographic distance isn't just miles; it's logistics, time zones, and climate. For Amul Dairy, exporting shelf-stable products to the U.S. was easy. But <strong>fresh milk</strong>? That's a different beast.
+                                </p>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-red-600 text-sm uppercase tracking-wide mb-1">The Hurdle: Perishability</h5>
+                                <p class="text-sm text-slate-600 leading-relaxed">
+                                    The extreme physical distance between India and the U.S. makes exporting fresh milk, buttermilk, and paneer logistically impossible. Maintaining an unbroken cold chain across thousands of miles adds massive costs, destroying margins in a competitive market.
+                                </p>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-green-600 text-sm uppercase tracking-wide mb-1">The Solution (2024)</h5>
+                                <p class="text-sm text-slate-600 leading-relaxed">
+                                    Amul didn't ship milk; they shipped the recipe. They partnered with the <strong>Michigan Milk Producers Association</strong> to process milk locally in the U.S. using Amul's standards.
+                                </p>
+                            </div>
+                             <div class="bg-green-50 p-3 rounded border-l-4 border-green-500">
+                                <p class="text-xs text-green-900 font-medium"><strong>Key Takeaway:</strong> When geographic distance makes trade impossible (e.g., perishables), switch from "Exporting" to "Strategic Alliance" (local production).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="bg-slate-100 p-6 border-b border-slate-200">
+                        <span class="bg-white text-orange-700 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider mb-2 inline-block border border-orange-100">Strategy Highlight</span>
+                        <h4 class="text-2xl font-serif font-bold text-slate-800 mb-1">Geographic Failure</h4>
+                        <p class="text-sm text-slate-500 italic">Rural Logistics (PepperTap/Doodhwala)</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="space-y-6">
+                            <div>
+                                <h5 class="font-bold text-orange-600 text-sm uppercase tracking-wide mb-1">The Failures: PepperTap & Doodhwala</h5>
+                                <p class="text-sm text-slate-600 leading-relaxed">
+                                    Startups like PepperTap and Doodhwala aimed to revolutionize grocery delivery in India. They failed largely because they underestimated the <strong>Geographic Distance</strong> within India itself.
+                                </p>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-red-600 text-sm uppercase tracking-wide mb-1">The Hurdle: Last-Mile Connectivity</h5>
+                                <p class="text-sm text-slate-600 leading-relaxed">
+                                    In suburban and rural India, lack of standardized addresses and poor road infrastructure made last-mile delivery highly inefficient and costly. Drivers spent too much time locating customers.
+                                </p>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-700 text-sm uppercase tracking-wide mb-1">Infrastructure Woes</h5>
+                                <p class="text-sm text-slate-600 leading-relaxed">
+                                    Bad roads and traffic congestion increased delivery times and vehicle maintenance costs. A lack of quality local warehousing meant inventory had to travel further, making the business model unsustainable for low-margin, high-volume products outside major cities.
+                                </p>
+                            </div>
+                             <div class="bg-orange-50 p-3 rounded border-l-4 border-orange-500">
+                                <p class="text-xs text-orange-900 font-medium"><strong>Key Takeaway:</strong> Geographic distance includes internal infrastructure. Scaling logistics models from urban to rural settings fails if infrastructure doesn't support low-margin, high-volume delivery.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="bg-slate-100 p-6 border-b border-slate-200">
+                        <span class="bg-white text-blue-700 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider mb-2 inline-block border border-blue-100">Failure Analysis</span>
+                        <h4 class="text-2xl font-serif font-bold text-slate-800 mb-1">Administrative Distance</h4>
+                        <p class="text-sm text-slate-500 italic">Regulatory & Institutional Mismatches</p>
+                    </div>
+                    <div class="p-6 space-y-6">
+                        <div>
+                            <h5 class="font-bold text-slate-800 text-sm mb-1">Karuturi Global (Ethiopia)</h5>
+                            <p class="text-sm text-slate-600">Leased 100k hectares in Ethiopia. Failed due to shifting regulations, land disputes with indigenous communities, and the government cancelling the lease. Highlighted the risk of weak property rights institutions.</p>
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-slate-800 text-sm mb-1">Satyam Scandal (Internal)</h5>
+                            <p class="text-sm text-slate-600">Massive accounting fraud ($1B+). While internal, it damaged "Brand India" globally, increasing the perceived administrative distance (trust/governance risk) for foreign investors.</p>
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-slate-800 text-sm mb-1">Home Depot (China)</h5>
+                            <p class="text-sm text-slate-600">Failed because the Chinese government focuses on large construction, and labor is cheap. Chinese consumers don't "Do-It-Yourself" (DIY); they hire cheap labor ("Do-It-For-Me"). Administrative and economic mismatch.</p>
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-slate-800 text-sm mb-1">Google (China)</h5>
+                            <p class="text-sm text-slate-600">Exited due to direct conflict with government censorship laws. A purely political/administrative incompatibility.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="bg-slate-100 p-6 border-b border-slate-200">
+                        <span class="bg-white text-yellow-700 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider mb-2 inline-block border border-yellow-100">Failure Analysis</span>
+                        <h4 class="text-2xl font-serif font-bold text-slate-800 mb-1">Economic Distance</h4>
+                        <p class="text-sm text-slate-500 italic">Income & Aspirations</p>
+                    </div>
+                    <div class="p-6 space-y-6">
+                        <div>
+                            <h5 class="font-bold text-slate-800 text-sm mb-1">Tata Nano ("The Cheap Car")</h5>
+                            <p class="text-sm text-slate-600 mb-3">
+                                Marketed as the "world's cheapest car" to target low-income families upgrading from scooters.
+                            </p>
+                            <div class="bg-red-50 p-3 rounded border-l-4 border-red-500">
+                                <p class="text-xs text-red-900"><strong>The Mistake:</strong> Marketing created an economic perception gap. In India, a car is a status symbol. Nobody wanted to be seen driving the "cheapest" car. It failed because it ignored the <em>aspirational</em> aspect of economic distance.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-32 fade-up">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div id="how">
+                    <h3 class="text-3xl font-bold text-slate-900 mb-6 font-serif">16.5 Strategies for Entering Foreign Markets</h3>
+                    <p class="text-slate-600 mb-8 text-lg leading-relaxed">Assuming an MNE has decided <em>why</em> and <em>where</em> to enter a foreign market, the critical remaining decision is <strong>how</strong> to do so.</p>
+                    
+                    <div class="bg-white rounded-2xl shadow-lg border border-indigo-100 p-8 mb-8 relative overflow-hidden group">
+                         <div class="absolute top-0 left-0 w-1 h-full bg-indigo-500"></div>
+                         <h4 class="text-xl font-bold text-indigo-900 mb-4 flex items-center">
+                            <i class="fas fa-sliders-h mr-2"></i> The Investment & Control Continuum
+                         </h4>
+                         
+                         <div class="flex justify-between items-center text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
+                             <span>Low Investment</span>
+                             <span>High Investment</span>
+                         </div>
+                         <div class="continuum-arrow w-full mb-6 h-3 bg-gradient-to-r from-blue-200 to-indigo-600 rounded-full relative">
+                             <div class="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-4 border-blue-300 rounded-full"></div>
+                             <div class="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 w-4 h-4 bg-white border-4 border-blue-500 rounded-full"></div>
+                             <div class="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-4 border-indigo-700 rounded-full"></div>
+                         </div>
+                         <div class="flex justify-between items-center text-xs font-bold text-slate-400 uppercase tracking-wider mb-6">
+                             <span>Low Control</span>
+                             <span>High Control</span>
+                         </div>
+
+                         <div class="relative h-48 w-full mb-6 bg-slate-50 rounded-lg border border-slate-100 flex items-center justify-center">
+                            <canvas id="entryModeChart"></canvas>
+                        </div>
+
+                        <div class="mt-8 border-t border-slate-200 pt-6">
+                            <h4 class="text-center font-bold text-slate-800 mb-6 uppercase tracking-widest text-[10px] md:text-xs">Modes of Foreign-Market Entry (Exhibit 16.7)</h4>
+                            <div class="relative pt-4 pb-4">
+                                <div class="absolute top-1/2 left-0 w-[95%] h-3 bg-gradient-to-r from-slate-200 to-indigo-600 rounded-l-full transform -translate-y-1/2"></div>
+                                <div class="absolute right-0 top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent border-l-[12px] border-l-indigo-600"></div>
+                                
+                                <div class="relative z-10 flex justify-between items-center w-full max-w-sm mx-auto">
+                                    <div class="bg-white border-2 border-slate-300 shadow-md rounded p-2 text-center w-[28%] text-[9px] md:text-xs font-bold text-slate-700">Exporting</div>
+                                    <div class="bg-white border-2 border-blue-400 shadow-md rounded p-2 text-center w-[36%] text-[9px] md:text-xs font-bold text-blue-800">Strategic Alliances<br><span class="font-normal text-[8px] md:text-[10px]">(Licensing, Franchising, JV)</span></div>
+                                    <div class="bg-white border-2 border-indigo-600 shadow-md rounded p-2 text-center w-[28%] text-[9px] md:text-xs font-bold text-indigo-900">Subsidiary<br><span class="font-normal text-[8px] md:text-[10px]">(Acquisition, Greenfield)</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     
+                    <div class="mt-8 space-y-4 text-sm text-slate-600 leading-relaxed">
+                        <h4 class="text-lg font-bold text-slate-800 mb-2">HOW DO MNEs ENTER FOREIGN MARKETS?</h4>
+                        <p>
+                            Assuming an MNE has decided why and where to enter a foreign market, the remaining decision is how to do so. The chart above displays the different options managers have when entering foreign markets, along with the required investments necessary and the control they can exert.
+                        </p>
+                        <p>
+                            On the left end of the continuum are vehicles of foreign expansion that require low investments but allow for only a low level of control. On the right are foreign-entry modes that require a high level of investments in terms of capital and other resources, but afford a high level of control. Foreign-entry modes with a high level of control such as foreign acquisitions reduce the firm’s exposure to two particular downsides of global business: loss of reputation and loss of intellectual property.
+                        </p>
+                        <p>
+                            <strong>Exporting</strong>—producing goods in one country to sell in another—is one of the oldest forms of internationalization (part of Globalization 1.0). It is often used to test whether a foreign market is ready for a firm’s products. When studying vertical integration and diversification (in earlier sessions), we discussed in detail different forms along the make-or-buy continuum. Strategic alliances (including licensing, franchising, and joint ventures) and acquisitions are popular vehicles for entry into foreign markets.
+                        </p>
+                        <p>
+                            The framework illustrated above, moving from left to right, has been suggested as a stage model of sequential commitment to a foreign market over time. Though it does not apply to globally born companies such as internet companies, it is relevant for manufacturing companies that are just now expanding into global operations. In some instances, the host country requires foreign companies to form joint ventures in order to conduct business there, but some MNEs prefer greenfield operations—building new, fully owned plants and facilities from scratch.
+                        </p>
+                        <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-500">
+                            <p class="font-semibold text-blue-800 mb-1">Case Example: Manufacturing Entry</p>
+                            <p>
+                                Motorola received permission to build a fully owned plant in China when it entered (in the 1990s), as did Tesla when it built its Giga factory in Shanghai, with the first cars (Models 3/Y) rolling off the assembly line in 2020. Tesla cars built in China are for the domestic market and for export to European markets. Estimates indicate that Tesla’s production cost per car is about 30% lower in China than in the United States, with no quality differences.
+                            </p>
+                        </div>
+                        <p class="text-xs text-slate-400 mt-2">LO 16-4: Compare and contrast the different options MNEs have for entering foreign markets.</p>
+                    </div>
+                </div>
+
+                <div id="compete">
+                    <h3 class="text-3xl font-bold text-slate-900 mb-6 font-serif">16.6 How to Compete?</h3>
+                    <p class="text-slate-600 mb-8 text-lg leading-relaxed">
+                        MNEs face two opposing forces when competing globally: <strong class="text-indigo-600">Cost Reduction</strong> versus <strong class="text-indigo-600">Local Responsiveness</strong>. The "Globalization Hypothesis" suggests consumer needs are converging (e.g., iPhones are desired everywhere), favoring cost reduction. However, national differences (culture, infrastructure) persist, requiring local adaptation.
+                    </p>
+                    
+                    <div class="mb-10">
+                        <div class="bg-indigo-50 border-l-4 border-indigo-600 p-5 mb-6 rounded-r-lg">
+                            <p class="text-sm text-indigo-800 font-bold uppercase tracking-wider mb-1"><i class="fas fa-chalkboard-teacher mr-2"></i>First Principle Inquiry</p>
+                            <p class="text-xl font-serif text-slate-800 italic">"How do we balance the universal need for efficiency with the local demand for relevance?"</p>
+                        </div>
+                        
+                        <div class="border border-slate-200 rounded-lg overflow-hidden bg-white shadow-sm">
+                            <div class="bg-slate-100 px-4 py-3 border-b border-slate-200 flex items-center justify-between">
+                                <span class="font-bold text-slate-700 text-sm">Socratic Dialogue</span>
+                                <span class="text-xs text-slate-500"><i class="fas fa-user-tie mr-1"></i> Prof. Swapnil</span>
+                            </div>
+                            <div class="p-6 space-y-4 min-h-[150px] flex flex-col bg-slate-50/50" id="ir-chat-area">
+                                <div class="socratic-msg-prof p-4 rounded-xl rounded-tl-none max-w-[85%]">
+                                    <p class="text-slate-800 font-serif leading-relaxed">If a company standardizes its product globally, it achieves massive economies of scale (low cost). But what does it sacrifice?</p>
+                                </div>
+                                <div class="self-end w-full max-w-[85%] space-y-2 fade-in" id="ir-chat-options">
+                                    <button onclick="answerIRChat(1)" class="w-full text-left p-3 text-sm bg-white border border-indigo-200 hover:border-indigo-500 hover:bg-indigo-50 text-slate-700 rounded transition shadow-sm">It sacrifices quality control.</button>
+                                    <button onclick="answerIRChat(2)" class="w-full text-left p-3 text-sm bg-white border border-indigo-200 hover:border-indigo-500 hover:bg-indigo-50 text-slate-700 rounded transition shadow-sm">It sacrifices local responsiveness—the ability to cater to specific national tastes and preferences.</button>
+                                </div>
+                                <div id="ir-chat-feedback" class="space-y-4"></div>
+                            </div>
+                        </div>
+
+                        <div id="ir-sim-container" class="hidden mt-6 bg-white border border-slate-200 rounded-lg p-6 shadow-sm fade-in">
+                            <h3 class="text-xl font-bold mb-4 text-slate-800"><i class="fas fa-chart-line text-indigo-600 mr-2"></i>Simulation: Strategic Positioning Matrix</h3>
+                            <div class="flex flex-col gap-6">
+                                <div>
+                                    <p class="mb-3 text-sm text-slate-600">Read the case brief below. Based on the firm's need for <strong>Cost Reduction</strong> vs. <strong>Local Responsiveness</strong>, classify their strategy.</p>
+                                    <div id="case-study-container" class="bg-indigo-50 p-4 border border-indigo-200 border-l-4 border-l-indigo-600 shadow-sm mb-4 min-h-[100px] rounded">
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-2" id="ir-buttons">
+                                        <button onclick="handleIRGuess('International')" class="p-2 bg-slate-200 hover:bg-indigo-500 hover:text-white text-sm font-semibold rounded transition border border-slate-300">International</button>
+                                        <button onclick="handleIRGuess('Multidomestic')" class="p-2 bg-slate-200 hover:bg-indigo-500 hover:text-white text-sm font-semibold rounded transition border border-slate-300">Multidomestic</button>
+                                        <button onclick="handleIRGuess('Global-Standardization')" class="p-2 bg-slate-200 hover:bg-indigo-500 hover:text-white text-sm font-semibold rounded transition border border-slate-300">Global-Standardization</button>
+                                        <button onclick="handleIRGuess('Transnational')" class="p-2 bg-slate-200 hover:bg-indigo-500 hover:text-white text-sm font-semibold rounded transition border border-slate-300">Transnational</button>
+                                    </div>
+                                    <div id="ir-feedback" class="mt-4 text-sm font-bold min-h-[40px]"></div>
+                                </div>
+                                <div class="w-full">
+                                    <div class="chart-container-ir">
+                                        <canvas id="irScatterChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="my-8 bg-white border border-slate-200 rounded-xl shadow-sm p-4 md:p-6 mx-auto max-w-lg">
+                        <h4 class="text-center font-bold text-slate-800 mb-4 uppercase tracking-widest text-[10px] md:text-xs">Integration-Responsiveness Framework (Exhibit 16.8)</h4>
+                        <div class="flex">
+                            <div class="flex flex-col justify-center items-center w-6 md:w-8 mr-2 relative">
+                                <div class="absolute transform -rotate-90 whitespace-nowrap text-[8px] md:text-[10px] font-bold text-slate-500 uppercase tracking-wider">
+                                    Pressure for Local Responsiveness &rarr;
+                                </div>
+                            </div>
+                            <div class="flex-1 grid grid-cols-2 grid-rows-2 border-l-2 border-b-2 border-slate-400 gap-1 p-1 h-56 md:h-64">
+                                <div class="bg-orange-50 border border-orange-200 flex flex-col items-center justify-center p-2 text-center rounded hover:shadow transition">
+                                    <span class="font-bold text-orange-800 text-[10px] md:text-sm leading-tight">Multidomestic</span>
+                                </div>
+                                <div class="bg-indigo-100 border border-indigo-300 flex flex-col items-center justify-center p-2 text-center rounded hover:shadow transition">
+                                    <span class="font-bold text-indigo-900 text-[10px] md:text-sm leading-tight">Transnational</span>
+                                </div>
+                                <div class="bg-slate-50 border border-slate-200 flex flex-col items-center justify-center p-2 text-center rounded hover:shadow transition">
+                                    <span class="font-bold text-slate-700 text-[10px] md:text-sm leading-tight">International</span>
+                                </div>
+                                <div class="bg-blue-50 border border-blue-200 flex flex-col items-center justify-center p-2 text-center rounded hover:shadow transition">
+                                    <span class="font-bold text-blue-800 text-[10px] md:text-sm leading-tight">Global-Standardization</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-2 text-center text-[8px] md:text-[10px] font-bold text-slate-500 uppercase tracking-wider pl-8">
+                            Pressure for Cost Reductions &rarr;
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden">
+                        <div class="bg-slate-50 p-5 border-b border-slate-200">
+                             <h4 class="text-xl font-bold text-slate-800">Strategies of Global Competition</h4>
+                             <p class="text-xs text-slate-500">Integration-Responsiveness Details (Exhibit 16.9)</p>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full strategy-table text-left min-w-[600px]">
+                                <thead>
+                                    <tr>
+                                        <th class="w-1/5">Strategy</th>
+                                        <th class="w-1/5">Characteristics</th>
+                                        <th class="w-1/5">Benefits & Risks</th>
+                                        <th class="w-1/5 text-blue-700 bg-blue-50">Global Giants</th>
+                                        <th class="w-1/5 text-orange-700 bg-orange-50">Indian Examples</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-100">
+                                    <tr>
+                                        <td class="font-bold text-slate-900">
+                                            International
+                                            <span class="block text-[10px] font-normal text-slate-400 mt-1">Low Cost Pressure<br>Low Local Pressure</span>
+                                        </td>
+                                        <td class="text-slate-600">
+                                            Leverage home-based core competencies. Sell the same product globally.
+                                        </td>
+                                        <td class="text-slate-600">
+                                            <ul class="list-disc pl-4 space-y-1 text-[10px] md:text-xs">
+                                                <li class="text-green-600">Leverage competence</li>
+                                                <li class="text-red-600">Exchange rate risk</li>
+                                            </ul>
+                                        </td>
+                                        <td class="bg-blue-50/30">
+                                            <strong>Rolex</strong><br>
+                                            <span class="text-[10px] text-slate-500">Sells Swiss luxury worldwide without adaptation.</span>
+                                        </td>
+                                        <td class="bg-orange-50/30">
+                                            <strong>Royal Enfield</strong><br>
+                                            <span class="text-[10px] text-slate-500">Sells the "Himalayan" rugged experience globally.</span>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="font-bold text-slate-900">
+                                            Multidomestic
+                                            <span class="block text-[10px] font-normal text-slate-400 mt-1">Low Cost Pressure<br>High Local Pressure</span>
+                                        </td>
+                                        <td class="text-slate-600">
+                                            Maximize local responsiveness. Duplication of key functions across countries.
+                                        </td>
+                                        <td class="text-slate-600">
+                                            <ul class="list-disc pl-4 space-y-1 text-[10px] md:text-xs">
+                                                <li class="text-green-600">High differentiation</li>
+                                                <li class="text-red-600">High cost structure</li>
+                                            </ul>
+                                        </td>
+                                        <td class="bg-blue-50/30">
+                                            <strong>Nestlé</strong><br>
+                                            <span class="text-[10px] text-slate-500">Customizes food products heavily by country.</span>
+                                        </td>
+                                        <td class="bg-orange-50/30">
+                                            <strong>Godrej Consumer</strong><br>
+                                            <span class="text-[10px] text-slate-500">Tailors products specifically for African/Indonesian needs.</span>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="font-bold text-slate-900">
+                                            Global-Standardization
+                                            <span class="block text-[10px] font-normal text-slate-400 mt-1">High Cost Pressure<br>Low Local Pressure</span>
+                                        </td>
+                                        <td class="text-slate-600">
+                                            Economies of scale. Global division of labor. Standardized commodities.
+                                        </td>
+                                        <td class="text-slate-600">
+                                            <ul class="list-disc pl-4 space-y-1 text-[10px] md:text-xs">
+                                                <li class="text-green-600">Lowest cost position</li>
+                                                <li class="text-red-600">No local response</li>
+                                            </ul>
+                                        </td>
+                                        <td class="bg-blue-50/30">
+                                            <strong>Lenovo</strong><br>
+                                            <span class="text-[10px] text-slate-500">Sells standardized computer hardware globally.</span>
+                                        </td>
+                                        <td class="bg-orange-50/30">
+                                            <strong>Infosys / TCS</strong><br>
+                                            <span class="text-[10px] text-slate-500">Delivers standardized IT services via a Global Model.</span>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="font-bold text-slate-900">
+                                            Transnational
+                                            <span class="block text-[10px] font-normal text-slate-400 mt-1">High Cost Pressure<br>High Local Pressure</span>
+                                        </td>
+                                        <td class="text-slate-600">
+                                            "Think Globally, Act Locally." Combines high differentiation with low cost.
+                                        </td>
+                                        <td class="text-slate-600">
+                                            <ul class="list-disc pl-4 space-y-1 text-[10px] md:text-xs">
+                                                <li class="text-green-600">Economies of scale & learning</li>
+                                                <li class="text-red-600">Organizationally complex</li>
+                                            </ul>
+                                        </td>
+                                        <td class="bg-blue-50/30">
+                                            <strong>Unilever</strong><br>
+                                            <span class="text-[10px] text-slate-500">Attempts to standardize back-end, keep front-end local.</span>
+                                        </td>
+                                        <td class="bg-orange-50/30">
+                                            <strong>Tata Motors</strong><br>
+                                            <span class="text-[10px] text-slate-500">Integrates JLR (Luxury/Global) tech with Indian operations (Local).</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="national" class="mb-24 fade-up">
+            <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200">
+                <h2 class="text-2xl font-bold text-slate-900 mb-4">16.7 National Competitive Advantage</h2>
+                <p class="text-slate-600 mb-6 font-serif text-lg">Why do some nations lead? Porter's Diamond Framework.</p>
+                
+                <div class="max-w-4xl mx-auto mb-10">
+                    <div class="bg-green-50 border-l-4 border-green-600 p-5 mb-6 rounded-r-lg">
+                        <p class="text-sm text-green-800 font-bold uppercase tracking-wider mb-1"><i class="fas fa-chalkboard-teacher mr-2"></i>First Principle Inquiry</p>
+                        <p class="text-xl font-serif text-slate-800 italic">"Why do certain nations consistently produce the world's best firms in specific industries?"</p>
+                    </div>
+                    
+                    <div class="border border-slate-200 rounded-lg overflow-hidden bg-white shadow-sm">
+                        <div class="bg-slate-100 px-4 py-3 border-b border-slate-200 flex items-center justify-between">
+                            <span class="font-bold text-slate-700 text-sm">Socratic Dialogue</span>
+                            <span class="text-xs text-slate-500"><i class="fas fa-user-tie mr-1"></i> Prof. Swapnil</span>
+                        </div>
+                        <div class="p-6 space-y-4 min-h-[150px] flex flex-col bg-slate-50/50" id="diamond-chat-area">
+                            <div class="socratic-msg-prof p-4 rounded-xl rounded-tl-none max-w-[85%]">
+                                <p class="text-slate-800 font-serif leading-relaxed">Traditional economics states that nations succeed based on natural resources (land, unskilled labor). Does this explain why Japan, a nation with almost zero natural resources, dominates global auto manufacturing?</p>
+                            </div>
+                            <div class="self-end w-full max-w-[85%] space-y-2 fade-in" id="diamond-chat-options">
+                                <button onclick="answerDiamondChat(1)" class="w-full text-left p-3 text-sm bg-white border border-green-200 hover:border-green-500 hover:bg-green-50 text-slate-700 rounded transition shadow-sm">No. Advanced factors like highly skilled labor, intense local competition, and demanding local consumers force innovation.</button>
+                                <button onclick="answerDiamondChat(2)" class="w-full text-left p-3 text-sm bg-white border border-green-200 hover:border-green-500 hover:bg-green-50 text-slate-700 rounded transition shadow-sm">Yes, they just import the resources cheaply.</button>
+                            </div>
+                            <div id="diamond-chat-feedback" class="space-y-4"></div>
+                        </div>
+                    </div>
+
+                    <div id="diamond-sim-container" class="hidden mt-6 bg-white border border-slate-200 rounded-lg p-6 shadow-sm fade-in">
+                        <h3 class="text-xl font-bold mb-4 text-slate-800"><i class="fas fa-project-diagram text-green-600 mr-2"></i>Simulation: Deconstructing the Diamond</h3>
+                        <p class="mb-4 text-sm text-slate-600">Case: <strong>The German High-Performance Auto Industry (BMW, Porsche, Mercedes)</strong>. Click on each node of the Diamond to uncover why Germany dominates this sector globally.</p>
+                        
+                        <div class="relative w-full max-w-2xl mx-auto mt-8 mb-12" style="height: 350px;">
+                            <button onclick="showDiamond('intensity')" class="absolute top-0 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white p-3 rounded shadow hover:bg-slate-700 transition w-44 text-center text-sm font-bold z-10 border-b-4 border-red-500">
+                                Competitive Intensity
+                            </button>
+                            <button onclick="showDiamond('factors')" class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-slate-800 text-white p-3 rounded shadow hover:bg-slate-700 transition w-44 text-center text-sm font-bold z-10 border-l-4 border-indigo-500">
+                                Factor Conditions
+                            </button>
+                            <button onclick="showDiamond('demand')" class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-slate-800 text-white p-3 rounded shadow hover:bg-slate-700 transition w-44 text-center text-sm font-bold z-10 border-r-4 border-blue-500">
+                                Demand Conditions
+                            </button>
+                            <button onclick="showDiamond('supporting')" class="absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white p-3 rounded shadow hover:bg-slate-700 transition w-44 text-center text-sm font-bold z-10 border-t-4 border-green-500">
+                                Related Industries
+                            </button>
+
+                            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 border-4 border-slate-300 rotate-45 pointer-events-none"></div>
+
+                            <div id="diamond-info" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-56 h-56 bg-white border border-slate-200 rounded-full shadow-lg p-6 text-sm overflow-y-auto flex items-center justify-center text-center text-slate-700 hidden">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-indigo-500 mb-10 text-sm text-slate-600 leading-relaxed">
+                    <p class="mb-4">
+                        Natural resources (oil, minerals) are often not needed to generate world-leading companies. In fact, many resource-rich countries (e.g., Venezuela, Iran) are not home to leading global firms. In contrast, countries that lack natural resources (e.g., Japan, Singapore, Switzerland) often develop world-class human capital to compensate.
+                    </p>
+                    <p>
+                        Michael Porter advanced a framework to explain <strong>National Competitive Advantage</strong>—why some nations outperform others in specific industries. It consists of four interrelated factors known as Porter's Diamond.
+                    </p>
+                </div>
+
+                <div class="mb-12 bg-white border border-slate-200 rounded-xl shadow-sm p-8 relative max-w-2xl mx-auto hidden md:block">
+                    <h4 class="text-center font-bold text-slate-800 mb-8 uppercase tracking-widest text-[10px] md:text-xs">Porter's Diamond of National Competitive Advantage (Exhibit 16.11)</h4>
+                    <div class="relative w-full h-[320px] flex items-center justify-center">
+                        <div class="absolute w-[220px] h-[220px] border border-slate-300 transform rotate-45"></div>
+                        
+                        <div class="absolute top-0 transform -translate-y-1/2 bg-white border-2 border-red-400 rounded-lg p-3 text-center shadow w-36 md:w-44 z-10">
+                            <span class="text-[10px] md:text-xs font-bold text-red-700 block">Competitive Intensity</span>
+                            <span class="text-[8px] md:text-[10px] text-slate-500 leading-tight block mt-1">in Focal Industry</span>
+                        </div>
+                        <div class="absolute left-0 transform -translate-x-1/2 bg-white border-2 border-indigo-400 rounded-lg p-3 text-center shadow w-36 md:w-44 z-10">
+                            <span class="text-[10px] md:text-xs font-bold text-indigo-700 block">Factor Conditions</span>
+                        </div>
+                        <div class="absolute right-0 transform translate-x-1/2 bg-white border-2 border-blue-400 rounded-lg p-3 text-center shadow w-36 md:w-44 z-10">
+                            <span class="text-[10px] md:text-xs font-bold text-blue-700 block">Demand Conditions</span>
+                        </div>
+                        <div class="absolute bottom-0 transform translate-y-1/2 bg-white border-2 border-green-400 rounded-lg p-3 text-center shadow w-36 md:w-44 z-10">
+                            <span class="text-[10px] md:text-xs font-bold text-green-700 block leading-tight">Related and Supporting Industries</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden group hover:border-indigo-300 transition-all">
+                        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <i class="fas fa-university text-6xl text-indigo-600"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-indigo-800 mb-2">1. Factor Conditions</h4>
+                        <p class="text-xs text-slate-500 mb-4 italic">"Constraint breeds creativity."</p>
+                        <p class="text-sm text-slate-700 mb-4">
+                            A nation's position in factors of production, such as skilled labor or infrastructure, necessary to compete in a given industry. Paradoxically, disadvantages in basic factors can create pressures to invest in advanced factors.
+                        </p>
+                        <div class="bg-indigo-50/50 rounded-lg p-3 text-xs border border-indigo-100">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <span class="font-bold text-slate-800 block mb-1">World Example</span>
+                                    <p><strong>Silicon Valley:</strong> Density of specialized engineering talent fueled the tech boom.</p>
+                                </div>
+                                <div>
+                                    <span class="font-bold text-indigo-700 block mb-1">India Example</span>
+                                    <p><strong>Infosys / TCS:</strong> Leveraged English-speaking engineering graduates to overcome infrastructure gaps.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden group hover:border-blue-300 transition-all">
+                         <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <i class="fas fa-users text-6xl text-blue-600"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-blue-800 mb-2">2. Demand Conditions</h4>
+                        <p class="text-xs text-slate-500 mb-4 italic">"Tough customers create great firms."</p>
+                        <p class="text-sm text-slate-700 mb-4">
+                            The nature of home-market demand. Sophisticated and demanding local customers push firms to innovate and improve quality.
+                        </p>
+                        <div class="bg-blue-50/50 rounded-lg p-3 text-xs border border-blue-100">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <span class="font-bold text-slate-800 block mb-1">World Example</span>
+                                    <p><strong>Nokia (Finland):</strong> Remote populations demanded reliable mobile comms for survival.</p>
+                                </div>
+                                <div>
+                                    <span class="font-bold text-blue-700 block mb-1">India Example</span>
+                                    <p><strong>Paytm / UPI:</strong> Lack of POS terminals + demonetization created huge demand for digital payments.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden group hover:border-red-300 transition-all">
+                         <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <i class="fas fa-fist-raised text-6xl text-red-600"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-red-800 mb-2">3. Competitive Intensity</h4>
+                        <p class="text-xs text-slate-500 mb-4 italic">"Diamonds are forged under pressure."</p>
+                        <p class="text-sm text-slate-700 mb-4">
+                            Companies that face a highly competitive environment at home tend to outperform global competitors. Fierce domestic rivalry forces efficiency.
+                        </p>
+                        <div class="bg-red-50/50 rounded-lg p-3 text-xs border border-red-100">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <span class="font-bold text-slate-800 block mb-1">World Example</span>
+                                    <p><strong>German Auto:</strong> Intense rivalry + Autobahn forces superior engineering performance.</p>
+                                </div>
+                                <div>
+                                    <span class="font-bold text-red-700 block mb-1">India Example</span>
+                                    <p><strong>Telecom (Jio):</strong> Brutal price wars created the world's cheapest mobile data and extreme efficiency.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden group hover:border-green-300 transition-all">
+                         <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <i class="fas fa-link text-6xl text-green-600"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-green-800 mb-2">4. Related & Supporting Industries</h4>
+                        <p class="text-xs text-slate-500 mb-4 italic">"Success attracts success."</p>
+                        <p class="text-sm text-slate-700 mb-4">
+                            The presence of supplier industries and related industries that are internationally competitive allow for fast knowledge sharing and innovation spillover.
+                        </p>
+                        <div class="bg-green-50/50 rounded-lg p-3 text-xs border border-green-100">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <span class="font-bold text-slate-800 block mb-1">World Example</span>
+                                    <p><strong>Toyota:</strong> A network of world-class suppliers enabled lean manufacturing and knowledge sharing.</p>
+                                </div>
+                                <div>
+                                    <span class="font-bold text-green-700 block mb-1">India Example</span>
+                                    <p><strong>Chennai Auto Cluster:</strong> A dense network of component makers supports Hyundai, BMW, and Ford factories.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12 text-center fade-up">
+            <div class="bg-slate-900 text-white rounded-2xl p-12 shadow-2xl max-w-4xl mx-auto relative overflow-hidden">
+                <div class="relative z-10">
+                    <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
+                        <i class="fas fa-lightbulb text-yellow-400"></i>
+                    </div>
+                    <h2 class="text-3xl font-serif mb-4">The Strategist's Summary</h2>
+                    <p class="text-slate-300 text-lg max-w-2xl mx-auto leading-relaxed">
+                        Global strategy is a balancing act. You must navigate the <strong>CAGE Distance</strong>, choose the right <strong>Entry Mode</strong> to protect your IP, and balance <strong>Cost vs. Localization</strong>.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="simulation" class="mb-24 pt-8 bg-gradient-to-br from-slate-900 to-indigo-900 -mx-4 sm:-mx-8 px-4 sm:px-8 py-16 text-white">
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <span class="inline-block px-3 py-1 bg-indigo-500 text-white text-xs font-bold rounded-full mb-4">Interactive Simulation</span>
+                <h2 class="text-4xl font-bold mb-4">Global Domination: The CEO Challenge</h2>
+                <p class="text-lg text-slate-300">Take the helm of <strong>TechNova</strong>. Navigate 5 critical strategic crossroads. Feedback is delayed until the end. Only the best strategists survive.</p>
+            </div>
+
+            <div id="sim-wrapper" class="max-w-3xl mx-auto bg-slate-800 rounded-2xl shadow-2xl overflow-hidden border border-slate-700 p-8 min-h-[500px] relative">
+                <div id="sim-start" class="text-center py-10 fade-in">
+                    <div class="w-24 h-24 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-8 border border-slate-600 shadow-lg">
+                        <i class="fas fa-globe-asia text-4xl text-blue-500"></i>
+                    </div>
+                    <h3 class="text-3xl font-black mb-6 text-white">Mission Briefing</h3>
+                    <p class="text-slate-300 mb-8 text-lg max-w-lg mx-auto leading-relaxed">
+                        TechNova dominates the US market. Shareholders demand global growth. You must expand internationally without destroying the company.
+                    </p>
+                    <button onclick="startSimulation()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-10 rounded-lg shadow-lg shadow-blue-600/20 transition-all transform hover:scale-105">
+                        Accept Challenge
+                    </button>
+                </div>
+
+                <div id="sim-gameplay" class="hidden-section fade-in">
+                    <div class="flex justify-between items-center mb-6 text-sm font-mono text-slate-400">
+                        <span id="sim-turn-counter">Turn 1 / 5</span>
+                        <div class="w-32 h-2 bg-slate-700 rounded-full overflow-hidden">
+                            <div id="sim-progress-bar" class="h-full bg-blue-500 w-[20%] transition-all duration-500"></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <span id="sim-category" class="text-xs font-bold text-blue-400 uppercase tracking-widest border border-blue-900 bg-blue-900/20 px-2 py-1 rounded">Category</span>
+                    </div>
+                    <h3 id="sim-title" class="text-2xl md:text-3xl font-bold mb-6 text-white">Scenario Title</h3>
+                    <p id="sim-desc" class="text-slate-300 mb-8 text-lg leading-relaxed">Scenario description...</p>
+                    
+                    <div id="sim-options-grid" class="grid gap-4">
+                    </div>
+
+                    <div class="mt-8 flex justify-end">
+                        <button id="sim-submit-btn" onclick="submitSimAnswer()" class="bg-slate-700 text-slate-400 font-bold py-3 px-8 rounded-lg cursor-not-allowed transition-all" disabled>
+                            Confirm Decision <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="sim-results" class="hidden-section text-center fade-in">
+                    <div class="mb-12">
+                        <div class="text-sm text-slate-400 uppercase tracking-widest mb-2">Final Assessment</div>
+                        <div id="sim-score-number" class="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-400">0 / 100</div>
+                        <div id="sim-score-title" class="text-xl font-bold text-white mt-2">Rank Title</div>
+                    </div>
+
+                    <div class="text-left space-y-8 h-96 overflow-y-auto pr-2 custom-scrollbar">
+                        <h3 class="text-2xl font-bold text-white border-b border-slate-700 pb-4 sticky top-0 bg-slate-800 z-10">Strategic Post-Mortem</h3>
+                        <div id="sim-feedback-container" class="space-y-8 pb-8">
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-8 border-t border-slate-700">
+                        <button onclick="resetSimulation()" class="text-slate-400 hover:text-white transition-colors text-sm font-bold uppercase tracking-widest">
+                            <i class="fas fa-redo mr-2"></i> Play Again
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz" class="mb-24 pt-8">
+            <div class="text-center mb-12">
+                <span class="inline-block px-3 py-1 bg-green-100 text-green-800 text-xs font-bold rounded-full mb-2">Self Assessment</span>
+                <h2 class="text-3xl font-bold text-slate-900">Test Your Knowledge</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto mt-3">
+                    Have you mastered the concepts of Global Strategy, CAGE, and Entry Modes? Complete these 15 questions to certify your understanding.
+                </p>
+            </div>
+
+            <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
+                <div class="p-6 bg-slate-50 border-b border-slate-200 flex justify-between items-center sticky top-0 z-10">
+                    <h3 class="text-lg font-bold text-slate-800">Session 16 Quiz</h3>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-sm font-medium text-slate-600">Score:</span>
+                        <span id="quiz-score" class="text-lg font-bold text-green-600">0</span>
+                        <span class="text-sm text-slate-400">/ 15</span>
+                    </div>
+                </div>
+                
+                <div id="quiz-container" class="p-6 space-y-8">
+                </div>
+                
+                <div class="p-6 bg-slate-50 border-t border-slate-200 text-center">
+                    <button onclick="resetQuiz()" class="px-6 py-2 bg-slate-800 text-white font-medium rounded-lg hover:bg-slate-900 transition-colors">
+                        Reset Quiz
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-8 text-center text-sm text-slate-400">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                © Prof. Swapnil Sahoo 2026 | All Rights Reserved
+            </div>
+            <div class="flex space-x-6 items-center">
+                <a href="https://x.com/swapnilsahoo" target="_blank" class="hover:text-blue-400 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" class="hover:text-pink-600 transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" class="hover:text-blue-600 transition-colors"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.chess.com/member/swapnilsahoo" target="_blank" class="hover:text-green-600 transition-colors text-lg" title="Play Chess">
+                    <i class="fas fa-chess-king"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        window.onscroll = function() {
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (window.scrollY / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+            
+            let current = "";
+            const sections = document.querySelectorAll("section[id]");
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 150) {
+                    current = section.getAttribute("id");
+                }
+            });
+            document.querySelectorAll(".nav-link").forEach(li => {
+                li.classList.remove("active");
+                if (li.getAttribute("href").includes(current)) li.classList.add("active");
+            });
+        };
+
+        window.openRisk = function(id, btn) {
+            document.querySelectorAll('.risk-pane').forEach(p => p.classList.add('hidden'));
+            document.getElementById(id).classList.remove('hidden');
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        function openImageModal(element) {
+            const img = element.querySelector('img');
+            if (!img) return;
+            const modal = document.getElementById('image-modal');
+            const modalImg = document.getElementById('modal-image');
+            const modalCaption = document.getElementById('modal-caption');
+            
+            modalImg.src = img.src;
+            modalCaption.innerText = img.alt;
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeImageModal() {
+            const modal = document.getElementById('image-modal');
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        const irCases = [
+            { firm: "Rolex", text: "Rolex sells the exact same luxury watches worldwide. They do not compete on price, and wealthy consumers want the identical Swiss product regardless of where they live.", correct: "International", x: 2, y: 2, desc: "(Low Cost Pressure, Low Local Pressure)" },
+            { firm: "Nestlé", text: "Nestlé alters its food products heavily by country (e.g., sweeter chocolate in the US, different coffee blends in Europe) to match local tastes, despite higher production costs.", correct: "Multidomestic", x: 2, y: 8, desc: "(Low Cost Pressure, High Local Pressure)" },
+            { firm: "Lenovo", text: "Lenovo manufactures standardized computer hardware at massive scale to keep prices rock-bottom globally. A ThinkPad is a ThinkPad everywhere.", correct: "Global-Standardization", x: 8, y: 2, desc: "(High Cost Pressure, Low Local Pressure)" },
+            { firm: "P&G", text: "P&G aims for 'think globally, act locally'. They achieve massive economies of scale in raw materials, but tweak product formulas (like laundry detergent) for local water hardness and washing machine types.", correct: "Transnational", x: 8, y: 8, desc: "(High Cost Pressure, High Local Pressure)" }
+        ];
+        let currentCaseIdx = 0;
+        let irDataPoints = [];
+        window.irScatterChartInstance = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            Chart.defaults.font.family = 'Satoshi';
+            
+            // IKEA Doughnut Chart (Region)
+            new Chart(document.getElementById('ikeaRegionChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Europe', 'Americas', 'Asia', 'Other'],
+                    datasets: [{
+                        data: [71, 18, 11, 0],
+                        backgroundColor: ['#0051ba', '#ffda1a', '#94a3b8', '#cbd5e1'],
+                        borderWidth: 0
+                    }]
+                },
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: false,
+                    cutout: '65%',
+                    plugins: { legend: { position: 'right', labels: { usePointStyle: true, padding: 15, font: {size: 10} } } } 
+                }
+            });
+
+            // IKEA Growth Chart (Stores & Revenue to 2026)
+            new Chart(document.getElementById('ikeaGrowthChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['1974', '1984', '1994', '2004', '2010', '2015', '2020', '2026'],
+                    datasets: [
+                        {
+                            label: 'Revenue (in bn euros)',
+                            type: 'line',
+                            data: [0.5, 1.2, 4.5, 12.8, 23.5, 32.7, 39.6, 55.0],
+                            borderColor: '#ffda1a',
+                            backgroundColor: '#ffda1a',
+                            borderWidth: 3,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: 'No. of Stores',
+                            type: 'bar',
+                            data: [10, 40, 120, 202, 316, 375, 445, 520],
+                            backgroundColor: '#0051ba',
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true, 
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { type: 'linear', display: true, position: 'left', title: {display: true, text: 'Revenue (€ bn)', font: {size: 10}} },
+                        y1: { type: 'linear', display: true, position: 'right', grid: { drawOnChartArea: false }, title: {display: true, text: 'Stores', font: {size: 10}} }
+                    },
+                    plugins: { legend: { position: 'top', labels: { usePointStyle: true, font: {size: 11} } } } 
+                }
+            });
+
+            // Entry Mode Continuum
+            new Chart(document.getElementById('entryModeChart'), {
+                type: 'line',
+                data: {
+                    labels: ['Export', 'License', 'Franchise', 'JV', 'Subsidiary'],
+                    datasets: [
+                        { label: 'Control', data: [1, 2, 3, 4, 5], borderColor: '#4f46e5', tension: 0.4, pointBackgroundColor: '#fff', borderWidth: 3 },
+                        { label: 'Risk', data: [1, 1.5, 2.5, 4, 5], borderColor: '#f43f5e', borderDash: [5,5], tension: 0.4, pointRadius: 0 }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'top', align: 'end', labels: { usePointStyle: true } } },
+                    scales: { y: { display: false }, x: { grid: { display: false } } }
+                }
+            });
+
+            initIRScatterChart();
+            renderQuiz();
+            loadIRCase();
+        });
+
+        // --- NEW IKEA CHAT & SIMULATION LOGIC ---
+        window.answerIkeaChat = function(choice) {
+            const options = document.getElementById('ikea-chat-options');
+            const feedback = document.getElementById('ikea-chat-feedback');
+            options.style.display = 'none';
+
+            if (choice === 1) {
+                feedback.innerHTML = `
+                    <div class="socratic-msg-student p-4 rounded-xl rounded-tr-none ml-auto max-w-[85%] fade-in">
+                        <p class="text-blue-900">Yes, they need to pivot completely to online sales and pre-assembled furniture delivery.</p>
+                    </div>
+                    <div class="socratic-msg-prof p-4 rounded-xl rounded-tl-none max-w-[85%] fade-in mt-4">
+                        <p class="text-slate-800 font-serif leading-relaxed"><em>Abandoning the core entirely destroys their unique cost advantage (flat-packing). A complete pivot is too risky. Is there a middle path?</em></p>
+                    </div>
+                `;
+                setTimeout(() => { options.style.display = 'block'; }, 2000);
+            } else {
+                feedback.innerHTML = `
+                    <div class="socratic-msg-student p-4 rounded-xl rounded-tr-none ml-auto max-w-[85%] fade-in">
+                        <p class="text-blue-900">No, they should reinvent the format—hybrid city-center stores, click-and-collect, and strategic acquisitions for assembly services while keeping flat-packs.</p>
+                    </div>
+                    <div class="socratic-msg-prof p-4 rounded-xl rounded-tl-none max-w-[85%] fade-in mt-4">
+                        <p class="text-slate-800 font-serif leading-relaxed"><em>Exactly. Strategy is about adaptation, not abandonment. They must solve the customer pain point while preserving the low-cost flat-pack model. Let's see this in action.</em></p>
+                    </div>
+                `;
+                setTimeout(() => {
+                    document.getElementById('ikea-sim-container').classList.remove('hidden');
+                }, 1500);
+            }
+        };
+
+        window.handleIkeaSim = function(choice, btnElement) {
+            const feedback = document.getElementById('ikea-sim-feedback');
+            feedback.classList.remove('hidden', 'bg-red-100', 'text-red-800', 'bg-green-100', 'text-green-800');
+            
+            document.querySelectorAll('.ikea-sim-btn').forEach(btn => btn.classList.remove('ring-2', 'ring-yellow-500'));
+            btnElement.classList.add('ring-2', 'ring-yellow-500');
+
+            if(choice === 1) {
+                feedback.classList.add('bg-red-100', 'text-red-800');
+                feedback.innerHTML = "<strong>Strategic Failure.</strong> Throwing money at a declining format ignores the fundamental shift in consumer demographics and urbanization. You lose market share.";
+            } else if (choice === 2) {
+                feedback.classList.add('bg-green-100', 'text-green-800');
+                feedback.innerHTML = "<strong>Correct Application.</strong> This is exactly what IKEA did. Acquiring TaskRabbit solves the 'assembly' friction, and smaller city formats cater to urban Millennials without destroying the core supply chain.";
+            } else if (choice === 3) {
+                feedback.classList.add('bg-red-100', 'text-red-800');
+                feedback.innerHTML = "<strong>Strategic Surrender.</strong> By selling wholesale through Amazon, you lose the 'unique retail experience' core competency and become a commoditized supplier, destroying your margins.";
+            }
+        };
+
+        // --- NEW GLOBALIZATION CHAT LOGIC (Prof Swapnil's Inquiry) ---
+        window.answerGlobalizationChat = function(choice) {
+            const options = document.getElementById('globalization-chat-options');
+            const feedback = document.getElementById('globalization-chat-feedback');
+            options.style.display = 'none';
+
+            if (choice === 1) {
+                feedback.innerHTML = `
+                    <div class="socratic-msg-student p-4 rounded-xl rounded-tr-none ml-auto max-w-[85%] fade-in shadow-sm">
+                        <p class="text-indigo-900 font-medium">I want to focus on maximizing the pros in the Tech industry for an exam scenario.</p>
+                    </div>
+                    <div class="socratic-msg-prof p-5 rounded-xl rounded-tl-none max-w-[85%] border-l-4 border-indigo-500 fade-in mt-4 shadow-sm">
+                        <p class="text-slate-800 font-serif leading-relaxed"><em>Excellent choice. In tech, maximizing the pros means leveraging global talent pools (like Bangalore) and digital connectivity to scale rapidly. You must balance this with the 'Cons' of IP theft and data privacy regulations. As we move forward, observe how different <strong>Entry Modes</strong> affect IP protection.</em></p>
+                    </div>
+                `;
+            } else if (choice === 2) {
+                feedback.innerHTML = `
+                    <div class="socratic-msg-student p-4 rounded-xl rounded-tr-none ml-auto max-w-[85%] fade-in shadow-sm">
+                        <p class="text-indigo-900 font-medium">Let's look at mitigating the cons in the Fashion industry (Supply Chain/Environment).</p>
+                    </div>
+                    <div class="socratic-msg-prof p-5 rounded-xl rounded-tl-none max-w-[85%] border-l-4 border-indigo-500 fade-in mt-4 shadow-sm">
+                        <p class="text-slate-800 font-serif leading-relaxed"><em>A critical strategic issue. Mitigating cons in fast fashion means addressing environmental damage and labor exploitation (e.g., Rana Plaza). Your strategy must shift from pure 'Cost Reduction' to sustainable supply chains. This directly links to <strong>Reputation Risk</strong>, which we will explore shortly.</em></p>
+                    </div>
+                `;
+            } else if (choice === 3) {
+                feedback.innerHTML = `
+                    <div class="socratic-msg-student p-4 rounded-xl rounded-tr-none ml-auto max-w-[85%] fade-in shadow-sm">
+                        <p class="text-indigo-900 font-medium">I'm interested in the Food industry and how cultural fusion impacts case studies.</p>
+                    </div>
+                    <div class="socratic-msg-prof p-5 rounded-xl rounded-tl-none max-w-[85%] border-l-4 border-indigo-500 fade-in mt-4 shadow-sm">
+                        <p class="text-slate-800 font-serif leading-relaxed"><em>A fascinating angle. Food fusion highlights 'Cultural' globalization. However, when a food brand expands globally, it faces high 'Pressure for Local Responsiveness' (think McDonald's Maharaja Mac in India). This forces a <strong>Multidomestic or Transnational strategy</strong>, which we will plot on the Strategic Matrix later.</em></p>
+                    </div>
+                `;
+            }
+        };
+
+        window.answerWhyChat = function(choice) {
+            const options = document.getElementById('why-chat-options');
+            const feedback = document.getElementById('why-chat-feedback');
+            options.style.display = 'none';
+
+            if (choice === 1) {
+                feedback.innerHTML = `
+                    <div class="socratic-msg-student p-4 rounded-xl rounded-tr-none ml-auto max-w-[85%] fade-in">
+                        <p class="text-blue-900">To sell more products and make more money.</p>
+                    </div>
+                    <div class="socratic-msg-prof p-4 rounded-xl rounded-tl-none max-w-[85%] fade-in mt-4">
+                        <p class="text-slate-800 font-serif leading-relaxed"><em>A surface-level answer. *Why* do they need to sell more? Let's dig deeper. Try the other perspective.</em></p>
+                    </div>
+                `;
+                setTimeout(() => { options.style.display = 'block'; }, 2000);
+            } else {
+                feedback.innerHTML = `
+                    <div class="socratic-msg-student p-4 rounded-xl rounded-tr-none ml-auto max-w-[85%] fade-in">
+                        <p class="text-blue-900">To gain access to a larger market, lower value chain costs, and develop new competencies.</p>
+                    </div>
+                    <div class="socratic-msg-prof p-4 rounded-xl rounded-tl-none max-w-[85%] fade-in mt-4">
+                        <p class="text-slate-800 font-serif leading-relaxed"><em>Precisely. This is the holy trinity of global strategy. If a move doesn't achieve one of these, it destroys value. Let us test this in a simulation.</em></p>
+                    </div>
+                `;
+                setTimeout(() => {
+                    document.getElementById('why-sim-container').classList.remove('hidden');
+                }, 1500);
+            }
+        };
+
+        window.handleIntroSim = function(choice, btnElement) {
+            const feedback = document.getElementById('intro-sim-feedback');
+            feedback.classList.remove('hidden', 'bg-red-100', 'text-red-800', 'bg-green-100', 'text-green-800');
+            
+            document.querySelectorAll('.why-sim-btn').forEach(btn => btn.classList.remove('ring-2', 'ring-blue-500'));
+            btnElement.classList.add('ring-2', 'ring-blue-500');
+
+            if(choice === 1) {
+                feedback.classList.add('bg-red-100', 'text-red-800');
+                feedback.innerHTML = "<strong>Incorrect Application.</strong> Expanding solely for population size ignores 'Distance'. If they cannot afford premium goods, you have no market. You failed to analyze Economic Distance.";
+            } else if (choice === 2) {
+                feedback.classList.add('bg-green-100', 'text-green-800');
+                feedback.innerHTML = "<strong>Correct Application.</strong> Relocating to a cluster of excellence (Stuttgart) fulfills the principle of 'Developing New Competencies'. Accessing specialized knowledge often overrides pure labor cost savings.";
+            } else if (choice === 3) {
+                feedback.classList.add('bg-red-100', 'text-red-800');
+                feedback.innerHTML = "<strong>Incorrect Application.</strong> This is an operational optimization, not a Global Strategy. It does not access significant new markets or world-class competencies.";
+            }
+        };
+
+        window.answerCageChat = function(choice) {
+            const options = document.getElementById('cage-chat-options');
+            const feedback = document.getElementById('cage-chat-feedback');
+            options.style.display = 'none';
+
+            if (choice === 1) {
+                feedback.innerHTML = `
+                    <div class="socratic-msg-student p-4 rounded-xl rounded-tr-none ml-auto max-w-[85%] fade-in">
+                        <p class="text-blue-900">They just had bad management and supply chain issues.</p>
+                    </div>
+                    <div class="socratic-msg-prof p-4 rounded-xl rounded-tl-none max-w-[85%] fade-in mt-4">
+                        <p class="text-slate-800 font-serif leading-relaxed"><em>Supply chain was the symptom, not the cause. Why did the supply chain fail in a neighboring country? Think broader.</em></p>
+                    </div>
+                `;
+                setTimeout(() => { options.style.display = 'block'; }, 2000);
+            } else {
+                feedback.innerHTML = `
+                    <div class="socratic-msg-student p-4 rounded-xl rounded-tr-none ml-auto max-w-[85%] fade-in">
+                        <p class="text-blue-900">They underestimated non-geographic distances: subtle differences in consumer expectations, pricing, and local competition.</p>
+                    </div>
+                    <div class="socratic-msg-prof p-4 rounded-xl rounded-tl-none max-w-[85%] fade-in mt-4">
+                        <p class="text-slate-800 font-serif leading-relaxed"><em>Astute. You are seeing beyond the map. Distance is Cultural, Administrative, Geographic, and Economic (CAGE). Let us run a diagnostic simulation.</em></p>
+                    </div>
+                `;
+                setTimeout(() => {
+                    document.getElementById('cage-sim-container').classList.remove('hidden');
+                }, 1500);
+            }
+        };
+
+        window.updateCage = function() {
+            const target = document.getElementById('cage-selector').value;
+            const metricsDiv = document.getElementById('cage-metrics');
+            const analysisDiv = document.getElementById('cage-analysis');
+            
+            if (target === 'select') {
+                metricsDiv.classList.add('hidden');
+                analysisDiv.classList.add('hidden');
+                return;
+            }
+
+            const data = {
+                uk: { c: 15, a: 20, g: 60, e: 10, text: "UK: Low Cultural and Economic distance. High Geographic distance. Moderate Administrative distance (post-Brexit rules). A common early target." },
+                china: { c: 85, a: 75, g: 80, e: 65, text: "China: High distance across all CAGE dimensions. Requires massive localization, political maneuvering, and high tolerance for differences." },
+                mexico: { c: 60, a: 40, g: 10, e: 70, text: "Mexico: Very low Geographic distance (shared border, USMCA). However, Economic and Cultural distances remain significant hurdles." }
+            };
+
+            const d = data[target];
+            
+            metricsDiv.innerHTML = `
+                <div class="flex items-center"><div class="w-28 font-bold text-slate-700">Cultural:</div><div class="flex-1 bg-slate-200 h-4 rounded overflow-hidden"><div class="bg-pink-500 h-full transition-all duration-1000" style="width: 0%"></div></div><span class="ml-2 w-8 text-right font-mono">${d.c}%</span></div>
+                <div class="flex items-center"><div class="w-28 font-bold text-slate-700">Administrative:</div><div class="flex-1 bg-slate-200 h-4 rounded overflow-hidden"><div class="bg-blue-500 h-full transition-all duration-1000" style="width: 0%"></div></div><span class="ml-2 w-8 text-right font-mono">${d.a}%</span></div>
+                <div class="flex items-center"><div class="w-28 font-bold text-slate-700">Geographic:</div><div class="flex-1 bg-slate-200 h-4 rounded overflow-hidden"><div class="bg-green-500 h-full transition-all duration-1000" style="width: 0%"></div></div><span class="ml-2 w-8 text-right font-mono">${d.g}%</span></div>
+                <div class="flex items-center"><div class="w-28 font-bold text-slate-700">Economic:</div><div class="flex-1 bg-slate-200 h-4 rounded overflow-hidden"><div class="bg-yellow-500 h-full transition-all duration-1000" style="width: 0%"></div></div><span class="ml-2 w-8 text-right font-mono">${d.e}%</span></div>
+            `;
+            
+            metricsDiv.classList.remove('hidden');
+            analysisDiv.innerHTML = `<strong>Prof. Swapnil's Analysis:</strong> ${d.text}`;
+            analysisDiv.classList.remove('hidden');
+
+            setTimeout(() => {
+                const bars = metricsDiv.querySelectorAll('.h-full');
+                if(bars.length > 0) {
+                    bars[0].style.width = `${d.c}%`;
+                    bars[1].style.width = `${d.a}%`;
+                    bars[2].style.width = `${d.g}%`;
+                    bars[3].style.width = `${d.e}%`;
+                }
+            }, 50);
+        };
+
+        window.answerIRChat = function(choice) {
+            const options = document.getElementById('ir-chat-options');
+            const feedback = document.getElementById('ir-chat-feedback');
+            options.style.display = 'none';
+
+            if (choice === 1) {
+                feedback.innerHTML = `
+                    <div class="socratic-msg-student p-4 rounded-xl rounded-tr-none ml-auto max-w-[85%] fade-in">
+                        <p class="text-blue-900">It sacrifices quality control.</p>
+                    </div>
+                    <div class="socratic-msg-prof p-4 rounded-xl rounded-tl-none max-w-[85%] fade-in mt-4">
+                        <p class="text-slate-800 font-serif leading-relaxed"><em>Not necessarily. Standardization often improves quality control. Try again.</em></p>
+                    </div>
+                `;
+                setTimeout(() => { options.style.display = 'block'; }, 2000);
+            } else {
+                feedback.innerHTML = `
+                    <div class="socratic-msg-student p-4 rounded-xl rounded-tr-none ml-auto max-w-[85%] fade-in">
+                        <p class="text-blue-900">It sacrifices local responsiveness—the ability to cater to specific national tastes and preferences.</p>
+                    </div>
+                    <div class="socratic-msg-prof p-4 rounded-xl rounded-tl-none max-w-[85%] fade-in mt-4">
+                        <p class="text-slate-800 font-serif leading-relaxed"><em>Correct. This is the fundamental trade-off. You cannot easily be perfectly tailored to every market AND achieve maximum global efficiency. Let's map this out.</em></p>
+                    </div>
+                `;
+                setTimeout(() => {
+                    document.getElementById('ir-sim-container').classList.remove('hidden');
+                }, 1500);
+            }
+        };
+
+        function loadIRCase() {
+            if (currentCaseIdx < irCases.length) {
+                document.getElementById('case-study-container').innerHTML = `
+                    <h5 class="font-bold text-lg mb-1">${irCases[currentCaseIdx].firm}</h5>
+                    <p class="text-slate-700 text-sm">${irCases[currentCaseIdx].text}</p>
+                `;
+                document.getElementById('ir-feedback').innerHTML = "";
+            } else {
+                document.getElementById('case-study-container').innerHTML = `<h5 class="font-bold text-green-600">Simulation Complete</h5><p class="text-sm">You have successfully mapped the I-R framework.</p>`;
+                document.getElementById('ir-buttons').style.display = 'none';
+            }
+        }
+
+        function initIRScatterChart() {
+            const ctx = document.getElementById('irScatterChart').getContext('2d');
+            window.irScatterChartInstance = new Chart(ctx, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Corporate Strategies',
+                        data: irDataPoints,
+                        backgroundColor: '#4f46e5',
+                        pointRadius: 8,
+                        pointHoverRadius: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: (ctx) => {
+                                    const pt = ctx.raw;
+                                    return `${pt.label}: ${pt.strategy}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: { display: true, text: 'Pressure for Cost Reductions →', font: {weight: 'bold'} },
+                            min: 0, max: 10,
+                            ticks: { display: false },
+                            grid: { color: (ctx) => ctx.tick.value === 5 ? '#0f172a' : '#e2e8f0', lineWidth: (ctx) => ctx.tick.value === 5 ? 2 : 1 }
+                        },
+                        y: {
+                            title: { display: true, text: 'Pressure for Local Responsiveness →', font: {weight: 'bold'} },
+                            min: 0, max: 10,
+                            ticks: { display: false },
+                            grid: { color: (ctx) => ctx.tick.value === 5 ? '#0f172a' : '#e2e8f0', lineWidth: (ctx) => ctx.tick.value === 5 ? 2 : 1 }
+                        }
+                    }
+                }
+            });
+        }
+
+        window.handleIRGuess = function(guess) {
+            if(currentCaseIdx >= irCases.length) return;
+            const currentCase = irCases[currentCaseIdx];
+            const feedbackDiv = document.getElementById('ir-feedback');
+            
+            if (guess === currentCase.correct) {
+                feedbackDiv.innerHTML = `<span class="text-green-600">Correct! ${currentCase.firm} uses a ${currentCase.correct} strategy ${currentCase.desc}.</span>`;
+                irDataPoints.push({
+                    x: currentCase.x, 
+                    y: currentCase.y, 
+                    label: currentCase.firm,
+                    strategy: currentCase.correct
+                });
+                if(window.irScatterChartInstance) {
+                    window.irScatterChartInstance.update();
+                }
+                
+                setTimeout(() => {
+                    currentCaseIdx++;
+                    loadIRCase();
+                }, 2500);
+            } else {
+                feedbackDiv.innerHTML = `<span class="text-red-500">Incorrect. Analyze the trade-off again. Do they need low costs? Do they customize locally?</span>`;
+            }
+        };
+
+        window.answerDiamondChat = function(choice) {
+            const options = document.getElementById('diamond-chat-options');
+            const feedback = document.getElementById('diamond-chat-feedback');
+            options.style.display = 'none';
+
+            if (choice === 2) {
+                feedback.innerHTML = `
+                    <div class="socratic-msg-student p-4 rounded-xl rounded-tr-none ml-auto max-w-[85%] fade-in">
+                        <p class="text-blue-900">Yes, they just import the resources cheaply.</p>
+                    </div>
+                    <div class="socratic-msg-prof p-4 rounded-xl rounded-tl-none max-w-[85%] fade-in mt-4">
+                        <p class="text-slate-800 font-serif leading-relaxed"><em>Importing resources doesn't create a global competitive advantage in design and manufacturing quality. Think about the environment the companies operate in locally.</em></p>
+                    </div>
+                `;
+                setTimeout(() => { options.style.display = 'block'; }, 2000);
+            } else {
+                feedback.innerHTML = `
+                    <div class="socratic-msg-student p-4 rounded-xl rounded-tr-none ml-auto max-w-[85%] fade-in">
+                        <p class="text-blue-900">No. Advanced factors like highly skilled labor, intense local competition, and demanding local consumers force innovation.</p>
+                    </div>
+                    <div class="socratic-msg-prof p-4 rounded-xl rounded-tl-none max-w-[85%] fade-in mt-4">
+                        <p class="text-slate-800 font-serif leading-relaxed"><em>Brilliant application of First Principles. You cannot buy a competitive advantage; it must be forged in a crucible of pressure. Let us interact with the Diamond.</em></p>
+                    </div>
+                `;
+                setTimeout(() => {
+                    document.getElementById('diamond-sim-container').classList.remove('hidden');
+                }, 1500);
+            }
+        };
+
+        window.showDiamond = function(node) {
+            const info = document.getElementById('diamond-info');
+            const data = {
+                intensity: "<strong>Fierce Local Rivalry:</strong> BMW, Mercedes, and Audi constantly battle for supremacy in their home market. This brutal domestic competition forces constant innovation.",
+                factors: "<strong>Advanced Factors:</strong> Germany possesses world-class engineering universities, specialized apprenticeships, and immense capital for R&D. They created these factors.",
+                demand: "<strong>Demanding Consumers:</strong> German drivers expect perfection. The Autobahn (no speed limit) demands cars engineered for extreme performance and safety.",
+                supporting: "<strong>World-Class Suppliers:</strong> Surrounded by top-tier suppliers like Bosch and Continental, creating a dense cluster of innovation where ideas flow rapidly."
+            };
+            info.innerHTML = data[node];
+            info.classList.remove('hidden');
+            info.classList.add('fade-in');
+        };
+
+        const simScenarios = [
+            {
+                category: "1. Motivation (Why?)",
+                title: "The Growth Ceiling",
+                desc: "TechNova's US sales have flattened.Shareholders want double-digit growth. Your R&D team has a groundbreaking AI health-monitor, but it's expensive to produce in California. What is your primary driver for going global right now?",
+                options: [
+                    { id: 'a', text: "Target the EU market immediately to chase wealthy consumers and boost sales volume." },
+                    { id: 'b', text: "Move manufacturing to Vietnam to access low-cost skilled labor and lower unit costs, then export back to US." },
+                    { id: 'c', text: "Set up an R&D hub in Bangalore to tap into elite AI talent not available in Silicon Valley." }
+                ],
+                scores: { a: 15, b: 10, c: 20 },
+                feedback: {
+                    a: "Entering the EU (Access Markets) drove revenue, but high production costs eroded margins. You grew, but profitably is weak.",
+                    b: "Moving to Vietnam (Low-Cost Inputs) lowered costs, but quality control issues spiked. You damaged the brand early.",
+                    c: "<strong>Masterstroke.</strong> By accessing the 'Community of Learning' in Bangalore (New Competencies), you improved the product first. Revenue followed naturally."
+                }
+            },
+            {
+                category: "2. The Risk (CAGE Analysis)",
+                title: "The Asian Pivot",
+                desc: "You are eyeing expansion into Asia. Two markets look promising: <strong>Japan</strong> (wealthy, tech-savvy, but insular) or <strong>India</strong> (massive growing population, lower income). Your product is a high-end, DIY smart-home hub that requires reliable high-speed internet.",
+                options: [
+                    { id: 'a', text: "Enter India. The sheer volume of 1.4 billion people guarantees success." },
+                    { id: 'b', text: "Enter Japan. The economic and infrastructure distance is lower for a high-tech product." },
+                    { id: 'c', text: "Enter both simultaneously to hedge your bets." }
+                ],
+                scores: { a: 0, b: 20, c: 5 },
+                feedback: {
+                    a: "<strong>Disaster.</strong> You ignored Economic and Administrative distance. Few could afford it, and rural internet infrastructure couldn't support the device. (Recall: PepperTap failure).",
+                    b: "<strong>Correct.</strong> Low Economic Distance. Japan's high per-capita income and advanced infrastructure made adoption smooth, despite Cultural distance.",
+                    c: "<strong>Strategic Overreach.</strong> You lacked the resources to fight two different battles. India failed, dragging down the Japan launch."
+                }
+            },
+            {
+                category: "3. Entry Mode (How?)",
+                title: "The China Conundrum",
+                desc: "China is the next target. It's a massive market but notoriously difficult for foreign tech firms (Censorship, IP theft). You need deep local knowledge fast. How do you enter?",
+                options: [
+                    { id: 'a', text: "Exporting from the US. Keep all IP safe at home." },
+                    { id: 'b', text: "Joint Venture (JV) with a local Chinese tech giant." },
+                    { id: 'c', text: "Wholly Owned Subsidiary (Greenfield). Build your own team from scratch." }
+                ],
+                scores: { a: 10, b: 5, c: 20 },
+                feedback: {
+                    a: "Safe for IP, but Tariffs and lack of local connections made you too expensive and slow. You are a niche player.",
+                    b: "<strong>Critical Error.</strong> Your partner learned your tech and launched a rival product 2 years later at half the price. (Recall: High-Speed Rail case).",
+                    c: "<strong>Bold Choice.</strong> Like Tesla in Shanghai, a Wholly Owned Subsidiary gave you full control and IP protection. It was expensive, but you own your destiny."
+                }
+            },
+            {
+                category: "4. Strategy (Integration vs. Responsiveness)",
+                title: "The Standardization Debate",
+                desc: "You are now in US, Japan, and China. Regional managers are fighting. The Japan team wants a custom 'Mini' version. The China team wants voice integration with WeChat. The US team wants one standardized product to maximize margins. What is your corporate strategy?",
+                options: [
+                    { id: 'a', text: "Global Standardization. Tell regions 'No'. One product, low cost. Economies of scale rule." },
+                    { id: 'b', text: "Multidomestic. Give Japan and China autonomy to build what they want. Maximize local sales." },
+                    { id: 'c', text: "Transnational. Attempt to standardize the core platform while modularizing for local interfaces." }
+                ],
+                scores: { a: 10, b: 10, c: 20 },
+                feedback: {
+                    a: "You saved money, but lost market share. Competitors out-localized you. (Like Ford Mondeo).",
+                    b: "Sales boomed, but costs skyrocketed. You are essentially running three different companies. Profitability tanked.",
+                    c: "<strong>The Gold Standard.</strong> 'Think Global, Act Local.' You achieved economies of scale on hardware while adapting software for local relevance. (Like IKEA/McDonald's)."
+                }
+            },
+            {
+                category: "5. The Black Swan",
+                title: "Geopolitical Shock",
+                desc: "A sudden trade war erupts between the US and China. Tariffs on your inputs skyrocket. Your China subsidiary is being targeted by nationalist boycotts.",
+                options: [
+                    { id: 'a', text: "Exit China immediately to protect the US brand reputation." },
+                    { id: 'b', text: "Double down. Publicly affirm commitment to China to appease local government." },
+                    { id: 'c', text: "Decouple supply chains. Create a 'China for China' supply chain and a 'Rest of World' chain." }
+                ],
+                scores: { a: 5, b: 5, c: 20 },
+                feedback: {
+                    a: "You panicked. You walked away from your biggest growth engine and lost billions in sunk assets.",
+                    b: "You saved China sales but faced a massive PR backlash and sanctions back home. Net loss.",
+                    c: "<strong>Resilient Strategy.</strong> You insulated the business. 'In China, for China' kept you compliant locally while protecting your global operations. Expensive, but necessary."
+                }
+            }
+        ];
+
+        let simCurrentTurn = 0;
+        let simTotalScore = 0;
+        let simUserChoices = [];
+        let simCurrentSelectionId = null;
+
+        function startSimulation() {
+            document.getElementById('sim-start').style.display = 'none';
+            document.getElementById('sim-gameplay').style.display = 'block';
+            renderSimQuestion();
+        }
+
+        function renderSimQuestion() {
+            const q = simScenarios[simCurrentTurn];
+            document.getElementById('sim-turn-counter').innerText = `${simCurrentTurn + 1} / ${simScenarios.length}`;
+            document.getElementById('sim-progress-bar').style.width = `${((simCurrentTurn) / simScenarios.length) * 100}%`;
+            
+            document.getElementById('sim-category').innerText = q.category;
+            document.getElementById('sim-title').innerText = q.title;
+            document.getElementById('sim-desc').innerHTML = q.desc;
+
+            const grid = document.getElementById('sim-options-grid');
+            grid.innerHTML = '';
+
+            q.options.forEach(opt => {
+                const div = document.createElement('div');
+                div.className = 'option-card p-5 rounded-lg bg-slate-700/50 text-slate-300 font-medium border border-slate-600 hover:border-blue-500 hover:bg-slate-700 cursor-pointer transition-all';
+                div.innerHTML = `<div class="flex gap-4"><div class="font-mono font-bold text-slate-500">/${opt.id.toUpperCase()}</div><div>${opt.text}</div></div>`;
+                div.onclick = () => selectSimOption(div, opt.id);
+                grid.appendChild(div);
+            });
+
+            const btn = document.getElementById('sim-submit-btn');
+            btn.disabled = true;
+            btn.className = 'bg-slate-700 text-slate-500 font-bold py-3 px-8 rounded-lg cursor-not-allowed transition-all';
+        }
+
+        function selectSimOption(divElement, optionId) {
+            document.querySelectorAll('#sim-options-grid .option-card').forEach(el => {
+                el.classList.remove('border-blue-500', 'bg-slate-700', 'ring-2', 'ring-blue-500/50');
+                el.classList.add('border-slate-600');
+            });
+            divElement.classList.remove('border-slate-600');
+            divElement.classList.add('border-blue-500', 'bg-slate-700', 'ring-2', 'ring-blue-500/50');
+            simCurrentSelectionId = optionId;
+
+            const btn = document.getElementById('sim-submit-btn');
+            btn.disabled = false;
+            btn.className = 'bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-lg shadow-lg shadow-blue-600/20 transition-all transform hover:scale-105 cursor-pointer';
+        }
+
+        function submitSimAnswer() {
+            const q = simScenarios[simCurrentTurn];
+            const score = q.scores[simCurrentSelectionId];
+            
+            simUserChoices.push({
+                turn: simCurrentTurn,
+                choiceId: simCurrentSelectionId,
+                score: score
+            });
+            simTotalScore += score;
+
+            simCurrentTurn++;
+            if (simCurrentTurn < simScenarios.length) {
+                renderSimQuestion();
+            } else {
+                finishSimulation();
+            }
+        }
+
+        function finishSimulation() {
+            document.getElementById('sim-gameplay').style.display = 'none';
+            document.getElementById('sim-results').style.display = 'block';
+            document.getElementById('sim-progress-bar').style.width = '100%';
+
+            const scoreEl = document.getElementById('sim-score-number');
+            let currentDisplay = 0;
+            const interval = setInterval(() => {
+                if(currentDisplay >= simTotalScore) {
+                    clearInterval(interval);
+                    let rank = "";
+                    if(simTotalScore >= 90) rank = "Global Visionary (CEO)";
+                    else if(simTotalScore >= 70) rank = "Regional Director";
+                    else if(simTotalScore >= 50) rank = "Middle Manager";
+                    else rank = "Intern (Fired)";
+                    document.getElementById('sim-score-title').innerText = rank;
+                } else {
+                    currentDisplay++;
+                    scoreEl.innerText = currentDisplay + " / 100";
+                }
+            }, 20);
+
+            const container = document.getElementById('sim-feedback-container');
+            container.innerHTML = ''; 
+            simUserChoices.forEach((choice, index) => {
+                const scenario = simScenarios[index];
+                const maxScore = Math.max(...Object.values(scenario.scores));
+                const isBest = choice.score === maxScore;
+                
+                const item = document.createElement('div');
+                item.className = "bg-slate-800 rounded-xl p-6 border border-slate-700 text-left";
+                
+                let scoreColor = isBest ? 'text-green-400' : 'text-red-400';
+                let borderClass = isBest ? 'border-green-500' : 'border-red-500';
+
+                item.innerHTML = `
+                    <div class="flex justify-between items-start mb-4">
+                        <h4 class="font-bold text-white text-lg">${scenario.category}: ${scenario.title}</h4>
+                        <span class="mono font-bold ${scoreColor}">${choice.score} pts</span>
+                    </div>
+                    <div class="text-slate-300 mb-2">You chose: <span class="text-white font-bold">${choice.choiceId.toUpperCase()}</span></div>
+                    <p class="text-sm text-slate-400 leading-relaxed border-l-2 ${borderClass} pl-4">
+                        ${scenario.feedback[choice.choiceId]}
+                    </p>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function resetSimulation() {
+            simCurrentTurn = 0;
+            simTotalScore = 0;
+            simUserChoices = [];
+            simCurrentSelectionId = null;
+            document.getElementById('sim-results').style.display = 'none';
+            document.getElementById('sim-start').style.display = 'block';
+        }
+
+        const quizQuestions = [
+            { q: "What is the primary reason MNEs expand globally?", a: ["To access larger markets and lower costs", "To avoid domestic taxes", "To reduce employee headcount", "To increase domestic competition"], correct: 0, desc: "Correct. The main drivers are market access (growth) and low-cost inputs (efficiency)." },
+            { q: "Which CAGE distance dimension includes differences in language and religion?", a: ["Administrative", "Cultural", "Geographic", "Economic"], correct: 1, desc: "Correct. Cultural distance covers language, ethnicity, religion, and social norms." },
+            { q: "What caused Walmart's failure in Germany?", a: ["High prices", "Cultural mismatch (smiling greeters)", "Poor product quality", "Lack of government support"], correct: 1, desc: "Correct. Walmart failed to adapt its culture (bagging, greeters) to German norms." },
+            { q: "Which entry mode offers the highest control but highest risk?", a: ["Exporting", "Licensing", "Joint Venture", "Wholly Owned Subsidiary"], correct: 3, desc: "Correct. A subsidiary (greenfield or acquisition) gives full control but requires maximum investment." },
+            { q: "What strategy does IKEA pursue?", a: ["International", "Multidomestic", "Global-Standardization", "Transnational"], correct: 2, desc: "Correct. IKEA focuses on cost reduction via standardization, with limited local adaptation." },
+            { q: "Which Indian company is a classic example of leveraging low-cost skilled labor?", a: ["Ola", "Infosys", "Tata Motors", "Royal Enfield"], correct: 1, desc: "Correct. Infosys built its model on the IT labor arbitrage between India and the West." },
+            { q: "In the CAGE framework, what does 'A' stand for?", a: ["Arbitrage", "Administrative", "Assets", "Accessibility"], correct: 1, desc: "Correct. A stands for Administrative and Political distance (laws, currency, trade blocks)." },
+            { q: "Why did Gillette's Vector razor fail in India?", a: ["Too expensive", "Designed for running water (infrastructure mismatch)", "Poor marketing", "Blade wasn't sharp enough"], correct: 1, desc: "Correct. It required running water to unclog, which many target consumers didn't have." },
+            { q: "What is a 'Greenfield' venture?", a: ["Buying a farm", "Acquiring a competitor", "Building a subsidiary from scratch", "A joint venture"], correct: 2, desc: "Correct. Greenfield means building a new operation from the ground up in a foreign country." },
+            { q: "Which strategy combines high local responsiveness with high cost reduction?", a: ["International", "Multidomestic", "Global-Standardization", "Transnational"], correct: 3, desc: "Correct. Transnational is the most difficult, attempting to achieve both simultaneously (Blue Ocean)." },
+            { q: "Porter's Diamond explains:", a: ["Why diamonds are expensive", "National Competitive Advantage", "How to mine resources", "Marketing strategies"], correct: 1, desc: "Correct. It explains why certain nations lead in specific industries." },
+            { q: "What is the 'Globalization Hypothesis'?", a: ["Global warming is real", "Consumer needs are converging worldwide", "Local culture is dominant", "Tariffs increase trade"], correct: 1, desc: "Correct. It assumes consumer preferences are becoming homogenous (e.g., everyone wants iPhones)." },
+            { q: "Which company exited Russia in 2022 due to political risk?", a: ["Walmart", "IKEA", "TCS", "Royal Enfield"], correct: 1, desc: "Correct. IKEA closed stores due to the geopolitical conflict." },
+            { q: "Amul partnered with a US dairy cooperative to overcome which distance?", a: ["Cultural", "Administrative", "Geographic", "Economic"], correct: 2, desc: "Correct. Perishability and distance made direct export impossible." },
+            { q: "Tata Nano failed primarily due to:", a: ["High price", "Economic perception (aspirational mismatch)", "Administrative hurdles", "Geographic distance"], correct: 1, desc: "Correct. Marketing it as the 'cheapest' car hurt its status symbol appeal." }
+        ];
+
+        let quizScore = 0;
+
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            quizScore = 0;
+            document.getElementById('quiz-score').innerText = '0';
+
+            quizQuestions.forEach((item, index) => {
+                const qDiv = document.createElement('div');
+                qDiv.className = "border-b border-slate-200 pb-6 last:border-0";
+                
+                const title = document.createElement('h4');
+                title.className = "font-bold text-slate-800 text-lg mb-4 flex";
+                title.innerHTML = `<span class="text-indigo-600 mr-2">${index + 1}.</span> ${item.q}`;
+                qDiv.appendChild(title);
+
+                const optsDiv = document.createElement('div');
+                optsDiv.className = "space-y-2";
+                optsDiv.id = `q-${index}-options`;
+
+                item.a.forEach((opt, optIndex) => {
+                    const btn = document.createElement('div');
+                    btn.className = "quiz-option p-3 rounded border border-slate-300 text-slate-700 font-medium flex items-center";
+                    btn.innerHTML = `<div class="w-6 h-6 rounded-full border-2 border-slate-400 mr-3 flex items-center justify-center text-xs font-bold option-circle">${String.fromCharCode(65+optIndex)}</div> ${opt}`;
+                    btn.onclick = () => checkQuizAnswer(index, optIndex, item.correct, item.desc);
+                    optsDiv.appendChild(btn);
+                });
+
+                qDiv.appendChild(optsDiv);
+
+                const feedDiv = document.createElement('div');
+                feedDiv.id = `q-${index}-feedback`;
+                feedDiv.className = "hidden mt-3 p-3 rounded bg-slate-100 text-sm text-slate-700";
+                qDiv.appendChild(feedDiv);
+
+                container.appendChild(qDiv);
+            });
+        }
+
+        function checkQuizAnswer(qIndex, selectedIndex, correctIndex, explanation) {
+            const optionsDiv = document.getElementById(`q-${qIndex}-options`);
+            const feedbackDiv = document.getElementById(`q-${qIndex}-feedback`);
+            const options = optionsDiv.children;
+
+            if (selectedIndex === correctIndex) {
+                quizScore++;
+                document.getElementById('quiz-score').innerText = quizScore;
+                options[selectedIndex].classList.add('correct');
+                options[selectedIndex].querySelector('.option-circle').style.borderColor = '#22c55e';
+            } else {
+                options[selectedIndex].classList.add('wrong');
+                options[selectedIndex].querySelector('.option-circle').style.borderColor = '#ef4444';
+                options[correctIndex].classList.add('correct');
+                options[correctIndex].querySelector('.option-circle').style.borderColor = '#22c55e';
+            }
+
+            for (let btn of options) {
+                btn.classList.add('disabled');
+                btn.onclick = null;
+            }
+
+            feedbackDiv.innerHTML = `<strong>${selectedIndex === correctIndex ? "Correct!" : "Incorrect."}</strong> ${explanation}`;
+            feedbackDiv.classList.remove('hidden');
+            feedbackDiv.classList.add(selectedIndex === correctIndex ? 'bg-green-50' : 'bg-red-50');
+            feedbackDiv.classList.add(selectedIndex === correctIndex ? 'text-green-800' : 'text-red-800');
+        }
+
+        function resetQuiz() {
+            renderQuiz();
+            document.getElementById('quiz').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

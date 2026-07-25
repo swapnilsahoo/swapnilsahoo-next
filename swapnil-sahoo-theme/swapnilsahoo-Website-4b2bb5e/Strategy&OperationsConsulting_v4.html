@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Guide to a Career in S&O Consulting</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Professional -->
+    <!-- Application Structure Plan: The application is structured as a single-page scrolling experience with a sticky navigation bar for easy access to four core thematic sections: 'The Role', 'Industry Trends', 'A Day in the Life', and 'Interview Prep'. This linear but navigable structure was chosen to guide the student logically through the material, starting with foundational concepts and moving towards practical application (the interview). The flow is designed to build knowledge progressively. The most crucial section, 'Interview Prep', uses an interactive accordion layout to manage information density, allowing students to focus on one question type at a time and reveal tips on demand, fostering an active learning experience rather than passive reading. This design prioritizes clarity, engagement, and ease of navigation during a live presentation. -->
+    <!-- Visualization & Content Choices: 1. Report Info: Increasing importance of data. -> Goal: Visually demonstrate the shift in business priorities. -> Viz/Method: Bar Chart. -> Interaction: Hover tooltips for specific data points. -> Justification: A chart is more impactful than text for showing trends over time. -> Library: Chart.js (Canvas). 2. Report Info: Various applications of AI/ML. -> Goal: Present diverse examples in a digestible format. -> Viz/Method: Icon-based grid layout. -> Interaction: Hover effects on cards. -> Justification: A visual grid is easier to scan and more engaging than a list. -> Method: HTML/Tailwind. 3. Report Info: Types of interview questions and tips. -> Goal: Organize detailed information and encourage active learning. -> Viz/Method: Interactive accordion. -> Interaction: Click to expand sections and reveal tips. -> Justification: Hides complexity and allows users to self-pace and test their knowledge before seeing the answer. -> Method: Vanilla JS. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDF8F0;
+            color: #2D3748;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            height: 40vh;
+            max-height: 400px;
+        }
+        .nav-link {
+            transition: color 0.3s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #D97706;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+        }
+        .accordion-content.open {
+            max-height: 2500px; /* Large enough for content */
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .tip-content {
+            display: none;
+        }
+        .btn-primary {
+             background-color: #D97706; color: white;
+        }
+        .btn-primary:hover {
+            background-color: #B45309;
+        }
+        .btn-secondary {
+            background-color: #E5E7EB; color: #1F2937;
+        }
+        .btn-secondary:hover {
+            background-color: #D1D5DB;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+             <div class="flex items-center space-x-4">
+                <div class="text-xl font-bold text-gray-800">Dr. Swapnil Sahoo</div>
+                 <div class="hidden sm:flex items-center space-x-3">
+                    <a href="https://www.swapnilsahoo.com" target="_blank" class="text-gray-500 hover:text-amber-600" title="Website">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M15.75 2.25a.75.75 0 01.75.75v5.034a5.242 5.242 0 013 4.216c0 2.899-2.35 5.25-5.25 5.25S9 15.149 9 12.25c0-1.603.733-3.033 1.88-3.992a.75.75 0 01.94 1.166A3.743 3.743 0 0010.5 12.25c0 2.071 1.679 3.75 3.75 3.75s3.75-1.679 3.75-3.75c0-1.612-.996-2.957-2.345-3.522a.75.75 0 01-.505-1.05A.75.75 0 0116.2 7.5h.05a2.5 2.5 0 012.5 2.5c0 1.38-1.12 2.5-2.5 2.5S13.75 11.38 13.75 10h-1.5c0 2.071 1.679 3.75 3.75 3.75s3.75-1.679 3.75-3.75a5.242 5.242 0 01-3-4.216V3a.75.75 0 01-.75-.75zm-3 5.034V3a.75.75 0 00-1.5 0v4.284a5.242 5.242 0 00-3 4.216c0 2.899 2.35 5.25 5.25 5.25a.75.75 0 000-1.5 3.75 3.75 0 01-3.75-3.75c0-1.612.996-2.957 2.345-3.522a.75.75 0 00.505-1.05.75.75 0 00-1.05-.505A3.743 3.743 0 019 12.25c0-2.071-1.679-3.75-3.75-3.75S1.5 10.179 1.5 12.25c0 2.071 1.679 3.75 3.75 3.75h1.5a.75.75 0 000-1.5H5.25A2.25 2.25 0 013 12.25c0-1.24 1.01-2.25 2.25-2.25S7.5 11.01 7.5 12.25c0 .61-.244 1.176-.655 1.595a.75.75 0 101.13 1.002A3.733 3.733 0 009.75 12.25a5.242 5.242 0 00-3-4.216V3a.75.75 0 00-1.5 0v4.284a5.242 5.242 0 00-3 4.216c0 2.899 2.35 5.25 5.25 5.25S12 15.149 12 12.25a.75.75 0 00-1.5 0c0 2.071-1.679 3.75-3.75 3.75S3 14.321 3 12.25c0-2.071 1.679-3.75 3.75-3.75s3.75 1.679 3.75 3.75a.75.75 0 001.5 0c0-2.899-2.35-5.25-5.25-5.25a5.242 5.242 0 00-3-4.216V3a.75.75 0 00-1.5 0z" clip-rule="evenodd" /></svg>
+                    </a>
+                    <a href="https://x.com/swapnilsahoo" target="_blank" class="text-gray-500 hover:text-amber-600" title="X/Twitter">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" class="text-gray-500 hover:text-amber-600" title="Instagram">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2.25c-2.83 0-3.18.01-4.29.06-1.1.05-1.86.22-2.52.48a4.1 4.1 0 00-1.5 1.5c-.26.66-.43 1.42-.48 2.52C2.26 7.82 2.25 8.17 2.25 11s.01 3.18.06 4.29c.05 1.1.22 1.86.48 2.52a4.1 4.1 0 001.5 1.5c.66.26 1.42.43 2.52.48 1.1.05 1.46.06 4.29.06s3.18-.01 4.29-.06c1.1-.05 1.86-.22 2.52-.48a4.1 4.1 0 001.5-1.5c.26-.66.43-1.42.48-2.52.05-1.1.06-1.46.06-4.29s-.01-3.18-.06-4.29c-.05-1.1-.22-1.86-.48-2.52a4.1 4.1 0 00-1.5-1.5c-.66-.26-1.42-.43-2.52-.48C15.18 2.26 14.83 2.25 12 2.25zm0 1.5c2.78 0 3.12.01 4.2.06 1.01.05 1.6.2 2.02.37a2.6 2.6 0 011.03 1.03c.17.42.32 1.01.37 2.02.05 1.08.06 1.42.06 4.2s-.01 3.12-.06 4.2c-.05 1.01-.2 1.6-.37 2.02a2.6 2.6 0 01-1.03 1.03c-.42.17-1.01.32-2.02.37-1.08.05-1.42.06-4.2.06s-3.12-.01-4.2-.06c-1.01-.05-1.6-.2-2.02-.37a2.6 2.6 0 01-1.03-1.03c-.17-.42-.32-1.01-.37-2.02C3.81 15.12 3.75 14.78 3.75 12s.01-3.12.06-4.2c.05-1.01.2-1.6.37-2.02a2.6 2.6 0 011.03-1.03c.42-.17 1.01-.32 2.02-.37C8.88 3.81 9.22 3.75 12 3.75zm0 3.18a5.07 5.07 0 100 10.14 5.07 5.07 0 000-10.14zm0 1.5a3.57 3.57 0 110 7.14 3.57 3.57 0 010-7.14zm6.2-3.88a1.2 1.2 0 100-2.4 1.2 1.2 0 000 2.4z" clip-rule="evenodd" /></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" class="text-gray-500 hover:text-amber-600" title="LinkedIn">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#role" class="nav-link text-gray-600 font-medium">The Role</a>
+                <a href="#trends" class="nav-link text-gray-600 font-medium">Industry Trends</a>
+                <a href="#day" class="nav-link text-gray-600 font-medium">A Day in Your Life</a>
+                <a href="#prep" class="nav-link text-gray-600 font-medium">Nail the Interview</a>
+                <a href="#faq" class="nav-link text-gray-600 font-medium">FAQ</a>
+            </div>
+             <div class="md:hidden">
+                <select id="mobile-nav" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                    <option value="#role">The Role</option>
+                    <option value="#trends">Industry Trends</option>
+                    <option value="#day">A Day in Your Life</option>
+                    <option value="#prep">Nail the Interview</option>
+                    <option value="#faq">FAQ</option>
+                </select>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="py-20 bg-amber-50">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-gray-800 leading-tight">Your Career in Strategy & Operations Consulting</h1>
+                <p class="mt-4 text-lg md:text-xl text-gray-600">A Student's Guide to Trends, Roles, and Landing the Job</p>
+                 <p class="mt-2 text-md text-gray-500">A Session with Dr. Swapnil Sahoo</p>
+            </div>
+        </section>
+
+        <section id="role" class="py-16">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800">Decoding the Role: What Will You Do as an S&O Consultant?</h2>
+                    <p class="mt-2 text-gray-600">Think of yourself as a business problem-solver, connecting a company's big vision to its daily reality.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-start">
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-bold mb-4 flex items-center"><span class="text-3xl mr-3">🧭</span> The Strategist: Answering the 5 Ws</h3>
+                        <p class="text-gray-600 mb-4">As a strategist, your job is to define the plan by answering the five most critical business questions.</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong>Why?</strong> Why must we change? You'll define the core business reason, like responding to a threat or capturing an opportunity.</li>
+                            <li><strong>Who?</strong> Who are we serving? You'll identify the target customer segments and key competitors to challenge.</li>
+                            <li><strong>What?</strong> What should we do? You'll determine the specific actions, like launching a new product or changing a business model.</li>
+                            <li><strong>Where?</strong> Where will we compete? You'll analyze which geographic markets or industry sectors to focus on.</li>
+                            <li><strong>When?</strong> When should we act? You'll advise on the timing—whether to be a first-mover or a fast-follower.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-bold mb-4 flex items-center"><span class="text-3xl mr-3">⚙️</span> The Operator: Owning the "How"</h3>
+                        <p class="text-gray-600 mb-4">As an operator, you make the strategy happen. You are focused entirely on the science of execution.</p>
+                         <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong>How do we build it?</strong> You'll help design the systems, supply chains, and teams to bring the strategy to life (Execution).</li>
+                            <li><strong>How do we make it better?</strong> You'll work on improving the quality and reliability of products and services (Effectiveness).</li>
+                            <li><strong>How do we make it faster & cheaper?</strong> You'll find ways to optimize processes to improve speed and reduce costs (Efficiency).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-16">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-gray-800">The S&O Consultant's Skill Matrix (2025)</h3>
+                        <p class="mt-2 text-gray-600">This is your roadmap. Focus on building these capabilities to become a top-tier candidate.</p>
+                    </div>
+                    <div class="overflow-x-auto bg-white rounded-lg shadow-lg">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Skill Category</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Core Competency</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Key Skills & Tools</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">How to Build This Skill</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 align-top row-span-2 font-semibold text-gray-700 bg-amber-50">Analytical & Problem-Solving</td>
+                                    <td class="px-6 py-4 align-top font-medium text-gray-800">Hypothesis-Driven Analysis</td>
+                                    <td class="px-6 py-4 align-top text-sm text-gray-600">Consulting Frameworks, MECE Principle, Root Cause Analysis</td>
+                                    <td class="px-6 py-4 align-top text-sm text-gray-600 row-span-2">Build this through a mix of practical application and academic rigor. Excel in case competitions and interviews to hone structured thinking, and deepen your quantitative skills through finance/statistics coursework and hands-on research projects.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 align-top font-medium text-gray-800">Quantitative Modeling</td>
+                                    <td class="px-6 py-4 align-top text-sm text-gray-600">Financial Modeling (DCF), Market Sizing, Advanced Excel</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 align-top row-span-3 font-semibold text-gray-700 bg-amber-50">Technical & Digital</td>
+                                    <td class="px-6 py-4 align-top font-medium text-gray-800">Data Analytics & Modeling</td>
+                                    <td class="px-6 py-4 align-top text-sm text-gray-600">SQL, Python (Pandas), R, RPA (e.g., UiPath)</td>
+                                    <td class="px-6 py-4 align-top text-sm text-gray-600 row-span-3">Focus on hands-on technical projects. Gain proficiency in tools like SQL, Python, and Tableau through online certifications and class projects. Demonstrate your skills by building data models, creating dashboards, and staying current with AI/ML trends.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 align-top font-medium text-gray-800">Data Visualization & Storytelling</td>
+                                    <td class="px-6 py-4 align-top text-sm text-gray-600">Power BI, Tableau, Data Storytelling Principles</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 align-top font-medium text-gray-800">AI/ML & Cloud Literacy</td>
+                                    <td class="px-6 py-4 align-top text-sm text-gray-600">Understand ML concepts, GenAI principles, AWS, Azure, GCP</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 align-top row-span-2 font-semibold text-gray-700 bg-amber-50">Interpersonal & Communication</td>
+                                    <td class="px-6 py-4 align-top font-medium text-gray-800">Stakeholder Management</td>
+                                    <td class="px-6 py-4 align-top text-sm text-gray-600">Active Listening, Facilitation, Persuasion</td>
+                                    <td class="px-6 py-4 align-top text-sm text-gray-600 row-span-2">Actively seek out leadership and communication opportunities. Take on leadership roles in student clubs, practice public speaking by presenting in class, and gain real-world experience through group projects and customer-facing jobs.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 align-top font-medium text-gray-800">Executive Communication</td>
+                                    <td class="px-6 py-4 align-top text-sm text-gray-600">Pyramid Principle, Presentation Design, Executive Presence</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 align-top row-span-2 font-semibold text-gray-700 bg-amber-50">Personal & Professional Attributes</td>
+                                    <td class="px-6 py-4 align-top font-medium text-gray-800">Leadership & Initiative</td>
+                                    <td class="px-6 py-4 align-top text-sm text-gray-600">Mentorship, Project Management, Taking Ownership</td>
+                                    <td class="px-6 py-4 align-top text-sm text-gray-600 row-span-2">Demonstrate these traits through action. Take initiative by leading a project or organizing an event. Build resilience by tackling difficult coursework, actively seeking feedback from professors and peers, and showing how you learn from challenges.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 align-top font-medium text-gray-800">Adaptability & Resilience</td>
+                                    <td class="px-6 py-4 align-top text-sm text-gray-600">Learning Agility, Comfort with Ambiguity, Grit</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="trends" class="py-16 bg-amber-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800">Understanding the Industry Trends That Matter</h2>
+                    <p class="mt-2 text-gray-600">Knowing these trends will make you stand out in your interviews. Let's look at Data and AI.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-lg shadow-lg mb-12">
+                     <h3 class="text-2xl font-bold text-center mb-2">Trend 1: The Data-Driven Revolution</h3>
+                     <p class="text-center text-gray-600 mb-8">Companies are no longer guessing. Your job will be to help them use data to make smart, evidence-based decisions.</p>
+                    <div class="chart-container">
+                        <canvas id="dataInvestmentChart"></canvas>
+                    </div>
+                    <div class="text-center mt-4 text-sm text-gray-500">Illustrative: Global corporate investment in data & analytics infrastructure.</div>
+                </div>
+
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold text-center mb-8">Trend 2: The AI & ML Revolution in Operations</h3>
+                    <p class="text-center text-gray-600 -mt-4 mb-10">AI isn't just a buzzword; it's a powerful tool you'll use to help companies become faster, smarter, and more efficient.</p>
+                    <div class="grid md:grid-cols-3 gap-8 text-center">
+                        <div>
+                            <p class="text-5xl">🚚</p>
+                            <h4 class="text-xl font-semibold mt-4">Smarter Supply Chains</h4>
+                            <p class="text-gray-600 mt-2">AI predicts what customers will buy, optimizing inventory so products are always in the right place at the right time.</p>
+                        </div>
+                        <div>
+                            <p class="text-5xl">🏭</p>
+                            <h4 class="text-xl font-semibold mt-4">Predictive Manufacturing</h4>
+                            <p class="text-gray-600 mt-2">ML models can predict when a machine will fail, preventing costly shutdowns and making factories more reliable.</p>
+                        </div>
+                        <div>
+                            <p class="text-5xl">💬</p>
+                            <h4 class="text-xl font-semibold mt-4">Intelligent Customer Service</h4>
+                            <p class="text-gray-600 mt-2">AI chatbots provide instant answers to common questions, freeing up human agents to solve more difficult customer problems.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                 <div class="mt-16">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-gray-800">Real-World AI/ML in Action: Use Cases for Operations Excellence</h3>
+                        <p class="mt-2 text-gray-600">These are the examples you can use in your interviews to show you understand the real business impact of AI.</p>
+                    </div>
+                    <div class="overflow-x-auto bg-white rounded-lg shadow-lg">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Operational Function</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Specific Use Case</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">AI/ML Technology Applied</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Business Impact & Examples</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200 text-sm">
+                                <tr>
+                                    <td class="px-6 py-4 align-top row-span-3 font-semibold text-gray-700 bg-amber-50">Supply Chain Management</td>
+                                    <td class="px-6 py-4 align-top font-medium text-gray-800">Demand Forecasting</td>
+                                    <td class="px-6 py-4 align-top text-gray-600">Predictive Analytics, Machine Learning</td>
+                                    <td class="px-6 py-4 align-top text-gray-600">Optimizes inventory to reduce stockouts. (e.g., Walmart)</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 align-top font-medium text-gray-800">Real-Time Cost Monitoring</td>
+                                    <td class="px-6 py-4 align-top text-gray-600">Agentic AI, Predictive Analytics</td>
+                                    <td class="px-6 py-4 align-top text-gray-600">Enables dynamic adjustments to logistics spend. (e.g., EY solutions)</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 align-top font-medium text-gray-800">Invoice Verification & Auditing</td>
+                                    <td class="px-6 py-4 align-top text-gray-600">Generative AI, NLP</td>
+                                    <td class="px-6 py-4 align-top text-gray-600">Finds savings by checking supplier invoices for compliance. A pharma company saved over $10M.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 align-top row-span-3 font-semibold text-gray-700 bg-amber-50">Manufacturing</td>
+                                    <td class="px-6 py-4 align-top font-medium text-gray-800">Predictive Maintenance</td>
+                                    <td class="px-6 py-4 align-top text-gray-600">Machine Learning, IoT</td>
+                                    <td class="px-6 py-4 align-top text-gray-600">Predicts equipment failures to reduce unplanned downtime.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 align-top font-medium text-gray-800">Quality Control & Defect Detection</td>
+                                    <td class="px-6 py-4 align-top text-gray-600">Computer Vision, AI Analytics</td>
+                                    <td class="px-6 py-4 align-top text-gray-600">Uses AI cameras to spot product defects faster than humans.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 align-top font-medium text-gray-800">Process Optimization</td>
+                                    <td class="px-6 py-4 align-top text-gray-600">Digital Twins, AI Simulation</td>
+                                    <td class="px-6 py-4 align-top text-gray-600">Creates a virtual factory to test efficiency improvements safely.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 align-top row-span-3 font-semibold text-gray-700 bg-amber-50">Customer Service</td>
+                                    <td class="px-6 py-4 align-top font-medium text-gray-800">AI-Powered Chatbots</td>
+                                    <td class="px-6 py-4 align-top text-gray-600">Conversational AI, NLP, LLMs</td>
+                                    <td class="px-6 py-4 align-top text-gray-600">Provides 24/7 support. (e.g., McDonald's using IBM watsonx for automated orders)</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 align-top font-medium text-gray-800">Hyper-Personalization</td>
+                                    <td class="px-6 py-4 align-top text-gray-600">Machine Learning, Recommendation Engines</td>
+                                    <td class="px-6 py-4 align-top text-gray-600">Powers personalized recommendations. (e.g., Netflix, Amazon)</td>
+                                </tr>
+                                 <tr>
+                                    <td class="px-6 py-4 align-top font-medium text-gray-800">IT Ticket Reduction</td>
+                                    <td class="px-6 py-4 align-top text-gray-600">Generative AI, Data Analysis</td>
+                                    <td class="px-6 py-4 align-top text-gray-600">Automates IT support resolutions. Deloitte cut tickets by 55% for a client.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 align-top row-span-2 font-semibold text-gray-700 bg-amber-50">Human Resources (HR)</td>
+                                    <td class="px-6 py-4 align-top font-medium text-gray-800">Automated Resume Screening</td>
+                                    <td class="px-6 py-4 align-top text-gray-600">NLP, Generative AI</td>
+                                    <td class="px-6 py-4 align-top text-gray-600">Identifies top talent faster by summarizing and screening candidates.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 align-top font-medium text-gray-800">Employee Onboarding & Training</td>
+                                    <td class="px-6 py-4 align-top text-gray-600">Generative AI, Chatbots</td>
+                                    <td class="px-6 py-4 align-top text-gray-600">Creates personalized onboarding experiences for new hires.</td>
+                                </tr>
+                                 <tr>
+                                    <td class="px-6 py-4 align-top row-span-2 font-semibold text-gray-700 bg-amber-50">Finance & Risk</td>
+                                    <td class="px-6 py-4 align-top font-medium text-gray-800">Real-Time Fraud Detection</td>
+                                    <td class="px-6 py-4 align-top text-gray-600">Anomaly Detection, Machine Learning</td>
+                                    <td class="px-6 py-4 align-top text-gray-600">Analyzes transactions in real-time to spot and block fraud.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 align-top font-medium text-gray-800">Algorithmic Trading</td>
+                                    <td class="px-6 py-4 align-top text-gray-600">Predictive Analytics, Machine Learning</td>
+                                    <td class="px-6 py-4 align-top text-gray-600">Identifies investment opportunities faster than human analysts.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="day" class="py-16">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800">A Day in Your Life as a Consultant</h2>
+                    <p class="mt-2 text-gray-600">Your days will be a dynamic blend of deep thinking, teamwork, and client interaction.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-amber-400">
+                        <p class="text-lg font-semibold">☕ Morning</p>
+                        <p class="text-sm font-medium text-gray-500">Analysis & Alignment</p>
+                        <p class="mt-2 text-gray-600">You'll start by diving into data to find key insights, then sync with your team to plan the day's attack.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-amber-500">
+                        <p class="text-lg font-semibold">💡 Mid-day</p>
+                        <p class="text-sm font-medium text-gray-500">Client Collaboration</p>
+                        <p class="mt-2 text-gray-600">You'll lead a workshop, presenting your initial findings to the client and facilitating brainstorming sessions.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-amber-600">
+                        <p class="text-lg font-semibold">🧠 Afternoon</p>
+                        <p class="text-sm font-medium text-gray-500">Deep-Dive Work</p>
+                        <p class="mt-2 text-gray-600">This is your focus time to build the models and do the analysis that will back up your recommendations.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-amber-700">
+                        <p class="text-lg font-semibold">📈 Evening</p>
+                        <p class="text-sm font-medium text-gray-500">Synthesis & Storytelling</p>
+                        <p class="mt-2 text-gray-600">You'll turn a full day of complex work into a few clear, compelling slides that tell a story to your team leaders.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="prep" class="py-16 bg-amber-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800">Nail the Interview: Your Final Hurdle</h2>
+                    <p class="mt-2 text-gray-600">The consulting interview simulates the job. It's challenging, but you can master it. Let's practice.</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto">
+                    <div class="accordion-item bg-white rounded-lg shadow-lg mb-4">
+                        <button class="accordion-header w-full text-left p-6 font-bold text-lg flex justify-between items-center">
+                            Behavioral / Fit Questions
+                            <span class="accordion-icon text-2xl font-thin">+</span>
+                        </button>
+                        <div class="accordion-content px-6">
+                            <p class="text-gray-600 mb-6">Your Goal: Show them you're a motivated, collaborative, and resilient person they would want to work with on a tough project.</p>
+                            <div class="space-y-4">
+                                <div>
+                                    <p class="font-semibold">1. "Tell me about a time you had to work with a difficult team member. How did you handle it?"</p>
+                                    <button class="tip-button text-sm btn-secondary px-2 py-1 rounded mt-1">Show Pro Tip</button>
+                                    <div class="tip-content mt-2 p-3 bg-amber-100 text-amber-800 rounded-md text-sm">Focus on professional maturity. Explain how you prioritized the project's success over personal ego, sought to understand their perspective, and found a constructive path forward. Use the STAR method (Situation, Task, Action, Result).</div>
+                                </div>
+                                <div>
+                                    <p class="font-semibold">2. "Describe a complex problem you had to solve where there was no clear answer. What was your process?"</p>
+                                    <button class="tip-button text-sm btn-secondary px-2 py-1 rounded mt-1">Show Pro Tip</button>
+                                    <div class="tip-content mt-2 p-3 bg-amber-100 text-amber-800 rounded-md text-sm">Showcase your ability to create structure from chaos. Talk about how you gathered information, identified key drivers, framed hypotheses, and used data to find a logical path, even with incomplete information.</div>
+                                </div>
+                                <div>
+                                    <p class="font-semibold">3. "Why consulting? And why Strategy & Operations specifically?"</p>
+                                    <button class="tip-button text-sm btn-secondary px-2 py-1 rounded mt-1">Show Pro Tip</button>
+                                    <div class="tip-content mt-2 p-3 bg-amber-100 text-amber-800 rounded-md text-sm">Demonstrate genuine interest. Connect your skills and career goals to the core activities of S&O consulting: structured problem-solving, driving tangible impact, and continuous learning across industries. Be specific.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item bg-white rounded-lg shadow-lg mb-4">
+                        <button class="accordion-header w-full text-left p-6 font-bold text-lg flex justify-between items-center">
+                            Mini-Case Questions
+                            <span class="accordion-icon text-2xl font-thin">+</span>
+                        </button>
+                        <div class="accordion-content px-6">
+                            <p class="text-gray-600 mb-6">Your Goal: Show them how you think. The interviewer cares more about your logical process and structured approach than the final answer.</p>
+                            <div class="space-y-4">
+                                <div>
+                                    <p class="font-semibold">1. Market Sizing: "How many cups of coffee are sold in our city every day?"</p>
+                                    <button class="tip-button text-sm btn-secondary px-2 py-1 rounded mt-1">Show Framework Tip</button>
+                                    <div class="tip-content mt-2 p-3 bg-amber-100 text-amber-800 rounded-md text-sm">Start with the city's population. Segment it (e.g., working adults, students, others). Estimate the percentage of coffee drinkers and cups per day for each segment. State all assumptions clearly. Example: Population -> Adults -> % Coffee Drinkers -> Cups/Day.</div>
+                                </div>
+                                <div>
+                                    <p class="font-semibold">2. Brainstorming: "A movie theater chain is seeing declining revenues. What are some potential new revenue streams?"</p>
+                                    <button class="tip-button text-sm btn-secondary px-2 py-1 rounded mt-1">Show Framework Tip</button>
+                                    <div class="tip-content mt-2 p-3 bg-amber-100 text-amber-800 rounded-md text-sm">Structure your ideas. Don't just list them. For example: 1) Enhance core offering (luxury seats, gourmet food), 2) Utilize the asset (corporate events, e-sports), 3) Expand beyond the asset (merchandise, streaming service).</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item bg-white rounded-lg shadow-lg">
+                        <button class="accordion-header w-full text-left p-6 font-bold text-lg flex justify-between items-center">
+                            Full Case Interview (Role-Play)
+                             <span class="accordion-icon text-2xl font-thin">+</span>
+                        </button>
+                        <div class="accordion-content px-6">
+                            <p class="text-gray-600 mb-6">Your Goal: To have a collaborative problem-solving discussion with your interviewer. Guide them through your thinking from start to finish.</p>
+                            <div class="bg-gray-100 p-4 rounded-md">
+                                <p class="font-bold">Case Prompt:</p>
+                                <p>"Our client is a leading Indian airline. Over the past year, their profitability has dropped by 20%. The CEO has hired us to figure out why and what to do about it. How would you approach this problem?"</p>
+                            </div>
+                             <button class="tip-button text-sm btn-primary px-3 py-2 rounded mt-4 w-full md:w-auto">Show Your Walkthrough Guide</button>
+                             <div class="tip-content mt-4 space-y-3 text-sm">
+                                <p><strong class="text-gray-800">1. Clarify & Structure:</strong> Pause and ask questions. "Is this an industry-wide problem?" Then, lay out your framework: "I'll analyze Profit by looking at its two main drivers: Revenues and Costs. I'll then break each down further."</p>
+                                <p><strong class="text-gray-800">2. Analyze & Drill Down:</strong> Use the interviewer's data to isolate the root cause. If they say revenues are down, you drill down: "Is that from fewer passengers or lower average ticket prices?"</p>
+                                <p><strong class="text-gray-800">3. Brainstorm Solutions:</strong> Once the root cause is clear (e.g., fewer business travelers), structure a brainstorming session for solutions (e.g., short-term promotions, long-term service upgrades).</p>
+                                <p><strong class="text-gray-800">4. Conclude with a Recommendation:</strong> End with a crisp, confident summary. "Our client's profit has dropped due to X. I recommend a three-point plan: A, B, and C, to address this. The key risk is Y."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-16">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-gray-800">Your Secret Weapon: Common Case Interview Frameworks</h3>
+                        <p class="mt-2 text-gray-600">Start with these frameworks to structure your thinking for the most common case types.</p>
+                    </div>
+                    <div class="overflow-x-auto bg-white rounded-lg shadow-lg">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Case Type</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Key Question to Answer</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Suggested Framework Buckets</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Key Considerations</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200 text-sm">
+                                <tr>
+                                    <td class="px-6 py-4 align-top font-semibold text-gray-700 bg-amber-50">Profitability</td>
+                                    <td class="px-6 py-4 align-top font-medium text-gray-800">"How can the client increase profits?"</td>
+                                    <td class="px-6 py-4 align-top text-gray-600">
+                                        <p><strong>Revenue:</strong> Price/unit, # of units sold.</p>
+                                        <p><strong>Costs:</strong> Fixed Costs, Variable Costs.</p>
+                                    </td>
+                                    <td class="px-6 py-4 align-top text-gray-600">Always start by understanding the trend and magnitude of the profit decline. Isolate the problem to either revenue or cost before deep-diving.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 align-top font-semibold text-gray-700 bg-amber-50">Market Entry</td>
+                                    <td class="px-6 py-4 align-top font-medium text-gray-800">"Should the client enter Market X?"</td>
+                                    <td class="px-6 py-4 align-top text-gray-600">
+                                        <p><strong>1. Market Attractiveness:</strong> Size, Growth, Competition.</p>
+                                        <p><strong>2. Client Capabilities:</strong> Strategic fit, Financial/Operational ability.</p>
+                                        <p><strong>3. Financial Viability:</strong> Investment, ROI, Breakeven.</p>
+                                        <p><strong>4. Entry Strategy:</strong> Build, Acquire, or Partner.</p>
+                                    </td>
+                                    <td class="px-6 py-4 align-top text-gray-600">Quantify the market size and potential profit early. Don't just analyze if they *can* enter, but if they *should* and *how*.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 align-top font-semibold text-gray-700 bg-amber-50">Mergers & Acquisitions</td>
+                                    <td class="px-6 py-4 align-top font-medium text-gray-800">"Should Company A acquire Company B?"</td>
+                                    <td class="px-6 py-4 align-top text-gray-600">
+                                        <p><strong>1. Standalone Value of Target:</strong> Assess Company B's health.</p>
+                                        <p><strong>2. Synergies:</strong> Revenue (e.g., cross-selling) & Cost synergies (e.g., redundancies).</p>
+                                        <p><strong>3. Feasibility & Risks:</strong> Price, Cultural fit, Integration challenges.</p>
+                                    </td>
+                                    <td class="px-6 py-4 align-top text-gray-600">Synergies are key to justifying the acquisition price. Be realistic about the challenges of actually capturing those synergies.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 align-top font-semibold text-gray-700 bg-amber-50">Digital/AI Transformation</td>
+                                    <td class="px-6 py-4 align-top font-medium text-gray-800">"How can the client use tech to transform?"</td>
+                                    <td class="px-6 py-4 align-top text-gray-600">
+                                        <p><strong>1. Strategic Objective:</strong> What business problem are we solving?</p>
+                                        <p><strong>2. Customer Journey:</strong> How will this improve the customer experience?</p>
+                                        <p><strong>3. Operations & Processes:</strong> Which internal processes must change?</p>
+                                        <p><strong>4. Tech & Data:</strong> What is the required tech stack and data?</p>
+                                        <p><strong>5. People & Operating Model:</strong> What new skills are needed? How must the organization change?</p>
+                                        <p><strong>6. Roadmap & ROI:</strong> What is the phased plan and financial case?</p>
+                                    </td>
+                                    <td class="px-6 py-4 align-top text-gray-600">Always anchor technology in a business problem. Emphasize the people and process changes, not just the tech. Discuss risks like data privacy, model bias, and cybersecurity.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="faq" class="py-16">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800">Frequently Asked Questions</h2>
+                    <p class="mt-2 text-gray-600">Your questions, answered. Here are some common queries from students like you.</p>
+                </div>
+                <div class="max-w-4xl mx-auto">
+                    
+                    <div class="accordion-item bg-white rounded-lg shadow-lg mb-4">
+                        <button class="accordion-header w-full text-left p-6 font-bold text-lg flex justify-between items-center">
+                            Career Path & Skill Development
+                            <span class="accordion-icon text-2xl font-thin">+</span>
+                        </button>
+                        <div class="accordion-content px-6 space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-gray-800">How would a career path look if I plan to shift to Strategy consulting later in my career from technology consulting?</h4>
+                                <p class="text-gray-600 mt-1">It's a common and achievable transition. Focus on building a "T-shaped" profile. Your deep expertise in technology is the vertical bar of the "T". To build the horizontal bar (strategy), you need to: 1) Master the Business Context on every tech project, 2) Actively seek out strategic elements in your work, 3) Get an MBA as an accelerator, and 4) Brand yourself for strategy by highlighting the business impact of your technical work on your resume.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">What are the typical growth opportunities and career paths for someone starting in Deloitte USI Consulting?</h4>
+                                <p class="text-gray-600 mt-1">The path is typically well-defined: Analyst/Consultant (0-3 yrs), Senior Consultant (3-5 yrs), Manager (5-8 yrs), Senior Manager/Director (8-12 yrs), and finally Partner/Principal. At each stage, your responsibility shifts from execution to management to leadership and business development. Growth is merit-based and accelerated by strong performance and building a network.</p>
+                            </div>
+                             <div>
+                                <h4 class="font-semibold text-gray-800">How can someone from a non-technical background prepare for an ERP consulting role?</h4>
+                                <p class="text-gray-600 mt-1">Firms value business knowledge as much as technical skills. Focus on: 1) Becoming an expert in business processes (e.g., Procure-to-Pay, Order-to-Cash), 2) Learning the "why" behind an ERP implementation (efficiency, better data), 3) Getting a foundational certification (e.g., SAP TS410), and 4) Highlighting transferable skills like project management and communication.</p>
+                            </div>
+                             <div>
+                                <h4 class="font-semibold text-gray-800">What specific skills should I focus on during my PGPM to stand out?</h4>
+                                <p class="text-gray-600 mt-1">Focus on a combination of hard and soft skills: 1) **Hard Skills:** Get very comfortable with quantitative modeling in Excel, learn the basics of a data visualization tool like Tableau or Power BI, and understand fundamental business frameworks. 2) **Soft Skills:** Actively seek leadership roles in clubs, practice public speaking, and get good at managing team dynamics in group projects. The ability to communicate complex ideas simply is priceless.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item bg-white rounded-lg shadow-lg mb-4">
+                        <button class="accordion-header w-full text-left p-6 font-bold text-lg flex justify-between items-center">
+                            Industry & Firm Knowledge
+                            <span class="accordion-icon text-2xl font-thin">+</span>
+                        </button>
+                        <div class="accordion-content px-6 space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-gray-800">What are the current market trends affecting the consulting industry?</h4>
+                                <p class="text-gray-600 mt-1">The biggest trends are: 1) **AI and GenAI Integration:** Every client wants to know their AI strategy. 2) **Sustainability (ESG):** Clients need help with compliance and building sustainable operations. 3) **Supply Chain Resilience:** Moving from 'just-in-time' to 'just-in-case' supply chains. 4) **Specialization:** A shift from generalist advice to deep domain expertise.</p>
+                            </div>
+                             <div>
+                                <h4 class="font-semibold text-gray-800">How do you see the strategy consulting industry evolving in the next 5-10 years, especially with news of a decline?</h4>
+                                <p class="text-gray-600 mt-1">The industry isn't declining, it's transforming. The demand for generic "PowerPoint strategy" is decreasing, but the demand for strategy integrated with technology, data, and implementation is exploding. The firms that can blend strategic advice with tangible operational and digital execution will thrive. For your interview, you can justify your choice by saying you're excited to join a firm that's at the forefront of this integrated approach.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Which industries are expected to generate the most demand for consulting in the next 5–10 years?</h4>
+                                <p class="text-gray-600 mt-1">High-growth areas include: 1) **Healthcare & Life Sciences** (driven by analytics and personalized medicine), 2) **Technology, Media & Telecom (TMT)** (driven by AI, 5G, and content wars), 3) **Energy & Renewables** (driven by the global energy transition), and 4) **Financial Services** (driven by fintech disruption and digital transformation).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="accordion-item bg-white rounded-lg shadow-lg mb-4">
+                        <button class="accordion-header w-full text-left p-6 font-bold text-lg flex justify-between items-center">
+                            Preparing for the Interview & JDs
+                            <span class="accordion-icon text-2xl font-thin">+</span>
+                        </button>
+                        <div class="accordion-content px-6 space-y-4">
+                           <div>
+                                <h4 class="font-semibold text-gray-800">What specifics should I prepare with respect to a JD? How do I know what's important?</h4>
+                                <p class="text-gray-600 mt-1">Break down the JD into three parts: 1) **The Role:** What are the key activities mentioned (e.g., "data analysis," "client workshops," "develop work plan")? Prepare a story from your experience for each. 2) **Required Skills:** Go through the list (e.g., "SQL," "Power BI," "Problem-Solving") and be prepared to prove you have each one with an example. 3) **The Team/Firm:** Understand the firm's values and recent work. For Deloitte's CSAD role, for instance, notice the emphasis on "Customer & Marketing Strategy" and "front office transformation" - prepare to talk about customer experience.</p>
+                            </div>
+                             <div>
+                                <h4 class="font-semibold text-gray-800">How important is the usage of frameworks in the day-to-day working of a consultant?</h4>
+                                <p class="text-gray-600 mt-1">Frameworks are critical, but not in the way you might think. You won't say "Let's use Porter's Five Forces" in a client meeting. However, the *thinking* behind frameworks—MECE (Mutually Exclusive, Collectively Exhaustive), structured problem-solving—is the foundation of everything you do. Frameworks are the mental scaffolding you use to break down a complex problem into manageable parts, ensuring you don't miss anything. They are used constantly, even if not mentioned by name.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">What is exactly "Applied Design" in the Customer Strategy & Applied Design (CSAD) role?</h4>
+                                <p class="text-gray-600 mt-1">"Applied Design" refers to the practical application of design thinking principles to solve business problems. It's about moving beyond just strategy to designing the actual customer experience. This includes mapping the customer journey, designing user interfaces for apps, creating new service blueprints for in-store experiences, and ensuring every touchpoint a customer has with a company is intentional and effective.</p>
+                            </div>
+                             <div>
+                                <h4 class="font-semibold text-gray-800">My resume shows 80-85% alignment with a JD on AI tools. What else can I add?</h4>
+                                <p class="text-gray-600 mt-1">Don't chase a perfect percentage. AI tools are good for keyword matching, but recruiters look for impact. To improve, focus on: 1) **Quantifying Your Impact:** Instead of "Worked on a project," write "Improved process efficiency by 15%." 2) **Using the Language of the JD:** If the JD mentions "stakeholder management," use that exact phrase in your resume to describe your experience. 3) **Adding a "Skills" Section:** Explicitly list the key technologies and methodologies from the JD (e.g., Agile, Power BI, SQL) in a dedicated skills section.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p class="font-semibold">© Dr. Swapnil Sahoo 2025</p>
+            <div class="flex justify-center items-center space-x-6 mt-4">
+                <a href="https://www.swapnilsahoo.com" target="_blank" class="text-gray-400 hover:text-white" title="Website">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M15.75 2.25a.75.75 0 01.75.75v5.034a5.242 5.242 0 013 4.216c0 2.899-2.35 5.25-5.25 5.25S9 15.149 9 12.25c0-1.603.733-3.033 1.88-3.992a.75.75 0 01.94 1.166A3.743 3.743 0 0010.5 12.25c0 2.071 1.679 3.75 3.75 3.75s3.75-1.679 3.75-3.75c0-1.612-.996-2.957-2.345-3.522a.75.75 0 01-.505-1.05A.75.75 0 0116.2 7.5h.05a2.5 2.5 0 012.5 2.5c0 1.38-1.12 2.5-2.5 2.5S13.75 11.38 13.75 10h-1.5c0 2.071 1.679 3.75 3.75 3.75s3.75-1.679 3.75-3.75a5.242 5.242 0 01-3-4.216V3a.75.75 0 01-.75-.75zm-3 5.034V3a.75.75 0 00-1.5 0v4.284a5.242 5.242 0 00-3 4.216c0 2.899 2.35 5.25 5.25 5.25a.75.75 0 000-1.5 3.75 3.75 0 01-3.75-3.75c0-1.612.996-2.957 2.345-3.522a.75.75 0 00.505-1.05.75.75 0 00-1.05-.505A3.743 3.743 0 019 12.25c0-2.071-1.679-3.75-3.75-3.75S1.5 10.179 1.5 12.25c0 2.071 1.679 3.75 3.75 3.75h1.5a.75.75 0 000-1.5H5.25A2.25 2.25 0 013 12.25c0-1.24 1.01-2.25 2.25-2.25S7.5 11.01 7.5 12.25c0 .61-.244 1.176-.655 1.595a.75.75 0 101.13 1.002A3.733 3.733 0 009.75 12.25a5.242 5.242 0 00-3-4.216V3a.75.75 0 00-1.5 0v4.284a5.242 5.242 0 00-3 4.216c0 2.899 2.35 5.25 5.25 5.25S12 15.149 12 12.25a.75.75 0 00-1.5 0c0 2.071-1.679 3.75-3.75 3.75S3 14.321 3 12.25c0-2.071 1.679-3.75 3.75-3.75s3.75 1.679 3.75 3.75a.75.75 0 001.5 0c0-2.899-2.35-5.25-5.25-5.25a5.242 5.242 0 00-3-4.216V3a.75.75 0 00-1.5 0z" clip-rule="evenodd" /></svg>
+                </a>
+                <a href="https://x.com/swapnilsahoo" target="_blank" class="text-gray-400 hover:text-white" title="X/Twitter">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" class="text-gray-400 hover:text-white" title="Instagram">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2.25c-2.83 0-3.18.01-4.29.06-1.1.05-1.86.22-2.52.48a4.1 4.1 0 00-1.5 1.5c-.26.66-.43 1.42-.48 2.52C2.26 7.82 2.25 8.17 2.25 11s.01 3.18.06 4.29c.05 1.1.22 1.86.48 2.52a4.1 4.1 0 001.5 1.5c.66.26 1.42.43 2.52.48 1.1.05 1.46.06 4.29.06s3.18-.01 4.29-.06c1.1-.05 1.86-.22 2.52-.48a4.1 4.1 0 001.5-1.5c.26-.66.43-1.42.48-2.52.05-1.1.06-1.46.06-4.29s-.01-3.18-.06-4.29c-.05-1.1-.22-1.86-.48-2.52a4.1 4.1 0 00-1.5-1.5c-.66-.26-1.42-.43-2.52-.48C15.18 2.26 14.83 2.25 12 2.25zm0 1.5c2.78 0 3.12.01 4.2.06 1.01.05 1.6.2 2.02.37a2.6 2.6 0 011.03 1.03c.17.42.32 1.01.37 2.02.05 1.08.06 1.42.06 4.2s-.01 3.12-.06 4.2c-.05 1.01-.2 1.6-.37 2.02a2.6 2.6 0 01-1.03 1.03c-.42.17-1.01.32-2.02.37-1.08.05-1.42.06-4.2.06s-3.12-.01-4.2-.06c-1.01-.05-1.6-.2-2.02-.37a2.6 2.6 0 01-1.03-1.03c-.17-.42-.32-1.01-.37-2.02C3.81 15.12 3.75 14.78 3.75 12s.01-3.12.06-4.2c.05-1.01.2-1.6.37-2.02a2.6 2.6 0 011.03-1.03c.42-.17 1.01-.32 2.02-.37C8.88 3.81 9.22 3.75 12 3.75zm0 3.18a5.07 5.07 0 100 10.14 5.07 5.07 0 000-10.14zm0 1.5a3.57 3.57 0 110 7.14 3.57 3.57 0 010-7.14zm6.2-3.88a1.2 1.2 0 100-2.4 1.2 1.2 0 000 2.4z" clip-rule="evenodd" /></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" class="text-gray-400 hover:text-white" title="LinkedIn">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('dataInvestmentChart').getContext('2d');
+            const dataInvestmentChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['2015', '2017', '2019', '2021', '2023', '2025 (Est.)'],
+                    datasets: [{
+                        label: 'Global Investment in Data & Analytics (in Billions USD)',
+                        data: [122, 154, 189, 215, 274, 345],
+                        backgroundColor: '#D97706',
+                        borderColor: '#B45309',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Shift from "Gut Feel" to Data-Driven Decisions',
+                            font: {
+                                size: 16
+                            },
+                            color: '#374151'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Investment ($B)'
+                            }
+                        }
+                    }
+                }
+            });
+
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                const content = item.querySelector('.accordion-content');
+                const icon = item.querySelector('.accordion-icon');
+
+                header.addEventListener('click', () => {
+                    const isOpen = content.classList.contains('open');
+                    
+                    document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('open'));
+                    document.querySelectorAll('.accordion-icon').forEach(i => i.textContent = '+');
+
+                    if (!isOpen) {
+                        content.classList.add('open');
+                        icon.textContent = '-';
+                    }
+                });
+            });
+
+            const tipButtons = document.querySelectorAll('.tip-button');
+            tipButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const tipContent = button.nextElementSibling;
+                    if (tipContent.style.display === 'block') {
+                        tipContent.style.display = 'none';
+                    } else {
+                        tipContent.style.display = 'block';
+                    }
+                });
+            });
+
+            const mobileNav = document.getElementById('mobile-nav');
+            mobileNav.addEventListener('change', () => {
+                window.location.hash = mobileNav.value;
+            });
+            
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('main section');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+
+</body>
+</html>
+

@@ -1,0 +1,93 @@
+<form id="contactForm" class="contact-form">
+    <div class="form-group">
+        <label for="name">Full Name</label>
+        <input id="name" name="name" type="text" placeholder="Your Name" required>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email Address</label>
+        <input id="email" name="email" type="email" placeholder="you@example.com" required>
+    </div>
+
+    <div class="form-group">
+        <label for="subject">Subject</label>
+        <input id="subject" name="subject" type="text" placeholder="How can I help?">
+    </div>
+
+    <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Write your message..." required></textarea>
+    </div>
+
+    <button type="submit" class="send-btn">Send Message</button>
+    <p class="note">Your message will be saved directly to our records.</p>
+</form>
+
+<!-- Google Sheets Integration Script -->
+<script>
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        subject: document.getElementById('subject').value,
+        message: document.getElementById('message').value
+    };
+
+    fetch("https://script.google.com/a/macros/greatlakes.edu.in/s/AKfycbzbRZbcKkCV5PLo_U2TG5AkdyMD93YsUIdmIX5Di8W4Q65LB2jT_KqcYIbAgwkNdwnl/exec", {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: { "Content-Type": "application/json" }
+    })
+    .then(response => response.json())
+    .then(() => {
+        alert("✅ Message sent successfully!");
+        document.getElementById('contactForm').reset();
+    })
+    .catch(error => {
+        alert("❌ Error sending message. Please try again.");
+        console.error(error);
+    });
+});
+</script>
+
+<!-- Your existing CSS (kept as is) -->
+<style>
+.contact-form {
+    max-width: 600px;
+    margin: auto;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+.send-btn {
+    background: #ffcc00;
+    border: none;
+    padding: 12px 25px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.send-btn:hover {
+    background: #ffb700;
+}
+.note {
+    font-size: 12px;
+    color: #777;
+    margin-top: 8px;
+}
+</style>

@@ -1,0 +1,1558 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 14: Corporate Strategy | Integration & Diversification</title>
+    
+    <!-- Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- 
+        Application Structure Plan:
+        1. Hero & Objectives: Sets the academic foundation, using the LOs from Session 14.
+        2. Module 1 (Boundaries): Socratic intro to Make-or-Buy. Interactive slider demonstrating Transaction Cost Economics (TCE).
+        3. Module 2 (Vertical Integration): Analyzes the industry value chain. Uses flip cards for global/Indian case studies.
+        4. Module 3 (Diversification): Explores core competencies. Chart.js visualization of the diversification-performance relationship.
+        5. Group Activity: Strategic Matrix evaluation.
+        6. CEO Gauntlet (Simulation): Tests synthesis of all chapter concepts through a multi-stage interactive scenario.
+        
+        Visualization & Content Choices:
+        - Make/Buy Slider: Demonstrates the dynamic trade-off between transaction and administrative costs.
+        - Chart.js Line Chart: Visually plots the inverted-U curve of diversification vs. firm performance.
+        - CSS Flip Cards: Engages users in mapping the Core Competence-Market matrix.
+        - JS-driven Simulation: Implements Socratic decision-making and immediate feedback.
+        
+        CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. FontAwesome used for iconography.
+    -->
+
+    <style>
+        /* --- GRAND MASTER THEME ADAPTED FOR CORPORATE STRATEGY --- */
+        :root {
+            --primary-bg: #fdfbf7;      /* Warm paper white */
+            --primary-text: #1a1a1a;    /* Soft black */
+            --accent-color: #1d4ed8;    /* Corporate Blue (Blue-700) */
+            --accent-secondary: #0f172a; /* Slate */
+            --glass: rgba(255, 255, 255, 0.95);
+            --border-light: #e2e8f0;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--primary-text);
+            font-family: 'Satoshi', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .serif-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .mono-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Navigation Styles */
+        #main-header { position: sticky; top: 0; z-index: 40; transition: all 0.3s ease; }
+        .nav-link { position: relative; font-weight: 500; color: #64748b; transition: color 0.2s; text-decoration: none; }
+        .nav-link:hover, .nav-link.active { color: var(--accent-color); }
+        
+        .chess-logo {
+            width: 40px; height: 40px;
+            background: var(--accent-color);
+            color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .group:hover .chess-logo { transform: rotate(10deg); background: #1e3a8a; }
+
+        /* Card & Panel Styles */
+        .glass-panel {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-light);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .card-panel {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-panel:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-bg {
+            background: radial-gradient(circle at 50% 0%, #eff6ff 0%, #fdfbf7 70%);
+        }
+
+        /* Utilities */
+        .slider-thumb {
+            -webkit-appearance: none;
+            width: 100%; height: 6px;
+            background: #e2e8f0; border-radius: 3px; outline: none;
+        }
+        .slider-thumb::-webkit-slider-thumb {
+            -webkit-appearance: none; width: 20px; height: 20px;
+            border-radius: 50%; background: var(--accent-color);
+            cursor: pointer; transition: transform 0.1s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .slider-thumb::-webkit-slider-thumb:hover { transform: scale(1.2); }
+
+        .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        
+        .chart-container { position: relative; height: 350px; width: 100%; max-width: 100%; }
+        
+        /* Simulation Feedback Box */
+        .feedback-box {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            animation: fadeIn 0.3s ease-out;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Simulation Specifics */
+        .sim-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #fff;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: left;
+            transition: all 0.2s;
+            width: 100%;
+        }
+        .sim-btn:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: #60a5fa; /* Blue-400 */
+        }
+
+        /* Comparative Context Box */
+        .context-box {
+            background: #f8fafc;
+            border-left: 3px solid #64748b;
+            padding: 1rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+            font-size: 0.85rem;
+        }
+        
+        /* Flip Cards */
+        .secret-card { perspective: 1000px; }
+        .secret-card-inner {
+            position: relative;
+            width: 100%; height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .secret-card.flipped .secret-card-inner { transform: rotateY(180deg); }
+        .secret-front, .secret-back {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .secret-back {
+            transform: rotateY(180deg);
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+        }
+        
+        .impact-pill {
+            font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em;
+            padding: 2px 6px; border-radius: 4px; font-weight: bold;
+        }
+        
+        /* Value Chain Blocks */
+        .vc-block {
+            border-left: 4px solid var(--accent-color);
+            transition: all 0.3s ease;
+        }
+        .vc-block:hover {
+            transform: translateX(10px);
+            background-color: #f1f5f9;
+        }
+        
+        /* Custom Flywheel Orbit Styles */
+        .flywheel-node {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+        }
+        .flywheel-node:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            z-index: 20;
+        }
+
+        /* Custom animation for diagram */
+        .animate-spin-slow {
+            animation: spin 4s linear infinite;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-blue-100 selection:text-blue-900">
+
+    <!-- Top Progress Bar -->
+    <div class="fixed top-0 left-0 w-full h-1 bg-slate-100 z-50">
+        <div id="progress-bar" class="h-full bg-blue-700 w-0 transition-all duration-100 ease-out"></div>
+    </div>
+
+    <!-- HEADER / NAVIGATION -->
+    <nav id="main-header" class="bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Left: Logo Area -->
+            <a href="#" class="flex items-center gap-3 group no-underline">
+                <div class="chess-logo">
+                    <i class="fas fa-sitemap"></i>
+                </div>
+                <div class="leading-tight">
+                    <h1 class="font-bold text-slate-900 tracking-tight text-xl">The Strategist's Lens</h1>
+                    <p class="text-[10px] text-blue-700 font-bold uppercase tracking-widest">Session 14: Corporate Strategy</p>
+                </div>
+            </a>
+            
+            <!-- Center: Navigation Links -->
+            <div class="hidden xl:flex space-x-6 text-sm font-medium">
+                <a href="#objectives" class="nav-link text-slate-900">Objectives</a>
+                <a href="#boundaries" class="nav-link text-slate-900"><i class="fas fa-vector-square text-indigo-500 mr-1"></i>Boundaries</a>
+                <a href="#vertical" class="nav-link text-slate-900"><i class="fas fa-link text-blue-500 mr-1"></i>Vertical</a>
+                <a href="#diversification" class="nav-link text-slate-900"><i class="fas fa-code-branch text-purple-500 mr-1"></i>Diversification</a>
+                <a href="#gauntlet" class="nav-link text-amber-600 font-bold"><i class="fas fa-gamepad mr-1"></i> CEO Sim</a>
+            </div>
+
+            <!-- Right: Social Icons -->
+            <div class="flex items-center gap-5">
+                <a href="#" class="text-slate-400 hover:text-blue-600 transition-colors" title="Academic Portal"><i class="fas fa-university text-lg"></i></a>
+                <button class="xl:hidden text-slate-600"><i class="fas fa-bars text-xl"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="py-24 px-6 hero-bg border-b border-slate-100 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-blue-50/50 rounded-l-full blur-3xl -z-10"></div>
+        <div class="max-w-6xl mx-auto w-full z-10 fade-up text-center"> 
+             <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-200 bg-blue-50 text-blue-800 text-xs font-bold tracking-widest uppercase mb-6 shadow-sm">
+                <i class="fas fa-layer-group"></i> Session 14 Masterclass
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-8 text-slate-900 serif-font">
+                The Growth <span class="italic text-blue-700">Imperative</span>
+            </h1>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto font-light leading-relaxed mb-10">
+                To build, to buy, or to partner? We deconstruct the boundaries of the firm using Transaction Cost Economics, exploring Vertical Integration and Corporate Diversification.
+            </p>
+            
+            <div class="max-w-3xl mx-auto bg-white/80 backdrop-blur rounded-xl p-4 border border-slate-100 shadow-sm text-sm text-slate-600 mb-8">
+                <i class="fas fa-graduation-cap text-blue-700 mr-2"></i>
+                <strong>Focus:</strong> Determining *where* to compete along the value chain and across industries.
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-12 space-y-32">
+
+        <!-- CHAPTER OBJECTIVES SECTION -->
+        <section id="objectives" class="fade-up">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-serif text-slate-900 font-bold mb-4">Session Outline & Objectives</h2>
+                <p class="text-slate-500">The roadmap for today's intellectual journey.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- LO 14-1 -->
+                <div class="bg-white p-6 rounded-xl border border-slate-100 hover:border-slate-300 transition shadow-sm group">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">LO 14-1</span>
+                        <i class="fas fa-compass text-slate-300 group-hover:text-blue-600 transition"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-sm mb-2">Corporate Strategy Dimensions</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Define corporate strategy and describe the three dimensions along which it is assessed.</p>
+                </div>
+
+                <!-- LO 14-2 -->
+                <div class="bg-white p-6 rounded-xl border border-slate-100 hover:border-slate-300 transition shadow-sm group">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">LO 14-2</span>
+                        <i class="fas fa-seedling text-slate-300 group-hover:text-blue-600 transition"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-sm mb-2">The Need to Grow</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Explain why firms need to grow, and evaluate different growth motives.</p>
+                </div>
+
+                <!-- LO 14-3 -->
+                <div class="bg-white p-6 rounded-xl border border-slate-100 hover:border-slate-300 transition shadow-sm group">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">LO 14-3</span>
+                        <i class="fas fa-handshake text-slate-300 group-hover:text-blue-600 transition"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-sm mb-2">Organizing Economic Activity</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Describe and evaluate different options that firms have to organize economic activity (Make vs. Buy).</p>
+                </div>
+
+                <!-- LO 14-4 -->
+                <div class="bg-white p-6 rounded-xl border border-slate-100 hover:border-slate-300 transition shadow-sm group">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">LO 14-4</span>
+                        <i class="fas fa-link text-slate-300 group-hover:text-blue-600 transition"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-sm mb-2">Types of Vertical Integration</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Describe the two types of vertical integration along the industry value chain: backward and forward.</p>
+                </div>
+
+                <!-- LO 14-5 -->
+                <div class="bg-white p-6 rounded-xl border border-slate-100 hover:border-slate-300 transition shadow-sm group">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">LO 14-5 & 14-6</span>
+                        <i class="fas fa-balance-scale-left text-slate-300 group-hover:text-blue-600 transition"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-sm mb-2">Risks & Alternatives</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Identify benefits/risks of vertical integration and examine alternatives (e.g., strategic alliances).</p>
+                </div>
+
+                <!-- LO 14-7 -->
+                <div class="bg-white p-6 rounded-xl border border-slate-100 hover:border-slate-300 transition shadow-sm group">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">LO 14-7</span>
+                        <i class="fas fa-project-diagram text-slate-300 group-hover:text-blue-600 transition"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-sm mb-2">Types of Diversification</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Describe and evaluate different types of corporate diversification (Related vs. Unrelated).</p>
+                </div>
+
+                <!-- LO 14-8 -->
+                <div class="bg-white p-6 rounded-xl border border-slate-100 hover:border-slate-300 transition shadow-sm group">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">LO 14-8</span>
+                        <i class="fas fa-border-all text-slate-300 group-hover:text-blue-600 transition"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-sm mb-2">Core Competence Matrix</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Apply the core competence–market matrix to derive different diversification strategies.</p>
+                </div>
+
+                <!-- LO 14-9 -->
+                <div class="bg-white p-6 rounded-xl border border-slate-100 hover:border-slate-300 transition shadow-sm group md:col-span-2 lg:col-span-2">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">LO 14-9</span>
+                        <i class="fas fa-chart-line text-slate-300 group-hover:text-blue-600 transition"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-sm mb-2">Diversification & Performance</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Explain when a diversification strategy creates a competitive advantage and when it destroys value (the diversification discount).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 0.5: DEFINING CORPORATE STRATEGY (AMAZON CASE) -->
+        <section id="what-is-cs" class="fade-up">
+            <!-- TRIGGER QUESTION -->
+            <div class="mb-6 bg-slate-900 text-white p-5 rounded-lg inline-block shadow-lg border-l-4 border-green-500">
+                <div class="flex items-start gap-3">
+                    <i class="fas fa-satellite text-green-400 mt-1 text-xl"></i>
+                    <div>
+                        <span class="text-xs font-bold text-green-400 uppercase tracking-widest block mb-1">Fundamental Question (14.1)</span>
+                        <span class="font-serif italic text-lg leading-tight">"By 2026, Amazon launches satellites for internet, designs its own AI microchips, and runs primary healthcare clinics. Is it a retailer, a tech giant, a hospital, or a nation-state? How do you define a firm's boundaries when it does everything?"</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-end gap-4 mb-10 border-b border-slate-200 pb-6">
+                <span class="text-6xl font-serif text-slate-200">00</span>
+                <div class="pb-2">
+                    <h2 class="text-3xl font-serif text-slate-900 font-bold">Defining Corporate Strategy</h2>
+                    <p class="text-slate-500">Where to Compete: The Amazon Case Study (1994 - 2026)</p>
+                </div>
+            </div>
+
+            <!-- ROW 1: Dimensions & Radar Chart -->
+            <div class="grid lg:grid-cols-12 gap-10 items-start mb-12">
+                <!-- Theory & Amazon Case -->
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                        <h4 class="font-bold text-slate-900 mb-4 font-serif text-lg">Business vs. Corporate Strategy</h4>
+                        <div class="space-y-3 text-sm text-slate-600">
+                            <div class="flex justify-between items-center p-3 bg-slate-50 rounded border-l-2 border-slate-400">
+                                <strong>Business Strategy</strong>
+                                <span class="text-slate-500 italic">"How to compete?" (Cost vs. Differentiation)</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-blue-50 rounded border-l-2 border-blue-500">
+                                <strong class="text-blue-900">Corporate Strategy</strong>
+                                <span class="text-blue-700 font-bold">"Where to compete?"</span>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-sm text-slate-600 leading-relaxed">
+                            Corporate strategy concerns the boundaries of the firm along three key dimensions. For a firm to gain and sustain competitive advantage, any corporate strategy must support and strengthen the firm’s strategic position, regardless of whether it is a differentiation, cost-leadership, or blue ocean strategy.
+                        </p>
+                    </div>
+
+                    <div class="context-box bg-slate-50 border-slate-400 mt-6">
+                        <p class="text-slate-700 text-sm leading-relaxed">
+                            Amazon's evolution from a niche online bookseller in 1994 to a global technology powerhouse is driven by a self-reinforcing growth engine known as the <strong>"Flywheel" effect</strong>, supported by aggressive vertical integration and horizontal diversification. By 2025, Amazon has transitioned from a mere retailer into a fundamental infrastructure provider for both the physical and digital worlds, achieving over <strong>$716 billion</strong> in annual revenue. 
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Radar Chart Visualizing the Dimensions -->
+                <div class="lg:col-span-6">
+                    <div class="card-panel p-8 bg-white shadow-xl h-full flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="font-bold text-lg text-slate-800">The Expanding Boundaries</h3>
+                                <p class="text-xs text-slate-500 mt-1">Amazon's Strategic Footprint (1995 vs. 2026)</p>
+                            </div>
+                            <i class="fas fa-expand-arrows-alt text-green-500 text-3xl opacity-20"></i>
+                        </div>
+                        
+                        <div class="chart-container flex-1 min-h-[250px] relative">
+                            <canvas id="amazonRadarChart"></canvas>
+                        </div>
+                        
+                        <div class="mt-4 pt-4 border-t border-slate-100 bg-green-50 p-3 rounded-lg text-xs text-green-900 leading-relaxed text-center">
+                            <strong>Visualizing Growth:</strong> The radar chart represents the Three Dimensions of Corporate Strategy. The massive area difference demonstrates how Amazon stretched its boundaries across all three axes simultaneously to reinforce its core business model by 2026.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ROW 1.5: The Three Dimensions Details & Andy Jassy's Questions -->
+            <div class="mb-12">
+                <div class="bg-white rounded-2xl shadow-xl border border-slate-200 p-8">
+                    <div class="mb-8 border-b border-slate-200 pb-4">
+                        <h3 class="text-2xl font-serif text-slate-900 font-bold mb-2">Three Dimensions of Corporate Strategy</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Strategic leaders must navigate the three dimensions of corporate strategy: vertical integration, horizontal diversification, and geographic scope. Although many managers provide input, the responsibility for corporate strategy ultimately rests with the CEO.</p>
+                    </div>
+                    
+                    <h4 class="font-bold text-slate-800 mb-4">In determining the corporate strategy for Amazon, CEO Andy Jassy asks three key questions:</h4>
+                    
+                    <div class="grid md:grid-cols-3 gap-6 mb-10">
+                        <!-- Q1 -->
+                        <div class="bg-indigo-50 rounded-xl p-5 border border-indigo-100">
+                            <h5 class="font-bold text-indigo-900 mb-2 text-sm">Question 1: Value Chain</h5>
+                            <p class="text-xs text-indigo-800 font-medium mb-2">In what stages of the industry value chain should Amazon participate?</p>
+                            <p class="text-xs text-slate-700 leading-relaxed">With its prevalent delivery lockers and bricks-and-mortar retail stores (Whole Foods), Amazon moved <strong>forward</strong> to be closer to the end customer. With its Amazon-branded electronics and AWS, it moved <strong>backward</strong>. However, under Andy Jassy (2022), Amazon closed ~90 physical bookstores and 4-star stores to refocus its physical footprint on grocery.</p>
+                        </div>
+                        <!-- Q2 -->
+                        <div class="bg-purple-50 rounded-xl p-5 border border-purple-100">
+                            <h5 class="font-bold text-purple-900 mb-2 text-sm">Question 2: Products/Services</h5>
+                            <p class="text-xs text-purple-800 font-medium mb-2">What range of products and services should Amazon offer (and not offer)?</p>
+                            <p class="text-xs text-slate-700 leading-relaxed">This addresses horizontal diversification. Amazon has evolved from a niche bookseller into cloud computing, digital advertising, healthcare, and space-based internet, continually assessing which new markets align with its core competencies.</p>
+                        </div>
+                        <!-- Q3 -->
+                        <div class="bg-blue-50 rounded-xl p-5 border border-blue-100">
+                            <h5 class="font-bold text-blue-900 mb-2 text-sm">Question 3: Geography</h5>
+                            <p class="text-xs text-blue-800 font-medium mb-2">Where should Amazon compete geographically?</p>
+                            <p class="text-xs text-slate-700 leading-relaxed">Jeff Bezos decided to customize country-specific sites despite instant global reach. Amazon invested heavily in India to compete against local rival Flipkart (acquired by Walmart). Conversely, deciding <em>where not to compete</em> is equally vital, as seen in Amazon's withdrawal from China.</p>
+                        </div>
+                    </div>
+
+                    <h4 class="font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">The 4 Underlying Strategic Concepts</h4>
+                    <p class="text-sm text-slate-600 mb-6">Where to compete is guided by four fundamental concepts:</p>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Concept 1 -->
+                        <div class="bg-white p-4 rounded border border-slate-200 shadow-sm">
+                            <div class="text-blue-600 mb-2"><i class="fas fa-bullseye text-2xl"></i></div>
+                            <strong class="block text-slate-900 text-sm mb-1">Core Competencies</strong>
+                            <p class="text-xs text-slate-600 leading-relaxed">Unique strengths embedded deep within a firm. Activities drawing on what the firm knows how to do well (e.g., Amazon’s AI recommendation algorithms) should be done in-house, while non-core activities are outsourced.</p>
+                        </div>
+                        <!-- Concept 2 -->
+                        <div class="bg-white p-4 rounded border border-slate-200 shadow-sm">
+                            <div class="text-green-600 mb-2"><i class="fas fa-weight-hanging text-2xl"></i></div>
+                            <strong class="block text-slate-900 text-sm mb-1">Economies of Scale</strong>
+                            <p class="text-xs text-slate-600 leading-relaxed">Average cost per unit decreases as output increases. <em>Example:</em> AB InBev captures 30% of global beer consumption and 50% of profits, spreading fixed costs over millions of gallons and gaining massive buying power.</p>
+                        </div>
+                        <!-- Concept 3 -->
+                        <div class="bg-white p-4 rounded border border-slate-200 shadow-sm">
+                            <div class="text-purple-600 mb-2"><i class="fas fa-expand text-2xl"></i></div>
+                            <strong class="block text-slate-900 text-sm mb-1">Economies of Scope</strong>
+                            <p class="text-xs text-slate-600 leading-relaxed">Cost savings from producing two (or more) outputs at less cost than producing them individually. <em>Example:</em> Amazon's fulfillment centers allow it to offer millions of diverse products cheaper than standalone product lines.</p>
+                        </div>
+                        <!-- Concept 4 -->
+                        <div class="bg-white p-4 rounded border border-slate-200 shadow-sm">
+                            <div class="text-amber-600 mb-2"><i class="fas fa-file-invoice-dollar text-2xl"></i></div>
+                            <strong class="block text-slate-900 text-sm mb-1">Transaction Costs</strong>
+                            <p class="text-xs text-slate-600 leading-relaxed">All costs associated with an economic exchange. Understanding these enables leaders to determine if it is cost-effective to expand boundaries through vertical integration or horizontal diversification.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROW 2: The Flywheel Effect -->
+            <div class="grid lg:grid-cols-12 gap-10 items-center mb-12">
+                <!-- Text -->
+                <div class="lg:col-span-6 space-y-6">
+                    <h3 class="text-2xl font-serif text-slate-900 font-bold border-b border-slate-200 pb-2">The Strategic Core: The Amazon Flywheel</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">
+                        Central to Amazon's success is a self-reinforcing loop where each element feeds the next to build momentum. 
+                    </p>
+                    <ul class="text-sm space-y-4 text-slate-700">
+                        <li class="bg-white p-4 rounded-lg shadow-sm border border-slate-100">
+                            <strong>The Cycle:</strong> Lower prices attract more customer visits, which increases sales volume. This volume attracts third-party sellers, expanding product selection. A broader selection improves the customer experience, driving more traffic and further lowering the cost structure through economies of scale.
+                        </li>
+                        <li class="bg-blue-50 p-4 rounded-lg shadow-sm border border-blue-100">
+                            <strong class="text-blue-900">Modern Adaptation (2025+):</strong> This flywheel is increasingly powered by <strong>Generative AI</strong>. Tools like <em>Rufus</em>, an AI shopping assistant used by over 250 million customers, guide complex buying decisions and drive incremental sales.
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- CSS Flywheel Visualization (Recreating the image beautifully without SVG) -->
+                <div class="lg:col-span-6 bg-slate-900 p-8 rounded-2xl shadow-2xl overflow-hidden relative min-h-[450px] flex items-center justify-center">
+                    <!-- Background Glow -->
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-blue-500 rounded-full blur-[100px] opacity-20"></div>
+                    
+                    <!-- The CSS Circular Layout -->
+                    <div class="relative w-[320px] h-[320px]">
+                        <!-- Dashed Orbit Ring -->
+                        <div class="absolute inset-0 rounded-full border-4 border-dashed border-slate-700 animate-[spin_40s_linear_infinite]"></div>
+                        
+                        <!-- Center Hub -->
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 bg-gradient-to-br from-blue-500 to-blue-700 w-28 h-28 rounded-full flex flex-col items-center justify-center text-white shadow-[0_0_30px_rgba(37,99,235,0.5)] border-4 border-slate-800">
+                            <i class="fas fa-bolt text-2xl mb-1 text-blue-200"></i>
+                            <span class="font-bold text-sm tracking-wider uppercase">Growth</span>
+                        </div>
+
+                        <!-- Nodes (Positioned absolutely along the circle) -->
+                        <!-- 1. Customer Experience (Top) -->
+                        <div class="flywheel-node top-0 left-1/2 bg-white px-3 py-2 rounded-lg text-xs font-bold text-slate-800 shadow-lg border border-slate-200 text-center w-32">
+                            <i class="fas fa-smile text-green-500 block mb-1 text-lg"></i> Customer Experience
+                        </div>
+                        <!-- 2. Traffic (Top Right) -->
+                        <div class="flywheel-node top-[15%] left-[85%] bg-white px-3 py-2 rounded-lg text-xs font-bold text-slate-800 shadow-lg border border-slate-200 text-center w-24">
+                            <i class="fas fa-users text-blue-500 block mb-1 text-lg"></i> Traffic
+                        </div>
+                        <!-- 3. Sellers (Bottom Right) -->
+                        <div class="flywheel-node top-[85%] left-[85%] bg-white px-3 py-2 rounded-lg text-xs font-bold text-slate-800 shadow-lg border border-slate-200 text-center w-24">
+                            <i class="fas fa-store text-amber-500 block mb-1 text-lg"></i> Sellers
+                        </div>
+                        <!-- 4. Selection (Bottom) -->
+                        <div class="flywheel-node top-full left-1/2 bg-white px-3 py-2 rounded-lg text-xs font-bold text-slate-800 shadow-lg border border-slate-200 text-center w-28">
+                            <i class="fas fa-boxes text-purple-500 block mb-1 text-lg"></i> Selection
+                        </div>
+                        <!-- 5. Lower Cost Structure (Bottom Left) -->
+                        <div class="flywheel-node top-[85%] left-[15%] bg-white px-3 py-2 rounded-lg text-xs font-bold text-slate-800 shadow-lg border border-slate-200 text-center w-32">
+                            <i class="fas fa-chart-line text-red-500 block mb-1 text-lg"></i> Lower Cost Structure
+                        </div>
+                        <!-- 6. Lower Prices (Top Left) -->
+                        <div class="flywheel-node top-[15%] left-[15%] bg-white px-3 py-2 rounded-lg text-xs font-bold text-slate-800 shadow-lg border border-slate-200 text-center w-28">
+                            <i class="fas fa-tags text-teal-500 block mb-1 text-lg"></i> Lower Prices
+                        </div>
+
+                        <!-- Arrows indicating direction (Static, pointing around circle) -->
+                        <i class="fas fa-long-arrow-alt-right absolute top-[2%] left-[70%] transform rotate-[25deg] text-slate-500 text-xl"></i>
+                        <i class="fas fa-long-arrow-alt-down absolute top-[45%] left-[98%] transform rotate-[-10deg] text-slate-500 text-xl"></i>
+                        <i class="fas fa-long-arrow-alt-left absolute top-[95%] left-[65%] transform rotate-[15deg] text-slate-500 text-xl"></i>
+                        <i class="fas fa-long-arrow-alt-left absolute top-[95%] left-[30%] transform rotate-[-20deg] text-slate-500 text-xl"></i>
+                        <i class="fas fa-long-arrow-alt-up absolute top-[45%] left-[-2%] transform rotate-[10deg] text-slate-500 text-xl"></i>
+                        <i class="fas fa-long-arrow-alt-right absolute top-[2%] left-[25%] transform rotate-[-20deg] text-slate-500 text-xl"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROW 3: Vertical & Horizontal + Timeline Chart -->
+            <div class="grid lg:grid-cols-12 gap-10 items-start mb-12">
+                <!-- Text -->
+                <div class="lg:col-span-6 space-y-8 text-sm text-slate-600">
+                    <div>
+                        <h4 class="font-bold text-slate-900 mb-2 font-serif text-lg flex items-center gap-2">
+                            <i class="fas fa-link text-blue-600"></i> Vertical Integration: Owning the Supply Chain
+                        </h4>
+                        <p class="mb-3">Amazon uses its massive scale to perform services internally, build operational efficiencies, and eventually offer those services to external corporations once a competitive advantage is established.</p>
+                        <ul class="space-y-2 pl-4 border-l-2 border-slate-200">
+                            <li><strong>Logistics and Delivery:</strong> Integrated supply chain to reduce reliance on UPS/FedEx. Uses robotics ("Proteus") and algorithms to optimize fulfillment, reducing costs by ~20% in upgraded warehouses.</li>
+                            <li><strong>Fulfillment by Amazon (FBA):</strong> Allowing third-party sellers to use its optimized network ensures fast delivery (Prime) while monetizing internal infrastructure.</li>
+                            <li><strong>In-House Hardware:</strong> Developing Kindle, Echo, and Fire TV creates gateways to its digital ecosystem, increasing retention.</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-slate-900 mb-2 font-serif text-lg flex items-center gap-2">
+                            <i class="fas fa-code-branch text-purple-600"></i> Horizontal Diversification: Expanding the Ecosystem
+                        </h4>
+                        <p class="mb-3">Amazon strategically leverages its core competencies to enter adjacent and unrelated industries, reducing reliance on low-margin retail.</p>
+                        <ul class="space-y-2 pl-4 border-l-2 border-slate-200">
+                            <li><strong>Amazon Web Services (AWS):</strong> Originally for internal IT, now the primary profit engine. In 2025, AWS maintained an annualized run rate of <strong>$132 billion</strong>, funding other high-risk initiatives.</li>
+                            <li><strong>Digital Advertising:</strong> Leveraging first-party shopper data to rival Google/Meta. Ad revenue exceeded <strong>$47 billion</strong> in 2023.</li>
+                            <li><strong>Healthcare:</strong> Acquiring One Medical & PillPack disrupts the sector by integrating medical/pharmacy delivery into Prime.</li>
+                            <li><strong>Global Connectivity:</strong> Project Kuiper (Amazon Leo) launched enterprise previews in late 2025, providing global satellite internet to compete with Starlink.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Timeline Chart -->
+                <div class="lg:col-span-6">
+                    <div class="card-panel p-8 bg-white shadow-xl h-full flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="font-bold text-lg text-slate-800">The Revenue Trajectory</h3>
+                                <p class="text-xs text-slate-500 mt-1">Amazon Timeline: Strategic Moves vs. Revenue ($B)</p>
+                            </div>
+                            <i class="fas fa-chart-line text-blue-200 text-3xl"></i>
+                        </div>
+                        
+                        <div class="chart-container flex-1 min-h-[300px] relative">
+                            <!-- TIMELINE CANVAS RESTORED -->
+                            <canvas id="amazonTimelineChart"></canvas>
+                        </div>
+                        
+                        <div class="mt-4 pt-4 border-t border-slate-100 bg-slate-50 p-3 rounded-lg text-xs text-slate-600 leading-relaxed text-center">
+                            <strong>Note:</strong> Observe how revenue velocity increases sharply following major moves in diversification (AWS) and vertical integration (Logistics).
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROW 4: Performance Table -->
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
+                <div class="bg-slate-900 p-6 text-center">
+                    <h3 class="text-xl font-bold text-white font-serif tracking-wide">Amazon’s 2025 Performance Overview</h3>
+                    <p class="text-slate-400 text-sm">Financial proof of the Corporate Strategy execution.</p>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 border-b border-slate-200">
+                                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Metric</th>
+                                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest border-l border-slate-200">2024 Performance</th>
+                                <th class="px-6 py-4 text-xs font-bold text-green-700 uppercase tracking-widest border-l border-slate-200 bg-green-50/50">2025 Performance</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="px-6 py-4 font-bold text-slate-800">Annual Revenue</td>
+                                <td class="px-6 py-4 text-slate-600 border-l border-slate-100 font-mono">$638.0 Billion</td>
+                                <td class="px-6 py-4 text-green-700 font-bold border-l border-slate-100 font-mono bg-green-50/30">$716.9 Billion</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="px-6 py-4 font-bold text-slate-800">Net Income</td>
+                                <td class="px-6 py-4 text-slate-600 border-l border-slate-100 font-mono">$59.2 Billion</td>
+                                <td class="px-6 py-4 text-green-700 font-bold border-l border-slate-100 font-mono bg-green-50/30">$77.7 Billion</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="px-6 py-4 font-bold text-slate-800">AWS Operating Income</td>
+                                <td class="px-6 py-4 text-slate-600 border-l border-slate-100 font-mono">$39.8 Billion</td>
+                                <td class="px-6 py-4 text-green-700 font-bold border-l border-slate-100 font-mono bg-green-50/30">$45.6 Billion</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="px-6 py-4 font-bold text-slate-800">Capital Expenditures</td>
+                                <td class="px-6 py-4 text-slate-400 border-l border-slate-100 font-mono italic">—</td>
+                                <td class="px-6 py-4 text-blue-700 font-bold border-l border-slate-100 bg-blue-50/30">
+                                    <span class="font-mono">$92.0 Billion</span>
+                                    <span class="block text-[10px] font-normal text-blue-600 mt-1 uppercase tracking-wider">(Focused on AI & Satellites)</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 1: THE BOUNDARIES OF THE FIRM -->
+        <section id="boundaries" class="fade-up">
+            <!-- TRIGGER QUESTION -->
+            <div class="mb-6 bg-slate-900 text-white p-5 rounded-lg inline-block shadow-lg border-l-4 border-blue-500">
+                <div class="flex items-start gap-3">
+                    <i class="fas fa-question-circle text-blue-400 mt-1 text-xl"></i>
+                    <div>
+                        <span class="text-xs font-bold text-blue-400 uppercase tracking-widest block mb-1">Fundamental Question (14.2)</span>
+                        <span class="font-serif italic text-lg leading-tight">"Given the incredible efficiencies of free markets, why do corporations even exist? Why doesn't Google just hire freelance coders for every single project?"</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-end gap-4 mb-10 border-b border-slate-200 pb-6">
+                <span class="text-6xl font-serif text-slate-200">01</span>
+                <div class="pb-2">
+                    <h2 class="text-3xl font-serif text-slate-900 font-bold">The Boundaries of the Firm</h2>
+                    <p class="text-slate-500">Transaction Cost Economics (TCE) & The Make-or-Buy Decision</p>
+                </div>
+            </div>
+
+            <!-- Theory & Exhibit 8.3 Recreation -->
+            <div class="grid lg:grid-cols-12 gap-10 mb-12">
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="prose text-slate-600 leading-relaxed text-sm">
+                        <p>
+                            Determining the boundaries of the firm is a critical challenge in corporate strategy. This research stream was initiated by Nobel Laureate <strong>Ronald Coase</strong>, who asked the fundamental question above. 
+                        </p>
+                        <p>
+                            The answer lies in <strong>Transaction Cost Economics (TCE)</strong>. The key insight is that different institutional arrangements—markets versus firms—have different costs attached. <strong>Transaction costs</strong> are all internal and external costs associated with an economic exchange.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="lg:col-span-7">
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm h-full flex flex-col justify-center">
+                        <h4 class="font-bold text-slate-800 text-center mb-6 text-sm uppercase tracking-widest">Exhibit 8.3: Internal and External Transaction Costs</h4>
+                        
+                        <!-- Visual Recreation of Exhibit 8.3 -->
+                        <div class="flex items-stretch justify-center gap-2 md:gap-4 bg-slate-50 p-4 md:p-8 rounded-xl border border-slate-100 relative overflow-hidden">
+                            <!-- Firm A -->
+                            <div class="w-2/5 bg-blue-50 border-2 border-blue-400 rounded-xl p-4 text-center shadow-sm relative z-10">
+                                <h5 class="font-bold text-blue-900 mb-3 text-lg">Firm A</h5>
+                                <div class="bg-white border border-dashed border-blue-300 rounded-lg p-3 text-xs text-blue-800 shadow-inner flex flex-col items-center">
+                                    <i class="fas fa-sync-alt animate-spin-slow mb-2 text-blue-400 text-xl"></i>
+                                    <span class="font-semibold">Internal Transaction Costs</span>
+                                </div>
+                            </div>
+
+                            <!-- Market Connector -->
+                            <div class="w-1/5 flex flex-col items-center justify-center relative z-10">
+                                <div class="text-[10px] md:text-xs font-bold text-amber-600 uppercase bg-amber-50 px-2 py-1 rounded border border-amber-200 mb-2 whitespace-nowrap z-20">The Market</div>
+                                <div class="flex items-center text-amber-500 w-full relative">
+                                    <div class="h-0.5 bg-amber-400 w-full absolute top-1/2 left-0 transform -translate-y-1/2"></div>
+                                    <i class="fas fa-caret-left absolute left-0 text-xl transform -translate-y-1/2 top-1/2 bg-slate-50"></i>
+                                    <i class="fas fa-caret-right absolute right-0 text-xl transform -translate-y-1/2 top-1/2 bg-slate-50"></i>
+                                </div>
+                                <div class="text-[10px] md:text-xs font-semibold text-slate-500 text-center mt-2 leading-tight">External Transaction Costs</div>
+                            </div>
+
+                            <!-- Firm B -->
+                            <div class="w-2/5 bg-indigo-50 border-2 border-indigo-400 rounded-xl p-4 text-center shadow-sm relative z-10">
+                                <h5 class="font-bold text-indigo-900 mb-3 text-lg">Firm B</h5>
+                                <div class="bg-white border border-dashed border-indigo-300 rounded-lg p-3 text-xs text-indigo-800 shadow-inner flex flex-col items-center">
+                                    <i class="fas fa-sync-alt animate-spin-slow mb-2 text-indigo-400 text-xl"></i>
+                                    <span class="font-semibold">Internal Transaction Costs</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Firms vs. Markets Grid with Examples -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-serif text-slate-900 font-bold mb-6 border-b border-slate-200 pb-2">Organizing Economic Activity: Firms vs. Markets</h3>
+                <p class="text-sm text-slate-600 mb-8">When the costs of pursuing an activity in-house are less than the costs of transacting for that activity in the market (<strong>C<sub>in-house</sub> < C<sub>market</sub></strong>), the firm should vertically integrate (Make).</p>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- THE FIRM (MAKE) -->
+                    <div class="bg-white rounded-xl shadow-lg border border-blue-100 overflow-hidden">
+                        <div class="bg-blue-600 text-white p-4 text-center">
+                            <i class="fas fa-building text-3xl mb-2"></i>
+                            <h4 class="font-bold text-xl tracking-wide uppercase">The Firm (Make)</h4>
+                        </div>
+                        <div class="p-6 space-y-6">
+                            <!-- Advantages -->
+                            <div>
+                                <h5 class="text-xs font-bold text-green-600 uppercase tracking-widest mb-3 border-b border-slate-100 pb-1">Advantages</h5>
+                                <ul class="text-sm text-slate-700 space-y-2 pl-5 list-disc marker:text-green-500">
+                                    <li><strong>Command and control:</strong> Fiat power along hierarchical lines.</li>
+                                    <li><strong>Coordination:</strong> Better handling of highly complex tasks.</li>
+                                    <li><strong>Transaction-specific investments:</strong> E.g., specialized robotics.</li>
+                                    <li><strong>Community of knowledge:</strong> Developing deep, proprietary internal expertise that cannot be bought.</li>
+                                </ul>
+                                <div class="mt-3 bg-blue-50 p-3 rounded-lg border-l-2 border-blue-400 text-xs">
+                                    <strong class="text-blue-900 block mb-1">🌍 Global Example: Google (Alphabet)</strong>
+                                    Instead of contracting open-market freelancers, Google hires in-house programmers to write proprietary AI and search algorithms, securing the "community of knowledge".
+                                </div>
+                                <div class="mt-2 bg-indigo-50 p-3 rounded-lg border-l-2 border-indigo-400 text-xs">
+                                    <strong class="text-indigo-900 block mb-1">🇮🇳 India Example: Reliance Industries</strong>
+                                    Reliance historically integrated backwards (making its own oil for textiles) to overcome institutional voids and uncoordinated external markets in India.
+                                </div>
+                            </div>
+                            <!-- Disadvantages -->
+                            <div>
+                                <h5 class="text-xs font-bold text-red-600 uppercase tracking-widest mb-3 border-b border-slate-100 pb-1">Disadvantages</h5>
+                                <ul class="text-sm text-slate-700 space-y-2 pl-5 list-disc marker:text-red-500">
+                                    <li><strong>Administrative costs:</strong> Necessary bureaucracy slows agility.</li>
+                                    <li><strong>Low-powered incentives:</strong> Salaries don't motivate as aggressively as entrepreneurial market profits.</li>
+                                    <li><strong>Principal-Agent Problem:</strong> Agents (managers) pursuing their own interests rather than the principal's (owners).</li>
+                                </ul>
+                                <div class="mt-3 bg-red-50 p-3 rounded-lg border-l-2 border-red-400 text-xs">
+                                    <strong class="text-red-900 block mb-1">⚠️ Case in Point: Principal-Agent Failures</strong>
+                                    <strong>Global:</strong> Enron executives prioritizing personal bonuses over shareholder value.<br>
+                                    <strong>India:</strong> Satyam Computer Services (Ramalinga Raju falsifying accounts for personal gain against shareholder interests).
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- THE MARKET (BUY) -->
+                    <div class="bg-white rounded-xl shadow-lg border border-amber-100 overflow-hidden">
+                        <div class="bg-amber-500 text-white p-4 text-center">
+                            <i class="fas fa-shopping-cart text-3xl mb-2"></i>
+                            <h4 class="font-bold text-xl tracking-wide uppercase">The Market (Buy)</h4>
+                        </div>
+                        <div class="p-6 space-y-6">
+                            <!-- Advantages -->
+                            <div>
+                                <h5 class="text-xs font-bold text-green-600 uppercase tracking-widest mb-3 border-b border-slate-100 pb-1">Advantages</h5>
+                                <ul class="text-sm text-slate-700 space-y-2 pl-5 list-disc marker:text-green-500">
+                                    <li><strong>High-powered incentives:</strong> Entrepreneurs can capture venture profit or IPO windfalls.</li>
+                                    <li><strong>Flexibility:</strong> Easily switch suppliers and compare prices.</li>
+                                </ul>
+                                <div class="mt-3 bg-amber-50 p-3 rounded-lg border-l-2 border-amber-400 text-xs">
+                                    <strong class="text-amber-900 block mb-1">🌍 Global Example: Apple</strong>
+                                    Apple designs in California but buys assembly from Foxconn, leveraging market flexibility and avoiding the massive fixed costs of owning factories.
+                                </div>
+                                <div class="mt-2 bg-orange-50 p-3 rounded-lg border-l-2 border-orange-400 text-xs">
+                                    <strong class="text-orange-900 block mb-1">🇮🇳 India Example: Maruti Suzuki</strong>
+                                    Maruti relies heavily on a vast ecosystem of third-party vendors in Gurugram for car components, utilizing intense market competition to drive down costs.
+                                </div>
+                            </div>
+                            <!-- Disadvantages -->
+                            <div>
+                                <h5 class="text-xs font-bold text-red-600 uppercase tracking-widest mb-3 border-b border-slate-100 pb-1">Disadvantages</h5>
+                                <ul class="text-sm text-slate-700 space-y-2 pl-5 list-disc marker:text-red-500">
+                                    <li><strong>Search costs:</strong> Finding reliable suppliers takes time and money.</li>
+                                    <li><strong>Opportunism (Hold-up):</strong> A partner withholding cooperation to gain bargaining power.</li>
+                                    <li><strong>Incomplete contracting:</strong> Impossible to anticipate all future contingencies.</li>
+                                    <li><strong>Information Asymmetry:</strong> Sellers often know more than buyers.</li>
+                                </ul>
+                                <div class="mt-3 bg-red-50 p-3 rounded-lg border-l-2 border-red-400 text-xs">
+                                    <strong class="text-red-900 block mb-1">⚠️ Case in Point: Information Asymmetry (Lemons)</strong>
+                                    <strong>Global:</strong> George Akerlof's "Market for Lemons" (Used cars).<br>
+                                    <strong>India:</strong> The unorganized real estate market pre-RERA, where builders held vast private information over buyers, creating a massive "buyer beware" hazard.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Simulation Column (The Strategist's Slider) -->
+            <div class="card-panel p-8 bg-slate-900 text-white shadow-2xl relative overflow-hidden flex flex-col justify-center max-w-4xl mx-auto">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-blue-600 rounded-full blur-[100px] opacity-20"></div>
+                
+                <div class="relative z-10">
+                    <div class="mb-8 text-center">
+                        <h3 class="font-bold text-2xl text-white flex items-center justify-center gap-3">
+                            <i class="fas fa-sliders-h text-blue-400"></i> The Strategist's Simulator
+                        </h3>
+                        <p class="text-slate-400 text-sm mt-2">Adjust the market vs. administrative costs to determine the optimal boundary of your firm.</p>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="space-y-8 bg-slate-800/50 p-6 rounded-xl border border-slate-700 max-w-2xl mx-auto">
+                        <!-- Market Failure Slider -->
+                        <div>
+                            <div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-2">
+                                <span class="text-amber-400 flex items-center gap-2"><i class="fas fa-file-signature"></i> Market Transaction Costs</span>
+                                <span class="text-white" id="tce-market-display">Low (Efficient Market)</span>
+                            </div>
+                            <input type="range" id="sim-market-cost" min="0" max="100" value="20" class="slider-thumb w-full" oninput="runMakeBuySim()">
+                            <p class="text-[10px] text-slate-500 mt-2">Cost of search, negotiation, enforcement, and risk of opportunism.</p>
+                        </div>
+
+                        <!-- Internal Bureaucracy Slider -->
+                        <div>
+                            <div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-2">
+                                <span class="text-blue-400 flex items-center gap-2"><i class="fas fa-sitemap"></i> Internal Admin Costs</span>
+                                <span class="text-white" id="tce-admin-display">Low (Agile Startup)</span>
+                            </div>
+                            <input type="range" id="sim-admin-cost" min="0" max="100" value="20" class="slider-thumb w-full" oninput="runMakeBuySim()">
+                            <p class="text-[10px] text-slate-500 mt-2">Cost of bureaucracy, politics, and principal-agent problems.</p>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Recommendation -->
+                    <div id="tce-recommendation" class="mt-8 p-6 bg-amber-900/40 border-l-4 border-amber-500 rounded text-sm text-amber-100 flex items-center justify-center gap-4 transition-all max-w-2xl mx-auto">
+                        <i id="tce-icon" class="fas fa-shopping-cart text-4xl"></i>
+                        <div>
+                            <strong id="tce-decision" class="block text-xl mb-1">Recommendation: BUY</strong>
+                            <span id="tce-reasoning" class="text-slate-300">Markets are efficient and your admin costs are manageable. Outsource to specialists.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 2: VERTICAL INTEGRATION -->
+        <section id="vertical" class="fade-up">
+            <div class="mb-6 bg-slate-900 text-white p-5 rounded-lg inline-block shadow-lg border-l-4 border-indigo-500">
+                <div class="flex items-start gap-3">
+                    <i class="fas fa-question-circle text-indigo-400 mt-1 text-xl"></i>
+                    <div>
+                        <span class="text-xs font-bold text-indigo-400 uppercase tracking-widest block mb-1">Fundamental Question (14.3)</span>
+                        <span class="font-serif italic text-lg leading-tight">"Should you own the factory that makes your parts, or the retail store that sells your products?"</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-end gap-4 mb-10 border-b border-slate-200 pb-6">
+                <span class="text-6xl font-serif text-slate-200">02</span>
+                <div class="pb-2">
+                    <h2 class="text-3xl font-serif text-slate-900 font-bold">Vertical Integration</h2>
+                    <p class="text-slate-500">Owning the Industry Value Chain</p>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-10 items-start">
+                <!-- LEFT COL: Value Chain Graphic -->
+                <div class="lg:col-span-6">
+                    <div class="bg-white p-8 rounded-xl border border-slate-200 shadow-lg relative h-full">
+                        <h4 class="font-bold text-xl text-slate-900 mb-6 font-serif">The Industry Value Chain</h4>
+                        
+                        <div class="space-y-4 relative z-10">
+                            <!-- Stage 1 -->
+                            <div class="vc-block bg-slate-50 p-4 rounded shadow-sm relative group cursor-pointer" onclick="showChainDetails('raw')">
+                                <div class="flex justify-between items-center">
+                                    <strong class="text-slate-800">Stage 1: Raw Materials</strong>
+                                    <i class="fas fa-chevron-right text-slate-400 group-hover:text-blue-500"></i>
+                                </div>
+                                <div class="text-xs text-slate-500 mt-1">Design, Engineering, Raw Material extraction.</div>
+                            </div>
+                            <!-- Stage 2 -->
+                            <div class="vc-block bg-slate-50 p-4 rounded shadow-sm relative group cursor-pointer" onclick="showChainDetails('comp')">
+                                <div class="flex justify-between items-center">
+                                    <strong class="text-slate-800">Stage 2: Components</strong>
+                                    <i class="fas fa-chevron-right text-slate-400 group-hover:text-blue-500"></i>
+                                </div>
+                                <div class="text-xs text-slate-500 mt-1">Intermediate goods manufacturing.</div>
+                            </div>
+                            <!-- Stage 3 (Focal) -->
+                            <div class="vc-block bg-blue-50 p-4 rounded shadow-md relative group border-l-4 border-blue-600 cursor-pointer transform scale-105 z-20" onclick="showChainDetails('focal')">
+                                <div class="absolute -left-[5px] top-1/2 -mt-2 w-3 h-3 bg-blue-600 rounded-full"></div>
+                                <div class="flex justify-between items-center">
+                                    <strong class="text-blue-900">Stage 3: Focal Firm (Assembly)</strong>
+                                    <span class="text-[10px] bg-blue-200 text-blue-800 px-2 py-1 rounded font-bold">YOU ARE HERE</span>
+                                </div>
+                                <div class="text-xs text-blue-700 mt-1">Final assembly and manufacturing.</div>
+                            </div>
+                            <!-- Stage 4 -->
+                            <div class="vc-block bg-slate-50 p-4 rounded shadow-sm relative group cursor-pointer" onclick="showChainDetails('marketing')">
+                                <div class="flex justify-between items-center">
+                                    <strong class="text-slate-800">Stage 4: Marketing & Sales</strong>
+                                    <i class="fas fa-chevron-right text-slate-400 group-hover:text-blue-500"></i>
+                                </div>
+                                <div class="text-xs text-slate-500 mt-1">Distribution channels, retail.</div>
+                            </div>
+                            <!-- Stage 5 -->
+                            <div class="vc-block bg-slate-50 p-4 rounded shadow-sm relative group cursor-pointer" onclick="showChainDetails('service')">
+                                <div class="flex justify-between items-center">
+                                    <strong class="text-slate-800">Stage 5: After-Sales Service</strong>
+                                    <i class="fas fa-chevron-right text-slate-400 group-hover:text-blue-500"></i>
+                                </div>
+                                <div class="text-xs text-slate-500 mt-1">Support, maintenance.</div>
+                            </div>
+                        </div>
+
+                        <!-- Connector Lines (Background) -->
+                        <div class="absolute top-12 left-8 bottom-12 w-0.5 bg-slate-200 -z-10"></div>
+                    </div>
+                </div>
+
+                <!-- RIGHT COL: Dynamic Details -->
+                <div class="lg:col-span-6 space-y-6">
+                    <!-- Dynamic Insight Box -->
+                    <div id="chain-insight" class="bg-indigo-50 border border-indigo-100 p-6 rounded-xl shadow-sm min-h-[200px] flex flex-col justify-center transition-all duration-300">
+                        <div class="text-center text-slate-400 italic font-medium">
+                            <i class="fas fa-mouse-pointer text-3xl mb-3 block"></i>
+                            Click on a stage in the Value Chain to reveal strategic insights on Backward vs. Forward Integration.
+                        </div>
+                    </div>
+
+                    <!-- Theory Block -->
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                        <h4 class="font-bold text-slate-900 mb-4 font-serif text-lg">When does Integration make sense?</h4>
+                        <ul class="space-y-3 text-sm text-slate-600">
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                                <span><strong>Securing Critical Supplies:</strong> Lowering risk of supplier holdup.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                                <span><strong>Improving Quality:</strong> Tighter control over components.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-exclamation-triangle text-red-500 mt-1"></i>
+                                <span><strong>The Risk:</strong> Reduced strategic flexibility and increased fixed costs. If demand drops, you are stuck with empty factories.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 3: CORPORATE DIVERSIFICATION -->
+        <section id="diversification" class="fade-up">
+            <div class="mb-6 bg-slate-900 text-white p-5 rounded-lg inline-block shadow-lg border-l-4 border-purple-500">
+                <div class="flex items-start gap-3">
+                    <i class="fas fa-question-circle text-purple-400 mt-1 text-xl"></i>
+                    <div>
+                        <span class="text-xs font-bold text-purple-400 uppercase tracking-widest block mb-1">Fundamental Question (14.4)</span>
+                        <span class="font-serif italic text-lg leading-tight">"Does adding entirely new businesses make a company more valuable, or just harder for the CEO to manage?"</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-end gap-4 mb-10 border-b border-slate-200 pb-6">
+                <span class="text-6xl font-serif text-slate-200">03</span>
+                <div class="pb-2">
+                    <h2 class="text-3xl font-serif text-slate-900 font-bold">Corporate Diversification</h2>
+                    <p class="text-slate-500">Expanding Beyond a Single Market</p>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-12 items-start">
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="prose text-slate-600 leading-relaxed text-sm">
+                        <p>
+                            Diversification answers the question: <strong>What range of products/services should we offer?</strong> Firm performance is tied to the <em>level</em> of diversification.
+                        </p>
+                    </div>
+
+                    <!-- Flip Cards for Examples -->
+                    <div class="grid gap-4">
+                        <!-- Related Diversification -->
+                        <div class="secret-card h-32 cursor-pointer group" onclick="this.classList.toggle('flipped')">
+                            <div class="secret-card-inner">
+                                <div class="secret-front bg-white p-5 rounded-xl border border-purple-200 shadow-sm flex flex-col justify-center h-full hover:border-purple-400 transition-colors">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <strong class="text-purple-900 text-base">Related Diversification</strong>
+                                        <i class="fas fa-sync-alt text-purple-300 group-hover:rotate-180 transition-transform duration-500"></i>
+                                    </div>
+                                    <p class="text-xs text-slate-500">< 70% of revenues from primary business. Links exist between units.</p>
+                                    <span class="text-[10px] text-purple-500 font-bold mt-2 uppercase">Click for Examples</span>
+                                </div>
+                                <div class="secret-back bg-purple-900 p-5 rounded-xl shadow-sm flex flex-col justify-center h-full text-center">
+                                    <strong class="text-sm text-purple-200 uppercase tracking-wider mb-2">Examples</strong>
+                                    <p class="text-xs text-purple-100"><strong>Global:</strong> Disney (Movies, Theme Parks, Cruise lines share IP).<br><strong>India:</strong> ITC (FMCG, Hotels, Agri-business share distribution/brand strength).</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Unrelated Diversification -->
+                        <div class="secret-card h-32 cursor-pointer group" onclick="this.classList.toggle('flipped')">
+                            <div class="secret-card-inner">
+                                <div class="secret-front bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-center h-full hover:border-slate-400 transition-colors">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <strong class="text-slate-900 text-base">Unrelated (Conglomerate)</strong>
+                                        <i class="fas fa-building text-slate-300"></i>
+                                    </div>
+                                    <p class="text-xs text-slate-500">< 70% of revenues from primary. Few, if any, links between businesses.</p>
+                                    <span class="text-[10px] text-slate-500 font-bold mt-2 uppercase">Click for Examples</span>
+                                </div>
+                                <div class="secret-back bg-slate-800 p-5 rounded-xl shadow-sm flex flex-col justify-center h-full text-center">
+                                    <strong class="text-sm text-slate-200 uppercase tracking-wider mb-2">Examples</strong>
+                                    <p class="text-xs text-slate-100"><strong>Global:</strong> Berkshire Hathaway (Insurance, Rail, Candy).<br><strong>India:</strong> Tata Sons (Steel, Salt, Software). Often succeeds in emerging markets to fill institutional voids.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visualization: The Inverted U -->
+                <div class="lg:col-span-7">
+                    <div class="card-panel p-8 bg-white shadow-xl h-full flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="font-bold text-lg text-slate-800">Diversification vs. Performance</h3>
+                                <p class="text-xs text-slate-500 mt-1">Exhibit 14.8: The Diversification Discount vs. Premium</p>
+                            </div>
+                            <i class="fas fa-chart-area text-purple-200 text-3xl"></i>
+                        </div>
+                        
+                        <!-- Chart Container -->
+                        <div class="chart-container flex-1 min-h-[300px]">
+                            <canvas id="diversificationChart"></canvas>
+                        </div>
+                        
+                        <div class="mt-4 pt-4 border-t border-slate-100 bg-slate-50 p-3 rounded-lg text-xs text-slate-600 leading-relaxed text-center">
+                            <strong>Key Takeaway:</strong> Related diversification generally yields the highest performance (Economies of Scope). Extreme ends (Single Business or Conglomerate) suffer from high risk or high coordination costs (The Diversification Discount).
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 4: THE CEO SIMULATION (GAUNTLET) -->
+        <section id="gauntlet" class="fade-up">
+            <div class="bg-slate-900 rounded-2xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-amber-600 rounded-full blur-[100px] opacity-20"></div>
+                
+                <div class="relative z-10">
+                    <div class="text-center max-w-3xl mx-auto mb-12">
+                        <span class="bg-amber-600 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-4 inline-block">Interactive Capstone</span>
+                        <h2 class="text-4xl font-serif font-bold mb-4">The Strategist's Gauntlet</h2>
+                        <p class="text-slate-300">
+                            Apply First Principles. You are the CEO of 'Apex Tech', a high-growth hardware firm. Navigate three decades of corporate strategy decisions to build a legacy.
+                        </p>
+                    </div>
+
+                    <!-- Simulation Interface -->
+                    <div id="sim-container" class="max-w-4xl mx-auto">
+                        
+                        <!-- Start Screen -->
+                        <div id="sim-start" class="text-center">
+                            <div class="grid grid-cols-3 gap-4 mb-8 max-w-lg mx-auto text-xs font-mono text-slate-400">
+                                <div class="bg-slate-800 p-3 rounded border border-slate-700">DECISION 1: Vertical</div>
+                                <div class="bg-slate-800 p-3 rounded border border-slate-700">DECISION 2: Core Comp</div>
+                                <div class="bg-slate-800 p-3 rounded border border-slate-700">DECISION 3: Divest</div>
+                            </div>
+                            <button onclick="startGauntlet()" class="bg-white text-slate-900 hover:bg-amber-500 hover:text-white font-bold py-4 px-10 rounded-full transition-all transform hover:scale-105 shadow-lg">
+                                Assume the Role of CEO <i class="fas fa-play ml-2"></i>
+                            </button>
+                        </div>
+
+                        <!-- Gameplay Screen -->
+                        <div id="sim-game" class="hidden">
+                            <div class="flex justify-between items-center mb-6 text-xs font-bold uppercase tracking-widest text-slate-400 border-b border-slate-700 pb-4">
+                                <span id="sim-stage" class="text-amber-400">Stage: 1 / 3</span>
+                                <div>Market Valuation: <span id="sim-score" class="text-green-400 font-mono">$10B</span></div>
+                            </div>
+                            
+                            <h3 id="sim-question" class="text-2xl font-serif font-bold mb-4">The Dilemma</h3>
+                            <p id="sim-context" class="text-slate-300 mb-8 leading-relaxed bg-slate-800/50 p-4 rounded-lg border-l-4 border-blue-500">Context goes here.</p>
+
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <button onclick="makeSimChoice(0)" class="sim-btn group">
+                                    <span class="block font-bold text-white group-hover:text-amber-300 mb-1">Option A</span>
+                                    <span id="btn-a-text" class="text-sm text-slate-400">Description A</span>
+                                </button>
+                                <button onclick="makeSimChoice(1)" class="sim-btn group">
+                                    <span class="block font-bold text-white group-hover:text-amber-300 mb-1">Option B</span>
+                                    <span id="btn-b-text" class="text-sm text-slate-400">Description B</span>
+                                </button>
+                            </div>
+
+                            <div id="sim-feedback" class="feedback-box bg-slate-800 border border-slate-700 mt-6 hidden"></div>
+                            
+                            <button id="sim-next" onclick="nextSimLevel()" class="hidden mt-6 bg-amber-600 text-slate-900 py-2 px-6 rounded-lg font-bold hover:bg-amber-500 transition-all">Next Quarter <i class="fas fa-forward ml-2"></i></button>
+                        </div>
+
+                        <!-- End Screen -->
+                        <div id="sim-end" class="hidden text-center bg-slate-800 p-8 rounded-xl border border-slate-700">
+                            <i class="fas fa-trophy text-5xl text-amber-500 mb-4"></i>
+                            <h3 class="text-3xl font-serif font-bold mb-2">Tenure Complete</h3>
+                            <p class="text-slate-300 mb-6">Final Firm Valuation: <strong id="final-score" class="text-2xl text-green-400 font-mono"></strong></p>
+                            <button onclick="location.reload()" class="bg-white text-slate-900 py-2 px-6 rounded-lg font-bold hover:bg-slate-200 transition-all text-sm">Restart Module</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-slate-200 py-12 text-center text-sm text-slate-400 mt-20">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-center gap-2 font-mono text-xs mb-4">
+                <span>Strategic Management Simulation • Designed for Interactive Learning</span>
+            </div>
+            <p class="text-xs">Based on principles from Session 14: Corporate Strategy.</p>
+        </div>
+    </footer>
+
+    <!-- LOGIC SCRIPTS -->
+    <script>
+        // --- 1. GLOBAL INITIALIZATION ---
+        Chart.defaults.font.family = 'Satoshi';
+        Chart.defaults.color = '#64748b';
+        Chart.defaults.scale.grid.color = 'rgba(0,0,0,0.05)';
+
+        window.onload = function() {
+            initCharts();
+            runMakeBuySim(); // Init slider recommendation
+            checkScroll(); // Trigger initial fade-ups
+        };
+
+        // --- 2. ANIMATIONS & SCROLL ---
+        function checkScroll() {
+            let h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            document.getElementById("progress-bar").style.width = (window.scrollY/h)*100 + "%";
+            
+            document.querySelectorAll('.fade-up').forEach(el => {
+                if(el.getBoundingClientRect().top < window.innerHeight - 50) {
+                    el.classList.add('visible');
+                }
+            });
+        }
+        window.onscroll = checkScroll;
+
+        // --- 3. MODULE 1: MAKE OR BUY SLIDER LOGIC ---
+        function runMakeBuySim() {
+            const marketCost = parseInt(document.getElementById('sim-market-cost').value);
+            const adminCost = parseInt(document.getElementById('sim-admin-cost').value);
+            
+            // Display text updates
+            document.getElementById('tce-market-display').innerText = marketCost < 33 ? "Low" : (marketCost < 66 ? "Med" : "High");
+            document.getElementById('tce-admin-display').innerText = adminCost < 33 ? "Low" : (adminCost < 66 ? "Med" : "High");
+
+            const box = document.getElementById('tce-recommendation');
+            const icon = document.getElementById('tce-icon');
+            const decision = document.getElementById('tce-decision');
+            const reason = document.getElementById('tce-reasoning');
+
+            // Logic matching TCE (Cost_in-house < Cost_market -> Make)
+            if (adminCost < marketCost) {
+                // MAKE
+                box.className = "mt-8 p-6 bg-blue-900/40 border-l-4 border-blue-500 rounded text-sm text-blue-100 flex items-center justify-center gap-4 transition-all max-w-2xl mx-auto";
+                icon.className = "fas fa-building text-4xl";
+                decision.innerText = "Recommendation: MAKE (Internalize)";
+                
+                if (marketCost > 80) {
+                    reason.innerText = "Market Failure! External search and contract enforcement costs are dangerously high. You must internalize to protect your operations.";
+                } else {
+                    reason.innerText = "Your internal bureaucracy is highly efficient. It is cheaper to produce in-house than to use the open market.";
+                }
+            } else if (Math.abs(adminCost - marketCost) < 15 && adminCost > 50) {
+                // ALLIANCE
+                box.className = "mt-8 p-6 bg-purple-900/40 border-l-4 border-purple-500 rounded text-sm text-purple-100 flex items-center justify-center gap-4 transition-all max-w-2xl mx-auto";
+                icon.className = "fas fa-handshake text-4xl";
+                decision.innerText = "Recommendation: STRATEGIC ALLIANCE";
+                reason.innerText = "Both internal bureaucracy and market contracting are expensive. Consider a hybrid arrangement like a Joint Venture or Long-term Contract.";
+            } else {
+                // BUY
+                box.className = "mt-8 p-6 bg-amber-900/40 border-l-4 border-amber-500 rounded text-sm text-amber-100 flex items-center justify-center gap-4 transition-all max-w-2xl mx-auto";
+                icon.className = "fas fa-shopping-cart text-4xl";
+                decision.innerText = "Recommendation: BUY (Outsource)";
+                
+                if (adminCost > 80) {
+                    reason.innerText = "Warning: Principal-Agent problems and bureaucracy are eating your margins. Outsource immediately to utilize high-powered market incentives.";
+                } else {
+                    reason.innerText = "The market is highly efficient and competitive. Leverage external suppliers to keep your fixed costs low.";
+                }
+            }
+        }
+
+        // --- 4. MODULE 2: VALUE CHAIN DETAILS ---
+        const chainContent = {
+            'raw': {
+                title: 'Backward Integration (Stage 1)',
+                text: 'Moving upstream towards inputs. <br><br><strong>Example:</strong> Delta Airlines buying an oil refinery to secure jet fuel, or Tata Steel owning its own iron ore mines. <br><br><em>Reduces risk of supplier holdup.</em>',
+                color: 'text-indigo-900', bg: 'bg-indigo-50', border: 'border-indigo-200'
+            },
+            'comp': {
+                title: 'Backward Integration (Stage 2)',
+                text: 'Manufacturing intermediate goods. <br><br><strong>Example:</strong> Tesla building the Gigafactory to manufacture its own EV batteries rather than buying them entirely from Panasonic.',
+                color: 'text-blue-900', bg: 'bg-blue-50', border: 'border-blue-200'
+            },
+            'focal': {
+                title: 'The Focal Firm (Stage 3)',
+                text: 'This is your core competency area. Where you orchestrate the value chain. For an automaker, this is final vehicle assembly.',
+                color: 'text-slate-900', bg: 'bg-slate-100', border: 'border-slate-300'
+            },
+            'marketing': {
+                title: 'Forward Integration (Stage 4)',
+                text: 'Moving downstream towards the customer. <br><br><strong>Example:</strong> Apple opening its own Apple Stores rather than relying solely on Best Buy or carrier stores. Captures higher margins.',
+                color: 'text-emerald-900', bg: 'bg-emerald-50', border: 'border-emerald-200'
+            },
+            'service': {
+                title: 'Forward Integration (Stage 5)',
+                text: 'Handling direct consumer relationships and post-sale care. <br><br>Creates a direct feedback loop from the consumer back to Stage 1 design.',
+                color: 'text-teal-900', bg: 'bg-teal-50', border: 'border-teal-200'
+            }
+        };
+
+        function showChainDetails(stage) {
+            const insightBox = document.getElementById('chain-insight');
+            const data = chainContent[stage];
+            
+            // Remove previous classes
+            insightBox.className = `border p-6 rounded-xl shadow-sm min-h-[200px] flex flex-col justify-center transition-all duration-300 animate-fade-in ${data.bg} ${data.border}`;
+            
+            insightBox.innerHTML = `
+                <h5 class="font-bold text-lg mb-3 ${data.color}">${data.title}</h5>
+                <p class="text-sm text-slate-700 leading-relaxed">${data.text}</p>
+            `;
+        }
+
+        // --- 5. CHARTS (Amazon Timeline, Radar & Diversification) ---
+        function initCharts() {
+            // AMAZON TIMELINE CHART
+            const timelineCtx = document.getElementById('amazonTimelineChart').getContext('2d');
+            new Chart(timelineCtx, {
+                type: 'line',
+                data: {
+                    labels: ['1995', '2000', '2006', '2011', '2017', '2020', '2022', '2024', '2026'],
+                    datasets: [{
+                        label: 'Amazon Revenue ($ Billions)',
+                        data: [0, 2.7, 10.7, 48, 177, 386, 514, 574, 716.9],
+                        borderColor: '#16a34a',
+                        backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                        borderWidth: 3,
+                        pointBackgroundColor: ['#16a34a', '#16a34a', '#3b82f6', '#16a34a', '#a855f7', '#16a34a', '#a855f7', '#16a34a', '#3b82f6'],
+                        pointRadius: 6,
+                        pointHoverRadius: 8,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            title: { display: true, text: 'Revenue ($ Billions)' },
+                            beginAtZero: true
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        tooltip: {
+                            callbacks: {
+                                afterLabel: function(context) {
+                                    const events = {
+                                        '1995': 'Founded (Books only)',
+                                        '2000': 'Survived Dot-Com Bust',
+                                        '2006': 'Diversification: AWS Launched',
+                                        '2011': 'Vertical: Kindle & Prime Video',
+                                        '2017': 'Diversification: Whole Foods Acquired',
+                                        '2020': 'Vertical: Prime Logistics expansion',
+                                        '2022': 'Diversification: MGM Acquired',
+                                        '2024': 'AI & Kuiper Satellites',
+                                        '2026': 'Projected 716.9B Run Rate'
+                                    };
+                                    return 'Strategic Event: ' + events[context.label];
+                                }
+                            },
+                            backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                            titleFont: { size: 13, family: 'Satoshi' },
+                            bodyFont: { size: 12, family: 'Satoshi' },
+                            padding: 10
+                        }
+                    }
+                }
+            });
+
+            // AMAZON RADAR CHART
+            const radarCtx = document.getElementById('amazonRadarChart').getContext('2d');
+            new Chart(radarCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['Value Chain (Vertical)', 'Products (Diversification)', 'Geography (Markets)'],
+                    datasets: [
+                        {
+                            label: 'Amazon (1995)',
+                            data: [1, 1, 1],
+                            backgroundColor: 'rgba(100, 116, 139, 0.2)', // Slate
+                            borderColor: '#64748b',
+                            pointBackgroundColor: '#64748b',
+                            borderWidth: 2
+                        },
+                        {
+                            label: 'Amazon (2026)',
+                            data: [10, 10, 9],
+                            backgroundColor: 'rgba(34, 197, 94, 0.2)', // Green
+                            borderColor: '#22c55e',
+                            pointBackgroundColor: '#16a34a',
+                            borderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { display: true },
+                            min: 0,
+                            max: 10,
+                            ticks: { 
+                                display: false,
+                                stepSize: 2 
+                            },
+                            pointLabels: {
+                                font: {
+                                    family: 'Satoshi',
+                                    size: 11,
+                                    weight: 'bold'
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ' Expansion: ' + context.raw + '/10';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // DIVERSIFICATION CHART
+            const ctx = document.getElementById('diversificationChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Single Business', 'Dominant Business', 'Related-Constrained', 'Related-Linked', 'Unrelated (Conglomerate)'],
+                    datasets: [{
+                        label: 'Firm Performance',
+                        data: [4, 6, 9.5, 8, 4.5], // The inverted U
+                        borderColor: '#8b5cf6', // Purple-500
+                        backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                        borderWidth: 3,
+                        pointBackgroundColor: ['#ef4444', '#f59e0b', '#10b981', '#3b82f6', '#ef4444'], // Color-coded points
+                        pointRadius: 6,
+                        pointHoverRadius: 8,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { 
+                            display: false, // Hide y-axis numbers for theoretical curve
+                            min: 0, 
+                            max: 12,
+                            ticks: {
+                                stepSize: 2 // Fixes the Chart.js minimumFractionDigits bug
+                            }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: {
+                                font: { size: 10 }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    if(context.dataIndex === 2) return "Peak Value: Synergy & Economies of Scope";
+                                    if(context.dataIndex === 4) return "Diversification Discount: Admin costs > Value";
+                                    return "Performance Level";
+                                }
+                            },
+                            backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                            titleFont: { size: 13, family: 'Satoshi' },
+                            bodyFont: { size: 12, family: 'Satoshi' },
+                            padding: 10
+                        }
+                    }
+                }
+            });
+        }
+
+        // --- 6. MODULE 4: GAUNTLET SIMULATION ---
+        const simData = [
+            {
+                q: "The Supplier Squeeze (Vertical Integration)",
+                context: "Your hardware requires specialized microchips. Your only supplier just raised prices by 30%, knowing you have no alternatives. Transaction costs (holdup) are suddenly massive.",
+                opts: [
+                    { text: "Acquire the supplier (Backward Integration).", val: 5, msg: "Correct. When transaction costs are high due to asset specificity and supplier holdup, internalizing the market (Make) is the strategic imperative." },
+                    { text: "Pay the premium. Focus on your core assembly.", val: -3, msg: "Failure. You suffered a severe profit squeeze. In this case of market failure, relying on the market destroys value." }
+                ]
+            },
+            {
+                q: "The Growth Ceiling (Diversification)",
+                context: "Ten years later. You dominate the hardware market, but growth is slowing. You have excess cash and a world-class R&D engineering team (Core Competency).",
+                opts: [
+                    { text: "Buy a fast-food chain. Cash flows are stable.", val: -4, msg: "Warning: Diversification Discount. You engaged in Unrelated Diversification. Your engineers know nothing about fast food. The market punishes your stock." },
+                    { text: "Enter the Cloud Computing server market.", val: 6, msg: "Excellent. Related-Constrained Diversification. You leveraged your existing engineering core competencies into a new, profitable market. (1+1=3)." }
+                ]
+            },
+            {
+                q: "The Bureaucratic Bloat (Restructuring)",
+                context: "Twenty years later. Your firm is massive, operating in 15 different tech verticals. Coordination costs are skyrocketing. Product launches are delayed due to internal politics.",
+                opts: [
+                    { text: "Implement tighter central controls & more management layers.", val: -5, msg: "Disaster. You increased Administrative Costs when they were already killing you. Talent leaves." },
+                    { text: "Divest/Spin-off non-core units to restore agility.", val: 5, msg: "Strategic Masterstroke. You recognized the boundaries of the firm were over-extended. Divesting reduced complexity and unlocked shareholder value." }
+                ]
+            }
+        ];
+
+        let simState = { level: 0, score: 10 }; // Score in Billions
+
+        function startGauntlet() {
+            document.getElementById('sim-start').classList.add('hidden');
+            document.getElementById('sim-game').classList.remove('hidden');
+            simState.level = 0;
+            simState.score = 10;
+            loadSimLevel();
+        }
+
+        function loadSimLevel() {
+            const data = simData[simState.level];
+            document.getElementById('sim-stage').innerText = `Stage: ${simState.level + 1} / 3`;
+            document.getElementById('sim-score').innerText = `$${simState.score}B`;
+            
+            document.getElementById('sim-question').innerText = data.q;
+            document.getElementById('sim-context').innerText = data.context;
+            document.getElementById('btn-a-text').innerText = data.opts[0].text;
+            document.getElementById('btn-b-text').innerText = data.opts[1].text;
+            
+            document.getElementById('sim-feedback').classList.add('hidden');
+            document.getElementById('sim-next').classList.add('hidden');
+            
+            // Re-enable buttons
+            const btns = document.querySelectorAll('.sim-btn');
+            btns.forEach(b => { 
+                b.disabled = false; 
+                b.classList.remove('opacity-50', 'cursor-not-allowed'); 
+            });
+        }
+
+        function makeSimChoice(choiceIndex) {
+            const data = simData[simState.level];
+            const opt = data.opts[choiceIndex];
+            
+            // Update Score
+            simState.score += opt.val;
+            document.getElementById('sim-score').innerText = `$${simState.score}B`;
+            
+            // Disable buttons
+            const btns = document.querySelectorAll('.sim-btn');
+            btns.forEach(b => { 
+                b.disabled = true; 
+                b.classList.add('opacity-50', 'cursor-not-allowed'); 
+            });
+
+            // Show Feedback
+            const fb = document.getElementById('sim-feedback');
+            fb.classList.remove('hidden');
+            fb.classList.remove('border-green-500', 'border-red-500', 'text-green-200', 'text-red-200');
+            
+            if (opt.val > 0) {
+                fb.classList.add('border-green-500', 'text-green-200');
+                fb.innerHTML = `<i class="fas fa-check-circle mr-2 text-xl"></i> <strong>Value Created (+$${opt.val}B):</strong> ${opt.msg}`;
+            } else {
+                fb.classList.add('border-red-500', 'text-red-200');
+                fb.innerHTML = `<i class="fas fa-times-circle mr-2 text-xl"></i> <strong>Value Destroyed (-$${Math.abs(opt.val)}B):</strong> ${opt.msg}`;
+            }
+
+            document.getElementById('sim-next').classList.remove('hidden');
+        }
+
+        function nextSimLevel() {
+            simState.level++;
+            if (simState.level < simData.length) {
+                loadSimLevel();
+            } else {
+                // End Game
+                document.getElementById('sim-game').classList.add('hidden');
+                document.getElementById('sim-end').classList.remove('hidden');
+                
+                const finalScoreEl = document.getElementById('final-score');
+                finalScoreEl.innerText = `$${simState.score} Billion`;
+                if(simState.score > 20) {
+                    finalScoreEl.className = "text-3xl text-green-400 font-mono";
+                    finalScoreEl.innerText += " (Legendary CEO)";
+                } else if(simState.score > 10) {
+                    finalScoreEl.className = "text-3xl text-amber-400 font-mono";
+                    finalScoreEl.innerText += " (Average Performance)";
+                } else {
+                    finalScoreEl.className = "text-3xl text-red-400 font-mono";
+                    finalScoreEl.innerText += " (Fired by the Board)";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

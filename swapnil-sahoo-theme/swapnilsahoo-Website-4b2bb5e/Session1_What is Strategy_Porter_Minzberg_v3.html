@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cautionary Tales in Strategy: A Dual Lens</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Chosen Palette: Strategic Calm -->
+    <!-- Application Structure Plan: Single-page lesson: Hook (Fallen Giants) -> Theory (Lenses) -> Examples (Positions, Fit) -> Application (Activities) -> Assessment (Quiz). Sticky nav aids exploration. Click-to-reveal for analysis. -->
+    <!-- Visualization & Content Choices: Cases lead with questions & images. Analysis hidden initially, revealed on click. Charts illustrate decline. Interactive quiz provides immediate feedback. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        :root {
+            --sticky-offset: 100px; /* Default offset, updated by JS */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            color: #1f2937; /* gray-800 */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .active-nav {
+            color: #2563eb; /* text-blue-600 */
+            border-bottom-color: #2563eb;
+            font-weight: 600;
+        }
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px; /* Align with active state */
+            color: #4b5563; /* text-gray-600 */
+        }
+        .nav-link:hover {
+            color: #2563eb;
+            border-bottom-color: #2563eb;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                 max-height: 400px;
+            }
+        }
+
+        .analysis-content {
+             max-height: 0;
+             overflow: hidden;
+             transition: max-height 0.5s ease-out, opacity 0.3s ease-out, margin-top 0.5s ease-out;
+             opacity: 0;
+             margin-top: 0;
+        }
+        .analysis-content.visible {
+             max-height: 500px; /* Adjust as needed */
+             opacity: 1;
+             margin-top: 1rem;
+        }
+         .analysis-button {
+             transition: background-color 0.2s ease;
+         }
+
+        .quiz-option { cursor: pointer; transition: all 0.2s ease-in-out; }
+        .quiz-option.correct { background-color: #dcfce7 !important; border-color: #22c55e !important; color: #15803d !important; font-weight: 500; }
+        .quiz-option.incorrect { background-color: #fee2e2 !important; border-color: #ef4444 !important; color: #b91c1c !important; font-weight: 500; }
+        .quiz-option:disabled { opacity: 0.8; cursor: default; }
+        .quiz-explanation { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out, margin-top 0.5s ease-in-out, opacity 0.5s ease-in-out; margin-top: 0; opacity: 0; }
+        .quiz-explanation.visible { opacity: 1; margin-top: 1rem; }
+
+        /* Top bar icon styling */
+        .top-bar-link svg, .footer-link svg { width: 1.125rem; height: 1.125rem; fill: currentColor; transition: color 0.2s ease-in-out; }
+        /* Custom Hexagon Icon Styles */
+        .hexagon-icon { position: relative; width: 28px; height: 28px; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3)); display: inline-block; vertical-align: middle; }
+        .hexagon-icon svg { width: 100%; height: 100%; animation: glow 2.5s infinite ease-in-out; }
+        .hexagon-path { stroke: #B91C1C; stroke-width: 1; }
+        .hexagon-s { font-family: 'Georgia', serif; font-weight: bold; font-size: 48px; fill: #facc15; text-anchor: middle; dominant-baseline: central; }
+        /* Glow Animation */
+        @keyframes glow { 0%, 100% { filter: drop-shadow(0 0 4px rgba(239, 68, 68, 0.7)); } 50% { filter: drop-shadow(0 0 10px rgba(239, 68, 68, 1)); } }
+        /* Sticky Header Logic */
+        #main-header.sticky-nav { position: sticky; z-index: 40; }
+        #top-bar.sticky-top { position: sticky; top: 0; z-index: 50; }
+
+        /* Modal Styling */
+        #modal { background-color: rgba(0, 0, 0, 0.7); }
+        #modal-content { max-height: calc(100vh - 4rem); }
+
+        /* Scroll Margin */
+         section[id] { scroll-margin-top: var(--sticky-offset); }
+
+         /* Positioning & Fit examples styling */
+        .concept-card { background-color: #ffffff; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05); padding: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; height: 100%; }
+        .concept-card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -4px rgba(0, 0, 0, 0.07); }
+        .concept-card h4 { font-size: 1.125rem; font-weight: 600; margin-bottom: 0.75rem; }
+        .concept-card p.definition { font-style: italic; color: #6b7280; margin-bottom: 1rem; font-size: 0.875rem; flex-grow: 1; }
+        .concept-card .example { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e5e7eb; }
+        .concept-card .example:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+        .concept-card .example h5 { font-weight: 600; color: #374151; margin-bottom: 0.5rem; font-size: 0.875rem; }
+        .concept-card .example p { font-size: 0.875rem; color: #4b5563; margin-bottom: 0.25rem; line-height: 1.5; }
+        .concept-card .example strong { color: #1f2937; }
+        .border-needs { border-left-color: #f43f5e; } .border-variety { border-left-color: #0ea5e9; } .border-access { border-left-color: #10b981; }
+        .border-fit1 { border-left-color: #fbbf24; } .border-fit2 { border-left-color: #f97316; } .border-fit3 { border-left-color: #ef4444; }
+
+        /* General Prose Styling */
+        .prose-custom p, .prose-custom ul, .prose-custom li { font-size: 0.875rem; line-height: 1.6; color: #374151; }
+        .prose-custom p { margin-bottom: 1em; } .prose-custom ul { margin-top: 0.5em; margin-bottom: 1em; padding-left: 1.25em; list-style-type: disc; }
+        .prose-custom li { margin-bottom: 0.25em; } .prose-custom strong { font-weight: 600; color: #111827; }
+
+        /* Table Styling */
+        .comparison-table th, .comparison-table td { padding: 0.75rem 1rem; vertical-align: top; font-size: 0.75rem; }
+        .comparison-table thead th { background-color: #f3f4f6; border-bottom: 2px solid #e5e7eb; }
+        .comparison-table tbody tr:nth-child(even) { background-color: #f9fafb; } .comparison-table tbody tr:hover { background-color: #eff6ff; }
+        .comparison-table th[scope="row"] { white-space: nowrap; }
+
+        /* Activity Button Styling */
+        .activity-button { padding: 0.75rem 1rem; border-radius: 0.5rem; text-align: left; transition: all 0.2s ease-in-out; font-size: 0.875rem; border-width: 1px; display: block; width: 100%; height: 100%; }
+        .activity-button strong { display: block; margin-bottom: 0.25rem; font-weight: 600; }
+        .activity-button:focus { outline: none; box-shadow: 0 0 0 2px var(--tw-ring-color); }
+        .activity-button:focus-visible { box-shadow: 0 0 0 2px var(--tw-ring-color); }
+        .workshop-button { background-color: #f3e8ff; border-color: #e9d5ff; --tw-ring-color: #c084fc; color: #581c87; } .workshop-button:hover { background-color: #e9d5ff; border-color: #d8b4fe;} .workshop-button strong { color: #7e22ce; } .workshop-button:hover strong { color: #6b21a8; }
+        .news-button { background-color: #dbeafe; border-color: #bfdbfe; --tw-ring-color: #60a5fa; color: #1e40af; } .news-button:hover { background-color: #bfdbfe; border-color: #93c5fd;} .news-button strong { color: #1d4ed8; } .news-button:hover strong { color: #1e3a8a; }
+        .tradeoff-button { background-color: #fef3c7; border-color: #fde68a; --tw-ring-color: #fbbf24; color: #78350f; } .tradeoff-button:hover { background-color: #fde68a; border-color: #fcd34d;} .tradeoff-button strong { color: #b45309; } .tradeoff-button:hover strong { color: #92400e; }
+        .simulation-button { background-color: #ffe4e6; border-color: #fecdd3; --tw-ring-color: #fb7185; color: #881337; } .simulation-button:hover { background-color: #fecdd3; border-color: #fda4af;} .simulation-button strong { color: #be123c; } .simulation-button:hover strong { color: #9f1239; }
+
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-700">
+
+    <!-- Top Bar -->
+    <div id="top-bar" class="bg-gray-800 text-white py-1 hidden sm:block sticky-top">
+        <div class="container mx-auto px-6 flex justify-between items-center h-10">
+            <p class="text-xs font-medium text-slate-400">© Dr. Swapnil Sahoo 2025</p>
+            <div class="flex items-center space-x-4">
+                <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white group" title="Website">
+                    <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
+                        <svg viewBox="0 0 52 60">
+                            <defs><linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
+                            <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#redGradient)"/><text class="hexagon-s" x="26" y="32">S</text>
+                        </svg>
+                    </div>
+                </a>
+                <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white top-bar-link" title="X/Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white top-bar-link" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.575 2h.093zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" clip-rule="evenodd"/></svg></a>
+                <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white top-bar-link" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <nav id="main-header" class="sticky-nav bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                 <!-- Logo/Title for Mobile -->
+                 <div class="flex items-center space-x-2 sm:hidden">
+                     <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="text-gray-300 group" title="Website">
+                        <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
+                            <svg viewBox="0 0 52 60">
+                                <defs><linearGradient id="mobileRedGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
+                                <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#mobileRedGradient)"/><text class="hexagon-s" x="26" y="32">S</text>
+                            </svg>
+                        </div>
+                    </a>
+                    <h1 class="text-lg font-semibold text-slate-900">What is Strategy?</h1>
+                </div>
+                 <!-- Title for Desktop -->
+                <h1 class="text-xl font-bold text-slate-900 hidden sm:block">What is Strategy?</h1>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#cases" class="nav-link text-sm font-medium">Fallen Giants</a> <!-- Moved Up -->
+                    <a href="#lenses" class="nav-link text-sm font-medium">The Two Lenses</a>
+                    <a href="#positioning-examples" class="nav-link text-sm font-medium">Positioning</a>
+                    <a href="#fit-examples" class="nav-link text-sm font-medium">Fit Examples</a>
+                    <a href="#activities" class="nav-link text-sm font-medium">Activities</a>
+                    <a href="#quiz" class="nav-link text-sm font-medium">Quiz</a>
+                </div>
+                <div class="md:hidden">
+                    <select id="mobile-nav" class="block w-auto rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-xs py-1 px-2">
+                        <option value="#hero">Top</option>
+                        <option value="#cases">Cases</option> <!-- Moved Up -->
+                        <option value="#lenses">Lenses</option>
+                        <option value="#positioning-examples">Positioning</option>
+                        <option value="#fit-examples">Fit</option>
+                        <option value="#activities">Activities</option>
+                        <option value="#quiz">Quiz</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main>
+        <section id="hero" class="bg-gradient-to-b from-white to-slate-100 pt-16 pb-24 sm:pt-24 sm:pb-32">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl md:text-6xl">Cautionary Tales in Strategy</h2>
+                <p class="mt-6 text-lg leading-8 text-slate-600 max-w-3xl mx-auto">Why do great companies fail? Explore strategy through the competing lenses of Michael Porter's analysis and Henry Mintzberg's emergent view.</p>
+            </div>
+        </section>
+
+         <!-- Case Studies Section (Moved Up) -->
+        <section id="cases" class="py-16 sm:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Fallen Giants: Cautionary Tales</h2>
+                    <p class="mt-4 text-lg text-slate-600">Let's start by looking at companies that once dominated but failed to adapt. What went wrong?</p>
+                </div>
+
+                <!-- Nokia -->
+                <div id="nokia" class="mb-20 grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-12 items-start bg-slate-50 p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200">
+                    <div class="lg:col-span-2 space-y-4">
+                        <h3 class="text-2xl font-bold text-cyan-700 mb-2">1. Nokia: Connecting People... Then Disconnecting</h3>
+                         <h4 class="text-lg font-semibold text-slate-800">How did the undisputed king of mobile phones lose its crown almost overnight?</h4>
+                         
+                         <img src="https://placehold.co/600x400/0891b2/ffffff?text=Nokia+Legacy" alt="Vintage Nokia phone illustration" class="rounded-lg shadow-md w-full my-4">
+                         <div class="prose-custom text-sm">
+                            <p>Nokia's operational excellence in hardware manufacturing built a global empire. But when Apple's iPhone (2007) and Google's Android (2008) shifted the battleground to software ecosystems and user experience, Nokia faltered.</p>
+                         </div>
+                         <div class="bg-cyan-100 border-l-4 border-cyan-500 p-3 rounded">
+                            <p class="font-semibold text-cyan-800 text-xs uppercase tracking-wider mb-1">Peak:</p>
+                            <p class="text-xs text-cyan-700 leading-snug">Dominated with >40% global market share via superior hardware & operational efficiency.</p>
+                        </div>
+                        <div class="bg-red-100 border-l-4 border-red-500 p-3 rounded">
+                            <p class="font-semibold text-red-800 text-xs uppercase tracking-wider mb-1">Downfall:</p>
+                            <p class="text-xs text-red-700 leading-snug">Dismissed iPhone/Android, clung to aging Symbian OS, failed pivot with Microsoft Windows Phone.</p>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-3 grid grid-cols-1 gap-6">
+                        <!-- Click-to-reveal Buttons -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                             <button onclick="toggleAnalysis('nokia', 'porter')" class="analysis-button bg-blue-100 hover:bg-blue-200 border border-blue-300 text-blue-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Analyze with Porter's Lens</button>
+                             <button onclick="toggleAnalysis('nokia', 'mintzberg')" class="analysis-button bg-teal-100 hover:bg-teal-200 border border-teal-300 text-teal-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">Analyze with Mintzberg's Lens</button>
+                        </div>
+                        <!-- Hidden Analysis Content -->
+                        <div id="nokia-porter-analysis" class="analysis-content bg-blue-50 p-4 rounded-lg border border-blue-200 shadow-sm prose-custom text-xs">
+                             <p class="font-semibold text-blue-800 mb-1">Porter's Lens:</p>
+                             <p class="text-blue-700 leading-snug">Confused Operational Effectiveness (great hardware) with Strategy. Lacked a unique position when the game shifted to software ecosystems. Failed analysis of substitutes (smartphones replacing feature phones).</p>
+                        </div>
+                        <div id="nokia-mintzberg-analysis" class="analysis-content bg-teal-50 p-4 rounded-lg border border-teal-200 shadow-sm prose-custom text-xs">
+                            <p class="font-semibold text-teal-800 mb-1">Mintzberg's Lens:</p>
+                            <p class="text-teal-700 leading-snug">Rigid deliberate strategy (hardware focus) stifled internal emergent ideas (touchscreens, app stores developed internally years prior). Organization forgot how to learn and adapt its 'craft', ignoring warnings from engineers.</p>
+                        </div>
+                        <!-- Chart -->
+                        <div class="mt-4">
+                             <h4 class="font-semibold text-xs text-slate-500 uppercase tracking-wider text-center mb-2">Global Smartphone Market Share (%)</h4>
+                            <div class="chart-container"><canvas id="nokiaChart"></canvas></div>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Kodak -->
+                 <div id="kodak" class="mb-20 grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-12 items-start bg-slate-50 p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200">
+                     <div class="lg:col-span-2 space-y-4">
+                        <h3 class="text-2xl font-bold text-amber-600 mb-2">2. Kodak: Blinded by Success</h3>
+                         <h4 class="text-lg font-semibold text-slate-800">How could the company that invented digital photography be bankrupted by it?</h4>
+                         
+                         <img src="https://placehold.co/600x400/d97706/ffffff?text=Kodak+Legacy" alt="Vintage Kodak camera illustration" class="rounded-lg shadow-md w-full my-4">
+                           <div class="prose-custom text-sm">
+                             <p>Kodak's 'razor-and-blades' model (cheap cameras, profitable film/printing) was a masterpiece of strategic 'fit' in the 20th century. But this very success blinded them to the digital disruption they pioneered in 1975.</p>
+                          </div>
+                         <div class="bg-amber-100 border-l-4 border-amber-500 p-3 rounded">
+                            <p class="font-semibold text-amber-800 text-xs uppercase tracking-wider mb-1">Peak:</p>
+                            <p class="text-xs text-amber-700 leading-snug">Mastery of 'fit' with razor-and-blades model. Market cap $28B (1996).</p>
+                        </div>
+                        <div class="bg-red-100 border-l-4 border-red-500 p-3 rounded">
+                            <p class="font-semibold text-red-800 text-xs uppercase tracking-wider mb-1">Downfall:</p>
+                            <p class="text-xs text-red-700 leading-snug">Feared cannibalizing film, suppressed own digital invention, half-hearted pivot focused on printing, bankruptcy (2012).</p>
+                        </div>
+                    </div>
+                     <div class="lg:col-span-3 grid grid-cols-1 gap-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <button onclick="toggleAnalysis('kodak', 'porter')" class="analysis-button bg-blue-100 hover:bg-blue-200 border border-blue-300 text-blue-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Analyze with Porter's Lens</button>
+                            <button onclick="toggleAnalysis('kodak', 'mintzberg')" class="analysis-button bg-teal-100 hover:bg-teal-200 border border-teal-300 text-teal-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">Analyze with Mintzberg's Lens</button>
+                        </div>
+                        <div id="kodak-porter-analysis" class="analysis-content bg-blue-50 p-4 rounded-lg border border-blue-200 shadow-sm prose-custom text-xs">
+                             <p class="font-semibold text-blue-800 mb-1">Porter's Lens:</p>
+                             <p class="text-blue-700 leading-snug">Unwillingness to make the crucial trade-off: sacrifice highly profitable film for uncertain digital. Tried to straddle both (focusing digital efforts on printing photos), creating no clear position or reinforcing 'fit' in the new digital imaging world. Failed to properly assess the power of the digital substitute.</p>
+                        </div>
+                        <div id="kodak-mintzberg-analysis" class="analysis-content bg-teal-50 p-4 rounded-lg border border-teal-200 shadow-sm prose-custom text-xs">
+                            <p class="font-semibold text-teal-800 mb-1">Mintzberg's Lens:</p>
+                            <p class="text-teal-700 leading-snug">The powerful, established deliberate strategy (protect film) actively killed the brilliant emergent strategy (the digital camera born in its own labs). The formal planning process and culture were too rigid, crushing organizational learning and the ability to 'craft' a new future.</p>
+                        </div>
+                         <div class="mt-4">
+                            <h4 class="font-semibold text-xs text-slate-500 uppercase tracking-wider text-center mb-2">Market Capitalization ($ Billions)</h4>
+                            <div class="chart-container"><canvas id="kodakChart"></canvas></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Yahoo -->
+                <div id="yahoo" class="mb-10 grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-12 items-start bg-slate-50 p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200">
+                     <div class="lg:col-span-2 space-y-4">
+                        <h3 class="text-2xl font-bold text-indigo-600 mb-2">3. Yahoo!: Lost in Translation</h3>
+                         <h4 class="text-lg font-semibold text-slate-800">Why did the internet's original directory fail to navigate the rise of search and social media?</h4>
+                         
+                         <img src="https://placehold.co/600x400/4f46e5/ffffff?text=Yahoo+Legacy" alt="Vintage Yahoo homepage illustration" class="rounded-lg shadow-md w-full my-4">
+                           <div class="prose-custom text-sm">
+                             <p>Yahoo was the gateway for millions in the early internet era. However, missed opportunities (failing to buy Google and Facebook), strategic indecision between being a media vs. tech company, and constant leadership changes led to its decline.</p>
+                          </div>
+                         <div class="bg-indigo-100 border-l-4 border-indigo-500 p-3 rounded">
+                            <p class="font-semibold text-indigo-800 text-xs uppercase tracking-wider mb-1">Peak:</p>
+                            <p class="text-xs text-indigo-700 leading-snug">The web's front door, human-curated directory, market cap >$125B (2000).</p>
+                        </div>
+                        <div class="bg-red-100 border-l-4 border-red-500 p-3 rounded">
+                            <p class="font-semibold text-red-800 text-xs uppercase tracking-wider mb-1">Downfall:</p>
+                            <p class="text-xs text-red-700 leading-snug">Missed Google/Facebook buys, unclear identity (media vs tech), leadership churn, acquired assets mismanaged (Flickr, Tumblr), sold core business for <$5B (2017).</p>
+                        </div>
+                    </div>
+                     <div class="lg:col-span-3 grid grid-cols-1 gap-6">
+                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <button onclick="toggleAnalysis('yahoo', 'porter')" class="analysis-button bg-blue-100 hover:bg-blue-200 border border-blue-300 text-blue-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Analyze with Porter's Lens</button>
+                            <button onclick="toggleAnalysis('yahoo', 'mintzberg')" class="analysis-button bg-teal-100 hover:bg-teal-200 border border-teal-300 text-teal-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">Analyze with Mintzberg's Lens</button>
+                        </div>
+                         <div id="yahoo-porter-analysis" class="analysis-content bg-blue-50 p-4 rounded-lg border border-blue-200 shadow-sm prose-custom text-xs">
+                             <p class="font-semibold text-blue-800 mb-1">Porter's Lens:</p>
+                             <p class="text-blue-700 leading-snug">'Stuck in the middle' - tried to be everything (portal, media, search, tech) with no clear, unique position. Failed to make necessary trade-offs. Acquired assets (Flickr, Tumblr) didn't create reinforcing 'fit' with the core portal strategy.</p>
+                        </div>
+                        <div id="yahoo-mintzberg-analysis" class="analysis-content bg-teal-50 p-4 rounded-lg border border-teal-200 shadow-sm prose-custom text-xs">
+                            <p class="font-semibold text-teal-800 mb-1">Mintzberg's Lens:</p>
+                            <p class="text-teal-700 leading-snug">Strategy was chaotic, not crafted or emergent. Constant CEO changes imposed disjointed deliberate strategies (the 'peanut butter manifesto' era vs. Marissa Mayer's tech focus). Internal conflicts (media vs. tech) prevented any coherent pattern from emerging or organizational learning to occur.</p>
+                        </div>
+                        <div class="mt-4">
+                             <h4 class="font-semibold text-xs text-slate-500 uppercase tracking-wider text-center mb-2">Market Capitalization ($ Billions)</h4>
+                            <div class="chart-container"><canvas id="yahooChart"></canvas></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Lenses Section (Moved After Cases) -->
+        <section id="lenses" class="py-16 sm:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Understanding the Frameworks: The Two Lenses</h2>
+                    <p class="mt-4 text-lg text-slate-600">Now that we've seen the consequences, let's formally define the two strategic perspectives we used for analysis.</p>
+                </div>
+
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-5xl mx-auto">
+                    <!-- Porter Card -->
+                    <div class="bg-slate-50 p-6 sm:p-8 rounded-xl shadow-lg border-t-4 border-blue-600 transform hover:scale-[1.02] transition-transform duration-300">
+                        <h3 class="text-xl sm:text-2xl font-bold text-blue-600 mb-4">1. The "Design" Lens: Michael Porter</h3>
+                        <div class="prose-custom text-sm">
+                            <p>Porter views strategy as a deliberate, analytical process of <strong>positioning</strong>. Analyze the industry structure (Five Forces), choose a unique, defensible position (Cost Leadership, Differentiation, Focus), and build a reinforcing system of activities ('fit'). The key is making <strong>trade-offs</strong> – choosing what <em>not</em> to do.</p>
+                            <p class="font-semibold text-slate-800 mt-4">Key Concepts:</p>
+                            <ul>
+                                <li>Operational Effectiveness vs. Strategy</li>
+                                <li>Unique Value Proposition (Needs, Variety, Access)</li>
+                                <li>Trade-offs & Fit</li>
+                                <li>Five Forces Analysis</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Mintzberg Card -->
+                    <div class="bg-slate-50 p-6 sm:p-8 rounded-xl shadow-lg border-t-4 border-teal-600 transform hover:scale-[1.02] transition-transform duration-300">
+                        <h3 class="text-xl sm:text-2xl font-bold text-teal-600 mb-4">2. The "Emergent" Lens: Henry Mintzberg</h3>
+                         <div class="prose-custom text-sm">
+                            <p>Mintzberg pushes back, arguing that real strategy often isn't a grand plan but <strong>emerges</strong> organically. It's 'crafted' through learning, adaptation, and patterns forming from daily actions. Formulation and implementation are intertwined, like a potter shaping clay.</p>
+                            <p class="font-semibold text-slate-800 mt-4">Key Concepts:</p>
+                            <ul>
+                                <li>Intended vs. Realized Strategy</li>
+                                <li>Deliberate vs. Emergent Components</li>
+                                <li>Strategy as Craft (Learning by Doing)</li>
+                                <li>Grassroots Strategy Formation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Positioning Examples Section -->
+        <section id="positioning-examples" class="py-16 sm:py-24 bg-slate-100"> <!-- Changed BG -->
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Porter's Strategic Positions: Examples</h2>
+                    <p class="mt-4 text-lg text-slate-600">Porter identified three distinct sources from which a strategic position can emerge: needs, variety, or access. Let's see them in action.</p>
+                </div>
+
+                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Needs-Based Card -->
+                    <div class="concept-card border-needs bg-white"> <!-- Added BG -->
+                        <h4 class="text-rose-700">1. Needs-Based Positioning</h4>
+                        <p class="definition">Serving most or all needs of a particular customer group.</p>
+                        <div class="example">
+                            <h5>🇮🇳 Urban Company</h5>
+                            <p><strong>Need:</strong> Reliable, quality home/personal care for busy urbanites.</p>
+                            <p><strong>Solution:</strong> Vetted partners via platform.</p>
+                            <p><strong>Position:</strong> Trusted one-stop-shop.</p>
+                        </div>
+                         <div class="example">
+                            <h5>🌍 Netflix</h5>
+                            <p><strong>Need:</strong> On-demand, personalized, ad-free entertainment.</p>
+                            <p><strong>Solution:</strong> Subscription library + recommendations.</p>
+                            <p><strong>Position:</strong> Ultimate personalized entertainment.</p>
+                        </div>
+                    </div>
+
+                    <!-- Variety-Based Card -->
+                    <div class="concept-card border-variety bg-white">
+                        <h4 class="text-sky-700">2. Variety-Based Positioning</h4>
+                        <p class="definition">Producing a subset of an industry's products or services.</p>
+                         <div class="example">
+                            <h5>🇮🇳 Rebel Foods</h5>
+                            <p><strong>Variety:</strong> >45 distinct food brands (Faasos, etc.) from cloud kitchens.</p>
+                            <p><strong>Solution:</strong> Tech platform manages multiple brands efficiently.</p>
+                            <p><strong>Position:</strong> Go-to for any food craving (delivered).</p>
+                        </div>
+                         <div class="example">
+                            <h5>🌍 Zara</h5>
+                            <p><strong>Variety:</strong> Constantly rotating "fast fashion" trends.</p>
+                            <p><strong>Solution:</strong> Agile supply chain delivers new styles weekly.</p>
+                            <p><strong>Position:</strong> Affordable, endless fashion variety.</p>
+                        </div>
+                    </div>
+
+                    <!-- Access-Based Card -->
+                     <div class="concept-card border-access bg-white">
+                        <h4 class="text-emerald-700">3. Access-Based Positioning</h4>
+                        <p class="definition">Segmenting customers accessible in different ways.</p>
+                        <div class="example">
+                            <h5>🇮🇳 Reliance Jio</h5>
+                            <p><strong>Access Barrier:</strong> Lack of affordable internet in rural/low-income India.</p>
+                            <p><strong>Solution:</strong> Free 4G trials, cheap phone, nationwide network.</p>
+                            <p><strong>Position:</strong> Enabler of digital inclusion.</p>
+                        </div>
+                         <div class="example">
+                            <h5>🌍 Allegiant Air</h5>
+                            <p><strong>Access Barrier:</strong> No direct, cheap flights from small US cities.</p>
+                            <p><strong>Solution:</strong> Low-cost model using secondary airports.</p>
+                            <p><strong>Position:</strong> Affordable flights for underserved cities.</p>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Comparison Table -->
+                 <div class="mt-16 max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-inner border border-slate-200"> <!-- Changed BG -->
+                    <h4 class="text-lg font-semibold text-slate-800 text-center mb-4">How to Differentiate the Positions</h4>
+                     <p class="text-center text-sm text-slate-600 max-w-3xl mx-auto mb-6">The three positions differ primarily in their starting point or focus, dictating how activities are structured.</p>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-xs text-left text-slate-600 comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Characteristic</th>
+                                    <th>Needs-Based</th>
+                                    <th>Variety-Based</th>
+                                    <th>Access-Based</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><th scope="row">Primary Focus</th><td>Specific customer group</td><td>Subset of products/services</td><td>Unique customer accessibility</td></tr>
+                                <tr><th scope="row">Segmentation</th><td>Customer needs/profile</td><td>Product/service itself</td><td>Geography, scale, channel</td></tr>
+                                <tr><th scope="row">Target Market</th><td>Narrow segment, all needs</td><td>Wide market, specific offering</td><td>Hard-to-reach customers</td></tr>
+                                <tr><th scope="row">Starting Question</th><td class="italic">"**Who** is our target customer?"</td><td class="italic">"**What** product can we excel at?"</td><td class="italic">"**How** can we reach them uniquely?"</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fit Examples Section -->
+        <section id="fit-examples" class="py-16 sm:py-24 bg-white"> <!-- Changed BG -->
+             <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Porter's Concept of Fit: Reinforcing Activities</h2>
+                    <p class="mt-4 text-lg text-slate-600">"Fit" is how a company's activities interact and reinforce one another, making strategy sustainable and hard to copy. Porter identifies three levels.</p>
+                </div>
+
+                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                     <!-- First-Order Fit -->
+                    <div class="concept-card border-fit1">
+                        <h4 class="text-amber-600">1. First-Order Fit (Simple Consistency)</h4>
+                        <p class="definition">Basic alignment: each activity is consistent with the overall strategy.</p>
+                        <div class="example">
+                            <h5>🌍 McDonald's</h5>
+                            <p><strong>Strategy:</strong> Quick, affordable, consistent fast food.</p>
+                            <p><strong>Consistency:</strong> Standardized menu, store layout, drive-thru, operating procedures all reinforce speed and low cost.</p>
+                        </div>
+                         <div class="example">
+                            <h5>🇮🇳 Nirma</h5>
+                            <p><strong>Strategy:</strong> Low-cost, mass-market detergent.</p>
+                            <p><strong>Consistency:</strong> Cost focus in manufacturing, rural distribution, low-price ads, simple packaging all align with the low-cost position.</p>
+                        </div>
+                    </div>
+
+                    <!-- Second-Order Fit -->
+                    <div class="concept-card border-fit2">
+                        <h4 class="text-orange-600">2. Second-Order Fit (Reinforcing Activities)</h4>
+                        <p class="definition">Activities actively reinforce one another; the whole > sum of parts.</p>
+                         <div class="example">
+                            <h5>🌍 Southwest Airlines</h5>
+                            <p><strong>Strategy:</strong> Low-cost, convenient, point-to-point travel.</p>
+                            <p><strong>Reinforcement:</strong> Single plane type simplifies maintenance/training -> quick turnarounds -> high utilization -> low fares.</p>
+                        </div>
+                         <div class="example">
+                            <h5>🇮🇳 Titan Company (Early Days)</h5>
+                            <p><strong>Strategy:</strong> High-quality, aspirational watch brand.</p>
+                            <p><strong>Reinforcement:</strong> Stylish design + exclusive 'World of Titan' retail experience + quality after-sales service = reinforced premium brand image.</p>
+                        </div>
+                    </div>
+
+                    <!-- Third-Order Fit -->
+                     <div class="concept-card border-fit3">
+                        <h4 class="text-red-600">3. Third-Order Fit (Optimization of Effort)</h4>
+                        <p class="definition">Coordination across activities eliminates redundancy and waste.</p>
+                        <div class="example">
+                            <h5>🌍 IKEA</h5>
+                            <p><strong>Strategy:</strong> Stylish, affordable, self-assembly furniture.</p>
+                            <p><strong>Optimization:</strong> Modular design -> flat-packing -> efficient logistics + customer self-service/transport/assembly = optimized low-cost system.</p>
+                        </div>
+                         <div class="example">
+                            <h5>🇮🇳 Asian Paints</h5>
+                            <p><strong>Strategy:</strong> Market leadership via superior supply chain.</p>
+                            <p><strong>Optimization:</strong> Advanced demand forecasting + small-batch production + frequent dealer deliveries + in-store tinting = minimized inventory/waste.</p>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Fit Comparison Table -->
+                 <div class="mt-16 max-w-4xl mx-auto bg-slate-50 p-6 rounded-lg shadow-inner border border-slate-200"> <!-- Changed BG -->
+                    <h4 class="text-lg font-semibold text-slate-800 text-center mb-4">Comparison of Fit Types</h4>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-xs text-left text-slate-600 comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>First-Order Fit</th>
+                                    <th>Second-Order Fit</th>
+                                    <th>Third-Order Fit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><th scope="row">Definition</th><td>Each activity consistent</td><td>Activities reinforce each other</td><td>Activities optimized across system</td></tr>
+                                <tr><th scope="row">Purpose</th><td>Alignment</td><td>Synergy (Whole > Sum)</td><td>Max efficiency, eliminate waste</td></tr>
+                                <tr><th scope="row">Analogy</th><td>Puzzle pieces fit edges</td><td>Intertwined chain links</td><td>Optimized, interlocked puzzle</td></tr>
+                                <tr><th scope="row">Imitability</th><td>Easy (copy activity)</td><td>Hard (copy system)</td><td>Extremely difficult (copy coordination)</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                 </div>
+             </div>
+        </section>
+
+
+        <!-- Activities Section -->
+        <section id="activities" class="py-16 sm:py-24 bg-slate-100">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Strategy Workshop & Simulation</h2>
+                    <p class="mt-4 text-lg text-slate-600">Apply what you've learned. Make the strategic calls and see the consequences.</p>
+                </div>
+
+                <!-- Workshop 1: Blockbuster -->
+                <div id="workshop" class="mt-16 bg-white p-6 sm:p-8 rounded-xl shadow-lg mb-12 border-t-4 border-purple-500 transform hover:scale-[1.01] transition-transform duration-300">
+                    <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2">Workshop 1: The "Blockbuster" Dilemma</h3>
+                    <p class="text-slate-600 mb-6 text-sm leading-relaxed">Imagine you are the CEO of 'VideoBarn', the dominant video rental chain in 2005. A small startup called 'Netflix' is mailing DVDs and has started talking about "streaming." What is your strategic move?</p>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <button onclick="showWorkshopResult('A')" class="activity-button workshop-button group"><strong class="group-hover:text-purple-800">A) Double Down:</strong> Invest heavily in improving the in-store experience. More titles, better popcorn.</button>
+                        <button onclick="showWorkshopResult('B')" class="activity-button workshop-button group"><strong class="group-hover:text-purple-800">B) Acquire & Suppress:</strong> Buy the 'Netflix' startup, but slow-walk the transition to protect your profitable stores.</button>
+                        <button onclick="showWorkshopResult('C')" class="activity-button workshop-button group"><strong class="group-hover:text-purple-800">C) Launch a Skunkworks:</strong> Create a separate, independent division to build a competing streaming service.</button>
+                    </div>
+                </div>
+
+                 <!-- Workshop 2: Digital News -->
+                <div id="workshop-news" class="bg-white p-6 sm:p-8 rounded-xl shadow-lg mb-12 border-t-4 border-blue-500 transform hover:scale-[1.01] transition-transform duration-300">
+                    <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2">Workshop 2: The Digital News Dilemma</h3>
+                    <p class="text-slate-600 mb-6 text-sm leading-relaxed">You run a successful regional newspaper with high local readership and ad revenue (circa 2008). Online news sites are gaining traction, often giving away content for free. What's your move?</p>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <button onclick="showNewsWorkshopResult('A')" class="activity-button news-button group"><strong class="group-hover:text-blue-800">A) Defend Print:</strong> Focus resources on making the print newspaper indispensable with exclusive local content.</button>
+                        <button onclick="showNewsWorkshopResult('B')" class="activity-button news-button group"><strong class="group-hover:text-blue-800">B) Cautious Online:</strong> Put some articles online free, keep best for print to protect subscriptions.</button>
+                        <button onclick="showNewsWorkshopResult('C')" class="activity-button news-button group"><strong class="group-hover:text-blue-800">C) Go All-In Digital:</strong> Aggressively build online platform, experiment with digital subscriptions/ads.</button>
+                    </div>
+                </div>
+
+                <!-- Quick Decision: Trade-off -->
+                 <div id="tradeoff-challenge" class="bg-white p-6 sm:p-8 rounded-xl shadow-lg mb-12 border-t-4 border-amber-500 transform hover:scale-[1.01] transition-transform duration-300">
+                    <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2">Quick Decision: The Trade-off Challenge</h3>
+                    <p class="text-slate-600 mb-6 text-sm leading-relaxed">Your budget airline is known for rock-bottom fares. A consultant suggests adding free checked bags and snacks like major carriers to attract more customers. According to Porter, should you do it?</p>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <button onclick="showTradeoffResult('A')" class="activity-button tradeoff-button group"><strong class="group-hover:text-amber-800">A) Yes:</strong> More amenities attract more customers, leading to growth. OE demands matching competitors.</button>
+                        <button onclick="showTradeoffResult('B')" class="activity-button tradeoff-button group"><strong class="group-hover:text-amber-800">B) No:</strong> Adding services blurs our low-cost position, increases complexity/cost, violates necessary trade-offs.</button>
+                    </div>
+                </div>
+
+                <!-- Simulation -->
+                <div id="simulation" class="bg-white p-6 sm:p-8 rounded-xl shadow-lg border-t-4 border-rose-500 transform hover:scale-[1.01] transition-transform duration-300">
+                    <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2">Simulation: Launching "Phoenix Motors" (Expanded)</h3>
+                    <p class="text-slate-600 mb-6 text-sm leading-relaxed">You are launching a new electric car company in a market dominated by legacy automakers. You have limited capital. Choose your path step-by-step.</p>
+                    <div id="simulation-container" class="space-y-6"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="quiz" class="py-16 sm:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                 <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Knowledge Check</h2>
+                    <p class="mt-4 text-lg text-slate-600">Test your understanding of the core strategic concepts.</p>
+                </div>
+                <div class="mt-12 max-w-3xl mx-auto bg-slate-50 p-6 sm:p-8 rounded-xl shadow-inner border border-slate-200">
+                    <div class="flex justify-between items-center mb-8 pb-4 border-b border-slate-300">
+                        <h3 class="text-xl sm:text-2xl font-bold text-slate-800">Final Quiz</h3>
+                        <div class="text-base sm:text-lg font-bold text-slate-700 bg-slate-200 px-3 py-1 sm:px-4 sm:py-2 rounded-lg whitespace-nowrap">
+                            Score: <span id="score">0 / 15</span>
+                        </div>
+                    </div>
+                    <div id="quiz-container" class="space-y-6"></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal Structure -->
+    <div id="modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-[100] opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out">
+        <div id="modal-content" class="bg-white rounded-lg shadow-2xl w-full max-w-xl max-h-[85vh] overflow-y-auto p-6 sm:p-8 relative transform scale-95 opacity-0 transition-all duration-300 ease-in-out">
+            <h3 id="modal-title" class="text-xl font-semibold text-slate-900 mb-4 pr-8"></h3>
+            <div id="modal-body" class="prose-custom text-sm"></div>
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 transition-colors rounded-full p-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+        </div>
+    </div>
+
+    <footer class="bg-gray-800 mt-16 sm:mt-24 border-t border-gray-700">
+        <div class="container mx-auto px-6 py-5">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6">
+                <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-3 group order-first sm:order-none">
+                    <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
+                         <svg viewBox="0 0 52 60">
+                            <defs><linearGradient id="footerRedGradient2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
+                            <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#footerRedGradient2)"/><text class="hexagon-s" x="26" y="32">S</text>
+                        </svg>
+                    </div>
+                    <span class="text-xs font-semibold text-slate-300 group-hover:text-white transition-colors">Dr. Swapnil Sahoo</span>
+                </a>
+                <p class="text-xs text-slate-400 order-last sm:order-none">© Dr. Swapnil Sahoo 2025</p>
+                <div class="flex space-x-5 sm:space-x-6 order-first sm:order-last">
+                    <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white footer-link" title="X/Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white footer-link" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.575 2h.093zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" clip-rule="evenodd"/></svg></a>
+                    <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white footer-link" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Chart Data & Functions
+            const chartData = {
+                nokia: { labels: ['2007', '2008', '2009', '2010', '2011', '2012', '2013'], data: [50.8, 43.7, 41.1, 32.8, 23.9, 4.3, 3.1], borderColor: '#0e7490' },
+                kodak: { labels: ['1996', '2000', '2004', '2008', '2012'], data: [28, 22, 10, 1.5, 0.1], borderColor: '#d97706' },
+                yahoo: { labels: ['2000', '2004', '2008', '2012', '2017'], data: [125, 40, 20, 19, 4.48], borderColor: '#4f46e5' }
+            };
+            function createChart(company) { /* ... Chart creation logic as before ... */
+                const ctx = document.getElementById(`${company}Chart`);
+                if (!ctx) return;
+                const data = chartData[company];
+                const title = company === 'nokia' ? 'Global Smartphone Market Share (%)' : 'Market Capitalization ($ Billions)';
+                new Chart(ctx.getContext('2d'), {
+                    type: 'line', data: { labels: data.labels, datasets: [{ label: title, data: data.data, borderColor: data.borderColor, backgroundColor: data.borderColor + '20', borderWidth: 2, pointBackgroundColor: data.borderColor, pointRadius: 3, fill: true, tension: 0.1 }] },
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { mode: 'index', intersect: false, bodySpacing: 4, titleSpacing: 6, padding: 8, boxPadding: 4 } }, scales: { y: { beginAtZero: true, grid: { color: '#e5e7eb' }, ticks: { font: { size: 10 }, callback: (value) => company === 'nokia' ? value + '%' : '$' + value + 'B' } }, x: { grid: { display: false }, ticks: { font: { size: 10 } } } } }
+                });
+             }
+             ['nokia', 'kodak', 'yahoo'].forEach(createChart);
+
+             // Modal Logic (as before)
+             const modal = document.getElementById('modal');
+             const modalContent = document.getElementById('modal-content');
+             window.openModal = (title, body) => { /* ... Modal open logic ... */
+                 document.getElementById('modal-title').innerText = title;
+                 document.getElementById('modal-body').innerHTML = body;
+                 modal.classList.remove('pointer-events-none', 'hidden');
+                 document.body.style.overflow = 'hidden';
+                 setTimeout(() => { modal.classList.remove('opacity-0'); modalContent.classList.remove('scale-95', 'opacity-0'); }, 10);
+             };
+             window.closeModal = () => { /* ... Modal close logic ... */
+                 modal.classList.add('opacity-0');
+                 modalContent.classList.add('scale-95', 'opacity-0');
+                 document.body.style.overflow = '';
+                 setTimeout(() => modal.classList.add('pointer-events-none', 'hidden'), 300);
+             };
+             modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+
+            // Click-to-Reveal Logic for Analyses
+            window.toggleAnalysis = (company, lens) => {
+                const contentDiv = document.getElementById(`${company}-${lens}-analysis`);
+                const button = event.currentTarget; // Get the button that was clicked
+                if (contentDiv) {
+                    const isVisible = contentDiv.classList.contains('visible');
+                    // Hide any other visible analysis for this company
+                     const otherLens = lens === 'porter' ? 'mintzberg' : 'porter';
+                     const otherContentDiv = document.getElementById(`${company}-${otherLens}-analysis`);
+                     const otherButton = button.parentElement.querySelector(`button[onclick*="'${otherLens}'"]`); // Find the other button
+
+                     if (otherContentDiv && otherContentDiv.classList.contains('visible')) {
+                         otherContentDiv.classList.remove('visible');
+                         otherContentDiv.style.maxHeight = '0';
+                         if(otherButton) otherButton.classList.remove('bg-opacity-50'); // Reset other button style
+                     }
+
+                    // Toggle the clicked one
+                    if (isVisible) {
+                        contentDiv.classList.remove('visible');
+                        contentDiv.style.maxHeight = '0';
+                        button.classList.remove('bg-opacity-50'); // Reset button style
+                    } else {
+                        contentDiv.classList.add('visible');
+                        contentDiv.style.maxHeight = contentDiv.scrollHeight + 'px';
+                        button.classList.add('bg-opacity-50'); // Indicate active button
+                    }
+                }
+            };
+
+
+            // Workshop Logic (Blockbuster)
+            const workshopResults = { /* ... Workshop results as before ... */
+                'A': { title: 'Outcome: The Path of Operational Excellence', body: `<p class="mb-3">Focusing on your core strengths makes you the best rental chain in the world. However, you're perfecting a business model that is becoming obsolete. This is a classic <strong>Nokia</strong> mistake.</p><p class="mb-2"><strong class="text-blue-700">Porter's Lens:</strong> You've confused Operational Effectiveness with Strategy. Being the best at renting videos isn't a defensible position when the method of delivery (streaming) fundamentally changes the game.</p><p><strong class="text-teal-700">Mintzberg's Lens:</strong> Your deliberate strategy is too rigid. You've failed to learn from the 'weak signals' in the market and allow an emergent strategy (a pivot to digital) to form.</p>` },
+                'B': { title: 'Outcome: The Cautious Hybrid', body: `<p class="mb-3">You own the disruptive technology, but your fear of cannibalizing store profits makes you slow and indecisive. This is a classic <strong>Kodak</strong> mistake.</p><p class="mb-2"><strong class="text-blue-700">Porter's Lens:</strong> You have failed to make a clear trade-off. By trying to be both a physical and digital company, you create a confusing strategy where your activities don't "fit" and work against each other. Another, more focused competitor will win.</p><p><strong class="text-teal-700">Mintzberg's Lens:</strong> You have an incredible opportunity for an emergent strategy, but the dominant logic of the old, deliberate strategy suppresses it. The organization cannot effectively "craft" a new future while clinging to its past.</p>` },
+                'C': { title: 'Outcome: The Disruptor\'s Gambit', body: `<p class="mb-3">This is a risky and costly move. Your new division will directly compete with your stores, causing internal conflict. However, it's the only choice that embraces the future. You are choosing to disrupt yourself before someone else does.</p><p class="mb-2"><strong class="text-blue-700">Porter's Lens:</strong> You are making a clear trade-off and establishing a new, unique position in the emerging streaming market. Success will depend on creating a new system of activities (content licensing, server infrastructure) that "fit" this new position.</p><p><strong class="text-teal-700">Mintzberg's Lens:</strong> This approach creates the conditions for a new strategy to emerge. By separating the new venture, you allow it to learn and adapt without being crushed by the old way of doing things. It's a deliberate choice to enable emergence.</p>` }
+            };
+            window.showWorkshopResult = choice => openModal(workshopResults[choice].title, workshopResults[choice].body);
+
+             // Workshop Logic (Digital News)
+             const newsWorkshopResults = { /* ... News workshop results as before ... */
+                'A': { title: 'Outcome: Print Fortress', body: `<p class="mb-3">Focusing solely on print excellence might retain loyal readers short-term, but ignores the massive shift to digital consumption. You risk becoming irrelevant like a company refusing to acknowledge the internet.</p><p class="mb-2"><strong class="text-blue-700">Porter's Lens:</strong> You're defending an existing position but failing to adapt to a fundamental change in industry structure (rise of digital substitutes, changing buyer power). Your 'fit' is becoming obsolete.</p><p><strong class="text-teal-700">Mintzberg's Lens:</strong> Your deliberate strategy is preventing learning. You're ignoring the emergent reality of online news consumption, failing to 'craft' a future-proof strategy.</p>` },
+                'B': { title: 'Outcome: The Halfway House', body: `<p class="mb-3">This cautious approach avoids major disruption but likely satisfies neither print loyalists nor potential digital subscribers fully. You risk being 'stuck in the middle,' like <strong>Yahoo</strong> trying to be both media and tech.</p><p class="mb-2"><strong class="text-blue-700">Porter's Lens:</strong> Lack of clear trade-offs. You aren't fully committed to print or digital, leading to a weak, easily imitated position with poor 'fit' between activities.</p><p><strong class="text-teal-700">Mintzberg's Lens:</strong> You're acknowledging the emergent digital trend but aren't committing resources for it to truly take shape. The old deliberate strategy still dominates, hindering real adaptation.</p>` },
+                'C': { title: 'Outcome: Digital First Leap', body: `<p class="mb-3">This is a bold, risky strategy requiring significant investment and potentially painful cannibalization of print revenue. However, it directly addresses the changing market and positions you for the future.</p><p class="mb-2"><strong class="text-blue-700">Porter's Lens:</strong> You are making a clear trade-off, choosing to compete in the new digital arena and build a new position with a corresponding set of activities (digital subscriptions, online ad sales, multimedia content).</p><p><strong class="text-teal-700">Mintzberg's Lens:</strong> You are deliberately creating space for a new strategy to emerge and be crafted. This requires organizational learning and adaptation to find a winning digital model.</p>` }
+             };
+            window.showNewsWorkshopResult = choice => openModal(newsWorkshopResults[choice].title, newsWorkshopResults[choice].body);
+
+            // Quick Decision Logic (Trade-off)
+            const tradeoffResults = { /* ... Tradeoff results as before ... */
+                'A': { title: 'Outcome: Blurring the Lines', body: `<p class="mb-3">While seemingly customer-friendly, this moves away from your core low-cost position. Adding services increases complexity and costs, eroding your competitive advantage. Rivals who are better at service will still outperform you there.</p><p><strong class="text-blue-700">Porter's Lens:</strong> This violates the principle of trade-offs. Your unique position is low cost; adding 'full service' elements makes you less distinct and 'stuck in the middle'. It weakens the 'fit' of your low-cost activities.</p>` },
+                'B': { title: 'Outcome: Strategic Discipline', body: `<p class="mb-3">Correct according to Porter. Strategy requires choosing what *not* to do. Offering free bags/snacks contradicts the low-cost model, which depends on minimizing extras. Maintaining this trade-off protects your unique position and the 'fit' among your activities (e.g., quick turnarounds, simple service).</p><p><strong class="text-blue-700">Porter's Lens:</strong> This demonstrates strong strategic discipline by reinforcing necessary trade-offs to maintain a clear, defensible low-cost leadership position.</p>` }
+            };
+            window.showTradeoffResult = choice => openModal(tradeoffResults[choice].title, tradeoffResults[choice].body);
+
+
+            // Simulation Logic (Expanded)
+            const simulationSteps = [ /* ... Simulation steps as before ... */
+                 { id: 1, question: "Step 1: Where do you enter the market?", options: [{ text: "A) High-End Niche: Launch a luxury, high-performance EV sports car.", next: 2 }, { text: "B) Mass Market: Aim for volume with an affordable, practical EV.", next: 3 }] },
+                 { id: 2, question: "You've established a premium brand. Now what? (Step 2)", options: [{ text: "A) Expand Downmarket: Use profits and brand cachet to develop a more affordable sedan.", next: 4 }, { text: "B) Stay High-End: Focus exclusively on the luxury market.", next: 5 }] },
+                 { id: 3, question: "Mass market entry failed due to high costs & competition. You're bleeding cash. Now what? (Step 2)", options: [{ text: "A) Pivot Upmarket: Try to launch a luxury model to generate higher margins.", next: 6 }, { text: "B) Seek a Buyout: Your only hope is acquisition by a legacy automaker.", next: 7 }] },
+                 { id: 4, question: "Your sedan is selling well, but demand outstrips supply. Production hell! How do you scale? (Step 3)", options: [{ text: "A) Rapid Automation: Build a highly automated 'alien dreadnought' factory for massive scale, quickly.", next: 8 }, { text: "B) Incremental Expansion: Gradually scale up existing lines, focusing on process improvement and quality control.", next: 9 }] },
+                 { id: 5, isEnd: true, title: "STAGNATION: The Niche Player", analysis: "<p class='mb-2'>You survive as a boutique brand but never disrupt the industry.</p><p class='mb-1'><strong class='text-blue-700'>Porter's Lens:</strong> A sustainable position, but its scope is too narrow to be a major threat.</p><p><strong class='text-teal-700'>Mintzberg's Lens:</strong> You crafted a good initial strategy but stopped learning. Your pattern became repetitive.</p>" },
+                 { id: 6, isEnd: true, title: "FAILURE: Brand Confusion", analysis: "<p class='mb-2'>Your brand is associated with 'cheap,' so a luxury pivot fails. You are 'stuck in the middle.' </p><p class='mb-1'><strong class='text-blue-700'>Porter's Lens:</strong> No clear position, contradictory activities, no sustainable advantage.</p><p><strong class='text-teal-700'>Mintzberg's Lens:</strong> A chaotic reaction, not an emergent strategy based on learning.</p>" },
+                 { id: 7, isEnd: true, title: "FAILURE: The Inevitable End", analysis: "<p class='mb-2'>Your technology is acquired, but your company disappears. You become a footnote.</p><p><strong class='text-blue-700'>Porter's Lens:</strong> Lacking a viable position, you had no competitive advantage to sustain your independence.</p><p><strong class='text-teal-700'>Mintzberg's Lens:</strong> The organization failed to learn and adapt quickly enough to form a successful pattern of action.</p>" },
+                 { id: 8, isEnd: true, title: "HIGH RISK/REWARD: Production Hell", analysis: "<p class='mb-2'>This mirrors Tesla's aggressive approach. Massive upfront investment and complexity lead to 'production hell' - delays, quality issues, and potential bankruptcy. If successful, achieves unparalleled scale, but the risk is enormous.</p><p class='mb-1'><strong class='text-blue-700'>Porter's Lens:</strong> A bold attempt to build insurmountable scale (a cost advantage component), but potentially sacrifices quality and consistency (differentiation components) short-term. High risk to 'fit'.</p><p><strong class='text-teal-700'>Mintzberg's Lens:</strong> A highly deliberate, top-down bet that prioritizes the grand vision over incremental learning. Limits emergent adaptation during the crucial scaling phase.</p>" },
+                 { id: 9, isEnd: true, title: "SLOW & STEADY: Sustainable Growth", analysis: "<p class='mb-2'>This is a more traditional, less risky approach. Growth is slower, allowing focus on quality and process refinement. You avoid 'production hell' but might cede market share to faster-moving competitors.</p><p class='mb-1'><strong class='text-blue-700'>Porter's Lens:</strong> Maintains consistency and 'fit' better during scaling. Focuses on improving Operational Effectiveness within the established position, but might lack the scale needed for long-term cost leadership.</p><p><strong class='text-teal-700'>Mintzberg's Lens:</strong> Allows for more organizational learning and adaptation during scaling ('crafting' the production process). Less likely to face catastrophic failure but might miss the window for market dominance.</p>" }
+            ];
+            const simulationContainer = document.getElementById('simulation-container');
+            const renderSimulationStep = (stepId) => {
+                const step = simulationSteps.find(s => s.id === stepId);
+                if (!step || !simulationContainer) return;
+                if (step.isEnd) {
+                    simulationContainer.innerHTML = `<div class="p-6 bg-rose-50 rounded-lg border border-rose-200"><h4 class="text-lg font-semibold text-rose-700 mb-3">${step.title}</h4><div class="prose-custom text-sm">${step.analysis}</div><button onclick="restartSimulation()" class="mt-4 px-4 py-1.5 bg-rose-600 text-white text-xs font-medium rounded-md hover:bg-rose-700 transition-colors focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">Restart Simulation</button></div>`;
+                } else {
+                    simulationContainer.innerHTML = `<div class="p-6 bg-slate-100 rounded-lg border border-slate-200"><h4 class="text-base font-semibold text-slate-800 mb-4">${step.question}</h4><div class="grid sm:grid-cols-2 gap-4">${step.options.map(opt => `<button data-next="${opt.next}" class="activity-button simulation-button p-3 border-rose-200 bg-rose-50 hover:bg-rose-100 hover:border-rose-300 group focus:ring-rose-400"><strong class="group-hover:text-rose-800">${opt.text.split(':')[0]}:</strong> ${opt.text.split(':').slice(1).join(':').trim()}</button>`).join('')}</div></div>`;
+                    document.querySelectorAll('.simulation-option').forEach(button => button.addEventListener('click', (e) => renderSimulationStep(parseInt(e.currentTarget.dataset.next))));
+                }
+            };
+            window.restartSimulation = () => renderSimulationStep(1);
+            if (simulationContainer) renderSimulationStep(1);
+
+             // Quiz Logic
+             const quizData = [ /* ... Quiz data as before ... */
+                 { q: "What is the primary difference between Operational Effectiveness (OE) and Strategy, according to Porter?", o: ["OE is long-term, Strategy is short-term.", "OE is doing things better, Strategy is doing different things or things differently.", "Strategy is doing things better, OE is doing different things.", "They are interchangeable terms."], a: 1, e: "Porter is clear: Operational Effectiveness is about performing similar activities better than rivals. Strategy is not about being the best, but about being unique—performing different activities, or similar ones in a different way." },
+                 { q: "Why was Kodak's failure a classic example of not making a 'trade-off'?", o: ["They didn't trade old managers for new ones.", "They were unwilling to sacrifice their profitable film business for a new, uncertain digital one.", "They didn't trade their US market focus for a global one."], a: 1, e: "A true strategic trade-off means choosing what NOT to do. Kodak tried to be both a film company and a digital company, which prevented them from committing fully to a winning digital strategy and creating 'fit' around it." },
+                 { q: "According to Mintzberg, an 'emergent strategy' is one that:", o: ["Is planned meticulously from the start.", "Results from a pattern of actions that were not formally intended.", "Focuses only on emerging markets."], a: 1, e: "Mintzberg's core idea is that strategy often emerges 'from the ground up' as organizations learn and adapt. It's the realized pattern that was not explicitly intended by senior management." },
+                 { q: "Nokia's primary strategic failure, from a Porterian view, was:", o: ["Confusing operational excellence in hardware with a sustainable strategy.", "Partnering with Microsoft.", "Having unattractive phone designs."], a: 0, e: "Nokia was the best in the world at making hardware efficiently (Operational Effectiveness). But this wasn't a defensible strategy when the basis of competition shifted to software ecosystems, where they had no unique position." },
+                 { q: "Mintzberg's 'crafting' metaphor for strategy suggests the process is:", o: ["A detached, analytical process.", "A rigid, top-down planning exercise.", "A hands-on process where formulation and implementation are intertwined, like a potter shaping clay."], a: 2, e: "The 'crafting' image is central to Mintzberg's view. It emphasizes that strategy is not just about thinking; it's about a deep, involved process of learning-by-doing, where the 'crafter' adapts the design as they work with the material." },
+                 { q: "Yahoo's downfall is best described by Porter's concept of being...", o: ["Too operationally effective.", "'Stuck in the middle' without a clear position or 'fit'.", "Having too many trade-offs."], a: 1, e: "Yahoo was neither a pure tech company nor a pure media company. It had no clear, unique position. Its various assets (Flickr, Tumblr, Mail) did not reinforce each other, demonstrating a total lack of 'fit'." },
+                 { q: "The story of Honda succeeding with small motorcycles in the US, despite planning to sell large ones, is a classic example of:", o: ["A failed deliberate strategy.", "An emergent strategy.", "Poor operational effectiveness."], a: 1, e: "Honda's intended (deliberate) strategy failed, but a new, successful strategy emerged from the field as salespeople discovered an unexpected market for their small Super Cub bikes. This is a textbook Mintzberg example." },
+                 { q: "A company trying to be the cheapest, highest quality, and best service provider simultaneously is violating which of Porter's key ideas?", o: ["Fit", "Trade-offs", "Operational Effectiveness"], a: 1, e: "Strategy is about choosing. Trying to be everything to everyone means you haven't made the hard choices (trade-offs) about what you will NOT do, which is essential to creating a unique and defensible position." },
+                 { q: "In the 'Phoenix Motors' simulation, choosing 'Rapid Automation' (Step 3A) represents a strategy that prioritizes:", o: ["Incremental learning and adaptation.", "Maintaining operational consistency above all else.", "A deliberate, large-scale bet on achieving scale quickly, accepting high risk.", "Serving a niche market effectively."], a: 2, e: "Building a highly automated factory quickly is a massive, planned investment aimed at achieving scale advantages (a Porter concept), but it limits flexibility and learning (Mintzberg concerns) and carries significant execution risk, as Tesla experienced." },
+                 { q: "What does 'fit' mean in Porter's framework?", o: ["How a company's activities interact and reinforce one another.", "Ensuring employees fit the company culture.", "Finding the right market for a product."], a: 0, e: "'Fit' is about synergy. It's when all a company's activities—from marketing to manufacturing to logistics—are interconnected and mutually reinforcing, making the strategy as a whole much harder to imitate than any single part." },
+                 { q: "From a Mintzbergian perspective, Kodak's management...", o: ["Should have created a more detailed plan for digital.", "Allowed the deliberate strategy (film) to suppress the emergent strategy (digital).", "Didn't listen to their customers."], a: 1, e: "The invention of the digital camera was a potential emergent strategy from within. However, the powerful, established 'deliberate' strategy focused on protecting film sales, and the formal planning process actively killed this internal innovation." },
+                 { q: "A company's 'realized strategy' (what it actually does), according to Mintzberg, is a blend of:", o: ["Its mission and vision statements.", "Its deliberate (planned) and emergent (unplanned) strategies.", "Its marketing and financial plans."], a: 1, e: "This is a key distinction. Mintzberg argues that no strategy is purely deliberate. The final 'realized' strategy is always a mix of what was intended and what emerged along the way through learning and adaptation." },
+                 { q: "What was a common theme in the decline of all three giants (Nokia, Kodak, Yahoo)?", o: ["A lack of talented engineers.", "An inability to adapt business models to fundamental industry shifts.", "Insufficient funding for R&D."], a: 1, e: "This is the central lesson. All three were dominant in their respective eras but failed to adapt their strategies and core business models when technology and consumer behavior changed the rules of the game." },
+                 { q: "Porter's framework is most useful for analyzing a company's...", o: ["Day-to-day operational details.", "Static position and competitive advantage at a point in time.", "Internal culture and politics."], a: 1, e: "Porter's tools (Five Forces, Value Chain, Positioning) are primarily analytical frameworks for understanding the structure of an industry and a firm's defensible position within it." },
+                 { q: "If Porter provides the 'blueprint' for a strategy, Mintzberg explains the...", o: ["Importance of following the blueprint perfectly.", "Process of 'crafting' and learning that must happen during construction.", "Irrelevance of blueprints in the modern world."], a: 1, e: "This synthesizes the two views. Porter offers the analytical structure (the blueprint), while Mintzberg describes the dynamic, hands-on process of learning, adapting, and 'crafting' that brings any plan to life and allows it to evolve." }
+            ];
+            const quizContainer = document.getElementById('quiz-container');
+            let score = 0;
+            const scoreElement = document.getElementById('score');
+            const totalQuestions = quizData.length;
+
+            if (quizContainer) { /* ... Quiz population logic as before ... */
+                 quizData.forEach((item, index) => {
+                    const questionDiv = document.createElement('div');
+                    questionDiv.className = 'border-t border-slate-300 pt-5 first:border-t-0';
+
+                    const questionP = document.createElement('p');
+                    questionP.className = 'text-sm font-semibold text-slate-800 mb-4';
+                    questionP.textContent = `${index + 1}. ${item.q}`;
+                    questionDiv.appendChild(questionP);
+
+                    const optionsDiv = document.createElement('div');
+                    optionsDiv.className = 'space-y-2';
+                    optionsDiv.id = `q${index + 1}-options`;
+
+                    item.o.forEach((optionText, optionIndex) => {
+                        const optionButton = document.createElement('button');
+                        optionButton.type = 'button';
+                        optionButton.className = 'quiz-option block w-full text-left p-2.5 border border-slate-300 rounded-md bg-white hover:bg-slate-50 hover:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-400 focus:ring-opacity-50 text-xs';
+                        optionButton.textContent = optionText;
+                        optionButton.onclick = () => {
+                            const parent = document.getElementById(`q${index + 1}-options`);
+                            const explanation = optionButton.parentElement.nextElementSibling;
+
+                            Array.from(parent.children).forEach(child => {
+                                child.disabled = true;
+                                child.classList.remove('hover:bg-slate-50', 'hover:border-blue-400');
+                            });
+
+                            if (optionIndex === item.a) {
+                                optionButton.classList.add('correct');
+                                score++;
+                                scoreElement.textContent = `${score} / ${totalQuestions}`;
+                            } else {
+                                optionButton.classList.add('incorrect');
+                                if (parent.children[item.a]) {
+                                    parent.children[item.a].classList.add('correct');
+                                }
+                            }
+
+                            explanation.classList.add('visible');
+                            explanation.style.maxHeight = explanation.scrollHeight + 'px';
+                        };
+                        optionsDiv.appendChild(optionButton);
+                    });
+
+                    const explanationP = document.createElement('p');
+                    explanationP.className = 'quiz-explanation text-xs text-slate-600 bg-slate-100 p-3 rounded-md border border-slate-200';
+                    explanationP.innerHTML = `<strong class='text-slate-700'>Explanation:</strong> ${item.e}`;
+
+                    questionDiv.appendChild(optionsDiv);
+                    questionDiv.appendChild(explanationP);
+                    quizContainer.appendChild(questionDiv);
+                });
+                scoreElement.textContent = `${score} / ${totalQuestions}`;
+             }
+
+            // Navigation & Sticky Header Logic
+             const navLinks = document.querySelectorAll('.nav-link');
+             const sectionElements = document.querySelectorAll('main section[id]');
+             const mobileNav = document.getElementById('mobile-nav');
+             const header = document.getElementById('main-header');
+             const topBar = document.getElementById('top-bar');
+             let totalStickyHeight = 0;
+
+             function calculateStickyHeight() { /* ... Calculate height logic as before ... */
+                 const topBarHeight = topBar && window.getComputedStyle(topBar).display !== 'none' ? topBar.offsetHeight : 0;
+                 const headerHeight = header ? header.offsetHeight : 0;
+                 totalStickyHeight = topBarHeight + headerHeight;
+                 if(header) {
+                      header.style.top = topBarHeight > 0 ? `${topBarHeight}px` : '0px';
+                 }
+                  document.documentElement.style.setProperty('--sticky-offset', `${totalStickyHeight + 1}px`);
+             }
+              calculateStickyHeight();
+              window.addEventListener('resize', calculateStickyHeight);
+
+             // Throttled scroll listener
+             let scrollTimeout;
+             window.addEventListener('scroll', () => {
+                 if (!scrollTimeout) {
+                    scrollTimeout = setTimeout(() => { /* ... Scroll listener logic as before ... */
+                        calculateStickyHeight(); // Recalculate height
+
+                        let currentScroll = window.scrollY;
+                        let activeSectionId = '';
+                        let minDistanceToTop = Infinity; // Use this to find the section closest to the top edge
+
+                        sectionElements.forEach(section => {
+                            const sectionTop = section.offsetTop;
+                            const distance = sectionTop - (currentScroll + totalStickyHeight); // Distance from bottom of sticky headers
+
+                             // If the section top is above or very near the bottom of sticky headers
+                            if (distance <= 40) { // Using a 40px buffer
+                                 // Check if it's closer than the current best candidate below the headers
+                                 // Or if it's the section currently occupying the space just below the header
+                                if (Math.abs(distance) < minDistanceToTop || section.id === activeSectionId) {
+                                    minDistanceToTop = Math.abs(distance);
+                                    activeSectionId = section.id;
+                                }
+                            }
+                        });
+
+
+                        // Edge cases
+                        if (currentScroll < 50 && sectionElements.length > 0) activeSectionId = sectionElements[0].id;
+                        else if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 50 && sectionElements.length > 0) activeSectionId = sectionElements[sectionElements.length - 1].id;
+                        else if (!activeSectionId && sectionElements.length > 0) {
+                            // Find last section whose top is above current view + offset
+                              for (let i = sectionElements.length - 1; i >= 0; i--) {
+                                if (sectionElements[i].offsetTop <= currentScroll + totalStickyHeight + 40) {
+                                    activeSectionId = sectionElements[i].id;
+                                    break;
+                                }
+                             }
+                             if (!activeSectionId) activeSectionId = sectionElements[0].id; // Ultimate fallback
+                        }
+
+                        // Apply grouping logic for display/highlighting
+                        let displayId = activeSectionId;
+                         const activeElement = document.getElementById(activeSectionId);
+                          if (activeElement) {
+                             const casesSection = activeElement.closest('section#cases');
+                             const activitiesSection = activeElement.closest('section#activities');
+                             const positioningSection = activeElement.closest('section#positioning-examples');
+                              const fitSection = activeElement.closest('section#fit-examples');
+
+                             if (casesSection) displayId = 'cases';
+                             else if (activitiesSection) displayId = 'activities';
+                             else if (positioningSection) displayId = 'positioning-examples';
+                             else if (fitSection) displayId = 'fit-examples';
+                         }
+
+
+                        // Update desktop nav links
+                        navLinks.forEach(link => { /* ... Update desktop links ... */
+                            link.classList.remove('active-nav');
+                            const linkHrefId = link.getAttribute('href').substring(1);
+                            if (linkHrefId === displayId) {
+                                link.classList.add('active-nav');
+                            }
+                         });
+
+                        // Update mobile dropdown
+                        const targetOptionValue = `#${displayId}`; /* ... Update mobile dropdown ... */
+                         if (mobileNav.value !== targetOptionValue) {
+                            const optionExists = Array.from(mobileNav.options).some(option => option.value === targetOptionValue);
+                            if (optionExists) {
+                                mobileNav.value = targetOptionValue;
+                            }
+                         }
+
+                        scrollTimeout = null;
+                    }, 50); // Throttle delay
+                 }
+             }, { passive: true });
+
+            // Mobile nav scroll action
+            mobileNav.addEventListener('change', () => { /* ... Mobile scroll logic as before ... */
+                const targetId = mobileNav.value;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    requestAnimationFrame(() => {
+                        calculateStickyHeight();
+                        const targetPosition = targetElement.offsetTop - totalStickyHeight;
+                        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                    });
+                }
+            });
+
+            // Desktop nav scroll action
+            navLinks.forEach(link => { /* ... Desktop scroll logic as before ... */
+                link.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId.startsWith('#')) {
+                        e.preventDefault();
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                             requestAnimationFrame(() => {
+                                calculateStickyHeight();
+                                const targetPosition = targetElement.offsetTop - totalStickyHeight;
+                                window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                             });
+                        }
+                    }
+                });
+            });
+
+             // Initial calculation & scroll trigger
+             calculateStickyHeight();
+             window.dispatchEvent(new Event('scroll'));
+
+        });
+    </script>
+</body>
+</html>

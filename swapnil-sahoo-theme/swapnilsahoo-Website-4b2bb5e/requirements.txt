@@ -1,0 +1,5 @@
+# requirements.txt
+
+# Optional – only needed if using Python to serve the site
+Flask==3.0.3    # Lightweight web server
+gunicorn==22.0.0  # For production hosting

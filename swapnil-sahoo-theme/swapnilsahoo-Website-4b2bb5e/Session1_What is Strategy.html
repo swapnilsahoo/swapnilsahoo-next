@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Guide: What is Strategy?</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals with Professional Accents -->
+    <!-- Application Structure Plan: The application is designed as a single-page, scrollable narrative that transforms the provided script into an interactive learning journey. It begins with the data-driven "puzzle" (Quick Commerce vs. Tesla) to immediately engage the user. It then flows logically from foundational concepts (OE vs. Strategy) to the sources of a unique position, and finally to the core of sustainability (Trade-offs and Fit) using Tesla as the primary case study. A "Strategy Simulator" concludes the experience, allowing for direct application of the learned concepts. This thematic, progressive structure, supported by a sticky navigation, was chosen to create a guided yet flexible learning path that prioritizes understanding and interaction over a rigid, chapter-like presentation. -->
+    <!-- Visualization & Content Choices: 
+        - Intro Puzzle: Goal=Compare/Hook. Method=Side-by-side data cards. Interaction=None, static display of stark data points. Justification=Immediately grounds the abstract concept of strategy in real, quantifiable business outcomes.
+        - Productivity Frontier: Goal=Explain. Method=Chart.js Line Chart with animation. Justification=Visually represents the abstract concept of the "best practice" frontier and competitive convergence, as described in the source material.
+        - Positioning Types: Goal=Organize/Explain. Method=Interactive tabbed component. Interaction=Clicking tabs switches content. Justification=Organizes dense information cleanly, allowing focused learning on each positioning type with contemporary examples.
+        - Tesla's Trade-offs Table: Goal=Detail/Compare. Method=Interactive HTML table. Interaction=Clicking a row reveals detailed text about the strategic implication. Justification=Turns a static data comparison into an engaging, explorable element with progressive information disclosure.
+        - Tesla Activity System Map: Goal=Show Relationships ("Fit"). Method=A custom interactive diagram built with HTML/CSS Grid and JS. Interaction=Hovering over a key activity highlights its reinforcing partners. Justification=This is the "wow" factor. It provides a powerful, interactive visualization of the complex concept of "fit" without using SVG or Mermaid.
+        - Strategy Simulator: Goal=Apply/Test. Method=Modal-based scenarios. Interaction=Buttons trigger feedback modals explaining the strategic rationale. Justification=Serves as a capstone exercise, moving the user from passive learning to active strategic decision-making. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #F8F7F5; color: #3D405B; }
+        .accent-bg { background-color: #D66D75; }
+        .accent-text { color: #D66D75; }
+        .secondary-accent-bg { background-color: #5C8D89; }
+        .secondary-accent-text { color: #5C8D89; }
+        .highlight-bg { background-color: #F2C57C; }
+        .nav-link { transition: all 0.3s ease; border-bottom: 2px solid transparent; padding-bottom: 4px; }
+        .nav-link:hover, .nav-link.active { color: #D66D75; border-bottom-color: #D66D75; }
+        .card { background-color: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1); }
+        .card-content { flex-grow: 1; }
+        .btn { padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; transition: all 0.3s ease; text-align: center; }
+        .btn-primary { background-color: #D66D75; color: white; }
+        .btn-primary:hover { background-color: #c35c64; }
+        .btn-secondary { background-color: #5C8D89; color: white; }
+        .btn-secondary:hover { background-color: #4a7572; }
+        .btn-outline { border: 2px solid #3D405B; color: #3D405B; }
+        .btn-outline:hover { background-color: #3D405B; color: white; }
+        .chart-container { position: relative; width: 100%; max-width: 800px; margin-left: auto; margin-right: auto; height: 350px; max-height: 450px; }
+        @media (min-width: 640px) { .chart-container { height: 400px; } }
+        .position-tab.active { color: #D66D75; border-bottom-color: #D66D75; }
+        #activityMap .map-node { transition: all 0.3s ease; cursor: pointer; border: 2px solid transparent; background-color: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        #activityMap .map-node.theme { background-color: #3D405B; color: white; font-weight: bold; }
+        #activityMap .map-node.hover-group { border-color: #D66D75; transform: scale(1.05); z-index: 10; box-shadow: 0 0 15px rgba(214, 109, 117, 0.7); }
+        #activityMap .map-node.central-theme { background-color: #F2C57C; color: #3D405B; font-weight: bold; }
+        #activityMap .map-node.faded { opacity: 0.3; }
+        .stat-card { background: #fcfcfc; border-left: 4px solid #F2C57C; }
+        .social-link svg { width: 1.25rem; height: 1.25rem; transition: transform 0.2s ease-in-out; }
+        .social-link:hover svg { transform: scale(1.1); }
+        .quiz-btn { cursor: pointer; }
+        .quiz-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+        .debrief { margin-top: 1rem; padding: 1rem; border-radius: 0.5rem; border-left-width: 4px; font-size: 0.9rem; }
+        .debrief-correct { background-color: #f0fdf4; border-color: #22c55e; color: #15803d; }
+        .debrief strong { font-weight: 700; }
+        .timeline-item { position: relative; padding-left: 2rem; border-left: 2px solid #e5e7eb; }
+        .timeline-dot { position: absolute; left: -0.5rem; top: 0.125rem; height: 1rem; width: 1rem; background-color: white; border: 2px solid #5C8D89; border-radius: 9999px; }
+        .data-toggle-btn { padding: 0.5rem 1rem; border-radius: 9999px; font-weight: 500; transition: all 0.2s ease; border: 1px solid #d1d5db; }
+        .data-toggle-btn.active { background-color: #5C8D89; color: white; border-color: #5C8D89; }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="bg-gray-100 border-b border-gray-200">
+        <div class="container mx-auto px-6 py-2 flex justify-between items-center text-sm text-gray-600">
+            <span>© Dr. Swapnil Sahoo 2025</span>
+            <div class="flex space-x-4 items-center">
+                <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="social-link hover:text-gray-900" aria-label="Twitter">
+                    <svg fill="currentColor" viewBox="0 0 16 16"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-1.78 13h2.683L4.493 2.05H1.685l6.136 11.7Z"/></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="social-link hover:text-gray-900" aria-label="LinkedIn">
+                     <svg fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="social-link hover:text-gray-900" aria-label="Instagram">
+                     <svg fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.917 3.917 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.282.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.095.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.283-.24-.705-.275-1.485-.038-.843-.046-1.095-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.884a1.161 1.161 0 1 0 0 2.322 1.161 1.161 0 0 0 0-2.322zM8 4.884c-1.74 0-3.116 1.416-3.116 3.156 0 1.74 1.376 3.156 3.116 3.156s3.116-1.416 3.116-3.156c0-1.74-1.376-3.156-3.116-3.156zM8 6.425c.873 0 1.576.692 1.576 1.545s-.703 1.545-1.576 1.545-1.576-.692-1.576-1.545.703-1.545 1.576-1.545z"/></svg>
+                </a>
+            </div>
+        </div>
+    </div>
+    <header id="header" class="bg-white/80 backdrop-blur-md sticky top-0 z-40 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold accent-text">What is Strategy?</h1>
+            <div class="hidden md:flex flex-wrap space-x-4">
+                <a href="#puzzle" class="nav-link">The Puzzle</a>
+                <a href="#dilemma" class="nav-link">The Core Dilemma</a>
+                <a href="#positioning" class="nav-link">Finding a Position</a>
+                <a href="#tesla-strategy" class="nav-link">Tesla's Strategy</a>
+                <a href="#data-analysis" class="nav-link">Data Analysis</a>
+                <a href="#sustainability" class="nav-link">Making it Last</a>
+                <a href="#simulator" class="nav-link">Simulator</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
+            <a href="#puzzle" class="block py-2 text-center nav-link">The Puzzle</a>
+            <a href="#dilemma" class="block py-2 text-center nav-link">The Core Dilemma</a>
+            <a href="#positioning" class="block py-2 text-center nav-link">Finding a Position</a>
+            <a href="#tesla-strategy" class="block py-2 text-center nav-link">Tesla's Strategy</a>
+            <a href="#data-analysis" class="block py-2 text-center nav-link">Data Analysis</a>
+            <a href="#sustainability" class="block py-2 text-center nav-link">Making it Last</a>
+            <a href="#simulator" class="block py-2 text-center nav-link">Strategy Simulator</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <section id="puzzle" class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">The Paradox of Being "Good" at Business</h2>
+                <p class="text-lg md:text-xl max-w-4xl mx-auto text-gray-600">
+                    For years, managers have been told to be agile, lean, and benchmark best practices. But does being operationally brilliant automatically lead to long-term profitability? Let's examine a real-time puzzle from India's tech landscape.
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-8 items-start">
+                <div class="card p-6 md:p-8">
+                    <h3 class="text-2xl font-bold mb-1 secondary-accent-text">The Race: Quick Commerce</h3>
+                    <p class="text-lg font-medium mb-4 text-gray-700">Operational Effectiveness in Overdrive</p>
+                    <div class="card-content space-y-4 text-gray-600">
+                        <p>Companies like <strong class="font-semibold">Blinkit</strong> and <strong class="font-semibold">Zepto</strong> are masters of logistics, promising grocery delivery in 10-15 minutes. This is operational excellence on a massive scale.</p>
+                        <div class="stat-card p-4 rounded-lg">
+                            <p class="font-bold text-gray-800">The Financials:</p>
+                             <ul class="list-disc list-inside mt-2 space-y-1">
+                                <li><strong>Blinkit (Zomato):</strong> Valued at over $13 Billion. FY24 Revenue: ₹2,302 crore. Now contribution positive.</li>
+                                <li><strong>Zepto:</strong> Valued at $3.6 Billion. FY23 Revenue: ₹2,024 crore. FY23 Net Loss: ₹1,272 crore.</li>
+                            </ul>
+                        </div>
+                        <div class="stat-card p-4 rounded-lg">
+                            <p class="font-bold text-gray-800">The Engine:</p>
+                            <ul class="list-disc list-inside mt-2 space-y-1">
+                                <li><strong>Blinkit:</strong> 526 dark stores, expanding to 1,000.</li>
+                                <li><strong>Zepto:</strong> 340+ dark stores.</li>
+                            </ul>
+                        </div>
+                        <div class="p-4 rounded-lg bg-red-50 border-l-4 border-red-500">
+                             <p class="font-bold text-red-800">The Paradox:</p>
+                            <p class="mt-2 text-red-700">Despite massive scale and revenue, the industry is defined by intense cash burn to acquire customers and fund operations in a hyper-competitive market where everyone offers a similar service.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card p-6 md:p-8">
+                     <h3 class="text-2xl font-bold mb-1 accent-text">The Different Path: Tesla</h3>
+                     <p class="text-lg font-medium mb-4 text-gray-700">Strategy in Action</p>
+                    <div class="card-content space-y-4 text-gray-600">
+                        <p>In contrast, Tesla's advantage comes from **Strategy**—choosing to perform activities *differently* than the entire auto industry had for a century.</p>
+                         <div class="stat-card p-4 rounded-lg">
+                            <p class="font-bold text-gray-800">The Strategic Choice:</p>
+                             <p class="mt-2">Reject the dealership model and sell directly to consumers (DTC). This isn't a small tweak; it's a completely different system.</p>
+                        </div>
+                         <div class="p-4 rounded-lg bg-green-50 border-l-4 border-green-500">
+                            <p class="font-bold text-green-800">The Financial Impact:</p>
+                             <p class="mt-2 text-green-700">A massive, quantifiable cost advantage. Ford's CEO estimates the dealership model costs them <strong class="font-semibold">~$2,000 more per vehicle</strong> to sell compared to Tesla.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="mt-12 text-center">
+                <p class="text-2xl font-semibold max-w-4xl mx-auto">This leads to our central question: <span class="accent-text">Why does the operational magic of Quick Commerce lead to immense cash burn, while the strategic choices of Tesla create a clear financial advantage?</span></p>
+            </div>
+        </section>
+
+        <section id="dilemma" class="mb-20">
+            <h3 class="text-3xl font-bold text-center mb-2">The Core Dilemma</h3>
+            <p class="text-lg text-center text-gray-600 mb-12 max-w-4xl mx-auto">The answer to our puzzle is the failure to distinguish between Operational Effectiveness and Strategy. They are both essential, but they work in different ways. This section will help you visualize this distinction and test your understanding.</p>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card p-8">
+                    <h4 class="text-2xl font-bold mb-4 secondary-accent-text">Operational Effectiveness (OE)</h4>
+                    <div class="space-y-4">
+                        <p>OE means performing <strong class="font-semibold">similar activities better</strong> than rivals. But this is a trap. While necessary, competing on OE alone is rarely sufficient for sustained profitability.</p>
+                        <p>The danger is <strong class="font-semibold">Competitive Convergence</strong>. Best practices diffuse rapidly; as one company innovates, others imitate. Think of Blinkit and Zepto racing to build more dark stores and cut delivery times. They are all getting better at the same game, which raises the bar for everyone but gives a lasting advantage to no one.</p>
+                    </div>
+                    <div class="chart-container mt-6">
+                        <canvas id="animatedProductivityFrontierChart"></canvas>
+                    </div>
+                    <div class="text-center mt-4 space-x-4">
+                        <button id="playAnimationBtn" class="btn btn-secondary">Run Simulation</button>
+                    </div>
+                    <p id="animationNarrative" class="text-sm text-gray-600 mt-2 text-center h-10"></p>
+                </div>
+                <div class="card p-8">
+                    <h4 class="text-2xl font-bold mb-4 accent-text">Strategy</h4>
+                    <p class="mb-4">If OE is about being better, strategy is about being <strong class="font-semibold">different</strong>. Porter's definition is precise: strategy is the creation of a <strong class="font-semibold">unique and valuable position, involving a different set of activities</strong>. It’s not a marketing slogan; it’s the tangible system of choices that make your company unique. Southwest Airlines didn't just try to be a better American Airlines; it created a new low-cost model with a different set of activities (fast gate turnarounds, standardized fleet, no meals) that others couldn't copy without undermining their own models.</p>
+                    <div class="bg-gray-50 p-6 rounded-lg mt-6">
+                        <h5 class="font-bold mb-4">Quick Test: Effective or Strategic?</h5>
+                        <div id="quizContainer" class="space-y-4">
+                            <!-- Quiz injected by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="positioning" class="mb-20">
+            <h3 class="text-3xl font-bold text-center mb-2">Finding a Unique Position</h3>
+            <p class="text-lg text-center text-gray-600 mb-12 max-w-4xl mx-auto">If strategy is about creating a unique and valuable position, where do these positions come from? Porter argues they emerge from three distinct, often overlapping, sources. Click the tabs below to explore them.</p>
+            
+            <div class="card p-8">
+                <div class="flex border-b border-gray-200">
+                    <button data-tab="variety" class="position-tab flex-1 py-4 px-2 text-center font-semibold text-base md:text-lg border-b-4 border-transparent hover:border-gray-300 text-gray-500">Variety-Based</button>
+                    <button data-tab="needs" class="position-tab flex-1 py-4 px-2 text-center font-semibold text-base md:text-lg border-b-4 border-transparent hover:border-gray-300 text-gray-500">Needs-Based</button>
+                    <button data-tab="access" class="position-tab flex-1 py-4 px-2 text-center font-semibold text-base md:text-lg border-b-4 border-transparent hover:border-gray-300 text-gray-500">Access-Based</button>
+                </div>
+                <div id="positioningContent" class="pt-8">
+                </div>
+            </div>
+        </section>
+
+        <section id="tesla-strategy" class="mb-20">
+            <h3 class="text-3xl font-bold text-center mb-2">Tesla: A Case Study in Good Strategy</h3>
+            <p class="text-lg text-center text-gray-600 mb-12 max-w-4xl mx-auto">A good strategy consists of three key elements: a diagnosis of the challenge, a guiding policy to address it, and a set of coherent actions to implement that policy. Let's break down how Tesla applies this framework to gain and sustain its competitive advantage.</p>
+        
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Diagnosis Card -->
+                <div class="card p-8 bg-gray-50">
+                    <h4 class="text-xl font-bold mb-3"><span class="secondary-accent-text">1. Diagnosis</span> of the Challenge</h4>
+                    <p>Tesla's mission to "accelerate the world’s transition to sustainable transport" faced a huge challenge: overcoming the dominance of gasoline cars. This meant creating not just an electric car, but an attractive, affordable one that solved "range anxiety"—the fear of running out of power far from a charging station.</p>
+                </div>
+                <!-- Guiding Policy Card -->
+                <div class="card p-8 bg-gray-50">
+                    <h4 class="text-xl font-bold mb-3"><span class="secondary-accent-text">2. Guiding</span> Policy</h4>
+                    <p>Tesla's policy was to build cost-competitive, mass-market vehicles (Model 3/Y). This was backed by massive, hard-to-reverse <strong class="font-semibold">strategic commitments</strong>, most notably its multi-billion dollar Gigafactories designed to achieve economies of scale in battery and vehicle production.</p>
+                </div>
+                <!-- Coherent Actions Card -->
+                <div class="card p-8 bg-gray-50">
+                     <h4 class="text-xl font-bold mb-3"><span class="secondary-accent-text">3. Coherent</span> Actions</h4>
+                    <p>Every action supports the policy. Ramping up production volume, focusing almost exclusively on Models 3/Y, expanding the Supercharger network, and even sharing patents to grow the overall EV market are all consistent, coherent actions to implement the guiding policy.</p>
+                </div>
+            </div>
+            
+        </section>
+        
+        <section id="data-analysis" class="mb-20">
+            <h3 class="text-3xl font-bold text-center mb-2">Data-Driven Strategy: Analyzing the Automotive Landscape</h3>
+            <p class="text-lg text-center text-gray-600 mb-12 max-w-4xl mx-auto">Let's connect the theory to the numbers. By analyzing financial and performance data, we can see how Tesla's strategic choices create a different competitive profile compared to traditional automakers.</p>
+            
+            <div class="card p-8 mb-8">
+                <h4 class="text-2xl font-bold mb-4 text-center">Financial Snapshot: Tesla vs. Competitors (2014)</h4>
+                <div class="flex justify-center flex-wrap gap-2 mb-6" id="financials-toggle-buttons">
+                    <!-- Buttons injected by JS -->
+                </div>
+                <div class="chart-container">
+                    <canvas id="competitorFinancialsChart"></canvas>
+                </div>
+            </div>
+
+            <div class="card p-8 mb-8">
+                 <h4 class="text-2xl font-bold mb-4 text-center">The Cost of Strategy: Tesla's Path to Profitability</h4>
+                 <div class="chart-container">
+                    <canvas id="teslaFinancialPerformanceChart"></canvas>
+                </div>
+                <p class="text-sm text-gray-500 mt-4 text-center">This chart shows Tesla's revenue growth alongside its net income from 2008-2014. The years of negative net income represent the massive upfront investments—the strategic commitments—required to build its unique capabilities before achieving profitability.</p>
+            </div>
+
+            <div class="card p-8 mb-8">
+                <h4 class="text-2xl font-bold mb-4 text-center">Luxury Car Market Positioning (2015)</h4>
+                <div class="chart-container" style="height: 450px;">
+                    <canvas id="luxuryCarChart"></canvas>
+                </div>
+                 <p class="text-sm text-gray-500 mt-4 text-center">This chart plots luxury sedans by price and performance. Notice how the Tesla Model S created a new space in the market: supercar acceleration at a luxury sedan price, with the added dimension of electric range.</p>
+            </div>
+
+             <div class="card p-8">
+                <h4 class="text-2xl font-bold mb-4 text-center">Key Supplier Relationships & Strategic Bets</h4>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="p-4 font-semibold">Component</th>
+                                <th class="p-4 font-semibold">Key Supplier</th>
+                                <th class="p-4 font-semibold">Strategic Implication</th>
+                            </tr>
+                        </thead>
+                        <tbody id="suppliersTable" class="divide-y divide-gray-200">
+                            <!-- Supplier data injected by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="sustainability" class="mb-20">
+            <h3 class="text-3xl font-bold text-center mb-2">Making Strategy Last: Trade-offs & Fit</h3>
+            <p class="text-lg text-center text-gray-600 mb-12 max-w-4xl mx-auto">A unique position attracts imitators. The most dangerous form of imitation is "straddling"—when a rival tries to copy your benefits while maintaining their existing position. This rarely works. Sustainable advantage comes from two powerful concepts: making clear **trade-offs** and creating a system of reinforcing activities, or **fit**.</p>
+
+            <div class="card p-8 mb-12">
+                <h4 class="text-2xl font-bold mb-4 accent-text">The Power of Trade-offs</h4>
+                <p class="mb-6">A strategic position is not sustainable without trade-offs. Trade-offs mean more of one thing necessitates less of another. They are the choices that define what you will <strong class="font-semibold">not</strong> do. Tesla's decision to sell directly to consumers is a masterclass in trade-offs. <strong class="font-semibold">Click a dimension below to see the choice they made versus the path they rejected.</strong></p>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead class="border-b-2 border-gray-200">
+                            <tr>
+                                <th class="p-4">Dimension</th>
+                                <th class="p-4">Tesla's DTC Model</th>
+                                <th class="p-4">Traditional Dealership Model</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tradeoffsTable">
+                        </tbody>
+                    </table>
+                </div>
+                <div id="tradeoff-details" class="mt-6 p-6 bg-gray-50 rounded-lg hidden"></div>
+            </div>
+
+            <div class="card p-8">
+                <h4 class="text-2xl font-bold mb-4 secondary-accent-text">The Power of Fit</h4>
+                <p class="mb-6">Sustainable advantage comes from how a company's activities interact and reinforce each other. It’s harder to copy a whole system than one part. Porter identifies three types of fit: <strong class="font-semibold">1) simple consistency</strong>, <strong class="font-semibold">2) activities are reinforcing</strong>, and <strong class="font-semibold">3) optimization of effort</strong>. The best way to visualize this is an Activity System Map. <strong class="font-semibold">Hover over a theme below to see how Tesla's activities create a reinforcing system.</strong></p>
+                <div id="activityMap" class="relative w-full h-[650px] md:h-[500px] flex items-center justify-center p-4">
+                </div>
+            </div>
+        </section>
+
+        <section id="simulator">
+            <h3 class="text-3xl font-bold text-center mb-2">The Strategy Simulator</h3>
+            <p class="text-lg text-center text-gray-600 mb-12 max-w-4xl mx-auto">Now it's your turn. You are on Tesla's leadership team. A consulting firm presents two growth proposals. Based on what you've learned about strategy, trade-offs, and fit, what would you do? Analyze each proposal and make your choice.</p>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card p-8">
+                    <div class="card-content">
+                        <h4 class="text-xl font-bold mb-3">Proposal 1: The "Volta" Budget Brand</h4>
+                        <p class="text-gray-600">"Launch a new, separate budget brand of EVs called 'Volta.' These cars will be simpler, with less technology, and sold exclusively through a partnership with a mass-market retailer to reach a new, price-sensitive customer segment."</p>
+                    </div>
+                    <div class="flex space-x-4 mt-6">
+                        <button class="btn btn-secondary flex-1" onclick="showModal('proposal1_approve')">Approve</button>
+                        <button class="btn btn-outline flex-1" onclick="showModal('proposal1_reject')">Reject</button>
+                    </div>
+                </div>
+                <div class="card p-8">
+                    <div class="card-content">
+                        <h4 class="text-xl font-bold mb-3">Proposal 2: Acquire a Dealership Chain</h4>
+                        <p class="text-gray-600">"To solve our service capacity issues and accelerate our physical presence, we will acquire a large dealership chain like AutoNation. We will rebrand their service centers as Tesla Service and use their sales floors to sell used Teslas."</p>
+                    </div>
+                    <div class="flex space-x-4 mt-6">
+                        <button class="btn btn-secondary flex-1" onclick="showModal('proposal2_approve')">Approve</button>
+                        <button class="btn btn-outline flex-1" onclick="showModal('proposal2_reject')">Reject</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t mt-20">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-500">
+            <p>This interactive guide is based on the foundational work of Michael E. Porter, primarily his 1996 Harvard Business Review article, "What Is Strategy?".</p>
+            <p class="text-sm mt-2">Designed and developed as a modern learning tool.</p>
+            <div class="mt-4 pt-4 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center text-sm text-gray-600">
+                <span>© Dr. Swapnil Sahoo 2025</span>
+                <div class="flex space-x-4 items-center mt-4 sm:mt-0">
+                    <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="social-link hover:text-gray-900" aria-label="Twitter">
+                        <svg fill="currentColor" viewBox="0 0 16 16"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-1.78 13h2.683L4.493 2.05H1.685l6.136 11.7Z"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="social-link hover:text-gray-900" aria-label="LinkedIn">
+                         <svg fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="social-link hover:text-gray-900" aria-label="Instagram">
+                         <svg fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.917 3.917 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.282.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.095.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.283-.24-.705-.275-1.485-.038-.843-.046-1.095-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.884a1.161 1.161 0 1 0 0 2.322 1.161 1.161 0 0 0 0-2.322zM8 4.884c-1.74 0-3.116 1.416-3.116 3.156 0 1.74 1.376 3.156 3.116 3.156s3.116-1.416 3.116-3.156c0-1.74-1.376-3.156-3.116-3.156zM8 6.425c.873 0 1.576.692 1.576 1.545s-.703 1.545-1.576 1.545-1.576-.692-1.576-1.545.703-1.545 1.576-1.545z"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="modal-backdrop" class="fixed inset-0 bg-black bg-opacity-60 hidden z-50 flex items-center justify-center p-4 transition-opacity duration-300" onclick="closeModal()">
+        <div id="modal-content" class="bg-white rounded-lg shadow-2xl p-8 max-w-2xl w-full transform transition-all duration-300 scale-95 opacity-0" onclick="event.stopPropagation()">
+            <h3 id="modal-title" class="text-2xl font-bold mb-4"></h3>
+            <div id="modal-body" class="space-y-4"></div>
+            <button class="btn btn-primary mt-6 w-full sm:w-auto" onclick="closeModal()">Got it</button>
+        </div>
+    </div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    
+    const quizData = [
+        {
+            question: "Implementing a new CRM system to improve sales-force productivity.",
+            correctAnswer: "oe",
+            explanation: "<strong>Correct Answer: Operational Effectiveness.</strong> This is about performing the existing activity of selling *better* and more efficiently with a new tool. It doesn't change what the company does, but how it does it."
+        },
+        {
+            question: "Deciding to sell electric vehicles directly to consumers, bypassing all dealerships.",
+            correctAnswer: "strategy",
+            explanation: "<strong>Correct Answer: Strategic Choice.</strong> This is a core strategic move. Tesla chose to perform the activities of selling and distribution in a *completely different way* than its rivals, creating a unique position and making a clear trade-off."
+        },
+        {
+            question: "Reducing factory waste by 15% through a new recycling program.",
+            correctAnswer: "oe",
+            explanation: "<strong>Correct Answer: Operational Effectiveness.</strong> This is a classic OE improvement. It is about being more efficient and responsible in the existing activity of manufacturing. It's a best practice anyone could adopt."
+        },
+        {
+            question: "Offering only point-to-point flights and avoiding a hub-and-spoke system.",
+            correctAnswer: "strategy",
+            explanation: "<strong>Correct Answer: Strategic Choice.</strong> This is the cornerstone of Southwest Airlines' strategy. They chose a *different set of activities* (no hub transfers, standardized fleet) that full-service carriers could not easily copy without undermining their own model."
+        }
+    ];
+
+    const positioningData = {
+        variety: {
+            title: "Variety-Based Positioning",
+            description: "Focuses on producing a *subset* of an industry's products or services, not on customer segments. This makes sense when a company can produce particular products using a distinctive set of activities.",
+            example_name: "Contemporary Example: Canva",
+            example_text: "Canva focuses on simple, template-based design tools for non-designers. They deliberately avoid the complexity of professional software like Adobe Photoshop. Their activities are tailored to serve this specific service variety, making design accessible to a mass market.",
+        },
+        needs: {
+            title: "Needs-Based Positioning",
+            description: "Serves most or all the needs of a *particular group* of customers. It arises when there are groups of customers with differing needs, and a tailored set of activities can serve those needs best.",
+            example_name: "Contemporary Example: Quick Commerce",
+            example_text: "Blinkit and Zepto serve the specific need for *immediate* delivery for urban customers. Their activities (dense network of dark stores, rider fleet, inventory management for small-basket items) are completely different from a traditional supermarket, which is optimized for large, weekly shopping trips. The best set of activities to serve the 'I need it now' customer *differs* from the set of activities to serve the 'I need to stock up for the week' customer.",
+        },
+        access: {
+            title: "Access-Based Positioning",
+            description: "Segments customers based on *how* they can be reached. Access can be a function of geography or customer scale, requiring a different set of activities to reach them effectively.",
+            example_name: "Contemporary Example: Starlink",
+            example_text: "Starlink by SpaceX serves customers in rural and remote locations with no access to traditional fiber-optic broadband. Its entire activity system—a low-Earth orbit satellite constellation, consumer self-install kits, and global network management—is designed to serve customers who are unreachable by terrestrial providers.",
+        }
+    };
+
+    const tradeoffsData = [
+        {
+            dimension: "Customer Experience",
+            tesla: "Consistent, no-haggle pricing. Brand-controlled, tech-forward showroom.",
+            traditional: "Variable pricing, high-pressure sales. Inconsistent dealer experience.",
+            details: "Tesla's choice prioritizes a transparent, uniform, and low-pressure buying process. This builds brand loyalty and attracts customers who dislike traditional car buying. The trade-off is the lack of a familiar, local face for some customers."
+        },
+        {
+            dimension: "Cost & Pricing",
+            tesla: "Lower sales costs (~$2k/vehicle advantage). No dealer markups. Direct control over pricing.",
+            traditional: "Higher distribution costs. Dealer margins added to vehicle price.",
+            details: "By eliminating the middleman, Tesla captures the margin that would otherwise go to a dealer. This allows for more competitive pricing or higher profit margins. The trade-off is bearing the full cost of retail stores and a sales force."
+        },
+        {
+            dimension: "Brand & Data",
+            tesla: "Direct relationship with every customer. Full control over brand message. Rich data access.",
+            traditional: "Indirect customer relationship. Brand message filtered by dealers.",
+            details: "Tesla owns the customer relationship from end to end. This provides an unadulterated feedback loop from customers and vehicle sensors directly to engineering, enabling rapid iteration. The trade-off is the immense responsibility of managing all customer interactions directly."
+        },
+        {
+            dimension: "Flexibility & Speed",
+            tesla: "Can implement price changes and promotions nationally overnight. Faster feedback loop.",
+            traditional: "Slow to implement national changes due to franchise laws and dealer agreements.",
+            details: "Tesla's direct model allows it to be far more agile in its marketing and pricing strategies, reacting to market conditions in real time without having to coordinate with hundreds of independent businesses."
+        }
+    ];
+    
+    const activityMapData = {
+        central: { id: 'central-theme', text: 'Technological Differentiation & Sustainable Energy Ecosystem', class: 'central-theme' },
+        themes: [
+            { id: 'theme-vint', text: 'Vertical Integration', group: 'vint' },
+            { id: 'theme-dtc', text: 'Direct-to-Consumer Model', group: 'dtc' },
+            { id: 'theme-charge', text: 'Charging Infrastructure', group: 'charge' },
+            { id: 'theme-software', text: 'Software-Defined Vehicle', group: 'software' }
+        ],
+        activities: [
+            { text: 'Gigafactories', group: 'vint' },
+            { text: 'In-house Battery R&D', group: 'vint' },
+            { text: 'Giga Press Manufacturing', group: 'vint' },
+            { text: 'Online Sales Platform', group: 'dtc' },
+            { text: 'Company-Owned Stores', group: 'dtc' },
+            { text: 'Mobile Service Fleet', group: 'dtc' },
+            { text: 'Global Supercharger Network', group: 'charge' },
+            { text: 'Eliminates Range Anxiety', group: 'charge' },
+            { text: 'OTA Updates', group: 'software' },
+            { text: 'In-house FSD Development', group: 'software' },
+            { text: 'Fleet Data Collection', group: 'software' }
+        ]
+    };
+
+    const modalData = {
+        proposal1_approve: {
+            title: "Analysis: A Qualified 'Approve'",
+            body: `<p>This is a strategically sound decision, <strong class="font-semibold">but only if 'Volta' is a truly stand-alone unit.</strong></p>
+                   <p>This aligns with Porter's advice on managing growth. By creating a separate brand with its own tailored activities (different sales channel, different product focus), Tesla can tap a new market segment without blurring its own premium, tech-focused position. It contains the risk and avoids compromising the 'fit' of the core Tesla brand. The key is strict separation to avoid straddling.</p>`
+        },
+        proposal1_reject: {
+            title: "Analysis: A Missed Opportunity?",
+            body: `<p>While rejecting this proposal protects the Tesla brand from dilution, it might overlook a valid strategic approach to growth.</p>
+                   <p>The proposal's strength lies in its creation of a separate, tailored value chain for a different customer segment. A blanket rejection misses the nuance that growth is possible when it's managed through distinct strategic positions, rather than by trying to make the core brand be all things to all people.</p>`
+        },
+        proposal2_approve: {
+            title: "Analysis: A Strategic Mistake",
+            body: `<p>Approving this proposal would be a classic, and likely disastrous, <strong class="font-semibold">straddling move.</strong></p>
+                   <p>This decision would fundamentally violate the core trade-off of the DTC model. It would create massive internal confusion, introduce channel conflict, and degrade the value of Tesla's existing activities (online sales, direct data feedback). Trying to integrate a traditional dealership model would compromise and weaken the tightly integrated 'fit' of Tesla's entire activity system. This is precisely the kind of growth-driven compromise that destroys strategy.</p>`
+        },
+        proposal2_reject: {
+            title: "Analysis: The Correct Strategic Choice",
+            body: `<p>This is the correct decision. Rejecting this proposal shows a deep understanding of strategy.</p>
+                   <p>It recognizes that Tesla's competitive advantage comes from its <strong class="font-semibold">unique system of activities</strong>, not just its products. Acquiring a dealership would shatter the coherence of that system. It correctly prioritizes the long-term sustainability of a unique strategic position over the short-term 'easy' growth of acquiring physical locations. It defends the all-important trade-offs.</p>`
+        }
+    };
+    
+    // --- DATA FROM CSVs ---
+    const competitorData = [
+        { "Company": "Tesla", "Revenue (Millions)": 3198, "Gross Profit (Millions)": 878, "Net Income (Millions)": -294, "R&D (Millions)": 465, "SG&A (Millions)": 544 },
+        { "Company": "GM", "Revenue (Millions)": 155929, "Gross Profit (Millions)": 14210, "Net Income (Millions)": 3866, "R&D (Millions)": 7300, "SG&A (Millions)": 13900 },
+        { "Company": "Ford", "Revenue (Millions)": 144077, "Gross Profit (Millions)": 11776, "Net Income (Millions)": 3187, "R&D (Millions)": 6400, "SG&A (Millions)": 15000 },
+        { "Company": "Toyota", "Revenue (Millions)": 247700, "Gross Profit (Millions)": 51200, "Net Income (Millions)": 17800, "R&D (Millions)": 9100, "SG&A (Millions)": 25200 },
+        { "Company": "Honda", "Revenue (Millions)": 117000, "Gross Profit (Millions)": 23500, "Net Income (Millions)": 4900, "R&D (Millions)": 6000, "SG&A (Millions)": 10800 },
+        { "Company": "Nissan", "Revenue (Millions)": 105000, "Gross Profit (Millions)": 21000, "Net Income (Millions)": 4100, "R&D (Millions)": 4900, "SG&A (Millions)": 11000 },
+        { "Company": "VW Group", "Revenue (Millions)": 269000, "Gross Profit (Millions)": 48200, "Net Income (Millions)": 14600, "R&D (Millions)": 14800, "SG&A (Millions)": 27000 },
+        { "Company": "BMW Group", "Revenue (Millions)": 106000, "Gross Profit (Millions)": 19800, "Net Income (Millions)": 7700, "R&D (Millions)": 5400, "SG&A (Millions)": 5600 },
+        { "Company": "Daimler (Mercedes)", "Revenue (Millions)": 165000, "Gross Profit (Millions)": 31500, "Net Income (Millions)": 9200, "R&D (Millions)": 7300, "SG&A (Millions)": 14500 }
+    ];
+
+    const luxuryCarData = [
+        { "Car": "Tesla Model S", "MSRP": 75000, "Range (miles)": 265, "0-60 (sec)": 4.2 },
+        { "Car": "Porsche Panamera S", "MSRP": 93200, "Range (miles)": 450, "0-60 (sec)": 4.9 },
+        { "Car": "Audi A7", "MSRP": 68300, "Range (miles)": 500, "0-60 (sec)": 5.4 },
+        { "Car": "BMW 640i Gran Coupe", "MSRP": 78500, "Range (miles)": 450, "0-60 (sec)": 5.4 },
+        { "Car": "Mercedes CLS 550", "MSRP": 72400, "Range (miles)": 450, "0-60 (sec)": 4.5 }
+    ];
+    
+    const supplierData = [
+        {"Component":"Battery Cells & Packs","Supplier":"Panasonic","Strategic Implication":"A foundational partnership. Panasonic co-invested in Giga Nevada, ensuring supply and sharing R&D for a critical, high-cost component."},
+        {"Component":"Electric Motors & Drivetrain","Supplier":"In-house/Fukuta (Taiwan)","Strategic Implication":"Tesla produces most of its own motors but also partners for specific components. This mix provides flexibility while retaining control over core powertrain technology."},
+        {"Component":"Chassis & Structural Components","Supplier":"Various / In-house","Strategic Implication":"Increasingly in-house with technologies like the Giga Press, which simplifies manufacturing, reduces costs, and is a key strategic activity that is hard to imitate."},
+        {"Component":"Displays & Infotainment","Supplier":"LG / AU Optronics","Strategic Implication":"Outsourcing the manufacturing of the iconic large touchscreens allows Tesla to focus on the software and user experience, which is the true differentiator."}
+    ];
+
+    const teslaFinancialData = [
+      {"Year": 2008, "Revenue": 15, "Net Income": -83},
+      {"Year": 2009, "Revenue": 112, "Net Income": -56},
+      {"Year": 2010, "Revenue": 117, "Net Income": -154},
+      {"Year": 2011, "Revenue": 204, "Net Income": -254},
+      {"Year": 2012, "Revenue": 413, "Net Income": -396},
+      {"Year": 2013, "Revenue": 2013, "Net Income": -74},
+      {"Year": 2014, "Revenue": 3198, "Net Income": -294}
+    ];
+
+    // --- CHART INITIALIZATION ---
+    let competitorChart = null;
+    function initCompetitorChart(metric = 'Revenue (Millions)') {
+        const ctx = document.getElementById('competitorFinancialsChart')?.getContext('2d');
+        if (!ctx) return;
+
+        const labels = competitorData.map(c => c.Company);
+        const data = competitorData.map(c => c[metric]);
+        
+        const backgroundColors = labels.map(label => label === 'Tesla' ? '#D66D75' : '#5C8D89');
+
+        if (competitorChart) {
+            competitorChart.destroy();
+        }
+
+        competitorChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: `${metric} (in Millions USD)`,
+                    data: data,
+                    backgroundColor: backgroundColors,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.x !== null) {
+                                    label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', notation: 'compact' }).format(context.parsed.x * 1000000);
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            callback: function(value, index, values) {
+                                return new Intl.NumberFormat('en-US', { notation: 'compact', compactDisplay: 'short' }).format(value);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    function initLuxuryCarChart() {
+        const ctx = document.getElementById('luxuryCarChart')?.getContext('2d');
+        if (!ctx) return;
+
+        new Chart(ctx, {
+            type: 'bubble',
+            data: {
+                datasets: luxuryCarData.map(car => ({
+                    label: car.Car,
+                    data: [{
+                        x: car['MSRP'],
+                        y: car['0-60 (sec)'],
+                        r: car['Range (miles)'] / 15 // Scale radius for visibility
+                    }],
+                    backgroundColor: car.Car.includes('Tesla') ? 'rgba(214, 109, 117, 0.7)' : 'rgba(92, 141, 137, 0.7)',
+                    borderColor: car.Car.includes('Tesla') ? '#D66D75' : '#5C8D89',
+                }))
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                     tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const car = luxuryCarData[context.datasetIndex];
+                                return [
+                                    `${car.Car}`,
+                                    `MSRP: ${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(car.MSRP)}`,
+                                    `0-60 mph: ${car['0-60 (sec)']}s`,
+                                    `Range: ${car['Range (miles)']} mi`
+                                ];
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: { display: true, text: 'MSRP (USD)' },
+                        ticks: {
+                            callback: function(value) { return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', notation: 'compact' }).format(value); }
+                        }
+                    },
+                    y: {
+                        reverse: true,
+                        title: { display: true, text: '0-60 mph (seconds) - Lower is Better' }
+                    }
+                }
+            }
+        });
+    }
+
+    function initSuppliersTable() {
+        const tbody = document.getElementById('suppliersTable');
+        if(!tbody) return;
+        supplierData.forEach(item => {
+            const row = tbody.insertRow();
+            row.innerHTML = `
+                <td class="p-4 font-semibold">${item.Component}</td>
+                <td class="p-4">${item.Supplier}</td>
+                <td class="p-4 text-sm">${item["Strategic Implication"]}</td>
+            `;
+        });
+    }
+
+
+    function initFinancialsToggle() {
+        const container = document.getElementById('financials-toggle-buttons');
+        if (!container) return;
+        const metrics = ['Revenue (Millions)', 'Gross Profit (Millions)', 'Net Income (Millions)', 'R&D (Millions)'];
+        metrics.forEach(metric => {
+            const button = document.createElement('button');
+            button.textContent = metric.replace(' (Millions)', '');
+            button.className = 'data-toggle-btn';
+            if (metric === 'Revenue (Millions)') {
+                button.classList.add('active');
+            }
+            button.addEventListener('click', () => {
+                document.querySelectorAll('#financials-toggle-buttons .data-toggle-btn').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                initCompetitorChart(metric);
+            });
+            container.appendChild(button);
+        });
+    }
+    
+    function initTeslaFinancialChart() {
+        const ctx = document.getElementById('teslaFinancialPerformanceChart')?.getContext('2d');
+        if (!ctx) return;
+        
+        const labels = teslaFinancialData.map(d => d.Year);
+        const revenueData = teslaFinancialData.map(d => d.Revenue);
+        const netIncomeData = teslaFinancialData.map(d => d['Net Income']);
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        type: 'bar',
+                        label: 'Revenue (Millions)',
+                        data: revenueData,
+                        backgroundColor: '#5C8D89',
+                        yAxisID: 'y',
+                    },
+                    {
+                        type: 'line',
+                        label: 'Net Income (Millions)',
+                        data: netIncomeData,
+                        borderColor: '#D66D75',
+                        backgroundColor: '#D66D75',
+                        fill: false,
+                        tension: 0.1,
+                        yAxisID: 'y1',
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                         callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', notation: 'compact' }).format(context.parsed.y * 1000000);
+                                }
+                                return label;
+                            }
+                        }
+                    },
+                },
+                scales: {
+                    x: {
+                        title: { display: true, text: 'Year' }
+                    },
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: { display: true, text: 'Revenue (Millions USD)'},
+                         ticks: {
+                            callback: function(value) { return new Intl.NumberFormat('en-US', { notation: 'compact', compactDisplay: 'short' }).format(value); }
+                        }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        title: { display: true, text: 'Net Income (Millions USD)'},
+                        grid: {
+                            drawOnChartArea: false, 
+                        },
+                         ticks: {
+                            callback: function(value) { return new Intl.NumberFormat('en-US', { notation: 'compact', compactDisplay: 'short' }).format(value); }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    function initQuiz() {
+        const container = document.getElementById('quizContainer');
+        if (!container) return;
+        container.innerHTML = '';
+        quizData.forEach((item, index) => {
+            const questionId = `question-${index}`;
+            const div = document.createElement('div');
+            div.className = 'border border-gray-200 p-4 rounded-lg';
+            div.id = questionId;
+            
+            div.innerHTML = `
+                <p class="font-semibold mb-3">${item.question}</p>
+                <div class="flex flex-col sm:flex-row gap-2">
+                    <button class="quiz-btn btn btn-secondary text-sm py-2 px-3 flex-1" data-answer="oe">Operational Effectiveness</button>
+                    <button class="quiz-btn btn btn-primary text-sm py-2 px-3 flex-1" data-answer="strategy">Strategic Choice</button>
+                </div>
+                <div class="debrief hidden"></div>
+            `;
+            container.appendChild(div);
+
+            const questionCard = document.getElementById(questionId);
+            const buttons = questionCard.querySelectorAll('.quiz-btn');
+            const debriefEl = questionCard.querySelector('.debrief');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const selectedAnswer = button.dataset.answer;
+                    buttons.forEach(btn => btn.disabled = true);
+                    debriefEl.innerHTML = item.explanation;
+                    debriefEl.classList.remove('hidden');
+                    debriefEl.classList.add('debrief-correct');
+                    if (selectedAnswer === item.correctAnswer) {
+                        button.classList.add('ring-2', 'ring-offset-2', 'ring-green-500');
+                    } else {
+                        button.classList.add('ring-2', 'ring-offset-2', 'ring-red-500');
+                        const correctButton = questionCard.querySelector(`[data-answer="${item.correctAnswer}"]`);
+                        correctButton.classList.add('ring-2', 'ring-offset-2', 'ring-green-500');
+                    }
+                });
+            });
+        });
+    }
+
+    function initAnimatedProductivityFrontier() {
+        const ctx = document.getElementById('animatedProductivityFrontierChart')?.getContext('2d');
+        if (!ctx) return;
+
+        let animationInterval;
+        const narrativeEl = document.getElementById('animationNarrative');
+        const playBtn = document.getElementById('playAnimationBtn');
+
+        const frontierData = [{x: 1, y: 6.5}, {x: 2, y: 6}, {x: 3, y: 5}, {x: 4, y: 3.5}, {x: 5, y: 1.5}];
+        
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                datasets: [
+                {
+                    label: 'Productivity Frontier',
+                    data: frontierData,
+                    borderColor: '#5C8D89',
+                    backgroundColor: 'rgba(92, 141, 137, 0.1)',
+                    tension: 0.4,
+                    fill: true,
+                    pointRadius: 0,
+                },
+                {
+                    type: 'bubble',
+                    label: 'Blinkit',
+                    data: [{x: 3, y: 2}],
+                    backgroundColor: 'rgba(219, 68, 55, 0.8)', // Red
+                    borderColor: 'rgba(219, 68, 55, 1)',
+                    radius: 8,
+                },
+                {
+                    type: 'bubble',
+                    label: 'Zepto',
+                    data: [{x: 3.1, y: 2.1}], // Start slightly different
+                    backgroundColor: 'rgba(244, 180, 0, 0.8)', // Yellow
+                    borderColor: 'rgba(244, 180, 0, 1)',
+                    radius: 8,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { min: 0, max: 8, title: { display: true, text: 'Nonprice buyer value delivered' } },
+                    x: { 
+                        min: 0, 
+                        max: 6, 
+                        reverse: true,
+                        title: { display: true, text: 'Relative cost position' },
+                        ticks: {
+                            callback: function(value, index, ticks) {
+                                return index === 1 ? 'High' : (index === ticks.length - 2 ? 'Low' : '');
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: { display: true, position: 'bottom' },
+                    tooltip: { enabled: false }
+                }
+            }
+        });
+
+        function runAnimation() {
+            if (animationInterval) clearInterval(animationInterval);
+            playBtn.disabled = true;
+
+            // Reset positions
+            chart.data.datasets[1].data = [{x: 3, y: 2}];
+            chart.data.datasets[2].data = [{x: 3.1, y: 2.1}];
+            chart.update('none');
+            
+            let step = 0;
+            const totalSteps = 100;
+            
+            narrativeEl.textContent = "Blinkit and Zepto invest heavily in similar OE improvements...";
+
+            animationInterval = setInterval(() => {
+                if (step >= totalSteps) {
+                    clearInterval(animationInterval);
+                    narrativeEl.innerHTML = "<strong>Result:</strong> Both converge on the same point, leading to intense, 'mutually destructive' competition.";
+                    playBtn.disabled = false;
+                    playBtn.textContent = "Re-run Simulation";
+                    return;
+                }
+
+                // Move towards a target on the frontier, e.g., (2, 6)
+                const targetX = 2;
+                const targetY = 6;
+
+                const blinkitPoint = chart.data.datasets[1].data[0];
+                const zeptoPoint = chart.data.datasets[2].data[0];
+
+                blinkitPoint.x += (targetX - 3) / totalSteps;
+                blinkitPoint.y += (targetY - 2) / totalSteps;
+                
+                zeptoPoint.x += (targetX - 3.1) / totalSteps;
+                zeptoPoint.y += (targetY - 2.1) / totalSteps;
+
+                if (step > totalSteps / 2 && narrativeEl.textContent.startsWith("Blinkit")) {
+                     narrativeEl.textContent = "...racing towards the frontier of maximum possible efficiency...";
+                }
+
+                chart.update('none');
+                step++;
+            }, 50);
+        }
+
+        playBtn.addEventListener('click', runAnimation);
+        narrativeEl.textContent = "Click 'Run Simulation' to see the OE race in action.";
+    }
+
+
+    function updatePositioningContent(tab) {
+        const data = positioningData[tab];
+        const container = document.getElementById('positioningContent');
+        if (!container) return;
+        container.innerHTML = `
+            <h4 class="text-2xl font-bold mb-2 accent-text">${data.title}</h4>
+            <p class="mb-6 text-lg">${data.description}</p>
+            <div class="bg-gray-50 p-6 rounded-lg">
+                <h5 class="font-semibold text-lg mb-2">${data.example_name}</h5>
+                <p class="text-gray-600">${data.example_text}</p>
+            </div>
+        `;
+    }
+
+    function initPositioningTabs() {
+        const tabs = document.querySelectorAll('.position-tab');
+        if (tabs.length === 0) return;
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                updatePositioningContent(tab.dataset.tab);
+            });
+        });
+        document.querySelector('.position-tab[data-tab="needs"]').click();
+    }
+    
+    function initTradeoffsTable() {
+        const tbody = document.getElementById('tradeoffsTable');
+        const detailsDiv = document.getElementById('tradeoff-details');
+        if (!tbody || !detailsDiv) return;
+        tradeoffsData.forEach((item) => {
+            const row = document.createElement('tr');
+            row.className = 'border-b border-gray-200 cursor-pointer hover:bg-gray-50';
+            row.innerHTML = `
+                <td class="p-4 font-semibold">${item.dimension}</td>
+                <td class="p-4">${item.tesla}</td>
+                <td class="p-4">${item.traditional}</td>
+            `;
+            row.addEventListener('click', () => {
+                detailsDiv.innerHTML = `<h5 class="font-bold mb-2">${item.dimension} - The Strategic Implication</h5><p>${item.details}</p>`;
+                detailsDiv.classList.remove('hidden');
+                tbody.querySelectorAll('tr').forEach(r => r.classList.remove('bg-yellow-50', 'highlight-bg'));
+                row.classList.add('bg-yellow-50');
+            });
+            tbody.appendChild(row);
+        });
+    }
+
+    function initActivityMap() {
+        const mapContainer = document.getElementById('activityMap');
+        if (!mapContainer) return;
+        mapContainer.classList.add('grid', 'grid-cols-5', 'grid-rows-5', 'gap-4', 'w-full', 'h-full');
+        
+        const central = document.createElement('div');
+        central.id = activityMapData.central.id;
+        central.className = `map-node ${activityMapData.central.class} col-start-2 col-span-3 row-start-3 row-span-1 flex items-center justify-center text-center p-4 rounded-lg`;
+        central.textContent = activityMapData.central.text;
+        mapContainer.appendChild(central);
+
+        const positions = {
+            'theme-vint': 'col-start-1 row-start-1', 'theme-dtc': 'col-start-5 row-start-1',
+            'theme-charge': 'col-start-1 row-start-5', 'theme-software': 'col-start-5 row-start-5',
+            'vint': ['col-start-1 row-start-2', 'col-start-2 row-start-1', 'col-start-2 row-start-2'],
+            'dtc': ['col-start-4 row-start-1', 'col-start-5 row-start-2', 'col-start-4 row-start-2'],
+            'charge': ['col-start-1 row-start-4', 'col-start-2 row-start-5', 'col-start-2 row-start-4'],
+            'software': ['col-start-4 row-start-5', 'col-start-5 row-start-4', 'col-start-4 row-start-4']
+        };
+
+        activityMapData.themes.forEach(theme => {
+            const node = document.createElement('div');
+            node.id = theme.id;
+            node.dataset.group = theme.group;
+            node.className = `map-node theme ${positions[theme.id]} flex items-center justify-center text-center p-3 rounded-md`;
+            node.textContent = theme.text;
+            mapContainer.appendChild(node);
+        });
+
+        let groupCounts = {};
+        activityMapData.activities.forEach(activity => {
+            groupCounts[activity.group] = groupCounts[activity.group] || 0;
+            const node = document.createElement('div');
+            node.dataset.group = activity.group;
+            node.className = `map-node ${positions[activity.group][groupCounts[activity.group]]} flex items-center justify-center text-center p-2 rounded-md text-sm`;
+            node.textContent = activity.text;
+            mapContainer.appendChild(node);
+            groupCounts[activity.group]++;
+        });
+
+        mapContainer.querySelectorAll('.map-node[data-group]').forEach(node => {
+            node.addEventListener('mouseover', () => {
+                const group = node.dataset.group;
+                mapContainer.querySelectorAll('.map-node').forEach(n => {
+                    if (n.dataset.group === group || n.id === 'central-theme') {
+                        n.classList.remove('faded');
+                        n.classList.add('hover-group');
+                    } else {
+                        n.classList.add('faded');
+                        n.classList.remove('hover-group');
+                    }
+                });
+            });
+            node.addEventListener('mouseout', () => {
+                 mapContainer.querySelectorAll('.map-node').forEach(n => n.classList.remove('faded', 'hover-group'));
+            });
+        });
+    }
+
+    // --- MAIN INITIALIZATION ---
+    function initAll() {
+        initQuiz();
+        initAnimatedProductivityFrontier();
+        initPositioningTabs();
+        initTradeoffsTable();
+        initActivityMap();
+        initFinancialsToggle();
+        initCompetitorChart();
+        initLuxuryCarChart();
+        initSuppliersTable();
+        initTeslaFinancialChart();
+    }
+
+    const modalBackdrop = document.getElementById('modal-backdrop');
+    const modalContent = document.getElementById('modal-content');
+
+    window.showModal = (id) => {
+        const data = modalData[id];
+        document.getElementById('modal-title').textContent = data.title;
+        document.getElementById('modal-body').innerHTML = data.body;
+        modalBackdrop.classList.remove('hidden');
+        setTimeout(() => {
+            modalBackdrop.classList.remove('opacity-0');
+            modalContent.classList.remove('scale-95', 'opacity-0');
+        }, 10);
+    }
+
+    window.closeModal = () => {
+        modalBackdrop.classList.add('opacity-0');
+        modalContent.classList.add('scale-95', 'opacity-0');
+        setTimeout(() => {
+            modalBackdrop.classList.add('hidden');
+        }, 300);
+    }
+    
+    document.getElementById('mobile-menu-button').addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('main section[id]');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if(link.getAttribute('href').substring(1) === entry.target.id) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    }, { rootMargin: '-40% 0px -40% 0px' });
+    sections.forEach(section => observer.observe(section));
+
+    initAll();
+});
+</script>
+</body>
+</html>

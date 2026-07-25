@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patagonia Inc.: Competitive Advantage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Deeper dark blue-gray for background */
+            color: #f8fafc; /* Near-white for primary text */
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .accordion-header {
+            background-color: #1e293b; /* Slightly lighter dark for headers */
+            color: #cbd5e1; /* Light gray for header text */
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            margin-bottom: 0.5rem;
+            border: 1px solid #334155; /* Subtle border for definition */
+        }
+        .accordion-header:hover {
+            background-color: #334155; /* Darker hover */
+        }
+        .accordion-content {
+            background-color: #1e293b; /* Same as header for content background */
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+            border: 1px solid #334155; /* Subtle border for content */
+            border-top: none; /* No top border to blend with header */
+        }
+        .accordion-content.open {
+            max-height: 1000px; /* Increased for potentially longer FAQ answers */
+            padding: 1rem 1.5rem;
+        }
+        .arrow {
+            transition: transform 0.3s ease;
+        }
+        .arrow.rotate {
+            transform: rotate(90deg);
+        }
+        .card {
+            background-color: #1e293b; /* Card background */
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow */
+            margin-bottom: 1.5rem;
+            border: 1px solid #334155; /* Subtle border for definition */
+        }
+        .highlight-text {
+            color: #86efac; /* Brighter green for highlights */
+            font-weight: 600;
+        }
+        .section-heading {
+            color: #4ade80; /* Even brighter green for section titles */
+            font-size: 2rem; /* Slightly larger */
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            border-bottom: 2px solid #4ade80; /* Underline effect */
+            padding-bottom: 0.5rem;
+        }
+        .sub-section-heading {
+            color: #a7f3d0; /* Lighter green for sub-section titles */
+            font-size: 1.35rem; /* Slightly larger */
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .footer-link {
+            color: #cbd5e1; /* Light gray for footer links */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-link:hover {
+            color: #86efac; /* Brighter green on hover */
+        }
+        .list-disc li {
+            margin-bottom: 0.5rem; /* Spacing for list items */
+        }
+        #patagonia-logo {
+            display: block;
+            margin: 0 auto 2rem auto;
+            max-width: 200px; /* Adjust size as needed */
+            height: auto;
+            border-radius: 0.5rem;
+            background-color: transparent; /* Ensure no background from the image placeholder */
+        }
+        .simulation-button {
+            background-color: #4ade80;
+            color: #0f172a;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            display: block;
+            width: fit-content;
+            margin: 1rem auto;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        .simulation-button:hover {
+            background-color: #22c55e;
+            transform: translateY(-2px);
+        }
+        .simulation-result {
+            background-color: #1e293b;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin-top: 2rem;
+            border: 1px solid #4ade80;
+            text-align: center;
+        }
+        .simulation-result h3 {
+            color: #4ade80;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .hidden {
+            display: none;
+        }
+
+        /* MCQ Styles */
+        .mcq-question-card {
+            background-color: #1e293b;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            margin-bottom: 1.5rem;
+            border: 1px solid #334155;
+        }
+        .mcq-question-card p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #f8fafc;
+        }
+        .mcq-options label {
+            display: block;
+            background-color: #334155;
+            padding: 0.75rem 1rem;
+            border-radius: 0.375rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            color: #cbd5e1;
+        }
+        .mcq-options label:hover {
+            background-color: #475569;
+        }
+        .mcq-options input[type="radio"] {
+            margin-right: 0.5rem;
+            accent-color: #4ade80; /* Green accent for radio buttons */
+        }
+        .mcq-feedback {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            color: #0f172a; /* Dark text for feedback */
+        }
+        .mcq-feedback.correct {
+            background-color: #4ade80; /* Green for correct */
+        }
+        .mcq-feedback.incorrect {
+            background-color: #ef4444; /* Red for incorrect */
+        }
+        .mcq-feedback p {
+            color: inherit; /* Ensure text color is inherited for feedback message */
+        }
+        .mcq-feedback .explanation {
+            font-weight: normal;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <header class="bg-gray-900 text-gray-300 py-4 text-center rounded-b-lg shadow-lg">
+        <p class="text-sm">&copy; Dr. Swapnil Sahoo 2025</p>
+        <div class="flex justify-center space-x-4 mt-2">
+            <a href="https://x.com/swapnilsahoo" target="_blank" class="footer-link">X (Twitter)</a>
+            <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" class="footer-link">Instagram</a>
+            <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" class="footer-link">LinkedIn</a>
+        </div>
+    </header>
+
+    <div class="container py-8">
+        <img id="patagonia-logo" src="http://googleusercontent.com/file_content/11" alt="Patagonia Logo">
+
+        <h1 class="text-5xl font-extrabold text-center mb-10 text-green-300 leading-tight">
+            Creating and Sustaining Competitive Advantage: <br class="hidden sm:block"> The Patagonia Inc. Story
+        </h1>
+
+        <div class="card">
+            <p class="text-lg mb-4 text-gray-200">
+                In the dynamic world of business, achieving and maintaining a <span class="highlight-text">competitive advantage</span> is paramount. It's about how a firm delivers superior value to its customers or operates at a lower cost than its rivals. This interactive page will guide you through the core concepts, using the remarkable case of <span class="highlight-text">Patagonia Inc.</span> as our primary example.
+            </p>
+            <p class="text-lg text-gray-200">
+                Patagonia's journey, culminating in its declaration that "Earth Is Now Our Only Shareholder," offers profound insights into strategic management and purpose-driven business.
+            </p>
+        </div>
+
+        <h2 class="section-heading mt-12">Session Objectives</h2>
+        <div class="card">
+            <p class="text-lg mb-4 text-gray-200">
+                By the end of this session, you will be able to:
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-gray-200">
+                <li>Understand the fundamental concept of creating competitive advantage.</li>
+                <li>Identify and analyze external sources of competitive advantage.</li>
+                <li>Identify and analyze internal sources of competitive advantage.</li>
+                <li>Explain how competitive advantage is sustained over time.</li>
+                <li>Discuss the roles of deterrence and preemption in sustaining competitive advantage.</li>
+                <li>Apply these concepts to the case of Patagonia Inc. and its unique strategic choices.</li>
+            </ul>
+        </div>
+
+        <h2 class="section-heading mt-12">Facts of the Case: Patagonia Inc.</h2>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)" ondblclick="closeAccordion(this)">
+                Timeline of Main Events
+                <span class="arrow">&#9654;</span>
+            </div>
+            <div class="accordion-content">
+                <ul class="list-disc list-inside space-y-2 text-gray-300">
+                    <li><span class="font-bold">1892:</span> The Sierra Club, focused on preserving natural places, fighting climate change, and advocating for the outdoors, is founded by naturalist John Muir.</li>
+                    <li><span class="font-bold">1949:</span> Yvon Chouinard, Patagonia's founder, is introduced to rock climbing at age 14.</li>
+                    <li><span class="font-bold">1957:</span> At age 19, Yvon Chouinard begins making climbing gear in a chicken coop.</li>
+                    <li><span class="font-bold">Early 1960s:</span> Yvon Chouinard partners with friends Tom and Doreen Frost to found Chouinard Equipment.</li>
+                    <li><span class="font-bold">1966:</span> Chouinard Equipment establishes its headquarters in Ventura, California.</li>
+                    <li><span class="font-bold">1970:</span> Chouinard Equipment becomes the largest supplier of climbing hardware in the U.S. Yvon Chouinard marries Malinda Pennoyer.</li>
+                    <li><span class="font-bold">Early 1970s:</span>
+                        <ul class="list-disc list-inside ml-4">
+                            <li>Yvon Chouinard recognises the environmental damage caused by pitons and Chouinard Equipment designs and sells aluminium chocks that can be removed without damaging the rock. The U.S. market shifts to this new, environmentally friendly technology.</li>
+                            <li>While travelling in Scotland, Chouinard realises rugby jerseys would be suitable for climbing. Chouinard Equipment enters the apparel market by importing rugby shirts, the first product sold under the Patagonia label.</li>
+                            <li>Demand for Patagonia shirts outstrips production capacity. The company partners with a Hong Kong factory, but late shipments and inferior quality lead to the Frosts' departure. The Chouinards become sole owners.</li>
+                        </ul>
+                    </li>
+                    <li><span class="font-bold">1977:</span> Patagonia's apparel offerings expand with the release of the pile fleece jacket, which becomes an iconic product.</li>
+                    <li><span class="font-bold">1979:</span> The Chouinards establish Patagonia as an independent apparel company. Kris Tompkins, an early Chouinard Equipment employee, becomes CEO of Patagonia.</li>
+                    <li><span class="font-bold">1980s:</span>
+                        <ul class="list-disc list-inside ml-4">
+                            <li>Patagonia's sales grow from an estimated $20 million to $100 million annually.</li>
+                            <li>The company establishes one of the first onsite corporate daycare centres in the U.S. and implements paid maternity and paternity leave.</li>
+                            <li>Patagonia posts daily surf forecasts and funds employee trips to establish a national park in Patagonia, South America.</li>
+                        </ul>
+                    </li>
+                    <li><span class="font-bold">1985:</span> Patagonia dedicates 10% of its profits to the preservation and restoration of nature.</li>
+                    <li><span class="font-bold">1986:</span> Patagonia pledges to annually provide the greater of 1% of sales or 10% of profit to environmental causes.</li>
+                    <li><span class="font-bold">Late 1980s:</span> Chouinard Equipment faces lawsuits, high insurance premiums, and is forced into bankruptcy. Its employees buy the company and rename it Black Diamond Ltd.</li>
+                    <li><span class="font-bold">1991:</span>
+                        <ul class="list-disc list-inside ml-4">
+                            <li>Patagonia establishes its purpose statement: "Make the best product, cause no unnecessary harm, and use business to inspire and implement solutions to the environmental crisis."</li>
+                            <li>The company writes out its core values, including quality, integrity, environmentalism, and not being bound by convention.</li>
+                            <li>During a recession, Patagonia lays off 20% of its 600-person staff (July 31). From this point, Patagonia limits growth to pre-set targets.</li>
+                        </ul>
+                    </li>
+                    <li><span class="font-bold">1993:</span> Kris Tompkins retires as CEO of Patagonia and becomes a board member. Environmentalist and real estate investor Dan Emmett joins the board.</li>
+                    <li><span class="font-bold">1994:</span> Patagonia commissions an independent assessment of its products' environmental impacts, finding conventional cotton production to have the largest negative impact. Chouinard decides to switch all 166 Patagonia cotton products to organic cotton within 18 months.</li>
+                    <li><span class="font-bold">1996:</span> Patagonia opens the first Nevada building certified as Leadership in Energy and Environmental Design (LEED) Gold by the U.S. Green Building Council in Reno, Nevada. This facility later houses the Worn Wear Program.</li>
+                    <li><span class="font-bold">2002:</span> Yvon Chouinard and Craig Mathews co-found 1% for the Planet, a non-profit connecting companies pledging 1% of annual sales to environmental causes.</li>
+                    <li><span class="font-bold">Mid-2000s:</span> Charles Conn joins Patagonia's board, having met Yvon Chouinard while fishing in Argentina. Chouinard discusses his plan to shut Patagonia down when he could no longer run it.</li>
+                    <li><span class="font-bold">2005:</span> Patagonia's annual net sales grow to an estimated $200 million.</li>
+                    <li><span class="font-bold">2006:</span> B Corp certification is established.</li>
+                    <li><span class="font-bold">2008:</span> Charles Conn officially joins Patagonia's board.</li>
+                    <li><span class="font-bold">2010s:</span> Patagonia experiences significant growth but struggles with the environmental impact of increased sales.</li>
+                    <li><span class="font-bold">2011:</span>
+                        <ul class="list-disc list-inside ml-4">
+                            <li>Patagonia certifies as a B Corporation and registers as a California benefit corporation. It becomes the very first benefit corporation in the state. Hilary Dessouky joins Patagonia.</li>
+                            <li>In November, Patagonia runs a full-page "DON'T BUY THIS JACKET" ad in The New York Times, launching its Common Threads Initiative.</li>
+                        </ul>
+                    </li>
+                    <li><span class="font-bold">2013:</span> Patagonia launches Tin Shed Ventures, a venture capital organisation funded with $20 million for environmental startups.</li>
+                    <li><span class="font-bold">2016:</span>
+                        <ul class="list-disc list-inside ml-4">
+                            <li>The proposed environmental policies of the incoming Trump administration lead Patagonia to increase political advocacy.</li>
+                            <li>Patagonia runs a "100% for the Planet" Black Friday marketing campaign, donating $10 million in sales to environmental organisations.</li>
+                        </ul>
+                    </li>
+                    <li><span class="font-bold">2017:</span>
+                        <ul class="list-disc list-inside ml-4">
+                            <li>Patagonia opposes the U.S. withdrawal from the Paris Climate Accords and leads advocacy efforts against the removal of federal protection for public lands, including Bears Ears National Monument.</li>
+                            <li>Patagonia funds nonprofits and joins them in suing the government over Bears Ears National Monument.</li>
+                            <li>Yvon Chouinard is dismayed to be included on the Forbes billionaires list.</li>
+                        </ul>
+                    </li>
+                    <li><span class="font-bold">2018:</span>
+                        <ul class="list-disc list-inside ml-4">
+                            <li>Yvon Chouinard changes Patagonia's mission to: "We're in business to save our home planet."</li>
+                            <li>The U.S. law allowing private foundations to own 100% of a for-profit company (like Newman's Own) is updated.</li>
+                        </ul>
+                    </li>
+                    <li><span class="font-bold">2019 (Undated):</span> The Tompkins Conservation Foundation donates 1 million acres of land to the Chilean government, the single largest donation of private land to the public.</li>
+                    <li><span class="font-bold">Winter 2019:</span> Charles Conn and Kris Tompkins recognise Yvon Chouinard is serious about succession planning and create "Project Chacabuco" to determine a new ownership model.</li>
+                    <li><span class="font-bold">2020:</span>
+                        <ul class="list-disc list-inside ml-4">
+                            <li>Patagonia is a private company wholly owned by the Chouinard family (Yvon, Malinda, Fletcher, and Claire).</li>
+                            <li>Patagonia has donated nearly $200 million to environmental organisations since 1980.</li>
+                            <li>1% for the Planet has raised $435 million from over 5,000 business members.</li>
+                            <li>Yvon Chouinard charges Ryan Gellert, Charles Conn, Kris Tompkins, Hilary Dessouky, and Greg Curtis with determining Patagonia's future ownership structure. The team spends nearly two years researching options and designing the structure, meeting biweekly.</li>
+                        </ul>
+                    </li>
+                    <li><span class="font-bold">2021:</span> Dr. Ayana Elizabeth Johnson joins Patagonia's board.</li>
+                    <li><span class="font-bold">September 14, 2022:</span>
+                        <ul class="list-disc list-inside ml-4">
+                            <li>At an all-staff event at Patagonia's Ventura, California headquarters, Yvon Chouinard announces he is no longer Patagonia's owner.</li>
+                            <li>The new ownership structure is revealed: 100% of the company's voting stock transfers to the Patagonia Purpose Trust (a perpetual purpose trust), and 100% of the non-voting stock goes to the Holdfast Collective (a 501(c)(4) social welfare organisation).</li>
+                            <li>The Chouinard family pays a one-time gift tax of $17.5 million for the transfer of voting shares.</li>
+                            <li>Yvon Chouinard's letter, "Meet Our New Owner," is published, stating "Earth is now our only shareholder."</li>
+                        </ul>
+                    </li>
+                    <li><span class="font-bold">2022 (After September 14):</span>
+                        <ul class="list-disc list-inside ml-4">
+                            <li>Patagonia is valued at an estimated range of $2 billion to $8 billion, with approximately $1 billion in annual revenue and $100 million in net income.</li>
+                            <li>The company expects to issue $100 million or more annually as dividends to fight the climate crisis.</li>
+                            <li>The Holdfast Collective will address root causes of climate change, focusing on nature-based solutions and preservation of threatened lands and waters.</li>
+                            <li>The Patagonia Purpose Trust will oversee Patagonia's adherence to its philosophy and elect the board.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)" ondblclick="closeAccordion(this)">
+                Cast of Characters
+                <span class="arrow">&#9654;</span>
+            </div>
+            <div class="accordion-content">
+                <ul class="list-disc list-inside space-y-2 text-gray-300">
+                    <li><span class="font-bold">Yvon Chouinard:</span> Founder of Patagonia. Born in Maine, he started making climbing gear at age 19. He is known for his commitment to environmentalism, his distrust of traditional capitalism, and his simple lifestyle. He initiated the process to transfer Patagonia's ownership to fight the environmental crisis.</li>
+                    <li><span class="font-bold">Malinda Pennoyer Chouinard:</span> Yvon Chouinard's wife. A fellow rock climber, she joined Chouinard Equipment (later Patagonia) a few years after they married in 1970. She was a co-owner of Patagonia with Yvon.</li>
+                    <li><span class="font-bold">Fletcher Chouinard:</span> Son of Yvon and Malinda Chouinard. He works at Patagonia, running the surfboard business, and was a non-voting shareholder. He was not interested in carrying the burden of controlling the company's substantial assets for future generations.</li>
+                    <li><span class="font-bold">Claire Chouinard:</span> Daughter of Yvon and Malinda Chouinard. She works at Patagonia, leading design for the organisation, and was a non-voting shareholder. Like her brother, she was not comfortable with the burden of controlling the company's assets.</li>
+                    <li><span class="font-bold">Ryan Gellert:</span> CEO of Patagonia. He was part of the group tasked with devising and implementing Patagonia's new ownership structure and is now responsible for running the company under this new model.</li>
+                    <li><span class="font-bold">Charles Conn (MBA 1990):</span> Board Chair of Patagonia. A former McKinsey & Company partner, he founded Citysearch and served as CEO and warden of the Rhodes Trust. He has a long-standing friendship with Yvon Chouinard and co-created "Project Chacabuco" to determine Patagonia's future ownership.</li>
+                    <li><span class="font-bold">Kris Tompkins:</span> Board Member of Patagonia and former CEO of Patagonia (1979-1993). An early employee of Chouinard Equipment, she later married The North Face founder Doug Tompkins and spent decades purchasing and conserving land in Chile. She co-created "Project Chacabuco."</li>
+                    <li><span class="font-bold">Hilary Dessouky:</span> General Counsel of Patagonia. She joined Patagonia around 2011 when it became a benefit corporation and was part of the "Project Chacabuco" team.</li>
+                    <li><span class="font-bold">Greg Curtis:</span> Deputy General Counsel of Patagonia. He was part of the "Project Chacabuco" team, providing legal expertise for the ownership transition.</li>
+                    <li><span class="font-bold">Dan Emmett:</span> Environmentalist and real estate investor. He became a board member of Patagonia in 1993.</li>
+                    <li><span class="font-bold">Dr. Ayana Elizabeth Johnson:</span> Environmentalist and board member of Patagonia. She joined the board in 2021.</li>
+                    <li><span class="font-bold">Tom Frost:</span> Early partner of Yvon Chouinard in Chouinard Equipment. He and his wife Doreen departed the company in the early 1970s due to stress from production issues.</li>
+                    <li><span class="font-bold">Doreen Frost:</span> Early partner of Yvon Chouinard in Chouinard Equipment, and wife of Tom Frost.</li>
+                    <li><span class="font-bold">Craig Mathews:</span> Environmentalist and founder of a fly fishing equipment company. He co-founded 1% for the Planet with Yvon Chouinard in 2002.</li>
+                    <li><span class="font-bold">Doug Tompkins:</span> Founder of The North Face and Esprit, and husband of Kris Tompkins. He used proceeds from the sale of his ownership interests in his companies to purchase and conserve land in Chile, which he then donated to the Chilean government. He had long-running debates with Yvon Chouinard about the best way to have environmental impact.</li>
+                    <li><span class="font-bold">Dan Mosley:</span> An expert in family-owned businesses and family foundations from BDT Capital Partners. He was consulted by Charles Conn and helped the "Project Chacabuco" team craft the solution for Patagonia's new ownership structure.</li>
+                    <li><span class="font-bold">Andrew Kassoy:</span> Co-founder of B Lab, the non-profit that certifies B Corporations. He recalled Patagonia's leadership in becoming California's first benefit corporation in 2011.</li>
+                    <li><span class="font-bold">Jenna Johnson:</span> President of Patagonia’s apparel business. She captured the company's future direction after the ownership change, emphasising the need to get "dollars out the door to do the projects in the world that protect and restore nature."</li>
+                    <li><span class="font-bold">Corley Kenna:</span> Patagonia's communications director. She commented on the company's unprecedented decision to sue a presidential administration in 2017.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 class="section-heading mt-12">Creating Competitive Advantage</h2>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)" ondblclick="closeAccordion(this)">
+                External Sources of Competitive Advantage
+                <span class="arrow">&#9654;</span>
+            </div>
+            <div class="accordion-content">
+                <p class="mb-4 text-gray-300">
+                    External sources of competitive advantage stem from opportunities or pressures within the industry environment, outside a firm's direct control. A savvy firm can leverage or adapt to these factors.
+                </p>
+                <div class="sub-section-heading">Patagonia's Approach:</div>
+                <ul class="list-disc list-inside space-y-2 text-gray-300">
+                    <li><span class="highlight-text">Shifting Consumer Preferences:</span> Patagonia anticipated and aligned with the growing global demand for sustainable and ethically produced goods long before it was mainstream. Their early commitment to environmental stewardship resonated deeply with this emerging market segment.</li>
+                    <li><span class="highlight-text">Escalating Environmental Concerns:</span> As environmental issues became more pressing globally, Patagonia's mission-driven approach amplified its appeal, turning a societal challenge into a strategic opportunity.</li>
+                    <li><span class="highlight-text">Industry Dynamics:</span> While operating in a competitive market, Patagonia differentiated itself by consistently prioritizing environmental and social impact, setting a benchmark for others. Patagonia held nearly 10% of the U.S. outdoor apparel market share.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)" ondblclick="closeAccordion(this)">
+                Internal Sources of Competitive Advantage
+                <span class="arrow">&#9654;</span>
+            </div>
+            <div class="accordion-content">
+                <p class="mb-4 text-gray-300">
+                    Internal sources of competitive advantage are rooted in what a firm possesses and does uniquely well, often categorized as its resources and capabilities.
+                </p>
+                <div class="sub-section-heading">Patagonia's Approach:</div>
+                <ul class="list-disc list-inside space-y-2 text-gray-300">
+                    <li><span class="highlight-text">Intangible Resources (Brand & Reputation):</span> Patagonia's brand, built over decades on authenticity, high quality, durability, and unwavering activism, is an invaluable intangible asset. It fosters immense customer loyalty and trust.</li>
+                    <li><span class="highlight-text">Capabilities (Design, Supply Chain, Marketing):</span> Their expertise in designing functional outdoor gear, innovative supply chain management focused on minimizing environmental impact, and authentic mission-driven marketing are core capabilities. Programs like "Worn Wear" reinforce their commitment to product longevity.</li>
+                    <li><span class="highlight-text">Organizational Culture:</span> Yvon Chouinard instilled a powerful culture where environmental activism is the central purpose. This attracts passionate employees, drives continuous innovation in sustainable practices, and ensures consistency in their mission, making it difficult for competitors to imitate. Notably, after a 1991 recession, Patagonia consciously limited growth to prioritize a stable work environment, a decision Chouinard described as pushing back on 'bullshit' growth for growth's sake.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 class="section-heading mt-12">Sustaining Competitive Advantage</h2>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)" ondblclick="closeAccordion(this)">
+                How is Competitive Advantage Sustained? (Isolating Mechanisms, Deterrence, and Preemption)
+                <span class="arrow">&#9654;</span>
+            </div>
+            <div class="accordion-content">
+                <p class="mb-4 text-gray-300">
+                    Sustaining competitive advantage requires "isolating mechanisms" – barriers that prevent rivals from easily imitating or surpassing a firm's unique position. These mechanisms can also involve strategic actions like deterrence and preemption.
+                </p>
+                <div class="sub-section-heading">Key Isolating Mechanisms:</div>
+                <ul class="list-disc list-inside space-y-2 text-gray-300">
+                    <li><span class="highlight-text">Patents & Intellectual Property:</span> Legal rights protecting inventions, designs, or creative works.</li>
+                    <li><span class="highlight-text">Social Complexity:</span> Intricate interpersonal relationships, organizational culture, or external stakeholder ties that are difficult to duplicate.</li>
+                    <li><span class="highlight-text">Path Dependence:</span> Advantages derived from a firm's unique historical sequence of decisions and accumulated learning.</li>
+                    <li><span class="highlight-text">Causal Ambiguity:</span> When the reasons for a firm's success are unclear, making imitation extremely difficult.</li>
+                    <li><span class="highlight-text">Deterrence:</span> Strategic actions taken to discourage competitors from entering a market or imitating a firm's successful strategies. This can involve signaling commitment to aggressive competition (e.g., strong brand defense, price wars).</li>
+                    <li><span class="highlight-text">Preemption:</span> Actions that secure a competitive advantage by occupying a market position or acquiring resources before competitors can. This might involve early market entry, securing exclusive access to raw materials, or building significant production capacity.</li>
+                </ul>
+                <p class="mt-4 text-gray-300">
+                    Patagonia's "Earth Is Now Our Only Shareholder" ownership model functions as a powerful, multi-layered isolating mechanism, legally and structurally entrenching its mission-driven competitive advantage against traditional market pressures and short-term profit motives. This unique structure, by removing traditional shareholders and their profit pressures, actively deters competitors from attempting to replicate its model without fundamentally altering their own governance. It also represents a form of preemption, as Patagonia has secured a unique position in the "purpose-driven capitalism" space that is difficult for others to immediately replicate.
+                </p>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)" ondblclick="closeAccordion(this)">
+                Patagonia's Radical Approach to Sustaining Advantage: "Earth Is Now Our Only Shareholder"
+                <span class="arrow">&#9654;</span>
+            </div>
+            <div class="accordion-content">
+                <p class="mb-4 text-gray-300">
+                    Patagonia's groundbreaking ownership structure, implemented in September 2022, is a powerful and innovative isolating mechanism designed to perpetually safeguard its mission and competitive advantage.
+                </p>
+                <div class="sub-section-heading">Key Components:</div>
+                <ul class="list-disc list-inside space-y-2 mb-4 text-gray-300">
+                    <li><span class="highlight-text">The Patagonia Purpose Trust:</span> This perpetual trust now owns 100% of Patagonia's <span class="font-bold">voting stock</span>. Its sole purpose is to protect the company's mission and values in perpetuity, legally entrenching its environmental commitment.</li>
+                    <li><span class="highlight-text">The Holdfast Collective (a 501(c)(4) nonprofit):</span> This entity owns 100% of Patagonia's <span class="font-bold">non-voting stock</span>, holding most of the company's financial value. Annual dividends from Patagonia are channeled to this collective to fund environmental initiatives and political advocacy.</li>
+                </ul>
+                <p class="text-gray-300">
+                    This unique structure ensures that profits are reinvested in the mission rather than extracted by traditional shareholders. This reinforces Patagonia's brand authenticity, deepens customer loyalty, and attracts talent aligned with its values, making its competitive advantage incredibly difficult to replicate. The Chouinard family's objectives for this shift included releasing value for climate action, ensuring mission stewardship for 50+ years, reducing family burden, minimizing tax, and keeping Yvon involved. For example, a Private Equity sale could have resulted in a $214.5 million tax bill, whereas the chosen model incurred a one-time $17.5 million gift tax.
+                </p>
+            </div>
+        </div>
+
+        <h2 class="section-heading mt-12">Simulation: Patagonia: Project Chacabuco – The Future Ownership Debate</h2>
+
+        <div class="card">
+            <p class="text-lg mb-4 text-gray-200">
+                It's late 2021. The "Project Chacabuco" team, established by Yvon Chouinard, has spent nearly two years researching various ownership structures for Patagonia. They have compiled a comprehensive analysis of options (e.g., intergenerational transfer, public offering, sale to private equity, ESOP, and various foundation models) but have not yet landed on the final Perpetual Purpose Trust and 501(c)(4) solution. The Chouinard family – Yvon, Malinda, Fletcher, and Claire – have called a crucial meeting with the Project Chacabuco team and their external advisor to make a definitive decision on Patagonia's future ownership.
+            </p>
+            <p class="text-lg mb-4 text-gray-200">
+                As a group, your task is to reach a consensus on the best ownership structure for Patagonia that aligns with the Chouinard family's core objectives, addressing all identified priorities and challenges. Be prepared to justify your chosen structure to the "Board" and "Family."
+            </p>
+            <p class="text-lg mb-4 text-gray-200">
+                Explore the roles below to understand each character's perspective, then review the ownership options and make your decision.
+            </p>
+        </div>
+
+        <div class="section-heading mt-8">Roles and Briefings</div>
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)" ondblclick="closeAccordion(this)">
+                1. Yvon Chouinard (Founder)
+                <span class="arrow">&#9654;</span>
+            </div>
+            <div class="accordion-content">
+                <p class="text-gray-300"><span class="font-bold">Core Belief:</span> You firmly believe that "Earth is now our only shareholder" and that Patagonia is "in business to save our home planet."</p>
+                <p class="text-gray-300"><span class="font-bold">Priorities:</span></p>
+                <ul class="list-disc list-inside ml-4 space-y-1 text-gray-300">
+                    <li>Your paramount priority is to fight the environmental crisis with significant financial resources.</li>
+                    <li>You must maintain Patagonia’s strong environmental mission and values in perpetuity, beyond your lifetime.</li>
+                    <li>You wish to remain involved in the company's stewardship and decision-making.</li>
+                    <li>You are strongly opposed to selling the company or taking it public, believing it would lead to short-term thinking and erode the company's purpose and values.</li>
+                    <li>You want to avoid personal tax burdens that would force a sale of company stock, as this would dilute the mission.</li>
+                    <li>You aim to create a new model for capitalism for other companies to follow.</li>
+                </ul>
+                <p class="text-gray-300"><span class="font-bold">Perspective:</span> You distrust traditional capital markets. You are concerned that any misstep could make people say, "Well Patagonia tried this, and it didn’t work. See?!"</p>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)" ondblclick="closeAccordion(this)">
+                2. Malinda Chouinard (Co-Owner)
+                <span class="arrow">&#9654;</span>
+            </div>
+            <div class="accordion-content">
+                <p class="text-gray-300"><span class="font-bold">Core Belief:</span> You share Yvon's deep commitment to the company's environmental mission and values.</p>
+                <p class="text-gray-300"><span class="font-bold">Priorities:</span> Ensure the company's purpose and values are preserved indefinitely. Support Yvon's vision and ensure his continued involvement. You are also concerned about the stability and long-term viability of the company and its employees under the new structure.</p>
+                <p class="text-gray-300"><span class="font-bold">Perspective:</span> You are pragmatic but equally dedicated to the mission. You want a solution that benefits the planet, protects employees, and ensures a lasting legacy without compromising financial stability.</p>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)" ondblclick="closeAccordion(this)">
+                3. Fletcher Chouinard (Son, Non-voting Shareholder, Surfboard Business Manager)
+                <span class="arrow">&#9654;</span>
+            </div>
+            <div class="accordion-content">
+                <p class="text-gray-300"><span class="font-bold">Core Belief:</span> You align with Patagonia's mission but are not interested in the burden of controlling the company for future generations or owning substantial personal assets. You and your sister "weren’t brought up to give a shit about money. Actually, I think we were raised to be slightly embarrassed about it."</p>
+                <p class="text-gray-300"><span class="font-bold">Priorities:</span> The environmental mission must continue strongly. You want to relieve the family of the burden of company control and asset ownership for future generations. You work at the company and are concerned about the impact on employees.</p>
+                <p class="text-gray-300"><span class="font-bold">Perspective:</span> You see the day-to-day operations and appreciate a solution that removes direct family wealth/control while preserving the company's unique culture and purpose.</p>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)" ondblclick="closeAccordion(this)">
+                4. Claire Chouinard (Daughter, Non-voting Shareholder, Design Lead)
+                <span class="arrow">&#9654;</span>
+            </div>
+            <div class="accordion-content">
+                <p class="text-gray-300"><span class="font-bold">Core Belief:</span> You are deeply aligned with Patagonia's values and mission, emphasizing the "reinvention of business as usual" and "natural, sustainable, Earth-paced growth." Like your brother, you do not want the burden of control or substantial assets.</p>
+                <p class="text-gray-300"><span class="font-bold">Priorities:</span> Ensure the company remains independent and authentic, "squashing hypocrisy." Your primary focus is on "saving our home planet" by ensuring the structure allows for the maximum amount of money to be put toward environmental work. You also value employee well-being and an "uncommon culture of people who would prefer to be playing outside."</p>
+                <p class="text-gray-300"><span class="font-bold">Perspective:</span> You believe Patagonia itself should be an act of activism and that the focus should not be on traditional financial measurements, but on long-term impact.</p>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)" ondblclick="closeAccordion(this)">
+                5. Ryan Gellert (CEO, Project Chacabuco Team Member)
+                <span class="arrow">&#9654;</span>
+            </div>
+            <div class="accordion-content">
+                <p class="text-gray-300"><span class="font-bold">Core Role:</span> You are responsible for managing Patagonia's day-to-day operations.</p>
+                <p class="text-gray-300"><span class="font-bold">Priorities:</span></p>
+                <ul class="list-disc list-inside ml-4 space-y-1 text-gray-300">
+                    <li>Maintain the alignment between operations and purpose.</li>
+                    <li>Ensure the chosen structure allows Patagonia to continue to be a successful and profitable business to generate the necessary funds for its mission.</li>
+                    <li>You feel "a ton of additional pressure" to ensure this new, groundbreaking model doesn't "screw up" and that unexpected challenges don't "complicate Gellert’s leadership."</li>
+                    <li>You need clarity on how to balance profitability and dividend issuance for charity versus reinvesting in the business and its employees.</li>
+                </ul>
+                <p class="text-gray-300"><span class="font-bold">Perspective:</span> You are focused on the practical implementation and the potential impact on company operations, employees, and the long-term financial health required to fund the mission.</p>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)" ondblclick="closeAccordion(this)">
+                6. Charles Conn (Board Chair, Project Chacabuco Team Lead)
+                <span class="arrow">&#9654;</span>
+            </div>
+            <div class="accordion-content">
+                <p class="text-gray-300"><span class="font-bold">Core Role:</span> You lead the Project Chacabuco team and bring a strong background in strategic and financial analysis.</p>
+                <p class="text-gray-300"><span class="font-bold">Priorities:</span> Find an ownership design for the "next 50 years and beyond." The structure must release significant financial resources to fight the climate crisis, and crucially, reduce the leadership burden and risk on the family. You also see an opportunity to "provide a new model for capitalism."</p>
+                <p class="text-gray-300"><span class="font-bold">Perspective:</span> You understand the Chouinard family's deep desire to maintain control and mission alignment, and their concerns about the erosion of values under public or private equity ownership. You're looking for a solution that avoids "selling your soul" for a quick cash injection.</p>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)" ondblclick="closeAccordion(this)">
+                7. Kris Tompkins (Board Member, Project Chacabuco Team Member)
+                <span class="arrow">&#9654;</span>
+            </div>
+            <div class="accordion-content">
+                <p class="text-gray-300"><span class="font-bold">Core Belief:</span> You have extensive experience in large-scale land conservation, having used proceeds from business sales (The North Face, Esprit) with your husband, Doug Tompkins, for massive environmental impact.</p>
+                <p class="text-gray-300"><span class="font-bold">Priorities:</span> Achieve the maximum environmental impact from Patagonia's value. You have personally debated Yvon about whether selling the company and putting proceeds directly to work, as you and Doug did, would have a bigger environmental impact than operating through Patagonia.</p>
+                <p class="text-gray-300"><span class="font-bold">Perspective:</span> While you are part of the team, you represent a successful alternative model. You will challenge the team to ensure the chosen structure is truly the most impactful in terms of financial release and environmental benefit.</p>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)" ondblclick="closeAccordion(this)">
+                8. Hilary Dessouky (General Counsel, Project Chacabuco Team Member)
+                <span class="arrow">&#9654;</span>
+            </div>
+            <div class="accordion-content">
+                <p class="text-gray-300"><span class="font-bold">Core Role:</span> As General Counsel, your primary concern is the legal robustness and perpetuity of the chosen structure, ensuring it aligns with and enshrines Patagonia's social, environmental, and stakeholder commitments.</p>
+                <p class="text-gray-300"><span class="font-bold">Priorities:</span> Ensure the new structure meets the "shareholder objectives and support and lift Patagonia’s iconic role in reshaping capitalism." You must navigate the complex legal and tax implications to avoid forcing any stock sales due to tax burdens. Ensure the commitments "cannot be changed without a unanimous shareholder vote."</p>
+                <p class="text-gray-300"><span class="font-bold">Perspective:</span> You are focused on the long-term legal viability and the prevention of any future challenges that could undermine the mission. You want to protect the company's "corporate commitment to values that were incorporated into the legal charter."</p>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)" ondblclick="closeAccordion(this)">
+                9. Greg Curtis (Deputy General Counsel, Project Chacabuco Team Member)
+                <span class="arrow">&#9654;</span>
+            </div>
+            <div class="accordion-content">
+                <p class="text-gray-300"><span class="font-bold">Core Role:</span> You are also part of the legal team, focusing on the intricate tax implications and ensuring the Chouinard family can remain actively involved.</p>
+                <p class="text-gray-300"><span class="font-bold">Priorities:</span> Address the critical issue of ensuring the family "would not be pushed away from the business" due to independence requirements of some structures. Your key focus is on minimizing the tax burden that would necessitate a sale of shares, allowing more funds for the mission.</p>
+                <p class="text-gray-300"><span class="font-bold">Perspective:</span> You're a practical legal implementer, concerned with ensuring the chosen structure allows for both significant environmental contributions and the continued daily presence and influence of the Chouinard family.</p>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)" ondblclick="closeAccordion(this)">
+                10. Dan Mosley (External Advisor from BDT Capital Partners)
+                <span class="arrow">&#9654;</span>
+            </div>
+            <div class="accordion-content">
+                <p class="text-gray-300"><span class="font-bold">Core Role:</span> You are the external expert brought in to "unlock" the solution. You specialize in large family-owned businesses and foundations.</p>
+                <p class="text-gray-300"><span class="font-bold">Priorities:</span> Your goal is to provide an innovative legal and financial structure that meets all of the Chouinard family's complex and seemingly contradictory goals: perpetual purpose, significant release of funds for climate action, maintaining family control, and minimizing tax burdens that would force a stock sale.</p>
+                <p class="text-gray-300"><span class="font-bold">Perspective:</span> You are the architect of the Perpetual Purpose Trust (PPT) and 501(c)(4) solution. You can explain how this novel approach addresses the "excess business holdings" and "5% distribution" rules of traditional foundations, allows for political advocacy, and ensures perpetuity while avoiding personal tax deductions (which is fine, as no capital gains offset is needed).</p>
+            </div>
+        </div>
+
+        <h3 class="sub-section-heading mt-8 text-center text-green-300">Ownership Options for Debate</h3>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleSimulationOption(this, 'intergenerational')" ondblclick="closeAccordion(this)">
+                Intergenerational Transfer
+                <span class="arrow">&#9654;</span>
+            </div>
+            <div class="accordion-content" id="content-intergenerational">
+                <p class="text-gray-300">
+                    <span class="font-bold">Description:</span> This traditional approach would involve passing ownership directly to Yvon Chouinard's children.
+                </p>
+                <ul class="list-disc list-inside space-y-2 mt-2 text-gray-300">
+                    <li><span class="font-bold">Pros:</span> Keeps the company within the family, potentially maintaining existing culture and values.</li>
+                    <li><span class="font-bold">Cons:</span> Would not immediately release significant funds for environmental causes. Would incur substantial estate taxes on the transfer, potentially forcing the family to sell a large portion of the company to cover the tax bill. Places a significant financial and leadership burden on the next generation.</li>
+                    <li><span class="font-bold">Tax Implications:</span> High estate taxes, potentially over $1 billion if the company was valued at the higher end of estimates, requiring liquidation of assets.</li>
+                </ul>
+                <button class="simulation-button" onclick="choosePath('intergenerational')">Choose this path</button>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleSimulationOption(this, 'ipo')" ondblclick="closeAccordion(this)">
+                Public Stock Offering (IPO)
+                <span class="arrow">&#9654;</span>
+            </div>
+            <div class="accordion-content" id="content-ipo">
+                <p class="text-gray-300">
+                    <span class="font-bold">Description:</span> Selling shares of Patagonia to the public on a stock exchange.
+                </p>
+                <ul class="list-disc list-inside space-y-2 mt-2 text-gray-300">
+                    <li><span class="font-bold">Pros:</span> Could raise substantial capital for environmental causes and provide liquidity for the family.</li>
+                    <li><span class="font-bold">Cons:</span> Yvon Chouinard explicitly worried that public markets drive "short-term thinking and growth at all costs that would erode the company's purpose and values." It would introduce external shareholder pressures that could conflict with Patagonia's mission.</li>
+                    <li><span class="font-bold">Tax Implications:</span> An IPO of 49% (estimated $1.5 billion) could have led to about $50 million in U.S. federal and California capital gains taxes for the Chouinard family.</li>
+                </ul>
+                <button class="simulation-button" onclick="choosePath('ipo')">Choose this path</button>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleSimulationOption(this, 'private-equity')" ondblclick="closeAccordion(this)">
+                Sale to Private Equity Group
+                <span class="arrow">&#9654;</span>
+            </div>
+            <div class="accordion-content" id="content-private-equity">
+                <p class="text-gray-300">
+                    <span class="font-bold">Description:</span> Selling a significant stake or the entire company to a private equity firm.
+                </p>
+                <ul class="list-disc list-inside space-y-2 mt-2 text-gray-300">
+                    <li><span class="font-bold">Pros:</span> Could generate substantial immediate capital.</li>
+                    <li><span class="font-bold">Cons:</span> Private equity firms typically focus on maximizing returns over a short period (3-5 years), often through cost-cutting and aggressive growth, which was deemed highly likely to "erode the company's purpose and values." This option was a major "red flag" for the Chouinard family.</li>
+                    <li><span class="font-bold">Tax Implications:</span> A PE sale of 80% (estimated $6.5 billion) could have resulted in an estimated tax payment of around $214.5 million for the Chouinard family.</li>
+                </ul>
+                <button class="simulation-button" onclick="choosePath('private-equity')">Choose this path</button>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleSimulationOption(this, 'esop')" ondblclick="closeAccordion(this)">
+                Employee Stock Ownership Plan (ESOP)
+                <span class="arrow">&#9654;</span>
+            </div>
+            <div class="accordion-content" id="content-esop">
+                <p class="text-gray-300">
+                    <span class="font-bold">Description:</span> Transferring ownership to the employees through an ESOP.
+                </p>
+                <ul class="list-disc list-inside space-y-2 mt-2 text-gray-300">
+                    <li><span class="font-bold">Pros:</span> Aligns employee incentives with company performance and can foster a strong sense of ownership and commitment. Could defer individual income tax on capital gains for the seller if certain conditions are met.</li>
+                    <li><span class="font-bold">Cons:</span> Would have "laden the company with debt" to finance the purchase of shares. It would also create "inequities between U.S. and non-U.S. employees" due to the nature of ESOPs. It might not immediately release significant capital for external environmental initiatives.</li>
+                    <li><span class="font-bold">Tax Implications:</span> If Chouinard sold over 30% to an ESOP, he could defer individual income tax on capital gains indefinitely by reinvesting proceeds in qualified replacement property.</li>
+                </ul>
+                <button class="simulation-button" onclick="choosePath('esop')">Choose this path</button>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleSimulationOption(this, 'nonprofit-foundation')" ondblclick="closeAccordion(this)">
+                Controlling Nonprofit Foundation (e.g., 501(c)(3))
+                <span class="arrow">&#9654;</span>
+            </div>
+            <div class="accordion-content" id="content-nonprofit-foundation">
+                <p class="text-gray-300">
+                    <span class="font-bold">Description:</span> Transferring ownership to a traditional U.S.-based charitable foundation (e.g., a 501(c)(3)).
+                </p>
+                <ul class="list-disc list-inside space-y-2 mt-2 text-gray-300">
+                    <li><span class="font-bold">Pros:</span> Could ensure profits are directed to charitable causes and maintain mission alignment.</li>
+                    <li><span class="font-bold">Cons:</span> U.S. legal restrictions barred charitable foundations from owning more than 20% of for-profit companies (with some exceptions up to 35% for five years) without incurring heavy taxes. They also required a minimum 5% annual distribution of their endowment, regardless of the company's financial situation, which could be financially burdensome for Patagonia.</li>
+                    <li><span class="font-bold">Tax Implications:</span> No taxes owed on the company transfer itself. However, the excess business holdings requirement and 5% distribution requirement posed significant operational and financial constraints.</li>
+                </ul>
+                <button class="simulation-button" onclick="choosePath('nonprofit-foundation')">Choose this path</button>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleSimulationOption(this, 'purpose-trust-501c4')" ondblclick="closeAccordion(this)">
+                Perpetual Purpose Trust & 501(c)(4) (Patagonia's Choice)
+                <span class="arrow">&#9654;</span>
+            </div>
+            <div class="accordion-content" id="content-purpose-trust-501c4">
+                <p class="text-gray-300">
+                    <span class="font-bold">Description:</span> The chosen innovative structure involving the Patagonia Purpose Trust (owning voting stock) and the Holdfast Collective (a 501(c)(4) nonprofit owning non-voting stock).
+                </p>
+                <ul class="list-disc list-inside space-y-2 mt-2 text-gray-300">
+                    <li><span class="font-bold">Pros:</span>
+                        <ul class="list-disc list-inside ml-4">
+                            <li><span class="font-bold">Mission Stewardship:</span> The Purpose Trust legally protects the company's mission in perpetuity, ensuring decisions prioritize the planet.</li>
+                            <li><span class="font-bold">Value for Climate:</span> The Holdfast Collective receives all profits (after reinvestment) to fight the environmental crisis, immediately releasing significant value.</li>
+                            <li><span class="font-bold">Reduced Family Burden:</span> Removes the financial and leadership burden from the Chouinard family, as they no longer own the company.</li>
+                            <li><span class="font-bold">Minimized Tax:</span> Strategically avoided large capital gains or estate taxes.</li>
+                            <li><span class="font-bold">Yvon's Involvement:</span> Allows Yvon Chouinard and his family to remain actively involved on the boards of the Trust and Collective, guiding the mission.</li>
+                            <li><span class="font-bold">Flexibility:</span> The 501(c)(4) structure provides flexibility for political advocacy, which was important to Chouinard.</li>
+                        </ul>
+                    </li>
+                    <li><span class="font-bold">Cons:</span>
+                        <ul class="list-disc list-inside ml-4">
+                            <li><span class="font-bold">Novelty:</span> The unique structure might complicate future access to capital markets.</li>
+                            <li><span class="font-bold">Profit Balancing:</span> Requires careful management to balance reinvestment in the business with consistent dividend payouts to the Holdfast Collective.</li>
+                            <li><span class="font-bold">Societal Scrutiny:</span> Faces criticism regarding perceived tax avoidance and the influence of corporate wealth in political advocacy.</li>
+                        </ul>
+                    </li>
+                    <li><span class="font-bold">Tax Implications:</span> Incurred a one-time gift tax of $17.5 million, which the family paid. Donations to a 501(c)(4) are not tax-deductible, but this was not a concern as there was no large capital gain to offset. This model avoided the excess business holdings and 5% distribution requirements of traditional foundations.</li>
+                </ul>
+                <button class="simulation-button" onclick="choosePath('purpose-trust-501c4')">Choose this path</button>
+            </div>
+        </div>
+
+        <div id="simulation-result" class="simulation-result hidden">
+            <h3>Your Choice: <span id="chosen-path-title"></span></h3>
+            <p class="text-gray-300" id="chosen-path-summary"></p>
+            <button class="simulation-button mt-4" onclick="revealPatagoniasChoice()">Reveal Patagonia's Actual Choice</button>
+            <div id="patagonias-actual-choice" class="hidden mt-4">
+                <h3 class="mt-4">Patagonia's Actual Choice: Perpetual Purpose Trust & 501(c)(4)</h3>
+                <p class="text-gray-300">
+                    Patagonia ultimately chose the <span class="font-bold">Perpetual Purpose Trust & 501(c)(4)</span> structure. This path best aligned with Yvon Chouinard's core objectives: to legally enshrine the company's mission to fight the environmental crisis, ensure profits are directed to climate action, minimize the family's tax burden, and allow continued involvement without the burden of traditional ownership. It was a novel solution designed to create a new model for capitalism, prioritizing purpose over profit maximization in perpetuity.
+                </p>
+                <button class="simulation-button mt-4" onclick="resetSimulation()">Reset Simulation</button>
+            </div>
+        </div>
+
+        <h2 class="section-heading mt-12">MCQ Quiz</h2>
+        <div class="mcq-container">
+            <div class="mcq-question-card" id="mcq1">
+                <p class="font-bold mb-3">1. What was Yvon Chouinard's primary motivation for radically changing Patagonia's ownership structure?</p>
+                <div class="mcq-options">
+                    <label><input type="radio" name="q1" value="a" onclick="checkMcqAnswer(1, 'a')"> a) To maximize personal wealth and liquidity for his family.</label>
+                    <label><input type="radio" name="q1" value="b" onclick="checkMcqAnswer(1, 'b')"> b) To prepare the company for a traditional Initial Public Offering (IPO).</label>
+                    <label><input type="radio" name="q1" value="c" onclick="checkMcqAnswer(1, 'c')"> d) To ensure Patagonia's mission to fight the environmental crisis endures indefinitely.</label>
+                    <label><input type="radio" name="q1" value="d" onclick="checkMcqAnswer(1, 'd')"> d) To sell the company to employees through an ESOP.</label>
+                </div>
+                <div class="mcq-feedback hidden" id="feedback1"></div>
+            </div>
+
+            <div class="mcq-question-card" id="mcq2">
+                <p class="font-bold mb-3">2. Which of the following was a major challenge in devising Patagonia's new ownership structure?</p>
+                <div class="mcq-options">
+                    <label><input type="radio" name="q2" value="a" onclick="checkMcqAnswer(2, 'a')"> a) Finding a structure that guaranteed maximum tax deductions for the Chouinard family.</label>
+                    <label><input type="radio" name="q2" value="b" onclick="checkMcqAnswer(2, 'b')"> b) Overcoming U.S. laws that restricted charitable foundations from owning significant stakes in for-profit companies without penalties.</label>
+                    <label><input type="radio" name="q2" value="c" onclick="checkMcqAnswer(2, 'c')"> c) Convincing Yvon Chouinard to give up all control over the company.</label>
+                    <label><input type="radio" name="q2" value="d" onclick="checkMcqAnswer(2, 'd')"> d) Ensuring immediate, massive financial returns to shareholders.</label>
+                </div>
+                <div class="mcq-feedback hidden" id="feedback2"></div>
+            </div>
+
+            <div class="mcq-question-card" id="mcq3">
+                <p class="font-bold mb-3">3. In Patagonia's new ownership structure, what is the primary role of the Patagonia Purpose Trust?</p>
+                <div class="mcq-options">
+                    <label><input type="radio" name="q3" value="a" onclick="checkMcqAnswer(3, 'a')"> a) To receive annual dividends and fund environmental initiatives.</label>
+                    <label><input type="radio" name="q3" value="b" onclick="checkMcqAnswer(3, 'b')"> b) To own 100% of Patagonia's non-voting stock.</label>
+                    <label><input type="radio" name="q3" value="c" onclick="checkMcqAnswer(3, 'c')"> c) To protect the company's mission and values in perpetuity by owning 100% of the voting stock.</label>
+                    <label><input type="radio" name="q3" value="d" onclick="checkMcqAnswer(3, 'd')"> d) To manage the day-to-day operations of Patagonia.</label>
+                </div>
+                <div class="mcq-feedback hidden" id="feedback3"></div>
+            </div>
+
+            <div class="mcq-question-card" id="mcq4">
+                <p class="font-bold mb-3">4. What was the one-time gift tax paid by the Chouinard family for the transfer of voting shares in the new structure?</p>
+                <div class="mcq-options">
+                    <label><input type="radio" name="q4" value="a" onclick="checkMcqAnswer(4, 'a')"> a) $1 billion</label>
+                    <label><input type="radio" name="q4" value="b" onclick="checkMcqAnswer(4, 'b')"> b) $214.5 million</label>
+                    <label><input type="radio" name="q4" value="c" onclick="checkMcqAnswer(4, 'c')"> c) $17.5 million</label>
+                    <label><input type="radio" name="q4" value="d" onclick="checkMcqAnswer(4, 'd')"> d) $0 (It was fully tax-deductible)</label>
+                </div>
+                <div class="mcq-feedback hidden" id="feedback4"></div>
+            </div>
+
+            <div class="mcq-question-card" id="mcq5">
+                <p class="font-bold mb-3">5. Which of the following is an example of an <span class="highlight-text">External Source</span> of competitive advantage that Patagonia leveraged?</p>
+                <div class="mcq-options">
+                    <label><input type="radio" name="q5" value="a" onclick="checkMcqAnswer(5, 'a')"> a) Its unique corporate culture with onsite daycare.</label>
+                    <label><input type="radio" name="q5" value="b" onclick="checkMcqAnswer(5, 'b')"> c) Its strong brand reputation built over decades.</label>
+                    <label><input type="radio" name="q5" value="c" onclick="checkMcqAnswer(5, 'c')"> c) The growing consumer demand for sustainable and ethically produced goods.</label>
+                    <label><input type="radio" name="q5" value="d" onclick="checkMcqAnswer(5, 'd')"> d) Its specific expertise in designing durable outdoor gear.</label>
+                </div>
+                <div class="mcq-feedback hidden" id="feedback5"></div>
+            </div>
+
+            <div class="mcq-question-card" id="mcq6">
+                <p class="font-bold mb-3">6. Patagonia's decision in 1991 to limit growth to pre-set targets, after layoffs, primarily illustrates which internal source of competitive advantage?</p>
+                <div class="mcq-options">
+                    <label><input type="radio" name="q6" value="a" onclick="checkMcqAnswer(6, 'a')"> a) Superior financial resources.</label>
+                    <label><input type="radio" name="q6" value="b" onclick="checkMcqAnswer(6, 'b')"> b) Strong organizational culture and commitment to employee well-being.</label>
+                    <label><input type="radio" name="q6" value="c" onclick="checkMcqAnswer(6, 'c')"> c) Advanced patented technology.</label>
+                    <label><input type="radio" name="q6" value="d" onclick="checkMcqAnswer(6, 'd')"> d) Exclusive access to raw materials.</label>
+                </div>
+                <div class="mcq-feedback hidden" id="feedback6"></div>
+            </div>
+
+            <div class="mcq-question-card" id="mcq7">
+                <p class="font-bold mb-3">7. Which isolating mechanism is best exemplified by Patagonia's decades-long journey of environmental advocacy and product innovation that cannot be easily replicated by competitors?</p>
+                <div class="mcq-options">
+                    <label><input type="radio" name="q7" value="a" onclick="checkMcqAnswer(7, 'a')"> a) Causal Ambiguity</label>
+                    <label><input type="radio" name="q7" value="b" onclick="checkMcqAnswer(7, 'b')"> b) Social Complexity</label>
+                    <label><input type="radio" name="q7" value="c" onclick="checkMcqAnswer(7, 'c')"> c) Path Dependence</label>
+                    <label><input type="radio" name="q7" value="d" onclick="checkMcqAnswer(7, 'd')"> d) Legal Barriers</label>
+                </div>
+                <div class="mcq-feedback hidden" id="feedback7"></div>
+            </div>
+
+            <div class="mcq-question-card" id="mcq8">
+                <p class="font-bold mb-3">8. Patagonia's "DON'T BUY THIS JACKET" Black Friday ad is an example of which strategic action to sustain competitive advantage?</p>
+                <div class="mcq-options">
+                    <label><input type="radio" name="q8" value="a" onclick="checkMcqAnswer(8, 'a')"> a) Preemption</label>
+                    <label><input type="radio" name="q8" value="b" onclick="checkMcqAnswer(8, 'b')"> b) Deterrence</label>
+                    <label><input type="radio" name="q8" value="c" onclick="checkMcqAnswer(8, 'c')"> c) Cost Leadership</label>
+                    <label><input type="radio" name="q8" value="d" onclick="checkMcqAnswer(8, 'd')"> d) Diversification</label>
+                </div>
+                <div class="mcq-feedback hidden" id="feedback8"></div>
+            </div>
+
+            <div class="mcq-question-card" id="mcq9">
+                <p class="font-bold mb-3">9. What percentage of Patagonia's total stock (non-voting) is owned by the Holdfast Collective in the new structure?</p>
+                <div class="mcq-options">
+                    <label><input type="radio" name="q9" value="a" onclick="checkMcqAnswer(9, 'a')"> a) 2%</label>
+                    <label><input type="radio" name="q9" value="b" onclick="checkMcqAnswer(9, 'b')"> b) 10%</label>
+                    <label><input type="radio" name="q9" value="c" onclick="checkMcqAnswer(9, 'c')"> c) 98%</label>
+                    <label><input type="radio" name="q9" value="d" onclick="checkMcqAnswer(9, 'd')"> d) 50%</label>
+                </div>
+                <div class="mcq-feedback hidden" id="feedback9"></div>
+            </div>
+
+            <div class="mcq-question-card" id="mcq10">
+                <p class="font-bold mb-3">10. What was a key concern for Fletcher and Claire Chouinard regarding an intergenerational transfer of Patagonia's ownership?</p>
+                <div class="mcq-options">
+                    <label><input type="radio" name="q10" value="a" onclick="checkMcqAnswer(10, 'a')"> a) Their desire to sell the company for personal profit immediately.</label>
+                    <label><input type="radio" name="q10" value="b" onclick="checkMcqAnswer(10, 'b')"> b) The burden of controlling substantial company assets and the associated estate taxes.</label>
+                    <label><input type="radio" name="q10" value="c" onclick="checkMcqAnswer(10, 'c')"> c) A lack of interest in environmental conservation.</label>
+                    <label><input type="radio" name="q10" value="d" onclick="checkMcqAnswer(10, 'd')"> d) The high employee turnover under family leadership.</label>
+                </div>
+                <div class="mcq-feedback hidden" id="feedback10"></div>
+            </div>
+
+            <div class="mcq-question-card" id="mcq11">
+                <p class="font-bold mb-3">11. Why did Yvon Chouinard largely oppose a Public Stock Offering (IPO) for Patagonia?</p>
+                <div class="mcq-options">
+                    <label><input type="radio" name="q11" value="a" onclick="checkMcqAnswer(11, 'a')"> a) He believed it would make the company too small.</label>
+                    <label><input type="radio" name="q11" value="b" onclick="checkMcqAnswer(11, 'b')"> b) He thought it would lead to short-term thinking and erode the company's purpose.</label>
+                    <label><input type="radio" name="q11" value="c" onclick="checkMcqAnswer(11, 'c')"> c) It offered insufficient capital for environmental initiatives.</label>
+                    <label><input type="radio" name="q11" value="d" onclick="checkMcqAnswer(11, 'd')"> d) It would expose the company to too much political scrutiny.</label>
+                </div>
+                <div class="mcq-feedback hidden" id="feedback11"></div>
+            </div>
+
+            <div class="mcq-question-card" id="mcq12">
+                <p class="font-bold mb-3">12. What specific legal issue did traditional 501(c)(3) foundations face that made them unsuitable for Patagonia's full ownership transfer?</p>
+                <div class="mcq-options">
+                    <label><input type="radio" name="q12" value="a" onclick="checkMcqAnswer(12, 'a')"> a) They could not legally own any for-profit companies.</label>
+                    <label><input type="radio" name="q12" value="b" onclick="checkMcqAnswer(12, 'b')"> b) They had excess business holdings limits and mandatory 5% annual distribution requirements.</label>
+                    <label><input type="radio" name="q12" value="c" onclick="checkMcqAnswer(12, 'c')"> c) They were strictly prohibited from engaging in any political advocacy.</label>
+                    <label><input type="radio" name="q12" value="d" onclick="checkMcqAnswer(12, 'd')"> d) They required all family members to step down from the board.</label>
+                </div>
+                <div class="mcq-feedback hidden" id="feedback12"></div>
+            </div>
+
+            <div class="mcq-question-card" id="mcq13">
+                <p class="font-bold mb-3">13. According to the case, approximately how much did Patagonia donate to environmental organizations annually via dividends to the Holdfast Collective?</p>
+                <div class="mcq-options">
+                    <label><input type="radio" name="q13" value="a" onclick="checkMcqAnswer(13, 'a')"> a) $10 million or more</label>
+                    <label><input type="radio" name="q13" value="b" onclick="checkMcqAnswer(13, 'b')"> b) $50 million or more</label>
+                    <label><input type="radio" name="q13" value="c" onclick="checkMcqAnswer(13, 'c')"> c) $100 million or more</label>
+                    <label><input type="radio" name="q13" value="d" onclick="checkMcqAnswer(13, 'd')"> d) $1 billion or more</label>
+                </div>
+                <div class="mcq-feedback hidden" id="feedback13"></div>
+            </div>
+
+            <div class="mcq-question-card" id="mcq14">
+                <p class="font-bold mb-3">14. What is a potential societal criticism of Patagonia's new ownership model, even if legal?</p>
+                <div class="mcq-options">
+                    <label><input type="radio" name="q14" value="a" onclick="checkMcqAnswer(14, 'a')"> a) It makes the company too small and irrelevant in the market.</label>
+                    <label><input type="radio" name="q14" value="b" onclick="checkMcqAnswer(14, 'b')"> b) It ensures too much government oversight and regulation.</label>
+                    <label><input type="radio" name="q14" value="c" onclick="checkMcqAnswer(14, 'c')"> c) It could be perceived as a sophisticated tax avoidance strategy, impacting public revenue.</label>
+                    <label><input type="radio" name="q14" value="d" onclick="checkMcqAnswer(14, 'd')"> d) It leads to short-term decision-making by management.</label>
+                </div>
+                <div class="mcq-feedback hidden" id="feedback14"></div>
+            </div>
+
+            <div class="mcq-question-card" id="mcq15">
+                <p class="font-bold mb-3">15. According to Yvon Chouinard, what broader implication does Patagonia's new ownership structure have for capitalism?</p>
+                <div class="mcq-options">
+                    <label><input type="radio" name="q15" value="a" onclick="checkMcqAnswer(15, 'a')"> a) It proves that profit maximization is the only sustainable business model.</label>
+                    <label><input type="radio" name="q15" value="b" onclick="checkMcqAnswer(15, 'b')"> c) It is a radical experiment that could inspire a new model for capitalism prioritizing purpose.</label>
+                    <label><input type="radio" name="q15" value="c" onclick="checkMcqAnswer(15, 'c')"> c) It will lead to the eventual collapse of all non-profit organizations.</label>
+                    <label><input type="radio" name="q15" value="d" onclick="checkMcqAnswer(15, 'd')"> d) It will primarily benefit traditional shareholders in the long run.</label>
+                </div>
+                <div class="mcq-feedback hidden" id="feedback15"></div>
+            </div>
+
+        </div> </div>
+
+    <footer class="bg-gray-900 text-gray-300 py-4 text-center rounded-t-lg mt-8 shadow-lg">
+        <p class="text-sm">&copy; Dr. Swapnil Sahoo 2025</p>
+        <div class="flex justify-center space-x-4 mt-2">
+            <a href="https://x.com/swapnilsahoo" target="_blank" class="footer-link">X (Twitter)</a>
+            <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" class="footer-link">Instagram</a>
+            <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" class="footer-link">LinkedIn</a>
+        </div>
+    </footer>
+
+    <script>
+        // Data for simulation choices
+        const simulationChoices = {
+            'intergenerational': {
+                title: 'Intergenerational Transfer',
+                summary: 'You chose to pass ownership directly to your children. While this keeps the company within the family, it comes with significant estate tax burdens and does not immediately free up capital for environmental causes, placing a heavy burden on the next generation.'
+            },
+            'ipo': {
+                title: 'Public Stock Offering (IPO)',
+                summary: 'You chose to take Patagonia public. This could raise substantial capital, but it risks diluting the company\'s mission due to the short-term profit pressures of public markets, a concern Yvon Chouinard deeply felt.'
+            },
+            'private-equity': {
+                title: 'Sale to Private Equity Group',
+                summary: 'You chose to sell Patagonia to a private equity firm. This would generate immediate capital, but private equity firms typically prioritize short-term, aggressive returns, which was considered a major threat to Patagonia\'s core values and mission.'
+            },
+            'esop': {
+                title: 'Employee Stock Ownership Plan (ESOP)',
+                summary: 'You chose to transfer ownership to employees via an ESOP. This aligns employee incentives and fosters ownership, but it would likely burden the company with debt and create inequities between U.S. and non-U.S. employees, potentially limiting direct environmental funding.'
+            },
+            'nonprofit-foundation': {
+                title: 'Controlling Nonprofit Foundation (e.g., 501(c)(3))',
+                summary: 'You chose to transfer ownership to a traditional nonprofit foundation. While mission-aligned, U.S. laws impose significant restrictions on how much of a for-profit company a 501(c)(3) can own and require minimum annual distributions, which could be financially challenging for Patagonia.'
+            },
+            'purpose-trust-501c4': {
+                title: 'Perpetual Purpose Trust & 501(c)(4) (Patagonia\'s Choice)',
+                summary: 'You chose the Perpetual Purpose Trust & 501(c)(4) structure. This is precisely the path Patagonia took! It strategically addresses all family objectives: enshrining the mission, releasing value for climate action, reducing family burden, minimizing tax, and keeping Yvon involved.'
+            }
+        };
+
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const arrow = header.querySelector('.arrow');
+
+            // Close all other open accordions in the same section, except for simulation options
+            const parentSection = header.closest('.container');
+            const allAccordions = parentSection.querySelectorAll('.accordion-content.open');
+            allAccordions.forEach(item => {
+                // Only close if it's not the currently clicked one and not part of the simulation options
+                if (item !== content && !item.closest('#simulation-result') && !item.querySelector('.simulation-button')) {
+                    item.classList.remove('open');
+                    item.style.maxHeight = null;
+                    item.previousElementSibling.querySelector('.arrow').classList.remove('rotate');
+                }
+            });
+
+            // Toggle the clicked accordion
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+                content.style.maxHeight = null;
+                arrow.classList.remove('rotate');
+            } else {
+                content.classList.add('open');
+                content.style.maxHeight = content.scrollHeight + "px";
+                arrow.classList.add('rotate');
+            }
+        }
+
+        function closeAccordion(header) {
+            const content = header.nextElementSibling;
+            const arrow = header.querySelector('.arrow');
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+                content.style.maxHeight = null;
+                arrow.classList.remove('rotate');
+            }
+        }
+
+        function toggleSimulationOption(header, optionId) {
+            const content = document.getElementById(`content-${optionId}`);
+            const arrow = header.querySelector('.arrow');
+
+            // Close all other simulation options' content
+            const allSimulationContents = document.querySelectorAll('.accordion-item .accordion-content');
+            allSimulationContents.forEach(item => {
+                if (item.id !== `content-${optionId}`) {
+                    item.classList.remove('open');
+                    item.style.maxHeight = null;
+                    item.previousElementSibling.querySelector('.arrow').classList.remove('rotate');
+                }
+            });
+
+            // Toggle the clicked simulation option's content
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+                content.style.maxHeight = null;
+                arrow.classList.remove('rotate'); // Ensure arrow rotates when opening
+            } else {
+                content.classList.add('open');
+                content.style.maxHeight = content.scrollHeight + "px";
+                arrow.classList.add('rotate');
+            }
+        }
+
+
+        function choosePath(pathId) {
+            const resultDiv = document.getElementById('simulation-result');
+            const chosenPathTitle = document.getElementById('chosen-path-title');
+            const chosenPathSummary = document.getElementById('chosen-path-summary');
+            const revealButton = resultDiv.querySelector('button[onclick="revealPatagoniasChoice()"]');
+            const actualChoiceDiv = document.getElementById('patagonias-actual-choice');
+
+            chosenPathTitle.textContent = simulationChoices[pathId].title;
+            chosenPathSummary.textContent = simulationChoices[pathId].summary;
+
+            resultDiv.classList.remove('hidden');
+            actualChoiceDiv.classList.add('hidden'); // Hide actual choice initially
+            revealButton.classList.remove('hidden'); // Show reveal button
+
+            // Disable all "Choose this path" buttons after a choice is made
+            document.querySelectorAll('.simulation-button').forEach(button => {
+                if (button.onclick.toString().includes('choosePath')) { // Only disable choice buttons
+                    button.disabled = true;
+                    button.classList.add('opacity-50', 'cursor-not-allowed');
+                }
+            });
+
+            // Optionally, scroll to the result
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function revealPatagoniasChoice() {
+            const actualChoiceDiv = document.getElementById('patagonias-actual-choice');
+            const revealButton = document.getElementById('simulation-result').querySelector('button[onclick="revealPatagoniasChoice()"]');
+            actualChoiceDiv.classList.remove('hidden');
+            revealButton.classList.add('hidden'); // Hide reveal button after clicked
+        }
+
+        function resetSimulation() {
+            const resultDiv = document.getElementById('simulation-result');
+            resultDiv.classList.add('hidden');
+
+            // Re-enable all "Choose this path" buttons and close all simulation accordions
+            document.querySelectorAll('.simulation-button').forEach(button => {
+                button.disabled = false;
+                button.classList.remove('opacity-50', 'cursor-not-allowed');
+            });
+
+            document.querySelectorAll('.accordion-item .accordion-content').forEach(content => {
+                content.classList.remove('open');
+                content.style.maxHeight = null;
+                content.previousElementSibling.querySelector('.arrow').classList.remove('rotate');
+            });
+        }
+
+        // Adjust max-height on window resize for responsive accordions
+        window.addEventListener('resize', () => {
+            document.querySelectorAll('.accordion-content.open').forEach(content => {
+                content.style.maxHeight = content.scrollHeight + "px";
+            });
+        });
+
+        // Initial adjustment for any content that might be open by default (though none are in this code)
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.accordion-content.open').forEach(content => {
+                content.style.maxHeight = content.scrollHeight + "px";
+            });
+        });
+
+        // --- MCQ Logic ---
+        const mcqAnswers = {
+            1: { correct: 'c', explanation: 'Yvon Chouinard\'s paramount motivation was to ensure Patagonia\'s mission to fight the environmental crisis endured in perpetuity, beyond his lifetime, by dedicating company value to this cause.' },
+            2: { correct: 'b', explanation: 'A major challenge was navigating restrictive U.S. laws regarding charitable foundations\' ownership of for-profit companies (like the 5% distribution rule and excess business holdings limits) without incurring heavy taxes or forcing the Chouinard family to relinquish control.' },
+            3: { correct: 'c', explanation: 'The Patagonia Purpose Trust owns 100% of Patagonia\'s voting stock and its sole purpose is to protect the company\'s mission and values in perpetuity.' },
+            4: { correct: 'c', explanation: 'The Chouinard family paid a one-time gift tax of $17.5 million for the transfer of voting shares to the Purpose Trust, significantly less than other potential tax burdens.' },
+            5: { correct: 'c', explanation: 'The growing consumer demand for sustainable and ethically produced goods is an external factor that Patagonia skillfully leveraged by aligning its core business with this trend.' },
+            6: { correct: 'b', explanation: 'Patagonia\'s decision to limit growth after layoffs to prioritize employee stability and a healthy work environment demonstrates its strong organizational culture and commitment, which is an inimitable internal source of advantage.' },
+            7: { correct: 'c', explanation: 'Path dependence refers to advantages built over time through unique historical events or learning processes that cannot be easily replicated. Patagonia\'s decades-long journey of integrating environmentalism into its core business exemplifies this.' },
+            8: { correct: 'b', explanation: 'Deterrence involves strategic actions to discourage competitors from imitating. Patagonia\'s "DON\'T BUY THIS JACKET" ad, by emphasizing conscious consumption and its deeper mission, signaled a commitment that many competitors could not genuinely match, thereby deterring superficial imitation.' },
+            9: { correct: 'c', explanation: 'The Holdfast Collective, a 501(c)(4) social welfare organization, owns 100% of Patagonia\'s non-voting stock, which represents 98% of the company\'s total financial value.' },
+            10: { correct: 'b', explanation: 'Fletcher and Claire Chouinard were not interested in the burden of controlling substantial company assets or the associated estate taxes, as they were not raised to prioritize personal wealth.' },
+            11: { correct: 'b', explanation: 'Yvon Chouinard strongly believed that public markets prioritize short-term thinking and profit maximization, which he feared would inevitably erode Patagonia\'s core environmental purpose and values.' },
+            12: { correct: 'b', explanation: 'Traditional 501(c)(3) foundations faced legal restrictions like excess business holdings limits (preventing them from owning controlling stakes in for-profit companies) and required mandatory 5% annual distributions of their endowment, regardless of the company\'s profitability.' },
+            13: { correct: 'c', explanation: 'Patagonia expects to issue $100 million or more annually as dividends to the Holdfast Collective to fund environmental initiatives, demonstrating significant financial commitment to its mission.' },
+            14: { correct: 'c', explanation: 'A societal criticism is the perception that the model, while legal, could be a sophisticated tax avoidance strategy, potentially depriving government of tax revenue that could otherwise fund public goods, including environmental protection.' },
+            15: { correct: 'b', explanation: 'Chouinard explicitly positioned Patagonia\'s new model as a radical experiment and a potential "new model for capitalism" or "capitalism 2.0," where businesses explicitly exist to serve a higher purpose beyond profit maximization.' }
+        };
+
+        function checkMcqAnswer(questionNumber, selectedOption) {
+            const feedbackDiv = document.getElementById(`feedback${questionNumber}`);
+            const options = document.getElementsByName(`q${questionNumber}`);
+            const correctAnswer = mcqAnswers[questionNumber].correct;
+            const explanation = mcqAnswers[questionNumber].explanation;
+
+            // Disable all options for this question
+            options.forEach(option => {
+                option.disabled = true;
+            });
+
+            feedbackDiv.classList.remove('hidden');
+            if (selectedOption === correctAnswer) {
+                feedbackDiv.classList.remove('incorrect');
+                feedbackDiv.classList.add('correct');
+                feedbackDiv.innerHTML = '<p>Correct!</p><p class="explanation">' + explanation + '</p>';
+            } else {
+                feedbackDiv.classList.remove('correct');
+                feedbackDiv.classList.add('incorrect');
+                feedbackDiv.innerHTML = '<p>Incorrect.</p><p class="explanation">The correct answer is ' + correctAnswer.toUpperCase() + ': ' + explanation + '</p>';
+            }
+        }
+    </script>
+</body>
+</html>

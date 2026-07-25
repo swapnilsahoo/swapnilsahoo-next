@@ -1,0 +1,1027 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 7: Strategic Leadership | Grand Master Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- SESSION 5 TEMPLATE STYLES --- */
+        :root {
+            --primary-bg: #ffffff;
+            --secondary-bg: #f8fafc;
+            --primary-text: #0f172a;
+            --accent-blue: #1e3a8a; /* Session 5 Dark Blue */
+            --accent-gold: #d4af37; /* Session 5 Gold */
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Satoshi', sans-serif;
+            background-color: var(--secondary-bg);
+            color: var(--primary-text);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, .serif { font-family: 'Playfair Display', serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        /* Progress Bar */
+        #progress-bar {
+            position: fixed; top: 0; left: 0; height: 4px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-gold));
+            width: 0%; z-index: 100; transition: width 0.1s;
+        }
+
+        /* Navigation */
+        #main-header { position: sticky; top: 0; z-index: 50; transition: all 0.3s ease; }
+        .nav-link { 
+            position: relative; font-weight: 500; color: #64748b; transition: color 0.2s;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--accent-blue); }
+        .nav-link.active::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 100%; height: 2px; background: var(--accent-gold);
+        }
+
+        /* Session Badge (S5 Style) */
+        .session-badge {
+            width: 40px; height: 40px;
+            background: linear-gradient(135deg, var(--accent-blue), #0f172a);
+            color: white;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Animations */
+        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .visible { opacity: 1; transform: translateY(0); }
+        .fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        /* Content Card (S5 Style) */
+        .content-card {
+            background: white; 
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        .content-card:hover { 
+            transform: translateY(-4px); 
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: var(--accent-blue);
+        }
+
+        /* First Principle Box (S5 Style) */
+        .fp-box {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-left: 4px solid var(--accent-blue);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border-radius: 0 1rem 1rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .fp-box::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 8rem;
+            color: rgba(30, 58, 138, 0.05);
+        }
+
+        /* Mini-Simulation Styling (Updated for Robust Feedback) */
+        .mini-sim-box {
+            background-color: #1e293b;
+            color: white;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin-top: 2rem;
+            border: 1px solid #334155;
+            position: relative;
+            overflow: hidden;
+        }
+        .mini-sim-btn {
+            background-color: #334155;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            text-align: left;
+            margin-bottom: 0.75rem;
+            border: 1px solid #475569;
+            cursor: pointer;
+        }
+        .mini-sim-btn:hover {
+            background-color: #475569;
+            transform: translateX(4px);
+            border-color: var(--accent-gold);
+        }
+        .feedback-panel {
+            display: none;
+            background: rgba(15, 23, 42, 0.95);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-top: 1.5rem;
+            border-left: 4px solid;
+            animation: fadeIn 0.5s ease-out;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Level 5 Buttons */
+        .lvl-btn { transition: all 0.2s; cursor: pointer; }
+        .lvl-btn:hover { transform: translateX(5px); border-color: var(--accent-gold); }
+
+        /* Meta Sim Specific */
+        .sim-option { transition: all 0.2s; border: 1px solid #475569; }
+        .sim-option:hover { border-color: var(--accent-gold); transform: translateX(5px); }
+        .sim-stat-bar { transition: width 0.5s ease-out; }
+        
+        /* Timeline styling */
+        .timeline-line {
+            position: absolute;
+            left: 24px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #cbd5e1;
+        }
+        
+        /* Level 5 Pyramid Styling */
+        .pyramid-level {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            margin-bottom: 8px;
+            color: white;
+            font-weight: bold;
+            border-radius: 4px 4px 0 0;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .pyramid-level:hover { transform: scale(1.02); }
+    </style>
+</head>
+<body class="text-slate-800 antialiased">
+
+    <div id="progress-bar"></div>
+
+    <!-- HEADER (Session 5 Template) -->
+    <nav id="main-header" class="bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="bg-slate-50 border-b border-slate-100 py-1.5 text-center">
+            <div class="flex items-center justify-center gap-6 text-[10px] uppercase font-bold tracking-widest text-slate-400 font-mono">
+                <span class="text-blue-900 underline decoration-2 decoration-amber-400 underline-offset-4">Part 1: Analysis</span>
+                <span class="text-slate-300">/</span>
+                <span>Part 2: Formulation</span>
+                <span class="text-slate-300">/</span>
+                <span>Part 3: Implementation</span>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="#" class="flex items-center gap-4 group no-underline">
+                    <div class="session-badge group-hover:scale-105 transition-transform duration-300">S7</div>
+                    <div class="flex flex-col">
+                        <span class="font-serif font-bold text-lg tracking-tight text-slate-900 leading-none group-hover:text-blue-900 transition-colors">Strategic Leadership</span>
+                        <span class="text-[10px] font-mono text-slate-500 uppercase tracking-widest mt-1">Grand Master Edition</span>
+                    </div>
+                </a>
+                
+                <div class="hidden xl:flex items-center space-x-8 text-sm font-medium">
+                    <a href="#recap" class="nav-link">Recap</a>
+                    <a href="#what-leaders-do" class="nav-link active">Leaders Role</a>
+                    <a href="#level5" class="nav-link">Level-5</a>
+                    <a href="#process" class="nav-link">Process</a>
+                    <div class="h-4 w-px bg-slate-300"></div>
+                    <a href="#simulation" class="text-blue-900 font-bold hover:text-amber-500 transition-colors flex items-center gap-2">
+                        <i class="fas fa-chess-knight"></i> CEO Challenge
+                    </a>
+                </div>
+
+                <div class="xl:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-slate-600 hover:text-blue-900 transition-colors">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="hidden bg-white border-t border-slate-100 xl:hidden">
+            <div class="flex flex-col p-6 space-y-4">
+                <a href="#recap" class="text-slate-600 font-medium">Recap</a>
+                <a href="#what-leaders-do" class="text-slate-600 font-medium">What Leaders Do</a>
+                <a href="#level5" class="text-slate-600 font-medium">Level-5</a>
+                <a href="#simulation" class="text-blue-900 font-bold">Simulation</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
+        <!-- SESSION 6 RECAP -->
+        <section id="recap" class="mb-24 fade-up">
+            <div class="content-card p-10 border-l-4 border-blue-900">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-serif font-bold text-slate-900">Recap: The Field Analysis</h2>
+                    <span class="bg-slate-100 text-slate-500 text-xs font-mono px-3 py-1 rounded">Session 06 Protocol</span>
+                </div>
+                <p class="text-slate-600 text-lg mb-6 leading-relaxed">
+                    In Session 6, we transitioned from theoretical frameworks to empirical application. You adopted the <strong>Consultant's Mindset</strong>, stepping out of the classroom to conduct primary research on real-world firms.
+                </p>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
+                        <div class="text-amber-500 mb-3 text-2xl"><i class="fas fa-binoculars"></i></div>
+                        <h4 class="font-bold text-slate-900 mb-2">Observation</h4>
+                        <p class="text-sm text-slate-600">Strategy is in the store layout and operational bottlenecks you observed firsthand.</p>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
+                        <div class="text-blue-900 mb-3 text-2xl"><i class="fas fa-project-diagram"></i></div>
+                        <h4 class="font-bold text-slate-900 mb-2">Integration</h4>
+                        <p class="text-sm text-slate-600">Synthesized tools (PESTEL, Porter's 5 Forces) into a coherent narrative.</p>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
+                        <div class="text-emerald-600 mb-3 text-2xl"><i class="fas fa-users"></i></div>
+                        <h4 class="font-bold text-slate-900 mb-2">Group Dynamics</h4>
+                        <p class="text-sm text-slate-600">Mirrored boardroom debates, preparing you for today's leadership focus.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- THE CURRICULUM ARC -->
+        <section id="storyline" class="mb-32 fade-up">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold text-blue-800 uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full">The Strategic Journey</span>
+                <h2 class="text-3xl font-serif font-bold text-slate-900 mt-4 mb-4">From Definition to Leadership</h2>
+                <p class="text-slate-600">We have moved from definition to disruption, analysis, and application. Now, we turn to the human element.</p>
+            </div>
+            <div class="relative max-w-4xl mx-auto pl-4 md:pl-0">
+                <div class="timeline-line hidden md:block"></div>
+                <div class="grid gap-6">
+                    
+                    <!-- 01 Foundations -->
+                    <div class="relative flex flex-col md:flex-row gap-6 md:items-center">
+                        <div class="hidden md:flex flex-col items-center w-12 shrink-0 z-10">
+                            <div class="w-4 h-4 bg-slate-300 rounded-full border-4 border-white shadow-sm"></div>
+                        </div>
+                        <div class="flex-1 bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-blue-300 transition-all">
+                            <div class="flex justify-between items-center mb-1">
+                                <h4 class="font-bold text-slate-900"><span class="text-blue-900 font-mono text-xs mr-2">01</span>Foundations</h4>
+                                <span class="text-xs text-slate-400 font-mono">Porter vs Mintzberg</span>
+                            </div>
+                            <p class="text-sm text-slate-600">Defined the battlefield. Strategy is not operational effectiveness.</p>
+                        </div>
+                    </div>
+
+                    <!-- 02 Disruption -->
+                    <div class="relative flex flex-col md:flex-row gap-6 md:items-center">
+                        <div class="hidden md:flex flex-col items-center w-12 shrink-0 z-10">
+                            <div class="w-4 h-4 bg-slate-300 rounded-full border-4 border-white shadow-sm"></div>
+                        </div>
+                        <div class="flex-1 bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-blue-300 transition-all">
+                            <div class="flex justify-between items-center mb-1">
+                                <h4 class="font-bold text-slate-900"><span class="text-blue-900 font-mono text-xs mr-2">02</span>Disruption</h4>
+                                <span class="text-xs text-slate-400 font-mono">Tesla Case</span>
+                            </div>
+                            <p class="text-sm text-slate-600">Examined how new entrants rewrite the rules. Non-linear growth.</p>
+                        </div>
+                    </div>
+
+                    <!-- 03 The Strategist -->
+                    <div class="relative flex flex-col md:flex-row gap-6 md:items-center">
+                        <div class="hidden md:flex flex-col items-center w-12 shrink-0 z-10">
+                            <div class="w-4 h-4 bg-slate-300 rounded-full border-4 border-white shadow-sm"></div>
+                        </div>
+                        <div class="flex-1 bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-blue-300 transition-all">
+                            <div class="flex justify-between items-center mb-1">
+                                <h4 class="font-bold text-slate-900"><span class="text-blue-900 font-mono text-xs mr-2">03</span>The Strategist</h4>
+                                <span class="text-xs text-slate-400 font-mono">CSO Role</span>
+                            </div>
+                            <p class="text-sm text-slate-600">Bridging the gap between analysis and execution.</p>
+                        </div>
+                    </div>
+
+                    <!-- 04 The Soul -->
+                    <div class="relative flex flex-col md:flex-row gap-6 md:items-center">
+                        <div class="hidden md:flex flex-col items-center w-12 shrink-0 z-10">
+                            <div class="w-4 h-4 bg-slate-300 rounded-full border-4 border-white shadow-sm"></div>
+                        </div>
+                        <div class="flex-1 bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-blue-300 transition-all">
+                            <div class="flex justify-between items-center mb-1">
+                                <h4 class="font-bold text-slate-900"><span class="text-blue-900 font-mono text-xs mr-2">04</span>The Soul</h4>
+                                <span class="text-xs text-slate-400 font-mono">Vision & Values</span>
+                            </div>
+                            <p class="text-sm text-slate-600">Without a North Star, strategy is just a roadmap to nowhere.</p>
+                        </div>
+                    </div>
+
+                    <!-- 05 The Environment -->
+                    <div class="relative flex flex-col md:flex-row gap-6 md:items-center">
+                        <div class="hidden md:flex flex-col items-center w-12 shrink-0 z-10">
+                            <div class="w-4 h-4 bg-slate-300 rounded-full border-4 border-white shadow-sm"></div>
+                        </div>
+                        <div class="flex-1 bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-blue-300 transition-all">
+                            <div class="flex justify-between items-center mb-1">
+                                <h4 class="font-bold text-slate-900"><span class="text-blue-900 font-mono text-xs mr-2">05</span>The Environment</h4>
+                                <span class="text-xs text-slate-400 font-mono">5 Forces</span>
+                            </div>
+                            <p class="text-sm text-slate-600">Mapped external forces. Industry structure dictates profit potential.</p>
+                        </div>
+                    </div>
+
+                    <!-- 06 The Application -->
+                    <div class="relative flex flex-col md:flex-row gap-6 md:items-center">
+                        <div class="hidden md:flex flex-col items-center w-12 shrink-0 z-10">
+                            <div class="w-4 h-4 bg-slate-300 rounded-full border-4 border-white shadow-sm"></div>
+                        </div>
+                        <div class="flex-1 bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-blue-300 transition-all">
+                            <div class="flex justify-between items-center mb-1">
+                                <h4 class="font-bold text-slate-900"><span class="text-blue-900 font-mono text-xs mr-2">06</span>The Application</h4>
+                                <span class="text-xs text-slate-400 font-mono">Field Analysis</span>
+                            </div>
+                            <p class="text-sm text-slate-600">Applied frameworks to real-world data in the field project.</p>
+                        </div>
+                    </div>
+
+                    <!-- S7 Current -->
+                    <div class="relative flex flex-col md:flex-row gap-6 md:items-center">
+                        <div class="hidden md:flex flex-col items-center w-12 shrink-0 z-10">
+                            <div class="w-6 h-6 bg-blue-800 rounded-full border-4 border-blue-100 shadow-lg animate-pulse"></div>
+                        </div>
+                        <div class="flex-1 bg-slate-900 p-6 rounded-xl border border-blue-800 shadow-xl relative overflow-hidden text-white">
+                            <span class="absolute top-4 right-4 text-slate-700 font-serif font-bold text-3xl">07</span>
+                            <span class="inline-block px-2 py-1 bg-blue-700 text-[10px] font-bold uppercase rounded mb-2">Current</span>
+                            <h4 class="font-bold text-lg mb-1">Strategic Leadership</h4>
+                            <p class="text-sm text-slate-300">Now, we ask: <em>Who</em> drives this process? Navigating uncertainty and bias.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 1: WHAT LEADERS DO -->
+        <section id="what-leaders-do" class="mb-24 fade-up">
+            <div class="fp-box">
+                <p class="text-xs font-bold text-blue-900 uppercase tracking-widest mb-2 font-mono">Fundamental Question</p>
+                <h3 class="text-3xl font-serif font-bold text-slate-900 mb-4">Are Strategic Leaders Born or Made?</h3>
+                <div class="prose prose-slate text-slate-600">
+                    <p class="mb-4">
+                        Modern consensus suggests a <strong>30/70 split</strong>: 30% genetic (nature) vs. 70% experience (nurture).
+                    </p>
+                    <ul class="list-disc pl-5 mb-4 space-y-2 text-sm">
+                        <li><strong>The 30% (Born):</strong> Cognitive ability, personality traits (extraversion), and neurobiology act as a baseline "head start."</li>
+                        <li><strong>The 70% (Made):</strong> The <strong>70-20-10 Rule</strong> suggests development comes from on-the-job challenges (70%), mentorship (20%), and training (10%).</li>
+                    </ul>
+                    <p class="text-sm border-l-4 border-blue-500 pl-4 italic">
+                        "Neuroplasticity proves the brain can be rewired for leadership. Behaviors like strategic visioning become automatic through deliberate practice."
+                    </p>
+                </div>
+            </div>
+
+            <div class="content-card p-10 mb-8">
+                <h3 class="text-2xl font-bold text-slate-900 mb-6">The Remote Work Dilemma</h3>
+                <p class="text-slate-600 mb-8 leading-relaxed">
+                    Strategic leadership manifests in how work is organized. <strong>Meta (Mark Zuckerberg)</strong> embraces remote work to "dogfood" the metaverse, with leaders dispersed globally (Naomi Gleit in NY, Guy Rosen in Israel). 
+                    In contrast, <strong>Reed Hastings (Netflix)</strong> calls it "a pure negative," and <strong>James Gorman (Morgan Stanley)</strong> demands presence. Research shows a <strong>5% productivity boost</strong> from WFH, but younger employees risk being "out of sight, out of mind."
+                </p>
+                
+                <!-- SIMULATION 1: COMPLEX REAL-WORLD SCENARIO -->
+                <div class="mini-sim-box" id="sim-1">
+                    <div class="flex items-center gap-3 mb-6 border-b border-slate-600 pb-4">
+                        <div class="text-3xl">🏢</div>
+                        <div>
+                            <h4 class="font-bold text-white text-lg">Simulation: The Hybrid Paradox</h4>
+                            <p class="text-xs text-slate-400">You are the CEO of a Global FinTech. 50% of your workforce is Gen Z coding talent. 50% is senior banking leadership.</p>
+                        </div>
+                    </div>
+                    <button class="mini-sim-btn" onclick="runMiniSim('sim-1', 'A')">
+                        <span class="mr-3 bg-blue-600 px-2 py-1 rounded text-xs font-bold">Option A</span>
+                        <strong>The "Meta" Approach:</strong> Go Remote-First. Hire talent from anywhere.
+                    </button>
+                    <button class="mini-sim-btn" onclick="runMiniSim('sim-1', 'B')">
+                        <span class="mr-3 bg-amber-600 px-2 py-1 rounded text-xs font-bold">Option B</span>
+                        <strong>The "Wall Street" Approach:</strong> Mandate 5 Days in Office. "If you want NY pay, be in NY."
+                    </button>
+                    <button class="mini-sim-btn" onclick="runMiniSim('sim-1', 'C')">
+                        <span class="mr-3 bg-emerald-600 px-2 py-1 rounded text-xs font-bold">Option C</span>
+                        <strong>Structured Hybrid:</strong> 3 Fixed Days (Tue-Thu) for culture, 2 Flexible for deep work.
+                    </button>
+                    
+                    <div id="sim-1-feedback" class="feedback-panel"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: META CASE STUDY (Brief Context for Sim) -->
+        <section id="meta-case" class="mb-24 fade-up">
+            <div class="bg-slate-900 rounded-3xl overflow-hidden shadow-2xl relative">
+                <div class="absolute inset-0 bg-blue-900/20"></div>
+                <div class="relative z-10 p-10 md:p-12 text-white">
+                    <h2 class="text-3xl font-serif font-bold mb-4">Strategic Leadership at Meta</h2>
+                    <p class="text-slate-300 mb-6">Zuckerberg requires all virtual meetings to happen in Horizon Workrooms (VR). This "Dogfooding" forces employees to experience the product's flaws firsthand.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: LEVEL 5 LEADERSHIP -->
+        <section id="level5" class="mb-24 fade-up">
+            <div class="fp-box">
+                <p class="text-xs font-bold text-blue-900 uppercase tracking-widest mb-2 font-mono">Jim Collins Framework</p>
+                <h3 class="text-3xl font-serif font-bold text-slate-900 mb-4">Can extreme humility coexist with intense professional will?</h3>
+                <div class="prose prose-slate text-slate-600 max-w-none">
+                    <p class="mb-4">
+                        <strong>Yes.</strong> Extreme humility and intense professional will not only coexist but are the defining characteristics of <strong>Level 5 Leadership</strong>, a concept popularized by Jim Collins in <em>Good to Great</em>. This combination is a <span class="text-blue-700 font-medium">paradoxical blend</span> where a leader is both modest and willful, shy and fearless.
+                    </p>
+                    
+                    <h4 class="text-lg font-bold text-slate-800 mt-6 mb-2 font-serif">How They Coexist</h4>
+                    <ul class="list-disc pl-5 space-y-2 mb-4">
+                        <li><strong>The "Window and the Mirror" Effect:</strong> When things go well, they look out the <em>window</em> to credit others or luck. When things go poorly, they look in the <em>mirror</em> to take full responsibility.</li>
+                        <li><strong>Ambition for the Cause:</strong> Their intense "will" is directed toward the organization's success rather than personal glory.</li>
+                        <li><strong>Quiet Resolve:</strong> They often appear quiet or unpretentious, yet possess unwavering resolve to make difficult decisions for long-term results.</li>
+                        <li><strong>Intellectual Humility:</strong> They acknowledge their own fallibility, allowing them to weigh evidence diligently before acting with determination.</li>
+                    </ul>
+
+                    <h4 class="text-lg font-bold text-slate-800 mt-6 mb-2 font-serif">Key Benefits</h4>
+                    <ul class="list-disc pl-5 space-y-2 mb-4">
+                        <li><strong>Fosters Trust:</strong> Humility creates psychological safety within teams.</li>
+                        <li><strong>Drives Performance:</strong> Humility is a strong predictor of performance improvement over time.</li>
+                        <li><strong>Ensures Continuity:</strong> They prioritize building strong teams and successors for the mission, not their ego.</li>
+                    </ul>
+
+                    <h4 class="text-lg font-bold text-slate-800 mt-6 mb-2 font-serif">Historical Examples</h4>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>Darwin Smith (Kimberly-Clark):</strong> A shy man who sold the company's core mills to focus on consumer products, leading to 20 years of market-beating returns.</li>
+                        <li><strong>Abraham Lincoln:</strong> A "quiet, peaceful figure" with a fierce will to preserve the Union despite the immense cost.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-card p-10">
+                
+                <!-- LEVEL 5 PYRAMID DIAGRAM -->
+                <div class="max-w-2xl mx-auto mb-16">
+                    <h4 class="text-center font-bold text-slate-900 mb-6 font-serif text-2xl">The Level-5 Leadership Pyramid</h4>
+                    <div class="flex flex-col items-center">
+                        <!-- Level 5 -->
+                        <div class="pyramid-level bg-amber-500 w-full md:w-5/12 p-3">
+                            <span class="text-sm uppercase tracking-wider">Level 5: Executive</span>
+                            <span class="text-xs font-normal opacity-90">Humility + Will</span>
+                        </div>
+                        <!-- Level 4 -->
+                        <div class="pyramid-level bg-amber-400 w-full md:w-6/12 p-3">
+                            <span class="text-sm uppercase tracking-wider">Level 4: Effective Leader</span>
+                            <span class="text-xs font-normal opacity-90">Compelling Vision</span>
+                        </div>
+                        <!-- Level 3 -->
+                        <div class="pyramid-level bg-amber-300 w-full md:w-7/12 p-3">
+                            <span class="text-sm uppercase tracking-wider">Level 3: Competent Manager</span>
+                            <span class="text-xs font-normal opacity-90">Organize Resources</span>
+                        </div>
+                        <!-- Level 2 -->
+                        <div class="pyramid-level bg-amber-200 w-full md:w-8/12 p-3 text-amber-900">
+                            <span class="text-sm uppercase tracking-wider">Level 2: Team Member</span>
+                            <span class="text-xs font-normal opacity-90">Work Effectively with Others</span>
+                        </div>
+                        <!-- Level 1 -->
+                        <div class="pyramid-level bg-amber-100 w-full md:w-9/12 p-3 text-amber-900">
+                            <span class="text-sm uppercase tracking-wider">Level 1: Highly Capable</span>
+                            <span class="text-xs font-normal opacity-90">Talent, Knowledge, Skills</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NEW: The Yin and Yang of Level 5 -->
+                <div class="mb-16 bg-slate-50 rounded-xl p-8 border border-slate-200">
+                    <h4 class="font-bold text-slate-900 mb-8 text-center font-serif text-3xl">The Yin and Yang of Level 5</h4>
+                    <div class="grid md:grid-cols-2 gap-12">
+                        <!-- Personal Humility -->
+                        <div>
+                            <h5 class="font-bold text-blue-900 mb-4 text-lg border-b border-blue-200 pb-2 uppercase tracking-widest">Personal Humility</h5>
+                            <ul class="space-y-4 text-slate-700 text-sm leading-relaxed">
+                                <li class="flex gap-3">
+                                    <i class="fas fa-check text-blue-400 mt-1"></i>
+                                    <span>Demonstrates a compelling modesty, shunning public adulation; never boastful.</span>
+                                </li>
+                                <li class="flex gap-3">
+                                    <i class="fas fa-check text-blue-400 mt-1"></i>
+                                    <span>Acts with quiet, calm determination; relies principally on inspired standards, not inspiring charisma, to motivate.</span>
+                                </li>
+                                <li class="flex gap-3">
+                                    <i class="fas fa-check text-blue-400 mt-1"></i>
+                                    <span>Channels ambition into the company, not the self; sets up successors for even more greatness in the next generation.</span>
+                                </li>
+                                <li class="flex gap-3">
+                                    <i class="fas fa-check text-blue-400 mt-1"></i>
+                                    <span>Looks in the <strong>mirror</strong>, not out the window, to apportion responsibility for poor results, never blaming other people, external factors, or bad luck.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Professional Will -->
+                        <div>
+                            <h5 class="font-bold text-amber-600 mb-4 text-lg border-b border-amber-200 pb-2 uppercase tracking-widest">Professional Will</h5>
+                            <ul class="space-y-4 text-slate-700 text-sm leading-relaxed">
+                                <li class="flex gap-3">
+                                    <i class="fas fa-star text-amber-400 mt-1"></i>
+                                    <span>Creates superb results, a clear catalyst in the transition from good to great.</span>
+                                </li>
+                                <li class="flex gap-3">
+                                    <i class="fas fa-star text-amber-400 mt-1"></i>
+                                    <span>Demonstrates an unwavering resolve to do whatever must be done to produce the best long-term results, no matter how difficult.</span>
+                                </li>
+                                <li class="flex gap-3">
+                                    <i class="fas fa-star text-amber-400 mt-1"></i>
+                                    <span>Sets the standard of building an enduring great company; will settle for nothing less.</span>
+                                </li>
+                                <li class="flex gap-3">
+                                    <i class="fas fa-star text-amber-400 mt-1"></i>
+                                    <span>Looks out the <strong>window</strong>, not in the mirror, to apportion credit for the success of the company — to other people, external factors, and good luck.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12 mb-10">
+                    <div>
+                        <h4 class="font-bold text-slate-900 mb-4 text-xl border-b border-slate-200 pb-2">The Constructive Builders</h4>
+                        <p class="text-sm text-slate-600 mb-4">Strategic leaders who shaped and revitalized industries:</p>
+                        <ul class="space-y-2 text-sm text-slate-700">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i><strong>Elon Musk:</strong> Tesla & SpaceX (Visionary Risk).</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i><strong>Whitney Wolfe:</strong> Bumble (Market Disruption).</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i><strong>Satya Nadella:</strong> Microsoft (Cultural Turnaround).</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i><strong>Mary Barra:</strong> GM (Crisis Management).</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i><strong>Rihanna:</strong> Fenty Beauty (Inclusive Strategy).</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 mb-4 text-xl border-b border-slate-200 pb-2">The Destructive Agents</h4>
+                        <p class="text-sm text-slate-600 mb-4">CEOs who massively destroyed shareholder value:</p>
+                        <ul class="space-y-2 text-sm text-slate-700">
+                            <li><i class="fas fa-times text-red-500 mr-2"></i><strong>Ken Lay:</strong> Enron (Fraud).</li>
+                            <li><i class="fas fa-times text-red-500 mr-2"></i><strong>Bernie Ebbers:</strong> WorldCom (Accounting Scandal).</li>
+                            <li><i class="fas fa-times text-red-500 mr-2"></i><strong>Martin Winterkorn:</strong> VW (Dieselgate / Fear Culture).</li>
+                            <li><i class="fas fa-times text-red-500 mr-2"></i><strong>John Sculley:</strong> Apple (Strategic Drift).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- NEW: Level 5 Practice Arena -->
+                <div class="mt-16 bg-white p-8 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center text-white text-2xl"><i class="fas fa-dumbbell"></i></div>
+                        <div>
+                            <h3 class="text-2xl font-serif font-bold text-slate-900">Level 5 Practice Arena</h3>
+                            <p class="text-sm text-slate-500">To balance extreme humility with intense professional will, you can practice specific exercises that target both your internal mindset and external leadership behaviors.</p>
+                        </div>
+                    </div>
+
+                    <!-- Group Activity: The Leadership Crucible -->
+                    <div class="bg-slate-50 p-6 rounded-lg border border-slate-200 mb-10">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <span class="text-xs font-bold text-blue-900 uppercase tracking-widest bg-blue-100 px-2 py-1 rounded">Group Activity</span>
+                                <h4 class="font-bold text-xl text-slate-900 mt-2">The Leadership Crucible</h4>
+                                <p class="text-sm text-slate-500 italic mt-1">Inspired by Jim Collins' "7 Questions" at West Point</p>
+                            </div>
+                            <a href="https://www.youtube.com/watch?v=LHs_2tSw-M4" target="_blank" class="text-red-600 hover:text-red-700 text-2xl" title="Watch Source Video"><i class="fab fa-youtube"></i></a>
+                        </div>
+                        
+                        <p class="text-slate-600 mb-6 text-sm">
+                            Break into groups of 3. Each person must share a personal story for one of the three "crucibles" below. The group must then synthesize a "Unit Motto" based on the stories.
+                        </p>
+
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="bg-white p-5 rounded shadow-sm border-t-4 border-amber-500">
+                                <h5 class="font-bold text-slate-900 mb-2 text-sm uppercase tracking-wide">1. The Dawn Wall</h5>
+                                <p class="text-xs text-slate-500 font-mono mb-3">Reframing Failure</p>
+                                <p class="text-xs text-slate-700 leading-relaxed">
+                                    Tommy Caldwell failed for 4 years on El Capitan before succeeding. He didn't say "I'm failing," he said "I'm growing."
+                                    <br><br><strong>Your Turn:</strong> Share a recent "failure" that was actually just rigorous training for your future.
+                                </p>
+                            </div>
+                            <div class="bg-white p-5 rounded shadow-sm border-t-4 border-blue-500">
+                                <h5 class="font-bold text-slate-900 mb-2 text-sm uppercase tracking-wide">2. The IOCT</h5>
+                                <p class="text-xs text-slate-500 font-mono mb-3">Communal Success</p>
+                                <p class="text-xs text-slate-700 leading-relaxed">
+                                    On the West Point obstacle course, cadets return to help struggling teammates finish. "We succeed only when we help others succeed."
+                                    <br><br><strong>Your Turn:</strong> Who is struggling in your "unit"? What specific action will you take tomorrow to help them pass?
+                                </p>
+                            </div>
+                            <div class="bg-white p-5 rounded shadow-sm border-t-4 border-emerald-500">
+                                <h5 class="font-bold text-slate-900 mb-2 text-sm uppercase tracking-wide">3. The Hedgehog</h5>
+                                <p class="text-xs text-slate-500 font-mono mb-3">Personal Alignment</p>
+                                <p class="text-xs text-slate-700 leading-relaxed">
+                                    Steve Jobs found the intersection of what he loved, what he was encoded for, and what drove his economic engine.
+                                    <br><br><strong>Your Turn:</strong> Are you currently operating in your "Hedgehog"? If not, which circle is missing?
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- NEW BLOCK: Credit & Crisis Drill -->
+                    <div class="bg-slate-50 p-6 rounded-lg border border-slate-200 mb-10">
+                        <span class="text-xs font-bold text-blue-900 uppercase tracking-widest bg-blue-100 px-2 py-1 rounded">Group Simulation II</span>
+                        <h4 class="font-bold text-xl text-slate-900 mt-3 mb-2">The "Credit & Crisis" Drill</h4>
+                        <p class="text-slate-600 mb-6 text-sm">
+                            <strong>Scenario:</strong> Your team just achieved a massive win (e.g., a record launch), but a looming market threat exists (e.g., a new regulation).
+                            <br><strong>The Challenge:</strong> Break into pairs. Partner A plays the CEO.
+                        </p>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-white p-4 rounded shadow-sm border-l-4 border-blue-500">
+                                <h5 class="font-bold text-blue-900 mb-2">Step 1: The Mirror (Humility)</h5>
+                                <p class="text-xs text-slate-700 mb-3 leading-relaxed">
+                                    Draft a press release about the win. You are <strong>forbidden</strong> from using "I" or "My". You must name 3 specific team members.
+                                </p>
+                                <div class="bg-blue-50 p-3 rounded mt-2">
+                                    <p class="text-xs italic text-slate-600">
+                                        <strong>How Satya Nadella does it:</strong> He would likely not write the release himself. He would stand in the back while engineering leads presented, speaking only to praise their "growth mindset."
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="bg-white p-4 rounded shadow-sm border-l-4 border-amber-500">
+                                <h5 class="font-bold text-amber-600 mb-2">Step 2: The Window (Will)</h5>
+                                <p class="text-xs text-slate-700 mb-3 leading-relaxed">
+                                    Immediately draft an internal memo announcing a "hard pivot" to address the threat, cancelling a popular project to save the company.
+                                </p>
+                                <div class="bg-amber-50 p-3 rounded mt-2">
+                                    <p class="text-xs italic text-slate-600">
+                                        <strong>How Darwin Smith did it:</strong> He listened to the board's emotional pleas to keep the historic paper mills, then quietly but firmly sold them all the next day to focus on Kleenex.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exercises Grid -->
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-bold text-slate-900 mb-4 flex items-center gap-2"><i class="fas fa-user text-blue-500"></i> Exercises for Humility (The "Mirror")</h4>
+                            <p class="text-xs text-slate-500 mb-4">Focus on self-awareness and shifting the spotlight.</p>
+                            <ul class="space-y-3">
+                                <li class="bg-blue-50 p-3 rounded text-sm text-slate-700">
+                                    <strong>The "I Don't Know" Challenge:</strong> Commit to saying "I don't know, what do you think?" at least once a day. This validates team expertise.
+                                </li>
+                                <li class="bg-blue-50 p-3 rounded text-sm text-slate-700">
+                                    <strong>Shift the Spotlight:</strong> When you succeed, identify three people who contributed and publicly share the credit.
+                                </li>
+                                <li class="bg-blue-50 p-3 rounded text-sm text-slate-700">
+                                    <strong>Feedback "Mirror":</strong> Use 360-degree feedback to find blind spots. Actively thank those who provide tough criticism.
+                                </li>
+                                <li class="bg-blue-50 p-3 rounded text-sm text-slate-700">
+                                    <strong>Active Listening Lab:</strong> Wait until everyone else has spoken before sharing your opinion. Listen twice as much as you talk.
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold text-slate-900 mb-4 flex items-center gap-2"><i class="fas fa-mountain text-amber-500"></i> Exercises for Intense Will (The "Window")</h4>
+                            <p class="text-xs text-slate-500 mb-4">Strengthen resolve and focus on results.</p>
+                            <ul class="space-y-3">
+                                <li class="bg-amber-50 p-3 rounded text-sm text-slate-700">
+                                    <strong>The "Stop-Doing" List:</strong> Create a list of urgent activities that do not serve the long-term vision and resolutely stop doing them.
+                                </li>
+                                <li class="bg-amber-50 p-3 rounded text-sm text-slate-700">
+                                    <strong>Pre-Mortem Planning:</strong> Imagine a project has failed. Work backward to identify risks. This "productive paranoia" builds foresight.
+                                </li>
+                                <li class="bg-amber-50 p-3 rounded text-sm text-slate-700">
+                                    <strong>The "One Hard Thing" Rule:</strong> Identify the most difficult decision you’ve been avoiding. Commit to making it this week for the mission.
+                                </li>
+                                <li class="bg-amber-50 p-3 rounded text-sm text-slate-700">
+                                    <strong>Vision Recalibration:</strong> Weekly, write down the core mission. Reflect: "Did my actions serve the mission or my ego?"
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Synthesis -->
+                    <div class="mt-8 border-t border-slate-100 pt-6 text-center">
+                        <span class="font-serif italic text-slate-500">The "Level 5" Synthesis:</span>
+                        <p class="text-sm font-medium text-slate-800 mt-1">Keep a daily reflective journal. Ask: "Did I take full responsibility for a failure today (humility)? Did I move the mission forward regardless of obstacles (will)?"</p>
+                    </div>
+                </div>
+
+                <!-- SIMULATION 2: COMPLEX REAL-WORLD SCENARIO -->
+                <div class="mini-sim-box" id="sim-2">
+                    <div class="flex items-center gap-3 mb-6 border-b border-slate-600 pb-4">
+                        <div class="text-3xl">⚖️</div>
+                        <div>
+                            <h4 class="font-bold text-white text-lg">Simulation: The Turnaround CEO</h4>
+                            <p class="text-xs text-slate-400">You inherited a toxic legacy tech giant (like Microsoft in 2014). Innovation is dead. Infighting is rampant.</p>
+                        </div>
+                    </div>
+                    <button class="mini-sim-btn" onclick="runMiniSim('sim-2', 'A')">
+                        <span class="mr-3 bg-red-700 px-2 py-1 rounded text-xs font-bold">Option A</span>
+                        <strong>The "Chainsaw" Approach (Al Dunlap):</strong> Fire 30% of staff immediately to boost stock price. Focus purely on financials.
+                    </button>
+                    <button class="mini-sim-btn" onclick="runMiniSim('sim-2', 'B')">
+                        <span class="mr-3 bg-emerald-700 px-2 py-1 rounded text-xs font-bold">Option B</span>
+                        <strong>The "Empathy" Approach (Satya Nadella):</strong> Focus on "Culture eats Strategy." Promote a growth mindset. Admit past failures openly.
+                    </button>
+                    <div id="sim-2-feedback" class="feedback-panel"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: STRATEGY PROCESS -->
+        <section id="process" class="mb-24 fade-up">
+            <div class="fp-box">
+                <p class="text-xs font-bold text-blue-900 uppercase tracking-widest mb-2 font-mono">Methodology</p>
+                <h3 class="text-3xl font-serif font-bold text-slate-900 mb-4">How is strategy actually made?</h3>
+                <p class="text-slate-600 text-lg leading-relaxed">
+                    It is rarely a straight line. It is a mix of <strong>Top-Down Planning</strong> (Intended) and <strong>Bottom-Up Emergence</strong> (Reality).
+                </p>
+            </div>
+
+            <!-- SIMULATION 3: COMPLEX REAL-WORLD SCENARIO -->
+            <div class="mini-sim-box max-w-3xl mx-auto" id="sim-3">
+                <div class="flex items-center gap-3 mb-6 border-b border-slate-600 pb-4">
+                    <div class="text-3xl">☕</div>
+                    <div>
+                        <h4 class="font-bold text-white text-lg">Simulation: The Innovation Rebellion</h4>
+                        <p class="text-xs text-slate-400">A store manager creates a product that violates brand guidelines (e.g., a sugary drink in a purist coffee shop). Customers love it. Sales +20%.</p>
+                    </div>
+                </div>
+                <button class="mini-sim-btn" onclick="runMiniSim('sim-3', 'A')">
+                    <span class="mr-3 bg-red-600 px-2 py-1 rounded text-xs font-bold">Option A</span>
+                    <strong>Top-Down Control:</strong> Fire the manager. "We are a premium brand. We do not sell sugar-water."
+                </button>
+                <button class="mini-sim-btn" onclick="runMiniSim('sim-3', 'B')">
+                    <span class="mr-3 bg-green-600 px-2 py-1 rounded text-xs font-bold">Option B</span>
+                    <strong>Planned Emergence:</strong> Taste it. Adapt the strategy. "If customers want it, we scale it." (The Frappuccino path).
+                </button>
+                <div id="sim-3-feedback" class="feedback-panel"></div>
+            </div>
+        </section>
+
+        <!-- CAPSTONE SIMULATION -->
+        <section id="simulation" class="mb-24 pt-8 bg-slate-900 -mx-4 sm:-mx-8 px-4 sm:px-8 py-16 text-white">
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <span class="inline-block px-4 py-1 bg-amber-500 text-white text-xs font-bold rounded-full mb-6 uppercase tracking-widest">Interactive Case</span>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold mb-6">The Pivot: Metaverse Commander</h2>
+                <p class="text-xl text-slate-300 font-light">You are the CEO of a $500B Social Giant. Growth is slowing. Do you have the guts to pivot?</p>
+            </div>
+
+            <div id="sim-wrapper" class="max-w-3xl mx-auto bg-slate-800 rounded-3xl shadow-2xl border border-slate-700 p-10 min-h-[400px] relative">
+                <!-- HUD -->
+                <div class="flex justify-between items-center mb-8 bg-slate-900 p-4 rounded-lg border border-slate-700">
+                    <div class="flex items-center gap-4">
+                        <div class="text-xs uppercase text-slate-400 font-bold tracking-widest">Stock Price</div>
+                        <div class="font-mono text-xl font-bold text-emerald-400" id="stock-price">$300.00</div>
+                    </div>
+                    <div class="flex items-center gap-4 w-1/2">
+                        <div class="text-xs uppercase text-slate-400 font-bold tracking-widest">Board Confidence</div>
+                        <div class="w-full bg-slate-700 h-2 rounded-full overflow-hidden">
+                            <div id="board-confidence" class="h-full bg-blue-500 w-3/4 sim-stat-bar"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Area -->
+                <div id="sim-content">
+                    <div class="text-center py-8">
+                        <div class="text-6xl mb-6">📉</div>
+                        <h3 class="text-3xl font-bold mb-4 text-white">The Situation</h3>
+                        <p class="text-slate-400 mb-8 max-w-lg mx-auto text-lg">
+                            Engagement is down 5%. Competitor "TikTak" is stealing Gen Z. Apple just killed your ad tracking. 
+                            Your core product is a cash cow, but it's dying.
+                        </p>
+                        <button onclick="startSim()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-10 rounded-full transition-all shadow-lg hover:shadow-blue-500/30 transform hover:scale-105">
+                            Enter the Boardroom
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-slate-200 py-12 text-sm text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-slate-900 text-white rounded flex items-center justify-center font-serif font-bold">S7</div>
+                    <p>© Dr. Swapnil Sahoo 2025 | Strategic Leadership</p>
+                </div>
+                <div class="flex space-x-6 items-center">
+                    <a href="https://x.com/swapnilsahoo" target="_blank" class="text-slate-400 hover:text-blue-600 transition-colors text-lg"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" class="text-slate-400 hover:text-pink-600 transition-colors text-lg"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" class="text-slate-400 hover:text-blue-700 transition-colors text-lg"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.chess.com/member/theswapnilsahoo" target="_blank" class="text-slate-400 hover:text-emerald-600 transition-colors text-xl" title="Play Chess"><i class="fas fa-chess-king"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- MOBILE MENU ---
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        // --- MINI SIMULATIONS LOGIC (ROBUST) ---
+        const miniSimData = {
+            'sim-1': { // Remote Work
+                'A': { 
+                    title: "The 'Meta' Approach (Full Remote)", 
+                    text: "<strong class='text-blue-300'>Outcome:</strong> You attract top global talent, especially Gen Z (70% prefer remote). Leaders like Naomi Gleit (New York) and Guy Rosen (Israel) can work effectively from anywhere.<br><br><span class='text-red-400'>The Trade-off:</span> Over 2 years, culture erodes. Junior staff report feeling lost without mentorship ('out of sight, out of mind'). Innovation slows due to lack of serendipity.",
+                    color: "border-blue-500" 
+                },
+                'B': { 
+                    title: "The 'Wall Street' Approach (Full Office)", 
+                    text: "<strong class='text-blue-300'>Outcome:</strong> High-speed decision making and strong mentorship for juniors. Culture is intense and cohesive (JP Morgan/Goldman Sachs model).<br><br><span class='text-red-400'>The Trade-off:</span> You lose 40% of your tech applicants to flexible competitors. High churn among younger high-performers who value flexibility.", 
+                    color: "border-amber-500" 
+                },
+                'C': { 
+                    title: "The 'Hybrid' Approach", 
+                    text: "<strong class='text-blue-300'>Outcome:</strong> A balanced compromise. 3 days for collaboration, 2 days for deep work. <br><br><span class='text-green-400'>Analysis:</span> Research suggests this is optimal for productivity (+5%). However, it requires rigorous management to prevent 'proximity bias' (promoting only those you see in the office).", 
+                    color: "border-green-500" 
+                }
+            },
+            'sim-2': { // Level 5
+                'A': { 
+                    title: "The 'Chainsaw' Approach (Destructive)", 
+                    text: "<strong class='text-red-400'>Outcome:</strong> Stock jumps 20% immediately as costs are cut. Wall Street applauds.<br><br><span class='text-slate-300'>Analysis:</span> This is what <strong>Al Dunlap</strong> did. It destroys the 'soul' of the company. Long-term innovation dies, and the company eventually collapses or is sold for parts. This is NOT Level-5 Leadership.", 
+                    color: "border-red-500" 
+                },
+                'B': { 
+                    title: "The 'Empathy' Approach (Constructive)", 
+                    text: "<strong class='text-green-400'>Outcome:</strong> Stock stays flat initially as you invest in culture. Skeptics call you 'soft'.<br><br><span class='text-slate-300'>Analysis:</span> This is the <strong>Satya Nadella</strong> path at Microsoft. By shifting from 'Know-it-all' to 'Learn-it-all', Microsoft regained its dominance. Culture eats strategy for breakfast. This is Level-5 Leadership.", 
+                    color: "border-green-500" 
+                }
+            },
+            'sim-3': { // Strategy Process
+                'A': { 
+                    title: "Top-Down Control", 
+                    text: "<strong class='text-red-400'>Outcome:</strong> You maintain brand consistency. The manager is fired. Operations are smooth.<br><br><span class='text-slate-300'>Analysis:</span> You just killed a billion-dollar idea. This is how incumbents die—by prioritizing procedure over value. You missed the 'Grassroots Innovation' signal.", 
+                    color: "border-red-500" 
+                },
+                'B': { 
+                    title: "Planned Emergence", 
+                    text: "<strong class='text-green-400'>Outcome:</strong> You taste it. It's good. You pilot it in 10 stores.<br><br><span class='text-slate-300'>Analysis:</span> This is the <strong>Frappuccino</strong> story at Starbucks. Strategic leaders don't just dictate; they curate ideas from the bottom up. You successfully adapted strategy to reality.", 
+                    color: "border-green-500" 
+                }
+            }
+        };
+
+        function runMiniSim(simId, choice) {
+            const data = miniSimData[simId][choice];
+            const panel = document.getElementById(`${simId}-feedback`);
+            panel.innerHTML = `
+                <h5 class="font-bold text-white mb-2 text-lg border-b border-slate-600 pb-2">${data.title}</h5>
+                <p class="text-sm text-slate-300 leading-relaxed">${data.text}</p>
+            `;
+            panel.className = `feedback-panel block ${data.color} fade-in`;
+        }
+
+        // --- CAPSTONE SIMULATION LOGIC ---
+        const levels = [
+            {
+                title: "Level 1: The Signal",
+                desc: "Data shows Gen Z is leaving for 'TikTak'. Revenue is still record high. Do you react?",
+                options: [
+                    { text: "Ignore. Revenue is King.", priceChange: +10, confChange: +5, msg: "Stock jumps. But you are walking blindly into obsolescence." },
+                    { text: "Copy features (Reels).", priceChange: +5, confChange: +10, msg: "Safe play. Board loves it. You buy time but lose leadership." },
+                    { text: "Recognize Platform Shift.", priceChange: -5, confChange: -5, msg: "You declare 'Code Red'. Investors nervous, but you see the cliff." }
+                ]
+            },
+            {
+                title: "Level 2: The Pivot",
+                desc: "Mobile is saturated. To survive, you must own the next platform (VR/AR). Cost: $10B/year.",
+                options: [
+                    { text: "Buy Back Stock.", priceChange: +20, confChange: +15, msg: "Wall St loves it! You are now Yahoo—rich but irrelevant." },
+                    { text: "Cautious Invest ($1B).", priceChange: 0, confChange: +5, msg: "Half measures fail. Competitors crush your small attempt." },
+                    { text: "Bet the Farm ($10B).", priceChange: -25, confChange: -20, msg: "Panic! Stock crashes. Media mocks you. But you shifted the DNA." }
+                ]
+            },
+            {
+                title: "Level 3: The Crisis",
+                desc: "Stock is down 50%. Employees demoralized. Whistleblower leaks toxic data. Activists want you fired.",
+                options: [
+                    { text: "Apologize & Resign.", priceChange: +15, confChange: 0, msg: "Market cheers. New CEO cuts R&D. Company becomes a utility." },
+                    { text: "Use Voting Control.", priceChange: -10, confChange: -30, msg: "You tell investors: 'Sell if you want.' You are the Strategic Leader." }
+                ]
+            }
+        ];
+
+        let currentLevel = 0;
+        let stockPrice = 300;
+        let confidence = 75;
+
+        function startSim() {
+            currentLevel = 0; stockPrice = 300; confidence = 75;
+            updateHUD(); renderLevel();
+        }
+
+        function updateHUD() {
+            const priceEl = document.getElementById('stock-price');
+            const confBar = document.getElementById('board-confidence');
+            priceEl.innerText = `$${stockPrice.toFixed(2)}`;
+            priceEl.className = `font-mono text-xl font-bold ${stockPrice >= 300 ? 'text-emerald-400' : 'text-red-400'}`;
+            confBar.style.width = `${Math.max(0, Math.min(100, confidence))}%`;
+            confBar.className = `h-full sim-stat-bar ${confidence < 30 ? 'bg-red-500' : 'bg-blue-500'}`;
+        }
+
+        function renderLevel() {
+            const contentDiv = document.getElementById('sim-content');
+            const level = levels[currentLevel];
+            let html = `
+                <div class="fade-in">
+                    <h3 class="text-xl font-bold text-amber-400 mb-2 uppercase tracking-wide">${level.title}</h3>
+                    <p class="text-slate-300 mb-8 text-lg">${level.desc}</p>
+                    <div class="grid gap-4">
+            `;
+            level.options.forEach((opt, idx) => {
+                html += `
+                    <div onclick="makeChoice(${idx})" class="sim-option bg-slate-700/50 p-4 rounded-lg cursor-pointer hover:bg-slate-700 flex items-center gap-4">
+                        <div class="w-8 h-8 rounded-full bg-slate-600 flex items-center justify-center font-bold text-white border border-slate-500">${String.fromCharCode(65+idx)}</div>
+                        <div class="text-white font-medium">${opt.text}</div>
+                    </div>
+                `;
+            });
+            html += `</div></div>`;
+            contentDiv.innerHTML = html;
+        }
+
+        function makeChoice(idx) {
+            const level = levels[currentLevel];
+            const choice = level.options[idx];
+            stockPrice = stockPrice * (1 + (choice.priceChange / 100));
+            confidence += choice.confChange;
+            updateHUD();
+            const contentDiv = document.getElementById('sim-content');
+            contentDiv.innerHTML = `
+                <div class="fade-in text-center py-8">
+                    <div class="text-5xl mb-4">${choice.priceChange >= 0 ? '📈' : '📉'}</div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Market Reaction</h3>
+                    <p class="text-slate-300 mb-8 max-w-md mx-auto">${choice.msg}</p>
+                    <button onclick="nextLevel()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-full transition-all">Continue</button>
+                </div>
+            `;
+        }
+
+        function nextLevel() {
+            currentLevel++;
+            if(currentLevel < levels.length) renderLevel();
+            else showFinalResult();
+        }
+
+        function showFinalResult() {
+            const contentDiv = document.getElementById('sim-content');
+            let title, desc, icon;
+            if(stockPrice > 350) {
+                title = "The Safe Steward"; icon = "👔";
+                desc = "You kept the stock price high but failed to innovate. The company will likely die a slow death.";
+            } else if(confidence < 20) {
+                title = "The Visionary Tyrant"; icon = "👑";
+                desc = "You destroyed short-term value and the Board hates you. But you forced a pivot that might save the company.";
+            } else {
+                title = "The Average CEO"; icon = "⚖️";
+                desc = "You tried to balance everyone. You survived, but you didn't lead.";
+            }
+            contentDiv.innerHTML = `
+                <div class="fade-in text-center py-8">
+                    <div class="text-7xl mb-4">${icon}</div>
+                    <h3 class="text-3xl font-bold text-white mb-2">${title}</h3>
+                    <p class="text-slate-400 mb-4 font-mono">Final Stock: $${stockPrice.toFixed(2)}</p>
+                    <p class="text-slate-300 mb-8 max-w-md mx-auto text-lg">${desc}</p>
+                    <button onclick="startSim()" class="border border-slate-500 hover:bg-slate-700 text-white py-2 px-6 rounded-full transition-all">Replay Strategy</button>
+                </div>
+            `;
+        }
+
+        // --- INIT & SCROLL ---
+        window.onscroll = function() {
+            let h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            document.getElementById("progress-bar").style.width = (window.scrollY/h)*100 + "%";
+            document.querySelectorAll('.fade-up').forEach(el => {
+                if(el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add('visible');
+            });
+        };
+    </script>
+</body>
+</html>

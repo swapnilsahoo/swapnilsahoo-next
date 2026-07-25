@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Chosen Palette: Warm Neutral (Content) + Ivy League (Header/Footer) -->
+    <!-- Application Structure Plan: Merged the user's requested 'Ivy League' header/footer template with the 'Business Strategy' content. Added a new '#storyline' section at the beginning to build a narrative bridge from Sessions 1-5, as requested. Navigation (desktop and mobile) has been updated to include this new section. -->
+    <!-- Visualization & Content Choices: All content, charts, simulation, and quiz from the previous 'Business Strategy' file are retained. The new '#storyline' section uses a vertical stepper/timeline format to visually represent the learning journey. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <title>Business Strategy Interactive Explorer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- Copied from Session 3 for Header/Footer/Nav --- */
+        :root {
+            --header-height-desktop: 129px; 
+            --header-height-mobile: 53px; 
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            color: #1f2937; /* gray-800 */
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--header-height-mobile);
+        }
+        @media (min-width: 640px) {
+            html {
+                scroll-padding-top: var(--header-height-desktop);
+            }
+        }
+
+        /* Header Elements */
+        #top-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 50; }
+        #main-nav-container { position: fixed; top: 40px; left: 0; right: 0; z-index: 40; }
+        @media (max-width: 639px) {
+            #main-nav-container { top: 0; }
+            #top-bar { display: none; }
+        }
+        
+        /* Main content padding to offset fixed header */
+        main {
+            padding-top: var(--header-height-mobile);
+        }
+        @media (min-width: 640px) {
+            main {
+                padding-top: var(--header-height-desktop);
+            }
+        }
+
+        /* Navigation Links (From Template) */
+        .active-nav { color: #A51C30; border-bottom-color: #A51C30; font-weight: 600; } /* Crimson */
+        .nav-link { transition: all 0.2s ease-in-out; border-bottom: 2px solid transparent; padding-bottom: 4px; color: #4b5563; }
+        .nav-link:hover { color: #A51C30; border-bottom-color: #A51C30; } /* Crimson */
+        
+        /* EXACT ICON STYLES FROM TEMPLATE */
+        .top-bar-link svg, .footer-link svg { width: 1.125rem; height: 1.125rem; fill: currentColor; transition: color 0.2s ease-in-out; }
+        .hexagon-icon { position: relative; width: 28px; height: 28px; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3)); display: inline-block; vertical-align: middle; }
+        .hexagon-icon svg { width: 100%; height: 100%; animation: glow 2.5s infinite ease-in-out; }
+        .hexagon-path { stroke: #B91C1C; stroke-width: 1; } 
+        .hexagon-s { font-family: 'Georgia', serif; font-weight: bold; font-size: 48px; fill: #facc15; text-anchor: middle; dominant-baseline: central; }
+        @keyframes glow { 0%, 100% { filter: drop-shadow(0 0 4px rgba(239, 68, 68, 0.7)); } 50% { filter: drop-shadow(0 0 10px rgba(239, 68, 68, 1)); } }
+
+        /* Mobile Nav Select (From Template) */
+        #mobile-nav {
+            -webkit-appearance: none; -moz-appearance: none; appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M7 7l3-3 3 3m0 6l-3 3-3-3'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center; background-repeat: no-repeat; background-size: 1.25em 1.25em;
+            padding: 0.5rem 2.5rem 0.5rem 0.75rem; border: 1px solid #d1d5db;
+        }
+        /* --- End of Session 3 Styles --- */
+
+        /* --- Styles from Business Strategy Page (Content) --- */
+        .section-header { @apply mb-6; } /* Container for section titles */
+        .section-header h2 { @apply text-base font-semibold leading-7 text-blue-600; }
+        .section-title { @apply mt-2 text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900; }
+        .bold-question { @apply mt-6 text-2xl lg:text-3xl font-semibold text-gray-800 italic; }
+        .card { @apply bg-white shadow-xl rounded-2xl overflow-hidden border border-gray-100; }
+
+        .tab-button { @apply px-4 py-2 text-sm md:text-base font-semibold rounded-lg transition-all duration-300 transform focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500; }
+        .tab-button.active { @apply bg-blue-700 text-white shadow-xl scale-105; }
+        .tab-button:not(.active) { @apply bg-white text-gray-700 shadow-md hover:shadow-lg hover:-translate-y-1; }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 40vh;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+
+        /* Simulation Button Styles */
+        .sim-btn { @apply w-full p-6 text-lg font-semibold rounded-lg shadow-lg border-4 border-transparent cursor-pointer transition-all duration-300 transform hover:scale-105; }
+        .sim-btn.active { @apply shadow-2xl border-blue-600 scale-105; }
+        .sim-choice-btn { @apply w-full p-4 text-left rounded-lg shadow-md cursor-pointer transition-all duration-200 hover:bg-gray-100 border-2 border-gray-200; }
+        .sim-choice-btn.selected { @apply bg-blue-100 border-blue-400; }
+        .sim-choice-btn.locked { @apply opacity-70 cursor-not-allowed; }
+
+        /* Quiz Styles */
+        .quiz-option { @apply block w-full text-left p-4 border border-gray-300 rounded-lg cursor-pointer transition-all duration-200 hover:bg-gray-100; }
+        .quiz-option.correct { @apply bg-green-100 border-green-500 text-green-900 font-semibold; }
+        .quiz-option.incorrect { @apply bg-red-100 border-red-500 text-red-900 font-semibold; }
+        .quiz-option.disabled { @apply cursor-not-allowed opacity-70 hover:bg-white; }
+        .explanation { @apply mt-4 p-4 bg-gray-50 border-l-4 border-blue-600 shadow-inner rounded-r-lg; display: none; }
+        .explanation.visible { display: block; }
+        
+        /* Table Styles for ERRC & Generic Examples */
+        .data-table {
+            @apply min-w-full divide-y divide-gray-200 border border-gray-200;
+        }
+        .data-table th {
+            @apply px-4 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider bg-gray-50;
+        }
+        .data-table td {
+            @apply px-4 py-4 text-sm text-gray-700 align-top;
+        }
+        .data-table tbody tr:nth-child(even) {
+            @apply bg-gray-50;
+        }
+        .data-table td:first-child {
+            @apply font-semibold text-gray-900;
+        }
+        /* --- End of Content Styles --- */
+
+        /* ERRC Table Header Colors */
+        .th-eliminate { @apply bg-red-100 text-red-800; }
+        .th-reduce { @apply bg-yellow-100 text-yellow-800; }
+        .th-raise { @apply bg-green-100 text-green-800; }
+        .th-create { @apply bg-blue-100 text-blue-800; }
+
+        /* Generic Strategy Table Tags */
+        .strategy-tag { @apply inline-block px-3 py-1 text-xs font-semibold rounded-full; }
+        .tag-cost { @apply bg-blue-100 text-blue-800; }
+        .tag-diff { @apply bg-yellow-100 text-yellow-800; }
+
+        /* Storyline Stepper */
+        .storyline-stepper { @apply relative pl-12 space-y-12; }
+        .storyline-stepper::before { 
+            @apply content-[''] absolute left-5 top-2 bottom-2 w-0.5 bg-gray-300; 
+        }
+        .storyline-step { @apply relative; }
+        .storyline-step .step-icon {
+            @apply absolute left-0 top-0 w-11 h-11 rounded-full flex items-center justify-center font-bold text-white shadow-lg;
+        }
+        .storyline-step .step-content { @apply ml-4; }
+        /* --- End of Content Styles --- */
+
+    </style>
+</head>
+<body class="bg-slate-50">
+
+    <!-- HEADER (Copied from Session 3) -->
+    <header id="main-header" class="shadow-sm">
+        <div id="top-bar" class="bg-gray-800 text-white py-1" style="height: 40px;">
+            <div class="container mx-auto px-6 flex justify-between items-center h-full">
+                <p class="text-xs font-medium text-slate-400">© Dr. Swapnil Sahoo 2025</p>
+                <div class="flex items-center space-x-4">
+                    <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white group" title="Website">
+                        <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
+                            <svg viewBox="0 0 52 60">
+                                <defs><linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
+                                <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#redGradient)"/><text class="hexagon-s" x="26" y="32">S</text>
+                            </svg>
+                        </div>
+                    </a>
+                    <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white top-bar-link" title="X/Twitter"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white top-bar-link" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049 1.064.218 1.791.465 2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.575 2h.093zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" clip-rule="evenodd"/></svg></a>
+                    <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white top-bar-link" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg></a>
+                </div>
+            </div>
+        </div>
+        
+        <div id="main-nav-container" class="bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200 z-50">
+            <div class="container mx-auto px-6 py-3 title-bar">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-xl font-bold text-slate-900">Business Strategy Explorer</h1>
+                    <div class="sm:hidden">
+                        <!-- UPDATE: Mobile nav links changed -->
+                        <select id="mobile-nav" class="block w-auto rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm">
+                            <option value="#storyline">The Story</option>
+                            <option value="#intro">Intro</option>
+                            <option value="#diff">Differentiation</option>
+                            <option value="#cost">Cost Leadership</option>
+                            <option value="#generic-strategies">Strategy Matrix</option>
+                            <option value="#blue">Blue Ocean</option>
+                            <option value="#analysis">Analysis & Risks</option>
+                            <option value="#cases">Case Studies</option>
+                            <option value="#sim">Strategy Sim</option>
+                            <option value="#quiz">Quiz</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <nav id="top-nav" class="bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200 overflow-x-auto whitespace-nowrap hidden sm:block">
+                <div class="container mx-auto px-6 py-2 flex space-x-4">
+                    <!-- UPDATE: Desktop nav links changed -->
+                    <a href="#storyline" class="nav-link text-sm font-medium active-nav">The Story</a>
+                    <a href="#intro" class="nav-link text-sm font-medium">Intro</a>
+                    <a href="#diff" class="nav-link text-sm font-medium">Differentiation</a>
+                    <a href="#cost" class="nav-link text-sm font-medium">Cost Leadership</a>
+                    <a href="#generic-strategies" class="nav-link text-sm font-medium">Strategy Matrix</a>
+                    <a href="#blue" class="nav-link text-sm font-medium">Blue Ocean</a>
+                    <a href="#analysis" class="nav-link text-sm font-medium">Analysis & Risks</a>
+                    <a href="#cases" class="nav-link text-sm font-medium">Case Studies</a>
+                    <a href="#sim" class="nav-link text-sm font-medium">Strategy Sim</a>
+                    <a href="#quiz" class="nav-link text-sm font-medium">Quiz</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main content padding is handled by CSS -->
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- NEW SECTION: Storyline -->
+        <section id="storyline" class="py-16 pt-24 -mt-16">
+            <div class="w-full">
+                <div class="section-header">
+                    <h2 class="text-base font-semibold leading-7 text-blue-600">The Story So Far</h2>
+                    <p class="section-title">Our Journey to Session 6</p>
+                </div>
+                <p class="bold-question">"We've built our foundation. Now it's time to choose the blueprint for our 'castle'."</p>
+                <p class="mt-6 text-xl text-gray-600 max-w-3xl">
+                    Strategy is a process. Each session has built upon the last, giving us a new tool. Here's the logical path we've followed to get to today's critical decision.
+                </p>
+
+                <div class="card p-8 md:p-12 mt-12">
+                    <div class="storyline-stepper">
+                        <!-- Step 1-3 -->
+                        <div class="storyline-step">
+                            <div class="step-icon bg-gray-600">S1-3</div>
+                            <div class="step-content">
+                                <h3 class="text-xl font-bold text-gray-800">The Foundation: "What & Why?"</h3>
+                                <p class="text-gray-600 mt-1">We started with the core questions. In <strong class="text-gray-700">Session 1</strong>, we asked "What is strategy?" (Porter vs. Mintzberg). In <strong class="text-gray-700">Session 2</strong>, we saw the "What" in action with Tesla's radical *Position* and *Trade-offs*. In <strong class="text-gray-700">Session 3</strong>, we found the "Why"—Tesla's chaotic strategy was driven by its *Vision* and *BHAG*.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 4 -->
+                        <div class="storyline-step">
+                            <div class="step-icon bg-red-600">S4</div>
+                            <div class="step-content">
+                                <h3 class="text-xl font-bold text-red-800">The "Outside": External Analysis</h3>
+                                <p class="text-gray-600 mt-1">We looked *outside* the firm. Using **Porter's Five Forces**, we learned to analyze the "game" we're playing. Is the airline industry a death trap? Is the AI industry a gold rush? This tells us *where* the profit is (or isn't).</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 5 -->
+                        <div class="storyline-step">
+                            <div class="step-icon bg-green-600">S5</div>
+                            <div class="step-content">
+                                <h3 class="text-xl font-bold text-green-800">The "Inside": Internal Analysis</h3>
+                                <p class="text-gray-600 mt-1">We looked *inside* the firm. Using the **VRIO Framework**, we learned to identify our "moat." What are our unique, defensible *Resources* and *Capabilities* (like Nvidia's CUDA) that give us a *sustained* competitive advantage?</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 6 (Current) -->
+                        <div class="storyline-step">
+                            <div class="step-icon bg-blue-600">S6</div>
+                            <div class="step-content">
+                                <h3 class="text-xl font-bold text-blue-800">Today's Choice: "How do we win?"</h3>
+                                <p class="text-gray-600 mt-1">This is the final step. We know the "game" (S4) and we know our "strengths" (S5). Now we must *choose our blueprint*. Will we be a **Differentiator**, competing on value like Tesla? Or a **Cost Leader**, competing on price like SpaceX? This session is about making that choice.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Introduction -->
+        <section id="intro" class="py-16 pt-24 -mt-16">
+            <div class="w-full section-header">
+                <h2 class="text-base font-semibold leading-7 text-blue-600">Session 6: Business-Level Strategy</h2>
+                <p class="section-title">How to Compete for Advantage</p>
+                <p class="bold-question">"In a world of rivals, why can't a business just 'be good'? Why must it choose a specific path to victory?"</p>
+            </div>
+            <p class="mt-6 text-xl text-gray-600 max-w-3xl">
+                This is the core of business-level strategy. It's the set of goal-directed actions managers take to gain a competitive advantage in a *single* product market. It's about answering one question: <strong>"How will we win?"</strong>
+                This explorer will break down the fundamental choices every business must make to create a unique and valuable position, moving from theory to real-world application.
+            </p>
+
+            <div class="card p-8 mt-12">
+                <!-- Image of AFI Framework -->
+                <div class="w-full max-w-2xl mx-auto mb-8">
+                    <img src="AFI Framework.jpg" alt="AFI Strategy Framework diagram showing the links between Analysis, Formulation, and Implementation" class="w-full h-auto rounded-lg shadow-md border border-gray-200"
+                    onerror="this.onerror=null; this.src='https://placehold.co/800x600/f3f4f6/6b7280?text=AFI+Framework+Image';">
+                </div>
+                <!-- End of Image -->
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Session Outline</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong>6.1 Business-Level Strategy:</strong> How to Compete for Advantage</li>
+                            <li><strong>6.2 Differentiation Strategy:</strong> Understanding Value Drivers</li>
+                            <li><strong>6.3 Cost-Leadership Strategy:</strong> Understanding Cost Drivers</li>
+                            <li><strong>6.4 Business-Level Strategy and the Five Forces:</strong> Benefits and Risks</li>
+                            <li><strong>6.5 Blue Ocean Strategy:</strong> Combining Differentiation and Cost Leadership</li>
+                            <li><strong>6.6 Implications for Strategic Leaders</strong></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Learning Objectives</h3>
+                        <ul class="list-decimal list-inside space-y-2 text-gray-700">
+                            <li>Define business-level strategy and strategic position.</li>
+                            <li>Examine the relationship between value drivers and differentiation.</li>
+                            <li>Examine the relationship between cost drivers and cost-leadership.</li>
+                            <li>Assess the benefits and risks of each strategy vis-à-vis the five forces.</li>
+                            <li>Evaluate the drivers that enable a blue ocean strategy.</li>
+                            <li>Assess the risks of value innovation and being "stuck in the middle."</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Differentiation -->
+        <section id="diff" class="py-16 pt-24 -mt-16">
+            <div class="w-full section-header">
+                <h2 class="text-base font-semibold leading-7 text-blue-600">Strategy 1</h2>
+                <p class="section-title">Differentiation Strategy: Winning Through Value</p>
+                <p class="bold-question">"How can you convince a customer to pay more for your product when cheaper options exist?"</p>
+            </div>
+            <p class="mt-6 text-xl text-gray-600 max-w-3xl">
+                You do it by creating higher <strong>perceived value (V)</strong>. This strategy isn't about being cheap; it's about being *unique*. You intentionally increase your costs (C) on specific "Value Drivers" to boost the customer's willingness to pay (V) by an even greater amount.
+            </p>
+
+            <div class="card p-8 mt-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">The Goal: Maximize (V - C)</h3>
+                        <p class="text-gray-700 mb-4">A differentiator's goal is to create the largest possible gap between the value the customer perceives (V) and the cost to create that value (C). This allows the firm to charge a premium price.</p>
+                        <h4 class="text-xl font-semibold text-gray-800 mb-2">Key Value Drivers:</h4>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong>Product Features:</strong> (e.g., <strong>Tesla's</strong> Autopilot, <strong>Nvidia's</strong> CUDA platform)</li>
+                            <li><strong>Customer Service:</strong> (e.g., Zappos' free returns, Ritz-Carlton's service)</li>
+                            <li><strong>Complements:</strong> (e.g., <strong>Apple's</strong> App Store, <strong>Tesla's</strong> Supercharger Network)</li>
+                        </ul>
+                        <p class="mt-4 text-gray-700">Modern differentiators like <strong>Nvidia</strong> and <strong>Tesla</strong> don't just sell a product; they sell an ecosystem. Their value drivers are so strong they create a "moat" that's difficult for rivals to copy.</p>
+                    </div>
+                    <div>
+                        <div class="chart-container">
+                            <canvas id="diffChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cost Leadership -->
+        <section id="cost" class="py-16 pt-24 -mt-16">
+            <div class="w-full section-header">
+                <h2 class="text-base font-semibold leading-7 text-blue-600">Strategy 2</h2>
+                <p class="section-title">Cost-Leadership Strategy: Winning Through Price</p>
+                <p class="bold-question">"If you and a rival sell the exact same product, how could you build a system that *guarantees* you will win a price war?"</p>
+            </div>
+            <p class="mt-6 text-xl text-gray-600 max-w-3xl">
+                You do it by having the lowest <strong>cost structure (C)</strong> in the industry. This strategy is a ruthless, obsessive quest to eliminate inefficiency. You aim to offer a product of *acceptable* value (V) at the lowest possible cost.
+            </p>
+
+            <div class="card p-8 mt-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">The Goal: Minimize (C)</h3>
+                        <p class="text-gray-700 mb-4">A cost leader wins by having a V-C gap that is profitable *even at the lowest price in the market*. This protects them from rivals and new entrants.</p>
+                        <h4 class="text-xl font-semibold text-gray-800 mb-2">Key Cost Drivers:</h4>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong>Cost of Input Factors:</strong> (e.g., Sourcing cheaper raw materials)</li>
+                            <li><strong>Economies of Scale:</strong> (e.g., Amazon's massive fulfillment centers)</li>
+                            <li><strong>Learning Curve:</strong> (e.g., A worker getting faster at one task)</li>
+                            <li><strong>Experience Curve:</strong> (e.g., <strong>SpaceX</strong> inventing reusability, a new *process* that fundamentally drops costs)</li>
+                        </ul>
+                        <p class="mt-4 text-gray-700"><strong>SpaceX</strong> is the ultimate modern Cost Leader. They didn't just learn to build old rockets cheaper; they used an *Experience Curve* move to make the entire industry's cost structure obsolete.</p>
+                    </div>
+                    <div>
+                        <div class="chart-container">
+                            <canvas id="costChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- NEW SECTION: Generic Strategies Matrix -->
+        <section id="generic-strategies" class="py-16 pt-24 -mt-16">
+            <div class="w-full section-header">
+                <h2 class="text-base font-semibold leading-7 text-blue-600">The Big Picture</h2>
+                <p class="section-title">The Four Generic Strategies</p>
+                <p class="bold-question">"We've seen Differentiation and Cost Leadership. How do these choices fit into a single, strategic map?"</p>
+            </div>
+
+            <div class="card p-8 mt-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                    <!-- Left Column: Text Matrix with Examples -->
+                    <div>
+                        <p class="text-gray-700 mb-6">A firm's strategic position and the scope of competition (broad vs. narrow) lead to four generic business strategies. This application explores the two main broad strategies and the "Blue Ocean" strategy that attempts to combine them.</p>
+
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Broad Scope</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="bg-blue-100 p-4 rounded-lg border border-blue-200">
+                                <h4 class="font-bold text-blue-800">Broad Cost Leadership</h4>
+                                <p class="text-sm text-blue-700 mt-1">(e.g., Walmart, Reliance Jio)</p>
+                            </div>
+                            <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                                <h4 class="font-bold text-yellow-800">Broad Differentiation</h4>
+                                <p class="text-sm text-yellow-700 mt-1">(e.g., Apple, Coca-Cola)</p>
+                            </div>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-gray-800 mt-8 mb-4">Narrow Scope</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="bg-blue-100 p-4 rounded-lg border border-blue-200">
+                                <h4 class="font-bold text-blue-800">Focused Cost Leadership</h4>
+                                <p class="text-sm text-blue-700 mt-1">(e.g., Spirit Airlines, Mamaearth in early days)</p>
+                            </div>
+                            <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                                <h4 class="font-bold text-yellow-800">Focused Differentiation</h4>
+                                <p class="text-sm text-yellow-700 mt-1">(e.g., Tesla, Nvidia)</p>
+                            </div>
+                        </div>
+
+                        <!-- NEW: Detailed Examples Table -->
+                        <div class="mt-10">
+                            <h3 class="text-xl font-bold text-gray-800 mb-4">Detailed Examples: World-Famous & Indian Startups</h3>
+                            <div class="overflow-x-auto rounded-lg shadow-md border border-gray-200">
+                                <table class="data-table">
+                                    <thead class="bg-slate-100">
+                                        <tr>
+                                            <th>Strategy</th>
+                                            <th>Company</th>
+                                            <th>Origin</th>
+                                            <th>Execution</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200">
+                                        <tr>
+                                            <td rowspan="4"><span class="strategy-tag tag-cost">Cost Leadership</span><br>(Broad)</td>
+                                            <td>Walmart</td>
+                                            <td>US</td>
+                                            <td>Uses massive buying power and efficient supply chain to offer the lowest prices.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>IKEA</td>
+                                            <td>Sweden</td>
+                                            <td>Flat-pack design, self-assembly model, and global sourcing to minimize costs.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Reliance Jio</td>
+                                            <td>India</td>
+                                            <td>Disrupted the market with unprecedentedly low prices, gaining massive scale.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tata Steel</td>
+                                            <td>India</td>
+                                            <td>Access to low-cost captive raw materials and efficient production processes.</td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td rowspan="4"><span class="strategy-tag tag-diff">Differentiation</span><br>(Broad)</td>
+                                            <td>Apple</td>
+                                            <td>US</td>
+                                            <td>Innovation, seamless hardware/software integration, and premium brand image.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nike</td>
+                                            <td>US</td>
+                                            <td>High-quality products, innovation, and powerful branding/endorsements.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Asian Paints</td>
+                                            <td>India</td>
+                                            <td>Extensive dealer networks, innovative products, and superior customer service.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Titan Company</td>
+                                            <td>India</td>
+                                            <td>International designs, premium quality, and exclusive 'World of Titan' showrooms.</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td rowspan="4"><span class="strategy-tag tag-cost">Focused Cost Leadership</span><br>(Narrow)</td>
+                                            <td>Redbox</td>
+                                            <td>US</td>
+                                            <td>Targets a niche of physical DVD renters with low-cost automated vending machines.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Claire's</td>
+                                            <td>US</td>
+                                            <td>Focuses on a narrow demographic (young girls) with inexpensive, low-cost accessories.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Patanjali Ayurved</td>
+                                            <td>India</td>
+                                            <td>Targets a niche of "Ayurvedic" consumers with competitive, low prices.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tata Nano (Initial)</td>
+                                            <td>India</td>
+                                            <td>Targeted the specific niche of two-wheeler owners with the world's cheapest car.</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td rowspan="4"><span class="strategy-tag tag-diff">Focused Differentiation</span><br>(Narrow)</td>
+                                            <td>Rolls-Royce</td>
+                                            <td>UK</td>
+                                            <td>Targets ultra-high-net-worth individuals with unparalleled luxury and customization.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Whole Foods</td>
+                                            <td>US</td>
+                                            <td>Targets health-conscious consumers willing to pay a premium for organic products.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Practo</td>
+                                            <td>India</td>
+                                            <td>Targets a niche (patients/doctors) with a unique, convenient online booking platform.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>CRED</td>
+                                            <td>India</td>
+                                            <td>Targets a narrow, high-credit-score niche with exclusive rewards and a premium experience.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- END NEW TABLE -->
+                    </div>
+
+                    <!-- Right Column: Image and Definitions -->
+                    <div>
+                        <img src="Exhibit 6.2.jpg" alt="Porter's Generic Business Strategies Matrix showing Cost, Differentiation, Broad, and Narrow scopes" class="w-full h-auto rounded-lg shadow-md border border-gray-200 mb-6"
+                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/f3f4f6/6b7280?text=Generic+Strategies+Matrix';">
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Scope of Competition</h4>
+                                <p class="text-sm text-gray-600">The size—narrow or broad—of the market in which a firm chooses to compete.</p>
+                            </div>
+                             <div>
+                                <h4 class="font-semibold text-gray-800">Focused Cost Leadership</h4>
+                                <p class="text-sm text-gray-600">Same as the cost-leadership strategy except with a narrow focus on a niche market.</p>
+                            </div>
+                             <div>
+                                <h4 class="font-semibold text-gray-800">Focused Differentiation</h4>
+                                <p class="text-sm text-gray-600">Same as the differentiation strategy except with a narrow focus on a niche market.</p>
+                            </div>
+                            <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
+                                <h4 class="font-semibold text-red-800">Stuck in the Middle</h4>
+                                <p class="text-sm text-red-700">A strategic position that is not clearly defined as low cost or differentiation; results from attempts to straddle different strategic positions and leads to inferior performance results.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END NEW SECTION -->
+
+
+        <!-- Blue Ocean -->
+        <section id="blue" class="py-16 pt-24 -mt-16">
+            <div class="w-full section-header">
+                <h2 class="text-base">Blue Ocean Strategy</h2>
+                <p class="section-title">Combining Differentiation & Cost Leadership</p>
+                <p class="bold-question">"Why fight a bloody war for market share in a crowded 'Red Ocean'? What if you could find a new, uncontested 'Blue Ocean' and make the competition irrelevant?"</p>
+            </div>
+            <p class="mt-6 text-xl text-gray-600 max-w-3xl">
+                This strategy is about breaking the trade-off. It uses **Value Innovation** to create a leap in value for buyers while *also* lowering costs, opening up a new market space.
+            </p>
+
+            <!-- NEW IMAGE INSERTION -->
+            <div class="card max-w-xl mx-auto mt-12 p-4">
+                <img src="Exhibit 6.9.jpg" 
+                     alt="Exhibit 6.9: Value Innovation. Diagram shows an hourglass shape where Cost (C) is driven down and Total Perceived Consumer Benefits (V) are driven up, overlapping at a central point labeled 'Value Innovation'." 
+                     class="w-full h-auto rounded-lg"
+                     onerror="this.onerror=null; this.src='https://placehold.co/600x450/f3f4f6/6b7280?text=Exhibit+6.9+Value+Innovation';">
+                <p class="text-sm text-center text-gray-600 mt-2 italic"><strong>Exhibit 6.9</strong> Value Innovation Accomplished through Simultaneously Pursuing Differentiation (V ↑) and Low Cost (C ↓)</p>
+            </div>
+            <!-- END NEW IMAGE INSERTION -->
+
+            <div class="card p-8 mt-12">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">The ERRC Framework: How to Achieve Value Innovation</h3>
+                <p class="text-center text-gray-600 mb-8">Instead of benchmarking competitors, you ask four key questions. Think of an Indian startup like <strong>Lenskart</strong> (eyewear):</p>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <!-- Eliminate -->
+                    <div class="bg-red-50 p-6 rounded-lg shadow-inner">
+                        <h4 class="text-2xl font-bold text-red-800 mb-2">ELIMINATE</h4>
+                        <p class="text-red-700">Which factors that the industry takes for granted should be eliminated?</p>
+                        <p class="mt-3 font-semibold text-gray-800">Lenskart: Eliminated the retail middlemen and physical inventory costs.</p>
+                    </div>
+                    <!-- Reduce -->
+                    <div class="bg-yellow-50 p-6 rounded-lg shadow-inner">
+                        <h4 class="text-2xl font-bold text-yellow-800 mb-2">REDUCE</h4>
+                        <p class="text-yellow-700">Which factors should be reduced well below the industry's standard?</p>
+                        <p class="mt-3 font-semibold text-gray-800">Lenskart: Reduced the price of frames and lenses dramatically.</p>
+                    </div>
+                    <!-- Raise -->
+                    <div class="bg-green-50 p-6 rounded-lg shadow-inner">
+                        <h4 class="text-2xl font-bold text-green-800 mb-2">RAISE</h4>
+                        <p class="text-green-700">Which factors should be raised well above the industry's standard?</p>
+                        <p class="mt-3 font-semibold text-gray-800">Lenskart: Raised convenience and accessibility to a new level.</p>
+                    </div>
+                    <!-- Create -->
+                    <div class="bg-blue-50 p-6 rounded-lg shadow-inner">
+                        <h4 class="text-2xl font-bold text-blue-800 mb-2">CREATE</h4>
+                        <p class="text-blue-700">Which factors should be created that the industry has never offered?</p>
+                        <p class="mt-3 font-semibold text-gray-800">Lenskart: Created a tech-first experience with virtual and home try-ons.</p>
+                    </div>
+                </div>
+
+                <!-- NEW: Detailed ERRC Examples Tables -->
+                <div class="mt-12">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Detailed Examples: ERRC in Action</h3>
+                    
+                    <h4 class="text-xl font-semibold text-gray-800 mb-4">Indian Startups</h4>
+                    <div class="overflow-x-auto rounded-lg shadow-md border border-gray-200">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th class="w-1/6">Company</th>
+                                    <th class="th-eliminate w-1/4">Eliminate</th>
+                                    <th class="th-reduce w-1/4">Reduce</th>
+                                    <th class="th-raise w-1/4">Raise</th>
+                                    <th class="th-create w-1/4">Create</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Lenskart</td>
+                                    <td>Retail middlemen and physical inventory costs.</td>
+                                    <td>Price of frames and lenses dramatically.</td>
+                                    <td>Convenience and accessibility for eyewear purchases.</td>
+                                    <td>A tech-first experience with virtual and home try-ons.</td>
+                                </tr>
+                                <tr>
+                                    <td>BYJU'S</td>
+                                    <td>The need for expensive, location-specific premium coaching centers.</td>
+                                    <td>Dependence on traditional tutoring and standardized teaching methods.</td>
+                                    <td>Accessibility to high-quality content and engaging, tech-enabled learning experiences (video lessons, animations).</td>
+                                    <td>A dedicated online learning platform tapping millions who couldn't afford traditional premium coaching.</td>
+                                </tr>
+                                <tr>
+                                    <td>Paytm</td>
+                                    <td>The friction and risk associated with cash payments for everyday transactions.</td>
+                                    <td>The reliance on physical wallets and complex banking infrastructure.</td>
+                                    <td>Convenience, speed, and security of digital transactions.</td>
+                                    <td>A universally accepted mobile wallet and financial services platform that made digital payments mainstream.</td>
+                                </tr>
+                                <tr>
+                                    <td>OYO Rooms</td>
+                                    <td>Inconsistent hotel room quality and unknown local brands.</td>
+                                    <td>The high cost of budget hotel stays.</td>
+                                    <td>Standardized amenities (free Wi-Fi, clean linens, etc.) and reliable service quality.</td>
+                                    <td>A branded, tech-enabled network of budget accommodations that brings predictability to the unorganized sector.</td>
+                                </tr>
+                                <tr>
+                                    <td>Nykaa</td>
+                                    <td>Dependence on physical stores and limited cosmetic options.</td>
+                                    <td>The difficulty in finding specific brands/shades in traditional retail.</td>
+                                    <td>The variety of available brands and the importance of customer education (tutorials/community).</td>
+                                    <td>A dedicated online e-commerce platform for beauty with a strong focus on community and trust.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h4 class="text-xl font-semibold text-gray-800 mt-10 mb-4">World Famous Startups (Global)</h4>
+                    <div class="overflow-x-auto rounded-lg shadow-md border border-gray-200">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th class="w-1/6">Company</th>
+                                    <th class="th-eliminate w-1/4">Eliminate</th>
+                                    <th class="th-reduce w-1/4">Reduce</th>
+                                    <th class="th-raise w-1/4">Raise</th>
+                                    <th class="th-create w-1/4">Create</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Netflix</td>
+                                    <td>Physical stores, late fees, and the hassle of returning movies.</td>
+                                    <td>Per-movie pricing to a flat-fee monthly subscription model.</td>
+                                    <td>Convenience (movies mailed or streamed directly), selection speed, and watch-from-home comfort.</td>
+                                    <td>A seamless streaming experience and later, original content.</td>
+                                </tr>
+                                <tr>
+                                    <td>Uber</td>
+                                    <td>The need to hail cabs on the street, inconsistent service quality, and cash payments.</td>
+                                    <td>The high overhead of owning a traditional taxi fleet (medallions/licenses).</td>
+                                    <td>Convenience via a mobile app (tracking drivers, transparent pricing) and a driver/passenger rating system.</td>
+                                    <td>An on-demand personal transportation network connecting private drivers with passengers.</td>
+                                </tr>
+                                <tr>
+                                    <td>Airbnb</td>
+                                    <td>The standardized, sterile experience of hotels.</td>
+                                    <td>The cost of travel accommodation and the extensive overhead of owning properties.</td>
+                                    <td>Unique, personal lodging options and an authentic local experience.</td>
+                                    <td>A marketplace for homeowners to rent out spare rooms or properties.</td>
+                                </tr>
+                                <tr>
+                                    <td>Cirque du Soleil</td>
+                                    <td>Animal acts, aisle concessions, and the traditional three-ring circus format.</td>
+                                    <td>The number of circus rings (to one) and reliance on star performers.</td>
+                                    <td>Artistic elements, complex storylines, and high production value (like theater).</td>
+                                    <td>A new form of live entertainment that combines circus arts and theatrical spectacle.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- END NEW TABLES -->
+            </div>
+        </section>
+
+        <!-- Five Forces Analysis & Risks -->
+        <section id="analysis" class="py-16 pt-24 -mt-16">
+            <div class="w-full section-header">
+                <h2 class="text-base">Strategy vs. The Five Forces</h2>
+                <p class="section-title">Analysis & Risks</p>
+                <p class="bold-question">"You've chosen your strategy. You've built your castle. But is it a fortress? How does your strategy *actually* protect you from the constant attacks of rivals, suppliers, and new entrants?"</p>
+            </div>
+            <p class="mt-6 text-xl text-gray-600 max-w-3xl">
+                A business strategy is your shield against the Five Forces. But every shield has a weak spot. Here, we analyze the benefits and risks of each strategy, infused with modern examples.
+            </p>
+            
+            <div class="mt-12">
+                <!-- Tabs -->
+                <div class="flex justify-center space-x-4 mb-8" id="analysis-tabs">
+                    <button class="tab-button active" data-tab="diff-analysis">Differentiation Analysis</button>
+                    <button class="tab-button" data-tab="cost-analysis">Cost Leadership Analysis</button>
+                </div>
+
+                <!-- Tab Panels -->
+                <div id="analysis-content">
+                    <!-- Differentiation Panel -->
+                    <div id="diff-analysis-panel" class="tab-panel">
+                        <div class="card p-8">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-6">Differentiation: Benefits & Risks</h3>
+                            <div class="space-y-6" id="diff-forces-list">
+                                <!-- Content will be injected by JS -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Cost Leadership Panel -->
+                    <div id="cost-analysis-panel" class="tab-panel hidden">
+                        <div class="card p-8">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-6">Cost Leadership: Benefits & Risks</h3>
+                            <div class="space-y-6" id="cost-forces-list">
+                                <!-- Content will be injected by JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Studies -->
+        <section id="cases" class="py-16 pt-24 -mt-16">
+            <div class="w-full section-header">
+                <h2 class="text-base">Case Studies</h2>
+                <p class="section-title">When Strategy Goes Right... And Wrong</p>
+                <p class="bold-question">"Why do some brilliant strategic plans fail spectacularly in the real world, while others redefine industries?"</p>
+            </div>
+            <p class="mt-6 text-xl text-gray-600 max-w-3xl">
+                Theory is easy, but execution is everything. We'll look at real companies to see how strategic *consistency* (and inconsistency) determines their fate.
+            </p>
+
+            <div class="mt-12">
+                <!-- Tabs -->
+                <div class="flex flex-wrap justify-center gap-4 mb-8" id="case-tabs">
+                    <button class="tab-button active" data-tab="jetblue">Case: JetBlue (Stuck in the Middle)</button>
+                    <button class="tab-button" data-tab="jcpenney">Case: JCPenney (Strategic Failure)</button>
+                    <button class="tab-button" data-tab="tesla-spacex">Case: Tesla vs. SpaceX (Strategic Clarity)</button>
+                </div>
+
+                <!-- Tab Panels -->
+                <div id="case-content">
+                    <!-- JetBlue Panel -->
+                    <div id="jetblue-panel" class="tab-panel">
+                        <div class="card p-8">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Case Study: JetBlue</h3>
+                            <p class="text-lg text-gray-600 mb-6">JetBlue began as a "Blue Ocean" darling, offering Differentiation (leather seats, live TV) at a low cost. But as it grew, it failed to manage the trade-offs. It added high-cost "Mint" class (a Differentiation move) while also adding more seats and cutting legroom (a Cost Leadership move). The result? A "zigzag" value curve, confused customers, high costs, and low reliability. It became the classic definition of <strong>"Stuck in the Middle."</strong></p>
+                            
+                            <h4 class="text-xl font-semibold text-gray-800 mb-4">JetBlue's Conflicted Timeline:</h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li><strong>2000:</strong> Launches as Blue Ocean (low cost + high value).</li>
+                                <li><strong>2007:</strong> "Snowmageddon" crisis. High-profile operational failures reveal cracks in the model.</li>
+                                <li><strong>2014:</strong> Introduces "Mint" class (high-cost Differentiation) to compete with legacy carriers.</li>
+                                <li><strong>2015:</strong> New CEO (Robin Hayes) focuses on lowering costs, adding more seats, and reducing legroom (Cost Leadership move).</li>
+                                <li><strong>2020:</strong> Announces alliance with American Airlines, further blurring its strategic lines.</li>
+                                <li><strong>2022:</strong> Attempts to buy Spirit (an ultra-low-cost carrier), a move that directly conflicts with its premium "Mint" brand. Ranks last in overall performance.</li>
+                            </ul>
+                            <p class="mt-6 font-semibold text-gray-800">**The Takeaway:** JetBlue failed because it tried to be two things at once. It couldn't reconcile the trade-offs, leading to a high-cost, inefficient operation with a confused brand identity.</p>
+                        </div>
+                    </div>
+                    <!-- JCPenney Panel -->
+                    <div id="jcpenney-panel" class="tab-panel hidden">
+                        <div class="card p-8">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Case Study: JCPenney's Failed Transformation</h3>
+                            <p class="text-lg text-gray-600 mb-6">In 2011, JCPenney hired Ron Johnson (the genius behind Apple's retail stores) to be its CEO. He immediately tried to transform JCPenney from a Cost Leader (driven by sales and coupons) into a Differentiator (driven by boutiques and "fair pricing").</p>
+                            <p class="text-lg text-gray-600 mb-6"><strong>The problem?</strong> He misidentified the *Value Drivers*. He took away the one thing his customers *actually* valued—the "thrill of the hunt" from coupons—and replaced it with a value proposition (Apple-style stores) they didn't want, all while raising costs. The result was one of the fastest retail collapses in history.</p>
+                            <div class="chart-container" style="height: 400px;">
+                                <canvas id="jcpenneyChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tesla vs. SpaceX Panel -->
+                    <div id="tesla-spacex-panel" class="tab-panel hidden">
+                        <div class="card p-8">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Case Study: The Clarity of Tesla vs. SpaceX</h3>
+                            <p class="text-lg text-gray-600 mb-6">This is the most powerful lesson in strategic clarity, as both are led by Elon Musk. He does *not* mix strategies. Each company has one clear, obsessive focus.</p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <!-- Tesla -->
+                                <div class="bg-blue-50 p-6 rounded-lg shadow-inner border-l-4 border-blue-500">
+                                    <h4 class="text-2xl font-bold text-blue-800 mb-2">TESLA: Pure Differentiation</h4>
+                                    <p class="text-blue-700">Tesla's goal is to maximize <strong>Value (V)</strong>.</p>
+                                    <ul class="list-disc list-inside space-y-2 text-gray-700 mt-4">
+                                        <li><strong>Value Drivers:</strong> Brand status, Autopilot software, 0-60 performance, Supercharger network.</li>
+                                        <li><strong>Cost Drivers:</strong> Uses learning curves and scale (Giga-press) as *supporting* tools to improve margins, *not* as the primary strategy.</li>
+                                        <li><strong>Result:</strong> Competes with Porsche and Mercedes on features and brand, not price.</li>
+                                    </ul>
+                                </div>
+                                <!-- SpaceX -->
+                                <div class="bg-gray-100 p-6 rounded-lg shadow-inner border-l-4 border-gray-500">
+                                    <h4 class="text-2xl font-bold text-gray-800 mb-2">SpaceX: Pure Cost Leadership</h4>
+                                    <p class="text-gray-700">SpaceX's goal is to minimize <strong>Cost (C)</strong>.</p>
+                                    <ul class="list-disc list-inside space-y-2 text-gray-700 mt-4">
+                                        <li><strong>Cost Drivers:</strong> The *Experience Curve* (reusability), economies of scale (Starlink), vertical integration.</li>
+                                        <li><strong>Value Drivers:</strong> Value is "acceptable." Its primary job is to be the cheapest, most reliable launch provider.</li>
+                                        <li><strong>Result:</strong> Competes with ULA and Arianespace on *price*, winning contracts by being 80% cheaper.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Strategy Simulation -->
+        <section id="sim" class="py-16 pt-24 -mt-16">
+            <div class="w-full section-header">
+                <h2 class="text-base">Strategy Simulation</h2>
+                <p class="section-title">Can You Execute?</p>
+                <p class="bold-question">"You've seen the theory and the cases. Now you're the CEO. Can you make consistent choices, or will you get 'Stuck in the Middle'?"</p>
+            </div>
+            <p class="mt-6 text-xl text-gray-600 max-w-3xl">
+                Welcome to "AirSim." Your goal is to run a new airline for 3 "years" (rounds). First, choose your strategy. Then, make decisions. Choices that *align* with your strategy will boost your score. Choices that *conflict* will be penalized.
+            </p>
+
+            <div class="card p-8 mt-12 max-w-5xl mx-auto">
+                <!-- Step 1: Strategy Choice -->
+                <div id="sim-step-1">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Step 1: Choose Your Airline's Strategy</h3>
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <button class="sim-btn bg-blue-100 text-blue-800" data-strategy="diff">
+                            <strong>Differentiation (e.g., "SkyLuxe")</strong>
+                            <p class="text-sm font-normal mt-2">Focus on high value, premium service, and brand. Compete with legacy carriers.</p>
+                        </button>
+                        <button class="sim-btn bg-gray-100 text-gray-800" data-strategy="cost">
+                            <strong>Cost Leadership (e.g., "AirZip")</strong>
+                            <p class="text-sm font-normal mt-2">Focus on low cost, high efficiency, and no-frills. Compete with SWA.</p>
+                        </button>
+                        <button class="sim-btn bg-purple-100 text-purple-800" data-strategy="blue">
+                            <strong>Blue Ocean (e.g., "Aura")</strong>
+                            <p class="text-sm font-normal mt-2">A risky, high-reward attempt to do both. (Hard mode!)</p>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Decision Rounds -->
+                <div id="sim-step-2" class="hidden">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2 text-center" id="sim-round-title">Year 1: Fleet & Seating</h3>
+                    <p class="text-center text-gray-600 mb-6" id="sim-strategy-display">Your Strategy: <strong></strong></p>
+                    
+                    <div class="space-y-4" id="sim-choices">
+                        <!-- Choices will be injected by JS -->
+                    </div>
+
+                    <button id="sim-next-btn" class="w-full mt-8 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition-all duration-300">
+                        Confirm & Proceed to Year 2
+                    </button>
+                </div>
+
+                <!-- Step 3: Results -->
+                <div id="sim-step-3" class="hidden">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Final Results</h3>
+                    <div class="text-center p-6 bg-gray-50 rounded-lg shadow-inner">
+                        <p class="text-lg text-gray-600">Your Chosen Strategy:</p>
+                        <p class="text-3xl font-bold mb-4" id="sim-result-strategy"></p>
+                        
+                        <p class="text-lg text-gray-600">Final Strategic Score:</p>
+                        <p class="text-6xl font-extrabold mb-4" id="sim-result-score"></p>
+                        
+                        <p class="text-lg font-semibold mb-6" id="sim-result-feedback"></p>
+
+                        <button id="sim-restart-btn" class="w-full md:w-auto px-6 py-3 bg-gray-600 text-white font-semibold rounded-lg shadow-md hover:bg-gray-700 transition-all duration-300">
+                            Run Simulation Again
+                        </button>
+                    </div>
+                    
+                    <div id="sim-summary" class="mt-8 space-y-4">
+                        <!-- Summary of choices will be injected here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="quiz" class="py-16 pt-24 -mt-16">
+            <div class="w-full section-header">
+                <h2 class="text-base">Final Knowledge Check</h2>
+                <p class="section-title">Test Your Understanding</p>
+                <p class="bold-question">"You've seen the theories, the cases, and run the simulation. Can you apply the concepts one last time?"</p>
+            </div>
+            
+            <div class="card p-8 mt-12 max-w-4xl mx-auto">
+                <h3 class="text-2xl font-bold text-center text-gray-900 mb-4">Business Strategy Quiz</h3>
+                
+                <div class="text-center mb-8 p-4 bg-gray-100 rounded-lg shadow-inner">
+                    <span class="text-2xl font-bold text-gray-900">Your Score: </span>
+                    <span id="quiz-score-value" class="text-2xl font-bold text-blue-700">0</span>
+                    <span class="text-2xl font-bold text-gray-500"> / </span>
+                    <span id="quiz-score-total" class="text-2xl font-bold text-gray-500">15</span>
+                </div>
+
+                <div id="quiz-container" class="space-y-6">
+                    <!-- Quiz questions will be injected here by JS -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER (Copied from Session 3) -->
+    <footer class="bg-gray-800 mt-16 sm:mt-24 border-t border-gray-700">
+        <div class="container mx-auto px-6 py-5">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6">
+                <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-3 group order-first sm:order-none">
+                    <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
+                        <svg viewBox="0 0 52 60">
+                            <defs><linearGradient id="footerRedGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
+                            <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#footerRedGradient)"/><text class="hexagon-s" x="26" y="32">S</text>
+                        </svg>
+                    </div>
+                    <span class="text-xs font-semibold text-slate-300 group-hover:text-white transition-colors">Dr. Swapnil Sahoo</span>
+                </a>
+                <p class="text-xs text-slate-400 order-last sm:order-none">© Dr. Swapnil Sahoo 2025</p>
+                <div class="flex space-x-5 sm:space-x-6 order-first sm:order-last">
+                    <a href="httpss://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white footer-link" title="X/Twitter"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="httpss://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white footer-link" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049 1.064.218 1.791.465 2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.575 2h.093zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" clip-rule="evenodd"/></svg></a>
+                    <a href="httpsH://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white footer-link" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // --- Global Data ---
+        const chartData = {
+            base: {
+                v: 100,
+                c: 80,
+                label: 'Commodity Firm'
+            },
+            diff: {
+                v: 180, // Value raised significantly
+                c: 100, // Cost increased slightly
+                label: 'Differentiator'
+            },
+            cost: {
+                v: 100, // Value kept acceptable
+                c: 60,  // Cost slashed
+                label: 'Cost Leader'
+            }
+        };
+
+        const fiveForcesData = {
+            diff: [
+                { force: 'Threat of Entry', benefit: 'High barriers to entry due to brand loyalty and unique features. <em>(e.g., <strong>Tesla\'s</strong> brand and Supercharger network create a huge barrier for new EV entrants.)</em>', risk: 'Risk of imitation. If features are copied, the value drops. <em>(e.g., <strong>Indian D2C startups</strong> like Mamaearth saw legacy FMCG firms (HUL) quickly imitate their "toxin-free" value proposition.)</em>' },
+                { force: 'Power of Buyers', benefit: 'Reduced. Loyal customers are less price-sensitive. <em>(e.g., <strong>Nvidia\'s</strong> AI customers *must* have their chips and will pay whatever price, giving buyers little power.)</em>', risk: 'Risk of "over-shooting." Customers may decide the premium price is no longer worth the value. <em>(e.g., <strong>Apple\'s</strong> high-end Mac Pro is "over-shot" for many pros who just buy a MacBook Pro.)</em>' },
+                { force: 'Power of Suppliers', benefit: 'Insulated. Can pass on higher supplier costs to customers. <em>(e.g., <strong>Tesla</strong> passes on rising lithium (supplier) costs to its customers via price hikes.)</em>', risk: 'Suppliers of unique, high-end inputs can gain power. <em>(e.g., <strong>Nvidia</strong> is differentiation-driven, but this makes it *highly* dependent on its sole high-end supplier, TSMC, giving TSMC immense power.)</em>' },
+                { force: 'Threat of Substitutes', benefit: 'Reduced. Unique features make substitutes seem less appealing. <em>(e.g., <strong>Nvidia\'s CUDA</strong> platform makes rival AMD chips (a substitute) far less appealing to AI developers.)</em>', risk: 'A substitute offering a *different* high-value feature can be a major threat. <em>(e.g., <strong>Google\'s TPUs</strong> are a substitute for Nvidia\'s GPUs that are custom-built for AI, not graphics.)</em>' },
+                { force: 'Rivalry', benefit: 'Reduced. Competition is based on features and brand, not price. <em>(e.g., <strong>Tesla</strong> vs. <strong>Porsche</strong>. They rival on 0-60 times and tech, not on who is $1,000 cheaper.)</em>', risk: 'A "price war" can destroy the strategy. <em>(e.g., <strong>Tesla\'s</strong> 2023-24 price cuts damaged its premium brand and forced it to compete on price, hurting its core differentiation.)</em>' }
+            ],
+            cost: [
+                { force: 'Threat of Entry', benefit: 'High barriers to entry due to economies of scale. <em>(e.g., <strong>SpaceX\'s</strong> massive scale and reusability tech make it almost impossible for a new rocket company to enter and compete on price.)</em>', risk: 'A new entrant with a new, cheaper technology can leapfrog the leader. <em>(e.g., This is what <strong>SpaceX</strong> (new tech) *did* to the old cost leaders like ULA (old tech).)</em>' },
+                { force: 'Power of Buyers', benefit: 'Reduced. Buyers have little power as the firm is already the lowest-price option. <em>(e.g., <strong>NASA</strong> (a buyer) has little power to negotiate prices with <strong>SpaceX</strong> because SpaceX is already 80% cheaper than any rival.)</em>', risk: 'Large buyers can still band together to demand lower prices. <em>(e.g., <strong>Indian FMCG</strong> biscuit makers (cost leaders) can be be squeezed by massive buyers like Reliance Retail.)</em>' },
+                { force: 'Power of Suppliers', benefit: 'Insulated. The firm is a large-volume customer or vertically integrated. <em>(e.g., <strong>SpaceX</strong> builds 80% of its rockets in-house, eliminating supplier power.)</em>', risk: 'Dependency on one key low-cost input. <em>(e.g., <strong>Indian quick-commerce startups</strong> (Zepto, Blinkit) are 100% reliant on a supply of low-cost gig workers. If regulations force wages up, their cost model collapses.)</em>' },
+                { force: 'Threat of Substitutes', benefit: 'Protected. Can use low price as a weapon against substitutes. <em>(e.g., <strong>Reliance Jio</strong> (telecom) launched with such low prices that it made all substitutes (like 3G or other 4G) obsolete.)</em>', risk: 'A "good enough" substitute can emerge at a similar price. <em>(e.g., A national <strong>FMCG</strong> brand can be substituted by a local "good enough" brand with no marketing costs.)</em>' },
+                { force: 'Rivalry', benefit: 'Protected. The firm will win a price war as it has the lowest costs. <em>(e.g., <strong>SpaceX</strong> can underbid any rival for a launch contract and still be profitable.)</em>', risk: 'If rivalry shifts from price to features, the cost leader is vulnerable. <em>(e.g., <strong>Indian quick-commerce</strong> rivalry is shifting from *price* to *features* (10-min delivery, product variety), which adds costs and destroys the cost-leadership model.)</em>' }
+            ]
+        };
+
+        const simData = {
+            strategy: null,
+            choices: [],
+            round: 0,
+            score: 100,
+            rounds: [
+                {
+                    title: 'Year 1: Fleet & Seating',
+                    options: [
+                        { text: 'Buy new, fuel-efficient planes with premium cabins.', type: 'diff', score: 10, penalty: -15 },
+                        { text: 'Buy used, older planes and configure for maximum density.', type: 'cost', score: 10, penalty: -15 },
+                        { text: 'Buy new planes, but configure for max density (Blue Ocean).', type: 'blue', score: 15, penalty: -5 }
+                    ]
+                },
+                {
+                    title: 'Year 2: In-Flight Service',
+                    options: [
+                        { text: 'Offer free gourmet meals, fast Wi-Fi, and amenity kits.', type: 'diff', score: 10, penalty: -15 },
+                        { text: 'Charge for all carry-ons and offer no free service.', type: 'cost', score: 10, penalty: -15 },
+                        { text: 'Offer one free premium snack and paid Wi-Fi (Blue Ocean).', type: 'blue', score: 15, penalty: -5 }
+                    ]
+                },
+                {
+                    title: 'Year 3: Lounges & Marketing',
+                    options: [
+                        { text: 'Build expensive, exclusive airport lounges.', type: 'diff', score: 10, penalty: -15 },
+                        { text: 'Run "Lowest Price Guaranteed" ad campaigns.', type: 'cost', score: 10, penalty: -15 },
+                        { text: 'Market a "New Standard" of high-tech, efficient travel (Blue Ocean).', type: 'blue', score: 15, penalty: -5 }
+                    ]
+                }
+            ]
+        };
+
+        const quizData = [
+            {
+                q: "The introductory question, 'Why can't a business just 'be good'?' gets at which core strategic concept?",
+                o: [
+                    "The necessity of economies of scale.",
+                    "The importance of managing the five forces.",
+                    "The fundamental need to make strategic trade-offs to avoid being 'stuck in the middle.'",
+                    "The requirement to pursue a Blue Ocean strategy to ensure market leadership."
+                ],
+                a: 2,
+                e: "This gets at the *core* of strategy. Trying to 'just be good' at everything (high value, low cost) means a firm has no clear strategic position. It will be outcompeted by focused rivals and becomes 'stuck in the middle.' Strategy requires making *trade-offs*."
+            },
+            {
+                q: "According to the webpage, SpaceX (Cost Leadership) and Tesla (Differentiation) *both* create a large V-C gap. What is the fundamental difference in how they achieve this?",
+                o: [
+                    "SpaceX focuses on raising V, while Tesla focuses on lowering C.",
+                    "SpaceX focuses on radically lowering C, while Tesla focuses on radically raising V.",
+                    "Both focus on lowering C, but Tesla uses learning curves while SpaceX uses economies of scale.",
+                    "Both focus on raising V, but Tesla uses brand while SpaceX uses reliability."
+                ],
+                a: 1,
+                e: "Both firms create a large economic value (V-C) gap, but from opposite ends. Tesla is a Differentiator that *radically raises V* (value) through brand, technology, and its network. SpaceX is a Cost Leader that *radically lowers C* (cost) through its reusability innovation."
+            },
+            {
+                q: "Nvidia's CUDA platform is cited as a key Value Driver. Which specific driver does it best represent?",
+                o: [
+                    "Product Features, as it is a unique part of the GPU.",
+                    "Customer Service, as it provides support to developers.",
+                    "Complements, as it is a separate product (software) that adds immense value to the primary product (GPU hardware).",
+                    "Economies of Scale, as its value increases with more users."
+                ],
+                a: 2,
+                e: "A 'Complement' is a separate product that increases the value of another. CUDA (software) and Nvidia's GPUs (hardware) are complements. The GPUs are immensely more valuable to AI developers *because* the CUDA software exists, creating massive value and lock-in."
+            },
+            {
+                q: "SpaceX's ability to reuse its rockets is a classic example of which Cost Driver?",
+                o: [
+                    "Cost of Input Factors, as they are reusing their inputs.",
+                    "Economies of Scale, as they can launch more rockets.",
+                    "Learning Curve, as they get slightly better at landing each time.",
+                    "Experience Curve, as they fundamentally *changed the process* of space launch, 'jumping' to a new, lower-cost curve."
+                ],
+                a: 3,
+                e: "A 'Learning Curve' is getting more efficient at an *existing* process. An 'Experience Curve' involves a *new process innovation* that fundamentally changes the cost structure. Reusability isn't just learning; it's a completely new, lower-cost process."
+            },
+            {
+                q: "A Blue Ocean strategy, like that used by Lenskart, uses the ERRC framework. Which of these moves by Lenskart would best fit the 'Create' dimension?",
+                o: [
+                    "Reducing the price of frames by removing middlemen.",
+                    "Eliminating the need to visit a physical store.",
+                    "Creating a tech-driven 'home try-on' feature.",
+                    "Raising the level of convenience for the customer."
+                ],
+                a: 2,
+                e: "'Eliminate' and 'Reduce' are cost-lowering moves. 'Raise' improves an existing factor (convenience). 'Create' means offering something *brand new* to the industry, which the tech-enabled 'home try-on' feature was."
+            },
+            {
+                q: "According to the analysis, why is JetBlue considered 'Stuck in the Middle'?",
+                o: [
+                    "Because its 'Mint' class (high value) and reduced legroom (low value) are conflicting moves that confuse its strategic position.",
+                    "Because it failed to achieve economies of scale compared to Delta or American.",
+                    "Because it focused too much on Cost Leadership and ignored Differentiation.",
+                    "Because it successfully executed a Blue Ocean strategy, which is by definition 'in the middle.'"
+                ],
+                a: 0,
+                e: "Being 'Stuck in the Middle' is a result of strategic *inconsistency*. JetBlue's moves conflict. 'Mint' class is a high-cost Differentiation move, while cutting legroom is a low-cost Cost-Leadership move. This creates an inefficient operation and confuses customers."
+            },
+            {
+                q: "In the Five Forces analysis, Nvidia's heavy reliance on TSMC for chip manufacturing represents a significant risk related to:",
+                o: [
+                    "Threat of Entry, as TSMC could enter the market.",
+                    "Power of Suppliers, as TSMC is a unique, high-end input supplier with immense power.",
+                    "Power of Buyers, as TSMC is a buyer of Nvidia's designs.",
+                    "Rivalry, as TSMC also builds chips for Nvidia's rivals."
+                ],
+                a: 1,
+                e: "Nvidia is the buyer, and TSMC is the supplier. Because Nvidia's Differentiation strategy *depends* on having the most advanced chips, and TSMC is one of the only suppliers capable of making them, TSMC has immense bargaining power as a supplier."
+            },
+            {
+                q: "In the Five Forces analysis, what is the *primary* risk for an Indian quick-commerce (Q-Commerce) startup's Cost Leadership strategy?",
+                o: [
+                    "Threat of Entry from new startups.",
+                    "Power of Buyers who demand lower prices.",
+                    "Power of Suppliers, where the 'gig workers' (delivery fleet) are the key input and can demand higher wages, destroying the cost model.",
+                    "Threat of Substitutes, such as traditional grocery stores."
+                ],
+                a: 2,
+                e: "For a Q-Commerce Cost Leader, the most significant 'Cost of Input Factor' is its delivery fleet (gig workers). This group acts as a 'supplier' of labor. If this group organizes or if regulations mandate higher pay, the entire low-cost model is threatened."
+            },
+            {
+                q: "Ron Johnson's failure at JCPenney, as described in the case, was primarily a failure to:",
+                o: [
+                    "Implement cost-cutting measures effectively.",
+                    "Understand his new customers' *actual* Value Drivers (e.g., the 'thrill' of the coupon) before eliminating them.",
+                    "Secure enough capital for his Blue Ocean strategy.",
+                    "Compete with Amazon on price and delivery speed."
+                ],
+                a: 1,
+                e: "This was his fatal error. He tried to impose Apple's Value Drivers (boutiques, 'fair' pricing) on a customer base he didn't understand. He *eliminated* the one Value Driver they actually valued—the 'thrill of the hunt' from coupons—alienating his core customers."
+            },
+            {
+                q: "The core strategic difference between Tesla and SpaceX, as presented in the case, is:",
+                o: [
+                    "Tesla is a Differentiator competing on value (brand, tech), while SpaceX is a Cost Leader competing on price (reusability).",
+                    "Both are Differentiators, but Tesla focuses on cars and SpaceX on rockets.",
+                    "Tesla is a Blue Ocean strategist, while SpaceX is a Cost Leader.",
+                    "Tesla is a Cost Leader (learning curve), while SpaceX is a Differentiator (unique tech)."
+                ],
+                a: 0,
+                e: "The case makes this distinction clear. Tesla's strategy is pure Differentiation (competing on brand and technology). SpaceX's strategy is pure Cost Leadership (competing on the lowest price-to-orbit, enabled by its reusability cost innovation)."
+            },
+            {
+                q: "In the Five Forces analysis, Google developing its own 'TPU' chips is a clear example of:",
+                o: [
+                    "A new Rival to Nvidia.",
+                    "A powerful Buyer (Google) integrating backward to become its own Supplier.",
+                    "A powerful Supplier (Google) integrating forward.",
+                    "A Substitute, as TPUs are a different technology (ASIC) designed to substitute for GPUs in AI tasks."
+                ],
+                a: 3,
+                e: "A *substitute* is a product that performs the *same job* through a *different means* or technology. Google's TPUs are custom-built chips (ASICs) designed specifically for AI. They are a different technology that performs the same job as an Nvidia GPU, making them a classic substitute."
+            },
+            {
+                q: "A Differentiator like Tesla is vulnerable to rivalry when:",
+                o: [
+                    "Its suppliers demand higher prices for lithium.",
+                    "The basis of competition shifts from features (tech, brand) to price, forcing it into a price war it is not built to win.",
+                    "Its patent portfolio expires.",
+                    "It achieves economies of scale in its Gigafactories."
+                ],
+                a: 1,
+                e: "A Differentiator (Tesla) is built to compete on value, not price. Its high-cost structure makes it extremely vulnerable in a *price war*. If rivalry shifts to price (as it did in 2023-24), the Differentiator's profit margins are crushed."
+            },
+            {
+                q: "Why is SpaceX's Cost Leadership position *more* sustainable than a Q-Commerce startup's (e.g., Zepto's)?",
+                o: [
+                    "Because rockets are more expensive than groceries.",
+                    "Because SpaceX's cost advantage is based on an Experience Curve (a new process) and proprietary tech, which are hard to imitate, while Q-Commerce's is based on Cost of Input Factors (gig workers), which is not.",
+                    "Because SpaceX has no rivals, while Q-Commerce has many.",
+                    "Because SpaceX is a Differentiator, not a Cost Leader."
+                ],
+                a: 1,
+                e: "This tests the *sustainability* of the advantage. SpaceX's advantage comes from a proprietary *process* (Experience Curve) that is hard to imitate. Q-Commerce's advantage comes from a *Cost of Input Factor* (gig workers) that is *not* proprietary and *easy* to imitate."
+            },
+            {
+                q: "Why is Tesla's strategy, which involves both high value (Differentiation) and cost management (Learning Curve), *not* considered 'Stuck in the Middle' like JetBlue's?",
+                o: [
+                    "Because Tesla's CEO is also the CEO of SpaceX.",
+                    "Because Tesla has a clear *primary* strategy (Differentiation) and uses cost management as a *supporting* tool, not as a conflicting primary goal.",
+                    "Because Tesla's market is newer than the airline industry.",
+                    "Because Tesla's costs are actually the lowest in the industry."
+                ],
+                a: 1,
+                e: "This is a crucial distinction. 'Stuck in the Middle' (like JetBlue) means having *conflicting primary strategies*. Tesla has *one, clear primary strategy*: Differentiation. It uses cost management (Learning Curve) as a *supporting* activity to improve margins, not as a conflicting goal."
+            },
+            {
+                q: "A Cost Leader's (e.g., SpaceX's) defense against a powerful buyer (e.g., NASA) is that:",
+                o: [
+                    "The buyer is brand-loyal and will pay a premium.",
+                    "The buyer has no power because the firm is already the lowest-price option, and switching to a rival would be more expensive.",
+                    "The firm's product features are so unique that the buyer cannot switch.",
+                    "The firm can threaten to backwardly integrate and become its own buyer."
+                ],
+                a: 1,
+                e: "This is the Cost Leader's defense. The buyer (NASA) has two options: 1) Use the Cost Leader (SpaceX) at the lowest price, or 2) Switch to a rival (like ULA) and pay a *significantly higher price*. The buyer's power is neutralized because switching is economically irrational."
+            }
+        ];
+
+        // --- Chart.js Setup ---
+        const chartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 200
+                }
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const label = context.dataset.label || '';
+                            const val = context.parsed.y;
+                            if (context.dataset.data[context.dataIndex].isGap) {
+                                return `V-C Gap: ${val}`;
+                            }
+                            return `${label}: ${val}`;
+                        }
+                    }
+                }
+            }
+        };
+
+        function createVCSChart(ctx, firmData, baseData) {
+            const vCData = [
+                { x: baseData.label, y: baseData.v, label: 'Value (V)' },
+                { x: baseData.label, y: baseData.c, label: 'Cost (C)' },
+                { x: firmData.label, y: firmData.v, label: 'Value (V)' },
+                { x: firmData.label, y: firmData.c, label: 'Cost (C)' }
+            ];
+
+            const gapData = [
+                { x: baseData.label, y: baseData.v - baseData.c, isGap: true },
+                { x: firmData.label, y: firmData.v - firmData.c, isGap: true }
+            ];
+            
+            return new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [baseData.label, firmData.label],
+                    datasets: [
+                        {
+                            label: 'Value (V)',
+                            data: vCData.filter(d => d.label === 'Value (V)').map(d => d.y),
+                            backgroundColor: 'rgba(59, 130, 246, 0.7)', // blue-500
+                            borderColor: 'rgba(59, 130, 246, 1)',
+                            borderWidth: 1,
+                            barPercentage: 0.6,
+                            categoryPercentage: 0.7
+                        },
+                        {
+                            label: 'Cost (C)',
+                            data: vCData.filter(d => d.label === 'Cost (C)').map(d => d.y),
+                            backgroundColor: 'rgba(239, 68, 68, 0.7)', // red-500
+                            borderColor: 'rgba(239, 68, 68, 1)',
+                            borderWidth: 1,
+                            barPercentage: 0.6,
+                            categoryPercentage: 0.7
+                        },
+                        {
+                            label: 'V-C Gap (Economic Value)',
+                            data: gapData.map(d => d.y),
+                            backgroundColor: 'rgba(22, 163, 74, 0.7)', // green-600
+                            borderColor: 'rgba(22, 163, 74, 1)',
+                            borderWidth: 1,
+                            barPercentage: 0.6,
+                            categoryPercentage: 0.7
+                        }
+                    ]
+                },
+                options: chartOptions
+            });
+        }
+
+        // --- Single-Page Navigation (Template Version) ---
+        const navLinks = document.querySelectorAll('.nav-link');
+        const mobileNav = document.getElementById('mobile-nav');
+        const sections = document.querySelectorAll('main section');
+
+        function getHeaderHeight() {
+            const mainNav = document.getElementById('main-nav-container');
+            if (window.innerWidth < 640) {
+                // Mobile: Only the main-nav-container is visible
+                return mainNav ? mainNav.offsetHeight : 53; // Mobile fallback
+            }
+            
+            // Desktop: Top bar + main nav container
+            let desktopHeight = 0;
+            const topBarEl = document.getElementById('top-bar');
+            const mainNavContainerEl = document.getElementById('main-nav-container');
+            if (topBarEl) desktopHeight += topBarEl.offsetHeight;
+            if (mainNavContainerEl) desktopHeight += mainNavContainerEl.offsetHeight;
+            
+            if (desktopHeight > 0) {
+                return desktopHeight;
+            }
+            return 129; // Desktop fallback (40px + 89px)
+        }
+
+        let headerHeight = getHeaderHeight();
+        // Set CSS variables for scroll-padding
+        document.documentElement.style.setProperty('--header-height-desktop', `${headerHeight}px`);
+        document.documentElement.style.setProperty('--header-height-mobile', `${getHeaderHeight()}px`); // Recalc for mobile
+        
+        window.addEventListener('resize', () => {
+            headerHeight = getHeaderHeight();
+            if (window.innerWidth < 640) {
+                document.documentElement.style.setProperty('--header-height-mobile', `${headerHeight}px`);
+                document.documentElement.style.scrollPaddingTop = `${headerHeight}px`;
+            } else {
+                document.documentElement.style.setProperty('--header-height-desktop', `${headerHeight}px`);
+                document.documentElement.style.scrollPaddingTop = `${headerHeight}px`;
+            }
+        });
+        // Set initial scroll padding
+        document.documentElement.style.scrollPaddingTop = `${headerHeight}px`;
+
+
+        const observer = new IntersectionObserver((entries) => {
+            let activeId = '';
+            // Find the entry that is most visible at the top of the viewport
+            let topEntry = entries.find(entry => entry.isIntersecting && entry.boundingClientRect.top >= headerHeight);
+
+            if (topEntry) {
+                activeId = topEntry.target.id;
+            } else {
+                // Fallback: find the last entry that passed the top
+                for (const entry of entries) {
+                    if (entry.boundingClientRect.bottom < headerHeight) {
+                        activeId = entry.target.id;
+                    }
+                }
+            }
+
+            // Force intro to be active at the very top
+            if (window.scrollY < window.innerHeight / 2 && sections.length > 0) {
+                 activeId = sections[0].id; // This should be 'storyline' now
+            }
+            
+            if (activeId) {
+                const targetHref = `#${activeId}`;
+                navLinks.forEach(link => {
+                    link.classList.toggle('active-nav', link.getAttribute('href') === targetHref);
+                });
+                
+                if (mobileNav.querySelector(`option[value="${targetHref}"]`)) {
+                    if (mobileNav.value !== targetHref) {
+                        mobileNav.value = targetHref;
+                    }
+                }
+            }
+        }, { rootMargin: `-${headerHeight}px 0px -40% 0px`, threshold: [0, 0.2, 0.8, 1.0] });
+
+        sections.forEach(section => observer.observe(section));
+
+        // Helper function to scroll to an element
+        function scrollToTarget(targetId) {
+            const targetElement = document.getElementById(targetId.substring(1)); // remove #
+            if (targetElement) {
+                // Use the dynamically calculated header height
+                const targetPosition = targetElement.offsetTop - getHeaderHeight() + 1; // +1px buffer
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Mobile nav scrolling
+        mobileNav.addEventListener('change', () => {
+            scrollToTarget(mobileNav.value);
+        });
+
+        // Desktop nav scrolling
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                scrollToTarget(targetId);
+            });
+        });
+        
+        // --- Init Charts ---
+        const diffCtx = document.getElementById('diffChart')?.getContext('2d');
+        if (diffCtx) createVCSChart(diffCtx, chartData.diff, chartData.base);
+        
+        const costCtx = document.getElementById('costChart')?.getContext('2d');
+        if (costCtx) createVCSChart(costCtx, chartData.cost, chartData.base);
+
+        const jcpenneyCtx = document.getElementById('jcpenneyChart')?.getContext('2d');
+        if (jcpenneyCtx) {
+            new Chart(jcpenneyCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Q4 2010', 'Q4 2011 (Johnson Arrives)', 'Q4 2012', 'Q4 2013 (Johnson Fired)'],
+                    datasets: [{
+                        label: 'JCPenney Quarterly Revenue ($B)',
+                        data: [6.4, 5.4, 3.9, 3.7],
+                        borderColor: 'rgba(239, 68, 68, 1)',
+                        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                        fill: true,
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { y: { beginAtZero: false, ticks: { callback: (val) => `$${val}B` } } },
+                    plugins: { title: { display: true, text: 'JCPenney Revenue Collapse (2010-2013)' } }
+                }
+            });
+        }
+        
+        // --- Init Analysis Tabs ---
+        const analysisTabs = document.getElementById('analysis-tabs');
+        if (analysisTabs) {
+            const tabButtons = analysisTabs.querySelectorAll('.tab-button');
+            const tabPanels = document.getElementById('analysis-content').querySelectorAll('.tab-panel');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    const tab = button.dataset.tab;
+                    tabPanels.forEach(panel => {
+                        panel.classList.toggle('hidden', panel.id !== `${tab}-panel`);
+                    });
+                });
+            });
+        }
+
+        // --- Init Case Study Tabs ---
+        const caseTabs = document.getElementById('case-tabs');
+        if (caseTabs) {
+            const tabButtons = caseTabs.querySelectorAll('.tab-button');
+            const tabPanels = document.getElementById('case-content').querySelectorAll('.tab-panel');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    const tab = button.dataset.tab;
+                    tabPanels.forEach(panel => {
+                        panel.classList.toggle('hidden', panel.id !== `${tab}-panel`);
+                    });
+                });
+            });
+        }
+        
+        // --- Populate 5 Forces Lists ---
+        function populateForcesList(listId, data) {
+            const listEl = document.getElementById(listId);
+            if (!listEl) return;
+            listEl.innerHTML = '';
+            data.forEach(item => {
+                listEl.innerHTML += `
+                    <div class="p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <h4 class="text-xl font-semibold text-gray-800">${item.force}</h4>
+                        <div class="mt-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <strong class="text-green-700">Benefit:</strong>
+                                <p class="text-gray-700">${item.benefit}</p>
+                            </div>
+                            <div>
+                                <strong class="text-red-700">Risk:</strong>
+                                <p class="text-gray-700">${item.risk}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+        populateForcesList('diff-forces-list', fiveForcesData.diff);
+        populateForcesList('cost-forces-list', fiveForcesData.cost);
+
+        // --- Simulation Logic ---
+        const simStep1 = document.getElementById('sim-step-1');
+        const simStep2 = document.getElementById('sim-step-2');
+        const simStep3 = document.getElementById('sim-step-3');
+        const simStrategyDisplay = document.getElementById('sim-strategy-display');
+        const simRoundTitle = document.getElementById('sim-round-title');
+        const simChoicesContainer = document.getElementById('sim-choices');
+        const simNextBtn = document.getElementById('sim-next-btn');
+        const simRestartBtn = document.getElementById('sim-restart-btn');
+
+        if(simStep1) { // Check if sim elements exist
+            function startSim(strategy) {
+                simData.strategy = strategy;
+                simData.round = 0;
+                simData.score = 100;
+                simData.choices = [];
+                simStrategyDisplay.querySelector('strong').textContent = strategy.charAt(0).toUpperCase() + strategy.slice(1);
+                simStep1.classList.add('hidden');
+                simStep3.classList.add('hidden');
+                simStep2.classList.remove('hidden');
+                loadSimRound(0);
+            }
+
+            function loadSimRound(roundIndex) {
+                simData.round = roundIndex;
+                const round = simData.rounds[roundIndex];
+                simRoundTitle.textContent = round.title;
+                simChoicesContainer.innerHTML = '';
+                
+                round.options.forEach((opt, index) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'sim-choice-btn';
+                    btn.innerHTML = `<strong class="text-lg">${opt.text}</strong>`;
+                    btn.dataset.index = index;
+                    btn.addEventListener('click', () => selectSimChoice(btn, index));
+                    simChoicesContainer.appendChild(btn);
+                });
+
+                simNextBtn.textContent = (roundIndex < simData.rounds.length - 1) ? `Confirm & Proceed to Year ${roundIndex + 2}` : 'Confirm & See Results';
+            }
+
+            function selectSimChoice(selectedBtn, choiceIndex) {
+                simChoicesContainer.querySelectorAll('.sim-choice-btn').forEach(btn => btn.classList.remove('selected'));
+                selectedBtn.classList.add('selected');
+                simData.choices[simData.round] = { ...simData.rounds[simData.round].options[choiceIndex], choiceIndex: choiceIndex };
+            }
+
+            simStep1.querySelectorAll('.sim-btn').forEach(btn => {
+                btn.addEventListener('click', () => startSim(btn.dataset.strategy));
+            });
+
+            simNextBtn.addEventListener('click', () => {
+                if (simData.choices[simData.round] === undefined) {
+                    alert('Please make a selection.');
+                    return;
+                }
+
+                if (simData.round < simData.rounds.length - 1) {
+                    loadSimRound(simData.round + 1);
+                } else {
+                    endSim();
+                }
+            });
+
+            simRestartBtn.addEventListener('click', () => {
+                simStep3.classList.add('hidden');
+                simStep1.classList.remove('hidden');
+            });
+
+            function endSim() {
+                let score = 100;
+                let stuckInMiddle = 0;
+                let summaryHTML = '<h4 class="text-xl font-bold text-gray-900 mb-4">Your Decision Summary:</h4>';
+                
+                simData.choices.forEach((choice, index) => {
+                    const roundTitle = simData.rounds[index].title;
+                    let outcome = '';
+                    
+                    if (choice.type === simData.strategy) {
+                        score += choice.score;
+                        outcome = `<span class="font-semibold text-green-600">(+${choice.score} pts | Strategic Fit)</span>`;
+                    } else if (simData.strategy === 'blue' && (choice.type === 'diff' || choice.type === 'cost')) {
+                        score += choice.penalty; // Blue Ocean is hard, penalize non-blue moves
+                        stuckInMiddle++;
+                        outcome = `<span class="font-semibold text-red-600">(${choice.penalty} pts | Inconsistent)</span>`;
+                    } else if (choice.type === 'blue' && simData.strategy !== 'blue') {
+                        score += choice.penalty; // Penalize trying to be blue when not
+                        stuckInMiddle++;
+                        outcome = `<span class="font-semibold text-red-600">(${choice.penalty} pts | Inconsistent)</span>`;
+                    } else {
+                        score += choice.penalty; // Direct conflict
+                        stuckInMiddle++;
+                        outcome = `<span class="font-semibold text-red-600">(${choice.penalty} pts | Strategic Conflict!)</span>`;
+                    }
+                    
+                    summaryHTML += `
+                        <div class="p-4 bg-gray-50 rounded-lg shadow-sm">
+                            <p class="font-semibold text-gray-700">${roundTitle}</p>
+                            <p class="text-gray-600">Your Choice: ${choice.text} ${outcome}</p>
+                        </div>
+                    `;
+                });
+
+                let feedback = '';
+                if (stuckInMiddle === 0) {
+                    feedback = `<strong>Excellent!</strong> You demonstrated perfect strategic consistency. Your clear focus gives you a strong competitive advantage.`;
+                } else if (stuckInMiddle === 1) {
+                    feedback = `<strong>Good effort.</strong> You made one inconsistent choice, which created some confusion. A minor stumble, but you're not "Stuck in the Middle" yet.`;
+                } else {
+                    feedback = `<strong>Warning!</strong> You made ${stuckInMiddle} inconsistent choices. Your strategy is unclear, your costs are high, and your value is confusing. You are <strong>Stuck in the Middle!</strong>`;
+                }
+
+                document.getElementById('sim-result-strategy').textContent = simData.strategy.charAt(0).toUpperCase() + simData.strategy.slice(1);
+                document.getElementById('sim-result-score').textContent = score;
+                document.getElementById('sim-result-feedback').innerHTML = feedback;
+                document.getElementById('sim-summary').innerHTML = summaryHTML;
+
+                simStep2.classList.add('hidden');
+                simStep3.classList.remove('hidden');
+            }
+        }
+
+        // --- Quiz Logic ---
+        const quizContainer = document.getElementById('quiz-container');
+        const scoreValueEl = document.getElementById('quiz-score-value');
+        const scoreTotalEl = document.getElementById('quiz-score-total');
+        let quizScore = 0;
+        const totalQuestions = quizData.length;
+        
+        if (quizContainer) { // Check if quiz elements exist
+            scoreTotalEl.textContent = totalQuestions;
+            quizContainer.innerHTML = ''; // Clear existing content
+            
+            quizData.forEach((item, index) => {
+                const questionEl = document.createElement('div');
+                questionEl.className = 'bg-white p-6 rounded-lg shadow-sm border border-gray-200 question-card';
+                questionEl.dataset.questionIndex = index;
+                
+                let optionsHTML = '<ul class="mt-4 space-y-3 options-list">';
+                item.o.forEach((option, i) => {
+                    optionsHTML += `
+                        <li>
+                            <button class="quiz-option" data-option-index="${i}">
+                                <span class="font-semibold">${String.fromCharCode(97 + i)})</span> ${option}
+                            </button>
+                        </li>
+                    `;
+                });
+                optionsHTML += '</ul>';
+
+                const explanationHTML = `<div class="explanation" id="explanation-${index}">${item.e}</div>`;
+
+                questionEl.innerHTML = `<p class="font-semibold text-gray-900 text-lg">${index + 1}. ${item.q}</p>${optionsHTML}${explanationHTML}`;
+                quizContainer.appendChild(questionEl);
+            });
+
+            quizContainer.addEventListener('click', function(e) {
+                const clickedOption = e.target.closest('.quiz-option');
+                if (!clickedOption) return; 
+
+                const questionCard = clickedOption.closest('.question-card');
+                if (questionCard.dataset.answered) return; 
+                
+                questionCard.dataset.answered = 'true';
+
+                const questionIndex = parseInt(questionCard.dataset.questionIndex, 10);
+                const optionIndex = parseInt(clickedOption.dataset.optionIndex, 10);
+                const questionData = quizData[questionIndex];
+                const correctOptionIndex = questionData.a;
+
+                const allOptions = questionCard.querySelectorAll('.quiz-option');
+                allOptions.forEach(opt => opt.classList.add('disabled'));
+
+                if (optionIndex === correctOptionIndex) {
+                    clickedOption.classList.add('correct');
+                    quizScore++;
+                    scoreValueEl.textContent = quizScore;
+                } else {
+                    clickedOption.classList.add('incorrect');
+                    allOptions[correctOptionIndex].classList.add('correct');
+                }
+
+                const explanationEl = document.getElementById(`explanation-${questionIndex}`);
+                if (explanationEl) {
+                    explanationEl.classList.add('visible');
+                }
+            });
+        }
+
+    });
+    </script>
+</body>
+
+</html>
+

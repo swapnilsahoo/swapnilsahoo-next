@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corporate Strategy: The Masterclass</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" xintegrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* --- Premium Dark Mode Theme --- */
+        :root {
+            --header-height-desktop: 129px; 
+            --header-height-mobile: 53px; 
+            --neon-blue: #3b82f6;
+            --neon-purple: #8b5cf6;
+            --neon-green: #10b981;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Slate 900 */
+            color: #e2e8f0; /* Slate 200 */
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, .serif {
+            font-family: 'Merriweather', serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--header-height-mobile);
+        }
+        @media (min-width: 640px) {
+            html {
+                scroll-padding-top: var(--header-height-desktop);
+            }
+        }
+
+        /* Header Elements */
+        #top-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 50; }
+        #main-nav-container { position: fixed; top: 40px; left: 0; right: 0; z-index: 40; }
+        @media (max-width: 639px) {
+            #main-nav-container { top: 0; }
+            #top-bar { display: none; }
+        }
+        
+        /* Main content padding */
+        main {
+            padding-top: var(--header-height-mobile);
+        }
+        @media (min-width: 640px) {
+            main {
+                padding-top: var(--header-height-desktop);
+            }
+        }
+
+        /* Navigation Links */
+        .active-nav { color: #f59e0b; border-bottom-color: #f59e0b; font-weight: 700; } 
+        .nav-link { transition: all 0.2s ease-in-out; border-bottom: 2px solid transparent; padding-bottom: 4px; color: #94a3b8; }
+        .nav-link:hover { color: #f59e0b; border-bottom-color: #f59e0b; text-shadow: 0 0 10px rgba(245, 158, 11, 0.3); }
+
+        /* Icon Styles */
+        .top-bar-link svg, .footer-link svg { width: 1.125rem; height: 1.125rem; fill: currentColor; transition: color 0.2s ease-in-out; }
+        .hexagon-icon { position: relative; width: 28px; height: 28px; filter: drop-shadow(0 0 5px rgba(245, 158, 11, 0.5)); display: inline-block; vertical-align: middle; }
+        .hexagon-icon svg { width: 100%; height: 100%; animation: glow 3s infinite ease-in-out; }
+        .hexagon-path { stroke: #f59e0b; stroke-width: 1; } 
+        .hexagon-s { font-family: 'Georgia', serif; font-weight: bold; font-size: 48px; fill: #ffffff; text-anchor: middle; dominant-baseline: central; }
+        @keyframes glow { 0%, 100% { filter: drop-shadow(0 0 2px rgba(245, 158, 11, 0.4)); } 50% { filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.8)); } }
+
+        /* Mobile Nav Select */
+        #mobile-nav {
+            -webkit-appearance: none; -moz-appearance: none; appearance: none;
+            background-color: #1e293b; color: #e2e8f0;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M7 7l3-3 3 3m0 6l-3 3-3-3'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center; background-repeat: no-repeat; background-size: 1.25em 1.25em;
+            padding: 0.5rem 2.5rem 0.5rem 0.75rem; border: 1px solid #334155;
+        }
+
+        /* Content Styling */
+        .section-header { @apply mb-12 border-l-4 border-amber-500 pl-6; }
+        .section-title { @apply text-4xl lg:text-5xl font-bold text-white serif tracking-tight; }
+        .provocative-q { @apply mt-6 text-xl lg:text-2xl font-bold text-amber-100 italic leading-relaxed border-l-4 border-amber-500/50 pl-6 py-2 bg-amber-900/10 rounded-r-lg; }
+        
+        .card { @apply bg-slate-800/50 backdrop-blur-md shadow-xl rounded-2xl border border-slate-700/50 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-slate-600 hover:bg-slate-800/70; }
+        
+        /* Matrix Table */
+        .matrix-table th { @apply bg-slate-900 text-amber-500 font-bold serif py-4 px-6 text-left border-b border-slate-700; }
+        .matrix-table td { @apply border-b border-slate-700 py-4 px-6 text-slate-300; }
+        .matrix-table tr:last-child td { @apply border-b-0; }
+        .matrix-table tr:hover { @apply bg-slate-700/30; }
+
+        /* Vertical Integration Chain */
+        .chain-node { @apply flex items-center p-5 bg-slate-800 border border-slate-600 rounded-xl shadow-lg relative transition hover:border-amber-500/50; }
+        .chain-node::after { content: '↓'; @apply absolute -bottom-7 left-1/2 transform -translate-x-1/2 text-amber-500 text-2xl font-bold; }
+        .chain-node:last-child::after { display: none; }
+        
+        .chart-container { position: relative; height: 300px; width: 100%; }
+
+        /* --- ADVANCED SIMULATION STYLES --- */
+        .sim-container {
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            border: 1px solid #334155;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        
+        .stock-ticker {
+            font-family: 'Courier New', Courier, monospace;
+            background: #000;
+            color: #0f0;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #333;
+            display: inline-block;
+            min-width: 120px;
+            text-align: right;
+        }
+        .stock-up { color: #10b981; text-shadow: 0 0 5px rgba(16, 185, 129, 0.5); }
+        .stock-down { color: #ef4444; text-shadow: 0 0 5px rgba(239, 68, 68, 0.5); }
+        
+        .approval-meter {
+            height: 10px;
+            background: #334155;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .approval-fill {
+            height: 100%;
+            transition: width 1s ease-in-out, background-color 0.5s;
+        }
+        
+        .sim-choice-btn {
+            @apply w-full p-5 text-left border border-slate-600 bg-slate-800/80 rounded-xl transition-all duration-200 relative overflow-hidden;
+        }
+        .sim-choice-btn:hover {
+            @apply border-amber-500 bg-slate-700;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+        .sim-choice-btn:active {
+            transform: translateY(0);
+        }
+        .sim-choice-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: transparent;
+            transition: background 0.2s;
+        }
+        .sim-choice-btn:hover::before {
+            background: #f59e0b;
+        }
+
+        .scenario-card {
+            animation: slideIn 0.5s ease-out forwards;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .badge {
+            @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-700 text-slate-200 border border-slate-500;
+        }
+        
+        /* Reveal Animation */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Simulation Intro Button Styles */
+        .sim-intro-btn {
+            @apply p-6 bg-slate-800 hover:bg-slate-700 rounded-xl border border-slate-600 hover:border-amber-500 transition text-left group w-full h-full flex flex-col items-start justify-between;
+        }
+
+        /* --- QUIZ STYLES --- */
+        .quiz-option { 
+            @apply block w-full text-left p-4 border border-slate-600 bg-slate-800 rounded-lg cursor-pointer transition-all duration-200 hover:bg-slate-700 text-slate-300; 
+        }
+        .quiz-option.correct { 
+            @apply bg-green-900/30 border-green-500 text-green-400 font-semibold; 
+        }
+        .quiz-option.incorrect { 
+            @apply bg-red-900/30 border-red-500 text-red-400 font-semibold; 
+        }
+        .quiz-option.disabled { 
+            @apply cursor-not-allowed opacity-50 hover:bg-slate-800; 
+        }
+        .explanation { 
+            @apply mt-4 p-4 bg-slate-800 border-l-4 border-blue-500 shadow-inner rounded-r-lg text-slate-300 hidden; 
+        }
+        .explanation.visible { display: block; }
+    </style>
+</head>
+<body class="bg-slate-950 selection:bg-amber-500 selection:text-white">
+
+    <!-- HEADER -->
+    <header id="main-header" class="shadow-xl shadow-black/20">
+        <!-- Top Bar -->
+        <div id="top-bar" class="bg-slate-900 text-slate-300 py-1 border-b border-slate-800" style="height: 40px;">
+            <div class="container mx-auto px-6 flex justify-between items-center h-full">
+                <p class="text-xs font-medium tracking-wide">© Dr. Swapnil Sahoo 2025</p>
+                <div class="flex items-center space-x-4">
+                    <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-amber-400 transition-colors group" title="Website">
+                        <div class="hexagon-icon">
+                            <svg viewBox="0 0 52 60">
+                                <defs><linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#d97706;stop-opacity:1" /><stop offset="100%" style="stop-color:#b45309;stop-opacity:1" /></linearGradient></defs>
+                                <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#redGradient)"/><text class="hexagon-s" x="26" y="32">S</text>
+                            </svg>
+                        </div>
+                    </a>
+                    <!-- Social Icons -->
+                    <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-amber-400 top-bar-link" title="X/Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-amber-400 top-bar-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-amber-400 top-bar-link" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Nav -->
+        <div id="main-nav-container" class="bg-slate-900/95 backdrop-blur-md shadow-lg border-b border-slate-800 z-50">
+            <div class="container mx-auto px-6 py-3 title-bar">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-xl font-bold text-white serif tracking-wide">Corporate Strategy <span class="text-amber-500 italic">Inquiry</span></h1>
+                    <div class="sm:hidden">
+                        <select id="mobile-nav" class="block w-auto rounded-md border-slate-700 shadow-sm focus:border-amber-500 focus:ring-amber-500 text-sm bg-slate-800 text-white">
+                            <option value="#intro">1. Growth Dilemma</option>
+                            <option value="#core-concepts">2. Core Concepts</option>
+                            <option value="#boundaries">3. Firm Boundaries</option>
+                            <option value="#vertical">4. Vertical Integration</option>
+                            <option value="#diversification">5. Diversification</option>
+                            <option value="#matrix">6. Competence Matrix</option>
+                            <option value="#simulation">7. Strategy Simulator</option>
+                            <option value="#quiz">8. Knowledge Check</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <nav id="top-nav" class="bg-slate-900/95 backdrop-blur-md shadow-sm border-b border-slate-800 overflow-x-auto whitespace-nowrap hidden sm:block">
+                <div class="container mx-auto px-6 py-2 flex space-x-6">
+                    <a href="#intro" class="nav-link text-sm font-medium active-nav">1. The Growth Dilemma</a>
+                    <a href="#core-concepts" class="nav-link text-sm font-medium">2. Core Concepts</a>
+                    <a href="#boundaries" class="nav-link text-sm font-medium">3. Firm Boundaries (TCE)</a>
+                    <a href="#vertical" class="nav-link text-sm font-medium">4. Vertical Integration</a>
+                    <a href="#diversification" class="nav-link text-sm font-medium">5. Diversification</a>
+                    <a href="#matrix" class="nav-link text-sm font-medium">6. Competence Matrix</a>
+                    <a href="#simulation" class="nav-link text-sm font-medium text-amber-500">7. Strategy Simulator</a>
+                    <a href="#quiz" class="nav-link text-sm font-medium text-green-500">8. Knowledge Check</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+
+        <!-- SECTION 1: THE GROWTH DILEMMA -->
+        <section id="intro" class="py-16 pt-24 reveal">
+            <!-- ... (Content from previous version unchanged) ... -->
+            <div class="max-w-4xl mx-auto">
+                <div class="section-header">
+                    <h2 class="section-title">Corporate Strategy: The Fundamental Question</h2>
+                    <p class="provocative-q">"Why do firms refuse to stay small? If specialization is efficient, why does Amazon sell everything from cloud servers to groceries?"</p>
+                </div>
+
+                <div class="prose prose-invert max-w-none text-lg text-slate-300 mb-12">
+                    <p>
+                        Business Strategy asks <em>how</em> to compete (Cost vs. Differentiation). <strong>Corporate Strategy</strong> asks <em>where</em> to compete. 
+                        Using the <strong class="text-amber-400">Amazon</strong> case study, we see a relentless drive to expand boundaries. 
+                        But growth isn't just about greed; it's a structural necessity driven by five specific engines.
+                    </p>
+                </div>
+
+                <!-- ADDED IMAGE: Amazon's Corporate Strategy -->
+                <div class="mb-12 bg-slate-800 p-2 rounded-lg shadow-lg border border-slate-700">
+                    <img src="Amazon Graph.jpg" alt="Text excerpt describing Amazon's Corporate Strategy" class="w-full h-auto rounded opacity-90 hover:opacity-100 transition"
+                    onerror="this.onerror=null; this.src='https://placehold.co/800x400/1e293b/94a3b8?text=Amazon+Corporate+Strategy+Excerpt';">
+                    <p class="text-xs text-center text-slate-500 mt-2 italic">Excerpt: Amazon's evolution from online bookseller to diversified tech giant.</p>
+                </div>
+
+                <!-- Growth Drivers Accordion -->
+                <div class="card p-8 mb-12">
+                    <h3 class="text-xl font-bold text-white mb-6 border-b border-slate-700 pb-2">The 5 Drivers of Growth</h3>
+                    <div class="space-y-4">
+                        <details class="group bg-slate-900/50 rounded-lg border border-slate-700">
+                            <summary class="flex justify-between items-center cursor-pointer p-4 font-medium text-slate-200 hover:text-amber-400 hover:bg-slate-800 transition rounded-lg">
+                                1. Increase Profitability (Peloton Case)
+                                <span class="transition group-open:rotate-180 text-amber-500">▼</span>
+                            </summary>
+                            <div class="p-4 text-slate-400 text-sm border-t border-slate-700">
+                                <p class="mb-3">Profitable growth allows businesses to provide higher returns for shareholders. For publicly traded companies, valuation is determined by expected future profits.</p>
+                                <p class="font-semibold italic text-amber-500/80">Example: Peloton</p>
+                                <p>The connected fitness company lost over 90% of its market cap, falling from $50 billion to $4 billion. With such a low valuation, it became a prime target for a hostile takeover or leveraged buyout.</p>
+                            </div>
+                        </details>
+                        <details class="group bg-slate-900/50 rounded-lg border border-slate-700">
+                            <summary class="flex justify-between items-center cursor-pointer p-4 font-medium text-slate-200 hover:text-amber-400 hover:bg-slate-800 transition rounded-lg">
+                                2. Lower Costs (Economies of Scale)
+                                <span class="transition group-open:rotate-180 text-amber-500">▼</span>
+                            </summary>
+                            <div class="p-4 text-slate-400 text-sm border-t border-slate-700">
+                                Firms need to grow to achieve <strong>minimum efficient scale</strong>. A larger firm benefits from economies of scale, driving down average costs as output increases, staking out the lowest-cost position.
+                            </div>
+                        </details>
+                        <details class="group bg-slate-900/50 rounded-lg border border-slate-700">
+                            <summary class="flex justify-between items-center cursor-pointer p-4 font-medium text-slate-200 hover:text-amber-400 hover:bg-slate-800 transition rounded-lg">
+                                3. Increase Market Power
+                                <span class="transition group-open:rotate-180 text-amber-500">▼</span>
+                            </summary>
+                            <div class="p-4 text-slate-400 text-sm border-t border-slate-700">
+                                Consolidating an industry through horizontal mergers reduces rivalry. Fewer competitors generally equates to higher industry profitability. Larger firms also gain bargaining power with suppliers and buyers.
+                            </div>
+                        </details>
+                        <details class="group bg-slate-900/50 rounded-lg border border-slate-700">
+                            <summary class="flex justify-between items-center cursor-pointer p-4 font-medium text-slate-200 hover:text-amber-400 hover:bg-slate-800 transition rounded-lg">
+                                4. Reduce Risk
+                                <span class="transition group-open:rotate-180 text-amber-500">▼</span>
+                            </summary>
+                            <div class="p-4 text-slate-400 text-sm border-t border-slate-700">
+                                Firms diversify their product portfolios to compete in different industries. Higher performance in one sector (e.g., Amazon Logistics) compensates for lower performance in another (e.g., Grocery).
+                            </div>
+                        </details>
+                        <details class="group bg-slate-900/50 rounded-lg border border-slate-700">
+                            <summary class="flex justify-between items-center cursor-pointer p-4 font-medium text-slate-200 hover:text-amber-400 hover:bg-slate-800 transition rounded-lg">
+                                5. Motivate Management (The Principal-Agent Problem)
+                                <span class="transition group-open:rotate-180 text-amber-500">▼</span>
+                            </summary>
+                            <div class="p-4 text-slate-400 text-sm border-t border-slate-700">
+                                <p class="mb-3">Growth offers career opportunities. However, <strong>behavioral economics</strong> suggests managers may pursue growth for empire building, job security, and perks (corporate jets) rather than profitability.</p>
+                                <p>This is the <strong>Principal-Agent Problem</strong>: Agents (managers) pursuing goals that conflict with Principals (shareholders).</p>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <!-- Strategic Questions Section -->
+                <div class="card bg-slate-800/80 text-white p-8 mb-12 border border-slate-700">
+                    <h3 class="text-2xl font-bold text-amber-400 mb-6 serif border-b border-slate-600 pb-4">Three Critical Strategic Questions</h3>
+                    <p class="text-slate-300 mb-8 italic">Before expanding, every executive must answer these three questions to define the firm's boundaries:</p>
+                    
+                    <div class="space-y-8">
+                        <div class="flex gap-5 items-start">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-amber-600 to-amber-800 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-amber-900/50">1</div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white mb-2">Vertical Integration</h4>
+                                <p class="text-slate-300 text-base leading-relaxed">
+                                    In what stages of the industry value chain should the company participate? 
+                                    <span class="block mt-2 text-slate-400 text-sm">The industry value chain refers to the transformation of raw materials into finished goods along distinct vertical stages.</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-5 items-start">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-amber-600 to-amber-800 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-amber-900/50">2</div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white mb-2">Horizontal Diversification</h4>
+                                <p class="text-slate-300 text-base leading-relaxed">
+                                    What range of products and services should the company offer?
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-5 items-start">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-amber-600 to-amber-800 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-amber-900/50">3</div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white mb-2">Geographic Scope</h4>
+                                <p class="text-slate-300 text-base leading-relaxed">
+                                    Where should the company compete geographically in terms of regional, national, or international markets?
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- The 3 Dimensions Visual -->
+                <div class="card bg-slate-800 p-8 mb-12 border-l-4 border-amber-500">
+                    <h3 class="text-2xl font-bold text-white mb-6 serif">Visualizing the Strategic Space</h3>
+                    <div class="flex flex-col md:flex-row gap-8 items-center">
+                        <div class="w-full md:w-1/2">
+                            <img src="Three Dimensions of Corporate Strategy.jpg" alt="3D Cube Diagram" class="w-full h-auto rounded-lg shadow-2xl border border-slate-600 opacity-90 hover:opacity-100 transition"
+                            onerror="this.onerror=null; this.src='https://placehold.co/600x600/1e293b/94a3b8?text=Three+Dimensions+Diagram';">
+                        </div>
+                        <div class="w-full md:w-1/2 space-y-6">
+                            <div class="p-4 bg-slate-900/50 rounded-lg border border-slate-700">
+                                <h4 class="text-lg font-bold text-amber-500 mb-1">1. Vertical Integration</h4>
+                                <p class="text-slate-400 text-sm">Owning more of the value chain (e.g., manufacturing inputs or owning retail stores).</p>
+                            </div>
+                            <div class="p-4 bg-slate-900/50 rounded-lg border border-slate-700">
+                                <h4 class="text-lg font-bold text-amber-500 mb-1">2. Horizontal Diversification</h4>
+                                <p class="text-slate-400 text-sm">Adding new products or services (e.g., selling cloud computing alongside books).</p>
+                            </div>
+                            <div class="p-4 bg-slate-900/50 rounded-lg border border-slate-700">
+                                <h4 class="text-lg font-bold text-amber-500 mb-1">3. Geographic Scope</h4>
+                                <p class="text-slate-400 text-sm">Expanding into new regions or countries (e.g., entering the Indian market).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: CORE CONCEPTS & BOUNDARIES -->
+        <section id="core-concepts" class="py-12 bg-amber-50 rounded-3xl my-8 shadow-inner">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="section-header border-amber-600 mb-8">
+                    <h2 class="section-title text-slate-900">Core Strategic Concepts</h2>
+                    <p class="provocative-q text-slate-700">"What are the underlying economic forces that dictate where a firm should compete?"</p>
+                </div>
+                
+                <p class="text-lg text-slate-600 mb-8">
+                    The decisions of where to compete are guided by four fundamental concepts:
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                    <!-- Concept 1 -->
+                    <div class="card p-6 border-l-4 border-indigo-500 bg-white hover:shadow-indigo-900/20">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="text-3xl">💎</div>
+                            <h3 class="text-lg font-bold text-indigo-700">Core Competencies</h3>
+                        </div>
+                        <p class="text-sm text-slate-600">
+                            Unique strengths embedded deep within a firm. Activities that draw on what the firm knows how to do well (e.g., <strong>Amazon's AI algorithms</strong>) should be done in-house.
+                        </p>
+                    </div>
+
+                    <!-- Concept 2 -->
+                    <div class="card p-6 border-l-4 border-emerald-500 bg-white hover:shadow-emerald-900/20">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="text-3xl">⚖️</div>
+                            <h3 class="text-lg font-bold text-emerald-700">Economies of Scale</h3>
+                        </div>
+                        <p class="text-sm text-slate-600">
+                            Average cost per unit decreases as output increases. Example: <strong>AB InBev</strong> (Budweiser) captures 50% of global beer profits due to its massive scale.
+                        </p>
+                    </div>
+
+                    <!-- Concept 3 -->
+                    <div class="card p-6 border-l-4 border-cyan-500 bg-white hover:shadow-cyan-900/20">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="text-3xl">🔄</div>
+                            <h3 class="text-lg font-bold text-cyan-700">Economies of Scope</h3>
+                        </div>
+                        <p class="text-sm text-slate-600">
+                            Cost savings from producing two outputs together. Example: <strong>Amazon</strong> leverages its logistics network to deliver millions of different products efficiently.
+                        </p>
+                    </div>
+
+                    <!-- Concept 4 -->
+                    <div class="card p-6 border-l-4 border-rose-500 bg-white hover:shadow-rose-900/20">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="text-3xl">💸</div>
+                            <h3 class="text-lg font-bold text-rose-700">Transaction Costs</h3>
+                        </div>
+                        <p class="text-sm text-slate-600">
+                            All costs associated with an economic exchange. This concept answers the "Make or Buy" question.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="boundaries" class="py-16 bg-slate-900 rounded-3xl my-8 shadow-2xl border border-slate-800 reveal">
+            <!-- ... (Content from previous version unchanged) ... -->
+             <div class="max-w-4xl mx-auto px-4">
+                <div class="section-header border-amber-600">
+                    <h2 class="section-title">The Boundaries of the Firm</h2>
+                    <p class="provocative-q">"Determining boundaries is critical. Given the efficiency of free markets, why do firms exist at all?"</p>
+                </div>
+
+                <!-- Scholar's Corner: Coase Video -->
+                <div class="card bg-slate-800 p-6 mb-12 flex flex-col md:flex-row gap-6 items-center border border-slate-600">
+                    <div class="w-full md:w-1/2">
+                        <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden border border-slate-700 shadow-lg">
+                             <iframe class="w-full h-64" src="https://www.youtube.com/embed/JsQ7tc3G-KQ" title="Coase Theorem Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <h4 class="text-xl font-bold text-amber-400 mb-2 serif">Scholar's Corner: Ronald Coase</h4>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            Nobel Laureate Ronald Coase initiated this stream of research. The answer to "why firms exist" is <strong>Transaction Costs</strong>. Markets have friction (search, negotiation, enforcement). When market transaction costs are higher than internal organization costs, firms emerge.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- EXHIBIT 8.3 Visualized -->
+                <div class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 mb-12">
+                    <h4 class="text-center text-slate-400 text-sm uppercase tracking-widest mb-6">Exhibit 8.3: Internal vs External Costs</h4>
+                    <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-0">
+                        <div class="bg-indigo-900/80 p-6 rounded-xl border border-indigo-500/50 text-center w-48">
+                            <div class="text-2xl mb-2">🏢</div>
+                            <div class="font-bold text-white">Firm A</div>
+                            <div class="text-xs text-indigo-200 mt-2">Internal Costs</div>
+                        </div>
+                        
+                        <div class="hidden md:block w-24 h-1 bg-slate-600 relative">
+                            <div class="absolute -top-3 left-1/2 -translate-x-1/2 text-xs text-slate-400 bg-slate-900 px-2">Market</div>
+                        </div>
+                        <div class="md:hidden text-slate-500">⬇️ Market Transaction Costs ⬇️</div>
+
+                        <div class="bg-emerald-900/80 p-6 rounded-xl border border-emerald-500/50 text-center w-48">
+                            <div class="text-2xl mb-2">🏭</div>
+                            <div class="font-bold text-white">Firm B</div>
+                            <div class="text-xs text-emerald-200 mt-2">Internal Costs</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Firm vs Market Prediction Logic -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <div class="card p-6 border-t-4 border-red-500">
+                        <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                            <span class="text-2xl">📉</span> Market Transaction Costs
+                        </h3>
+                        <ul class="text-sm text-slate-400 space-y-2 list-disc ml-4">
+                            <li><strong>Search Costs:</strong> Finding a vendor.</li>
+                            <li><strong>Negotiation:</strong> Drafting contracts.</li>
+                            <li><strong>Monitoring:</strong> Ensuring compliance.</li>
+                            <li><strong>Enforcement:</strong> Legal costs.</li>
+                        </ul>
+                    </div>
+
+                    <div class="card p-6 border-t-4 border-blue-500">
+                        <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                            <span class="text-2xl">🏢</span> Internal Transaction Costs
+                        </h3>
+                        <ul class="text-sm text-slate-400 space-y-2 list-disc ml-4">
+                            <li><strong>Administrative Costs:</strong> Bureaucracy.</li>
+                            <li><strong>Low-Powered Incentives:</strong> Salaries vs. profits.</li>
+                            <li><strong>Principal-Agent Loss:</strong> Managerial perks.</li>
+                            <li><strong>Resource Allocation:</strong> Internal politics.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- The Make or Buy Logic -->
+                <div class="bg-gradient-to-r from-slate-800 to-slate-900 border border-slate-700 rounded-xl p-8 shadow-lg text-center mb-12">
+                    <h3 class="text-2xl font-bold text-white mb-6">The Golden Rule</h3>
+                    <div class="flex flex-col md:flex-row justify-center gap-8 text-lg">
+                        <div class="bg-green-900/30 border border-green-500/50 p-4 rounded-lg">
+                            If <span class="font-mono text-green-400">C<sub>in-house</sub> < C<sub>market</sub></span>
+                            <br><span class="font-bold text-white mt-2 block">Vertically Integrate (Make)</span>
+                        </div>
+                        <div class="bg-red-900/30 border border-red-500/50 p-4 rounded-lg">
+                            If <span class="font-mono text-red-400">C<sub>in-house</sub> > C<sub>market</sub></span>
+                            <br><span class="font-bold text-white mt-2 block">Outsource (Buy)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Google vs Nike Example -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Google (Make) -->
+                    <div class="bg-slate-800/50 p-6 rounded-xl border border-green-600/50 shadow-lg">
+                        <h4 class="font-bold text-green-400 text-lg mb-3 border-b border-green-600/30 pb-2">Make: Google's Code</h4>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                            Why does Google hire programmers instead of contracting?
+                            <br><br>
+                            1. <strong>Proprietary Assets:</strong> Search algorithms are secret.
+                            <br>2. <strong>Integration:</strong> Tightly coupling Search, Ads, and AI.
+                        </p>
+                        <div class="bg-green-900/30 p-3 rounded text-xs font-mono text-green-200">
+                            Result: Google vertically integrates (hires engineers) because C<sub>in-house</sub> < C<sub>market</sub>.
+                        </div>
+                    </div>
+
+                    <!-- Nike (Buy) -->
+                    <div class="bg-slate-800/50 p-6 rounded-xl border border-red-600/50 shadow-lg">
+                        <h4 class="font-bold text-red-400 text-lg mb-3 border-b border-red-600/30 pb-2">Buy: Nike's Manufacturing</h4>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                            Why does Nike outsource production?
+                            <br><br>
+                            1. <strong>Commodity Process:</strong> Manufacturing shoes is standard.
+                            <br>2. <strong>Admin Costs:</strong> Owning factories adds huge bureaucracy.
+                        </p>
+                        <div class="bg-red-900/30 p-3 rounded text-xs font-mono text-red-200">
+                            Result: Nike outsources manufacturing because C<sub>in-house</sub> > C<sub>market</sub>.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: VERTICAL INTEGRATION -->
+        <section id="vertical" class="py-16 reveal">
+            <!-- ... (Content from previous version unchanged) ... -->
+             <div class="max-w-4xl mx-auto">
+                <div class="section-header">
+                    <h2 class="section-title">Vertical Integration: Ownership of the Value Chain</h2>
+                    <p class="provocative-q">"Should you own the cows or just buy the milk? Why did Delta Airlines buy an oil refinery?"</p>
+                </div>
+
+                <p class="text-lg text-slate-400 mb-8">
+                    Vertical Integration is about owning the inputs (Backward) or the distribution (Forward). 
+                    It secures critical supplies and specialized assets but risks reducing flexibility.
+                </p>
+
+                <!-- Amazon's Integrated Ecosystem -->
+                <div class="card bg-slate-800 border-l-4 border-amber-500 p-8 mb-12">
+                    <h3 class="text-2xl font-bold text-white mb-4 serif">Amazon's Integrated Ecosystem</h3>
+                    <p class="text-slate-400 mb-6">Amazon strategically owns critical parts of its value chain to ensure efficiency and resilience.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                        <!-- Backward Integration -->
+                        <div class="bg-slate-900/50 p-6 rounded-xl border border-slate-700">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 rounded-full bg-emerald-900 flex items-center justify-center text-emerald-400 font-bold text-xl">←</div>
+                                <h4 class="text-lg font-bold text-emerald-400">Backward Integration (Upstream)</h4>
+                            </div>
+                            <ul class="space-y-4 text-sm text-slate-400">
+                                <li><strong class="text-white">Logistics Network:</strong> Built fleet (Amazon Air) and centers.</li>
+                                <li><strong class="text-white">Private-Label:</strong> Amazon Basics & Prime Video content.</li>
+                                <li><strong class="text-white">Cloud (AWS):</strong> Internal IT became a massive service product.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Forward Integration -->
+                        <div class="bg-slate-900/50 p-6 rounded-xl border border-slate-700">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center text-blue-400 font-bold text-xl">→</div>
+                                <h4 class="text-lg font-bold text-blue-400">Forward Integration (Downstream)</h4>
+                            </div>
+                            <ul class="space-y-4 text-sm text-slate-400">
+                                <li><strong class="text-white">Direct-to-Consumer:</strong> Eliminating middlemen.</li>
+                                <li><strong class="text-white">Physical Retail:</strong> Whole Foods, Amazon Go.</li>
+                                <li><strong class="text-white">Last-Mile Delivery:</strong> Branded vans & Flex drivers.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="w-full mt-6">
+                        <img src="what-is-vertical-integration.png" alt="Amazon Integration Diagram" class="w-full h-auto rounded shadow-lg opacity-90"
+                        onerror="this.onerror=null; this.src='https://placehold.co/800x400/1e293b/94a3b8?text=Amazon+Integration+Diagram';">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-4">
+                        <div class="chain-node border-l-4 border-emerald-500">
+                            <div><h4 class="font-bold text-white">Stage 1: Raw Materials</h4></div>
+                            <span class="ml-auto text-xs bg-emerald-900 text-emerald-200 px-2 py-1 rounded font-bold">Upstream</span>
+                        </div>
+                        <div class="chain-node border-l-4 border-emerald-500">
+                            <div><h4 class="font-bold text-white">Stage 2: Components</h4></div>
+                            <span class="ml-auto text-xs bg-emerald-900 text-emerald-200 px-2 py-1 rounded font-bold">Backward</span>
+                        </div>
+                        <div class="chain-node border-l-4 border-blue-500">
+                            <div><h4 class="font-bold text-white">Stage 3: Assembly</h4></div>
+                            <span class="ml-auto text-xs bg-blue-900 text-blue-200 px-2 py-1 rounded font-bold">Forward</span>
+                        </div>
+                        <div class="chain-node border-l-4 border-blue-500">
+                            <div><h4 class="font-bold text-white">Stage 4: Sales</h4></div>
+                            <span class="ml-auto text-xs bg-blue-900 text-blue-200 px-2 py-1 rounded font-bold">Downstream</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-800 p-6 rounded-xl shadow-md border border-slate-700">
+                        <h3 class="text-lg font-bold text-white mb-4">Strategic Case: HTC vs. Apple</h3>
+                        <p class="text-sm text-slate-400 mb-4"><strong>HTC</strong> integrated Backward into design and Forward into sales to capture value.</p>
+                        <p class="text-sm text-slate-400 mb-4"><strong>Apple</strong> captures 95% of profits by focusing on Stage 1 & 4 (Smiley Curve).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: DIVERSIFICATION -->
+        <section id="diversification" class="py-16 bg-slate-900 rounded-3xl my-8 shadow-inner reveal">
+            <!-- ... (Content from previous version unchanged) ... -->
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="mb-8 border-l-4 border-amber-500 pl-6">
+                    <h2 class="text-3xl lg:text-4xl font-bold text-white serif">Diversification: The Empire Building Logic</h2>
+                    <p class="provocative-q text-slate-300">"Is it genius or madness for a company to sell motorcycles, pianos, and financial services? (Yamaha)"</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                    <div class="card bg-slate-800 border-slate-700 text-white p-6">
+                        <h3 class="font-bold text-lg">1. Single Business</h3>
+                        <span class="text-xs bg-slate-600 px-2 py-1 rounded">>95% Revenue</span>
+                        <p class="text-amber-400 text-xs mt-2 font-mono">Ex: Coca-Cola</p>
+                    </div>
+                    <div class="card bg-slate-800 border-slate-700 text-white p-6">
+                        <h3 class="font-bold text-lg">2. Dominant Business</h3>
+                        <span class="text-xs bg-slate-600 px-2 py-1 rounded">70-95% Revenue</span>
+                        <p class="text-amber-400 text-xs mt-2 font-mono">Ex: Harley-Davidson</p>
+                    </div>
+                    <div class="card bg-slate-800 border-slate-700 text-white p-6 border-l-4 border-l-amber-500">
+                        <h3 class="font-bold text-lg">3. Related Diversification</h3>
+                        <span class="text-xs bg-amber-900 text-amber-100 px-2 py-1 rounded">&lt;70% Revenue</span>
+                        <p class="text-amber-400 text-xs mt-2 font-mono">Ex: Amazon, Nike</p>
+                    </div>
+                    <div class="card bg-slate-800 border-slate-700 text-white p-6">
+                        <h3 class="font-bold text-lg">4. Unrelated (Conglomerate)</h3>
+                        <span class="text-xs bg-slate-600 px-2 py-1 rounded">&lt;70% Revenue</span>
+                        <p class="text-amber-400 text-xs mt-2 font-mono">Ex: Berkshire Hathaway</p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                    <h3 class="text-lg font-bold text-white mb-4 text-center">The Diversification-Performance Inverted U</h3>
+                    <div class="chart-container h-48">
+                        <canvas id="divChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: MATRIX -->
+        <section id="matrix" class="py-16 reveal">
+            <!-- ... (Content from previous version unchanged) ... -->
+             <div class="max-w-4xl mx-auto">
+                <div class="section-header">
+                    <h2 class="section-title">Core Competence-Market Matrix</h2>
+                    <p class="provocative-q">"We have a great engine. Should we build a better car (Leverage) or build a jet (Redeploy)?"</p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 max-w-3xl mx-auto bg-slate-800 p-6 rounded-xl border border-slate-700">
+                    <div class="card p-4 hover:bg-amber-900/30 transition">
+                        <div class="text-xs font-bold text-slate-400 uppercase mb-2">New Mkt / Existing Comp</div>
+                        <h4 class="text-lg font-bold text-amber-500">Redeploying</h4>
+                        <div class="mt-2 text-xs font-mono bg-slate-700 inline-block px-1 text-white">Honda</div>
+                    </div>
+                    <div class="card p-4 hover:bg-amber-900/30 transition">
+                        <div class="text-xs font-bold text-slate-400 uppercase mb-2">New Mkt / New Comp</div>
+                        <h4 class="text-lg font-bold text-slate-200">Mega-Opportunities</h4>
+                        <div class="mt-2 text-xs font-mono bg-slate-700 inline-block px-1 text-white">Salesforce (AI)</div>
+                    </div>
+                    <div class="card p-4 hover:bg-amber-900/30 transition">
+                        <div class="text-xs font-bold text-slate-400 uppercase mb-2">Existing Mkt / Existing Comp</div>
+                        <h4 class="text-lg font-bold text-slate-200">Leveraging</h4>
+                        <div class="mt-2 text-xs font-mono bg-slate-700 inline-block px-1 text-white">Bank of America</div>
+                    </div>
+                    <div class="card p-4 hover:bg-amber-900/30 transition">
+                        <div class="text-xs font-bold text-slate-400 uppercase mb-2">Existing Mkt / New Comp</div>
+                        <h4 class="text-lg font-bold text-slate-200">Building</h4>
+                        <div class="mt-2 text-xs font-mono bg-slate-700 inline-block px-1 text-white">Gallo Winery</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: SIMULATION -->
+        <section id="simulation" class="py-16 bg-slate-800 rounded-3xl my-8 reveal">
+            <!-- ... (Content from previous version unchanged) ... -->
+             <div class="max-w-4xl mx-auto px-4">
+                <div class="section-header border-l-4 border-amber-500 pl-6">
+                    <h2 class="section-title text-white">Strategy Simulator</h2>
+                    <p class="provocative-q text-slate-300">"Can you run a multi-billion dollar empire without destroying shareholder value?"</p>
+                </div>
+
+                <div class="card bg-slate-900 border-slate-600 p-8" id="sim-container">
+                    <div id="sim-intro" class="text-center">
+                        <h3 class="text-2xl font-bold text-white mb-4">Choose Your Role</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                            <button onclick="startSim('startup')" class="sim-intro-btn group">
+                                <div class="text-4xl mb-4 text-center w-full">🚀</div>
+                                <div class="w-full">
+                                    <h4 class="font-bold text-white text-lg mb-1 group-hover:text-amber-400">Startup</h4>
+                                    <p class="text-xs text-slate-400 font-normal">Focus on survival, product-market fit, and avoiding early dilution.</p>
+                                </div>
+                            </button>
+                            <button onclick="startSim('mid')" class="sim-intro-btn group">
+                                <div class="text-4xl mb-4 text-center w-full">🏭</div>
+                                <div class="w-full">
+                                    <h4 class="font-bold text-white text-lg mb-1 group-hover:text-amber-400">Mid-Sized</h4>
+                                    <p class="text-xs text-slate-400 font-normal">Navigate vertical integration and fight off larger rivals.</p>
+                                </div>
+                            </button>
+                            <button onclick="startSim('conglomerate')" class="sim-intro-btn group">
+                                <div class="text-4xl mb-4 text-center w-full">🌐</div>
+                                <div class="w-full">
+                                    <h4 class="font-bold text-white text-lg mb-1 group-hover:text-amber-400">Conglomerate</h4>
+                                    <p class="text-xs text-slate-400 font-normal">Manage a massive portfolio, synergies, and agency problems.</p>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="sim-game" class="hidden">
+                        <div class="flex justify-between items-center mb-6 border-b border-slate-700 pb-4">
+                            <div>
+                                <span class="text-xs text-slate-500 font-bold uppercase tracking-wider">Current Role</span>
+                                <h4 class="text-amber-400 font-bold text-xl" id="role-display"></h4>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-xs text-slate-500 font-bold uppercase tracking-wider">Strategic IQ</span>
+                                <div class="text-3xl font-bold text-white" id="score-display">100</div>
+                            </div>
+                        </div>
+                        
+                        <div class="scenario-card bg-slate-800 p-6 rounded-xl border border-slate-600 mb-6">
+                            <h3 class="text-xl font-bold text-white mb-2" id="scenario-title">Scenario</h3>
+                            <p class="text-lg text-slate-300 leading-relaxed" id="scenario-desc"></p>
+                        </div>
+
+                        <div class="space-y-4" id="choices-container"></div>
+                        
+                        <div id="feedback-area" class="hidden mt-6 p-6 rounded-xl bg-slate-900 border border-slate-500 shadow-2xl relative overflow-hidden">
+                            <div class="absolute top-0 left-0 w-1 h-full transition-colors duration-300" id="feedback-bar"></div>
+                            <h5 id="feedback-title" class="text-xl font-bold mb-2"></h5>
+                            <p id="feedback-text" class="text-slate-300 mb-4"></p>
+                            <div id="feedback-impact" class="flex gap-4 text-sm font-mono mb-4"></div>
+                            <button onclick="nextScenario()" class="px-6 py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-bold shadow-lg transition transform hover:scale-105">Next Scenario →</button>
+                        </div>
+                    </div>
+
+                    <div id="sim-end" class="hidden text-center">
+                        <h3 class="text-4xl font-bold text-white mb-4">Simulation Complete</h3>
+                        <div class="inline-block p-8 bg-slate-800 rounded-full mb-8 border-4 border-amber-500 shadow-xl shadow-amber-900/20">
+                            <div class="text-sm text-slate-400 uppercase tracking-widest mb-1">Final Score</div>
+                            <span class="text-6xl font-bold text-white font-mono" id="final-score"></span>
+                        </div>
+                        <h4 class="text-2xl font-bold text-amber-400 mb-2" id="final-title"></h4>
+                        <p class="text-slate-300 max-w-md mx-auto mb-8 leading-relaxed" id="final-desc"></p>
+                        
+                        <button onclick="location.reload()" class="px-8 py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-lg font-bold transition">Play Again</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUIZ SECTION -->
+        <section id="quiz" class="py-16">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="section-header border-l-4 border-amber-500 pl-6">
+                    <h2 class="section-title text-white">Knowledge Check</h2>
+                    <p class="provocative-q text-slate-300">"Test your understanding of Corporate Strategy concepts."</p>
+                </div>
+                
+                <div class="card bg-slate-800 border-slate-700 p-8">
+                    <div class="flex justify-between items-center mb-8 border-b border-slate-600 pb-4">
+                        <h3 class="text-2xl font-bold text-white">Quiz</h3>
+                        <div class="text-right">
+                            <span class="text-slate-400 text-sm uppercase font-bold">Score</span>
+                            <div class="text-3xl font-bold text-amber-400"><span id="quiz-score">0</span> / 15</div>
+                        </div>
+                    </div>
+
+                    <div id="quiz-container" class="space-y-8">
+                        <!-- Quiz Questions Injected Here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 mt-16 border-t border-slate-800 py-8">
+        <div class="container mx-auto px-6 text-center text-slate-500 text-sm">
+            © Dr. Swapnil Sahoo 2025 | Strategic Management Masterclass
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+            const chartCanvas = document.getElementById('divChart');
+            if (chartCanvas) {
+                new Chart(chartCanvas.getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels: ['Single', 'Dominant', 'Related', 'Unrelated'],
+                        datasets: [{
+                            label: 'Performance',
+                            data: [20, 50, 90, 40],
+                            borderColor: '#d97706',
+                            backgroundColor: 'rgba(217, 119, 6, 0.1)',
+                            borderWidth: 3,
+                            pointBackgroundColor: '#fff',
+                            pointBorderColor: '#b45309',
+                            pointRadius: 6,
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: { y: { display: false, min: 0, max: 100 }, x: { grid: { display: false }, ticks: { color: '#94a3b8' } } }
+                    }
+                });
+            }
+        });
+
+        // --- QUIZ DATA ---
+        const quizData = [
+            {
+                q: "Which question defines Corporate Strategy (as opposed to Business Strategy)?",
+                options: ["How to compete?", "Where to compete?", "When to compete?", "Who to compete against?"],
+                a: 1,
+                e: "Business Strategy asks 'How' (Cost vs. Differentiation). Corporate Strategy asks 'Where' to compete in terms of industry, products, and geography."
+            },
+            {
+                q: "According to Transaction Cost Economics (TCE), a firm should vertically integrate when:",
+                options: ["Cin-house < Cmarket", "Cin-house > Cmarket", "Cin-house = Cmarket", "Market friction is zero"],
+                a: 0,
+                e: "If the costs of organizing an activity in-house are lower than the costs of transacting in the open market, the firm should vertically integrate (Make)."
+            },
+            {
+                q: "What is the 'Principal-Agent Problem' in the context of corporate growth?",
+                options: ["Agents work too hard.", "Principals ignore agents.", "Managers (Agents) pursue their own interests (e.g., empire building) over shareholders' (Principals) interests.", "Shareholders demand too much growth."],
+                a: 2,
+                e: "The problem arises when agents (managers) prioritize their own benefits (perks, job security) over the principal's goal of shareholder value creation."
+            },
+            {
+                q: "Which of the following is a risk of Vertical Integration?",
+                options: ["Lower costs", "Securing critical supplies", "Reduced flexibility", "Improved quality control"],
+                a: 2,
+                e: "Vertical Integration reduces flexibility because the firm is tied to its internal source. It's harder to switch technologies or suppliers if demand changes."
+            },
+            {
+                q: "Amazon's creation of 'Amazon Basics' products is an example of:",
+                options: ["Forward Integration", "Backward Integration", "Unrelated Diversification", "Market Penetration"],
+                a: 1,
+                e: "Amazon moved upstream to manufacture its own products (inputs), which is Backward Vertical Integration."
+            },
+            {
+                q: "Which diversification strategy typically yields the highest performance (inverted-U curve)?",
+                options: ["Single Business", "Unrelated Diversification", "Related Diversification", "Dominant Business"],
+                a: 2,
+                e: "Related Diversification balances economies of scope (sharing resources) with manageable complexity, typically outperforming single business (too risky) and unrelated (too complex)."
+            },
+            {
+                q: "In the Core Competence-Market Matrix, using existing competencies to enter a new market is called:",
+                options: ["Leveraging", "Building", "Redeploying", "Mega-Opportunity"],
+                a: 2,
+                e: "Redeploying involves taking what you are already good at (e.g., Honda's engines) and applying it to a new market (e.g., Jets)."
+            },
+            {
+                q: "Why does Google hire programmers instead of contracting them (Make vs Buy)?",
+                options: ["It's cheaper.", "To avoid the 'Lemons' problem.", "Asset Specificity & Knowledge Protection.", "To increase market power."],
+                a: 2,
+                e: "Google's code is proprietary and specific. Contracting it out would risk theft and high transaction costs, so they 'Make' (hire)."
+            },
+            {
+                q: "What is 'Taper Integration'?",
+                options: ["Full ownership of the supply chain.", "Outsourcing everything.", "Making some inputs in-house and buying the rest from the market.", "Buying a competitor."],
+                a: 2,
+                e: "Taper Integration is a hybrid approach where a firm makes some inputs and buys the rest, keeping internal units competitive."
+            },
+            {
+                q: "Which of these is NOT a driver of corporate growth?",
+                options: ["Lower Costs", "Reduce Risk", "Motivate Management", "Increase Bureaucracy"],
+                a: 3,
+                e: "Increasing bureaucracy is a negative side effect (cost) of growth, not a strategic driver or goal."
+            },
+            {
+                q: "Acquiring a competitor to reduce rivalry is an example of increasing:",
+                options: ["Market Power", "Vertical Integration", "Diversification", "Geographic Scope"],
+                a: 0,
+                e: "Horizontal integration (buying rivals) consolidates the industry, reduces competition, and increases Market Power."
+            },
+            {
+                q: "A 'Conglomerate' typically follows which diversification strategy?",
+                options: ["Single Business", "Dominant Business", "Related Diversification", "Unrelated Diversification"],
+                a: 3,
+                e: "Conglomerates (like Berkshire Hathaway) own businesses in completely different industries with no operational links (Unrelated)."
+            },
+            {
+                q: "The 'Lemons Problem' in markets is caused by:",
+                options: ["High prices", "Information Asymmetry", "Too many sellers", "Government regulation"],
+                a: 1,
+                e: "When sellers know more than buyers (asymmetry), bad products drive out good ones, creating market failure."
+            },
+            {
+                q: "Amazon's acquisition of Whole Foods was primarily:",
+                options: ["Backward Integration", "Forward Integration", "Unrelated Diversification", "Divestiture"],
+                a: 1,
+                e: "Whole Foods provided physical retail outlets, moving Amazon downstream closer to the customer (Forward Integration)."
+            },
+            {
+                q: "Which cost is associated with 'Market Transactions'?",
+                options: ["Administrative overhead", "Principal-Agent loss", "Enforcement of contracts", "Low-powered incentives"],
+                a: 2,
+                e: "Enforcement (legal costs to ensure compliance) is a cost of transacting in the market. The others are internal firm costs."
+            }
+        ];
+
+        const quizContainer = document.getElementById('quiz-container');
+        const quizScoreDisplay = document.getElementById('quiz-score');
+        let currentQuizScore = 0;
+
+        quizData.forEach((item, index) => {
+            const qDiv = document.createElement('div');
+            qDiv.className = "border-b border-slate-700 pb-6 last:border-0";
+            
+            let optionsHTML = "";
+            item.options.forEach((opt, i) => {
+                optionsHTML += `<div class="quiz-option" onclick="checkAnswer(this, ${index}, ${i})">${opt}</div>`;
+            });
+
+            qDiv.innerHTML = `
+                <p class="text-lg text-white font-bold mb-4">${index + 1}. ${item.q}</p>
+                <div class="space-y-2">${optionsHTML}</div>
+                <div id="explanation-${index}" class="explanation">
+                    <strong class="text-amber-400 block mb-1">Explanation:</strong> ${item.e}
+                </div>
+            `;
+            quizContainer.appendChild(qDiv);
+        });
+
+        function checkAnswer(el, qIndex, optIndex) {
+            if (el.parentElement.classList.contains('answered')) return;
+            
+            el.parentElement.classList.add('answered');
+            const correctIndex = quizData[qIndex].a;
+            const options = el.parentElement.children;
+            
+            if (optIndex === correctIndex) {
+                el.classList.add('correct');
+                currentQuizScore++;
+                quizScoreDisplay.innerText = currentQuizScore;
+            } else {
+                el.classList.add('incorrect');
+                options[correctIndex].classList.add('correct');
+            }
+            
+            // Show explanation
+            document.getElementById(`explanation-${qIndex}`).classList.add('visible');
+            
+            // Disable all options
+            Array.from(options).forEach(opt => opt.classList.add('disabled'));
+        }
+
+        // --- SIMULATION LOGIC ---
+        // (Reused from previous version)
+        const scenarios = {
+            startup: [
+                { desc: "A competitor launched first. Do you launch a generic product now or delay for proprietary tech?", choices: [{ text: "Delay for Tech", score: 20, feedback: "Good. Tech is your moat." }, { text: "Launch Generic", score: -10, feedback: "Risky. No differentiation." }] },
+                { desc: "Buyout offer for $50M. Sell?", choices: [{ text: "Sell", score: -5, feedback: "Short-term win, long-term loss." }, { text: "Reject", score: 20, feedback: "Betting on growth." }] }
+            ],
+            mid: [
+                { desc: "Supplier raised prices 20%. Buy the supplier?", choices: [{ text: "Buy Supplier", score: 20, feedback: "Solved holdup problem." }, { text: "Pass Cost", score: -10, feedback: "Market share loss." }] },
+                { desc: "Expand to unrelated market?", choices: [{ text: "Unrelated", score: -20, feedback: "No synergy." }, { text: "Related", score: 20, feedback: "Good synergy." }] }
+            ],
+            conglomerate: [
+                { desc: "Cash Cow has 0 growth. Star needs cash.", choices: [{ text: "Sell Cow", score: -10, feedback: "Lost funding source." }, { text: "Milk Cow", score: 20, feedback: "Textbook move." }] },
+                { desc: "Merge two warring divisions?", choices: [{ text: "Full Merge", score: -5, feedback: "Bureaucracy spike." }, { text: "Task Force", score: 15, feedback: "Efficient synergy." }] }
+            ]
+        };
+
+        let currentRole, currentScenarioIndex, currentScore;
+
+        function startSim(role) {
+            currentRole = role; currentScenarioIndex = 0; currentScore = 100;
+            document.getElementById('sim-intro').classList.add('hidden');
+            document.getElementById('sim-game').classList.remove('hidden');
+            document.getElementById('role-display').innerText = role.toUpperCase();
+            document.getElementById('score-display').innerText = currentScore;
+            loadScenario();
+        }
+
+        function loadScenario() {
+            const scenario = scenarios[currentRole][currentScenarioIndex];
+            document.getElementById('scenario-desc').innerText = scenario.desc;
+            document.getElementById('feedback-area').classList.add('hidden');
+            const container = document.getElementById('choices-container');
+            container.innerHTML = '';
+            scenario.choices.forEach((c, i) => {
+                const btn = document.createElement('button');
+                btn.className = 'sim-btn';
+                btn.innerHTML = `<span class="font-bold block text-white group-hover:text-amber-400">${c.text}</span>`;
+                btn.onclick = () => makeChoice(i);
+                container.appendChild(btn);
+            });
+        }
+
+        function makeChoice(i) {
+            const choice = scenarios[currentRole][currentScenarioIndex].choices[i];
+            currentScore += choice.score;
+            document.getElementById('score-display').innerText = currentScore;
+            document.getElementById('feedback-title').innerText = choice.score > 0 ? "✅ Good" : "⚠️ Error";
+            document.getElementById('feedback-title').className = choice.score > 0 ? "font-bold text-green-400" : "font-bold text-red-400";
+            document.getElementById('feedback-text').innerText = choice.feedback;
+            document.getElementById('feedback-area').classList.remove('hidden');
+            document.querySelectorAll('.sim-btn').forEach(b => b.disabled = true);
+        }
+
+        function nextScenario() {
+            currentScenarioIndex++;
+            if (currentScenarioIndex < scenarios[currentRole].length) loadScenario();
+            else endSim();
+        }
+
+        function endSim() {
+            document.getElementById('sim-game').classList.add('hidden');
+            document.getElementById('sim-end').classList.remove('hidden');
+            document.getElementById('final-score').innerText = currentScore;
+            const title = document.getElementById('final-title');
+            const desc = document.getElementById('final-desc');
+            if (currentScore >= 130) { title.innerText = "Master Strategist"; title.className="text-xl font-bold text-green-400"; desc.innerText = "Excellent discipline."; }
+            else if (currentScore >= 100) { title.innerText = "Competent"; title.className="text-xl font-bold text-amber-400"; desc.innerText = "Solid but missed chances."; }
+            else { title.innerText = "Agency Problem"; title.className="text-xl font-bold text-red-400"; desc.innerText = "Value destroyed."; }
+        }
+    </script>
+</body>
+
+</html>

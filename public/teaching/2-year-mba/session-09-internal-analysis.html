@@ -1,0 +1,1534 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 9 & 10 : Internal_Firm_Analysis_Resources, Capabilities,and Core Competencies | Dr. Swapnil Sahoo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- GRAND MASTER THEME (LIGHT MODE) --- */
+        :root {
+            --primary-bg: #ffffff;
+            --secondary-bg: #f8fafc; /* Slate 50 */
+            --text-main: #0f172a;    /* Slate 900 */
+            --text-muted: #64748b;   /* Slate 500 */
+            --accent-gold: #d97706;  /* Amber 600 */
+            --accent-blue: #0ea5e9;  /* Sky 500 */
+            --success: #10b981;      /* Emerald 500 */
+            --danger: #ef4444;       /* Red 500 */
+            --card-border: #e2e8f0;  /* Slate 200 */
+            --brand-fiveguys: #ed171f; /* Five Guys Red */
+        }
+
+        body {
+            font-family: 'Satoshi', sans-serif;
+            background-color: var(--secondary-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* --- UTILITIES --- */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+
+        .btn-interactive {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-interactive:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Chart Container */
+        .chart-wrapper {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Five Guys Specific Styles */
+        .checker-pattern {
+            background-image: linear-gradient(45deg, #ed171f 25%, transparent 25%), 
+                              linear-gradient(-45deg, #ed171f 25%, transparent 25%), 
+                              linear-gradient(45deg, transparent 75%, #ed171f 75%), 
+                              linear-gradient(-45deg, transparent 75%, #ed171f 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            opacity: 0.05;
+        }
+
+        /* Bathtub Metaphor */
+        .tub-container { position: relative; width: 100px; height: 120px; border: 4px solid #64748b; border-top: none; border-radius: 0 0 10px 10px; margin: 0 auto; overflow: hidden; background: white;}
+        .water-level { position: absolute; bottom: 0; left: 0; width: 100%; background-color: #34d399; transition: height 1s ease; opacity: 0.8; }
+        .faucet { position: absolute; top: -20px; left: 40px; width: 20px; height: 30px; background: #475569; }
+        .drip { position: absolute; top: 10px; left: 48px; width: 4px; height: 10px; background: #34d399; animation: drip 1s infinite; }
+        .leak { position: absolute; bottom: -10px; right: 20px; width: 4px; height: 20px; background: #34d399; animation: drip 1.5s infinite; }
+        @keyframes drip { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(20px); opacity: 0; } }
+
+        /* Activity Map Nodes */
+        #activity-map { position: relative; width: 100%; height: 500px; overflow: hidden; }
+        .map-node { position: absolute; background: white; border: 2px solid #e2e8f0; padding: 10px 16px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #475569; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); z-index: 10; text-align: center; width: 150px; transition: all 0.3s ease; cursor: default; }
+        .map-node.core { background: #ed171f; color: white; border-color: #ed171f; font-size: 0.9rem; width: 180px; padding: 16px; z-index: 20; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+        .map-node:hover { transform: scale(1.05); box-shadow: 0 10px 15px -3px rgba(237, 23, 31, 0.2); border-color: #ed171f; }
+        .node-1 { top: 15%; left: 15%; }
+        .node-2 { top: 15%; right: 15%; }
+        .node-3 { bottom: 15%; left: 15%; }
+        .node-4 { bottom: 15%; right: 15%; }
+        .node-5 { top: 50%; left: 5%; transform: translateY(-50%); }
+        .node-6 { top: 50%; right: 5%; transform: translateY(-50%); }
+
+        /* Value Chain CSS Arrows */
+        .chevron { clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%); }
+        .chevron-start { clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 0% 0%); }
+        .chevron-end { clip-path: polygon(100% 0%, 100% 100%, 0% 100%, 25% 50%, 0% 0%); }
+        
+        /* Exhibit 4.2 Animations */
+        @keyframes pulse-in { 0% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(0.95); opacity: 1; } 100% { transform: scale(1); opacity: 0.5; } }
+        .pestel-arrow { animation: pulse-in 3s infinite ease-in-out; }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <!-- TOP NAVIGATION: AFI FRAMEWORK -->
+    <nav class="fixed w-full z-50 glass-panel border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="w-10 h-10 rounded bg-slate-900 flex items-center justify-center text-white font-serif font-bold text-xl">S9</div>
+                    <span class="serif text-lg font-bold text-slate-900 hidden md:block">Strategic Management</span>
+                </div>
+                <div class="hidden lg:flex items-center space-x-8 text-[10px] font-bold uppercase tracking-widest text-slate-500">
+                    <a href="#audit" class="hover:text-slate-900 transition"> Audit</a>
+                    <a href="#rbv-logic" class="hover:text-slate-900 transition"> RBV</a>
+                    <a href="#case-study" class="hover:text-slate-900 transition">Case Study</a>
+                    <a href="#value-chain" class="hover:text-slate-900 transition"> Value Chain</a>
+                    <a href="#group-activity" class="hover:text-slate-900 transition text-accent-blue">Activity</a>
+                </div>
+                <div class="flex items-center gap-5">
+                    <a href="https://swapnilsahoo.com" target="_blank" class="text-slate-400 hover:text-slate-900 transition text-sm font-bold serif">swapnilsahoo.com</a>
+                    <a href="https://x.com/swapnilsahoo" target="_blank" class="text-slate-400 hover:text-slate-900 transition"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://in.linkedin.com/in/swapnilsahoo" target="_blank" class="text-slate-400 hover:text-blue-700 transition"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="pt-32 pb-16 px-6 border-b border-slate-200 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 checker-pattern pointer-events-none"></div>
+        <div class="max-w-6xl mx-auto relative z-10 text-center animate-fade-in">
+            <span class="mono text-xs font-bold tracking-[0.2em] text-accent-blue uppercase mb-6 block">Session 9 & 10 : Internal_Firm_Analysis_Resources, Capabilities,and Core Competencies</span>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 text-slate-900 leading-tight">
+                Inside the <br/> <span class="italic text-slate-600">Black Box</span>
+            </h1>
+            <p class="text-xl text-slate-600 font-light max-w-3xl mx-auto serif leading-relaxed mb-8">
+                "We reject the perfect competition model. Why do firms in the same industry differ? Because they are unique bundles of resources."
+            </p>
+            <div class="text-xs text-slate-400 mt-4 serif">© Dr. Swapnil Sahoo 2026</div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl mx-auto w-full px-6 py-12 space-y-24">
+
+        <!-- SECTION 0: OBJECTIVES & OUTCOMES -->
+        <section id="objectives" class="animate-fade-in">
+            <div class="glass-panel p-8 rounded-xl border-l-4 border-l-accent-blue bg-white">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-900 mb-4 serif">Session 9 & 10: Learning Objectives</h2>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3">
+                                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-accent-blue flex items-center justify-center text-xs font-bold">1</span>
+                                <span class="text-slate-600"><strong>Distinguish</strong> between Resources, Capabilities, and Core Competencies.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-accent-blue flex items-center justify-center text-xs font-bold">2</span>
+                                <span class="text-slate-600"><strong>Apply</strong> the VRIO Framework to assess sustainable advantage.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-accent-blue flex items-center justify-center text-xs font-bold">3</span>
+                                <span class="text-slate-600"><strong>Evaluate</strong> Isolating Mechanisms: Path Dependence, Causal Ambiguity, Social Complexity.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-accent-blue flex items-center justify-center text-xs font-bold">4</span>
+                                <span class="text-slate-600"><strong>Analyze</strong> the Value Chain: Primary vs. Support Activities.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-900 mb-4 serif">Key Concepts</h2>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="p-3 bg-slate-50 rounded border border-slate-100 text-center">
+                                <i class="fa-solid fa-cube text-accent-gold mb-2"></i>
+                                <div class="text-xs font-bold text-slate-700">Resource Heterogeneity</div>
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded border border-slate-100 text-center">
+                                <i class="fa-solid fa-lock text-accent-blue mb-2"></i>
+                                <div class="text-xs font-bold text-slate-700">Resource Immobility</div>
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded border border-slate-100 text-center">
+                                <i class="fa-solid fa-bath text-success mb-2"></i>
+                                <div class="text-xs font-bold text-slate-700">Dynamic Capabilities</div>
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded border border-slate-100 text-center">
+                                <i class="fa-solid fa-people-group text-slate-500 mb-2"></i>
+                                <div class="text-xs font-bold text-slate-700">Social Complexity</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW SECTION: EXHIBIT 4.2 VISUALIZATION -->
+        <section id="strategic-fit" class="animate-fade-in">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="h-10 w-1 bg-slate-400"></div>
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900">Strategic Context</h2>
+                    <p class="text-slate-500 text-sm mt-1">Exhibit 9.0: Linking External & Internal Analysis</p>
+                </div>
+            </div>
+            
+            <div class="glass-panel p-8 rounded-2xl relative overflow-hidden flex flex-col items-center justify-center min-h-[600px] bg-white border-2 border-slate-50">
+                <div class="absolute top-4 font-bold text-slate-400 uppercase tracking-widest text-xs">External Environment</div>
+                <div class="absolute bottom-4 font-bold text-slate-400 uppercase tracking-widest text-xs">External Environment</div>
+
+                <!-- PESTEL Outer Ring Elements -->
+                <div class="absolute w-full h-full max-w-xl max-h-xl flex items-center justify-center">
+                    <!-- Political (Top Left) -->
+                    <div class="absolute top-[10%] left-[15%] text-center group">
+                        <div class="pestel-arrow text-3xl text-slate-400 rotate-[135deg] mb-2"><i class="fa-solid fa-arrow-right"></i></div>
+                        <div class="text-xs font-bold text-slate-600 uppercase">Political</div>
+                    </div>
+                    <!-- Economic (Top Right) -->
+                    <div class="absolute top-[10%] right-[15%] text-center group">
+                        <div class="pestel-arrow text-3xl text-slate-400 rotate-[45deg] mb-2"><i class="fa-solid fa-arrow-right"></i></div>
+                        <div class="text-xs font-bold text-slate-600 uppercase">Economic</div>
+                    </div>
+                    <!-- Legal (Left) -->
+                    <div class="absolute top-[50%] left-[5%] transform -translate-y-1/2 text-center group">
+                        <div class="pestel-arrow text-3xl text-slate-400 rotate-[180deg] mb-2"><i class="fa-solid fa-arrow-right"></i></div>
+                        <div class="text-xs font-bold text-slate-600 uppercase">Legal</div>
+                    </div>
+                    <!-- Sociocultural (Right) -->
+                    <div class="absolute top-[50%] right-[5%] transform -translate-y-1/2 text-center group">
+                        <div class="pestel-arrow text-3xl text-slate-400 rotate-[0deg] mb-2"><i class="fa-solid fa-arrow-right"></i></div>
+                        <div class="text-xs font-bold text-slate-600 uppercase">Sociocultural</div>
+                    </div>
+                    <!-- Ecological (Bottom Left) -->
+                    <div class="absolute bottom-[10%] left-[15%] text-center group">
+                        <div class="text-xs font-bold text-slate-600 uppercase mb-2">Ecological</div>
+                        <div class="pestel-arrow text-3xl text-slate-400 rotate-[-135deg]"><i class="fa-solid fa-arrow-right"></i></div>
+                    </div>
+                    <!-- Technological (Bottom Right) -->
+                    <div class="absolute bottom-[10%] right-[15%] text-center group">
+                        <div class="text-xs font-bold text-slate-600 uppercase mb-2">Technological</div>
+                        <div class="pestel-arrow text-3xl text-slate-400 rotate-[-45deg]"><i class="fa-solid fa-arrow-right"></i></div>
+                    </div>
+                </div>
+
+                <!-- Concentric Circles -->
+                <div class="relative z-10 w-[480px] h-[480px] rounded-full border-2 border-dashed border-slate-300 flex items-center justify-center transform scale-75 md:scale-100 transition-transform">
+                    
+                    <!-- Middle Ring: Industry -->
+                    <div class="absolute w-[380px] h-[380px] rounded-full bg-[#e6e2cf] border border-[#dcd8b6] shadow-lg flex items-center justify-center">
+                        <div class="absolute top-6 font-bold text-slate-700 text-sm uppercase tracking-wide">Industry</div>
+                        
+                        <!-- Inner Middle Ring: Strategic Group -->
+                        <div class="w-[280px] h-[280px] rounded-full bg-slate-200 border border-slate-300 shadow-inner flex items-center justify-center">
+                            <div class="absolute top-[70px] font-bold text-slate-600 text-sm uppercase tracking-wide">Strategic Group</div>
+                            
+                            <!-- Center Core: Firm -->
+                            <div class="w-[180px] h-[180px] rounded-full bg-[#cde4d0] border border-emerald-200 shadow-xl flex flex-col items-center justify-center text-center p-4 z-20 hover:scale-105 transition duration-500">
+                                <div class="text-[10px] font-bold text-emerald-800 uppercase mb-1">Inside the Firm</div>
+                                <div class="text-xs font-bold text-slate-800 leading-tight">Core Competencies,<br>Resources,<br>& Capabilities</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ADDED SECTION: 4.1 INTERNAL ANALYSIS AUDIT -->
+        <section id="audit" class="animate-fade-in">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="h-10 w-1 bg-slate-900"></div>
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900">The Roots of Advantage</h2>
+                    <p class="text-slate-500 text-sm mt-1"> Resources, Capabilities, and Core Competencies</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-8 glass-panel rounded-xl text-center group hover:bg-slate-900 transition duration-500">
+                    <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-slate-800 transition">
+                        <i class="fa-solid fa-box-open text-2xl group-hover:text-accent-blue"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2 group-hover:text-white">Resources</h3>
+                    <p class="text-xs text-slate-500 group-hover:text-slate-400">Any assets that a firm can draw on when formulating and implementing a strategy. (Tangible & Intangible)</p>
+                </div>
+                <div class="p-8 glass-panel rounded-xl text-center group hover:bg-slate-900 transition duration-500">
+                    <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-slate-800 transition">
+                        <i class="fa-solid fa-gears text-2xl group-hover:text-accent-gold"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2 group-hover:text-white">Capabilities</h3>
+                    <p class="text-xs text-slate-500 group-hover:text-slate-400">Organizational and managerial skills necessary to orchestrate a diverse set of resources effectively.</p>
+                </div>
+                <div class="p-8 bg-slate-900 text-white rounded-xl shadow-xl text-center transform hover:-translate-y-2 transition">
+                    <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fa-solid fa-bullseye text-2xl text-accent-gold"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Core Competencies</h3>
+                    <p class="text-xs text-slate-400">Unique strengths, embedded deep within a firm, that allow for differentiation or cost leadership.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ADDED SECTION: 4.3 COMPANY EXAMPLES (Interactive Table) -->
+        <section id="core-competencies" class="animate-fade-in">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="h-10 w-1 bg-indigo-600"></div>
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900">Core Competencies in Action</h2>
+                    <p class="text-slate-500 text-sm mt-1">Exhibit 4.3: Industry Examples</p>
+                </div>
+            </div>
+
+            <!-- Interactive Table Container -->
+            <div class="glass-panel rounded-xl overflow-hidden bg-white border border-slate-200">
+                <!-- Toolbar -->
+                <div class="p-4 border-b border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4 bg-slate-50">
+                    <h3 class="font-bold text-slate-700 text-sm uppercase tracking-wide">Comparative Analysis</h3>
+                    <div class="relative w-full md:w-64">
+                        <i class="fa-solid fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 text-xs"></i>
+                        <input type="text" id="compSearch" placeholder="Search companies or skills..." class="w-full pl-9 pr-4 py-2 text-xs border border-slate-300 rounded-lg focus:outline-none focus:border-indigo-500 transition" onkeyup="filterTable()">
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left" id="compTable">
+                        <thead class="bg-slate-900 text-white uppercase font-bold text-xs">
+                            <tr>
+                                <th class="px-6 py-4 w-1/4">Company</th>
+                                <th class="px-6 py-4 w-1/3">Core Competencies</th>
+                                <th class="px-6 py-4">Strategic Applications (Examples)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100" id="compTableBody">
+                            <tr class="hover:bg-slate-50 transition group">
+                                <td class="px-6 py-4 font-bold text-slate-900"><i class="fa-brands fa-amazon text-xl mr-2 text-slate-400 group-hover:text-[#ff9900]"></i> Amazon</td>
+                                <td class="px-6 py-4 text-slate-600">Superior IT & AI; Customer service; Diversification.</td>
+                                <td class="px-6 py-4 text-slate-500 text-xs leading-relaxed">Online retailing dominance; Prime ecosystem; AWS cloud infrastructure.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition group">
+                                <td class="px-6 py-4 font-bold text-slate-900"><i class="fa-brands fa-apple text-xl mr-2 text-slate-400 group-hover:text-slate-800"></i> Apple</td>
+                                <td class="px-6 py-4 text-slate-600">Industrial design; Marketing & retailing; Digital ecosystem integration.</td>
+                                <td class="px-6 py-4 text-slate-500 text-xs leading-relaxed">Category-defining devices (iPhone, iPad, Watch); 2B+ user ecosystem (App Store, iCloud).</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition group">
+                                <td class="px-6 py-4 font-bold text-slate-900"><i class="fa-solid fa-bottle-droplet text-xl mr-2 text-slate-400 group-hover:text-red-600"></i> Coca-Cola</td>
+                                <td class="px-6 py-4 text-slate-600">Superior marketing & distribution.</td>
+                                <td class="px-6 py-4 text-slate-500 text-xs leading-relaxed">Global brand recognition ("Secret Formula"); Extensive beverage lineup available worldwide.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition group">
+                                <td class="px-6 py-4 font-bold text-slate-900"><i class="fa-solid fa-gas-pump text-xl mr-2 text-slate-400 group-hover:text-red-700"></i> ExxonMobil</td>
+                                <td class="px-6 py-4 text-slate-600">Discovering & extracting fossil fuels globally.</td>
+                                <td class="px-6 py-4 text-slate-500 text-xs leading-relaxed">Oil and gas exploration/production focus (excluding renewables).</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition group">
+                                <td class="px-6 py-4 font-bold text-slate-900"><i class="fa-brands fa-facebook text-xl mr-2 text-slate-400 group-hover:text-blue-600"></i> Facebook</td>
+                                <td class="px-6 py-4 text-slate-600">Superior IT & AI for scale; Ad targeting algorithms.</td>
+                                <td class="px-6 py-4 text-slate-500 text-xs leading-relaxed">3.5B+ users worldwide; News Feed/Stories; Highly targeted online advertising platform.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition group">
+                                <td class="px-6 py-4 font-bold text-slate-900"><i class="fa-solid fa-burger text-xl mr-2 text-slate-400 group-hover:text-red-500"></i> Five Guys</td>
+                                <td class="px-6 py-4 text-slate-600">Providing fresh, customized burgers & hand-cut fries; High-quality ingredients.</td>
+                                <td class="px-6 py-4 text-slate-500 text-xs leading-relaxed">Premium hamburgers and fries (No freezers, peanut oil).</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition group">
+                                <td class="px-6 py-4 font-bold text-slate-900"><i class="fa-brands fa-google text-xl mr-2 text-slate-400 group-hover:text-blue-500"></i> Google</td>
+                                <td class="px-6 py-4 text-slate-600">Superior AI & proprietary algorithms; Mobile OS dominance.</td>
+                                <td class="px-6 py-4 text-slate-500 text-xs leading-relaxed">Search engine; Online ads; Android OS (70% global share); Cloud services (Docs, Drive).</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition group">
+                                <td class="px-6 py-4 font-bold text-slate-900"><i class="fa-solid fa-couch text-xl mr-2 text-slate-400 group-hover:text-yellow-500"></i> IKEA</td>
+                                <td class="px-6 py-4 text-slate-600">Designing modern functional furnishings at low cost; Retail experience.</td>
+                                <td class="px-6 py-4 text-slate-500 text-xs leading-relaxed">Flat-pack DIY furniture; Fully furnished room setups in-store.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition group">
+                                <td class="px-6 py-4 font-bold text-slate-900"><i class="fa-solid fa-briefcase text-xl mr-2 text-slate-400 group-hover:text-slate-800"></i> McKinsey</td>
+                                <td class="px-6 py-4 text-slate-600">Developing practice-relevant strategic knowledge & insights.</td>
+                                <td class="px-6 py-4 text-slate-500 text-xs leading-relaxed">High-level management consulting for business and government clients.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition group">
+                                <td class="px-6 py-4 font-bold text-slate-900"><i class="fa-brands fa-microsoft text-xl mr-2 text-slate-400 group-hover:text-blue-400"></i> Microsoft</td>
+                                <td class="px-6 py-4 text-slate-600">Best-in-class productivity software & business apps.</td>
+                                <td class="px-6 py-4 text-slate-500 text-xs leading-relaxed">Office 365; Teams; Azure cloud computing and storage.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition group">
+                                <td class="px-6 py-4 font-bold text-slate-900"><i class="fa-solid fa-play text-xl mr-2 text-slate-400 group-hover:text-red-600"></i> Netflix</td>
+                                <td class="px-6 py-4 text-slate-600">Superior AI for content prediction & recommendation algorithms.</td>
+                                <td class="px-6 py-4 text-slate-500 text-xs leading-relaxed">Data-driven original content creation; Personalized streaming recommendations.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition group">
+                                <td class="px-6 py-4 font-bold text-slate-900"><i class="fa-solid fa-bolt text-xl mr-2 text-slate-400 group-hover:text-red-500"></i> Tesla</td>
+                                <td class="px-6 py-4 text-slate-600">EV engineering expertise; Battery technology; Vertical integration.</td>
+                                <td class="px-6 py-4 text-slate-500 text-xs leading-relaxed">Category-defining EVs (Model S/3/X/Y); Solar roof; Powerwall energy storage.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition group">
+                                <td class="px-6 py-4 font-bold text-slate-900"><i class="fa-brands fa-uber text-xl mr-2 text-slate-400 group-hover:text-black"></i> Uber</td>
+                                <td class="px-6 py-4 text-slate-600">Mobile app-based transportation & logistics expertise.</td>
+                                <td class="px-6 py-4 text-slate-500 text-xs leading-relaxed">Global ride-hailing (UberX) and food delivery (UberEats) scale.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ADDED SECTION: EXHIBIT 9.3 LINKING CORE COMPETENCIES -->
+        <section id="linking-logic" class="animate-fade-in">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="h-10 w-1 bg-emerald-600"></div>
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900">The Engine of Advantage</h2>
+                    <p class="text-slate-500 text-sm mt-1">Exhibit 9.3: Linking Resources, Capabilities, and Activities</p>
+                </div>
+            </div>
+
+            <!-- Visualization of Exhibit 4.4 -->
+            <div class="glass-panel p-8 rounded-2xl bg-white border border-emerald-100 mb-8 relative overflow-hidden">
+                <!-- Decorative Loop Backgroud -->
+                <div class="absolute inset-0 border-4 border-dashed border-emerald-100 rounded-3xl m-4 pointer-events-none" style="z-index:0;"></div>
+                <div class="absolute top-2 left-1/2 transform -translate-x-1/2 bg-white px-4 text-[10px] font-bold text-emerald-400 uppercase tracking-widest z-10">Reinvest, Hone, and Upgrade</div>
+                <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-white px-4 text-[10px] font-bold text-emerald-400 uppercase tracking-widest z-10">Reinvest, Hone, and Upgrade</div>
+
+                <div class="flex flex-col lg:flex-row items-center justify-between gap-8 relative z-20 py-8 px-4">
+                    
+                    <!-- Left Column: Inputs -->
+                    <div class="flex flex-col gap-8 w-full lg:w-1/4">
+                        <div class="bg-slate-100 p-6 rounded-xl text-center shadow-sm border-t-4 border-slate-400">
+                            <i class="fa-solid fa-layer-group text-2xl text-slate-400 mb-2"></i>
+                            <h4 class="font-bold text-slate-800">Resources</h4>
+                            <div class="text-[10px] text-slate-500 mt-2">Reinforce</div>
+                            <div class="mt-2"><i class="fa-solid fa-arrow-down text-slate-300"></i></div>
+                        </div>
+                        <div class="bg-slate-100 p-6 rounded-xl text-center shadow-sm border-b-4 border-slate-400">
+                            <div class="mb-2"><i class="fa-solid fa-arrow-up text-slate-300"></i></div>
+                            <div class="text-[10px] text-slate-500 mb-2">Orchestrate</div>
+                            <h4 class="font-bold text-slate-800">Capabilities</h4>
+                            <i class="fa-solid fa-gears text-2xl text-slate-400 mt-2"></i>
+                        </div>
+                    </div>
+
+                    <!-- Core Competencies -->
+                    <div class="bg-emerald-600 text-white p-8 rounded-xl text-center shadow-lg w-full lg:w-1/4 relative">
+                        <i class="fa-solid fa-bullseye text-4xl text-emerald-200 mb-4"></i>
+                        <h3 class="font-bold text-xl uppercase tracking-wider">Core<br>Competencies</h3>
+                        <!-- Arrow Right -->
+                        <div class="absolute -right-6 top-1/2 transform -translate-y-1/2 text-emerald-600 z-30 hidden lg:block">
+                            <i class="fa-solid fa-caret-right text-4xl"></i>
+                        </div>
+                    </div>
+
+                    <!-- Activities -->
+                    <div class="flex flex-col items-center w-full lg:w-1/4 text-center">
+                        <div class="text-xs font-bold text-emerald-600 uppercase mb-2 tracking-widest">Leverage</div>
+                        <div class="bg-white border-2 border-emerald-600 p-6 rounded-xl shadow-md w-full">
+                            <i class="fa-solid fa-briefcase text-2xl text-emerald-600 mb-2"></i>
+                            <h4 class="font-bold text-slate-800">Activities</h4>
+                            <p class="text-[10px] text-slate-500 mt-1">Transform inputs into value</p>
+                        </div>
+                        <div class="text-emerald-400 mt-2 rotate-90 lg:rotate-0"><i class="fa-solid fa-arrow-right text-2xl"></i></div>
+                    </div>
+
+                    <!-- Competitive Advantage -->
+                    <div class="bg-emerald-100 border border-emerald-300 p-8 rounded-xl text-center shadow-md w-full lg:w-1/4">
+                        <i class="fa-solid fa-trophy text-4xl text-emerald-500 mb-4"></i>
+                        <h3 class="font-bold text-lg text-emerald-900 uppercase">Competitive<br>Advantage</h3>
+                        <p class="text-[10px] text-emerald-600 mt-2">Superior Performance</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strategic Insight Text Block -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 space-y-6 text-slate-600 text-sm leading-relaxed">
+                    <p>
+                        <span class="font-bold text-slate-900 text-lg float-left mr-2 leading-none">E</span>ach distinct activity enables firms to add incremental value by transforming inputs into goods and services. In the interplay between resources and capabilities, resources <strong>reinforce</strong> core competencies, while capabilities allow managers to <strong>orchestrate</strong> them. Strategic choices find their expression in a specific set of the firm’s activities, which leverage core competencies for competitive advantage.
+                    </p>
+                    <p>
+                        The arrows leading back from competitive advantage to resources and capabilities indicate that superior performance in the marketplace generates profits that to some extent need to be reinvested into the firm (retained earnings) to further <strong>hone and upgrade</strong> the firm’s resources and capabilities in its pursuit of achieving and maintaining a strategic fit within a dynamic environment.
+                    </p>
+                    <div class="p-6 bg-slate-50 border-l-4 border-slate-900 rounded-r-lg italic">
+                        "Core competencies that are not continuously nourished will lose their ability to yield a competitive advantage."
+                    </div>
+                </div>
+                
+                <div class="bg-slate-900 text-white p-6 rounded-xl">
+                    <h4 class="text-emerald-400 font-bold uppercase tracking-widest text-xs mb-4">Case in Point: The Retail Wars</h4>
+                    <div class="space-y-4 text-xs text-slate-300">
+                        <p>
+                            <strong>The Past:</strong> <span class="text-white font-bold">Best Buy</span> outperformed Circuit City (bankrupt 2009) via superior employee development and customer-centric store configurations.
+                        </p>
+                        <p>
+                            <strong>The Shift:</strong> More recently, Best Buy struggled because it failed to hone its competencies against <span class="text-white font-bold">Amazon</span>.
+                        </p>
+                        <p>
+                            <strong>The Lesson:</strong> Amazon leveraged a lower cost structure (no physical overhead) to undercut prices. When a firm does not continually upgrade, competitors develop equivalent or superior skills.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center">
+                <p class="text-sm text-slate-500 max-w-2xl mx-auto">
+                    Companies need to look beyond visible manifestations (products) to the invisible roots of advantage. In the next section, we clarify these opaque aspects by distinguishing between tangible and intangible resources.
+                </p>
+            </div>
+        </section>
+
+        <!-- ADDED SECTION: 4.2/4.3 THE RBV LOGIC -->
+        <section id="rbv-logic" class="animate-fade-in">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="h-10 w-1 bg-accent-gold"></div>
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900">The Resource-Based View</h2>
+                    <p class="text-slate-500 text-sm mt-1"> Heterogeneity & Immobility</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="p-6 bg-white border-l-4 border-accent-gold rounded shadow-sm">
+                        <h4 class="font-bold text-lg mb-2">1. Resource Heterogeneity</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">The assumption that bundles of resources, capabilities, and competencies differ across firms. Firms in the same industry are <span class="italic font-bold">not</span> the same.</p>
+                    </div>
+                    <div class="p-6 bg-white border-l-4 border-accent-blue rounded shadow-sm">
+                        <h4 class="font-bold text-lg mb-2">2. Resource Immobility</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">The assumption that resources are "sticky" and do not move easily from firm to firm. This allows performance differences to persist over time.</p>
+                    </div>
+                </div>
+                <div class="glass-panel p-8 rounded-2xl flex flex-col items-center">
+                    <h4 class="serif text-xl font-bold mb-6">Asset Composition Shifts</h4>
+                    <div class="chart-wrapper h-48">
+                        <canvas id="resourceChart"></canvas>
+                    </div>
+                    <div class="mt-8 text-xs text-slate-400 text-center font-mono">
+                        MODERN FIRM: INTANGIBLES (70%) > TANGIBLES (30%)
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 1: FIVE GUYS CASE STUDY (PRESERVED) -->
+        <section id="case-study" class="animate-fade-in" style="animation-delay: 0.2s;">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="h-10 w-1 bg-[#ed171f]"></div>
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900">Case Study: Five Guys</h2>
+                    <p class="text-slate-500 text-sm mt-1">Applying RBV and VRIO to a Real-World Anomaly</p>
+                </div>
+            </div>
+
+            <div class="mb-10 p-6 bg-slate-50 border-l-4 border-[#ed171f] rounded-r-xl shadow-sm">
+                <h3 class="serif text-2xl font-bold text-slate-900 mb-3">
+                    Fundamental Question: <span class="text-slate-600 italic">Can Internal Resources Substitute for External Marketing?</span>
+                </h3>
+                <p class="text-slate-700 leading-relaxed">
+                    <strong>The Context:</strong> Fast food is a marketing-heavy industry. McDonald's spends $1.6B/year on ads. <br/>
+                    <strong>The Anomaly:</strong> Five Guys spends virtually zero. <br/>
+                    <strong>The Session 9 & 10 Lesson:</strong> They leverage <strong>Intangible Resources</strong> (Reputation, Culture) to replace Tangible Ad Spend.
+                </p>
+            </div>
+
+            <!-- Intro Panel -->
+            <div class="glass-panel rounded-2xl overflow-hidden mb-8 border-t-4 border-t-[#ed171f]">
+                <div class="grid grid-cols-1 lg:grid-cols-3">
+                    <div class="p-8 lg:col-span-2">
+                        <h3 class="serif text-2xl font-bold text-slate-900 mb-4">The "No Marketing" Strategy</h3>
+                        <p class="text-slate-600 leading-relaxed mb-6">
+                            Five Guys allocates capital differently. Instead of buying commercials, they invest in:
+                            <ul class="list-disc list-inside mt-2 space-y-1">
+                                <li><strong>Tangible Resources:</strong> Fresh meat (no freezers), peanut oil, potatoes from >42nd parallel.</li>
+                                <li><strong>Intangible Capabilities:</strong> Fanatical service culture driven by "Mystery Shopper" bonuses.</li>
+                            </ul>
+                        </p>
+                        <div class="flex gap-4">
+                            <div class="px-4 py-2 bg-red-50 text-[#ed171f] rounded-lg font-bold text-sm border border-red-100">
+                                <i class="fa-solid fa-sack-xmark mr-2"></i> 0% Ad Budget
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-slate-900 relative overflow-hidden h-64 lg:h-auto">
+                        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Juicy Burger" 
+                             class="absolute inset-0 w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analysis Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="glass-panel p-6 rounded-xl">
+                    <h4 class="font-bold text-slate-800 mb-4">The Strategic Footprint</h4>
+                    <div class="chart-wrapper h-72">
+                        <canvas id="fiveGuysRadarChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-6 rounded-xl">
+                    <h4 class="font-bold text-slate-800 mb-4">Ad Spend Anomaly</h4>
+                    <div class="chart-wrapper h-72">
+                        <canvas id="adSpendChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- ADDED CHART: EXHIBIT 9.1 GROWTH -->
+                <div class="glass-panel p-6 rounded-xl md:col-span-2 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-5">
+                        <i class="fa-solid fa-chart-line text-9xl"></i>
+                    </div>
+                    <div class="flex flex-col md:flex-row justify-between md:items-end mb-4 relative z-10">
+                        <div>
+                            <span class="text-[10px] font-bold tracking-widest bg-slate-100 text-slate-500 px-2 py-1 rounded mb-2 inline-block">EXHIBIT 9.1</span>
+                            <h4 class="font-bold text-slate-800 text-xl">The Scaling Trajectory (1986–2025)</h4>
+                            <p class="text-xs text-slate-500 mt-1">Growth in Number of Stores. Note the inflection point at 2003 (Franchising).</p>
+                        </div>
+                        <div class="text-right mt-4 md:mt-0">
+                            <div class="text-3xl font-bold text-[#ed171f] mono">2,000+</div>
+                            <div class="text-[10px] text-slate-400 uppercase tracking-widest">Global Locations</div>
+                        </div>
+                    </div>
+                    <div class="chart-wrapper h-80">
+                        <canvas id="growthChart"></canvas>
+                    </div>
+                    <!-- Timeline Annotations -->
+                    <div class="grid grid-cols-3 gap-4 mt-6 border-t border-slate-100 pt-4">
+                        <div class="text-center">
+                            <div class="text-xs font-bold text-slate-900">1986</div>
+                            <div class="text-[10px] text-slate-500 leading-tight mt-1">First store opens in Arlington, VA</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-xs font-bold text-slate-900">2003</div>
+                            <div class="text-[10px] text-slate-500 leading-tight mt-1">Begins nationwide franchising</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-xs font-bold text-slate-900">2013</div>
+                            <div class="text-[10px] text-slate-500 leading-tight mt-1">First overseas store (UK) opens</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-6 rounded-xl md:col-span-2">
+                    <h4 class="font-bold text-slate-800 text-xl mb-6">Strategic Activity System Map</h4>
+                    <div id="activity-map" class="bg-slate-50 rounded-xl border border-slate-200 shadow-inner">
+                        <canvas id="mapCanvas" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
+                        <div class="map-node core" id="node-core">Premium Burger Experience</div>
+                        <div class="map-node node-1" id="node-mkt">No Marketing Budget</div>
+                        <div class="map-node node-2" id="node-ing">Premium Ingredients</div>
+                        <div class="map-node node-3" id="node-wage">High Wages & Bonuses</div>
+                        <div class="map-node node-4" id="node-menu">Simple Menu (No LTOs)</div>
+                        <div class="map-node node-5" id="node-frz">No Freezers</div>
+                        <div class="map-node node-6" id="node-kit">Open Kitchen Layout</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ADDED SECTION: 4.7 THE VALUE CHAIN INTERACTIVE -->
+        <section id="value-chain" class="animate-fade-in">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="h-10 w-1 bg-accent-blue"></div>
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900">The Value Chain</h2>
+                    <p class="text-slate-500 text-sm mt-1"> Transforming Inputs into Superior Performance</p>
+                </div>
+            </div>
+            <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="grid grid-cols-1 gap-1 mb-4">
+                    <div class="p-4 bg-slate-100 border-l-4 border-slate-400 text-[10px] font-bold uppercase tracking-widest flex justify-between group hover:bg-slate-900 hover:text-white transition">Firm Infrastructure <span class="opacity-40 group-hover:opacity-100">Finance, Legal, Management</span></div>
+                    <div class="p-4 bg-slate-100 border-l-4 border-slate-400 text-[10px] font-bold uppercase tracking-widest flex justify-between group hover:bg-slate-900 hover:text-white transition">Human Resource Management <span class="opacity-40 group-hover:opacity-100">Training, Recruiting, Incentive Systems</span></div>
+                    <div class="p-4 bg-slate-100 border-l-4 border-slate-400 text-[10px] font-bold uppercase tracking-widest flex justify-between group hover:bg-slate-900 hover:text-white transition">Technology Development <span class="opacity-40 group-hover:opacity-100">R&D, Design, Process Improvement</span></div>
+                    <div class="p-4 bg-slate-100 border-l-4 border-slate-400 text-[10px] font-bold uppercase tracking-widest flex justify-between group hover:bg-slate-900 hover:text-white transition">Procurement <span class="opacity-40 group-hover:opacity-100">Sourcing Raw Materials & Assets</span></div>
+                </div>
+                <div class="flex gap-1 h-32">
+                    <div class="flex-1 bg-slate-900 text-white flex items-center justify-center text-center p-2 text-[10px] font-bold uppercase chevron-start group hover:bg-accent-blue transition cursor-pointer">Inbound<br/>Logistics</div>
+                    <div class="flex-1 bg-slate-900 text-white flex items-center justify-center text-center p-2 text-[10px] font-bold uppercase chevron group hover:bg-accent-blue transition cursor-pointer">Operations</div>
+                    <div class="flex-1 bg-slate-900 text-white flex items-center justify-center text-center p-2 text-[10px] font-bold uppercase chevron group hover:bg-accent-blue transition cursor-pointer">Outbound<br/>Logistics</div>
+                    <div class="flex-1 bg-slate-900 text-white flex items-center justify-center text-center p-2 text-[10px] font-bold uppercase chevron group hover:bg-accent-blue transition cursor-pointer">Marketing<br/>& Sales</div>
+                    <div class="flex-1 bg-slate-900 text-white flex items-center justify-center text-center p-2 text-[10px] font-bold uppercase chevron-end group hover:bg-accent-blue transition cursor-pointer">Service</div>
+                    <div class="w-16 bg-accent-gold text-white flex items-center justify-center text-center p-2 text-xs font-bold rounded-r-lg shadow-lg">MARGIN</div>
+                </div>
+                <p class="text-xs text-slate-400 mt-6 italic">*Primary Activities (Bottom) touch the product directly. Support Activities (Top) enable the chain.</p>
+            </div>
+        </section>
+
+        <!-- SECTION 2: SIMULATION (PRESERVED) -->
+        <section id="simulation" class="animate-fade-in" style="animation-delay: 0.3s;">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-6 border-b border-slate-200 pb-4">
+                <div class="flex items-center gap-4">
+                    <div class="h-10 w-1 bg-success"></div>
+                    <h2 class="text-3xl font-bold text-slate-900">Simulation: The Franchise Strategist</h2>
+                </div>
+                <div class="flex gap-6 text-right mt-4 md:mt-0 font-mono">
+                    <div><span class="text-[10px] uppercase text-slate-400 block">Score</span><span id="score-display" class="text-2xl font-bold text-success">100%</span></div>
+                    <div><span class="text-[10px] uppercase text-slate-400 block">Level</span><span id="current-level" class="text-2xl font-bold">1</span>/5</div>
+                </div>
+            </div>
+
+            <div class="glass-panel rounded-2xl overflow-hidden min-h-[550px] flex flex-col relative border border-slate-200 shadow-xl bg-white">
+                <div id="game-viewport" class="p-8 md:p-12 flex-grow flex flex-col justify-center relative">
+                    <div id="start-screen" class="text-center max-w-2xl mx-auto">
+                        <div class="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl shadow-inner">🍟</div>
+                        <h3 class="text-4xl font-bold text-slate-900 mb-4 serif">The Strategic Dilemma</h3>
+                        <p class="text-lg text-slate-600 mb-8 leading-relaxed">Resist the pressure to "normalize". Align every internal resource to build a unique bundle of Core Competencies.</p>
+                        <button onclick="startGame()" class="px-8 py-4 bg-slate-900 text-white font-bold rounded-lg hover:bg-slate-800 transition shadow-lg btn-interactive">Accept Challenge <i class="fa-solid fa-play ml-2"></i></button>
+                    </div>
+
+                    <div id="scenario-screen" class="hidden w-full max-w-5xl mx-auto">
+                        <div class="flex flex-col lg:flex-row gap-10 items-start">
+                            <div class="lg:w-2/3">
+                                <span id="scenario-tag" class="text-[10px] font-bold tracking-widest bg-slate-100 text-accent-blue px-3 py-1 rounded-full mb-4 inline-block uppercase">Topic</span>
+                                <h3 id="scenario-title" class="text-3xl font-bold text-slate-900 mb-4 serif">Title</h3>
+                                <p id="scenario-desc" class="text-lg text-slate-600 leading-relaxed mb-8">Description...</p>
+                                <div class="grid grid-cols-1 gap-4" id="choices-container"></div>
+                            </div>
+                            <div class="lg:w-1/3 w-full bg-slate-50 rounded-xl p-6 border border-slate-100">
+                                <div class="chart-wrapper"><canvas id="scenario-chart"></canvas></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="result-screen" class="hidden text-center max-w-xl mx-auto">
+                        <div id="final-badge" class="text-6xl mb-4"></div>
+                        <h3 id="final-rank" class="text-3xl font-bold text-slate-900 mb-2 serif text-emerald-600">Rank</h3>
+                        <div id="final-score" class="text-5xl font-mono font-bold text-slate-900 mb-6"></div>
+                        <button onclick="resetGame()" class="text-slate-500 hover:text-slate-900 font-bold underline decoration-2 underline-offset-4">Run Simulation Again</button>
+                    </div>
+                </div>
+
+                <div id="feedback-overlay" class="hidden absolute inset-0 bg-white/95 z-50 flex items-center justify-center p-6 backdrop-blur-sm">
+                    <div class="max-w-lg w-full text-center">
+                        <div id="feedback-icon" class="text-5xl mb-4"></div>
+                        <h3 id="feedback-title" class="text-2xl font-bold mb-2 serif">Result</h3>
+                        <p id="feedback-text" class="text-slate-600 mb-8">Details...</p>
+                        <button id="next-btn" class="w-full py-3 bg-slate-900 text-white font-bold rounded hover:bg-slate-800 transition">Next Level</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW SECTION: VRIO GROUP SIMULATION -->
+        <section id="vrio-simulation" class="animate-fade-in">
+            <div class="flex items-center gap-4 mb-8 mt-12 pt-8 border-t border-slate-200">
+                <div class="h-10 w-1 bg-violet-600"></div>
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900">Advanced Activity: The "Unfair" Advantage Simulation</h2>
+                    <p class="text-slate-500 text-sm mt-1">Group Challenge: Diagnose the Strategic Flaw & Prescribe the Fix</p>
+                </div>
+            </div>
+
+            <div class="glass-panel p-8 rounded-2xl bg-white border border-slate-200 relative overflow-hidden">
+                <!-- Abstract Background -->
+                <div class="absolute top-0 right-0 w-96 h-96 bg-violet-50 rounded-full blur-3xl opacity-50 pointer-events-none transform translate-x-1/3 -translate-y-1/3"></div>
+
+                <div class="relative z-10">
+                    <div class="max-w-3xl mx-auto text-center mb-10">
+                        <h3 class="serif text-2xl font-bold text-slate-900 mb-4">The Boardroom Challenge</h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            You are the newly appointed <strong>Chief Strategy Officer</strong>. The CEO has presented three "Unbeatable Assets." Your job: Apply the rigorous logic of VRIO to expose the hidden weaknesses and propose a strategic "fix" to turn a temporary edge into a sustainable dynasty.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Case 1 -->
+                        <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 hover:shadow-md transition group">
+                            <div class="flex justify-between items-start mb-4">
+                                <span class="text-[10px] font-bold tracking-widest bg-violet-100 text-violet-600 px-2 py-1 rounded">CASE ALPHA</span>
+                                <i class="fa-solid fa-microchip text-slate-300 text-xl group-hover:text-violet-500 transition"></i>
+                            </div>
+                            <h4 class="font-bold text-lg text-slate-900 mb-2">The "Black Box" Algo</h4>
+                            <p class="text-xs text-slate-500 mb-4">
+                                <strong>Resource:</strong> A predictive AI for stock trading. <br/>
+                                <strong>Context:</strong> Returns are 20% above market (Valuable). It is proprietary (Rare). However, the lead engineer just quit to join a rival, carrying the logic in their head (Low Causal Ambiguity).
+                            </p>
+                            <button onclick="toggleStrategy('strat-1')" class="w-full py-2 bg-white border border-slate-300 text-slate-700 text-xs font-bold rounded hover:bg-slate-900 hover:text-white transition">Reveal Strategic Diagnosis</button>
+                            
+                            <div id="strat-1" class="hidden mt-4 pt-4 border-t border-slate-200 text-left">
+                                <div class="text-[10px] font-bold text-red-500 uppercase mb-1">Diagnosis: Imitation Risk</div>
+                                <p class="text-xs text-slate-600 mb-2">The resource is V and R, but not <strong>Costly to Imitate</strong> due to labor mobility.</p>
+                                <div class="text-[10px] font-bold text-emerald-600 uppercase mb-1">The Fix</div>
+                                <p class="text-xs text-slate-600">Embed the algo into a complex, firm-specific software ecosystem (Social Complexity) so the code is useless without the platform.</p>
+                            </div>
+                        </div>
+
+                        <!-- Case 2 -->
+                        <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 hover:shadow-md transition group">
+                            <div class="flex justify-between items-start mb-4">
+                                <span class="text-[10px] font-bold tracking-widest bg-violet-100 text-violet-600 px-2 py-1 rounded">CASE BETA</span>
+                                <i class="fa-solid fa-mug-hot text-slate-300 text-xl group-hover:text-violet-500 transition"></i>
+                            </div>
+                            <h4 class="font-bold text-lg text-slate-900 mb-2">The Exclusive Bean</h4>
+                            <p class="text-xs text-slate-500 mb-4">
+                                <strong>Resource:</strong> 10-year exclusive contract for a rare coffee bean. <br/>
+                                <strong>Context:</strong> Competitors cannot access it (High Cost to Imitate). However, your baristas are paid minimum wage, turnover is 150%, and customer service scores are abysmal.
+                            </p>
+                            <button onclick="toggleStrategy('strat-2')" class="w-full py-2 bg-white border border-slate-300 text-slate-700 text-xs font-bold rounded hover:bg-slate-900 hover:text-white transition">Reveal Strategic Diagnosis</button>
+                            
+                            <div id="strat-2" class="hidden mt-4 pt-4 border-t border-slate-200 text-left">
+                                <div class="text-[10px] font-bold text-amber-500 uppercase mb-1">Diagnosis: Organization Failure</div>
+                                <p class="text-xs text-slate-600 mb-2">The firm is not <strong>Organized to Capture Value</strong>. The potential is wasted.</p>
+                                <div class="text-[10px] font-bold text-emerald-600 uppercase mb-1">The Fix</div>
+                                <p class="text-xs text-slate-600">Invest in training and culture (like Five Guys). Transform "buying beans" into a "premium service capability."</p>
+                            </div>
+                        </div>
+
+                        <!-- Case 3 -->
+                        <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 hover:shadow-md transition group">
+                            <div class="flex justify-between items-start mb-4">
+                                <span class="text-[10px] font-bold tracking-widest bg-violet-100 text-violet-600 px-2 py-1 rounded">CASE GAMMA</span>
+                                <i class="fa-solid fa-gem text-slate-300 text-xl group-hover:text-violet-500 transition"></i>
+                            </div>
+                            <h4 class="font-bold text-lg text-slate-900 mb-2">The Heritage Brand</h4>
+                            <p class="text-xs text-slate-500 mb-4">
+                                <strong>Resource:</strong> A 150-year-old luxury fashion brand. <br/>
+                                <strong>Context:</strong> History cannot be bought (Path Dependence). Customers trust the quality implicitly (Social Complexity). Management is leveraging this to launch a digital metaverse line.
+                            </p>
+                            <button onclick="toggleStrategy('strat-3')" class="w-full py-2 bg-white border border-slate-300 text-slate-700 text-xs font-bold rounded hover:bg-slate-900 hover:text-white transition">Reveal Strategic Diagnosis</button>
+                            
+                            <div id="strat-3" class="hidden mt-4 pt-4 border-t border-slate-200 text-left">
+                                <div class="text-[10px] font-bold text-emerald-500 uppercase mb-1">Diagnosis: Sustained Advantage</div>
+                                <p class="text-xs text-slate-600 mb-2">V=Yes, R=Yes, I=Yes (History), O=Yes. This is a <strong>Sustainable Competitive Advantage</strong>.</p>
+                                <div class="text-[10px] font-bold text-emerald-600 uppercase mb-1">The Fix</div>
+                                <p class="text-xs text-slate-600">Maintain brand dilution discipline. Ensure the digital expansion doesn't contradict the heritage narrative.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW SECTION: STRATEGIC TURNAROUND GROUP ACTIVITY -->
+        <section id="strategic-turnaround" class="animate-fade-in">
+            <div class="flex items-center gap-4 mb-8 mt-12 pt-8 border-t border-slate-200">
+                <div class="h-10 w-1 bg-orange-600"></div>
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900">Group Challenge: The Strategic Turnaround</h2>
+                    <p class="text-slate-500 text-sm mt-1">Diagnose, Engineer, and Pitch a Sustainable Advantage</p>
+                </div>
+            </div>
+
+            <!-- Intro -->
+            <div class="bg-white p-8 rounded-xl border-l-4 border-orange-500 shadow-sm mb-8">
+                <h3 class="serif text-xl font-bold text-slate-900 mb-2">Objective</h3>
+                <p class="text-slate-600">Work in groups of 5–6 to diagnose a failing firm using the <strong>VRIO Framework</strong> and engineer a "Sustainable Competitive Advantage" that rivals cannot easily copy.</p>
+            </div>
+
+            <!-- Phase 1 & 2 Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                
+                <!-- Phase 1: Roles -->
+                <div class="glass-panel p-6 rounded-xl">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-slate-900 text-white text-xs font-bold px-2 py-1 rounded">PHASE 1</span>
+                        <h4 class="font-bold text-slate-800">Assemble Your Board (5 Mins)</h4>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex gap-3 items-start p-3 bg-slate-50 rounded border border-slate-100">
+                            <div class="font-bold text-xs uppercase text-slate-500 w-24 flex-shrink-0">The Auditor</div>
+                            <div class="text-xs text-slate-700">Manages VRIO Checklist; identifies exactly where "No" happens.</div>
+                        </div>
+                        <div class="flex gap-3 items-start p-3 bg-slate-50 rounded border border-slate-100">
+                            <div class="font-bold text-xs uppercase text-slate-500 w-24 flex-shrink-0">Moat Builder</div>
+                            <div class="text-xs text-slate-700">Focuses on Imitation; uses Path Dependence & Causal Ambiguity.</div>
+                        </div>
+                        <div class="flex gap-3 items-start p-3 bg-slate-50 rounded border border-slate-100">
+                            <div class="font-bold text-xs uppercase text-slate-500 w-24 flex-shrink-0">Ecosystem Architect</div>
+                            <div class="text-xs text-slate-700">Focuses on Substitution; prevents "Strategic Equivalence".</div>
+                        </div>
+                        <div class="flex gap-3 items-start p-3 bg-slate-50 rounded border border-slate-100">
+                            <div class="font-bold text-xs uppercase text-slate-500 w-24 flex-shrink-0">Culture Lead</div>
+                            <div class="text-xs text-slate-700">Focuses on Organization; redesigns structure to capture value.</div>
+                        </div>
+                        <div class="flex gap-3 items-start p-3 bg-red-50 rounded border border-red-100">
+                            <div class="font-bold text-xs uppercase text-red-500 w-24 flex-shrink-0">Devil’s Advocate</div>
+                            <div class="text-xs text-red-700">Roleplays Rival CEO; tries to find holes in the "Fix".</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 2: Scenarios -->
+                <div class="glass-panel p-6 rounded-xl">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-slate-900 text-white text-xs font-bold px-2 py-1 rounded">PHASE 2</span>
+                        <h4 class="font-bold text-slate-800">The Diagnosis (15 Mins)</h4>
+                    </div>
+                    <p class="text-xs text-slate-500 mb-4">Pick ONE scenario. Draw a VRIO table. Mark the "X" where the chain breaks.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="p-4 border border-slate-200 rounded-lg hover:border-orange-400 transition cursor-pointer group">
+                            <h5 class="font-bold text-slate-900 text-sm mb-1 group-hover:text-orange-600">Scenario A: The Generic App</h5>
+                            <p class="text-xs text-slate-600">Viral photo app with millions of users (Valuable/Rare), but competitors are cloning filters in days.</p>
+                        </div>
+                        <div class="p-4 border border-slate-200 rounded-lg hover:border-orange-400 transition cursor-pointer group">
+                            <h5 class="font-bold text-slate-900 text-sm mb-1 group-hover:text-orange-600">Scenario B: The Luxury Ghost</h5>
+                            <p class="text-xs text-slate-600">200-year-old watch brand (Path Dependent). High quality, but untrained retail staff and broken website.</p>
+                        </div>
+                        <div class="p-4 border border-slate-200 rounded-lg hover:border-orange-400 transition cursor-pointer group">
+                            <h5 class="font-bold text-slate-900 text-sm mb-1 group-hover:text-orange-600">Scenario C: The Leaky Lab</h5>
+                            <p class="text-xs text-slate-600">Revolutionary AI healthcare tech. Lead scientists are being headhunted by Google/Meta (Imitation Risk).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 3 & 4 -->
+            <div class="glass-panel p-8 rounded-xl bg-slate-900 text-white mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded">PHASE 3</span>
+                            <h4 class="font-bold text-xl serif">The "Unfair" Fix (20 Mins)</h4>
+                        </div>
+                        <p class="text-slate-300 text-sm mb-4">Propose a Strategic Pivot to turn "No" into "Yes".</p>
+                        <ul class="space-y-3 text-sm text-slate-300">
+                            <li class="flex gap-2"><i class="fa-solid fa-network-wired text-orange-500 mt-1"></i> <span><strong>Complexity:</strong> Link asset to firm-specific processes so one person leaving doesn't destroy value.</span></li>
+                            <li class="flex gap-2"><i class="fa-solid fa-clock-rotate-left text-orange-500 mt-1"></i> <span><strong>Path Dependence:</strong> Lean into history to create "lock-in".</span></li>
+                            <li class="flex gap-2"><i class="fa-solid fa-users-gear text-orange-500 mt-1"></i> <span><strong>Org Alignment:</strong> Change incentives/software to ensure value isn't wasted (avoid Xerox PARC fate).</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded">PHASE 4</span>
+                            <h4 class="font-bold text-xl serif">The Pitch (3 Mins)</h4>
+                        </div>
+                        <p class="text-slate-300 text-sm mb-4">Present to the class. You must answer:</p>
+                        <div class="p-4 bg-white/10 rounded-lg border border-white/20 italic text-sm text-slate-200 mb-4">
+                            "Why won't a competitor simply do exactly what you just described tomorrow?"
+                        </div>
+                        <div class="space-y-1 text-xs text-slate-400">
+                            <div><i class="fa-solid fa-check text-green-400 mr-1"></i> All 4 VRIO letters must be "Yes".</div>
+                            <div><i class="fa-solid fa-check text-green-400 mr-1"></i> Use terms: Social Complexity, Causal Ambiguity.</div>
+                            <div><i class="fa-solid fa-check text-green-400 mr-1"></i> Feasibility: Must be executable.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scorecard & Tips -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Scorecard -->
+                <div class="lg:col-span-2 bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                    <div class="bg-slate-50 p-4 border-b border-slate-200 flex justify-between items-center">
+                        <h4 class="font-bold text-slate-800">VRIO Strategic Audit Scorecard</h4>
+                        <span class="text-[10px] uppercase text-slate-400 font-bold tracking-widest">Grade Peers</span>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left">
+                            <thead class="bg-white text-slate-500 uppercase font-bold text-[10px] border-b border-slate-100">
+                                <tr>
+                                    <th class="px-6 py-3">Pillar</th>
+                                    <th class="px-6 py-3">The Test</th>
+                                    <th class="px-6 py-3 w-24">Score (1-5)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-50">
+                                <tr>
+                                    <td class="px-6 py-3 font-bold text-slate-900">Valuable?</td>
+                                    <td class="px-6 py-3 text-slate-600 text-xs">Does the "Fix" neutralize threats/exploit opps?</td>
+                                    <td class="px-6 py-3 bg-slate-50"></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-3 font-bold text-slate-900">Rare?</td>
+                                    <td class="px-6 py-3 text-slate-600 text-xs">Is the solution unique?</td>
+                                    <td class="px-6 py-3 bg-slate-50"></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-3 font-bold text-slate-900">Inimitable?</td>
+                                    <td class="px-6 py-3 text-slate-600 text-xs">Used Path Dependence / Causal Ambiguity?</td>
+                                    <td class="px-6 py-3 bg-slate-50"></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-3 font-bold text-slate-900">Organized?</td>
+                                    <td class="px-6 py-3 text-slate-600 text-xs">Systems/Culture aligned to capture value?</td>
+                                    <td class="px-6 py-3 bg-slate-50"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="p-4 bg-slate-50 border-t border-slate-200 grid grid-cols-2 md:grid-cols-4 gap-2 text-center text-[10px]">
+                        <div class="p-1 rounded bg-red-100 text-red-700 font-bold">0-10: Disadvantage</div>
+                        <div class="p-1 rounded bg-orange-100 text-orange-700 font-bold">11-15: Parity</div>
+                        <div class="p-1 rounded bg-yellow-100 text-yellow-700 font-bold">16-18: Temporary</div>
+                        <div class="p-1 rounded bg-emerald-100 text-emerald-700 font-bold">19-20: Sustainable</div>
+                    </div>
+                </div>
+
+                <!-- Devil's Advocate Tips -->
+                <div class="bg-slate-900 text-white p-6 rounded-xl relative overflow-hidden">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-4 text-red-400">
+                            <i class="fa-solid fa-user-secret text-xl"></i>
+                            <h4 class="font-bold uppercase text-xs tracking-widest">Devil’s Advocate Pro-Tips</h4>
+                        </div>
+                        <p class="text-xs text-slate-400 mb-4">Ask these "Shark Tank" questions during Q&A:</p>
+                        <div class="space-y-4">
+                            <div class="p-3 bg-white/5 rounded border-l-2 border-red-500">
+                                <div class="text-[10px] font-bold text-red-400 mb-1">On Imitation</div>
+                                <p class="text-xs italic text-slate-300">"If I hire your top 3 managers tomorrow, do I take your strategy with me?"</p>
+                            </div>
+                            <div class="p-3 bg-white/5 rounded border-l-2 border-red-500">
+                                <div class="text-[10px] font-bold text-red-400 mb-1">On Substitution</div>
+                                <p class="text-xs italic text-slate-300">"Can AI provide this same result for half the price?"</p>
+                            </div>
+                            <div class="p-3 bg-white/5 rounded border-l-2 border-red-500">
+                                <div class="text-[10px] font-bold text-red-400 mb-1">On Organization</div>
+                                <p class="text-xs italic text-slate-300">"Do your current middle managers actually have the skills to run this?"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ADDED SECTION: QUANTIFYING THE ADVANTAGE (APPENDIX DATA) -->
+        <section id="quantifying" class="animate-fade-in">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="h-10 w-1 bg-success"></div>
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900">Quantifying the Advantage</h2>
+                    <p class="text-slate-500 text-sm mt-1">Financial Metrics: The Outcomes of Internal Excellence</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="glass-panel p-8 rounded-2xl bg-white">
+                    <h4 class="font-bold text-slate-900 mb-6 uppercase tracking-widest text-xs">Strategic Financial Dashboard</h4>
+                    <div class="chart-wrapper h-64">
+                        <canvas id="ratioChart"></canvas>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <div class="p-6 glass-panel rounded-xl">
+                        <h5 class="font-bold text-slate-900 mb-2 text-sm flex justify-between">
+                            Profitability Ratios <span>ROE / ROA</span>
+                        </h5>
+                        <p class="text-xs text-slate-500">How effectively are internal resources utilized to generate returns? Higher than industry average indicates a bundle of core competencies.</p>
+                    </div>
+                    <div class="p-6 glass-panel rounded-xl">
+                        <h5 class="font-bold text-slate-900 mb-2 text-sm flex justify-between">
+                            Liquidity Ratios <span>Current / Quick</span>
+                        </h5>
+                        <p class="text-xs text-slate-500">Measures the firm's ability to cover short-term obligations using tangible resource stocks.</p>
+                    </div>
+                    <div class="p-6 glass-panel rounded-xl">
+                        <h5 class="font-bold text-slate-900 mb-2 text-sm flex justify-between">
+                            Market Ratios <span>P/E Ratio</span>
+                        </h5>
+                        <p class="text-xs text-slate-500">Indicates the market's expectation of the firm's future growth and the value of its Intangible Assets.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONCEPT LAB (BATHTUB METAPHOR PRESERVED) -->
+        <section id="concept-lab" class="animate-fade-in">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="h-10 w-1 bg-stone-800"></div>
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900">Concept Visualization Lab</h2>
+                    <p class="text-slate-500 text-sm mt-1">Dynamic Capabilities: The Bathtub Metaphor</p>
+                </div>
+            </div>
+            <div class="glass-panel p-10 rounded-2xl flex flex-col md:flex-row items-center gap-12 bg-white">
+                <div class="flex-shrink-0">
+                    <div class="tub-container">
+                        <div class="faucet"></div>
+                        <div class="drip"></div>
+                        <div id="lab-water" class="water-level" style="height: 60%"></div>
+                        <div class="leak"></div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <h3 class="serif text-2xl font-bold">Stocks vs. Flows</h3>
+                    <p class="text-sm text-slate-600">Competitive advantage isn't a one-time win; it's a water level. You must keep the faucet (Investments) running to offset the leak (Resource Degradation/Forgetting).</p>
+                    <div class="flex gap-4">
+                        <button onclick="changeWater(10)" class="px-4 py-2 bg-slate-900 text-white text-xs font-bold rounded hover:bg-slate-800 transition">Add Flow (+)</button>
+                        <button onclick="changeWater(-10)" class="px-4 py-2 border border-slate-200 text-xs font-bold rounded hover:bg-slate-50 transition">Neglect Flow (-)</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: GROUP ACTIVITY -->
+        <section id="group-activity" class="animate-fade-in">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="h-10 w-1 bg-slate-900"></div>
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900">Group Activity: The Resource Audit</h2>
+                    <p class="text-slate-500 text-sm mt-1">Applying Concepts to Real-World Examples</p>
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="glass-panel p-8 rounded-xl bg-white mb-8 border border-slate-200">
+                <h3 class="serif text-xl font-bold text-slate-900 mb-6">Strategic Context: Differences & Examples</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left">
+                        <thead class="bg-slate-50 text-slate-500 uppercase font-bold text-xs">
+                            <tr>
+                                <th class="px-6 py-4">Feature</th>
+                                <th class="px-6 py-4">Resources (Assets)</th>
+                                <th class="px-6 py-4">Capabilities (Skills)</th>
+                                <th class="px-6 py-4">Core Competencies (Strengths)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr>
+                                <td class="px-6 py-4 font-bold text-slate-900">Definition</td>
+                                <td class="px-6 py-4 text-slate-600">A firm's assets/inputs (Tangible/Intangible)</td>
+                                <td class="px-6 py-4 text-slate-600">Ability to bundle & manage resources</td>
+                                <td class="px-6 py-4 text-slate-600">Unique strengths driving sustainable advantage</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-bold text-slate-900">Nature</td>
+                                <td class="px-6 py-4 text-slate-600">Often visible (or invisible), acquirable</td>
+                                <td class="px-6 py-4 text-slate-600">Intangible processes, routines, culture</td>
+                                <td class="px-6 py-4 text-slate-600">Highest order; complex interactions; hard to copy</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-bold text-slate-900">Role</td>
+                                <td class="px-6 py-4 text-slate-600">The foundation / inputs</td>
+                                <td class="px-6 py-4 text-slate-600">Effective usage of resources</td>
+                                <td class="px-6 py-4 text-slate-600">Strategic differentiation advantage</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Examples Grid (Tesla, SpaceX, Nvidia) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <!-- Tesla -->
+                <div class="p-6 bg-slate-50 border border-slate-200 rounded-xl hover:shadow-lg transition">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center font-serif font-bold">T</div>
+                        <h4 class="font-bold text-slate-900">Tesla</h4>
+                    </div>
+                    <ul class="space-y-2 text-xs text-slate-600">
+                        <li><strong class="text-slate-900">Resource:</strong> Gigafactories, Patents</li>
+                        <li><strong class="text-slate-900">Capability:</strong> Rapid Iteration, Vertical Integration</li>
+                        <li><strong class="text-slate-900 text-emerald-600">Core Comp:</strong> Advanced EV Innovation</li>
+                    </ul>
+                </div>
+                <!-- SpaceX -->
+                <div class="p-6 bg-slate-50 border border-slate-200 rounded-xl hover:shadow-lg transition">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center font-serif font-bold">X</div>
+                        <h4 class="font-bold text-slate-900">SpaceX</h4>
+                    </div>
+                    <ul class="space-y-2 text-xs text-slate-600">
+                        <li><strong class="text-slate-900">Resource:</strong> Starbase, Engineers</li>
+                        <li><strong class="text-slate-900">Capability:</strong> Reusability Logic, Rapid Testing</li>
+                        <li><strong class="text-slate-900 text-emerald-600">Core Comp:</strong> Low-Cost Space Transport</li>
+                    </ul>
+                </div>
+                <!-- Nvidia -->
+                <div class="p-6 bg-slate-50 border border-slate-200 rounded-xl hover:shadow-lg transition">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center font-serif font-bold">N</div>
+                        <h4 class="font-bold text-slate-900">Nvidia</h4>
+                    </div>
+                    <ul class="space-y-2 text-xs text-slate-600">
+                        <li><strong class="text-slate-900">Resource:</strong> GPU IP, AI Talent</li>
+                        <li><strong class="text-slate-900">Capability:</strong> CUDA Platform Optimization</li>
+                        <li><strong class="text-slate-900 text-emerald-600">Core Comp:</strong> Accelerated AI Computing</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Instructions -->
+            <div class="bg-slate-900 text-white p-8 rounded-xl relative overflow-hidden">
+                <div class="relative z-10">
+                    <h3 class="serif text-2xl font-bold mb-4">Activity: The Strategic Flow Map</h3>
+                    <p class="text-slate-300 text-sm mb-8 max-w-2xl">Instructions: Working in groups of 3-4, select a company NOT listed above (e.g., Netflix, Starbucks, Nike). Use the template below to map their path from Resources to Advantage.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                        <div class="p-4 border border-slate-700 rounded-lg bg-slate-800/50">
+                            <div class="text-xs text-accent-blue uppercase font-bold mb-2">Step 1</div>
+                            <h4 class="font-bold text-lg mb-1">List Resources</h4>
+                            <p class="text-xs text-slate-400">Tangible & Intangible inputs</p>
+                        </div>
+                        <div class="p-4 border border-slate-700 rounded-lg bg-slate-800/50">
+                            <div class="text-xs text-accent-blue uppercase font-bold mb-2">Step 2</div>
+                            <h4 class="font-bold text-lg mb-1">Define Capabilities</h4>
+                            <p class="text-xs text-slate-400">How are they managed?</p>
+                        </div>
+                        <div class="p-4 border border-slate-700 rounded-lg bg-slate-800/50">
+                            <div class="text-xs text-accent-blue uppercase font-bold mb-2">Step 3</div>
+                            <h4 class="font-bold text-lg mb-1">Core Competency</h4>
+                            <p class="text-xs text-slate-400">The unique advantage</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Abstract Background shapes -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-accent-blue opacity-10 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+                <div class="absolute bottom-0 left-0 w-64 h-64 bg-accent-gold opacity-10 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
+            </div>
+        </section>
+
+        <!-- NEW SECTION: DYNAMICS OF COMPETITIVE ADVANTAGE -->
+        <section id="sustaining-advantage" class="animate-fade-in">
+            <div class="flex items-center gap-4 mb-8 mt-12 pt-8 border-t border-slate-200">
+                <div class="h-10 w-1 bg-red-600"></div>
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900">Dynamics of Competitive Advantage</h2>
+                    <p class="text-slate-500 text-sm mt-1">Imitation, Substitution, and Organization (Extracted from Chapter 4)</p>
+                </div>
+            </div>
+
+            <!-- Path to Sustainability Flow Diagram -->
+            <div class="glass-panel p-8 rounded-xl bg-white mb-8 border border-slate-200">
+                <h3 class="serif text-2xl font-bold text-slate-900 mb-6 text-center">The Path to Sustained Advantage</h3>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4 text-center">
+                    
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg w-40">
+                        <div class="text-xs font-bold text-slate-400 uppercase mb-1">Input</div>
+                        <div class="font-bold text-slate-800">VR Resources</div>
+                    </div>
+
+                    <div class="text-slate-400"><i class="fa-solid fa-arrow-right"></i></div>
+
+                    <div class="p-4 bg-yellow-50 border border-yellow-200 rounded-lg w-48 relative">
+                        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-yellow-500 text-white text-[10px] font-bold px-2 rounded">BARRIER 1</div>
+                        <div class="font-bold text-yellow-800">Organization?</div>
+                        <div class="text-[10px] text-yellow-600 mt-1">Is the firm structured to capture value?</div>
+                    </div>
+
+                    <div class="text-slate-400"><i class="fa-solid fa-arrow-right"></i></div>
+
+                    <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg w-48 relative">
+                        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white text-[10px] font-bold px-2 rounded">BARRIER 2</div>
+                        <div class="font-bold text-blue-800">Imitation?</div>
+                        <div class="text-[10px] text-blue-600 mt-1">Can rivals copy or substitute?</div>
+                    </div>
+
+                    <div class="text-slate-400"><i class="fa-solid fa-arrow-right"></i></div>
+
+                    <div class="p-4 bg-emerald-50 border border-emerald-200 rounded-lg w-40">
+                        <div class="text-xs font-bold text-emerald-500 uppercase mb-1">Result</div>
+                        <div class="font-bold text-emerald-800">Sustained Advantage</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case Study Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- Five Guys: Direct Imitation -->
+                <div class="p-6 bg-slate-50 border-l-4 border-red-500 rounded-r-xl shadow-sm">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-bold text-lg text-slate-900">Direct Imitation</h4>
+                        <span class="text-[10px] font-bold bg-red-100 text-red-600 px-2 py-1 rounded">FIVE GUYS</span>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-2">
+                        While competitors can see the "better burger" model, Five Guys has a <strong>20-year lead</strong> (Path Dependence). Franchisees locked down prime locations early.
+                    </p>
+                    <p class="text-xs text-slate-500 italic">Result: First-mover advantage + Perfected competency blocks direct copying.</p>
+                </div>
+
+                <!-- Amazon: Substitution -->
+                <div class="p-6 bg-slate-50 border-l-4 border-orange-500 rounded-r-xl shadow-sm">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-bold text-lg text-slate-900">Substitution</h4>
+                        <span class="text-[10px] font-bold bg-orange-100 text-orange-600 px-2 py-1 rounded">AMAZON</span>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-2">
+                        Bezos didn't build better bookstores; he replaced them. Online retail offered <strong>strategic equivalence</strong> (same product) with a superior delivery method.
+                    </p>
+                    <p class="text-xs text-slate-500 italic">Result: Lower cost structure negates physical retail advantage.</p>
+                </div>
+
+                <!-- Samsung: Combination -->
+                <div class="p-6 bg-slate-50 border-l-4 border-blue-500 rounded-r-xl shadow-sm">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-bold text-lg text-slate-900">Combination</h4>
+                        <span class="text-[10px] font-bold bg-blue-100 text-blue-600 px-2 py-1 rounded">SAMSUNG</span>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-2">
+                        Samsung attacked Apple via two fronts: <strong>Imitating</strong> the iPhone's look/feel and <strong>Substituting</strong> the iOS ecosystem with Android.
+                    </p>
+                    <p class="text-xs text-slate-500 italic">Result: Mitigated Apple's competitive advantage.</p>
+                </div>
+
+                <!-- Xerox: Organization Failure -->
+                <div class="p-6 bg-slate-50 border-l-4 border-slate-500 rounded-r-xl shadow-sm">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-bold text-lg text-slate-900">Organization (O)</h4>
+                        <span class="text-[10px] font-bold bg-slate-200 text-slate-600 px-2 py-1 rounded">XEROX PARC</span>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-2">
+                        Xerox invented the Mouse & GUI (Valuable/Rare). But management was focused on copiers. They lacked the <strong>structure</strong> to capture value.
+                    </p>
+                    <p class="text-xs text-slate-500 italic">Result: Apple & Microsoft captured the value instead.</p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-slate-200 py-12 mt-12">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <h4 class="serif text-xl font-bold text-slate-900">Grand Master <span class="text-accent-gold">Simulations</span></h4>
+                <p class="text-slate-500 text-xs mono mt-2">© Dr. Swapnil Sahoo 2026 | All Rights Reserved</p>
+            </div>
+            <div class="flex space-x-6 items-center">
+                <a href="https://x.com/swapnilsahoo" target="_blank" class="text-slate-400 hover:text-accent-blue transition text-xl"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://in.linkedin.com/in/swapnilsahoo" target="_blank" class="text-slate-400 hover:text-blue-700 transition text-xl"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://www.chess.com/member/theswapnilsahoo" target="_blank" class="text-slate-400 hover:text-green-600 transition text-xl"><i class="fa-solid fa-chess-knight"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LOGIC -->
+    <script>
+        // --- DATA: Radar Chart ---
+        const fiveGuysRadarData = {
+            labels: ['Mkt Spend', 'Quality', 'Wages', 'Training', 'Store Decor'],
+            datasets: [
+                { label: 'Five Guys', data: [5, 95, 90, 85, 40], backgroundColor: 'rgba(237, 23, 31, 0.2)', borderColor: '#ed171f', borderWidth: 2 },
+                { label: 'Industry Avg', data: [80, 50, 40, 40, 70], backgroundColor: 'rgba(148, 163, 184, 0.2)', borderColor: '#94a3b8', borderWidth: 2 }
+            ]
+        };
+
+        const adSpendData = {
+            labels: ['MCD', 'BK', 'WEN', 'Five Guys'],
+            datasets: [{ label: 'Ad Spend %', data: [4.5, 3.8, 3.2, 0.1], backgroundColor: ['#94a3b8', '#94a3b8', '#94a3b8', '#ed171f'] }]
+        };
+
+        // --- NEW DATA: Growth Chart (Exhibit 9.1 Digitized) ---
+        const growthData = {
+            labels: ['1986', '1990', '1995', '2000', '2002', '2003', '2005', '2007', '2009', '2011', '2013', '2015', '2018', '2020', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: 'Number of Stores',
+                data: [1, 5, 5, 5, 5, 15, 70, 250, 500, 900, 1100, 1350, 1550, 1600, 1700, 1790, 1880, 2000],
+                borderColor: '#ed171f',
+                backgroundColor: 'rgba(237, 23, 31, 0.05)',
+                fill: true,
+                tension: 0.4,
+                pointBackgroundColor: '#fff',
+                pointBorderColor: '#ed171f',
+                pointRadius: 4,
+                pointHoverRadius: 6,
+                borderWidth: 3
+            }]
+        };
+
+        const resourceChartData = {
+            labels: ['Tangible', 'Intangible'],
+            datasets: [{ data: [30, 70], backgroundColor: ['#d6d3d1', '#10b981'], borderWidth: 0 }]
+        };
+
+        const ratioData = {
+            labels: ['ROE %', 'ROA %', 'P/E Ratio (x10)'],
+            datasets: [
+                { label: 'Subject Firm', data: [18, 11, 25], backgroundColor: '#10b981' },
+                { label: 'Industry Avg', data: [12, 7, 15], backgroundColor: '#94a3b8' }
+            ]
+        };
+
+        // --- SIMULATION SCENARIOS ---
+        const scenarios = [
+            {
+                id: 1, tag: "Trade-offs", title: "Efficiency vs Differentiation",
+                desc: "Your CFO reports that buying fresh meat daily is 30% more expensive than frozen. He suggests switching to frozen patties to increase margins.",
+                chartType: 'doughnut', chartData: [30, 70], chartLabels: ['Cost Savings', 'Brand Equity'],
+                choices: [
+                    { text: "Switch to Frozen", correct: false, feedback: "Strategic failure. You destroyed your 'Rarity'. You are now just a commodity." },
+                    { text: "Stay Fresh", correct: true, feedback: "Correct. Core competencies require accepting higher costs to maintain unique value." }
+                ]
+            },
+            {
+                id: 2, tag: "VRIO", title: "The Culture Audit",
+                desc: "A consultant suggests replacing 'Mystery Shopper' bonuses with cheaper certificates of appreciation to save cash.",
+                chartType: 'bar', chartData: [90, 20], chartLabels: ['Motivation (Cash)', 'Motivation (Cert)'],
+                choices: [
+                    { text: "Adopt Certificates", correct: false, feedback: "Wrong. You broke the 'Organizing' component of VRIO that captures employee value." },
+                    { text: "Keep Bonuses", correct: true, feedback: "Exactly. Incentives drive the socially complex routines that rivals can't copy." }
+                ]
+            }
+        ];
+
+        let state = { level: 0, score: 100 };
+        let chartInstance = null;
+
+        window.addEventListener('DOMContentLoaded', () => {
+            new Chart(document.getElementById('fiveGuysRadarChart'), { type: 'radar', data: fiveGuysRadarData, options: { responsive: true, maintainAspectRatio: false }});
+            new Chart(document.getElementById('adSpendChart'), { type: 'bar', data: adSpendData, options: { responsive: true, maintainAspectRatio: false }});
+            // NEW CHART INITIALIZATION
+            new Chart(document.getElementById('growthChart'), { type: 'line', data: growthData, options: { responsive: true, maintainAspectRatio: false, scales: { y: { display: false }, x: { grid: { display: false } } }, plugins: { legend: { display: false } } }});
+            
+            new Chart(document.getElementById('resourceChart'), { type: 'doughnut', data: resourceChartData, options: { responsive: true, maintainAspectRatio: false }});
+            new Chart(document.getElementById('ratioChart'), { type: 'bar', data: ratioData, options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true } } }});
+            drawActivityMapLines();
+            window.addEventListener('resize', drawActivityMapLines);
+        });
+
+        function startGame() {
+            state.level = 0; state.score = 100;
+            document.getElementById('start-screen').classList.add('hidden');
+            document.getElementById('scenario-screen').classList.remove('hidden');
+            loadScenario(0);
+        }
+
+        function loadScenario(index) {
+            const data = scenarios[index];
+            document.getElementById('scenario-tag').innerText = data.tag;
+            document.getElementById('scenario-title').innerText = data.title;
+            document.getElementById('scenario-desc').innerText = data.desc;
+            const container = document.getElementById('choices-container');
+            container.innerHTML = '';
+            data.choices.forEach(c => {
+                const b = document.createElement('button');
+                b.className = "w-full text-left p-4 rounded-lg border border-slate-200 hover:bg-slate-50 font-bold";
+                b.innerText = c.text;
+                b.onclick = () => handleChoice(c);
+                container.appendChild(b);
+            });
+            renderScenarioChart(data.chartType, data.chartLabels, data.chartData);
+        }
+
+        function handleChoice(c) {
+            if(!c.correct) state.score -= 20;
+            const overlay = document.getElementById('feedback-overlay');
+            overlay.classList.remove('hidden');
+            document.getElementById('feedback-icon').innerText = c.correct ? "✅" : "❌";
+            document.getElementById('feedback-text').innerText = c.feedback;
+            document.getElementById('next-btn').onclick = () => {
+                overlay.classList.add('hidden');
+                state.level++;
+                if(state.level < scenarios.length) loadScenario(state.level);
+                else endGame();
+                document.getElementById('score-display').innerText = state.score + "%";
+                document.getElementById('current-level').innerText = Math.min(state.level + 1, scenarios.length);
+            }
+        }
+
+        function endGame() {
+            document.getElementById('scenario-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+            document.getElementById('final-score').innerText = state.score + "%";
+            document.getElementById('final-badge').innerText = state.score >= 80 ? "🏆" : "📉";
+        }
+
+        function renderScenarioChart(type, labels, data) {
+            const ctx = document.getElementById('scenario-chart').getContext('2d');
+            if (chartInstance) chartInstance.destroy();
+            chartInstance = new Chart(ctx, { type: type, data: { labels: labels, datasets: [{ data: data, backgroundColor: ['#0f172a', '#d97706'] }] }, options: { responsive: true, maintainAspectRatio: false }});
+        }
+
+        function drawActivityMapLines() {
+            const canvas = document.getElementById('mapCanvas');
+            const container = document.getElementById('activity-map');
+            const ctx = canvas.getContext('2d');
+            canvas.width = container.offsetWidth; canvas.height = container.offsetHeight;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = '#cbd5e1'; ctx.lineWidth = 1; ctx.setLineDash([5, 5]);
+            const core = document.getElementById('node-core').getBoundingClientRect();
+            const contRect = container.getBoundingClientRect();
+            const cx = (core.left - contRect.left) + core.width/2;
+            const cy = (core.top - contRect.top) + core.height/2;
+            ['node-mkt','node-ing','node-wage','node-menu','node-frz','node-kit'].forEach(id => {
+                const el = document.getElementById(id).getBoundingClientRect();
+                ctx.beginPath();
+                ctx.moveTo((el.left - contRect.left) + el.width/2, (el.top - contRect.top) + el.height/2);
+                ctx.lineTo(cx, cy); ctx.stroke();
+            });
+        }
+
+        function changeWater(amt) {
+            const level = document.getElementById('lab-water');
+            let curr = parseInt(level.style.height);
+            level.style.height = Math.max(0, Math.min(100, curr + amt)) + "%";
+        }
+
+        function filterTable() {
+            const input = document.getElementById("compSearch");
+            const filter = input.value.toUpperCase();
+            const table = document.getElementById("compTableBody");
+            const tr = table.getElementsByTagName("tr");
+
+            for (let i = 0; i < tr.length; i++) {
+                const tdCompany = tr[i].getElementsByTagName("td")[0];
+                const tdComp = tr[i].getElementsByTagName("td")[1];
+                const tdEx = tr[i].getElementsByTagName("td")[2];
+                if (tdCompany || tdComp || tdEx) {
+                    const txtValue = (tdCompany.textContent + tdComp.textContent + tdEx.textContent).toUpperCase();
+                    if (txtValue.indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function toggleStrategy(id) {
+            const el = document.getElementById(id);
+            if (el.classList.contains('hidden')) {
+                el.classList.remove('hidden');
+                el.classList.add('animate-fade-in');
+            } else {
+                el.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>

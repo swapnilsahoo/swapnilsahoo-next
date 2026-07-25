@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Swapnil Sahoo | Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            background: #f6f8fa;
+            color: #222;
+        }
+        nav {
+            background: #283593;
+            text-align: center;
+            padding: 10px 0;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 1em;
+            transition: color 0.2s;
+        }
+        nav a:hover {
+            color: #ffd600;
+        }
+        header {
+            background: #1a237e;
+            color: #fff;
+            padding: 40px 0 20px 0;
+            text-align: center;
+            margin-top: 80px;
+        }
+        header img {
+            width: 130px;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(40,53,147,0.15);
+            margin-bottom: 18px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            letter-spacing: 2px;
+        }
+        header p {
+            margin: 10px 0 0 0;
+            font-size: 1.2em;
+            font-weight: 300;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            border-radius: 8px;
+            padding: 30px;
+        }
+        section {
+            margin-bottom: 40px;
+        }
+        h2 {
+            color: #1a237e;
+            margin-bottom: 18px;
+            font-size: 1.5em;
+            border-bottom: 2px solid #e3e3e3;
+            padding-bottom: 6px;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        .exp, .edu {
+            margin-bottom: 18px;
+        }
+        .exp-title, .edu-title {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .exp-company, .edu-inst {
+            color: #283593;
+            font-style: italic;
+        }
+        .exp-date, .edu-date {
+            float: right;
+            color: #757575;
+            font-size: 0.95em;
+        }
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .skill {
+            background: #e8eaf6;
+            color: #1a237e;
+            padding: 7px 16px;
+            border-radius: 20px;
+            font-size: 1em;
+        }
+        .contact-info {
+            font-size: 1.1em;
+        }
+        .contact-info a {
+            color: #1a237e;
+            text-decoration: underline;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            header h1 {
+                font-size: 1.5em;
+            }
+            nav a {
+                margin: 0 8px;
+                font-size: 0.95em;
+            }
+        }
+        /* Add styles for the new navbar */
+        .bg-white {
+            background-color: #fff;
+        }
+        .shadow-md {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+        }
+        .top-0 {
+            top: 0;
+        }
+        .left-0 {
+            left: 0;
+        }
+        .z-50 {
+            z-index: 50;
+        }
+        .max-w-6xl {
+            max-width: 72rem;
+        }
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .px-4 {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        .py-3 {
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+        }
+        .flex {
+            display: flex;
+        }
+        .items-center {
+            align-items: center;
+        }
+        .justify-between {
+            justify-content: space-between;
+        }
+        .hidden {
+            display: none;
+        }
+        .sm\:inline-block {
+            display: inline-block;
+        }
+        .bg-blue-600 {
+            background-color: #2563EB;
+        }
+        .hover\:bg-blue-700:hover {
+            background-color: #1D4ED8;
+        }
+        .text-white {
+            color: #fff;
+        }
+        .font-bold {
+            font-weight: 700;
+        }
+        .py-2 {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+        .px-4 {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        .rounded-lg {
+            border-radius: 0.5rem;
+        }
+        .text-sm {
+            font-size: 0.875rem;
+        }
+        .transition-colors {
+            transition-property: background-color, border-color, color, fill, stroke;
+            transition-duration: 300ms;
+        }
+        .duration-300 {
+            transition-duration: 300ms;
+        }
+        .shadow-md {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .space-y-2 > * {
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .absolute {
+            position: absolute;
+        }
+        .top-14 {
+            top: 3.5rem;
+        }
+        .left-0 {
+            left: 0;
+        }
+        .w-full {
+            width: 100%;
+        }
+        .sm\:w-auto {
+            width: auto;
+        }
+        .bg-white {
+            background-color: #fff;
+        }
+        .sm\:bg-transparent {
+            background-color: transparent;
+        }
+        .shadow-md {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .sm\:shadow-none {
+            box-shadow: none;
+        }
+        .z-50 {
+            z-index: 50;
+        }
+        .sm\:z-auto {
+            z-index: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Add a creative navbar and profile image to your portfolio -->
+    <!-- Add this after <body> and before <header> -->
+    <nav class="bg-white shadow-md fixed w-full top-0 left-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+            <!-- Brand Button -->
+            <div class="w-full flex justify-center">
+                <a href="https://www.greatlakes.edu.in/faculty/swapnil-sahoo" target="_blank"  class="hidden sm:inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg text-sm transition-colors duration-300 shadow-md">
+                    Assistant Professor – Strategy & Entrepreneurship, Great Lakes Institute of Management
+                </a>
+            </div>
+            <!-- Mobile Brand Button -->
+           
+           
+            <!-- Navigation Links -->
+            <div id="nav-menu" class="hidden sm:flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 absolute sm:static top-14 left-0 w-full sm:w-auto bg-white sm:bg-transparent shadow-md sm:shadow-none z-50 sm:z-auto">
+                <a href="#about" class="bg-blue-600 text-white font-medium px-5 py-2 rounded-lg shadow hover:bg-blue-700 transition-colors text-base">About</a>
+                <a href="#experience" class="bg-blue-600 text-white font-medium px-5 py-2 rounded-lg shadow hover:bg-blue-700 transition-colors text-base">Experience</a>
+                <a href="#education" class="bg-blue-600 text-white font-medium px-5 py-2 rounded-lg shadow hover:bg-blue-700 transition-colors text-base">Education</a>
+                <a href="#skills" class="bg-blue-600 text-white font-medium px-5 py-2 rounded-lg shadow hover:bg-blue-700 transition-colors text-base">Skills</a>
+                <a href="#contact" class="bg-blue-600 text-white font-medium px-5 py-2 rounded-lg shadow hover:bg-blue-700 transition-colors text-base">Contact</a>
+                <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" class="bg-blue-600 text-white font-medium px-5 py-2 rounded-lg shadow hover:bg-blue-700 transition-colors text-base">LinkedIn</a>
+                <a href="https://x.com/swapnilsahoo" target="_blank" class="bg-blue-600 text-white font-medium px-5 py-2 rounded-lg shadow hover:bg-blue-700 transition-colors text-base">X</a>
+            </div>
+        </div>
+    </nav>
+    <script>
+        // Simple JS for toggling mobile nav
+        const navToggle = document.getElementById('nav-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        navToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('hidden');
+        });
+    </script>
+    <header>
+        <img src="assets/profile_pic.jpg" alt="Swapnil Sahoo">
+        <h1>Swapnil Sahoo</h1>
+        <p>Corporate & Academic Professional</p>
+    </header>
+    <div class="container">
+        <section id="about">
+            <h2>About</h2>
+            <p>
+                Seasoned Leader with over 17 years in Partnership Strategy, Relationship Management & Technology
+
+
+            </p>
+        </section>
+        <section id="experience">
+            <h2>Experience</h2>
+            <div class="exp">
+                <span class="exp-title">Senior Project Manager</span>
+                <span class="exp-date">2022 - Present</span><br>
+                <span class="exp-company">ABC Corporation</span>
+                <ul>
+                    <li>Led cross-functional teams to deliver high-impact projects on time and within budget.</li>
+                    <li>Implemented process improvements resulting in 15% efficiency gains.</li>
+                </ul>
+            </div>
+            <div class="exp">
+                <span class="exp-title">Assistant Professor</span>
+                <span class="exp-date">2018 - 2022</span><br>
+                <span class="exp-company">XYZ University</span>
+                <ul>
+                    <li>Taught undergraduate and postgraduate courses in management and technology.</li>
+                    <li>Published research papers in reputed journals.</li>
+                </ul>
+            </div>
+            <!-- Add more experiences as needed -->
+        </section>
+        <section id="education">
+            <h2>Education</h2>
+            <div class="edu">
+                <span class="edu-title">Ph.D. in Management</span>
+                <span class="edu-date">2015 - 2018</span><br>
+                <span class="edu-inst">XYZ University</span>
+            </div>
+            <div class="edu">
+                <span class="edu-title">MBA in Operations</span>
+                <span class="edu-date">2013 - 2015</span><br>
+                <span class="edu-inst">ABC Institute of Management</span>
+            </div>
+            <!-- Add more education as needed -->
+        </section>
+        <section id="skills">
+            <h2>Skills</h2>
+            <div class="skills-list">
+                <span class="skill">Project Management</span>
+                <span class="skill">Research & Analysis</span>
+                <span class="skill">Leadership</span>
+                <span class="skill">Teaching</span>
+                <span class="skill">Data Analytics</span>
+                <span class="skill">Communication</span>
+                <!-- Add more skills as needed -->
+            </div>
+        </section>
+        <section id="contact">
+            <h2>Contact</h2>
+            <div class="contact-info">
+                <p>Email: <a href="mailto:swapnil.sahoo@email.com">swapnil.sahoo@email.com</a></p>
+                <p>LinkedIn: <a href="https://www.linkedin.com/in/swapnilsahoo" target="_blank">linkedin.com/in/swapnilsahoo</a></p>
+                <p>Location: City, Country</p>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

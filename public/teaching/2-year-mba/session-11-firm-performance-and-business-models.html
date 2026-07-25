@@ -1,0 +1,2146 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 11: Competitive Advantage & Performance | The Patagonia Case</title>
+    
+    <!-- Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- GRAND MASTER THEME ADAPTED FOR PATAGONIA CASE --- */
+        :root {
+            --primary-bg: #fdfbf7;      /* Warm paper white */
+            --primary-text: #1a1a1a;    /* Soft black */
+            --accent-color: #15803d;    /* Patagonia Green */
+            --accent-secondary: #0f172a; /* Slate */
+            --glass: rgba(255, 255, 255, 0.95);
+            --border-light: #e2e8f0;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--primary-text);
+            font-family: 'Satoshi', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .serif-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .mono-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Navigation Styles */
+        #main-header { position: sticky; top: 0; z-index: 40; transition: all 0.3s ease; }
+        .nav-link { position: relative; font-weight: 500; color: #64748b; transition: color 0.2s; text-decoration: none; }
+        .nav-link:hover, .nav-link.active { color: var(--accent-color); }
+        
+        .chess-logo {
+            width: 40px; height: 40px;
+            background: #15803d; /* Green for Patagonia Theme */
+            color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .group:hover .chess-logo { transform: rotate(10deg); background: #166534; }
+
+        /* Card & Panel Styles */
+        .glass-panel {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-light);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .card-panel {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-panel:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-bg {
+            background: radial-gradient(circle at 50% 0%, #f0fdf4 0%, #fdfbf7 70%);
+        }
+
+        /* Utilities */
+        .slider-thumb {
+            -webkit-appearance: none;
+            width: 100%; height: 6px;
+            background: #e2e8f0; border-radius: 3px; outline: none;
+        }
+        .slider-thumb::-webkit-slider-thumb {
+            -webkit-appearance: none; width: 20px; height: 20px;
+            border-radius: 50%; background: var(--accent-color);
+            cursor: pointer; transition: transform 0.1s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .slider-thumb::-webkit-slider-thumb:hover { transform: scale(1.2); }
+
+        .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        
+        .chart-container { position: relative; height: 300px; width: 100%; }
+        
+        /* Simulation Feedback Box */
+        .feedback-box {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            animation: fadeIn 0.3s ease-out;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* "Don't Buy" Ad Styles (Integrated) */
+        .ad-container {
+            background-color: #f1f1f1;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+        .hotspot {
+            position: absolute;
+            width: 20px; height: 20px;
+            background: rgba(239, 68, 68, 0.8);
+            border-radius: 50%;
+            cursor: pointer;
+            animation: pulse 2s infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            z-index: 20;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+
+        /* Simulation Specifics */
+        .sim-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #fff;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: left;
+            transition: all 0.2s;
+            width: 100%;
+        }
+        .sim-btn:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: #4ade80;
+        }
+
+        /* Comparative Context Box */
+        .context-box {
+            background: #f8fafc;
+            border-left: 3px solid #64748b;
+            padding: 1rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+            font-size: 0.85rem;
+        }
+        
+        /* New Styles for Governance Lab & Flip Cards */
+        .secret-card {
+            perspective: 1000px;
+        }
+        .secret-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .secret-card.flipped .secret-card-inner {
+            transform: rotateY(180deg);
+        }
+        .secret-front, .secret-back {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .secret-back {
+            transform: rotateY(180deg);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .impact-pill {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-green-100 selection:text-green-900">
+
+    <!-- Top Progress Bar -->
+    <div class="fixed top-0 left-0 w-full h-1 bg-slate-100 z-50">
+        <div id="progress-bar" class="h-full bg-green-700 w-0 transition-all duration-100 ease-out"></div>
+    </div>
+
+    <!-- HEADER / NAVIGATION -->
+    <nav id="main-header" class="bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Left: Logo Area -->
+            <a href="#" class="flex items-center gap-3 group no-underline">
+                <div class="chess-logo">
+                    <i class="fas fa-mountain"></i>
+                </div>
+                <div class="leading-tight">
+                    <h1 class="font-bold text-slate-900 tracking-tight text-xl">The Strategist's Lens</h1>
+                    <p class="text-[10px] text-green-700 font-bold uppercase tracking-widest">Session 11: Patagonia Case</p>
+                </div>
+            </a>
+            
+            <!-- Center: Navigation Links -->
+            <div class="hidden xl:flex space-x-6 text-sm font-medium">
+                <a href="#patagonia-case" class="nav-link text-green-700 font-bold">Case Study</a>
+                <a href="#governance" class="nav-link text-slate-900"><i class="fas fa-balance-scale text-blue-500 mr-1"></i>Governance Lab</a>
+                <a href="#paradox" class="nav-link text-slate-900"><i class="fas fa-bolt text-amber-500 mr-1"></i>The Paradox</a>
+                <a href="#gauntlet" class="nav-link text-amber-600 font-bold"><i class="fas fa-gamepad mr-1"></i> Sim</a>
+                <a href="#economic" class="nav-link">Economic Value</a>
+                <a href="#shareholder" class="nav-link">Shareholder</a>
+            </div>
+
+            <!-- Right: Social Icons -->
+            <div class="flex items-center gap-5">
+                <a href="https://swapnilsahoo.com" target="_blank" class="text-slate-400 hover:text-teal-600 transition-colors" title="Dr. Swapnil Sahoo Website">
+                    <i class="fas fa-globe"></i>
+                </a>
+                <a href="#" class="text-slate-400 hover:text-blue-400 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-slate-400 hover:text-pink-600 transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-slate-400 hover:text-blue-600 transition-colors"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.chess.com/member/theswapnilsahoo" target="_blank" class="text-slate-400 hover:text-green-600 transition-colors text-lg" title="Play Chess">
+                    <i class="fas fa-chess-king"></i>
+                </a>
+                <button class="xl:hidden text-slate-600"><i class="fas fa-bars text-xl"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="py-24 px-6 hero-bg border-b border-slate-100 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-green-50/50 rounded-l-full blur-3xl -z-10"></div>
+        <div class="max-w-6xl mx-auto w-full z-10 fade-up text-center"> 
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-green-200 bg-green-50 text-green-800 text-xs font-bold tracking-widest uppercase mb-6 shadow-sm">
+                <i class="fas fa-layer-group"></i> Session 11 Masterclass
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-8 text-slate-900 serif-font">
+                The Patagonia <span class="italic text-green-700">Paradox</span>
+            </h1>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto font-light leading-relaxed mb-10">
+                How does a company that tells you <em>"Don't Buy This Jacket"</em> generate superior economic value? We deconstruct competitive advantage using 2025 Financial Data, Economic Wedges, and the Triple Bottom Line.
+            </p>
+            
+            <!-- Context Injection -->
+            <div class="max-w-3xl mx-auto bg-white/80 backdrop-blur rounded-xl p-4 border border-slate-100 shadow-sm text-sm text-slate-600 mb-8">
+                <i class="fas fa-graduation-cap text-green-700 mr-2"></i>
+                <strong>Session 11: Shared Value & Competitive Advantage</strong>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-12 space-y-32">
+
+        <!-- CHAPTER OBJECTIVES SECTION -->
+        <section id="objectives" class="fade-up">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-serif text-slate-900 font-bold mb-4">Learning Objectives</h2>
+                <p class="text-slate-500">Key competencies for today's session</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- LO 11-1 -->
+                <div class="bg-white p-6 rounded-xl border border-slate-100 hover:border-slate-300 transition shadow-sm group">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">LO 11-1</span>
+                        <i class="fas fa-scale-balanced text-slate-300 group-hover:text-green-600 transition"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-sm mb-2">Capitalism Models</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Compare and contrast shareholder capitalism and stakeholder capitalism while highlighting the strengths and weaknesses of each.</p>
+                </div>
+
+                <!-- LO 11-2 -->
+                <div class="bg-white p-6 rounded-xl border border-slate-100 hover:border-slate-300 transition shadow-sm group">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">LO 11-2</span>
+                        <i class="fas fa-hand-holding-heart text-slate-300 group-hover:text-green-600 transition"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-sm mb-2">CSR vs. CSV</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Explain the shift in emphasis from corporate social responsibility (CSR) to creating shared value (CSV).</p>
+                </div>
+
+                <!-- LO 11-3 -->
+                <div class="bg-white p-6 rounded-xl border border-slate-100 hover:border-slate-300 transition shadow-sm group">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">LO 11-3</span>
+                        <i class="fas fa-file-invoice-dollar text-slate-300 group-hover:text-green-600 transition"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-sm mb-2">Accounting Metrics</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Appraise accounting metrics and shareholder value creation as measures of competitive advantage.</p>
+                </div>
+
+                <!-- LO 11-4 -->
+                <div class="bg-white p-6 rounded-xl border border-slate-100 hover:border-slate-300 transition shadow-sm group">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">LO 11-4</span>
+                        <i class="fas fa-chart-line text-slate-300 group-hover:text-green-600 transition"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-sm mb-2">Economic Value Linkages</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Link economic value creation to different sources of competitive advantage.</p>
+                </div>
+
+                <!-- LO 11-5 -->
+                <div class="bg-white p-6 rounded-xl border border-slate-100 hover:border-slate-300 transition shadow-sm group">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">LO 11-5</span>
+                        <i class="fas fa-list-check text-slate-300 group-hover:text-green-600 transition"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-sm mb-2">The Balanced Scorecard</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Apply a balanced scorecard to assess and evaluate competitive advantage.</p>
+                </div>
+
+                <!-- LO 11-6 -->
+                <div class="bg-white p-6 rounded-xl border border-slate-100 hover:border-slate-300 transition shadow-sm group">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">LO 11-6</span>
+                        <i class="fas fa-recycle text-slate-300 group-hover:text-green-600 transition"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-sm mb-2">Triple Bottom Line</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Apply a triple bottom line to assess and evaluate competitive advantage.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PATAGONIA CASE STUDY & FINANCIALS -->
+        <section id="patagonia-case" class="fade-up">
+            <!-- TRIGGER QUESTION -->
+            <div class="mb-6 bg-slate-900 text-white p-4 rounded-lg inline-block shadow-lg">
+                <i class="fas fa-question-circle text-green-400 mr-2"></i>
+                <span class="font-serif italic text-lg">Can a company survive if its primary shareholder is a non-human entity?</span>
+            </div>
+
+            <div class="flex items-end gap-4 mb-10 border-b border-slate-200 pb-6">
+                <span class="text-6xl font-serif text-slate-200">00</span>
+                <div class="pb-2">
+                    <h2 class="text-3xl font-serif text-slate-900 font-bold">Case Study: Earth is Now Our Only Shareholder</h2>
+                    <p class="text-slate-500">Patagonia 2025 Impact Report Analysis</p>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 mb-12">
+                <!-- Text Narrative -->
+                <div class="lg:col-span-4 space-y-6">
+                    <div class="prose text-slate-600 leading-relaxed text-sm">
+                        <p>
+                            In late 2022, Yvon Chouinard transferred ownership of Patagonia (valued at ~$3 billion) to the <strong>Holdfast Collective</strong>. This move defied traditional shareholder capitalism. Instead of maximizing wealth for a family, all profits not reinvested in the business are now distributed as dividends to protect nature.
+                        </p>
+                        
+                        <!-- Comparative Context -->
+                        <div class="context-box bg-blue-50 border-blue-300 mt-4">
+                            <h5 class="font-bold text-blue-900 mb-1 text-xs uppercase tracking-widest">Global vs. Indian Context</h5>
+                            <p class="text-slate-700 text-xs leading-relaxed">
+                                <strong>Global:</strong> IKEA is similarly owned by the <em>Stichting Ingka Foundation</em> to prevent takeovers and tax liabilities.<br><br>
+                                <strong>India:</strong> The <strong>Tata Group</strong> operates on a similar "Trust" model. ~66% of Tata Sons is held by philanthropic trusts (Sir Ratan Tata Trust, etc.), ensuring profits fund social good, much like Patagonia's Holdfast Collective.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visuals Column 1: Revenue -->
+                <div class="lg:col-span-5">
+                    <div class="card-panel p-6 h-full">
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Estimated Revenue Growth (FY20-FY25)</h4>
+                        <div class="chart-container h-64">
+                            <canvas id="patagoniaRevChart"></canvas>
+                        </div>
+                        <p class="text-[10px] text-slate-400 text-center mt-2 italic">*Data sourced from 2025 Impact Report & disclosures.</p>
+                    </div>
+                </div>
+
+                <!-- Visuals Column 2: Impact -->
+                <div class="lg:col-span-3 space-y-4">
+                    <!-- Stat Card 1 -->
+                    <div class="bg-slate-900 text-white p-5 rounded-xl border border-slate-800 shadow-lg relative overflow-hidden group">
+                        <div class="absolute right-0 top-0 w-24 h-24 bg-green-500 rounded-full blur-3xl opacity-20 group-hover:opacity-30 transition-opacity"></div>
+                        <h5 class="text-green-400 font-bold text-xs uppercase tracking-widest mb-1">Holdfast Dividends</h5>
+                        <div class="text-3xl font-serif font-bold mb-1">$180M</div>
+                        <p class="text-[10px] text-slate-400">Paid to Earth (Sept '22 - Apr '25)</p>
+                    </div>
+                    
+                    <!-- Stat Card 2 -->
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden">
+                        <h5 class="text-blue-600 font-bold text-xs uppercase tracking-widest mb-1">1% for the Planet</h5>
+                        <div class="text-2xl font-serif font-bold text-slate-900 mb-1">$14.7M</div>
+                        <p class="text-[10px] text-slate-500">Donated in FY2025 alone</p>
+                    </div>
+
+                    <!-- Stat Card 3 -->
+                    <div class="bg-orange-50 p-5 rounded-xl border border-orange-100 shadow-sm">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i class="fas fa-recycle text-orange-500"></i>
+                            <h5 class="text-orange-800 font-bold text-xs uppercase tracking-widest">Worn Wear (Circular)</h5>
+                        </div>
+                        <div class="flex justify-between items-end border-b border-orange-200 pb-2 mb-2">
+                            <span class="text-xs text-orange-700">Revenue</span>
+                            <span class="font-bold text-slate-900">$13M</span>
+                        </div>
+                        <div class="flex justify-between items-end">
+                            <span class="text-xs text-orange-700">Repairs</span>
+                            <span class="font-bold text-slate-900">174,799</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- THE GOVERNANCE LAB (SIMULATION) -->
+        <section id="governance" class="fade-up">
+            <div class="mb-6 bg-slate-900 text-white p-4 rounded-lg inline-block shadow-lg">
+                <i class="fas fa-chess-queen text-purple-400 mr-2"></i>
+                <span class="font-serif italic text-lg">Who should control the kitchen: the chef, or the person who owns the cash register?</span>
+            </div>
+
+            <div class="flex items-end gap-4 mb-8 border-b border-slate-200 pb-6">
+                <span class="text-6xl font-serif text-slate-200">00.2</span>
+                <div class="pb-2">
+                    <h2 class="text-3xl font-serif text-slate-900 font-bold">The Governance Lab</h2>
+                    <p class="text-slate-500">Architecting the "Purpose Trust" Structure</p>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-10">
+                <!-- Theory Column (Interactive Cards) -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="prose text-slate-600 leading-relaxed text-sm">
+                        <p class="mb-4">To secure the mission forever, Chouinard split the company into two entities, solving a fatal flaw in capitalism using the <strong>"Kitchen vs. Cash Register"</strong> framework:</p>
+                        
+                        <!-- Kitchen Card -->
+                        <div class="group relative bg-white p-6 rounded-xl border border-purple-100 hover:border-purple-300 shadow-sm hover:shadow-md transition-all cursor-default overflow-hidden">
+                            <div class="absolute -right-6 -top-6 w-20 h-20 bg-purple-50 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+                                        <i class="fas fa-utensils text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-purple-900 leading-none">1. The Kitchen</h4>
+                                        <span class="text-[10px] font-mono text-purple-500 uppercase tracking-wider">The Purpose Trust</span>
+                                    </div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex justify-between text-xs border-b border-purple-50 pb-1">
+                                        <span class="text-slate-500">Asset</span>
+                                        <span class="font-bold text-slate-800">100% Voting Rights</span>
+                                    </div>
+                                    <div class="flex justify-between text-xs border-b border-purple-50 pb-1">
+                                        <span class="text-slate-500">Power</span>
+                                        <span class="font-bold text-slate-800">Decide Menu & Hiring</span>
+                                    </div>
+                                    <div class="flex justify-between text-xs">
+                                        <span class="text-slate-500">Cost</span>
+                                        <span class="font-bold text-red-500">$17.5M Gift Tax</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Register Card -->
+                        <div class="group relative bg-white p-6 rounded-xl border border-green-100 hover:border-green-300 shadow-sm hover:shadow-md transition-all cursor-default overflow-hidden">
+                            <div class="absolute -right-6 -top-6 w-20 h-20 bg-green-50 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                        <i class="fas fa-cash-register text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-green-900 leading-none">2. The Register</h4>
+                                        <span class="text-[10px] font-mono text-green-500 uppercase tracking-wider">Holdfast Collective</span>
+                                    </div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex justify-between text-xs border-b border-green-50 pb-1">
+                                        <span class="text-slate-500">Asset</span>
+                                        <span class="font-bold text-slate-800">98% Economic Rights</span>
+                                    </div>
+                                    <div class="flex justify-between text-xs border-b border-green-50 pb-1">
+                                        <span class="text-slate-500">Function</span>
+                                        <span class="font-bold text-slate-800">Receive Dividends</span>
+                                    </div>
+                                    <div class="flex justify-between text-xs">
+                                        <span class="text-slate-500">Control</span>
+                                        <span class="font-bold text-slate-400">Zero Votes</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Simulation Column -->
+                <div class="lg:col-span-7">
+                    <div class="card-panel p-8 bg-slate-900 text-white shadow-2xl relative overflow-hidden h-full flex flex-col">
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-purple-600 rounded-full blur-[100px] opacity-20"></div>
+                        <div class="relative z-10 flex-1 flex flex-col">
+                            <div class="flex justify-between items-start mb-6">
+                                <div>
+                                    <h3 class="font-bold text-xl text-white flex items-center gap-2">
+                                        <i class="fas fa-shield-alt text-green-400"></i> The Founder's Fortress
+                                    </h3>
+                                    <p class="text-slate-400 text-xs mt-1">Configure ownership to survive Stress Tests.</p>
+                                </div>
+                                <div class="bg-slate-800 px-3 py-1 rounded text-[10px] font-mono border border-slate-700">
+                                    SURVIVAL CHANCE: <span id="survival-rate" class="text-white font-bold">0%</span>
+                                </div>
+                            </div>
+
+                            <!-- Controls -->
+                            <div class="space-y-6 mb-8 bg-slate-800/50 p-4 rounded-xl border border-slate-700">
+                                <!-- Voting Power Slider -->
+                                <div>
+                                    <div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-2">
+                                        <span class="text-purple-400 flex items-center gap-2"><i class="fas fa-gavel"></i> Voting Power</span>
+                                        <span class="text-white" id="vote-display">Trust: 50% | Collective: 50%</span>
+                                    </div>
+                                    <input type="range" id="sim-vote" min="0" max="100" value="50" class="slider-thumb w-full" oninput="runGovernanceSim()">
+                                </div>
+
+                                <!-- Economic Rights Slider -->
+                                <div>
+                                    <div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-2">
+                                        <span class="text-green-400 flex items-center gap-2"><i class="fas fa-coins"></i> Economic Rights</span>
+                                        <span class="text-white" id="money-display">Trust: 50% | Collective: 50%</span>
+                                    </div>
+                                    <input type="range" id="sim-money" min="0" max="100" value="50" class="slider-thumb w-full" oninput="runGovernanceSim()">
+                                </div>
+                            </div>
+
+                            <!-- Stress Test Buttons -->
+                            <div class="grid grid-cols-3 gap-3 mb-6">
+                                <button onclick="triggerStressTest('hostile')" class="p-2 bg-slate-700 hover:bg-red-900/50 border border-slate-600 hover:border-red-500 rounded text-[10px] font-bold uppercase tracking-wide transition-all text-center group">
+                                    <i class="fas fa-skull text-xl block mb-1 group-hover:text-red-400"></i> Hostile Takeover
+                                </button>
+                                <button onclick="triggerStressTest('family')" class="p-2 bg-slate-700 hover:bg-orange-900/50 border border-slate-600 hover:border-orange-500 rounded text-[10px] font-bold uppercase tracking-wide transition-all text-center group">
+                                    <i class="fas fa-users text-xl block mb-1 group-hover:text-orange-400"></i> Greedy Heirs
+                                </button>
+                                <button onclick="triggerStressTest('irs')" class="p-2 bg-slate-700 hover:bg-blue-900/50 border border-slate-600 hover:border-blue-500 rounded text-[10px] font-bold uppercase tracking-wide transition-all text-center group">
+                                    <i class="fas fa-building text-xl block mb-1 group-hover:text-blue-400"></i> IRS Audit
+                                </button>
+                            </div>
+
+                            <!-- Feedback Area -->
+                            <div id="gov-feedback" class="flex-1 bg-black/20 p-4 rounded-lg border border-slate-700/50 text-sm leading-relaxed flex items-center justify-center text-center italic text-slate-500 min-h-[100px]">
+                                <span id="feedback-text">Adjust sliders then click a Stress Test to simulate future resilience.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 0.5: THE STRATEGIC PARADOX -->
+        <section id="paradox" class="fade-up">
+            <div class="mb-6 bg-slate-900 text-white p-4 rounded-lg inline-block shadow-lg">
+                <i class="fas fa-question-circle text-amber-500 mr-2"></i>
+                <span class="font-serif italic text-lg">Why does telling customers *not* to buy your product make them want it more?</span>
+            </div>
+
+            <div class="flex items-end gap-4 mb-8 border-b border-slate-200 pb-6">
+                <span class="text-6xl font-serif text-slate-200">00.5</span>
+                <div class="pb-2">
+                    <h2 class="text-3xl font-serif text-slate-900 font-bold">The Strategic Paradox</h2>
+                    <p class="text-slate-500">The "Don't Buy This Jacket" Campaign (Black Friday 2011)</p>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-10 items-start">
+                <!-- LEFT COL: The Ad Replica -->
+                <div class="lg:col-span-6 space-y-6">
+                    <div id="ad-prediction" class="bg-amber-50 border border-amber-200 p-4 rounded-lg text-center">
+                        <p class="text-sm font-bold text-amber-800 mb-2">Hypothesis Check: If you run this ad on Black Friday, what happens to sales?</p>
+                        <div class="flex justify-center gap-3">
+                            <button onclick="revealAdResult('drop')" class="bg-white border border-amber-300 text-amber-900 px-4 py-2 rounded text-xs font-bold hover:bg-amber-100">Drop 50%</button>
+                            <button onclick="revealAdResult('rise')" class="bg-white border border-amber-300 text-amber-900 px-4 py-2 rounded text-xs font-bold hover:bg-amber-100">Rise 30%</button>
+                        </div>
+                        <p id="ad-result" class="hidden mt-3 text-xs text-slate-600 italic">Correct. Sales rose 30%. This is the <strong>Streisand Effect</strong> applied to marketing.</p>
+                    </div>
+
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-slate-200 to-slate-100 rounded-lg blur opacity-50 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                        <div class="ad-container relative bg-white border border-slate-300 shadow-2xl rounded-sm transform rotate-1 group-hover:rotate-0 transition-transform duration-500">
+                            <!-- Hotspots -->
+                            <div class="hotspot z-10" style="top: 15%; left: 50%; transform: translateX(-50%);" title="The Hook" onmouseover="showInsight('hook')">1</div>
+                            <div class="hotspot z-10" style="top: 70%; left: 30%;" title="The Transparency" onmouseover="showInsight('transparency')">2</div>
+                            <div class="hotspot z-10" style="top: 85%; left: 70%;" title="The Call to Action" onmouseover="showInsight('cta')">3</div>
+
+                            <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*x2njyco0GL1W1-zOMAPhYQ.jpeg" alt="Don't Buy This Jacket Full Ad" class="w-full h-auto block">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT COL: Analysis Panel -->
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="bg-white p-8 rounded-xl border border-slate-200 shadow-lg h-full">
+                        <h4 class="font-bold text-xl text-slate-900 mb-6 font-serif">Signaling Theory & Reverse Psychology</h4>
+                        
+                        <div class="prose prose-sm text-slate-600 leading-relaxed space-y-4 h-[500px] overflow-y-auto pr-2 custom-scrollbar">
+                            <p class="italic border-l-2 border-green-500 pl-4 bg-green-50/50 py-2 rounded-r-md">
+                                "So back in 6th grade, there was this one girl who was really mad at me because she thought I liked her. Ironically, it was because I was showing just how uninterested I was. I was like, what the heck? Funny enough, that's exactly the case with Patagonia — a company that grew because it didn't want to."
+                            </p>
+                            
+                            <h5 class="font-bold text-slate-800 pt-2">The Beginning</h5>
+                            <p>Patagonia started as a climbing equipment company. Their founder, Yvon Chouinard, is an avid climber himself. From the start, Patagonia's aim was to create environmentally friendly, long-lasting, and sustainable clothing. In 1985, they started the "1% for the Planet" campaign, donating 1% of yearly profit to environmental care.</p>
+
+                            <h5 class="font-bold text-slate-800 pt-2">Don't Buy This Jacket</h5>
+                            <p>In 2011, they launched a marketing campaign that would change the world forever. It was the "Don't Buy This Jacket" campaign. It was a Black Friday campaign aimed to raise awareness of the fast consumerism happening around the holiday season.</p>
+                            
+                            <!-- Context Injection -->
+                            <div class="bg-amber-50 p-4 border-l-4 border-amber-400 rounded-r text-xs mb-4">
+                                <strong>Comparison: Zerodha (India)</strong><br>
+                                Much like Patagonia discourages mindless buying, Indian broker <strong>Zerodha</strong> actively discourages over-trading. CEO Nithin Kamath frequently blogs about how "Active trading is injurious to wealth." This "Don't Trade" stance builds immense trust, making them the largest broker despite spending $0 on advertising.
+                            </div>
+
+                            <h5 class="font-bold text-slate-800 pt-2">The Effects (The Paradox)</h5>
+                            <p>Surprisingly, that worked in reverse. Although the campaign's goal was not to sell the item but to raise awareness, a <strong>30% increase in sales</strong> was seen after the campaign.</p>
+                        </div>
+                        
+                        <!-- Dynamic Insight Box -->
+                        <div id="signal-insight" class="mt-6 min-h-[80px] text-xs text-slate-500 italic bg-amber-50 border border-amber-100 p-3 rounded-lg flex items-start gap-3">
+                            <i class="fas fa-lightbulb text-amber-500 mt-1"></i>
+                            <div>
+                                <strong>Interactive Insight:</strong> Hover over the red hotspots on the image (left) to decode the strategic psychology behind this campaign.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: THE STEWARDSHIP GAUNTLET (SIMULATION) -->
+        <section id="gauntlet" class="fade-up">
+            <div class="bg-slate-900 rounded-2xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-green-600 rounded-full blur-[100px] opacity-20"></div>
+                
+                <div class="relative z-10">
+                    <div class="text-center max-w-3xl mx-auto mb-12">
+                        <span class="bg-green-600 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-4 inline-block">Multi-Level Simulation</span>
+                        <h2 class="text-4xl font-serif font-bold mb-4">The Stewardship Gauntlet</h2>
+                        <p class="text-slate-300">
+                            Walk in Chouinard's boots across 4 decades. Every decision pits <strong>Profit</strong> against <strong>Purpose</strong>. Can you build a billion-dollar brand without selling your soul?
+                        </p>
+                    </div>
+
+                    <!-- Simulation Interface -->
+                    <div id="sim-container" class="max-w-4xl mx-auto">
+                        <!-- Start Screen -->
+                        <div id="sim-start" class="text-center">
+                            <div class="grid grid-cols-3 gap-4 mb-8 max-w-lg mx-auto text-xs font-mono text-slate-400">
+                                <div class="bg-slate-800 p-3 rounded">LEVEL 1: 1994</div>
+                                <div class="bg-slate-800 p-3 rounded">LEVEL 2: 2011</div>
+                                <div class="bg-slate-800 p-3 rounded">LEVEL 3: 2022</div>
+                            </div>
+                            <button onclick="startGauntlet()" class="bg-white text-slate-900 hover:bg-green-500 hover:text-white font-bold py-4 px-10 rounded-full transition-all transform hover:scale-105 shadow-lg">
+                                Begin the Journey <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+
+                        <!-- Gameplay Screen -->
+                        <div id="sim-game" class="hidden">
+                            <div class="flex justify-between items-center mb-6 text-xs font-bold uppercase tracking-widest text-slate-400 border-b border-slate-700 pb-4">
+                                <span id="sim-year">Year: 1994</span>
+                                <div class="flex gap-4">
+                                    <span>Mission: <span id="sim-score-mission" class="text-green-400">100</span></span>
+                                    <span>Capital: <span id="sim-score-capital" class="text-blue-400">100</span></span>
+                                </div>
+                            </div>
+                            
+                            <h3 id="sim-question" class="text-2xl font-serif font-bold mb-4">The Question</h3>
+                            <p id="sim-context" class="text-slate-300 mb-8 leading-relaxed">Context goes here.</p>
+
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <button onclick="makeChoice(0)" class="sim-btn group">
+                                    <span class="block font-bold text-white group-hover:text-green-300 mb-1">Option A</span>
+                                    <span id="btn-a-text" class="text-sm text-slate-400">Description A</span>
+                                </button>
+                                <button onclick="makeChoice(1)" class="sim-btn group">
+                                    <span class="block font-bold text-white group-hover:text-green-300 mb-1">Option B</span>
+                                    <span id="btn-b-text" class="text-sm text-slate-400">Description B</span>
+                                </button>
+                            </div>
+
+                            <div id="sim-feedback" class="feedback-box bg-slate-800 border border-slate-700 mt-6 hidden"></div>
+                            
+                            <button id="sim-next" onclick="nextLevel()" class="hidden mt-6 bg-green-600 text-white py-2 px-6 rounded-lg font-bold hover:bg-green-700 transition-all">Next Era <i class="fas fa-forward ml-2"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: GROUP ACTIVITY (UPDATED) -->
+        <section id="activity" class="fade-up pt-16">
+            <div class="mb-10 text-center">
+                <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-4 inline-block">Social Lab</span>
+                <h2 class="text-3xl font-serif text-slate-900 font-bold">Collaborative Strategy</h2>
+                <p class="text-slate-500">Apply the theories of Agency and Shared Value in these group scenarios.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8 mb-12">
+                <!-- Activity 1: The 1% Council -->
+                <div class="card-panel p-8 bg-amber-50 border-amber-200 relative overflow-hidden">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="bg-amber-100 text-amber-700 w-10 h-10 rounded-full flex items-center justify-center text-xl"><i class="fas fa-vote-yea"></i></div>
+                        <div>
+                            <h3 class="font-bold text-slate-900">The 1% Council: Strategic Impact Matrix</h3>
+                            <p class="text-[10px] text-slate-500 font-mono uppercase tracking-widest">Multi-Criteria Decision Analysis</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-700 mb-6">
+                        <strong>Directive:</strong> Evaluate options against: 
+                        <span class="impact-pill bg-white text-slate-600 border border-slate-200">Additionality</span>
+                        <span class="impact-pill bg-white text-slate-600 border border-slate-200">Scalability</span>
+                        <span class="impact-pill bg-white text-slate-600 border border-slate-200">Irreversibility</span>
+                    </p>
+                    <div class="space-y-3">
+                        <button onclick="voteCouncil('pol')" class="w-full text-left p-3 bg-white border border-amber-100 rounded text-sm text-slate-600 hover:shadow-md hover:border-amber-400 transition group">
+                            <strong class="text-amber-700 block mb-1">A. Political Action (High Risk)</strong>
+                            <div class="text-xs text-slate-500 mb-2">Counter: "If we lose, we burn $20M."</div>
+                            <span class="text-[10px] font-bold text-amber-500 uppercase tracking-wider">Lens: 501(c)(4) Mandate</span>
+                            <div id="res-pol" class="hidden mt-2 pt-2 border-t border-amber-100 text-xs text-slate-600 italic">
+                                <strong>Impact:</strong> High Additionality. 501(c)(3)s cannot take this risk. We have a moral obligation to use our political capital.
+                            </div>
+                        </button>
+                        <button onclick="voteCouncil('con')" class="w-full text-left p-3 bg-white border border-amber-100 rounded text-sm text-slate-600 hover:shadow-md hover:border-amber-400 transition group">
+                            <strong class="text-amber-700 block mb-1">B. Conservation (Safe Asset)</strong>
+                            <div class="text-xs text-slate-500 mb-2">Counter: "Static solution to dynamic crisis."</div>
+                            <span class="text-[10px] font-bold text-amber-500 uppercase tracking-wider">Lens: Asset Management</span>
+                            <div id="res-con" class="hidden mt-2 pt-2 border-t border-amber-100 text-xs text-slate-600 italic">
+                                <strong>Impact:</strong> High Irreversibility. We act as stewards, preventing land seizure by future regimes.
+                            </div>
+                        </button>
+                        <button onclick="voteCouncil('rnd')" class="w-full text-left p-3 bg-white border border-amber-100 rounded text-sm text-slate-600 hover:shadow-md hover:border-amber-400 transition group">
+                            <strong class="text-amber-700 block mb-1">C. Systemic R&D (Long Term)</strong>
+                            <div class="text-xs text-slate-500 mb-2">Counter: "10 years is too slow."</div>
+                            <span class="text-[10px] font-bold text-amber-500 uppercase tracking-wider">Lens: Shared Value</span>
+                            <div id="res-rnd" class="hidden mt-2 pt-2 border-t border-amber-100 text-xs text-slate-600 italic">
+                                <strong>Impact:</strong> High Scalability. We can license this technology for free to competitors to force an industry-wide shift.
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Activity 2: The Hostile Bid (Flip Cards) -->
+                <div class="card-panel p-8 bg-blue-50 border-blue-200 relative overflow-hidden">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="bg-blue-100 text-blue-700 w-10 h-10 rounded-full flex items-center justify-center text-xl"><i class="fas fa-gavel"></i></div>
+                        <div>
+                            <h3 class="font-bold text-slate-900">Roleplay: The Fiduciary Face-Off</h3>
+                            <p class="text-[10px] text-slate-500 font-mono uppercase tracking-widest">Derivative Lawsuit Threat</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-700 mb-6">
+                        <strong>Crisis:</strong> PE Firm threatens lawsuit, claiming Board is "wastefully" ignoring 3x premium. 
+                        <em class="text-blue-600 text-xs block mt-1">Click cards to reveal Private Tactics.</em>
+                    </p>
+                    
+                    <div class="grid gap-3">
+                        <!-- Card 1 -->
+                        <div class="secret-card h-28 cursor-pointer group" onclick="this.classList.toggle('flipped')">
+                            <div class="secret-card-inner">
+                                <div class="secret-front bg-white p-4 rounded border-l-4 border-blue-500 shadow-sm flex flex-col justify-center h-full">
+                                    <strong class="block text-blue-900 text-sm mb-1">The Activist (Principal)</strong>
+                                    <p class="text-xs text-slate-500">"The 'Earth Tax' breaches fiduciary duty. We demand a liquidity event."</p>
+                                </div>
+                                <div class="secret-back bg-blue-900 p-4 rounded shadow-sm flex flex-col justify-center h-full text-center">
+                                    <strong class="text-xs text-blue-200 uppercase tracking-wider mb-1">Private Tactic</strong>
+                                    <p class="text-xs text-blue-100">Quote the <em>Business Judgment Rule</em>. Leverage minority shareholders to force a vote.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="secret-card h-28 cursor-pointer group" onclick="this.classList.toggle('flipped')">
+                            <div class="secret-card-inner">
+                                <div class="secret-front bg-white p-4 rounded border-l-4 border-green-500 shadow-sm flex flex-col justify-center h-full">
+                                    <strong class="block text-green-900 text-sm mb-1">The Founder (Steward)</strong>
+                                    <p class="text-xs text-slate-500">"Brand value is integrity. Strip the mission, and the 3x premium collapses."</p>
+                                </div>
+                                <div class="secret-back bg-green-900 p-4 rounded shadow-sm flex flex-col justify-center h-full text-center">
+                                    <strong class="text-xs text-green-200 uppercase tracking-wider mb-1">Private Tactic</strong>
+                                    <p class="text-xs text-green-100">Use the <em>B-Corp Declaration of Interdependence</em> as a legal shield against the lawsuit.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="secret-card h-28 cursor-pointer group" onclick="this.classList.toggle('flipped')">
+                            <div class="secret-card-inner">
+                                <div class="secret-front bg-white p-4 rounded border-l-4 border-purple-500 shadow-sm flex flex-col justify-center h-full">
+                                    <strong class="block text-purple-900 text-sm mb-1">The Employee (Human Capital)</strong>
+                                    <p class="text-xs text-slate-500">"Our productivity comes from Intrinsic Motivation. You can't buy that."</p>
+                                </div>
+                                <div class="secret-back bg-purple-900 p-4 rounded shadow-sm flex flex-col justify-center h-full text-center">
+                                    <strong class="text-xs text-purple-200 uppercase tracking-wider mb-1">Private Tactic</strong>
+                                    <p class="text-xs text-purple-100">Threaten a mass walkout. If talent leaves, the PE firm buys an empty shell.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Activity 3: Discussion Block -->
+            <div class="bg-slate-100 p-6 rounded-xl border-l-4 border-slate-400">
+                <h3 class="font-bold text-slate-900 mb-3 text-lg">Discussion: Does Every Company Have a Price?</h3>
+                <div class="grid md:grid-cols-2 gap-6 text-sm text-slate-700">
+                    <div>
+                        <strong class="block text-slate-900 mb-1">The "Exit to Community" Debate</strong>
+                        <p>If a company uses the <em>Perpetual Purpose Trust</em> model (Steward Ownership), does a "Price" even exist? Or is valuation purely imaginary when sale is legally impossible?</p>
+                    </div>
+                    <div>
+                        <strong class="block text-slate-900 mb-1">The $100 Billion Question</strong>
+                        <p>If a PE firm offered $100 Billion (enough to buy the Amazon rainforest), would refusing be a "betrayal" of the planet, or the ultimate "Shared Value" trade?</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 1: ECONOMIC VALUE CREATION -->
+        <section id="economic" class="fade-up">
+            <div class="mb-6 bg-slate-900 text-white p-4 rounded-lg inline-block shadow-lg">
+                <i class="fas fa-question-circle text-green-400 mr-2"></i>
+                <span class="font-serif italic text-lg">Is value defined by the price tag, or the gap between delight and cost?</span>
+            </div>
+
+            <div class="flex items-end gap-4 mb-10 border-b border-slate-200 pb-6">
+                <span class="text-6xl font-serif text-slate-200">01</span>
+                <div class="pb-2">
+                    <h2 class="text-3xl font-serif text-slate-900 font-bold">Economic Value Creation</h2>
+                    <p class="text-slate-500">The First Principle: The Value Wedge ($V-C$)</p>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-12">
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="prose text-slate-600">
+                        <p class="text-lg">
+                            Competitive advantage goes to the firm with the largest gap between <strong>Value (V)</strong> and <strong>Cost (C)</strong>.
+                        </p>
+                    </div>
+
+                    <!-- Context Injection -->
+                    <div class="bg-slate-100 p-4 border-l-4 border-slate-400 rounded-r text-xs">
+                        <strong>Indian Retail Parallel:</strong><br>
+                        Consider <strong>Fabindia</strong> vs. <strong>Zudio</strong> (Tata).
+                        <ul class="list-disc pl-4 mt-1">
+                            <li><strong>Fabindia:</strong> High Cost (artisanal), High Value (heritage). Creates value through differentiation.</li>
+                            <li><strong>Zudio:</strong> Low Cost (efficient scale), Medium Value (fast fashion). Creates value through cost leadership.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7">
+                    <div class="card-panel p-8 bg-white shadow-xl shadow-slate-200/50">
+                        <div class="flex justify-between items-center mb-8">
+                            <h3 class="font-bold text-lg text-slate-800">Simulation: The Value Wedge</h3>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-bold font-mono">INTERACTIVE LAB</span>
+                        </div>
+                        <!-- WEDGE SIMULATION -->
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="flex justify-between text-xs font-bold text-slate-500 mb-2">
+                                        BRAND TRUST (VALUE $V)
+                                        <span id="disp-v" class="text-slate-900 font-mono">$200</span>
+                                    </label>
+                                    <input type="range" id="input-v" min="100" max="300" value="200" class="slider-thumb" oninput="updateWedge()">
+                                </div>
+                                <div>
+                                    <label class="flex justify-between text-xs font-bold text-slate-500 mb-2">
+                                        SUSTAINABILITY (COST $C)
+                                        <span id="disp-c" class="text-slate-900 font-mono">$80</span>
+                                    </label>
+                                    <input type="range" id="input-c" min="50" max="120" value="80" class="slider-thumb" oninput="updateWedge()">
+                                </div>
+                                <div class="pt-4 border-t border-slate-100 text-center">
+                                    <p class="text-[10px] text-slate-400 uppercase tracking-widest font-bold mb-1">Economic Value Created</p>
+                                    <p id="disp-ev" class="text-4xl font-serif text-green-700 font-bold">$120</p>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="wedgeChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 2: ACCOUNTING PROFITABILITY -->
+        <section id="accounting" class="fade-up">
+            <div class="mb-6 bg-slate-900 text-white p-4 rounded-lg inline-block shadow-lg">
+                <i class="fas fa-question-circle text-blue-400 mr-2"></i>
+                <span class="font-serif italic text-lg">Profit is an opinion. Cash is a fact. Do you know the difference?</span>
+            </div>
+
+            <div class="flex items-end gap-4 mb-10 border-b border-slate-200 pb-6">
+                <span class="text-6xl font-serif text-slate-200">02</span>
+                <div class="pb-2">
+                    <h2 class="text-3xl font-serif text-slate-900 font-bold">Accounting Profitability</h2>
+                    <p class="text-slate-500">The Solvency Check</p>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-12">
+                <div class="lg:col-span-4 space-y-6">
+                    <p class="text-slate-600">
+                        Mission requires margin. We use <strong>Liquidity Ratios</strong> (extracted from your text) to ensure Patagonia can pay its fair-trade suppliers on time.
+                    </p>
+                    <div class="bg-red-50 p-4 border-l-4 border-red-400 rounded-r text-xs">
+                        <strong>Warning from the Startup World:</strong><br>
+                        Consider <strong>Byju's</strong> (India). High valuation (accounting opinion) masked severe liquidity crunches (cash fact). Patagonia maintains high liquidity to avoid dependency on banks or VCs.
+                    </div>
+                </div>
+
+                <div class="lg:col-span-8">
+                    <div class="card-panel p-8 bg-slate-50 border-slate-200">
+                        <h3 class="font-bold text-lg mb-6 text-slate-800">CFO Dashboard: Solvency Test</h3>
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <!-- Inputs -->
+                            <div class="space-y-4 md:col-span-1">
+                                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                                    <h4 class="text-[10px] font-bold text-slate-400 mb-3 uppercase tracking-wider">Balance Sheet ($M)</h4>
+                                    <div class="space-y-3">
+                                        <div>
+                                            <label class="text-xs block text-slate-500 font-bold mb-1">Cash</label>
+                                            <input type="number" id="bs-cash" value="45" class="w-full bg-slate-50 border border-slate-200 rounded p-2 text-sm font-mono focus:border-green-500 focus:outline-none">
+                                        </div>
+                                        <div>
+                                            <label class="text-xs block text-slate-500 font-bold mb-1">Receivables</label>
+                                            <input type="number" id="bs-rec" value="30" class="w-full bg-slate-50 border border-slate-200 rounded p-2 text-sm font-mono focus:border-green-500 focus:outline-none">
+                                        </div>
+                                        <div>
+                                            <label class="text-xs block text-slate-500 font-bold mb-1">Inventory</label>
+                                            <input type="number" id="bs-inv" value="120" class="w-full bg-slate-50 border border-slate-200 rounded p-2 text-sm font-mono focus:border-green-500 focus:outline-none">
+                                        </div>
+                                        <div>
+                                            <label class="text-xs block text-red-500 font-bold mb-1">Liabilities</label>
+                                            <input type="number" id="bs-liab" value="80" class="w-full bg-red-50 border border-red-200 rounded p-2 text-sm font-mono text-red-900 focus:border-red-500 focus:outline-none">
+                                        </div>
+                                    </div>
+                                    <button onclick="calcRatios()" class="w-full mt-4 bg-slate-800 text-white py-2 rounded-lg text-xs font-bold uppercase tracking-wider hover:bg-slate-700 transition">Audit Solvency</button>
+                                </div>
+                            </div>
+
+                            <!-- Results -->
+                            <div class="md:col-span-2 grid grid-cols-2 gap-4">
+                                <div class="bg-white rounded-xl p-6 flex flex-col justify-center items-center text-center shadow-sm border border-slate-200">
+                                    <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mb-3 text-lg"><i class="fas fa-scale-balanced"></i></div>
+                                    <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Current Ratio</span>
+                                    <span id="res-curr" class="text-3xl font-serif text-slate-900 my-1 font-bold">--</span>
+                                    <span id="msg-curr" class="text-xs font-bold bg-slate-100 px-2 py-1 rounded text-slate-500">Benchmark: > 1.5</span>
+                                </div>
+                                <div class="bg-white rounded-xl p-6 flex flex-col justify-center items-center text-center shadow-sm border border-slate-200">
+                                    <div class="w-10 h-10 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center mb-3 text-lg"><i class="fas fa-bolt"></i></div>
+                                    <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Quick Ratio</span>
+                                    <span id="res-quick" class="text-3xl font-serif text-slate-900 my-1 font-bold">--</span>
+                                    <span id="msg-quick" class="text-xs font-bold bg-slate-100 px-2 py-1 rounded text-slate-500">Benchmark: > 1.0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 3: INTANGIBLES & VALUATION -->
+        <section id="intangibles" class="fade-up">
+            <div class="mb-6 bg-slate-900 text-white p-4 rounded-lg inline-block shadow-lg">
+                <i class="fas fa-question-circle text-indigo-400 mr-2"></i>
+                <span class="font-serif italic text-lg">If your factory burns down, you rebuild. If your reputation burns down, what happens?</span>
+            </div>
+
+            <div class="flex items-end gap-4 mb-10 border-b border-slate-200 pb-6">
+                <span class="text-6xl font-serif text-slate-200">03</span>
+                <div class="pb-2">
+                    <h2 class="text-3xl font-serif text-slate-900 font-bold">Intangibles & Valuation</h2>
+                    <p class="text-slate-500">The Invisible Balance Sheet</p>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-12">
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="prose text-slate-600 leading-relaxed">
+                        <p>
+                            Intangible assets (Brand, IP, Culture) now dominate market value. 
+                        </p>
+                    </div>
+
+                    <!-- Context Injection -->
+                    <div class="bg-indigo-50 p-4 border-l-4 border-indigo-400 rounded-r text-xs">
+                        <strong>Indian Example: Asian Paints</strong><br>
+                        Asian Paints trades at a massive premium not because of its paint (tangible), but because of its <strong>Supply Chain Efficiency</strong> (intangible).
+                    </div>
+                    
+                    <!-- NEW INTANGIBLE SIMULATION -->
+                    <div class="bg-white p-6 rounded-xl border border-indigo-200 shadow-md">
+                        <h4 class="font-bold text-indigo-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-wand-magic-sparkles"></i> Simulation: The Multiplier Effect
+                        </h4>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="text-xs font-bold text-slate-500 block mb-1">Invest in Culture/Brand (Intangible)</label>
+                                <input type="range" id="input-brand" min="1" max="10" value="5" class="slider-thumb" oninput="updateMultiplier()">
+                            </div>
+                            <div class="flex justify-between items-end border-t border-slate-100 pt-3">
+                                <div>
+                                    <span class="block text-[10px] text-slate-400 font-bold uppercase">Book Value</span>
+                                    <span class="text-lg font-mono text-slate-500">$10B</span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="block text-[10px] text-indigo-400 font-bold uppercase">Market Value</span>
+                                    <span id="res-market-cap" class="text-2xl font-bold text-indigo-700">$50B</span>
+                                </div>
+                            </div>
+                            <p class="text-[10px] text-slate-400 italic">Strong brands multiply the value of tangible assets.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7">
+                    <div class="card-panel p-8 bg-white shadow-xl">
+                        <h3 class="font-bold text-lg mb-4 text-slate-800 flex items-center gap-2">
+                            <i class="fas fa-chart-area text-indigo-600"></i> Exhibit 11.3: The Rise of Intangibles
+                        </h3>
+                        <div class="chart-container h-80">
+                            <canvas id="intangiblesChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 4: SHAREHOLDER VALUE CREATION -->
+        <section id="shareholder" class="fade-up">
+            <div class="mb-6 bg-slate-900 text-white p-4 rounded-lg inline-block shadow-lg">
+                <i class="fas fa-question-circle text-purple-400 mr-2"></i>
+                <span class="font-serif italic text-lg">Who owns the future—the one who trades the stock today, or the one who builds the product for tomorrow?</span>
+            </div>
+
+            <div class="flex items-end gap-4 mb-10 border-b border-slate-200 pb-6">
+                <span class="text-6xl font-serif text-slate-200">04</span>
+                <div class="pb-2">
+                    <h2 class="text-3xl font-serif text-slate-900 font-bold">Shareholder Value Creation</h2>
+                    <p class="text-slate-500">Risk Capital, Market Cap & The Tale of Two Tech Giants</p>
+                </div>
+            </div>
+
+            <!-- Content Block -->
+            <div class="grid lg:grid-cols-2 gap-12 mb-12">
+                <div class="space-y-6 text-slate-600 leading-relaxed">
+                    <p>
+                        Shareholders are the legal owners of public companies. They provide <strong>Risk Capital</strong>, which cannot be recovered if the firm goes bankrupt.
+                    </p>
+                    <div class="bg-blue-50 border-l-4 border-blue-600 p-4 rounded-r-lg">
+                        <h4 class="font-bold text-blue-900 text-sm mb-1">Market Capitalization</h4>
+                        <p class="text-xs text-blue-800 font-mono">Market Cap = Outstanding Shares × Share Price</p>
+                    </div>
+                    
+                    <h4 class="font-bold text-slate-900 pt-4">Exhibit 11.4 Analysis: Apple vs. Microsoft</h4>
+                    <ul class="list-disc pl-5 space-y-2 text-sm text-slate-600">
+                        <li><strong>Microsoft (1999):</strong> Peak of the Dot-com boom at ~$600B.</li>
+                        <li><strong>The Lost Decade (2000-2010):</strong> Microsoft stagnated as it struggled to transition from desktop to mobile/cloud.</li>
+                        <li><strong>Apple's Ascent (2007-2020):</strong> The iPhone (2007) supercharged valuation. In 2020, Apple became the first company to reach a $3 Trillion market cap.</li>
+                        <li><strong>The Nadella Turnaround (2014):</strong> Appointed CEO in 2014, Satya Nadella shifted Microsoft to "Mobile First, Cloud First." This pivotal strategy drove Microsoft to overtake Apple briefly in 2020, reaching ~$2.2T by 2022.</li>
+                    </ul>
+                </div>
+                
+                <!-- Exhibit 11.4 Chart -->
+                <div class="card-panel p-6 bg-white border-l-4 border-blue-500">
+                    <h3 class="font-bold text-sm text-slate-800 mb-2 uppercase tracking-widest">Exhibit 11.4: Market Valuations ($ Trillions)</h3>
+                    <p class="text-xs text-slate-500 mb-4">Apple vs. Microsoft (1995-2022). Note the "Lost Decade" vs. the "Cloud Renaissance".</p>
+                    <div class="chart-container h-64">
+                        <canvas id="marketCapChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEW SIMULATION: THE NADELLA PIVOT -->
+            <div class="card-panel p-8 bg-slate-900 text-white shadow-2xl mb-12">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+                    <div>
+                        <h3 class="font-bold text-2xl font-serif text-white">Simulation: The Nadella Pivot</h3>
+                        <p class="text-slate-400 text-sm mt-1">Strategic Leadership in 2014</p>
+                    </div>
+                    <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold font-mono">STRATEGY LAB</span>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <p class="text-sm leading-relaxed text-slate-300">
+                            <strong>Scenario:</strong> It is 2014. You are Satya Nadella. Microsoft is a "Windows Company," making billions from OS licenses. But the world is moving to Mobile (where you failed) and Cloud (where Amazon leads).
+                        </p>
+                        <p class="text-sm font-bold text-white">What is your core strategy?</p>
+                        
+                        <div class="grid grid-cols-1 gap-3">
+                            <button onclick="runNadellaSim('legacy')" class="group p-4 rounded-lg border border-slate-600 hover:bg-slate-700 transition-all text-left">
+                                <span class="block font-bold text-blue-400 group-hover:text-blue-300 mb-1">Option A: Defend Windows</span>
+                                <span class="text-xs text-slate-400">Protect the cash cow. Focus on Windows 10 and surface tablets.</span>
+                            </button>
+                            <button onclick="runNadellaSim('cloud')" class="group p-4 rounded-lg border border-slate-600 hover:bg-slate-700 transition-all text-left">
+                                <span class="block font-bold text-green-400 group-hover:text-green-300 mb-1">Option B: Cloud First (Azure)</span>
+                                <span class="text-xs text-slate-400">Cannibalize Windows. Make Office available on iPad. Bet everything on the Cloud.</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 relative overflow-hidden">
+                        <div id="nadella-feedback-placeholder" class="flex items-center justify-center h-full text-slate-500 text-xs uppercase tracking-widest">
+                            Awaiting Decision...
+                        </div>
+                        <div id="nadella-feedback" class="hidden h-full flex flex-col justify-center animate-fade-in">
+                            <div id="nadella-icon" class="text-4xl mb-4"></div>
+                            <h4 id="nadella-title" class="font-bold text-lg mb-2"></h4>
+                            <p id="nadella-desc" class="text-sm text-slate-300 leading-relaxed"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEW GROUP ACTIVITY: VALUATION FORENSICS -->
+            <div class="bg-blue-50 p-6 rounded-xl border border-blue-200 mb-12">
+                <h3 class="font-bold text-blue-900 mb-4 flex items-center gap-2">
+                    <i class="fas fa-magnifying-glass-chart"></i> Group Activity: Valuation Forensics
+                </h3>
+                <p class="text-sm text-slate-700 mb-4">
+                    Analyze the graph above. Identify the <strong>crossover point</strong> around 2010. Discuss in groups:
+                </p>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-white p-4 rounded shadow-sm">
+                        <h5 class="text-xs font-bold text-slate-500 uppercase">Question 1</h5>
+                        <p class="text-sm text-slate-800 mt-1">Why did Apple's value skyrocket starting in 2007, even during the 2008 financial crisis?</p>
+                    </div>
+                    <div class="bg-white p-4 rounded shadow-sm">
+                        <h5 class="text-xs font-bold text-slate-500 uppercase">Question 2</h5>
+                        <p class="text-sm text-slate-800 mt-1">Microsoft was flat for 10 years. What cultural trap were they likely stuck in before 2014?</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEW SECTION: SHAREHOLDER CAPITALISM IN CRISIS -->
+            <div class="mb-16 space-y-12 bg-white/50 p-8 rounded-xl border border-slate-200">
+                
+                <!-- 1. The Crisis Narrative -->
+                <div class="grid lg:grid-cols-12 gap-8">
+                    <div class="lg:col-span-7 prose prose-sm text-slate-600 leading-relaxed">
+                        <h3 class="font-serif text-2xl text-slate-900 mb-4">Shareholder Capitalism in Crisis?</h3>
+                        <p>Since the millennium, the implicit trust between corporations and society has fractured. A series of "Black Swan" events has led to critical scrutiny of value creation:</p>
+                        <ul class="list-disc pl-5 space-y-2 marker:text-red-500">
+                            <li><strong>Trust Erosion (Enron, WorldCom):</strong> Accounting scandals destroyed billions in retirement savings, shattering public faith.</li>
+                            <li><strong>Systemic Failure (2008 Crisis):</strong> The financial system nearly collapsed due to subprime greed, leading to a deep global recession and the Occupy Wall Street movement.</li>
+                            <li><strong>Social Unrest (George Floyd, Brexit):</strong> Growing inequality and a sense that the "economy isn't working for all" have fueled massive social and political upheavals.</li>
+                            <li><strong>Pharma Ethics (Purdue & Turing):</strong> The opioid crisis (Purdue) and price-gouging (Martin Shkreli) highlighted the moral bankruptcy of pure profit maximization.</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 2. The Friedman Doctrine Panel -->
+                    <div class="lg:col-span-5">
+                        <div class="bg-slate-800 text-slate-300 p-6 rounded-xl shadow-lg relative overflow-hidden">
+                            <div class="absolute top-0 right-0 p-4 opacity-10 text-6xl"><i class="fas fa-quote-right"></i></div>
+                            <h4 class="text-white font-serif text-lg mb-2">The Friedman Doctrine (1970)</h4>
+                            <p class="italic text-sm mb-4">"There is one and only one social responsibility of business—to use its resources and engage in activities designed to increase its profits." — Milton Friedman</p>
+                            <div class="space-y-2 text-xs border-t border-slate-600 pt-3">
+                                <div class="flex gap-2"><i class="fas fa-check text-green-500"></i> <span><strong>Efficiency:</strong> The price system coordinates millions without a central planner.</span></div>
+                                <div class="flex gap-2"><i class="fas fa-check text-green-500"></i> <span><strong>Freedom:</strong> Corporations have rights and freedom is primary.</span></div>
+                                <div class="flex gap-2"><i class="fas fa-check text-green-500"></i> <span><strong>Agency:</strong> Managers are agents of owners, not social workers.</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. The Scale Paradox -->
+                <div class="grid md:grid-cols-2 gap-8 items-center bg-blue-50 p-6 rounded-xl border border-blue-100">
+                    <div>
+                        <h4 class="font-bold text-blue-900 uppercase text-xs tracking-widest mb-2">Strategic Trade-off</h4>
+                        <h3 class="font-serif text-xl text-slate-900 mb-2">The Scale Paradox</h3>
+                        <p class="text-sm text-slate-600">Growing a private business is hard. IPOs provide capital but demand quarterly conformity.</p>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between p-3 bg-white rounded border border-blue-100 shadow-sm">
+                            <span class="font-bold text-slate-700">Nike (Public)</span>
+                            <span class="text-slate-500 text-right">Massive Scale. Small ESG changes have huge absolute impact.</span>
+                        </div>
+                        <div class="flex justify-between p-3 bg-white rounded border border-blue-100 shadow-sm">
+                            <span class="font-bold text-green-700">Patagonia (Private)</span>
+                            <span class="text-slate-500 text-right">Purity. Privacy avoids short-term pressure, allowing radical acts.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. NEW SIMULATION: THE ETHICS ENGINE -->
+                <div class="bg-slate-900 text-white rounded-2xl p-8 shadow-2xl relative overflow-hidden">
+                    <div class="relative z-10">
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <h3 class="text-2xl font-serif font-bold text-white">Simulation: The Ethics Engine</h3>
+                                <p class="text-slate-400 text-sm">The Martin Shkreli / Turing Pharma Case</p>
+                            </div>
+                            <span class="bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold font-mono animate-pulse">CRISIS MODE</span>
+                        </div>
+
+                        <p class="text-slate-300 text-sm mb-6 leading-relaxed">
+                            <strong>Scenario:</strong> You are the CEO of Turing Pharma. You acquired rights to <em>Daraprim</em>, a life-saving drug for AIDS patients. <br>
+                            <strong>Cost to Produce:</strong> $1/pill. <br>
+                            <strong>Current Price:</strong> $13.50/pill. <br>
+                            <strong>Market Condition:</strong> No competitors for 5 years. FDA approval pending for rivals.
+                        </p>
+
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <button onclick="runEthicsSim('friedman')" class="group p-4 bg-slate-800 border border-slate-700 hover:border-blue-500 rounded-lg text-left transition-all">
+                                <span class="block font-bold text-blue-400 group-hover:text-blue-300 mb-1">Option A: The Friedman Max</span>
+                                <span class="text-xs text-slate-400 block mb-2">Raise price to $750/pill (5000% Hike).</span>
+                                <span class="text-[10px] text-slate-500 italic">"My investors expect me to capture 100% of the profit curve."</span>
+                            </button>
+                            <button onclick="runEthicsSim('shared')" class="group p-4 bg-slate-800 border border-slate-700 hover:border-green-500 rounded-lg text-left transition-all">
+                                <span class="block font-bold text-green-400 group-hover:text-green-300 mb-1">Option B: Shared Value Pivot</span>
+                                <span class="text-xs text-slate-400 block mb-2">Raise to $15. Fund R&D. Ensure Access.</span>
+                                <span class="text-[10px] text-slate-500 italic">"Sustain the business, protect the patient, innovate for tomorrow."</span>
+                            </button>
+                        </div>
+
+                        <!-- Feedback Area -->
+                        <div id="ethics-feedback" class="hidden mt-6 p-4 bg-slate-800 rounded border-l-4 border-slate-600 animate-fade-in">
+                            <div id="ethics-title" class="font-bold text-lg mb-2"></div>
+                            <p id="ethics-desc" class="text-sm text-slate-300"></p>
+                        </div>
+                    </div>
+                    <!-- Background Decoration -->
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-red-900 rounded-full blur-[80px] opacity-20"></div>
+                </div>
+
+            </div>
+
+            <!-- Simulation: The CEO's Dilemma -->
+            <div class="card-panel p-8 bg-slate-900 text-white shadow-2xl">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+                    <div>
+                        <h3 class="font-bold text-2xl font-serif text-white">Simulation: The CEO's Dilemma</h3>
+                        <p class="text-slate-400 text-sm mt-1">Based on the Howard Schultz (Starbucks) Case Study.</p>
+                    </div>
+                    <span class="bg-green-600 text-white px-3 py-1 rounded-full text-xs font-bold font-mono">LIVE DECISION</span>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <p class="text-sm leading-relaxed text-slate-300">
+                            <strong>Scenario:</strong> You are the CEO. You have $1 Billion in net profits. <br>
+                            <strong>Shareholder View:</strong> Profits belong to owners. Buying back stock raises share price immediately.<br>
+                            <strong>Stakeholder View:</strong> Profits should be reinvested in employees and customer experience.
+                        </p>
+                        <p class="text-sm font-bold text-white">How do you allocate the capital?</p>
+                        
+                        <div class="grid grid-cols-1 gap-3">
+                            <button onclick="runCeoSim('buyback')" class="group p-4 rounded-lg border border-slate-600 hover:bg-slate-700 transition-all text-left">
+                                <span class="block font-bold text-blue-400 group-hover:text-blue-300 mb-1">Option A: Stock Buybacks</span>
+                                <span class="text-xs text-slate-400">Return cash to shareholders. Boost stock price now.</span>
+                            </button>
+                            <button onclick="runCeoSim('reinvest')" class="group p-4 rounded-lg border border-slate-600 hover:bg-slate-700 transition-all text-left">
+                                <span class="block font-bold text-green-400 group-hover:text-green-300 mb-1">Option B: Reinvest in Company</span>
+                                <span class="text-xs text-slate-400">Increase wages, training, and store quality.</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 relative overflow-hidden">
+                        <div id="ceo-feedback-placeholder" class="flex items-center justify-center h-full text-slate-500 text-xs uppercase tracking-widest">
+                            Awaiting Decision...
+                        </div>
+                        <div id="ceo-feedback" class="hidden h-full flex flex-col justify-center animate-fade-in">
+                            <div id="ceo-icon" class="text-4xl mb-4"></div>
+                            <h4 id="ceo-title" class="font-bold text-lg mb-2"></h4>
+                            <p id="ceo-desc" class="text-sm text-slate-300 leading-relaxed"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 4.5: CSR vs. SHARED VALUE (NEW) -->
+        <section id="csv" class="fade-up">
+            <!-- TRIGGER QUESTION -->
+            <div class="mb-6 bg-slate-900 text-white p-4 rounded-lg inline-block shadow-lg">
+                <i class="fas fa-question-circle text-pink-400 mr-2"></i>
+                <span class="font-serif italic text-lg">Is "doing good" a cost of doing business, or a profit center?</span>
+            </div>
+
+            <div class="flex items-end gap-4 mb-10 border-b border-slate-200 pb-6">
+                <span class="text-6xl font-serif text-slate-200">04.5</span>
+                <div class="pb-2">
+                    <h2 class="text-3xl font-serif text-slate-900 font-bold">CSR vs. Creating Shared Value (CSV)</h2>
+                    <p class="text-slate-500">The Larry Fink Effect & The Evolution of Purpose</p>
+                </div>
+            </div>
+
+            <!-- Content: The Shift -->
+            <div class="grid lg:grid-cols-12 gap-12 mb-12">
+                <div class="lg:col-span-7 space-y-6 text-slate-600 leading-relaxed">
+                    <p>
+                        <strong>The Shift:</strong> Corporate Social Responsibility (CSR) is often reactive—philanthropy and "good citizenship" added <em>after</em> profits are made. 
+                        <strong>Creating Shared Value (CSV)</strong> is proactive—baking societal value into the core strategy to <em>generate</em> profit.
+                    </p>
+                    <div class="bg-pink-50 border-l-4 border-pink-400 p-4 rounded-r-lg">
+                        <h4 class="font-bold text-pink-900 text-sm mb-1">The BlackRock Factor</h4>
+                        <p class="text-xs text-pink-800">
+                            Larry Fink (CEO of BlackRock, $10T AUM) fundamentally changed the game. By forcing companies like ExxonMobil to disclose emissions and pivot to renewables, he argued that <strong>ESG is not politics, it is capitalism.</strong> Ignoring climate risk is an investment risk.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Exhibit 11.2 Interactive Table -->
+                <div class="lg:col-span-5">
+                    <div class="card-panel p-6 bg-white border border-slate-200">
+                        <h4 class="font-bold text-slate-900 mb-4 text-center border-b border-slate-100 pb-2">Exhibit 11.2: CSR vs. CSV</h4>
+                        <div class="space-y-3">
+                            <div class="group cursor-pointer p-3 rounded-lg border border-slate-100 hover:bg-slate-50 transition-all">
+                                <div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-1">
+                                    <span class="text-slate-400">Focus</span>
+                                    <span class="text-green-600 opacity-0 group-hover:opacity-100 transition-opacity">Shift &rarr;</span>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-slate-500">Philanthropy</span>
+                                    <span class="font-bold text-slate-900">Joint Value Creation</span>
+                                </div>
+                            </div>
+                            <div class="group cursor-pointer p-3 rounded-lg border border-slate-100 hover:bg-slate-50 transition-all">
+                                <div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-1">
+                                    <span class="text-slate-400">Action</span>
+                                    <span class="text-green-600 opacity-0 group-hover:opacity-100 transition-opacity">Shift &rarr;</span>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-slate-500">Reactive (PR)</span>
+                                    <span class="font-bold text-slate-900">Proactive (Strategy)</span>
+                                </div>
+                            </div>
+                            <div class="group cursor-pointer p-3 rounded-lg border border-slate-100 hover:bg-slate-50 transition-all">
+                                <div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-1">
+                                    <span class="text-slate-400">Example</span>
+                                    <span class="text-green-600 opacity-0 group-hover:opacity-100 transition-opacity">Shift &rarr;</span>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-slate-500">Fair Trade Purchasing</span>
+                                    <span class="font-bold text-slate-900">Transforming Supply Chain</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SIMULATION: THE BOARDROOM COUP -->
+            <div class="card-panel p-8 bg-slate-900 text-white shadow-2xl relative overflow-hidden mb-12">
+                <div class="absolute top-0 right-0 w-96 h-96 bg-pink-900 rounded-full blur-[120px] opacity-20"></div>
+                <div class="relative z-10">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+                        <div>
+                            <span class="text-pink-400 text-xs font-bold uppercase tracking-widest mb-1 block">Simulation</span>
+                            <h3 class="font-bold text-2xl font-serif text-white">The Boardroom Coup</h3>
+                            <p class="text-slate-400 text-sm mt-1">Based on ExxonMobil vs. Engine No. 1 (2021)</p>
+                        </div>
+                        <span class="bg-pink-600 text-white px-3 py-1 rounded-full text-xs font-bold font-mono">LIVE SCENARIO</span>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="space-y-4">
+                            <p class="text-sm leading-relaxed text-slate-300">
+                                <strong>Scenario:</strong> You are the CEO of a massive Fossil Fuel giant. A tiny activist hedge fund (owning just 0.02% of shares) has nominated 3 renewable energy experts to replace your loyal board members.
+                            </p>
+                            <p class="text-sm leading-relaxed text-slate-300">
+                                <strong>BlackRock's Stance:</strong> Larry Fink holds 6% of your stock. He demands a net-zero plan.
+                            </p>
+                            <p class="text-sm font-bold text-white">How do you respond?</p>
+                            
+                            <div class="grid grid-cols-1 gap-3">
+                                <button onclick="runCoupSim('fight')" class="group p-4 bg-white/5 border border-white/10 hover:border-pink-500 hover:bg-white/10 rounded-lg text-left transition-all">
+                                    <span class="block font-bold text-white group-hover:text-pink-300 mb-1">Option A: Fight the Activists</span>
+                                    <span class="text-xs text-slate-400">"We are an oil company. Stay in our lane. This is political wokeism."</span>
+                                </button>
+                                <button onclick="runCoupSim('pivot')" class="group p-4 bg-white/5 border border-white/10 hover:border-green-500 hover:bg-white/10 rounded-lg text-left transition-all">
+                                    <span class="block font-bold text-white group-hover:text-green-300 mb-1">Option B: The Strategic Pivot</span>
+                                    <span class="text-xs text-slate-400">Engage the activists. Commit to carbon neutrality. Diversify into hydrogen/wind.</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-black/30 rounded-xl p-6 border border-white/10 relative">
+                            <div id="coup-feedback-placeholder" class="flex items-center justify-center h-full text-slate-500 text-xs uppercase tracking-widest">
+                                Awaiting Strategy...
+                            </div>
+                            <div id="coup-feedback" class="hidden h-full flex flex-col justify-center animate-fade-in">
+                                <div id="coup-icon" class="text-4xl mb-4"></div>
+                                <h4 id="coup-title" class="font-bold text-lg mb-2"></h4>
+                                <p id="coup-desc" class="text-sm text-slate-300 leading-relaxed"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACTIVITY: ROLEPLAY CARDS -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-indigo-50 p-6 rounded-xl border border-indigo-100">
+                    <h3 class="font-bold text-indigo-900 mb-4 flex items-center gap-2">
+                        <i class="fas fa-user-tag"></i> Activity: The Classification Game
+                    </h3>
+                    <p class="text-sm text-slate-700 mb-4">Classify these real-world initiatives. Are they CSR (Good Citizen) or CSV (Core Strategy)?</p>
+                    <div class="space-y-2">
+                        <button onclick="classifyItem(this, 'CSR')" class="w-full text-left p-3 bg-white border border-indigo-200 rounded text-xs font-bold text-slate-600 hover:border-indigo-400 transition">1. Donating 1% of profits to local schools.</button>
+                        <button onclick="classifyItem(this, 'CSV')" class="w-full text-left p-3 bg-white border border-indigo-200 rounded text-xs font-bold text-slate-600 hover:border-indigo-400 transition">2. Redesigning trucks to reduce fuel cost by 20%.</button>
+                        <button onclick="classifyItem(this, 'CSV')" class="w-full text-left p-3 bg-white border border-indigo-200 rounded text-xs font-bold text-slate-600 hover:border-indigo-400 transition">3. Patagonia switching to organic cotton to ensure supply longevity.</button>
+                    </div>
+                    <div id="classify-feedback" class="mt-4 text-xs font-bold text-indigo-800 hidden"></div>
+                </div>
+
+                <div class="bg-purple-50 p-6 rounded-xl border border-purple-100">
+                    <h3 class="font-bold text-purple-900 mb-4 flex items-center gap-2">
+                        <i class="fas fa-theater-masks"></i> Roleplay: The ESG Showdown
+                    </h3>
+                    <p class="text-sm text-slate-700 mb-4"><strong>Setting:</strong> The Annual General Meeting (AGM).<br><strong>Topic:</strong> Should we sell our coal division?</p>
+                    <div class="space-y-3 text-xs">
+                        <div class="p-3 bg-white rounded border-l-2 border-purple-400 shadow-sm">
+                            <strong class="block text-purple-700 mb-1">Role A: The BlackRock Proxy</strong>
+                            "We manage pension money. If you hold onto coal, you will be bankrupt in 10 years. We vote to sell."
+                        </div>
+                        <div class="p-3 bg-white rounded border-l-2 border-slate-400 shadow-sm">
+                            <strong class="block text-slate-700 mb-1">Role B: The Traditional CEO</strong>
+                            "Coal generates the cash flow that funds our dividends. We cannot abandon our core competency."
+                        </div>
+                        <div class="p-3 bg-white rounded border-l-2 border-green-400 shadow-sm">
+                            <strong class="block text-green-700 mb-1">Role C: The Gen-Z Employee</strong>
+                            "If we don't sell, I quit. And so does the top engineering talent you need."
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 5: BALANCED SCORECARD -->
+        <section id="bsc" class="fade-up">
+            <div class="flex items-end gap-4 mb-10 border-b border-slate-200 pb-6">
+                <span class="text-6xl font-serif text-slate-200">05</span>
+                <div class="pb-2">
+                    <h2 class="text-3xl font-serif text-slate-900 font-bold">The Balanced Scorecard</h2>
+                    <p class="text-slate-500">Aligning Mission with Metrics</p>
+                </div>
+            </div>
+
+            <!-- NEW SIMULATION: KPI ALIGNMENT -->
+            <div class="bg-orange-50 p-6 rounded-xl border border-orange-200 mb-8">
+                <h3 class="font-bold text-orange-900 mb-4 flex items-center gap-2">
+                    <i class="fas fa-tasks"></i> Interactive Challenge: The KPI Matcher
+                </h3>
+                <p class="text-sm text-slate-700 mb-4">A "Balanced" Scorecard tracks 4 perspectives. Can you match the right metric to the <strong>Learning & Growth</strong> perspective?</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <button onclick="checkKPI('incorrect', 'Financial')" class="p-3 bg-white border border-slate-200 rounded hover:border-orange-400 text-sm text-slate-600 transition">A. Gross Margin %</button>
+                    <button onclick="checkKPI('incorrect', 'Internal')" class="p-3 bg-white border border-slate-200 rounded hover:border-orange-400 text-sm text-slate-600 transition">B. Factory Defect Rate</button>
+                    <button onclick="checkKPI('correct', 'Learning')" class="p-3 bg-white border border-slate-200 rounded hover:border-green-400 text-sm text-slate-600 transition">C. Employee Training Hours</button>
+                </div>
+                <div id="kpi-feedback" class="hidden mt-4 p-3 rounded text-sm font-bold"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Cards with flip effect via JS logic -->
+                <div onclick="this.classList.toggle('bg-slate-900'); this.classList.toggle('text-white');" class="card-panel p-6 cursor-pointer group h-64 flex flex-col justify-between hover:border-purple-300">
+                    <div>
+                        <div class="w-10 h-10 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center mb-4 group-hover:bg-purple-600 group-hover:text-white transition">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4 class="font-bold uppercase text-xs tracking-widest mb-2">Customer</h4>
+                        <p class="text-sm text-slate-500 group-hover:text-slate-300">"How do customers view us?"</p>
+                    </div>
+                    <div class="text-sm font-serif border-t border-slate-100 pt-4 group-hover:border-slate-700">
+                        Metric: Ironclad Guarantee Returns < 2%
+                    </div>
+                </div>
+
+                <div onclick="this.classList.toggle('bg-slate-900'); this.classList.toggle('text-white');" class="card-panel p-6 cursor-pointer group h-64 flex flex-col justify-between hover:border-blue-300">
+                    <div>
+                        <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition">
+                            <i class="fas fa-gears"></i>
+                        </div>
+                        <h4 class="font-bold uppercase text-xs tracking-widest mb-2">Internal</h4>
+                        <p class="text-sm text-slate-500 group-hover:text-slate-300">"How do we create value?"</p>
+                    </div>
+                    <div class="text-sm font-serif border-t border-slate-100 pt-4 group-hover:border-slate-700">
+                        Metric: 100% Traceable Down Supply Chain
+                    </div>
+                </div>
+
+                <div onclick="this.classList.toggle('bg-slate-900'); this.classList.toggle('text-white');" class="card-panel p-6 cursor-pointer group h-64 flex flex-col justify-between hover:border-amber-300">
+                    <div>
+                        <div class="w-10 h-10 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center mb-4 group-hover:bg-amber-600 group-hover:text-white transition">
+                            <i class="far fa-lightbulb"></i>
+                        </div>
+                        <h4 class="font-bold uppercase text-xs tracking-widest mb-2">Learning</h4>
+                        <p class="text-sm text-slate-500 group-hover:text-slate-300">"What competencies do we need?"</p>
+                    </div>
+                    <div class="text-sm font-serif border-t border-slate-100 pt-4 group-hover:border-slate-700">
+                        Metric: Employee Retention > 95%
+                    </div>
+                </div>
+
+                <div onclick="this.classList.toggle('bg-slate-900'); this.classList.toggle('text-white');" class="card-panel p-6 cursor-pointer group h-64 flex flex-col justify-between hover:border-green-300">
+                    <div>
+                        <div class="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center mb-4 group-hover:bg-green-600 group-hover:text-white transition">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <h4 class="font-bold uppercase text-xs tracking-widest mb-2">Financial</h4>
+                        <p class="text-sm text-slate-500 group-hover:text-slate-300">"How do shareholders view us?"</p>
+                    </div>
+                    <div class="text-sm font-serif border-t border-slate-100 pt-4 group-hover:border-slate-700">
+                        Metric: 1% of Sales to Earth (Earth Tax)
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 6: TRIPLE BOTTOM LINE & MODELS -->
+        <section id="models" class="fade-up">
+            <div class="flex items-end gap-4 mb-10 border-b border-slate-200 pb-6">
+                <span class="text-6xl font-serif text-slate-200">06</span>
+                <div class="pb-2">
+                    <h2 class="text-3xl font-serif text-slate-900 font-bold">Circular Business Models</h2>
+                    <p class="text-slate-500">From Linear to Circular (Worn Wear)</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 items-center">
+                <div class="md:col-span-1 space-y-6">
+                    <div class="text-sm text-slate-600 leading-relaxed space-y-4">
+                        <p><strong>Linear Model:</strong> Make &rarr; Use &rarr; Waste. Requires constant new resources.</p>
+                        <p><strong>Circular Model:</strong> Make &rarr; Use &rarr; Repair &rarr; Resell.</p>
+                        <div class="bg-green-50 border border-green-200 p-4 rounded-lg text-xs text-green-800">
+                            <strong>Insight:</strong> Reselling a used jacket has <strong>Zero Production Cost ($C)</strong>, creating a pure margin contribution.
+                        </div>
+                    </div>
+                    <button onclick="updateCircularChart()" class="w-full bg-slate-900 text-white py-3 rounded-lg font-bold shadow-lg hover:bg-green-700 transition-all uppercase text-xs tracking-widest">
+                        Simulate Circular Growth
+                    </button>
+                </div>
+                <div class="md:col-span-2 card-panel p-6 h-80 bg-white">
+                    <canvas id="circularChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-slate-200 py-12 text-center text-sm text-slate-400 mt-20">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center justify-center gap-2 font-mono text-xs">
+                <span>© Dr. Swapnil Sahoo 2026 | All Rights Reserved</span>
+                <i class="fas fa-chess-knight text-slate-300"></i>
+            </div> 
+            <div class="flex space-x-8 items-center">
+                <a href="https://swapnilsahoo.com" target="_blank" class="text-slate-400 hover:text-teal-600 transition-colors transform hover:-translate-y-1" title="Website"><i class="fas fa-globe text-lg"></i></a>
+                <a href="#" class="text-slate-400 hover:text-blue-400 transition-colors"><i class="fab fa-twitter text-lg"></i></a>
+                <a href="#" class="text-slate-400 hover:text-pink-600 transition-colors"><i class="fab fa-instagram text-lg"></i></a>
+                <a href="#" class="text-slate-400 hover:text-blue-600 transition-colors"><i class="fab fa-linkedin text-lg"></i></a>
+                <a href="https://www.chess.com/member/theswapnilsahoo" target="_blank" class="text-slate-400 hover:text-green-600 transition-colors transform hover:-translate-y-1" title="Play Chess">
+                    <i class="fas fa-chess-king text-lg"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // --- CONFIG ---
+        Chart.defaults.font.family = 'Satoshi';
+        Chart.defaults.color = '#64748b';
+        Chart.defaults.scale.grid.color = 'rgba(0,0,0,0.05)';
+
+        // --- ANIMATIONS & SCROLL ---
+        window.onscroll = function() {
+            let h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            document.getElementById("progress-bar").style.width = (window.scrollY/h)*100 + "%";
+            
+            document.querySelectorAll('.fade-up').forEach(el => {
+                if(el.getBoundingClientRect().top < window.innerHeight - 50) {
+                    el.classList.add('visible');
+                }
+            });
+        };
+
+        // --- NEW: AD PREDICTION LOGIC ---
+        function revealAdResult(choice) {
+            const el = document.getElementById('ad-result');
+            el.classList.remove('hidden');
+            if (choice === 'rise') {
+                el.innerHTML = `<span class="text-green-600 font-bold">Correct.</span> Sales rose 30%. By telling people "Don't Buy", Patagonia signaled such extreme confidence in their durability that it ironically increased demand. This is the <strong>Streisand Effect</strong> applied to marketing.`;
+            } else {
+                el.innerHTML = `<span class="text-red-600 font-bold">Incorrect.</span> Sales actually rose 30%. Counter-intuitive, right? This defies standard economic demand curves but aligns with <strong>Signaling Theory</strong>.`;
+            }
+        }
+
+        // --- NEW: GOVERNANCE SIMULATION (KITCHEN vs REGISTER) ---
+        // Global State for Governance
+        let govState = { vote: 50, money: 50 };
+
+        function runGovernanceSim() {
+            const voteVal = parseInt(document.getElementById('sim-vote').value);
+            const moneyVal = parseInt(document.getElementById('sim-money').value);
+            const rate = document.getElementById('survival-rate');
+            const fb = document.getElementById('feedback-text');
+            const fbBox = document.getElementById('gov-feedback');
+            
+            // Visual Update
+            document.getElementById('vote-display').innerText = `Trust: ${100-voteVal}% | Collective: ${voteVal}%`;
+            document.getElementById('money-display').innerText = `Trust: ${100-moneyVal}% | Collective: ${moneyVal}%`;
+
+            // State Update
+            govState = { vote: voteVal, money: moneyVal }; // Note: Slider 0 = All Trust, 100 = All Collective
+
+            // Calculate Survival Score based on deviation from "Gold Standard"
+            // Gold Standard: Trust has high Votes (Slider low), Collective has high Money (Slider high)
+            // Ideal: vote < 10, money > 90
+            let score = 0;
+            if (voteVal < 20) score += 50; 
+            else if (voteVal < 50) score += 20;
+            
+            if (moneyVal > 80) score += 50;
+            else if (moneyVal > 50) score += 20;
+
+            rate.innerText = score + "%";
+            if (score > 80) rate.className = "text-green-400 font-bold";
+            else if (score > 40) rate.className = "text-orange-400 font-bold";
+            else rate.className = "text-red-400 font-bold";
+
+            fbBox.className = "flex-1 bg-black/20 p-4 rounded-lg border border-slate-700/50 text-sm leading-relaxed flex items-center justify-center text-center italic text-slate-500 min-h-[100px]";
+            fb.innerText = "Structure Updated. Select a Scenario Button to test resilience.";
+        }
+
+        function triggerStressTest(scenario) {
+            const voteVal = govState.vote; // High = Collective has votes
+            const moneyVal = govState.money; // High = Collective has money
+            const fbBox = document.getElementById('gov-feedback');
+            const fb = document.getElementById('feedback-text');
+
+            fbBox.className = "flex-1 bg-slate-800 p-4 rounded-lg border text-sm leading-relaxed flex items-center justify-center text-center min-h-[100px] transition-all";
+
+            if (scenario === 'hostile') {
+                // Hostile Takeover: Vulnerable if Votes are tradeable (Collective has votes)
+                if (voteVal > 10) {
+                    fbBox.classList.add('border-red-500', 'text-red-200');
+                    fb.innerHTML = `<strong>💀 CRITICAL FAILURE:</strong> The Hostile Bidder bought the voting shares from the Holdfast Collective. The mission is scrapped. You needed the Voting Rights safely in the Trust.`;
+                } else {
+                    fbBox.classList.add('border-green-500', 'text-green-200');
+                    fb.innerHTML = `<strong>🛡️ ATTACK REPELLED:</strong> The Bidder offered billions, but the Trust cannot be bought. The voting power is locked. Mission secure.`;
+                }
+            } else if (scenario === 'family') {
+                // Greedy Heirs: Vulnerable if Trust has Money (Heirs control Trust)
+                if (moneyVal < 90) {
+                    fbBox.classList.add('border-orange-500', 'text-orange-200');
+                    fb.innerHTML = `<strong>⚠️ LEAKAGE DETECTED:</strong> The Trust holds economic rights. Future heirs decided to pay themselves instead of the planet. Money drifted away from the mission.`;
+                } else {
+                    fbBox.classList.add('border-green-500', 'text-green-200');
+                    fb.innerHTML = `<strong>✅ SECURE:</strong> The heirs control the vote, but they own none of the money. They have no incentive to be greedy because they can't access the cash flow.`;
+                }
+            } else if (scenario === 'irs') {
+                // IRS Audit: Vulnerable if Trust (Not Tax Exempt) holds Money
+                if (moneyVal < 90) {
+                    fbBox.classList.add('border-red-500', 'text-red-200');
+                    fb.innerHTML = `<strong>📉 TAX DISASTER:</strong> You allocated dividends to the Trust. The Trust is NOT a non-profit. The IRS took 40%. The planet lost millions.`;
+                } else {
+                    fbBox.classList.add('border-green-500', 'text-green-200');
+                    fb.innerHTML = `<strong>💰 TAX EFFICIENT:</strong> Dividends flowed to the 501(c)(4) Holdfast Collective. Zero tax on the donation. Maximum impact.`;
+                }
+            }
+        }
+
+        // --- NEW: COLLABORATIVE STRATEGY INTERACTION ---
+        function voteCouncil(option) {
+            const resPol = document.getElementById('res-pol');
+            const resCon = document.getElementById('res-con');
+            const resRnd = document.getElementById('res-rnd');
+            
+            // Hide all
+            resPol.classList.add('hidden');
+            resCon.classList.add('hidden');
+            resRnd.classList.add('hidden');
+
+            if(option === 'pol') resPol.classList.remove('hidden');
+            if(option === 'con') resCon.classList.remove('hidden');
+            if(option === 'rnd') resRnd.classList.remove('hidden');
+        }
+
+        // --- NEW: INTANGIBLE MULTIPLIER SIM ---
+        function updateMultiplier() {
+            const brandStrength = parseInt(document.getElementById('input-brand').value);
+            // Formula: Market Cap = Book Value ($10B) * (1 + Brand/2)
+            // Range: 1.5x to 6x multiplier
+            const multiplier = 1 + (brandStrength / 2);
+            const marketCap = 10 * multiplier;
+            
+            document.getElementById('res-market-cap').innerText = '$' + marketCap.toFixed(1) + 'B';
+            
+            // Visual feedback via color intensity
+            const intensity = 500 + (brandStrength * 40); // 500 to 900
+            document.getElementById('res-market-cap').style.color = `rgb(${100-brandStrength*10}, ${intensity/4}, ${intensity/3})`;
+        }
+
+        // --- NEW: KPI MATCHER LOGIC ---
+        function checkKPI(status, category) {
+            const fb = document.getElementById('kpi-feedback');
+            fb.classList.remove('hidden');
+            if (status === 'correct') {
+                fb.className = "mt-4 p-3 rounded text-sm font-bold bg-green-50 text-green-800 border border-green-200";
+                fb.innerHTML = `<i class="fas fa-check-circle"></i> Correct! 'Training Hours' measures the growth of human capital, which is the foundation of the Learning perspective.`;
+            } else {
+                fb.className = "mt-4 p-3 rounded text-sm font-bold bg-red-50 text-red-800 border border-red-200";
+                fb.innerHTML = `<i class="fas fa-times-circle"></i> Incorrect. That is a '${category}' metric. Learning & Growth focuses on people and culture, not process or profit.`;
+            }
+        }
+
+        // --- INTERACTIVE INSIGHTS ---
+        function showInsight(type) {
+            const el = document.getElementById('signal-insight');
+            if (type === 'hook') {
+                el.innerHTML = "<strong>The Hook:</strong> Using imperative negative language ('Don't Buy') immediately disrupts the user's scanning pattern. It violates the standard marketing contract, forcing engagement.";
+            } else if (type === 'transparency') {
+                el.innerHTML = "<strong>Radical Transparency:</strong> Listing the water (135L) and carbon (20lbs) costs acts as a 'Costly Signal'. A firm with poor quality or ethics could not afford to draw attention to these metrics.";
+            } else if (type === 'cta') {
+                el.innerHTML = "<strong>The Pledge:</strong> The CTA isn't to buy, but to 'Join us'. This reframes the transaction from 'Consumer vs. Vendor' to 'Partner vs. Problem', deepening brand loyalty.";
+            }
+        }
+
+        // --- 1. WEDGE CHART ---
+        let wedgeChart = new Chart(document.getElementById('wedgeChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['Value Creation'],
+                datasets: [
+                    { label: 'Cost (C)', data: [80], backgroundColor: '#ef4444', borderRadius: 4, barThickness: 60 },
+                    { label: 'Prod. Surplus (P-C)', data: [60], backgroundColor: '#3b82f6', borderRadius: 4, barThickness: 60 },
+                    { label: 'Cons. Surplus (V-P)', data: [60], backgroundColor: '#10b981', borderRadius: 4, barThickness: 60 }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { x: { stacked: true, grid: {display: false} }, y: { stacked: true, beginAtZero: true } },
+                plugins: { legend: { position: 'bottom' } }
+            }
+        });
+
+        function updateWedge() {
+            const v = parseInt(document.getElementById('input-v').value);
+            const c = parseInt(document.getElementById('input-c').value);
+            const p = Math.min(v - 10, c * 1.5); 
+            
+            document.getElementById('disp-v').innerText = '$' + v;
+            document.getElementById('disp-c').innerText = '$' + c;
+            document.getElementById('disp-ev').innerText = '$' + (v - c);
+
+            wedgeChart.data.datasets[0].data = [c];
+            wedgeChart.data.datasets[1].data = [Math.max(0, p - c)];
+            wedgeChart.data.datasets[2].data = [Math.max(0, v - p)];
+            wedgeChart.update();
+        }
+
+        // --- 2. RATIO CALCULATOR ---
+        function calcRatios() {
+            const cash = parseFloat(document.getElementById('bs-cash').value);
+            const rec = parseFloat(document.getElementById('bs-rec').value);
+            const inv = parseFloat(document.getElementById('bs-inv').value);
+            const liab = parseFloat(document.getElementById('bs-liab').value);
+
+            const curr = (cash + rec + inv) / liab;
+            const quick = (cash + rec) / liab;
+
+            document.getElementById('res-curr').innerText = curr.toFixed(2);
+            document.getElementById('res-quick').innerText = quick.toFixed(2);
+
+            const cMsg = document.getElementById('msg-curr');
+            if(curr < 1.5) { cMsg.innerText = "Risk: Low Liquidity"; cMsg.className = "text-xs font-bold text-red-500 bg-red-50 px-2 py-1 rounded"; }
+            else { cMsg.innerText = "Healthy Solvency"; cMsg.className = "text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded"; }
+        }
+
+        // --- 3. PATAGONIA REVENUE CHART ---
+        new Chart(document.getElementById('patagoniaRevChart').getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: ['FY2020', 'FY2021', 'FY2022', 'FY2023', 'FY2025'],
+                datasets: [{
+                    label: 'Revenue ($ Billion)',
+                    data: [1.00, 1.20, 1.30, 1.57, 1.47],
+                    borderColor: '#15803d',
+                    backgroundColor: 'rgba(21, 128, 61, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { 
+                    y: { beginAtZero: false, min: 0.8 } 
+                },
+                plugins: { legend: { display: false } }
+            }
+        });
+
+        // --- 4. INTANGIBLES CHART ---
+        new Chart(document.getElementById('intangiblesChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['1975', '1985', '1995', '2005', '2015', '2020'],
+                datasets: [
+                    { 
+                        label: 'Intangible Assets (IP, Brand, Culture)', 
+                        data: [17, 32, 68, 80, 87, 90], 
+                        backgroundColor: '#6366f1', // Indigo
+                        borderRadius: 4
+                    },
+                    { 
+                        label: 'Tangible Assets (Book Value)', 
+                        data: [83, 68, 32, 20, 13, 10], 
+                        backgroundColor: '#cbd5e1', // Slate 300
+                        borderRadius: 4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { 
+                    x: { stacked: true, grid: {display: false} }, 
+                    y: { stacked: true, max: 100, title: {display:true, text: '% of Market Value'} } 
+                },
+                plugins: { legend: { position: 'bottom' } }
+            }
+        });
+
+        // --- 5. MARKET CAP CHART (Updated Data) ---
+        new Chart(document.getElementById('marketCapChart').getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: ['1995', '2000', '2005', '2010', '2015', '2020', '2022'],
+                datasets: [
+                    {
+                        label: 'Microsoft',
+                        data: [0.05, 0.6, 0.3, 0.25, 0.4, 1.6, 2.2], // Trillions
+                        borderColor: '#2563eb', // Blue
+                        backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Apple',
+                        data: [0.01, 0.01, 0.05, 0.2, 0.6, 2.0, 2.8], // Trillions
+                        borderColor: '#a3a3a3', // Grey
+                        borderDash: [5, 5],
+                        tension: 0.4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { 
+                    y: { 
+                        title: {display: true, text: 'Trillions ($)'},
+                        ticks: { callback: function(value) { return '$' + value + 'T'; } }
+                    } 
+                },
+                plugins: { legend: { position: 'bottom' } }
+            }
+        });
+
+        // --- NEW SIMULATION: THE NADELLA PIVOT (Legacy/Cloud) ---
+        function runNadellaSim(choice) {
+            const placeholder = document.getElementById('nadella-feedback-placeholder');
+            const fb = document.getElementById('nadella-feedback');
+            const icon = document.getElementById('nadella-icon');
+            const title = document.getElementById('nadella-title');
+            const desc = document.getElementById('nadella-desc');
+
+            placeholder.classList.add('hidden');
+            fb.classList.remove('hidden');
+
+            if (choice === 'legacy') {
+                icon.innerHTML = '📉';
+                title.innerText = "The Kodak Moment";
+                title.className = "font-bold text-lg mb-2 text-red-400";
+                desc.innerHTML = "You protected Windows revenue for 3 years. But AWS captured 80% of the cloud market. Microsoft became irrelevant in the modern tech stack. Stock stagnates forever.";
+            } else {
+                icon.innerHTML = '☁️';
+                title.innerText = "The Trillion Dollar Pivot";
+                title.className = "font-bold text-lg mb-2 text-green-400";
+                desc.innerHTML = "Wall Street initially panicked as Windows margins dropped. But Azure grew 50% YoY. By 2018, Microsoft was the most valuable company in the world again. You reinvented the soul of the firm.";
+            }
+        }
+
+        // --- NEW SIMULATION: THE ETHICS ENGINE ---
+        function runEthicsSim(choice) {
+            const fb = document.getElementById('ethics-feedback');
+            const title = document.getElementById('ethics-title');
+            const desc = document.getElementById('ethics-desc');
+            
+            fb.classList.remove('hidden');
+            
+            if (choice === 'friedman') {
+                title.innerText = "Result: The Most Hated Person in America";
+                title.className = "font-bold text-lg mb-2 text-red-400";
+                desc.innerHTML = "Your stock soars 30% in one week. Investors cheer. <br><br>But public outrage triggers a Congressional investigation. Your reputation is permanently destroyed. You are eventually convicted of securities fraud. Short-term maximization killed long-term viability.";
+                fb.className = "mt-6 p-4 bg-slate-800 rounded border-l-4 border-red-500 animate-fade-in";
+            } else {
+                title.innerText = "Result: Sustainable Stewardship";
+                title.className = "font-bold text-lg mb-2 text-green-400";
+                desc.innerHTML = "Investors grumble at the modest returns. Wall Street analysts downgrade you. <br><br>But patients get the drug. The R&D pipeline produces a new cure 5 years later. You avoid regulation and build a 100-year company.";
+                fb.className = "mt-6 p-4 bg-slate-800 rounded border-l-4 border-green-500 animate-fade-in";
+            }
+        }
+
+        // --- NEW SIMULATION: THE BOARDROOM COUP (CSV) ---
+        function runCoupSim(choice) {
+            const placeholder = document.getElementById('coup-feedback-placeholder');
+            const fb = document.getElementById('coup-feedback');
+            const title = document.getElementById('coup-title');
+            const desc = document.getElementById('coup-desc');
+            const icon = document.getElementById('coup-icon');
+
+            placeholder.classList.add('hidden');
+            fb.classList.remove('hidden');
+
+            if (choice === 'fight') {
+                icon.innerHTML = '📉';
+                title.innerText = "The Boardroom Massacre";
+                title.className = "font-bold text-lg mb-2 text-red-400";
+                desc.innerHTML = "You ignored BlackRock. Engine No. 1 rallied other institutional investors. At the shareholder meeting, you lost. 3 of your loyal directors were voted out. You are now a lame-duck CEO with a hostile board.";
+            } else {
+                icon.innerHTML = '🤝';
+                title.innerText = "Managed Transition";
+                title.className = "font-bold text-lg mb-2 text-green-400";
+                desc.innerHTML = "You engaged early. You agreed to 1 new board seat instead of 3 and committed to a $5B Hydrogen investment. The stock price stabilized, and you retained control of the transition timeline.";
+            }
+        }
+
+        // --- NEW ACTIVITY: CLASSIFICATION GAME ---
+        function classifyItem(btn, type) {
+            const fb = document.getElementById('classify-feedback');
+            fb.classList.remove('hidden');
+            
+            // Reset styles
+            btn.parentElement.querySelectorAll('button').forEach(b => {
+                b.classList.remove('bg-green-100', 'border-green-400', 'bg-red-100', 'border-red-400');
+                b.classList.add('bg-white', 'border-indigo-200');
+            });
+
+            if (type === 'CSR') {
+               if(btn.innerText.includes("Donating")) {
+                   btn.classList.remove('bg-white', 'border-indigo-200');
+                   btn.classList.add('bg-green-100', 'border-green-400');
+                   fb.innerText = "Correct! Philanthropy is classic CSR (reactive/external).";
+                   fb.className = "mt-4 text-xs font-bold text-green-700";
+               } else {
+                   btn.classList.remove('bg-white', 'border-indigo-200');
+                   btn.classList.add('bg-red-100', 'border-red-400');
+                   fb.innerText = "Incorrect. That involves core operations/strategy, making it CSV.";
+                   fb.className = "mt-4 text-xs font-bold text-red-700";
+               }
+            } else if (type === 'CSV') {
+                if(!btn.innerText.includes("Donating")) {
+                   btn.classList.remove('bg-white', 'border-indigo-200');
+                   btn.classList.add('bg-green-100', 'border-green-400');
+                   fb.innerText = "Correct! Integrating societal value into core operations (supply chain/R&D) is CSV.";
+                   fb.className = "mt-4 text-xs font-bold text-green-700";
+                } else {
+                   btn.classList.remove('bg-white', 'border-indigo-200');
+                   btn.classList.add('bg-red-100', 'border-red-400');
+                   fb.innerText = "Incorrect. Donations are philanthropic (CSR), not strategic CSV.";
+                   fb.className = "mt-4 text-xs font-bold text-red-700";
+                }
+            }
+        }
+
+        // --- CEO SIMULATION LOGIC ---
+        function runCeoSim(choice) {
+            document.getElementById('ceo-feedback-placeholder').classList.add('hidden');
+            const fb = document.getElementById('ceo-feedback');
+            const icon = document.getElementById('ceo-icon');
+            const title = document.getElementById('ceo-title');
+            const desc = document.getElementById('ceo-desc');
+            
+            fb.classList.remove('hidden');
+            
+            if (choice === 'buyback') {
+                icon.innerHTML = '📉';
+                title.innerText = "Stock Spike... Then Stagnation";
+                title.className = "font-bold text-lg mb-2 text-red-400";
+                desc.innerText = "Shareholders are happy for one quarter. But staff morale drops, store quality suffers, and long-term brand value erodes. Howard Schultz reversed this policy in 2022.";
+            } else {
+                icon.innerHTML = '🚀';
+                title.innerText = "Long-Term Value Creation";
+                title.className = "font-bold text-lg mb-2 text-green-400";
+                desc.innerText = "Wall Street punishes you initially. But employee retention soars, customer service improves, and you build a sustainable competitive advantage. This is the path Schultz chose.";
+            }
+        }
+
+        // --- 6. CIRCULAR CHART ---
+        let circularChart = new Chart(document.getElementById('circularChart').getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: ['2023', '2024', '2025', '2026', '2027'],
+                datasets: [
+                    { label: 'Linear Sales', data: [100, 105, 110, 115, 120], borderColor: '#9ca3af', borderDash: [5,5], tension: 0.4 },
+                    { label: 'Circular (Worn Wear)', data: [10, 25, 45, 75, 110], borderColor: '#15803d', backgroundColor: 'rgba(21, 128, 61, 0.1)', fill: true, tension: 0.4 }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { position: 'top' } },
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+
+        function updateCircularChart() {
+            circularChart.data.datasets[1].data = [10, 35, 80, 140, 210];
+            circularChart.update();
+        }
+
+        // --- NEW SIMULATION LOGIC FOR STEWARDSHIP GAUNTLET ---
+        const levels = [
+            {
+                year: 1994,
+                q: "The Organic Cotton Crisis",
+                context: "Conventional cotton is chemically intensive. Switching to organic will increase costs by 20% and supply is scarce. The board is worried about margins.",
+                a: "Keep conventional cotton for now. Phase in organic slowly.",
+                b: "Switch 100% to organic immediately. Accept the cost hit.",
+                correct: 1,
+                feedback: "Correct. Chouinard forced the switch. It was risky, but it solidified brand trust. Margins recovered as customers paid the premium."
+            },
+            {
+                year: 2011,
+                q: "The Marketing Paradox",
+                context: "It's Black Friday. Competitors are slashing prices. Marketing asks for a Super Sale strategy.",
+                a: "Run a 'Don't Buy This Jacket' ad. Encourage repair over buying.",
+                b: "Run a 'Green Friday' sale. 20% off all sustainable gear.",
+                correct: 0,
+                feedback: "Correct. The counter-intuitive ad went viral. It reinforced the 'anti-consumerism' ethos... and paradoxically increased sales by 30%."
+            },
+            {
+                year: 2022,
+                q: "The Succession",
+                context: "Yvon Chouinard is 83. The company is worth $3 Billion. How do you exit?",
+                a: "Go Public (IPO) and pledge 10% of shares to charity.",
+                b: "Transfer 100% of voting stock to a Trust and profits to a Non-Profit.",
+                correct: 1,
+                feedback: "Correct. This unique structure ensures that 'Earth is the only shareholder'. An IPO would have subjected the mission to quarterly earnings pressure."
+            }
+        ];
+
+        let currentLevel = 0;
+
+        function startGauntlet() {
+            document.getElementById('sim-start').classList.add('hidden');
+            document.getElementById('sim-game').classList.remove('hidden');
+            loadLevel();
+        }
+
+        function loadLevel() {
+            const l = levels[currentLevel];
+            document.getElementById('sim-year').innerText = "Year: " + l.year;
+            document.getElementById('sim-question').innerText = l.q;
+            document.getElementById('sim-context').innerText = l.context;
+            document.getElementById('btn-a-text').innerText = l.a;
+            document.getElementById('btn-b-text').innerText = l.b;
+            
+            document.getElementById('sim-feedback').classList.add('hidden');
+            document.getElementById('sim-next').classList.add('hidden');
+            
+            // Re-enable buttons
+            const btns = document.querySelectorAll('.sim-btn');
+            btns.forEach(b => { b.disabled = false; b.classList.remove('opacity-50'); });
+        }
+
+        function makeChoice(choiceIndex) {
+            const l = levels[currentLevel];
+            const feedback = document.getElementById('sim-feedback');
+            const btns = document.querySelectorAll('.sim-btn');
+            
+            btns.forEach(b => { b.disabled = true; b.classList.add('opacity-50'); });
+
+            feedback.classList.remove('hidden');
+            
+            if (choiceIndex === l.correct) {
+                feedback.innerHTML = `<strong class="text-green-400">Wise Choice.</strong> ${l.feedback}`;
+                feedback.classList.add('border-green-500');
+            } else {
+                feedback.innerHTML = `<strong class="text-red-400">Mission Drift.</strong> You chose profit over purpose. In Patagonia's history, this would have destroyed the brand value.`;
+                feedback.classList.add('border-red-500');
+            }
+
+            if (currentLevel < levels.length - 1) {
+                document.getElementById('sim-next').classList.remove('hidden');
+            } else {
+                document.getElementById('sim-next').innerText = "Simulation Complete";
+                document.getElementById('sim-next').classList.remove('hidden');
+                document.getElementById('sim-next').onclick = null;
+            }
+        }
+
+        function nextLevel() {
+            currentLevel++;
+            loadLevel();
+        }
+
+        // Init
+        updateWedge();
+        calcRatios();
+        updateMultiplier();
+        
+        // Initial fade check
+        setTimeout(() => { 
+            document.querySelectorAll('.fade-up').forEach(el => {
+                if(el.getBoundingClientRect().top < window.innerHeight) {
+                    el.classList.add('visible');
+                }
+            });
+        }, 100);
+
+    </script>
+</body>
+</html>

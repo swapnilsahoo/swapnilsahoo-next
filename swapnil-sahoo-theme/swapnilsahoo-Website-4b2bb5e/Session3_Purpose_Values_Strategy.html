@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Analysis: The Tesla Paradox</title>
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: The application is structured as a narrative journey following the "Purpose -> Values -> Strategy" framework from the teaching plan. This non-linear structure allows users to explore the core concepts of the case thematically rather than chronologically. It begins with the central "Tesla Paradox" to hook the user, delves into the foundational pillars of Purpose and Values, explores the resulting Strategy through interactive data visualizations, and concludes with a "Verdict" section where users can engage with the final board dilemma. This structure was chosen to transform the case study from a static document into an interactive strategic analysis, promoting deeper understanding and engagement by making the user an active participant in the analysis. -->
+    <!-- Visualization & Content Choices: 
+        - The Tesla Paradox (Intro): Goal: Inform & Engage. Method: Two-sided interactive cards (HTML/CSS/JS) to present the conflicting views of Musk. Justification: Immediately introduces the core tension of the case in a dynamic way.
+        - The Master Plan (Purpose): Goal: Organize & Inform. Method: Interactive step-by-step timeline diagram (HTML/CSS/JS). Justification: Breaks down a complex, sequential plan into digestible, user-controlled steps.
+        - Core Values (Values): Goal: Organize & Compare. Method: Grid of clickable cards that reveal details (HTML/CSS/JS). Justification: Allows users to explore abstract concepts (values) with concrete examples from the case.
+        - ESG Conflict (Values): Goal: Compare. Method: A simple side-by-side comparison (HTML/CSS). Justification: Visually represents the clash between Tesla's internal values and external governance standards.
+        - Key Strategies (Strategy): Goal: Show Relationships. Method: Interactive diagram built with HTML/CSS. Justification: Illustrates how different strategic pillars connect to form a cohesive system.
+        - Market Cap & Financials (Strategy): Goal: Show Change. Method: Interactive line charts (Chart.js/Canvas). Justification: Best method for showing performance and trends over time. Interaction: Tooltips with specific data points.
+        - Vehicle & Emissions Comparison (Strategy): Goal: Compare. Method: Interactive bar charts (Chart.js/Canvas). Justification: Ideal for direct comparison of quantitative data across different entities (competitors, vehicle types). Interaction: Tooltips and filterable datasets.
+        - The Board's Dilemma (Verdict): Goal: Engage & Synthesize. Method: Interactive voting module (HTML/CSS/JS). Justification: Serves as a capstone, forcing the user to synthesize all the information from the case to make a strategic decision.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f7f4;
+            color: #1f2937;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            display: block;
+            margin-top: 5px;
+            right: 0;
+            background: #4f46e5;
+            transition: width 0.3s ease;
+            -webkit-transition: width 0.3s ease;
+        }
+        .nav-link:hover:after {
+            width: 100%;
+            left: 0;
+            background-color: #4f46e5;
+        }
+        .nav-link.active:after {
+             width: 100%;
+            left: 0;
+            background-color: #4f46e5;
+        }
+        .card {
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+        .card.is-flipped {
+            transform: rotateY(180deg);
+        }
+        .card-face {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .card-face-back {
+            transform: rotateY(180deg);
+        }
+        .step-item.active .step-circle {
+             background-color: #4f46e5;
+             border-color: #4f46e5;
+             color: white;
+        }
+        .step-item.active .step-line {
+            background-color: #4f46e5;
+        }
+        .mcq-option {
+            display: block;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <header id="header" class="bg-white/90 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <div class="bg-gray-800 text-white">
+            <div class="container mx-auto px-6 py-2 flex justify-center md:justify-between items-center text-sm">
+                <span class="hidden md:inline">© Dr. Swapnil Sahoo 2025</span>
+                <div class="flex items-center space-x-4">
+                    <a href="https://x.com/swapnilsahoo" target="_blank" class="hover:text-indigo-400 transition-colors">Twitter</a>
+                    <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" class="hover:text-indigo-400 transition-colors">Instagram</a>
+                    <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" class="hover:text-indigo-400 transition-colors">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-gray-800">The Tesla Paradox</h1>
+            <div class="hidden md:flex items-center space-x-6 flex-wrap justify-center">
+                <a href="#paradox" class="nav-link text-gray-600 hover:text-indigo-600 font-medium">Paradox</a>
+                <a href="#framework" class="nav-link text-gray-600 hover:text-indigo-600 font-medium">Framework</a>
+                <a href="#purpose" class="nav-link text-gray-600 hover:text-indigo-600 font-medium">Purpose</a>
+                <a href="#values" class="nav-link text-gray-600 hover:text-indigo-600 font-medium">Values</a>
+                <a href="#strategy" class="nav-link text-gray-600 hover:text-indigo-600 font-medium">Strategy</a>
+                <a href="#verdict" class="nav-link text-gray-600 hover:text-indigo-600 font-medium">Verdict</a>
+                <a href="#study-guide" class="nav-link text-gray-600 hover:text-indigo-600 font-medium">Study Guide</a>
+                <a href="#quiz" class="nav-link text-gray-600 hover:text-indigo-600 font-medium">Quiz</a>
+                <a href="#briefing" class="nav-link text-gray-600 hover:text-indigo-600 font-medium">Briefing</a>
+                <a href="#timeline" class="nav-link text-gray-600 hover:text-indigo-600 font-medium">Timeline</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="paradox" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">The Visionary vs. The Reckless Entrepreneur</h2>
+                <p class="max-w-3xl mx-auto text-lg text-gray-600 mb-12">
+                    The case of Elon Musk and Tesla is a study in contrasts. He is simultaneously seen as a world-changing visionary and a controversial leader who disregards conventional rules. This section explores the two faces of the Tesla paradox. Click on a card to reveal the opposing view.
+                </p>
+                <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <div class="perspective-container">
+                        <div class="card w-full h-64 cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+                            <div class="card-face absolute w-full h-full p-8 bg-gray-100 rounded-xl shadow-lg flex flex-col justify-center items-center">
+                                <h3 class="text-2xl font-semibold text-green-700 mb-2">The Visionary</h3>
+                                <p class="text-gray-600">The greatest entrepreneur of the early 21st century, setting in motion substantial declines in carbon emissions.</p>
+                                <span class="text-xs text-gray-400 mt-4">Click to flip</span>
+                            </div>
+                            <div class="card-face card-face-back absolute w-full h-full p-8 bg-gray-100 rounded-xl shadow-lg flex flex-col justify-center items-center">
+                                <h3 class="text-2xl font-semibold text-red-700 mb-2">The Reckless</h3>
+                                <p class="text-gray-600">An entrepreneur with little empathy and a complete lack of appreciation for accountability and corporate governance.</p>
+                                <span class="text-xs text-gray-400 mt-4">Click to flip</span>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="perspective-container">
+                        <div class="card w-full h-64 cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+                            <div class="card-face absolute w-full h-full p-8 bg-gray-100 rounded-xl shadow-lg flex flex-col justify-center items-center">
+                                <h3 class="text-2xl font-semibold text-green-700 mb-2">Value Creation</h3>
+                                <p class="text-gray-600">Generated unprecedented shareholder value, making Tesla the world's most valuable automaker.</p>
+                                <span class="text-xs text-gray-400 mt-4">Click to flip</span>
+                            </div>
+                            <div class="card-face card-face-back absolute w-full h-full p-8 bg-gray-100 rounded-xl shadow-lg flex flex-col justify-center items-center">
+                                <h3 class="text-2xl font-semibold text-red-700 mb-2">Value Destruction</h3>
+                                <p class="text-gray-600">Became the first person ever to lose $200 billion in personal wealth, amid controversies and erratic behavior.</p>
+                                 <span class="text-xs text-gray-400 mt-4">Click to flip</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="framework" class="py-16 md:py-24">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">A Framework for Strategic Analysis</h2>
+                <p class="max-w-3xl mx-auto text-lg text-gray-600 mb-12">
+                    To understand the Tesla phenomenon, we will use the **Purpose-Values-Strategy** framework. This model (also known as Vision-Mission-Strategy) helps deconstruct how a company's core reason for being shapes its culture and, ultimately, its actions in the marketplace.
+                </p>
+                <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-8">
+                    <div class="p-6 bg-white rounded-xl shadow-md text-center">
+                        <h3 class="text-xl font-semibold text-indigo-600">Purpose</h3>
+                        <p class="text-gray-600 mt-2">The "Why" - The company's fundamental reason for existence beyond profit.</p>
+                    </div>
+                    <div class="text-2xl font-bold text-gray-400 transform md:rotate-0 rotate-90">&rarr;</div>
+                    <div class="p-6 bg-white rounded-xl shadow-md text-center">
+                        <h3 class="text-xl font-semibold text-indigo-600">Values</h3>
+                        <p class="text-gray-600 mt-2">The "How" - The cultural compass and principles that guide behavior.</p>
+                    </div>
+                     <div class="text-2xl font-bold text-gray-400 transform md:rotate-0 rotate-90">&rarr;</div>
+                    <div class="p-6 bg-white rounded-xl shadow-md text-center">
+                        <h3 class="text-xl font-semibold text-indigo-600">Strategy</h3>
+                        <p class="text-gray-600 mt-2">The "What" - The set of choices and actions taken to achieve the purpose.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="purpose" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">The North Star: Purpose-Driven Strategy</h2>
+                     <p class="max-w-3xl mx-auto text-lg text-gray-600">
+                        Tesla's strategy is anchored in a powerful, long-term purpose articulated by Musk in 2006. This was not a vague mission, but a concrete plan to reshape an entire economic ecosystem. This section breaks down that original vision.
+                    </p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-xl shadow-inner max-w-5xl mx-auto">
+                     <blockquote class="text-center text-xl italic text-gray-700 border-l-4 border-indigo-500 pl-6 mb-10">
+                        "The overarching purpose of Tesla Motors is to help expedite the move from a mine-and-burn hydrocarbon economy towards a solar electric economy..."
+                        <cite class="block text-right text-base not-italic text-gray-500 mt-2">— Elon Musk, 2006</cite>
+                    </blockquote>
+                    <h3 class="text-2xl font-semibold text-center mb-8">The Secret Master Plan</h3>
+                    <div id="master-plan-container" class="relative flex flex-col md:flex-row justify-between items-center w-full">
+                        <!-- Steps will be generated by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="values" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">The Compass: Founder-Led Values</h2>
+                    <p class="max-w-3xl mx-auto text-lg text-gray-600">
+                       If purpose is the destination, values are the compass. Tesla's culture is a direct reflection of its founder's personality. These values created a powerful "purpose-driven risk alliance" but also led to significant friction with external standards like ESG.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                    <!-- Value cards -->
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h4 class="font-bold text-lg text-indigo-700">"Ultra Hardcore" Work Ethic</h4>
+                        <p class="text-sm text-gray-600 mt-2">Musk demanded extreme intensity, warning employees their families would see less of them and requiring commitment to "long hours at high intensity."</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h4 class="font-bold text-lg text-indigo-700">Extreme Risk-Taking</h4>
+                        <p class="text-sm text-gray-600 mt-2">Demonstrated by investing his last dollars to save Tesla from bankruptcy in 2008, a move a colleague called an "insane amount of personal risk."</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h4 class="font-bold text-lg text-indigo-700">Confrontational Style</h4>
+                        <p class="text-sm text-gray-600 mt-2">Publicly feuded with short-sellers, mocked regulators like the SEC, and maintained a combative stance against critics.</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h4 class="font-bold text-lg text-indigo-700">First-Principles Thinking</h4>
+                        <p class="text-sm text-gray-600 mt-2">A commitment to solving problems from the ground up, leading to decisions to build cars from scratch and eschew traditional industry partnerships.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-8 rounded-xl shadow-inner max-w-4xl mx-auto">
+                    <h3 class="text-2xl font-semibold text-center mb-6">The ESG Conflict</h3>
+                    <p class="text-center text-gray-600 mb-6">The clash between Tesla's internal values and external expectations is best illustrated by its removal from the S&P 500 ESG Index.</p>
+                    <div class="grid md:grid-cols-2 gap-6 text-center">
+                        <div class="bg-red-50 p-6 rounded-lg border border-red-200">
+                             <h4 class="font-semibold text-red-800 text-lg">S&P's Rationale for Removal</h4>
+                             <ul class="text-left text-sm text-red-700 mt-3 space-y-2 list-disc pl-5">
+                                 <li>Claims of racial discrimination and poor working conditions.</li>
+                                 <li>Mishandling of NHTSA investigations into autopilot.</li>
+                                 <li>Lack of a low-carbon strategy and codes of business conduct.</li>
+                             </ul>
+                        </div>
+                        <div class="bg-blue-50 p-6 rounded-lg border border-blue-200">
+                             <h4 class="font-semibold text-blue-800 text-lg">Musk's Response</h4>
+                             <p class="text-sm text-blue-700 mt-3 italic">"ESG is a scam. It has been weaponized by phony social justice warriors."</p>
+                             <p class="text-sm text-blue-700 mt-2">This highlights a core belief that achieving the environmental mission ('E') justifies or outweighs perceived shortcomings in social ('S') and governance ('G') pillars.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="strategy" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Strategy as a Quest for Value</h2>
+                    <p class="max-w-3xl mx-auto text-lg text-gray-600">
+                        For a disruptive company like Tesla, strategy is not a static plan. It is a dynamic, often perilous, **Quest for Value**—a long, arduous search for something of great worth, filled with uncertainty and a high chance of failure. This perspective explains the unconventional choices made to redefine an entire industry.
+                    </p>
+                </div>
+                
+                <div class="bg-gray-50 p-8 rounded-xl shadow-inner max-w-6xl mx-auto mb-16">
+                     <h3 class="text-2xl font-semibold text-center mb-8">An Integrated Ecosystem Strategy</h3>
+                    <div class="grid md:grid-cols-3 gap-8 text-center">
+                        <div class="p-4">
+                             <span class="text-4xl">🏭</span>
+                            <h4 class="font-bold text-lg mt-2">Vertical Integration</h4>
+                            <p class="text-sm text-gray-600 mt-1">Building Gigafactories to control battery production, the core technology for the energy transition.</p>
+                        </div>
+                        <div class="p-4">
+                             <span class="text-4xl">⚡️</span>
+                            <h4 class="font-bold text-lg mt-2">Supercharger Network</h4>
+                            <p class="text-sm text-gray-600 mt-1">Solving the "range anxiety" problem by building a proprietary, reliable fast-charging network.</p>
+                        </div>
+                        <div class="p-4">
+                             <span class="text-4xl">🏬</span>
+                            <h4 class="font-bold text-lg mt-2">Direct-to-Consumer</h4>
+                            <p class="text-sm text-gray-600 mt-1">Controlling the brand narrative and customer education by bypassing traditional dealer networks.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col">
+                        <h3 class="text-xl font-semibold text-center mb-4">Shareholder Value: Market Capitalization</h3>
+                        <div class="chart-container flex-grow">
+                            <canvas id="marketCapChart"></canvas>
+                        </div>
+                    </div>
+                     <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col">
+                        <h3 class="text-xl font-semibold text-center mb-4">Financial Performance</h3>
+                        <div class="chart-container flex-grow">
+                            <canvas id="financialsChart"></canvas>
+                        </div>
+                    </div>
+                     <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col">
+                        <h3 class="text-xl font-semibold text-center mb-4">Customer Value: Performance vs. Peers</h3>
+                         <div class="chart-container flex-grow">
+                            <canvas id="performanceChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col">
+                        <h3 class="text-xl font-semibold text-center mb-4">Societal Value: Lifecycle Emissions</h3>
+                        <div class="chart-container flex-grow">
+                            <canvas id="emissionsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="verdict" class="py-16 md:py-24">
+            <div class="container mx-auto px-6 text-center">
+                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">The Verdict: The Board's Dilemma</h2>
+                <p class="max-w-3xl mx-auto text-lg text-gray-600 mb-8">
+                    In January 2024, Musk stated he was "uncomfortable growing Tesla to be a leader in AI & robotics without having ~25% voting control." This demand presents the ultimate challenge to the board.
+                </p>
+                <div id="vote-container" class="bg-white p-8 rounded-xl shadow-lg max-w-4xl mx-auto">
+                    <h3 class="text-2xl font-semibold mb-6">As a board member, how do you vote?</h3>
+                    <div class="flex justify-center space-x-6 mb-8">
+                        <button id="vote-yes-btn" class="bg-green-600 text-white font-bold py-3 px-8 rounded-lg shadow-md hover:bg-green-700 transition-colors">Vote YES</button>
+                        <button id="vote-no-btn" class="bg-red-600 text-white font-bold py-3 px-8 rounded-lg shadow-md hover:bg-red-700 transition-colors">Vote NO</button>
+                    </div>
+                    <div id="vote-results" class="hidden grid md:grid-cols-2 gap-8 text-left">
+                        <div id="yes-column" class="opacity-30 transition-opacity duration-500">
+                             <h4 class="font-bold text-lg text-green-800 border-b-2 border-green-300 pb-2 mb-3">The Argument for YES</h4>
+                             <ul class="text-sm text-gray-700 space-y-2 list-disc pl-5">
+                                 <li>Tesla's success is a direct result of the tight chain between Musk's Purpose, Values, and Strategy.</li>
+                                 <li>Weakening his control risks diluting the vision and turning Tesla into a bureaucratic, ordinary company.</li>
+                                  <li>AI & robotics is the next logical extension of the purpose; he needs absolute control to execute this next quest.</li>
+                             </ul>
+                        </div>
+                        <div id="no-column" class="opacity-30 transition-opacity duration-500">
+                            <h4 class="font-bold text-lg text-red-800 border-b-2 border-red-300 pb-2 mb-3">The Argument for NO</h4>
+                             <ul class="text-sm text-gray-700 space-y-2 list-disc pl-5">
+                                 <li>The founder-led model has become a liability for a mature, global enterprise.</li>
+                                 <li>The 'Values' (disregard for governance, public controversies) now create unacceptable risk for the company.</li>
+                                  <li>The board has a fiduciary duty to all shareholders; granting more control would be an abdication of that duty.</li>
+                             </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="study-guide" class="py-16 md:py-24 bg-gray-50">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Detailed Study Guide: Elon Musk and Tesla</h2>
+                </div>
+                <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md space-y-8 text-gray-700">
+                    <!-- Study Guide Content -->
+                    <div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4 border-b pb-2">I. Overview of Elon Musk and Tesla</h3>
+                        <ul class="list-disc pl-6 space-y-2">
+                            <li><b>Elon Musk's Background:</b> Born in Pretoria, South Africa (1971). Educated at Queen's University, University of Pennsylvania; dropped out of a Stanford PhD program. Motivated by a desire to be "useful."</li>
+                            <li><b>Tesla's Purpose (2006):</b> "To help expedite the move from a mine-and-burn hydrocarbon economy towards a solar electric economy."</li>
+                            <li><b>Public Perception:</b> Polarised between "greatest entrepreneur" and "reckless entrepreneur."</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4 border-b pb-2">II. Elon Musk's Entrepreneurial Journey Prior to Tesla</h3>
+                        <ul class="list-disc pl-6 space-y-2">
+                            <li><b>Zip2 (1995):</b> Showcased "maniacal focus" and "domineering management style."</li>
+                            <li><b>X.com / PayPal (1999):</b> Merged with Confinity. Musk's tumultuous CEO tenure led to his replacement. Made $165 million from eBay's acquisition.</li>
+                            <li><b>SpaceX (2002):</b> Founded with $50-100 million of his own money. Mission: "to revolutionize space technology, with the ultimate goal of enabling people to live on other planets."</li>
+                        </ul>
+                    </div>
+                    <div>
+                         <h3 class="text-2xl font-semibold text-gray-800 mb-4 border-b pb-2">III. The Rise of Electric Vehicles (EVs) and Tesla's Entry</h3>
+                         <ul class="list-disc pl-6 space-y-2">
+                            <li><b>Environmental Context:</b> Transportation sector contributed 20-25% of global CO2 emissions.</li>
+                            <li><b>Industry Challenges:</b> Early EVs had limited range; incumbents faced high barriers to entry. Musk believed the industry operated on false premises about EV appeal.</li>
+                             <li><b>Tesla's Early Days (2003-2006):</b> Founded by Eberhard and Tarpenning. Musk invested $6.3M in 2004, becoming chairman. The "Secret Master Plan" was outlined to use a high-end sports car (Roadster) to fund more affordable models.</li>
+                         </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4 border-b pb-2">IV. Tesla's Growth and Challenges (2007-2014)</h3>
+                        <ul class="list-disc pl-6 space-y-2">
+                            <li><b>Roadster Launch & Financial Struggles:</b> Released in 2008. By late 2009, Musk invested his last $20M to save the company.</li>
+                            <li><b>Funding & Partnerships:</b> Secured investments from Daimler and Toyota, and a $465M DOE loan. IPO in 2010 raised $226M.</li>
+                            <li><b>Model S Launch (2012):</b> Innovative design ("computer on wheels"), direct-to-consumer sales model, and critical acclaim (Consumer Reports 99/100).</li>
+                            <li><b>Gigafactory 1 (2013):</b> Announced to produce batteries in-house, a key vertical integration move with Panasonic as a partner.</li>
+                        </ul>
+                    </div>
+                    <div>
+                         <h3 class="text-2xl font-semibold text-gray-800 mb-4 border-b pb-2">V. Later Developments and Market Position</h3>
+                         <ul class="list-disc pl-6 space-y-2">
+                            <li><b>Musk's Compensation Plan (2018):</b> Controversial stock grant tied to massive market cap and operational milestones.</li>
+                             <li><b>Market Growth:</b> Tesla spurred the EV market, which grew from a niche to a major industry. Battery costs declined 97% in three decades.</li>
+                             <li><b>Financial Milestones (2021):</b> Market cap topped $1 trillion. Musk became the world's richest person.</li>
+                             <li><b>Twitter Acquisition (2022):</b> Raised governance concerns about distraction.</li>
+                             <li><b>ESG Considerations:</b> Musk called ESG a "scam" after Tesla was removed from an S&P index, highlighting a nuanced view of "green" technology.</li>
+                         </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4 border-b pb-2">VI. Leadership Style and Corporate Governance</h3>
+                        <ul class="list-disc pl-6 space-y-2">
+                           <li><b>Leadership Characteristics:</b> Maniacal focus, domineering style, insane personal risk-taking, and an "ultra hardcore" work culture.</li>
+                           <li><b>Impact on Success:</b> Drove ambitious vision, enabled rapid decision-making, and attracted a "purpose-driven risk alliance."</li>
+                           <li><b>Governance Concerns:</b> Risks of autocratic leadership, potential for decisions benefiting Musk over other shareholders, and questions about whether his style fits a mature public company.</li>
+                        </ul>
+                    </div>
+                    <!-- Quiz -->
+                    <div class="pt-4">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4 border-b pb-2">Quiz: Elon Musk and Tesla</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <p class="font-semibold">1. What was Elon Musk's stated overarching purpose for founding Tesla Motors in 2006?</p>
+                                <button onclick="toggleAnswer(this)" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium mt-1">Show Answer</button>
+                                <p class="text-gray-600 mt-2 hidden">Elon Musk's overarching purpose for Tesla was to expedite the global transition from a hydrocarbon economy to a solar electric economy. He believed this was the primary sustainable solution, aiming for a significant positive effect on the world.</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold">2. Describe Elon Musk's management style as evidenced during his time at Zip2.</p>
+                                <button onclick="toggleAnswer(this)" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium mt-1">Show Answer</button>
+                                <p class="text-gray-600 mt-2 hidden">During his time at Zip2, Musk exhibited a maniacal focus, spartan lifestyle, dedication to achievement, and a domineering management style. These characteristics became defining traits of his approach in subsequent ventures, including Tesla.</p>
+                            </div>
+                             <div>
+                                <p class="font-semibold">3. Outline the initial two phases of Elon Musk's "Secret Tesla Motors Master Plan".</p>
+                                <button onclick="toggleAnswer(this)" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium mt-1">Show Answer</button>
+                                <p class="text-gray-600 mt-2 hidden">The first phase of Musk's "Secret Tesla Motors Master Plan" was to build a high-performance sports car, the Roadster. The second phase was to use the money generated from the Roadster sales to develop and build a more affordable electric car, which became the Model S.</p>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Essay Questions -->
+                    <div class="pt-4">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4 border-b pb-2">Essay Format Questions</h3>
+                        <ul class="list-decimal pl-6 space-y-2">
+                            <li>Analyse how Elon Musk's personal characteristics and entrepreneurial experiences before Tesla (Zip2, PayPal, SpaceX) shaped his leadership style and approach to building Tesla. Discuss specific examples from each venture.</li>
+                            <li>Evaluate the strategic decisions Tesla made in its early days (2003-2014), including product development, funding, manufacturing, and retail. To what extent did these unconventional choices contribute to Tesla's initial success in a challenging industry?</li>
+                            <li>Critically assess the corporate governance implications of Elon Musk's leadership at Tesla. Consider the arguments for and against giving him significant control, and how his approach might evolve as Tesla transitions from a startup to a large, publicly traded corporation.</li>
+                        </ul>
+                    </div>
+                     <!-- Glossary -->
+                    <div class="pt-4">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4 border-b pb-2">Glossary of Key Terms</h3>
+                        <div class="space-y-2">
+                            <p><b>Battery Electric Vehicle (BEV):</b> An all-electric vehicle powered solely by electricity stored in a battery pack.</p>
+                            <p><b>Corporate Governance:</b> The system of rules, practices, and processes by which a company is directed and controlled.</p>
+                            <p><b>Environmental, Social, and Governance (ESG):</b> A framework used by investors to evaluate a company's performance and ethical impact.</p>
+                            <p><b>Gigafactory:</b> A term coined by Tesla for its large-scale battery manufacturing plants.</p>
+                            <p><b>Internal Combustion Engine (ICE) Vehicle:</b> A traditional vehicle powered by burning fuel like petrol or diesel.</p>
+                            <p><b>Market Capitalisation (Market Cap):</b> The total value of a company's outstanding shares of stock.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Knowledge Check: The Tesla Case</h2>
+                    <p class="max-w-3xl mx-auto text-lg text-gray-600">
+                        Test your understanding of the key concepts from the case study. Click on a question to reveal the answer.
+                    </p>
+                </div>
+                <div class="max-w-4xl mx-auto space-y-6">
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-inner">
+                        <h4 class="text-lg font-semibold text-gray-800 mb-4">Multiple Choice Questions</h4>
+                        <div class="space-y-6">
+                            <div>
+                                <p class="font-semibold">1. What was the primary purpose of the Tesla Roadster according to the "Secret Master Plan"?</p>
+                                <label class="mcq-option"><input type="radio" name="mcq1" value="a"> A) To compete directly with traditional luxury sedans.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq1" value="b"> B) To generate revenue to fund the development of more affordable cars.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq1" value="c"> C) To test the viability of the Supercharger network.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq1" value="d"> D) To be the first mass-market electric vehicle.</label>
+                                <button onclick="toggleAnswer(this)" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium mt-3">Show Answer</button>
+                                <p class="text-gray-600 mt-2 hidden"><b>Correct Answer: B.</b> The high-priced, low-volume Roadster was designed to generate the capital needed to develop the more affordable Model S.</p>
+                            </div>
+                             <div>
+                                <p class="font-semibold">2. Which of the following was NOT a key pillar of Tesla's early integrated strategy?</p>
+                                <label class="mcq-option"><input type="radio" name="mcq2" value="a"> A) Vertical Integration (Gigafactories)</label>
+                                <label class="mcq-option"><input type="radio" name="mcq2" value="b"> B) Direct-to-Consumer Sales Model</label>
+                                <label class="mcq-option"><input type="radio" name="mcq2" value="c"> C) Franchising with established auto dealerships</label>
+                                <label class="mcq-option"><input type="radio" name="mcq2" value="d"> D) Building a proprietary Supercharger Network</label>
+                                <button onclick="toggleAnswer(this)" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium mt-3">Show Answer</button>
+                                <p class="text-gray-600 mt-2 hidden"><b>Correct Answer: C.</b> Tesla deliberately avoided the traditional dealership model to control the customer experience and brand narrative.</p>
+                            </div>
+                             <div>
+                                <p class="font-semibold">3. The concept of a "purpose-driven risk alliance" at Tesla best describes which group of stakeholders?</p>
+                                <label class="mcq-option"><input type="radio" name="mcq3" value="a"> A) Regulators and government agencies providing loans.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq3" value="b"> B) Competitors who were forced to develop their own EVs.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq3" value="c"> C) Employees, investors, and early customers who shared the long-term vision and tolerated high risk.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq3" value="d"> D) Suppliers who provided parts for the first Roadster.</label>
+                                <button onclick="toggleAnswer(this)" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium mt-3">Show Answer</button>
+                                <p class="text-gray-600 mt-2 hidden"><b>Correct Answer: C.</b> This alliance consists of stakeholders who were motivated by Tesla's mission and were willing to endure financial volatility and product imperfections in pursuit of the long-term goal.</p>
+                            </div>
+                             <div>
+                                <p class="font-semibold">4. Musk's decision to build Gigafactories primarily reflects which of his core values?</p>
+                                <label class="mcq-option"><input type="radio" name="mcq4" value="a"> A) His confrontational style with the media.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq4" value="b"> B) First-principles thinking and a desire for control over core technology.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq4" value="c"> C) A focus on short-term profitability.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq4" value="d"> D) His preference for outsourcing non-essential operations.</label>
+                                <button onclick="toggleAnswer(this)" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium mt-3">Show Answer</button>
+                                <p class="text-gray-600 mt-2 hidden"><b>Correct Answer: B.</b> By building the Gigafactory, Musk sought to control the most critical component of an EV—the battery—from the ground up, rather than relying on external suppliers, embodying first-principles thinking.</p>
+                            </div>
+                             <div>
+                                <p class="font-semibold">5. The "Tesla Paradox" can be best understood as the tension between:</p>
+                                <label class="mcq-option"><input type="radio" name="mcq5" value="a"> A) High vehicle prices and low manufacturing costs.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq5" value="b"> B) The company's European and Asian market strategies.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq5" value="c"> C) Its mission-driven success and the controversial, high-risk leadership style that enables it.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq5" value="d"> D) The performance of the Model S versus the Model 3.</label>
+                                <button onclick="toggleAnswer(this)" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium mt-3">Show Answer</button>
+                                <p class="text-gray-600 mt-2 hidden"><b>Correct Answer: C.</b> The paradox lies in the fact that the very traits and values that drive Tesla's revolutionary success are the same ones that lead to governance issues and public controversy.</p>
+                            </div>
+                             <div>
+                                <p class="font-semibold">6. Why was Tesla removed from the S&P 500 ESG Index in 2022?</p>
+                                <label class="mcq-option"><input type="radio" name="mcq6" value="a"> A) Because its vehicles still had a significant manufacturing emissions footprint.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq6" value="b"> B) Due to concerns related to social issues (working conditions) and governance (handling of investigations).</label>
+                                <label class="mcq-option"><input type="radio" name="mcq6" value="c"> C) As a direct result of Musk's acquisition of Twitter.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq6" value="d"> D) Because the company failed to meet its sales targets for that year.</label>
+                                <button onclick="toggleAnswer(this)" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium mt-3">Show Answer</button>
+                                <p class="text-gray-600 mt-2 hidden"><b>Correct Answer: B.</b> The removal was not primarily about the 'E' in ESG, but about the 'S' (Social) and 'G' (Governance) pillars, citing claims of poor working conditions and the handling of federal investigations.</p>
+                            </div>
+                             <div>
+                                <p class="font-semibold">7. Viewing Tesla's strategy as a "Quest for Value" implies that the company prioritizes:</p>
+                                <label class="mcq-option"><input type="radio" name="mcq7" value="a"> A) Stable, predictable quarterly profits and low stock volatility.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq7" value="b"> B) Disruptive, long-term market transformation, even at the cost of high risk and initial losses.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq7" value="c"> C) Close partnerships and alliances with established industry incumbents.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq7" value="d"> D) A slow and cautious approach to product development and market entry.</label>
+                                <button onclick="toggleAnswer(this)" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium mt-3">Show Answer</button>
+                                <p class="text-gray-600 mt-2 hidden"><b>Correct Answer: B.</b> The "Quest for Value" framework suggests a focus on achieving a monumental, long-term goal, which requires enduring high risk, uncertainty, and financial losses in the short term.</p>
+                            </div>
+                             <div>
+                                <p class="font-semibold">8. What does the 2018 compensation plan reveal about Tesla's strategic priorities?</p>
+                                <label class="mcq-option"><input type="radio" name="mcq8" value="a"> A) A focus on rewarding consistent, incremental growth in revenue.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq8" value="b"> B) A desire to align executive pay with traditional industry standards.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq8" value="c"> C) An emphasis on achieving "moonshot" milestones in market cap and operations over steady performance.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq8" value="d"> D) A primary goal of reducing operational expenses.</label>
+                                <button onclick="toggleAnswer(this)" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium mt-3">Show Answer</button>
+                                <p class="text-gray-600 mt-2 hidden"><b>Correct Answer: C.</b> The all-or-nothing plan, with massive payouts tied to astronomical targets, explicitly incentivized a high-risk, high-reward strategy focused on exponential growth.</p>
+                            </div>
+                             <div>
+                                <p class="font-semibold">9. Tesla's purpose is strategically "elastic." What does this mean?</p>
+                                <label class="mcq-option"><input type="radio" name="mcq9" value="a"> A) The company frequently changes its core mission statement.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq9" value="b"> B) The purpose is broad enough to justify expansion into adjacent sectors like solar energy and robotics.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq9" value="c"> C) The company's financial goals are flexible and change quarterly.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq9" value="d"> D) The purpose is primarily a marketing tool with little strategic impact.</label>
+                                <button onclick="toggleAnswer(this)" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium mt-3">Show Answer</button>
+                                <p class="text-gray-600 mt-2 hidden"><b>Correct Answer: B.</b> The broad purpose of expediting a "solar electric economy" provides a narrative justification for moves beyond just cars, such as the SolarCity acquisition and the Optimus robot.</p>
+                            </div>
+                             <div>
+                                <p class="font-semibold">10. The case suggests that Tesla's culture is a direct projection of its founder's personality. A major governance risk of this is:</p>
+                                <label class="mcq-option"><input type="radio" name="mcq10" value="a"> A) It makes it difficult to attract talented engineers.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq10" value="b"> B) It leads to slow and bureaucratic decision-making.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq10" value="c"> C) It can create an echo chamber that overrides traditional checks and balances.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq10" value="d"> D) It prevents the company from taking necessary risks.</label>
+                                <button onclick="toggleAnswer(this)" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium mt-3">Show Answer</button>
+                                <p class="text-gray-600 mt-2 hidden"><b>Correct Answer: C.</b> A culture that is a direct reflection of a powerful founder can lead to a lack of internal dissent and override normal governance, as seen in the shareholder approval of the controversial SolarCity deal.</p>
+                            </div>
+                             <div>
+                                <p class="font-semibold">11. Which event was most critical in overcoming Tesla's near-bankruptcy in late 2009?</p>
+                                <label class="mcq-option"><input type="radio" name="mcq11" value="a"> A) The launch of the Model S.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq11" value="b"> B) The acquisition of the Nummi factory.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq11" value="c"> C) Musk's personal investment of his last $20 million, coupled with a crucial investment from Daimler.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq11" value="d"> D) The initial positive reviews of the Roadster.</label>
+                                <button onclick="toggleAnswer(this)" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium mt-3">Show Answer</button>
+                                <p class="text-gray-600 mt-2 hidden"><b>Correct Answer: C.</b> While all were important, the immediate crisis of having less than $500,000 in operating cash was solved by Musk's personal funds and the timely strategic investment from Daimler.</p>
+                            </div>
+                             <div>
+                                <p class="font-semibold">12. The "two false premises" of the auto industry that Musk aimed to disprove were related to:</p>
+                                <label class="mcq-option"><input type="radio" name="mcq12" value="a"> A) Manufacturing efficiency and supply chain management.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq12" value="b"> B) The appeal of electric cars to consumers and the ability to create a compelling one.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq12" value="c"> C) The effectiveness of government subsidies and the cost of lithium.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq12" value="d"> D) The viability of hybrid vehicles and hydrogen fuel cells.</label>
+                                <button onclick="toggleAnswer(this)" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium mt-3">Show Answer</button>
+                                <p class="text-gray-600 mt-2 hidden"><b>Correct Answer: B.</b> Musk believed the industry wrongly assumed that you could not create a desirable EV and that nobody would buy it.</p>
+                            </div>
+                             <div>
+                                <p class="font-semibold">13. From a strategic standpoint, what was the primary disadvantage of Tesla's direct-to-consumer sales model?</p>
+                                <label class="mcq-option"><input type="radio" name="mcq13" value="a"> A) It resulted in lower vehicle prices and reduced profit margins.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq13" value="b"> B) It led to significant legal and regulatory battles in states with strong dealership franchise laws.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq13" value="c"> C) It made it difficult to gather customer feedback.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq13" value="d"> D) It was less effective at marketing than traditional advertising.</label>
+                                <button onclick="toggleAnswer(this)" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium mt-3">Show Answer</button>
+                                <p class="text-gray-600 mt-2 hidden"><b>Correct Answer: B.</b> By bypassing dealers, Tesla invited numerous lawsuits and political opposition from powerful dealership lobbies in various states.</p>
+                            </div>
+                             <div>
+                                <p class="font-semibold">14. The case suggests that the positive and negative aspects of Musk's leadership are causally linked. This means:</p>
+                                <label class="mcq-option"><input type="radio" name="mcq14" value="a"> A) His successes in one area compensate for his failures in another.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq14" value="b"> B) The traits that drive innovation and success are the same ones that lead to controversy and governance risks.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq14" value="c"> C) The company's financial performance is unrelated to its leader's public persona.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq14" value="d"> D) The negative aspects can be eliminated without affecting the positive outcomes.</label>
+                                <button onclick="toggleAnswer(this)" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium mt-3">Show Answer</button>
+                                <p class="text-gray-600 mt-2 hidden"><b>Correct Answer: B.</b> The "maniacal focus" and "domineering style" that drove the company through production hell are the same traits that create a confrontational culture and governance issues.</p>
+                            </div>
+                             <div>
+                                <p class="font-semibold">15. The dilemma of giving Musk 25% voting control is fundamentally a conflict between:</p>
+                                <label class="mcq-option"><input type="radio" name="mcq15" value="a"> A) Short-term profits and long-term growth.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq15" value="b"> B) The need for visionary, founder-led innovation and the need for mature corporate governance.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq15" value="c"> C) The interests of US shareholders versus international shareholders.</label>
+                                <label class="mcq-option"><input type="radio" name="mcq15" value="d"> D) Expanding into AI and robotics versus focusing solely on electric vehicles.</label>
+                                <button onclick="toggleAnswer(this)" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium mt-3">Show Answer</button>
+                                <p class="text-gray-600 mt-2 hidden"><b>Correct Answer: B.</b> The board must weigh the risk of diluting the founder's vision, which has been the source of success, against the risk of poor governance and accountability that comes with his concentrated control.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="briefing" class="py-16 md:py-24 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Detailed Briefing: Elon Musk and Tesla</h2>
+                </div>
+                <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md space-y-8 text-gray-700">
+                    <div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-3 border-b pb-2">1. Executive Summary</h3>
+                        <p>This briefing examines the leadership style and impact of Elon Musk, particularly in the context of Tesla. It delves into his entrepreneurial journey, the motivations behind Tesla's inception, and the company's evolution into a global leader in electric vehicles (EVs). The document also addresses the controversies surrounding Musk's leadership and the broader implications for corporate governance and sustainability within high-growth, purpose-driven companies.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-3 border-b pb-2">2. Elon Musk: A Polarising Figure with a Visionary Drive</h3>
+                        <p class="mb-4">Elon Musk, born in Pretoria, South Africa in 1971, has become one of the most celebrated and controversial entrepreneurs of the early 21st century. His career is marked by a relentless pursuit of impactful ventures, a "maniacal focus, spartan lifestyle, dedication to achievement, and domineering management style".</p>
+                        <h4 class="text-xl font-bold text-indigo-600 mb-2">2.1 Early Entrepreneurship and "Useful" Endeavours</h4>
+                        <p class="mb-4">Musk's entrepreneurial spirit was evident early on. He dropped out of a PhD programme in energy physics at Stanford after two days, stating, "You can get a doctorate on many things that ultimately do not have a practical bearing on the world. And I really was just trying to be useful." His early ventures include:</p>
+                        <ul class="list-disc pl-6 space-y-2">
+                            <li><b>Zip2 (1995):</b> Founded with his brother, this company licensed software for online city guides for newspapers. His time at Zip2 showcased his intense work ethic and "domineering management style".</li>
+                            <li><b>X.com (1999) / PayPal:</b> Musk launched X.com, an online bank, investing $12 million of his Zip2 earnings. Despite being replaced as CEO after internal conflicts, he made $165 million from eBay's acquisition of PayPal in 2002.</li>
+                        </ul>
+                        <h4 class="text-xl font-bold text-indigo-600 mt-4 mb-2">2.2 SpaceX: Reaching for the Stars</h4>
+                        <p class="mb-4">After PayPal, Musk sought "to do something meaningful with his life." In 2002, he founded Space Exploration Technologies (SpaceX) with up to $100 million of his own money. SpaceX's mission was "to revolutionize space technology, with the ultimate goal of enabling people to live on other planets."</p>
+                        <h4 class="text-xl font-bold text-indigo-600 mt-4 mb-2">2.3 Tesla: Expediting the Solar Electric Economy</h4>
+                        <p>Musk's investment in Tesla in 2004 was driven by a profound environmental purpose: "to help expedite the move from a mine-and-burn hydrocarbon economy towards a solar electric economy," which he believed was the "primary, but not exclusive, sustainable solution."</p>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-3 border-b pb-2">3. The Electric Vehicle Landscape Before Tesla</h3>
+                        <p>Prior to Tesla, the auto industry was dominated by ICE vehicles. EVs faced significant challenges including limited range, battery constraints, and substantial barriers to entry. Musk noted the industry operated under two false premises: "One, that you could not create a compelling electric car. And two, that no one would buy it."</p>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-3 border-b pb-2">4. Tesla's Rise and "The Secret Master Plan"</h3>
+                        <p class="mb-4">Tesla Motors was founded in 2003, with Musk investing $6.3 million in 2004 and becoming chairman.</p>
+                        <h4 class="text-xl font-bold text-indigo-600 mb-2">4.1 The Tesla Roadster (Phase 1)</h4>
+                        <p class="mb-4">The company's first vehicle, the Roadster, was the first step in "The Secret Tesla Motors Master Plan": (1) Build sports car; (2) Use that money to build an affordable car; (3) Use that money to build an even more affordable car; (4) While doing above, also provide zero emission electric power generation options. Released in 2008, the $109,000 Roadster received "glowing" reviews.</p>
+                        <h4 class="text-xl font-bold text-indigo-600 mb-2">4.2 Scaling Up: Model S and Gigafactory</h4>
+                        <p class="mb-4">Despite nearly running out of cash in 2009, Musk invested his personal fortune and secured funding. The Model S, launched in 2012, redefined the sedan and garnered critical acclaim, with Consumer Reports naming it the "best car it had ever tested." In 2013, Musk announced plans for Gigafactory 1 in Nevada to produce lithium-ion batteries.</p>
+                         <h4 class="text-xl font-bold text-indigo-600 mb-2">4.3 Market Impact and Financial Milestones</h4>
+                        <p>By 2022, the global EV fleet was estimated at 20 million vehicles. Battery costs declined by 97% in three decades. Tesla's IPO in 2010 raised $226 million, and by October 2021, its market cap topped $1 trillion.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-3 border-b pb-2">5. Controversies and Critiques of Musk's Leadership</h3>
+                         <h4 class="text-xl font-bold text-indigo-600 mb-2">5.1 "Reckless Entrepreneur" and Governance Concerns</h4>
+                        <p class="mb-4">Musk is viewed by some as "the embodiment of a reckless entrepreneur." His autocratic leadership, high demands on employees, and the 2022 acquisition of Twitter raised governance concerns. His response to Tesla's exclusion from the S&P 500 ESG Index—calling ESG a "scam"—highlighted his confrontational style.</p>
+                        <h4 class="text-xl font-bold text-indigo-600 mb-2">5.2 Environmental Impact of EVs: A Nuanced View</h4>
+                        <p>While EVs reduce tailpipe emissions, the environmental toll of extracting minerals and the emissions from battery manufacturing present a more complex picture. However, over their lifecycles, EVs could emit 3x less GHGs than ICE vehicles.</p>
+                    </div>
+                     <div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-3 border-b pb-2">6. The Road Ahead for EVs and Tesla</h3>
+                        <p>The future for EVs looks bright, with increased competition from major manufacturers. Musk continues to pursue ambitious projects, including humanoid robots and electric semi-trucks, maintaining his vision for a multi-planetary future.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-3 border-b pb-2">7. Key Takeaways</h3>
+                        <ul class="list-disc pl-6 space-y-2">
+                            <li><b>Purpose-Driven Leadership:</b> Musk's career is driven by a clear, long-term purpose.</li>
+                            <li><b>Disruptive Innovation:</b> Tesla successfully challenged and revolutionized the entrenched automotive industry.</li>
+                            <li><b>Controversial but Effective Leadership:</b> Musk's style, while effective, has led to criticisms regarding governance and employee welfare.</li>
+                            <li><b>The Nuances of "Green" Technology:</b> The environmental impact of EVs is complex and multifaceted.</li>
+                            <li><b>Evolving Industry Landscape:</b> Tesla's success has spurred competition, leading to a rapidly growing EV market.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="timeline" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Timeline & Key Characters</h2>
+                    <p class="max-w-3xl mx-auto text-lg text-gray-600">
+                        A detailed history of the key events and individuals that shaped the Tesla story, based on the provided case materials.
+                    </p>
+                </div>
+    
+                <div class="grid lg:grid-cols-3 gap-x-12">
+                    <div class="lg:col-span-2 bg-gray-50 p-8 rounded-lg shadow-inner">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-6 border-b-2 pb-2">Detailed Timeline</h3>
+                        <div class="space-y-8">
+                            <div><h4 class="text-xl font-bold text-indigo-600 mb-2">1971-1995: Early Life & First Ventures</h4><ul class="list-disc pl-5 space-y-2 text-gray-700"><li><b>1971:</b> Elon Musk is born in Pretoria, South Africa.</li><li><b>1989:</b> Moves to Canada, studies at Queen's University, then transfers to the University of Pennsylvania.</li><li><b>1995:</b> Drops out of Stanford PhD program; co-founds Zip2, serving as CEO.</li></ul></div>
+                            <div><h4 class="text-xl font-bold text-indigo-600 mb-2">1999-2002: The PayPal Era</h4><ul class="list-disc pl-5 space-y-2 text-gray-700"><li><b>1999:</b> Launches X.com after Zip2 is acquired by Compaq.</li><li><b>2000:</b> X.com merges with Confinity; Musk becomes CEO but is later replaced.</li><li><b>2001:</b> X.com is renamed PayPal; Peter Thiel becomes CEO.</li><li><b>2002:</b> eBay acquires PayPal for $1.5B. Musk makes $165M and founds SpaceX.</li></ul></div>
+                            <div><h4 class="text-xl font-bold text-indigo-600 mb-2">2003-2008: The Founding of Tesla</h4><ul class="list-disc pl-5 space-y-2 text-gray-700"><li><b>2003:</b> Martin Eberhard and Marc Tarpenning found Tesla Motors. Musk meets J.B. Straubel and invests in his powertrain project.</li><li><b>2004:</b> Musk invests $6.3M in Tesla, becoming chairman. Straubel joins as co-founder and CTO.</li><li><b>2006:</b> Musk publishes "The Secret Tesla Motors Master Plan."</li><li><b>2007:</b> Daimler executives are impressed by a Tesla-retrofitted Smart Car.</li><li><b>2008:</b> Tesla releases the Roadster, priced at $109,000, and sells 500 vehicles.</li></ul></div>
+                            <div><h4 class="text-xl font-bold text-indigo-600 mb-2">2009-2013: "Production Hell" & Rise to Fame</h4><ul class="list-disc pl-5 space-y-2 text-gray-700"><li><b>2009:</b> Daimler buys 10% of Tesla for $50M. Tesla secures a $465M DOE loan. Facing bankruptcy, Musk invests his last $20M.</li><li><b>2010:</b> Acquires Nummi facility for $42M. Toyota invests $50M. Tesla's IPO raises $226M. Panasonic invests $30M.</li><li><b>2011:</b> Extends battery supply deal with Panasonic.</li><li><b>2012:</b> Model S is launched. Tesla opens its first seven showrooms.</li><li><b>2013:</b> Model S wins numerous awards. Tesla delivers 22,477 vehicles and announces Gigafactory 1.</li></ul></div>
+                            <div><h4 class="text-xl font-bold text-indigo-600 mb-2">2014-2019: Scaling Up & Industry Disruption</h4><ul class="list-disc pl-5 space-y-2 text-gray-700"><li><b>2014:</b> Panasonic agrees to co-invest in Gigafactory 1.</li><li><b>2016:</b> VW and other incumbents announce major EV plans.</li><li><b>2018:</b> Board endorses controversial $55.8B compensation plan for Musk. Tesla aims for 500,000 units annually.</li><li><b>2019:</b> Launches base Model 3 for $35,000.</li></ul></div>
+                            <div><h4 class="text-xl font-bold text-indigo-600 mb-2">2020-2022: Global Dominance & New Ventures</h4><ul class="list-disc pl-5 space-y-2 text-gray-700"><li><b>Jan 2021:</b> Market value hits $700B; Musk becomes world's richest person.</li><li><b>Oct 2021:</b> Hertz orders 100,000 Teslas; market cap tops $1 trillion.</li><li><b>2022:</b> Musk acquires Twitter. He tweets that ESG is a "scam" after Tesla is removed from the S&P 500 ESG Index.</li><li><b>Dec 1, 2022:</b> Tesla delivers its first electric Semi trucks.</li></ul></div>
+                        </div>
+                    </div>
+                    <div class="mt-12 lg:mt-0 bg-gray-50 p-8 rounded-lg shadow-inner">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-6 border-b-2 pb-2">Cast of Characters</h3>
+                        <div class="space-y-6">
+                            <div><h4 class="font-semibold text-lg text-gray-900">Elon Musk</h4><p class="text-sm text-gray-600 mt-1">Born 1971. A highly polarizing figure described as a purpose-driven entrepreneur with a "maniacal focus" and "domineering management style." Founder of Zip2, X.com (PayPal), and SpaceX; CEO of Tesla and owner of Twitter (X).</p></div>
+                            <div><h4 class="font-semibold text-lg text-gray-900">J.B. Straubel</h4><p class="text-sm text-gray-600 mt-1">An engineer who met Musk in 2003. His project on an electric powertrain attracted Musk's first investment. He became a co-founder and CTO of Tesla.</p></div>
+                            <div><h4 class="font-semibold text-lg text-gray-900">Martin Eberhard</h4><p class="text-sm text-gray-600 mt-1">Co-founder of Tesla Motors in 2003, with the initial aim of producing a lithium-ion battery sports car.</p></div>
+                            <div><h4 class="font-semibold text-lg text-gray-900">Marc Tarpenning</h4><p class="text-sm text-gray-600 mt-1">Co-founder of Tesla Motors in 2003 with Martin Eberhard. Noted that Musk's investment was about changing the "energy equation of the country."</p></div>
+                            <div><h4 class="font-semibold text-lg text-gray-900">Peter Thiel</h4><p class="text-sm text-gray-600 mt-1">Venture capitalist and co-founder of Confinity, which merged with Musk's X.com. He later became CEO of PayPal after Musk was replaced.</p></div>
+                            <div><h4 class="font-semibold text-lg text-gray-900">Kimbal Musk</h4><p class="text-sm text-gray-600 mt-1">Elon's brother and a Tesla board member. He invested in Tesla during its 2009 financial crisis and recused himself from the 2018 compensation vote.</p></div>
+                            <div><h4 class="font-semibold text-lg text-gray-900">Greg Kouri</h4><p class="text-sm text-gray-600 mt-1">A partner in the founding of Zip2, providing $8,000 in initial funding. Described by Musk as a "good guy" who is greatly missed.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+             <p>&copy; Dr. Swapnil Sahoo 2025</p>
+            <div class="flex justify-center space-x-6 mt-4">
+                <a href="https://x.com/swapnilsahoo" target="_blank" class="hover:text-indigo-400 transition-colors">Twitter</a>
+                <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" class="hover:text-indigo-400 transition-colors">Instagram</a>
+                <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" class="hover:text-indigo-400 transition-colors">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        function toggleAnswer(button) {
+            const answer = button.nextElementSibling;
+            answer.classList.toggle('hidden');
+            button.textContent = answer.classList.contains('hidden') ? 'Show Answer' : 'Hide Answer';
+        }
+        
+        // Make the function globally accessible for the inline onclick attributes
+        window.toggleAnswer = toggleAnswer;
+
+        const masterPlanData = [
+            { title: "Build Sports Car", description: "Create a high-price, low-volume car (the Roadster)." },
+            { title: "Build Affordable Car", description: "Use that money to build a mid-price, medium-volume car (the Model S)." },
+            { title: "Build More Affordable Car", description: "Use that money to create a low-price, high-volume car (the Model 3)." },
+            { title: "Provide Solar Power", description: "Integrate zero-emission electric power generation options (SolarCity)." }
+        ];
+
+        const masterPlanContainer = document.getElementById('master-plan-container');
+        masterPlanData.forEach((step, index) => {
+            const isLast = index === masterPlanData.length - 1;
+            const stepEl = document.createElement('div');
+            stepEl.className = 'step-item flex flex-col md:flex-row items-center relative w-full md:w-auto';
+            stepEl.innerHTML = `
+                <div class="flex items-center">
+                    <div class="step-circle w-12 h-12 rounded-full border-2 border-gray-300 flex items-center justify-center font-bold text-lg bg-white transition-colors">${index + 1}</div>
+                    ${!isLast ? '<div class="step-line w-px h-8 md:w-24 md:h-px bg-gray-300 transition-colors"></div>' : ''}
+                </div>
+                <div class="md:ml-4 mt-2 md:mt-0 text-center md:text-left">
+                    <h4 class="font-semibold">${step.title}</h4>
+                    <p class="text-sm text-gray-500">${step.description}</p>
+                </div>
+            `;
+            masterPlanContainer.appendChild(stepEl);
+        });
+
+        let activeStep = 0;
+        const stepItems = document.querySelectorAll('.step-item');
+        stepItems[0].classList.add('active');
+
+        setInterval(() => {
+            stepItems[activeStep].classList.remove('active');
+            activeStep = (activeStep + 1) % masterPlanData.length;
+            stepItems[activeStep].classList.add('active');
+        }, 3000);
+
+
+        const marketCapData = {
+            labels: ['2010', '2012', '2014', '2016', '2018', '2020', 'Jan 2021', 'End 2022'],
+            datasets: [{
+                label: 'Tesla Market Cap ($B)',
+                data: [1.6, 3.9, 28, 27, 57, 669, 834, 389],
+                borderColor: '#4f46e5',
+                backgroundColor: 'rgba(79, 70, 229, 0.1)',
+                fill: true,
+                tension: 0.3
+            }]
+        };
+        const marketCapChart = new Chart(document.getElementById('marketCapChart'), {
+            type: 'line',
+            data: marketCapData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `Market Cap: $${context.parsed.y} Billion`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Market Cap in Billions ($)'
+                        }
+                    }
+                }
+            }
+        });
+
+        const financialsData = {
+            labels: ['2016', '2017', '2018', '2019', '2020', '2021'],
+            datasets: [{
+                label: 'Total Revenue ($M)',
+                data: [7000, 11759, 21461, 24578, 31536, 53823],
+                yAxisID: 'y',
+                borderColor: '#16a34a',
+                type: 'line'
+            }, {
+                label: 'Net Income ($M)',
+                data: [-675, -1961, -976, -862, 721, 5519],
+                yAxisID: 'y',
+                borderColor: '#ef4444',
+                type: 'line'
+            }]
+        };
+        const financialsChart = new Chart(document.getElementById('financialsChart'), {
+            type: 'line',
+            data: financialsData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' },
+                     tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', notation: 'compact' }).format(context.parsed.y * 1000000);
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                         title: {
+                            display: true,
+                            text: 'Amount in Millions ($)'
+                        }
+                    }
+                }
+            }
+        });
+
+        const performanceData = {
+            labels: ['Tesla Model 3 LR', 'Ford Mach-E', 'VW ID.4'],
+            datasets: [{
+                label: 'Range (miles)',
+                data: [334, 314, 275],
+                backgroundColor: '#3b82f6',
+            }]
+        };
+        const performanceChart = new Chart(document.getElementById('performanceChart'), {
+            type: 'bar',
+            data: performanceData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `Range: ${context.parsed.x} miles`;
+                            }
+                        }
+                    }
+                },
+                 scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'EPA Estimated Range (miles)'
+                        }
+                    }
+                }
+            }
+        });
+
+        const emissionsData = {
+            labels: ['Gasoline ICE', 'Hybrid', 'Tesla EV (US Grid)', 'Tesla EV (EU Grid)'],
+            datasets: [{
+                label: 'Lifecycle GHG Emissions (g CO2e/km)',
+                data: [276, 212, 91, 68],
+                backgroundColor: ['#dc2626', '#f59e0b', '#16a34a', '#2563eb'],
+            }]
+        };
+        const emissionsChart = new Chart(document.getElementById('emissionsChart'), {
+            type: 'bar',
+            data: emissionsData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                 plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `Emissions: ${context.parsed.y} g CO2e/km`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Grams CO2 equivalent per km'
+                        }
+                    }
+                }
+            }
+        });
+        
+        const voteYesBtn = document.getElementById('vote-yes-btn');
+        const voteNoBtn = document.getElementById('vote-no-btn');
+        const voteResults = document.getElementById('vote-results');
+        const yesColumn = document.getElementById('yes-column');
+        const noColumn = document.getElementById('no-column');
+
+        function handleVote(isYes) {
+            voteResults.classList.remove('hidden');
+            voteYesBtn.disabled = true;
+            voteNoBtn.disabled = true;
+            voteYesBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            voteNoBtn.classList.add('opacity-50', 'cursor-not-allowed');
+
+            setTimeout(() => {
+                if(isYes) {
+                    yesColumn.classList.add('opacity-100');
+                    yesColumn.classList.remove('opacity-30');
+                } else {
+                    noColumn.classList.add('opacity-100');
+                    noColumn.classList.remove('opacity-30');
+                }
+            }, 100);
+        }
+
+        voteYesBtn.addEventListener('click', () => handleVote(true));
+        voteNoBtn.addEventListener('click', () => handleVote(false));
+        
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.3 // A lower threshold to trigger when the section starts entering the view
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    navLinks.forEach(link => {
+                        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+    });
+    </script>
+</body>
+</html>

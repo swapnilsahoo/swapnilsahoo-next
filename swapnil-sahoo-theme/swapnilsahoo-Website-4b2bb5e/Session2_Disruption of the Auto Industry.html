@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Analysis: Tesla's Entry into the U.S. Auto Industry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: "Warm Neutral Harmony" - A palette grounded in warm neutrals (bg-stone-50, bg-white) with slate and gray for text and UI elements, and a subtle, desaturated red (for negative values or accents) and a calm blue for positive values or primary actions. This creates a professional, calm, and focused analytical environment. -->
+    <!-- Application Structure Plan: The SPA is designed as a narrative scroll, guiding the user through a logical story. 1. **Introduction:** A hook with a central conflict. 2. **The Old Guard:** Establishes the stable but challenging traditional auto industry. 3. **The Four Disruptions:** A tabbed section to explore the key change vectors. 4. **Tesla's Gambit:** Focuses on Tesla's unique approach. 5. **The Crossroads:** Concludes by framing the core debate. 6. **Executive Briefing:** A summary of key themes. 7. **FAQ Section:** A detailed Q&A section. 8. **Timeline & Key Players:** Provides narrative context. 9. **Strategic Debrief & Glossary:** An interactive accordion for deep-diving into key strategic questions and a reference for terms. 10. **Knowledge Check:** An interactive quiz to reinforce learning. This flow builds understanding layer by layer. -->
+    <!-- Visualization & Content Choices: 1. **Market Share (Bar Chart):** Goal: Compare. Viz: Horizontal Bar Chart (Chart.js). 2. **Profitability (Line Chart):** Goal: Show Change. Viz: Line Chart (Chart.js). 3. **Battery Prices (Bar Chart):** Goal: Show Change. Viz: Bar Chart (Chart.js). 4. **Automation Levels (HTML Diagram):** Goal: Organize/Inform. Viz: Interactive HTML cards. 5. **Connected Car Revenue (Stacked Bar):** Goal: Compare/Show Change. Viz: Stacked Bar (Chart.js). 6. **Tesla Financials (Bar Chart):** Goal: Compare/Show Change. Viz: Bar Chart with JS toggle. 7. **Luxury Sales (Grouped Bar):** Goal: Compare. Viz: Grouped Bar Chart (Chart.js). 8. **Briefing & FAQ (Formatted Text):** Goal: Inform/Summarize. Viz: Structured HTML. 9. **Timeline (HTML List):** Goal: Inform/Organize. Viz: Vertical timeline layout. 10. **Strategic Debrief (Accordion):** Goal: Explain/Analyze. Viz: Interactive HTML component. 11. **Quiz (Interactive Form):** Goal: Test Knowledge. Viz: Multiple-choice questions with JS feedback. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Tailwind's slate-50 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        @media (max-width: 640px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+        .nav-button {
+            transition: all 0.3s ease;
+        }
+        .nav-button.active {
+            background-color: #1e293b; /* slate-800 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .kpi-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.2s ease;
+        }
+        .kpi-card:hover {
+            transform: translateY(-5px);
+        }
+        .quiz-option.correct {
+            background-color: #dcfce7; /* green-100 */
+            border-color: #22c55e; /* green-500 */
+        }
+        .quiz-option.incorrect {
+            background-color: #fee2e2; /* red-100 */
+            border-color: #ef4444; /* red-500 */
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .timeline-item {
+            transition: background-color 0.3s ease;
+        }
+        .timeline-item:hover {
+            background-color: #f1f5f9; /* slate-100 */
+        }
+    </style>
+</head>
+<body class="text-slate-700">
+    <header class="bg-white border-b border-slate-200">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-3">
+            <p class="text-sm text-slate-600">© Dr. Swapnil Sahoo 2025</p>
+            <div class="flex items-center space-x-4">
+                <a href="https://x.com/swapnilsahoo" target="_blank" class="text-slate-500 hover:text-slate-800 transition-colors">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" class="text-slate-500 hover:text-slate-800 transition-colors">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+                </a>
+                <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" class="text-slate-500 hover:text-slate-800 transition-colors">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.012 3.584-.07 4.85c-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.85s.012-3.584.07-4.85c.148-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.947s-.014-3.667-.072-4.947c-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44-.645-1.44-1.441-1.44z"></path></svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-800 mb-4">Tesla's Disruption of the Auto Industry</h1>
+            <p class="text-lg text-slate-600 max-w-3xl mx-auto">An interactive analysis of a high-stakes entry into a century-old industry. This dashboard explores the market dynamics, technological shifts, and strategic gambles behind Tesla's "production hell" and its journey to reshape mobility.</p>
+        </header>
+
+        <section id="industry-overview" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-2 text-slate-800">The Old Guard: Anatomy of the U.S. Auto Industry</h2>
+            <p class="text-slate-600 text-center max-w-3xl mx-auto mb-12">Before Tesla's rise, the U.S. auto market was a mature, slow-growing, and fiercely competitive landscape dominated by a few giants. High barriers to entry and low profitability for manufacturers defined an industry that was ripe for a shake-up.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div class="kpi-card">
+                    <h3 class="text-xl font-semibold text-slate-800 mb-4 text-center">U.S. Auto Market Share by Volume (2018)</h3>
+                    <p class="text-sm text-slate-500 mb-4 text-center">Tesla held only a 0.2% share, a tiny fraction compared to incumbents like GM and Ford. This chart illustrates the scale of the challenge it faced.</p>
+                    <div class="chart-container" style="height:450px;">
+                        <canvas id="marketShareChart"></canvas>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <h3 class="text-xl font-semibold text-slate-800 mb-4 text-center">Profitability: Suppliers vs. Automakers (2006-2016)</h3>
+                     <p class="text-sm text-slate-500 mb-4 text-center">Automakers (OEMs) have historically struggled with low returns on invested capital, often falling below the industry's cost of capital. In contrast, top suppliers have consistently been more profitable, capturing more value in the supply chain.</p>
+                    <div class="chart-container" style="height:450px;">
+                        <canvas id="profitabilityChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="disruptive-forces" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-2 text-slate-800">The Tides of Change: Forces Reshaping Mobility</h2>
+            <p class="text-slate-600 text-center max-w-3xl mx-auto mb-12">The automotive world is undergoing its most significant transformation in a century. Four key forces—Electrification, Autonomous Driving, Connectivity, and Shared Mobility—are converging to redefine what a car is and how we use it. This section explores the trends that created the opportunity for a company like Tesla to exist.</p>
+            
+            <div class="flex justify-center flex-wrap gap-2 mb-8" id="forces-nav">
+                <button data-target="electrification" class="nav-button font-semibold py-2 px-4 rounded-full bg-white shadow-sm border border-slate-200">⚡ Electrification</button>
+                <button data-target="autonomous" class="nav-button font-semibold py-2 px-4 rounded-full bg-white shadow-sm border border-slate-200">🤖 Autonomous</button>
+                <button data-target="connectivity" class="nav-button font-semibold py-2 px-4 rounded-full bg-white shadow-sm border border-slate-200">🌐 Connectivity</button>
+                <button data-target="shared" class="nav-button font-semibold py-2 px-4 rounded-full bg-white shadow-sm border border-slate-200">🤝 Shared Mobility</button>
+            </div>
+
+            <div id="forces-content" class="bg-white p-6 sm:p-8 rounded-xl shadow-lg">
+                <div id="electrification" class="content-section">
+                     <h3 class="text-2xl font-bold text-slate-800 mb-4">The Electric Revolution</h3>
+                     <p class="text-slate-600 mb-8">The shift to electric vehicles (EVs) is the most visible disruption. Once a niche concept, EVs are becoming mainstream, driven by environmental concerns, government incentives, and, crucially, a dramatic fall in the cost of their most expensive component: the battery. This cost reduction has been the single biggest enabler of the EV market.</p>
+                     <div class="kpi-card border border-slate-100">
+                         <h4 class="text-xl font-semibold text-slate-800 mb-2 text-center">Plummeting Lithium-ion Battery Prices (per kWh)</h4>
+                         <p class="text-sm text-slate-500 mb-4 text-center">An 80% price drop from 2010 to 2017 made mass-market EVs economically feasible for the first time.</p>
+                        <div class="chart-container">
+                            <canvas id="batteryPriceChart"></canvas>
+                        </div>
+                     </div>
+                </div>
+                <div id="autonomous" class="content-section">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-4">The Path to Self-Driving</h3>
+                    <p class="text-slate-600 mb-8">The race to develop fully autonomous vehicles is attracting billions in investment from tech companies and automakers alike. Progress is measured in five distinct levels of automation, from simple driver assistance to a fully driverless experience. Click on each level to understand its capabilities.</p>
+                    <div id="automation-levels-container" class="flex flex-col gap-4"></div>
+                </div>
+                <div id="connectivity" class="content-section">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-4">The Car as a "Computer on Wheels"</h3>
+                    <p class="text-slate-600 mb-8">Modern vehicles are becoming increasingly connected, offering services from navigation and entertainment to over-the-air software updates and advanced safety features. This shift is creating entirely new revenue streams, projected to triple from 2017 to 2022, and changing the battleground from hardware to software and services.</p>
+                    <div class="kpi-card border border-slate-100">
+                        <h4 class="text-xl font-semibold text-slate-800 mb-2 text-center">Estimated Connected Car Revenue Growth (2017 vs 2022)</h4>
+                        <p class="text-sm text-slate-500 mb-4 text-center">The market is forecast to surge from $53B to $156B, with safety and autonomous driving features driving much of the growth.</p>
+                        <div class="chart-container">
+                            <canvas id="connectedCarChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                 <div id="shared" class="content-section">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-4">The End of Ownership?</h3>
+                    <p class="text-slate-600 mb-8">For a growing segment of the population, particularly in urban areas, the traditional model of private car ownership is being replaced by "Mobility-as-a-Service." Ride-hailing, car-sharing, and even e-scooter services offer convenient alternatives, leading some analysts to predict a future with far fewer privately owned cars on the road.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="kpi-card text-center">
+                            <div class="text-4xl font-bold text-slate-800">95%</div>
+                            <p class="text-slate-600 mt-2">of U.S. passenger miles could be served by on-demand autonomous EVs by 2030 (Stanford study prediction).</p>
+                        </div>
+                        <div class="kpi-card text-center">
+                            <div class="text-4xl font-bold text-slate-800">80%</div>
+                            <p class="text-slate-600 mt-2">potential drop in private car ownership in the U.S. by 2030 (Stanford study prediction).</p>
+                        </div>
+                        <div class="kpi-card text-center">
+                            <div class="text-4xl font-bold text-slate-800">22%</div>
+                            <p class="text-slate-600 mt-2">fewer vehicles predicted to be on U.S. roads by 2030 (PwC prediction).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tesla-deep-dive" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-2 text-slate-800">Tesla's Gambit: The All-In Bet</h2>
+            <p class="text-slate-600 text-center max-w-3xl mx-auto mb-12">Tesla's strategy was a radical departure from industry norms. From its top-down market entry and extreme vertical integration to its direct-to-consumer sales model, the company broke every rule. This section examines Tesla's financial performance, its product journey, and how it stacked up against the luxury incumbents it first targeted.</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                <div class="lg:col-span-3 kpi-card">
+                    <h3 class="text-xl font-semibold text-slate-800 mb-4 text-center">Tesla's Financial Rollercoaster (2013-2018)</h3>
+                    <p class="text-sm text-slate-500 mb-4 text-center">Tesla's story is one of explosive revenue growth paired with staggering losses as it poured capital into R&D and manufacturing. Use the buttons to toggle between Revenue and Net Income.</p>
+                    <div class="flex justify-center gap-2 mb-4">
+                        <button id="show-revenue" class="nav-button font-semibold py-2 px-4 rounded-full bg-slate-200">Revenue</button>
+                        <button id="show-net-income" class="nav-button font-semibold py-2 px-4 rounded-full bg-slate-200">Net Income</button>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="teslaFinancialsChart"></canvas>
+                    </div>
+                </div>
+                <div class="lg:col-span-2 kpi-card">
+                     <h3 class="text-xl font-semibold text-slate-800 mb-4 text-center">Winning the High Ground</h3>
+                     <p class="text-sm text-slate-500 mb-4 text-center">Part of Tesla's "Master Plan" was to enter the high-end luxury market first. By 2017, the Model S was not just competing with—but outselling—the combined totals of iconic German luxury sedans.</p>
+                     <div class="chart-container">
+                        <canvas id="luxurySalesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="conclusion" class="bg-white p-6 sm:p-8 rounded-xl shadow-lg mb-20">
+            <h2 class="text-3xl font-bold text-center mb-2 text-slate-800">The Crossroads: Production Hell or Promised Land?</h2>
+             <p class="text-slate-600 text-center max-w-3xl mx-auto mb-12">By 2018, Tesla was at a tipping point. It had proven an EV could be desirable and had forced the entire industry to accelerate its electric plans. Yet, it was burning cash, struggling with manufacturing, and facing an onslaught of competition. The debate over its future was fierce.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="p-6 rounded-lg border-2 border-green-200 bg-green-50">
+                    <h3 class="text-2xl font-bold text-green-800 mb-4 text-center">The Bull Case: Why Tesla Would Thrive 🐂</h3>
+                    <ul class="space-y-3 text-green-700 list-disc list-inside">
+                        <li><span class="font-semibold">Visionary Disruption:</span> Fundamentally changed consumer perception of EVs and forced industry-wide change.</li>
+                        <li><span class="font-semibold">Powerful Brand:</span> Cult-like following and brand value rivaling century-old companies.</li>
+                        <li><span class="font-semibold">Technological Lead:</span> Superior battery technology, software, and a proprietary Supercharger network creating a strong moat.</li>
+                        <li><span class="font-semibold">Vertical Integration:</span> Long-term potential for cost and innovation advantages by controlling the core components.</li>
+                        <li><span class="font-semibold">Master Plan, Part Deux:</span> A future roadmap into autonomous ride-sharing, expanding the total addressable market exponentially.</li>
+                    </ul>
+                </div>
+                <div class="p-6 rounded-lg border-2 border-red-200 bg-red-50">
+                    <h3 class="text-2xl font-bold text-red-800 mb-4 text-center">The Bear Case: Why Tesla Would Fail 🐻</h3>
+                    <ul class="space-y-3 text-red-700 list-disc list-inside">
+                        <li><span class="font-semibold">"Production Hell":</span> Inability to manufacture at scale and with consistent quality, a core competency of legacy automakers.</li>
+                        <li><span class="font-semibold">Massive Cash Burn:</span> Persistent losses and questionable ability to reach profitability before running out of capital.</li>
+                        <li><span class="font-semibold">Incumbent Awakening:</span> Established giants like GM, Ford, and VW were finally committing billions to launch a wave of competing EVs.</li>
+                        <li><span class="font-semibold">Execution Risk:</span> Musk's ambitious goals and "move fast and break things" approach created operational chaos and high employee turnover.</li>
+                         <li><span class="font-semibold">Questionable Governance:</span> A board with close ties to Musk and erratic public statements created investor uncertainty.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="briefing-section" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-2 text-slate-800">Executive Briefing</h2>
+            <p class="text-slate-600 text-center max-w-3xl mx-auto mb-12">A summary of key themes regarding Tesla's strategy and the evolving mobility landscape, based on the case study by Donald Sull and Cate Reavis.</p>
+            <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg space-y-8">
+                <div>
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-4 border-b pb-2">I. Tesla's Ambitious Strategy and Production Challenges</h3>
+                    <div class="space-y-4 text-slate-700">
+                        <p><strong>"Master Plan" - High-End Entry, Mass-Market Scaling:</strong> Tesla's strategy was to "enter at the high end of the market... and then drive down market as fast as possible." This was seen in the progression from the expensive Roadster to the mass-market Model 3.</p>
+                        <p><strong>"Production Hell" and Automation Overreach:</strong> The scaling of the Model 3 proved "excruciating," with Musk admitting, "excessive automation at Tesla was a mistake... Humans are underrated."</p>
+                        <p><strong>Vertical Integration as a Core Competency:</strong> Unlike rivals, Tesla made up to 80% of components in-house to control quality and innovation, a strategy not seen since the early days of Ford.</p>
+                        <p><strong>Direct Sales Model:</strong> Tesla's company-owned stores challenged the traditional dealership model, creating a new customer experience but facing legal resistance.</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-4 border-b pb-2">II. The Traditional Automobile Industry: Challenges and Norms</h3>
+                    <div class="space-y-4 text-slate-700">
+                        <p><strong>Mature Market and Low Profit Margins:</strong> The U.S. auto market was a ~$270 billion industry in 2016 with flat growth and low operating margins (3-7%) for legacy OEMs.</p>
+                        <p><strong>High Barriers to Entry and Exit:</strong> New entrants required immense capital (~$6B), while high employment and specialized assets made it difficult for incumbents to exit.</p>
+                        <p><strong>Dominance and Vulnerability:</strong> In 2018, GM, Ford, and Chrysler held nearly 46% of the market, while Tesla had just 0.2%. However, low customer loyalty and an unpopular dealership model created vulnerabilities.</p>
+                    </div>
+                </div>
+                 <div>
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-4 border-b pb-2">III. The Changing Face of Mobility: Disruptive Trends</h3>
+                    <div class="space-y-4 text-slate-700">
+                        <p><strong>Electrification (EVs):</strong> Driven by falling battery costs (down 80% from 2010-2017) and government incentives, forcing all OEMs to invest heavily. Tesla's proprietary Supercharger network provided a key advantage over the limited public infrastructure.</p>
+                        <p><strong>Autonomous Driving:</strong> The race to develop self-driving cars shifted the industry's focus from mechanics to software, creating "computers on wheels" and attracting tech giants.</p>
+                        <p><strong>Connectivity:</strong> Connected car revenues were projected to surge, creating new business models based on data and in-car services.</p>
+                        <p><strong>Mobility-as-a-Service (MaaS):</strong> A fundamental shift from ownership to on-demand usage, with ride-hailing and sharing services threatening the traditional sales model, especially in urban areas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="faq-section" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-2 text-slate-800">Frequently Asked Questions</h2>
+            <p class="text-slate-600 text-center max-w-3xl mx-auto mb-12">A detailed breakdown of the most common questions about Tesla's strategy, production, and the competitive landscape.</p>
+            <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg space-y-8">
+                <div class="faq-item">
+                    <h4 class="text-xl font-semibold text-slate-800 mb-2">What was Tesla's initial strategy for entering the car market, and how did its vehicle offerings evolve?</h4>
+                    <p class="text-slate-600">Tesla's "Master Plan" aimed to enter the high-end market first to fund progressively cheaper models. It began with the $100,000 Roadster (2008), followed by the Model S (2013) and Model X (2015), before targeting the mass market with the Model 3 (baseline $35,000).</p>
+                </div>
+                <div class="faq-item">
+                    <h4 class="text-xl font-semibold text-slate-800 mb-2">What challenges did Tesla face in its production process, particularly with the Model 3?</h4>
+                    <p class="text-slate-600">Tesla experienced "production hell" with the Model 3 due to over-reliance on automation, which Musk called a mistake. The company's high degree of vertical integration (making 80% of parts in-house) and skipping a "beta" production phase led to bottlenecks, quality issues, and manual re-work on the assembly line.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 class="text-xl font-semibold text-slate-800 mb-2">How does Tesla's sales and service model differ from traditional automakers?</h4>
+                    <p class="text-slate-600">Tesla sells directly to consumers through company-owned stores with salaried staff, bypassing the independent dealership model. This has led to legal battles in several states. Service is streamlined due to fewer mechanical parts, with many updates and fixes delivered via over-the-air software updates. Tesla also built its own proprietary Supercharger network.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 class="text-xl font-semibold text-slate-800 mb-2">What major trends are reshaping the traditional automobile industry?</h4>
+                    <p class="text-slate-600">The industry is being reshaped by four key trends: 1) **Electrification**, driven by falling battery costs; 2) **Autonomous Driving**, shifting focus to software; 3) **Connectivity**, creating new revenue from in-car services; and 4) **Mobility-as-a-Service**, a shift from ownership to on-demand usage via ride-hailing and sharing.</p>
+                </div>
+                 <div class="faq-item">
+                    <h4 class="text-xl font-semibold text-slate-800 mb-2">What is Tesla's "Master Plan, Part Deux," and how does it envision the future of mobility?</h4>
+                    <p class="text-slate-600">Unveiled in 2016, it envisions a future with fully autonomous (Level 5) vehicles that can operate in a shared fleet, earning money for their owners when not in use. This concept aligns with the "mobility-as-a-service" model, where consumers buy transportation by the mile or trip, potentially leading to a significant drop in private car ownership.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="timeline-players" class="mb-20">
+             <h2 class="text-3xl font-bold text-center mb-2 text-slate-800">The Story So Far: Timeline & Key Players</h2>
+            <p class="text-slate-600 text-center max-w-3xl mx-auto mb-12">Understanding Tesla's journey requires looking at the key moments and people that shaped its chaotic and ambitious path. Explore the timeline of critical events and meet the cast of characters who drove the narrative.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <div class="lg:col-span-2">
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-6 border-b-2 border-slate-300 pb-2">Timeline of Main Events</h3>
+                    <div id="timeline-container" class="relative border-l-2 border-slate-200 pl-6 space-y-8">
+                        <!-- Timeline items will be injected here by JS -->
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-6 border-b-2 border-slate-300 pb-2">Cast of Characters</h3>
+                    <div id="characters-container" class="space-y-4">
+                        <!-- Character cards will be injected here by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="deep-dive-glossary" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-2 text-slate-800">Strategic Debrief & Glossary</h2>
+            <p class="text-slate-600 text-center max-w-3xl mx-auto mb-12">Explore the core strategic questions of the case to understand the 'why' behind the 'what'. Click each question to reveal the answer and an analysis of the strategic mindset that drove these critical decisions.</p>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-6 border-b-2 border-slate-300 pb-2">Key Strategic Questions</h3>
+                    <div id="accordion-container" class="space-y-4">
+                        <!-- Accordion items will be injected here by JS -->
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-6 border-b-2 border-slate-300 pb-2">Glossary of Key Terms</h3>
+                    <div id="glossary-container" class="space-y-4">
+                        <!-- Glossary items will be injected here by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz-section" class="bg-slate-800 text-white p-6 sm:p-8 rounded-xl shadow-lg">
+            <h2 class="text-3xl font-bold text-center mb-2">Knowledge Check</h2>
+            <p class="text-slate-300 text-center max-w-3xl mx-auto mb-8">Think you've got it? Test your understanding of the case study with this short quiz.</p>
+            <div id="quiz-container" class="space-y-6"></div>
+            <div class="text-center mt-8">
+                <button id="submit-quiz" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition-colors text-lg">Submit Answers</button>
+                <div id="quiz-results" class="mt-6 text-2xl font-bold"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 mt-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
+            <p class="text-sm text-slate-600">© Dr. Swapnil Sahoo 2025</p>
+            <div class="flex items-center space-x-4">
+                <a href="https://x.com/swapnilsahoo" target="_blank" class="text-slate-500 hover:text-slate-800 transition-colors">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" class="text-slate-500 hover:text-slate-800 transition-colors">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+                </a>
+                <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" class="text-slate-500 hover:text-slate-800 transition-colors">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.012 3.584-.07 4.85c-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.85s.012-3.584.07-4.85c.148-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.947s-.014-3.667-.072-4.947c-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44-.645-1.44-1.441-1.44z"></path></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const chartColors = {
+        blue: 'rgba(59, 130, 246, 0.7)',
+        blueBorder: 'rgba(59, 130, 246, 1)',
+        red: 'rgba(239, 68, 68, 0.7)',
+        redBorder: 'rgba(239, 68, 68, 1)',
+        slate: 'rgba(100, 116, 139, 0.7)',
+        slateBorder: 'rgba(100, 116, 139, 1)',
+        green: 'rgba(34, 197, 94, 0.7)',
+        greenBorder: 'rgba(34, 197, 94, 1)',
+        orange: 'rgba(249, 115, 22, 0.7)',
+        orangeBorder: 'rgba(249, 115, 22, 1)',
+    };
+    
+    Chart.defaults.font.family = "'Inter', sans-serif";
+    Chart.defaults.color = '#475569';
+    Chart.defaults.plugins.tooltip.backgroundColor = '#1e293b';
+    Chart.defaults.plugins.tooltip.titleFont = { size: 14, weight: 'bold' };
+    Chart.defaults.plugins.tooltip.bodyFont = { size: 12 };
+    Chart.defaults.plugins.tooltip.padding = 10;
+    Chart.defaults.plugins.tooltip.cornerRadius = 4;
+    Chart.defaults.plugins.legend.position = 'bottom';
+    
+    function createChart(ctx, config) {
+        return new Chart(ctx, config);
+    }
+    
+    function wrapLabels(labels, maxChars = 15) {
+        return labels.map(label => {
+            if (label.length <= maxChars) return label;
+            const words = label.split(' ');
+            let currentLine = '';
+            const lines = [];
+            words.forEach(word => {
+                if ((currentLine + word).length > maxChars) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            });
+            lines.push(currentLine.trim());
+            return lines;
+        });
+    }
+
+    const marketShareData = {
+        labels: wrapLabels(['GM', 'Ford', 'Toyota', 'Chrysler Group', 'Nissan', 'Honda', 'Hyundai', 'Subaru', 'Kia', 'Volkswagen', 'Mazda', 'Mercedes-Benz', 'BMW', 'Audi', 'Mitsubishi', 'Tesla']),
+        datasets: [{
+            label: 'Market Share %',
+            data: [17.9, 14.7, 13.5, 12.9, 9.8, 8.6, 3.7, 3.5, 3.1, 2.3, 2.0, 1.9, 1.9, 1.2, 0.9, 0.2],
+            backgroundColor: (context) => context.raw === 0.2 ? chartColors.red : chartColors.slate,
+            borderColor: (context) => context.raw === 0.2 ? chartColors.redBorder : chartColors.slateBorder,
+            borderWidth: 1
+        }]
+    };
+    const marketShareCtx = document.getElementById('marketShareChart').getContext('2d');
+    createChart(marketShareCtx, {
+        type: 'bar',
+        data: marketShareData,
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    title: { display: true, text: 'Market Share (%)' }
+                }
+            }
+        }
+    });
+
+    const profitabilityData = {
+        labels: ['2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016'],
+        datasets: [
+            {
+                label: 'Top 100 Suppliers ROIC',
+                data: [6, 7.5, 4, 2.5, 8.5, 8, 9, 9, 12, 11, 11],
+                borderColor: chartColors.blueBorder,
+                backgroundColor: chartColors.blue,
+                tension: 0.1
+            },
+            {
+                label: 'Top 10 OEMs ROIC',
+                data: [2.5, 3.5, 2, -18, 5, 6.5, 5.5, 6, 5.5, 6, 6.5],
+                borderColor: chartColors.redBorder,
+                backgroundColor: chartColors.red,
+                tension: 0.1
+            }
+        ]
+    };
+    const profitabilityCtx = document.getElementById('profitabilityChart').getContext('2d');
+    createChart(profitabilityCtx, {
+        type: 'line',
+        data: profitabilityData,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    title: { display: true, text: 'Return on Invested Capital (%)' },
+                    ticks: { callback: value => value + '%' }
+                }
+            }
+        }
+    });
+
+    const batteryPriceData = {
+        labels: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017'],
+        datasets: [{
+            label: 'Price per kWh ($)',
+            data: [1000, 800, 642, 599, 540, 350, 273, 209],
+            backgroundColor: chartColors.green,
+            borderColor: chartColors.greenBorder,
+            borderWidth: 1
+        }]
+    };
+    const batteryPriceCtx = document.getElementById('batteryPriceChart').getContext('2d');
+    createChart(batteryPriceCtx, {
+        type: 'bar',
+        data: batteryPriceData,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: { display: true, text: 'Price ($/kWh)' }
+                }
+            }
+        }
+    });
+
+    const automationLevelsData = [
+        { level: 0, title: 'No Automation', text: 'The human at the wheel steers, brakes, accelerates, and negotiates traffic.' },
+        { level: 1, title: 'Driver Assistance ("hands on")', text: 'The car controls either the steering or the vehicle speed, but not both simultaneously.' },
+        { level: 2, title: 'Partial Automation ("hands off")', text: 'The car can steer, accelerate, and brake in certain circumstances. The driver must remain engaged.' },
+        { level: 3, title: 'Conditional Automation ("eyes off")', text: 'In the right conditions, the car can manage most aspects of driving, but the driver must be ready to take over.' },
+        { level: 4, title: 'High Automation ("mind off")', text: 'The car can operate without human input but only under select conditions (e.g., specific geographic area or road type).' },
+        { level: 5, title: 'Full Automation ("steering wheel optional")', text: 'The driverless car can operate on any road and in any conditions a human driver could negotiate.' },
+    ];
+    const automationContainer = document.getElementById('automation-levels-container');
+    automationLevelsData.forEach(level => {
+        const item = document.createElement('div');
+        item.className = 'border border-slate-200 rounded-lg p-4 cursor-pointer hover:bg-slate-50 transition-colors';
+        item.innerHTML = `
+            <div class="flex justify-between items-center">
+                <h5 class="text-lg font-semibold text-slate-800">Level ${level.level}: ${level.title}</h5>
+                <span class="text-slate-400 text-2xl transform transition-transform duration-300">&#x25BC;</span>
+            </div>
+            <p class="text-slate-600 mt-2 text-sm hidden">${level.text}</p>
+        `;
+        automationContainer.appendChild(item);
+        item.addEventListener('click', () => {
+            item.querySelector('p').classList.toggle('hidden');
+            item.querySelector('span').classList.toggle('rotate-180');
+        });
+    });
+
+    const connectedCarData = {
+        labels: ['2017', '2022 (Est.)'],
+        datasets: [
+            {
+                label: 'Safety',
+                data: [18, 58],
+                backgroundColor: chartColors.blue,
+            },
+            {
+                label: 'Autonomous Driving',
+                data: [14, 55],
+                backgroundColor: chartColors.slate,
+            },
+            {
+                label: 'Connected Services',
+                data: [21, 43],
+                backgroundColor: chartColors.green,
+            }
+        ]
+    };
+    const connectedCarCtx = document.getElementById('connectedCarChart').getContext('2d');
+    createChart(connectedCarCtx, {
+        type: 'bar',
+        data: connectedCarData,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: { stacked: true },
+                y: { stacked: true, title: { display: true, text: 'Revenue (US$ Billion)' } }
+            }
+        }
+    });
+
+    const teslaFinancialsAllData = {
+        labels: ['2013', '2014', '2015', '2016', '2017', '2018 (Q2)'],
+        revenue: {
+            label: 'Revenue ($M)',
+            data: [2013, 3198, 4046, 7000, 11759, 4002],
+            backgroundColor: chartColors.blue,
+        },
+        netIncome: {
+            label: 'Net Income ($M)',
+            data: [-74, -294, -889, -675, -1961, -743],
+            backgroundColor: chartColors.red,
+        }
+    };
+    const teslaFinancialsCtx = document.getElementById('teslaFinancialsChart').getContext('2d');
+    let teslaFinancialsChart = createChart(teslaFinancialsCtx, {
+        type: 'bar',
+        data: {
+            labels: teslaFinancialsAllData.labels,
+            datasets: [teslaFinancialsAllData.revenue]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: { y: { title: { display: true, text: 'USD (Millions)' } } }
+        }
+    });
+    
+    document.getElementById('show-revenue').classList.add('active');
+
+    function updateTeslaFinancials(dataType) {
+        teslaFinancialsChart.data.datasets = [teslaFinancialsAllData[dataType]];
+        teslaFinancialsChart.update();
+        document.getElementById('show-revenue').classList.toggle('active', dataType === 'revenue');
+        document.getElementById('show-net-income').classList.toggle('active', dataType === 'netIncome');
+    }
+    document.getElementById('show-revenue').addEventListener('click', () => updateTeslaFinancials('revenue'));
+    document.getElementById('show-net-income').addEventListener('click', () => updateTeslaFinancials('netIncome'));
+
+    const luxurySalesData = {
+        labels: ['Tesla Model S', 'BMW 6 & 7 Series', 'Mercedes CLS & S Class'],
+        datasets: [{
+            label: '2017 Sales Units',
+            data: [27060, 14781+12911, 1551+11299],
+            backgroundColor: [chartColors.red, chartColors.blue, chartColors.slate],
+            borderWidth: 1
+        }]
+    };
+    const luxurySalesCtx = document.getElementById('luxurySalesChart').getContext('2d');
+    createChart(luxurySalesCtx, {
+        type: 'bar',
+        data: luxurySalesData,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: { y: { beginAtZero: true, title: { display: true, text: 'Units Sold' } } }
+        }
+    });
+    
+    const forcesNav = document.getElementById('forces-nav');
+    const forcesContent = document.getElementById('forces-content');
+    const sections = forcesContent.querySelectorAll('.content-section');
+    const buttons = forcesNav.querySelectorAll('.nav-button');
+    
+    function activateSection(targetId) {
+        sections.forEach(section => {
+            section.classList.toggle('active', section.id === targetId);
+        });
+        buttons.forEach(button => {
+            button.classList.toggle('active', button.dataset.target === targetId);
+        });
+    }
+    
+    forcesNav.addEventListener('click', (e) => {
+        if (e.target.matches('.nav-button')) {
+            activateSection(e.target.dataset.target);
+        }
+    });
+    
+    activateSection('electrification');
+
+    // Timeline and Characters Data
+    const timelineData = [
+        { year: 'Early 1980s', events: ['Japanese automakers (Toyota, Honda) begin entering the US market at the lower end of the price spectrum.'] },
+        { year: '1983', events: ['92% of 20–24 year-olds in the US held a driver\'s licence.'] },
+        { year: '2002', events: ['October: Elon Musk earns $165 million from the sale of his stake in PayPal.'] },
+        { year: '2003', events: ['Tesla is founded in Palo Alto, California, by Martin Eberhard and Marc Tarpenning.', 'Elon Musk leads the Series A funding round for Tesla with $7.5 million.'] },
+        { year: '2004', events: ['Elon Musk becomes chairman of Tesla\'s board.'] },
+        { year: '2006', events: ['Elon Musk posts Tesla\'s "Master Plan" on the company\'s website.', 'The Gigafactory idea is conceived by CTO JB Straubel.'] },
+        { year: '2007', events: ['Tesla experiences cost overruns on its first EV, the Roadster.', 'Tesla has three CEOs by the end of the year, including co-founder Martin Eberhard.'] },
+        { year: '2008', events: ['The Great Recession leads to a sharp downturn in the US new passenger car market.', 'Chrysler and GM declare bankruptcy.', 'Elon Musk appoints himself CEO in October.'] },
+        { year: '2009', events: ['The federal government rescues GM.', 'Chrysler is acquired by Italy-based Fiat.'] },
+        { year: '2010', events: ['June: Tesla goes public at $17 per share.', 'June: Tesla purchases the Fremont manufacturing plant from Toyota for $42 million.', 'Late 2010: The Nissan LEAF, the first mass-market EV, debuts in the US.'] },
+        { year: '2011', events: ['GM\'s hybrid Chevy Volt is launched.'] },
+        { year: '2012', events: ['Tesla stops making the Roadster, having sold 2,500 units.', 'Ford enters the EV market with an electric version of the Focus.', 'Nissan LEAF sales are half of the projected 20,000 units.'] },
+        { year: '2013', events: ['March: Tesla records its first profitable quarter ($11 million in net income).', 'The US economy swings into recovery, and car sales rebound.', 'Tesla\'s Model S sedan launches and wins Motor Trend\'s Car of the Year award.'] },
+        { year: '2014', events: ['The percentage of 20–24 year-olds with a driver\'s licence drops to 77%.'] },
+        { year: '2015', events: ['BMW launches its first EV, the i3.', 'Tesla introduces the Model X.', 'The Model S is declared "the best-performing car that Consumer Reports has ever tested."'] },
+        { year: '2016', events: ['January: GM acquires a 9% share in Lyft with a $500 million investment.', 'February: Tesla records profits for a second time.', 'March: CEO Elon Musk unveils the Model 3, securing 115,000 pre-orders.', 'Tesla\'s Gigafactory opens in Nevada.', 'Musk unveils his "Master Plan, Part Deux."'] },
+        { year: '2017', events: ['Early 2017: GM enters the EV market with the Chevy Bolt.', 'July: Musk announces Model 3 reservations have surged to over 500,000.', 'Late 2017: Deliveries of the Model 3 begin.', 'Late 2017: Toyota announces talks with Panasonic to form a battery JV.'] },
+        { year: '2018', events: ['Ford announces phasing out most passenger internal combustion models.', 'February: Tesla pauses Model 3 production.', 'April: Tesla pauses Model 3 production again.', 'May: Musk describes "production hell" and admits "excessive automation was a mistake."', 'August: Tesla is finally producing 5,000 Model 3s a week.', 'August: Tesla\'s stock is trading at $335 per share, with market cap higher than GM\'s.', 'September: Tesla has manufactured almost 85,000 Model 3s.', 'December 31: The $7,500 federal tax credit for EV buyers ends.'] },
+        { year: '2019', events: ['Tesla owns over 1,300 charging stations.', 'The federal EV tax credit decreases to $3,750.', 'Volkswagen begins installing 2,000 fast-charging stations.', 'Cox Automotive predicts up to 10% of cars will be purchased online.'] },
+        { year: '2020s & Beyond', events: ['Prediction: Millennials will make up 40% of new car purchases by 2020.', 'Prediction: Toyota plans to have 10 EV models by the early 2020s.', 'Prediction: Ford plans to roll out 24 hybrids and 16 EVs by 2022.', 'Prediction: GM plans to offer a fleet of 20 EV models by 2023.', 'Prediction: 95% of US passenger miles could be served by on-demand autonomous EVs by 2030.'] }
+    ];
+
+    const charactersData = [
+        { name: 'Elon Musk', role: 'CEO & Chairman', description: 'The visionary and driving force behind Tesla. Invested his PayPal fortune and took over as CEO in 2008 to "steer the boat completely."' },
+        { name: 'Martin Eberhard & Marc Tarpenning', role: 'Co-founders', description: 'The original engineering entrepreneurs who founded Tesla in 2003 with the vision of building an electric sports car.' },
+        { name: 'JB Straubel', role: 'CTO', description: 'A key technical leader who conceived the idea for the Gigafactory, realizing that battery supply would be the ultimate bottleneck to Tesla\'s ambitions.' }
+    ];
+
+    const timelineContainer = document.getElementById('timeline-container');
+    timelineData.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'timeline-item';
+        let eventsList = item.events.map(event => `<li class="text-base font-normal text-slate-600">${event}</li>`).join('');
+        div.innerHTML = `
+            <div class="absolute w-3 h-3 bg-slate-400 rounded-full mt-1.5 -left-1.5 border border-white"></div>
+            <time class="mb-1 text-sm font-semibold leading-none text-slate-800">${item.year}</time>
+            <ul class="list-disc ml-4 mt-1 space-y-1">${eventsList}</ul>
+        `;
+        timelineContainer.appendChild(div);
+    });
+
+    const charactersContainer = document.getElementById('characters-container');
+    charactersData.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'bg-white p-4 rounded-lg shadow-md';
+        div.innerHTML = `
+            <h5 class="font-bold text-slate-800">${item.name}</h5>
+            <p class="text-sm font-semibold text-blue-600">${item.role}</p>
+            <p class="text-sm text-slate-600 mt-1">${item.description}</p>
+        `;
+        charactersContainer.appendChild(div);
+    });
+
+
+    // Accordion and Glossary Data
+    const strategicQuestions = [
+        {
+            question: "What was the primary goal for the Model 3, and how did pre-orders reflect this?",
+            answer: "Elon Musk stated the Model 3 was designed to be an EV 'for the masses.' This ambition was reflected in securing 500,000 pre-orders by 2018, signaling massive public interest in an affordable, long-range electric car.",
+            mindShift: "This represented a pivotal shift from niche luxury player to mass-market manufacturer. The goal was no longer just to prove EVs could be desirable (the job of the Model S/X), but to prove they could be produced and sold at a scale to rival traditional automakers, fundamentally altering the company's operational and financial DNA."
+        },
+        {
+            question: "What was the state of Model 3 production in mid-2018, and what was Musk's key identified mistake?",
+            answer: "In mid-2018, production was in 'production hell,' with significant bottlenecks in its highly automated factory. Musk admitted that 'excessive automation at Tesla was a mistake' and that 'humans are underrated.'",
+            mindShift: "This was a humbling retreat from the Silicon Valley 'software can solve everything' mindset. Musk initially believed he could create a fully automated 'alien dreadnought' factory. The realization was that for a complex, evolving manufacturing process, the flexibility, adaptability, and problem-solving skills of human workers were far more valuable than rigid, hard-to-debug robotics. It was a shift from tech-first ideology to manufacturing pragmatism."
+        },
+        {
+            question: "How did the U.S. new car market perform between 2008 and 2016?",
+            answer: "The market experienced a sharp downturn during the 2008 Great Recession but rebounded by 2013. By 2016, sales were beginning to flatten, with an average new car price of $35,500.",
+            mindShift: "Tesla was not entering a booming market, but a mature, stagnant one. This context makes its growth story even more remarkable. The $35,500 average price also validates the Model 3's target as being squarely in the mass-market zone, not a budget category. The mind shift is from seeing the auto industry as an impenetrable monolith to seeing it as a slow-growth cash cow vulnerable to a narrative of excitement and innovation."
+        },
+        {
+            question: "Who were the largest U.S. automakers in 2018, and what was Tesla's market share?",
+            answer: "In 2018, the three largest were General Motors (17.9%), Ford (14.7%), and Chrysler (12.9%). Tesla held a much smaller market share of 0.2%.",
+            mindShift: "This stark contrast highlights that Tesla's valuation and influence were completely decoupled from its actual sales footprint. The mind shift for investors was to value Tesla not on its present performance (like a traditional OEM) but on its *potential future market share* in a completely redefined, electrified industry. It was a bet on the S-curve of adoption, not linear growth."
+        },
+        {
+            question: "What are the significant barriers to entry in the traditional automotive industry?",
+            answer: "Significant barriers include creating brand loyalty, building massive manufacturing capabilities and factories, developing a dealer and service network, and raising immense capital (up to $6 billion) over a long development cycle (up to six years).",
+            mindShift: "Tesla's strategy deliberately sidestepped or re-imagined these barriers. Instead of competing on brand history, it built a new-age tech brand. Instead of dealer networks, it went direct-to-consumer. It leveraged its high stock valuation to raise capital, turning a traditional barrier (capital) into an advantage fueled by its disruptive narrative."
+        },
+        {
+            question: "How are Tier 1 suppliers responding to the rise of EVs?",
+            answer: "Tier 1 suppliers sell integrated sub-systems to OEMs. As EVs have far fewer parts than combustion cars, these suppliers are shifting their focus to new, high-value technologies like advanced driver-assistance systems (ADAS), infotainment, and battery management systems to capture a larger share of the vehicle's value.",
+            mindShift: "This reflects a value chain in flux. The power is shifting from mechanical engineering to software and electronics. For suppliers, the mindset must change from being a provider of 'dumb' hardware to becoming a technology partner. For OEMs like Tesla who vertically integrate these components, it's a bet that they can innovate faster and capture more margin by controlling this new 'brain' of the car."
+        },
+        {
+            question: "Describe the car ownership trends for Millennials and Baby Boomers.",
+            answer: "Millennials show lower car ownership rates than past generations at their age but are the fastest-growing buyer segment, valuing online research and practicality. Baby Boomers are increasingly urbanizing, valuing shorter commutes and using alternative transport like ride-hailing.",
+            mindShift: "This signals the erosion of the traditional 'car as a symbol of freedom' narrative. The shift is towards viewing the car as a pragmatic appliance or a service. This erodes brand loyalty built on heritage and opens the door for a new brand built on technology, user experience, and connectivity—all areas where Tesla focused its energy."
+        },
+        {
+            question: "How do traditional dealerships profit, and what challenges do they face?",
+            answer: "They earn about 30% of profits from new car sales but 45-60% from service and parts. They are challenged by consumers' preference for online purchasing and the fact that low-maintenance EVs threaten their lucrative service business.",
+            mindShift: "Tesla recognized that the dealership model was both a profit center for incumbents and a major customer pain point (haggling, service upsells). The mind shift was to re-imagine the entire customer relationship. By going direct-to-consumer and offering over-the-air updates, Tesla turned a core strength of the old guard (their vast service network) into a potential liability and a point of negative differentiation."
+        },
+        {
+            question: "What are the four key trends reshaping the auto industry?",
+            answer: "The four key trends are: 1) a shift towards electric vehicles (EVs), 2) a growing number of people moving to cities and opting to be carless, 3) the rapid growth of autonomous driving, and 4) the rise of alternative transportation services (e.g., car-sharing, ride-hailing).",
+            mindShift: "This is the thesis of the entire disruption. The mind shift is from viewing a car as a standalone mechanical product to seeing it as a connected, electric, potentially autonomous node in a larger mobility network. Tesla didn't just build an electric car; it built a company structured around the convergence of all four trends, while incumbents were often tackling them in separate, siloed divisions."
+        },
+        {
+            question: "Explain Tesla's 'Master Plan' and its manufacturing approach for the Model S vs. the Roadster.",
+            answer: "The 'Master Plan' was to enter the high-end luxury market first to generate premium profits and brand cachet, then use that to fund the development of progressively lower-priced, higher-volume cars. Unlike the Roadster, which outsourced many key components, Tesla brought design, assembly, and many components of the Model S in-house.",
+            mindShift: "The Roadster was a proof-of-concept built on the back of others (like the Lotus chassis). The Model S represented a fundamental shift in identity: from a tech integrator to a full-fledged car manufacturer. This move to vertical integration was a high-risk, high-reward bet that controlling the core technology (battery, powertrain, software) was the only way to achieve the desired performance and accelerate innovation, even if it meant taking on the immense complexity that other OEMs outsourced."
+        }
+    ];
+
+    const glossaryTerms = [
+        { term: "Autonomous Driving", definition: "Technology that enables a vehicle to operate without human input, ranging from driver assistance (Level 1) to full automation (Level 5)." },
+        { term: "Capacity Utilization", definition: "A measure of how much of a company's production capacity is being used. In the automotive industry, it reflects the percentage of maximum output that is actually produced." },
+        { term: "CHAdeMO", definition: "A standard for rapid charging of electric vehicles, primarily used by Japanese automakers like Nissan." },
+        { term: "Connected Car", definition: "A vehicle with internet access and sensors that allow it to interact with its environment and receive over-the-air updates." },
+        { term: "Gigafactory", definition: "A large-scale factory built by Tesla for the production of lithium-ion batteries and other EV components." },
+        { term: "Internal Combustion Engine (ICE)", definition: "A traditional engine that converts fuel into mechanical energy, common in petrol or diesel cars." },
+        { term: "LiDAR", definition: "A laser technology used in autonomous vehicles to measure distances and map surroundings." },
+        { term: "Lithium-ion Battery", definition: "A type of rechargeable battery commonly used in electric vehicles due to its high energy density." },
+        { term: "Mobility-as-a-Service (MaaS)", definition: "A shift where consumers purchase transportation as a service (e.g., miles or trips) rather than owning a private vehicle." },
+        { term: "Original Equipment Manufacturer (OEM)", definition: "The car manufacturers themselves, like GM, Ford, and Tesla." },
+        { term: "Production Hell", definition: "A term used by Elon Musk to describe the extremely difficult period of ramping up production for the Tesla Model 3." },
+        { term: "Range Anxiety", definition: "The fear that an electric vehicle will run out of power before reaching a charging point." },
+        { term: "Superchargers", definition: "Tesla's proprietary network of fast-charging stations designed exclusively for Tesla vehicles." },
+        { term: "Tier 1, 2, 3 Suppliers", definition: "A hierarchical classification of suppliers. Tier 1 sells to OEMs, Tier 2 to Tier 1, and Tier 3 sells raw materials." },
+        { term: "Vertical Integration", definition: "A strategy where a company owns its supply chain or key production processes, rather than relying on external suppliers." }
+    ];
+
+    const accordionContainer = document.getElementById('accordion-container');
+    strategicQuestions.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'bg-white rounded-lg shadow-md';
+        div.innerHTML = `
+            <div class="accordion-header p-4 cursor-pointer flex justify-between items-center">
+                <h4 class="font-semibold text-slate-800">${item.question}</h4>
+                <span class="text-slate-500 text-xl transform transition-transform duration-300">&#x25B6;</span>
+            </div>
+            <div class="accordion-content px-4 pb-4">
+                <p class="text-slate-600">${item.answer}</p>
+                <div class="mt-3 pt-3 border-t border-slate-200">
+                    <h5 class="font-bold text-sm text-slate-500 uppercase tracking-wider">The Mind Shift</h5>
+                    <p class="text-slate-600 italic text-sm mt-1">${item.mindShift}</p>
+                </div>
+            </div>
+        `;
+        accordionContainer.appendChild(div);
+    });
+
+    const glossaryContainer = document.getElementById('glossary-container');
+    glossaryTerms.sort((a, b) => a.term.localeCompare(b.term)).forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'bg-white p-4 rounded-lg shadow-md';
+        div.innerHTML = `
+            <h5 class="font-bold text-slate-800">${item.term}</h5>
+            <p class="text-slate-600 text-sm">${item.definition}</p>
+        `;
+        glossaryContainer.appendChild(div);
+    });
+
+    accordionContainer.addEventListener('click', (e) => {
+        const header = e.target.closest('.accordion-header');
+        if (!header) return;
+        const content = header.nextElementSibling;
+        const icon = header.querySelector('span');
+        
+        if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+            icon.style.transform = 'rotate(0deg)';
+        } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+            icon.style.transform = 'rotate(90deg)';
+        }
+    });
+
+
+    // Quiz Logic
+    const quizData = [
+        {
+            question: "What was Elon Musk's stated primary goal for the Model 3?",
+            options: [
+                "To be the fastest electric car on the market.",
+                "To be an electric vehicle 'for the masses'.",
+                "To serve as a luxury halo product for the brand.",
+                "To be a testbed for autonomous driving technology."
+            ],
+            answer: "To be an electric vehicle 'for the masses'."
+        },
+        {
+            question: "In mid-2018, what did Musk identify as a key mistake during the Model 3's 'production hell'?",
+            options: [
+                "Outsourcing too many components.",
+                "Setting the price too low.",
+                "Excessive automation in the factory.",
+                "Not offering enough color options."
+            ],
+            answer: "Excessive automation in the factory."
+        },
+        {
+            question: "What was Tesla's U.S. market share by volume in 2018?",
+            options: [
+                "12.9%",
+                "5.1%",
+                "2.0%",
+                "0.2%"
+            ],
+            answer: "0.2%"
+        },
+        {
+            question: "Which of these is NOT considered a major barrier to entry in the traditional auto industry?",
+            options: [
+                "High capital requirements for factories.",
+                "Developing a strong brand.",
+                "Access to social media marketing.",
+                "Building a dealership network."
+            ],
+            answer: "Access to social media marketing."
+        },
+        {
+            question: "What is the core of Tesla's 'Master Plan' for market entry?",
+            options: [
+                "Start with a mass-market car and move up to luxury models.",
+                "Enter at the high end of the market and then drive downmarket.",
+                "Focus exclusively on the sports car segment.",
+                "Build the Gigafactory before selling any cars."
+            ],
+            answer: "Enter at the high end of the market and then drive downmarket."
+        },
+        {
+            question: "How do traditional car dealerships primarily generate their profits?",
+            options: [
+                "90% from new car sales.",
+                "45-60% from service and parts.",
+                "50% from used car sales.",
+                "75% from financing and insurance."
+            ],
+            answer: "45-60% from service and parts."
+        },
+        {
+            question: "What is 'vertical integration' in the context of Tesla's manufacturing?",
+            options: [
+                "A marketing strategy to sell cars in a top-down fashion.",
+                "Outsourcing all components to the cheapest suppliers.",
+                "A strategy where a company owns its supply chain, like making its own seats.",
+                "A software architecture for over-the-air updates."
+            ],
+            answer: "A strategy where a company owns its supply chain, like making its own seats."
+        },
+        {
+            question: "Which of the following is NOT one of the four key trends described as reshaping the auto industry?",
+            options: [
+                "Electrification",
+                "Autonomous Driving",
+                "Hydrogen Fuel Cells",
+                "Shared Mobility"
+            ],
+            answer: "Hydrogen Fuel Cells"
+        },
+        {
+            question: "What was a major manufacturing difference between the Tesla Roadster and the Model S?",
+            options: [
+                "The Roadster was fully automated, while the Model S was built by hand.",
+                "The Roadster was built in partnership with Toyota.",
+                "The Roadster outsourced key components, while Tesla brought Model S assembly in-house.",
+                "The Roadster used a steel frame, while the Model S used aluminum."
+            ],
+            answer: "The Roadster outsourced key components, while Tesla brought Model S assembly in-house."
+        },
+        {
+            question: "What is 'Range Anxiety' for an EV driver?",
+            options: [
+                "The fear that the battery will degrade too quickly.",
+                "The stress of finding a parking spot with a charger.",
+                "The fear of running out of power before reaching a charging point.",
+                "The anxiety of choosing a model with the best range."
+            ],
+            answer: "The fear of running out of power before reaching a charging point."
+        }
+    ];
+
+    const quizContainer = document.getElementById('quiz-container');
+    quizData.forEach((q, index) => {
+        const questionBlock = document.createElement('div');
+        questionBlock.className = 'p-6 bg-slate-700 rounded-lg';
+        
+        let optionsHTML = '';
+        const optionLabels = ['a', 'b', 'c', 'd'];
+        q.options.forEach((option, optionIndex) => {
+            optionsHTML += `
+                <label class="quiz-option block p-4 border-2 border-slate-600 rounded-md hover:bg-slate-600 cursor-pointer transition-colors">
+                    <input type="radio" name="question${index}" value="${option}" class="hidden">
+                    <span class="font-bold mr-3">${optionLabels[optionIndex]}.</span>
+                    <span>${option}</span>
+                </label>
+            `;
+        });
+
+        questionBlock.innerHTML = `
+            <p class="font-bold text-lg mb-4">${index + 1}. ${q.question}</p>
+            <div class="space-y-3">${optionsHTML}</div>
+        `;
+        quizContainer.appendChild(questionBlock);
+    });
+    
+    quizContainer.addEventListener('click', function(e) {
+        const targetLabel = e.target.closest('.quiz-option');
+        if (targetLabel) {
+            const radio = targetLabel.querySelector('input[type="radio"]');
+            if (radio) {
+                radio.checked = true;
+                // Visually indicate selection
+                const allOptions = targetLabel.closest('.space-y-3').querySelectorAll('.quiz-option');
+                allOptions.forEach(opt => opt.classList.remove('bg-slate-600'));
+                targetLabel.classList.add('bg-slate-600');
+            }
+        }
+    });
+
+
+    const submitButton = document.getElementById('submit-quiz');
+    submitButton.addEventListener('click', () => {
+        let score = 0;
+        quizData.forEach((q, index) => {
+            const selectedOptionInput = document.querySelector(`input[name="question${index}"]:checked`);
+            const optionsContainer = document.querySelector(`input[name="question${index}"]`).closest('.space-y-3');
+            
+            // Disable further clicks on options for this question
+            optionsContainer.querySelectorAll('.quiz-option').forEach(label => {
+                label.style.pointerEvents = 'none';
+            });
+
+            if (selectedOptionInput) {
+                const parentLabel = selectedOptionInput.parentElement;
+                if (selectedOptionInput.value === q.answer) {
+                    score++;
+                    parentLabel.classList.remove('bg-slate-600');
+                    parentLabel.classList.add('correct');
+                } else {
+                    parentLabel.classList.remove('bg-slate-600');
+                    parentLabel.classList.add('incorrect');
+                }
+            }
+            // Always highlight the correct answer
+            const correctInput = document.querySelector(`input[name="question${index}"][value="${q.answer}"]`);
+            if(correctInput) {
+                const correctLabel = correctInput.parentElement;
+                correctLabel.classList.remove('bg-slate-600');
+                correctLabel.classList.add('correct');
+            }
+        });
+
+        const resultsContainer = document.getElementById('quiz-results');
+        resultsContainer.textContent = `You scored ${score} out of ${quizData.length}!`;
+        submitButton.disabled = true;
+        submitButton.textContent = 'Results Submitted';
+        submitButton.classList.add('opacity-50', 'cursor-not-allowed');
+    });
+});
+</script>
+
+</body>
+</html>

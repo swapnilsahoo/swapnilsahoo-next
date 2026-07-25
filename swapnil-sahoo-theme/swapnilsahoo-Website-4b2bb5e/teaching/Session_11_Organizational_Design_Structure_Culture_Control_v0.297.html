@@ -1,0 +1,2086 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizational Design: Structure, Culture & Control</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Markdown Parser for AI responses -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-dark: #0f172a;
+            --accent-blue: #2563eb;
+            --ikea-blue: #0051ba;
+            --ikea-yellow: #ffda1a;
+            /* Chapter 11 Specific Colors */
+            --organic-green: #10b981;
+            --mechanistic-blue: #3b82f6;
+        }
+        
+        body {
+            font-family: 'Satoshi', sans-serif;
+            background-color: #fafafa;
+            color: #334155;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        h1, h2, h3, h4, .serif { font-family: 'Playfair Display', serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        /* Progress Bar */
+        #progress-bar {
+            position: fixed; top: 0; left: 0; height: 4px;
+            background: var(--accent-blue); width: 0%; z-index: 100; transition: width 0.1s;
+        }
+
+        /* Navigation */
+        #main-header { position: sticky; top: 0; z-index: 40; transition: all 0.3s ease; }
+        .nav-link { 
+            position: relative; font-weight: 500; color: #64748b; transition: color 0.2s;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--primary-dark); }
+        .nav-link.active::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 100%; height: 2px; background: var(--accent-blue);
+        }
+
+        /* Animations */
+        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        .fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .spinner { animation: spin 1s linear infinite; }
+
+        /* Components */
+        .content-card {
+            background: white; border-radius: 1rem;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+            border: 1px solid #f1f5f9;
+        }
+        .content-card:hover { transform: translateY(-5px); }
+        
+        /* Tabs */
+        .tab-btn { transition: all 0.2s; border-left: 4px solid transparent; }
+        .tab-btn.active { background: #eff6ff; border-left-color: var(--accent-blue); color: var(--accent-blue); }
+        
+        /* Custom Slider */
+        .slider-thumb::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--accent-blue); cursor: pointer; box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2); }
+        
+        /* Simulation specific */
+        .hidden-section { display: none; }
+        .option-card { cursor: pointer; transition: all 0.2s; border: 1px solid #e2e8f0; }
+        .option-card:hover { border-color: var(--accent-blue); background-color: #eff6ff; }
+        .option-card.selected { border-color: var(--accent-blue); background-color: #dbeafe; box-shadow: 0 0 0 2px var(--accent-blue); }
+
+        .chart-container { position: relative; width: 100%; max-width: 600px; margin: 0 auto; height: 350px; max-height: 400px; }
+        
+        /* Badges */
+        .badge { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; padding: 0.15rem 0.5rem; border-radius: 99px; letter-spacing: 0.05em; }
+        .badge-in { background-color: #fff7ed; color: #c2410c; border: 1px solid #ffedd5; }
+        .badge-gl { background-color: #eff6ff; color: #1d4ed8; border: 1px solid #dbeafe; }
+        
+        /* First Principle Question Box */
+        .fp-box {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-left: 4px solid #6366f1;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 0 0.75rem 0.75rem 0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Chess Icon Container */
+        .chess-logo {
+            width: 40px; height: 40px;
+            background: #1e293b;
+            color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .group:hover .chess-logo {
+            background: #2563eb;
+            transform: rotate(10deg);
+        }
+        
+        /* Outline List Styling */
+        .outline-list { list-style: none; padding-left: 0; counter-reset: section; }
+        .outline-list > li { position: relative; padding-left: 2.5rem; margin-bottom: 1rem; }
+        .outline-list > li::before { 
+            counter-increment: section; content: counter(section); 
+            position: absolute; left: 0; top: 0;
+            width: 1.75rem; height: 1.75rem; background: #e0e7ff; color: #4f46e5;
+            border-radius: 50%; font-size: 0.75rem; font-weight: bold;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        /* Matrix Table Styles */
+        .matrix-table th { background-color: #f1f5f9; color: #475569; padding: 1rem; text-align: left; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .matrix-table td { padding: 1rem; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
+        .matrix-table tr:hover { background-color: #f8fafc; }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <div id="progress-bar"></div>
+
+    <!-- Image Modal -->
+    <div id="image-modal" class="fixed inset-0 z-[100] bg-black/90 opacity-0 flex items-center justify-center p-4 hidden" onclick="closeImageModal()">
+        <button class="absolute top-4 right-4 text-white text-4xl font-bold hover:text-gray-300">&times;</button>
+        <img id="modal-image" src="" alt="Zoomed View" class="max-h-[90vh] max-w-full rounded-lg shadow-2xl object-contain cursor-zoom-out">
+        <p id="modal-caption" class="absolute bottom-8 left-0 right-0 text-center text-white text-sm bg-black/50 py-2 px-4"></p>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="main-header" class="bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="https://www.swapnilsahoo.com" target="_blank" class="flex items-center gap-3 group no-underline">
+                <!-- CHESS ICON -->
+                <div class="chess-logo">
+                    <i class="fas fa-chess-knight"></i>
+                </div>
+                <div class="leading-tight">
+                    <h1 class="font-bold text-slate-900 tracking-tight text-xl">Org Design & Culture</h1>
+                </div>
+            </a>
+            
+            <div class="hidden xl:flex space-x-6 text-sm">
+                <a href="#inertia" class="nav-link active">Inertia</a>
+                <a href="#building-blocks" class="nav-link">Building Blocks</a>
+                <a href="#ai-consultant" class="nav-link text-indigo-600 font-bold">✨ AI Architect</a>
+                <a href="#structure" class="nav-link">Structure</a>
+                <a href="#global-matrix" class="nav-link">Global Matrix</a>
+                <a href="#culture" class="nav-link">Culture</a>
+                <a href="#simulation" class="nav-link">Challenge</a>
+            </div>
+
+            <div class="flex items-center gap-5">
+                <a href="https://x.com/swapnilsahoo" target="_blank" class="text-slate-400 hover:text-blue-400 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" class="text-slate-400 hover:text-pink-600 transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" class="text-slate-400 hover:text-blue-600 transition-colors"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.chess.com/member/swapnilsahoo" target="_blank" class="text-slate-400 hover:text-green-600 transition-colors text-lg" title="Play Chess">
+                    <i class="fas fa-chess-king"></i>
+                </a>
+                <button class="xl:hidden text-slate-600"><i class="fas fa-bars text-xl"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <!-- SESSION OUTLINE & OBJECTIVES -->
+        <section id="outline" class="mb-24 fade-up">
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Outline -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                    <h2 class="text-2xl font-serif font-bold text-slate-900 mb-6">Session Outline</h2>
+                    <ul class="outline-list space-y-4 text-sm text-slate-600">
+                        <li>
+                            <strong class="text-slate-800">Organizational Design & Competitive Advantage</strong>
+                            <p class="mt-1 text-xs">Inertia, Structure, Mechanistic vs. Organic</p>
+                        </li>
+                        <li>
+                            <strong class="text-slate-800">Strategy & Structure</strong>
+                            <p class="mt-1 text-xs">Simple, Functional, Multidivisional, Matrix</p>
+                        </li>
+                        <li>
+                            <strong class="text-slate-800">Organizing for Innovation</strong>
+                        </li>
+                        <li>
+                            <strong class="text-slate-800">Organizational Culture</strong>
+                            <p class="mt-1 text-xs">Values, Norms, Artifacts, Origins & Change</p>
+                        </li>
+                        <li>
+                            <strong class="text-slate-800">Strategic Control & Reward Systems</strong>
+                            <p class="mt-1 text-xs">Input vs. Output Controls</p>
+                        </li>
+                        <li>
+                            <strong class="text-slate-800">Implications for Strategic Leaders</strong>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Learning Objectives -->
+                <div class="bg-indigo-50 p-8 rounded-2xl border border-indigo-100">
+                    <h2 class="text-2xl font-serif font-bold text-indigo-900 mb-6">Learning Objectives</h2>
+                    <div class="space-y-4 text-sm text-indigo-800">
+                        <div class="flex gap-3">
+                            <span class="font-bold text-indigo-400">1.</span>
+                            <p>Define organizational design and list its three components.</p>
+                        </div>
+                        <div class="flex gap-3">
+                            <span class="font-bold text-indigo-400">2.</span>
+                            <p>Explain how organizational inertia can lead established firms to failure.</p>
+                        </div>
+                        <div class="flex gap-3">
+                            <span class="font-bold text-indigo-400">3.</span>
+                            <p>Define organizational structure and describe its four elements.</p>
+                        </div>
+                        <div class="flex gap-3">
+                            <span class="font-bold text-indigo-400">4.</span>
+                            <p>Compare and contrast mechanistic organizations and organic organizations.</p>
+                        </div>
+                        <div class="flex gap-3">
+                            <span class="font-bold text-indigo-400">5.</span>
+                            <p>Describe different organizational structures and match them with appropriate strategies.</p>
+                        </div>
+                        <div class="flex gap-3">
+                            <span class="font-bold text-indigo-400">6.</span>
+                            <p>Evaluate closed and open innovation, and derive implications for organizational structure.</p>
+                        </div>
+                        <div class="flex gap-3">
+                            <span class="font-bold text-indigo-400">7.</span>
+                            <p>Describe the elements of organizational culture, and explain where organizational cultures can come from and how they can be changed.</p>
+                        </div>
+                        <div class="flex gap-3">
+                            <span class="font-bold text-indigo-400">8.</span>
+                            <p>Compare and contrast different strategic control-and-reward systems.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HERO SECTION -->
+        <section id="context" class="mb-24 fade-up">
+            <div class="text-center max-w-4xl mx-auto">
+                <!-- UPDATED CONTEXT NAV: Part 1, 2, 3 -->
+                <div class="flex items-center justify-center gap-4 text-sm text-slate-400 font-medium mb-6 uppercase tracking-wider">
+                    <span>Part 1: Analysis</span>
+                    <span class="text-slate-300">/</span>
+                    <span>Part 2: Formulation</span>
+                    <span class="text-slate-300">/</span>
+                    <span class="text-indigo-600 font-bold decoration-2 underline decoration-indigo-300 underline-offset-4">Part 3: Implementation</span>
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-bold text-slate-900 mb-8 leading-tight font-serif">
+                    How do we organize to implement strategy?
+                </h1>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-indigo-100 text-left relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-indigo-600"></div>
+                    <p class="text-lg text-slate-600 leading-relaxed mb-4">
+                        "Strategy is the brain of the firm, but structure is the body. Without a flexible body, the brain's commands are useless."
+                    </p>
+                    <!-- Removed "Featuring Indian & Global..." section -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 1: INERTIA (UPDATED) -->
+        <section id="inertia" class="mb-32 fade-up">
+            <div class="fp-box">
+                <p class="text-xs font-bold text-indigo-500 uppercase tracking-widest mb-1">First Principle Question</p>
+                <h3 class="text-2xl font-serif font-bold text-slate-800">Why do winners fail?</h3>
+                <p class="text-slate-600 mt-2">If a structure made a company successful, shouldn't sticking to it ensure continued success? (The Inertia Trap).</p>
+            </div>
+
+            <div class="bg-slate-900 rounded-3xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500 rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-pulse"></div>
+                
+                <!-- Intro & Chart -->
+                <div class="grid md:grid-cols-2 gap-12 items-center mb-12">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">The Inertia Trap: When Yesterday's Success Becomes Today's Failure</h2>
+                        <p class="text-lg text-slate-300 leading-relaxed">
+                            Organizational inertia is the resistance to change, where a structure optimized for a past environment becomes a cage when the market shifts. It is the dangerous phenomenon where success in one era breeds complacency and an inability to adapt.
+                        </p>
+                    </div>
+                    <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+                        <div class="chart-container" style="height: 300px;">
+                            <canvas id="inertiaCanvas"></canvas>
+                        </div>
+                        <p class="text-center text-xs text-slate-400 mt-4 italic">The curve of success eventually becomes the curve of failure without change.</p>
+                    </div>
+                </div>
+
+                <!-- Strategic Choice Section (NEW OPTION A/B) -->
+                <div class="mt-12 mb-12 border-t border-slate-700 pt-8">
+                    <p class="text-slate-300 mb-8 leading-relaxed">
+                        What’s missing, of course, is the conscious strategic decision to change the firm’s internal environment to fit with the new external environment, which would turn four steps leading to the endpoint of inertia (Option A) into a virtuous circle where the firm essentially reboots and reinvents itself (Option B).
+                    </p>
+
+                    <div class="grid md:grid-cols-2 gap-8 mb-8">
+                        <!-- Option A -->
+                        <div class="bg-white/5 border border-red-500/30 p-6 rounded-xl relative overflow-hidden group hover:bg-white/10 transition-all">
+                            <div class="absolute top-0 right-0 p-4 opacity-20">
+                                <i class="fas fa-arrow-down text-6xl text-red-500"></i>
+                            </div>
+                            <h4 class="text-xl font-serif font-bold text-red-400 mb-2">Option A: The Firm Arrives at Inertia</h4>
+                            <div class="flex gap-2 mb-4 font-mono text-sm text-slate-400">
+                                <span>1</span> <i class="fas fa-arrow-right text-xs mt-1"></i> 
+                                <span>2</span> <i class="fas fa-arrow-right text-xs mt-1"></i> 
+                                <span>3</span> <i class="fas fa-arrow-right text-xs mt-1"></i> 
+                                <span class="text-red-400 font-bold">4 (Stuck)</span>
+                            </div>
+                            <p class="text-sm text-slate-300">Success leads to structural rigidity. The cycle ends in failure to adapt.</p>
+                        </div>
+
+                        <!-- Option B -->
+                        <div class="bg-white/5 border border-emerald-500/30 p-6 rounded-xl relative overflow-hidden group hover:bg-white/10 transition-all">
+                            <div class="absolute top-0 right-0 p-4 opacity-20">
+                                <i class="fas fa-sync-alt text-6xl text-emerald-500"></i>
+                            </div>
+                            <h4 class="text-xl font-serif font-bold text-emerald-400 mb-2">Option B: The Firm Rises above Inertia</h4>
+                            <div class="flex gap-2 mb-4 font-mono text-sm text-slate-400">
+                                <span>1</span> <i class="fas fa-arrow-right text-xs mt-1"></i> 
+                                <span>2</span> <i class="fas fa-arrow-right text-xs mt-1"></i> 
+                                <span class="text-emerald-400 font-bold">Reboot</span> <i class="fas fa-redo text-xs mt-1 text-emerald-500"></i> 
+                            </div>
+                            <p class="text-sm text-slate-300">Strategic intervention resets the cycle. The firm reinvents itself before inertia sets in.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-indigo-900/30 border border-indigo-500/20 p-4 rounded-lg">
+                        <p class="text-slate-300 text-sm italic">
+                            "The need for structural reorganization can be especially intense in many industries where the rate of change is high and potential disruption is frequent. In addition, business leaders find it much easier to create and manage within developed structures than to restructure their organizations to match where they need to be in future."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Negative Examples -->
+                <div class="mb-12">
+                    <h3 class="text-xl font-bold text-red-400 mb-6 flex items-center gap-3">
+                        <i class="fas fa-exclamation-triangle"></i> Negative Examples: Stuck in the Trap
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Hindustan Motors -->
+                        <div class="bg-white/5 border-l-4 border-red-500 rounded-r-xl p-6 hover:bg-white/10 transition-colors">
+                            <h4 class="font-bold text-lg mb-2">Hindustan Motors (India)</h4>
+                            <div class="space-y-2 text-xs md:text-sm">
+                                <p><strong class="text-slate-400">Mastery:</strong> Ruled Indian roads with the iconic Ambassador car, a symbol of status and reliability.</p>
+                                <p><strong class="text-slate-400">Shift:</strong> The Indian economy liberalized, and modern, fuel-efficient, stylish cars from global brands like Maruti Suzuki entered the market.</p>
+                                <p><strong class="text-red-300">The Trap:</strong> "We've always done it this way!" Refused to change the design or technology for decades, leading to obsolescence.</p>
+                            </div>
+                        </div>
+                        <!-- Blockbuster -->
+                        <div class="bg-white/5 border-l-4 border-red-500 rounded-r-xl p-6 hover:bg-white/10 transition-colors">
+                            <h4 class="font-bold text-lg mb-2">Blockbuster (Global)</h4>
+                            <div class="space-y-2 text-xs md:text-sm">
+                                <p><strong class="text-slate-400">Mastery:</strong> Perfected the physical video rental store model, making renting movies a convenient weekend ritual.</p>
+                                <p><strong class="text-slate-400">Shift:</strong> The internet and streaming services (Netflix) offered a faster, more convenient model (no late fees, endless choice from home).</p>
+                                <p><strong class="text-red-300">The Trap:</strong> Fear of cannibalization: Worried that online rentals would destroy their profitable store business, they moved too slowly.</p>
+                            </div>
+                        </div>
+                        <!-- Kodak -->
+                        <div class="bg-white/5 border-l-4 border-red-500 rounded-r-xl p-6 hover:bg-white/10 transition-colors">
+                            <h4 class="font-bold text-lg mb-2">Kodak (Global)</h4>
+                            <div class="space-y-2 text-xs md:text-sm">
+                                <p><strong class="text-slate-400">Mastery:</strong> The undisputed king of photography, selling film and photo paper to millions globally.</p>
+                                <p><strong class="text-slate-400">Shift:</strong> The invention of digital photography, which required no film or paper.</p>
+                                <p><strong class="text-red-300">The Trap:</strong> "Our profits come from film!" A Kodak engineer invented the first digital camera, but management hid the idea for fear it would destroy their highly profitable film business.</p>
+                            </div>
+                        </div>
+                        <!-- Nokia -->
+                        <div class="bg-white/5 border-l-4 border-red-500 rounded-r-xl p-6 hover:bg-white/10 transition-colors">
+                            <h4 class="font-bold text-lg mb-2">Nokia (Global)</h4>
+                            <div class="space-y-2 text-xs md:text-sm">
+                                <p><strong class="text-slate-400">Mastery:</strong> A global leader in mobile phones, known for robust hardware and clear calls.</p>
+                                <p><strong class="text-slate-400">Shift:</strong> The market shifted from hardware to software ecosystems, apps, and touch screens (iPhone, Android).</p>
+                                <p><strong class="text-red-300">The Trap:</strong> Internal Politics/Blind Spots: Stuck to an outdated operating system (Symbian) and was too slow to grasp the importance of software and apps.</p>
+                            </div>
+                        </div>
+                        <!-- Kingfisher Airlines -->
+                        <div class="bg-white/5 border-l-4 border-red-500 rounded-r-xl p-6 hover:bg-white/10 transition-colors">
+                            <h4 class="font-bold text-lg mb-2">Kingfisher Airlines (India)</h4>
+                            <div class="space-y-2 text-xs md:text-sm">
+                                <p><strong class="text-slate-400">Mastery:</strong> Created a luxury, full-service flying experience popular among premium customers in India.</p>
+                                <p><strong class="text-slate-400">Shift:</strong> The Indian aviation market shifted towards budget, low-cost carriers (like IndiGo).</p>
+                                <p><strong class="text-red-300">The Trap:</strong> Ego and poor planning: Insisted on maintaining a high-cost luxury model that failed to adapt to a price-sensitive market.</p>
+                            </div>
+                        </div>
+                        <!-- Yahoo -->
+                        <div class="bg-white/5 border-l-4 border-red-500 rounded-r-xl p-6 hover:bg-white/10 transition-colors">
+                            <h4 class="font-bold text-lg mb-2">Yahoo! (Global)</h4>
+                            <div class="space-y-2 text-xs md:text-sm">
+                                <p><strong class="text-slate-400">Mastery:</strong> A dominant early internet portal and directory with massive early traffic and brand recognition.</p>
+                                <p><strong class="text-slate-400">Shift:</strong> The emergence of highly specialized search engines (like Google) and social media platforms.</p>
+                                <p><strong class="text-red-300">The Trap:</strong> Lack of vision/strategy: Suffered from frequent leadership changes and an inability to choose a direction (media vs. tech company).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Positive Examples -->
+                <div class="mb-12">
+                    <h3 class="text-xl font-bold text-green-400 mb-6 flex items-center gap-3">
+                        <i class="fas fa-seedling"></i> Positive Examples: Adapting and Thriving
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Google -->
+                        <div class="bg-white/5 border-l-4 border-green-500 rounded-r-xl p-6 hover:bg-white/10 transition-colors">
+                            <h4 class="font-bold text-lg mb-2">Google/Alphabet</h4>
+                            <div class="space-y-2 text-xs md:text-sm">
+                                <p><strong class="text-slate-400">Mastery:</strong> Mastered web search and advertising algorithms.</p>
+                                <p><strong class="text-slate-400">Shift:</strong> The rise of mobile computing, cloud services, and AI.</p>
+                                <p><strong class="text-green-300">Adaptation:</strong> Organizational Redesign (Alphabet): Created a parent company structure to allow "Other Bets" to innovate independently.</p>
+                            </div>
+                        </div>
+                        <!-- Netflix -->
+                        <div class="bg-white/5 border-l-4 border-green-500 rounded-r-xl p-6 hover:bg-white/10 transition-colors">
+                            <h4 class="font-bold text-lg mb-2">Netflix</h4>
+                            <div class="space-y-2 text-xs md:text-sm">
+                                <p><strong class="text-slate-400">Mastery:</strong> Mastered the DVD-by-mail service.</p>
+                                <p><strong class="text-slate-400">Shift:</strong> Faster internet speeds made video streaming viable and popular.</p>
+                                <p><strong class="text-green-300">Adaptation:</strong> Embraced cannibalization: Quickly shifting resources and redesigning organization around content acquisition.</p>
+                            </div>
+                        </div>
+                        <!-- Apple -->
+                        <div class="bg-white/5 border-l-4 border-green-500 rounded-r-xl p-6 hover:bg-white/10 transition-colors">
+                            <h4 class="font-bold text-lg mb-2">Apple</h4>
+                            <div class="space-y-2 text-xs md:text-sm">
+                                <p><strong class="text-slate-400">Mastery:</strong> Mastered personal computers (Macintosh).</p>
+                                <p><strong class="text-slate-400">Shift:</strong> MP3 players, smartphones, and digital music distribution became dominant categories.</p>
+                                <p><strong class="text-green-300">Adaptation:</strong> Focused on seamless hardware-software integration and design excellence, allowing repeated pivots.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- The Lesson -->
+                <div class="bg-indigo-900/50 border border-indigo-500/30 rounded-xl p-6 text-center">
+                    <h4 class="font-bold text-indigo-300 uppercase tracking-widest text-sm mb-2">The Lesson</h4>
+                    <p class="text-slate-200 italic max-w-3xl mx-auto">
+                        "The very things that make a company successful in one environment (e.g., rigid efficiency, a profitable core product) can become fatal traps when the market changes. Success often breeds a dangerous level of complacency. Continuous monitoring of the environment and a willingness to redesign the entire framework (strategy, structure, systems, and culture) are essential for long-term survival."
+                    </p>
+               </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 2: BUILDING BLOCKS -->
+        <section id="building-blocks" class="mb-32 fade-up">
+            <div class="fp-box">
+                <p class="text-xs font-bold text-indigo-500 uppercase tracking-widest mb-1">First Principle Question</p>
+                <h3 class="text-2xl font-serif font-bold text-slate-800">What is an organization made of?</h3>
+                <p class="text-slate-600 mt-2">Just as matter is made of atoms, organizations are built from 4 fundamental blocks. How you combine them determines if you are Agile (Organic) or Robust (Mechanistic).</p>
+            </div>
+
+            <!-- NEWLY ADDED 4 BLOCKS GRID -->
+            <div class="mb-12">
+                <h2 class="text-3xl font-serif font-bold text-slate-900 mb-4">The Four Building Blocks of Organizational Structure</h2>
+                <p class="text-slate-600 mb-8 max-w-3xl">Organizational structure defines how work efforts are coordinated, how resources are distributed, and who reports to whom.</p>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- 1. Specialization -->
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:border-blue-300 transition-all">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold">1</div>
+                            <h3 class="font-bold text-lg text-slate-800">Specialization</h3>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-2"><strong>Definition:</strong> The degree to which tasks are divided into separate, specialized jobs.</p>
+                        <p class="text-sm text-slate-600 mb-4"><strong>Trade-off:</strong> Breadth vs. depth of knowledge. High specialization increases productivity but can reduce job satisfaction.</p>
+                        
+                        <table class="w-full text-xs text-left">
+                            <thead class="bg-slate-50 text-slate-500 font-bold uppercase">
+                                <tr><th class="p-2 w-16">Degree</th><th class="p-2">Examples</th></tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <tr>
+                                    <td class="p-2 font-bold text-blue-600 align-top">High</td>
+                                    <td class="p-2">
+                                        <div class="mb-2"><span class="badge badge-in">IN</span> <strong>TCS:</strong> Organizes into distinct units (banking, telecom) to build deep expertise.</div>
+                                        <div><span class="badge badge-gl">GL</span> <strong>Apple:</strong> Highly specialized experts in hardware/software work in concentrated areas.</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2 font-bold text-slate-500 align-top">Low</td>
+                                    <td class="p-2">
+                                        <div class="mb-2"><span class="badge badge-in">IN</span> <strong>Early Zomato:</strong> Founders wore multiple hats (coding + support).</div>
+                                        <div><span class="badge badge-gl">GL</span> <strong>Early Airbnb:</strong> Small generalist teams handling all aspects before formal roles.</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 2. Formalization -->
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:border-blue-300 transition-all">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold">2</div>
+                            <h3 class="font-bold text-lg text-slate-800">Formalization</h3>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-2"><strong>Definition:</strong> The extent to which behavior is steered by explicit, written rules and procedures.</p>
+                        <p class="text-sm text-slate-600 mb-4"><strong>Trade-off:</strong> Consistency and predictability vs. slow decision-making and reduced creativity.</p>
+                        
+                        <table class="w-full text-xs text-left">
+                            <thead class="bg-slate-50 text-slate-500 font-bold uppercase">
+                                <tr><th class="p-2 w-16">Degree</th><th class="p-2">Examples</th></tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <tr>
+                                    <td class="p-2 font-bold text-blue-600 align-top">High</td>
+                                    <td class="p-2">
+                                        <div class="mb-2"><span class="badge badge-in">IN</span> <strong>Indian Railways:</strong> Detailed codified rules for safety and scheduling across a massive network.</div>
+                                        <div><span class="badge badge-gl">GL</span> <strong>McDonald's:</strong> Global SOPs ensure consistent product quality everywhere.</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2 font-bold text-slate-500 align-top">Low</td>
+                                    <td class="p-2">
+                                        <div class="mb-2"><span class="badge badge-in">IN</span> <strong>Early OYO:</strong> Bypassed rigid rules to onboard hotels rapidly.</div>
+                                        <div><span class="badge badge-gl">GL</span> <strong>Zappos:</strong> Minimizes scripts to encourage personalized customer service.</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 3. Centralization -->
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:border-blue-300 transition-all">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold">3</div>
+                            <h3 class="font-bold text-lg text-slate-800">Centralization</h3>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-2"><strong>Definition:</strong> The degree to which decision-making is concentrated at the top of the organization.</p>
+                        <p class="text-sm text-slate-600 mb-4"><strong>Trade-off:</strong> Coordinated control (centralized) vs. faster response time (decentralized).</p>
+                        
+                        <table class="w-full text-xs text-left">
+                            <thead class="bg-slate-50 text-slate-500 font-bold uppercase">
+                                <tr><th class="p-2 w-16">Degree</th><th class="p-2">Examples</th></tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <tr>
+                                    <td class="p-2 font-bold text-blue-600 align-top">High</td>
+                                    <td class="p-2">
+                                        <div class="mb-2"><span class="badge badge-in">IN</span> <strong>Trad. Conglomerates:</strong> Strategic decisions concentrated at top levels (e.g., Reliance).</div>
+                                        <div><span class="badge badge-gl">GL</span> <strong>BP (2010):</strong> Crisis decisions made at UK HQ slowed response to oil spill.</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2 font-bold text-slate-500 align-top">Low</td>
+                                    <td class="p-2">
+                                        <div class="mb-2"><span class="badge badge-in">IN</span> <strong>Flipkart:</strong> Operational decisions decentralized to local teams for speed.</div>
+                                        <div><span class="badge badge-gl">GL</span> <strong>Google/Alphabet:</strong> "Other Bets" subsidiaries have significant autonomy.</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 4. Hierarchy -->
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:border-blue-300 transition-all">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold">4</div>
+                            <h3 class="font-bold text-lg text-slate-800">Hierarchy</h3>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-2"><strong>Definition:</strong> Determines formal reporting lines and span of control (tall vs flat).</p>
+                        <p class="text-sm text-slate-600 mb-4"><strong>Trade-off:</strong> Tall (narrow span) vs. Flat (wide span). Firms de-layer to become nimble.</p>
+                        
+                        <table class="w-full text-xs text-left">
+                            <thead class="bg-slate-50 text-slate-500 font-bold uppercase">
+                                <tr><th class="p-2 w-16">Type</th><th class="p-2">Examples</th></tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <tr>
+                                    <td class="p-2 font-bold text-blue-600 align-top">Tall</td>
+                                    <td class="p-2">
+                                        <div class="mb-2"><span class="badge badge-in">IN</span> <strong>HCL/Wipro:</strong> Multiple layers to manage thousands of global employees.</div>
+                                        <div><span class="badge badge-gl">GL</span> <strong>The Military:</strong> Long chain of command with narrow span of control.</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2 font-bold text-slate-500 align-top">Flat</td>
+                                    <td class="p-2">
+                                        <div class="mb-2"><span class="badge badge-in">IN</span> <strong>Zerodha:</strong> Flat structure to stay agile with few bureaucratic layers.</div>
+                                        <div><span class="badge badge-gl">GL</span> <strong>Amazon/Tesla:</strong> Increased span of control (6+ reports) to cut bureaucracy.</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Controls -->
+                <div class="lg:col-span-1 bg-white p-6 rounded-2xl shadow-md border border-slate-100 h-full">
+                    <h3 class="font-bold text-lg mb-6 text-slate-800">Configure Structure</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <label class="flex justify-between text-xs font-bold text-slate-500 uppercase mb-2">
+                                <span>Specialization</span> <span id="specVal">High</span>
+                            </label>
+                            <input type="range" min="0" max="100" value="80" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer slider-thumb" id="specSlider" oninput="updateBlocks()">
+                            <p class="text-[10px] text-slate-400 mt-1">Division of labor (e.g., Generalist vs Specialist)</p>
+                        </div>
+
+                        <div>
+                            <label class="flex justify-between text-xs font-bold text-slate-500 uppercase mb-2">
+                                <span>Formalization</span> <span id="formVal">High</span>
+                            </label>
+                            <input type="range" min="0" max="100" value="70" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer slider-thumb" id="formSlider" oninput="updateBlocks()">
+                            <p class="text-[10px] text-slate-400 mt-1">Rules & procedures (e.g., Playbook vs Freedom)</p>
+                        </div>
+
+                        <div>
+                            <label class="flex justify-between text-xs font-bold text-slate-500 uppercase mb-2">
+                                <span>Centralization</span> <span id="centVal">High</span>
+                            </label>
+                            <input type="range" min="0" max="100" value="90" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer slider-thumb" id="centSlider" oninput="updateBlocks()">
+                            <p class="text-[10px] text-slate-400 mt-1">Decision making (e.g., Top-down vs Delegated)</p>
+                        </div>
+
+                        <div>
+                            <label class="flex justify-between text-xs font-bold text-slate-500 uppercase mb-2">
+                                <span>Hierarchy</span> <span id="hierVal">Tall</span>
+                            </label>
+                            <input type="range" min="0" max="100" value="80" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer slider-thumb" id="hierSlider" oninput="updateBlocks()">
+                            <p class="text-[10px] text-slate-400 mt-1">Reporting lines (e.g., Tall vs Flat)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual Output -->
+                <div class="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Radar Chart -->
+                    <div class="bg-white p-4 rounded-2xl shadow-md border border-slate-100 flex items-center justify-center">
+                        <div class="chart-container" style="height: 300px;">
+                            <canvas id="blocksRadar"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- Dynamic Text Analysis -->
+                    <div class="content-card p-8 flex flex-col justify-center bg-blue-50 border-blue-100">
+                        <span class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-2">Resulting Model</span>
+                        <h4 class="text-2xl font-bold text-slate-900 mb-2" id="orgTypeTitle">Mechanistic Organization</h4>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed" id="orgTypeDesc">
+                            Highly standardized, rigid, and efficient. Great for cost-leadership strategies in stable environments.
+                        </p>
+                        
+                        <div class="space-y-3">
+                            <!-- India Example -->
+                            <div class="flex gap-3 bg-white p-3 rounded-lg border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                                <div class="mt-1"><span class="badge badge-in">IN</span></div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-800" id="orgExampleIN">Indian Railways / SBI</p>
+                                    <p class="text-xs text-slate-500" id="orgReasonIN">Strict hierarchy and formalization required for safety and massive scale.</p>
+                                </div>
+                            </div>
+                            <!-- Global Example -->
+                            <div class="flex gap-3 bg-white p-3 rounded-lg border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                                <div class="mt-1"><span class="badge badge-gl">GL</span></div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-800" id="orgExampleGL">McDonald's</p>
+                                    <p class="text-xs text-slate-500" id="orgReasonGL">Standardized processes ensure a burger tastes the same in Tokyo and New York.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MECHANISTIC VS ORGANIC DEEP DIVE (NEW SECTION) -->
+            <div class="mt-16 pt-16 border-t border-slate-200">
+                <h3 class="text-3xl font-serif font-bold text-slate-900 mb-6 text-center">Mechanistic vs. Organic Organizations</h3>
+                <p class="text-center text-slate-600 max-w-3xl mx-auto mb-12">
+                    The two predominant organizational forms are <strong>Mechanistic Organizations</strong> (built for efficiency and consistency) and <strong>Organic Organizations</strong> (built for flexibility and innovation).
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <!-- Mechanistic Column -->
+                    <div class="border-t-4 border-blue-500 bg-white shadow-lg rounded-b-xl p-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xl"><i class="fas fa-cogs"></i></div>
+                            <h4 class="text-xl font-bold text-slate-900">1. Mechanistic Organizations</h4>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-6">
+                            Characterized by <strong>high specialization</strong>, <strong>high formalization</strong>, centralized decision-making, and a tall hierarchy. They allow for standardization, economies of scale, and are often used when a firm pursues a <strong>cost-leadership strategy</strong>.
+                        </p>
+                        
+                        <div class="space-y-4">
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-100">
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-bold text-sm text-slate-800">McDonald's</span>
+                                    <span class="badge badge-gl">GL</span>
+                                </div>
+                                <p class="text-xs text-slate-500">Each job step is documented in minute detail. HQ provides instructions to franchisees globally via "Hamburger University". Ensures consistent quality (Standardization).</p>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-100">
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-bold text-sm text-slate-800">Indian Railways</span>
+                                    <span class="badge badge-in">IN</span>
+                                </div>
+                                <p class="text-xs text-slate-500">Strict hierarchy and detailed procedures are essential to manage a massive, complex network safely. Ensures large-scale, low-cost transportation.</p>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-100">
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-bold text-sm text-slate-800">Maruti Suzuki</span>
+                                    <span class="badge badge-in">IN</span>
+                                </div>
+                                <p class="text-xs text-slate-500">Relies on highly formalized, specialized assembly lines to achieve high volume and low costs in the competitive Indian auto market.</p>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-100">
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-bold text-sm text-slate-800">Walmart</span>
+                                    <span class="badge badge-gl">GL</span>
+                                </div>
+                                <p class="text-xs text-slate-500">Uses highly centralized systems and rigid hierarchy to manage supply chain logistics with extreme efficiency and drive down costs.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Organic Column -->
+                    <div class="border-t-4 border-emerald-500 bg-white shadow-lg rounded-b-xl p-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl"><i class="fas fa-leaf"></i></div>
+                            <h4 class="text-xl font-bold text-slate-900">2. Organic Organizations</h4>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-6">
+                            Characterized by <strong>low specialization</strong>, <strong>low formalization</strong>, a flat hierarchy, and decentralized decision-making. They foster fluid information flow, faster decision-making, and are often used for <strong>differentiation strategies</strong>.
+                        </p>
+                        
+                        <div class="space-y-4">
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-100">
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-bold text-sm text-slate-800">W.L. Gore & Associates</span>
+                                    <span class="badge badge-gl">GL</span>
+                                </div>
+                                <p class="text-xs text-slate-500">No formal job titles or chains of command ("lattice organization"). Employees organize in project-based teams. Fosters continuous innovation (GORE-TEX).</p>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-100">
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-bold text-sm text-slate-800">Zappos</span>
+                                    <span class="badge badge-gl">GL</span>
+                                </div>
+                                <p class="text-xs text-slate-500">Flat hierarchy. Customer service reps are empowered to solve problems without scripts or approval. Differentiation through superior service.</p>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-100">
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-bold text-sm text-slate-800">Zerodha</span>
+                                    <span class="badge badge-in">IN</span>
+                                </div>
+                                <p class="text-xs text-slate-500">Flat organization avoiding bureaucracy. Small core team of engineers focuses on rapid tech development and user experience (Fintech Innovation).</p>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-100">
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-bold text-sm text-slate-800">Google (R&D)</span>
+                                    <span class="badge badge-gl">GL</span>
+                                </div>
+                                <p class="text-xs text-slate-500">Encourages bottom-up communication, project-based teams, and experimentation ("20% time"). Fosters R&D and innovation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary Table -->
+                <div class="overflow-x-auto bg-white rounded-xl shadow-sm border border-slate-200">
+                    <table class="w-full text-sm text-left">
+                        <thead class="bg-slate-800 text-white uppercase text-xs">
+                            <tr>
+                                <th class="p-4">Feature</th>
+                                <th class="p-4">Mechanistic Organizations</th>
+                                <th class="p-4">Organic Organizations</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 text-slate-600">
+                            <tr>
+                                <td class="p-4 font-bold text-slate-800">Specialization</td>
+                                <td class="p-4 bg-blue-50/30">High degree; rigid division of labor</td>
+                                <td class="p-4 bg-emerald-50/30">Low degree; flexible division of labor</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold text-slate-800">Formalization</td>
+                                <td class="p-4 bg-blue-50/30">High degree; intimate familiarity with rules</td>
+                                <td class="p-4 bg-emerald-50/30">Low degree; general guidance</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold text-slate-800">Centralization</td>
+                                <td class="p-4 bg-blue-50/30">Decision power centralized at the top</td>
+                                <td class="p-4 bg-emerald-50/30">Distributed decision making (decentralized)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold text-slate-800">Hierarchy</td>
+                                <td class="p-4 bg-blue-50/30">Tall structures; clear lines of authority</td>
+                                <td class="p-4 bg-emerald-50/30">Flat structures; wide span of control</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold text-slate-800">Business Strategy</td>
+                                <td class="p-4 bg-blue-50/30 font-bold text-blue-700">Cost-leadership strategy</td>
+                                <td class="p-4 bg-emerald-50/30 font-bold text-emerald-700">Differentiation strategy</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: STRATEGY & STRUCTURE -->
+        <section id="structure" class="mb-32 fade-up">
+            <div class="fp-box">
+                <p class="text-xs font-bold text-indigo-500 uppercase tracking-widest mb-1">First Principle Question</p>
+                <h3 class="text-2xl font-serif font-bold text-slate-800">Does Structure follow Strategy?</h3>
+                <p class="text-slate-600 mt-2">Or does strategy follow structure? (Hint: A flexible body allows the brain to execute complex moves).</p>
+            </div>
+            
+            <!-- Tabs -->
+            <div class="grid md:grid-cols-4 gap-4 mb-8">
+                <button onclick="setStructure('simple')" data-type="simple" class="struct-tab active p-4 rounded-xl border border-slate-200 text-left hover:shadow-md transition-all bg-white group">
+                    <div class="text-xs text-slate-400 font-bold uppercase mb-1 group-hover:text-indigo-500">Stage 1</div>
+                    <div class="font-bold text-slate-800">Simple Structure</div>
+                    <p class="text-[10px] text-slate-500 mt-1 hidden group-hover:block">Flat, Startup, Generalist</p>
+                </button>
+                <button onclick="setStructure('functional')" data-type="functional" class="struct-tab p-4 rounded-xl border border-slate-200 text-left hover:shadow-md transition-all bg-white group">
+                    <div class="text-xs text-slate-400 font-bold uppercase mb-1 group-hover:text-indigo-500">Stage 2</div>
+                    <div class="font-bold text-slate-800">Functional Structure</div>
+                     <p class="text-[10px] text-slate-500 mt-1 hidden group-hover:block">Specialized, Silos, Efficient</p>
+                </button>
+                <button onclick="setStructure('mform')" data-type="mform" class="struct-tab p-4 rounded-xl border border-slate-200 text-left hover:shadow-md transition-all bg-white group">
+                    <div class="text-xs text-slate-400 font-bold uppercase mb-1 group-hover:text-indigo-500">Stage 3</div>
+                    <div class="font-bold text-slate-800">Multidivisional (M-Form) Structure</div>
+                     <p class="text-[10px] text-slate-500 mt-1 hidden group-hover:block">SBUs, P&L Resp., Growth</p>
+                </button>
+                <button onclick="setStructure('matrix')" data-type="matrix" class="struct-tab p-4 rounded-xl border border-slate-200 text-left hover:shadow-md transition-all bg-white group">
+                    <div class="text-xs text-slate-400 font-bold uppercase mb-1 group-hover:text-indigo-500">Stage 4</div>
+                    <div class="font-bold text-slate-800">Matrix Structure</div>
+                     <p class="text-[10px] text-slate-500 mt-1 hidden group-hover:block">Dual Reporting, Complex</p>
+                </button>
+            </div>
+
+            <!-- Display Area -->
+            <div class="bg-white border border-slate-200 rounded-2xl shadow-lg overflow-hidden">
+                <div class="grid md:grid-cols-2">
+                    <div class="p-8 bg-slate-50 border-r border-slate-200 flex flex-col justify-center">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-4" id="structTitle">Simple Structure</h3>
+                        <p class="text-slate-600 mb-6 text-sm leading-relaxed" id="structDesc">
+                            A flat organizational structure with low specialization, where the founder makes all key decisions and runs day-to-day operations.
+                        </p>
+                        
+                        <div class="bg-slate-50 rounded-xl border border-slate-200 p-4 mb-6 shadow-sm">
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-3">Case Studies</span>
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-3">
+                                    <div class="mt-1"><span class="badge badge-in">IN</span></div>
+                                    <div>
+                                        <h4 class="font-bold text-sm text-slate-800" id="structExampleIN">Typical Kirana Store</h4>
+                                        <p class="text-xs text-slate-500" id="structDetailIN">Owner manages sourcing, sales, and finance directly. No middle management.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3 pt-3 border-t border-slate-200">
+                                    <div class="mt-1"><span class="badge badge-gl">GL</span></div>
+                                    <div>
+                                        <h4 class="font-bold text-sm text-slate-800" id="structExampleGL">Facebook (2004)</h4>
+                                        <p class="text-xs text-slate-500" id="structDetailGL">Zuckerberg coding in a dorm room. One boss, no formalism.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2 text-sm"></i>
+                                <p class="text-xs text-slate-600" id="structPros"><strong>Pros:</strong> Fast decision making, high flexibility.</p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-times-circle text-red-500 mt-1 mr-2 text-sm"></i>
+                                <p class="text-xs text-slate-600" id="structCons"><strong>Cons:</strong> Founder overload, lack of specialized systems.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8 flex items-center justify-center bg-white relative">
+                         <div class="chart-container" style="height: 300px; width: 100%;">
+                            <canvas id="structureCanvas"></canvas>
+                        </div>
+                        <p class="absolute bottom-4 text-xs text-slate-300">Generated Canvas Diagram</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STRUCTURE FOLLOWS STRATEGY EXPANSION (NEW SECTION) -->
+            <div class="mt-12 pt-8 border-t border-slate-200">
+                <h3 class="text-2xl font-serif font-bold text-slate-900 mb-6 text-center">Structure Must Follow Strategy</h3>
+                
+                <div class="bg-indigo-50 border-l-4 border-indigo-500 p-6 rounded-r-xl mb-10">
+                    <h4 class="font-bold text-indigo-900 mb-2">The "Flexible Body" Metaphor: Structure Enables Strategy</h4>
+                    <p class="text-sm text-slate-700 leading-relaxed mb-4">
+                        Strategy formulation is the "brain" deciding on the complex moves it wants to make. The organizational structure is the "body."
+                    </p>
+                    <ul class="list-disc list-inside text-sm text-slate-700 space-y-2">
+                        <li><strong>Strategy Determines the Required Structure:</strong> The brain (strategy) decides it wants to run a marathon (cost-leadership) or perform gymnastics (differentiation). It then designs the body (structure) accordingly—either for endurance or agility.</li>
+                        <li><strong>Structure Enables (or Constrains) Future Strategy:</strong> Once the body is built, its capabilities influence what the brain can decide to do next. A marathon runner's body can't suddenly do gymnastics efficiently. This is the <em>Inertia Trap</em> in action.</li>
+                    </ul>
+                </div>
+
+                <div class="space-y-8">
+                    <!-- 1. Cost Leadership -->
+                    <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                        <div class="bg-blue-600 p-4 text-white">
+                            <h4 class="font-bold text-lg">1. Cost-Leadership Strategy (Mechanistic Functional Structure)</h4>
+                            <p class="text-xs opacity-90 mt-1">Goal: Efficiency & Low Cost. Requires centralized, specialized structure.</p>
+                        </div>
+                        <div class="p-6 grid gap-4">
+                            <div class="flex items-start gap-4 p-3 bg-slate-50 rounded-lg">
+                                <span class="badge badge-in mt-1">IN</span>
+                                <div>
+                                    <h5 class="font-bold text-slate-900 text-sm">Maruti Suzuki</h5>
+                                    <p class="text-xs text-slate-600 mt-1">Uses a highly centralized functional structure with rigorous process controls to maintain low-cost position in the competitive Indian auto market.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4 p-3 bg-slate-50 rounded-lg">
+                                <span class="badge badge-gl mt-1">GL</span>
+                                <div>
+                                    <h5 class="font-bold text-slate-900 text-sm">Walmart</h5>
+                                    <p class="text-xs text-slate-600 mt-1">Employs a command-and-control functional structure focused on supply chain optimization to drive down costs.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4 p-3 bg-slate-50 rounded-lg">
+                                <span class="badge badge-gl mt-1">GL</span>
+                                <div>
+                                    <h5 class="font-bold text-slate-900 text-sm">Ryanair</h5>
+                                    <p class="text-xs text-slate-600 mt-1">Highly centralized functional structure where every operational cost is scrutinized to enable ultra-low flight prices.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Differentiation -->
+                    <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+        <!-- SECTION 4: CULTURE (RESTORED & ENHANCED) -->
+        <section id="culture" class="mb-32 fade-up">
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <div>
+                    <div class="fp-box">
+                        <p class="text-xs font-bold text-indigo-500 uppercase tracking-widest mb-1">First Principle Question</p>
+                        <h3 class="text-2xl font-serif font-bold text-slate-800">What is the 'Dark Matter' of a Firm?</h3>
+                        <p class="text-slate-600 mt-2">It's invisible, holds everything together, and exerts powerful gravity. It's <strong>Organizational Culture</strong>.</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-serif font-bold text-slate-900 mb-2">The Culture Onion (Levels of Culture)</h3>
+                        <p class="text-slate-600 text-sm">Organizational culture exists in layers, much like an onion, moving from visible manifestations to deeply held beliefs.</p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Artifacts -->
+                        <div class="group p-5 rounded-xl border border-slate-200 hover:border-blue-400 hover:bg-blue-50 transition-all cursor-pointer shadow-sm" onmouseover="drawOnion(2)" onmouseout="drawOnion(-1)">
+                            <h4 class="font-bold text-blue-900 mb-2 flex items-center gap-3">
+                                <span class="w-6 h-6 rounded-full bg-blue-200 text-blue-700 flex items-center justify-center text-xs font-bold">1</span> 
+                                Artifacts (The Outer Layer)
+                            </h4>
+                            <p class="text-xs text-slate-700 mb-3 font-medium">What You See: Visible and tangible manifestations. Easy to observe, difficult to decipher.</p>
+                            <div class="bg-white/60 p-3 rounded-lg text-xs text-slate-600 border border-blue-100">
+                                <ul class="list-disc list-inside space-y-1">
+                                    <li><strong>Zappos:</strong> The offer to pay employees $2,000 to quit.</li>
+                                    <li><strong>Google:</strong> Free gourmet food, scooters, playful offices.</li>
+                                    <li><strong>Indian Startups:</strong> Founders sitting in open-plan offices.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Norms -->
+                        <div class="group p-5 rounded-xl border border-slate-200 hover:border-green-400 hover:bg-green-50 transition-all cursor-pointer shadow-sm" onmouseover="drawOnion(1)" onmouseout="drawOnion(-1)">
+                            <h4 class="font-bold text-green-900 mb-2 flex items-center gap-3">
+                                <span class="w-6 h-6 rounded-full bg-green-200 text-green-700 flex items-center justify-center text-xs font-bold">2</span>
+                                Norms (The Middle Layer)
+                            </h4>
+                            <p class="text-xs text-slate-700 mb-3 font-medium">What We Do: Unwritten rules and social expectations governing behavior.</p>
+                             <div class="bg-white/60 p-3 rounded-lg text-xs text-slate-600 border border-green-100">
+                                <ul class="list-disc list-inside space-y-1">
+                                    <li>“Always consult with a teammate before deciding” (W.L. Gore).</li>
+                                    <li>“Don't leave work until the client is satisfied” (Consulting).</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Values -->
+                        <div class="group p-5 rounded-xl border border-slate-200 hover:border-red-400 hover:bg-red-50 transition-all cursor-pointer shadow-sm" onmouseover="drawOnion(0)" onmouseout="drawOnion(-1)">
+                            <h4 class="font-bold text-red-900 mb-2 flex items-center gap-3">
+                                <span class="w-6 h-6 rounded-full bg-red-200 text-red-700 flex items-center justify-center text-xs font-bold">3</span>
+                                Values & Beliefs (The Core)
+                            </h4>
+                            <p class="text-xs text-slate-700 mb-3 font-medium">What We Believe: Underlying reasons and core beliefs endorsed by management.</p>
+                             <div class="bg-white/60 p-3 rounded-lg text-xs text-slate-600 border border-red-100">
+                                <ul class="list-disc list-inside space-y-1">
+                                    <li><strong>Tata Group:</strong> "Integrity" & "Stewardship" (explains no layoffs).</li>
+                                    <li><strong>Zappos:</strong> "Deliver Wow Through Service" (explains the $2k offer).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative sticky top-24">
+                    <!-- Interactive Onion Canvas -->
+                    <div class="content-card p-6 text-center bg-white border border-slate-200">
+                        <div class="chart-container mx-auto" style="height: 400px;">
+                            <canvas id="onionCanvas"></canvas>
+                        </div>
+                        <p class="text-xs text-slate-400 mt-4 italic">Hover over the layers on the left to visualize structure.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: CONTROL (UPDATED) -->
+        <section id="control" class="mb-32 fade-up">
+            <div class="fp-box">
+                <p class="text-xs font-bold text-indigo-500 uppercase tracking-widest mb-1">First Principle Question</p>
+                <h3 class="text-2xl font-serif font-bold text-slate-800">How do you manage what you can't see?</h3>
+                <p class="text-slate-600 mt-2">The Principal-Agent Problem: How do owners ensure employees act in the company's best interest?</p>
+            </div>
+
+            <div class="bg-white p-8 rounded-xl shadow-md border border-slate-100 mb-8">
+                <h4 class="font-bold text-lg text-slate-900 mb-4">The Principal-Agent Problem</h4>
+                <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                    This problem arises when one person (the <strong>Principal</strong>—e.g., owner) delegates authority to another (the <strong>Agent</strong>—e.g., manager). The core issue is that the agent may not always act in the principal's best interest due to different goals, and the principal cannot perfectly monitor the agent's actions (you can't "see" everything).
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Input Controls -->
+                <div class="content-card p-8 border-t-4 border-blue-500">
+                    <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 text-xl mb-6 shadow-sm">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">1. Input Controls (Process)</h3>
+                    <p class="text-sm text-slate-600 mb-6">
+                        Monitor value creation <em>before</em> employees make decisions. Focus is on controlling the <strong>process</strong> via rules and budgets.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="bg-slate-50 p-3 rounded border border-slate-100">
+                            <div class="flex justify-between mb-1">
+                                <span class="font-bold text-sm text-slate-800">Indian Army / PSUs</span>
+                                <span class="badge badge-in">IN</span>
+                            </div>
+                            <p class="text-xs text-slate-500">Relies on strict SOPs and hierarchy to ensure discipline in high-stakes situations. Extensive bureaucracy manages public funds.</p>
+                        </div>
+                        <div class="bg-slate-50 p-3 rounded border border-slate-100">
+                            <div class="flex justify-between mb-1">
+                                <span class="font-bold text-sm text-slate-800">McDonald's</span>
+                                <span class="badge badge-gl">GL</span>
+                            </div>
+                            <p class="text-xs text-slate-500">Detailed SOPs (e.g., frying times) monitor behavior minute-by-minute for 100% global consistency.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Output Controls -->
+                <div class="content-card p-8 border-t-4 border-orange-500">
+                    <div class="w-12 h-12 bg-orange-50 rounded-xl flex items-center justify-center text-orange-600 text-xl mb-6 shadow-sm">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">2. Output Controls (Outcome)</h3>
+                    <p class="text-sm text-slate-600 mb-6">
+                        Define expected <em>results</em> but leave the means to the employee. Focus is on the final <strong>outcome</strong> via targets and incentives.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="bg-slate-50 p-3 rounded border border-slate-100">
+                            <div class="flex justify-between mb-1">
+                                <span class="font-bold text-sm text-slate-800">Zomato / Swiggy</span>
+                                <span class="badge badge-in">IN</span>
+                            </div>
+                            <p class="text-xs text-slate-500">Delivery partners judged by metrics (time, ratings). Not micromanaged on routes; only the outcome matters.</p>
+                        </div>
+                        <div class="bg-slate-50 p-3 rounded border border-slate-100">
+                            <div class="flex justify-between mb-1">
+                                <span class="font-bold text-sm text-slate-800">3M / Google</span>
+                                <span class="badge badge-gl">GL</span>
+                            </div>
+                            <p class="text-xs text-slate-500">Use "OKRs" (Objectives and Key Results). Employees have freedom to find their own path to breakthrough innovations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: HOLISTIC ALIGNMENT (NEW) -->
+        <section id="alignment" class="mb-32 fade-up">
+            <div class="bg-gradient-to-r from-slate-900 to-slate-800 rounded-3xl p-8 md:p-12 text-white shadow-xl">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="inline-block px-3 py-1 bg-indigo-500/20 text-indigo-300 border border-indigo-500/50 rounded-full text-xs font-bold tracking-wider uppercase mb-4">Synthesis</span>
+                    <h2 class="text-3xl font-serif font-bold mb-6">Holistic Alignment</h2>
+                    <p class="text-slate-300 text-lg">
+                        Successful firms align their Structure, Control, and Culture. Misalignment leads to friction and failure.
+                    </p>
+                </div>
+
+                <!-- Key Distinctions Table -->
+                <div class="bg-white/5 border border-white/10 rounded-xl overflow-hidden mb-12">
+                    <div class="p-4 bg-white/10 border-b border-white/10">
+                        <h4 class="font-bold text-white text-sm uppercase tracking-wide">Key Distinctions</h4>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left text-slate-300">
+                            <thead class="text-xs text-slate-400 uppercase bg-white/5 border-b border-white/10">
+                                <tr>
+                                    <th class="px-6 py-3">Element</th>
+                                    <th class="px-6 py-3">Description</th>
+                                    <th class="px-6 py-3">Function</th>
+                                    <th class="px-6 py-3">Nature</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-white/5">
+                                <tr class="hover:bg-white/5 transition">
+                                    <td class="px-6 py-4 font-bold text-white">Structure</td>
+                                    <td class="px-6 py-4">The formal blueprint of reporting lines, hierarchy, and division of labor.</td>
+                                    <td class="px-6 py-4">Defines authority, roles, and communication channels.</td>
+                                    <td class="px-6 py-4"><span class="bg-blue-500/20 text-blue-300 px-2 py-1 rounded text-xs">Formal & Visible</span></td>
+                                </tr>
+                                <tr class="hover:bg-white/5 transition">
+                                    <td class="px-6 py-4 font-bold text-white">Control</td>
+                                    <td class="px-6 py-4">Systems and processes to monitor behavior/performance and align incentives.</td>
+                                    <td class="px-6 py-4">Ensures coordination and guides behavior toward goals.</td>
+                                    <td class="px-6 py-4"><span class="bg-orange-500/20 text-orange-300 px-2 py-1 rounded text-xs">Formal (Systems)</span></td>
+                                </tr>
+                                <tr class="hover:bg-white/5 transition">
+                                    <td class="px-6 py-4 font-bold text-white">Culture</td>
+                                    <td class="px-6 py-4">Shared, unwritten values, beliefs, and norms.</td>
+                                    <td class="px-6 py-4">Creates identity, trust, and unspoken expectations.</td>
+                                    <td class="px-6 py-4"><span class="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs">Informal & Invisible</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Comparative Examples -->
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <!-- Indian Titans -->
+                    <div class="space-y-6">
+                        <h3 class="text-xl font-bold text-orange-400 border-b border-orange-500/30 pb-2 mb-4">🇮🇳 Indian Titans</h3>
+                        
+                        <!-- Tata -->
+                        <div class="bg-white/5 rounded-xl p-5 border border-white/10 hover:border-orange-500/50 transition-all">
+                            <div class="flex justify-between items-center mb-3">
+                                <h4 class="font-bold text-white text-lg">Tata Group</h4>
+                                <span class="badge badge-in">M-Form</span>
+                            </div>
+                            <div class="space-y-2 text-xs text-slate-300">
+                                <p><strong class="text-slate-400 block mb-1">Structure:</strong> Multidivisional. TCS, Tata Motors, etc. operate as separate SBUs with own CEOs.</p>
+                                <p><strong class="text-slate-400 block mb-1">Control:</strong> <span class="text-blue-300">Input Controls.</span> Detailed group policies and ethical codes binding all SBUs.</p>
+                                <p><strong class="text-slate-400 block mb-1">Culture:</strong> <span class="text-purple-300">"Trust" & Stewardship.</span> Commitment to welfare & nation-building (e.g., no mass layoffs).</p>
+                            </div>
+                        </div>
+
+                        <!-- Maruti -->
+                        <div class="bg-white/5 rounded-xl p-5 border border-white/10 hover:border-orange-500/50 transition-all">
+                            <div class="flex justify-between items-center mb-3">
+                                <h4 class="font-bold text-white text-lg">Maruti Suzuki</h4>
+                                <span class="badge badge-in">Functional</span>
+                            </div>
+                            <div class="space-y-2 text-xs text-slate-300">
+                                <p><strong class="text-slate-400 block mb-1">Structure:</strong> Mechanistic/Functional. Highly formalized factory layout with clear chains of command.</p>
+                                <p><strong class="text-slate-400 block mb-1">Control:</strong> <span class="text-blue-300">Input & Output.</span> Rigorous SOPs (Input) + Strict production targets (Output).</p>
+                                <p><strong class="text-slate-400 block mb-1">Culture:</strong> <span class="text-purple-300">Frugality & Efficiency.</span> Cost consciousness to serve the price-sensitive mass market.</p>
+                            </div>
+                        </div>
+
+                        <!-- Zomato -->
+                        <div class="bg-white/5 rounded-xl p-5 border border-white/10 hover:border-orange-500/50 transition-all">
+                            <div class="flex justify-between items-center mb-3">
+                                <h4 class="font-bold text-white text-lg">Zomato / Swiggy</h4>
+                                <span class="badge badge-in">Network</span>
+                            </div>
+                            <div class="space-y-2 text-xs text-slate-300">
+                                <p><strong class="text-slate-400 block mb-1">Structure:</strong> Hybrid/Network. Core tech team linked to decentralized delivery partners.</p>
+                                <p><strong class="text-slate-400 block mb-1">Control:</strong> <span class="text-blue-300">Output Controls.</span> Relies entirely on metrics: time, completion rates, ratings.</p>
+                                <p><strong class="text-slate-400 block mb-1">Culture:</strong> <span class="text-purple-300">Speed & Execution.</span> High-pressure environment focused on rapid market delivery.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Global Giants -->
+                    <div class="space-y-6">
+                        <h3 class="text-xl font-bold text-blue-400 border-b border-blue-500/30 pb-2 mb-4">🌍 Global Giants</h3>
+                        
+                        <!-- Google -->
+                        <div class="bg-white/5 rounded-xl p-5 border border-white/10 hover:border-blue-500/50 transition-all">
+                            <div class="flex justify-between items-center mb-3">
+                                <h4 class="font-bold text-white text-lg">Google / Alphabet</h4>
+                                <span class="badge badge-gl">Divisional</span>
+                            </div>
+                            <div class="space-y-2 text-xs text-slate-300">
+                                <p><strong class="text-slate-400 block mb-1">Structure:</strong> Divisional (Alphabet). Core Google is functional; "Other Bets" are separate.</p>
+                                <p><strong class="text-slate-400 block mb-1">Control:</strong> <span class="text-blue-300">Output (OKRs).</span> Objectives & Key Results provide autonomy on <em>how</em> to achieve goals.</p>
+                                <p><strong class="text-slate-400 block mb-1">Culture:</strong> <span class="text-purple-300">Innovation & Autonomy.</span> Values engineering freedom, debate, and "moonshots".</p>
+                            </div>
+                        </div>
+
+                        <!-- McDonald's -->
+                        <div class="bg-white/5 rounded-xl p-5 border border-white/10 hover:border-blue-500/50 transition-all">
+                            <div class="flex justify-between items-center mb-3">
+                                <h4 class="font-bold text-white text-lg">McDonald's</h4>
+                                <span class="badge badge-gl">Franchise</span>
+                            </div>
+                            <div class="space-y-2 text-xs text-slate-300">
+                                <p><strong class="text-slate-400 block mb-1">Structure:</strong> Mechanistic. Centralized HQ overseeing thousands of standardized franchises.</p>
+                                <p><strong class="text-slate-400 block mb-1">Control:</strong> <span class="text-blue-300">Input (SOPs).</span> Every step detailed in ops handbooks (e.g., pickle placement).</p>
+                                <p><strong class="text-slate-400 block mb-1">Culture:</strong> <span class="text-purple-300">Consistency.</span> Expectation that a Big Mac tastes the same anywhere globally.</p>
+                            </div>
+                        </div>
+
+                        <!-- Zappos -->
+                        <div class="bg-white/5 rounded-xl p-5 border border-white/10 hover:border-blue-500/50 transition-all">
+                            <div class="flex justify-between items-center mb-3">
+                                <h4 class="font-bold text-white text-lg">Zappos</h4>
+                                <span class="badge badge-gl">Flat/Holacracy</span>
+                            </div>
+                            <div class="space-y-2 text-xs text-slate-300">
+                                <p><strong class="text-slate-400 block mb-1">Structure:</strong> Flat/Hybrid. Minimizes hierarchy to push decision-making downward.</p>
+                                <p><strong class="text-slate-400 block mb-1">Control:</strong> <span class="text-blue-300">Culture as Control.</span> Uses cultural alignment (the "offer to quit") as the main filter.</p>
+                                <p><strong class="text-slate-400 block mb-1">Culture:</strong> <span class="text-purple-300">"Service Wow".</span> Intense focus on service supersedes formal rules.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Study Section -->
+        <section id="case-study" class="mb-32 fade-up">
+            <div class="bg-slate-900 text-white rounded-2xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-orange-600 rounded-full mix-blend-overlay filter blur-3xl opacity-20"></div>
+                
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <span class="text-orange-400 font-bold text-xs uppercase tracking-widest mb-2 block">Case Study</span>
+                    <h3 class="text-3xl md:text-4xl font-serif font-bold mb-4">The King's Fall: Hindustan Motors</h3>
+                    <p class="text-slate-300 text-sm">
+                        A classic study in <strong>Organizational Inertia</strong>. How the undisputed "King of Indian Roads" failed to adapt.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="space-y-6">
+                            <div class="border-l-4 border-orange-500 pl-4">
+                                <h4 class="font-bold text-lg text-white">1. The Era of Complacency</h4>
+                                <p class="text-sm text-slate-400 mt-1">Guaranteed sales to the government created a "Seller's Market." Zero incentive for R&D.</p>
+                            </div>
+                            <div class="border-l-4 border-blue-500 pl-4">
+                                <h4 class="font-bold text-lg text-white">2. The Tectonic Shift (1991)</h4>
+                                <p class="text-sm text-slate-400 mt-1">Liberalization brought Maruti Suzuki. The Ambassador's 1950s design was suddenly obsolete against fuel-efficient modern cars.</p>
+                            </div>
+                            <div class="border-l-4 border-red-500 pl-4">
+                                <h4 class="font-bold text-lg text-white">3. The Paralysis</h4>
+                                <p class="text-sm text-slate-400 mt-1">Patchwork solutions (minor facelifts) and misguided diversification failed to address the core problem. Production stopped in 2014.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+                        <h5 class="text-xs font-bold text-slate-400 uppercase mb-4 text-center">Market Share Collapse (Est.)</h5>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-xs text-slate-300 mb-1">
+                                    <span>Hindustan Motors (1980)</span>
+                                    <span>70%</span>
+                                </div>
+                                <div class="w-full bg-slate-700 rounded-full h-2">
+                                    <div class="bg-orange-500 h-2 rounded-full" style="width: 70%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs text-slate-300 mb-1">
+                                    <span>Hindustan Motors (2000)</span>
+                                    <span>&lt; 5%</span>
+                                </div>
+                                <div class="w-full bg-slate-700 rounded-full h-2">
+                                    <div class="bg-orange-500 h-2 rounded-full" style="width: 5%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="inertia-container-embedded" class="mt-8 relative h-40 border-t border-white/10 pt-4">
+                             <!-- Re-using logic from case study file for mini animation -->
+                             <canvas id="hmCanvas" class="w-full h-full"></canvas>
+                             <button onclick="playHMAnimation()" class="absolute bottom-0 right-0 bg-white/10 hover:bg-white/20 text-xs px-3 py-1 rounded text-white transition">Replay</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW AI SECTION: ORG ARCHITECT -->
+        <section id="ai-consultant" class="mb-32 fade-up scroll-mt-24">
+            <div class="bg-gradient-to-br from-indigo-900 to-slate-900 rounded-3xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-purple-500 rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-pulse"></div>
+                
+                <div class="relative z-10">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+                        <div>
+                            <span class="inline-block px-3 py-1 bg-indigo-500/30 text-indigo-200 border border-indigo-500/50 rounded-full text-xs font-bold tracking-wider uppercase mb-3">
+                                <i class="fas fa-robot mr-1"></i> Powered by Gemini
+                            </span>
+                            <h2 class="text-3xl font-bold mb-2">AI Org Architect</h2>
+                            <p class="text-slate-300 text-sm max-w-xl">Describe any company (real or imaginary), and our AI will analyze its optimal Structure, Culture, and Control systems based on Chapter 11 frameworks.</p>
+                        </div>
+                    </div>
+
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <!-- Input Area -->
+                        <div class="bg-white/5 rounded-xl p-6 border border-white/10">
+                            <label class="block text-xs font-bold text-indigo-300 uppercase tracking-wider mb-2">Company Description</label>
+                            <textarea id="companyInput" rows="4" class="w-full bg-slate-800/50 border border-slate-600 rounded-lg p-4 text-sm text-slate-200 placeholder-slate-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all mb-4" placeholder="e.g., A small tech startup in Bangalore with 10 employees focused on rapid innovation in AI..."></textarea>
+                            <button onclick="analyzeCompany()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition-all flex items-center justify-center gap-2 group">
+                                <span>✨ Analyze Structure</span>
+                                <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                        </div>
+
+                        <!-- Output Area -->
+                        <div class="bg-white rounded-xl p-6 text-slate-800 min-h-[300px] relative">
+                            <div id="ai-loading" class="hidden absolute inset-0 bg-white/90 z-20 flex items-center justify-center rounded-xl">
+                                <div class="flex flex-col items-center">
+                                    <div class="w-10 h-10 border-4 border-indigo-200 border-t-indigo-600 rounded-full spinner mb-3"></div>
+                                    <span class="text-indigo-600 font-bold text-sm animate-pulse">Consulting Gemini...</span>
+                                </div>
+                            </div>
+                            <div id="ai-result" class="h-full overflow-y-auto prose prose-sm max-w-none">
+                                <div class="flex flex-col items-center justify-center h-full text-slate-400 text-center">
+                                    <i class="fas fa-project-diagram text-4xl mb-3 text-slate-300"></i>
+                                    <p>Analysis results will appear here.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: SIMULATION -->
+        <section id="simulation" class="mb-24 pt-8 bg-gradient-to-br from-slate-900 to-indigo-900 -mx-4 sm:-mx-8 px-4 sm:px-8 py-16 text-white">
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <span class="inline-block px-3 py-1 bg-indigo-500 text-white text-xs font-bold rounded-full mb-4">Interactive Simulation</span>
+                <h2 class="text-4xl font-bold mb-4">The Org Design Challenge</h2>
+                <p class="text-lg text-slate-300">You are the CEO. Can you match the right structure to the strategy?</p>
+                
+                <!-- Gemini Quiz Generator Button -->
+                 <button onclick="generateQuizQuestion()" class="bg-indigo-500 hover:bg-indigo-400 text-white font-bold py-2 px-4 rounded-full text-sm transition-all shadow-lg flex items-center mx-auto gap-2">
+                    <i class="fas fa-magic"></i> ✨ Generate Infinite Practice Quiz
+                </button>
+            </div>
+
+            <div id="sim-wrapper" class="max-w-3xl mx-auto bg-slate-800 rounded-2xl shadow-2xl overflow-hidden border border-slate-700 p-8 min-h-[400px] relative">
+                <!-- Dynamic Quiz Overlay (Hidden by default) -->
+                <div id="dynamic-quiz-overlay" class="hidden absolute inset-0 bg-slate-800 z-50 p-8">
+                     <div class="flex justify-between items-start mb-6">
+                        <h3 class="text-xl font-bold text-indigo-400"><i class="fas fa-robot mr-2"></i>AI Generated Scenario</h3>
+                        <button onclick="closeDynamicQuiz()" class="text-slate-400 hover:text-white"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div id="dynamic-quiz-content" class="text-slate-200">
+                        <!-- Content injected here -->
+                        <div class="flex justify-center items-center h-64">
+                             <div class="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full spinner"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Start Screen -->
+                <div id="sim-start" class="text-center py-10 fade-in">
+                    <div class="w-20 h-20 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-6 border border-slate-600 shadow-lg">
+                        <i class="fas fa-chess-king text-3xl text-blue-500"></i>
+                    </div>
+                    <h3 class="text-2xl font-black mb-4 text-white">Ready to Design?</h3>
+                    <p class="text-slate-300 mb-8 text-sm max-w-md mx-auto">
+                        Navigate 3 scenarios based on real-world Indian and Global business challenges.
+                    </p>
+                    <button onclick="startSimulation()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition-all transform hover:scale-105">
+                        Start Challenge
+                    </button>
+                </div>
+
+                <!-- Gameplay Screen -->
+                <div id="sim-gameplay" class="hidden-section fade-in">
+                    <div class="flex justify-between items-center mb-6 text-xs font-mono text-slate-400">
+                        <span id="sim-turn-counter">Turn 1 / 3</span>
+                        <div class="w-32 h-2 bg-slate-700 rounded-full overflow-hidden">
+                            <div id="sim-progress-bar" class="h-full bg-blue-500 w-[33%] transition-all duration-500"></div>
+                        </div>
+                    </div>
+                    <h3 id="sim-title" class="text-xl font-bold mb-4 text-white">Scenario Title</h3>
+                    <p id="sim-desc" class="text-slate-300 mb-6 text-sm leading-relaxed">Description...</p>
+                    <div id="sim-options-grid" class="grid gap-3"></div>
+                </div>
+
+                <!-- Results Screen -->
+                <div id="sim-results" class="hidden-section text-center fade-in">
+                    <div class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-400 mb-4" id="sim-score-number">0/3</div>
+                    <p class="text-slate-300 mb-6" id="sim-feedback">Feedback</p>
+                    <button onclick="resetSimulation()" class="text-slate-400 hover:text-white text-sm font-bold uppercase tracking-widest"><i class="fas fa-redo mr-2"></i> Try Again</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-8 text-center text-sm text-slate-400">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0 flex items-center justify-center gap-2">
+                © Dr. Swapnil Sahoo 2025 | All Rights Reserved
+                <!-- CHESS ICON FOOTER -->
+                <i class="fas fa-chess-knight text-slate-300"></i>
+            </div>
+            <div class="flex space-x-6 items-center">
+                <a href="https://x.com/swapnilsahoo" target="_blank" class="hover:text-blue-400 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" class="hover:text-pink-600 transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" class="hover:text-blue-600 transition-colors"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.chess.com/member/swapnilsahoo" target="_blank" class="text-slate-400 hover:text-green-600 transition-colors text-lg" title="Play Chess">
+                    <i class="fas fa-chess-king"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- API KEY CONFIG ---
+        const apiKey = ""; // System provides key at runtime
+
+        // --- GLOBAL VARIABLES ---
+        let inertiaCanvas, ictx;
+        let sCanvas, sctx;
+        let oCanvas, octx;
+        let hmAnimId; 
+        let radarChart;
+        let inertiaStep = 0; // Moved global state here for clarity
+
+        // --- DATA STORE ---
+        const structureData = {
+            simple: {
+                desc: "A flat organizational structure with low specialization, where the founder makes all key decisions and runs day-to-day operations.",
+                in_name: "Typical Kirana Store", in_desc: "Owner manages sourcing, sales, and finance directly. No middle management.",
+                gl_name: "Facebook (Early Days)", gl_desc: "Zuckerberg coding in a dorm room. One boss, no formalism.",
+                pros: "Fast decision making, high flexibility, responsive.",
+                cons: "Founder overload, lack of specialized systems, limited growth."
+            },
+            functional: {
+                desc: "Employees are grouped into departments based on specialized areas of expertise (e.g., R&D, Marketing, Manufacturing), all reporting to a central CEO who coordinates efforts.",
+                in_name: "Dr. Reddy's (Early)", in_desc: "Organized strictly by R&D, Manufacturing, and Sales functions.",
+                gl_name: "Small Universities", gl_desc: "Divided by Dept: Finance, Marketing, HR. Good for single product.",
+                pros: "High specialization, deep domain expertise, high efficiency.",
+                cons: "Silos (lack of cross-dept communication), cannot handle diversification."
+            },
+            mform: {
+                desc: "The organization is divided into self-contained Strategic Business Units (SBUs) based on product lines or geography, each with its own functional structure and P&L responsibility.",
+                in_name: "Tata Group", in_desc: "Tata Sons holds equity; Tata Motors, TCS, Tata Steel operate as independent SBUs.",
+                gl_name: "General Motors (GM)", gl_desc: "Divisions (Chevy, Cadillac) operate independently with own P&L.",
+                pros: "Accommodates growth, clear P&L responsibility, CEO focuses on strategy.",
+                cons: "Duplication of resources (e.g., HR in every unit), political infighting."
+            },
+            matrix: {
+                desc: "A complex structure where employees report to two managers simultaneously—a functional manager and a product or project manager—to balance efficiency with flexibility and collaboration.",
+                in_name: "Infosys", in_desc: "Developers report to Project Manager (Client) and Practice Lead (Tech).",
+                gl_name: "Starbucks / MNCs", gl_desc: "Reporting to both Geographic Manager and Product Manager.",
+                pros: "Balances local responsiveness with efficiency, flexible resource sharing.",
+                cons: "Confusion (two bosses), power struggles, high admin costs, slow decisions."
+            }
+        };
+
+        const orgTypeData = {
+            mechanistic: {
+                in_name: "Indian Railways / SBI", in_desc: "Strict hierarchy and massive standardization are required for safety and scale.",
+                gl_name: "McDonald's", gl_desc: "Standardized processes ensure a Big Mac tastes the same everywhere."
+            },
+            organic: {
+                in_name: "Zerodha / Cred", in_desc: "Small team (tech-heavy), flat hierarchy, high autonomy to disrupt finance.",
+                gl_name: "Zappos", gl_desc: "Low specialization, flat structure, and high decentralization fuel creativity."
+            }
+        };
+
+        // --- VISIBILITY OBSERVER (Fixes Blank Page Issue) ---
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll('.fade-up').forEach((el) => {
+                observer.observe(el);
+            });
+            
+            // Init Visuals with delay to ensure rendering
+            setTimeout(() => {
+                initGlobalCanvases(); // NEW FUNCTION
+                initRadar();
+                if(ictx) drawInertia();
+                if(octx) drawOnion();
+                setStructure('simple');
+                updateBlocks();
+                initHMCanvas();
+            }, 100);
+        });
+
+        // --- GEMINI API LOGIC ---
+        
+        async function callGemini(promptText) {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            const payload = {
+                contents: [{ parts: [{ text: promptText }] }]
+            };
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                if (!response.ok) throw new Error(`API Error: ${response.status}`);
+                const data = await response.json();
+                return data.candidates?.[0]?.content?.parts?.[0]?.text || "No response generated.";
+            } catch (error) {
+                console.error("Gemini API Error:", error);
+                return "Sorry, the AI consultant is currently unavailable. Please try again later.";
+            }
+        }
+
+        async function analyzeCompany() {
+            const input = document.getElementById('companyInput').value;
+            if(!input.trim()) return alert("Please enter a company description.");
+
+            const resultArea = document.getElementById('ai-result');
+            const loadingArea = document.getElementById('ai-loading');
+            
+            loadingArea.classList.remove('hidden');
+            
+            const prompt = `
+            Act as an expert Strategy Consultant specializing in Organizational Design.
+            Analyze the following company description: "${input}"
+            
+            Provide a structured analysis in JSON format with the following keys:
+            - structure: The recommended structure (Simple, Functional, M-Form, or Matrix).
+            - reasoning: A 1-sentence explanation why.
+            - culture: 3 keywords describing the ideal culture.
+            - control: Suggest "Input" or "Output" controls with a brief reason.
+            - risk: One potential risk of inertia for this specific company.
+            
+            Ensure the response is valid JSON only, no markdown formatting.
+            `;
+
+            try {
+                const rawResponse = await callGemini(prompt);
+                // Clean potential markdown code blocks
+                const jsonString = rawResponse.replace(/```json/g, '').replace(/```/g, '').trim();
+                const data = JSON.parse(jsonString);
+
+                resultArea.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="bg-indigo-50 p-4 rounded-lg border-l-4 border-indigo-500">
+                            <h4 class="font-bold text-indigo-900 mb-1">Recommended Structure</h4>
+                            <p class="text-lg text-indigo-700 font-bold">${data.structure}</p>
+                            <p class="text-sm text-slate-600 mt-1">${data.reasoning}</p>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                                <h5 class="text-xs font-bold text-slate-500 uppercase mb-2">Culture Fit</h5>
+                                <div class="flex flex-wrap gap-2">
+                                    ${data.culture.map(c => `<span class="px-2 py-1 bg-white border border-slate-300 rounded text-xs font-medium text-slate-700">${c}</span>`).join('')}
+                                </div>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                                <h5 class="text-xs font-bold text-slate-500 uppercase mb-2">Control Systems</h5>
+                                <p class="font-bold text-slate-700 text-sm">${data.control}</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-red-50 p-4 rounded-lg border border-red-100">
+                            <h5 class="text-xs font-bold text-red-500 uppercase mb-1"><i class="fas fa-exclamation-triangle mr-1"></i> Inertia Risk</h5>
+                            <p class="text-sm text-red-800">${data.risk}</p>
+                        </div>
+                    </div>
+                `;
+            } catch (e) {
+                resultArea.innerHTML = `<div class="text-red-500 p-4">Analysis failed. Please try again.</div>`;
+            } finally {
+                loadingArea.classList.add('hidden');
+            }
+        }
+
+        async function generateQuizQuestion() {
+            const overlay = document.getElementById('dynamic-quiz-overlay');
+            const content = document.getElementById('dynamic-quiz-content');
+            
+            overlay.classList.remove('hidden');
+            content.innerHTML = '<div class="flex justify-center items-center h-64"><div class="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full spinner"></div></div>';
+
+            const prompt = `
+            Create a multiple-choice scenario question about Organizational Design (Structure, Culture, Control).
+            Focus on a realistic business situation involving a startup growing into a larger firm.
+            Provide the output in JSON format with keys:
+            - question: The scenario text.
+            - options: Array of 3 strings (possible answers).
+            - correct: Index of correct option (0-2).
+            - explanation: Why the answer is correct.
+            Ensure valid JSON.
+            `;
+
+            try {
+                const rawResponse = await callGemini(prompt);
+                const jsonString = rawResponse.replace(/```json/g, '').replace(/```/g, '').trim();
+                const data = JSON.parse(jsonString);
+
+                content.innerHTML = `
+                    <h4 class="text-lg font-bold text-white mb-6">${data.question}</h4>
+                    <div class="space-y-3">
+                        ${data.options.map((opt, i) => `
+                            <button onclick="checkDynamicAnswer(${i}, ${data.correct}, this, '${data.explanation.replace(/'/g, "\\'")}')" class="w-full text-left p-4 rounded-lg bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all dynamic-opt">
+                                <span class="font-bold mr-2">${String.fromCharCode(65+i)}.</span> ${opt}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div id="dynamic-feedback" class="mt-6 hidden p-4 bg-indigo-900/50 border border-indigo-500/30 rounded-lg text-indigo-200 text-sm"></div>
+                `;
+            } catch(e) {
+                content.innerHTML = `<div class="text-red-400 text-center">Failed to generate question. Try again.</div>`;
+            }
+        }
+
+        function checkDynamicAnswer(selected, correct, btn, explanation) {
+            const feedback = document.getElementById('dynamic-feedback');
+            const options = document.querySelectorAll('.dynamic-opt');
+            
+            options.forEach((opt, i) => {
+                opt.disabled = true;
+                if(i === correct) opt.classList.add('bg-green-600', 'border-green-500', 'text-white');
+                else if(i === selected) opt.classList.add('bg-red-600', 'border-red-500', 'text-white');
+            });
+
+            feedback.innerHTML = `<strong>${selected === correct ? 'Correct!' : 'Incorrect.'}</strong> ${explanation}`;
+            feedback.classList.remove('hidden');
+        }
+
+        function closeDynamicQuiz() {
+            document.getElementById('dynamic-quiz-overlay').classList.add('hidden');
+        }
+
+
+        // --- CANVAS CONTEXTS & VARIABLES ---
+        // Removed duplicate declarations here
+
+        function initGlobalCanvases() {
+            // Inertia
+            inertiaCanvas = document.getElementById('inertiaCanvas');
+            if (inertiaCanvas) {
+                ictx = inertiaCanvas.getContext('2d');
+                resizeInertiaCanvas();
+            }
+
+            // Structure
+            sCanvas = document.getElementById('structureCanvas');
+            if (sCanvas) sctx = sCanvas.getContext('2d');
+
+            // Onion
+            oCanvas = document.getElementById('onionCanvas');
+            if (oCanvas) octx = oCanvas.getContext('2d');
+        }
+        
+        // 1. INERTIA ANIMATION
+        function resizeInertiaCanvas() {
+            if(!inertiaCanvas) return;
+            const container = inertiaCanvas.parentElement;
+            if(container) {
+                inertiaCanvas.width = container.clientWidth;
+                inertiaCanvas.height = container.clientHeight;
+            }
+        }
+        window.addEventListener('resize', resizeInertiaCanvas);
+        
+        // Delayed init to ensure DOM readiness happens in the DOMContentLoaded listener above
+
+        function drawInertia() {
+            if(!inertiaCanvas || !ictx) return;
+            const w = inertiaCanvas.width;
+            const h = inertiaCanvas.height;
+            ictx.clearRect(0, 0, w, h);
+            
+            const padding = 50;
+            const steps = [
+                { x: padding, y: h/2, label: "Mastery", color: "#10b981" },
+                { x: w/2, y: h/2, label: "Growth", color: "#3b82f6" },
+                { x: w - padding, y: h/2, label: "Inertia", color: "#ef4444" }
+            ];
+
+            // Draw Lines
+            ictx.beginPath();
+            ictx.moveTo(padding, h/2);
+            ictx.lineTo(w - padding, h/2);
+            ictx.strokeStyle = "rgba(255,255,255,0.2)";
+            ictx.lineWidth = 4;
+            ictx.stroke();
+
+            // Draw Nodes
+            steps.forEach((step, index) => {
+                // Circle
+                ictx.beginPath();
+                ictx.arc(step.x, step.y, 15, 0, Math.PI * 2);
+                ictx.fillStyle = index <= inertiaStep ? step.color : "rgba(255,255,255,0.2)";
+                ictx.fill();
+                
+                // Text
+                ictx.fillStyle = index <= inertiaStep ? "#fff" : "rgba(255,255,255,0.4)";
+                ictx.font = "bold 12px Satoshi";
+                ictx.textAlign = "center";
+                ictx.fillText(step.label, step.x, step.y + 35);
+            });
+        }
+
+        setInterval(() => {
+            inertiaStep = (inertiaStep + 1) % 3;
+            drawInertia();
+        }, 2000);
+
+
+        // 2. BUILDING BLOCKS (Radar Chart)
+        function initRadar() {
+            const cvs = document.getElementById('blocksRadar');
+            if(!cvs) return;
+            const ctx = cvs.getContext('2d');
+            radarChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Specialization', 'Formalization', 'Centralization', 'Hierarchy'],
+                    datasets: [{
+                        label: 'Structure Profile',
+                        data: [80, 70, 90, 80],
+                        backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        pointBackgroundColor: '#fff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: '#e2e8f0' },
+                            grid: { color: '#e2e8f0' },
+                            pointLabels: { font: { size: 12, family: 'Satoshi' } },
+                            suggestedMin: 0,
+                            suggestedMax: 100
+                        }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+
+        function updateBlocks() {
+            const spec = parseInt(document.getElementById('specSlider').value);
+            const form = parseInt(document.getElementById('formSlider').value);
+            const cent = parseInt(document.getElementById('centSlider').value);
+            const hier = parseInt(document.getElementById('hierSlider').value);
+
+            document.getElementById('specVal').innerText = spec > 50 ? "High" : "Low";
+            document.getElementById('formVal').innerText = form > 50 ? "High" : "Low";
+            document.getElementById('centVal').innerText = cent > 50 ? "High" : "Low";
+            document.getElementById('hierVal').innerText = hier > 50 ? "Tall" : "Flat";
+
+            if(radarChart) {
+                radarChart.data.datasets[0].data = [spec, form, cent, hier];
+                
+                // Determine Color Scheme
+                const avg = (spec + form + cent + hier) / 4;
+                const title = document.getElementById('orgTypeTitle');
+                const desc = document.getElementById('orgTypeDesc');
+                
+                let typeKey = avg > 50 ? 'mechanistic' : 'organic';
+                
+                if (avg > 50) {
+                    radarChart.data.datasets[0].backgroundColor = 'rgba(59, 130, 246, 0.2)'; 
+                    radarChart.data.datasets[0].borderColor = '#3b82f6';
+                    title.innerText = "Mechanistic Organization";
+                    title.className = "text-2xl font-bold text-blue-900 mb-2";
+                    desc.innerText = "Highly standardized, rigid, and efficient. Great for cost-leadership strategies.";
+                } else {
+                    radarChart.data.datasets[0].backgroundColor = 'rgba(16, 185, 129, 0.2)'; 
+                    radarChart.data.datasets[0].borderColor = '#10b981';
+                    title.innerText = "Organic Organization";
+                    title.className = "text-2xl font-bold text-emerald-900 mb-2";
+                    desc.innerText = "Low degree of specialization. Flexible and adaptive. Great for differentiation strategies.";
+                }
+
+                // Update Examples
+                if (typeof orgTypeData !== 'undefined' && orgTypeData[typeKey]) {
+                    document.getElementById('orgExampleIN').innerText = orgTypeData[typeKey].in_name;
+                    document.getElementById('orgReasonIN').innerText = orgTypeData[typeKey].in_desc;
+                    document.getElementById('orgExampleGL').innerText = orgTypeData[typeKey].gl_name;
+                    document.getElementById('orgReasonGL').innerText = orgTypeData[typeKey].gl_desc;
+                }
+
+                radarChart.update();
+            }
+        }
+
+        // 3. STRUCTURE VISUALIZATION
+        
+        function drawBox(x, y, text, color, w=100, h=40) {
+            if(!sctx) return;
+            sctx.fillStyle = color;
+            sctx.fillRect(x - w/2, y - h/2, w, h);
+            sctx.strokeStyle = "#334155";
+            sctx.strokeRect(x - w/2, y - h/2, w, h);
+            sctx.fillStyle = "#1e293b";
+            if(color === "#1e40af" || color === "#3b82f6") sctx.fillStyle = "#ffffff";
+            sctx.textAlign = "center";
+            sctx.textBaseline = "middle";
+            sctx.font = "11px Satoshi";
+            sctx.fillText(text, x, y);
+        }
+
+        function setStructure(type) {
+            // Reset Tabs
+            document.querySelectorAll('.struct-tab').forEach(b => {
+                b.classList.remove('border-blue-500', 'ring-1', 'ring-blue-500', 'active');
+                b.classList.add('border-slate-200');
+            });
+            
+            // Highlight Active Tab
+            const activeBtn = document.querySelector(`.struct-tab[data-type="${type}"]`);
+            if (activeBtn) {
+                activeBtn.classList.remove('border-slate-200');
+                activeBtn.classList.add('border-blue-500', 'ring-1', 'ring-blue-500');
+            }
+
+            document.getElementById('structTitle').innerText = type.charAt(0).toUpperCase() + type.slice(1) + (type === 'simple' ? ' Structure' : type === 'functional' ? ' Structure' : type === 'mform' ? ' (M-Form)' : ' Structure');
+            
+            // Update examples and description
+            if (typeof structureData !== 'undefined' && structureData[type]) {
+                const sData = structureData[type];
+                document.getElementById('structDesc').innerText = sData.desc; // Updated description
+                document.getElementById('structExampleIN').innerText = sData.in_name;
+                document.getElementById('structDetailIN').innerText = sData.in_desc;
+                document.getElementById('structExampleGL').innerText = sData.gl_name;
+                document.getElementById('structDetailGL').innerText = sData.gl_desc;
+                // Update Pros & Cons
+                document.getElementById('structPros').innerHTML = `<strong>Pros:</strong> ${sData.pros}`;
+                document.getElementById('structCons').innerHTML = `<strong>Cons:</strong> ${sData.cons}`;
+            }
+
+            // Clear and Draw
+            if(sCanvas && sCanvas.parentElement) {
+                sCanvas.width = sCanvas.parentElement.clientWidth; 
+                sCanvas.height = 300;
+                if(sctx) sctx.clearRect(0, 0, sCanvas.width, sCanvas.height);
+                const cx = sCanvas.width / 2;
+
+                if(type === 'simple') {
+                    drawBox(cx, 50, "Founder", "#3b82f6");
+                    sctx.beginPath(); sctx.moveTo(cx, 70); sctx.lineTo(cx, 120); sctx.stroke();
+                    drawBox(cx, 140, "Employees", "#e2e8f0", 200);
+                } else if (type === 'functional') {
+                    drawBox(cx, 40, "CEO", "#3b82f6");
+                    sctx.beginPath(); sctx.moveTo(cx, 60); sctx.lineTo(cx, 100); 
+                    sctx.moveTo(cx-100, 100); sctx.lineTo(cx+100, 100); sctx.stroke();
+                    drawBox(cx-100, 130, "R&D", "#bfdbfe");
+                    drawBox(cx, 130, "Marketing", "#bfdbfe");
+                    drawBox(cx+100, 130, "Sales", "#bfdbfe");
+                } else if (type === 'mform') {
+                    drawBox(cx, 30, "HQ", "#1e40af");
+                    sctx.beginPath(); sctx.moveTo(cx, 50); sctx.lineTo(cx, 80);
+                    sctx.moveTo(cx-80, 80); sctx.lineTo(cx+80, 80); sctx.stroke();
+                    drawBox(cx-80, 110, "SBU 1", "#3b82f6");
+                    drawBox(cx+80, 110, "SBU 2", "#3b82f6");
+                    // SBU children
+                    sctx.beginPath(); sctx.moveTo(cx-80, 130); sctx.lineTo(cx-80, 150); sctx.stroke();
+                    drawBox(cx-80, 170, "Functions", "#e2e8f0", 80);
+                } else if (type === 'matrix') {
+                    sctx.fillStyle = "#64748b"; sctx.fillText("Dual Reporting Lines", cx, 20);
+                    drawBox(cx-60, 60, "Product A", "#fcd34d", 80);
+                    drawBox(cx+60, 60, "Product B", "#fcd34d", 80);
+                    drawBox(cx-100, 140, "Region 1", "#93c5fd", 80);
+                    // Grid lines
+                    sctx.beginPath();
+                    sctx.moveTo(cx-60, 80); sctx.lineTo(cx-60, 140);
+                    sctx.moveTo(cx-60, 140); sctx.lineTo(cx-60, 200);
+                    sctx.moveTo(cx-20, 140); sctx.lineTo(cx-100, 140);
+                    sctx.stroke();
+                    sctx.fillStyle = "#ef4444"; sctx.font = "bold 14px Satoshi";
+                    sctx.fillText("X", cx-60, 140); // Intersection
+                }
+            }
+        }
+
+        // 4. CULTURE ONION
+        
+        function drawOnion(highlightIdx = -1) {
+            if(!oCanvas || !oCanvas.parentElement || !octx) return;
+            oCanvas.width = oCanvas.parentElement.clientWidth;
+            oCanvas.height = 350;
+            const cx = oCanvas.width / 2;
+            const cy = 175;
+            
+            const layers = [
+                { r: 140, color: "#dbeafe", text: "Artifacts", idx: 2 },
+                { r: 90, color: "#d1fae5", text: "Norms", idx: 1 },
+                { r: 40, color: "#ffe4e6", text: "Values", idx: 0 }
+            ];
+
+            layers.forEach(l => {
+                octx.beginPath();
+                octx.arc(cx, cy, l.r, 0, Math.PI*2);
+                octx.fillStyle = highlightIdx === l.idx ? l.color.replace('0.1', '1') : l.color;
+                if(highlightIdx !== -1 && highlightIdx !== l.idx) octx.fillStyle = "#f8fafc"; // Dim others
+                octx.fill();
+                octx.stroke();
+                
+                octx.fillStyle = "#1e293b";
+                octx.font = "bold 12px Satoshi";
+                octx.textAlign = "center";
+                octx.fillText(l.text, cx, cy - l.r + 15);
+            });
+        }
+
+        function highlightLayer(i) { drawOnion(i); setTimeout(() => drawOnion(-1), 2000); }
+
+        // 5. SIMULATION
+        const scenarios = [
+            {
+                title: "The Startup Phase",
+                desc: "You are founding a new tech startup in Bangalore. You have 5 employees. Speed is critical.",
+                options: [
+                    { id: 'simple', text: "Simple Structure (You make all decisions)", correct: true },
+                    { id: 'func', text: "Functional Structure (Hire VP of Sales, VP of Eng)", correct: false }
+                ],
+                feedback: "Correct! Simple structure allows maximum flexibility for startups like early Facebook or a Kirana store."
+            },
+            {
+                title: "The Growth Phase",
+                desc: "Your sales have exploded. You now have 100 employees. You are overwhelmed making every decision.",
+                options: [
+                    { id: 'simple', text: "Keep Simple Structure", correct: false },
+                    { id: 'func', text: "Move to Functional Structure (Specialization)", correct: true }
+                ],
+                feedback: "Correct! Functional structures (like Dr. Reddy's early days) provide necessary specialization as you scale."
+            },
+            {
+                title: "Diversification",
+                desc: "You acquired a competitor in a different industry. You now have distinct product lines (e.g., Cars and Software).",
+                options: [
+                    { id: 'func', text: "Keep Functional Structure", correct: false },
+                    { id: 'mform', text: "Move to M-Form (Multidivisional)", correct: true }
+                ],
+                feedback: "Correct! M-Form (like Tata Group) is best for diversified firms to manage separate P&Ls."
+            }
+        ];
+
+        let simIdx = 0;
+        let score = 0;
+
+        function startSimulation() {
+            document.getElementById('sim-start').style.display = 'none';
+            document.getElementById('sim-gameplay').style.display = 'block';
+            renderScenario();
+        }
+
+        function renderScenario() {
+            const s = scenarios[simIdx];
+            document.getElementById('sim-turn-counter').innerText = `Turn ${simIdx + 1} / 3`;
+            document.getElementById('sim-progress-bar').style.width = `${(simIdx/3)*100}%`;
+            document.getElementById('sim-title').innerText = s.title;
+            document.getElementById('sim-desc').innerText = s.desc;
+            
+            const grid = document.getElementById('sim-options-grid');
+            grid.innerHTML = '';
+            s.options.forEach(opt => {
+                const div = document.createElement('div');
+                div.className = 'option-card p-4 rounded-lg bg-slate-700/50 text-slate-300 border border-slate-600 hover:border-blue-500';
+                div.innerText = opt.text;
+                div.onclick = () => {
+                    if(opt.correct) score++;
+                    simIdx++;
+                    if(simIdx < scenarios.length) renderScenario();
+                    else endSim();
+                };
+                grid.appendChild(div);
+            });
+        }
+
+        function endSim() {
+            document.getElementById('sim-gameplay').style.display = 'none';
+            document.getElementById('sim-results').style.display = 'block';
+            document.getElementById('sim-score-number').innerText = `${score}/3`;
+            document.getElementById('sim-feedback').innerText = score === 3 ? "Perfect! You understand how structure follows strategy." : "Good try. Review the Strategy & Structure section.";
+        }
+
+        function resetSimulation() {
+            simIdx = 0; score = 0;
+            document.getElementById('sim-results').style.display = 'none';
+            document.getElementById('sim-start').style.display = 'block';
+        }
+
+        // HM Case Animation
+        function initHMCanvas() {
+            const canvas = document.getElementById('hmCanvas');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.parentElement.clientWidth;
+            const h = 160; // Fixed height from CSS/previous versions
+            canvas.width = w;
+            canvas.height = h;
+            
+            drawHMScene(ctx, w, h, 0);
+        }
+
+        function drawHMScene(ctx, w, h, progress) {
+            ctx.clearRect(0, 0, w, h);
+            
+            // Market Curve (S-curve)
+            ctx.beginPath();
+            ctx.moveTo(0, h-20);
+            ctx.bezierCurveTo(w/2, h-20, w/2, 20, w, 20);
+            ctx.strokeStyle = '#64748b'; // slate-500
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            
+            // Car (HM)
+            const carX = progress * (w - 40);
+            let carY;
+            
+            if (progress < 0.5) {
+                // Following curve up
+                const t = progress * 2; 
+                // Approx easing
+                carY = (h-20) - (t * (h-40)); 
+            } else {
+                // Stuck (Inertia)
+                carY = 20 + ((progress - 0.5) * 50); // Drifts down slightly
+            }
+            
+            // Simple car rect
+            ctx.fillStyle = progress > 0.5 ? '#f97316' : '#22c55e'; // Orange if stuck, Green if good
+            ctx.fillRect(carX, carY, 30, 15);
+        }
+
+        function playHMAnimation() {
+            const canvas = document.getElementById('hmCanvas');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let p = 0;
+            cancelAnimationFrame(hmAnimId);
+            
+            function animate() {
+                p += 0.005;
+                if(p > 1) p = 1;
+                drawHMScene(ctx, canvas.width, canvas.height, p);
+                if(p < 1) hmAnimId = requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        // Scroll Spy
+        window.onscroll = function() {
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (window.scrollY / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+        };
+    </script>
+</body>
+</html>

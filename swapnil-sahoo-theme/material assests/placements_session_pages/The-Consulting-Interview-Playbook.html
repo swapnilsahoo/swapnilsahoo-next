@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The A&M BTS Interview Playbook</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: A&M Corporate Blue -->
+    <!-- Application Structure Plan: The application is designed as a linear, step-by-step "playbook" to guide students through a structured preparation process for the A&M interview. This single-page, scrollable format with a sticky navigation bar allows users to logically progress from understanding the company's unique mindset (Step 1) to specific interview execution tactics (Step 5). This structure was chosen because the source material is a preparation guide, making a sequential, task-oriented flow the most intuitive and effective information architecture. Interactive "Action Plan" toggles are used within each step to provide deeper, actionable advice without cluttering the main view, encouraging focused learning. -->
+    <!-- Visualization & Content Choices: The source material is a qualitative guide, not a dataset. Therefore, the primary presentation method is structured text. 1. Report Info: A&M's unique "hands-on" M&A and turnaround culture. -> Goal: Emphasize key concepts. -> Viz/Method: Stylized info cards using HTML/Tailwind. -> Interaction: None. -> Justification: Cards break up text and highlight core ideas effectively. -> Method: HTML/Tailwind. 2. Report Info: Actionable preparation steps. -> Goal: Provide detailed, drill-down advice without overwhelming the user. -> Viz/Method: Interactive accordion/toggle for "Action Plan" sections. -> Interaction: Click to reveal detailed steps. -> Justification: This hides complexity and creates an interactive learning path, encouraging engagement. -> Method: Vanilla JS. 3. Report Info: Required technical skills. -> Goal: Clearly list and explain the required technical toolkit. -> Viz/Method: A visually distinct grid layout. -> Interaction: Hover effects. -> Justification: A grid is easy to scan and separates the tools into a clear "arsenal" section. -> Method: HTML/Tailwind. No charts are needed as no quantitative data was provided for visualization. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FA; /* Light Gray */
+            color: #212529;
+        }
+        .nav-link {
+            transition: all 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover {
+            color: #003058; /* A&M Dark Blue */
+            border-bottom-color: #003058;
+        }
+        .nav-link.active {
+            color: #E31837; /* A&M Red */
+            border-bottom-color: #E31837;
+            font-weight: 600;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding-top 0.5s ease-out, padding-bottom 0.5s ease-out;
+        }
+        .accordion-content.open {
+            max-height: 1500px; /* Adjust as needed */
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .step-number {
+            font-size: 4rem;
+            font-weight: 800;
+            color: rgba(0, 48, 88, 0.1); /* Transparent A&M Dark Blue */
+            line-height: 1;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="bg-[#003058] text-white py-2">
+        <div class="container mx-auto px-6">
+            <div class="hidden sm:flex justify-between items-center">
+                <p class="text-sm font-medium">© Dr. Swapnil Sahoo 2025</p>
+                <div class="flex items-center space-x-4">
+                    <a href="https://www.swapnilsahoo.com" target="_blank" class="text-gray-300 hover:text-white" title="Website">
+                        <img src="superman.png" alt="website logo" class="w-5 h-5">
+                    </a>
+                    <a href="https://x.com/swapnilsahoo" target="_blank" class="text-gray-300 hover:text-white" title="X/Twitter">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" class="text-gray-300 hover:text-white" title="Instagram">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2.25c-2.83 0-3.18.01-4.29.06-1.1.05-1.86.22-2.52.48a4.1 4.1 0 00-1.5 1.5c-.26.66-.43 1.42-.48 2.52C2.26 7.82 2.25 8.17 2.25 11s.01 3.18.06 4.29c.05 1.1.22 1.86.48 2.52a4.1 4.1 0 001.5 1.5c.66.26 1.42.43 2.52.48 1.1.05 1.46.06 4.29.06s3.18-.01 4.29-.06c1.1-.05 1.86-.22 2.52-.48a4.1 4.1 0 001.5-1.5c.26-.66.43-1.42.48-2.52.05-1.1.06-1.46.06-4.29s-.01-3.18-.06-4.29c-.05-1.1-.22-1.86-.48-2.52a4.1 4.1 0 00-1.5-1.5c-.66-.26-1.42-.43-2.52-.48C15.18 2.26 14.83 2.25 12 2.25zm0 1.5c2.78 0 3.12.01 4.2.06 1.01.05 1.6.2 2.02.37a2.6 2.6 0 011.03 1.03c.17.42.32 1.01.37 2.02.05 1.08.06 1.42.06 4.2s-.01 3.12-.06 4.2c-.05 1.01-.2 1.6-.37 2.02a2.6 2.6 0 01-1.03 1.03c-.42.17-1.01.32-2.02.37-1.08.05-1.42.06-4.2.06s-3.12-.01-4.2-.06c-1.01-.05-1.6-.2-2.02-.37a2.6 2.6 0 01-1.03-1.03c-.17-.42-.32-1.01-.37-2.02C3.81 15.12 3.75 14.78 3.75 12s.01-3.12.06-4.2c.05-1.01.2-1.6.37-2.02a2.6 2.6 0 011.03-1.03c.42-.17 1.01-.32 2.02-.37C8.88 3.81 9.22 3.75 12 3.75zm0 3.18a5.07 5.07 0 100 10.14 5.07 5.07 0 000-10.14zm0 1.5a3.57 3.57 0 110 7.14 3.57 3.57 0 010-7.14zm6.2-3.88a1.2 1.2 0 100-2.4 1.2 1.2 0 000 2.4z" clip-rule="evenodd" /></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" class="text-gray-300 hover:text-white" title="LinkedIn">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header class="bg-white/90 backdrop-blur-md sticky top-0 z-50 shadow-md">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <h1 class="text-xl md:text-2xl font-bold text-[#003058]">The A&M BTS Playbook</h1>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#step1" class="nav-link text-gray-600 font-medium pb-1">Step 1: The Mindset</a>
+                    <a href="#step2" class="nav-link text-gray-600 font-medium pb-1">Step 2: The Foundation</a>
+                    <a href="#step3" class="nav-link text-gray-600 font-medium pb-1">Step 3: The M&A Lens</a>
+                    <a href="#step4" class="nav-link text-gray-600 font-medium pb-1">Step 4: The Toolkit</a>
+                    <a href="#step5" class="nav-link text-gray-600 font-medium pb-1">Step 5: Execution</a>
+                </div>
+                <div class="md:hidden">
+                    <select id="mobile-nav" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                        <option value="#step1">Step 1: The Mindset</option>
+                        <option value="#step2">Step 2: The Foundation</option>
+                        <option value="#step3">Step 3: The M&A Lens</option>
+                        <option value="#step4">Step 4: The Toolkit</option>
+                        <option value="#step5">Step 5: Execution</option>
+                    </select>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-[#003058] leading-tight">Crack the A&M BTS Associate Interview</h2>
+                <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">An exhaustive, step-by-step guide to developing the mindset, skills, and knowledge required to succeed.</p>
+            </div>
+        </section>
+
+        <!-- Step 1: The Mindset -->
+        <section id="step1" class="py-16 md:py-20">
+            <div class="container mx-auto px-6">
+                <div class="flex items-start">
+                    <div class="step-number mr-4">01</div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-[#003058]">Master the A&M Mindset: Think Like an Operator</h2>
+                        <p class="mt-2 text-lg text-gray-600">This is your first and most crucial task. A&M's culture was forged in corporate turnarounds. You must embody their "Leadership, Action, Results" ethos.</p>
+                    </div>
+                </div>
+
+                <div class="mt-12 grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-[#E31837]">
+                        <h3 class="font-bold text-xl text-gray-800">Bias for Action</h3>
+                        <p class="mt-2 text-gray-600">A&M consultants are hands-on operators who implement change from within. Your persona must be that of a practical problem-solver focused on execution, not a theoretical strategist.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-[#003058]">
+                        <h3 class="font-bold text-xl text-gray-800">Quantifiable Results</h3>
+                        <p class="mt-2 text-gray-600">Every recommendation must be tied to a measurable outcome. A&M sells results: cost savings, cash flow improvement, revenue growth. Think in numbers and impact.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-gray-500">
+                        <h3 class="font-bold text-xl text-gray-800">Turnaround Heritage</h3>
+                        <p class="mt-2 text-gray-600">The firm thrives in high-pressure situations. This requires a relentless focus on cash flow and rapid decision-making. Show that you are resilient and can think clearly under pressure.</p>
+                    </div>
+                </div>
+                
+                <div class="mt-10">
+                    <button class="accordion-header flex items-center justify-between w-full p-4 bg-gray-200 rounded-lg font-semibold text-left">
+                        <span>Show Action Plan</span>
+                        <span class="transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content pt-4">
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong>Study A&M Case Studies:</strong> Deep-dive into the Business Transformation case studies on their website. For each, identify the specific actions taken and the quantified results. This is your blueprint for A&M-style thinking.</li>
+                            <li><strong>Research Firm History:</strong> Understand their role in major corporate turnarounds like Lehman Brothers. This reveals their core DNA.</li>
+                            <li><strong>Understand Your GCC Role:</strong> Recognize you're the "analytical engine." Your role is to provide the data horsepower that empowers global teams. This requires analytical rigor and crystal-clear communication.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 2: The Foundation -->
+        <section id="step2" class="py-16 md:py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="flex items-start">
+                    <div class="step-number mr-4">02</div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-[#003058]">Build Your Foundation: Deep Financial & Business Acumen</h2>
+                        <p class="mt-2 text-lg text-gray-600">A general business understanding isn't enough. You must be fluent in the financial realities of a business.</p>
+                    </div>
+                </div>
+                
+                <div class="mt-12 grid md:grid-cols-2 gap-8">
+                    <div class="bg-gray-50 p-6 rounded-xl border">
+                        <h3 class="font-bold text-xl text-gray-800">Financial Statement Fluency</h3>
+                        <p class="mt-2 text-gray-600">Master the P&L, Balance Sheet, and Cash Flow Statement. Understand precisely how they interlink and what stories they tell about a company's performance and health.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-xl border">
+                        <h3 class="font-bold text-xl text-gray-800">Cash Flow Expertise</h3>
+                        <p class="mt-2 text-gray-600">Cash is king in A&M's world. Understand working capital (DSO, DPO, DIO) and its impact. Critically, research the purpose and structure of a **13-week cash flow model**—a standard tool in turnarounds.</p>
+                    </div>
+                </div>
+
+                <div class="mt-10">
+                    <button class="accordion-header flex items-center justify-between w-full p-4 bg-gray-200 rounded-lg font-semibold text-left">
+                        <span>Show Action Plan</span>
+                        <span class="transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content pt-4">
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong>Model a Company:</strong> Take a public company's annual report and build a simple 3-statement financial model in Excel. This is a non-negotiable skill.</li>
+                            <li><strong>Map a Business:</strong> Choose a business you know well. Map its core functions (Supply Chain, Operations, Sales, etc.) and identify 2-3 key performance indicators (KPIs) for each. Connect these KPIs back to the financial statements.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Step 3: M&A Lens -->
+        <section id="step3" class="py-16 md:py-20">
+            <div class="container mx-auto px-6">
+                 <div class="flex items-start">
+                    <div class="step-number mr-4">03</div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-[#003058]">Develop Your M&A and Capital Markets Lens</h2>
+                        <p class="mt-2 text-lg text-gray-600">The role is in the M&A space. You must think like a private equity investor analyzing a deal.</p>
+                    </div>
+                </div>
+
+                <div class="mt-12 grid md:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="font-bold text-xl text-gray-800">The M&A Lifecycle</h3>
+                        <p class="mt-2 text-gray-600">Understand A&M's role: <br><strong>1. Commercial Due Diligence (Pre-Deal):</strong> Investigating a target company to validate its business plan, identify risks, and find performance improvement opportunities. <br><strong>2. Post-Merger Integration (Post-Deal):</strong> Executing plans to capture synergies and improve operations to create value.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="font-bold text-xl text-gray-800">Capital Market Diagnostics</h3>
+                        <p class="mt-2 text-gray-600">Analyze a company from an investor's view. How is its stock performing versus peers? Understand key valuation multiples like **EV/EBITDA** and P/E. Why does one company trade at a higher multiple? This helps identify underperforming companies ripe for transformation.</p>
+                    </div>
+                </div>
+
+                <div class="mt-10">
+                    <button class="accordion-header flex items-center justify-between w-full p-4 bg-gray-200 rounded-lg font-semibold text-left">
+                        <span>Show Action Plan</span>
+                        <span class="transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content pt-4">
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong>Read on Post-Merger Integration:</strong> Search for HBR or McKinsey articles on the challenges and best practices of PMI.</li>
+                            <li><strong>Analyze a Real Deal:</strong> Pick a recent major M&A deal in India. Research the stated rationale (the "synergies") and form an opinion on its potential for success.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 4: Toolkit -->
+        <section id="step4" class="py-16 md:py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="flex items-start">
+                    <div class="step-number mr-4">04</div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-[#003058]">Arm Yourself with the Technical Toolkit</h2>
+                        <p class="mt-2 text-lg text-gray-600">This is how you prove you can be the "analytical engine." Hands-on proficiency is mandatory.</p>
+                    </div>
+                </div>
+
+                <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                        <div class="bg-gray-50 p-6 rounded-lg border">
+                            <p class="text-4xl">📊</p>
+                            <h4 class="font-bold mt-2">Excel & PowerPoint</h4>
+                            <p class="text-sm text-gray-500">Expert-level speed and accuracy. Go beyond basics to master Pivot Tables, INDEX(MATCH), and data tables.</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg border">
+                            <p class="text-4xl">📈</p>
+                            <h4 class="font-bold mt-2">Tableau / Power BI</h4>
+                            <p class="text-sm text-gray-500">Turn raw data into strategic dashboards that tell a clear, compelling story.</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg border">
+                            <p class="text-4xl">🛠️</p>
+                            <h4 class="font-bold mt-2">Alteryx / Python</h4>
+                            <p class="text-sm text-gray-500">Understand how these tools clean, blend, and automate analysis on datasets too large for Excel.</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg border">
+                            <p class="text-4xl">🧠</p>
+                            <h4 class="font-bold mt-2">Pyramid Principle</h4>
+                            <p class="text-sm text-gray-500">Master structured communication. Start with the answer, then provide supporting arguments.</p>
+                        </div>
+                </div>
+
+                 <div class="mt-10">
+                    <button class="accordion-header flex items-center justify-between w-full p-4 bg-gray-200 rounded-lg font-semibold text-left">
+                        <span>Show Action Plan</span>
+                        <span class="transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content pt-4">
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong>Create a Portfolio Project:</strong> Find a relevant dataset on Kaggle. Use Alteryx/Python to clean it. Build an interactive dashboard in Tableau/Power BI to visualize your findings. This is tangible proof of your skills.</li>
+                            <li><strong>Add a "Technical Skills" Section to Your Resume:</strong> Explicitly list these tools and include a link to your portfolio project dashboard.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 5: Execution -->
+        <section id="step5" class="py-16 md:py-20">
+            <div class="container mx-auto px-6">
+                <div class="flex items-start">
+                    <div class="step-number mr-4">05</div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-[#003058]">Execute the Interview Playbook</h2>
+                        <p class="mt-2 text-lg text-gray-600">This is where you synthesize your preparation into a winning performance.</p>
+                    </div>
+                </div>
+
+                <div class="mt-12 grid md:grid-cols-2 gap-8">
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <h3 class="font-bold text-xl text-gray-800">The Behavioral ("Fit") Interview</h3>
+                        <p class="mt-2 text-gray-600">Your stories must reflect the A&M mindset. Use the STAR method to frame examples where you were hands-on, used data, and delivered a measurable result. Your "Why A&M?" answer must be specific, referencing their M&A focus and results-driven culture.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <h3 class="font-bold text-xl text-gray-800">The Case Interview</h3>
+                        <p class="mt-2 text-gray-600">Expect practical, data-heavy cases focused on M&A due diligence, post-merger integration, or performance improvement. Be structured, be quantitative, and drive towards a clear, specific **action plan**—not just a recommendation.</p>
+                    </div>
+                </div>
+
+                <div class="mt-10">
+                    <button class="accordion-header flex items-center justify-between w-full p-4 bg-gray-200 rounded-lg font-semibold text-left">
+                        <span>Show Final Checklist</span>
+                        <span class="transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content pt-4">
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li>Do you have 3-4 powerful behavioral stories ready that showcase your hands-on, results-oriented nature?</li>
+                            <li>Have you practiced at least 10-15 data-heavy case studies, focusing on profitability, due diligence, or market analysis?</li>
+                            <li>Have you developed a deep understanding of at least one of the target industries, including its key players and M&A trends?</li>
+                            <li>Can you articulate clearly why you are a perfect fit for A&M's unique, action-oriented culture?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#003058] text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p class="font-semibold">© Dr. Swapnil Sahoo 2025</p>
+            <div class="flex justify-center items-center space-x-6 mt-4">
+                <a href="https://www.swapnilsahoo.com" target="_blank" class="text-gray-300 hover:text-white" title="Website">
+                        <img src="superman.png" alt="website logo" class="w-5 h-5">
+                </a>
+                <a href="https://x.com/swapnilsahoo" target="_blank" class="text-gray-300 hover:text-white" title="X/Twitter">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" class="text-gray-300 hover:text-white" title="Instagram">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2.25c-2.83 0-3.18.01-4.29.06-1.1.05-1.86.22-2.52.48a4.1 4.1 0 00-1.5 1.5c-.26.66-.43 1.42-.48 2.52C2.26 7.82 2.25 8.17 2.25 11s.01 3.18.06 4.29c.05 1.1.22 1.86.48 2.52a4.1 4.1 0 001.5 1.5c.66.26 1.42.43 2.52.48 1.1.05 1.46.06 4.29.06s3.18-.01 4.29-.06c1.1-.05 1.86-.22 2.52-.48a4.1 4.1 0 001.5-1.5c.26-.66.43-1.42.48-2.52.05-1.1.06-1.46.06-4.29s-.01-3.18-.06-4.29c-.05-1.1-.22-1.86-.48-2.52a4.1 4.1 0 00-1.5-1.5c-.66-.26-1.42-.43-2.52-.48C15.18 2.26 14.83 2.25 12 2.25zm0 1.5c2.78 0 3.12.01 4.2.06 1.01.05 1.6.2 2.02.37a2.6 2.6 0 011.03 1.03c.17.42.32 1.01.37 2.02.05 1.08.06 1.42.06 4.2s-.01 3.12-.06 4.2c-.05 1.01-.2 1.6-.37 2.02a2.6 2.6 0 01-1.03 1.03c-.42.17-1.01.32-2.02.37-1.08.05-1.42.06-4.2.06s-3.12-.01-4.2-.06c-1.01-.05-1.6-.2-2.02-.37a2.6 2.6 0 01-1.03-1.03c-.17-.42-.32-1.01-.37-2.02C3.81 15.12 3.75 14.78 3.75 12s.01-3.12.06-4.2c.05-1.01.2-1.6.37-2.02a2.6 2.6 0 011.03-1.03c.42-.17 1.01-.32 2.02-.37C8.88 3.81 9.22 3.75 12 3.75zm0 3.18a5.07 5.07 0 100 10.14 5.07 5.07 0 000-10.14zm0 1.5a3.57 3.57 0 110 7.14 3.57 3.57 0 010-7.14zm6.2-3.88a1.2 1.2 0 100-2.4 1.2 1.2 0 000 2.4z" clip-rule="evenodd" /></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" class="text-gray-300 hover:text-white" title="LinkedIn">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('main section');
+            const mobileNav = document.getElementById('mobile-nav');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        navLinks.forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                        });
+                        mobileNav.value = `#${id}`;
+                    }
+                });
+            }, { rootMargin: '-50% 0px -50% 0px' });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            mobileNav.addEventListener('change', () => {
+                const targetId = mobileNav.value;
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const icon = header.querySelector('span:last-child');
+                    
+                    content.classList.toggle('open');
+                    if (content.classList.contains('open')) {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        content.style.paddingTop = '1rem';
+                        content.style.paddingBottom = '1rem';
+                        icon.style.transform = 'rotate(180deg)';
+                    } else {
+                        content.style.maxHeight = '0';
+                        content.style.paddingTop = '0';
+                        content.style.paddingBottom = '0';
+                        icon.style.transform = 'rotate(0deg)';
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

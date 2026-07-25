@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 3: Strategic Analysis | Grand Master Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-bg: #ffffff;
+            --secondary-bg: #f8fafc;
+            --primary-text: #0f172a;
+            --accent-blue: #1e3a8a;
+            --accent-light: #2563eb;
+            --glass: rgba(255, 255, 255, 0.95);
+            --border-light: #e2e8f0;
+            --hud-bg: rgba(15, 23, 42, 0.95);
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--primary-text);
+            font-family: 'Satoshi', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+            padding-bottom: 100px; /* Space for HUD */
+        }
+
+        h1, h2, h3, .serif-font {
+            font-family: 'Playfair Display', serif;
+            color: var(--accent-blue);
+        }
+
+        .mono-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Glass Panel */
+        .glass-panel {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-light);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Card Interactions */
+        .card-panel {
+            background: white;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-panel:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 20px -8px rgba(30, 58, 138, 0.1); 
+            border-color: var(--accent-light);
+        }
+
+        .hero-bg {
+            background: radial-gradient(circle at 50% 0%, #eff6ff 0%, #ffffff 70%);
+        }
+
+        .chart-container {
+            position: relative;
+            height: 350px;
+            width: 100%;
+        }
+
+        /* Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+        
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
+        .correct-pulse {
+            animation: pulse-green 1s infinite;
+        }
+        
+        .error-shake {
+            animation: shake 0.3s ease-in-out;
+            border-color: #ef4444 !important;
+            background-color: #fee2e2 !important;
+        }
+
+        /* Master Plan Timeline */
+        .step-line {
+            position: absolute;
+            left: 24px;
+            top: 24px;
+            bottom: 0;
+            width: 2px;
+            background: #e2e8f0;
+            z-index: 0;
+        }
+        .step-item {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Concept Card */
+        .concept-card {
+            border-left: 4px solid var(--accent-light);
+            transition: all 0.3s ease;
+        }
+        .concept-card:hover {
+            background-color: #f1f5f9;
+            padding-left: 1.5rem;
+        }
+
+        /* HUD Styles */
+        .sim-hud {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: var(--hud-bg);
+            color: white;
+            z-index: 50;
+            border-top: 1px solid #334155;
+            padding: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Slider Styling */
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #1e3a8a;
+            cursor: pointer;
+            margin-top: -10px; 
+            box-shadow: 0 0 10px rgba(30, 58, 138, 0.5);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #cbd5e1;
+            border-radius: 2px;
+        }
+        
+        /* Header & Navigation Styles */
+        #main-header { position: sticky; top: 0; z-index: 40; transition: all 0.3s ease; }
+        .nav-link { position: relative; font-weight: 500; color: #64748b; transition: color 0.2s; text-decoration: none; }
+        .nav-link:hover, .nav-link.active { color: var(--accent-blue); }
+        .nav-link.active::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 2px; background: var(--accent-blue); }
+        
+        .chess-logo {
+            width: 40px; height: 40px;
+            background: #1e293b;
+            color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .group:hover .chess-logo {
+            background: #2563eb;
+            transform: rotate(10deg);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-blue-100 selection:text-blue-900">
+
+    <!-- Progress Bar -->
+    <div class="fixed top-0 left-0 w-full h-1 bg-slate-100 z-50">
+        <div id="progress-bar" class="h-full bg-blue-700 w-0 transition-all duration-100 ease-out"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="main-header" class="bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="bg-slate-50 border-b border-slate-100 py-1 text-center">
+            <div class="flex items-center justify-center gap-4 text-[10px] uppercase font-bold tracking-widest text-slate-400">
+                <span class="text-indigo-600 underline decoration-2 underline-offset-4">Part 1: Analysis</span>
+                <span class="text-slate-300">/</span>
+                <span>Part 2: Formulation</span>
+                <span class="text-slate-300">/</span>
+                <span>Part 3: Implementation</span>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-3 group no-underline">
+                <div class="chess-logo">
+                    <i class="fas fa-chess-knight"></i>
+                </div>
+                <div class="leading-tight">
+                    <h1 class="font-bold text-slate-900 tracking-tight text-xl">Strategic Analysis</h1>
+                </div>
+            </a>
+            
+            <div class="hidden xl:flex space-x-6 text-sm">
+                <a href="#mission-brief" class="nav-link">Objectives</a>
+                <a href="#tesla-case" class="nav-link">Tesla</a>
+                <a href="#positioning" class="nav-link">Positioning</a>
+                <a href="#afi" class="nav-link">SpaceX (AFI)</a>
+                <a href="#stakeholders" class="nav-link font-bold text-red-600">Crisis</a>
+                <a href="#grand-sim" class="nav-link font-bold">Wargame</a>
+                <a href="#final-exam" class="nav-link">Exam</a>
+            </div>
+
+            <div class="flex items-center gap-5">
+                <a href="#" class="text-slate-400 hover:text-blue-400 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-slate-400 hover:text-pink-600 transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-slate-400 hover:text-blue-600 transition-colors"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.chess.com/member/theswapnilsahoo" target="_blank" class="text-slate-400 hover:text-green-600 transition-colors text-lg" title="Play Chess">
+                    <i class="fas fa-chess-king"></i>
+                </a>
+                <button class="xl:hidden text-slate-600"><i class="fas fa-bars text-xl"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative min-h-[60vh] flex items-center justify-center pt-24 px-6 hero-bg">
+        <div class="max-w-5xl mx-auto w-full z-10 fade-up text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-200 bg-white text-blue-800 text-xs font-bold tracking-widest uppercase mb-6 shadow-sm">
+                <i class="fa-solid fa-gamepad"></i> Simulation Active
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-8 text-slate-900">
+                Welcome, <span class="serif-font italic text-blue-800">Chief Strategy Officer</span>.
+            </h1>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto font-light leading-relaxed mb-12">
+                Your mission: Audit our portfolio of companies (Tesla, SpaceX, Twitter/X, Zomato). Identify the drivers of success and failure. Complete the <strong>Fundamental Questions</strong> to unlock the <strong>Grand Strategy Simulation</strong>.
+            </p>
+            <div class="animate-bounce text-blue-300">
+                <i class="fa-solid fa-chevron-down text-2xl"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- MISSION BRIEFING -->
+    <section id="mission-brief" class="py-20 px-6 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-12 fade-up text-center">
+                 <div class="inline-flex items-center gap-2 text-blue-600 font-bold tracking-wider text-xs uppercase mb-2">
+                    <i class="fa-solid fa-clipboard-list"></i> Strategic Protocol
+                </div>
+                <h3 class="text-3xl md:text-4xl font-serif font-bold text-slate-900 leading-tight">
+                    Session Objectives & Roadmap
+                </h3>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 fade-up">
+                <div class="card-panel p-8 rounded-xl bg-slate-50 border-l-4 border-blue-800">
+                    <h4 class="font-bold text-slate-900 text-xl mb-6 flex items-center gap-2"><i class="fa-solid fa-list-ol text-blue-800"></i> Chapter Outline</h4>
+                    <div class="space-y-4 text-sm text-slate-700">
+                        <div class="flex gap-3"><span class="font-bold text-blue-600 shrink-0">1.1</span><div><strong>What Strategy Is:</strong> Gaining and Sustaining Competitive Advantage.<br><em class="text-xs text-slate-500">Focus: Crafting and Implementing Strategy at Tesla</em></div></div>
+                        <div class="flex gap-3"><span class="font-bold text-blue-600 shrink-0">1.2</span><div><strong>Stakeholder Strategy:</strong><br><em class="text-xs text-slate-500">Focus: Value Creation & Stakeholder Impact Analysis</em></div></div>
+                        <div class="flex gap-3"><span class="font-bold text-blue-600 shrink-0">1.3</span><div><strong>The AFI Strategy Framework:</strong> Analysis, Formulation, Implementation.<br><em class="text-xs text-slate-500">Focus: SpaceX's Diagnostics & Action</em></div></div>
+                        <div class="flex gap-3"><span class="font-bold text-blue-600 shrink-0">1.4</span><div><strong>Implications for Strategic Leaders:</strong> Practical application.</div></div>
+                    </div>
+                </div>
+                <div class="card-panel p-8 rounded-xl bg-slate-50 border-l-4 border-blue-500">
+                    <h4 class="font-bold text-slate-900 text-xl mb-6 flex items-center gap-2"><i class="fa-solid fa-bullseye text-blue-500"></i> Learning Objectives</h4>
+                    <ul class="space-y-3 text-sm text-slate-700">
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-green-500 mt-1"></i><span><strong>LO 1-1:</strong> Explain the role of strategy in a firm’s quest for competitive advantage.</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-green-500 mt-1"></i><span><strong>LO 1-2:</strong> Define competitive advantage, sustainable competitive advantage, competitive disadvantage, and competitive parity.</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-green-500 mt-1"></i><span><strong>LO 1-3:</strong> Assess the relationship between stakeholder strategy and sustainable competitive advantage.</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-green-500 mt-1"></i><span><strong>LO 1-4:</strong> Conduct a stakeholder impact analysis.</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-green-500 mt-1"></i><span><strong>LO 1-5:</strong> Apply the Analysis, Formulation, Implementation (AFI) Strategy Framework.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3.0 CASE STUDY: TESLA -->
+    <section id="tesla-case" class="py-20 px-6 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-12 fade-up">
+                 <div class="inline-flex items-center gap-2 text-blue-600 font-bold tracking-wider text-xs uppercase mb-2">
+                    <i class="fa-solid fa-bolt"></i> Fundamental Question: 3.0
+                </div>
+                <h3 class="text-3xl md:text-4xl font-serif font-bold text-slate-900 leading-tight">
+                    How did Tesla transform from a fledgling startup to a trillion-dollar tech titan?
+                </h3>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mb-16">
+                <div class="fade-up space-y-8">
+                    <div class="bg-blue-50 p-4 border-l-4 border-blue-800 rounded-r">
+                        <h4 class="font-bold text-blue-900 text-sm uppercase mb-2">Portfolio Intelligence: Tesla, Inc.</h4>
+                        <p class="text-sm text-blue-800">
+                            <strong>Valuation (2022):</strong> >$1 Trillion.<br>
+                            <strong>Growth:</strong> 50,000% appreciation since 2010 IPO.<br>
+                            <strong>Status:</strong> The anomaly of the auto industry.
+                        </p>
+                    </div>
+                    <div class="prose prose-slate text-slate-600 leading-relaxed text-sm">
+                        <p>
+                            Strategy is often about coherence. In a 2006 blog entry titled <a href="https://www.tesla.com/secret-master-plan" target="_blank" class="text-blue-600 font-bold hover:underline">The Secret Tesla Motors Master Plan</a>, Elon Musk laid out a 4-step sequence.
+                        </p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-slate-100 shadow-lg">
+                        <div class="h-64 w-full relative"><canvas id="teslaChart"></canvas></div>
+                        <p class="text-xs text-center text-slate-400 mt-4">Figure 3.0: The Valuation Gap (Tesla vs Legacy Auto)</p>
+                    </div>
+                </div>
+                
+                <div class="fade-up space-y-8">
+                    <!-- Master Plan Part 1 -->
+                    <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 relative">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2 flex items-center gap-2"><i class="fa-solid fa-scroll text-blue-600"></i> The Master Plan (2006)</h3>
+                        <div class="relative pl-4">
+                            <div class="step-line"></div>
+                            <div class="step-item flex gap-4 mb-4"><div class="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-xs shrink-0">1</div><div><h4 class="font-bold text-slate-900 text-sm">Build Sports Car</h4><p class="text-xs text-slate-600"><strong>The Roadster (2008):</strong> Proved EVs can be sexy/fast.</p></div></div>
+                            <div class="step-item flex gap-4 mb-4"><div class="w-8 h-8 rounded-full bg-blue-900 text-white flex items-center justify-center font-bold text-xs shrink-0">2</div><div><h4 class="font-bold text-slate-900 text-sm">Use Money to Build Affordable Car</h4><p class="text-xs text-slate-600"><strong>Model S (2012):</strong> Funded by Roadster profits.</p></div></div>
+                            <div class="step-item flex gap-4 mb-4"><div class="w-8 h-8 rounded-full bg-blue-700 text-white flex items-center justify-center font-bold text-xs shrink-0">3</div><div><h4 class="font-bold text-slate-900 text-sm">Build Even More Affordable Car</h4><p class="text-xs text-slate-600"><strong>Model 3 & Y:</strong> High volume mass market.</p></div></div>
+                            <div class="step-item flex gap-4"><div class="w-8 h-8 rounded-full bg-green-600 text-white flex items-center justify-center font-bold text-xs shrink-0">4</div><div><h4 class="font-bold text-slate-900 text-sm">Provide Zero-Emission Power</h4><p class="text-xs text-slate-600"><strong>SolarCity (2016):</strong> Solar roofs + Batteries.</p></div></div>
+                        </div>
+                    </div>
+
+                    <!-- Master Plan Part Deux (NEW SECTION) -->
+                    <div class="bg-gradient-to-br from-slate-900 to-slate-800 text-white p-8 rounded-2xl shadow-xl relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-6 opacity-10"><i class="fa-solid fa-robot text-9xl"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                            <i class="fa-solid fa-forward text-blue-400"></i> 
+                            <a href="https://www.tesla.com/master-plan-part-deux" target="_blank" class="hover:text-blue-400 underline decoration-blue-400 underline-offset-4 transition-colors">Master Plan Part Deux (2016)</a>
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- 1. Energy -->
+                            <div class="p-4 bg-slate-800/50 rounded-lg border border-slate-700 hover:border-blue-500 transition-colors">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <div class="w-8 h-8 bg-orange-500/20 text-orange-400 rounded-full flex items-center justify-center"><i class="fa-solid fa-solar-panel"></i></div>
+                                    <h4 class="font-bold text-sm">Integrated Energy</h4>
+                                </div>
+                                <p class="text-xs text-slate-400">Create stunning solar roofs with seamlessly integrated battery storage.</p>
+                            </div>
+                            
+                            <!-- 2. Expand Product Line -->
+                            <div class="p-4 bg-slate-800/50 rounded-lg border border-slate-700 hover:border-blue-500 transition-colors">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <div class="w-8 h-8 bg-blue-500/20 text-blue-400 rounded-full flex items-center justify-center"><i class="fa-solid fa-truck-front"></i></div>
+                                    <h4 class="font-bold text-sm">Cover All Segments</h4>
+                                </div>
+                                <p class="text-xs text-slate-400">Expand the electric vehicle product line to address all major segments.</p>
+                            </div>
+
+                            <!-- 3. Autonomy -->
+                            <div class="p-4 bg-slate-800/50 rounded-lg border border-slate-700 hover:border-blue-500 transition-colors">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <div class="w-8 h-8 bg-purple-500/20 text-purple-400 rounded-full flex items-center justify-center"><i class="fa-solid fa-robot"></i></div>
+                                    <h4 class="font-bold text-sm">True Autonomy</h4>
+                                </div>
+                                <p class="text-xs text-slate-400">Develop a self-driving capability that is 10X safer than manual via massive fleet learning.</p>
+                            </div>
+
+                            <!-- 4. Sharing -->
+                            <div class="p-4 bg-slate-800/50 rounded-lg border border-slate-700 hover:border-blue-500 transition-colors">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <div class="w-8 h-8 bg-green-500/20 text-green-400 rounded-full flex items-center justify-center"><i class="fa-solid fa-money-bill-transfer"></i></div>
+                                    <h4 class="font-bold text-sm">Sharing Economy</h4>
+                                </div>
+                                <p class="text-xs text-slate-400">Enable your car to make money for you when you aren't using it.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- MASTER PLAN AUDIT PROTOCOL (Multi-Level Simulation) -->
+            <div class="fade-up bg-slate-900 text-white p-1 rounded-xl shadow-2xl overflow-hidden border border-slate-700 mb-8">
+                <div class="bg-slate-800 px-6 py-4 border-b border-slate-700 flex justify-between items-center">
+                    <div class="flex items-center gap-3">
+                        <div class="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
+                        <h3 class="text-lg font-bold font-mono tracking-wide text-slate-200">STRATEGIC AUDIT: MASTER PLAN</h3>
+                    </div>
+                    <div class="text-xs font-mono text-slate-400" id="audit-level-display">LEVEL 1: ANALYST</div>
+                </div>
+                
+                <div class="p-8 relative min-h-[300px]">
+                    <!-- Level 1: Execution Check -->
+                    <div id="audit-level-1">
+                        <div class="mb-6 text-center">
+                            <span class="text-xs font-bold text-blue-400 uppercase tracking-widest block mb-2">Audit Phase 1: Historical Execution</span>
+                            <h4 class="text-xl font-bold text-white mb-2">Which steps represent the most significant progress in Tesla's integration strategy?</h4>
+                            <p class="text-xs text-slate-400">Analyze the sequence: Roadster -> Model S -> ?</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <button onclick="checkTeslaLevel1(0, this)" class="audit-btn p-4 bg-slate-800 border border-slate-600 hover:border-blue-500 rounded text-center transition-all group">
+                                <div class="text-2xl mb-2 group-hover:scale-110 transition-transform">🏎️</div>
+                                <div class="font-bold text-sm text-slate-300 group-hover:text-white">Roadster Only</div>
+                            </button>
+                            <button onclick="checkTeslaLevel1(1, this)" class="audit-btn p-4 bg-slate-800 border border-slate-600 hover:border-blue-500 rounded text-center transition-all group">
+                                <div class="text-2xl mb-2 group-hover:scale-110 transition-transform">🚗</div>
+                                <div class="font-bold text-sm text-slate-300 group-hover:text-white">Steps 2 & 4 (Model 3 + Solar)</div>
+                            </button>
+                            <button onclick="checkTeslaLevel1(2, this)" class="audit-btn p-4 bg-slate-800 border border-slate-600 hover:border-blue-500 rounded text-center transition-all group">
+                                <div class="text-2xl mb-2 group-hover:scale-110 transition-transform">🚚</div>
+                                <div class="font-bold text-sm text-slate-300 group-hover:text-white">Cybertruck Only</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Level 2: Threat Analysis (Hidden) -->
+                    <div id="audit-level-2" class="hidden">
+                        <div class="mb-6 text-center">
+                            <span class="text-xs font-bold text-yellow-400 uppercase tracking-widest block mb-2">Audit Phase 2: Threat Assessment</span>
+                            <h4 class="text-xl font-bold text-white mb-2">What is the most significant competitive threat currently facing Tesla's dominance?</h4>
+                            <p class="text-xs text-slate-400">Consider: Imitation, Scale, and Supply Chain.</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <button onclick="checkTeslaLevel2(0, this)" class="audit-btn p-4 bg-slate-800 border border-slate-600 hover:border-blue-500 rounded text-center transition-all group">
+                                <div class="text-2xl mb-2 group-hover:scale-110 transition-transform">🛢️</div>
+                                <div class="font-bold text-sm text-slate-300 group-hover:text-white">Rising Oil Prices</div>
+                            </button>
+                            <button onclick="checkTeslaLevel2(1, this)" class="audit-btn p-4 bg-slate-800 border border-slate-600 hover:border-blue-500 rounded text-center transition-all group">
+                                <div class="text-2xl mb-2 group-hover:scale-110 transition-transform">🏭</div>
+                                <div class="font-bold text-sm text-slate-300 group-hover:text-white">Legacy Auto Scaling & Supply Chain</div>
+                            </button>
+                            <button onclick="checkTeslaLevel2(2, this)" class="audit-btn p-4 bg-slate-800 border border-slate-600 hover:border-blue-500 rounded text-center transition-all group">
+                                <div class="text-2xl mb-2 group-hover:scale-110 transition-transform">📉</div>
+                                <div class="font-bold text-sm text-slate-300 group-hover:text-white">Lack of Demand</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Level 3: Future Strategy (Hidden) -->
+                    <div id="audit-level-3" class="hidden">
+                        <div class="mb-6 text-center">
+                            <span class="text-xs font-bold text-purple-400 uppercase tracking-widest block mb-2">Audit Phase 3: Future Outlook</span>
+                            <h4 class="text-xl font-bold text-white mb-2">According to 'Master Plan Part Deux', which goal represents the most complex technical hurdle?</h4>
+                            <p class="text-xs text-slate-400">Hint: It requires 10X safety over humans.</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <button onclick="checkTeslaLevel3(0, this)" class="audit-btn p-4 bg-slate-800 border border-slate-600 hover:border-blue-500 rounded text-center transition-all group">
+                                <div class="text-2xl mb-2 group-hover:scale-110 transition-transform">🔋</div>
+                                <div class="font-bold text-sm text-slate-300 group-hover:text-white">Integrated Energy</div>
+                            </button>
+                            <button onclick="checkTeslaLevel3(1, this)" class="audit-btn p-4 bg-slate-800 border border-slate-600 hover:border-blue-500 rounded text-center transition-all group">
+                                <div class="text-2xl mb-2 group-hover:scale-110 transition-transform">🤖</div>
+                                <div class="font-bold text-sm text-slate-300 group-hover:text-white">Part Deux Step 3: Full Self-Driving</div>
+                            </button>
+                            <button onclick="checkTeslaLevel3(2, this)" class="audit-btn p-4 bg-slate-800 border border-slate-600 hover:border-blue-500 rounded text-center transition-all group">
+                                <div class="text-2xl mb-2 group-hover:scale-110 transition-transform">🚛</div>
+                                <div class="font-bold text-sm text-slate-300 group-hover:text-white">Expanding Lines</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Success Screen -->
+                    <div id="audit-success" class="hidden text-center py-8">
+                        <div class="text-6xl mb-4">🏆</div>
+                        <h4 class="text-3xl font-bold text-green-400 mb-2">Audit Complete: Grand Master</h4>
+                        <p class="text-sm text-slate-400 mb-6">You have successfully deconstructed Tesla's strategic roadmap.</p>
+                        <button onclick="resetTeslaAudit()" class="text-xs font-bold text-slate-500 uppercase tracking-widest hover:text-white">Restart Audit</button>
+                    </div>
+
+                    <!-- Feedback Area -->
+                    <div id="audit-feedback" class="mt-8 p-4 bg-slate-800/50 border border-slate-700 rounded text-center hidden">
+                        <p id="audit-feedback-text" class="text-sm font-medium text-white"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3.1 STRATEGIC POSITIONING -->
+    <section id="positioning" class="py-20 px-6 bg-secondary-bg border-t border-slate-200">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 fade-up">
+                 <div class="inline-flex items-center gap-2 text-blue-600 font-bold tracking-wider text-xs uppercase mb-2">
+                    <i class="fa-solid fa-scale-balanced"></i> Fundamental Question: 3.1
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold serif-font text-slate-900">
+                    Is strategy about being "better," or being "different"?
+                </h2>
+                <p class="text-slate-500 mt-4 max-w-3xl mx-auto text-lg">
+                    Strategic positioning requires <strong>trade-offs</strong>. You cannot be all things to all people. You must choose between <strong>Cost Leadership</strong> (Efficiency) and <strong>Differentiation</strong> (Value).
+                </p>
+            </div>
+            
+            <!-- Theory Block with Subsections -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 fade-up mb-16 items-center">
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-xl relative">
+                    <h3 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4 text-center">Figure 3.1: The Productivity Frontier</h3>
+                    <div class="chart-container"><canvas id="positioningChart"></canvas></div>
+                    <p class="text-[10px] text-center text-slate-400 mt-4">X-Axis: Cost (Lower is better left) | Y-Axis: Value (Higher is better up)</p>
+                </div>
+                
+                <div class="space-y-8">
+                    <!-- Subsection 1: Definitions -->
+                    <div class="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-r-lg">
+                        <h4 class="font-bold text-blue-900 text-lg mb-2">Defining the Battleground</h4>
+                        <div class="space-y-4 text-sm text-slate-700 leading-relaxed">
+                            <p><strong>Operational Effectiveness (OE):</strong> Performing similar activities <em>better</em> than rivals. OE is necessary but not sufficient for long-term advantage.</p>
+                            <p><strong>Strategic Positioning:</strong> Performing <em>different</em> activities or performing similar activities in <em>different ways</em>. It requires trade-offs.</p>
+                            <p><strong>The Productivity Frontier:</strong> The convex curve representing the maximum value a company can deliver at a given cost, using the best available technology, skills, and management techniques. It is the sum of all existing best practices.</p>
+                        </div>
+                    </div>
+
+                    <!-- Subsection 2: Case Files -->
+                    <div>
+                        <h4 class="font-bold text-slate-900 text-md mb-4 flex items-center gap-2"><i class="fa-solid fa-folder-open text-blue-500"></i> Strategic Case Files: Retail</h4>
+                        <div class="space-y-4">
+                            <!-- Walmart -->
+                            <div class="group p-3 rounded-lg border border-slate-200 hover:border-blue-400 transition-all bg-white">
+                                <div class="flex items-center justify-between mb-1">
+                                    <h5 class="font-bold text-blue-900 text-sm">Walmart: The Cost Leader</h5>
+                                    <span class="text-[10px] uppercase font-bold bg-blue-100 text-blue-800 px-2 py-1 rounded">On Frontier</span>
+                                </div>
+                                <p class="text-xs text-slate-600">Walmart resides on the frontier by relentlessly driving down costs. Its strategy is a complex set of activities (cross-docking logistics, massive buying power, rural locations) that reinforce each other to lower the cost structure while maintaining acceptable value.</p>
+                            </div>
+
+                            <!-- Nordstrom -->
+                            <div class="group p-3 rounded-lg border border-slate-200 hover:border-purple-400 transition-all bg-white">
+                                <div class="flex items-center justify-between mb-1">
+                                    <h5 class="font-bold text-purple-900 text-sm">Nordstrom: The Differentiator</h5>
+                                    <span class="text-[10px] uppercase font-bold bg-purple-100 text-purple-800 px-2 py-1 rounded">On Frontier</span>
+                                </div>
+                                <p class="text-xs text-slate-600">Nordstrom also resides on the frontier but at the other end. It accepts higher costs (expensive real estate, high inventory levels, paid salespeople) to deliver superior customer service. This creates higher value (Willingness to Pay).</p>
+                            </div>
+
+                            <!-- Sears -->
+                            <div class="group p-3 rounded-lg border border-red-200 hover:border-red-400 transition-all bg-red-50/50">
+                                <div class="flex items-center justify-between mb-1">
+                                    <h5 class="font-bold text-red-900 text-sm">Sears: Stuck in the Middle</h5>
+                                    <span class="text-[10px] uppercase font-bold bg-red-100 text-red-800 px-2 py-1 rounded">Inside Frontier</span>
+                                </div>
+                                <p class="text-xs text-slate-600">The tragedy of Sears is that it tried to straddle. It wasn't cheap enough to beat Walmart, and it wasn't premium enough to beat Nordstrom. It fell <em>inside</em> the frontier—high costs and low value. In strategy, being average is a death sentence.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Interactive Simulation: Find Your Position (Level 2) -->
+            <div class="fade-up bg-white p-8 rounded-xl border border-slate-200 shadow-md">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold text-slate-900"><i class="fa-solid fa-sliders text-blue-600"></i> Interactive Simulation: Find Your Position</h3>
+                    <div class="flex gap-4">
+                        <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Level: <span id="pos-level" class="text-blue-600">1/3</span></span>
+                        <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Score: <span id="pos-score" class="text-green-600">0</span></span>
+                    </div>
+                </div>
+                
+                <div id="pos-game-area">
+                    <p class="text-sm text-slate-600 mb-6" id="pos-mission"><strong>Mission 1:</strong> Configure the strategy for <strong>Walmart</strong>. They need massive volume to survive.</p>
+                    
+                    <div class="bg-slate-50 p-8 rounded-xl border border-slate-200 mb-6 relative">
+                        <!-- Labels -->
+                        <div class="flex justify-between text-xs font-bold uppercase text-slate-400 mb-2 px-1">
+                            <span>Cost Leadership</span>
+                            <span>Differentiation</span>
+                        </div>
+                        
+                        <!-- Slider -->
+                        <input type="range" min="0" max="100" value="50" class="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600" id="strategySlider" oninput="updateSliderGame()">
+                        
+                        <!-- Dynamic Feedback -->
+                        <div class="flex justify-between items-center mt-6">
+                             <div class="text-sm font-bold text-slate-900">Current Focus: <span id="sliderValue" class="text-blue-600">Hybrid</span></div>
+                             <div id="efficiency-status" class="px-4 py-2 rounded text-xs font-bold bg-red-100 text-red-800 transition-all">Inefficient (Stuck in Middle)</div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 text-center mb-6">
+                        <div class="p-4 bg-slate-50 rounded border border-slate-100">
+                            <div class="text-xs text-slate-500 uppercase mb-1">Cost Structure</div>
+                            <div id="costDisplay" class="font-bold text-xl text-slate-800">High ($$$)</div>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded border border-slate-100">
+                            <div class="text-xs text-slate-500 uppercase mb-1">Value Provided</div>
+                            <div id="valueDisplay" class="font-bold text-xl text-slate-800">Mediocre</div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button onclick="commitPosition()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-12 rounded-full shadow-lg transition-transform hover:scale-105" id="pos-commit-btn">Commit Strategy</button>
+                    </div>
+                </div>
+
+                <!-- Success/Fail Message -->
+                <div id="pos-result" class="hidden text-center py-6 bg-slate-50 rounded-xl border border-slate-200 mt-6">
+                    <h4 id="pos-result-title" class="text-2xl font-bold mb-2"></h4>
+                    <p id="pos-result-desc" class="text-sm text-slate-600 mb-6 max-w-lg mx-auto"></p>
+                    <button onclick="nextPosLevel()" class="text-blue-600 font-bold hover:underline" id="pos-next-btn">Next Level &rarr;</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3.3 AFI FRAMEWORK (SPACEX DEEP DIVE) -->
+    <section id="afi" class="py-20 px-6 bg-secondary-bg border-t border-slate-200">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12 fade-up">
+                 <div class="inline-flex items-center gap-2 text-blue-600 font-bold tracking-wider text-xs uppercase mb-2">
+                    <i class="fa-solid fa-map"></i> Fundamental Question: 3.3
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold serif-font text-slate-900">
+                    How do we link diagnosis to action?
+                </h2>
+                <p class="text-slate-500 mt-2">The AFI Framework: Analysis, Formulation, Implementation.</p>
+            </div>
+
+            <!-- Theory Block -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mb-12">
+                 <div class="fade-up">
+                    <p class="text-slate-600 mb-6 leading-relaxed">
+                        A good strategy is not a wish list; it is a set of coherent actions. I utilize the <strong>AFI Framework</strong> to link Diagnosis (Analysis) to Action (Implementation).
+                    </p>
+                    <div class="space-y-6">
+                        <!-- Analysis (A) -->
+                        <div class="p-5 bg-white rounded-lg border border-slate-200 shadow-sm relative overflow-hidden group">
+                            <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+                            <h4 class="text-blue-900 font-bold text-lg uppercase mb-3 flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xs">A</span> 
+                                Analysis (Diagnosis)
+                            </h4>
+                            <div class="text-sm text-slate-600 space-y-3">
+                                <p class="font-medium text-slate-800 border-b border-slate-100 pb-2">Key Topics & Questions:</p>
+                                <ul class="list-disc list-inside space-y-2 pl-1 marker:text-blue-400">
+                                    <li><strong>Strategic Leadership:</strong> What roles do leaders play? How do they shape vision, mission, and values? (Chapter 2)</li>
+                                    <li><strong>External Analysis:</strong> What effects do external forces have on competitive advantage? How should the firm deal with them? (Chapter 3)</li>
+                                    <li><strong>Internal Analysis:</strong> How do internal resources and core competencies affect competitive advantage? (Chapter 4)</li>
+                                    <li><strong>Shared Value:</strong> How do we create shared value? What is the relationship between advantage and performance? (Chapter 5)</li>
+                                </ul>
+                                <div class="mt-4 pt-3 border-t border-slate-100 bg-slate-50 -mx-5 -mb-5 px-5 py-3">
+                                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">SpaceX Diagnosis</span>
+                                    <p class="text-xs text-slate-700 mt-1">Identified the "binding constraint": The cost of raw materials was low, but <strong>expendability</strong> made rockets expensive.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Formulation (F) -->
+                        <div class="p-5 bg-white rounded-lg border border-slate-200 shadow-sm relative overflow-hidden group">
+                            <div class="absolute top-0 left-0 w-1 h-full bg-indigo-500"></div>
+                            <h4 class="text-blue-900 font-bold text-lg uppercase mb-3 flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs">F</span>
+                                Formulation (Guiding Policy)
+                            </h4>
+                             <div class="text-sm text-slate-600 space-y-3">
+                                <p class="font-medium text-slate-800 border-b border-slate-100 pb-2">Key Topics & Questions:</p>
+                                <ul class="list-disc list-inside space-y-2 pl-1 marker:text-indigo-400">
+                                    <li><strong>Business Strategy:</strong> Cost leadership, differentiation, or value innovation? (Chapters 6 & 7)</li>
+                                    <li><strong>Corporate Strategy:</strong> Where to compete? (Industry, markets, geography) (Chapters 8 & 9)</li>
+                                    <li><strong>Global Strategy:</strong> How to compete locally, regionally, or internationally? (Chapter 10)</li>
+                                </ul>
+                                <div class="mt-4 pt-3 border-t border-slate-100 bg-slate-50 -mx-5 -mb-5 px-5 py-3">
+                                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">SpaceX Policy</span>
+                                    <p class="text-xs text-slate-700 mt-1">The "Southwest Airlines of Space." A policy of <strong>Vertical Integration</strong> (in-house) and <strong>Reusability</strong>.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Implementation (I) -->
+                        <div class="p-5 bg-white rounded-lg border border-slate-200 shadow-sm relative overflow-hidden group">
+                            <div class="absolute top-0 left-0 w-1 h-full bg-green-500"></div>
+                            <h4 class="text-blue-900 font-bold text-lg uppercase mb-3 flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs">I</span>
+                                Implementation (Coherent Actions)
+                            </h4>
+                             <div class="text-sm text-slate-600 space-y-3">
+                                <p class="font-medium text-slate-800 border-b border-slate-100 pb-2">Key Topics & Questions:</p>
+                                <ul class="list-disc list-inside space-y-2 pl-1 marker:text-green-400">
+                                    <li><strong>Organizational Design:</strong> How to organize to translate strategy into action? (Chapter 11)</li>
+                                    <li><strong>Governance & Ethics:</strong> What governance is effective? How to anchor decisions in business ethics? (Chapter 12)</li>
+                                </ul>
+                                <div class="mt-4 pt-3 border-t border-slate-100 bg-slate-50 -mx-5 -mb-5 px-5 py-3">
+                                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">SpaceX Actions</span>
+                                    <p class="text-xs text-slate-700 mt-1">Rapid iteration (fail fast), Merlin engine mass production, and <strong>Starlink</strong> to fund the mission.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+                 <div class="card-panel p-6 rounded-2xl relative fade-up sticky top-24">
+                    <h3 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6">SpaceX Valuation ($B)</h3>
+                    <div class="chart-container"><canvas id="afiChart"></canvas></div>
+                </div>
+            </div>
+
+            <!-- SPACEX MINI SIMULATION -->
+            <div class="fade-up bg-white p-8 rounded-xl border border-slate-200 shadow-md">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold text-slate-900"><i class="fa-solid fa-rocket text-blue-600"></i> Simulation: The SpaceX Protocol</h3>
+                    <span class="text-xs font-bold bg-blue-100 text-blue-800 px-2 py-1 rounded">AFI PROTOCOL ACTIVE</span>
+                </div>
+                <p class="text-sm text-slate-600 mb-6">You are Elon Musk (2002). To succeed, you must correctly chain Analysis, Formulation, and Implementation. <strong>Select the correct path.</strong></p>
+                
+                <div id="spacex-sim-container" class="space-y-4">
+                    <!-- Stage 1 -->
+                    <div id="sx-stage-1">
+                        <h4 class="text-sm font-bold text-blue-900 uppercase mb-3">Stage 1: Analysis (The Diagnosis)</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <button onclick="sxSim(1, 'wrong', this)" class="p-4 border rounded hover:bg-slate-50 text-left text-sm transition-all"><div class="font-bold mb-1">A. Market Size</div>Space is small. We need to lobby NASA for more budget.</button>
+                            <button onclick="sxSim(1, 'correct', this)" class="p-4 border-2 border-blue-100 bg-blue-50/50 rounded hover:border-blue-500 text-left text-sm transition-all"><div class="font-bold mb-1 text-blue-900">B. Cost of Access</div>Rockets are discarded like napkins. We must solve reusability.</button>
+                            <button onclick="sxSim(1, 'wrong', this)" class="p-4 border rounded hover:bg-slate-50 text-left text-sm transition-all"><div class="font-bold mb-1">C. Safety First</div>Rockets are dangerous. We must make them 100% safe before launch.</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Stage 2 (Hidden) -->
+                    <div id="sx-stage-2" class="hidden opacity-50 pointer-events-none transition-all duration-500">
+                        <h4 class="text-sm font-bold text-blue-900 uppercase mb-3 mt-6">Stage 2: Formulation (The Policy)</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <button onclick="sxSim(2, 'correct', this)" class="p-4 border-2 border-blue-100 bg-blue-50/50 rounded hover:border-blue-500 text-left text-sm transition-all"><div class="font-bold mb-1 text-blue-900">A. Vertical Integration</div>Build components in-house to control cost and speed.</button>
+                            <button onclick="sxSim(2, 'wrong', this)" class="p-4 border rounded hover:bg-slate-50 text-left text-sm transition-all"><div class="font-bold mb-1">B. Outsourcing</div>Buy engines from Russia (RD-180) to save development time.</button>
+                            <button onclick="sxSim(2, 'wrong', this)" class="p-4 border rounded hover:bg-slate-50 text-left text-sm transition-all"><div class="font-bold mb-1">C. Cost Plus</div>Secure guaranteed government contracts before building.</button>
+                        </div>
+                    </div>
+
+                    <!-- Stage 3 (Hidden) -->
+                    <div id="sx-stage-3" class="hidden opacity-50 pointer-events-none transition-all duration-500">
+                        <h4 class="text-sm font-bold text-blue-900 uppercase mb-3 mt-6">Stage 3: Implementation (The Action)</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <button onclick="sxSim(3, 'wrong', this)" class="p-4 border rounded hover:bg-slate-50 text-left text-sm transition-all"><div class="font-bold mb-1">A. IPO Immediately</div>Go public to raise cash, despite short-term pressure.</button>
+                            <button onclick="sxSim(3, 'wrong', this)" class="p-4 border rounded hover:bg-slate-50 text-left text-sm transition-all"><div class="font-bold mb-1">B. Space Tourism</div>Focus solely on flying billionaires to orbit.</button>
+                            <button onclick="sxSim(3, 'correct', this)" class="p-4 border-2 border-blue-100 bg-blue-50/50 rounded hover:border-blue-500 text-left text-sm transition-all"><div class="font-bold mb-1 text-blue-900">C. Starlink & Rapid Iteration</div>Launch thousands of satellites for revenue; iterate Falcon 9 rapidly.</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="sx-result" class="hidden mt-6 p-4 rounded bg-slate-900 text-white text-center"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3.4 & 3.5: STAKEHOLDER STRATEGY & CRISIS PROTOCOL -->
+    <section id="stakeholders" class="py-20 px-6 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto">
+             <div class="text-center mb-10 fade-up">
+                 <div class="inline-flex items-center gap-2 text-red-600 font-bold tracking-wider text-xs uppercase mb-2">
+                    <i class="fa-solid fa-triangle-exclamation animate-pulse"></i> Priority Override: 3.4 & 3.5
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold serif-font text-slate-900">From Auditor to Crisis Commander</h2>
+                <p class="text-slate-500 mt-2 max-w-2xl mx-auto">
+                    You have analyzed the past (SpaceX, Tesla). Now you must navigate the present. A supply chain scandal has just broken. <strong>Is complying with the law sufficient?</strong>
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12 fade-up">
+                <!-- Theory Card -->
+                <div class="col-span-1 bg-slate-50 p-6 rounded-2xl border border-slate-200">
+                    <h3 class="text-lg font-bold text-slate-900 mb-4">Strategic Frameworks</h3>
+                    <div class="space-y-4">
+                        <div class="p-3 bg-white rounded border border-slate-200 shadow-sm">
+                            <h5 class="text-xs font-bold text-blue-900 mb-1">Stakeholder Impact Analysis</h5>
+                            <p class="text-[10px] text-slate-600">Prioritize based on 3 attributes:</p>
+                            <div class="flex gap-2 mt-2">
+                                <span class="bg-slate-100 px-2 py-1 rounded text-[10px] font-bold">Power</span>
+                                <span class="bg-slate-100 px-2 py-1 rounded text-[10px] font-bold">Legitimacy</span>
+                                <span class="bg-slate-100 px-2 py-1 rounded text-[10px] font-bold">Urgency</span>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-white rounded border border-slate-200 shadow-sm">
+                            <h5 class="text-xs font-bold text-blue-900 mb-1">CSR Pyramid</h5>
+                            <p class="text-[10px] text-slate-600">Carroll's 4 levels of responsibility:</p>
+                            <ul class="text-[10px] text-slate-500 list-disc list-inside mt-1">
+                                <li>Philanthropic (Top)</li>
+                                <li>Ethical</li>
+                                <li>Legal</li>
+                                <li>Economic (Base)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unified Simulation: Boardroom Crisis -->
+                <div class="col-span-1 lg:col-span-2 bg-slate-900 text-white rounded-2xl shadow-2xl overflow-hidden border border-slate-700 relative">
+                    <!-- Header -->
+                    <div class="bg-gradient-to-r from-slate-900 to-slate-800 px-6 py-4 border-b border-slate-700 flex justify-between items-center">
+                        <div class="flex items-center gap-3">
+                            <span class="inline-block w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                            <h3 class="text-sm font-bold font-mono tracking-wider text-white">SIMULATION: PROJECT COBALT</h3>
+                        </div>
+                        <div class="flex gap-4 text-center">
+                            <div><div class="text-[8px] text-slate-400 uppercase font-bold">Stock</div><div id="sim-stock" class="text-sm font-mono text-green-400">$142.50</div></div>
+                            <div><div class="text-[8px] text-slate-400 uppercase font-bold">Reputation</div><div id="sim-rep" class="text-sm font-mono text-blue-400">95/100</div></div>
+                        </div>
+                    </div>
+
+                    <!-- Simulation Body -->
+                    <div class="p-8 relative min-h-[400px]">
+                        
+                        <!-- Phase 1: Context & Analysis -->
+                        <div id="sim-phase-1">
+                            <div class="mb-6 p-4 bg-red-900/20 border-l-2 border-red-500 rounded-r">
+                                <h4 class="text-red-400 font-bold uppercase text-[10px] tracking-widest mb-1 flex items-center gap-2"><i class="fa-solid fa-satellite-dish"></i> Incoming Intelligence Feed</h4>
+                                <div class="space-y-2 text-xs text-slate-300 font-mono" id="sim-intel-feed">
+                                    <!-- Dynamic content will load here -->
+                                </div>
+                            </div>
+
+                            <h4 class="text-center text-blue-400 font-bold mb-4 uppercase text-xs tracking-widest">Step 1: Diagnose the NGO Threat</h4>
+                            <p class="text-center text-slate-500 text-[10px] mb-4">Select all attributes that apply based on the intelligence above.</p>
+                            
+                            <div class="grid grid-cols-3 gap-3 mb-6">
+                                <button onclick="toggleSimAttribute(this, 'power')" class="sim-attr-btn p-3 border border-slate-600 rounded bg-slate-800 hover:bg-slate-700 text-slate-400 transition-all text-xs flex flex-col items-center gap-1" data-active="false">
+                                    <i class="fa-solid fa-gavel text-xl"></i> 
+                                    <span>Power</span>
+                                </button>
+                                <button onclick="toggleSimAttribute(this, 'legitimacy')" class="sim-attr-btn p-3 border border-slate-600 rounded bg-slate-800 hover:bg-slate-700 text-slate-400 transition-all text-xs flex flex-col items-center gap-1" data-active="false">
+                                    <i class="fa-solid fa-certificate text-xl"></i> 
+                                    <span>Legitimacy</span>
+                                </button>
+                                <button onclick="toggleSimAttribute(this, 'urgency')" class="sim-attr-btn p-3 border border-slate-600 rounded bg-slate-800 hover:bg-slate-700 text-slate-400 transition-all text-xs flex flex-col items-center gap-1" data-active="false">
+                                    <i class="fa-solid fa-stopwatch text-xl"></i> 
+                                    <span>Urgency</span>
+                                </button>
+                            </div>
+                            <div class="text-center">
+                                <button onclick="submitAnalysis()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-8 rounded-full text-xs shadow-lg transition-transform hover:scale-105">Confirm Diagnosis</button>
+                            </div>
+                        </div>
+
+                        <!-- Phase 2: CSR Response (Hidden) -->
+                        <div id="sim-phase-2" class="hidden">
+                            <div class="text-center mb-6">
+                                <div class="inline-block bg-green-900/30 text-green-400 px-3 py-1 rounded border border-green-500/30 text-[10px] font-bold uppercase mb-2">Analysis Confirmed: Definitive Stakeholder</div>
+                                <h4 class="text-lg font-bold text-white">Step 2: Execute CSR Response Protocol</h4>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <button onclick="chooseCSR('economic')" class="text-left p-4 rounded bg-slate-800 border border-slate-700 hover:border-slate-500 group transition-all hover:bg-slate-700">
+                                    <div class="text-[10px] text-slate-500 font-bold mb-1">LEVEL 1: ECONOMIC</div>
+                                    <div class="text-sm font-bold text-white mb-1">Deny & Deflect</div>
+                                    <div class="text-xs text-slate-400">"Our profits come first. Ignore the report to save costs."</div>
+                                </button>
+                                <button onclick="chooseCSR('legal')" class="text-left p-4 rounded bg-slate-800 border border-slate-700 hover:border-blue-500 group transition-all hover:bg-slate-700">
+                                    <div class="text-[10px] text-blue-500 font-bold mb-1">LEVEL 2: LEGAL</div>
+                                    <div class="text-sm font-bold text-white mb-1">Compliance Only</div>
+                                    <div class="text-xs text-slate-400">"We followed local laws. Issue a legal statement."</div>
+                                </button>
+                                <button onclick="chooseCSR('ethical')" class="text-left p-4 rounded bg-slate-800 border border-slate-700 hover:border-purple-500 group transition-all hover:bg-slate-700">
+                                    <div class="text-[10px] text-purple-500 font-bold mb-1">LEVEL 3: ETHICAL</div>
+                                    <div class="text-sm font-bold text-white mb-1">Suspend & Audit</div>
+                                    <div class="text-xs text-slate-400">"Halt supply immediately. Pay for independent auditors."</div>
+                                </button>
+                                <button onclick="chooseCSR('philanthropic')" class="text-left p-4 rounded bg-slate-800 border border-slate-700 hover:border-yellow-500 group transition-all hover:bg-slate-700">
+                                    <div class="text-[10px] text-yellow-500 font-bold mb-1">LEVEL 4: PHILANTHROPIC</div>
+                                    <div class="text-sm font-bold text-white mb-1">Transform Region</div>
+                                    <div class="text-xs text-slate-400">"Ethical response + Build schools & fund local education."</div>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Phase 3: Debrief (Hidden) -->
+                        <div id="sim-phase-3" class="hidden text-center py-4">
+                            <div id="sim-result-icon" class="text-6xl mb-4"></div>
+                            <h4 id="sim-result-title" class="text-3xl font-bold text-white mb-2"></h4>
+                            <div class="bg-slate-800 p-4 rounded border border-slate-700 text-left mb-6 max-w-lg mx-auto">
+                                <h5 class="text-xs text-slate-500 uppercase font-bold mb-2">Aftermath Report</h5>
+                                <p id="sim-result-desc" class="text-sm text-slate-300 leading-relaxed"></p>
+                            </div>
+                            <button onclick="resetSimulation()" class="text-slate-500 hover:text-white text-xs font-bold uppercase tracking-widest border-b border-transparent hover:border-white">Replay Protocol</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3.6 STRATEGIC PLAYBOOK -->
+    <section id="concepts" class="py-24 px-6 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 fade-up text-center">
+                 <div class="inline-flex items-center gap-2 text-blue-600 font-bold tracking-wider text-xs uppercase mb-2">
+                    <i class="fa-solid fa-book-journal-whills"></i> Fundamental Question: 3.6
+                </div>
+                <h3 class="text-3xl md:text-4xl font-serif font-bold text-slate-900 leading-tight">
+                    The Strategic Playbook (LOs & Concepts)
+                </h3>
+                <p class="text-slate-500 mt-4 max-w-2xl mx-auto text-lg">
+                    Before you enter the Grand Simulation, ensure you have mastered the Laws of Strategy. These are the Take-Away Concepts you must internalize.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 fade-up mb-16">
+                <!-- LO 1-1 -->
+                <div class="card-panel p-8 rounded-xl bg-slate-50 border-l-4 border-blue-900 hover:bg-white transition-all">
+                    <div class="flex justify-between items-start mb-4">
+                        <h4 class="font-bold text-slate-900 text-xl">LO 1-1: What Strategy Is</h4>
+                        <span class="text-xs font-bold bg-blue-100 text-blue-800 px-2 py-1 rounded">The Core</span>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Strategy is a set of goal-directed actions to gain and sustain superior performance. It requires three specific elements:
+                    </p>
+                    <ul class="text-sm text-slate-600 list-disc list-inside mt-3 space-y-1">
+                        <li><strong>Diagnosis:</strong> Identifying the competitive challenge (Analysis).</li>
+                        <li><strong>Guiding Policy:</strong> A consistent approach to address the challenge (Formulation).</li>
+                        <li><strong>Coherent Actions:</strong> Resource allocation to implement the policy (Implementation).</li>
+                    </ul>
+                </div>
+
+                <!-- LO 1-2 -->
+                <div class="card-panel p-8 rounded-xl bg-slate-50 border-l-4 border-blue-700 hover:bg-white transition-all">
+                    <div class="flex justify-between items-start mb-4">
+                        <h4 class="font-bold text-slate-900 text-xl">LO 1-2: Competitive Advantage</h4>
+                        <span class="text-xs font-bold bg-blue-100 text-blue-800 px-2 py-1 rounded">The Goal</span>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Competitive advantage is always <strong>relative</strong>, not absolute. It is assessed by comparing a firm's performance to a benchmark (industry average or specific competitors).
+                    </p>
+                    <div class="mt-3 flex gap-2 text-xs">
+                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded font-bold">Sustainable: Prolonged</span>
+                        <span class="bg-red-100 text-red-800 px-2 py-1 rounded font-bold">Disadvantage: Underperformance</span>
+                    </div>
+                </div>
+
+                <!-- LO 1-3 & 1-4 -->
+                <div class="card-panel p-8 rounded-xl bg-slate-50 border-l-4 border-green-600 hover:bg-white transition-all">
+                    <div class="flex justify-between items-start mb-4">
+                        <h4 class="font-bold text-slate-900 text-xl">LO 1-3/4: Stakeholder Strategy</h4>
+                        <span class="text-xs font-bold bg-green-100 text-green-800 px-2 py-1 rounded">The Network</span>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-3">
+                        Firms are embedded in a network of exchange relationships. Effective strategy creates value for all parties, not just shareholders.
+                    </p>
+                    <p class="text-sm text-slate-600 font-bold">Impact Analysis Attributes:</p>
+                    <div class="flex gap-4 mt-2">
+                        <div class="text-center"><i class="fa-solid fa-gavel text-slate-400"></i><div class="text-xs">Power</div></div>
+                        <div class="text-center"><i class="fa-solid fa-certificate text-slate-400"></i><div class="text-xs">Legitimacy</div></div>
+                        <div class="text-center"><i class="fa-solid fa-stopwatch text-slate-400"></i><div class="text-xs">Urgency</div></div>
+                    </div>
+                </div>
+
+                <!-- LO 1-5 -->
+                <div class="card-panel p-8 rounded-xl bg-slate-50 border-l-4 border-slate-700 hover:bg-white transition-all">
+                    <div class="flex justify-between items-start mb-4">
+                        <h4 class="font-bold text-slate-900 text-xl">LO 1-5: AFI Framework</h4>
+                        <span class="text-xs font-bold bg-slate-200 text-slate-800 px-2 py-1 rounded">The Process</span>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                        The pillars of strategic management that link diagnosis to action.
+                    </p>
+                    <div class="flex items-center justify-between text-xs font-bold text-slate-700 bg-white p-3 rounded border border-slate-200 shadow-sm">
+                        <span class="text-blue-600">1. Analysis (A)</span>
+                        <span class="text-slate-300">&rarr;</span>
+                        <span class="text-blue-600">2. Formulation (F)</span>
+                        <span class="text-slate-300">&rarr;</span>
+                        <span class="text-blue-600">3. Implementation (I)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Terms Engine -->
+            <div class="bg-slate-900 p-8 rounded-2xl border border-slate-700 shadow-2xl fade-up relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-6 opacity-10 text-white"><i class="fa-solid fa-spell-check text-9xl"></i></div>
+                
+                <h5 class="text-xs font-bold uppercase tracking-widest text-blue-400 mb-6 flex items-center gap-2">
+                    <i class="fa-solid fa-database"></i> Strategic Lexicon (Key Terms)
+                </h5>
+                
+                <div class="flex flex-wrap gap-3 text-sm text-slate-300">
+                    <div class="group relative inline-block cursor-help">
+                        <span class="bg-slate-800 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition-colors border border-slate-700">Black Swan Events</span>
+                        <div class="hidden group-hover:block absolute bottom-full left-0 mb-2 w-64 p-3 bg-white text-slate-900 text-xs rounded shadow-xl border-l-4 border-blue-600 z-50">
+                            <strong>Black Swan Events:</strong> Incidents that describe highly improbable but high-impact events.
+                        </div>
+                    </div>
+
+                    <div class="group relative inline-block cursor-help">
+                        <span class="bg-slate-800 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition-colors border border-slate-700">Competitive Disadvantage</span>
+                        <div class="hidden group-hover:block absolute bottom-full left-0 mb-2 w-64 p-3 bg-white text-slate-900 text-xs rounded shadow-xl border-l-4 border-red-500 z-50">
+                            <strong>Competitive Disadvantage:</strong> Underperformance relative to other competitors in the same industry or the industry average.
+                        </div>
+                    </div>
+
+                    <div class="group relative inline-block cursor-help">
+                        <span class="bg-slate-800 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition-colors border border-slate-700">Competitive Parity</span>
+                        <div class="hidden group-hover:block absolute bottom-full left-0 mb-2 w-64 p-3 bg-white text-slate-900 text-xs rounded shadow-xl border-l-4 border-slate-500 z-50">
+                            <strong>Competitive Parity:</strong> Performance of two or more firms at the same level.
+                        </div>
+                    </div>
+
+                    <div class="group relative inline-block cursor-help">
+                        <span class="bg-slate-800 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition-colors border border-slate-700">CSR</span>
+                        <div class="hidden group-hover:block absolute bottom-full left-0 mb-2 w-64 p-3 bg-white text-slate-900 text-xs rounded shadow-xl border-l-4 border-green-500 z-50">
+                            <strong>Corporate Social Responsibility:</strong> A framework helping firms recognize and address economic, legal, social, and philanthropic expectations.
+                        </div>
+                    </div>
+
+                    <div class="group relative inline-block cursor-help">
+                        <span class="bg-slate-800 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition-colors border border-slate-700">Strategy</span>
+                        <div class="hidden group-hover:block absolute bottom-full left-0 mb-2 w-64 p-3 bg-white text-slate-900 text-xs rounded shadow-xl border-l-4 border-blue-600 z-50">
+                            <strong>Strategy:</strong> The planned and realized set of actions a firm takes to achieve its goals.
+                        </div>
+                    </div>
+
+                    <div class="group relative inline-block cursor-help">
+                        <span class="bg-slate-800 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition-colors border border-slate-700">Sustainable Advantage</span>
+                        <div class="hidden group-hover:block absolute bottom-full left-0 mb-2 w-64 p-3 bg-white text-slate-900 text-xs rounded shadow-xl border-l-4 border-green-600 z-50">
+                            <strong>Sustainable Competitive Advantage:</strong> Outperforming competitors or the industry average over a prolonged period.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3.7 GRAND SIMULATION (WARGAME EDITION) -->
+    <section id="grand-sim" class="py-24 px-6 bg-slate-900 text-white border-t border-slate-800">
+        <div class="max-w-5xl mx-auto text-center">
+            <div class="mb-12 fade-up">
+                 <div class="inline-flex items-center gap-2 text-blue-400 font-bold tracking-wider text-xs uppercase mb-2">
+                    <i class="fa-solid fa-crown"></i> Capstone Challenge: 3.7
+                </div>
+                <h3 class="text-4xl md:text-5xl font-serif font-bold text-white leading-tight mb-4">
+                    The Grand Strategy Wargame
+                </h3>
+                <p class="text-slate-400 max-w-2xl mx-auto">
+                    Command "Legacy Motors" through 5 strategic turns. Defeat the AI rival "Titan Auto" by managing Cash, Innovation, and Market Share.
+                </p>
+            </div>
+
+            <div id="grand-sim-container" class="bg-slate-800 rounded-2xl p-8 border border-slate-700 shadow-2xl relative overflow-hidden min-h-[500px] text-left">
+                <!-- Start Screen -->
+                <div id="gs-start" class="text-center py-12">
+                    <div class="text-7xl mb-6 animate-pulse">♟️</div>
+                    <h4 class="text-2xl font-bold mb-4">Legacy Motors vs. Titan Auto</h4>
+                    <p class="text-slate-400 mb-8 max-w-lg mx-auto">The market is shifting. Your rival, Titan Auto, is aggressive. You have $100M cash. Make strategic choices to survive.</p>
+                    <button onclick="startGrandSim()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-10 rounded-full text-lg shadow-lg hover:shadow-blue-500/50 transition-all transform hover:-translate-y-1">Take Command</button>
+                </div>
+                
+                <!-- Game Dashboard -->
+                <div id="gs-game" class="hidden h-full flex flex-col">
+                    <!-- Stats Bar -->
+                    <div class="flex justify-between items-center mb-6 bg-slate-900 p-4 rounded-xl border border-slate-700">
+                        <div class="flex items-center gap-4">
+                            <div class="text-center">
+                                <div class="text-[10px] uppercase text-slate-500 font-bold">Turn</div>
+                                <div id="gs-turn" class="text-xl font-mono text-white">1/5</div>
+                            </div>
+                            <div class="h-8 w-px bg-slate-700"></div>
+                            <div class="text-center">
+                                <div class="text-[10px] uppercase text-slate-500 font-bold">Cash</div>
+                                <div id="gs-cash" class="text-xl font-mono text-green-400">$100M</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-[10px] uppercase text-slate-500 font-bold">Mkt Share</div>
+                                <div id="gs-share" class="text-xl font-mono text-blue-400">15%</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-[10px] uppercase text-slate-500 font-bold">Rival (Titan)</div>
+                            <div class="text-sm font-bold text-red-400">Aggressive</div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario Display -->
+                    <div class="mb-6">
+                        <h4 id="gs-scenario-title" class="text-xl font-bold text-white mb-2">Turn 1: The EV Disruption</h4>
+                        <p id="gs-scenario-desc" class="text-slate-300 text-sm leading-relaxed mb-6">Titan Auto just announced a budget EV. Your sales are slipping. Board demands action.</p>
+                        
+                        <div class="grid grid-cols-1 gap-4" id="gs-options-container">
+                            <!-- Options injected via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Log -->
+                    <div class="mt-auto bg-black/30 p-3 rounded border border-white/10 h-24 overflow-y-auto font-mono text-xs text-slate-400" id="gs-log">
+                        > System Initialized... awaiting orders.
+                    </div>
+                </div>
+
+                <!-- Result Screen -->
+                <div id="gs-result" class="hidden text-center py-10">
+                    <div id="gs-final-icon" class="text-7xl mb-4"></div>
+                    <h4 id="gs-final-title" class="text-4xl font-bold mb-3 font-serif"></h4>
+                    <p id="gs-final-desc" class="text-slate-400 mb-8 max-w-xl mx-auto text-lg leading-relaxed"></p>
+                    
+                    <div class="grid grid-cols-3 gap-4 mb-8 max-w-lg mx-auto">
+                        <div class="bg-slate-900 p-4 rounded border border-slate-700">
+                            <div class="text-xs text-slate-500">Final Cash</div>
+                            <div id="gs-end-cash" class="text-lg font-mono text-green-400"></div>
+                        </div>
+                        <div class="bg-slate-900 p-4 rounded border border-slate-700">
+                            <div class="text-xs text-slate-500">Market Share</div>
+                            <div id="gs-end-share" class="text-lg font-mono text-blue-400"></div>
+                        </div>
+                        <div class="bg-slate-900 p-4 rounded border border-slate-700">
+                            <div class="text-xs text-slate-500">Innovation</div>
+                            <div id="gs-end-inn" class="text-lg font-mono text-purple-400"></div>
+                        </div>
+                    </div>
+
+                    <button onclick="resetGrandSim()" class="bg-slate-700 hover:bg-slate-600 text-white font-bold py-3 px-8 rounded-full transition-colors">Play Again</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3.8 FINAL EXAM: STRATEGIC MASTERY -->
+    <section id="final-exam" class="py-24 px-6 bg-white border-t border-slate-200 mb-24">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16 fade-up">
+                 <div class="inline-flex items-center gap-2 text-blue-900 font-bold tracking-wider text-xs uppercase mb-2">
+                    <i class="fa-solid fa-graduation-cap"></i> Certification Exam: 3.8
+                </div>
+                <h3 class="text-3xl md:text-4xl font-serif font-bold text-slate-900 leading-tight">
+                    Final Exam: Strategic Mastery
+                </h3>
+                <p class="text-slate-500 mt-4 text-lg">
+                    15 Questions covering all Take-Away Concepts and Key Terms. Prove your readiness.
+                </p>
+            </div>
+
+            <!-- Quiz Container -->
+            <div id="quiz-container" class="bg-slate-50 rounded-2xl border border-slate-200 p-8 shadow-xl fade-up">
+                <!-- Start Quiz -->
+                <div id="quiz-start" class="text-center py-10">
+                    <div class="text-blue-900 text-6xl mb-6"><i class="fa-solid fa-file-signature"></i></div>
+                    <button onclick="startQuiz()" class="bg-blue-900 hover:bg-blue-800 text-white font-bold py-3 px-10 rounded-full transition-colors">Begin Exam</button>
+                </div>
+
+                <!-- Active Question -->
+                <div id="quiz-active" class="hidden">
+                    <div class="flex justify-between items-center mb-6">
+                        <span class="text-xs font-bold text-slate-400 uppercase" id="quiz-progress">Question 1 of 15</span>
+                        <span class="text-xs font-bold text-blue-600" id="quiz-score">Score: 0</span>
+                    </div>
+                    <h4 id="quiz-question" class="text-xl font-bold text-slate-900 mb-6 leading-relaxed"></h4>
+                    <div class="space-y-3" id="quiz-options">
+                        <!-- Options go here -->
+                    </div>
+                    <!-- Explanation Box -->
+                    <div id="quiz-explanation" class="hidden mt-6 p-4 rounded-lg bg-blue-50 border border-blue-200">
+                        <div class="flex items-start gap-3">
+                            <div class="mt-1" id="expl-icon"></div>
+                            <div>
+                                <h5 class="font-bold text-sm mb-1" id="expl-title"></h5>
+                                <p class="text-sm text-slate-600 leading-relaxed" id="expl-text"></p>
+                            </div>
+                        </div>
+                        <button onclick="nextQuizQuestion()" class="mt-4 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold py-2 px-6 rounded transition-colors">Next Question &rarr;</button>
+                    </div>
+                </div>
+
+                <!-- Final Result -->
+                <div id="quiz-result" class="hidden text-center py-10">
+                    <h4 class="text-2xl font-bold text-slate-900 mb-2">Exam Complete</h4>
+                    <div class="text-5xl font-bold text-blue-900 mb-4" id="quiz-final-score">0/15</div>
+                    <div id="quiz-badge" class="inline-block px-4 py-2 rounded-full text-sm font-bold bg-slate-200 text-slate-700 mb-6">Unranked</div>
+                    <p id="quiz-feedback" class="text-slate-500 text-sm mb-8"></p>
+                    <button onclick="restartQuiz()" class="text-blue-600 hover:underline text-sm font-bold">Retake Exam</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (From Template) -->
+    <footer class="bg-white border-t border-slate-200 py-8 text-center text-sm text-slate-400">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0 flex items-center justify-center gap-2">
+                © Dr. Swapnil Sahoo 2025 | All Rights Reserved
+                <i class="fas fa-chess-knight text-slate-300"></i>
+            </div>
+             <div class="flex space-x-6 items-center">
+                <a href="#" class="text-slate-400 hover:text-blue-400 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-slate-400 hover:text-pink-600 transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-slate-400 hover:text-blue-600 transition-colors"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- HUD -->
+    <div class="sim-hud flex justify-between items-center shadow-lg border-t border-slate-800">
+        <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center font-bold text-2xl shadow-blue-900/50 shadow-inner"><i class="fa-solid fa-user-secret"></i></div>
+            <div><div class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Clearance Level</div><div id="hud-rank" class="font-bold text-white text-lg font-serif">Intern</div></div>
+        </div>
+        <div class="flex items-center gap-8">
+            <div class="text-center hidden md:block"><div class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">XP Gained</div><div id="hud-score" class="font-bold text-blue-400 text-xl font-mono">0</div></div>
+            <div class="text-center"><div class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">System Status</div><div class="text-xs text-green-400 font-bold"><i class="fa-solid fa-signal animate-pulse"></i> LIVE</div></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // --- Global State ---
+        let csoScore = 0;
+        function updateHUD(points) {
+            csoScore += points;
+            document.getElementById('hud-score').innerText = csoScore;
+            let rank = "Intern";
+            if (csoScore >= 300) rank = "Analyst";
+            if (csoScore >= 800) rank = "Director";
+            if (csoScore >= 1200) rank = "Grand Master";
+            document.getElementById('hud-rank').innerText = rank;
+        }
+
+        // --- Charts (Safety Wrapped) ---
+        try {
+            const teslaCtx = document.getElementById('teslaChart').getContext('2d');
+            new Chart(teslaCtx, { type: 'bar', data: { labels: ['Tesla', 'Toyota', 'VW', 'GM', 'Ford'], datasets: [{ label: 'Market Cap ($B)', data: [1000, 250, 120, 80, 70], backgroundColor: ['#1e3a8a', '#94a3b8', '#94a3b8', '#94a3b8', '#94a3b8'], borderRadius: 4 }] }, options: { plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } } } } });
+
+            const afiCtx = document.getElementById('afiChart').getContext('2d');
+            new Chart(afiCtx, { type: 'bar', data: { labels: ['Lockheed', 'Boeing', 'SpaceX'], datasets: [{ label: 'Valuation ($B)', data: [110, 130, 180], backgroundColor: ['#cbd5e1', '#cbd5e1', '#1e3a8a'], borderRadius: 6 }] }, options: { plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } } } } });
+
+            const posCtx = document.getElementById('positioningChart').getContext('2d');
+            new Chart(posCtx, { type: 'scatter', data: { datasets: [{ label: 'Productivity Frontier', data: [{x: 10, y: 30}, {x: 20, y: 50}, {x: 30, y: 65}, {x: 50, y: 82}, {x: 80, y: 95}], borderColor: '#94a3b8', borderWidth: 2, showLine: true, pointRadius: 0, tension: 0.4, fill: false }, { label: 'You (Strategic Position)', data: [{x: 50, y: 40}], backgroundColor: '#ef4444', pointRadius: 10 }] }, options: { scales: { x: { title: {display: true, text: 'Cost Structure (Lower is Left)'}, min: 0, max: 100, reverse: true }, y: { title: {display: true, text: 'Value Provided (Higher is Up)'}, min: 0, max: 100 } } } });
+        } catch(e) { console.error("Charts failed to load:", e); }
+
+        function updateSliderGame() { 
+            // Simple visual update for demo
+            try {
+                const v = parseInt(document.getElementById('strategySlider').value);
+                const s = document.getElementById('efficiency-status');
+                const o = document.getElementById('strategyOutput');
+                const level = posLevels[currentPosLevel];
+                
+                // Logic to update chart point dynamically
+                const xPos = 10 + (v * 0.8);
+                const distFromEdge = Math.min(v, 100-v);
+                const efficiencyPenalty = (distFromEdge / 50) * 30; // Max penalty 30
+                const idealY = 30 + (v * 0.65); // Linear frontier approximation
+                const actualY = idealY - efficiencyPenalty;
+                
+                if (window.Chart && Chart.instances.length > 2) {
+                   // Note: Assuming posChart is the 3rd one created
+                   // Simpler: Just update DOM text for now as requested
+                }
+
+                if(v < 30) { 
+                    s.innerText="Cost Leader"; 
+                    s.className="px-4 py-2 rounded text-xs font-bold bg-green-100 text-green-800 transition-all"; 
+                    o.innerText="Focus: Low Margins, High Volume."; 
+                } else if(v > 70) { 
+                    s.innerText="Differentiator"; 
+                    s.className="px-4 py-2 rounded text-xs font-bold bg-purple-100 text-purple-800 transition-all"; 
+                    o.innerText="Focus: Premium Price, Superior Service."; 
+                } else { 
+                    s.innerText="Inefficient (Stuck in Middle)"; 
+                    s.className="px-4 py-2 rounded text-xs font-bold bg-red-100 text-red-800 transition-all"; 
+                    o.innerText="Danger: High Cost, Low Value."; 
+                }
+            } catch(e) { console.log(e); }
+        }
+
+        // --- STRATEGIC AUDIT: MASTER PLAN LOGIC (MULTI-LEVEL) ---
+        function checkTeslaLevel1(opt, btn) {
+            const feedback = document.getElementById('audit-feedback');
+            const text = document.getElementById('audit-feedback-text');
+            feedback.classList.remove('hidden');
+            
+            if(opt === 1) { // Model 3
+                btn.classList.remove('bg-slate-800', 'border-slate-600');
+                btn.classList.add('bg-green-900', 'border-green-500', 'correct-pulse');
+                text.innerText = "Correct. Q1 Answer: Steps 2 & 4 (Model 3 + Solar) represent the most progress, enabling full integration.";
+                text.className = "text-sm font-medium text-green-400";
+                setTimeout(() => {
+                    document.getElementById('audit-level-1').classList.add('hidden');
+                    document.getElementById('audit-level-2').classList.remove('hidden');
+                    document.getElementById('audit-level-display').innerText = "LEVEL 2: ASSOCIATE";
+                    feedback.classList.add('hidden');
+                    updateHUD(50);
+                }, 2000);
+            } else {
+                btn.classList.add('error-shake', 'border-red-500');
+                text.innerText = "Incorrect. The Roadster was low volume (Step 1). Cybertruck is niche (Step 4). Try again.";
+                text.className = "text-sm font-medium text-red-400";
+                setTimeout(() => btn.classList.remove('error-shake', 'border-red-500'), 500);
+            }
+        }
+
+        function checkTeslaLevel2(opt, btn) {
+            const feedback = document.getElementById('audit-feedback');
+            const text = document.getElementById('audit-feedback-text');
+            feedback.classList.remove('hidden');
+
+            if(opt === 1) { // Legacy Auto
+                btn.classList.remove('bg-slate-800', 'border-slate-600');
+                btn.classList.add('bg-green-900', 'border-green-500', 'correct-pulse');
+                text.innerText = "Correct. Q3 Answer: The significant threat is Legacy automakers (Ford/GM) scaling EV production and supply chain shortages.";
+                text.className = "text-sm font-medium text-green-400";
+                setTimeout(() => {
+                    document.getElementById('audit-level-2').classList.add('hidden');
+                    document.getElementById('audit-level-3').classList.remove('hidden');
+                    document.getElementById('audit-level-display').innerText = "LEVEL 3: PARTNER";
+                    feedback.classList.add('hidden');
+                    updateHUD(50);
+                }, 2000);
+            } else {
+                btn.classList.add('error-shake', 'border-red-500');
+                text.innerText = "Incorrect. While oil and demand matter, the strategic threat comes from competitors scaling EV production.";
+                text.className = "text-sm font-medium text-red-400";
+                setTimeout(() => btn.classList.remove('error-shake', 'border-red-500'), 500);
+            }
+        }
+
+        function checkTeslaLevel3(opt, btn) {
+            const feedback = document.getElementById('audit-feedback');
+            const text = document.getElementById('audit-feedback-text');
+            feedback.classList.remove('hidden');
+
+            if(opt === 1) { // Autonomy
+                btn.classList.remove('bg-slate-800', 'border-slate-600');
+                btn.classList.add('bg-green-900', 'border-green-500', 'correct-pulse');
+                text.innerText = "Correct. Q2 Answer: Full Self-Driving is the most difficult due to regulatory hurdles and AI complexity.";
+                text.className = "text-sm font-medium text-green-400";
+                setTimeout(() => {
+                    document.getElementById('audit-level-3').classList.add('hidden');
+                    document.getElementById('audit-success').classList.remove('hidden');
+                    document.getElementById('audit-level-display').innerText = "CLEARANCE: GRAND MASTER";
+                    feedback.classList.add('hidden');
+                    updateHUD(100);
+                }, 2000);
+            } else {
+                btn.classList.add('error-shake', 'border-red-500');
+                text.innerText = "Incorrect. Solar and Trucking are engineering challenges, but Autonomy is a fundamental AI breakthrough.";
+                text.className = "text-sm font-medium text-red-400";
+                setTimeout(() => btn.classList.remove('error-shake', 'border-red-500'), 500);
+            }
+        }
+
+        function resetTeslaAudit() {
+            document.getElementById('audit-success').classList.add('hidden');
+            document.getElementById('audit-level-1').classList.remove('hidden');
+            document.getElementById('audit-level-display').innerText = "LEVEL 1: ANALYST";
+            document.querySelectorAll('.audit-btn').forEach(b => {
+                b.classList.remove('bg-green-900', 'border-green-500', 'correct-pulse', 'bg-red-900', 'border-red-500');
+                b.classList.add('bg-slate-800', 'border-slate-600');
+            });
+        }
+        
+        // Use this stub for legacy calls if any remain
+        function checkTeslaExecution(opt, btn) { checkTeslaLevel1(opt, btn); }
+
+
+        // --- POSITIONING GAME LOGIC (New Gamified Version) ---
+        const posLevels = [
+            { name: "Walmart", goal: "Cost Leadership", target: "low", desc: "Correct! Walmart succeeds by ruthless efficiency. Low margin, high volume." },
+            { name: "Ferrari", goal: "Differentiation", target: "high", desc: "Perfect. Ferrari sells emotion, not transport. High cost is acceptable for extreme value." },
+            { name: "JetBlue (Early)", goal: "Blue Ocean / Integration", target: "mid-high", desc: "Excellent. A rare 'Integration' strategy: cheaper than legacy, better than budget. Very hard to sustain." } // Bonus level logic needed for 'mid'
+        ];
+        let currentPosLevel = 0;
+        let posScore = 0;
+
+        function commitPosition() {
+            const v = parseInt(document.getElementById('strategySlider').value);
+            const level = posLevels[currentPosLevel];
+            let success = false;
+
+            if (level.target === "low" && v <= 30) success = true;
+            else if (level.target === "high" && v >= 70) success = true;
+            else if (level.target === "mid-high" && v > 30 && v < 70) {
+                 success = (level.target === "low" && v <= 35) || (level.target === "high" && v >= 65);
+            }
+            
+            const rTitle = document.getElementById('pos-result-title');
+            const rDesc = document.getElementById('pos-result-desc');
+            const rDiv = document.getElementById('pos-result');
+            const gDiv = document.getElementById('pos-game-area');
+
+            gDiv.classList.add('hidden');
+            rDiv.classList.remove('hidden');
+
+            if(success) {
+                posScore += 100;
+                updateHUD(50);
+                rTitle.innerText = "Strategy Approved";
+                rTitle.className = "text-2xl font-bold mb-2 text-green-600";
+                rDesc.innerText = level.desc;
+            } else {
+                rTitle.innerText = "Strategic Mismatch";
+                rTitle.className = "text-2xl font-bold mb-2 text-red-600";
+                rDesc.innerText = "You failed to align your cost structure with your value proposition. The market has punished you.";
+            }
+            
+            document.getElementById('pos-score').innerText = posScore;
+        }
+
+        function nextPosLevel() {
+            currentPosLevel++;
+            if (currentPosLevel < posLevels.length) {
+                document.getElementById('pos-result').classList.add('hidden');
+                document.getElementById('pos-game-area').classList.remove('hidden');
+                document.getElementById('pos-mission').innerHTML = `<strong>Mission ${currentPosLevel+1}:</strong> Configure the strategy for <strong>${posLevels[currentPosLevel].name}</strong>. ${posLevels[currentPosLevel].name === 'Ferrari' ? 'They sell passion and exclusivity.' : 'They offer accessible luxury (Integration).'}`; 
+                
+                // Reset slider visual
+                document.getElementById('strategySlider').value = 50;
+                updateSliderGame();
+                
+                document.getElementById('pos-level').innerText = `${currentPosLevel+1}/3`;
+            } else {
+                alert("Simulation Complete! You have mastered Strategic Positioning.");
+                // Reset
+                currentPosLevel = 0; posScore = 0;
+                document.getElementById('pos-result').classList.add('hidden');
+                document.getElementById('pos-game-area').classList.remove('hidden');
+                document.getElementById('pos-score').innerText = "0";
+                document.getElementById('pos-level').innerText = "1/3";
+                document.getElementById('pos-mission').innerHTML = "<strong>Mission 1:</strong> Configure the strategy for <strong>Walmart</strong>. They need massive volume to survive.";
+            }
+        }
+
+        // --- Fluff Game ---
+        let fluffIndex = 0; let fluffScore = 0;
+        const fluffScenarios = [
+            { text: "\"Our strategy is to be the most inclusive platform on Earth.\"", type: "fluff", feedback: "<strong>Ambition, not Strategy.</strong> This is a wish. Strategy requires a diagnosis of obstacles and a coherent action plan to overcome them." },
+            { text: "\"Migrate 50% of compute to Amazon Web Services to lower latency.\"", type: "fluff", feedback: "<strong>Operational Effectiveness (Tactic).</strong> Improving efficiency is necessary, but it is not a strategy. It's just doing things better, not differently." },
+            { text: "\"Pivot to a subscription model ($8/mo) to reduce reliance on ad revenue.\"", type: "strategy", feedback: "<strong>Valid Strategy (Guiding Policy).</strong> This addresses a specific diagnostic challenge (ad volatility) with a clear policy change." },
+            { text: "\"We will increase our user base by 20% next year.\"", type: "fluff", feedback: "<strong>Goal, not Strategy.</strong> A goal tells you 'what' you want. Strategy tells you 'how' you will achieve it." },
+            { text: "\"Authenticate all human users to eliminate bots and increase trust.\"", type: "strategy", feedback: "<strong>Valid Strategy (Coherent Action).</strong> This is a concrete action taken to support the policy of making the platform a reliable 'Town Square'." }
+        ];
+
+        function checkFluffAnswer(choice) {
+            const current = fluffScenarios[fluffIndex];
+            const overlay = document.getElementById('fluff-feedback');
+            overlay.classList.remove('hidden');
+            
+            if (choice === current.type) {
+                fluffScore++; updateHUD(50);
+                document.getElementById('fb-title').innerText = "Correct Analysis";
+                document.getElementById('fb-title').className = "text-2xl font-bold mb-2 text-green-400";
+            } else {
+                document.getElementById('fb-title').innerText = "Analysis Failed";
+                document.getElementById('fb-title').className = "text-2xl font-bold mb-2 text-red-400";
+            }
+            document.getElementById('fb-desc').innerHTML = current.feedback;
+        }
+
+        function nextFluffScenario() {
+            fluffIndex++;
+            document.getElementById('fluff-feedback').classList.add('hidden');
+            if (fluffIndex < fluffScenarios.length) {
+                document.getElementById('fluff-statement').innerText = fluffScenarios[fluffIndex].text;
+                document.getElementById('fluff-progress').innerText = `Scenario ${fluffIndex + 1} of 5`;
+            } else {
+                document.getElementById('fluff-game-area').classList.add('hidden');
+                document.getElementById('fluff-final').classList.remove('hidden');
+                document.getElementById('final-rating-score').innerText = fluffScore === 5 ? "A+" : (fluffScore >=3 ? "B" : "D");
+            }
+        }
+
+        function resetFluffGame() {
+            fluffIndex = 0; fluffScore = 0;
+            document.getElementById('fluff-final').classList.add('hidden');
+            document.getElementById('fluff-game-area').classList.remove('hidden');
+            document.getElementById('fluff-statement').innerText = fluffScenarios[0].text;
+        }
+
+        // --- SpaceX Sim ---
+        function sxSim(stage, result, btn) {
+            if (result === 'wrong') {
+                btn.classList.add('error-shake', 'bg-red-50', 'border-red-200');
+                setTimeout(() => btn.classList.remove('error-shake'), 500);
+                return;
+            }
+            updateHUD(50);
+            const currentDiv = document.getElementById(`sx-stage-${stage}`);
+            const buttons = currentDiv.querySelectorAll('button');
+            buttons.forEach(b => {
+                if (b === btn) {
+                    b.classList.remove('bg-blue-50/50', 'border-blue-100');
+                    b.classList.add('bg-green-100', 'border-green-500', 'text-green-900');
+                } else {
+                    b.disabled = true;
+                    b.classList.add('opacity-50');
+                }
+            });
+
+            if (stage < 3) {
+                document.getElementById(`sx-stage-${stage + 1}`).classList.remove('hidden', 'opacity-50', 'pointer-events-none');
+            } else {
+                const r = document.getElementById('sx-result');
+                r.classList.remove('hidden');
+                r.innerHTML = '<h4 class="text-xl font-bold mb-2 text-green-400">Mission Accomplished</h4><p class="text-sm">AFI Framework Applied Successfully.</p>';
+                updateHUD(100);
+            }
+        }
+
+        // --- Project Cobalt Logic (RENAMED FUNCTION TO FIX BUG) ---
+        let selectedAttributes = { power: false, legitimacy: false, urgency: false };
+        let cobaltStep = 0;
+
+        function initCobalt() {
+            const feed = document.getElementById('sim-intel-feed');
+            if(feed) {
+                feed.innerHTML = '';
+                const msgs = ["> BREAKING: BBC Investigation reveals child labor in cobalt mines.", "> NGO 'Global Watch' issues ultimatum: 'Fix this or face global boycott.'", "> STOCK ALERT: Share price dips 4% in pre-market trading.", "> SOCIAL: #CleanCobalt trending #1 worldwide."];
+                msgs.forEach((msg, i) => setTimeout(() => feed.innerHTML += `<div>${msg}</div>`, i*800));
+            }
+        }
+        
+        // Use IntersectionObserver to start simulation when visible
+        const cobaltObserver = new IntersectionObserver((entries) => {
+            if(entries[0].isIntersecting && cobaltStep === 0) { initCobalt(); cobaltStep = 1; }
+        });
+        const cs = document.getElementById('sim-phase-1');
+        if(cs) cobaltObserver.observe(cs);
+
+        // RENAMED from toggleAttribute to toggleSimAttribute
+        function toggleSimAttribute(btn, attr) {
+            const isActive = btn.getAttribute('data-active') === 'true';
+            if (isActive) {
+                btn.setAttribute('data-active', 'false');
+                btn.classList.remove('bg-blue-600', 'text-white', 'border-blue-500');
+                btn.classList.add('bg-slate-800', 'text-slate-400', 'border-slate-600');
+                selectedAttributes[attr] = false;
+            } else {
+                btn.setAttribute('data-active', 'true');
+                btn.classList.remove('bg-slate-800', 'text-slate-400', 'border-slate-600');
+                btn.classList.add('bg-blue-600', 'text-white', 'border-blue-500');
+                selectedAttributes[attr] = true;
+            }
+        }
+
+        function submitAnalysis() {
+            if (selectedAttributes.power && selectedAttributes.legitimacy && selectedAttributes.urgency) {
+                document.getElementById('sim-phase-1').classList.add('hidden');
+                document.getElementById('sim-phase-2').classList.remove('hidden');
+                document.getElementById('sim-phase-2').classList.add('fade-up', 'visible');
+                updateHUD(50);
+            } else {
+                alert("Incorrect Diagnosis. Review the Intel Feed:\n- Can they hurt you? (Power)\n- Is the issue valid? (Legitimacy)\n- Is it immediate? (Urgency)\n(Hint: All 3 are present - Definitive Stakeholder)");
+            }
+        }
+
+        function chooseCSR(level) {
+            document.getElementById('sim-phase-2').classList.add('hidden');
+            const p3 = document.getElementById('sim-phase-3');
+            p3.classList.remove('hidden'); p3.classList.add('fade-up', 'visible');
+            
+            const t = document.getElementById('sim-result-title');
+            const d = document.getElementById('sim-result-desc');
+            const i = document.getElementById('sim-result-icon');
+            const s = document.getElementById('sim-stock');
+
+            if (level === 'economic') {
+                t.innerText = "PR Disaster"; t.className = "text-2xl font-bold text-red-500";
+                d.innerText = "Profits saved, brand destroyed. Stock crashed."; i.innerText = "📉";
+                s.innerText = "$45.00 (-60%)"; s.className = "text-sm font-mono text-red-500";
+            } else if (level === 'philanthropic') {
+                t.innerText = "Legendary Status"; t.className = "text-2xl font-bold text-yellow-400";
+                d.innerText = "You didn't just fix the problem; you transformed the region. Brand loyalty secured. Stock soaring."; i.innerText = "👑";
+                s.innerText = "$195.00 (+30%)"; s.className = "text-sm font-mono text-green-400";
+                updateHUD(200);
+            } else if (level === 'ethical') {
+                 t.innerText = "Resilient Leader"; t.className = "text-2xl font-bold text-blue-400";
+                 d.innerText = "The audit was expensive, but transparency won over the market. Trust restored."; i.innerText = "🛡️";
+                 s.innerText = "$155.00 (+5%)"; s.className = "text-sm font-mono text-blue-400";
+                 updateHUD(100);
+            } else {
+                 t.innerText = "Barely Survived"; t.className = "text-2xl font-bold text-orange-400";
+                 d.innerText = "Hiding behind lawyers prevented fines, but the brand is tainted."; i.innerText = "⚖️";
+                 s.innerText = "$110.00 (-15%)"; s.className = "text-sm font-mono text-orange-400";
+            }
+        }
+
+        function resetSimulation() {
+            cobaltStep = 0;
+            selectedAttributes = { power: false, legitimacy: false, urgency: false };
+            document.querySelectorAll('.sim-attr-btn').forEach(btn => {
+                btn.setAttribute('data-active', 'false');
+                btn.classList.remove('bg-blue-600', 'text-white', 'border-blue-500');
+                btn.classList.add('bg-slate-800', 'text-slate-400', 'border-slate-600');
+            });
+            document.getElementById('sim-phase-3').classList.add('hidden');
+            document.getElementById('sim-phase-1').classList.remove('hidden');
+            document.getElementById('sim-stock').innerText = "$142.50";
+            document.getElementById('sim-stock').className = "text-lg font-mono text-green-400";
+            document.getElementById('sim-rep').innerText = "95/100";
+            document.getElementById('sim-rep').className = "text-lg font-mono text-blue-400";
+            initCobalt();
+        }
+
+        // --- GRAND STRATEGY WARGAME (Turn-Based Logic) ---
+        let gsTurn = 1;
+        let gsStats = { cash: 100, share: 15, inn: 10 };
+        const gsScenarios = [
+            {
+                title: "Turn 1: The Disruption",
+                desc: "Titan Auto announces a $25k electric sedan. Your current model is $40k.",
+                opts: [
+                    { text: "Slash Prices (Price War)", cost: 20, impact: {share: 5, inn: 0, cash: -20}, log: "Price war drained cash, but held share." },
+                    { text: "Ignore & Focus on Luxury", cost: 0, impact: {share: -2, inn: 0, cash: 10}, log: "Lost mass market share, saved cash." },
+                    { text: "R&D Sprint (New Tech)", cost: 40, impact: {share: 0, inn: 20, cash: -40}, log: "Expensive R&D investment made." }
+                ]
+            },
+            {
+                title: "Turn 2: Supply Chain Shock",
+                desc: "Chip shortage halts production. Prices skyrocket.",
+                opts: [
+                    { text: "Pay Premium for Chips", cost: 30, impact: {share: 2, inn: 0, cash: -30}, log: "Secured chips, maintained production." },
+                    { text: "Pause Factory", cost: 5, impact: {share: -5, inn: 0, cash: -5}, log: "Factory halted. Market share dropped." },
+                    { text: "Redesign Chips (In-House)", cost: 20, impact: {share: -2, inn: 15, cash: -20}, log: "Innovative redesign! Long term gain." }
+                ]
+            },
+            {
+                title: "Turn 3: The Talent War",
+                desc: "Titan is poaching your top AI engineers.",
+                opts: [
+                    { text: "Match Offers (Raise Pay)", cost: 15, impact: {share: 0, inn: 5, cash: -15}, log: "Talent retained. Costs up." },
+                    { text: "Let them go", cost: 0, impact: {share: 0, inn: -10, cash: 0}, log: "Brain drain. Innovation suffered." },
+                    { text: "Sue Titan (Non-Compete)", cost: 10, impact: {share: -1, inn: 0, cash: -10}, log: "Legal battle distracts leadership." }
+                ]
+            },
+            {
+                title: "Turn 4: Product Launch",
+                desc: "Your new model is ready. How do you launch?",
+                opts: [
+                    { text: "Super Bowl Ad Blitz", cost: 50, impact: {share: 10, inn: 0, cash: -50}, log: "Massive hype! Share spiked." },
+                    { text: "Digital Only (Viral)", cost: 10, impact: {share: 5, inn: 0, cash: -10}, log: "Efficient launch. Moderate gain." },
+                    { text: "Delay for Polish", cost: 10, impact: {share: -2, inn: 5, cash: -10}, log: "Product better, but missed window." }
+                ]
+            },
+            {
+                title: "Turn 5: The Acquisition",
+                desc: "A battery startup is for sale. Titan is bidding.",
+                opts: [
+                    { text: "Buy them out!", cost: 60, impact: {share: 5, inn: 25, cash: -60}, log: "Acquired! Tech supremacy secured." },
+                    { text: "Pass", cost: 0, impact: {share: -5, inn: -5, cash: 0}, log: "Titan bought them. We fell behind." },
+                    { text: "Partnership", cost: 20, impact: {share: 2, inn: 10, cash: -20}, log: "Smart compromise." }
+                ]
+            }
+        ];
+
+        function startGrandSim() {
+            gsTurn = 1;
+            gsStats = { cash: 100, share: 15, inn: 10 };
+            document.getElementById('gs-start').classList.add('hidden');
+            document.getElementById('gs-game').classList.remove('hidden');
+            updateGSUI();
+            loadGSScenario();
+        }
+
+        function updateGSUI() {
+            document.getElementById('gs-turn').innerText = `${gsTurn}/5`;
+            document.getElementById('gs-cash').innerText = `$${gsStats.cash}M`;
+            document.getElementById('gs-share').innerText = `${gsStats.share}%`;
+            
+            // Color coding
+            document.getElementById('gs-cash').className = gsStats.cash < 20 ? "text-xl font-mono text-red-500 animate-pulse" : "text-xl font-mono text-green-400";
+        }
+
+        function loadGSScenario() {
+            if (gsTurn > 5) {
+                endGrandSim();
+                return;
+            }
+            if (gsStats.cash <= 0) {
+                gameOver("Bankrupt", "You ran out of cash. The board fired you.");
+                return;
+            }
+
+            const scen = gsScenarios[gsTurn - 1];
+            document.getElementById('gs-scenario-title').innerText = scen.title;
+            document.getElementById('gs-scenario-desc').innerText = scen.desc;
+            
+            const cont = document.getElementById('gs-options-container');
+            cont.innerHTML = '';
+            
+            scen.opts.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-4 rounded-lg border border-slate-600 bg-slate-700 hover:bg-slate-600 hover:border-blue-500 transition-all group";
+                btn.onclick = () => handleGSMove(opt);
+                btn.innerHTML = `
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold text-white group-hover:text-blue-300">${opt.text}</span>
+                        <span class="text-xs font-mono text-slate-400">Cost: $${opt.cost}M</span>
+                    </div>
+                `;
+                cont.appendChild(btn);
+            });
+        }
+
+        function handleGSMove(opt) {
+            // Apply impacts
+            gsStats.cash += opt.impact.cash;
+            gsStats.share += opt.impact.share;
+            gsStats.inn += opt.impact.inn;
+            
+            // Log
+            const log = document.getElementById('gs-log');
+            log.innerHTML += `<div>> Turn ${gsTurn}: ${opt.log}</div>`;
+            log.scrollTop = log.scrollHeight;
+
+            gsTurn++;
+            updateGSUI();
+            loadGSScenario();
+        }
+
+        function endGrandSim() {
+            document.getElementById('gs-game').classList.add('hidden');
+            document.getElementById('gs-result').classList.remove('hidden');
+            
+            // Determine Winner
+            let title, desc, icon;
+            
+            if (gsStats.share >= 30 && gsStats.cash > 20) {
+                title = "Grand Master (Market Dominator)";
+                desc = "You crushed Titan Auto. Your strategy of balanced aggression and innovation secured a monopoly.";
+                icon = "🏆";
+                updateHUD(500);
+            } else if (gsStats.share >= 20 && gsStats.inn >= 40) {
+                title = "Tech Leader (Niche)";
+                desc = "You didn't win the mass market, but your tech is superior. You are the 'Apple' of cars.";
+                icon = "🦄";
+                updateHUD(300);
+            } else if (gsStats.cash < 10) {
+                title = "Liquidity Crisis";
+                desc = "You survived, but barely. Cash flow is critical. The board is monitoring you.";
+                icon = "📉";
+                updateHUD(50);
+            } else {
+                title = "Average Performer";
+                desc = "You survived 5 turns but failed to gain significant ground. Titan Auto is still a threat.";
+                icon = "😐";
+                updateHUD(100);
+            }
+
+            document.getElementById('gs-final-title').innerText = title;
+            document.getElementById('gs-final-desc').innerText = desc;
+            document.getElementById('gs-final-icon').innerText = icon;
+            
+            document.getElementById('gs-end-cash').innerText = `$${gsStats.cash}M`;
+            document.getElementById('gs-end-share').innerText = `${gsStats.share}%`;
+            document.getElementById('gs-end-inn').innerText = gsStats.inn;
+        }
+
+        function gameOver(title, reason) {
+            document.getElementById('gs-game').classList.add('hidden');
+            document.getElementById('gs-result').classList.remove('hidden');
+            document.getElementById('gs-final-title').innerText = title;
+            document.getElementById('gs-final-title').className = "text-4xl font-bold mb-3 font-serif text-red-500";
+            document.getElementById('gs-final-desc').innerText = reason;
+            document.getElementById('gs-final-icon').innerText = "💀";
+        }
+
+        function resetGrandSim() {
+            document.getElementById('gs-result').classList.add('hidden');
+            document.getElementById('gs-start').classList.remove('hidden');
+            document.getElementById('gs-log').innerHTML = "> System Initialized... awaiting orders.";
+        }
+
+        // --- Exam ---
+        const quizQs = [
+            { q: "Strategy is:", opts: ["Goal-directed actions", "Ambition", "Tactics"], a: 0, exp: "Strategy = Diagnosis + Policy + Action." },
+            { q: "Competitive Advantage is:", opts: ["Absolute", "Relative", "Revenue"], a: 1, exp: "Relative to a benchmark." },
+            { q: "AFI stands for:", opts: ["Analyze, Formulate, Implement", "Ask, Find, Invest", "Action, Finance, Inn"], a: 0, exp: "The 3 pillars." },
+             { q: "Stakeholder Impact Analysis attributes:", opts: ["Power, Legitimacy, Urgency", "Money, Time, Effort", "Stock, Bond, Cash"], a: 0, exp: "Power, Legitimacy, and Urgency define priority." },
+             { q: "CSR Pyramid Base:", opts: ["Economic", "Legal", "Ethical"], a: 0, exp: "Profitability is required for survival." }
+        ];
+        let qIdx = 0; let qScore = 0;
+        function startQuiz() { document.getElementById('quiz-start').classList.add('hidden'); document.getElementById('quiz-active').classList.remove('hidden'); loadQ(); }
+        function loadQ() {
+            const q = quizQs[qIdx];
+            document.getElementById('quiz-question').innerText = q.q;
+            document.getElementById('quiz-progress').innerText = `Q ${qIdx+1}`;
+            document.getElementById('quiz-explanation').classList.add('hidden');
+            const d = document.getElementById('quiz-options'); d.innerHTML='';
+            q.opts.forEach((o,i) => {
+                const b = document.createElement('button');
+                b.className = "w-full text-left p-4 rounded bg-white border border-slate-200 hover:bg-slate-50";
+                b.innerText = o;
+                b.onclick = () => {
+                    const corr = i === q.a;
+                    if(corr) { qScore++; updateHUD(20); }
+                    document.getElementById('quiz-explanation').classList.remove('hidden');
+                    document.getElementById('expl-title').innerText = corr ? "Correct!" : "Incorrect";
+                    document.getElementById('expl-title').className = corr ? "font-bold text-sm mb-1 text-green-800" : "font-bold text-sm mb-1 text-red-800";
+                    document.getElementById('expl-text').innerText = q.exp;
+                    Array.from(d.children).forEach(child => child.disabled = true);
+                };
+                d.appendChild(b);
+            });
+        }
+        function nextQuizQuestion() {
+            qIdx++;
+            if(qIdx < quizQs.length) loadQ();
+            else {
+                document.getElementById('quiz-active').classList.add('hidden');
+                document.getElementById('quiz-result').classList.remove('hidden');
+                document.getElementById('quiz-final-score').innerText = `${qScore}/${quizQs.length}`;
+                if(qScore === quizQs.length) updateHUD(500);
+            }
+        }
+        function restartQuiz() { qIdx=0; qScore=0; document.getElementById('quiz-result').classList.add('hidden'); startQuiz(); }
+
+        window.onscroll = function() {
+            let h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            document.getElementById("progress-bar").style.width = (window.scrollY/h)*100 + "%";
+            document.querySelectorAll('.fade-up').forEach(el => { if(el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible'); });
+        };
+    </script>
+</body>
+</html>

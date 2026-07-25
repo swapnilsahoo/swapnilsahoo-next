@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+    <title>Consulting Case Study Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Ivy League (Content) + Session 3 (Header/Footer) -->
+    <!-- Application Structure Plan: Merged header/footer structure and styles from Session4_Porter5forces_v0.1.html. This includes the two-part fixed header (dark top bar, white nav), the main tag padding offset, and the dark footer with hexagon logo. Core content from case hub is preserved. -->
+    <!-- Visualization & Content Choices: All visualizations and content from original case hub remain. Header navigation is removed as this page's primary navigation is the card-based track selection. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        /* --- Copied from Session 3 for Header/Footer/Nav --- */
+        :root {
+            --header-height-desktop: 94px; /* 40px top-bar + 54px title-bar */
+            --header-height-mobile: 54px; /* 54px title-bar */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            color: #1f2937; /* gray-800 */
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--header-height-mobile);
+        }
+        @media (min-width: 640px) {
+            html {
+                scroll-padding-top: var(--header-height-desktop);
+            }
+        }
+
+        /* Header Elements */
+        #top-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 50; }
+        #main-nav-container { position: fixed; top: 40px; left: 0; right: 0; z-index: 40; }
+        @media (max-width: 639px) {
+            #main-nav-container { top: 0; }
+            #top-bar { display: none; }
+        }
+        
+        /* Main content padding to offset fixed header */
+        main {
+            padding-top: var(--header-height-mobile);
+        }
+        @media (min-width: 640px) {
+            main {
+                padding-top: var(--header-height-desktop);
+            }
+        }
+
+        /* Navigation Links */
+        .active-nav { color: #A51C30; border-bottom-color: #A51C30; font-weight: 600; } /* Updated to Crimson */
+        .nav-link { transition: all 0.2s ease-in-out; border-bottom: 2px solid transparent; padding-bottom: 4px; color: #4b5563; }
+        .nav-link:hover { color: #A51C30; border-bottom-color: #A51C30; } /* Updated to Crimson */
+        
+        /* EXACT ICON STYLES FROM TEMPLATE */
+        .top-bar-link svg, .footer-link svg { width: 1.125rem; height: 1.125rem; fill: currentColor; transition: color 0.2s ease-in-out; }
+        .hexagon-icon { position: relative; width: 28px; height: 28px; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3)); display: inline-block; vertical-align: middle; }
+        .hexagon-icon svg { width: 100%; height: 100%; animation: glow 2.5s infinite ease-in-out; }
+        .hexagon-path { stroke: #B91C1C; stroke-width: 1; } 
+        .hexagon-s { font-family: 'Georgia', serif; font-weight: bold; font-size: 48px; fill: #facc15; text-anchor: middle; dominant-baseline: central; }
+        @keyframes glow { 0%, 100% { filter: drop-shadow(0 0 4px rgba(239, 68, 68, 0.7)); } 50% { filter: drop-shadow(0 0 10px rgba(239, 68, 68, 1)); } }
+
+        /* Mobile Nav Select */
+        #mobile-nav {
+            -webkit-appearance: none; -moz-appearance: none; appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M7 7l3-3 3 3m0 6l-3 3-3-3'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center; background-repeat: no-repeat; background-size: 1.25em 1.25em;
+            padding: 0.5rem 2.5rem 0.5rem 0.75rem; border: 1px solid #d1d5db;
+        }
+        /* --- End of Session 3 Styles --- */
+
+        /* --- Styles from original Case Hub --- */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .track-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .track-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .nav-button {
+            transition: all 0.3s ease;
+        }
+        .nav-button.active {
+            background-color: #0d9488;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .nav-button:not(.active):hover {
+            background-color: #f1f5f9;
+        }
+        .data-file-item {
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .data-file-item:hover, .data-file-item.active {
+            background-color: #e0f2f1;
+        }
+        .architecture-box {
+            @apply text-center p-4 border-2 border-slate-300 rounded-lg shadow-sm bg-white;
+        }
+        .architecture-arrow {
+            @apply flex items-center justify-center text-3xl font-bold text-slate-500;
+        }
+        .solution-nav-button {
+            @apply w-full text-left p-3 rounded-lg font-medium text-slate-700 transition-colors duration-200;
+        }
+        .solution-nav-button:hover {
+            @apply bg-slate-100;
+        }
+        .solution-nav-button.active {
+            @apply bg-teal-600 text-white shadow-md;
+        }
+        .solution-table {
+            @apply w-full text-left border-collapse border border-slate-300;
+        }
+        .solution-table th {
+            @apply bg-slate-100 p-3 border border-slate-300;
+        }
+        .solution-table td {
+            @apply p-3 border border-slate-300;
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+
+    <!-- HEADER (Copied from Session 3) -->
+    <header id="main-header" class="shadow-sm">
+        <div id="top-bar" class="bg-gray-800 text-white py-1" style="height: 40px;">
+            <div class="container mx-auto px-6 flex justify-between items-center h-full">
+                <p class="text-xs font-medium text-slate-400">© Dr. Swapnil Sahoo 2025</p>
+                <div class="flex items-center space-x-4">
+                    <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white group" title="Website">
+                        <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
+                            <svg viewBox="0 0 52 60">
+                                <defs><linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
+                                <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#redGradient)"/><text class="hexagon-s" x="26" y="32">S</text>
+                            </svg>
+                        </div>
+                    </a>
+                    <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white top-bar-link" title="X/Twitter"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white top-bar-link" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.575 2h.093zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" clip-rule="evenodd"/></svg></a>
+                    <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white top-bar-link" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg></a>
+                </div>
+            </div>
+        </div>
+        
+        <div id="main-nav-container" class="bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200 z-50">
+            <div class="container mx-auto px-6 py-3 title-bar">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-xl font-bold text-slate-900">Consulting Firm | Student Case Hub</h1>
+                    <!-- Navigation removed as it's not relevant for this page structure -->
+                </div>
+            </div>
+            <!-- top-nav removed -->
+        </div>
+    </header>
+
+<div style="
+  width:10vw;
+  height:10vh;
+  background:transparent;
+"></div>
+
+    <main class="max-w-5xl mx-auto p-4 sm:p-6 lg:p-8">
+        <section id="introduction" class="text-center mb-12">
+            <h1 class="text-4xl font-bold tracking-tight text-slate-900 mb-4">Welcome, Students</h1>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+                This interactive hub is your guide to the campus case study. Please select the track assigned to you to explore a representative problem, data files, deliverables, and a complete solution framework.
+            </p>
+        </section>
+
+        <section id="track-selector" class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div id="select-analytics" class="track-card bg-white rounded-xl shadow-lg p-8 cursor-pointer border-4 border-transparent hover:border-teal-500">
+                <h2 class="text-3xl font-bold text-teal-700 mb-4">1. Analytics Track</h2>
+                <p class="text-lg text-slate-600 mb-6">
+                    Play the role of an **Analytics Consultant**. This track involves deep, hands-on data analysis, ETL, and visualization. You'll wrangle messy, real-world data to solve complex business problems like calculating rebates, assessing profitability, or segmenting customers.
+                </p>
+                <ul class="space-y-2 text-slate-700">
+                    <li class="flex items-center"><span class="text-teal-600 mr-2">▶</span><strong>Skills:</strong> SQL/Python, Advanced Excel, ETL Logic</li>
+                    <li class="flex items-center"><span class="text-teal-600 mr-2">▶</span><strong>Focus:</strong> Data Wrangling, Business Rule Application, Insight Generation</li>
+                </ul>
+                <button class="mt-8 w-full bg-teal-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-teal-700 transition duration-300">
+                    Explore Analytics Track
+                </button>
+            </div>
+
+            <div id="select-tech" class="track-card bg-white rounded-xl shadow-lg p-8 cursor-pointer border-4 border-transparent hover:border-indigo-500">
+                <h2 class="text-3xl font-bold text-indigo-700 mb-4">2. Technology Track</h2>
+                <p class="text-lg text-slate-600 mb-6">
+                    Play the role of a **Technology Consultant**. This track is strategic and architectural. Your client needs you to design a complete technology platform from the ground up, such as a commercial data and analytics platform for a new product launch.
+                </p>
+                <ul class="space-y-2 text-slate-700">
+                    <li class="flex items-center"><span class="text-indigo-600 mr-2">▶</span><strong>Skills:</strong> Data Architecture, Cloud Tech (AWS/Azure), Data Modeling</li>
+                    <li class="flex items-center"><span class="text-indigo-600 mr-2">▶</span><strong>Focus:</strong> Strategy, System Design, Tool Justification</li>
+                </ul>
+                <button class="mt-8 w-full bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-700 transition duration-300">
+                    Explore Technology Track
+                </button>
+            </div>
+        </section>
+
+        <hr class="my-12 border-slate-200">
+
+        <section id="content-area" class="bg-white rounded-xl shadow-lg p-6 md:p-10 min-h-[400px]">
+            <div id="default-content" class="flex flex-col items-center justify-center text-center h-full">
+                <svg class="w-24 h-24 text-slate-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                <h3 class="text-2xl font-bold text-slate-500">Please select a track above</h3>
+                <p class="text-lg text-slate-400">A representative case study will be loaded here.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER (Copied from Session 3) -->
+    <footer class="bg-gray-800 mt-16 sm:mt-24 border-t border-gray-700">
+        <div class="container mx-auto px-6 py-5">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6">
+                <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-3 group order-first sm:order-none">
+                    <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
+                        <svg viewBox="0 0 52 60">
+                            <defs><linearGradient id="footerRedGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
+                            <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#footerRedGradient)"/><text class="hexagon-s" x="26" y="32">S</text>
+                        </svg>
+                    </div>
+                    <span class="text-xs font-semibold text-slate-300 group-hover:text-white transition-colors">Dr. Swapnil Sahoo</span>
+                </a>
+                <p class="text-xs text-slate-400 order-last sm:order-none">© Dr. Swapnil Sahoo 2025</p>
+                <div class="flex space-x-5 sm:space-x-6 order-first sm:order-last">
+                    <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white footer-link" title="X/Twitter"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white footer-link" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.575 2h.093zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" clip-rule="evenodd"/></svg></a>
+                    <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white footer-link" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- TEMPLATES FOR DYNAMIC CONTENT -->
+
+    <template id="analytics-track-template">
+        <div class="animate-fade-in">
+            <h2 class="text-4xl font-bold text-teal-700 mb-4">Analytics Track: Business Analysis Case</h2>
+            <p class="text-lg text-slate-600 mb-8">
+                You are an Analytics Consultant for **"The Client,"** a large pharmaceutical company. They have just completed Q1'25 and need you to analyze their complex sales data. Your goal is to navigate their messy data, correctly apply intricate business rules, and deliver a series of key reports and insights.
+            </p>
+
+            <div class="mb-8 border-b border-slate-200">
+                <nav class="flex flex-wrap -mb-px" id="analytics-nav">
+                    <button data-target="analytics-context" class="nav-button active text-lg font-medium py-4 px-6 border-b-2 border-transparent text-slate-600 hover:text-teal-600">Business Context</button>
+                    <button data-target="analytics-data" class="nav-button text-lg font-medium py-4 px-6 border-b-2 border-transparent text-slate-600 hover:text-teal-600">Interactive Data Files</button>
+                    <button data-target="analytics-rules" class="nav-button text-lg font-medium py-4 px-6 border-b-2 border-transparent text-slate-600 hover:text-teal-600">Business Rules</button>
+                    <button data-target="analytics-deliverables" class="nav-button text-lg font-medium py-4 px-6 border-b-2 border-transparent text-slate-600 hover:text-teal-600">Your Deliverables</button>
+                    <button data-target="analytics-solution" class="nav-button text-lg font-medium py-4 px-6 border-b-2 border-transparent text-slate-600 hover:text-teal-600 font-bold">Solution Framework</button>
+                </nav>
+            </div>
+
+            <div id="analytics-content">
+                <div id="analytics-context" class="analytics-tab-content">
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-4">The Challenge: "Product X"</h3>
+                    <p class="text-slate-600 mb-4">
+                        The Client's product 'Product X' is used for treating blood cancers. They need to calculate territory-level sales and rebates for each Account (Hospital) for Q1'25.
+                    </p>
+                    <ul class="list-disc list-outside space-y-2 pl-5 text-slate-600">
+                        <li>Territory sales are complex, weighted by Group Purchasing Organization (GPO) and Account Type.</li>
+                        <li>Rebates are calculated at a System level based on GPO criteria and special memberships (like ICOP).</li>
+                        <li>Your data is spread across more than 10 different files, with known (and unknown) discrepancies.</li>
+                        <li>**Your Goal:** Create a single, reliable source of truth by cleaning, joining, and processing this data to answer 8 specific business questions.</li>
+                    </ul>
+                </div>
+
+                <div id="analytics-data" class="analytics-tab-content hidden">
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-4">Explore Your Data Files</h3>
+                    <p class="text-slate-600 mb-6">Click on a file name to see its description and a sample of its structure. This is your primary challenge: linking these files together.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="md:col-span-1">
+                            <ul id="data-file-list" class="space-y-2">
+                                <li class="data-file-item active p-3 rounded-lg font-medium" data-file="master_data">Master Data.csv</li>
+                                <li class="data-file-item p-3 rounded-lg font-medium" data-file="child_system_map">Child Id to System Id mapping.csv</li>
+                                <li class="data-file-item p-3 rounded-lg font-medium" data-file="child_address_map">Child ID Address mapping.csv</li>
+                                <li class="data-file-item p-3 rounded-lg font-medium" data-file="zip_terr_map">Zip to Terr Alignment.csv</li>
+                                <li class="data-file-item p-3 rounded-lg font-medium" data-file="icop_member">ICOP Member.csv</li>
+                                <li class="data-file-item p-3 rounded-lg font-medium" data-file="sales_crediting">Sales crediting rule.csv</li>
+                                <li class="data-file-item p-3 rounded-lg font-medium" data-file="rebate_criteria">Rebate Criteria.csv</li>
+                            </ul>
+                        </div>
+                        <div class="md:col-span-2">
+                            <div id="data-file-explorer" class="bg-slate-800 text-white rounded-lg p-4 font-mono text-sm min-h-[300px] overflow-auto">
+                                <!-- JS will populate this -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="analytics-rules" class="analytics-tab-content hidden">
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-4">Key Business Logic</h3>
+                    <p class="text-slate-600 mb-6">You must correctly apply these rules. Errors here will cascade through all your results.</p>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="text-xl font-semibold text-teal-700 mb-2">1. Sales Crediting Rule</h4>
+                            <p class="text-slate-600 mb-4">Weighted Sales must be used for all questions *except* rebate calculation and profit calculation. The multiplier depends on GPO and Account Type.</p>
+                            <table class="solution-table">
+                                <thead>
+                                    <tr>
+                                        <th>GPO</th>
+                                        <th>Account Type</th>
+                                        <th>Multiplier</th>
+                                    </tr>
+                                <thead>
+                                <tbody>
+                                    <tr>
+                                        <td>APXRV01PHS</td>
+                                        <td>340-B Clinic</td>
+                                        <td>0.2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NO CONTRACT</td>
+                                        <td>Hospital</td>
+                                        <td>1.5</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NO CONTRACT</td>
+                                        <td>Clinic</td>
+                                        <td>1.0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>IONRV01</td>
+                                        <td>Clinic</td>
+                                        <td>1.0</td>
+                                    </tr>
+                                    <tr class="bg-slate-50"><td colspan="3" class="p-3 text-center text-slate-500">...and 20+ more combinations...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-semibold text-teal-700 mb-2">2. Rebate Criteria</h4>
+                            <p class="text-slate-600 mb-4">Rebates are calculated using **raw sales (Sold Qty)** at the System ID level. Tiers vary by GPO. ICOP members have their own special contract.</p>
+                            <table class="solution-table">
+                                <thead>
+                                    <tr>
+                                        <th>Contract</th>
+                                        <th>Tier</th>
+                                        <th>Volume Range</th>
+                                        <th>Rebate/Unit</th>
+                                    </tr>
+                                <thead>
+                                <tbody>
+                                    <tr>
+                                        <td rowspan="1">Unity (UNIRV01)</td>
+                                        <td>Base Rebate</td>
+                                        <td>1+</td>
+                                        <td>$800</td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="3">Ally, ION, Onmark, etc.</td>
+                                        <td>1</td>
+                                        <td>1 - 24</td>
+                                        <td>$600</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>25 - 49</td>
+                                        <td>$750</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>50+</td>
+                                        <td>$800</td>
+                                    </tr>
+                                     <tr>
+                                        <td rowspan="3">ICOP Special Contract</td>
+                                        <td>1</td>
+                                        <td>1 - 24</td>
+                                        <td>$600</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>25 - 49</td>
+                                        <td>$750</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>50+</td>
+                                        <td>$800</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="analytics-deliverables" class="analytics-tab-content hidden">
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-4">Your 8 Solution Deliverables</h3>
+                    <p class="text-slate-600 mb-6">Your final Excel file must contain these 8 "Solution" tabs, correctly populated. Your presentation will summarize the insights from them.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <ul class="list-decimal list-outside space-y-3 pl-5 text-slate-700 text-lg">
+                                <li>List of data discrepancies and resolutions.</li>
+                                <li>Quarterly sales by territory (with graph).</li>
+                                <li>Top 10 system accounts by recent 2-quarter volume.</li>
+                                <li>ICOP member sales and total % share.</li>
+                                <li>System account level rebate calculations for Q1'25.</li>
+                                <li>Top 5 accounts (and Top 3 ICOP) by rebate.</li>
+                                <li>Top GPOs by rebate (with graph).</li>
+                                <li>Total Q1'25 profit calculation and key insight.</li>
+                            </ul>
+                        </div>
+                        <div class="flex flex-col">
+                            <h4 class="text-lg font-semibold text-slate-800 mb-2 text-center">Example Deliverable: Solution 2(A)</h4>
+                            <p class="text-sm text-slate-500 mb-4 text-center">Your output for Solution 2(A) will be a graph similar to this mock-up of total sales.</p>
+                            <div class="chart-container bg-slate-50 p-4 rounded-lg shadow-inner">
+                                <canvas id="deliverable-2a-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="analytics-solution" class="analytics-tab-content hidden">
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-4">Solution Framework & Methodology</h3>
+                    <p class="text-slate-600 mb-6">This framework outlines the solution for each of the 8 deliverables. Use the navigation to see the mock-up and methodology for each solution.</p>
+                    <div class="flex flex-col md:flex-row gap-8">
+                        <nav id="analytics-solution-nav" class="flex-shrink-0 md:w-1/4 space-y-2">
+                            <button data-target="sol-1" class="solution-nav-button active">1. Data Discrepancies</button>
+                            <button data-target="sol-2" class="solution-nav-button">2. Territory Sales</button>
+                            <button data-target="sol-3" class="solution-nav-button">3. Top 10 Accounts</button>
+                            <button data-target="sol-4" class="solution-nav-button">4. ICOP Sales Share</button>
+                            <button data-target="sol-5" class="solution-nav-button">5. Rebate Calculation</button>
+                            <button data-target="sol-6" class="solution-nav-button">6. Top Rebate Accounts</button>
+                            <button data-target="sol-7" class="solution-nav-button">7. Top GPOs by Rebate</button>
+                            <button data-target="sol-8" class="solution-nav-button">8. Q1'25 Profitability</button>
+                        </nav>
+                        <div class="flex-grow md:w-3/4">
+                            <div id="sol-1" class="solution-tab-content">
+                                <h4 class="text-xl font-semibold mb-4">Solution 1: Data Discrepancies</h4>
+                                <p class="text-slate-600 mb-4">Methodology: Load `Master Data.csv`. Filter `Sold Qty` for non-numeric values. Check for blank `GPO`s. Cross-reference `Child ID`s in Master Data against mapping files to find orphans.</p>
+                                <table class="solution-table">
+                                    <thead><tr><th>Discrepancy</th><th>Resolution</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>Non-numeric `Sold Qty` (e.g., 'ABC')</td><td>Filtered out and excluded from all calculations.</td></tr>
+                                        <tr><td>Blank `GPO`</td><td>Treated as 'NO CONTRACT' per business rule.</td></tr>
+                                        <tr><td>Missing `Child ID` in address map</td><td>Sales for this ID cannot be mapped to a territory. Excluded from territory roll-ups.</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="sol-2" class="solution-tab-content hidden">
+                                <h4 class="text-xl font-semibold mb-4">Solution 2: Quarterly Sales by Territory</h4>
+                                <p class="text-slate-600 mb-4">Methodology: 1) Join `Master Data` with `Child ID Address` (on `Child ID`) to get `Zip`. 2) Join with `Zip to Terr Alignment` (on `Zip`) to get `Full Territory`. 3) Join with `Sales Crediting Rule` (on `GPO` & `Account Type`) to get `Multiplier`. 4) Calculate `Weighted Sales` = `Sold Qty` * `Multiplier`. 5) Create a Pivot Table of `Weighted Sales` by `Full Territory` and `Quarter`.</p>
+                                <div class="chart-container"><canvas id="solution-2-chart"></canvas></div>
+                            </div>
+                            <div id="sol-3" class="solution-tab-content hidden">
+                                <h4 class="text-xl font-semibold mb-4">Solution 3: Top 10 Accounts by Recent 2-Quarter Volume</h4>
+                                <p class="text-slate-600 mb-4">Methodology: Use the enriched Master Data. 1) Join with `Child Id to System Id` (on `Child ID`) to get `System Name`. 2) Filter for Q1'25 and Q4'24. 3) Pivot `Weighted Sales` by `System Name` and `Quarter`. 4) Create a `Total` column. 5) Sort by `Total` descending and take top 10.</p>
+                                <table class="solution-table">
+                                    <thead><tr><th>System Name</th><th>Q4'24 Sales</th><th>Q1'25 Sales</th><th>Total</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>ONEONCOLOGY, LLC</td><td>850</td><td>920</td><td>1,770</td></tr>
+                                        <tr><td>FLORIDA CANCER SPECIALISTS</td><td>710</td><td>750</td><td>1,460</td></tr>
+                                        <tr><td>NEW YORK ONCOLOGY</td><td>650</td><td>680</td><td>1,330</td></tr>
+                                        <tr class="bg-slate-50"><td colspan="4" class="p-3 text-center text-slate-500">...and 7 more...</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="sol-4" class="solution-tab-content hidden">
+                                <h4 class="text-xl font-semibold mb-4">Solution 4: ICOP Sales Share</h4>
+                                <p class="text-slate-600 mb-4">Methodology: 1) Join `Master Data` with `ICOP Member` (on `Child ID`) to create an `ICOP Member (Y/N)` flag. 2) Calculate `SUM(Weighted Sales)` for Q1'25 where `ICOP Member` = 'Y'. 3) Calculate `SUM(Weighted Sales)` for all Q1'25. 4) Share = (ICOP Sales / Total Sales).</p>
+                                <table class="solution-table">
+                                    <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>Total ICOP Member Sales (Q1'25)</td><td>2,150 Units</td></tr>
+                                        <tr><td>Total All Sales (Q1'25)</td><td>8,600 Units</td></tr>
+                                        <tr><td class="font-bold">% ICOP Share</td><td class="font-bold">25.0%</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="sol-5" class="solution-tab-content hidden">
+                                <h4 class="text-xl font-semibold mb-4">Solution 5: System-Level Rebate Calculation</h4>
+                                <p class="text-slate-600 mb-4">Methodology: **Use RAW Sales (Sold Qty)**. 1) Aggregate `Sold Qty` by `System ID`, `GPO`, and `ICOP Flag`. 2) Apply logic: If `ICOP Flag` = 'Y', use ICOP tiers. 3) Else, use `GPO` tiers from `Rebate Criteria` file. 4) Calculate `Rebate` = `Sold Qty` * `Rebate per unit`.</p>
+                                <table class="solution-table">
+                                    <thead><tr><th>System ID</th><th>GPO</th><th>ICOP</th><th>Q1'25 Qty</th><th>Tier</th><th>Rebate/Unit</th><th>Total Rebate</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>300041984</td><td>IONRV01</td><td>N</td><td>45</td><td>Tier 2</td><td>$750</td><td>$33,750</td></tr>
+                                        <tr><td>300017707</td><td>IONRV01</td><td>Y</td><td>30</td><td>ICOP T2</td><td>$750</td><td>$22,500</td></tr>
+                                        <tr><td>300003333</td><td>UNIRV01</td><td>N</td><td>20</td><td>Base</td><td>$800</td><td>$16,000</td></tr>
+                                        <tr class="bg-slate-50"><td colspan="7" class="p-3 text-center text-slate-500">...and 100+ more...</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="sol-6" class="solution-tab-content hidden">
+                                <h4 class="text-xl font-semibold mb-4">Solution 6: Top Accounts by Rebate</h4>
+                                <p class="text-slate-600 mb-4">Methodology: Use the table from Solution 5. (A) Sort by `Total Rebate` descending, take top 5. (B) Filter for `ICOP` = 'Y', sort by `Total Rebate` descending, take top 3.</p>
+                                <h5 class="font-semibold mt-4 mb-2">(A) Top 5 All Accounts</h5>
+                                <table class="solution-table"><thead><tr><th>Rank</th><th>System Name</th><th>Rebate</th></tr></thead><tbody>
+                                    <tr><td>1</td><td>FLORIDA CANCER SPECIALISTS</td><td>$55,000</td></tr>
+                                    <tr><td>...</td><td>...</td><td>...</td></tr>
+                                </tbody></table>
+                                <h5 class="font-semibold mt-4 mb-2">(B) Top 3 ICOP Accounts</h5>
+                                <table class="solution-table"><thead><tr><th>Rank</th><th>System Name</th><th>Rebate</th></tr></thead><tbody>
+                                    <tr><td>1</td><td>ICOP System A</td><td>$22,500</td></tr>
+                                    <tr><td>...</td><td>...</td><td>...</td></tr>
+                                </tbody></table>
+                            </div>
+                            <div id="sol-7" class="solution-tab-content hidden">
+                                <h4 class="text-xl font-semibold mb-4">Solution 7: Top GPOs by Rebate</h4>
+                                <p class="text-slate-600 mb-4">Methodology: Use the table from Solution 5. Create a Pivot Table to `SUM(Total Rebate)` by `GPO`. Calculate % Share.</p>
+                                <div class="chart-container"><canvas id="solution-7-chart"></canvas></div>
+                            </div>
+                            <div id="sol-8" class="solution-tab-content hidden">
+                                <h4 class="text-xl font-semibold mb-4">Solution 8: Q1'25 Profitability</h4>
+                                <p class="text-slate-600 mb-4">Methodology: **Use RAW Sales (Sold Qty)**. 1) `Total Revenue` = `SUM(Sold Qty)` * $10,000 (Price). 2) `Total Expenses` = `Total Rebate` (from Sol 5) + `SUM(Sold Qty)` * $4,000 (COGS). 3) `Profit` = `Revenue` - `Expenses`.</p>
+                                <table class="solution-table">
+                                    <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>Total Revenue (8,600 * $10k)</td><td>$86,000,000</td></tr>
+                                        <tr><td>Total Rebates (from Sol 5)</td><td>($6,200,000)</td></tr>
+                                        <tr><td>Total COGS (8,600 * $4k)</td><td>($34,400,000)</td></tr>
+                                        <tr><td class="font-bold">Net Profit</td><td class="font-bold">$45,400,000</td></tr>
+                                    </tbody>
+                                </table>
+                                <h5 class="font-semibold mt-4 mb-2">Key Insight</h5>
+                                <p class="text-slate-700 p-3 bg-slate-50 rounded-lg">The ICOP members, while driving 25% of sales, account for over 35% of total rebates. This suggests their contract is less profitable per unit than standard GPO contracts, warranting a review before renewal.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </template>
+    
+    <template id="tech-track-template">
+        <div class="animate-fade-in">
+            <h2 class="text-4xl font-bold text-indigo-700 mb-4">Technology Track: System Design Case</h2>
+            <p class="text-lg text-slate-600 mb-8">
+                You are a Technology Consultant for **"The Client,"** an emerging company preparing to launch its first product. **They have no existing IT systems.** Your objective is to design their entire commercial data and analytics foundation from scratch to support their go-to-market strategy.
+            </p>
+
+            <div class="mb-8 border-b border-slate-200">
+                <nav class="flex flex-wrap -mb-px" id="tech-nav">
+                    <button data-target="tech-context" class="nav-button active text-lg font-medium py-4 px-6 border-b-2 border-transparent text-slate-600 hover:text-indigo-600">Business Context</button>
+                    <button data-target="tech-solution" class="nav-button text-lg font-medium py-4 px-6 border-b-2 border-transparent text-slate-600 hover:text-indigo-600 font-bold">Proposed Solution</button>
+                </nav>
+            </div>
+
+            <div id="tech-content">
+                <div id="tech-context" class="tech-tab-content">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-2xl font-semibold text-slate-800 mb-4">Your Key Tasks & Deliverables</h3>
+                            <p class="text-slate-600 mb-6">Your presentation must provide a comprehensive plan that addresses:</p>
+                            <ul class="list-disc list-outside space-y-3 pl-5 text-slate-700 text-lg">
+                                <li>A high-level **Go-to-Market (GTM) strategy** for the product launch.</li>
+                                <li>A list of all necessary **pharmaceutical data sources**.</li>
+                                <li>A complete **Data Architecture Design** (see example).</li>
+                                <li>**Recommended tools** (e.g., Cloud, ETL, Warehouse, BI) with justification.</li>
+                                <li>A proposed **Data Model** (e.g., Star Schema) and its layers.</li>
+                                <li>A strategy for **data quality assurance** and restatements.</li>
+                                <li>An assessment of potential **risks and mitigation** strategies.</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-2xl font-semibold text-slate-800 mb-4">Conceptual Architecture Example</h3>
+                            <p class="text-slate-600 mb-6">Your core deliverable is a diagram like this, built with your recommended tools. You must be able to explain and justify every component and data flow.</p>
+                            <div class="bg-slate-50 p-6 rounded-xl shadow-inner border border-slate-200">
+                                <div class="grid grid-cols-12 gap-2 items-center font-medium">
+                                    <div class="col-span-3">
+                                        <div class="space-y-2">
+                                            <div class="architecture-box text-sm">CRM Data (e.g., Veeva)</div>
+                                            <div class="architecture-box text-sm">Sales Data (Wholesaler)</div>
+                                            <div class="architecture-box text-sm">3rd Party Data (e.g., IQVIA)</div>
+                                            <div class="architecture-box text-sm">Marketing Data</div>
+                                        </div>
+                                    </div>
+                                    <div class="architecture-arrow col-span-1">→</div>
+                                    <div class="col-span-2">
+                                        <div class="architecture-box">Ingestion (e.g., AWS S3, Fivetran)</div>
+                                    </div>
+                                    <div class="architecture-arrow col-span-1">→</div>
+                                    <div class="col-span-2">
+                                        <div class="architecture-box">Data Warehouse (e.g., Snowflake)</div>
+                                    </div>
+                                    <div class="architecture-arrow col-span-1">→</div>
+                                    <div class="col-span-2">
+                                         <div class="architecture-box">BI Tool (e.g., Tableau)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tech-solution" class="tech-tab-content hidden">
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-4">Proposed Solution Framework</h3>
+                    <p class="text-slate-600 mb-6">The following is a high-level framework for a robust, scalable commercial data platform for "The Client."</p>
+                    <div class="space-y-8">
+                        <div>
+                            <h4 class="text-xl font-semibold mb-2 text-indigo-700">1. Go-to-Market (GTM) Strategy</h4>
+                            <ul class="list-decimal list-outside space-y-1 pl-6 text-slate-700">
+                                <li>**Market Sizing:** Identify total addressable market (patients, physicians).</li>
+                                <li>**Segmentation:** Group physicians by specialty, patient volume, and location.</li>
+                                <li>**Targeting:** Prioritize high-value segments for sales team focus.</li>
+                                <li>**Salesforce Deployment:** Align sales territories to targeted segments.</li>
+                                <li>**Performance Tracking:** Develop KPIs (e.g., Rx lift, market share) to measure launch success.</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 class="text-xl font-semibold mb-2 text-indigo-700">2. Recommended Data Sources</h4>
+                            <ul class="list-disc list-outside space-y-1 pl-6 text-slate-700">
+                                <li>**Patient Data (Claims):** Anonymized data from sources like IQVIA or Symphony to track prescriptions.</li>
+                                <li>**Sales Data:** Wholesaler data (e.g., McKesson, AmerisourceBergen) to track product flow to pharmacies.</li>
+                                <li>**CRM Data:** (e.g., Veeva, Salesforce) To track sales rep interactions with physicians.</li>
+                                <li>**Physician Data (Master):** A master list of all target physicians and their attributes.</li>
+                                <li>**Marketing Data:** Data from email campaigns, website visits, and ad spend.</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 class="text-xl font-semibold mb-2 text-indigo-700">3. Proposed Data Architecture & Tools</h4>
+                            <div class="bg-slate-50 p-6 rounded-xl shadow-inner border border-slate-200 mb-4">
+                                <div class="grid grid-cols-12 gap-2 items-center font-medium">
+                                    <div class="col-span-3"><div class="space-y-2">
+                                        <div class="architecture-box text-sm">Veeva (CRM)</div>
+                                        <div class="architecture-box text-sm">IQVIA (Claims)</div>
+                                        <div class="architecture-box text-sm">McKesson (Sales)</div>
+                                    </div></div>
+                                    <div class="architecture-arrow col-span-1">→</div>
+                                    <div class="col-span-2"><div class="architecture-box">Ingestion (AWS S3 + Fivetran)</div></div>
+                                    <div class="architecture-arrow col-span-1">→</div>
+                                    <div class="col-span-2"><div class="architecture-box">Warehouse (Snowflake)</div></div>
+                                    <div class="architecture-arrow col-span-1">→</div>
+                                    <div class="col-span-2"><div class="architecture-box">BI Tool (Tableau)</div></div>
+                                </div>
+                            </div>
+                            <table class="solution-table">
+                                <thead><tr><th>Component</th><th>Recommended Tool</th><th>Justification</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Cloud</td><td>AWS</td><td>Mature, comprehensive services (S3, Redshift, etc.), strong industry adoption.</td></tr>
+                                    <tr><td>Ingestion</td><td>Fivetran / S3</td><td>Fivetran for pre-built connectors (e.g., Salesforce), S3 as a scalable data lake for raw files.</td></tr>
+                                    <tr><td>Warehouse</td><td>Snowflake</td><td>Excellent scalability, separates storage and compute, strong performance for analytics.</td></tr>
+                                    <tr><td>BI Tool</td><td>Tableau</td><td>Highly intuitive, powerful visualizations, strong mobile support for sales reps.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div>
+                            <h4 class="text-xl font-semibold mb-2 text-indigo-700">4. Recommended Data Model</h4>
+                            <p class="text-slate-700">A **Star Schema** is recommended for the analytics layer.
+                                <br> - **Fact Tables:** `Prescriptions` (daily/weekly), `Sales_Rep_Activity`.
+                                <br> - **Dimension Tables:** `Physician_Master`, `Patient_Master` (de-identified), `Territory_Dimension`, `Date_Dimension`, `Product_Dimension`.
+                                <br>This model is simple, fast for querying, and well-understood by BI tools like Tableau.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const contentArea = document.getElementById('content-area');
+            const defaultContent = document.getElementById('default-content');
+            
+            const analyticsTemplate = document.getElementById('analytics-track-template').innerHTML;
+            const techTemplate = document.getElementById('tech-track-template').innerHTML;
+
+            const fileSnippets = {
+                master_data: {
+                    title: "Master Data.csv (Fact Table)",
+                    desc: "This is your main transaction table. It contains raw, messy sales data. You must clean this file (e.g., non-numeric sales) and enrich it using the mapping files.",
+                    snippet: `Child ID,WholesalerInvoiceID,Ship To Name,Address,GPO,340B,Account Type,Sold Qty,Invoice Date
+300015568,3210581818,NSHOA- NYCBS- ONC,159 BARNEGAT RD,IONRV01,N,Clinic,1,2025-03-31
+300001737,338565721,NYOH-CLIFTON PARK,3 CROSSING BLVD,,N,Clinic,2,2025-03-31
+300002702,3210571718,NORTH SHORE HEM/ONC,365 EAST MAIN ST,IONRV01,N,Clinic,ABC,2025-03-31
+... (Note: 'ABC' is a data discrepancy you must fix. Blank GPO must be treated as 'NO CONTRACT')`
+                },
+                child_system_map: {
+                    title: "Child Id to System Id mapping.csv (Dimension)",
+                    desc: "Use this file to map individual 'Child ID' locations to their parent 'System ID' (System Name). This is crucial for aggregating sales for rebate calculations.",
+                    snippet: `Child ID,Child Name,System ID,System Name
+300015568,NSHOA- NYCBS- ONC,300041984,"ONEONCOLOGY, LLC"
+300001737,NYOH-CLIFTON PARK,300003333,"NEW YORK ONCOLOGY HEMATOLOGY, PC"
+...`
+                },
+                child_address_map: {
+                    title: "Child ID Address mapping.csv (Dimension)",
+                    desc: "This file provides the primary address and Zip Code for each 'Child ID'. You will need this Zip Code to find the correct Territory.",
+                    snippet: `Child ID,Address,City,State,Zip
+300015568,159 BARNEGAT RD SUITE 101,POUGHKEEPSIE,NY,12601
+300001737,3 CROSSING BLVD STE 1,CLIFTON PARK,NY,12065
+...`
+                },
+                zip_terr_map: {
+                    title: "Zip to Terr Alignment.csv (Dimension)",
+                    desc: "This is the lookup file that maps a 5-digit 'Zip' code to a 'Full Territory' name and ID.",
+                    snippet: `Zip,City,State,Territory,Territory_ID,Full Territory
+12601,POUGHKEEPSIE,New York,Northeast,CAM0001,CAM0001 - Northeast
+12065,CLIFTON PARK,New York,Northeast,CAM0001,CAM0001 - Northeast
+...`
+                },
+                icop_member: {
+                    title: "ICOP Member.csv (Business Rule)",
+                    desc: "This file lists all 'Child ID's that are part of the ICOP special contract. These members get rebates based on the ICOP tier, NOT their GPO tier.",
+                    snippet: `GPO,Parent/Child,Child ID,PRACTICE NAME,ADDRESS,Lookup
+ION,Parent,300018949,Mohtaseb Cancer Center,3003 HWY 95,ICOP
+ION,Child,300017360,Salib Oncology - Phillipsburg,870 Green Street,ICOP
+...`
+                },
+                sales_crediting: {
+                    title: "Sales crediting rule.csv (Business Rule)",
+                    desc: "This rule file defines the multiplier for calculating 'Weighted Sales'. This is used for territory performance, but NOT for rebate or profit calculations.",
+                    snippet: `GPO,Account Type,Multiplier
+ALYRV01,Clinic,1
+APXRV01PHS,340-B Clinic,0.2
+NO CONTRACT,Hospital,1.5
+NO CONTRACT,Clinic,1
+...`
+                },
+                rebate_criteria: {
+                    title: "Rebate Criteria.csv (Business Rule)",
+                    desc: "This is the master logic for calculating rebates. It defines the tiers and $ per unit for each GPO and the ICOP special contract. Use RAW SALES (Sold Qty) for this.",
+                    snippet: `1. Unity (UNIRV01)
+Tier,Units,Rebate/Unit
+Base Rebate,1+,800
+
+2. Ally (ALYRV01), ION (IONRV01), Onmark (ONMRV01), ...
+Tier,Volume Range,,Rebate/Unit
+1,1,24,600
+2,25,49,750
+3,50,50+,800
+...
+3. ICOP Special Contract
+... (similar tiers)`
+                }
+            };
+
+            function showAnalyticsTrack() {
+                contentArea.innerHTML = analyticsTemplate;
+                defaultContent.classList.add('hidden');
+                
+                const navButtons = document.querySelectorAll('#analytics-nav button');
+                const tabContents = document.querySelectorAll('.analytics-tab-content');
+
+                navButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        navButtons.forEach(btn => btn.classList.remove('active', 'text-teal-600', 'border-teal-600'));
+                        button.classList.add('active', 'text-teal-600', 'border-teal-600');
+                        
+                        tabContents.forEach(content => content.classList.add('hidden'));
+                        document.getElementById(button.dataset.target).classList.remove('hidden');
+                        
+                        if (button.dataset.target === 'analytics-deliverables') {
+                            renderDeliverable2AChart();
+                        }
+                        if (button.dataset.target === 'analytics-solution') {
+                            renderSolution2Chart();
+                            renderSolution7Chart();
+                        }
+                    });
+                });
+                
+                const dataFileList = document.getElementById('data-file-list');
+                const dataFileExplorer = document.getElementById('data-file-explorer');
+                
+                function updateExplorer(fileKey) {
+                    const file = fileSnippets[fileKey];
+                    dataFileExplorer.innerHTML = `
+                        <h4 class="text-lg font-bold text-white mb-2">${file.title}</h4>
+                        <p class="text-slate-300 text-sm mb-4">${file.desc}</p>
+                        <pre class="text-cyan-300 text-xs overflow-auto">${file.snippet}</pre>
+                    `;
+                    dataFileList.querySelectorAll('li').forEach(li => li.classList.remove('active'));
+                    dataFileList.querySelector(`[data-file="${fileKey}"]`).classList.add('active');
+                }
+                
+                dataFileList.addEventListener('click', (e) => {
+                    const li = e.target.closest('li');
+                    if (li && li.dataset.file) {
+                        updateExplorer(li.dataset.file);
+                    }
+                });
+                
+                updateExplorer('master_data');
+                
+                const solutionNav = document.getElementById('analytics-solution-nav');
+                const solutionContents = document.querySelectorAll('.solution-tab-content');
+                
+                if (solutionNav) {
+                    solutionNav.addEventListener('click', (e) => {
+                        const button = e.target.closest('button');
+                        if (!button) return;
+                        
+                        solutionNav.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        
+                        solutionContents.forEach(content => content.classList.add('hidden'));
+                        document.getElementById(button.dataset.target).classList.remove('hidden');
+
+                        if (button.dataset.target === 'sol-2') {
+                            renderSolution2Chart();
+                        }
+                        if (button.dataset.target === 'sol-7') {
+                            renderSolution7Chart();
+                        }
+                    });
+                }
+            }
+
+            function showTechTrack() {
+                contentArea.innerHTML = techTemplate;
+                defaultContent.classList.add('hidden');
+                
+                const navButtons = document.querySelectorAll('#tech-nav button');
+                const tabContents = document.querySelectorAll('.tech-tab-content');
+
+                navButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        navButtons.forEach(btn => btn.classList.remove('active', 'text-indigo-600', 'border-indigo-600'));
+                        button.classList.add('active', 'text-indigo-600', 'border-indigo-600');
+                        
+                        tabContents.forEach(content => content.classList.add('hidden'));
+                        document.getElementById(button.dataset.target).classList.remove('hidden');
+                    });
+                });
+            }
+
+            function renderDeliverable2AChart() {
+                const ctx = document.getElementById('deliverable-2a-chart');
+                if (!ctx || ctx.chart) return;
+                
+                ctx.chart = new Chart(ctx.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['Q3 \'24', 'Q4 \'24', 'Q1 \'25'],
+                        datasets: [{
+                            label: 'Total Weighted Sales (Mock Data)',
+                            data: [18500, 21200, 24800],
+                            backgroundColor: 'rgba(13, 148, 136, 0.6)',
+                            borderColor: 'rgba(13, 148, 136, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, title: { display: true, text: 'Mockup: Total Quarterly Sales Trend (Solution 2A)', font: { size: 16 } } } }
+                });
+            }
+            
+            function renderSolution2Chart() {
+                const ctx = document.getElementById('solution-2-chart');
+                if (!ctx || ctx.chart) return;
+
+                ctx.chart = new Chart(ctx.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['Northeast', 'East', 'Southeast', 'Midwest', 'Texas', 'Northwest', 'Southwest', 'Central South', 'Great Plains'],
+                        datasets: [{
+                            label: 'Q1 \'25', data: [1200, 1100, 950, 1050, 800, 900, 750, 980, 870], backgroundColor: '#0d9488'
+                        }, {
+                            label: 'Q4 \'24', data: [1100, 1050, 900, 1000, 750, 800, 700, 920, 830], backgroundColor: '#a3a3a3'
+                        }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { title: { display: true, text: 'Solution 2: Quarterly Sales by Territory (Weighted)', font: { size: 16 } } } }
+                });
+            }
+            
+            function renderSolution7Chart() {
+                const ctx = document.getElementById('solution-7-chart');
+                if (!ctx || ctx.chart) return;
+
+                ctx.chart = new Chart(ctx.getContext('2d'), {
+                    type: 'pie',
+                    data: {
+                        labels: ['IONRV01', 'UNIRV01', 'ONMRV01', 'ALYRV01', 'Other'],
+                        datasets: [{
+                            label: 'Rebate Share',
+                            data: [2200000, 1500000, 1100000, 850000, 550000],
+                            backgroundColor: ['#0d9488', '#1d4ed8', '#52525b', '#65a30d', '#a3a3a3']
+                        }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { title: { display: true, text: 'Solution 7: Rebate Share by GPO', font: { size: 16 } } } }
+                });
+            }
+
+            document.getElementById('select-analytics').addEventListener('click', showAnalyticsTrack);
+            document.getElementById('select-tech').addEventListener('click', showTechTrack);
+        });
+    </script>
+</body>
+</html>

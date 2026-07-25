@@ -1,0 +1,1394 @@
+<!-- Chosen Palette: Strategic Calm (Inherited Red/Yellow/Slate/Blue from Template) for professional, clean aesthetics. -->
+<!-- Application Structure Plan: Single page, scrollable application connecting Session 1 (Recap) to Session 2 (Tesla Case). Header is STATIC (scrolls with page) to eliminate persistent gap issue. Images strategically placed to break up text and reinforce concepts. -->
+<!-- Visualization & Content Choices: Four Chart.js visualizations are used to ground the analysis in quantitative data. Simulation uses modal dialogs for analytical feedback on governance. -->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesla Strategic Analysis: Session 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Define the height of the sticky header. We will use this for scroll-padding. */
+        :root {
+            /* These variables are now symbolic since the header is STATIC, but retained for semantic purposes. */
+            --header-height-desktop: 92px; 
+            --header-height-mobile: 52px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            color: #1f2937; /* gray-800 */
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* SCROLL BEHAVIOR: Header is now STATIC/SCROLLABLE. We ONLY use smooth scroll. */
+        html {
+            scroll-behavior: smooth;
+            /* Scroll padding is only necessary if the header is fixed/sticky. Since it is static, this can be removed, but for safety against future changes, we set it to zero. */
+            scroll-padding-top: 0; 
+        }
+        @media (min-width: 640px) {
+            html {
+                scroll-padding-top: 0;
+            }
+        }
+
+        /* Header Elements are STATIC/Scrollable */
+        #top-bar, #main-nav-container {
+            position: static; /* Forces elements to flow normally */
+        }
+        
+        /* Navigation Links - REVERTED TO TEMPLATE STYLE */
+        .active-nav {
+            color: #2563eb; /* text-blue-600 */
+            border-bottom-color: #2563eb;
+            font-weight: 600;
+        }
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
+            color: #4b5563; /* text-gray-600 */
+        }
+        .nav-link:hover {
+            color: #2563eb;
+            border-bottom-color: #2563eb;
+        }
+        
+        /* CRITICAL FIX: Main content begins immediately after the header structure */
+        main {
+            padding-top: 0 !important; /* Overriding default padding from previous attempts */
+        }
+
+
+        /* Custom Styling for Content */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 380px;
+            max-height: 400px;
+            padding: 1rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+        }
+        @media (max-width: 640px) {
+            .chart-container {
+                height: 300px;
+                max-height: 320px;
+            }
+        }
+        /* UI/UX ENHANCEMENT: Made the "Central Question" box more prominent. */
+        .thought-box {
+            background-color: #eff6ff; /* blue-50 */
+            border-left: 4px solid #3b82f6; /* blue-500 */
+            padding: 1.5rem; /* Increased padding */
+            border-radius: 8px; /* Slightly larger radius */
+            margin: 2rem 0; /* More vertical space */
+            box-shadow: 0 4px 12px rgba(60, 130, 246, 0.1);
+        }
+        .thought-box p {
+            font-size: 1.25rem; /* Larger font for the key question */
+            font-weight: 500;
+            line-height: 1.5;
+            color: #1e3a8a; /* darker blue-900 */
+        }
+
+        /* UI/UX ENHANCEMENT: Added transition for hover effect on cards. */
+        .analysis-card {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border-top: 4px solid #2563eb; /* Blue accent for analysis */
+            transition: all 0.3s ease-in-out;
+        }
+
+        .analysis-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        .question-list li {
+            position: relative;
+            padding: 0.75rem 0 0.75rem 2rem; /* Add padding for icon */
+            border-bottom: 1px dashed #e5e7eb;
+        }
+        .question-list li:last-child {
+            border-bottom: none;
+        }
+        /* UI/UX ENHANCEMENT: Added a small icon to the question list for visual interest */
+        .question-list li::before {
+            content: '❓';
+            position: absolute;
+            left: 0;
+            top: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .action-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.75rem 1.25rem; /* Increased padding */
+            border-radius: 0.5rem;
+            font-weight: 600;
+            background-color: #3b82f6; /* blue-500 */
+            color: white;
+            transition: all 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .action-button:hover {
+            background-color: #2563eb; /* blue-600 */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        .section-separator {
+            margin: 4rem 0;
+            border: 0;
+            border-top: 2px solid #e5e7eb;
+        }
+        .porter-term {
+            color: #2563eb; /* Blue-600 */
+            font-weight: 700;
+            font-style: normal; /* Porter terms shouldn't be italic */
+        }
+        
+        /* --- RECAP & CONNECTOR STYLING --- */
+        .recap-box {
+            background-color: #fff;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            margin-bottom: 3rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+        }
+        .recap-item {
+            background-color: #f9fafb;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            border-left: 3px solid #3b82f6;
+        }
+        /* UI/UX ENHANCEMENT: Made the connector more visually striking */
+        .recap-connector {
+            text-align: center;
+            font-weight: 700;
+            color: #475569; /* slate-600 */
+            margin: 3rem 0;
+            position: relative;
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .recap-connector::before, .recap-connector::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 35%; /* Increased width */
+            height: 2px; /* Thicker line */
+            background: linear-gradient(to right, #f8fafc, #cbd5e1);
+        }
+        .recap-connector::after {
+            right: 0;
+            background: linear-gradient(to left, #f8fafc, #cbd5e1);
+        }
+        .recap-connector span {
+            background-color: #f8fafc; /* slate-50 */
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* --- SIMULATION STYLING --- */
+        .simulation-option { 
+            cursor: pointer; 
+            transition: all 0.2s ease-in-out; 
+            background-color: #f0f9ff; /* sky-50 */
+            border: 2px solid #bae6fd; /* sky-200 */
+            color: #0c4a6e; /* sky-900 */
+            font-weight: 600;
+            padding: 1rem; /* Increased padding */
+            border-radius: 0.75rem; /* Larger radius */
+        }
+        .simulation-option:hover { 
+            background-color: #e0f2fe; /* sky-100 */
+            border-color: #38bdf8; /* sky-400 */
+            box-shadow: 0 4px 10px -2px rgb(56 189 248 / 0.25);
+            transform: scale(1.02); /* More prominent hover */
+        }
+        
+        /* --- IMAGE STYLING --- */
+        .content-image {
+            margin: 2rem 0; /* More vertical space */
+            border-radius: 0.75rem; /* 12px */
+            overflow: hidden; /* To keep the image inside the rounded corners */
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .content-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            background-color: #f3f4f6; /* gray-100 fallback */
+        }
+        .content-image figcaption {
+            background-color: #f9fafb; /* gray-50 */
+            padding: 0.75rem 1.25rem;
+            font-size: 0.875rem; /* text-sm */
+            color: #4b5563; /* gray-600 */
+            font-style: italic;
+            border-top: 1px solid #e5e7eb; /* gray-200 */
+            text-align: center;
+        }
+
+        /* --- QUIZ STYLING --- */
+        .quiz-option { cursor: pointer; transition: all 0.2s ease-in-out; }
+        .quiz-option.correct { background-color: #dcfce7 !important; border-color: #22c55e !important; color: #15803d !important; font-weight: 500; }
+        .quiz-option.incorrect { background-color: #fee2e2 !important; border-color: #ef4444 !important; color: #b91c1c !important; font-weight: 500; }
+        .quiz-explanation { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out, margin-top 0.5s ease-in-out, opacity 0.5s ease-in-out; margin-top: 0; opacity: 0; }
+        .quiz-explanation.visible { opacity: 1; margin-top: 1rem; max-height: 200px; }
+
+        /* --- ANSWERS SECTION STYLING --- */
+        .answer-key-section {
+            background-color: #f0fdf4; /* green-50 */
+            border: 2px solid #4ade80; /* green-400 */
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 4rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .answer-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .answer-item {
+            margin-bottom: 1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed #d1d5db;
+        }
+        .answer-item strong {
+            color: #166534; /* green-800 */
+        }
+
+
+        /* --- EXACT ICON STYLES FROM TEMPLATE --- */
+        .top-bar-link svg, .footer-link svg { width: 1.125rem; height: 1.125rem; fill: currentColor; transition: color 0.2s ease-in-out; }
+        .hexagon-icon { position: relative; width: 28px; height: 28px; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3)); display: inline-block; vertical-align: middle; }
+        .hexagon-icon svg { width: 100%; height: 100%; animation: glow 2.5s infinite ease-in-out; }
+        .hexagon-path { stroke: #B91C1C; stroke-width: 1; } 
+        .hexagon-s { font-family: 'Georgia', serif; font-weight: bold; font-size: 48px; fill: #facc15; text-anchor: middle; dominant-baseline: central; }
+        @keyframes glow { 0%, 100% { filter: drop-shadow(0 0 4px rgba(239, 68, 68, 0.7)); } 50% { filter: drop-shadow(0 0 10px rgba(239, 68, 68, 1)); } }
+        
+        /* Specific styling for the top bar links to match the template's look */
+        .top-bar-link { font-size: 0.875rem; color: #9ca3af; /* gray-400 */ }
+        .top-bar-link:hover { color: #fff; }
+
+        /* UI/UX ENHANCEMENT: Improved mobile nav <select> styling */
+        #mobile-nav {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M7 7l3-3 3 3m0 6l-3 3-3-3'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.25em 1.25em;
+            padding: 0.5rem 2.5rem 0.5rem 0.75rem;
+            border: 1px solid #d1d5db;
+        }
+
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-700">
+
+    <div class="min-h-screen">
+        
+        <!-- HEADER REBUILD (STATIC, ZERO-GAP HEADER) -->
+        <header id="main-header" class="bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200 z-50">
+            
+            <!-- TOP BAR (EXACT MATCH TO TEMPLATE) -->
+            <div id="top-bar" class="bg-gray-800 text-white py-1 hidden sm:block" style="height: 40px;">
+                <div class="container mx-auto px-6 flex justify-between items-center h-full">
+                    <p class="text-xs font-medium text-slate-400">© Dr. Swapnil Sahoo 2025</p>
+                    <div class="flex items-center space-x-4">
+                        <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white group" title="Website">
+                            <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
+                                <svg viewBox="0 0 52 60">
+                                    <defs><linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
+                                    <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#redGradient)"/><text class="hexagon-s" x="26" y="32">S</text>
+                                </svg>
+                            </div>
+                        </a>
+                        <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white top-bar-link" title="X/Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                        <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white top-bar-link" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.575 2h.093zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" clip-rule="evenodd"/></svg></a>
+                        <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white top-bar-link" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MAIN TITLE BAR / NAV -->
+            <div id="main-nav-container" class="bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200 z-50">
+                <div class="container mx-auto px-6 py-3 title-bar">
+                    <div class="flex justify-between items-center">
+                        <!-- Logo/Title for Mobile -->
+                        <div class="flex items-center space-x-2 sm:hidden">
+                            <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="text-gray-300 group" title="Website">
+                                <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200" style="width: 28px; height: 28px;">
+                                    <svg viewBox="0 0 52 60">
+                                        <defs><linearGradient id="mobileRedGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
+                                        <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#mobileRedGradient)"/><text class="hexagon-s" x="26" y="32">S</text>
+                                    </svg>
+                                </div>
+                            </a>
+                            <h1 class="text-xl font-bold text-slate-900">Tesla Strategy</h1>
+                        </div>
+                        <!-- Title for Desktop -->
+                        <h1 class="text-xl font-bold text-slate-900 hidden sm:block">Tesla: Strategy, Risk, and Governance</h1>
+                        <div class="sm:hidden">
+                            <select id="mobile-nav" class="block w-auto rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm">
+                                <option value="#recap">Recap: Session 1</option>
+                                <option value="#objective">Session 2 Objective</option>
+                                <option value="#positioning">Position & Trade-offs</option>
+                                <option value="#system">Activity System & R&D</option>
+                                <option value="#oe-vs-strategy">OE vs. Strategy (Hell)</option>
+                                <option value="#market-impact">Market Impact</option>
+                                <option value="#governance">Governance & Fit</option>
+                                <option value="#verdict">Strategic Verdict</option>
+                                <option value="#quiz">Knowledge Check</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- HORIZONTAL NAVIGATION BAR (STATIC) -->
+                <nav id="top-nav" class="bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200 overflow-x-auto whitespace-nowrap hidden sm:block">
+                    <div class="container mx-auto px-6 py-2 flex space-x-4">
+                        <!-- Nav links use the EXPLICIT text-sm font-medium classes as per template -->
+                        <a href="#recap" class="nav-link text-sm active-nav font-medium">Recap: Session 1</a>
+                        <a href="#objective" class="nav-link text-sm font-medium">Objective</a>
+                        <a href="#positioning" class="nav-link text-sm font-medium">Position & Trade-offs</a>
+                        <a href="#system" class="nav-link text-sm font-medium">Activity System & R&D</a>
+                        <a href="#oe-vs-strategy" class="nav-link text-sm font-medium">OE vs. Strategy (Hell)</a>
+                        <a href="#market-impact" class="nav-link text-sm font-medium">Market Impact</a>
+                        <a href="#governance" class="nav-link text-sm font-medium">Governance & Fit</a>
+                        <a href="#verdict" class="nav-link text-sm font-medium">Strategic Verdict</a>
+                        <a href="#quiz" class="nav-link text-sm font-medium">Knowledge Check</a>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <main class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
+            <div id="main-content" class="pt-0"> <!-- Removed extra padding, already handled by static header -->
+                
+                <!-- SECTION: Session 1 Recap -->
+                <section id="recap" class="analysis-card">
+                    <h2 class="text-3xl font-bold text-blue-700 mb-6">Session 1 Recap: The Porterian Lens</h2>
+                    <p class="text-lg text-slate-700 mb-8">
+                        In our last session, we used Michael Porter's concepts to dissect the failures of corporate giants. Our key takeaway was that <span class="porter-term">Operational Effectiveness</span> (doing things well) is not <span class="porter-term">Strategy</span> (doing things differently).
+                    </p>
+
+                    <div class="recap-box">
+                        <h3 class="text-xl font-bold text-slate-800 mb-4">Three Lessons from the Fallen Giants:</h3>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div class="recap-item">
+                                <strong class="text-blue-700">Nokia's Error:</strong>
+                                <p class="text-sm text-slate-700 mt-1">Confused manufacturing excellence (OE) with a sustainable <span class="porter-term">Strategic Position</span>. Failed when the competitive basis shifted from hardware to software.</p>
+                            </div>
+                            <div class="recap-item">
+                                <strong class="text-blue-700">Kodak's Error:</strong>
+                                <p class="text-sm text-slate-700 mt-1">Refused to make the necessary <span class="porter-term">Trade-off</span>. The highly profitable film business cannibalized and killed the emergent digital future.</p>
+                            </div>
+                            <div class="recap-item">
+                                <strong class="text-blue-700">Yahoo's Error:</strong>
+                                <p class="text-sm text-slate-700 mt-1">Lacked <span class="porter-term">Fit</span>. By trying to be both a media portal and a tech company, its <span class="porter-term">Activity System</span> became fragmented, resulting in mediocrity everywhere.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="recap-connector">
+                    <span class="bg-slate-50 px-4">Now, let's apply the lens.</span>
+                </div>
+                
+                <!-- SECTION: Session 2 Objective -->
+                <section id="objective" class="analysis-card">
+                    <h2 class="text-3xl font-bold text-blue-700 mb-6">Session 2 Objective: Applying Strategy to Disruption</h2>
+                    
+                    <div class="flex flex-col items-center">
+                        <!-- Elon Musk Portrait -->
+                        <img src="https://static.scientificamerican.com/dam/m/7c8a7152a1a912/original/elon_musk.jpg?m=1726168472.509&w=1350" 
+                             alt="Elon Musk Professional Portrait" 
+                             class="case-image max-w-xs my-6 border-2 border-blue-500"
+                             onerror="this.onerror=null; this.src='https://placehold.co/300x400/2563eb/ffffff?text=Elon+Musk+Image+Load+Error';">
+                        <p class="text-sm text-slate-600 italic -mt-4 mb-8">The singular leader at the center of Tesla's strategic choices.</p>
+                    </div>
+
+                    <!-- UPDATED TEACHING OBJECTIVES -->
+                    <p class="text-lg text-slate-700 mb-4 font-semibold text-slate-900">
+                        In this session, we aim to achieve the following learning objectives:
+                    </p>
+                    <ul class="list-disc ml-6 space-y-3 text-lg text-slate-700">
+                        <li>
+                            <strong class="text-blue-700">Analyze Leadership and Industry Revolution:</strong> Examine how an individual leader can make a difference revolutionizing a whole industry and starting a highly successful company.
+                        </li>
+                        <li>
+                            <strong class="text-blue-700">Evaluate Leadership Lifecycle:</strong> Examine who might be the right leader of a company across its lifecycle.
+                        </li>
+                        <li>
+                            <strong class="text-blue-700">Identify Outlier Characteristics:</strong> Identify the characteristics of a leader that create "outlier" outcomes.
+                        </li>
+                        <li>
+                            <strong class="text-blue-700">Reflect on Governance and Growth:</strong> Reflect on the needs for strong corporate governance and what that means for founder-led companies with high growth potential.
+                        </li>
+                    </ul>
+
+                    <div class="thought-box mt-8">
+                        <p>
+                            The central question remains: **Was Tesla's chaos a necessary, calculated cost of its unique strategy, or a preventable failure of execution?**
+                        </p>
+                    </div>
+
+                    <h3 class="text-xl font-bold text-slate-800 mb-4 border-b pb-2 mt-8">Core Analytical Questions for Debate</h3>
+                    <ul class="question-list text-lg text-slate-700 space-y-2">
+                        <li>
+                            <strong class="text-blue-700">Position & Barriers:</strong> How did Tesla redefine the auto industry's barriers—from **vertical integration** to the **no-dealership model**—to create a unique position?
+                        </li>
+                        <li>
+                            <strong class="text-blue-700">Execution & Trade-offs:</strong> What price did Musk's extreme risk-taking exact in terms of operational and governance challenges?
+                        </li>
+                        <li>
+                            <strong class="text-blue-700">Governance & Fit:</strong> Do events like the SolarCity acquisition and the 25% control debate threaten the long-term **Fit** and sustainability of Tesla's strategy?
+                        </li>
+                    </ul>
+
+                    <h3 class="text-xl font-bold text-slate-800 mt-8 mb-3 border-b pb-2">Context: The Master Plan (Strategic Intent)</h3>
+                    <p class="text-slate-700 mb-4">
+                        Tesla's strategic intent was always public. We use these Master Plans as evidence of its deliberate <span class="porter-term">Strategic Position</span> (start high-end, move downmarket).
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="https://www.tesla.com/secret-master-plan" target="_blank" class="action-button">
+                            Master Plan, Part 1 (2006)
+                        </a>
+                        <a href="https://www.tesla.com/master-plan-part-3" target="_blank" class="action-button">
+                            Master Plan, Part 3 (2023)
+                        </a>
+                        <a href="https://x.com/Tesla/status/1962591324022153607" target="_blank" class="action-button">
+                            Master Plan, Part 4 (AI/Robotics Focus)
+                        </a>
+                    </div>
+                </section>
+
+                <hr class="section-separator">
+                
+                <!-- SECTION: Strategic Position & Trade-offs -->
+                <section id="positioning" class="analysis-card">
+                    <h2 class="text-3xl font-bold text-blue-700 mb-4">1. <span class="porter-term">Strategic Position</span> & <span class="porter-term">Trade-offs</span></h2>
+                    <p class="text-lg text-slate-700 mb-6">
+                        Tesla's position is a focus strategy built on radical uniqueness: a <span class="porter-term">vertically integrated technology company</span> that happens to build cars. This position is protected by deliberate <span class="porter-term">trade-offs</span> that rivals cannot easily match without dismantling their own business models.
+                    </p>
+
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Core Question: The Cost of Choosing</h3>
+                    <p class="text-lg text-slate-700 mb-6">
+                        Porter states that strategy requires <span class="porter-term">forgoing other options</span>. Analyze how **vertical integration** and **direct sales** created both insurmountable competitive advantage and crippling operational risk.
+                    </p>
+
+                    <!-- Roadster Image (FIXED) -->
+                    <figure class="content-image">
+                        <img 
+                            src="https://robbreport.com/wp-content/uploads/2024/09/GettyImages-114691417-e1726780369831.jpg?w=1000" 
+                            alt="Tesla Roadster (first generation)"
+                            onerror="this.onerror=null;this.src='https://placehold.co/1080x720/ef4444/ffffff?text=Tesla+Roadster';">
+                        <figcaption>The Roadster: The *true* initial strategic position (Master Plan, Pt. 1), proving viability with a high-end, low-volume EV.</figcaption>
+                    </figure>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-slate-100 p-6 rounded-lg border border-slate-200">
+                            <h4 class="text-lg font-bold text-slate-800 mb-2">Vertical Integration (The Production <span class="porter-term">Trade-off</span>)</h4>
+                            <p class="text-sm text-slate-700">
+                                **The Advantage (Control):** Unrivaled control over core IP (battery cells, AI software), allowing for rapid innovation and full-stack optimization. This was driven by the necessity of securing the world's **entire 2012 output of lithium-ion batteries** for its 2020 goal of **500,000 cars**.
+                            </p>
+                            <p class="text-sm text-slate-700 mt-2 font-medium text-red-700">
+                                **The <span class="porter-term">Trade-off</span> (Cost & Complexity):** Massively increased **fixed costs** and eliminated access to the vast, optimized supply chain flexibility and scale of incumbents.
+                            </p>
+                        </div>
+                        <div class="bg-blue-50 p-6 rounded-lg border border-blue-200">
+                            <h4 class="text-lg font-bold text-blue-700 mb-2">Direct Sales (The Distribution <span class="porter-term">Trade-off</span>)</h4>
+                            <p class="text-sm text-slate-700">
+                                **The Advantage (Data & Brand):** Perfect customer data loop, control over pricing, and a consistent luxury brand experience without dealer markup. This bypassed the established franchised dealer network, whose profit model (up to **60% from service and parts**) was fundamentally misaligned with low-maintenance EVs.
+                            </p>
+                            <p class="text-sm text-slate-700 mt-2 font-medium text-red-700">
+                                **The <span class="porter-term">Trade-off</span> (Capital Drain):** Required huge **capital investment** to build retail and service centers (Apple Store-inspired showrooms), diverting critical cash and management bandwidth away from the core manufacturing focus.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="section-separator">
+                
+                <!-- SECTION: The Activity System: R&D and Fit -->
+                <section id="system" class="analysis-card">
+                    <h2 class="text-3xl font-bold text-blue-700 mb-4">2. The <span class="porter-term">Activity System</span>: R&D and <span class="porter-term">Fit</span></h2>
+                    <p class="text-lg text-slate-700 mb-6">
+                        Porter defines strategy as the **<span class="porter-term">"fit"</span>** between all activities—they must reinforce each other. Tesla's primary activity is technology development. Its **R&D intensity** is the quantitative proof that its <span class="porter-term">strategy</span> is inherently different from that of its rivals.
+                    </p>
+
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Thought-Provoking Question:</h3>
+                    <p class="text-lg text-slate-700 mb-6">
+                        Is Tesla's R&D allocation an efficient allocation of resources, or is it a **necessary cost** to sustain its unique <span class="porter-term">strategic position</span> built on controlling the technology stack?
+                    </p>
+
+                    <div class="lg:flex lg:gap-6 items-center">
+                        <div class="lg:w-full">
+                            <h4 class="text-xl font-bold text-slate-800 text-center mb-4">R&D as % of Revenue (2017)</h4>
+                            <div class="chart-container mx-auto">
+                                <canvas id="rdChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h4 class="text-xl font-bold text-slate-800 mb-3 mt-6">Analysis: Quantifying Strategic Fit</h4>
+                    <p class="text-slate-700 mb-4">
+                        The data shows Tesla spending **over 11%** of its **$11.76 billion** 2017 revenue on R&D, compared to approximately **3% to 7%** for its massive competitors (e.g., Ford at 5.1% of its **$156.8 billion** revenue). This dramatically higher allocation is required by its <span class="porter-term">strategic choice</span> (<span class="porter-term">vertical integration</span>).
+                    </p>
+                    <p class="text-slate-700">
+                        **The <span class="porter-term">Fit</span>:** High R&D funding allows for superior **Product** (long range, over-the-air updates) which reinforces the <span class="porter-term">Direct Sales</span> model (customers bypass dealers for a better experience). This is a system of reinforcing activities that create a powerful, non-imitable advantage.
+                    </p>
+                </section>
+
+                <hr class="section-separator">
+                
+                <!-- SECTION: OE vs. Strategy: The Production Hell -->
+                <section id="oe-vs-strategy" class="analysis-card">
+                    <h2 class="text-3xl font-bold text-blue-700 mb-4">3. <span class="porter-term">OE vs. Strategy</span>: The Production Hell</h2>
+                    <p class="text-lg text-slate-700 mb-6">
+                        <span class="porter-term">Operational Effectiveness (OE)</span> is about performing common activities better (e.g., manufacturing quality, cost control). During 2017-2018, Tesla's OE was arguably disastrous. The question is: Did the strength of its <span class="porter-term">strategy</span> (unique product) outweigh its failings in <span class="porter-term">execution</span>?
+                    </p>
+
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Thought-Provoking Question:</h3>
+                    <p class="text-lg text-slate-700 mb-6">
+                        Examine the combined data. At the moment Tesla was losing the most money (Q2 2018 net loss of $717.5 million), the Model 3 production was finally starting to ramp up (blue bars). Was Musk's "super hardcore" leadership style a necessary <span class="porter-term">strategic asset</span> to push the radical, unproven system into execution, or was it a <span class="porter-term">liability</span> that caused the massive OE failure in the first place?
+                    </p>
+
+                    <!-- NEW: Model 3 Image - Using the link provided for "Production Hell" -->
+                    <figure class="content-image">
+                        <img 
+                            src="https://ca-times.brightspotcdn.com/dims4/default/efc9677/2147483647/strip/true/crop/2048x1151+0+0/resize/1200x674!/format/webp/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Ffa%2F96%2F39afcda5398c6ef0372a40e673fd%2Fla-1508436250-ynpgcqba2b-snap-image" 
+                            alt="Tesla Model 3 Production Hell"
+                            onerror="this.onerror=null;this.src='https://placehold.co/1080x720/1f2937/ffffff?text=Gigafactory%3A+Vertical+Integration';">
+                        <figcaption>The Model 3 "Production Hell": A visual representation of the clash between radical <span class="porter-term">Strategy</span> and poor <span class="porter-term">Operational Effectiveness</span>.</figcaption>
+                    </figure>
+                        
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="mb-4">
+                            <h4 class="text-lg font-bold text-slate-800 text-center mb-2">Revenue vs. Net Income (2016-2018)</h4>
+                            <div class="chart-container mx-auto">
+                                <canvas id="financialsChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="text-lg font-bold text-slate-800 text-center mb-2">Quarterly Production (2016-2018)</h4>
+                            <div class="chart-container mx-auto">
+                                <canvas id="productionChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h4 class="text-xl font-bold text-slate-800 mb-3 mt-4">Discussion Synthesis: The Cost of <span class="porter-term">Trade-offs</span></h4>
+                    <p class="text-slate-700">
+                        The charts visually confirm the massive <span class="porter-term">trade-off</span> cost. In Q2 2018, Tesla lost **$717.5 million** while producing only **18,440 Model 3s**, far below the 5,000 per week target needed to break even. This chaos was a direct result of skipping the industry-standard "beta" production and the failure of Musk's "alien dreadnought" automation. However, because no other company dared to make those <span class="porter-term">vertical integration trade-offs</span>, the eventual successful ramp-up secured a unique <span class="porter-term">strategic advantage</span> that competitors could not match.
+                    </p>
+                </section>
+
+                <hr class="section-separator">
+
+                <!-- SECTION: Market Impact Data: Measuring Competitive Position -->
+                <section id="market-impact" class="analysis-card">
+                    <h2 class="text-3xl font-bold text-blue-700 mb-4">4. Market Impact Data: Measuring <span class="porter-term">Competitive Position</span></h2>
+                    <p class="text-lg text-slate-700 mb-6">
+                        The ultimate measure of a successful <span class="porter-term">competitive strategy</span> is market performance. The chart below shows how Tesla's unique <span class="porter-term">strategic position</span> directly eroded the sales of established luxury competitors.
+                    </p>
+                        
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-slate-800 mb-3">Thought-Provoking Question:</h3>
+                        <p class="text-lg text-slate-700 mb-6">
+                            Luxury incumbents are highly optimized in <span class="porter-term">Operational Effectiveness</span>. If their sales consistently declined while Tesla's rose, does this prove Porter's assertion that <span class="porter-term">strategy (uniqueness) trumps operational excellence (efficiency) in the long run</span>?
+                        </p>
+                        <h4 class="text-lg font-bold text-slate-800 text-center mb-2">U.S. Luxury Sedan Sales (2014-2017)</h4>
+                        <div class="chart-container mx-auto">
+                            <canvas id="luxurySalesChart"></canvas>
+                        </div>
+                    </div>
+                </section>
+                
+                <hr class="section-separator">
+                
+                <!-- SECTION: Governance & Fit (The Threat to Sustainability) -->
+                <section id="governance" class="analysis-card">
+                    <h2 class="text-3xl font-bold text-blue-700 mb-4">5. Governance & <span class="porter-term">Fit</span> (The Threat to Sustainability)</h2>
+                    <p class="text-lg text-slate-700 mb-6">
+                        True <span class="porter-term">strategic positioning</span> must be sustainable. This requires consistency and organizational alignment (<span class="porter-term">fit</span>). Tesla's governance crises challenge the long-term sustainability of its unique position by blurring the lines between founder vision and shareholder accountability.
+                    </p>
+                    
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Analysis Question:</h3>
+                    <p class="text-lg text-slate-700 mb-6">
+                        The flashpoints below represent Musk choosing the **Vision (<span class="porter-term">Strategy</span>)** over **Accountability (Governance)**. If strategy is about long-term sustainability, do these governance failures risk destroying the very <span class="porter-term">competitive position</span> they are intended to protect?
+                    </p>
+
+                    <!-- NEW: Gigafactory Image -->
+                    <figure class="content-image">
+                        <img 
+                            src="https://i0.wp.com/electrek.co/wp-content/uploads/sites/3/2022/07/Tesla-Gigafactory-Texas-July-2022.jpg" 
+                            alt="Tesla Gigafactory Aerial View"
+                            onerror="this.onerror=null;this.src='https://placehold.co/1080x720/1f2937/ffffff?text=Gigafactory%3A+Vertical+Integration';">
+                        <figcaption>The Gigafactory: The ultimate symbol of <span class="porter-term">Vertical Integration</span> and the scale of the strategic <span class="porter-term">Trade-off</span>.</figcaption>
+                    </figure>
+
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="bg-slate-100 p-6 rounded-lg border border-slate-200">
+                            <h4 class="text-lg font-bold text-blue-700 mb-2">SolarCity Acquisition (2016)</h4>
+                            <p class="text-sm text-slate-700">
+                                **The <span class="porter-term">Strategic Defense</span>:** Essential for the integrated **Energy** strategy, reinforcing the **Master Plan**.
+                            </p>
+                            <p class="text-sm text-slate-700 mt-2 font-medium text-red-700">
+                                **The Threat to <span class="porter-term">Fit</span>:** Cost **$2.6 billion**, was rife with conflicts of interest (Musk was largest shareholder of both), and distracted management from the core Model 3 ramp-up.
+                            </p>
+                        </div>
+                        <div class="bg-slate-100 p-6 rounded-lg border border-slate-200">
+                            <h4 class="text-lg font-bold text-blue-700 mb-2">2018 SEC Charges ("Funding Secured")</h4>
+                            <p class="text-sm text-slate-700">
+                                **The <span class="porter-term">Strategic Defense</span>:** Attempt to remove the strategic constraints of being a publicly traded company.
+                            </p>
+                            <p class="text-sm text-slate-700 mt-2 font-medium text-red-700">
+                                **The Threat to <span class="porter-term">Fit</span>:** Resulted in **$40 million in fines** ($20M from Musk, $20M from Tesla), forced Musk to resign as chairman, and mandated oversight, creating external barriers to long-term **capital access**.
+                            </p>
+                        </div>
+                        <div class="bg-slate-100 p-6 rounded-lg border border-slate-200">
+                            <h4 class="text-lg font-bold text-blue-700 mb-2">25% Control Demand (2024)</h4>
+                            <p class="text-sm text-slate-700">
+                                **The <span class="porter-term">Strategic Defense</span>:** Ensures the company commits to the high-risk, long-term AI strategic position without shareholder interference.
+                            </p>
+                            <p class="text-sm text-slate-700 mt-2 font-medium text-red-700">
+                                **The Threat to <span class="porter-term">Fit</span>:** The ultimate breakdown of **corporate governance**, risking the company's removal from the **S&P 500 ESG index** (as happened in 2022) due to social and governance failures.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- NEW SECTION: Added Cybertruck Image before the final verdict -->
+                <figure class="content-image max-w-3xl mx-auto">
+                    <img 
+                        src="https://upload.wikimedia.org/wikipedia/commons/9/95/2024_Tesla_Cybertruck_Foundation_Series%2C_front_left_%28Greenwich%29.jpg" 
+                        alt="Tesla Cybertruck"
+                        onerror="this.onerror=null;this.src='https://placehold.co/1080x720/9ca3af/ffffff?text=Cybertruck%3A+New+Strategy';">
+                    <figcaption>The Cybertruck: A new, radical <span class="porter-term">Strategic Position</span> (Master Plan Pt. 4) that re-ignites the debate over vision vs. governance.</figcaption>
+                </figure>
+
+                <hr class="section-separator">
+
+                <!-- SECTION: Strategic Verdict / SIMULATION -->
+                <section id="verdict" class="analysis-card">
+                    <h2 class="text-3xl font-bold text-blue-700 mb-4">6. <span class="porter-term">Strategic Verdict</span>: The Culture vs. Control Simulation</h2>
+                    <p class="text-lg text-slate-700 mb-6">
+                        You are the lead **Independent Director** of Tesla in 2024. An investor group is demanding the board hire an external CEO to enforce **Operational Effectiveness** and improve **Governance**. You must advise the board on the long-term sustainability of the firm.
+                    </p>
+
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Decision: Is Tesla's Strategic Position Now Best Served by a New CEO?</h3>
+                    <p class="text-lg text-slate-700 mb-4">
+                        Which path best protects Tesla's competitive advantage and long-term viability?
+                    </p>
+                    
+                    <!-- UI/UX ENHANCEMENT: Restyled simulation options -->
+                    <div class="space-y-4 mb-4 p-4 bg-slate-50 rounded-lg border border-slate-200">
+                        <button onclick="simulateVote('RETAIN_MUSK')" class="simulation-option block w-full text-left">
+                            <strong>A. RETAIN MUSK as CEO (Prioritize Vision & Culture)</strong>
+                            <span class="block text-sm font-normal text-sky-800">(Strategy-as-Chaos: The visionary founder is necessary for radical leaps into AI/Robotics.)</span>
+                        </button>
+                        <button onclick="simulateVote('HIRE_EXTERNAL')" class="simulation-option block w-full text-left">
+                            <strong>B. HIRE EXTERNAL CEO (Prioritize Systems & Control)</strong>
+                            <span class="block text-sm font-normal text-sky-800">(Strategy-as-Discipline: The mature company must professionalize management and governance.)</span>
+                        </button>
+                        <button onclick="simulateVote('COMPROMISE_ROLE')" class="simulation-option block w-full text-left">
+                            <strong>C. COMPROMISE: Musk to Executive Chairman (Maintain Link, Limit Risk)</strong>
+                            <span class="block text-sm font-normal text-sky-800">(Strategy-as-Fit: Find a structural solution to harness vision while installing operational discipline.)</span>
+                        </button>
+                    </div>
+                    
+                    <p class="text-md text-slate-600 mb-2">After advising the Board, a detailed strategic analysis supporting your position will appear.</p>
+                </section>
+
+                <!-- SECTION: Practice Quiz -->
+                <section id="quiz" class="analysis-card">
+                    <h2 class="text-3xl font-bold text-blue-700 mb-6">7. Knowledge Check: 15-Question Synthesis Quiz</h2>
+                    <p class="text-lg text-slate-700 mb-8">
+                        Test your synthesis of Porter's concepts, the Tesla case facts, and the strategic implications discussed throughout the session.
+                    </p>
+                    
+                    <div class="mt-12 max-w-3xl mx-auto bg-slate-50 p-6 sm:p-8 rounded-xl shadow-inner border border-slate-200">
+                        <div class="flex justify-between items-center mb-8 pb-4 border-b border-slate-300">
+                            <h3 class="text-xl sm:text-2xl font-bold text-slate-800">Practice Quiz</h3>
+                            <div class="text-base sm:text-lg font-bold text-slate-700 bg-slate-200 px-3 py-1 sm:px-4 sm:py-2 rounded-lg whitespace-nowrap">
+                                Score: <span id="quiz-score">0 / 15</span>
+                            </div>
+                        </div>
+                        <div id="quiz-container" class="space-y-6">
+                            <!-- Quiz questions will be dynamically injected here -->
+                        </div>
+                        <div class="mt-8 text-center">
+                            <button id="show-answers-button" class="action-button bg-green-600 hover:bg-green-700 disabled:opacity-50" onclick="showAllQuizAnswers()" disabled>Show Final Score and Answers</button>
+                        </div>
+                    </div>
+                    
+                    <!-- NEW: Answer Key Section -->
+                    <div id="answer-key-summary" class="hidden answer-key-section mt-12">
+                        <h3 class="text-2xl font-bold text-green-800 mb-4">Quiz Results Summary</h3>
+                        <p class="text-xl text-green-700 mb-6">Your Final Score: <span id="final-score-display" class="font-bold"></span></p>
+                        <h4 class="text-xl font-bold text-slate-800 mb-3 border-b pb-2">Detailed Answer Key:</h4>
+                        <ul id="answer-list" class="answer-list text-sm text-slate-700">
+                            <!-- Detailed answers injected here -->
+                        </ul>
+                    </div>
+
+                </section>
+
+                <!-- NEW SECTION: Curiosity/Humor -->
+                <section id="curiosity" class="analysis-card bg-yellow-50 border-yellow-400 border-t-4 mt-8">
+                    <h2 class="text-3xl font-bold text-yellow-800 mb-6">Just for Curiosity/Humour: The Original Roadster</h2>
+                    <p class="text-lg text-yellow-800 mb-4">
+                        While the Roadster was a masterpiece of strategic positioning, its early years weren't without entertaining mechanical quirks. The original 2008 model was effectively a Lotus Elise chassis adapted for electric power, leading to some uniquely complex and hilarious owner experiences.
+                    </p>
+
+                    <div class="grid md:grid-cols-2 gap-6 mt-4">
+                        <figure class="content-image border-yellow-300 border-2">
+                            <img src="https://robbreport.com/wp-content/uploads/2024/09/GettyImages-114691417-e1726780369831.jpg?w=1000" 
+                                alt="Tesla Roadster engine bay showing power electronics"
+                                onerror="this.onerror=null;this.src='https://placehold.co/500x300/fcd34d/1f2937?text=Roadster+Quirks';">
+                            <figcaption>The 2008 Roadster: Lotus chassis meets electric innovation.</figcaption>
+                        </figure>
+                        <ul class="list-disc ml-5 space-y-4 text-sm text-yellow-900 bg-yellow-100 p-4 rounded-lg">
+                            <li>
+                                <strong class="text-yellow-700">The Power of the Trunk:</strong> The original car had two charging ports: one for the 120-volt adapter *in the trunk*, requiring the owner to leave the trunk open while charging, often overnight.
+                            </li>
+                            <li>
+                                <strong class="text-yellow-700">Key to the Future (and the Door):</strong> Before the Model S digitized everything, the Roadster required a traditional **physical key** to start the car and had old-fashioned **manual door locks**, a stark contrast to the spaceship tech under the hood.
+                            </li>
+                            <li>
+                                <strong class="text-yellow-700">The "Stealth" Mode:</strong> Early models had a system that, if the 12V battery died (a common problem), the high-voltage pack couldn't be woken up. This rendered the vehicle a multi-thousand-pound paperweight until a specific recovery sequence was performed—not so convenient!
+                            </li>
+                        </ul>
+                    </div>
+                    
+                </section>
+                <!-- END OF MAIN CONTENT -->
+            </div>
+        </main>
+            
+        <!-- MODAL STRUCTURE -->
+        <div id="modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-[100] opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out">
+            <div id="modal-content" class="bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-[85vh] overflow-y-auto p-6 sm:p-8 relative transform scale-95 opacity-0 transition-all duration-300 ease-in-out">
+                <h3 id="modal-title" class="text-2xl font-bold text-slate-900 mb-4 pr-8"></h3>
+                <div id="modal-body" class="prose-custom text-base text-slate-700"></div>
+                <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 transition-colors rounded-full p-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal">
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- FOOTER (EXACT MATCH TO TEMPLATE) -->
+        <footer class="bg-gray-800 mt-16 sm:mt-24 border-t border-gray-700">
+            <div class="container mx-auto px-6 py-5">
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6">
+                    <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-3 group order-first sm:order-none">
+                        <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
+                            <svg viewBox="0 0 52 60">
+                                <defs><linearGradient id="footerRedGradient2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
+                                <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#footerRedGradient2)"/><text class="hexagon-s" x="26" y="32">S</text>
+                            </svg>
+                        </div>
+                        <span class="text-xs font-semibold text-slate-300 group-hover:text-white transition-colors">Dr. Swapnil Sahoo</span>
+                    </a>
+                    <p class="text-xs text-slate-400 order-last sm:order-none">© Dr. Swapnil Sahoo 2025</p>
+                    <div class="flex space-x-5 sm:space-x-6 order-first sm:order-last">
+                        <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white footer-link" title="X/Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                        <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white footer-link" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.575 2h.093zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" clip-rule="evenodd"/></svg></a>
+                        <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white footer-link" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+            
+        <!-- CHART DATA AND LOGIC -->
+        <script>
+            
+            const defaultChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            font: {
+                                family: "'Inter', sans-serif",
+                            }
+                        }
+                    },
+                    tooltip: {
+                        enabled: true,
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        titleFont: { family: "'Inter', sans-serif", weight: 'bold' },
+                        bodyFont: { family: "'Inter', sans-serif" },
+                        padding: 10,
+                        cornerRadius: 4
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            font: {
+                                family: "'Inter', sans-serif",
+                            },
+                            callback: function(value, index, values) {
+                                let label = this.getLabelForValue(value);
+                                if (typeof label === 'string' && label.length > 16) {
+                                    return label.substring(0, 16) + '...';
+                                }
+                                return label;
+                            }
+                        },
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            font: {
+                                family: "'Inter', sans-serif",
+                            }
+                        },
+                        grid: {
+                            color: '#e5e7eb' /* slate-200 */
+                        }
+                    }
+                }
+            };
+
+            
+            function renderRdChart() {
+                const ctx = document.getElementById('rdChart').getContext('2d');
+                
+                const competitorData = {
+                    'Tesla': { 'Revenue': 11758.8, 'R&D': 1378 },
+                    'Ford': { 'Revenue': 156776, 'R&D': 8000 }, 
+                    'GM': { 'Revenue': 145588, 'R&D': 7300 }, 
+                    'Toyota': { 'Revenue': 247508.5, 'R&D': 9253 }, 
+                    'Volkswagen': { 'Revenue': 276995.7, 'R&D': 15152 },
+                    'BMW': { 'Revenue': 118489.4, 'R&D': 7617 }
+                };
+                
+                const labels = Object.keys(competitorData);
+                const data = labels.map(label => {
+                    const company = competitorData[label];
+                    return (company['R&D'] / company['Revenue']) * 100;
+                });
+                
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'R&D as % of Revenue (2017)',
+                            data: data,
+                            backgroundColor: (context) => {
+                                const label = context.chart.data.labels[context.dataIndex];
+                                return label === 'Tesla' ? '#3b82f6' : '#94a3b8'; /* blue-500 or slate-400 */
+                            },
+                            borderColor: (context) => {
+                                const label = context.chart.data.labels[context.dataIndex];
+                                return label === 'Tesla' ? '#2563eb' : '#64748b'; /* blue-600 or slate-500 */
+                            },
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        ...defaultChartOptions,
+                        indexAxis: 'y',
+                        scales: {
+                            x: {
+                                ...defaultChartOptions.scales.x,
+                                ticks: {
+                                    ...defaultChartOptions.scales.x.ticks,
+                                    callback: function(value) {
+                                        return value + '%';
+                                    }
+                                }
+                            },
+                            y: defaultChartOptions.scales.y
+                        }
+                    }
+                });
+            }
+
+            
+            function renderFinancialsChart() {
+                const ctx = document.getElementById('financialsChart').getContext('2d');
+                
+                const labels = ['2016 Q1', 'Q2', 'Q3', 'Q4', '2017 Q1', 'Q2', 'Q3', 'Q4', '2018 Q1', 'Q2', 'Q3', 'Q4'];
+                const totalRevenues = [251.7, 405.0, 700.0, 786.9, 1032.1, 1279.8, 1375.9, 2284.6, 2736.3, 3358.5, 6066.0, 6303.4];
+                const netIncome = [-282.3, -293.2, -21.9, -121.3, -330.3, -336.4, -619.4, -675.4, -709.6, -717.5, 311.5, 139.5];
+                
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                type: 'line',
+                                label: 'Net Income ($M)',
+                                borderColor: '#ef4444', /* Red for loss/income */
+                                backgroundColor: '#ef4444',
+                                data: netIncome,
+                                yAxisID: 'y1',
+                                fill: false,
+                                tension: 0.1,
+                                pointRadius: 4,
+                                pointBackgroundColor: '#ef4444',
+                            },
+                            {
+                                type: 'bar',
+                                label: 'Total Revenue ($M)',
+                                data: totalRevenues,
+                                backgroundColor: '#94a3b8', /* Slate-400 */
+                                yAxisID: 'y'
+                            }
+                        ]
+                    },
+                    options: {
+                        ...defaultChartOptions,
+                        scales: {
+                            x: defaultChartOptions.scales.x,
+                            y: {
+                                type: 'linear',
+                                position: 'left',
+                                title: {
+                                    display: true,
+                                    text: 'Total Revenue ($M)'
+                                },
+                                ...defaultChartOptions.scales.y
+                            },
+                            y1: {
+                                type: 'linear',
+                                position: 'right',
+                                title: {
+                                    display: true,
+                                    text: 'Net Income ($M)'
+                                },
+                                ...defaultChartOptions.scales.y,
+                                grid: {
+                                    drawOnChartArea: false 
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            
+            function renderProductionChart() {
+                const ctx = document.getElementById('productionChart').getContext('2d');
+                
+                const labels = ['2016 Q1', 'Q2', 'Q3', 'Q4', '2017 Q1', 'Q2', 'Q3', 'Q4', '2018 Q1', 'Q2', 'Q3', 'Q4'];
+                const modelS = [12851, 9764, 16047, 12700, 13450, 12000, 11865, 15200, 11730, 10930, 14500, 16225];
+                const modelX = [2081, 4638, 8774, 9500, 11550, 10000, 14065, 13120, 10070, 11370, 13100, 13500];
+                const model3 = [0, 0, 0, 0, 0, 0, 220, 1550, 8180, 18440, 42700, 56025];
+                
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'Model S',
+                                data: modelS,
+                                backgroundColor: '#94a3b8', /* Slate-400 */
+                            },
+                            {
+                                label: 'Model X',
+                                data: modelX,
+                                backgroundColor: '#64748b', /* Slate-500 */
+                            },
+                            {
+                                label: 'Model 3',
+                                data: model3,
+                                backgroundColor: '#3b82f6', /* Blue-500 (representing the core challenge/focus) */
+                            }
+                        ]
+                    },
+                    options: {
+                        ...defaultChartOptions,
+                        scales: {
+                            x: {
+                                ...defaultChartOptions.scales.x,
+                                stacked: true
+                            },
+                            y: {
+                                ...defaultChartOptions.scales.y,
+                                stacked: true,
+                                title: {
+                                    display: true,
+                                    text: 'Units Produced'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            
+            function renderLuxurySalesChart() {
+                const ctx = document.getElementById('luxurySalesChart').getContext('2d');
+                
+                const labels = ['2014', '2015', '2016', '2017'];
+                
+                const salesData = {
+                    'Tesla Model S': [16698, 25202, 29421, 27060],
+                    'BMW 7-Series': [9744, 9292, 12918, 9276],
+                    'Audi A8': [5904, 4990, 4149, 3127],
+                    'Jaguar XJ': [4329, 3611, 3834, 2721],
+                    'Lexus LS': [8559, 7165, 5514, 4094]
+                };
+                
+                const colors = {
+                    'Tesla Model S': '#2563eb', /* Blue-600 */
+                    'BMW 7-Series': '#475569', /* Slate-700 */
+                    'Audi A8': '#64748b', /* Slate-500 */
+                    'Jaguar XJ': '#94a3b8', /* Slate-400 */
+                    'Lexus LS': '#cbd5e1'  /* Slate-300 */
+                };
+                
+                const datasets = Object.keys(salesData).map(key => ({
+                    label: key,
+                    data: salesData[key],
+                    borderColor: colors[key],
+                    backgroundColor: colors[key],
+                    fill: false,
+                    tension: 0.1,
+                    pointRadius: 5
+                }));
+                
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: datasets
+                    },
+                    options: {
+                        ...defaultChartOptions,
+                        scales: {
+                            x: defaultChartOptions.scales.x,
+                            y: {
+                                ...defaultChartOptions.scales.y,
+                                title: {
+                                    display: true,
+                                    text: 'U.S. Units Sold'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // SIMULATION LOGIC START
+            const voteAnalysis = {
+                'RETAIN_MUSK': {
+                    title: "Strategic Analysis: RETAIN MUSK (Prioritizing Vision & Culture)",
+                    body: `
+                        <p class="mb-3 font-bold text-green-700">The core argument: The <span class="porter-term">Strategic Position</span> is non-negotiable and requires its architect.</p>
+                        <p class="mb-2">Retaining Musk, despite governance risks, protects the **Activity System's** central engine: the willingness to take radical technological leaps and push for vertical integration. An external CEO is likely to enforce **Operational Effectiveness (OE)** but may sacrifice the high-risk, high-reward R&D that sustains Tesla's uniqueness and non-imitable advantage.</p>
+                        <ul class="list-disc ml-5 space-y-1 text-sm text-slate-700">
+                            <li><strong class="text-blue-700">Strategy vs. Labor:</strong> The "super hardcore" culture, while ethically challenging, is the direct mechanism for executing the difficult **Vertical Integration** trade-off against traditional auto OE.</li>
+                            <li><strong class="text-blue-700">Governance for Strategy:</strong> Musk's personal power is used to overcome external pressure and push forward **Master Plan IV (AI/Robotics)**, a necessary strategic leap protected by his control.</li>
+                            <li><strong class="text-red-700">Risk of Strategic Erosion:</strong> Hiring an external CEO risks gradual **strategic convergence** toward incumbent practices, sacrificing the hard-won uniqueness for short-term stability.</li>
+                        </ul>
+                        <p class="mt-3 font-semibold text-slate-800">Conclusion: **Retaining Musk is a strategic trade-off.** It accepts short-term volatility and governance weakness to safeguard the long-term, multi-industry strategic position.</p>
+                    `
+                },
+                'HIRE_EXTERNAL': {
+                    title: "Strategic Analysis: HIRE EXTERNAL CEO (Prioritizing Systems & Control)",
+                    body: `
+                        <p class="mb-3 font-bold text-red-700">The core argument: The company's maturity demands <span class="porter-term">Operational Effectiveness</span> and sustainable governance.</p>
+                        <p class="mb-2">Tesla has graduated from scrappy startup to industry behemoth. The priority must shift from establishing a position to **sustaining it**. An external CEO would professionalize the firm, focusing on maximizing production efficiency, improving quality (OE), and stabilizing governance to ensure long-term capital access.</p>
+                        <ul class="list-disc ml-5 space-y-1 text-sm text-slate-700">
+                            <li><strong class="text-blue-700">Enforces OE & Labor:</strong> A proven operational leader would eliminate "production hell" chaos, reduce rework costs, and enforce ethical labor standards, addressing the low **ESG score** and mitigating reputational risk.</li>
+                            <li><strong class="text-blue-700">Protects Capital Access:</strong> Strong governance (reducing SEC/ESG risks) is crucial for a mature public company, protecting the **Fit** between the firm and long-term institutional investors.</li>
+                            <li><strong class="text-red-700">Risk of Vision Loss:</strong> The **Trade-off** is real: this path risks slowing the pace of radical innovation (AI/Robotics), potentially making Tesla vulnerable to disruption in the next decade.</li>
+                        </ul>
+                        <p class="mt-3 font-semibold text-slate-800">Conclusion: **Hiring an external CEO is a governance trade-off.** It accepts slower, more incremental innovation to ensure the organizational **Sustainability** and protect the existing market dominance.</p>
+                    `
+                },
+                'COMPROMISE_ROLE': {
+                    title: "Strategic Analysis: COMPROMISE (Musk as Executive Chairman)",
+                    body: `
+                        <p class="mb-3 font-bold text-amber-700">The core argument: Seeking structural <span class="porter-term">Fit</span> to mitigate the Founder's Paradox.</p>
+                        <p class="mb-2">Separating the CEO and Chairman roles is a classic compromise to harness **Vision** (Musk as Chairman/Chief Product Architect) while installing **Discipline** (a new, operational CEO). This structural solution aims to integrate the core **Activity System** while protecting governance.</p>
+                        <ul class="list-disc ml-5 space-y-1 text-sm text-slate-700">
+                            <li><strong class="text-blue-700">Clarity of Trade-off:</strong> The market gains clarity on operational focus (CEO) and strategic direction (Musk), reducing investor confusion.</li>
+                            <li><strong class="text-blue-700">Focus on Core Competencies:** Musk is free to focus on product/technology (Master Plan) while the CEO focuses on scaling and accountability (**Operational Effectiveness**).</li>
+                            <li><strong class="text-red-700">Risk of Blurred Authority:** This structure often fails due to **organizational dissonance** and lack of clear authority, risking **Yahoo's** fate where management churn led to strategic incoherence.</li>
+                        </ul>
+                        <p class="mt-3 font-semibold text-slate-800">Conclusion: **This compromise is risky.** It is an attempt to avoid the pain of a clear **Trade-off**, potentially resulting in a lack of decisive action and organizational drift.</p>
+                    `
+                }
+            };
+            
+            window.simulateVote = (choice) => {
+                const analysis = voteAnalysis[choice];
+                if (analysis) {
+                    openModal(analysis.title, analysis.body);
+                }
+            };
+            // SIMULATION LOGIC END
+
+            // Function to get the current, actual sticky header height
+            function getStickyHeaderHeight() {
+                const header = document.getElementById('main-header');
+                return header ? header.offsetHeight : 0;
+            }
+
+            // Function to update the active class on the top navbar (Scroll-Spy)
+            function updateActiveNav() {
+                const sections = document.querySelectorAll('section.analysis-card'); // More specific selector
+                const navLinks = document.querySelectorAll('.nav-link');
+                const mobileNav = document.getElementById('mobile-nav');
+                
+                // Add a 20px buffer to the header height
+                const stickyHeaderHeight = getStickyHeaderHeight() + 20; 
+                let activeSectionId = '';
+                
+                sections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    // If the section top is above the sticky header's bottom edge
+                    if (rect.top <= stickyHeaderHeight) {
+                        activeSectionId = section.id;
+                    }
+                });
+
+                // Handle edge cases (top and bottom)
+                if (window.scrollY < 200 && sections.length > 0) {
+                    activeSectionId = sections[0].id;
+                }
+                const lastSection = sections[sections.length - 1];
+                if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 50 && lastSection) {
+                    activeSectionId = lastSection.id;
+                }
+
+                // Apply active class to desktop links
+                let activeLinkFound = false;
+                navLinks.forEach(link => {
+                    link.classList.remove('active-nav');
+                    if (link.getAttribute('href') === `#${activeSectionId}`) {
+                        link.classList.add('active-nav');
+                        activeLinkFound = true;
+                    }
+                });
+                // Default to first link if none is active (e.g., at the very top)
+                if (!activeLinkFound && navLinks.length > 0) {
+                    navLinks[0].classList.add('active-nav');
+                }
+
+                // Apply active state to mobile select
+                if (mobileNav) {
+                    const targetOptionValue = `#${activeSectionId}`;
+                    const optionExists = Array.from(mobileNav.options).some(option => option.value === targetOptionValue);
+                    if (optionExists) {
+                         mobileNav.value = targetOptionValue;
+                    } else {
+                         mobileNav.value = mobileNav.options[0].value;
+                    }
+                }
+            }
+            
+            // Modal Logic
+             const modal = document.getElementById('modal');
+             const modalContent = document.getElementById('modal-content');
+             window.openModal = (title, body) => { 
+                 document.getElementById('modal-title').innerText = title;
+                 document.getElementById('modal-body').innerHTML = body;
+                 modal.classList.remove('pointer-events-none');
+                 modal.classList.remove('opacity-0');
+                 document.body.style.overflow = 'hidden';
+                 setTimeout(() => { modalContent.classList.remove('scale-95', 'opacity-0'); }, 10);
+             };
+             window.closeModal = () => { 
+                 modal.classList.add('opacity-0');
+                 modalContent.classList.add('scale-95', 'opacity-0');
+                 document.body.style.overflow = '';
+                 setTimeout(() => modal.classList.add('pointer-events-none'), 300);
+             };
+             modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+
+
+            // QUIZ LOGIC START
+            const quizData = [
+                { q: "What does Porter define as the primary goal of Operational Effectiveness (OE)?", o: ["Achieving a unique market position.", "Performing similar activities better than rivals.", "Making necessary trade-offs.", "Expanding market share in high-growth segments."], a: 1, e: "OE is defined as performing similar activities better—improving quality, efficiency, and speed. It is distinct from Strategy, which is about performing different activities." },
+                { q: "Tesla's initial **Roadster/Model S** launch strategy aligns best with which of Porter's competitive forces relative to the auto industry?", o: ["Threat of Substitutes (EVs replace ICE cars).", "Bargaining Power of Buyers (Customers demanding EVs).", "Rivalry Among Existing Competitors (Direct head-to-head competition).", "Threat of New Entrants (EVs being non-traditional for the auto industry)."], a: 0, e: "By creating a superior, high-performance electric car, Tesla offered a powerful substitute for traditional gasoline luxury cars, changing the basis of competition." },
+                { q: "The 'production hell' faced during the Model 3 ramp-up is a clear failure of:", o: ["Strategic Positioning.", "Vertical Integration as a Trade-off.", "Operational Effectiveness (OE).", "Customer segmentation."], a: 2, e: "The chaos, rework, and lack of efficiency were failures of **Operational Effectiveness**—the system was not performing the manufacturing activity well." },
+                { q: "Why did Tesla's **Direct Sales Model** create a crucial strategic advantage (a competitive barrier) over legacy automakers?", o: ["It eliminated all capital costs for distribution.", "It forced all legacy rivals to immediately adopt the model.", "It bypassed the dealer network whose profit model ($\\sim 60\\%$ from service/parts) was fundamentally misaligned with low-maintenance EVs.", "It was cheaper than hiring commissioned sales agents."], a: 2, e: "The dealer profit model created a structural conflict for incumbents, making Tesla's direct sales a powerful structural advantage (Trade-off) that rivals could not easily copy without facing massive internal conflict." },
+                { q: "Tesla's remarkably high R&D spending (over $\\mathbf{11\\%}$ of revenue) is BEST justified by its strategy as a requirement for:", o: ["Achieving market share targets for the Model 3.", "Sustaining **Vertical Integration** and technology control (software, battery IP).", "Reducing labor costs on the factory floor.", "Financing Musk's other ventures (SpaceX, X)."], a: 1, e: "To own and control the battery, AI, and software systems (**Vertical Integration**), Tesla must maintain this high R&D cost. It is a mandatory cost to sustain its unique strategic **Activity System**." },
+                { q: "The concept of **Fit** is critical for competitive sustainability because:", o: ["It guarantees the company will always earn a profit.", "It makes the entire **Activity System** harder to imitate than any single component.", "It forces the company to focus purely on **Operational Effectiveness**.", "It prevents the CEO from taking any external risks."], a: 1, e: "Porter states that when activities are interdependent (Fit), a rival must copy the entire complex system to gain any benefit, making imitation mathematically difficult." },
+                { q: "The acquisition of SolarCity created severe **Governance** risks. Strategically, this acquisition risked violating the principle of:", o: ["Operational Effectiveness (OE).", "**Trade-offs**, by diverting resources and focus from the core Model 3 production crisis.", "**Strategic Position**, by moving too far from the luxury segment.", "The Bargaining Power of Suppliers."], a: 1, e: "The SolarCity deal forced a clear choice of resource allocation: focus on the existential Model 3 ramp-up or fund the non-core energy business, violating the necessary resource trade-offs." },
+                { q: "Why is Musk's 'ultra hardcore' leadership style considered a **Trade-off** for Tesla?", o: ["It guarantees high employee retention and loyalty.", "It substitutes for a robust, standardized **Operational Effectiveness** system, relying on individual superhuman effort.", "It makes the company attractive to all institutional investors.", "It is the only style compatible with selling EVs."], a: 1, e: "Musk's style is a *Trade-off* that trades stable, repeatable processes (good OE) for chaotic, high-intensity innovation and push—an unsustainable, but sometimes necessary, lever." },
+                { q: "In the simulation, arguing to **HIRE AN EXTERNAL CEO** is primarily a vote for which strategic component?", o: [ "New, radical R&D investment.", "Increased market share in the luxury segment.", "Enhanced **Operational Effectiveness** and improved **Governance**.", "The abandonment of the Vertical Integration model." ], a: 2, e: "An external CEO's value proposition is always professionalizing systems to improve compliance (Governance) and efficiency (OE)." },
+                { q: "The controversy over **working conditions and safety** at the Fremont factory (leading to low ESG scores) fundamentally threatens Tesla's core **Activity System** because:", o: [ "It proves that Tesla's battery technology is unsafe.", "It damages the company's brand, raising the cost of capital and alienating institutional investors who prioritize sustainability.", "It means the Model Y is no longer competitive on price.", "It forces the company to outsource all R&D activities." ], a: 1, e: "Poor ESG scores directly increase the cost of capital and threaten long-term stability by limiting access to institutional investment pools (a failure of the Activity System's Fit with finance)." },
+                { q: "Porter argues that the sustainability of a strategy relies on **Second- and Third-Order Fit**. Which of the following best represents a **Second-Order Fit** activity at Tesla?", o: [ "Installing robots on the assembly line (Operational Effectiveness).", "Using **Direct Sales** to control pricing, which reinforces the **Over-the-Air Software Updates** to build a strong customer relationship.", "Borrowing money from a bank (General Activity).", "Offering Model S vehicles in red, black, and white." ], a: 1, e: "The two activities reinforce each other: Direct contact facilitates rapid software deployment, and excellent software validates the direct customer relationship." },
+                { q: "The debate over Musk's $\\mathbf{25\\%}$ voting control demand directly relates to the teaching objective concerning:", o: [ "Measuring Operational Effectiveness (OE).", "Reflecting on **Governance and Growth** for founder-led companies.", "The shift in luxury sedan sales market share (Chart 4).", "The necessity of reducing fixed costs." ], a: 1, e: "This is a core governance issue at a critical growth juncture, directly testing the balance of founder control vs. corporate accountability." },
+                { q: "The fact that in $\\mathbf{2017}$, Tesla required **11%** of revenue for $\\mathbf{R\\&D}$ while rivals required $\\mathbf{3\\%}$ to $\\mathbf{7\\%}$ suggests that the primary basis of competition in the auto industry has shifted from:", o: [ "**Operational Effectiveness** (low-cost, efficient assembly) to **Vertical Integration** (owning the tech stack).", "Product quality to marketing expenditure.", "Access-based positioning to needs-based positioning.", "Maximizing production efficiency to maximizing retail sales." ], a: 0, e: "High R&D is necessary to own the core technology (battery, AI), proving that the battle has moved beyond merely efficient assembly (OE)." },
+                { q: "If the Board chose the **COMPROMISE** option (Musk to Executive Chairman), the primary risk, according to Porter, is that the company would violate the core principle of:", o: [ "The pursuit of perfect Operational Effectiveness.", "Making clear **Trade-offs** (risking strategic incoherence).", "Ignoring competitor actions (Benchmarking).", "Eliminating all fixed costs." ], a: 1, e: "A compromise is an attempt to avoid a clear choice, risking the 'stuck in the middle' syndrome and leading to management indecision and confusion." },
+                { q: "The leadership style that is perfect for a scrappy startup seeking **Strategic Position** (like early Tesla) but is ill-suited for a massive, mature public company is called the **Leadership Lifecycle** problem. This primarily highlights the need for the right leader to manage the evolving demands of:", o: [ "The company's external lobbying efforts.", "The transition from **Strategy-as-Founding Vision** to **Strategy-as-Sustainable System**.", "The market's increasing acceptance of EVs.", "The need to sell the company to a larger rival." ], a: 1, e: "The chaotic, visionary founder is necessary to establish the unique position, but the systematic, disciplined manager is needed to sustain the complex Activity System." }
+            ];
+
+            const scoreSummary = {
+                correctAnswers: [1, 0, 2, 2, 1, 1, 1, 1, 2, 1, 1, 1, 0, 1, 1], // Correct indices (0-based)
+                totalQuestions: 15
+            };
+            
+            // Function to generate the quiz UI
+            function renderQuiz() {
+                const quizContainer = document.getElementById('quiz-container');
+                
+                const quizHtml = quizData.map((item, index) => {
+                    // Safety check added here to prevent 'map' on undefined
+                    const optionsHtml = Array.isArray(item.o) ? item.o.map((optionText, optionIndex) => {
+                        // Use item.o for option text, check for existence before rendering
+                        const optionDisplay = optionText ? optionText : `Option ${optionIndex + 1}`; 
+                        return `
+                            <button type="button" 
+                                class="quiz-option block w-full text-left p-2.5 border border-slate-300 rounded-md bg-white hover:bg-slate-50 hover:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-400 focus:ring-opacity-50 text-xs" 
+                                data-q-index="${index}" 
+                                data-a-index="${optionIndex}" 
+                                onclick="checkQuizAnswer(this, ${index}, ${optionIndex})">
+                                ${optionDisplay}
+                            </button>
+                        `;
+                    }).join('') : '<p class="text-red-500">Error loading options for this question.</p>'; // Fallback for safety
+
+                    return `
+                        <div id="q${index + 1}" class="border-t border-slate-300 pt-5 first:border-t-0">
+                            <p class="text-sm font-semibold text-slate-800 mb-4">${index + 1}. ${item.q}</p>
+                            <div id="q${index + 1}-options" class="space-y-2">
+                                ${optionsHtml}
+                            </div>
+                            <p id="q${index + 1}-explanation" class="quiz-explanation text-xs text-slate-600 bg-slate-100 p-3 rounded-md border border-slate-200">
+                                <strong class='text-slate-700'>Rationale:</strong> ${item.e}
+                            </p>
+                        </div>
+                    `;
+                }).join('');
+
+                quizContainer.innerHTML = quizHtml;
+            }
+
+            let questionsAnswered = 0;
+            let currentScore = 0;
+            const answeredState = Array(quizData.length).fill(false);
+
+            window.checkQuizAnswer = function(button, qIndex, aIndex) {
+                if (answeredState[qIndex]) return;
+
+                const parent = document.getElementById(`q${qIndex + 1}-options`);
+                const explanation = document.getElementById(`q${qIndex + 1}-explanation`);
+                const correctIndex = quizData[qIndex].a;
+                const isCorrect = aIndex === correctIndex;
+
+                // Disable all options and remove hover state
+                Array.from(parent.children).forEach(child => {
+                    child.disabled = true;
+                    child.classList.remove('hover:bg-slate-50', 'hover:border-blue-400');
+                });
+
+                // Apply correct/incorrect styling
+                if (isCorrect) {
+                    button.classList.add('correct');
+                    currentScore++;
+                } else {
+                    button.classList.add('incorrect');
+                    // Highlight the correct answer
+                    if (parent.children[correctIndex]) {
+                        parent.children[correctIndex].classList.add('correct');
+                    }
+                }
+
+                // Show explanation
+                explanation.classList.add('visible');
+                explanation.style.maxHeight = explanation.scrollHeight + 'px';
+                
+                // Update score and answered status
+                document.getElementById('quiz-score').textContent = `${currentScore} / ${scoreSummary.totalQuestions}`;
+                questionsAnswered++;
+                answeredState[qIndex] = true;
+
+                // Check if all questions are answered
+                if (questionsAnswered === scoreSummary.totalQuestions) {
+                    document.getElementById('show-answers-button').disabled = false;
+                }
+            };
+            
+            window.showAllQuizAnswers = function() {
+                const summaryDiv = document.getElementById('answer-key-summary');
+                const scoreDisplay = document.getElementById('final-score-display');
+                const answerList = document.getElementById('answer-list');
+
+                // Display final score
+                scoreDisplay.textContent = `${currentScore} / ${scoreSummary.totalQuestions}`;
+
+                // Generate detailed answer list
+                answerList.innerHTML = quizData.map((item, index) => {
+                    // Check for array validity again before accessing elements
+                    const correctOptionText = Array.isArray(item.o) && item.o[item.a] ? item.o[item.a] : "N/A (Error)";
+                    return `
+                        <li class="answer-item text-sm">
+                            <span class="font-bold text-slate-800">Q${index + 1}:</span> ${item.q}
+                            <br>
+                            <span class="text-green-700 font-semibold ml-4">Correct Answer:</span> 
+                            <strong class="text-green-800">${correctOptionText}</strong>
+                        </li>
+                    `;
+                }).join('');
+
+                // Show the summary section
+                summaryDiv.classList.remove('hidden');
+                summaryDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            };
+            // QUIZ LOGIC END
+
+
+            document.addEventListener('DOMContentLoaded', () => {
+                // Render all charts and the quiz once the DOM is ready
+                renderRdChart();
+                renderFinancialsChart();
+                renderProductionChart();
+                renderLuxurySalesChart();
+                renderQuiz(); // Inject the quiz content
+                
+                // Set up scroll listener for navigation activation
+                window.addEventListener('scroll', updateActiveNav);
+                updateActiveNav(); // Initial check
+            });
+
+        </script>
+    </div>
+
+</body>
+</html>

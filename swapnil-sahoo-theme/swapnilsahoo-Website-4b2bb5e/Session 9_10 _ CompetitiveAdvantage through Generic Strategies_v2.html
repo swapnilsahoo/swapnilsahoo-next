@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBA Session: Generic Strategies & The Patagonia Case</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Earthy Harmony -->
+    <!-- Application Structure Plan: The application is structured as a narrative journey for an MBA student. It begins with foundational theory (Porter's Generic Strategies) presented in a clear, comparative format. This section uses interactive tabs and a comparison chart to facilitate understanding of the core concepts. The app then pivots to a deep-dive case study on Patagonia, structured thematically. It explores Patagonia's history, its multi-faceted differentiation strategy, and the innovative ownership model, now including a strategic simulation. This structure was chosen to first equip the user with theoretical tools and then allow them to apply these tools to a complex, real-world example. The flow encourages exploration, with clickable elements revealing deeper insights, moving from 'what are the strategies?' to 'how does a real company apply, and even transcend, these strategies?'. -->
+    <!-- Visualization & Content Choices: 
+        - Porter's Strategies: Goal: Compare & Inform. Method: Interactive tabs for each strategy (Cost Leadership, Differentiation, Focus) and a summary bar chart. Interaction: Clicking tabs reveals detailed descriptions, examples, and pitfalls. The chart provides a high-level visual comparison. Justification: This allows for both quick overview and detailed exploration, catering to different learning paces. Library: Chart.js for the comparative chart.
+        - Patagonia's Evolution: Goal: Show Change. Method: An interactive timeline built with HTML/CSS. Interaction: Hovering or clicking on timeline points reveals key milestones. Justification: A timeline is the most intuitive way to present historical progression and strategic evolution.
+        - Patagonia's Differentiation: Goal: Organize & Inform. Method: A grid of interactive cards, each representing a pillar of differentiation (Operations, Product, Brand, Mission). Interaction: Clicking a card flips it or expands it to show detailed examples. Justification: This organizes complex, multi-layered information into digestible chunks and encourages user interaction to uncover details.
+        - Ownership Model Analysis: Goal: Compare & Analyze. Method: A dynamic diagram comparing rejected ownership models with the final chosen structure. Interaction: Users can click on different options (IPO, PE Sale, ESOP, etc.) to see a summary of pros, cons, and why Patagonia rejected it, contrasting it with the selected Trust/Collective model. Justification: This visual comparison makes the complex decision-making process behind the new ownership structure clear and understandable. Library: Chart.js for a radar chart comparing models on key criteria.
+        - Strategic Simulation: Goal: Enable user choice & show impact. Method: Interactive buttons for decisions, Radar Chart (Chart.js) for metric impact, and dynamic textual feedback. Interaction: User clicks a decision, chart and text update. Justification: Provides a direct, experiential learning opportunity for applying strategic concepts and understanding trade-offs.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #383838;
+            display: flex; /* Added for simulation layout */
+            flex-direction: column; /* Added for simulation layout */
+            min-height: 100vh; /* Added for simulation layout */
+        }
+        .container {
+            flex-grow: 1; /* Added for simulation layout */
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover {
+            color: #004B5A;
+            border-bottom-color: #004B5A;
+        }
+        .strategy-tab.active {
+            background-color: #004B5A;
+            color: #FFFFFF;
+        }
+        .strategy-tab {
+            transition: all 0.3s ease;
+        }
+        .content-section {
+            /* All sections are initially visible for scroll flow */
+            display: block; 
+        }
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+            padding-left: 2.5rem;
+            border-left: 2px solid #D1D5DB;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -0.5rem;
+            top: 0;
+            height: 1rem;
+            width: 1rem;
+            background-color: #FDFBF8;
+            border: 2px solid #004B5A;
+            border-radius: 9999px;
+        }
+        .ownership-option {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left-width: 4px;
+            border-color: transparent;
+        }
+        .ownership-option.active {
+            background-color: #E6F3F5;
+            border-color: #004B5A;
+        }
+        .chart-container { 
+            position: relative; 
+            width: 100%; 
+            max-width: 800px; /* General chart container max-width */
+            margin-left: auto; 
+            margin-right: auto; 
+            height: 300px;
+            max-height: 40vh;
+        }
+        @media (min-width: 768px) { 
+            .chart-container { 
+                height: 400px; 
+            } 
+        }
+        .differentiation-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .differentiation-card-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .differentiation-card.active .differentiation-card-content {
+            max-height: 500px; /* Sufficiently large to show all content */
+            transition: max-height 0.5s ease-in;
+        }
+        /* Simulation specific styles */
+        .decision-button {
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .decision-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        /* Override for simulation chart container to be slightly smaller */
+        #simulation-results-chart-container { 
+            max-width: 500px; /* Specific max-width for simulation chart */
+            height: 350px; /* Specific height for simulation chart */
+            max-height: 50vh;
+        }
+        @media (min-width: 768px) { 
+            #simulation-results-chart-container { 
+                height: 450px; 
+            } 
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="bg-gray-100 text-gray-700 py-2 text-center text-sm">
+        © Dr. Swapnil Sahoo 2025 | 
+        <a href="https://x.com/swapnilsahoo" target="_blank" class="text-[#004B5A] hover:underline">Twitter</a> | 
+        <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" class="text-[#004B5A] hover:underline">Instagram</a> | 
+        <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" class="text-[#004B5A] hover:underline">LinkedIn</a>
+    </div>
+
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold text-[#004B5A]">Strategic Management Interactive</h1>
+            <div class="flex space-x-4 md:space-x-8">
+                <a href="#intro" class="nav-link text-gray-700 font-semibold">Introduction</a>
+                <a href="#porter" class="nav-link text-gray-700 font-semibold">Porter's Strategies</a>
+                <a href="#patagonia" class="nav-link text-gray-700 font-semibold">Patagonia Case</a>
+                <a href="#conclusion" class="nav-link text-gray-700 font-semibold">Conclusion</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-8 md:py-12">
+
+        <section id="intro" class="content-section">
+            <div class="text-center max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-5xl font-bold text-[#004B5A] mb-4">Differentiation & Cost Leadership</h2>
+                <p class="text-lg md:text-xl text-gray-600 mb-6"></p>
+                <p class="text-base md:text-lg text-gray-700">To kick off today's session, let's consider a fundamental question: **How does a company pursue competitive advantage across its chosen market scope?** Michael Porter's generic strategies describe the answers, and that's precisely what we'll delve into. We will begin with his foundational Generic Strategies framework and then apply these concepts to a compelling, real-world case study: Patagonia. Through interactive exploration, you will analyze how a company's mission can profoundly influence its strategic positioning and even challenge the traditional boundaries of capitalism.</p>
+                <div class="mt-8 text-left">
+                    <h3 class="text-xl font-bold text-[#004B5A] mb-4">Session Objectives:</h3>
+                    <ol class="list-decimal list-inside text-gray-700 space-y-2">
+                        <li>Analyze Competitive Advantage: Evaluate how competitive advantage is achieved and sustained through strategic choices, specifically understanding the core principles, characteristics, and conditions for success of Porter's generic strategies.</li>
+                        <li>Apply Framework to Real-World Cases: Apply the generic strategies framework to a complex, purpose-driven organization like Patagonia, understanding how its mission profoundly influences its strategic positioning.</li>
+                        <li>Assess Non-Traditional Ownership Models: Critically assess the implications of non-traditional ownership models on a company's strategic choices, profitability, and broader societal impact.</li>
+                        <li>Reflect on Business's Role: Reflect on the evolving role of business in addressing global challenges, such as the environmental crisis, and consider personal leadership legacies.</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section id="porter" class="content-section py-12">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-[#004B5A]">Foundations of Competitive Advantage</h2>
+                <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-700">Michael Porter's generic strategies describe how a company can achieve competitive advantage. The framework outlines three distinct paths: Cost Leadership, Differentiation, and Focus. Explore each strategy below to understand its core principles, advantages, and risks.</p>
+            </div>
+
+            <div class="flex justify-center mb-8 space-x-2 md:space-x-4 bg-gray-200 p-2 rounded-full max-w-md mx-auto">
+                <button class="strategy-tab active w-full py-2 px-4 rounded-full font-semibold" onclick="showStrategy('cost')">Cost Leadership</button>
+                <button class="strategy-tab w-full py-2 px-4 rounded-full font-semibold" onclick="showStrategy('diff')">Differentiation</button>
+                <button class="strategy-tab w-full py-2 px-4 rounded-full font-semibold" onclick="showStrategy('focus')">Focus</button>
+            </div>
+
+            <div id="strategy-content" class="max-w-5xl mx-auto">
+                <div id="cost-content" class="strategy-details">
+                    <div class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold text-[#004B5A] mb-4">Cost Leadership</h3>
+                        <p class="text-gray-700 mb-4">The goal is to become the lowest-cost producer in the industry. This is achieved through economies of scale, efficiency, and tight cost control. It allows a firm to compete on price, but it must maintain an acceptable level of quality to succeed.</p>
+                        <div class="grid md:grid-cols-2 gap-6 mt-6">
+                            <div>
+                                <h4 class="font-semibold text-lg mb-2">Key Drivers</h4>
+                                <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                    <li>Economies of scale</li>
+                                    <li>Streamlined operations & supply chain</li>
+                                    <li>High volume, standardized products</li>
+                                    <li>Minimal discretionary spending (e.g., R&D, ads)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-2">Examples & Pitfalls</h4>
+                                <p class="text-gray-600"><strong class="text-green-700">Success:</strong></p>
+                                <ul class="list-disc list-inside text-gray-600 ml-4 space-y-1">
+                                    <li>**Walmart:** As one of the world's largest retailers, Walmart's massive buying power allows it to negotiate significantly lower prices from suppliers. It then passes these savings on to its customers, leading to its signature "Everyday Low Prices" strategy. Walmart's supply chain is highly optimized, using sophisticated technology to track products and reduce costs throughout the distribution process. It strategically locates stores close to each other and utilizes a technique called cross-docking to streamline inventory management, further minimizing expenses. Walmart streamlines its operations, reduces waste, and maximizes productivity through technology, automation, and employee training.</li>
+                                    <li>**Ryanair:** Renowned for its cost-effective operations, offering no-frills services and affordable air travel across Europe.</li>
+                                    <li>**IKEA:** Combines efficient manufacturing, flat packaging for easy transportation, and customer self-assembly to provide stylish, affordable furniture.</li>
+                                </ul>
+                                <p class="text-gray-600 mt-4"><strong class="text-red-700">Failure:</strong></p>
+                                <ul class="list-disc list-inside text-gray-600 ml-4 space-y-1">
+                                    <li>**K-Mart:** Failed in a price war against Walmart, struggling to offer higher quality products at the same or lower prices, leading to a reputation for cheap, inferior goods and eventual bankruptcy.</li>
+                                    <li>**Yugo:** Despite its very low price, it was an "extremely unreliable car" so poorly made that drivers could not depend on it, leading to its dismal failure and withdrawal from the market.</li>
+                                </ul>
+                                <p class="text-gray-600 mt-2"><strong>Risk:</strong> Competitors imitating methods, or quality falling below the market's acceptable threshold. For cost leadership to succeed, perceived quality must meet or exceed a minimum acceptable standard.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="diff-content" class="strategy-details hidden">
+                     <div class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold text-[#004B5A] mb-4">Differentiation</h3>
+                        <p class="text-gray-700 mb-4">The goal is to offer a product or service that is perceived as unique and valuable by customers. This allows the firm to command a premium price and builds strong customer loyalty, shifting competition away from price alone.</p>
+                        <div class="grid md:grid-cols-2 gap-6 mt-6">
+                            <div>
+                                <h4 class="font-semibold text-lg mb-2">Key Drivers</h4>
+                                <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                    <li>Unique product features or design</li>
+                                    <li>Superior customer service</li>
+                                    <li>Strong brand image and reputation</li>
+                                    <li>Innovation and technology</li>
+                                    <li>Ethical or social stance</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-2">Examples & Pitfalls</h4>
+                                <p class="text-gray-600"><strong class="text-green-700">Success:</strong></p>
+                                <ul class="list-disc list-inside text-gray-600 ml-4 space-y-1">
+                                    <li>**Apple:** Apple has successfully differentiated itself in the technology industry by focusing on innovation, design, and a premium user experience. Apple is known for its sleek, minimalist designs, and user-friendly interfaces, which set its products apart from competitors. They constantly innovate and offer unique features like superior cameras, seamless device integration, and a focus on privacy in their operating systems. Apple creates a cohesive ecosystem of hardware (iPhones, iPads, Macs, Apple Watches) and software (iOS, macOS, watchOS), ensuring seamless integration and a superior user experience. This ecosystem fosters strong customer loyalty, making users more likely to stay within the Apple family of products. Apple's branding emphasizes quality, innovation, and premium craftsmanship, positioning its products as luxury and aspirational items. Its marketing campaigns often use storytelling and emotional appeals to resonate with consumers on a personal level.</li>
+                                    <li>**Nike:** Emphasizes brand image, high-performance athletic products, continuous innovation, and marketing that often aligns with social justice issues.</li>
+                                    <li>**The Walt Disney Company:** Differentiates through its unparalleled customer service standards and a vast array of well-known characters.</li>
+                                </ul>
+                                <p class="text-gray-600 mt-4"><strong class="text-red-700">Failure:</strong></p>
+                                <ul class="list-disc list-inside text-gray-600 ml-4 space-y-1">
+                                    <li>**New Coke:** Failed despite blind taste tests suggesting a superior flavor, because it underestimated consumers' deep emotional attachment to the original brand and its history.</li>
+                                    <li>**Kodak:** Despite inventing the digital camera, it ultimately failed because it remained tied to its traditional print processing methods and did not adapt its core strategy to the fundamental market shift towards digital photography.</li>
+                                </ul>
+                                <p class="text-gray-600 mt-2"><strong>Risk:</strong> Uniqueness not valued by customers, or the cost of differentiation exceeding the price premium. Differentiation requires continuous investment and adaptation to market shifts.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="focus-content" class="strategy-details hidden">
+                     <div class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold text-[#004B5A] mb-4">Focus (Niche Strategy)</h3>
+                        <p class="text-gray-700 mb-4">The goal is to serve a specific, narrow market segment more effectively than broader competitors. This can be achieved through either lower cost (Cost Focus) or differentiation (Differentiation Focus) within that niche.</p>
+                        <div class="grid md:grid-cols-2 gap-6 mt-6">
+                            <div>
+                                <h4 class="font-semibold text-lg mb-2">Key Drivers</h4>
+                                <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                    <li>Deep understanding of the niche's needs</li>
+                                    <li>Tailored products, services, and marketing</li>
+                                    <li>Can achieve strong customer loyalty</li>
+                                    <li>Diminished competition from broad players</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-2">Examples & Pitfalls</h4>
+                                <p class="text-gray-600"><strong class="text-green-700">Success (Cost Focus):</strong></p>
+                                <ul class="list-disc list-inside text-gray-600 ml-4 space-y-1">
+                                    <li>**Motel 6:** Has sustained competitive advantage for over 50 years by focusing on budget-conscious consumers seeking inexpensive lodging.</li>
+                                    <li>**Monster Energy Drink:** Gained significant market share by focusing on a definite market group, offering larger cans at a lower price per liter compared to its initial competitor, Red Bull.</li>
+                                </ul>
+                                <p class="text-gray-600 mt-4"><strong class="text-green-700">Success (Differentiation Focus):</strong></p>
+                                <ul class="list-disc list-inside text-gray-600 ml-4 space-y-1">
+                                    <li>**Boutique Hotel Chains:** Boutique hotels are a great example of a focus strategy, catering to a specific niche of travelers seeking unique, personalized experiences rather than a standardized hotel stay. They target travelers who prioritize aesthetics, unique design, personalized service, and local immersion over chain-hotel consistency and lower prices. They offer a more intimate and tailored experience with distinctive decor, locally inspired designs, and highly personalized customer service. This might include themed rooms, unique amenities, locally sourced food, or curated experiences that reflect the surrounding culture. Boutique hotels excel at anticipating and fulfilling guests' needs, providing a warm and welcoming environment with meticulous attention to detail. They might offer personalized greetings, customized amenities, and insider tips from staff who are often local experts.</li>
+                                    <li>**Lululemon:** Successfully focuses on the niche market of premium athletic apparel and yoga-inspired clothing, tailoring its products and brand image to fitness enthusiasts.</li>
+                                    <li>**Grado:** Targets a smaller niche market of headphone enthusiasts with a vintage style, particularly appealing to rock and heavy metal music listeners.</li>
+                                </ul>
+                                <p class="text-gray-600 mt-2"><strong>Risk:</strong> Niche market is too small or shrinks, or broad competitors find ways to serve the niche. Vulnerability to rapid obsolescence if the niche's needs or preferences shift dramatically.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12">
+                <h3 class="text-center text-2xl font-bold text-[#004B5A] mb-6">Strategies at a Glance</h3>
+                <div class="chart-container">
+                    <canvas id="strategyChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="patagonia" class="content-section py-12">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-[#004B5A]">Case Study: Patagonia's Purpose-Driven Strategy</h2>
+                <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-700">Patagonia provides a masterclass in building a powerful, multi-layered differentiation strategy. Its journey from a niche gear maker to a global brand with the mission "We're in business to save our home planet" offers profound strategic lessons. Explore its evolution and groundbreaking ownership model below.</p>
+            </div>
+            
+            <div class="bg-white p-6 md:p-8 rounded-lg shadow-lg mb-12">
+                <h3 class="text-2xl font-bold text-[#004B5A] mb-6">Timeline of a Mission</h3>
+                <div class="relative">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h4 class="font-bold text-lg">1970s: The Foundation</h4>
+                        <p class="text-gray-600">Yvon Chouinard innovates climbing gear to minimize environmental harm (e.g., aluminum chocks). Emphasis is on quality, durability, and function.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h4 class="font-bold text-lg">1985: Formalizing Commitment</h4>
+                        <p class="text-gray-600">Patagonia pledges 1% of sales to environmental causes, institutionalizing its values.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h4 class="font-bold text-lg">1994: Radical Sourcing</h4>
+                        <p class="text-gray-600">Switches entire cotton line to organic cotton, a risky move that operationalizes its mission at a core level.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h4 class="font-bold text-lg">2011: Challenging Consumerism</h4>
+                        <p class="text-gray-600">The "Don't Buy This Jacket" ad campaign launches, urging customers to reduce consumption. Certifies as a B Corp, legally embedding its purpose.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h4 class="font-bold text-lg">2018: Sharpening the Mission</h4>
+                        <p class="text-gray-600">Mission statement evolves to the more urgent: "We're in business to save our home planet."</p>
+                    </div>
+                    <div class="timeline-item" style="border-left: 2px solid transparent;">
+                        <div class="timeline-dot"></div>
+                        <h4 class="font-bold text-lg">2022: "Earth Is Now Our Only Shareholder"</h4>
+                        <p class="text-gray-600">A radical ownership transfer dedicates all future profits to fighting the environmental crisis, cementing its purpose in perpetuity.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 md:p-8 rounded-lg shadow-lg mb-12">
+                <h3 class="text-2xl font-bold text-center text-[#004B5A] mb-6">Patagonia's Multi-Layered Differentiation</h3>
+                <p class="text-center max-w-3xl mx-auto text-gray-700 mb-8">Patagonia's differentiation is not just about products; it's an organizational philosophy. Click on each pillar to reveal how its purpose is woven into every aspect of its strategy, creating an unparalleled competitive advantage.</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="differentiation-card bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-lg" onclick="toggleCard(this)">
+                        <h4 class="text-xl font-bold text-[#004B5A] mb-3">Operations</h4>
+                        <p class="text-gray-600">How Patagonia integrates its mission into its daily functions and supply chain.</p>
+                        <div class="differentiation-card-content mt-4">
+                            <ul class="list-disc list-inside text-gray-700 space-y-2">
+                                <li>**Planet-First Decisions:** Prioritizing environmental choices often led to increased profits, challenging conventional wisdom.</li>
+                                <li>**Sustainable Sourcing:** Boldly switched all cotton products to organic cotton, despite significant business risk.</li>
+                                <li>**Circular Economy:** Worn Wear Program offers free repairs, buyback, resale, and recycling, promoting product longevity.</li>
+                                <li>**Employee-Centric Culture:** Progressive policies like onsite daycare and paid parental leave foster a highly motivated, mission-aligned workforce.</li>
+                                <li>**Limited Growth:** Consciously limits growth to pre-set targets, pushing back against "growth at all costs" mentality.</li>
+                                <li>**Legal Commitments:** B Corp certification and California benefit corporation registration legally bind social and environmental commitments.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="differentiation-card bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-lg" onclick="toggleCard(this)">
+                        <h4 class="text-xl font-bold text-[#004B5A] mb-3">Product Design</h4>
+                        <p class="text-gray-600">The philosophy behind Patagonia's products: built to last and designed for the planet.</p>
+                        <div class="differentiation-card-content mt-4">
+                            <ul class="list-disc list-inside text-gray-700 space-y-2">
+                                <li>**Durability & Functionality:** Products are "useful, versatile, long-lasting, repairable and recyclable."</li>
+                                <li>**Environmental Innovation:** Continuous development of materials like pile fleece and organic cotton to reduce impact.</li>
+                                <li>**Regenerative Ideal:** Aspirational goal of products that "give back to the earth as much as they take."</li>
+                                <li>**Timeless Design:** Focus on "timeless, essential, best quality, beautiful, signature/iconic" products, discouraging overconsumption.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="differentiation-card bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-lg" onclick="toggleCard(this)">
+                        <h4 class="text-xl font-bold text-[#004B5A] mb-3">Brand Messaging</h4>
+                        <p class="text-gray-600">How Patagonia communicates its values and mission to the world, often provocatively.</p>
+                        <div class="differentiation-card-content mt-4">
+                            <ul class="list-disc list-inside text-gray-700 space-y-2">
+                                <li>**Direct Environmental Advocacy:** Actively engages in political advocacy, opposing climate policy withdrawals and even suing the government.</li>
+                                <li>**"DON'T BUY THIS JACKET":** Iconic campaign challenging consumerism, highlighting commitment to sustainability.</li>
+                                <li>**Activism as Identity:** The brand itself is positioned as "an act of activism."</li>
+                                <li>**Immeasurable Success:** Marketing focuses on "reputation and credibility, and our mission to save our home planet," not just financial ROI.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="differentiation-card bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-lg" onclick="toggleCard(this)">
+                        <h4 class="text-xl font-bold text-[#004B5A] mb-3">Corporate Mission</h4>
+                        <p class="text-gray-600">The core purpose that drives Patagonia's existence and strategic decisions.</p>
+                        <div class="differentiation-card-content mt-4">
+                            <ul class="list-disc list-inside text-gray-700 space-y-2">
+                                <li>**Evolving Mission:** Refined to the urgent "We're in business to save our home planet."</li>
+                                <li>**"Earth Is Now Our Only Shareholder":** Radical ownership transfer dedicating all future profits to fighting the environmental crisis.</li>
+                                <li>**Redefining Capitalism:** Aims to provide "a new model for capitalism."</li>
+                                <li>**Long-Term Stewardship:** Patagonia Purpose Trust designed to protect the mission "forever."</li>
+                                <li>**Financial Success Enabling Purpose:** Pragmatic recognition that profitability is necessary to fund environmental initiatives, subordinating profit to purpose.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 md:p-8 rounded-lg shadow-lg mb-12">
+                <h3 class="text-2xl font-bold text-center text-[#004B5A] mb-6">The Ownership Dilemma: A New Model for Capitalism</h3>
+                <p class="text-center max-w-3xl mx-auto text-gray-700 mb-8">Faced with succession, the Chouinard family evaluated several traditional paths. Each was rejected because it failed to protect the company's mission in perpetuity while dedicating maximum value to the planet. Click on an option to see why it was dismissed, and how the final model succeeded.</p>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="md:col-span-1">
+                        <div class="flex flex-col space-y-2">
+                            <button class="ownership-option p-4 text-left rounded-lg bg-gray-100 hover:bg-gray-200" onclick="showOwnership('ipo')">Public Offering (IPO)</button>
+                            <button class="ownership-option p-4 text-left rounded-lg bg-gray-100 hover:bg-gray-200" onclick="showOwnership('sale')">Sell to Competitor/PE</button>
+                            <button class="ownership-option p-4 text-left rounded-lg bg-gray-100 hover:bg-gray-200" onclick="showOwnership('esop')">Employee Ownership (ESOP)</button>
+                            <button class="ownership-option p-4 text-left rounded-lg bg-gray-100 hover:bg-gray-200 active" onclick="showOwnership('final')">The Chosen Path</button>
+                        </div>
+                    </div>
+                    <div id="ownership-details" class="md:col-span-2 bg-stone-50 p-6 rounded-lg">
+                        <!-- JS will populate this -->
+                    </div>
+                </div>
+                 <div class="mt-12">
+                    <h3 class="text-center text-2xl font-bold text-[#004B5A] mb-6">Comparing the Models</h3>
+                    <div class="chart-container" style="max-width: 500px; height: 350px;">
+                        <canvas id="ownershipChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Start of Simulation Content -->
+            <section id="simulation-section" class="bg-white p-6 md:p-8 rounded-lg shadow-lg mt-12">
+                <div class="text-center max-w-4xl mx-auto mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#004B5A] mb-4">Patagonia Case Simulation</h2>
+                    <p class="text-lg text-gray-700">You are a strategic advisor to Patagonia. The company, having recently implemented its "Earth Is Now Our Only Shareholder" model, faces a critical decision. How should it allocate its resources and focus its efforts in the coming year to balance its mission with market realities? Your choice will impact Patagonia's Brand Authenticity, Financial Performance, Environmental Impact, and Mission Integrity.</p>
+                    <p class="text-base text-gray-600 mt-4">Make a strategic choice below and observe the consequences.</p>
+                </div>
+
+                <div id="decision-area" class="bg-gray-50 p-6 md:p-8 rounded-lg shadow-inner mb-12">
+                    <h3 class="text-2xl font-bold text-[#004B5A] text-center mb-6">Choose Your Strategy:</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <button class="decision-button bg-[#004B5A] text-white py-4 px-6 rounded-lg font-semibold text-lg hover:bg-[#003A45]" onclick="makeDecision('aggressiveGrowth')">
+                            Aggressive Global Growth
+                            <p class="text-sm font-normal mt-1 opacity-90">Expand rapidly into new international markets, even if it means some compromises on supply chain oversight or product customization.</p>
+                        </button>
+                        <button class="decision-button bg-green-700 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:bg-green-800" onclick="makeDecision('regenerativeInvestment')">
+                            Deep Regenerative Investment
+                            <p class="text-sm font-normal mt-1 opacity-90">Allocate significant capital to developing and implementing cutting-edge regenerative agriculture and materials, prioritizing environmental impact over short-term profits.</p>
+                        </button>
+                        <button class="decision-button bg-yellow-700 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:bg-yellow-800" onclick="makeDecision('costOptimization')">
+                            Supply Chain Cost Optimization
+                            <p class="text-sm font-normal mt-1 opacity-90">Focus intensely on optimizing supply chain efficiencies and reducing operational costs to maximize the annual dividend for the Holdfast Collective.</p>
+                        </button>
+                        <button class="decision-button bg-blue-700 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:bg-blue-800" onclick="makeDecision('politicalAdvocacy')">
+                            Major Political Advocacy Campaign
+                            <p class="text-sm font-normal mt-1 opacity-90">Launch a high-profile, direct political lobbying and public awareness campaign to influence climate policy, using a substantial portion of the Holdfast Collective's funds.</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="results-area" class="bg-gray-50 p-6 md:p-8 rounded-lg shadow-inner hidden">
+                    <h3 class="text-2xl font-bold text-[#004B5A] text-center mb-6">Simulation Results:</h3>
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-800 mb-4">Patagonia's Current Standing:</h4>
+                            <div class="chart-container" id="simulation-results-chart-container">
+                                <canvas id="impactChart"></canvas>
+                            </div>
+                            <p class="text-center text-sm text-gray-500 mt-4">Scores are on a scale of 0-100, reflecting relative strength.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-800 mb-4">Strategic Outcome:</h4>
+                            <p id="outcome-narrative" class="text-gray-700 leading-relaxed mb-4"></p>
+                            <button class="bg-gray-300 text-gray-800 py-2 px-4 rounded-lg font-semibold hover:bg-gray-400" onclick="resetSimulation()">Reset Simulation</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- End of Simulation Content -->
+
+        </section>
+
+        <section id="conclusion" class="content-section py-12">
+            <div class="text-center max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-[#004B5A] mb-6">Key Takeaways & Strategic Implications</h2>
+                <div class="text-left space-y-6 text-gray-700 text-lg">
+                    <p>Patagonia's journey illustrates that a differentiation strategy can be built on more than just product features; it can be a deeply embedded organizational philosophy. Its authenticity and unwavering commitment to its mission create a competitive moat that is nearly impossible for rivals to replicate.</p>
+                    <p>The "Earth Is Now Our Only Shareholder" model transforms this differentiation from a strategic choice into an <strong class="text-[#004B5A]">existential imperative</strong>. While this reinforces the brand, it also introduces new tensions: the pressure to remain profitable for a cause, balancing employee needs with planetary needs, and facing intense public scrutiny.</p>
+                    <p>Ultimately, Patagonia's strategy is an ambitious experiment in redefining capitalism. Its success or failure will provide invaluable lessons on whether a business can truly subordinate profit to purpose, inspiring a new model for how corporations can address the world's most pressing challenges.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white mt-16">
+        <div class="container mx-auto px-6 py-4 text-center">
+            <p>© Dr. Swapnil Sahoo 2025 | 
+                <a href="https://x.com/swapnilsahoo" target="_blank" class="text-white hover:underline">Twitter</a> | 
+                <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" class="text-white hover:underline">Instagram</a> | 
+                <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" class="text-white hover:underline">LinkedIn</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Global variable declarations
+        // Removed sections, navButtons, mobileNav as they are no longer needed for scroll navigation
+        let strategyChart;
+        let ownershipChart;
+        let impactChart; // Simulation chart
+
+        const initialMetrics = {
+            brandAuthenticity: 85,
+            financialPerformance: 75,
+            environmentalImpact: 90,
+            missionIntegrity: 95
+        };
+        let currentMetrics = { ...initialMetrics };
+
+        const decisionEffects = {
+            aggressiveGrowth: {
+                impact: {
+                    brandAuthenticity: -20,
+                    financialPerformance: +30,
+                    environmentalImpact: -10,
+                    missionIntegrity: -15
+                },
+                narrative: `By pursuing aggressive global growth, Patagonia saw a significant boost in its financial performance, reaching new markets and increasing revenue. However, this expansion came at a cost. The rapid scaling and potential compromises in supply chain oversight led to a noticeable decline in Brand Authenticity and Environmental Impact, as some customers questioned the purity of its mission. Mission Integrity also suffered slightly due to the shift in focus from planet to market share.`
+            },
+            regenerativeInvestment: {
+                impact: {
+                    brandAuthenticity: +25,
+                    financialPerformance: -15,
+                    environmentalImpact: +30,
+                    missionIntegrity: +20
+                },
+                narrative: `A deep investment in regenerative agriculture and materials significantly bolstered Patagonia's Brand Authenticity and Environmental Impact. Customers and environmental advocates lauded the company's unwavering commitment to its mission, further solidifying its Mission Integrity. While this strategic choice resulted in a short-term dip in Financial Performance due to high investment costs, the long-term benefits to its unique differentiation are expected to be substantial.`
+            },
+            costOptimization: {
+                impact: {
+                    brandAuthenticity: -10,
+                    financialPerformance: +20,
+                    environmentalImpact: -5,
+                    missionIntegrity: -10
+                },
+                narrative: `Focusing on supply chain cost optimization led to improved Financial Performance, allowing a larger dividend for the Holdfast Collective. However, the relentless pursuit of efficiency subtly impacted Brand Authenticity, as some customers perceived a slight shift away from premium, no-compromise quality. Environmental Impact saw a minor dip, and Mission Integrity was slightly diluted, as the emphasis leaned more towards maximizing profit for the cause rather than the most impactful environmental practices, regardless of cost.`
+            },
+            politicalAdvocacy: {
+                impact: {
+                    brandAuthenticity: +15,
+                    financialPerformance: -5,
+                    environmentalImpact: +20,
+                    missionIntegrity: +25
+                },
+                narrative: `Launching a major political advocacy campaign significantly elevated Patagonia's Mission Integrity and Environmental Impact, positioning the company as a powerful force for change. Brand Authenticity was strengthened among its core, purpose-aligned customers. However, this bold move came with a slight decrease in Financial Performance due to the substantial investment, and it also exposed the company to increased public scrutiny and potential backlash from those who disagreed with its political stance.`
+            }
+        };
+
+        function initializeCharts() {
+            // Strategy Chart (Porter's)
+            const ctxStrategy = document.getElementById('strategyChart').getContext('2d');
+            strategyChart = new Chart(ctxStrategy, {
+                type: 'bar',
+                data: {
+                    labels: ['Cost Leadership', 'Differentiation', 'Focus'],
+                    datasets: [{
+                        label: 'Potential for Premium Pricing',
+                        data: [1, 9, 8],
+                        backgroundColor: 'rgba(0, 75, 90, 0.6)',
+                        borderColor: 'rgba(0, 75, 90, 1)',
+                        borderWidth: 1
+                    }, {
+                        label: 'Reliance on Scale/Efficiency',
+                        data: [10, 3, 5],
+                        backgroundColor: 'rgba(217, 119, 6, 0.6)',
+                        borderColor: 'rgba(217, 119, 6, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 10,
+                            title: { display: true, text: 'Relative Emphasis (1-10)' }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Key Characteristics of Generic Strategies'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += context.parsed.y;
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Ownership Chart (Patagonia)
+            const ctxOwnership = document.getElementById('ownershipChart').getContext('2d');
+            ownershipChart = new Chart(ctxOwnership, {
+                type: 'radar',
+                data: {
+                    labels: ['Mission Protection', 'Value for Climate', 'Family Control', 'Tax Efficiency', 'New Precedent'],
+                    datasets: [
+                        {
+                            label: 'IPO / Sale',
+                            data: [2, 10, 1, 2, 5],
+                            fill: true,
+                            backgroundColor: 'rgba(200, 0, 0, 0.2)',
+                            borderColor: 'rgb(200, 0, 0)',
+                            pointBackgroundColor: 'rgb(200, 0, 0)',
+                        }, {
+                            label: 'Chosen Path (Trust)',
+                            data: [10, 9, 7, 8, 10],
+                            fill: true,
+                            backgroundColor: 'rgba(0, 75, 90, 0.2)',
+                            borderColor: 'rgb(0, 75, 90)',
+                            pointBackgroundColor: 'rgb(0, 75, 90)',
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { display: true },
+                            suggestedMin: 0,
+                            suggestedMax: 10,
+                            pointLabels: {
+                                font: { size: 11 }
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Ownership Model Criteria Assessment'
+                        }
+                    }
+                }
+            });
+
+            // Simulation Chart
+            const ctxImpact = document.getElementById('impactChart').getContext('2d');
+            impactChart = new Chart(ctxImpact, {
+                type: 'radar',
+                data: {
+                    labels: ['Brand Authenticity', 'Financial Performance', 'Environmental Impact', 'Mission Integrity'],
+                    datasets: [{
+                        label: 'Patagonia Metrics',
+                        data: [
+                            currentMetrics.brandAuthenticity,
+                            currentMetrics.financialPerformance,
+                            currentMetrics.environmentalImpact,
+                            currentMetrics.missionIntegrity
+                        ],
+                        backgroundColor: 'rgba(0, 75, 90, 0.2)',
+                        borderColor: 'rgba(0, 75, 90, 1)',
+                        pointBackgroundColor: 'rgba(0, 75, 90, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(0, 75, 90, 1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { display: true },
+                            suggestedMin: 0,
+                            suggestedMax: 100,
+                            pointLabels: {
+                                font: { size: 12 },
+                                callback: function(value) {
+                                    if (value.length > 16) {
+                                        return value.split(' ').join('\n');
+                                    }
+                                    return value;
+                                }
+                            },
+                            ticks: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.r !== null) {
+                                        label += context.parsed.r.toFixed(0);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Removed showSection as it's no longer needed for scroll navigation
+        // The main navigation is now handled by direct href links
+
+        const strategyTabs = document.querySelectorAll('.strategy-tab');
+        const strategyDetails = document.querySelectorAll('.strategy-details');
+
+        function showStrategy(strategyId) {
+            strategyTabs.forEach(tab => tab.classList.remove('active'));
+            strategyDetails.forEach(detail => detail.classList.add('hidden'));
+
+            document.querySelector(`.strategy-tab[onclick="showStrategy('${strategyId}')"]`).classList.add('active');
+            document.getElementById(`${strategyId}-content`).classList.remove('hidden');
+        }
+        
+        const ownershipOptions = document.querySelectorAll('.ownership-option');
+        const ownershipDetailsContainer = document.getElementById('ownership-details');
+        
+        const ownershipData = {
+            ipo: {
+                title: 'Rejected: Public Offering (IPO)',
+                description: 'While an IPO could raise billions, public markets prioritize short-term gains, which Yvon Chouinard believed would inevitably erode Patagonia\'s purpose-driven culture and long-term vitality.',
+                cons: ['Loss of control', 'Pressure for short-term profit', 'Erosion of values and mission']
+            },
+            sale: {
+                title: 'Rejected: Sale to Competitor or Private Equity',
+                description: 'This could generate immense immediate cash for climate action, but the Chouinards were unwilling to cede control to owners who might not share their values or would be driven by profit extraction.',
+                cons: ['Loss of control', 'Mission not guaranteed', 'Values likely compromised for profit']
+            },
+            esop: {
+                title: 'Rejected: Employee Stock Ownership Plan (ESOP)',
+                description: 'An ESOP was rejected because it would not release immediate cash for environmental causes and would burden the company with debt. Critically, it could create a conflict for employees between their financial well-being and the company\'s environmental mission.',
+                cons: ['No immediate cash for climate', 'Creates massive debt', 'Potential conflict of interest for employees']
+            },
+            final: {
+                title: 'The Chosen Path: Perpetual Purpose Trust & 501(c)(4)',
+                description: 'This innovative structure separates voting control (held by the Trust to protect the mission) from economic value (held by the Holdfast Collective to fund environmental work). It ensures the mission is protected in perpetuity while dedicating all profits to the cause.',
+                cons: ['Mission protected forever', 'All profits fight climate crisis', 'Decouples financial gain from control']
+            }
+        };
+
+        function showOwnership(optionId) {
+            ownershipOptions.forEach(opt => opt.classList.remove('active'));
+            document.querySelector(`.ownership-option[onclick="showOwnership('${optionId}')"]`).classList.add('active');
+            
+            const data = ownershipData[optionId];
+            const isRejected = optionId !== 'final';
+            const listColor = isRejected ? 'text-red-600' : 'text-green-700';
+            const listIcon = isRejected ? '&#x2717;' : '&#x2713;';
+
+            ownershipDetailsContainer.innerHTML = `
+                <h4 class="text-xl font-bold ${isRejected ? 'text-red-800' : 'text-green-800'} mb-3">${data.title}</h4>
+                <p class="text-gray-700 mb-4">${data.description}</p>
+                <h5 class="font-semibold mb-2">${isRejected ? 'Key Reasons for Rejection:' : 'Key Advantages:'}</h5>
+                <ul class="space-y-2">
+                    ${data.cons.map(con => `<li class="flex items-start"><span class="mr-2 ${listColor}">${listIcon}</span><span class="text-gray-600">${con}</span></li>`).join('')}
+                </ul>
+            `;
+        }
+
+        function toggleCard(cardElement) {
+            cardElement.classList.toggle('active');
+        }
+
+        function makeDecision(decisionId) {
+            const effects = decisionEffects[decisionId].impact;
+            const narrative = decisionEffects[decisionId].narrative;
+
+            currentMetrics.brandAuthenticity = Math.max(0, Math.min(100, currentMetrics.brandAuthenticity + effects.brandAuthenticity));
+            currentMetrics.financialPerformance = Math.max(0, Math.min(100, currentMetrics.financialPerformance + effects.financialPerformance));
+            currentMetrics.environmentalImpact = Math.max(0, Math.min(100, currentMetrics.environmentalImpact + effects.environmentalImpact));
+            currentMetrics.missionIntegrity = Math.max(0, Math.min(100, currentMetrics.missionIntegrity + effects.missionIntegrity));
+
+            impactChart.data.datasets[0].data = [
+                currentMetrics.brandAuthenticity,
+                currentMetrics.financialPerformance,
+                currentMetrics.environmentalImpact,
+                currentMetrics.missionIntegrity
+            ];
+            impactChart.update();
+
+            document.getElementById('outcome-narrative').innerText = narrative;
+
+            document.getElementById('decision-area').classList.add('hidden');
+            document.getElementById('results-area').classList.remove('hidden');
+        }
+
+        function resetSimulation() {
+            currentMetrics = { ...initialMetrics };
+            if (impactChart) { // Check if chart is initialized before updating
+                impactChart.data.datasets[0].data = [
+                    currentMetrics.brandAuthenticity,
+                    currentMetrics.financialPerformance,
+                    currentMetrics.environmentalImpact,
+                    currentMetrics.missionIntegrity
+                ];
+                impactChart.update();
+            }
+
+            document.getElementById('results-area').classList.add('hidden');
+            document.getElementById('decision-area').classList.remove('hidden');
+            document.getElementById('outcome-narrative').innerText = '';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeCharts(); // Initialize all charts on DOM load
+            showOwnership('final'); // Set initial state for ownership section
+            // No need to call showSection('intro') explicitly now, as all sections are visible by default
+            // and navigation is handled by scroll-to-id links.
+        });
+    </script>
+</body>
+</html>

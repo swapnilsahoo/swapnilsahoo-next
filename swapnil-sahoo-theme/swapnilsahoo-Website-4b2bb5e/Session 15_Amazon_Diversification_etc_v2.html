@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon's Diversification Strategy: An Interactive Study</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Harmony Neutrals -->
+    <!-- Application Structure Plan: The SPA is designed as a narrative journey. It starts with the central strategic question (the 'why'), presents a detailed, static timeline to explore the 'what' and 'when' of Amazon's expansion, dives into the 'how' with a detailed new 'Amazon Ecosystem' section, explains the 'how to manage' with a section on multi-business management, provides quantitative proof with financial charts, and concludes by revisiting the core dilemma and a new interactive quiz to test knowledge. This structure provides a comprehensive view, guiding the user from a high-level strategic problem to detailed exploration, implementation, and synthesis. -->
+    <!-- Visualization & Content Choices: 
+        - Timeline (HTML/CSS): Goal: Present a comprehensive chronological record. Viz: Detailed, static HTML list. Interaction: None, focuses on providing a complete reference. Justification: The detailed nature of the new timeline makes it more suitable as a static reference than a dynamic, interactive component.
+        - Financials (Chart.js): Goal: Compare segment performance. Viz: Stacked bar chart for revenue. Interaction: Buttons to highlight AWS's profit contribution. Justification: Ideal for comparing categories; interaction adds analytical depth. Method: Chart.js (Canvas).
+        - Amazon Ecosystem (HTML/CSS/JS): Goal: Explain the interconnectedness of Amazon's businesses. Viz: A grid of clickable cards. Interaction: Clicking a card reveals detailed text in a central panel. Justification: Replaces the previous flywheel diagram with a more flexible and detailed interactive component, allowing for a deeper exploration of each business unit.
+        - Core Strategic Frameworks (HTML/CSS): Goal: Explain core concepts like razor-blade model and network effects. Viz: Styled text with simple diagrams. Interaction: None, focuses on clear information architecture. Justification: Provides a static reference for key strategic theories.
+        - Quiz Section (HTML/JS): Goal: Assess knowledge. Viz: List of questions with radio buttons. Interaction: Select answer, submit to check score and show correct answers. Justification: Provides a practical way to reinforce learning.
+        - NO SVG/Mermaid used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F5F2;
+            color: #3D405B;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .timeline-item {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .timeline-item.active {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3-px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-color: #81B29A;
+        }
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #E07A5F;
+        }
+        .flywheel-item {
+            border: 2px solid #D1D5DB;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-weight: 600;
+            position: relative;
+            padding: 0.5rem;
+        }
+        @media (min-width: 768px) {
+            .flywheel-item {
+                width: 150px;
+                height: 150px;
+            }
+        }
+        .flywheel-arrow {
+            position: absolute;
+            font-size: 2rem;
+            color: #81B29A;
+            font-weight: bold;
+        }
+        .card {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .timeline-year {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #3D405B;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="bg-[#F8F5F2] py-2 text-center text-gray-500 text-sm border-b border-gray-200">
+        © Dr. Swapnil Sahoo 2025 | 
+        <a href="https://x.com/swapnilsahoo" target="_blank" class="text-[#E07A5F] hover:underline">Twitter</a> | 
+        <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" class="text-[#E07A5F] hover:underline">Instagram</a> | 
+        <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" class="text-[#E07A5F] hover:underline">LinkedIn</a>
+    </div>
+
+    <header class="bg-[#F8F5F2]/80 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-200">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold text-[#3D405B]">Amazon's Ecosystem</h1>
+            <div class="hidden md:flex space-x-8">
+                <a href="#timeline-section" class="nav-link font-medium">Timeline</a>
+                <a href="#ecosystem-section" class="nav-link font-medium">Ecosystem</a>
+                <a href="#strategic-frameworks-section" class="nav-link font-medium">Frameworks</a>
+                <a href="#management-section" class="nav-link font-medium">Management</a>
+                <a href="#financials-section" class="nav-link font-medium">Financials</a>
+                <a href="#conclusion-section" class="nav-link font-medium">Conclusion</a>
+                <a href="#quiz-section" class="nav-link font-medium">Quiz</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-2xl">☰</button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-[#F8F5F2] px-6 pb-4">
+            <a href="#timeline-section" class="block py-2 nav-link">Timeline</a>
+            <a href="#ecosystem-section" class="block py-2 nav-link">Ecosystem</a>
+            <a href="#strategic-frameworks-section" class="block py-2 nav-link">Frameworks</a>
+            <a href="#management-section" class="block py-2 nav-link">Management</a>
+            <a href="#financials-section" class="block py-2 nav-link">Financials</a>
+            <a href="#conclusion-section" class="block py-2 nav-link">Conclusion</a>
+            <a href="#quiz-section" class="block py-2 nav-link">Quiz</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12 md:py-16">
+        <section class="mb-16 md:mb-24 card">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">Class Objectives</h2>
+            <ul class="list-disc list-inside space-y-2 text-gray-700 max-w-3xl mx-auto">
+                <li>**Define and differentiate** between various types of corporate diversification strategies, including related and unrelated diversification.</li>
+                <li>**Identify and analyze** the key motives that drive firms to diversify, such as operational efficiencies, financial objectives, and leveraging core competencies.</li>
+                <li>**Evaluate** the inherent risks associated with diversification and understand the concept of the "diversification conundrum."</li>
+                <li>**Examine** Amazon's diversification journey as a comprehensive case study, tracing its chronological ventures and their strategic rationale.</li>
+                <li>**Articulate** how Amazon has built a unique competitive advantage in the digital era through its unparalleled back-end logistics, customer trust, extensive data, and self-reinforcing ecosystem.</li>
+                <li>**Discuss** the strategic conundrum facing Amazon's leadership: whether its extensive diversification positions it masterfully for the future or risks spreading it too thin.</li>
+                <li>**Derive** key takeaways from the Amazon case study regarding the blurring of industry boundaries and the evolving nature of competitive advantage in the digital world.</li>
+            </ul>
+        </section>
+
+        <section class="text-center mb-16 md:mb-24">
+            <h2 class="text-4xl md:text-6xl font-bold mb-4 text-[#3D405B]">A Study in Diversification</h2>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-600">
+                From an online bookseller to a global conglomerate, Amazon's growth has redefined business strategy. But as it ventures into ever more industries, a central question arises: is the company masterfully positioned for the future, or spreading itself too thin?
+            </p>
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <div class="card p-6">
+                    <p class="text-3xl font-bold text-[#81B29A]">$575B</p>
+                    <p class="text-gray-500 mt-1">2023 Revenue</p>
+                </div>
+                <div class="card p-6">
+                    <p class="text-3xl font-bold text-[#81B29A]">>200M</p>
+                    <p class="text-gray-500 mt-1">Prime Members Globally</p>
+                </div>
+                <div class="card p-6">
+                    <p class="text-3xl font-bold text-[#81B29A]">$90B+</p>
+                    <p class="text-gray-500 mt-1">AWS 2023 Revenue</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="timeline-section" class="mb-16 md:mb-24 card">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl md:text-4xl font-bold">Timeline of Amazon's Evolution</h3>
+                <p class="mt-4 max-w-3xl mx-auto text-gray-600">
+                    Here is a detailed timeline of the main events covered in the sources.
+                </p>
+            </div>
+            <div id="timeline-container" class="max-w-6xl mx-auto space-y-6">
+                <div>
+                    <h4 class="timeline-year">1995</h4>
+                    <p class="text-gray-700 ml-4">July 1995: Jeff Bezos launches Amazon as an online bookseller, focusing on low prices, vast selection, and convenience.</p>
+                </div>
+                <div>
+                    <h4 class="timeline-year">1997</h4>
+                    <p class="text-gray-700 ml-4">1997: Amazon first reports net income.</p>
+                </div>
+                <div>
+                    <h4 class="timeline-year">Late 1990s - Early 2000s</h4>
+                    <p class="text-gray-700 ml-4">Late 1990s - Early 2000s: Amazon's net income drops significantly due to the dot-com bubble crash of 2001.</p>
+                </div>
+                <div>
+                    <h4 class="timeline-year">2000</h4>
+                    <p class="text-gray-700 ml-4">November 2000: Amazon launches its marketplace, allowing third-party merchants to sell products on its platform.</p>
+                </div>
+                <div>
+                    <h4 class="timeline-year">2002</h4>
+                    <p class="text-gray-700 ml-4">2002: Amazon Web Service (AWS) is launched, providing cloud-computing services to companies.</p>
+                </div>
+                <div>
+                    <h4 class="timeline-year">2005</h4>
+                    <p class="text-gray-700 ml-4">2005: Amazon launches Prime, offering free two-day shipping for an annual subscription fee of $79.</p>
+                </div>
+                <div>
+                    <h4 class="timeline-year">2006</h4>
+                    <p class="text-gray-700 ml-4">2006: Amazon launches Unbox, later renamed Video-on-Demand, for instant video streaming.</p>
+                </div>
+                <div>
+                    <h4 class="timeline-year">2007</h4>
+                    <p class="text-gray-700 ml-4">2007: Amazon launches Kindle at $399, selling out in under six hours.</p>
+                    <p class="text-gray-700 ml-4">2007: Netflix introduces its streaming service, a year after Amazon's Instant Video.</p>
+                </div>
+                <div>
+                    <h4 class="timeline-year">2010</h4>
+                    <p class="text-gray-700 ml-4">2010: After the iPad launch, Amazon reduces Kindle's price to approximately $100.</p>
+                    <p class="text-gray-700 ml-4">2010: Google launches its phone, Nexus One.</p>
+                </div>
+                <div>
+                    <h4 class="timeline-year">2011</h4>
+                    <p class="text-gray-700 ml-4">2011: Amazon launches Amazon Studios to produce original content for movies and shows.</p>
+                    <p class="text-gray-700 ml-4">2011: Amazon launches its own advertising network.</p>
+                    <p class="text-gray-700 ml-4">August 2011: Google announces its acquisition of Motorola Mobility for $12.5 billion.</p>
+                </div>
+                <div>
+                    <h4 class="timeline-year">2012</h4>
+                    <p class="text-gray-700 ml-4">2012: Amazon enters the U.S. wholesale and distribution market with AmazonSupply, later renamed Amazon Business.</p>
+                </div>
+                <div>
+                    <h4 class="timeline-year">2013</h4>
+                    <p class="text-gray-700 ml-4">April 2013: Facebook attempts to launch its own phone (eventually Facebook Home on an HTC phone).</p>
+                    <p class="text-gray-700 ml-4">August 2013: The Wall Street Journal reports on Best Buy's profit growth due to cost-cutting and "stores-within-stores" concept.</p>
+                </div>
+                <div>
+                    <h4 class="timeline-year">2014</h4>
+                    <p class="text-gray-700 ml-4">January 2014: Google sells most of Motorola Mobility to Lenovo for $2.91 billion.</p>
+                    <p class="text-gray-700 ml-4">July 2014: Amazon launches Fire Phone.</p>
+                    <p class="text-gray-700 ml-4">2014: Amazon launches Prime Music, an ad-free music streaming service for Prime subscribers.</p>
+                    <p class="text-gray-700 ml-4">2014: The annual Prime subscription fee increases from $79 to $99.</p>
+                    <p class="text-gray-700 ml-4">2014: Amazon pays HBO over $200 million for select shows on Prime Video.</p>
+                    <p class="text-gray-700 ml-4">2014: Amazon acquires Twitch, a live-streaming site for gamers, for nearly $1 billion.</p>
+                    <p class="text-gray-700 ml-4">2014: Amazon's catalogue for Amazon Business increases to 2.2 million items.</p>
+                    <p class="text-gray-700 ml-4">October 2014: Amazon announces a $170 million write-down on the Fire Phone due to disappointing sales.</p>
+                </div>
+                <div>
+                    <h4 class="timeline-year">2015</h4>
+                    <p class="text-gray-700 ml-4">Early 2015: Amazon introduces Dash Replenishment Service and Dash Button.</p>
+                    <p class="text-gray-700 ml-4">2015: Amazon Studios announces it will begin making feature films.</p>
+                </div>
+                <div>
+                    <h4 class="timeline-year">2016</h4>
+                    <p class="text-gray-700 ml-4">2016: Amazon unveils Amazon Go stores, a cashless convenience store concept.</p>
+                    <p class="text-gray-700 ml-4">October 2016: Google launches its Pixel phone.</p>
+                </div>
+                <div>
+                    <h4 class="timeline-year">2017</h4>
+                    <p class="text-gray-700 ml-4">June 2017: Amazon acquires Whole Foods, an upscale grocery chain, for $13.4 billion.</p>
+                </div>
+                <div>
+                    <h4 class="timeline-year">2018</h4>
+                    <p class="text-gray-700 ml-4">2018: Amazon Studios receives 10 Golden Globe Award nominations and two wins.</p>
+                    <p class="text-gray-700 ml-4">May 2018: Amazon increases its annual Prime membership fee in the U.S. to $119.</p>
+                    <p class="text-gray-700 ml-4">2018: Amazon acquires PillPack, expanding its presence in healthcare.</p>
+                </div>
+                <div>
+                    <h4 class="timeline-year">2019</h4>
+                    <p class="text-gray-700 ml-4">2019: Due to weak demand, Amazon discontinues its Dash Button service.</p>
+                </div>
+                <div>
+                    <h4 class="timeline-year">2020</h4>
+                    <p class="text-gray-700 ml-4">2020: Amazon launches Amazon Pharmacy.</p>
+                </div>
+                <div>
+                    <h4 class="timeline-year">2021</h4>
+                    <p class="text-gray-700 ml-4">April 2021: Amazon announces palm-scanning payments in some Whole Foods stores.</p>
+                    <p class="text-gray-700 ml-4">April 2021: Amazon announces the launch of Amazon Salon in the U.K.</p>
+                    <p class="text-gray-700 ml-4">2021: Andrew (Andy) Jassy becomes CEO of Amazon.</p>
+                </div>
+                <div>
+                    <h4 class="timeline-year">2022</h4>
+                    <p class="text-gray-700 ml-4">2022: Amazon acquires MGM for $8.5 billion.</p>
+                    <p class="text-gray-700 ml-4">2022: Amazon increases its annual Prime membership fee in the U.S. to $139.</p>
+                    <p class="text-gray-700 ml-4">November 2022: Amazon launches Amazon Clinic, a virtual platform for connecting users with healthcare providers.</p>
+                    <p class="text-gray-700 ml-4">2022: Amazon reports a net loss, largely due to a loss in Rivian stake value and severance costs from layoffs.</p>
+                </div>
+                <div>
+                    <h4 class="timeline-year">2023</h4>
+                    <p class="text-gray-700 ml-4">February 2023: Amazon acquires One Medical, a primary care company, for $3.9 billion.</p>
+                    <p class="text-gray-700 ml-4">May 2023: Amazon announces over 500 million Echo devices sold globally.</p>
+                    <p class="text-gray-700 ml-4">2023: Amazon's revenue grows 12% year-over-year to $575 billion.</p>
+                    <p class="text-gray-700 ml-4">2023: AWS generates over $90 billion in revenue and over $24 billion in operating income.</p>
+                    <p class="text-gray-700 ml-4">2023: Over 60% of sales in the Amazon store come from independent sellers.</p>
+                    <p class="text-gray-700 ml-4">2023: Amazon has more than 200 million Prime members worldwide.</p>
+                    <p class="text-gray-700 ml-4">2023: Amazon spends over $19 billion on TV and music content.</p>
+                    <p class="text-gray-700 ml-4">2023: Amazon generates over $47 billion in digital ad revenue.</p>
+                    <p class="text-gray-700 ml-4">2023: Amazon Business reaches $35 billion in annualized sales, serving over 6 million business customers.</p>
+                    <p class="text-gray-700 ml-4">2023: Jassy lays out Amazon's vision for generative AI, including custom AI chips (Titanium and Inferentia), Amazon Bedrock, and GenAI applications like Rufus and a more intelligent Alexa.</p>
+                </div>
+                <div>
+                    <h4 class="timeline-year">2024</h4>
+                    <p class="text-gray-700 ml-4">Q1 2024: Amazon's net sales increase 13% to $143.3 billion; operating income increases to $15.3 billion; operating cash flow increases 82% to $99.1 billion for the trailing twelve months.</p>
+                    <p class="text-gray-700 ml-4">June 2024: Amazon folds its Clinic telehealth services into Amazon One Medical.</p>
+                    <p class="text-gray-700 ml-4">May 2024: Amazon operates 23 Go stores in the U.S.</p>
+                    <p class="text-gray-700 ml-4">2024: Amazon's revenue grows 11% year-over-year to $638 billion, and net income almost doubles to $59 billion.</p>
+                    <p class="text-gray-700 ml-4">2024: AWS generates over $108 billion in revenue and almost $40 billion in operating income.</p>
+                    <p class="text-gray-700 ml-4">2024: Over 60% of Amazon sales come from third-party sellers.</p>
+                    <p class="text-gray-700 ml-4">2024: Amazon has more than 200 million Prime members worldwide.</p>
+                    <p class="text-gray-700 ml-4">2024: Amazon sells over 105 million Echo devices globally, a 12% increase over the previous year.</p>
+                    <p class="text-gray-700 ml-4">2024: Amazon generates over $56 billion in digital ad revenue.</p>
+                    <p class="text-gray-700 ml-4">By 2024: Amazon operates 17 Go stores in the U.S. (note: this appears to be an updated figure from May 2024's 23 stores, indicating some closures).</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="ecosystem-section" class="mb-16 md:mb-24">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl md:text-4xl font-bold">The Amazon Ecosystem</h3>
+                <p class="mt-4 max-w-3xl mx-auto text-gray-600">
+                    Amazon's competitive advantage isn't from a single product, but from a vast, interconnected ecosystem where each part strengthens the others. This creates powerful network effects and high switching costs for customers. Click on any component to explore its strategic role.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-8">
+                <div id="card-ecommerce" class="card text-center cursor-pointer hover:bg-gray-50">
+                    <h4 class="text-xl font-bold text-[#3D405B]">E-commerce & Customer Data</h4>
+                </div>
+                <div id="card-aws" class="card text-center cursor-pointer hover:bg-gray-50">
+                    <h4 class="text-xl font-bold text-[#3D405B]">AWS</h4>
+                </div>
+                <div id="card-prime" class="card text-center cursor-pointer hover:bg-gray-50">
+                    <h4 class="text-xl font-bold text-[#3D405B]">Prime</h4>
+                </div>
+                <div id="card-marketplace" class="card text-center cursor-pointer hover:bg-gray-50">
+                    <h4 class="text-xl font-bold text-[#3D405B]">Marketplace</h4>
+                </div>
+                <div id="card-kindle" class="card text-center cursor-pointer hover:bg-gray-50">
+                    <h4 class="text-xl font-bold text-[#3D405B]">Kindle</h4>
+                </div>
+                <div id="card-echo" class="card text-center cursor-pointer hover:bg-gray-50">
+                    <h4 class="text-xl font-bold text-[#3D405B]">Echo/Alexa</h4>
+                </div>
+                <div id="card-adnetwork" class="card text-center cursor-pointer hover:bg-gray-50">
+                    <h4 class="text-xl font-bold text-[#3D405B]">Ad Network</h4>
+                </div>
+                <div id="card-wholefoods" class="card text-center cursor-pointer hover:bg-gray-50">
+                    <h4 class="text-xl font-bold text-[#3D405B]">Whole Foods</h4>
+                </div>
+                <div id="card-genai" class="card text-center cursor-pointer hover:bg-gray-50">
+                    <h4 class="text-xl font-bold text-[#3D405B]">Generative AI</h4>
+                </div>
+            </div>
+            <div id="ecosystem-details" class="card min-h-[250px] flex items-center justify-center">
+                <div id="ecosystem-content" class="text-center">
+                    <h4 class="text-2xl font-bold text-gray-800">Explore Amazon Core</h4>
+                    <p class="text-gray-500 mt-2">Click a component above to see its strategic role in the ecosystem.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="strategic-frameworks-section" class="mb-16 md:mb-24">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl md:text-4xl font-bold">Core Strategic Frameworks</h3>
+                <p class="mt-4 max-w-3xl mx-auto text-gray-600">
+                    Two key concepts underpin Amazon's ecosystem strategy: creating complementary products that drive sales in other areas, and building platforms with powerful network effects.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <div class="card p-6">
+                    <h4 class="text-2xl font-bold text-[#3D405B] mb-4">The Razor-Blade Model</h4>
+                    <p class="text-gray-600 mb-6">Sell a core product (the "razor") at a low margin or even a loss to drive sales of high-margin, consumable, or related products (the "blades").</p>
+                    <div class="bg-gray-100 p-4 rounded-lg text-center">
+                        <p class="font-bold text-[#E07A5F]">Kindle Device (Razor)</p>
+                        <p class="text-sm text-gray-500">Low Price, Low Margin</p>
+                        <p class="text-4xl text-gray-400 my-4">⬇️</p>
+                        <p class="font-bold text-[#81B29A]">E-books & Content (Blades)</p>
+                        <p class="text-sm text-gray-500">Recurring Revenue, High Margin</p>
+                    </div>
+                    <p class="mt-4 text-gray-600 text-sm italic">Jeff Bezos: "When we win a Golden Globe, it helps us sell more shoes."</p>
+                </div>
+                <div class="card p-6">
+                    <h4 class="text-2xl font-bold text-[#3D405B] mb-4">Network Effects</h4>
+                    <p class="text-gray-600 mb-6">A platform becomes more valuable as more people use it, creating a virtuous cycle that is difficult for competitors to break.</p>
+                    <div class="bg-gray-100 p-4 rounded-lg text-center">
+                        <p class="font-bold text-[#E07A5F]">More Buyers Join</p>
+                        <div class="grid grid-cols-3 my-4 items-center">
+                            <p class="text-4xl text-gray-400">↖️</p>
+                            <p class="font-bold text-[#3D405B]">Marketplace</p>
+                            <p class="text-4xl text-gray-400">↗️</p>
+                        </div>
+                        <p class="font-bold text-[#81B29A]">Attracts More Sellers</p>
+                        <div class="grid grid-cols-2">
+                            <p class="text-4xl text-gray-400">↙️</p>
+                            <p class="text-4xl text-gray-400">↘️</p>
+                        </div>
+                        <p class="font-bold text-[#3D405B]">Wider Selection</p>
+                    </div>
+                    <p class="mt-4 text-gray-600 text-sm italic">This "winner-take-all" dynamic is why the Marketplace is core to Amazon's dominance.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="management-section" class="mb-16 md:mb-24">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl md:text-4xl font-bold">Managing the Multi-Business Firm</h3>
+                <p class="mt-4 max-w-3xl mx-auto text-gray-600">
+                    A successful diversification strategy requires more than just good ideas; it demands a specific management approach. This is where the concept of **Corporate Parenting Advantage** comes in, ensuring the corporate parent adds more value than its business units could create on their own.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-gray-700">
+                <div class="card">
+                    <h4 class="text-xl font-bold text-[#3D405B] mb-2">Managing the Portfolio</h4>
+                    <p class="text-sm text-gray-600 mb-4">The high-level strategy of which businesses to own, nurture, or divest from to maintain a healthy corporate family.</p>
+                    <ul class="list-disc list-inside space-y-1 text-sm">
+                        <li>**Acquire:** Entry into new growth areas (e.g., Whole Foods, One Medical).</li>
+                        <li>**Nurture:** Fund and scale promising ventures (e.g., AWS, Prime).</li>
+                        <li>**Divest:** Exit non-performing businesses (e.g., Fire Phone write-down, Dash buttons).</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4 class="text-xl font-bold text-[#3D405B] mb-2">Governance & Strategy Implementation</h4>
+                    <p class="text-sm text-gray-600 mb-4">How the parent company organizes and guides its business units to execute the overall strategy.</p>
+                    <ul class="list-disc list-inside space-y-1 text-sm">
+                        <li>**Centralized Core:** Shared vision of customer obsession and long-term bets.</li>
+                        <li>**Decentralized Teams:** Autonomous 'two-pizza teams' for rapid innovation.</li>
+                        <li>**Shared Resources:** The parent company allocates capital and key personnel.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4 class="text-xl font-bold text-[#3D405B] mb-2">Managing Linkages Across Businesses</h4>
+                    <p class="text-sm text-gray-600 mb-4">The crucial process of creating synergies by connecting individual business units to make the whole more valuable.</p>
+                    <ul class="list-disc list-inside space-y-1 text-sm">
+                        <li>**Data Flow:** Customer data from retail informs advertising and AI development.</li>
+                        <li>**Technology Transfer:** Core tech like cloud infrastructure (AWS) is a shared asset.</li>
+                        <li>**Customer Lock-in:** Prime members are linked across e-commerce, content, and devices.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="financials-section" class="mb-16 md:mb-24">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl md:text-4xl font-bold">A Financial Deep Dive</h3>
+                <p class="mt-4 max-w-3xl mx-auto text-gray-600">
+                    While Amazon's e-commerce presence is vast, its profitability tells a different story. This chart shows the revenue contribution of its major segments. Use the button to see how Amazon Web Services (AWS) disproportionately drives operating income.
+                </p>
+            </div>
+            <div class="card p-4 md:p-8">
+                <div class="chart-container">
+                    <canvas id="revenueChart"></canvas>
+                </div>
+                <div class="text-center mt-6">
+                    <button id="toggle-profit-button" class="bg-[#81B29A] text-white font-bold py-2 px-6 rounded-lg hover:bg-[#6f9a84] transition-colors">Show AWS Profit Impact</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="conclusion-section" class="card p-8 md:p-12 mb-16 md:mb-24">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl md:text-4xl font-bold">The Strategic Conundrum</h3>
+                <p class="mt-4 max-w-3xl mx-auto text-gray-600">
+                    So, is Amazon's diversification a stroke of genius or a risky overreach? The evidence supports both arguments, defining the central challenge for its leadership.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="border-l-4 border-green-500 pl-6">
+                    <h4 class="text-2xl font-bold text-green-600">Masterfully Positioned</h4>
+                    <ul class="mt-4 space-y-3 text-gray-700 list-disc list-inside">
+                        <li><strong>Synergistic Ecosystem:</strong> Ventures like Prime and AWS reinforce the core e-commerce business, creating immense customer value and lock-in.</li>
+                        <li><strong>Profit Engine:</strong> AWS provides the immense profits needed to fund long-term, ambitious bets in other industries like healthcare and AI.</li>
+                        <li><strong>Data Dominance:</strong> Each new venture feeds the central data asset, making the entire ecosystem smarter and more personalized.</li>
+                        <li><strong>Future-Proofing:</strong> Bets on Generative AI, healthcare, and grocery position Amazon for the next decades of consumer spending.</li>
+                    </ul>
+                </div>
+                <div class="border-l-4 border-red-500 pl-6">
+                    <h4 class="text-2xl font-bold text-red-600">Spreading Too Thin</h4>
+                    <ul class="mt-4 space-y-3 text-gray-700 list-disc list-inside">
+                        <li><strong>Notable Failures:</strong> High-profile flops like the Fire Phone ($170M write-down) and Dash Buttons show that execution is not guaranteed.</li>
+                        <li><strong>Profit Drains:</strong> The devices unit (including Echo) has reportedly sustained billions in annual operating losses despite high sales.</li>
+                        <li><strong>Low-Margin Ventures:</strong> Entering tough, low-margin industries like grocery (Whole Foods) and healthcare presents significant profitability challenges.</li>
+                        <li><strong>Loss of Focus:</strong> The sheer complexity of managing dozens of disparate businesses could dilute management attention and core competencies.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz-section" class="mb-16 md:mb-24 card">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl md:text-4xl font-bold">Test Your Knowledge</h3>
+                <p class="mt-4 max-w-3xl mx-auto text-gray-600">
+                    Let's see how much you've learned! Answer the following 15 questions based on the Amazon case study.
+                </p>
+            </div>
+            <form id="quiz-form" class="space-y-8">
+                <div>
+                    <p class="font-bold text-lg mb-2">1. What is the primary financial motive for a firm to engage in unrelated diversification?</p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li><label><input type="radio" name="q1" value="a" class="mr-2"> a) To leverage operational synergies across businesses.</label></li>
+                        <li><label><input type="radio" name="q1" value="b" class="mr-2"> b) To reduce overall corporate risk by spreading investments across diverse industries.</label></li>
+                        <li><label><input type="radio" name="q1" value="c" class="mr-2"> c) To gain market power and influence pricing.</label></li>
+                        <li><label><input type="radio" name="q1" value="d" class="mr-2"> d) To avoid declining industries.</label></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="font-bold text-lg mb-2">2. What is the term for a situation where the market undervalues a combined company compared to its individual parts?</p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li><label><input type="radio" name="q2" value="a" class="mr-2"> a) The Amazon Flywheel.</label></li>
+                        <li><label><input type="radio" name="q2" value="b" class="mr-2"> b) Operational synergy.</label></li>
+                        <li><label><input type="radio" name="q2" value="c" class="mr-2"> c) The conglomerate discount.</label></li>
+                        <li><label><input type="radio" name="q2" value="d" class="mr-2"> d) The razor-blade strategy.</label></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="font-bold text-lg mb-2">3. According to the case study, what was the strategic rationale behind Amazon's Third-Party Marketplace?</p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li><label><input type="radio" name="q3" value="a" class="mr-2"> a) To reduce shipping costs for all products.</label></li>
+                        <li><label><input type="radio" name="q3" value="b" class="mr-2"> b) To transform Amazon from a retailer into a platform with strong network effects.</label></li>
+                        <li><label><input type="radio" name="q3" value="c" class="mr-2"> c) To directly compete with eBay.</label></li>
+                        <li><label><input type="radio" name="q3" value="d" class="mr-2"> d) To increase the company's advertising revenue.</label></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="font-bold text-lg mb-2">4. Which Amazon venture is presented as a prime example of monetizing an internal operational capability?</p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li><label><input type="radio" name="q4" value="a" class="mr-2"> a) Prime Video.</label></li>
+                        <li><label><input type="radio" name="q4" value="b" class="mr-2"> b) Amazon Go Stores.</label></li>
+                        <li><label><input type="radio" name="q4" value="c" class="mr-2"> c) Amazon Web Services (AWS).</label></li>
+                        <li><label><input type="radio" name="q4" value="d" class="mr-2"> d) Whole Foods acquisition.</label></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="font-bold text-lg mb-2">5. The 'razor-blade' strategy, as applied to the Kindle, means that Amazon primarily makes money from:</p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li><label><input type="radio" name="q5" value="a" class="mr-2"> a) Selling the Kindle device itself.</label></li>
+                        <li><label><input type="radio" name="q5" value="b" class="mr-2"> b) Selling advertising on the Kindle's home screen.</label></li>
+                        <li><label><input type="radio" name="q5" value="c" class="mr-2"> c) The e-books and other digital content purchased for the device.</label></li>
+                        <li><label><input type="radio" name="q5" value="d" class="mr-2"> d) The high-end software services available on the Kindle.</li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="font-bold text-lg mb-2">6. What is a key insight Amazon gained from its advertising network that Google may lack?</p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li><label><input type="radio" name="q6" value="a" class="mr-2"> a) The ability to serve highly targeted ads.</label></li>
+                        <li><label><input type="radio" name="q6" value="b" class="mr-2"> b) The number of customers who click on an ad.</label></li>
+                        <li><label><input type="radio" name="q6" value="c" class="mr-2"> c) Data on what a customer actually bought, not just their intent to buy.</label></li>
+                        <li><label><input type="radio" name="q6" value="d" class="mr-2"> d) Data on customer demographics.</label></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="font-bold text-lg mb-2">7. Which of the following best describes the strategic purpose of Amazon Prime Video and Amazon Studios?</p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li><label><input type="radio" name="q7" value="a" class="mr-2"> a) To generate significant, direct profit from media content.</label></li>
+                        <li><label><input type="radio" name="q7" value="b" class="mr-2"> b) To diversify away from the highly competitive e-commerce business.</label></li>
+                        <li><label><input type="radio" name="q7" value="c" class="mr-2"> c) To create a core service that prevents customer churn from Prime membership.</label></li>
+                        <li><label><input type="radio" name="q7" value="d" class="mr-2"> d) To directly compete with traditional television studios.</label></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="font-bold text-lg mb-2">8. What was the primary reason for the failure of the Amazon Fire Phone?</p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li><label><input type="radio" name="q8" value="a" class="mr-2"> a) It was too expensive compared to other phones.</label></li>
+                        <li><label><input type="radio" name="q8" value="b" class="mr-2"> b) It lacked a clear strategic rationale for Amazon.</label></li>
+                        <li><label><input type="radio" name="q8" value="c" class="mr-2"> c) It did not offer enough value to consumers to drive adoption.</label></li>
+                        <li><label><input type="radio" name="q8" value="d" class="mr-2"> d) It was too complex for the average consumer to use.</label></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="font-bold text-lg mb-2">9. The acquisition of Whole Foods is described as a long-term strategic bet to primarily achieve what?</p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li><label><input type="radio" name="q9" value="a" class="mr-2"> a) To gain market power in the grocery industry.</label></li>
+                        <li><label><input type="radio" name="q9" value="b" class="mr-2"> b) To increase profits from the upscale grocery business.</label></li>
+                        <li><label><input type="radio" name="q9" value="c" class="mr-2"> c) To establish a weekly shopping habit and capture valuable data from consumers.</label></li>
+                        <li><label><input type="radio" name="q9" value="d" class="mr-2"> d) To compete directly with Walmart.</label></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="font-bold text-lg mb-2">10. What is the concept of 'Corporate Parenting Advantage'?</p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li><label><input type="radio" name="q10" value="a" class="mr-2"> a) The value that a corporate headquarters adds to its individual businesses.</label></li>
+                        <li><label><input type="radio" name="q10" value="b" class="mr-2"> b) The ability of a parent company to reduce the taxes of its subsidiaries.</label></li>
+                        <li><label><input type="radio" name="q10" value="c" class="mr-2"> c) The process of acquiring and managing a large portfolio of unrelated businesses.</label></li>
+                        <li><label><input type="radio" name="q10" value="d" class="mr-2"> d) The practice of a parent company directly managing all day-to-day operations of its subsidiaries.</label></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="font-bold text-lg mb-2">11. A key risk of diversification is the 'diversification conundrum', which refers to the trade-off between:</p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li><label><input type="radio" name="q11" value="a" class="mr-2"> a) Diversification being a source of value destruction versus specialization being too restrictive.</label></li>
+                        <li><label><input type="radio" name="q11" value="b" class="mr-2"> b) High costs of entry versus low profitability of a new market.</label></li>
+                        <li><label><input type="radio" name="q11" value="c" class="mr-2"> c) The benefits of economies of scale versus economies of scope.</label></li>
+                        <li><label><input type="radio" name="q11" value="d" class="mr-2"> d) A firm's desire for growth versus its desire for stability.</label></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="font-bold text-lg mb-2">12. What does it mean for Amazon to be 'managing linkages across businesses'?</p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li><label><input type="radio" name="q12" value="a" class="mr-2"> a) Each business unit operates completely independently to avoid conflicts.</label></li>
+                        <li><label><input type="radio" name="q12" value="b" class="mr-2"> b) The company uses a single IT system for all its businesses.</label></li>
+                        <li><label><input type="radio" name="q12" value="c" class="mr-2"> c) It deliberately creates synergies by connecting data, technology, and customers across its ecosystem.</label></li>
+                        <li><label><input type="radio" name="q12" value="d" class="mr-2"> d) The corporate office makes all day-to-day operational decisions.</label></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="font-bold text-lg mb-2">13. In the context of Amazon's competitive advantage, what does the Amazon 'flywheel' primarily represent?</p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li><label><input type="radio" name="q13" value="a" class="mr-2"> a) A decentralized organizational structure.</label></li>
+                        <li><label><input type="radio" name="q13" value="b" class="mr-2"> b) A virtuous cycle where each part reinforces the others to create unstoppable momentum.</label></li>
+                        <li><label><input type="radio" name="q13" value="c" class="mr-2"> c) The transfer of technology between business units.</label></li>
+                        <li><label><input type="radio" name="q13" value="d" class="mr-2"> d) The company's strategy for internal capital allocation.</label></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="font-bold text-lg mb-2">14. Which statement best describes Amazon's approach to the governance of its multi-business corporation?</p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li><label><input type="radio" name="q14" value="a" class="mr-2"> a) A highly centralized, top-down approach with minimal autonomy for business units.</label></li>
+                        <li><label><input type="radio" name="q14" value="b" class="mr-2"> b) A completely decentralized model where business units operate as independent entities.</label></li>
+                        <li><label><input type="radio" name="q14" value="c" class="mr-2"> c) A model that balances a centralized strategic vision with decentralized, autonomous teams for innovation.</label></li>
+                        <li><label><input type="radio" name="q14" value="d" class="mr-2"> d) A structure where the most profitable business unit controls all others.</label></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="font-bold text-lg mb-2">15. What is a key takeaway regarding competition in the digital era, as illustrated by the Amazon case?</p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li><label><input type="radio" name="q15" value="a" class="mr-2"> a) Traditional companies should focus on price competition to survive.</label></li>
+                        <li><label><input type="radio" name="q15" value="b" class="mr-2"> b) Industry boundaries are becoming blurred and competitive advantage shifts to ecosystems and network effects.</label></li>
+                        <li><label><input type="radio" name="q15" value="c" class="mr-2"> c) Product differentiation is the only sustainable source of competitive advantage.</label></li>
+                        <li><label><input type="radio" name="q15" value="d" class="mr-2"> d) Diversification is always a source of value destruction.</label></li>
+                    </ul>
+                </div>
+                <div class="mt-8 text-center">
+                    <button type="submit" id="submit-quiz" class="bg-[#81B29A] text-white font-bold py-3 px-8 rounded-lg hover:bg-[#6f9a84] transition-colors">Submit Answers</button>
+                </div>
+            </form>
+            <div id="quiz-results" class="mt-8 hidden">
+                <h4 class="text-2xl font-bold text-center mb-4">Your Results: <span id="score"></span></h4>
+                <div id="answers-review" class="space-y-4"></div>
+            </div>
+        </section>
+
+        <section id="conclusion-section" class="card p-8 md:p-12 mb-16 md:mb-24">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl md:text-4xl font-bold">The Strategic Conundrum</h3>
+                <p class="mt-4 max-w-3xl mx-auto text-gray-600">
+                    So, is Amazon's diversification a stroke of genius or a risky overreach? The evidence supports both arguments, defining the central challenge for its leadership.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="border-l-4 border-green-500 pl-6">
+                    <h4 class="text-2xl font-bold text-green-600">Masterfully Positioned</h4>
+                    <ul class="mt-4 space-y-3 text-gray-700 list-disc list-inside">
+                        <li><strong>Synergistic Ecosystem:</strong> Ventures like Prime and AWS reinforce the core e-commerce business, creating immense customer value and lock-in.</li>
+                        <li><strong>Profit Engine:</strong> AWS provides the immense profits needed to fund long-term, ambitious bets in other industries like healthcare and AI.</li>
+                        <li><strong>Data Dominance:</strong> Each new venture feeds the central data asset, making the entire ecosystem smarter and more personalized.</li>
+                        <li><strong>Future-Proofing:</strong> Bets on Generative AI, healthcare, and grocery position Amazon for the next decades of consumer spending.</li>
+                    </ul>
+                </div>
+                <div class="border-l-4 border-red-500 pl-6">
+                    <h4 class="text-2xl font-bold text-red-600">Spreading Too Thin</h4>
+                    <ul class="mt-4 space-y-3 text-gray-700 list-disc list-inside">
+                        <li><strong>Notable Failures:</strong> High-profile flops like the Fire Phone ($170M write-down) and Dash Buttons show that execution is not guaranteed.</li>
+                        <li><strong>Profit Drains:</strong> The devices unit (including Echo) has reportedly sustained billions in annual operating losses despite high sales.</li>
+                        <li><strong>Low-Margin Ventures:</strong> Entering tough, low-margin industries like grocery (Whole Foods) and healthcare presents significant profitability challenges.</li>
+                        <li><strong>Loss of Focus:</strong> The sheer complexity of managing dozens of disparate businesses could dilute management attention and core competencies.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="border-t border-gray-200 mt-16">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-500">
+            <p class="mb-2">
+                © Dr. Swapnil Sahoo 2025 | 
+                <a href="https://x.com/swapnilsahoo" target="_blank" class="text-[#E07A5F] hover:underline">Twitter</a> | 
+                <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" class="text-[#E07A5F] hover:underline">Instagram</a> | 
+                <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" class="text-[#E07A5F] hover:underline">LinkedIn</a>
+            </p>
+            <p>This interactive case study was generated based on the "Amazon in 2024" report. All data is for educational and illustrative purposes.</p>
+        </div>
+    </footer>
+
+<script>
+    const timelineData = [
+        {
+            year: '1995',
+            events: [
+                { text: 'July 1995: Jeff Bezos launches Amazon as an online bookseller, focusing on low prices, vast selection, and convenience.' }
+            ]
+        },
+        {
+            year: '1997',
+            events: [
+                { text: '1997: Amazon first reports net income.' }
+            ]
+        },
+        {
+            year: 'Late 1990s - Early 2000s',
+            events: [
+                { text: 'Late 1990s - Early 2000s: Amazon\'s net income drops significantly due to the dot-com bubble crash of 2001.' }
+            ]
+        },
+        {
+            year: '2000',
+            events: [
+                { text: 'November 2000: Amazon launches its marketplace, allowing third-party merchants to sell products on its platform.' }
+            ]
+        },
+        {
+            year: '2002',
+            events: [
+                { text: '2002: Amazon Web Service (AWS) is launched, providing cloud-computing services to companies.' }
+            ]
+        },
+        {
+            year: '2005',
+            events: [
+                { text: '2005: Amazon launches Prime, offering free two-day shipping for an annual subscription fee of $79.' }
+            ]
+        },
+        {
+            year: '2006',
+            events: [
+                { text: '2006: Amazon launches Unbox, later renamed Video-on-Demand, for instant video streaming.' }
+            ]
+        },
+        {
+            year: '2007',
+            events: [
+                { text: '2007: Amazon launches Kindle at $399, selling out in under six hours.' },
+                { text: '2007: Netflix introduces its streaming service, a year after Amazon\'s Instant Video.' }
+            ]
+        },
+        {
+            year: '2010',
+            events: [
+                { text: '2010: After the iPad launch, Amazon reduces Kindle\'s price to approximately $100.' },
+                { text: '2010: Google launches its phone, Nexus One.' }
+            ]
+        },
+        {
+            year: '2011',
+            events: [
+                { text: '2011: Amazon launches Amazon Studios to produce original content for movies and shows.' },
+                { text: '2011: Amazon launches its own advertising network.' },
+                { text: 'August 2011: Google announces its acquisition of Motorola Mobility for $12.5 billion.' }
+            ]
+        },
+        {
+            year: '2012',
+            events: [
+                { text: '2012: Amazon enters the U.S. wholesale and distribution market with AmazonSupply, later renamed Amazon Business.' }
+            ]
+        },
+        {
+            year: '2013',
+            events: [
+                { text: 'April 2013: Facebook attempts to launch its own phone (eventually Facebook Home on an HTC phone).' },
+                { text: 'August 2013: The Wall Street Journal reports on Best Buy\'s profit growth due to cost-cutting and "stores-within-stores" concept.' }
+            ]
+        },
+        {
+            year: '2014',
+            events: [
+                { text: 'January 2014: Google sells most of Motorola Mobility to Lenovo for $2.91 billion.' },
+                { text: 'July 2014: Amazon launches Fire Phone.' },
+                { text: '2014: Amazon launches Prime Music, an ad-free music streaming service for Prime subscribers.' },
+                { text: '2014: The annual Prime subscription fee increases from $79 to $99.' },
+                { text: '2014: Amazon pays HBO over $200 million for select shows on Prime Video.' },
+                { text: '2014: Amazon acquires Twitch, a live-streaming site for gamers, for nearly $1 billion.' },
+                { text: '2014: Amazon\'s catalogue for Amazon Business increases to 2.2 million items.' },
+                { text: 'October 2014: Amazon announces a $170 million write-down on the Fire Phone due to disappointing sales.' }
+            ]
+        },
+        {
+            year: '2015',
+            events: [
+                { text: 'Early 2015: Amazon introduces Dash Replenishment Service and Dash Button.' },
+                { text: '2015: Amazon Studios announces it will begin making feature films.' }
+            ]
+        },
+        {
+            year: '2016',
+            events: [
+                { text: '2016: Amazon unveils Amazon Go stores, a cashless convenience store concept.' },
+                { text: 'October 2016: Google launches its Pixel phone.' }
+            ]
+        },
+        {
+            year: '2017',
+            events: [
+                { text: 'June 2017: Amazon acquires Whole Foods, an upscale grocery chain, for $13.4 billion.' }
+            ]
+        },
+        {
+            year: '2018',
+            events: [
+                { text: '2018: Amazon Studios receives 10 Golden Globe Award nominations and two wins.' },
+                { text: 'May 2018: Amazon increases its annual Prime membership fee in the U.S. to $119.' },
+                { text: '2018: Amazon acquires PillPack, expanding its presence in healthcare.' }
+            ]
+        },
+        {
+            year: '2019',
+            events: [
+                { text: '2019: Due to weak demand, Amazon discontinues its Dash Button service.' }
+            ]
+        },
+        {
+            year: '2020',
+            events: [
+                { text: '2020: Amazon launches Amazon Pharmacy.' }
+            ]
+        },
+        {
+            year: '2021',
+            events: [
+                { text: 'April 2021: Amazon announces palm-scanning payments in some Whole Foods stores.' },
+                { text: 'April 2021: Amazon announces the launch of Amazon Salon in the U.K.' },
+                { text: '2021: Andrew (Andy) Jassy becomes CEO of Amazon.' }
+            ]
+        },
+        {
+            year: '2022',
+            events: [
+                { text: '2022: Amazon acquires MGM for $8.5 billion.' },
+                { text: '2022: Amazon increases its annual Prime membership fee in the U.S. to $139.' },
+                { text: 'November 2022: Amazon launches Amazon Clinic, a virtual platform for connecting users with healthcare providers.' },
+                { text: '2022: Amazon reports a net loss, largely due to a loss in Rivian stake value and severance costs from layoffs.' }
+            ]
+        },
+        {
+            year: '2023',
+            events: [
+                { text: 'February 2023: Amazon acquires One Medical, a primary care company, for $3.9 billion.' },
+                { text: 'May 2023: Amazon announces over 500 million Echo devices sold globally.' },
+                { text: '2023: Amazon\'s revenue grows 12% year-over-year to $575 billion.' },
+                { text: '2023: AWS generates over $90 billion in revenue and over $24 billion in operating income.' },
+                { text: '2023: Over 60% of sales in the Amazon store come from independent sellers.' },
+                { text: '2023: Amazon has more than 200 million Prime members worldwide.' },
+                { text: '2023: Amazon spends over $19 billion on TV and music content.' },
+                { text: '2023: Amazon generates over $47 billion in digital ad revenue.' },
+                { text: '2023: Amazon Business reaches $35 billion in annualized sales, serving over 6 million business customers.' },
+                { text: '2023: Jassy lays out Amazon\'s vision for generative AI, including custom AI chips (Titanium and Inferentia), Amazon Bedrock, and GenAI applications like Rufus and a more intelligent Alexa.' }
+            ]
+        },
+        {
+            year: '2024',
+            events: [
+                { text: 'Q1 2024: Amazon\'s net sales increase 13% to $143.3 billion; operating income increases to $15.3 billion; operating cash flow increases 82% to $99.1 billion for the trailing twelve months.' },
+                { text: 'June 2024: Amazon folds its Clinic telehealth services into Amazon One Medical.' },
+                { text: 'May 2024: Amazon operates 23 Go stores in the U.S.' },
+                { text: '2024: Amazon\'s revenue grows 11% year-over-year to $638 billion, and net income almost doubles to $59 billion.' },
+                { text: '2024: AWS generates over $108 billion in revenue and almost $40 billion in operating income.' },
+                { text: '2024: Over 60% of Amazon sales come from third-party sellers.' },
+                { text: '2024: Amazon has more than 200 million Prime members worldwide.' },
+                { text: '2024: Amazon sells over 105 million Echo devices globally, a 12% increase over the previous year.' },
+                { text: '2024: Amazon generates over $56 billion in digital ad revenue.' },
+                { text: 'By 2024: Amazon operates 17 Go stores in the U.S. (note: this appears to be an updated figure from May 2024\'s 23 stores, indicating some closures).' }
+            ]
+        }
+    ];
+
+    const timelineContainer = document.getElementById('timeline-container');
+    
+    if(timelineContainer) {
+        let html = '';
+        timelineData.forEach(item => {
+            html += `
+                <div class="timeline-event mb-8">
+                    <h4 class="timeline-year">${item.year}</h4>
+                    <ul class="list-disc ml-8 text-gray-700 space-y-1">
+                        ${item.events.map(event => `<li>${event.text}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+        });
+        timelineContainer.innerHTML = html;
+    }
+
+    const revenueData = {
+        labels: ['Online Stores', '3rd-Party Sellers', 'AWS', 'Advertising', 'Subscriptions', 'Physical Stores', 'Other'],
+        revenue: [242, 140, 91, 47, 40, 20, -5] 
+    };
+
+    const ctx = document.getElementById('revenueChart').getContext('2d');
+    if(ctx) {
+        const revenueChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: revenueData.labels,
+                datasets: [{
+                    label: '2023 Revenue ($B)',
+                    data: revenueData.revenue,
+                    backgroundColor: [
+                        'rgba(129, 178, 154, 0.7)',
+                        'rgba(129, 178, 154, 0.5)',
+                        '#E07A5F',
+                        'rgba(129, 178, 154, 0.5)',
+                        'rgba(129, 178, 154, 0.5)',
+                        'rgba(129, 178, 154, 0.5)',
+                        'rgba(129, 178, 154, 0.5)',
+                    ],
+                    borderColor: [
+                        '#81B29A',
+                        '#81B29A',
+                        '#c76b51',
+                        '#81B29A',
+                        '#81B29A',
+                        '#81B29A',
+                        '#81B29A',
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return ` $${context.raw} Billion`;
+                            }
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Amazon 2023 Revenue by Segment ($ Billions)',
+                        font: {
+                            size: 16
+                        },
+                        padding: {
+                            top: 10,
+                            bottom: 20
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Revenue ($B)'
+                        }
+                    },
+                    y: {
+                       ticks: {
+                            autoSkip: false,
+                            callback: function(value, index, values) {
+                                const label = this.getLabelForValue(value);
+                                if (label.length > 16) {
+                                    return label.substring(0, 16) + '...';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        const toggleProfitButton = document.getElementById('toggle-profit-button');
+        let isProfitView = false;
+        const originalTitle = 'Amazon 2023 Revenue by Segment ($ Billions)';
+        const profitTitle = 'AWS: ~16% of Revenue, but ~67% of Operating Profit';
+
+        toggleProfitButton.addEventListener('click', () => {
+            isProfitView = !isProfitView;
+            if (isProfitView) {
+                revenueChart.options.plugins.title.text = profitTitle;
+                revenueChart.data.datasets[0].backgroundColor = revenueData.revenue.map((_, i) => i === 2 ? '#E07A5F' : 'rgba(200, 200, 200, 0.5)');
+                revenueChart.data.datasets[0].borderColor = revenueData.revenue.map((_, i) => i === 2 ? '#c76b51' : 'rgba(180, 180, 180, 1)');
+                toggleProfitButton.textContent = 'Show Full Revenue View';
+                toggleProfitButton.classList.remove('bg-[#81B29A]');
+                toggleProfitButton.classList.add('bg-[#E07A5F]');
+
+            } else {
+                revenueChart.options.plugins.title.text = originalTitle;
+                revenueChart.data.datasets[0].backgroundColor = [
+                    'rgba(129, 178, 154, 0.7)', 'rgba(129, 178, 154, 0.5)', '#E07A5F',
+                    'rgba(129, 178, 154, 0.5)', 'rgba(129, 178, 154, 0.5)', 'rgba(129, 178, 154, 0.5)', 'rgba(129, 178, 154, 0.5)'
+                ];
+                toggleProfitButton.textContent = 'Show AWS Profit Impact';
+                toggleProfitButton.classList.add('bg-[#81B29A]');
+                toggleProfitButton.classList.remove('bg-[#E07A5F]');
+            }
+            revenueChart.update();
+        });
+    }
+
+    const quizQuestions = [
+        {
+            question: "1. What is the primary financial motive for a firm to engage in unrelated diversification?",
+            options: ["a) To leverage operational synergies across businesses.", "b) To reduce overall corporate risk by spreading investments across diverse industries.", "c) To gain market power and influence pricing.", "d) To avoid declining industries."],
+            answer: "b"
+        },
+        {
+            question: "2. What is the term for a situation where the market undervalues a combined company compared to its individual parts?",
+            options: ["a) The Amazon Flywheel.", "b) Operational synergy.", "c) The conglomerate discount.", "d) The razor-blade strategy."],
+            answer: "c"
+        },
+        {
+            question: "3. According to the case study, what was the strategic rationale behind Amazon's Third-Party Marketplace?",
+            options: ["a) To reduce shipping costs for all products.", "b) To transform Amazon from a retailer into a platform with strong network effects.", "c) To directly compete with eBay.", "d) To increase the company's advertising revenue."],
+            answer: "b"
+        },
+        {
+            question: "4. Which Amazon venture is presented as a prime example of monetizing an internal operational capability?",
+            options: ["a) Prime Video.", "b) Amazon Go Stores.", "c) Amazon Web Services (AWS).", "d) Whole Foods acquisition."],
+            answer: "c"
+        },
+        {
+            question: "5. The 'razor-blade' strategy, as applied to the Kindle, means that Amazon primarily makes money from:",
+            options: ["a) Selling the Kindle device itself.", "b) Selling advertising on the Kindle's home screen.", "c) The e-books and other digital content purchased for the device.", "d) The high-end software services available on the Kindle."],
+            answer: "c"
+        },
+        {
+            question: "6. What is a key insight Amazon gained from its advertising network that Google may lack?",
+            options: ["a) The ability to serve highly targeted ads.", "b) The number of customers who click on an ad.", "c) Data on what a customer actually bought, not just their intent to buy.", "d) Data on customer demographics."],
+            answer: "c"
+        },
+        {
+            question: "7. Which of the following best describes the strategic purpose of Amazon Prime Video and Amazon Studios?",
+            options: ["a) To generate significant, direct profit from media content.", "b) To diversify away from the highly competitive e-commerce business.", "c) To create a core service that prevents customer churn from Prime membership.", "d) To directly compete with traditional television studios."],
+            answer: "c"
+        },
+        {
+            question: "8. What was the primary reason for the failure of the Amazon Fire Phone?",
+            options: ["a) It was too expensive compared to other phones.", "b) It lacked a clear strategic rationale for Amazon.", "c) It did not offer enough value to consumers to drive adoption.", "d) It was too complex for the average consumer to use."],
+            answer: "c"
+        },
+        {
+            question: "9. The acquisition of Whole Foods is described as a long-term strategic bet to primarily achieve what?",
+            options: ["a) To gain market power in the grocery industry.", "b) To increase profits from the upscale grocery business.", "c) To establish a weekly shopping habit and capture valuable data from consumers.", "d) To compete directly with Walmart."],
+            answer: "c"
+        },
+        {
+            question: "10. What is the concept of 'Corporate Parenting Advantage'?",
+            options: ["a) The value that a corporate headquarters adds to its individual businesses.", "b) The ability of a parent company to reduce the taxes of its subsidiaries.", "c) The process of acquiring and managing a large portfolio of unrelated businesses.", "d) The practice of a parent company directly managing all day-to-day operations of its subsidiaries."],
+            answer: "a"
+        },
+        {
+            question: "11. A key risk of diversification is the 'diversification conundrum', which refers to the trade-off between:",
+            options: ["a) Diversification being a source of value destruction versus specialization being too restrictive.", "b) High costs of entry versus low profitability of a new market.", "c) The benefits of economies of scale versus economies of scope.", "d) A firm's desire for growth versus its desire for stability."],
+            answer: "a"
+        },
+        {
+            question: "12. What does it mean for Amazon to be 'managing linkages across businesses'?",
+            options: ["a) Each business unit operates completely independently to avoid conflicts.", "b) The company uses a single IT system for all its businesses.", "c) It deliberately creates synergies by connecting data, technology, and customers across its ecosystem.", "d) The corporate office makes all day-to-day operational decisions."],
+            answer: "c"
+        },
+        {
+            question: "13. In the context of Amazon's competitive advantage, what does the Amazon 'flywheel' primarily represent?",
+            options: ["a) A decentralized organizational structure.", "b) A virtuous cycle where each part reinforces the others to create unstoppable momentum.", "c) The transfer of technology between business units.", "d) The company's strategy for internal capital allocation."],
+            answer: "b"
+        },
+        {
+            question: "14. Which statement best describes Amazon's approach to the governance of its multi-business corporation?",
+            options: ["a) A highly centralized, top-down approach with minimal autonomy for business units.", "b) A completely decentralized model where business units operate as independent entities.", "c) A model that balances a centralized strategic vision with decentralized, autonomous teams for innovation.", "d) A structure where the most profitable business unit controls all others."],
+            answer: "c"
+        },
+        {
+            question: "15. What is a key takeaway regarding competition in the digital era, as illustrated by the Amazon case?",
+            options: ["a) Traditional companies should focus on price competition to survive.", "b) Industry boundaries are becoming blurred and competitive advantage shifts to ecosystems and network effects.", "c) Product differentiation is the only sustainable source of competitive advantage.", "d) Diversification is always a source of value destruction."],
+            answer: "b"
+        }
+    ];
+
+    const quizForm = document.getElementById('quiz-form');
+    
+    function renderQuiz() {
+        let html = '';
+        quizQuestions.forEach((q, index) => {
+            const questionText = q.question.startsWith(`${index + 1}. `) ? q.question : `${index + 1}. ${q.question}`;
+            html += `
+                <div>
+                    <p class="font-bold text-lg mb-2">${questionText}</p>
+                    <ul class="space-y-2 text-gray-700">
+            `;
+            q.options.forEach((option, optionIndex) => {
+                html += `
+                        <li><label><input type="radio" name="q${index + 1}" value="${String.fromCharCode(97 + optionIndex)}" class="mr-2"> ${option}</label></li>
+                `;
+            });
+            html += `
+                    </ul>
+                </div>
+            `;
+        });
+        quizForm.innerHTML = html + `<div class="mt-8 text-center"><button type="submit" id="submit-quiz" class="bg-[#81B29A] text-white font-bold py-3 px-8 rounded-lg hover:bg-[#6f9a84] transition-colors">Submit Answers</button></div>`;
+    }
+
+    renderQuiz();
+
+    document.getElementById('quiz-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const resultsDiv = document.getElementById('quiz-results');
+        const scoreSpan = document.getElementById('score');
+        const reviewDiv = document.getElementById('answers-review');
+        let score = 0;
+        reviewDiv.innerHTML = '';
+
+        quizQuestions.forEach((q, index) => {
+            const questionName = `q${index + 1}`;
+            const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
+            let isCorrect = false;
+
+            if (selectedOption && selectedOption.value === q.answer) {
+                score++;
+                isCorrect = true;
+            }
+
+            const reviewItem = document.createElement('div');
+            reviewItem.className = 'p-4 rounded-lg';
+            
+            const selectedAnswerText = selectedOption ? selectedOption.parentElement.textContent.trim() : 'No answer selected.';
+            const correctAnswerText = q.options.find(opt => opt.startsWith(q.answer)).substring(3);
+
+            const statusClass = isCorrect ? 'text-green-600' : 'text-red-600';
+            const statusBgClass = isCorrect ? 'bg-green-100' : 'bg-red-100';
+
+            reviewItem.innerHTML = `
+                <p class="font-bold mb-1">${q.question}</p>
+                <p class="${statusClass} p-2 rounded-md ${statusBgClass}">Your Answer: ${selectedAnswerText}</p>
+                ${isCorrect ? '' : `<p class="text-green-600 p-2 rounded-md bg-green-100 mt-2">Correct Answer: ${q.answer.toUpperCase() + ') ' + correctAnswerText}</p>`}
+            `;
+            reviewDiv.appendChild(reviewItem);
+        });
+
+        scoreSpan.textContent = `${score} / ${quizQuestions.length}`;
+        resultsDiv.classList.remove('hidden');
+        resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+    mobileMenu.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') {
+            mobileMenu.classList.add('hidden');
+        }
+    });
+
+    const timelineData = [
+        {
+            year: '1995',
+            events: [
+                { text: 'July 1995: Jeff Bezos launches Amazon as an online bookseller, focusing on low prices, vast selection, and convenience.' }
+            ]
+        },
+        {
+            year: '1997',
+            events: [
+                { text: '1997: Amazon first reports net income.' }
+            ]
+        },
+        {
+            year: 'Late 1990s - Early 2000s',
+            events: [
+                { text: 'Late 1990s - Early 2000s: Amazon\'s net income drops significantly due to the dot-com bubble crash of 2001.' }
+            ]
+        },
+        {
+            year: '2000',
+            events: [
+                { text: 'November 2000: Amazon launches its marketplace, allowing third-party merchants to sell products on its platform.' }
+            ]
+        },
+        {
+            year: '2002',
+            events: [
+                { text: '2002: Amazon Web Service (AWS) is launched, providing cloud-computing services to companies.' }
+            ]
+        },
+        {
+            year: '2005',
+            events: [
+                { text: '2005: Amazon launches Prime, offering free two-day shipping for an annual subscription fee of $79.' }
+            ]
+        },
+        {
+            year: '2006',
+            events: [
+                { text: '2006: Amazon launches Unbox, later renamed Video-on-Demand, for instant video streaming.' }
+            ]
+        },
+        {
+            year: '2007',
+            events: [
+                { text: '2007: Amazon launches Kindle at $399, selling out in under six hours.' },
+                { text: '2007: Netflix introduces its streaming service, a year after Amazon\'s Instant Video.' }
+            ]
+        },
+        {
+            year: '2010',
+            events: [
+                { text: '2010: After the iPad launch, Amazon reduces Kindle\'s price to approximately $100.' },
+                { text: '2010: Google launches its phone, Nexus One.' }
+            ]
+        },
+        {
+            year: '2011',
+            events: [
+                { text: '2011: Amazon launches Amazon Studios to produce original content for movies and shows.' },
+                { text: '2011: Amazon launches its own advertising network.' },
+                { text: 'August 2011: Google announces its acquisition of Motorola Mobility for $12.5 billion.' }
+            ]
+        },
+        {
+            year: '2012',
+            events: [
+                { text: '2012: Amazon enters the U.S. wholesale and distribution market with AmazonSupply, later renamed Amazon Business.' }
+            ]
+        },
+        {
+            year: '2013',
+            events: [
+                { text: 'April 2013: Facebook attempts to launch its own phone (eventually Facebook Home on an HTC phone).' },
+                { text: 'August 2013: The Wall Street Journal reports on Best Buy\'s profit growth due to cost-cutting and "stores-within-stores" concept.' }
+            ]
+        },
+        {
+            year: '2014',
+            events: [
+                { text: 'January 2014: Google sells most of Motorola Mobility to Lenovo for $2.91 billion.' },
+                { text: 'July 2014: Amazon launches Fire Phone.' },
+                { text: '2014: Amazon launches Prime Music, an ad-free music streaming service for Prime subscribers.' },
+                { text: '2014: The annual Prime subscription fee increases from $79 to $99.' },
+                { text: '2014: Amazon pays HBO over $200 million for select shows on Prime Video.' },
+                { text: '2014: Amazon acquires Twitch, a live-streaming site for gamers, for nearly $1 billion.' },
+                { text: '2014: Amazon\'s catalogue for Amazon Business increases to 2.2 million items.' },
+                { text: 'October 2014: Amazon announces a $170 million write-down on the Fire Phone due to disappointing sales.' }
+            ]
+        },
+        {
+            year: '2015',
+            events: [
+                { text: 'Early 2015: Amazon introduces Dash Replenishment Service and Dash Button.' },
+                { text: '2015: Amazon Studios announces it will begin making feature films.' }
+            ]
+        },
+        {
+            year: '2016',
+            events: [
+                { text: '2016: Amazon unveils Amazon Go stores, a cashless convenience store concept.' },
+                { text: 'October 2016: Google launches its Pixel phone.' }
+            ]
+        },
+        {
+            year: '2017',
+            events: [
+                { text: 'June 2017: Amazon acquires Whole Foods, an upscale grocery chain, for $13.4 billion.' }
+            ]
+        },
+        {
+            year: '2018',
+            events: [
+                { text: '2018: Amazon Studios receives 10 Golden Globe Award nominations and two wins.' },
+                { text: 'May 2018: Amazon increases its annual Prime membership fee in the U.S. to $119.' },
+                { text: '2018: Amazon acquires PillPack, expanding its presence in healthcare.' }
+            ]
+        },
+        {
+            year: '2019',
+            events: [
+                { text: '2019: Due to weak demand, Amazon discontinues its Dash Button service.' }
+            ]
+        },
+        {
+            year: '2020',
+            events: [
+                { text: '2020: Amazon launches Amazon Pharmacy.' }
+            ]
+        },
+        {
+            year: '2021',
+            events: [
+                { text: 'April 2021: Amazon announces palm-scanning payments in some Whole Foods stores.' },
+                { text: 'April 2021: Amazon announces the launch of Amazon Salon in the U.K.' },
+                { text: '2021: Andrew (Andy) Jassy becomes CEO of Amazon.' }
+            ]
+        },
+        {
+            year: '2022',
+            events: [
+                { text: '2022: Amazon acquires MGM for $8.5 billion.' },
+                { text: '2022: Amazon increases its annual Prime membership fee in the U.S. to $139.' },
+                { text: 'November 2022: Amazon launches Amazon Clinic, a virtual platform for connecting users with healthcare providers.' },
+                { text: '2022: Amazon reports a net loss, largely due to a loss in Rivian stake value and severance costs from layoffs.' }
+            ]
+        },
+        {
+            year: '2023',
+            events: [
+                { text: 'February 2023: Amazon acquires One Medical, a primary care company, for $3.9 billion.' },
+                { text: 'May 2023: Amazon announces over 500 million Echo devices sold globally.' },
+                { text: '2023: Amazon\'s revenue grows 12% year-over-year to $575 billion.' },
+                { text: '2023: AWS generates over $90 billion in revenue and over $24 billion in operating income.' },
+                { text: '2023: Over 60% of sales in the Amazon store come from independent sellers.' },
+                { text: '2023: Amazon has more than 200 million Prime members worldwide.' },
+                { text: '2023: Amazon spends over $19 billion on TV and music content.' },
+                { text: '2023: Amazon generates over $47 billion in digital ad revenue.' },
+                { text: '2023: Amazon Business reaches $35 billion in annualized sales, serving over 6 million business customers.' },
+                { text: '2023: Jassy lays out Amazon\'s vision for generative AI, including custom AI chips (Titanium and Inferentia), Amazon Bedrock, and GenAI applications like Rufus and a more intelligent Alexa.' }
+            ]
+        },
+        {
+            year: '2024',
+            events: [
+                { text: 'Q1 2024: Amazon\'s net sales increase 13% to $143.3 billion; operating income increases to $15.3 billion; operating cash flow increases 82% to $99.1 billion for the trailing twelve months.' },
+                { text: 'June 2024: Amazon folds its Clinic telehealth services into Amazon One Medical.' },
+                { text: 'May 2024: Amazon operates 23 Go stores in the U.S.' },
+                { text: '2024: Amazon\'s revenue grows 11% year-over-year to $638 billion, and net income almost doubles to $59 billion.' },
+                { text: '2024: AWS generates over $108 billion in revenue and almost $40 billion in operating income.' },
+                { text: '2024: Over 60% of Amazon sales come from third-party sellers.' },
+                { text: '2024: Amazon has more than 200 million Prime members worldwide.' },
+                { text: '2024: Amazon sells over 105 million Echo devices globally, a 12% increase over the previous year.' },
+                { text: '2024: Amazon generates over $56 billion in digital ad revenue.' },
+                { text: 'By 2024: Amazon operates 17 Go stores in the U.S. (note: this appears to be an updated figure from May 2024\'s 23 stores, indicating some closures).' }
+            ]
+        }
+    ];
+
+    const timelineContainer = document.getElementById('timeline-container');
+    
+    if(timelineContainer) {
+        let html = '';
+        timelineData.forEach(item => {
+            html += `
+                <div class="timeline-event mb-8">
+                    <h4 class="timeline-year">${item.year}</h4>
+                    <ul class="list-disc ml-8 text-gray-700 space-y-1">
+                        ${item.events.map(event => `<li>${event.text}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+        });
+        timelineContainer.innerHTML = html;
+    }
+
+    const revenueData = {
+        labels: ['Online Stores', '3rd-Party Sellers', 'AWS', 'Advertising', 'Subscriptions', 'Physical Stores', 'Other'],
+        revenue: [242, 140, 91, 47, 40, 20, -5] 
+    };
+
+    const ctx = document.getElementById('revenueChart').getContext('2d');
+    if(ctx) {
+        const revenueChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: revenueData.labels,
+                datasets: [{
+                    label: '2023 Revenue ($B)',
+                    data: revenueData.revenue,
+                    backgroundColor: [
+                        'rgba(129, 178, 154, 0.7)',
+                        'rgba(129, 178, 154, 0.5)',
+                        '#E07A5F',
+                        'rgba(129, 178, 154, 0.5)',
+                        'rgba(129, 178, 154, 0.5)',
+                        'rgba(129, 178, 154, 0.5)',
+                        'rgba(129, 178, 154, 0.5)',
+                    ],
+                    borderColor: [
+                        '#81B29A',
+                        '#81B29A',
+                        '#c76b51',
+                        '#81B29A',
+                        '#81B29A',
+                        '#81B29A',
+                        '#81B29A',
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return ` $${context.raw} Billion`;
+                            }
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Amazon 2023 Revenue by Segment ($ Billions)',
+                        font: {
+                            size: 16
+                        },
+                        padding: {
+                            top: 10,
+                            bottom: 20
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Revenue ($B)'
+                        }
+                    },
+                    y: {
+                       ticks: {
+                            autoSkip: false,
+                            callback: function(value, index, values) {
+                                const label = this.getLabelForValue(value);
+                                if (label.length > 16) {
+                                    return label.substring(0, 16) + '...';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        const toggleProfitButton = document.getElementById('toggle-profit-button');
+        let isProfitView = false;
+        const originalTitle = 'Amazon 2023 Revenue by Segment ($ Billions)';
+        const profitTitle = 'AWS: ~16% of Revenue, but ~67% of Operating Profit';
+
+        toggleProfitButton.addEventListener('click', () => {
+            isProfitView = !isProfitView;
+            if (isProfitView) {
+                revenueChart.options.plugins.title.text = profitTitle;
+                revenueChart.data.datasets[0].backgroundColor = revenueData.revenue.map((_, i) => i === 2 ? '#E07A5F' : 'rgba(200, 200, 200, 0.5)');
+                revenueChart.data.datasets[0].borderColor = revenueData.revenue.map((_, i) => i === 2 ? '#c76b51' : 'rgba(180, 180, 180, 1)');
+                toggleProfitButton.textContent = 'Show Full Revenue View';
+                toggleProfitButton.classList.remove('bg-[#81B29A]');
+                toggleProfitButton.classList.add('bg-[#E07A5F]');
+
+            } else {
+                revenueChart.options.plugins.title.text = originalTitle;
+                revenueChart.data.datasets[0].backgroundColor = [
+                    'rgba(129, 178, 154, 0.7)', 'rgba(129, 178, 154, 0.5)', '#E07A5F',
+                    'rgba(129, 178, 154, 0.5)', 'rgba(129, 178, 154, 0.5)', 'rgba(129, 178, 154, 0.5)', 'rgba(129, 178, 154, 0.5)'
+                ];
+                toggleProfitButton.textContent = 'Show AWS Profit Impact';
+                toggleProfitButton.classList.add('bg-[#81B29A]');
+                toggleProfitButton.classList.remove('bg-[#E07A5F]');
+            }
+            revenueChart.update();
+        });
+    }
+
+    const quizQuestions = [
+        {
+            question: "1. What is the primary financial motive for a firm to engage in unrelated diversification?",
+            options: ["a) To leverage operational synergies across businesses.", "b) To reduce overall corporate risk by spreading investments across diverse industries.", "c) To gain market power and influence pricing.", "d) To avoid declining industries."],
+            answer: "b"
+        },
+        {
+            question: "2. What is the term for a situation where the market undervalues a combined company compared to its individual parts?",
+            options: ["a) The Amazon Flywheel.", "b) Operational synergy.", "c) The conglomerate discount.", "d) The razor-blade strategy."],
+            answer: "c"
+        },
+        {
+            question: "3. According to the case study, what was the strategic rationale behind Amazon's Third-Party Marketplace?",
+            options: ["a) To reduce shipping costs for all products.", "b) To transform Amazon from a retailer into a platform with strong network effects.", "c) To directly compete with eBay.", "d) To increase the company's advertising revenue."],
+            answer: "b"
+        },
+        {
+            question: "4. Which Amazon venture is presented as a prime example of monetizing an internal operational capability?",
+            options: ["a) Prime Video.", "b) Amazon Go Stores.", "c) Amazon Web Services (AWS).", "d) Whole Foods acquisition."],
+            answer: "c"
+        },
+        {
+            question: "5. The 'razor-blade' strategy, as applied to the Kindle, means that Amazon primarily makes money from:",
+            options: ["a) Selling the Kindle device itself.", "b) Selling advertising on the Kindle's home screen.", "c) The e-books and other digital content purchased for the device.", "d) The high-end software services available on the Kindle."],
+            answer: "c"
+        },
+        {
+            question: "6. What is a key insight Amazon gained from its advertising network that Google may lack?",
+            options: ["a) The ability to serve highly targeted ads.", "b) The number of customers who click on an ad.", "c) Data on what a customer actually bought, not just their intent to buy.", "d) Data on customer demographics."],
+            answer: "c"
+        },
+        {
+            question: "7. Which of the following best describes the strategic purpose of Amazon Prime Video and Amazon Studios?",
+            options: ["a) To generate significant, direct profit from media content.", "b) To diversify away from the highly competitive e-commerce business.", "c) To create a core service that prevents customer churn from Prime membership.", "d) To directly compete with traditional television studios."],
+            answer: "c"
+        },
+        {
+            question: "8. What was the primary reason for the failure of the Amazon Fire Phone?",
+            options: ["a) It was too expensive compared to other phones.", "b) It lacked a clear strategic rationale for Amazon.", "c) It did not offer enough value to consumers to drive adoption.", "d) It was too complex for the average consumer to use."],
+            answer: "c"
+        },
+        {
+            question: "9. The acquisition of Whole Foods is described as a long-term strategic bet to primarily achieve what?",
+            options: ["a) To gain market power in the grocery industry.", "b) To increase profits from the upscale grocery business.", "c) To establish a weekly shopping habit and capture valuable data from consumers.", "d) To compete directly with Walmart."],
+            answer: "c"
+        },
+        {
+            question: "10. What is the concept of 'Corporate Parenting Advantage'?",
+            options: ["a) The value that a corporate headquarters adds to its individual businesses.", "b) The ability of a parent company to reduce the taxes of its subsidiaries.", "c) The process of acquiring and managing a large portfolio of unrelated businesses.", "d) The practice of a parent company directly managing all day-to-day operations of its subsidiaries."],
+            answer: "a"
+        },
+        {
+            question: "11. A key risk of diversification is the 'diversification conundrum', which refers to the trade-off between:",
+            options: ["a) Diversification being a source of value destruction versus specialization being too restrictive.", "b) High costs of entry versus low profitability of a new market.", "c) The benefits of economies of scale versus economies of scope.", "d) A firm's desire for growth versus its desire for stability."],
+            answer: "a"
+        },
+        {
+            question: "12. What does it mean for Amazon to be 'managing linkages across businesses'?",
+            options: ["a) Each business unit operates completely independently to avoid conflicts.", "b) The company uses a single IT system for all its businesses.", "c) It deliberately creates synergies by connecting data, technology, and customers across its ecosystem.", "d) The corporate office makes all day-to-day operational decisions."],
+            answer: "c"
+        },
+        {
+            question: "13. In the context of Amazon's competitive advantage, what does the Amazon 'flywheel' primarily represent?",
+            options: ["a) A decentralized organizational structure.", "b) A virtuous cycle where each part reinforces the others to create unstoppable momentum.", "c) The transfer of technology between business units.", "d) The company's strategy for internal capital allocation."],
+            answer: "b"
+        },
+        {
+            question: "14. Which statement best describes Amazon's approach to the governance of its multi-business corporation?",
+            options: ["a) A highly centralized, top-down approach with minimal autonomy for business units.", "b) A completely decentralized model where business units operate as independent entities.", "c) A model that balances a centralized strategic vision with decentralized, autonomous teams for innovation.", "d) A structure where the most profitable business unit controls all others."],
+            answer: "c"
+        },
+        {
+            question: "15. What is a key takeaway regarding competition in the digital era, as illustrated by the Amazon case?",
+            options: ["a) Traditional companies should focus on price competition to survive.", "b) Industry boundaries are becoming blurred and competitive advantage shifts to ecosystems and network effects.", "c) Product differentiation is the only sustainable source of competitive advantage.", "d) Diversification is always a source of value destruction."],
+            answer: "b"
+        }
+    ];
+
+    const quizForm = document.getElementById('quiz-form');
+    
+    function renderQuiz() {
+        let html = '';
+        quizQuestions.forEach((q, index) => {
+            const questionText = q.question.startsWith(`${index + 1}. `) ? q.question : `${index + 1}. ${q.question}`;
+            html += `
+                <div>
+                    <p class="font-bold text-lg mb-2">${questionText}</p>
+                    <ul class="space-y-2 text-gray-700">
+            `;
+            q.options.forEach((option, optionIndex) => {
+                html += `
+                        <li><label><input type="radio" name="q${index + 1}" value="${String.fromCharCode(97 + optionIndex)}" class="mr-2"> ${option}</label></li>
+                `;
+            });
+            html += `
+                    </ul>
+                </div>
+            `;
+        });
+        quizForm.innerHTML = html + `<div class="mt-8 text-center"><button type="submit" id="submit-quiz" class="bg-[#81B29A] text-white font-bold py-3 px-8 rounded-lg hover:bg-[#6f9a84] transition-colors">Submit Answers</button></div>`;
+    }
+
+    renderQuiz();
+
+    document.getElementById('quiz-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const resultsDiv = document.getElementById('quiz-results');
+        const scoreSpan = document.getElementById('score');
+        const reviewDiv = document.getElementById('answers-review');
+        let score = 0;
+        reviewDiv.innerHTML = '';
+
+        quizQuestions.forEach((q, index) => {
+            const questionName = `q${index + 1}`;
+            const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
+            let isCorrect = false;
+
+            if (selectedOption && selectedOption.value === q.answer) {
+                score++;
+                isCorrect = true;
+            }
+
+            const reviewItem = document.createElement('div');
+            reviewItem.className = 'p-4 rounded-lg';
+            
+            const selectedAnswerText = selectedOption ? selectedOption.parentElement.textContent.trim() : 'No answer selected.';
+            const correctAnswerText = q.options.find(opt => opt.startsWith(q.answer)).substring(3);
+
+            const statusClass = isCorrect ? 'text-green-600' : 'text-red-600';
+            const statusBgClass = isCorrect ? 'bg-green-100' : 'bg-red-100';
+
+            reviewItem.innerHTML = `
+                <p class="font-bold mb-1">${q.question}</p>
+                <p class="${statusClass} p-2 rounded-md ${statusBgClass}">Your Answer: ${selectedAnswerText}</p>
+                ${isCorrect ? '' : `<p class="text-green-600 p-2 rounded-md bg-green-100 mt-2">Correct Answer: ${q.answer.toUpperCase() + ') ' + correctAnswerText}</p>`}
+            `;
+            reviewDiv.appendChild(reviewItem);
+        });
+
+        scoreSpan.textContent = `${score} / ${quizQuestions.length}`;
+        resultsDiv.classList.remove('hidden');
+        resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+    mobileMenu.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') {
+            mobileMenu.classList.add('hidden');
+        }
+    });
+});
+</script>
+</body>
+</html>

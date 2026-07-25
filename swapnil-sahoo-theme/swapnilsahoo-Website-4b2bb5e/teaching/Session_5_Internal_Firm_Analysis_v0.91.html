@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internal Firm Analysis: The Nvidia Case</title>
+    <!-- Chosen Palette: Ivy League (Header/Footer) + Nvidia Green (Content) -->
+    <!-- Application Structure Plan: Merged header/footer structure and styles from user's Session3 template. This includes the two-part fixed header (dark top bar, white nav), the main tag padding offset, and the dark footer. Content theme (Nvidia Green) from the original file is preserved for the main body. -->
+    <!-- Visualization & Content Choices: All visualizations and content from the previous Nvidia session file are retained. Navigation links and mobile nav options are updated to match the sections of this page. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- Copied from Session 3 for Header/Footer/Nav --- */
+        :root {
+            --header-height-desktop: 129px; /* Was 92px */
+            --header-height-mobile: 53px; /* Was 52px */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            color: #1f2937; /* gray-800 */
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--header-height-mobile);
+        }
+        @media (min-width: 640px) {
+            html {
+                scroll-padding-top: var(--header-height-desktop);
+            }
+        }
+
+        /* Header Elements */
+        #top-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 50; }
+        #main-nav-container { position: fixed; top: 40px; left: 0; right: 0; z-index: 40; }
+        @media (max-width: 639px) {
+            #main-nav-container { top: 0; }
+            #top-bar { display: none; }
+        }
+        
+        /* Main content padding to offset fixed header */
+        main {
+            padding-top: var(--header-height-mobile);
+        }
+        @media (min-width: 640px) {
+            main {
+                padding-top: var(--header-height-desktop);
+            }
+        }
+
+        /* Navigation Links (From Template) */
+        .active-nav { color: #A51C30; border-bottom-color: #A51C30; font-weight: 600; } /* Crimson */
+        .nav-link { transition: all 0.2s ease-in-out; border-bottom: 2px solid transparent; padding-bottom: 4px; color: #4b5563; }
+        .nav-link:hover { color: #A51C30; border-bottom-color: #A51C30; } /* Crimson */
+        
+        /* EXACT ICON STYLES FROM TEMPLATE */
+        .top-bar-link svg, .footer-link svg { width: 1.125rem; height: 1.125rem; fill: currentColor; transition: color 0.2s ease-in-out; }
+        .hexagon-icon { position: relative; width: 28px; height: 28px; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3)); display: inline-block; vertical-align: middle; }
+        .hexagon-icon svg { width: 100%; height: 100%; animation: glow 2.5s infinite ease-in-out; }
+        .hexagon-path { stroke: #B91C1C; stroke-width: 1; } 
+        .hexagon-s { font-family: 'Georgia', serif; font-weight: bold; font-size: 48px; fill: #facc15; text-anchor: middle; dominant-baseline: central; }
+        @keyframes glow { 0%, 100% { filter: drop-shadow(0 0 4px rgba(239, 68, 68, 0.7)); } 50% { filter: drop-shadow(0 0 10px rgba(239, 68, 68, 1)); } }
+
+        /* Mobile Nav Select (From Template) */
+        #mobile-nav {
+            -webkit-appearance: none; -moz-appearance: none; appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M7 7l3-3 3 3m0 6l-3 3-3-3'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center; background-repeat: no-repeat; background-size: 1.25em 1.25em;
+            padding: 0.5rem 2.5rem 0.5rem 0.75rem; border: 1px solid #d1d5db;
+        }
+        /* --- End of Session 3 Styles --- */
+
+        /* --- Styles from Nvidia Page (Content) --- */
+        .section-title { @apply text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900; }
+        .section-subtitle { @apply mt-4 text-xl lg:text-2xl text-gray-600; }
+        .card { @apply bg-white shadow-xl rounded-2xl overflow-hidden border border-gray-100; }
+        
+        /* UPDATED TAB STYLES FOR EMPHASIS */
+        .tab-button { @apply px-6 py-3 text-base font-semibold rounded-lg transition-all duration-300 transform; }
+        .tab-button.active { @apply bg-green-600 text-white shadow-xl scale-105; }
+        .tab-button:not(.active) { @apply bg-white text-gray-800 shadow-md hover:shadow-lg hover:-translate-y-1; }
+        
+        /* Using the content-specific chart container style */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 350px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+        }
+        .vrio-card { @apply p-6 rounded-lg shadow-inner; }
+        .value-chain-primary > div { @apply p-4 bg-green-600 text-white text-center rounded-lg shadow-lg cursor-pointer hover:bg-green-700 transition-transform hover:scale-105 duration-300; }
+        .value-chain-support > div { @apply p-3 bg-gray-200 text-gray-700 text-center rounded-lg shadow-md cursor-pointer hover:bg-gray-300 transition-transform hover:scale-105 duration-300; }
+        .swot-quadrant { @apply bg-white p-6 rounded-2xl shadow-lg border border-gray-100; }
+        .swot-header { @apply text-2xl font-bold cursor-pointer flex justify-between items-center transition-colors duration-300; }
+        .swot-header:hover { @apply text-green-700; }
+        /* NEW BOLD QUESTION STYLE */
+        .bold-question {
+            @apply mt-4 text-2xl lg:text-3xl font-semibold text-gray-800 italic;
+        }
+
+        /* NEW SIMULATION STYLES */
+        .sim-button {
+            @apply w-full md:w-auto flex-1 p-6 text-center rounded-lg shadow-lg border-4 border-transparent cursor-pointer transition-all duration-300 transform hover:scale-105;
+        }
+        .sim-button.active {
+            @apply shadow-2xl border-green-600 scale-105;
+        }
+        .sim-button h3 {
+            @apply text-2xl font-bold;
+        }
+        .sim-button p {
+            @apply text-sm;
+        }
+        #sim-btn-quikdrop { @apply bg-yellow-400 text-yellow-900; }
+        #sim-btn-mamashine { @apply bg-pink-400 text-pink-900; }
+        #sim-btn-rupeelink { @apply bg-blue-500 text-white; }
+
+        /* NEW QUIZ STYLES */
+        .quiz-option {
+            @apply block w-full text-left p-4 border border-gray-300 rounded-lg cursor-pointer transition-all duration-200 hover:bg-gray-100;
+        }
+        .quiz-option.selected {
+            pointer-events: none; /* Disable clicking after selection */
+        }
+        .quiz-option.correct {
+            @apply bg-green-100 border-green-500 text-green-900 font-semibold;
+            box-shadow: 0 0 10px rgba(5, 150, 105, 0.3);
+        }
+        .quiz-option.incorrect {
+            @apply bg-red-100 border-red-500 text-red-900 font-semibold;
+            box-shadow: 0 0 10px rgba(220, 38, 38, 0.3);
+        }
+        .quiz-option.disabled {
+            @apply cursor-not-allowed opacity-70 hover:bg-white;
+            pointer-events: none;
+        }
+        .explanation {
+            @apply mt-4 p-4 bg-gray-50 border-l-4 border-green-600 shadow-inner rounded-r-lg;
+            display: none; /* Will be shown by JS */
+        }
+        .explanation.visible {
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50">
+
+    <!-- HEADER (Copied from Session 3) -->
+    <header id="main-header" class="shadow-sm">
+        <div id="top-bar" class="bg-gray-800 text-white py-1" style="height: 40px;">
+            <div class="container mx-auto px-6 flex justify-between items-center h-full">
+                <p class="text-xs font-medium text-slate-400">© Dr. Swapnil Sahoo 2025</p>
+                <div class="flex items-center space-x-4">
+                    <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white group" title="Website">
+                        <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
+                            <svg viewBox="0 0 52 60">
+                                <defs><linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
+                                <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#redGradient)"/><text class="hexagon-s" x="26" y="32">S</text>
+                            </svg>
+                        </div>
+                    </a>
+                    <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white top-bar-link" title="X/Twitter"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white top-bar-link" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049 1.064.218 1.791.465 2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.575 2h.093zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" clip-rule="evenodd"/></svg></a>
+                    <a href="httpss://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white top-bar-link" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg></a>
+                </div>
+            </div>
+        </div>
+        
+        <div id="main-nav-container" class="bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200 z-50">
+            <div class="container mx-auto px-6 py-3 title-bar">
+                <div class="flex justify-between items-center">
+                    <!-- UPDATE: Title changed to match content -->
+                    <h1 class="text-xl font-bold text-slate-900">Internal Firm Analysis: The Nvidia Case</h1>
+                    <div class="sm:hidden">
+                        <!-- UPDATE: Mobile nav links changed -->
+                        <select id="mobile-nav" class="block w-auto rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm">
+                            <option value="#module1">Intro</option>
+                            <option value="#module2">Concepts</option>
+                            <option value="#module3">VRIO</option>
+                            <option value="#module4">Sustain</option>
+                            <option value="#module5">Value Chain</option>
+                            <option value="#module6">SWOT</option>
+                            <option value="#module7">Simulation</option>
+                            <option value="#module8">Quiz</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <nav id="top-nav" class="bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200 overflow-x-auto whitespace-nowrap hidden sm:block">
+                <div class="container mx-auto px-6 py-2 flex space-x-4">
+                    <!-- UPDATE: Desktop nav links changed -->
+                    <a href="#module1" class="nav-link text-sm font-medium">Intro</a>
+                    <a href="#module2" class="nav-link text-sm font-medium">Concepts</a>
+                    <a href="#module3" class="nav-link text-sm font-medium">VRIO</a>
+                    <a href="#module4" class="nav-link text-sm font-medium">Sustain</a>
+                    <a href="#module5" class="nav-link text-sm font-medium">Value Chain</a>
+                    <a href="#module6" class="nav-link text-sm font-medium">SWOT</a>
+                    <a href="#module7" class="nav-link text-sm font-medium">Simulation</a>
+                    <a href="#module8" class="nav-link text-sm font-medium">Quiz</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main content padding is handled by CSS -->
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Module 1: Introduction (10 mins) -->
+        <section id="module1" class="py-16 pt-24 -mt-16 min-h-[90vh] flex items-center">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <!-- UPDATED LEFT COLUMN with new text, objectives, and session connection -->
+                <div class="text-lg text-gray-700 space-y-4">
+                    <h2 class="text-base font-semibold leading-7 text-green-700">Module 1: The Core Puzzle</h2>
+                    <p class="section-title">Why Do Firms Differ?</p>
+                    <p class="bold-question">"Why do some firms thrive while others merely survive—even in the same industry?"</p>
+                    
+                    <div class="mt-6 p-6 bg-gray-100 border-l-4 border-gray-400 rounded-r-lg shadow-inner">
+                        <p class="text-xl italic text-gray-800">"Strategy is as much about deciding to do things differently from competitors as it is about choosing not to do certain things at all."</p>
+                    </div>
+
+                    <p class="mt-4">That’s the puzzle that strategy scholars have tried to decode for decades. If all airlines fly planes, all banks lend money, and all universities teach students, why do some consistently outperform others?</p>
+                    <p class="mt-4">We can solve this riddle through the lens of <strong class="text-gray-900">industry and firm effects</strong>. Industry structure shapes the playing field, while firm choices decide how the game is played. <strong class="text-green-700">Industry effects</strong> (our focus in Session 4 with Porter's Five Forces) arise from forces common to all players—entry barriers, supplier power, customer dependence, and rivalry. These elements set the profit potential of an industry.</p>
+                    <p class="mt-4">Yet <strong class="text-green-700">firm effects</strong> stem from what leaders actually do: how they position, differentiate, innovate, and lead. Researchers have compared these effects across hundreds of firms. The results (see Exhibit 3.2, displayed here) are striking. Only about <strong class="text-gray-900">20 percent</strong> of a firm’s performance can be traced to its industry—its external environment. A much larger share, nearly <strong class="text-gray-900">55 percent</strong>, comes from firm effects—the specific actions, routines, and leadership choices within the company. The remaining 25 percent reflects random shocks, business cycles, or unexplained variance.</p>
+                    <p class="mt-4">So while external conditions matter, the story of success is mostly written *inside* the firm. Strategic leaders can’t control the economy or competitors, but they can shape decisions that expand the gap between value created (V) and cost incurred (C). The larger that gap, the stronger the competitive advantage.</p>
+                    <p class="mt-6 font-semibold text-lg text-gray-800">The takeaway for students of strategy? Understand your industry, but master your firm. The structure sets the boundaries—but leadership defines the possibilities.</p>
+                
+                    <!-- NEW Session Objectives Box -->
+                    <div class="mt-8 p-6 bg-green-50 border-l-4 border-green-500 rounded-r-lg shadow-inner">
+                        <h3 class="text-xl font-bold text-green-800 mb-3">Session 5 Objectives</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong>Connect</strong> external analysis (Session 4) to internal analysis (Session 5).</li>
+                            <li><strong>Define</strong> and differentiate resources, capabilities, and core competencies.</li>
+                            <li><strong>Apply</strong> the VRIO framework to diagnose competitive advantage.</li>
+                            <li><strong>Analyze</strong> how firms build and sustain advantage using isolating mechanisms and dynamic capabilities.</li>
+                            <li><strong>Use</strong> the Value Chain and SWOT to synthesize your analysis.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- UPDATED RIGHT COLUMN: This references the image in the user's files -->
+                <div class="card p-4">
+                     <img src="Figure3.2.jpg" 
+                          alt="Pie chart showing Firm Effects (up to 55%), Industry Effects (~20%), and Other Effects (~25%) explaining firm performance." 
+                          class="w-full h-auto rounded-lg object-cover"
+                          onerror="this.src='https://placehold.co/600x400/76b900/ffffff?text=Exhibit+3.2+Pie+Chart'; this.onerror=null;">
+                    <p class="text-center text-sm text-gray-600 mt-2">Industry, Firm, and Other Effects Explaining Firm Performance </p>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Module 2: Core Concepts (15 mins) -->
+        <section id="module2" class="py-16 pt-24 -mt-16">
+            <h2 class="text-base font-semibold leading-7 text-green-700">Module 2: The Building Blocks</h2>
+            <p class="mt-2 section-title">Core Competencies, Resources, & Capabilities</p>
+            <p class="bold-question">"We all say Nvidia has a 'moat.' But what is that 'moat' <strong class="font-semibold">actually made of</strong>? How do we build a vocabulary to describe it?"</p>
+            
+            <!-- NEW IMAGE ADDED HERE -->
+            <div class="card p-8 mt-12 max-w-4xl mx-auto">
+                <img src="Exhibit4.2_InsidetheFirm.jpg" 
+                     alt="Diagram showing that competitive advantage is based on core competencies, resources, and capabilities, which are inside the firm, nested within the strategic group, industry, and external environment." 
+                     class="w-full h-auto rounded-lg"
+                     onerror="this.src='https://placehold.co/600x400/eeeeee/000000?text=Exhibit+4.2'; this.onerror=null;">
+                <p class="text-center text-sm text-gray-600 mt-2">Exhibit 4.2: Competitive advantage is built from the inside out.</p>
+            </div>
+
+            <!-- NEW CONTENT BLOCK: Definitions and Examples Tables -->
+            <div class="card p-8 mt-10 max-w-6xl mx-auto">
+                <h3 class="text-2xl font-bold text-center text-gray-900 mb-6">Differences Between Resources, Capabilities, and Core Competencies</h3>
+                
+                <!-- Definition Table -->
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200 border">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Feature</th>
+                                <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Resources</th>
+                                <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Capabilities</th>
+                                <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Core Competencies</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 align-top font-semibold">Definition</td>
+                                <td class="px-6 py-4 align-top text-gray-700">A firm's assets or inputs, both tangible and intangible.</td>
+                                <td class="px-6 py-4 align-top text-gray-700">The ability to bundle, manage, and exploit resources to achieve a desired end state or specific task.</td>
+                                <td class="px-6 py-4 align-top text-gray-700">Unique strengths, embedded deep within a firm, that allow it to differentiate products/services and gain a sustainable competitive advantage.</td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="px-6 py-4 align-top font-semibold">Nature</td>
+                                <td class="px-6 py-4 align-top text-gray-700">Can be acquired and are often visible (tangible) or invisible (intangible).</td>
+                                <td class="px-6 py-4 align-top text-gray-700">Intangible, often residing in organizational processes, routines, and culture.</td>
+                                <td class="px-6 py-4 align-top text-gray-700">The highest order; difficult for competitors to imitate, as they emerge over time through complex interactions.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 align-top font-semibold">Role</td>
+                                <td class="px-6 py-4 align-top text-gray-700">The foundation/inputs for activities.</td>
+                                <td class="px-6 py-4 align-top text-gray-700">How resources are used effectively.</td>
+                                <td class="px-6 py-4 align-top text-gray-700">The strategic advantage in the marketplace that competitors find difficult to copy.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="text-2xl font-bold text-center text-gray-900 mt-12 mb-6">Examples of Resources, Capabilities, and Core Competencies</h3>
+                
+                <!-- Examples Table -->
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200 border">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Company</th>
+                                <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Examples of Resources</th>
+                                <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Examples of Capabilities</th>
+                                <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Examples of Core Competencies</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 align-top font-semibold">Tesla</td>
+                                <td class="px-6 py-4 align-top text-gray-700">- Skilled workforce (engineers, data scientists)<br>- Cutting-edge battery technology IP and patents<br>- Strategically located Gigafactories<br>- Global Supercharger network</td>
+                                <td class="px-6 py-4 align-top text-gray-700">- Rapid product development and iteration<br>- Vertical integration of battery production<br>- Seamless software integration and over-the-air updates<br>- Direct-to-consumer sales model</td>
+                                <td class="px-6 py-4 align-top text-gray-700 font-semibold">Advanced EV & Battery Innovation: Consistently leading the electric vehicle market through high-performance, long-range battery technology and software integration.</td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="px-6 py-4 align-top font-semibold">SpaceX</td>
+                                <td class="px-6 py-4 align-top text-gray-700">- Specialized aerospace engineers & software developers<br>- Advanced manufacturing facilities (Starbase, TX)<br>- Patented reusable rocket designs (Falcon 9, Falcon Heavy)<br>- Access to significant capital/funding</td>
+                                <td class="px-6 py-4 align-top text-gray-700">- Rapid "build-test-learn" iterative development cycle<br>- Expertise in reusability of orbital launch vehicles<br>- Ability to rapidly deploy large satellite constellations (Starlink)<br>- Efficient, low-cost space launch operations</td>
+                                <td class="px-6 py-4 align-top text-gray-700 font-semibold">Low-Cost, Rapidly Reusable Space Transport: The ability to substantially reduce the cost of space access by pioneering rapidly and fully reusable rockets.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 align-top font-semibold">Nvidia</td>
+                                <td class="px-6 py-4 align-top text-gray-700">- Vast intellectual property related to GPU architecture<br>- Highly specialized talent in AI and deep learning research<br>- Strong brand recognition (gamers, tech)<br>- Strategic partnerships (e.g., Google, Microsoft)</td>
+                                <td class="px-6 py-4 align-top text-gray-700">- Designing full-stack computing infrastructure (chips, systems, software)<br>- Optimizing hardware for parallel processing (CUDA platform)<br>- Nurturing a broad ecosystem of developers and partners</td>
+                                <td class="px-6 py-4 align-top text-gray-700 font-semibold">Accelerated Computing for AI & Graphics: Unmatched expertise in developing high-performance GPUs and associated software platforms (CUDA) that power AI and complex graphics.</td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="px-6 py-4 align-top font-semibold">Yeti Products</td>
+                                <td class="px-6 py-4 align-top text-gray-700">- High-grade, durable materials<br>- Strong brand image associated with "the wild"<br>- Extensive product portfolio (coolers, drinkware)<br>- Loyal customer base of outdoor enthusiasts</td>
+                                <td class="px-6 py-4 align-top text-gray-700">- Designing products for extreme durability and performance<br>- Premium product positioning and storytelling marketing<br>- Building a community around the brand identity</td>
+                                <td class="px-6 py-4 align-top text-gray-700 font-semibold">Premium Ruggedness and Durability: Designing, marketing, and delivering high-performance, high-durability outdoor products that command premium pricing and customer loyalty.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 align-top font-semibold">Five Guys</td>
+                                <td class="px-6 py-4 align-top text-gray-700">- Fresh ingredients (ground beef, hand-cut potatoes)<br>- Simple menu focusing on core items<br>- Standardized store layouts and operational procedures<br>- Franchise agreements and network</td>
+                                <td class="px-6 py-4 align-top text-gray-700">- Consistent food preparation procedures<br>- High-quality supply chain management for fresh ingredients<br>- Creating a unique, simple, and customizable ordering experience<br>- Efficient, fast-paced service delivery</td>
+                                <td class="px-6 py-4 align-top text-gray-700 font-semibold">Consistent, Customizable, High-Quality Fast Food: The ability to deliver a consistently fresh, customized, and high-quality burger and fries experience with speed.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Summary List -->
+                <div class="mt-8 p-6 bg-gray-50 rounded-lg shadow-inner">
+                    <h4 class="text-xl font-bold text-gray-800 mb-4">The Strategic Flow: From Resources to Advantage</h4>
+                    <ul class="list-disc list-inside space-y-3 text-gray-700">
+                        <li><strong>Apple's</strong> <span class="font-semibold">resources</span> (e.g., engineers, cash) are managed through <span class="font-semibold">capabilities</span> (e.g., design expertise, supply chain management) to create its primary <span class="font-semibold">core competency</span> (innovation of user-friendly technology), which leads to competitive advantage.</li>
+                        <li><strong>Tesla's</strong> <span class="font-semibold">resources</span> (e.g., skilled workforce, Gigafactories) are managed through <span class="font-semibold">capabilities</span> (e.g., vertical integration of battery production, over-the-air updates) to create its primary <span class="font-semibold">core competency</span> (advanced EV and battery innovation), which leads to competitive advantage.</li>
+                        <li><strong>SpaceX's</strong> <span class="font-semibold">resources</span> (e.g., specialized engineers, manufacturing facilities) are managed through <span class="font-semibold">capabilities</span> (e.g., rapid build-test-learn cycles, reusability expertise) to create its primary <span class="font-semibold">core competency</span> (low-cost, rapidly reusable space transport), which leads to competitive advantage.</li>
+                        <li><strong>Nvidia's</strong> <span class="font-semibold">resources</span> (e.g., GPU intellectual property, AI talent) are managed through <span class="font-semibold">capabilities</span> (e.g., full-stack computing design, CUDA platform development) to create its primary <span class="font-semibold">core competency</span> (accelerated computing for AI and graphics), which leads to competitive advantage.</li>
+                        <li><strong>Yeti Products'</strong> <span class="font-semibold">resources</span> (e.g., high-grade materials, strong brand image) are managed through <span class="font-semibold">capabilities</span> (e.g., product design for durability, premium marketing) to create its primary <span class="font-semibold">core competency</span> (premium ruggedness and durability), which leads to competitive advantage.</li>
+                        <li><strong>Five Guys'</strong> <span class="font-semibold">resources</span> (e.g., fresh ingredients, standardized procedures) are managed through <span class="font-semibold">capabilities</span> (e.g., consistent food preparation, quality supply chain) to create its primary <span class="font-semibold">core competency</span> (consistent, customizable, high-quality fast food), which leads to competitive advantage.</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- END NEW CONTENT BLOCK -->
+
+
+            <div class="card p-8 mt-16 max-w-4xl mx-auto">
+                <h3 class="text-2xl font-bold text-center text-gray-900">Chapter Case: Five Guys’ Core Competency</h3>
+                <blockquote class="mt-4 text-center text-xl text-gray-700 italic border-l-4 border-red-600 pl-4 bg-gray-50 p-4 rounded-r-lg">
+                    “Make the Best Burger. Don’t Worry about Cost.”
+                    <span class="block text-sm not-italic text-gray-600 mt-2">— Jerry Murrell, Founder of Five Guys</span>
+                </blockquote>
+                
+                <!-- FIVE GUYS GROWTH CHART -->
+                <div class="my-6">
+                    <img src="5GuysGraph.jpg" 
+                         alt="Chart showing Five Guys' Growth in Number of Stores from 1986 to 2022" 
+                         class="w-full h-auto rounded-lg shadow-md"
+                         onerror="this.src='https://placehold.co/600x400/ef4444/ffffff?text=Five+Guys+Growth'; this.onerror=null;">
+                </div>
+
+                <div class="mt-6 text-gray-700 space-y-4 text-lg">
+                    <p>Five Guys became the fastest-growing restaurant chain in the U.S. by focusing obsessively on a single core competency: <strong>delivering a customized, made-to-order burger and hand-cut fries using only the highest-quality ingredients.</strong></p>
+
+                    <!-- IMAGE GRID UPDATED WITH UPLOADED FILES -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+                        <div class="bg-gray-100 p-2 rounded-lg shadow-inner">
+                            <img src="burger.jpeg" 
+                                 alt="A Five Guys cheeseburger and fries" 
+                                 class="w-full h-auto rounded-md object-cover aspect-video"
+                                 onerror="this.src='https://placehold.co/600x400/ef4444/ffffff?text=Five+Guys+Burger'; this.onerror=null;">
+                            <p class="text-sm text-center text-gray-600 mt-2">The focus: high-quality burgers and fries.</p>
+                        </div>
+                        <div class="bg-gray-100 p-2 rounded-lg shadow-inner">
+                            <img src="obama.jpeg" 
+                                 alt="Barack Obama ordering at Five Guys" 
+                                 class="w-full h-auto rounded-md object-cover aspect-video"
+                                 onerror="this.src='https://placehold.co/600x400/4338ca/ffffff?text=Word+of+Mouth'; this.onerror=null;">
+                            <p class="text-sm text-center text-gray-600 mt-2">Cultural buzz (like President Obama's visit) replaced paid marketing.</p>
+                        </div>
+                    </div>
+                    
+                    <p>While competitors like McDonald's compete on cost, speed, and marketing, Five Guys built its entire system around quality. This philosophy came directly from founder Jerry Murrell.</p>
+                    <ul class="list-disc list-inside space-y-2 pl-4">
+                        <li><strong>No Compromise on Inputs:</strong> They famously held a blind taste test of 16 mayonnaise brands and chose the most expensive one. When a hurricane tripled tomato prices, they absorbed the cost rather than compromise quality.</li>
+                        <li><strong>Simple Focus:</strong> The original idea was just hamburgers and fries. This simplicity allowed them to perfect every detail, from sourcing potatoes to the quality of the beef.</li>
+                        <li><strong>No Marketing Spend:</strong> Murrell believed the product should be so good that customers would become the salespeople. This freed up resources to pour back into ingredient quality.</li>
+                    </ul>
+                    <p>This relentless focus on quality <em>is</em> their core competency. It's a unique strength embedded deep in the firm's culture and activities. It allows them to create higher value for customers, justifying their higher prices and longer wait times.</p>
+                </div>
+            </div>
+
+            <div class="card p-8 mt-16 max-w-4xl mx-auto">
+                <h3 class="text-2xl font-bold text-center text-gray-900">Case Example: Yeti's Core Competency</h3>
+                <blockquote class="mt-4 text-center text-xl text-gray-700 italic border-l-4 border-blue-600 pl-4 bg-gray-50 p-4 rounded-r-lg">
+                    "Making Quality Cool"
+                </blockquote>
+                
+                <!-- YETI IMAGES UPDATED TO 2-COLUMN GRID -->
+                <div class="my-6 grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
+                    <div class="bg-gray-100 p-2 rounded-lg shadow-inner">
+                        <img src="Yeti Coolers.jpg"
+                             alt="Yeti founder standing on a makeshift cooler on a boat"
+                             class="rounded-lg shadow-md w-full h-auto object-cover aspect-square"
+                             onerror="this.src='https://placehold.co/400x400/eeeeee/000000?text=YETI+Cooler'; this.onerror=null;">
+                        <p class="text-sm text-center text-gray-600 mt-2">The origin: solving a real problem for hardcore anglers.</p>
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-lg shadow-inner">
+                        <img src="yeti.jpeg"
+                             alt="A blue Yeti brand mug"
+                             class="rounded-lg shadow-md w-full h-auto object-cover aspect-square"
+                             onerror="this.src='https://placehold.co/400x400/eeeeee/000000?text=YETI+Mug'; this.onerror=null;">
+                        <p class="text-sm text-center text-gray-600 mt-2">The expansion: high-performance drinkware for a mass market.</p>
+                    </div>
+                </div>
+                <!-- END YETI IMAGES -->
+
+                <div class="mt-6 text-gray-700 space-y-4 text-lg">
+                    <p>Yeti, founded in 2006, turned a basic plastic cooler into a high-performance status symbol, achieving a $1.5B valuation. Its success stems from two core competencies: <strong>superior quality/performance</strong> and creating a <strong class="text-gray-900">"coolness factor"</strong>.</p>
+                    <ul class="list-disc list-inside space-y-2 pl-4">
+                        <li><strong>Superior Quality:</strong> Using rotational molding, Yeti created a virtually indestructible cooler with exceptional ice retention. This solved a real problem for its initial niche market of hardcore hunters and anglers.</li>
+                        <li><strong>Making it Cool:</strong> Yeti built an authentic lifestyle brand. It doesn't use typical influencers. Instead, it features ~130 "brand ambassadors"—rugged fishers, rodeo wranglers, and pro skiers—in cinematic videos. This establishes an emotional, aspirational connection.</li>
+                    </ul>
+                    <p>This combination of competencies allowed Yeti to differentiate a commodity product, command a premium price, and build a cult-like following that expanded from its niche into the mass market.</p>
+                </div>
+            </div>
+
+            <h3 class="text-3xl font-bold text-center text-gray-900 mt-16">Case Application: Nvidia</h3>
+            <div class="mt-10">
+                <div class="flex flex-wrap justify-center gap-4 mb-8" id="tabs-controls">
+                    <button class="tab-button active" data-tab="resources">Resources</button>
+                    <button class="tab-button" data-tab="capabilities">Capabilities</button>
+                    <button class="tab-button" data-tab="competencies">Core Competencies</button>
+                </div>
+
+                <div id="tabs-content" class="max-w-4xl mx-auto">
+                    <!-- Resources Tab -->
+                    <div id="tab-resources" class="tab-panel">
+                        <div class="card p-8">
+                            <h3 class="text-2xl font-bold text-gray-900">Nvidia's Resources (What it *Has*)</h3>
+                            <p class="mt-2 text-gray-600">A firm's assets. They can be tangible (physical) or intangible (non-physical).</p>
+                            <ul class="mt-4 list-disc list-inside space-y-2">
+                                <li><strong>Tangible:</strong> Cash, R&D labs, advanced chip-making equipment (via TSMC partnership).</li>
+                                <li><strong>Intangible:</strong> The <strong class="text-green-700">CUDA software ecosystem</strong>, brand reputation, patents, and the visionary leadership of its CEO, Jensen Huang.</li>
+                            </ul>
+                            <!-- NEW IMAGE ADDED HERE -->
+                            <div class="my-6">
+                                <img src="nv_office.jpeg" 
+                                     alt="Nvidia's Yokneam Office, a tangible resource" 
+                                     class="w-full h-auto rounded-lg object-cover shadow-md"
+                                     onerror="this.src='httpss://placehold.co/600x400/76b900/ffffff?text=Nvidia+Office'; this.onerror=null;">
+                                <p class="text-sm text-center text-gray-600 mt-2">Nvidia's global R&D labs, like this office in Yokneam, are a key *tangible resource* that supports its innovation capabilities.</p>
+                            </div>
+                            <p class="mt-6 text-lg font-semibold text-gray-800">Key Insight: Intangibles Dominate</p>
+                            <p class="mt-2 text-gray-600">While tangible assets are necessary, Nvidia's competitive advantage is overwhelmingly built on intangibles. The CUDA platform is a massive, proprietary resource that locks developers into Nvidia's ecosystem.</p>
+                            
+                            <div class="mt-8">
+                                <h4 class="text-lg font-semibold text-center mb-4">Source of Nvidia's Resource Value</h4>
+                                <div class="chart-container">
+                                    <canvas id="resourcesChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Capabilities Tab -->
+                    <div id="tab-capabilities" class="tab-panel hidden">
+                        <div class="card p-8">
+                            <h3 class="text-2xl font-bold text-gray-900">Nvidia's Capabilities (What it *Does*)</h3>
+                            <p class="mt-2 text-gray-600">The organizational and managerial skills to orchestrate resources.</p>
+                            <p class="mt-6 text-lg font-semibold text-gray-800">Key Insight: Ecosystem Management</p>
+                            <p class="mt-2 text-gray-600">Nvidia doesn't just *have* the CUDA resource; it possesses the <strong class="text-green-700">capability of ecosystem building</strong>. It masterfully manages relationships with developers, cloud providers (like Amazon and Microsoft), and researchers, encouraging them to build *on top of* CUDA. Another key capability is its <strong class="text-green-700">rapid R&D and innovation pipeline</strong>, consistently releasing new, more powerful GPU architectures (like Hopper and Blackwell).</p>
+                        </div>
+                    </div>
+                    <!-- Core Competencies Tab -->
+                    <div id="tab-competencies" class="tab-panel hidden">
+                        <div class="card p-8">
+                            <h3 class="text-2xl font-bold text-gray-900">Nvidia's Core Competency</h3>
+                            <p class="mt-2 text-gray-600">The unique, embedded strength that results from the interplay of resources and capabilities.</p>
+                            <p class="mt-6 text-lg font-semibold text-gray-800">Key Insight: "Accelerated Computing Platform"</p>
+                            <p class="mt-2 text-gray-600">Nvidia's core competency is not just "making fast chips." It's the <strong class="text-green-700">integration of hardware (GPUs), software (CUDA), and systems (DGX) to create a unified "Accelerated Computing" platform</strong>. This competency allows it to create more value than competitors and is the foundation of its dominance in the AI market.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Module 3: VRIO Analysis (30 mins) -->
+        <section id="module3" class="py-16 pt-24 -mt-16">
+            <h2 class="text-base font-semibold leading-7 text-green-700">Module 3: The Core Analysis Tool</h2>
+            <p class="mt-2 section-title">The VRIO Framework</p>
+            <p class="bold-question">"Okay, so Nvidia has resources. But which ones *actually matter*? How can we tell a truly strategic asset from just 'a thing we're good at'?"</p>
+            
+            <div class="card p-8 mt-10 max-w-5xl mx-auto">
+                <h3 class="text-2xl font-bold text-gray-900">Theory: The Resource-Based View (RBV)</h3>
+                <p class="mt-4 text-gray-700">The RBV model sees resources as key to superior performance. It rests on two critical assumptions about the nature of resources:</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-inner">
+                        <h4 class="text-xl font-semibold text-gray-900">1. Resource Heterogeneity</h4>
+                        <p class="mt-2 text-gray-700">A firm is a unique bundle of resources and capabilities. These bundles differ across firms (e.g., Nvidia's CUDA ecosystem vs. AMD's hardware focus).</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-inner">
+                        <h4 class="text-xl font-semibold text-gray-900">2. Resource Immobility</h4>
+                        <p class="mt-2 text-gray-700">Resources tend to be "sticky" and don't move easily from firm to firm. This is why resource differences can be long-lasting.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card p-8 mt-12 max-w-5xl mx-auto">
+                <h3 class="text-2xl font-bold text-center text-gray-900">Theory: The VRIO Framework</h3>
+                <p class="text-center text-gray-600 mt-2">To be the basis of a competitive advantage, a resource must be V-R-I-O:</p>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-center mt-8">
+                    <div class="bg-green-50 p-4 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-bold text-green-800">Valuable</h3>
+                        <p class="mt-2 text-sm text-gray-700">Does it help exploit an opportunity or neutralize a threat? (Increases economic value, V-C)</p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-bold text-green-800">Rare</h3>
+                        <p class="mt-2 text-sm text-gray-700">Is it possessed by few (or no) other firms?</p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-bold text-green-800">Costly to Imitate</h3>
+                        <p class="mt-2 text-sm text-gray-700">Do firms without it face a cost disadvantage in obtaining or developing it?</p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-bold text-green-800">Organized to Capture</h3>
+                        <p class="mt-2 text-sm text-gray-700">Does the firm have the structure and systems to exploit the resource's potential?</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEW: VRIO Examples Table -->
+            <div class="card p-8 mt-16 max-w-6xl mx-auto">
+                <p class="text-gray-700 mb-6">A VRIO analysis evaluates a firm's resources and capabilities based on four criteria: <strong>Value</strong>, <strong>Rarity</strong>, <strong>Imitability</strong>, and <strong>Organization</strong>. Resources/capabilities that satisfy all four provide a sustained competitive advantage.</p>
+                <h3 class="text-2xl font-bold text-center text-gray-900 mb-6">VRIO Analysis of Key Company Capabilities</h3>
+
+                <div class="overflow-x-auto mb-10">
+                    <table class="min-w-full divide-y divide-gray-200 border">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Company & Capability</th>
+                                <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">VRIO Dimension</th>
+                                <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Assessment</th>
+                                <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Competitive Implication</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <!-- Tesla -->
+                            <tr>
+                                <td class="px-6 py-4 align-top row-span-4 font-semibold">Tesla: <br>Supercharger Network Capability</td>
+                                <td class="px-6 py-4 align-top font-medium">Value</td>
+                                <td class="px-6 py-4 align-top text-gray-700"><strong>Yes.</strong> Provides essential, reliable, and convenient charging infrastructure, alleviating "range anxiety" for customers.</td>
+                                <td class="px-6 py-4 align-top text-gray-700">Competitive Advantage (potential)</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 align-top font-medium">Rarity</td>
+                                <td class="px-6 py-4 align-top text-gray-700"><strong>Yes.</strong> Tesla's network scale and integration is unique; no other auto manufacturer has an equivalent, company-controlled network.</td>
+                                <td class="px-6 py-4 align-top text-gray-700">Temporary Competitive Advantage</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 align-top font-medium">Imitability</td>
+                                <td class="px-6 py-4 align-top text-gray-700"><strong>Difficult/Costly.</strong> Building a network of comparable scale and seamless integration requires immense capital and time. However, competitors are starting to gain access to the network.</td>
+                                <td class="px-6 py-4 align-top text-gray-700">Temporary Competitive Advantage</td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="px-6 py-4 align-top font-medium">Organization</td>
+                                <td class="px-6 py-4 align-top text-gray-700"><strong>Yes.</strong> Tesla is fully organized (vertically integrated) to build, maintain, and leverage this network for sales and customer retention.</td>
+                                <td class="px-6 py-4 align-top text-green-700 font-semibold">Sustained Competitive Advantage (for now)</td>
+                            </tr>
+                            <!-- SpaceX -->
+                            <tr class="bg-gray-50">
+                                <td class="px-6 py-4 align-top row-span-4 font-semibold">SpaceX: <br>Rapidly Reusable Rocket Technology</td>
+                                <td class="px-6 py-4 align-top font-medium">Value</td>
+                                <td class="px-6 py-4 align-top text-gray-700"><strong>Yes.</strong> Drastically reduces the cost of space launches, enabling more missions and new ventures like Starlink.</td>
+                                <td class="px-6 py-4 align-top text-gray-700">Competitive Advantage (potential)</td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="px-6 py-4 align-top font-medium">Rarity</td>
+                                <td class="px-6 py-4 align-top text-gray-700"><strong>Yes.</strong> Currently the only company capable of routinely and reliably landing and reusing orbital-class rockets.</td>
+                                <td class="px-6 py-4 align-top text-gray-700">Temporary Competitive Advantage</td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="px-6 py-4 align-top font-medium">Imitability</td>
+                                <td class="px-6 py-4 align-top text-gray-700"><strong>Extremely difficult/Costly.</strong> Requires a unique "build-test-learn" culture, massive R&D, engineering talent, and proprietary processes.</td>
+                                <td class="px-6 py-4 align-top text-gray-700">Sustained Competitive Advantage</td>
+                            </tr>
+                            <tr class="bg-gray-50 border-b">
+                                <td class="px-6 py-4 align-top font-medium">Organization</td>
+                                <td class="px-6 py-4 align-top text-gray-700"><strong>Yes.</strong> The company culture, structure, and processes are entirely focused on rapid iteration and maximizing this reusability.</td>
+                                <td class="px-6 py-4 align-top text-green-700 font-semibold">Sustained Competitive Advantage</td>
+                            </tr>
+                            <!-- Nvidia -->
+                            <tr>
+                                <td class="px-6 py-4 align-top row-span-4 font-semibold">Nvidia: <br>AI and GPU Platform (CUDA) Capability</td>
+                                <td class="px-6 py-4 align-top font-medium">Value</td>
+                                <td class="px-6 py-4 align-top text-gray-700"><strong>Yes.</strong> Essential for powering AI, data centers, and advanced graphics, meeting massive market demand.</td>
+                                <td class="px-6 py-4 align-top text-gray-700">Competitive Advantage (potential)</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 align-top font-medium">Rarity</td>
+                                <td class="px-6 py-4 align-top text-gray-700"><strong>Yes.</strong> Nvidia's GPU architecture and accompanying software ecosystem (CUDA) are the industry standard and unmatched.</td>
+                                <td class="px-6 py-4 align-top text-gray-700">Temporary Competitive Advantage</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 align-top font-medium">Imitability</td>
+                                <td class="px-6 py-4 align-top text-gray-700"><strong>Difficult/Costly.</strong> Replicating the full-stack ecosystem (hardware, software, developer base) is a multi-year, multi-billion dollar effort.</td>
+                                <td class="px-6 py-4 align-top text-gray-700">Sustained Competitive Advantage</td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="px-6 py-4 align-top font-medium">Organization</td>
+                                <td class="px-6 py-4 align-top text-gray-700"><strong>Yes.</strong> Nvidia is structured to continually innovate and leverage its platform dominance through R&D and ecosystem support.</td>
+                                <td class="px-6 py-4 align-top text-green-700 font-semibold">Sustained Competitive Advantage</td>
+                            </tr>
+                            <!-- Yeti -->
+                            <tr class="bg-gray-50">
+                                <td class="px-6 py-4 align-top row-span-4 font-semibold">Yeti Products: <br>Premium Brand Image and Durability</td>
+                                <td class="px-6 py-4 align-top font-medium">Value</td>
+                                <td class="px-6 py-4 align-top text-gray-700"><strong>Yes.</strong> Allows for premium pricing and strong customer loyalty in a competitive market.</td>
+                                <td class="px-6 py-4 align-top text-gray-700">Competitive Advantage (potential)</td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="px-6 py-4 align-top font-medium">Rarity</td>
+                                <td class="px-6 py-4 align-top text-gray-700"><strong>Yes.</strong> Yeti has achieved an almost cult-like brand status for "ruggedness" that is rare for cooler/drinkware companies.</td>
+                                <td class="px-6 py-4 align-top text-gray-700">Temporary Competitive Advantage</td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="px-6 py-4 align-top font-medium">Imitability</td>
+                                <td class="px-6 py-4 align-top text-gray-700"><strong>Difficult/Costly.</strong> Brand reputation is built over years of consistent product performance and effective marketing; it cannot be instantly replicated.</td>
+                                <td class="px-6 py-4 align-top text-gray-700">Sustained Competitive Advantage</td>
+                            </tr>
+                            <tr class="bg-gray-50 border-b">
+                                <td class="px-6 py-4 align-top font-medium">Organization</td>
+                                <td class="px-6 py-4 align-top text-gray-700"><strong>Yes.</strong> The company successfully aligns its marketing, product development, and supply chain to reinforce its premium, durable image.</td>
+                                <td class="px-6 py-4 align-top text-green-700 font-semibold">Sustained Competitive Advantage</td>
+                            </tr>
+                            <!-- Five Guys -->
+                            <tr>
+                                <td class="px-6 py-4 align-top row-span-4 font-semibold">Five Guys: <br>Consistent, High-Quality Fast Food Operations</td>
+                                <td class="px-6 py-4 align-top font-medium">Value</td>
+                                <td class="px-6 py-4 align-top text-gray-700"><strong>Yes.</strong> Customers highly value the fresh ingredients, customization, and consistent experience.</td>
+                                <td class="px-6 py-4 align-top text-gray-700">Competitive Advantage (potential)</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 align-top font-medium">Rarity</td>
+                                <td class="px-6 py-4 align-top text-gray-700"><strong>No (partially).</strong> Other fast-casual chains also offer quality and customization (e.g., Shake Shack, In-N-Out).</td>
+                                <td class="px-6 py-4 align-top text-gray-700">Competitive Parity</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 align-top font-medium">Imitability</td>
+                                <td class="px-6 py-4 align-top text-gray-700"><strong>Easy.</strong> Operational procedures can be observed, reverse-engineered, and replicated by competitors with capital.</td>
+                                <td class="px-6 py-4 align-top text-gray-700">Temporary Competitive Advantage</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 align-top font-medium">Organization</td>
+                                <td class="px-6 py-4 align-top text-gray-700"><strong>Yes.</strong> The franchise system and training are well-organized to ensure consistency.</td>
+                                <td class="px-6 py-4 align-top text-orange-600 font-semibold">Temporary Competitive Advantage</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Summary List -->
+                <div class="mt-8 p-6 bg-gray-50 rounded-lg shadow-inner">
+                    <h4 class="text-xl font-bold text-gray-800 mb-4">The Strategic Flow: From Resources to Advantage</h4>
+                    <ul class="list-disc list-inside space-y-3 text-gray-700">
+                        <li><strong>Apple's</strong> <span class="font-semibold">resources</span> (e.g., engineers, cash) are managed through <span class="font-semibold">capabilities</span> (e.g., design expertise, supply chain management) to create its primary <span class="font-semibold">core competency</span> (innovation of user-friendly technology), which leads to competitive advantage.</li>
+                        <li><strong>Tesla's</strong> <span class="font-semibold">resources</span> (e.g., skilled workforce, Gigafactories) are managed through <span class="font-semibold">capabilities</span> (e.g., vertical integration of battery production, over-the-air updates) to create its primary <span class="font-semibold">core competency</span> (advanced EV and battery innovation), which leads to competitive advantage.</li>
+                        <li><strong>SpaceX's</strong> <span class="font-semibold">resources</span> (e.g., specialized engineers, manufacturing facilities) are managed through <span class="font-semibold">capabilities</span> (e.g., rapid build-test-learn cycles, reusability expertise) to create its primary <span class="font-semibold">core competency</span> (low-cost, rapidly reusable space transport), which leads to competitive advantage.</li>
+                        <li><strong>Nvidia's</strong> <span class="font-semibold">resources</span> (e.g., GPU intellectual property, AI talent) are managed through <span class="font-semibold">capabilities</span> (e.g., full-stack computing design, CUDA platform development) to create its primary <span class="font-semibold">core competency</span> (accelerated computing for AI and graphics), which leads to competitive advantage.</li>
+                        <li><strong>Yeti Products'</strong> <span class="font-semibold">resources</span> (e.g., high-grade materials, strong brand image) are managed through <span class="font-semibold">capabilities</span> (e.g., product design for durability, premium marketing) to create its primary <span class="font-semibold">core competency</span> (premium ruggedness and durability), which leads to competitive advantage.</li>
+                        <li><strong>Five Guys'</strong> <span class="font-semibold">resources</span> (e.g., fresh ingredients, standardized procedures) are managed through <span class="font-semibold">capabilities</span> (e.g., consistent food preparation, quality supply chain) to create its primary <span class="font-semibold">core competency</span> (consistent, customizable, high-quality fast food), which leads to competitive advantage.</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- END NEW VRIO EXAMPLES -->
+
+
+            <div class="card p-8 mt-12 max-w-5xl mx-auto">
+                <h3 class="text-2xl font-bold text-center text-gray-900">Interactive VRIO Analysis: Nvidia</h3>
+                <p class="text-center text-gray-600 mt-2">Let's apply the framework. Select an Nvidia resource or capability to analyze.</p>
+                
+                <div class="mt-6 flex flex-col md:flex-row md:items-center md:space-x-4">
+                    <label for="vrio-select" class="block text-sm font-medium text-gray-700 mb-2 md:mb-0">Select Resource/Capability:</label>
+                    <select id="vrio-select" class="block w-full md:w-1/2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500">
+                        <option value="gpu">GPU Hardware (e.g., Blackwell)</option>
+                        <option value="cuda">CUDA Software Ecosystem</option>
+                        <option value="brand">Nvidia Brand & Reputation</option>
+                        <option value="ceo">CEO Jensen Huang (Leadership)</option>
+                    </select>
+                    <button id="vrio-analyze-btn" class="mt-4 md:mt-0 w-full md:w-auto px-6 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 transition-all duration-300 transform hover:-translate-y-0.5">Analyze</button>
+                </div>
+
+                <div id="vrio-results" class="mt-8">
+                    <p class="text-center text-gray-500">Select a resource and click "Analyze" to see the results.</p>
+                </div>
+            </div>
+
+            <div class="card p-8 mt-16 max-w-4xl mx-auto">
+                <h3 class="text-2xl font-bold text-center text-gray-900">Case Example: The Rise and Fall of Groupon</h3>
+                <blockquote class="mt-4 text-center text-xl text-gray-700 italic border-l-4 border-gray-600 pl-4 bg-gray-50 p-4 rounded-r-lg">
+                    "From $16 Billion IPO to $1.8 Billion... in one year."
+                </blockquote>
+                
+                <!-- NEW GROUPON IMAGE -->
+                <div class="my-6 flex justify-center">
+                    <img src="GroupOn.png"
+                         alt="The Groupon logo on a green background"
+                         class="rounded-lg shadow-md w-full max-w-sm"
+                         onerror="this.src='https://placehold.co/400x200/96bf2d/ffffff?text=Groupon'; this.onerror=null;">
+                </div>
+                <!-- END GROUPON IMAGE -->
+
+                <div class="mt-6 text-gray-700 space-y-4 text-lg">
+                    <p>Groupon's "daily deal" model was a classic VRIO failure that helps explain its collapse:</p>
+                    <ul class="list-decimal list-inside space-y-2 pl-4">
+                        <li><strong>Valuable?</strong> <strong class="text-green-700">Yes.</strong> It connected local merchants to new customers and gave consumers deals. It created value.</li>
+                        <li><strong>Rare?</strong> <strong class="text-green-700">Yes, at first.</strong> As a first-mover, its local market-making competency was rare, prompting a $6B buyout offer from Google.</li>
+                        <li><strong>Costly to Imitate?</strong> <strong class="text-red-700">NO.</strong> This was the fatal flaw. The model was just a sales company, not a tech venture. Barriers to entry were non-existent. Hundreds of "Groupon clones" (like LivingSocial) and tech giants (Google, Amazon) easily copied the business model.</li>
+                        <li><strong>Organized?</strong> <strong class="text-gray-700">Irrelevant.</strong> Because the resource was not costly to imitate, Groupon's advantage was gone.</li>
+                    </ul>
+                    <p><strong>Result:</strong> As the VRIO model predicts, a resource that is Valuable and Rare, but *Not* costly to imitate, leads to a <strong class="text-gray-900">Temporary Competitive Advantage</strong>, which is exactly what Groupon had before it collapsed.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Module 4: Sustaining Advantage (20 mins) -->
+        <section id="module4" class="py-16 pt-24 -mt-16">
+            <h2 class="text-base font-semibold leading-7 text-green-700">Module 4: Staying on Top</h2>
+            <p class="mt-2 section-title">Sustaining the Advantage</p>
+            <p class="bold-question">"Nvidia has a huge advantage *today*. But in tech, advantages are temporary. What's stopping Google or AMD from catching up and making CUDA irrelevant?"</p>
+            <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card p-8">
+                    <h3 class="text-2xl font-bold text-gray-900">Isolating Mechanisms</h3>
+                    <p class="mt-2 text-gray-600">These are barriers that protect your advantage from being copied. They make imitation (the "I" in VRIO) difficult.</p>
+                    <p class="mt-6 text-lg font-semibold text-gray-800">Nvidia's "CUDA Moat"</p>
+                    <ul class="mt-2 list-disc list-inside text-gray-600 space-y-2">
+                        <li><strong>Path Dependence:</strong> CUDA has a 15+ year head start. AI research grew up *on* CUDA. You can't replicate that history overnight.</li>
+                        <li><strong>High Switching Costs:</strong> Millions of developers are trained on CUDA. Rewriting complex AI models for a different platform (like AMD's ROCm) is extremely costly and time-consuming.</li>
+                        <li><strong>Causal Ambiguity:</strong> It's hard for rivals to know *exactly* what makes Nvidia's hardware-software integration so successful.</li>
+                        <li><strong>Social Complexity:</strong> The deep, trusting relationship between Nvidia, developers, and researchers is a complex social network that competitors cannot easily build.</li>
+                    </ul>
+                </div>
+                <div class="card p-8">
+                    <h3 class="text-2xl font-bold text-gray-900">Dynamic Capabilities</h3>
+                    <p class="mt-2 text-gray-600">An advantage is never permanent. This is a firm's ability to <strong class="text-gray-800">create, deploy, modify, and reconfigure</strong> its resources to adapt to a changing environment.</p>
+                    <p class="mt-6 text-lg font-semibold text-gray-800">Nvidia's Pivots</p>
+                    <p class="mt-2 text-gray-600">Nvidia's *real* strength is its dynamic capability. It has successfully adapted its core competency (parallel processing) to new markets:</p>
+                    <ul class="mt-2 list-disc list-inside text-gray-600 space-y-2">
+                        <li><strong>(Create):</strong> From <strong>Gaming</strong> (GeForce) ...</li>
+                        <li><strong>(Modify):</strong> ... to <strong>Crypto Mining</strong> (accidental, but embraced) ...</li>
+                        <li><strong>(Reconfigure):</strong> ... to <strong>AI & Data Center</strong> (a deliberate, massive bet that paid off).</li>
+                    </ul>
+                    <p class="mt-4 text-gray-600">Its ability to *sense* the AI trend early and *seize* it by investing billions in CUDA is a textbook example of dynamic capabilities. A <strong class="text-gray-900">Core Rigidity</strong> is the opposite: a former core competency that turned into a liability (e.g., Kodak's focus on film).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Module 5: Value Chain (15 mins) -->
+        <section id="module5" class="py-16 pt-24 -mt-16">
+            <h2 class="text-base font-semibold leading-7 text-green-700">Module 5: How Value is Created</h2>
+            <p class="mt-2 section-title">The Value Chain</p>
+            <p class="bold-question">"Where in Nvidia's complex 'assembly line'—from R&D to sales—is the value *actually* created, and where are the hidden risks?"</p>
+            
+            <div class="card p-8 mt-10 max-w-6xl mx-auto">
+                <div class="mb-8">
+                    <h3 class="text-2xl font-bold text-gray-900">Theory: Value Chain Analysis</h3>
+                    <p class="mt-2 text-gray-700">The <strong class="text-gray-900">Value Chain</strong> describes the internal activities a firm engages in when transforming inputs into outputs. Each activity adds incremental value. It's a way to break down the firm into a series of activities to see which ones drive value and which ones drive cost.</p>
+                    <ul class="mt-4 list-disc list-inside text-gray-700">
+                        <li><strong class="text-green-700">Primary Activities:</strong> Add value directly. (e.g., Operations, Marketing & Sales, Service).</li>
+                        <li><strong class="text-gray-600">Support Activities:</strong> Add value indirectly. (e.g., R&D, Human Resources, Firm Infrastructure).</li>
+                    </ul>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- Support Activities -->
+                    <div class="grid grid-cols-3 gap-4 value-chain-support">
+                        <div data-info="Firm Infrastructure: Strong, visionary leadership (Jensen Huang). Flat, collaborative organizational structure.">Firm Infrastructure</div>
+                        <div data-info="Human Resources: Intense competition for top AI and engineering talent. High compensation.">HR Management</div>
+                        <div data-info="Technology / R&D: The heart of Nvidia. Massive R&D spend on new architectures (e.g., Blackwell) and software (CUDA). This is a primary value driver.">Technology / R&D</div>
+                    </div>
+                    <div class="w-full h-1 bg-gray-300 rounded-full"></div>
+
+                    <!-- Primary Activities -->
+                    <div class="grid grid-cols-5 gap-4 value-chain-primary">
+                        <div data-info="Inbound Logistics: Fabless model. Nvidia is deeply dependent on a single supplier, TSMC, to manufacture its chips. This is a significant risk.">Inbound Logistics (Design)</div>
+                        <div data-info="Operations: Nvidia's 'operations' are chip DESIGN, not manufacturing. This is where their IP is created.">Operations (Design)</div>
+                        <div data-info="Outbound Logistics: Highly concentrated customer base. Sells to 'hyperscalers' (Amazon, Google, Microsoft) and OEMs.">Outbound Logistics</div>
+                        <div data-info="Marketing & Sales: Focus on building the CUDA 'moat.' Marketing is aimed at developers, researchers, and data scientists, not just end-users.">Marketing & Sales</div>
+                        <div data-info="Service: Developer support, enterprise AI solutions (DGX), and cloud services (DGX Cloud).">Service</div>
+                    </div>
+                </div>
+
+                <div id="value-chain-info" class="mt-8 p-6 bg-gray-100 rounded-lg min-h-[100px] shadow-inner">
+                    <p class="text-gray-700">Click a block above to see details.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Module 6: SWOT Synthesis (10 mins) -->
+        <section id="module6" class="py-16 pt-24 -mt-16">
+            <h2 class="text-base font-semibold leading-7 text-green-700">Module 6: Strategic Synthesis</h2>
+            <p class="mt-2 section-title">SWOT Analysis</p>
+            <p class="bold-question">"We've looked *inside* (VRIO) and *outside* (Porter's). Now what? How do we put all these pieces together to make an actual, actionable strategic recommendation?"</p>
+            
+            <div class="card p-8 mt-10 max-w-4xl mx-auto">
+                <h3 class="text-2xl font-bold text-gray-900">Theory: SWOT Analysis</h3>
+                <p class="mt-2 text-gray-700">A SWOT analysis synthesizes your internal analysis (Strengths, Weaknesses) with your external analysis (Opportunities, Threats) to derive strategic implications. The goal is to leverage internal <strong class="text-green-700">S</strong>trengths to exploit external <strong class="text-blue-700">O</strong>pportunities, while mitigating internal <strong class="text-orange-700">W</strong>eaknesses and external <strong class="text-red-700">T</strong>hreats.</p>
+            </div>
+
+            <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Strengths -->
+                <div class="swot-quadrant">
+                    <h3 class="text-green-700 swot-header">
+                        Strengths (Internal)
+                        <span>+</span>
+                    </h3>
+                    <ul class="mt-4 list-disc list-inside text-gray-700 space-y-2 hidden swot-list">
+                        <li>CUDA Ecosystem (Massive switching costs)</li>
+                        <li>Dominant Market Share (~90%+) in AI chips</li>
+                        <li>Strong Brand & Reputation in AI/Gaming</li>
+                        <li>Visionary CEO & Strong R&D Culture</li>
+                        <li>High Profitability & Cash Flow</li>
+                    </ul>
+                </div>
+                <!-- Weaknesses -->
+                <div class="swot-quadrant">
+                    <h3 class="text-orange-600 swot-header">
+                        Weaknesses (Internal)
+                        <span>+</span>
+                    </h3>
+                    <ul class="mt-4 list-disc list-inside text-gray-700 space-y-2 hidden swot-list">
+                        <li>Deep dependency on one supplier (TSMC)</li>
+                        <li>Deep dependency on a few large customers (Hyperscalers)</li>
+                        <li>High-cost products</li>
+                        <li>CUDA is a closed, proprietary system (can be a strength and weakness)</li>
+                    </ul>
+                </div>
+                <!-- Opportunities -->
+                <div class="swot-quadrant">
+                    <h3 class="text-blue-600 swot-header">
+                        Opportunities (External)
+                        <span>+</span>
+                    </h3>
+                    <ul class="mt-4 list-disc list-inside text-gray-700 space-y-2 hidden swot-list">
+                        <li>Continued explosive growth of GenAI</li>
+                        <li>Expansion into new markets (Automotive, Robotics, Pharma)</li>
+                        <li>Growth of "Sovereign AI" (countries building their own clouds)</li>
+                        <li>Services & Software (DGX Cloud)</li>
+                    </ul>
+                </div>
+                <!-- Threats -->
+                <div class="swot-quadrant">
+                    <h3 class="text-red-600 swot-header">
+                        Threats (External)
+                        <span>+</span>
+                    </h3>
+                    <ul class="mt-4 list-disc list-inside text-gray-700 space-y-2 hidden swot-list">
+                        <li>Major customers (Google, Amazon, Microsoft) designing in-house chips</li>
+                        <li>Competitors (AMD, Intel) improving their offerings</li>
+                        <li>Antitrust investigations (DOJ)</li>
+                        <li>Geopolitical Risk (US/China tensions, Taiwan/TSMC)</li>
+                        <li>The AI market "bubble" or a cyclical downturn</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card p-8 mt-10">
+                <h3 class="text-2xl font-bold text-gray-900">Key Strategic Questions (Conclusion)</h3>
+                <p class="mt-4 text-gray-700">Based on our SWOT, the key questions for Nvidia's leadership are:</p>
+                <ul class="mt-4 list-decimal list-inside text-lg text-gray-800 space-y-2">
+                    <li>(S-T) How can Nvidia use its <strong class="text-green-700">CUDA strength</strong> to mitigate the <strong class="text-red-600">threat of in-house chips</strong> from its biggest customers?</li>
+                    <li>(W-T) How can Nvidia leverage its R&D to diversify away from its <strong class="text-orange-600">dependency on TSMC</strong> given the <strong class="text-red-600">geopolitical risk</strong>?</li>
+                    <li>(W-O) Should Nvidia open CUDA (mitigating a <strong class="text-orange-600">weakness</strong>) to capture more <strong class="text-blue-600">market opportunity</strong>, or does that destroy its key <strong class="text-green-700">strength</strong>?</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- NEW: Module 7: Immersive Simulation -->
+        <section id="module7" class="py-16 pt-24 -mt-16">
+            <h2 class="text-base font-semibold leading-7 text-green-700">Module 7: Immersive Simulation</h2>
+            <p class="mt-2 section-title">VRIO Analysis: The Indian Startup Arena</p>
+            <p class="bold-question">"You're the consultant. A VC firm wants you to analyze three of their hottest Indian startups. Can you spot the *real* advantage from the temporary hype?"</p>
+            
+            <div class="card p-8 mt-12 max-w-6xl mx-auto">
+                <h3 class="text-2xl font-bold text-gray-900">Your Briefing</h3>
+                <p class="mt-4 text-gray-700 text-lg">"We have three fast-growing companies in our portfolio: a quick-commerce app, a D2C beauty brand, and a fintech platform. All are valuable, and all were rare... at first. But we need to know which ones have a *sustainable* competitive advantage. Use your VRIO framework to analyze the key resource of each and give us your recommendation. Don't let the high valuations fool you—we need to know where the *moat* is."</p>
+            </div>
+
+            <div class="mt-10 max-w-6xl mx-auto">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6">Step 1: Select a Company to Analyze</h3>
+                <div class="flex flex-col md:flex-row justify-center gap-6" id="sim-controls">
+                    <!-- QuikDrop -->
+                    <button class="sim-button" id="sim-btn-quikdrop" data-company="quikdrop">
+                        <h3>QuikDrop</h3>
+                        <p class="text-sm">Industry: Quick-Commerce</p>
+                        <p class="mt-3 font-semibold">Key Resource: Hyper-local "dark store" network and logistics capability.</p>
+                    </button>
+                    <!-- MamaShine -->
+                    <button class="sim-button" id="sim-btn-mamashine" data-company="mamashine">
+                        <h3>MamaShine</h3>
+                        <p class="text-sm">Industry: D2C Beauty</p>
+                        <p class="mt-3 font-semibold">Key Resource: Intangible brand built on community trust and authenticity.</p>
+                    </button>
+                    <!-- RupeeLink -->
+                    <button class="sim-button" id="sim-btn-rupeelink" data-company="rupeelink">
+                        <h3>RupeeLink</h3>
+                        <p class="text-sm">Industry: Fintech / Payments</p>
+                        <p class="mt-3 font-semibold">Key Resource: Large (but high-churn) 50-million-user base.</p>
+                    </button>
+                </div>
+            </div>
+
+            <div class="card p-8 mt-12 max-w-6xl mx-auto">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6" id="sim-results-title">Step 2: VRIO Analysis & Recommendation</h3>
+                <div id="sim-results-container">
+                    <p class="text-center text-gray-500">Select a company above to begin your analysis.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- UPDATED: Module 8: Knowledge Check (MCQs) -->
+        <section id="module8" class="py-16 pt-24 -mt-16">
+            <h2 class="text-base font-semibold leading-7 text-green-700">Module 8: Knowledge Check</h2>
+            <p class="mt-2 section-title">Test Your Understanding</p>
+            <p class="bold-question">"You've seen the theories and the case data. Let's see if you can apply them."</p>
+
+            <div class="card p-8 mt-12 max-w-4xl mx-auto">
+                <h3 class="text-2xl font-bold text-center text-gray-900 mb-4">Internal Analysis Quiz</h3>
+                
+                <div class="text-center mb-8 p-4 bg-gray-100 rounded-lg shadow-inner">
+                    <span class="text-2xl font-bold text-gray-900">Your Score: </span>
+                    <span id="score-value" class="text-2xl font-bold text-green-700">0</span>
+                    <span class="text-2xl font-bold text-gray-500"> / </span>
+                    <span id="score-total" class="text-2xl font-bold text-gray-500">15</span>
+                </div>
+
+                <div id="quiz-container" class="space-y-6">
+                    <!-- Quiz questions will be injected here by JS -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER (Copied from Session 3) -->
+    <footer class="bg-gray-800 mt-16 sm:mt-24 border-t border-gray-700">
+        <div class="container mx-auto px-6 py-5">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6">
+                <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-3 group order-first sm:order-none">
+                    <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
+                        <svg viewBox="0 0 52 60">
+                            <defs><linearGradient id="footerRedGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
+                            <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#footerRedGradient)"/><text class="hexagon-s" x="26" y="32">S</text>
+                        </svg>
+                    </div>
+                    <span class="text-xs font-semibold text-slate-300 group-hover:text-white transition-colors">Dr. Swapnil Sahoo</span>
+                </a>
+                <p class="text-xs text-slate-400 order-last sm:order-none">© Dr. Swapnil Sahoo 2025</p>
+                <div class="flex space-x-5 sm:space-x-6 order-first sm:order-last">
+                    <a href="httpss://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white footer-link" title="X/Twitter"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="httpss://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white footer-link" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049 1.064.218 1.791.465 2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.575 2h.093zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" clip-rule="evenodd"/></svg></a>
+                    <a href="httpss://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white footer-link" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Copied from Session 3 for Nav ---
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileNav = document.getElementById('mobile-nav');
+            const sections = document.querySelectorAll('main section');
+            const header = document.getElementById('main-header');
+
+            function getHeaderHeight() {
+                const mainNav = document.getElementById('main-nav-container');
+                if (window.innerWidth < 640) {
+                    return mainNav ? mainNav.offsetHeight : 53; // Mobile fallback
+                }
+                const topBar = document.getElementById('top-bar');
+                let totalHeight = 0;
+                if (topBar) totalHeight += topBar.offsetHeight;
+                if (mainNav) totalHeight += mainNav.offsetHeight;
+                
+                const topNav = document.getElementById('top-nav');
+                if (topNav) totalHeight += topNav.offsetHeight;
+
+                return totalHeight > 0 ? totalHeight : 129; // Desktop fallback
+            }
+
+            const observer = new IntersectionObserver((entries) => {
+                let activeId = '';
+                // Find the best active section
+                let topEntry = null;
+                for (const entry of entries) {
+                    if (entry.isIntersecting) {
+                        if (topEntry === null || entry.boundingClientRect.top < topEntry.boundingClientRect.top) {
+                            topEntry = entry;
+                        }
+                    }
+                }
+                if (topEntry) {
+                    activeId = topEntry.target.id;
+                } else {
+                    // Fallback if no entry is intersecting (e.g., fast scroll)
+                    // Find the one closest to the top (just passed)
+                    let closest = entries.reduce((prev, curr) => {
+                        return (Math.abs(curr.boundingClientRect.top) < Math.abs(prev.boundingClientRect.top) ? curr : prev);
+                    });
+                    if (closest) {
+                        activeId = closest.target.id;
+                    }
+                }
+
+                if (!activeId && window.scrollY < 200 && sections.length > 0) {
+                    activeId = sections[0].id;
+                }
+
+                const targetHref = `#${activeId}`;
+                if (activeId) {
+                    navLinks.forEach(link => {
+                        link.classList.toggle('active-nav', link.getAttribute('href') === targetHref);
+                    });
+                    
+                    if (mobileNav.querySelector(`option[value="${targetHref}"]`)) {
+                        if (mobileNav.value !== targetHref) {
+                            mobileNav.value = targetHref;
+                        }
+                    }
+                }
+
+            }, { rootMargin: `-${getHeaderHeight()}px 0px -40% 0px`, threshold: [0, 0.5, 1.0] });
+
+            sections.forEach(section => observer.observe(section));
+
+            mobileNav.addEventListener('change', () => {
+                const targetId = mobileNav.value;
+                const targetElement = document.getElementById(targetId.substring(1));
+                if (targetElement) {
+                    const targetPosition = targetElement.offsetTop - getHeaderHeight() + 5; // 5px buffer
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.getElementById(targetId.substring(1));
+                    if (targetElement) {
+                        const targetPosition = targetElement.offsetTop - getHeaderHeight() + 5; // 5px buffer
+                        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                    }
+                });
+            });
+            // --- End of Session 3 Nav Script ---
+
+
+            // --- Content Scripts from Nvidia Page ---
+
+            // Module 2: Tabs
+            const tabControls = document.getElementById('tabs-controls');
+            if (tabControls) {
+                const tabs = tabControls.querySelectorAll('.tab-button');
+                const tabPanels = document.getElementById('tabs-content').querySelectorAll('.tab-panel');
+
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        tabs.forEach(t => t.classList.remove('active'));
+                        tab.classList.add('active');
+                        
+                        const tabName = tab.dataset.tab;
+                        tabPanels.forEach(panel => {
+                            panel.classList.toggle('hidden', panel.id !== `tab-${tabName}`);
+                        });
+                    });
+                });
+            }
+
+            // Module 2: Resources Chart (Doughnut Chart)
+            const ctx = document.getElementById('resourcesChart');
+            if(ctx) {
+                new Chart(ctx.getContext('2d'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Intangible Resources (CUDA, Brand, IP)', 'Tangible Resources (Cash, Labs)'],
+                        datasets: [{
+                            label: 'Estimated Contribution to Advantage',
+                            data: [90, 10],
+                            backgroundColor: [
+                                'rgba(5, 150, 105, 0.9)', // green-600
+                                'rgba(107, 114, 128, 0.7)' // gray-500
+                            ],
+                            borderColor: [
+                                'rgba(255, 255, 255, 1)',
+                                'rgba(255, 255, 255, 1)'
+                            ],
+                            borderWidth: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    padding: 20,
+                                    fontFamily: 'Inter'
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: (context) => `${context.label}: ${context.raw}%`
+                                },
+                                bodyFont: {
+                                    family: 'Inter'
+                                },
+                                titleFont: {
+                                    family: 'Inter'
+                                }
+                            }
+                        },
+                        cutout: '60%'
+                    }
+                });
+            }
+
+            // Module 3: VRIO Analysis
+            const vrioSelect = document.getElementById('vrio-select');
+            const vrioBtn = document.getElementById('vrio-analyze-btn');
+            const vrioResults = document.getElementById('vrio-results');
+
+            const vrioData = {
+                gpu: {
+                    name: 'GPU Hardware (Blackwell)',
+                    V: { check: '✅', text: 'Yes. Massively valuable for AI training.', color: 'green' },
+                    R: { check: '✅', text: 'Yes. Currently outperforms all rivals.', color: 'green' },
+                    I: { check: '❓', text: 'Costly, but not impossible. AMD and Google are catching up. Imitation is difficult but happening.', color: 'yellow' },
+                    O: { check: '✅', text: 'Yes. Nvidia is perfectly organized to sell and support its hardware.', color: 'green' },
+                    result: 'Temporary Competitive Advantage',
+                    implication: 'Nvidia has an advantage, but it is not sustained *by hardware alone*. Competitors will eventually catch up on performance.'
+                },
+                cuda: {
+                    name: 'CUDA Software Ecosystem',
+                    V: { check: '✅', text: 'Yes. The entire AI industry is built on it.', color: 'green' },
+                    R: { check: '✅', text: 'Yes. No other company has this 15+ year developer ecosystem.', color: 'green' },
+                    I: { check: '✅', text: 'Yes. Extremely costly to imitate due to path dependence and high switching costs (Isolating Mechanisms).', color: 'green' },
+                    O: { check: '✅', text: 'Yes. Nvidia expertly manages and monetizes this ecosystem.', color: 'green' },
+                    result: 'Sustained Competitive Advantage',
+                    implication: 'This is Nvidia\'s true "moat". It is the source of their durable, long-term advantage, even if competitors match their hardware.'
+                },
+                brand: {
+                    name: 'Nvidia Brand & Reputation',
+                    V: { check: '✅', text: 'Yes. Synonymous with AI and high performance.', color: 'green' },
+                    R: { check: '✅', text: 'Yes. No other chip brand has this "rock star" status.', color: 'green' },
+                    I: { check: '❓', text: 'Costly, but reputation is fickle. An "AI winter" or major misstep could damage it.', color: 'yellow' },
+                    O: { check: '✅', text: 'Yes. The company uses its brand and CEO perfectly to build hype and trust.', color: 'green' },
+                    result: 'Temporary Competitive Advantage',
+                    implication: 'The brand is a powerful asset that supports the advantage, but it is not the *source* of it.'
+                },
+                ceo: {
+                    name: 'CEO Jensen Huang',
+                    V: { check: '✅', text: 'Yes. A visionary leader who sets the strategy.', color: 'green' },
+                    R: { check: '✅', text: 'Yes. His combination of technical and market vision is unique.', color: 'green' },
+                    I: { check: '✅', text: 'Yes. Cannot be imitated. But... this is "key-person risk".', color: 'green' },
+                    O: { check: '❓', text: 'The firm is organized *around* him, but what happens when he leaves? This is a potential weakness.', color: 'yellow' },
+                    result: 'Temporary (and Risky) Advantage',
+                    implication: 'Visionary leadership is a huge advantage, but it\'s not a *sustainable* one as it is tied to one person. The firm must institutionalize his vision.'
+                }
+            };
+            
+            const vrioColorClasses = {
+                green: 'bg-green-100 border-green-300 text-green-900',
+                yellow: 'bg-yellow-100 border-yellow-300 text-yellow-900',
+                red: 'bg-red-100 border-red-300 text-red-900'
+            };
+
+            if (vrioBtn) {
+                vrioBtn.addEventListener('click', () => {
+                    const selected = vrioSelect.value;
+                    const data = vrioData[selected];
+                    
+                    vrioResults.innerHTML = `
+                        <h4 class="text-xl font-bold mb-6 text-center">Analysis: ${data.name}</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div class="vrio-card border-l-4 ${vrioColorClasses[data.V.color]}">
+                                <h5 class="text-xl font-bold mb-2">Valuable?</h5>
+                                <p class="text-base">${data.V.check} ${data.V.text}</p>
+                            </div>
+                            <div class="vrio-card border-l-4 ${vrioColorClasses[data.R.color]}">
+                                <h5 class="text-xl font-bold mb-2">Rare?</h5>
+                                <p class="text-base">${data.R.check} ${data.R.text}</p>
+                            </div>
+                            <div class="vrio-card border-l-4 ${vrioColorClasses[data.I.color]}">
+                                <h5 class="text-xl font-bold mb-2">Costly to Imitate?</h5>
+                                <p class="text-base">${data.I.check} ${data.I.text}</p>
+                            </div>
+                            <div class="vrio-card border-l-4 ${vrioColorClasses[data.O.color]}">
+                                <h5 class="text-xl font-bold mb-2">Organized to Capture?</h5>
+                                <p class="text-base">${data.O.check} ${data.O.text}</p>
+                            </div>
+                        </div>
+                        <div class="mt-8 p-6 bg-gray-800 text-white rounded-lg shadow-xl">
+                            <h5 class="text-lg font-bold text-green-400">Competitive Implication: ${data.result}</h5>
+                            <p class="mt-2 text-gray-200">${data.implication}</p>
+                        </div>
+                    `;
+                });
+                // Trigger click to show default
+                vrioBtn.click();
+            }
+
+
+            // Module 5: Value Chain
+            const vcBlocks = document.querySelectorAll('.value-chain-primary > div, .value-chain-support > div');
+            const vcInfoBox = document.getElementById('value-chain-info');
+            
+            vcBlocks.forEach(block => {
+                block.addEventListener('click', () => {
+                    const info = block.dataset.info;
+                    vcInfoBox.innerHTML = `<p class="text-gray-800 font-medium text-lg">${info}</p>`;
+                    vcInfoBox.classList.remove('hidden');
+                });
+            });
+
+            // Module 6: SWOT
+            const swotHeaders = document.querySelectorAll('.swot-header');
+            swotHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const list = header.nextElementSibling;
+                    const icon = header.querySelector('span');
+                    
+                    const isHidden = list.classList.contains('hidden');
+                    list.classList.toggle('hidden');
+                    icon.textContent = isHidden ? '−' : '+';
+                });
+            });
+
+            // NEW: Module 7: Immersive Simulation
+            const simControls = document.getElementById('sim-controls');
+            if (simControls) {
+                const simButtons = simControls.querySelectorAll('.sim-button');
+                const simResultsContainer = document.getElementById('sim-results-container');
+                const simResultsTitle = document.getElementById('sim-results-title');
+
+                const simData = {
+                    quikdrop: {
+                        name: 'QuikDrop (Q-Commerce)',
+                        resource: 'Hyper-local "dark store" network & logistics',
+                        V: { check: '✅', text: 'Yes. Exploits the consumer opportunity for "instant delivery" and neutralizes the threat of 2-day shipping.', color: 'green' },
+                        R: { check: '❌', text: 'No. While rare compared to all retail, it is NOT rare among its direct competitors (Zepto, Blinkit). This is a "key success factor," not a rare resource.', color: 'red' },
+                        I: { check: '✅', text: 'Yes. Extremely capital-intensive to build this physical network. A new entrant cannot copy it cheaply.', color: 'green' },
+                        O: { check: '✅', text: 'Yes. The entire firm is organized around this logistic capability.', color: 'green' },
+                        result: 'Competitive Parity (at best)',
+                        implication: 'This resource is a "table stakes" requirement to compete in the Q-Commerce space. Since all direct rivals have the same V-I-O resource, it doesn\'t provide an advantage. The "moat" is non-existent. This is a capital-bleed business, and the VC firm should be wary. The only "win" is through operational efficiency, not strategic advantage.'
+                    },
+                    mamashine: {
+                        name: 'MamaShine (D2C Beauty)',
+                        resource: 'Intangible brand built on community trust & authenticity',
+                        V: { check: '✅', text: 'Yes. A trusted brand commands premium prices and creates deep customer loyalty in a crowded market.', color: 'green' },
+                        R: { check: '✅', text: 'Yes. True, authentic community trust is extremely rare and cannot be easily "bought" like users or ads.', color: 'green' },
+                        I: { check: '✅', text: 'Yes. Built through "social complexity" (the influencer/mom community) and "path dependence" (built over time). A rival can build *their own* brand, but cannot easily imitate *this* one.', color: 'green' },
+                        O: { check: '✅', text: 'Yes. The firm is organized around its "mom-influencer" community to create and market products.', color: 'green' },
+                        result: 'Sustained Competitive Advantage (Potential)',
+                        implication: 'This is the most promising asset. It is VRIO. The "moat" is real, but it\'s a "soft" moat. The VC firm should double-down, but be cautious of any action (like expanding too fast or in-authentic marketing) that could *damage* this fragile resource. Protect the brand at all costs.'
+                    },
+                    rupeelink: {
+                        name: 'RupeeLink (Fintech)',
+                        resource: 'Large 50-million-user base',
+                        V: { check: '✅', text: 'Yes. A large user base is valuable for potential network effects and cross-selling data.', color: 'green' },
+                        R: { check: '✅', text: 'Yes. 50 million users is rare for a new app.', color: 'green' },
+                        I: { check: '❌', text: 'No. The user base is "high-churn" and was "acquired via aggressive cashbacks." This means a competitor (like PhonePe) can also "buy" users with cashbacks. The resource is not "sticky" and therefore not costly to imitate. There are no switching costs.', color: 'red' },
+                        O: { check: '❓', text: 'Partially. The firm is organized to *acquire* users, but not to *retain* or "capture value" from them, as evidenced by the high churn.', color: 'yellow' },
+                        result: 'Temporary Competitive Advantage',
+                        implication: 'This is a "leaky bucket" problem. The user base looks impressive, but it is not a defensible moat. It fails the "I" test. The VC firm should be concerned that this is a "sugar high" of growth. The firm must immediately pivot from user *acquisition* to creating *switching costs* (e.g., bill payments, financial services) before the advantage disappears entirely.'
+                    }
+                };
+
+                function renderSimulation(companyKey) {
+                    const data = simData[companyKey];
+                    if (!data) return;
+
+                    simResultsTitle.innerHTML = `Step 2: VRIO Analysis & Recommendation for ${data.name}`;
+                    simResultsContainer.innerHTML = `
+                        <h4 class="text-xl font-bold mb-4 text-center">Key Resource: ${data.resource}</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div class="vrio-card border-l-4 ${vrioColorClasses[data.V.color]}">
+                                <h5 class="text-xl font-bold mb-2">Valuable?</h5>
+                                <p class="text-base">${data.V.check} ${data.V.text}</p>
+                            </div>
+                            <div class="vrio-card border-l-4 ${vrioColorClasses[data.R.color]}">
+                                <h5 class="text-xl font-bold mb-2">Rare?</h5>
+                                <p class="text-base">${data.R.check} ${data.R.text}</p>
+                            </div>
+                            <div class="vrio-card border-l-4 ${vrioColorClasses[data.I.color]}">
+                                <h5 class="text-xl font-bold mb-2">Costly to Imitate?</h5>
+                                <p class="text-base">${data.I.check} ${data.I.text}</p>
+                            </div>
+                            <div class="vrio-card border-l-4 ${vrioColorClasses[data.O.color]}">
+                                <h5 class="text-xl font-bold mb-2">Organized to Capture?</h5>
+                                <p class="text-base">${data.O.check} ${data.O.text}</p>
+                            </div>
+                        </div>
+                        <div class="mt-8 p-6 bg-gray-800 text-white rounded-lg shadow-xl">
+                            <h5 class="text-lg font-bold text-green-400">Competitive Implication: ${data.result}</h5>
+                            <p class="mt-2 text-gray-200">${data.implication}</p>
+                        </div>
+                    `;
+
+                    // Update button active states
+                    simButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    document.getElementById(`sim-btn-${companyKey}`).classList.add('active');
+                }
+
+                // Add event listeners for sim buttons
+                simButtons.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const companyKey = btn.dataset.company;
+                        renderSimulation(companyKey);
+                    });
+                });
+
+                // Render default simulation
+                renderSimulation('quikdrop');
+            }
+
+
+            // UPDATED: Module 8: Quiz (Rebuilt)
+            const quizData = [
+                {
+                    q: "What is the primary difference between resources and capabilities?",
+                    o: [
+                        "Resources are tangible, capabilities are intangible.",
+                        "Resources are what a firm *has*, capabilities are what a firm *does*.",
+                        "Resources are internal, capabilities are external.",
+                        "Resources are physical assets, capabilities are financial assets."
+                    ],
+                    a: 1,
+                    explanation: "This is the core distinction. Resources are assets (e.g., cash, patents, brand), which are things a firm *has*. Capabilities are the skills to deploy those assets effectively (e.g., R&D management, ecosystem building), which are things a firm *does*."
+                },
+                {
+                    q: "According to the Resource-Based View (RBV), what are the two critical assumptions about resources?",
+                    o: [
+                        "Valuable and Rare",
+                        "Tangible and Intangible",
+                        "Resource Heterogeneity and Resource Immobility",
+                        "Path Dependence and Social Complexity"
+                    ],
+                    a: 2,
+                    explanation: "The RBV is built on two key assumptions: 1) **Heterogeneity**, meaning firms are unique bundles of resources (Nvidia's bundle is different from AMD's), and 2) **Immobility**, meaning these resources are 'sticky' and hard to transfer, which is why advantages can last."
+                },
+                {
+                    q: "In the VRIO framework, what is the competitive implication for a resource that is Valuable and Rare, but *not* Costly to Imitate (like Groupon's)?",
+                    o: [
+                        "Competitive Disadvantage",
+                        "Competitive Parity",
+                        "Temporary Competitive Advantage",
+                        "Sustained Competitive Advantage"
+                    ],
+                    a: 2,
+                    explanation: "If a resource is V and R, you have an advantage. But if it's *easy* to imitate (like Groupon's business model), that advantage is only temporary. Competitors will quickly copy it and erode your profits. A *sustained* advantage requires it to be V, R, and I (Costly to Imitate)."
+                },
+                {
+                    q: "What is Nvidia's most critical *intangible resource* that creates a 'moat' and high switching costs?",
+                    o: [
+                        "Its GPU hardware (e.g., Blackwell)",
+                        "Its cash reserves",
+                        "Its visionary CEO, Jensen Huang",
+                        "The CUDA software ecosystem"
+                    ],
+                    a: 3,
+                    explanation: "While the hardware (a tangible asset, mostly) is valuable, the **CUDA platform** is the true intangible resource. Its 15+ year history and the millions of developers trained on it create massive switching costs (an isolating mechanism) that 'lock in' the AI industry, making it incredibly costly to imitate."
+                },
+                {
+                    q: "Five Guys' relentless focus on 'highest-quality ingredients, cost aside' is a clear example of a:",
+                    o: [
+                        "Tangible Resource",
+                        "Core Competency",
+                        "Support Activity",
+                        "Temporary Competitive Advantage"
+                    ],
+                    a: 1,
+                    explanation: "This is a **Core Competency**. It's not just a single resource, but a unique, embedded strength that results from *all* its activities (sourcing, training, operations) and defines its value proposition to the customer, allowing it to differentiate itself from low-cost rivals."
+                },
+                {
+                    q: "When a firm's past core competency, like Kodak's focus on film, prevents it from adapting to new market conditions, it is known as a:",
+                    o: [
+                        "Dynamic Capability",
+                        "Isolating Mechanism",
+                        "Core Rigidity",
+                        "Primary Activity"
+                    ],
+                    a: 2,
+                    explanation: "This is a **Core Rigidity**. It's what happens when a firm's identity and systems are so tied to its old competency (making film) that it becomes a liability and prevents it from seizing new opportunities (digital photography). A Dynamic Capability is the *opposite* of this."
+                },
+                {
+                    q: "Nvidia's pivot from focusing on gaming (GeForce) to dominating the AI & Data Center market is a textbook example of:",
+                    o: [
+                        "Dynamic Capabilities",
+                        "Resource Heterogeneity",
+                        "A Core Rigidity",
+                        "Value Chain Analysis"
+                    ],
+                    a: 0,
+                    explanation: "**Dynamic Capabilities** are a firm's ability to create, deploy, modify, and reconfigure its resources. Nvidia *sensed* the AI opportunity early and *seized* it by reconfiguring its parallel processing competency (originally for gaming) to serve a new, high-growth market. This is a masterful display of dynamic capability."
+                },
+                {
+                    q: "Which of the following best describes Nvidia's core *capability*?",
+                    o: [
+                        "Having the most cash",
+                        "The CUDA software platform",
+                        "Ecosystem building and R&D pipeline management",
+                        "Its brand reputation"
+                    ],
+                    a: 2,
+                    explanation: "CUDA and Brand are *resources* (what it *has*). **Ecosystem building** is a *capability* (what it *does*). This capability is the managerial skill of orchestrating its resources (CUDA, R&D labs, sales team) to manage relationships with developers, cloud providers, and researchers to build its 'moat'."
+                },
+                {
+                    q: "In the VRIO framework, 'Path Dependence' and 'High Switching Costs' are key examples of:",
+                    o: [
+                        "Why a resource is Valuable",
+                        "How a firm is Organized to Capture value",
+                        "Why a resource is (or is not) Rare",
+                        "Isolating Mechanisms that make a resource Costly to Imitate"
+                    ],
+                    a: 3,
+                    explanation: "These are **Isolating Mechanisms**—barriers that protect an advantage by making it **Costly to Imitate (I)**. Path dependence (CUDA's 15-year history) and high switching costs (developer lock-in) are what make it so difficult and expensive for a rival like AMD to build a true CUDA competitor."
+                },
+                {
+                    q: "In a Value Chain Analysis, R&D and Human Resource Management are typically classified as:",
+                    o: [
+                        "Primary Activities",
+                        "Support Activities",
+                        "Outbound Logistics",
+                        "Isolating Mechanisms"
+                    ],
+                    a: 1,
+                    explanation: "**Support Activities** add value *indirectly* by enabling the primary activities. R&D (Technology) supports the creation of better Operations and Products. HR Management supports all activities by hiring and training talent. Primary activities are those directly involved in making and selling the product (e.g., Operations, Marketing)."
+                },
+                {
+                    q: "Nvidia's 'fabless' model (designing chips but outsourcing manufacturing to TSMC) is a key strategic choice in which part of its Value Chain?",
+                    o: [
+                        "Service",
+                        "Marketing & Sales",
+                        "Operations / Inbound Logistics",
+                        "Technology / R&D"
+                    ],
+                    a: 2,
+                    explanation: "This relates to **Operations / Inbound Logistics**. By choosing *not* to manufacture, Nvidia focuses its value chain on design (R&D, Operations) and relies on a supplier (TSMC) for manufacturing. This is a critical internal weakness (dependency) but also a strength (capital efficiency)."
+                },
+                {
+                    q: "What is the primary purpose of a SWOT analysis?",
+                    o: [
+                        "To determine if a resource is VRIO",
+                        "To analyze only the external environment",
+                        "To synthesize internal (S, W) and external (O, T) factors for strategic insights",
+                        "To map the firm's primary and support activities"
+                    ],
+                    a: 2,
+                    explanation: "A SWOT analysis is a synthesis tool. It brings together your **Internal** analysis (Strengths, Weaknesses - from VRIO and Value Chain) and your **External** analysis (Opportunities, Threats - from Porter's Five Forces) to derive actionable strategic questions."
+                },
+                {
+                    q: "The fact that hundreds of 'Groupon clones' could easily copy its business model means the model failed which VRIO test?",
+                    o: [
+                        "Valuable",
+                        "Rare",
+                        "Costly to Imitate",
+                        "Organized to Capture"
+                    ],
+                    a: 2,
+                    explanation: "The model was Valuable (merchants and users liked it) and initially Rare. However, barriers to entry were non-existent, making it incredibly *easy and cheap to imitate*. This failure on the 'I' in VRIO is why its advantage was only temporary."
+                },
+                {
+                    q: "According to research (Module 1), 'firm-specific effects' (internal factors) account for approximately what percentage of performance differences?",
+                    o: [
+                        "~10%",
+                        "~20%",
+                        "~55%",
+                        "~90%"
+                    ],
+                    a: 2,
+                    explanation: "Research shows that 'Industry Effects' (e.g., Porter's forces) account for about 20% of performance, while 'Firm-Specific Effects' (the internal resources, capabilities, and choices) account for up to **55%**. This is why internal analysis is arguably more important than external analysis."
+                },
+                {
+                    q: "Which of the following is *not* an isolating mechanism mentioned in the context of Nvidia's CUDA 'moat'?",
+                    o: [
+                        "Path Dependence",
+                        "High Switching Costs",
+                        "Social Complexity",
+                        "Low-Cost Leadership"
+                    ],
+                    a: 3,
+                    explanation: "**Low-Cost Leadership** is a generic business-level strategy. The isolating mechanisms protecting CUDA are: **Path Dependence** (15+ year history), **High Switching Costs** (developer lock-in), and **Social Complexity** (the deep trust network with researchers) which are all difficult for rivals to copy."
+                }
+            ];
+
+            const quizContainer = document.getElementById('quiz-container');
+            const scoreValueEl = document.getElementById('score-value');
+            const scoreTotalEl = document.getElementById('score-total');
+            let score = 0;
+            const totalQuestions = quizData.length;
+            
+            scoreTotalEl.textContent = totalQuestions;
+
+            quizContainer.innerHTML = ''; // Clear existing content
+            
+            quizData.forEach((item, index) => {
+                const questionEl = document.createElement('div');
+                questionEl.className = 'bg-white p-6 rounded-lg shadow-sm border border-gray-200 question-card';
+                questionEl.dataset.questionIndex = index;
+                
+                let optionsHTML = '<ul class="mt-4 space-y-3 options-list">';
+                item.o.forEach((option, i) => {
+                    optionsHTML += `
+                        <li>
+                            <button class="quiz-option" data-option-index="${i}">
+                                <span class="font-semibold">${String.fromCharCode(97 + i)})</span> ${option}
+                            </button>
+                        </li>
+                    `;
+                });
+                optionsHTML += '</ul>';
+
+                const explanationHTML = `<div class="explanation" id="explanation-${index}">${item.explanation}</div>`;
+
+                questionEl.innerHTML = `<p class="font-semibold text-gray-900 text-lg">${index + 1}. ${item.q}</p>${optionsHTML}${explanationHTML}`;
+                quizContainer.appendChild(questionEl);
+            });
+
+            quizContainer.addEventListener('click', function(e) {
+                const clickedOption = e.target.closest('.quiz-option');
+                if (!clickedOption) return; // Didn't click an option
+
+                const questionCard = clickedOption.closest('.question-card');
+                if (questionCard.dataset.answered) return; // Already answered
+                
+                // Mark question as answered
+                questionCard.dataset.answered = 'true';
+
+                // Get data
+                const questionIndex = parseInt(questionCard.dataset.questionIndex, 10);
+                const optionIndex = parseInt(clickedOption.dataset.optionIndex, 10);
+                const questionData = quizData[questionIndex];
+                const correctOptionIndex = questionData.a;
+
+                // Disable all options in this card
+                const allOptions = questionCard.querySelectorAll('.quiz-option');
+                allOptions.forEach(opt => opt.classList.add('disabled'));
+
+                // Check answer and update score
+                if (optionIndex === correctOptionIndex) {
+                    clickedOption.classList.add('correct');
+                    score++;
+                    scoreValueEl.textContent = score;
+                } else {
+                    clickedOption.classList.add('incorrect');
+                    // Also show the correct one
+                    allOptions[correctOptionIndex].classList.add('correct');
+                }
+
+                // Show explanation
+                const explanationEl = document.getElementById(`explanation-${questionIndex}`);
+                explanationEl.classList.add('visible');
+            });
+
+        });
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+

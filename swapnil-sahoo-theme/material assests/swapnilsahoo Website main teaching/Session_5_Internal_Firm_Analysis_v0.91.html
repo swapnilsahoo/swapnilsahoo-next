@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBA Strategy Hub: The Five Forces in 2025</title>
+    <!-- Chosen Palette: Ivy League (Content) + Session 3 (Header/Footer) -->
+    <!-- Application Structure Plan: V4 update. Merged header/footer structure and styles from user's Session3_Purpose_Values_Strategy_v7.html file. This includes the two-part fixed header (dark top bar, white nav), the main tag padding offset, and the dark footer with hexagon logo. Content theme (Ivy League) from v3 is preserved. Navigation JS from Session 3 is merged. -->
+    <!-- Visualization & Content Choices: All visualizations and content from v3 remain. All nav links and mobile nav options are updated to match the sections of this page. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- Copied from Session 3 for Header/Footer/Nav --- */
+        :root {
+            --header-height-desktop: 129px; /* Was 92px */
+            --header-height-mobile: 53px; /* Was 52px */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            color: #1f2937; /* gray-800 */
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--header-height-mobile);
+        }
+        @media (min-width: 640px) {
+            html {
+                scroll-padding-top: var(--header-height-desktop);
+            }
+        }
+
+        /* Header Elements */
+        #top-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 50; }
+        #main-nav-container { position: fixed; top: 40px; left: 0; right: 0; z-index: 40; }
+        @media (max-width: 639px) {
+            #main-nav-container { top: 0; }
+            #top-bar { display: none; }
+        }
+        
+        /* Main content padding to offset fixed header */
+        main {
+            padding-top: var(--header-height-mobile);
+        }
+        @media (min-width: 640px) {
+            main {
+                padding-top: var(--header-height-desktop);
+            }
+        }
+
+        /* Navigation Links */
+        .active-nav { color: #A51C30; border-bottom-color: #A51C30; font-weight: 600; } /* Updated to Crimson */
+        .nav-link { transition: all 0.2s ease-in-out; border-bottom: 2px solid transparent; padding-bottom: 4px; color: #4b5563; }
+        .nav-link:hover { color: #A51C30; border-bottom-color: #A51C30; } /* Updated to Crimson */
+        
+        /* EXACT ICON STYLES FROM TEMPLATE */
+        .top-bar-link svg, .footer-link svg { width: 1.125rem; height: 1.125rem; fill: currentColor; transition: color 0.2s ease-in-out; }
+        .hexagon-icon { position: relative; width: 28px; height: 28px; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3)); display: inline-block; vertical-align: middle; }
+        .hexagon-icon svg { width: 100%; height: 100%; animation: glow 2.5s infinite ease-in-out; }
+        .hexagon-path { stroke: #B91C1C; stroke-width: 1; } 
+        .hexagon-s { font-family: 'Georgia', serif; font-weight: bold; font-size: 48px; fill: #facc15; text-anchor: middle; dominant-baseline: central; }
+        @keyframes glow { 0%, 100% { filter: drop-shadow(0 0 4px rgba(239, 68, 68, 0.7)); } 50% { filter: drop-shadow(0 0 10px rgba(239, 68, 68, 1)); } }
+
+        /* Mobile Nav Select */
+        #mobile-nav {
+            -webkit-appearance: none; -moz-appearance: none; appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M7 7l3-3 3 3m0 6l-3 3-3-3'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center; background-repeat: no-repeat; background-size: 1.25em 1.25em;
+            padding: 0.5rem 2.5rem 0.5rem 0.75rem; border: 1px solid #d1d5db;
+        }
+        /* --- End of Session 3 Styles --- */
+
+
+        /* --- Styles from v3 (Ivy League Theme) --- */
+        .force-card, .accordion-button {
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .force-card:hover, .accordion-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.07), 0 4px 6px -4px rgb(0 0 0 / 0.07);
+        }
+        .force-card.active {
+            border-color: #A51C30; /* Crimson */
+            transform: scale(1.02);
+        }
+        .force-detail, .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.7s ease-in-out;
+        }
+        .force-detail.open, .accordion-content.open {
+            max-height: 5000px;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 50vh;
+        }
+        .accordion-button svg {
+            transition: transform 0.3s ease;
+        }
+        .accordion-button.open svg {
+            transform: rotate(180deg);
+        }
+        
+        /* Ivy League Palette */
+        .bg-base { background-color: #F9F9F9; } /* Off-white */
+        .bg-card { background-color: #FFFFFF; }
+        .bg-primary { background-color: #A51C30; } /* Crimson */
+        .text-primary { color: #A51C30; }
+        .border-primary { border-color: #A51C30; }
+        .bg-accent { background-color: #F59E0B; } /* Gold/Amber */
+        .text-accent { color: #F59E0B; }
+        .border-accent { border-color: #F59E0B; }
+        
+        .bg-accent-faded { background-color: #FDF8E3; } /* Beige/Pale Gold */
+        .border-accent-faded { border-color: #FAEEC9; }
+        .bg-primary-faded { background-color: #FBEAEC; } /* Faded Crimson */
+        .border-primary-faded { border-color: #F8D6DA; }
+
+    </style>
+</head>
+<body class="bg-base">
+
+    <!-- HEADER (Copied from Session 3) -->
+    <header id="main-header" class="shadow-sm">
+        <div id="top-bar" class="bg-gray-800 text-white py-1" style="height: 40px;">
+            <div class="container mx-auto px-6 flex justify-between items-center h-full">
+                <p class="text-xs font-medium text-slate-400">© Dr. Swapnil Sahoo 2025</p>
+                <div class="flex items-center space-x-4">
+                    <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white group" title="Website">
+                        <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
+                            <svg viewBox="0 0 52 60">
+                                <defs><linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
+                                <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#redGradient)"/><text class="hexagon-s" x="26" y="32">S</text>
+                            </svg>
+                        </div>
+                    </a>
+                    <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white top-bar-link" title="X/Twitter"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white top-bar-link" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049 1.064.218 1.791.465 2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.575 2h.093zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" clip-rule="evenodd"/></svg></a>
+                    <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white top-bar-link" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg></a>
+                </div>
+            </div>
+        </div>
+        
+        <div id="main-nav-container" class="bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200 z-50">
+            <div class="container mx-auto px-6 py-3 title-bar">
+                <div class="flex justify-between items-center">
+                    <!-- UPDATE: Title changed -->
+                    <h1 class="text-xl font-bold text-slate-900">MBA Strategy Hub: The Five Forces</h1>
+                    <div class="sm:hidden">
+                        <!-- UPDATE: Mobile nav links changed -->
+                        <select id="mobile-nav" class="block w-auto rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm">
+                            <option value="#intro">Intro</option>
+                            <option value="#big-question">The Big Question</option>
+                            <option value="#briefing">Briefing Doc</option>
+                            <option value="#amazon-example">Amazon Example</option>
+                            <option value="#framework">Core Concepts</option>
+                            <option value="#workshops">Workshops</option>
+                            <option value="#analysis">Simulation</option>
+                            <option value="#activity">Group Activity</option>
+                            <option value="#quiz">Knowledge Check</option>
+                            <option value="#takeaways">Takeaways</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <nav id="top-nav" class="bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200 overflow-x-auto whitespace-nowrap hidden sm:block">
+                <div class="container mx-auto px-6 py-2 flex space-x-4">
+                    <!-- UPDATE: Desktop nav links changed -->
+                    <a href="#intro" class="nav-link text-sm active-nav font-medium">Intro</a>
+                    <a href="#big-question" class="nav-link text-sm font-medium">The Big Question</a>
+                    <a href="#briefing" class="nav-link text-sm font-medium">Briefing Doc</a>
+                    <a href="#amazon-example" class="nav-link text-sm font-medium">Amazon Example</a>
+                    <a href="#framework" class="nav-link text-sm font-medium">Core Concepts</a>
+                    <a href="#workshops" class="nav-link text-sm font-medium">Workshops</a>
+                    <a href="#analysis" class="nav-link text-sm font-medium">Simulation</a>
+                    <a href="#activity" class="nav-link text-sm font-medium">Group Activity</a>
+                    <a href="#quiz" class="nav-link text-sm font-medium">Quiz</a>
+                    <a href="#takeaways" class="nav-link text-sm font-medium">Takeaways</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+<div style="
+  width:20vw;
+  height:20vh;
+  background:transparent;
+"></div>
+    
+    <!-- WRAP main content in <main> tag from Session 3 -->
+    <main class="max-w-5xl mx-auto p-4 sm:p-6 lg:p-8">
+
+        <section id="intro" class="text-center mb-16">
+            <h2 class="text-4xl font-extrabold text-gray-900 mb-4">Why are we reading a 45-year-old article to understand the business world of 2025?</h2>
+            <p class="max-w-3xl mx-auto text-lg text-gray-700 mb-6">The answer is simple: Because this article isn't about <strong class="font-semibold text-accent">*what*</strong> to think, it's about <strong class="font-semibold text-accent">*how*</strong> to think. It provides a framework to answer the single most important question in business: <strong class="font-semibold text-accent">Why are some industries consistently profitable while others are black holes for capital?</strong></p>
+            <div class="bg-card p-6 rounded-xl shadow-lg border border-gray-200 inline-block">
+                <h3 class="text-xl font-bold text-primary mb-3">Session Objectives</h3>
+                <ul class="text-left space-y-2 text-gray-700">
+                    <li class="flex items-start"><span class="text-primary mr-2">✔</span> Master Porter's Five Forces framework.</li>
+                    <li class="flex items-start"><span class="text-primary mr-2">✔</span> Apply it to modern disruptors (Tesla, Uber, Nvidia).</li>
+                    <li class="flex items-start"><span class="text-primary mr-2">✔</span> Evaluate how a company can reshape its industry.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="big-question" class="py-16 bg-card rounded-2xl shadow-inner mb-20">
+            <h2 class="text-3xl font-bold text-center mb-4">The Profitability Puzzle: Why All Industries Aren't Equal</h2>
+            <p class="text-center text-gray-700 mb-10 max-w-3xl mx-auto">We're obsessed with our direct rivals—Uber vs. Ola, Tesla vs. BYD. Porter warns that this is just one piece of the puzzle. True competition is an <strong class="font-semibold text-accent">"extended rivalry"</strong> from five forces that determine an industry's structure and, ultimately, its profitability.</p>
+            <div class="bg-base p-6 rounded-xl shadow-md">
+                <h3 class="text-xl font-bold text-center mb-4">Fact: Profitability Varies Wildly by Industry (ROIC 1992-2025)</h3>
+                <p class="text-center text-sm text-gray-600 mb-4">This data shows the stark reality. The "game" you choose to play matters. The airline industry collectively *destroys* capital, while software and AI infrastructure consistently *create* it. The Five Forces explain *why*.</p>
+                <div class="chart-container" style="height: 450px; max-height: 60vh;">
+                    <canvas id="profitabilityChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- RE-INSERTED BRIEFING DOC SECTION -->
+        <section id="briefing" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-10">Briefing Document: Porter's Five Forces</h2>
+            <p class="text-center text-gray-700 mb-10 max-w-2xl mx-auto">Before we dive in, feel free to review the core concepts from the HBR article, updated with the strategic implications from our session script.</p>
+            <div class="max-w-4xl mx-auto space-y-4" id="accordion-container">
+                <!-- Accordion items will be injected here by JS -->
+            </div>
+        </section>
+
+        <!-- ADDED NEW HIGHLIGHTED SECTION -->
+        <section id="amazon-example" class="mb-20 py-12 bg-accent-faded rounded-2xl shadow-inner border border-amber-300">
+            <div class="max-w-4xl mx-auto px-6">
+                <p class="text-lg text-amber-900 mb-6">Porter says there are <strong class="font-semibold">five</strong> forces that define every industry's structure and, therefore, its profit potential.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Column 1: The Forces -->
+                    <div class="bg-white/70 p-6 rounded-lg shadow border border-amber-200">
+                        <h3 class="text-xl font-bold text-primary mb-4">The Five Forces</h3>
+                        <ul class="space-y-3 text-gray-700">
+                            <li><strong class="font-semibold">Threat of New Entrants:</strong> People who want to do what you do.</li>
+                            <li><strong class="font-semibold">Power of Suppliers:</strong> The people you <strong class="font-semibold">buy</strong> from.</li>
+                            <li><strong class="font-semibold">Power of Buyers:</strong> The people you <strong class="font-semibold">sell</strong> to.</li>
+                            <li><strong class="font-semibold">Threat of Substitutes:</strong> Different products that do the same <strong class="font-semibold">job</strong>.</li>
+                            <li><strong class="font-semibold">Rivalry:</strong> The knife-fight in the middle.</li>
+                        </ul>
+                        <p class="mt-4 text-sm text-gray-600">Your strategy, then, is to build a defense against these forces—to build a 'moat.'</p>
+                    </div>
+
+                    <!-- Column 2: The Amazon Example -->
+                    <div class="bg-white/70 p-6 rounded-lg shadow border border-amber-200">
+                        <h3 class="text-xl font-bold text-amber-800 mb-4">Let's use Amazon as our central example. Who's their competition?</h3>
+                        <ul class="space-y-3 text-gray-700">
+                            <li><strong class="font-semibold">Rivalry:</strong> Sure, Walmart, Flipkart, Target.</li>
+                            <li><strong class="font-semibold">New Entrants:</strong> Absolutely. Think about the explosive growth of <strong class="font-semibold">Temu</strong> and <strong class="font-semibold">Shein</strong>, attacking from a new, low-cost angle.</li>
+                            <li><strong class="font-semibold">Buyers:</strong> That's <strong class="font-semibold">us</strong>. And we are <strong class="font-semibold">incredibly</strong> powerful. We demand free, one-day shipping, easy returns, and low prices. We have zero switching costs.</li>
+                            <li><strong class="font-semibold">Suppliers:</strong> P&G, Samsung, Sony. They all want to sell <strong class="font-semibold">direct</strong> to us and cut Amazon out.</li>
+                            <li><strong class="font-semibold">Substitutes:</strong> Just going to your local brick-and-mortar store.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="framework" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-2">Core Concepts: The 5 Forces in 2025</h2>
+            <p class="text-center text-gray-700 mb-10 max-w-3xl mx-auto">Your job as a strategist is not just to beat rivals. It's to understand your industry's structure, find a profitable position, and, if you're truly brilliant, reshape that structure in your favor. Let's break down what this article actually says, using the companies you're building.</p>
+            
+            <!-- ADDED: Explanation for the new layout -->
+            <div class="max-w-3xl mx-auto bg-base p-6 rounded-xl shadow-inner border border-gray-200 mb-12">
+                <p class="text-center text-gray-700"><strong class="font-semibold text-primary">A New Perspective:</strong> Porter's Five Forces include three sources of "horizontal competition"—the <strong class="font-semibold">Threat of Substitutes</strong>, <strong class="font-semibold">Rivalry</strong>, and the <strong class="font-semibold">Threat of New Entrants</strong>—and two sources of "vertical competition"—the <strong class="font-semibold">Bargaining Power of Suppliers</strong> and the <strong class="font-semibold">Bargaining Power of Buyers</strong>. The diagram below reflects this vertical/horizontal structure.</p>
+            </div>
+
+            <div class="flex flex-col items-center space-y-4">
+                <!-- 1. MOVED: Suppliers to TOP -->
+                <div id="force-suppliers" class="force-card bg-card p-4 rounded-xl shadow-md border-2 border-transparent text-center w-64">
+                    <h3 class="font-bold text-md text-primary">Bargaining Power of Suppliers</h3>
+                </div>
+
+                <!-- 2. Vertical Line -->
+                <div class="w-1 h-8 bg-gray-300"></div>
+
+                <!-- 3. REBUILT: Middle "Horizontal" Row -->
+                <div class="flex items-center justify-center w-full max-w-4xl">
+                    
+                    <!-- 3a. MOVED: Entrants to middle-left -->
+                    <div id="force-entrants" class="force-card bg-card p-4 rounded-xl shadow-md border-2 border-transparent text-center w-64">
+                        <h3 class="font-bold text-md text-primary">Threat of New Entrants</h3>
+                    </div>
+
+                    <!-- 3b. Horizontal Line -->
+                    <div class="flex-grow h-1 bg-gray-300 mx-4"></div>
+                    
+                    <!-- 3c. Rivalry (Stays in center) -->
+                    <div id="force-rivalry" class="force-card bg-card p-6 rounded-full shadow-lg border-4 border-accent text-center flex items-center justify-center w-48 h-48">
+                        <h3 class="font-bold text-lg text-accent">Rivalry Among Competitors</h3>
+                    </div>
+                    
+                    <!-- 3d. Horizontal Line -->
+                    <div class="flex-grow h-1 bg-gray-300 mx-4"></div>
+
+                    <!-- 3e. MOVED: Substitutes to middle-right -->
+                    <div id="force-substitutes" class="force-card bg-card p-4 rounded-xl shadow-md border-2 border-transparent text-center w-64">
+                        <h3 class="font-bold text-md text-primary">Threat of Substitutes</h3>
+                    </div>
+                </div>
+
+                <!-- 4. Vertical Line -->
+                <div class="w-1 h-8 bg-gray-300"></div>
+                
+                <!-- 5. MOVED: Buyers to BOTTOM -->
+                <div id="force-buyers" class="force-card bg-card p-4 rounded-xl shadow-md border-2 border-transparent text-center w-64">
+                    <h3 class="font-bold text-md text-primary">Bargaining Power of Buyers</h3>
+                </div>
+            </div>
+
+            <div id="force-details-container" class="mt-8"></div>
+            
+            <!-- REMOVED "Complementors" card -->
+            
+            <!-- ADDED "So What" section -->
+            <div id="strategy-implications" class="mt-16 bg-card p-8 rounded-xl shadow-lg border border-gray-200">
+                <h2 class="text-2xl font-bold text-center mb-6 text-primary">The "So What?": Implications for Strategy</h2>
+                <p class="text-center text-gray-700 mb-8 max-w-3xl mx-auto">This is the most important part of the reading. After all this analysis, what do you actually do? The article lays out three strategic options.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Position -->
+                    <div class="bg-base p-6 rounded-lg border border-gray-200">
+                        <h3 class="font-bold text-lg text-gray-800 mb-2">1. Position Your Company</h3>
+                        <p class="text-sm text-gray-600">Find a 'foxhole' where the forces are weakest. The article's prime example is <strong class="font-semibold">Paccar</strong>. The heavy truck industry is terrible. So Paccar avoids the powerful fleet buyers and <strong class="font-semibold">only</strong> sells to owner-operators. These individual drivers are fragmented, have no power, and are less price-sensitive because they have an 'emotional tie' to their trucks. Paccar custom-builds status-symbol trucks with luxury cabins and charges a 10% premium for them. That's positioning.</p>
+                    </div>
+                    <!-- Exploit -->
+                    <div class="bg-base p-6 rounded-lg border border-gray-200">
+                        <h3 class="font-bold text-lg text-gray-800 mb-2">2. Exploit Industry Change</h3>
+                        <p class="text-sm text-gray-600">Wait for a force to shift, then exploit the chaos. The article's example is <strong class="font-semibold">Apple</strong>. The <strong class="font-semibold">substitute</strong> of illegal file-sharing (Napster) destroyed the old music industry. The major labels (suppliers) were in a panic. Apple 'stepped into this vacuum', created the iTunes store, and became the new, powerful gatekeeper.</p>
+                    </div>
+                    <!-- Shape -->
+                    <div class="bg-base p-6 rounded-lg border border-gray-200">
+                        <h3 class="font-bold text-lg text-gray-800 mb-2">3. Shape Industry Structure</h3>
+                        <p class="text-sm text-gray-600">This is the master class. Don't just play the game; change the rules. The article gives a 'dark side' example: <strong class="font-semibold">IBM</strong>. In the 1980s, IBM wanted to grow the PC market, so it created an 'open architecture.' But in doing so, it 'ceded ownership of the critical components'—the OS and the microprocessor—to two <strong class="font-semibold">suppliers</strong>: Microsoft and Intel. IBM 'encouraged price-based rivalry' and 'shifted power to suppliers'. It won the battle but created an industry structure where it, and every other PC maker, was doomed to lose the war for profits.</p>
+                    </div>
+                </div>
+                <p class="text-center font-semibold text-gray-800 pt-8 mt-6 border-t border-gray-200">That is the ultimate lesson of this article. As a strategist, your actions can either build a fortress or dig your own grave. This framework is your blueprint. Don't ignore it.</p>
+            </div>
+        </section>
+
+        <section id="workshops" class="py-16">
+            <h2 class="text-3xl font-bold text-center mb-10">Workshop: Watch the Explainers</h2>
+            <p class="text-center text-gray-700 mb-10 max-w-2xl mx-auto">These short explainers provide a great visual and conceptual overview of the Five Forces framework in action. Watch them to solidify your understanding.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <div class="bg-card p-6 rounded-xl shadow-lg border border-gray-200">
+                    <h3 class="font-semibold text-xl text-center text-gray-800 mb-4">The Five Forces of Strategy</h3>
+                    <video controls class="w-full rounded-lg shadow-lg" preload="metadata">
+                        <source src="The_Five_Forces_of_Strategy.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="bg-card p-6 rounded-xl shadow-lg border border-gray-200">
+                    <h3 class="font-semibold text-xl text-center text-gray-800 mb-4">The 5 Forces That Make Companies Successful</h3>
+                    <video controls class="w-full rounded-lg shadow-lg" preload="metadata">
+                        <source src="The Explainer_ The 5 Forces That Make Companies Successful.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <section id="analysis" class="py-16 bg-card rounded-2xl shadow-inner">
+            <h2 class="text-3xl font-bold text-center mb-12">Simulation Workshop: The Tesla Deep Dive</h2>
+            <p class="text-center text-gray-700 mb-10 max-w-2xl mx-auto">Now, let's apply this framework. The U.S. Auto Industry is a classic "tough" industry. The charts below visualize the forces Tesla faced. How did they navigate this landscape?</p>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="bg-base p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold text-center mb-4">Rivalry: U.S. Auto Market Share (2024)</h3>
+                    <p class="text-center text-sm text-gray-600 mb-4">The traditional auto industry remains highly concentrated, but Tesla's growth shows a significant new competitor upsetting the old guard.</p>
+                    <div class="chart-container">
+                        <canvas id="marketShareChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-base p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold text-center mb-4">Threat of Entry: Tesla's Growth Trajectory</h3>
+                    <p class="text-center text-sm text-gray-600 mb-4">Overcoming immense entry barriers like capital and scale is a monumental task. Tesla's delivery growth demonstrates its successful, albeit challenging, entry and scaling process over the last decade.</p>
+                    <div class="chart-container">
+                        <canvas id="teslaDeliveriesChart"></canvas>
+                    </div>
+                </div>
+                 <div class="bg-base p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold text-center mb-4">Supplier Power: Reshaping the Value Chain</h3>
+                    <p class="text-center text-sm text-gray-600 mb-4">Tesla's strategy of vertical integration fundamentally alters its relationship with suppliers, reducing their bargaining power compared to the traditional OEM model.</p>
+                    <div class="flex flex-col md:flex-row gap-6 mt-6">
+                        <div class="flex-1 bg-card p-4 rounded-lg border">
+                            <h4 class="font-bold text-center mb-2">Traditional OEM Model</h4>
+                            <ul class="text-sm space-y-1 text-center text-gray-700">
+                                <li>OEM (e.g., Ford, GM)</li>
+                                <li class="font-bold">↓</li>
+                                <li>Tier 1 Suppliers (Bosch, Magna)</li>
+                                <li class="font-bold">↓</li>
+                                <li>Tier 2 & 3 Suppliers (Parts, Materials)</li>
+                                <li class="mt-2 text-xs italic">High reliance on external suppliers</li>
+                            </ul>
+                        </div>
+                        <div class="flex-1 bg-card p-4 rounded-lg border-2 border-primary">
+                            <h4 class="font-bold text-center mb-2 text-primary">Tesla's Vertical Integration</h4>
+                            <ul class="text-sm space-y-1 text-center text-gray-700">
+                                <li class="font-bold">Tesla</li>
+                                <li class="font-bold">↓</li>
+                                <li>In-house Battery (Gigafactory)</li>
+                                <li>In-house Software & AI (Dojo)</li>
+                                <li>In-house Seats, Components</li>
+                                <li class="mt-2 text-xs italic">Reduced supplier dependency</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-base p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold text-center mb-4">Buyer Power: What Do EV Customers Value?</h3>
+                    <p class="text-center text-sm text-gray-600 mb-4">Understanding buyer power involves knowing what influences their purchasing decisions. In the EV market, factors like range and charging access are paramount, shifting power dynamics.</p>
+                     <div class="chart-container" style="height: 350px; max-height: 40vh;">
+                        <canvas id="buyerPowerChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="activity" class="py-16">
+            <h2 class="text-3xl font-bold text-center mb-10">Group Breakout Activity</h2>
+             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <div class="bg-card p-6 rounded-xl shadow-lg border border-gray-200">
+                    <h3 class="font-bold text-lg text-accent mb-3">Group 1: Threat of New Entrants</h3>
+                    <ul class="space-y-2 text-sm text-gray-700 list-disc list-inside">
+                        <li>Before Tesla, how high were the barriers to entry?</li>
+                        <li>How did Tesla manage to overcome these barriers?</li>
+                        <li>Has Tesla's entry made it easier or harder for others?</li>
+                    </ul>
+                </div>
+
+                <div class="bg-card p-6 rounded-xl shadow-lg border border-gray-200">
+                    <h3 class="font-bold text-lg text-accent mb-3">Group 2: Bargaining Power of Buyers</h3>
+                    <ul class="space-y-2 text-sm text-gray-700 list-disc list-inside">
+                        <li>Describe the typical car buyer's power.</li>
+                        <li>How has Tesla's direct-to-consumer model affected this?</li>
+                        <li>Consider individual vs. fleet buyers (e.g., Hertz).</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-card p-6 rounded-xl shadow-lg border border-gray-200">
+                    <h3 class="font-bold text-lg text-accent mb-3">Group 3: Bargaining Power of Suppliers</h3>
+                    <ul class="space-y-2 text-sm text-gray-700 list-disc list-inside">
+                        <li>How powerful are traditional auto suppliers?</li>
+                        <li>Analyze Tesla's vertical integration strategy.</li>
+                        <li>What are the risks and benefits of this strategy?</li>
+                    </ul>
+                </div>
+
+                <div class="bg-card p-6 rounded-xl shadow-lg border border-gray-200">
+                    <h3 class="font-bold text-lg text-accent mb-3">Group 4: Threat of Substitutes</h3>
+                     <ul class="space-y-2 text-sm text-gray-700 list-disc list-inside">
+                        <li>What are the primary substitutes for owning a car?</li>
+                        <li>How does ride-sharing affect the industry?</li>
+                        <li>How does Tesla's 'Master Plan, Part Deux' address this?</li>
+                    </ul>
+                </div>
+
+                <div class="bg-card p-6 rounded-xl shadow-lg border border-gray-200">
+                    <h3 class="font-bold text-lg text-accent mb-3">Group 5: Rivalry Among Competitors</h3>
+                    <ul class="space-y-2 text-sm text-gray-700 list-disc list-inside">
+                        <li>Describe rivalry in the traditional auto industry.</li>
+                        <li>How has Tesla changed the basis of competition?</li>
+                        <li>Who are Tesla's most significant rivals today?</li>
+                    </ul>
+                </div>
+                 
+                <div class="bg-card p-6 rounded-xl shadow-lg border border-gray-200">
+                    <h3 class="font-bold text-lg text-accent mb-3">Bonus: Complementors</h3>
+                    <ul class="space-y-2 text-sm text-gray-700 list-disc list-inside">
+                        <li>What are key complementors for Tesla?</li>
+                        <li>How has Tesla used its Supercharger network strategically?</li>
+                        <li>How do government incentives act as a complement?</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz" class="py-16 bg-card rounded-2xl shadow-inner">
+            <h2 class="text-3xl font-bold text-center mb-4">Test Your Knowledge</h2>
+            <p class="text-center text-gray-700 mb-10 max-w-2xl mx-auto">Check your understanding of the Five Forces framework. Each question is worth 2 marks.</p>
+            
+            <div id="quiz-container" class="max-w-4xl mx-auto space-y-6">
+                <!-- Quiz questions will be injected here -->
+            </div>
+
+            <div class="text-center mt-8">
+                <button id="toggle-answers-btn" class="bg-primary text-white font-bold py-2 px-6 rounded-lg hover:bg-opacity-90 transition-colors">Show Answers</button>
+            </div>
+
+            <div id="answer-key" class="hidden mt-8 max-w-4xl mx-auto p-6 bg-base rounded-lg border border-gray-200">
+                <h3 class="text-xl font-bold text-center mb-4">Answer Key</h3>
+                <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                    <!-- Answer key will be injected here -->
+                </ol>
+            </div>
+        </section>
+
+        <section id="takeaways" class="bg-primary text-white p-10 rounded-2xl">
+            <h2 class="text-3xl font-bold text-center mb-6">Key Takeaways: Your Strategic Blueprint</h2>
+            <div class="max-w-4xl mx-auto space-y-4">
+                <p>Don't just be dazzled by 'disruptive tech' or a 'visionary founder.' Be a strategist. Ask the hard questions: What is the *real* structure of this industry? Who *really* has the power? How can *we* build a position that is not just profitable, but *defensible*?</p>
+                <ul class="space-y-3 pl-4">
+                    <li class="flex items-start">
+                        <span class="font-bold mr-2 text-xl text-amber-300">1.</span>
+                        <div><strong class="font-semibold">Creating a new basis for rivalry:</strong> Tesla shifted the focus from fuel efficiency to technology, software, performance, and brand experience.</div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="font-bold mr-2 text-xl text-amber-300">2.</span>
+                        <div><strong class="font-semibold">Neutralizing power:</strong> Tesla weakened buyer and supplier power through its direct-to-consumer sales model and aggressive vertical integration (Dojo, 4680 batteries).</div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="font-bold mr-2 text-xl text-amber-300">3.</span>
+                        <div><strong class="font-semibold">Building a strategic ecosystem:</strong> Tesla used complementors, like the proprietary Supercharger network, to create a moat and raise switching costs.</div>
+                    </li>
+                </ul>
+                <p class="text-center font-semibold pt-4 text-amber-300 text-lg">The key lesson: Industry structure isn't static. Your actions can either build a fortress or dig your own grave. This framework is your blueprint.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER (Copied from Session 3) -->
+    <footer class="bg-gray-800 mt-16 sm:mt-24 border-t border-gray-700">
+        <div class="container mx-auto px-6 py-5">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6">
+                <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-3 group order-first sm:order-none">
+                    <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
+                        <svg viewBox="0 0 52 60">
+                            <defs><linearGradient id="footerRedGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
+                            <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#footerRedGradient)"/><text class="hexagon-s" x="26" y="32">S</text>
+                        </svg>
+                    </div>
+                    <span class="text-xs font-semibold text-slate-300 group-hover:text-white transition-colors">Dr. Swapnil Sahoo</span>
+                </a>
+                <p class="text-xs text-slate-400 order-last sm:order-none">© Dr. Swapnil Sahoo 2025</p>
+                <div class="flex space-x-5 sm:space-x-6 order-first sm:order-last">
+                    <a href="httpsx.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white footer-link" title="X/Twitter"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white footer-link" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049 1.064.218 1.791.465 2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.575 2h.093zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" clip-rule="evenodd"/></svg></a>
+                    <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white footer-link" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- Copied from Session 3 for Nav ---
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileNav = document.getElementById('mobile-nav');
+            const sections = document.querySelectorAll('main section');
+            const header = document.getElementById('main-header');
+
+            function getHeaderHeight() {
+                // Find the main nav container, which is the part that overlaps content on mobile
+                const mainNav = document.getElementById('main-nav-container');
+                if (window.innerWidth < 640) {
+                    return mainNav ? mainNav.offsetHeight : 52; // 52 is fallback
+                }
+                const topBar = document.getElementById('top-bar');
+                let totalHeight = 0;
+                if (topBar) totalHeight += topBar.offsetHeight;
+                if (mainNav) totalHeight += mainNav.offsetHeight;
+                
+                // Get the nav bar below that
+                const topNav = document.getElementById('top-nav');
+                if (topNav) totalHeight += topNav.offsetHeight;
+
+                return totalHeight > 0 ? totalHeight : 92; // 92 is fallback
+            }
+
+            const observer = new IntersectionObserver((entries) => {
+                let activeId = '';
+                entries.forEach(entry => {
+                    // Prioritize entries that are fully or mostly visible near the top
+                    if (entry.isIntersecting && entry.intersectionRatio > 0.5 && entry.boundingClientRect.top < 200) {
+                         activeId = entry.target.id;
+                    }
+                    // If no main one, take the first one that's intersecting
+                    if (!activeId && entry.isIntersecting && entry.intersectionRatio > 0.1) {
+                        activeId = entry.target.id;
+                    }
+                });
+                
+                // If still no activeId, find the one closest to the top of the viewport
+                if (!activeId && entries.length > 0) {
+                    let closest = entries.reduce((prev, curr) => {
+                        return (Math.abs(curr.boundingClientRect.top) < Math.abs(prev.boundingClientRect.top) ? curr : prev);
+                    });
+                    activeId = closest.target.id;
+                }
+
+                if (!activeId && window.scrollY < 200 && sections.length > 0) {
+                    activeId = sections[0].id;
+                }
+
+                const targetHref = `#${activeId}`;
+                navLinks.forEach(link => {
+                    link.classList.toggle('active-nav', link.getAttribute('href') === targetHref);
+                });
+                
+                if (mobileNav.querySelector(`option[value="${targetHref}"]`)) {
+                    if (mobileNav.value !== targetHref) {
+                        mobileNav.value = targetHref;
+                    }
+                }
+
+            }, { rootMargin: `-${getHeaderHeight()}px 0px -40% 0px`, threshold: [0.1, 0.5, 1.0] });
+
+            sections.forEach(section => observer.observe(section));
+
+            mobileNav.addEventListener('change', () => {
+                const targetId = mobileNav.value;
+                const targetElement = document.getElementById(targetId.substring(1));
+                if (targetElement) {
+                    const targetPosition = targetElement.offsetTop - getHeaderHeight() + 5; // 5px buffer
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.getElementById(targetId.substring(1));
+                    if (targetElement) {
+                        const targetPosition = targetElement.offsetTop - getHeaderHeight() + 5; // 5px buffer
+                        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                    }
+                });
+            });
+            // --- End of Session 3 Nav Script ---
+
+            // --- RE-INSERTED BRIEFING DOC SCRIPT ---
+            const briefingData = {
+                "1. Executive Summary": `Michael E. Porter's "The Five Competitive Forces That Shape Strategy" is a foundational framework for understanding the underlying structure of an industry and its long-term profitability. The core idea is that competition for profits extends beyond direct rivals to include four other competitive forces: customers (buyers), suppliers, potential entrants, and substitute products/services. By analysing the intensity of these five forces, companies can determine an industry's attractiveness, identify opportunities for strategic positioning, anticipate shifts in the competitive landscape, and actively shape industry structure in their favour.`,
+                "How the Five Forces Determine Profitability": `The five competitive forces determine an industry's long-run profit potential because they dictate how the economic value created by the industry is divided.
+                    <ul class="list-disc list-inside space-y-2 mt-3 text-gray-600">
+                        <li><strong>Intensity of Forces:</strong> If forces are intense (e.g., airlines, textiles), almost no company earns attractive returns. If forces are benign (e.g., software, soft drinks), many companies are profitable.</li>
+                        <li><strong>Mechanism of Impact:</strong> The forces directly affect prices, costs, and investment. Intense rivalry drives down prices, powerful suppliers raise costs, and powerful buyers demand more for less. Substitutes and new entrants place a cap on sustainable prices.</li>
+                        <li><strong>Long-Term vs. Short-Term:</strong> While factors like weather can cause short-term fluctuations, the five forces set an industry's profitability in the medium and long run.</li>
+                    </ul>`,
+                "2. The Five Competitive Forces": `Porter argues that the <strong class="font-semibold text-accent">"extended rivalry"</strong> that results from all five forces defines an industry’s structure and shapes the nature of competitive interaction within an industry."
+                    <div class="mt-4 space-y-3">
+                        <h4 class="font-semibold text-gray-800">2.1. Threat of New Entrants</h4>
+                        <p class="text-gray-600">The potential for new competitors to enter the market caps industry profitability. Key barriers include: supply-side economies of scale, demand-side benefits (network effects), customer switching costs, capital requirements, incumbency advantages, unequal access to distribution, and restrictive government policy.</p>
+                        <h4 class="font-semibold text-gray-800">2.2. Bargaining Power of Suppliers</h4>
+                        <p class="text-gray-600">Powerful suppliers capture more value by charging higher prices or limiting quality. They are powerful if they are concentrated, not dependent on the industry, have high switching costs for buyers, offer differentiated products, have no substitutes, or can threaten to integrate forward.</p>
+                        <h4 class="font-semibold text-gray-800">2.3. Bargaining Power of Buyers (Customers)</h4>
+                        <p class="text-gray-600">Powerful customers force down prices or demand more service. They have leverage if they are few in number, buy in large volumes, the product is undifferentiated, or they can threaten to integrate backward.</p>
+                        <h4 class="font-semibold text-gray-800">2.4. Threat of Substitute Products or Services</h4>
+                        <p class="text-gray-600">A substitute performs the same function by a different means (e.g., videoconferencing for travel). The threat is high if the substitute offers an attractive price-performance trade-off and low switching costs for the buyer.</p>
+                        <h4 class="font-semibold text-gray-800">2.5. Rivalry Among Existing Competitors</h4>
+                        <p class="text-gray-600">Rivalry is most intense when competitors are numerous, industry growth is slow, and exit barriers are high. Price-based competition is the most destructive to profitability.</p>
+                    </div>`,
+                "3. The 'So What?': Implications for Strategy": `After all this analysis, what do you actually <strong class="font-semibold text-accent">*do*</strong>? The article lays out three strategic options.
+                    <div class="mt-4 space-y-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-800">1. Position Your Company</h4>
+                            <p class="text-gray-600 mt-1">Find a 'foxhole' where the forces are weakest. The article's prime example is <strong class="font-semibold">Paccar</strong>. The heavy truck industry is terrible. So Paccar <strong class="font-semibold text-accent">*avoids*</strong> the powerful fleet buyers and <strong class="font-semibold text-accent">*only*</strong> sells to owner-operators. These individual drivers are fragmented, have no power, and are less price-sensitive because they have an 'emotional tie' to their trucks. Paccar custom-builds status-symbol trucks and charges a 10% premium. That's positioning.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">2. Exploit Industry Change</h4>
+                            <p class="text-gray-600 mt-1">Wait for a force to shift, then exploit the chaos. The article's example is <strong class="font-semibold">Apple</strong>. The <strong class="font-semibold text-accent">*substitute*</strong> of illegal file-sharing (Napster) destroyed the old music industry. The major labels (suppliers) were in a panic. Apple 'stepped into this vacuum', created the iTunes store, and became the new, powerful gatekeeper.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">3. Shape Industry Structure</h4>
+                            <p class="text-gray-600 mt-1">This is the master class. Don't just play the game; change the rules. The article gives a 'dark side' example of this: <strong class="font-semibold">IBM</strong>. In the 1980s, IBM wanted to grow the PC market, so it created an 'open architecture.' But in doing so, it 'ceded ownership of the critical components'—the operating system and the microprocessor—to two <strong class="font-semibold text-accent">*suppliers*</strong>: Microsoft and Intel. IBM 'encouraged price-based rivalry' and 'shifted power to suppliers'. It won the battle but created an industry structure where it, and every other PC maker, was doomed to lose the war for profits. Your actions can build a fortress or dig your own grave.</p>
+                        </div>
+                    </div>`,
+                "4. Common Pitfalls in Industry Analysis": `Avoid these common mistakes:
+                    <ul class="list-disc list-inside space-y-2 mt-2 text-gray-600">
+                        <li>Defining the industry too broadly or too narrowly.</li>
+                        <li>Making lists instead of performing rigorous analysis.</li>
+                        <li>Confusing effect (e.g., price sensitivity) with cause (e.g., buyer economics).</li>
+                        <li>Using static analysis that ignores industry trends.</li>
+                        <li>Confusing cyclical changes with true structural changes.</li>
+                    </ul>`,
+                "5. Factors vs. Forces (Misunderstandings)": `Certain factors are often mistaken for forces but should be analyzed through their effect on the five forces:
+                    <ul class="list-disc list-inside space-y-2 mt-2 text-gray-600">
+                        <li><strong>Industry Growth Rate:</strong> Fast growth is not inherently profitable; it can attract entrants and empower suppliers.</li>
+                        <li><strong>Technology and Innovation:</strong> Technology's strategic value comes from how it affects the industry structure, not from the technology itself.</li>
+                        <li><strong>Government:</strong> Not a sixth force. Policies affect the five forces (e.g., patents raise entry barriers).</li>
+                        <li><strong>Complementary Products and Services:</strong> Affect demand and the five forces (e.g., software availability for hardware), but are not a force themselves.</li>
+                    </ul>`
+            };
+
+            const accordionContainer = document.getElementById('accordion-container');
+            // Check if accordionContainer exists before proceeding
+            if (accordionContainer) {
+                Object.entries(briefingData).forEach(([title, content]) => {
+                    const accordionItem = document.createElement('div');
+                    accordionItem.className = 'bg-card border border-gray-200 rounded-lg shadow-sm';
+                    accordionItem.innerHTML = `
+                        <button class="accordion-button w-full flex justify-between items-center text-left p-5 font-semibold text-gray-700">
+                            <span>${title}</span>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="p-5 pt-0 text-gray-600">${content}</div>
+                        </div>
+                    `;
+                    accordionContainer.appendChild(accordionItem);
+                });
+
+                const accordionButtons = document.querySelectorAll('.accordion-button');
+                accordionButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const content = button.nextElementSibling;
+                        const isOpen = button.classList.contains('open');
+                        
+                        document.querySelectorAll('.accordion-button').forEach(btn => {
+                            btn.classList.remove('open');
+                            btn.nextElementSibling.classList.remove('open');
+                        });
+
+                        if (!isOpen) {
+                            button.classList.add('open');
+                            content.classList.add('open');
+                        }
+                    });
+                });
+            }
+            // --- End Briefing Doc Script ---
+
+            // --- Scripts from v3 ---
+            
+            // REMOVED: const briefingData = { ... };
+            // REMOVED: const accordionContainer = ...;
+            // REMOVED: accordionContainer.appendChild(accordionItem);
+            // REMOVED: const accordionButtons = ...;
+            // REMOVED: accordionButtons.forEach(button => { ... });
+
+            const forcesData = {
+                'force-entrants': {
+                    title: '1. The Gatekeepers: Threat of New Entrants',
+                    broadQuestion: "What <strong class=\"font-semibold text-accent\">*really*</strong> stops someone from copying your business?",
+                    content: `
+                        <p class="text-gray-600 mb-4">Porter’s answer is 'Barriers to Entry.' This is your moat. If it's easy for new players to enter, the profit potential of your industry is <strong class="font-semibold text-accent">*capped*</strong> forever. The article gives seven major barriers. Let’s look at two of them in the context of 2025.</p>
+                        <ul class="space-y-4">
+                            <li>
+                                <strong class="font-semibold text-gray-800">Barrier 1: Capital Requirements & Incumbency Advantages</strong>
+                                <ul class="list-disc list-inside space-y-2 mt-2 pl-4 text-sm text-gray-600">
+                                    <li><strong>Case Study: SpaceX.</strong> The space launch industry has the ultimate capital barrier: billions in unrecoverable R&D. But what SpaceX did was <strong class="font-semibold text-accent">*create new barriers*</strong>. By mastering reusability, it achieved a 'supply-side economy of scale' that no rival can touch. It now accounts for <strong class="font-semibold">80% of all mass launched into orbit</strong>. It's also built an 'incumbency advantage' of trust.</li>
+                                    <li><strong>Real-Time Anecdote:</strong> Look at the Boeing Starliner incident. In June 2024, the original incumbent, Boeing, finally launched its capsule. It malfunctioned, stranding two NASA astronauts. Who did NASA have to call for the rescue mission, scheduled for February 2025? <strong class="font-semibold">SpaceX</strong>. That, right there, is a barrier to entry so high that the old guard can no longer compete.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong class="font-semibold text-gray-800">Barrier 2: Demand-Side Benefits of Scale (Network Effects)</strong>
+                                <ul class="list-disc list-inside space-y-2 mt-2 pl-4 text-sm text-gray-600">
+                                    <li><strong>Case Study: Twitter (X) vs. Facebook (Meta).</strong> The article defines this as a buyer's willingness to pay increasing with the number of other buyers. For 15 years, this was <strong class="font-semibold">Twitter's</strong> moat: all the journalists and celebrities were there, so you had to be, too.</li>
+                                    <li>So how did <strong class="font-semibold">Meta's 'Threads'</strong> break this? It used a classic Porter move: 'diversifying from other markets' to 'shake up competition'. Meta ported its massive, 2-billion-user Instagram network. It didn't have to build a network from scratch. As of 2025, Threads is at <strong class="font-semibold">275 million monthly active users</strong> and growing, while X is stagnating. This shows how a 'network effect' barrier, while powerful, can be bypassed by an adjacent incumbent.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    `,
+                },
+                'force-suppliers': {
+                    title: '2. The Power Players: Power of Suppliers',
+                    broadQuestion: "Who <strong class=\"font-semibold text-accent\">*really*</strong> makes the money in a gold rush?",
+                    content: `
+                        <p class="text-gray-600 mb-4">The article states that 'powerful suppliers capture more of the value for themselves by charging higher prices'. They are powerful if they are concentrated, differentiated, and have high switching costs. The article's classic example is Microsoft in the 1990s, which captured all the value from the fragmented PC makers.</p>
+                        <ul class="space-y-4">
+                            <li>
+                                <strong class="font-semibold text-gray-800">Case Study: Nvidia</strong>
+                                <ul class="list-disc list-inside space-y-2 mt-2 pl-4 text-sm text-gray-600">
+                                    <li>Today's example is <strong class="font-semibold">Nvidia</strong>. We are in the greatest AI gold rush in history. Meta, Google, Tesla, and a thousand startups are all in a desperate race. But they all must buy their 'picks and shovels' from <strong class="font-semibold text-accent">*one*</strong> supplier.</li>
+                                    <li>Nvidia is highly concentrated.</li>
+                                    <li>Its chips are differentiated.</li>
+                                    <li>The switching cost isn't the hardware; it's the software—Nvidia's proprietary <strong class="font-semibold">CUDA</strong> platform. You can't just swap chips; you'd have to rewrite all your code.</li>
+                                    <li>The result? In 2025, Nvidia is a <strong class="font-semibold">$3.5 trillion</strong> company. Its data center revenue (selling to all those AI 'rivals') is over <strong class="font-semibold">$39 billion a quarter</strong>. It is the sole arms dealer in the AI war, capturing all the value.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong class="font-semibold text-gray-800">Strategic Response: Tesla</strong>
+                                <ul class="list-disc list-inside space-y-2 mt-2 pl-4 text-sm text-gray-600">
+                                    <li>So, if you're Tesla, how do you respond? You use one of the strategies from the end of the article: '<strong class="font-semibold">neutralize supplier power</strong>'. <strong class="font-semibold">Tesla's</strong> entire strategy is a direct response to this force. They are vertically integrating to build their own <strong class="font-semibold">4680 battery cells</strong> and sourcing lithium directly to escape battery and raw material suppliers. And now, they are developing their <strong class="font-semibold text-accent">*own*</strong> '<strong class="font-semibold">Dojo</strong>' AI chips to escape their dependence on Nvidia.</li>
+                                    <li>This is a textbook 'reshaping the forces' move.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    `,
+                },
+                'force-buyers': {
+                    title: '3. The Squeeze: Power of Buyers',
+                    broadQuestion: "If you're one of two million sellers on a single platform, are you the customer... or are you the <strong class=\"font-semibold text-accent\">*product*</strong>?",
+                    content: `
+                        <p class="text-gray-600 mb-4">The article argues that powerful customers can 'force down prices' or 'demand better quality or more service'. The most powerful, it notes, are 'intermediate customers' or <strong class="font-semibold text-accent">*channels*</strong> that can 'influence the purchasing decisions of customers downstream'.</p>
+                        <ul class="space-y-4">
+                            <li>
+                                <strong class="font-semibold text-gray-800">Case Study: Amazon</strong>
+                                <ul class="list-disc list-inside space-y-2 mt-2 pl-4 text-sm text-gray-600">
+                                    <li>This perfectly describes the <strong class="font-semibold">Amazon Marketplace</strong>. In this 'industry,' the <strong class="font-semibold">1.9 million</strong> 3rd-party sellers are the <strong class="font-semibold text-accent">*companies*</strong>, and <strong class="font-semibold">Amazon</strong> is the <strong class="font-semibold text-accent">*single, all-powerful buyer or channel*</strong>.</li>
+                                    <li>Amazon is highly concentrated (one channel vs. 1.9 million sellers).</li>
+                                    <li>It forces sellers' products to be 'standardized' by putting them on identical product pages, where they are reduced to competing on price and review scores.</li>
+                                    <li>Sellers face massive <strong class="font-semibold">switching costs</strong>: if they leave Amazon, they lose access to 310 million customers.</li>
+                                    <li>The proof? Third-party sellers now account for <strong class="font-semibold">62% of all units sold</strong> on Amazon. They <strong class="font-semibold text-accent">*are*</strong> the business. Yet in 2024, Amazon generated over <strong class="font-semibold">$150 billion</strong> in revenue from 'seller fees' alone. Amazon is using its buyer power to extract all the profit from its own ecosystem.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    `,
+                },
+                'force-substitutes': {
+                    title: '4. The Blind Spot: Threat of Substitutes',
+                    broadQuestion: "What if your biggest threat doesn't look like a threat at all?",
+                    content: `
+                        <p class="text-gray-600 mb-4">A substitute, Porter writes, 'performs the same or a similar function as an industry's product by a <strong class="font-semibold text-accent">*different means*</strong>'. The threat is high if it offers an 'attractive price-performance trade-off' and the buyer's 'switching cost is low'. The article's classic example is how digital photography (a substitute for film) killed Kodak.</p>
+                        <ul class="space-y-4">
+                            <li>
+                                <strong class="font-semibold text-gray-800">Case Study: Uber/Ola vs. Rapido</strong>
+                                <ul class="list-disc list-inside space-y-2 mt-2 pl-4 text-sm text-gray-600">
+                                    <li>For years, the Indian ride-hailing industry was a brutal, head-to-head rivalry between <strong class="font-semibold">Uber</strong> and <strong class="font-semibold">Ola</strong>. They were competing on 4-wheel cabs. They ignored the <strong class="font-semibold text-accent">*substitute*</strong>. The function their customers needed was 'urban transport.' In congested cities like Bengaluru, a 4-wheel cab is often slow and expensive.</li>
+                                    <li>A startup called <strong class="font-semibold">Rapido</strong> entered with 2-wheel bike-taxis. This was a perfect substitute:
+                                        <ol class="list-decimal list-inside pl-4 mt-1">
+                                            <li><strong>Price-Performance:</strong> It was dramatically <strong class="font-semibold text-accent">*cheaper*</strong> (price) and <strong class="font-semibold text-accent">*faster*</strong> (performance) in traffic.</li>
+                                            <li><strong>Switching Cost:</strong> Zero. It's just another app.</li>
+                                        </ol>
+                                    </li>
+                                    <li>While Uber and Ola fought, Rapido used this substitute to build a massive user base—by July 2024, it had <strong class="font-semibold">50 million</strong> monthly active users to Uber's 30 million. Then, it used that user base to launch its <strong class="font-semibold text-accent">*own*</strong> 4-wheel cab service, evolving from a substitute into a direct rival.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    `,
+                },
+                'force-rivalry': {
+                    title: '5. The Main Event: Rivalry Among Competitors',
+                    broadQuestion: "Is your competition a 'zero-sum' race to the bottom, or a 'positive-sum' game?",
+                    content: `
+                        <p class="text-gray-600 mb-4">The article warns that rivalry is most <strong class="font-semibold text-accent">*destructive*</strong> when it 'gravitates solely to price'. This happens when products are identical, growth is slow, and 'exit barriers are high'.</p>
+                        <ul class="space-y-4">
+                            <li>
+                                <strong class="font-semibold text-gray-800">Case Study: Tesla vs. The EV 'Shakeout'</strong>
+                                <ul class="list-disc list-inside space-y-2 mt-2 pl-4 text-sm text-gray-600">
+                                    <li>For a decade, <strong class="font-semibold">Tesla</strong> was in a class by itself. But the article warns that 'as an industry matures, growth slows' and 'competitors become more alike'. Welcome to the 2024-2025 'EV Shakeout'.</li>
+                                    <li><strong>Slow Growth:</strong> The early-adopter boom is over.</li>
+                                    <li><strong>Numerous Competitors:</strong> Tesla, BYD, Rivian, GM, Ford.</li>
+                                    <li><strong>High Exit Barriers:</strong> Everyone has built billion-dollar 'Gigafactories.' They cannot leave.</li>
+                                    <li>The result? A destructive price war. In the second quarter of 2025, Tesla's global sales <strong class="font-semibold">fell 13.5%</strong>, and in Europe, <strong class="font-semibold">BYD sold more vehicles than Tesla</strong>. This is what the article calls a 'zero-sum' competition, and it's what Professor Mike Lenox at Darden calls Tesla's potential 'Blackberry Moment'.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    `,
+                },
+                 'force-complements': {
+                    // This is no longer used but kept here to prevent errors if not fully removed.
+                    // The clickable card has been removed from the HTML.
+                    title: 'The "Sixth Force": Complementors',
+                    broadQuestion: "What <strong class=\"font-semibold text-accent\">*other*</strong> product does your customer <strong class_=\"font-semibold text-accent\">*need*</strong> to use your product?",
+                    content: ``,
+                    otherExamples: ``,
+                    teslaQuestions: ``
+                }
+            };
+
+            const forceCards = document.querySelectorAll('.force-card');
+            const detailsContainer = document.getElementById('force-details-container');
+            let currentOpenForce = null;
+
+            forceCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const forceId = this.id;
+                    const data = forcesData[forceId];
+                    
+                    if (currentOpenForce === forceId) {
+                        detailsContainer.innerHTML = '';
+                        this.classList.remove('active');
+                        currentOpenForce = null;
+                        return;
+                    }
+
+                    forceCards.forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    currentOpenForce = forceId;
+
+                    const detailHTML = `
+                        <div class="force-detail bg-card p-8 rounded-xl shadow-lg border-2 border-primary">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">${data.title}</h3>
+                            <h4 class="text-xl font-semibold text-primary mb-4 italic">"${data.broadQuestion}"</h4>
+                            ${data.content}
+                            <!-- Removed old blocks -->
+                        </div>
+                    `;
+                    detailsContainer.innerHTML = detailHTML;
+                    
+                    setTimeout(() => {
+                        const detailElement = detailsContainer.querySelector('.force-detail');
+                        if (detailElement) {
+                            detailElement.classList.add('open');
+                        }
+                    }, 10);
+                });
+            });
+            
+            Chart.defaults.font.family = "'Inter', sans-serif";
+
+            new Chart(document.getElementById('profitabilityChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['AI Infrastructure (Nvidia)', 'Prepackaged Software', 'Soft Drinks', 'Pharmaceuticals', '...Average (15.5%)...', 'Hotels', 'Ride-Sharing (Industry)', 'Airlines'],
+                    datasets: [{
+                        label: 'Average ROIC (1992-2025)',
+                        data: [45.2, 38.1, 36.5, 30.8, 15.5, 10.1, 6.3, 5.2],
+                        backgroundColor: [
+                            '#A51C30', // Crimson
+                            '#A51C30', // Crimson
+                            '#C93A4F',
+                            '#DE697B',
+                            '#F59E0B', // Average as Amber/Gold
+                            'rgba(156, 163, 175, 0.6)',
+                            'rgba(156, 163, 175, 0.6)',
+                            'rgba(156, 163, 175, 0.6)'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false }, title: { display: false } },
+                    scales: {
+                        x: { beginAtZero: true, grid: { color: '#e5e7eb' }, ticks: { callback: function(value) { return value + '%' } } },
+                        y: { grid: { display: false } }
+                    }
+                }
+            });
+
+            new Chart(document.getElementById('marketShareChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['GM', 'Toyota', 'Ford', 'Stellantis (Chrysler)', 'Honda', 'Nissan', 'Tesla'],
+                    datasets: [{
+                        label: 'US Market Share (%) 2024',
+                        data: [16.2, 15.2, 13.9, 11.1, 7.3, 5.7, 4.2],
+                        backgroundColor: [
+                            'rgba(156, 163, 175, 0.6)','rgba(156, 163, 175, 0.6)','rgba(156, 163, 175, 0.6)','rgba(156, 163, 175, 0.6)','rgba(156, 163, 175, 0.6)','rgba(156, 163, 175, 0.6)',
+                            '#F59E0B' // Tesla as Amber
+                        ],
+                        borderColor: [
+                            'rgba(107, 114, 128, 1)','rgba(107, 114, 128, 1)','rgba(107, 114, 128, 1)','rgba(107, 114, 128, 1)','rgba(107, 114, 128, 1)','rgba(107, 114, 128, 1)',
+                            '#D97706'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { display: false }, title: { display: false } },
+                    scales: { x: { beginAtZero: true, grid: { color: '#e5e7eb' } }, y: { grid: { display: false } } }
+                }
+            });
+
+            new Chart(document.getElementById('teslaDeliveriesChart'), {
+                type: 'line',
+                data: {
+                    labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024 (Est.)'],
+                    datasets: [{
+                        label: 'Vehicles Delivered',
+                        data: [50580, 76230, 103181, 245506, 367656, 499647, 936222, 1310000, 1810000, 1850000],
+                        fill: true,
+                        backgroundColor: 'rgba(165, 28, 48, 0.2)',
+                        borderColor: '#A51C30', // Crimson
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { display: false }, },
+                     scales: {
+                        y: { beginAtZero: true, grid: { color: '#e5e7eb' }, ticks: { callback: function(value) { return (value >= 1000) ? (value / 1000) + 'k' : value; } } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+
+            new Chart(document.getElementById('buyerPowerChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Range', 'Charging Access', 'Price', 'Technology/Software', 'Brand/Design', 'Safety'],
+                    datasets: [{
+                        label: 'EV Purchasing Factors',
+                        data: [78, 72, 65, 58, 55, 52],
+                        backgroundColor: ['#841726','#A51C30','#C93A4F','#DE697B','#F39BA9','#FBEAEC'],
+                        borderColor: '#F9F9F9',
+                        borderWidth: 3
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom' }, title: { display: false } }
+                }
+            });
+
+            const quizData = [
+                { q: "According to Michael Porter, what is the primary purpose of the Five Forces framework?", o: ["To determine the annual growth rate of an industry.", "To analyze a company's internal strengths and weaknesses.", "To understand an industry's structure and its underlying drivers of long-term profitability.", "To forecast short-term stock market fluctuations for a specific company."], a: 2 },
+                { q: "Which of the following is NOT considered one of Porter's Five Competitive Forces?", o: ["Threat of New Entrants", "Government Regulation and Policy", "Bargaining Power of Buyers", "Threat of Substitute Products or Services"], a: 1 },
+                { q: "A company like Intel, which can produce microprocessors at a lower per-unit cost than a smaller competitor due to its massive production volume, benefits from which barrier to entry?", o: ["Customer switching costs", "Demand-side benefits of scale (network effects)", "Restrictive government policy", "Supply-side economies of scale"], a: 3 },
+                { q: "The bargaining power of suppliers is likely to be high under which condition?", o: ["The supplier's industry is more fragmented than the industry it sells to.", "The supplier group depends heavily on the industry for its revenues.", "Industry participants face high costs when changing suppliers.", "The product provided by the supplier is standardized and undifferentiated."], a: 2 },
+                { q: "In the video streaming market, customers can easily switch between services like Netflix, Disney+, and Amazon Prime on a monthly basis. This situation primarily increases which competitive force?", o: ["Bargaining Power of Buyers", "Threat of New Entrants", "Bargaining Power of Suppliers", "Rivalry Among Existing Competitors, but not due to buyer power."], a: 0 },
+                { q: "Videoconferencing tools like Zoom became a powerful alternative to business travel during the pandemic. In the context of the airline industry, what does Zoom represent?", o: ["A new entrant", "A complementary product", "A substitute product or service", "A powerful supplier"], a: 2 },
+                { q: "According to the framework, price-based rivalry is most destructive to profitability. This type of competition is most likely to occur when:", o: ["Products are highly differentiated and switching costs are high.", "The product is perishable and fixed costs are high.", "Industry growth is rapid and competitors are unfamiliar with each other.", "Exit barriers are low and there are few competitors."], a: 1 },
+                { q: "Paccar's strategy of focusing on owner-operator truck drivers, who are less price-sensitive and have less clout, is a classic example of which strategic approach?", o: ["Shaping industry structure by expanding the profit pool.", "Positioning the company where competitive forces are weakest.", "Exploiting industry change by creating a new substitute.", "Redividing profitability by increasing rivalry."], a: 1 },
+                { q: "A company that introduces private-label brands to moderate the power of its suppliers is engaging in which strategic action?", o: ["Exploiting industry change", "Expanding the overall profit pool", "Shaping industry structure by redividing profitability", "Positioning the company to increase buyer power"], a: 2 },
+                { q: "What is a common pitfall to avoid when conducting a Five Forces analysis?", o: ["Focusing only on the most powerful forces in the industry.", "Using the framework to guide strategic choices rather than just labeling an industry.", "Confusing transient, cyclical changes with true structural shifts in the industry.", "Analyzing how government policy affects the five forces."], a: 2 },
+                { q: "How should a strategist view the role of advanced technology and innovation within the Five Forces framework?", o: ["As a sixth, independent force that guarantees profitability.", "As a factor whose strategic significance is determined by how it affects the five forces.", "As a force that is only relevant in high-tech industries.", "As a direct measure of the intensity of rivalry among competitors."], a: 1 },
+                { q: "A buyer group is most likely to be price-sensitive when:", o: ["The product it is buying is a small fraction of its total costs.", "The quality of the buyer's own product is highly dependent on the industry's product.", "The buyer group earns low profits and is under pressure to reduce costs.", "The buyer faces high switching costs to change vendors."], a: 2 },
+                { q: "The music industry's failure to create a unified digital platform, which allowed Apple's iTunes to become a powerful new \"gatekeeper,\" is a prime example of failing to properly:", o: ["Position the company against rivals.", "Shape industry structure to deter suppliers.", "Exploit industry change and underestimating a new substitute's impact.", "Expand the profit pool through collaboration."], a: 2 },
+                { q: "When competitors in an industry aim to serve different customer segments with varied offerings, leading to an increase in average industry profitability, this is known as:", o: ["Zero-sum competition", "Positive-sum competition", "Expected retaliation", "A low exit barrier environment"], a: 1 },
+                { q: "If a new government regulation requires all companies in an industry to make a massive, unrecoverable investment in safety equipment, how would this primarily affect the Five Forces?", o: ["It would decrease the bargaining power of buyers.", "It would decrease rivalry by making all products safer.", "It would increase the threat of new entrants by standardizing technology.", "It would decrease the threat of new entrants by raising capital requirement barriers."], a: 3 }
+            ];
+
+            const quizContainer = document.getElementById('quiz-container');
+            const answerKeyContainer = document.getElementById('answer-key').querySelector('ol');
+
+            quizData.forEach((item, index) => {
+                const questionEl = document.createElement('div');
+                questionEl.className = 'bg-card p-6 rounded-lg shadow-sm border border-gray-200';
+                
+                let optionsHTML = '<ul class="mt-4 space-y-2">';
+                item.o.forEach((option, i) => {
+                    optionsHTML += `<li class="text-gray-700">${String.fromCharCode(97 + i)}) ${option}</li>`;
+                });
+                optionsHTML += '</ul>';
+
+                questionEl.innerHTML = `<p class="font-semibold text-gray-800">${index + 1}. ${item.q}</p>${optionsHTML}`;
+                quizContainer.appendChild(questionEl);
+                
+                const answerEl = document.createElement('li');
+                answerEl.innerHTML = `<strong class="text-gray-900">${String.fromCharCode(97 + item.a)})</strong> ${item.o[item.a]}`;
+                answerKeyContainer.appendChild(answerEl);
+            });
+
+            const toggleBtn = document.getElementById('toggle-answers-btn');
+            const answerKey = document.getElementById('answer-key');
+            toggleBtn.addEventListener('click', () => {
+                const isHidden = answerKey.classList.contains('hidden');
+                if (isHidden) {
+                    answerKey.classList.remove('hidden');
+                    toggleBtn.textContent = 'Hide Answers';
+                } else {
+                    answerKey.classList.add('hidden');
+                    toggleBtn.textContent = 'Show Answers';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

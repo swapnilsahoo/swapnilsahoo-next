@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Analysis: Patagonia's Internal Strategy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+   .nav-link { transition: all 0.3s ease; }
+   .nav-link.active { color: #1e3a8a; border-bottom-color: #1e3a8a; }
+   .nav-link:not(.active):hover { color: #3b82f6; border-bottom-color: #3b82f6; }
+   .content-section { display: none; }
+   .content-section.active { display: block; }
+   .swot-quadrant { transition: all 0.3s ease; cursor: pointer; }
+   .value-chain-item:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
+   .modal-backdrop {
+            transition: opacity 0.3s ease-in-out;
+        }
+   .vrin-btn { transition: all 0.2s ease; }
+    </style>
+</head>
+<body class="bg-[#F8F5F2] text-[#33312E]">
+
+    <div class="bg-gray-100 py-2 text-center text-sm text-gray-600">
+        © Dr. Swapnil Sahoo 2025 
+        <a href="https://x.com/swapnilsahoo" target="_blank" class="text-blue-600 hover:underline">X</a> | 
+        <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" class="text-blue-600 hover:underline">Instagram</a> | 
+        <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" class="text-blue-600 hover:underline">LinkedIn</a>
+    </div>
+
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <h1 class="text-xl md:text-2xl font-bold text-">Patagonia: An Internal Analysis</h1>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#intro" class="nav-link text-gray-600 font-medium border-b-2 border-transparent pb-1">Introduction</a>
+                    <a href="#swot" class="nav-link text-gray-600 font-medium border-b-2 border-transparent pb-1">SWOT</a>
+                    <a href="#value-chain" class="nav-link text-gray-600 font-medium border-b-2 border-transparent pb-1">Value Chain</a>
+                    <a href="#vc-rbv-insights" class="nav-link text-gray-600 font-medium border-b-2 border-transparent pb-1">VC-RBV Insights</a>
+                    <a href="#rbv" class="nav-link text-gray-600 font-medium border-b-2 border-transparent pb-1">Resource-Based View</a>
+                    <a href="#tows" class="nav-link text-gray-600 font-medium border-b-2 border-transparent pb-1">SWOT Strategy</a>
+                </div>
+                <button id="mobile-menu-button" class="md:hidden text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden py-4">
+                <a href="#intro" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 rounded">Introduction</a>
+                <a href="#swot" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 rounded">SWOT</a>
+                <a href="#value-chain" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 rounded">Value Chain</a>
+                <a href="#vc-rbv-insights" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 rounded">VC-RBV Insights</a>
+                <a href="#rbv" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 rounded">Resource-Based View</a>
+                <a href="#tows" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 rounded">SWOT Strategy</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <section id="intro" class="min-h-[80vh] flex items-center">
+            <div class="w-full text-center">
+                <h3 class="text-xl font-semibold mb-4 text-gray-700">Class Objective: To introduce the core concepts of internal strategic analysis and set the stage for understanding Patagonia's unique approach.</h3>
+                <h2 class="text-4xl md:text-6xl font-bold text- mb-4">Inside Patagonia</h2>
+                <p class="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto mb-4">An interactive exploration of the internal strategies that define an iconic, purpose-driven company. Navigate through the sections above to dissect Patagonia's unique approach to building a sustainable competitive advantage.</p>
+                <p class="text-md md:text-lg text-gray-600 max-w-3xl mx-auto mb-8">In strategic management, effective decision-making requires both internal analysis (examining your own resources, capabilities, strengths, and weaknesses to understand how you can win) and external analysis (scanning the environment for opportunities and threats to understand where to play). These two lenses are indispensable and complementary: external analysis identifies market potential, while internal analysis determines your unique capacity to capitalize on it. Both are essential for a holistic and effective strategic approach.</p>
+                <div class="text-2xl animate-bounce text-">
+                    &darr;
+                </div>
+            </div>
+        </section>
+
+        <section id="swot" class="py-16">
+            <div class="text-center mb-12">
+                <h3 class="text-xl font-semibold mb-4 text-gray-700">Class Objective: To identify and categorize Patagonia's internal strengths and weaknesses, and external opportunities and threats.</h3>
+                <h2 class="text-3xl font-bold mb-2 text-">SWOT Analysis</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Click on each quadrant to explore Patagonia's Strengths, Weaknesses, Opportunities, and Threats. This interactive grid helps focus on the internal and external factors that drive strategy. While SWOT provides a useful snapshot, for deeper insights into external forces like competitive rivalry, other frameworks such as Porter's Five Forces are often employed.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
+                <div id="swot-strengths" class="swot-quadrant bg-white p-6 rounded-lg shadow-md border-l-4 border-">
+                    <h3 class="text-2xl font-semibold mb-2 text-">Strengths</h3>
+                    <p class="text-gray-500">Internal resources and capabilities that provide a competitive advantage.</p>
+                </div>
+                <div id="swot-weaknesses" class="swot-quadrant bg-white p-6 rounded-lg shadow-md border-l-4 border-[#C62828]">
+                    <h3 class="text-2xl font-semibold mb-2 text-[#C62828]">Weaknesses</h3>
+                    <p class="text-gray-500">Internal limitations that could hinder performance.</p>
+                </div>
+                <div id="swot-opportunities" class="swot-quadrant bg-white p-6 rounded-lg shadow-md border-l-4 border-">
+                    <h3 class="text-2xl font-semibold mb-2 text-">Opportunities</h3>
+                    <p class="text-gray-500">Favorable external factors that can be leveraged.</p>
+                </div>
+                <div id="swot-threats" class="swot-quadrant bg-white p-6 rounded-lg shadow-md border-l-4 border-[#FFA000]">
+                    <h3 class="text-2xl font-semibold mb-2 text-[#FFA000]">Threats</h3>
+                    <p class="text-gray-500">Unfavorable external factors that could pose challenges.</p>
+                </div>
+                <div id="swot-content" class="md:col-span-2 lg:col-span-2 bg-gray-50 p-8 rounded-lg min-h-[300px]">
+                    <h4 id="swot-content-title" class="text-2xl font-bold mb-4">Select a Quadrant</h4>
+                    <p id="swot-content-placeholder" class="text-gray-600">Click on "Strengths," "Weaknesses," "Opportunities," or "Threats" to see a detailed analysis of Patagonia's strategic position.</p>
+                    <ul id="swot-content-list" class="list-disc list-inside space-y-2 text-gray-700"></ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="value-chain" class="py-16 bg-white rounded-lg my-16 shadow-lg">
+            <div class="text-center mb-12 px-4">
+                <h3 class="text-xl font-semibold mb-4 text-gray-700">Class Objective: To dissect how Patagonia creates value through its primary and support activities, emphasizing its mission-driven approach.</h3>
+                <h2 class="text-3xl font-bold mb-2 text-">Value Chain Analysis</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">Patagonia's mission is woven into every activity. Click on the components of the value chain below to see how they uniquely create value and reinforce their purpose. Porter’s value chain identifies primary and support activities that create value for the company.</p>
+            </div>
+            
+            <div class="px-4">
+                <div class="mb-8">
+                    <h4 class="text-xl font-semibold text-center mb-4 text-gray-700">Support Activities</h4>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                        <div class="value-chain-item bg-gray-100 p-4 rounded-lg shadow-sm" data-activity="infrastructure">Firm Infrastructure</div>
+                        <div class="value-chain-item bg-gray-100 p-4 rounded-lg shadow-sm" data-activity="hr">Human Resource Mgmt.</div>
+                        <div class="value-chain-item bg-gray-100 p-4 rounded-lg shadow-sm" data-activity="tech">Technology Development</div>
+                        <div class="value-chain-item bg-gray-100 p-4 rounded-lg shadow-sm" data-activity="procurement">Procurement</div>
+                    </div>
+                </div>
+
+                <div class="border-t-4 border-dashed border- my-8"></div>
+
+                <div>
+                    <h4 class="text-xl font-semibold text-center mb-4 text-gray-700">Primary Activities</h4>
+                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 text-center">
+                        <div class="value-chain-item bg- text-gray-800 p-4 rounded-lg shadow" data-activity="inbound">Inbound Logistics</div>
+                        <div class="value-chain-item bg- text-gray-800 p-4 rounded-lg shadow" data-activity="operations">Operations</div>
+                        <div class="value-chain-item bg- text-gray-800 p-4 rounded-lg shadow" data-activity="outbound">Outbound Logistics</div>
+                        <div class="value-chain-item bg- text-gray-800 p-4 rounded-lg shadow" data-activity="marketing">Marketing & Sales</div>
+                        <div class="value-chain-item bg- text-gray-800 p-4 rounded-lg shadow" data-activity="service">Service</div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 px-4 text-center">
+                <p class="text-gray-700 max-w-3xl mx-auto">Key Insight: Patagonia’s value chain is highly mission-driven, aligning every activity with sustainability, authenticity, and quality. This creates differentiation-based competitive advantage, rather than cost leadership.</p>
+            </div>
+        </section>
+
+        <section id="vc-rbv-insights" class="py-16 bg-white rounded-lg my-16 shadow-lg">
+            <div class="text-center mb-12 px-4">
+                <h3 class="text-xl font-semibold mb-4 text-gray-700">Class Objective: To understand the synergistic relationship between Patagonia's value chain activities and its VRIN strategic resources.</h3>
+                <h2 class="text-3xl font-bold mb-2 text-">Value Chain vs. RBV Insights</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">This table highlights how Patagonia's specific value chain activities contribute to building and leveraging its VRIN (Valuable, Rare, Inimitable, Non-substitutable) strategic resources and capabilities.</p>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white rounded-lg shadow-md">
+                    <thead>
+                        <tr class="bg-gray-100 text-gray-700 uppercase text-sm leading-normal">
+                            <th class="py-3 px-6 text-left">Value Chain Activity</th>
+                            <th class="py-3 px-6 text-left">Key Actions</th>
+                            <th class="py-3 px-6 text-left">RBV Strategic Resource/Capability</th>
+                            <th class="py-3 px-6 text-left">VRIN Advantage</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-600 text-sm font-light">
+                        <tr class="border-b border-gray-200 hover:bg-gray-50">
+                            <td class="py-3 px-6 text-left whitespace-nowrap">Inbound Logistics</td>
+                            <td class="py-3 px-6 text-left">Ethical sourcing of organic & recycled materials</td>
+                            <td class="py-3 px-6 text-left">Strong supplier relationships & traceable supply chains</td>
+                            <td class="py-3 px-6 text-left">Rare & inimitable due to long-term trust building</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-50">
+                            <td class="py-3 px-6 text-left whitespace-nowrap">Operations</td>
+                            <td class="py-3 px-6 text-left">Eco-friendly, durable product manufacturing (Worn Wear, circular economy)</td>
+                            <td class="py-3 px-6 text-left">Sustainability innovation capability</td>
+                            <td class="py-3 px-6 text-left">Hard to imitate technical know-how + authentic mission</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-50">
+                            <td class="py-3 px-6 text-left whitespace-nowrap">Outbound Logistics</td>
+                            <td class="py-3 px-6 text-left">Direct-to-consumer through limited retail & e-commerce</td>
+                            <td class="py-3 px-6 text-left">Premium distribution strategy aligned with brand</td>
+                            <td class="py-3 px-6 text-left">Rare, builds exclusivity & loyalty</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-50">
+                            <td class="py-3 px-6 text-left whitespace-nowrap">Marketing & Sales</td>
+                            <td class="py-3 px-6 text-left">Anti-consumerist campaigns (“Don’t Buy This Jacket”)</td>
+                            <td class="py-3 px-6 text-left">Brand equity built on activism & trust</td>
+                            <td class="py-3 px-6 text-left">Inimitable brand authenticity</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-50">
+                            <td class="py-3 px-6 text-left whitespace-nowrap">Service</td>
+                            <td class="py-3 px-6 text-left">Repairs, lifetime guarantees, recycling initiatives</td>
+                            <td class="py-3 px-6 text-left">Long-term customer loyalty & community engagement</td>
+                            <td class="py-3 px-6 text-left">Non-substitutable trust relationship</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-50">
+                            <td class="py-3 px-6 text-left whitespace-nowrap">Firm Infrastructure</td>
+                            <td class="py-3 px-6 text-left">Mission-driven governance & transparency (Footprint Chronicles)</td>
+                            <td class="py-3 px-6 text-left">Ethical leadership vision & governance</td>
+                            <td class="py-3 px-6 text-left">Rare, inimitable cultural capital</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-50">
+                            <td class="py-3 px-6 text-left whitespace-nowrap">HR Management</td>
+                            <td class="py-3 px-6 text-left">Values-based hiring, retention, and high morale</td>
+                            <td class="py-3 px-6 text-left">Unique organizational culture</td>
+                            <td class="py-3 px-6 text-left">Culture deeply embedded—hard to replicate</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-50">
+                            <td class="py-3 px-6 text-left whitespace-nowrap">Technology Development</td>
+                            <td class="py-3 px-6 text-left">R&D in sustainable materials & processes</td>
+                            <td class="py-3 px-6 text-left">Patents & know-how in eco-innovation</td>
+                            <td class="py-3 px-6 text-left">Valuable & rare technological edge</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="py-3 px-6 text-left whitespace-nowrap">Procurement</td>
+                            <td class="py-3 px-6 text-left">Fair Trade-certified partnerships</td>
+                            <td class="py-3 px-6 text-left">Reputation as an ethical industry leader</td>
+                            <td class="py-3 px-6 text-left">Differentiation not easily substituted</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="rbv" class="py-16">
+            <div class="text-center mb-12">
+                <h3 class="text-xl font-semibold mb-4 text-gray-700">Class Objective: To identify and analyze Patagonia's key resources and capabilities using the VRIN framework to determine sources of sustainable competitive advantage.</h3>
+                <h2 class="text-3xl font-bold mb-2 text-">Resource-Based View (RBV)</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Which of Patagonia's resources provide a *sustainable* competitive advantage? Explore its key assets using the VRIN framework. Click the V, R, I, N buttons for each resource. RBV focuses on valuable, rare, inimitable, and non-substitutable (VRIN) resources and capabilities that drive sustainable competitive advantage.</p>
+            </div>
+            <div class="space-y-8">
+                <div id="rbv-brand" class="rbv-resource bg-white p-6 rounded-lg shadow-md"></div>
+                <div id="rbv-culture" class="rbv-resource bg-white p-6 rounded-lg shadow-lg"></div>
+                <div id="rbv-supplychain" class="rbv-resource bg-white p-6 rounded-lg shadow-md"></div>
+                <div id="rbv-customerloyalty" class="rbv-resource bg-white p-6 rounded-lg shadow-lg"></div>
+                <div id="rbv-sustainabilityinnovation" class="rbv-resource bg-white p-6 rounded-lg shadow-md"></div>
+                <div id="rbv-leadership" class="rbv-resource bg-white p-6 rounded-lg shadow-lg"></div>
+            </div>
+
+            <div class="mt-16 bg-white p-8 rounded-lg shadow-lg">
+                <h3 class="text-2xl font-bold text-center mb-6 text-">Integration of Value Chain & RBV</h3>
+                <p class="text-gray-600 max-w-3xl mx-auto text-center mb-4">Patagonia’s value chain activities reinforce its VRIN resources (e.g., ethical sourcing supports brand authenticity, sustainability innovation feeds marketing differentiation).</p>
+                <p class="text-gray-600 max-w-3xl mx-auto text-center mb-4">Unlike typical apparel companies, Patagonia reduces consumption intentionally (“anti-growth strategy”), which paradoxically increases trust and long-term loyalty.</p>
+                <p class="text-gray-600 max-w-3xl mx-auto text-center">Its mission-centric governance and cultural capital create a moat that competitors cannot easily replicate.</p>
+            </div>
+
+            <div class="mt-8 bg-white p-8 rounded-lg shadow-lg">
+                <h3 class="text-2xl font-bold text-center mb-6 text-">Strategic Implications</h3>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 max-w-3xl mx-auto">
+                    <li>Sustainable Competitive Advantage: Patagonia’s rare and inimitable brand activism + culture + supply chain relationships provide long-term differentiation.</li>
+                    <li>Risk: Premium pricing and niche market positioning make it vulnerable to economic downturns and greenwashing competitors.</li>
+                    <li>Opportunity: Expand sustainability consulting, license eco-innovations, and influence industry-wide systemic change.</li>
+                </ul>
+            </div>
+            
+            <div class="mt-16 bg-white p-8 rounded-lg shadow-lg">
+                <h3 class="text-2xl font-bold text-center mb-6 text-">The Strategic Trade-Off: Control vs. Capital</h3>
+                 <p class="text-gray-600 max-w-3xl mx-auto text-center mb-8">The decision to create the new ownership structure involved a significant financial trade-off. While a private equity sale could have generated massive immediate capital, the chosen path prioritizes long-term mission control. This chart visualizes that trade-off.</p>
+                <div class="chart-container relative h-80 max-w-2xl mx-auto">
+                    <canvas id="ownershipChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="tows" class="py-16 bg-white rounded-lg my-16 shadow-lg">
+            <div class="text-center mb-12 px-4">
+                <h3 class="text-xl font-semibold mb-4 text-gray-700">Class Objective: To formulate actionable strategic recommendations for Patagonia by synthesizing insights from the SWOT and RBV analyses.</h3>
+                <h2 class="text-3xl font-bold mb-2 text-">SWOT Strategy Recommendations (RBV + SWOT)</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">Leveraging insights from both the Resource-Based View and SWOT analysis, these recommendations outline strategic actions for Patagonia.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm border-l-4 border-green-500">
+                    <h3 class="text-2xl font-semibold mb-3 text-green-700">Strength–Opportunity (SO)</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Leverage brand equity & sustainability leadership to expand consulting/advisory services for other brands.</li>
+                        <li>Use technological innovation in sustainable fabrics to license eco-materials to other industries, scaling impact.</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm border-l-4 border-blue-500">
+                    <h3 class="text-2xl font-semibold mb-3 text-blue-700">Strength–Threat (ST)</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Use customer loyalty and brand trust to withstand greenwashing competitors by doubling down on transparency (e.g., full carbon accounting).</li>
+                        <li>Mitigate premium-price vulnerability by offering affordable essentials line without compromising ethics.</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm border-l-4 border-purple-500">
+                    <h3 class="text-2xl font-semibold mb-3 text-purple-700">Weakness–Opportunity (WO)</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Explore emerging markets with growing eco-consciousness (India, Brazil) to diversify beyond North America.</li>
+                        <li>Collaborate with governments and NGOs for policy advocacy, creating new revenue streams from systemic change.</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm border-l-4 border-orange-500">
+                    <h3 class="text-2xl font-semibold mb-3 text-orange-700">Weakness–Threat (WT)</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Build a resilient supply chain to reduce costs while maintaining ethical standards to survive downturns.</li>
+                        <li>Pre-empt regulatory challenges by exceeding future compliance standards, becoming the benchmark brand.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="text-center py-8 border-t mt-16">
+        <p class="text-gray-500">An interactive learning tool based on the Patagonia Case Study.</p>
+        <div class="bg-gray-100 py-2 text-center text-sm text-gray-600 mt-4 rounded-lg">
+            © Dr. Swapnil Sahoo 2025 
+            <a href="https://x.com/swapnilsahoo" target="_blank" class="text-blue-600 hover:underline">X</a> | 
+            <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" class="text-blue-600 hover:underline">Instagram</a> | 
+            <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" class="text-blue-600 hover:underline">LinkedIn</a>
+        </div>
+    </footer>
+
+    <div id="modal" class="modal-backdrop fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4 opacity-0 pointer-events-none">
+        <div id="modal-content" class="bg-white rounded-lg shadow-2xl p-8 max-w-2xl w-full transform scale-95 transition-transform duration-300">
+            <h3 id="modal-title" class="text-2xl font-bold mb-4 text-"></h3>
+            <p id="modal-text" class="text-gray-700"></p>
+            <button id="modal-close" class="mt-6 bg- text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition">Close</button>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Smooth scrolling for nav links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                     if (mobileMenu.classList.contains('hidden') === false) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+
+            // Active nav link highlighting on scroll
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 70) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // SWOT Analysis Interaction
+            const swotData = {
+                strengths: {
+                    title: "Patagonia's Strengths",
+                    color: "text-",
+                    points: [
+                        "Strong Brand & Reputation: Deeply trusted for quality, durability, and environmental commitment, allowing premium pricing and strong customer loyalty.",
+                        "Mission-Driven Culture: Highly engaged employees aligned with the company's environmental and social mission, fostering innovation and retention.",
+                        "Innovative Ownership Structure: The Purpose Trust and Holdfast Collective ensure perpetual mission alignment and direct all profits to environmental causes, a unique competitive advantage.",
+                        "Product Quality & Durability: Known for producing high-performance, long-lasting gear, reducing consumption and enhancing brand trust.",
+                        "Worn Wear Program: Industry-leading repair and recycling initiative that extends product life, reduces waste, and reinforces circular economy principles.",
+                        "Supply Chain Ethics: Commitment to ethical sourcing, fair labor practices, and sustainable materials (e.g., organic cotton, recycled polyester)."
+                    ]
+                },
+                weaknesses: {
+                    title: "Patagonia's Weaknesses",
+                    color: "text-[#C62828]",
+                    points: [
+                        "Premium Pricing: High prices can limit market reach, making products less accessible to price-sensitive consumers.",
+                        "Niche Market Focus: While expanding, its core focus on outdoor enthusiasts and environmentalists might limit broader market penetration compared to mass-market brands.",
+                        "Supply Chain Complexity: Maintaining strict ethical and environmental standards across a global supply chain is complex and costly.",
+                        "Growth Constraints: The anti-growth, 'Don't Buy This Jacket' philosophy, while authentic, inherently limits aggressive revenue expansion.",
+                        "Potential for Greenwashing Accusations: Despite genuine efforts, any perceived misstep could lead to accusations of greenwashing, damaging its carefully built reputation."
+                    ]
+                },
+                opportunities: {
+                    title: "Patagonia's Opportunities",
+                    color: "text-",
+                    points: [
+                        "Growing Demand for Sustainable Products: Increasing consumer awareness and demand for eco-friendly and ethically produced goods.",
+                        "Expansion into New Markets/Product Categories: Opportunities to apply its sustainable model to new outdoor segments, urban wear, or even other industries.",
+                        "Circular Economy Leadership: Further leveraging the Worn Wear program and other initiatives to set new industry standards for product longevity and recycling.",
+                        "Partnerships & Collaborations: Collaborating with other mission-aligned organizations or brands to amplify impact and reach.",
+                        "Advocacy & Policy Influence: Using its influential voice to push for broader environmental policy changes and industry-wide sustainability standards."
+                    ]
+                },
+                threats: {
+                    title: "Patagonia's Threats",
+                    color: "text-[#FFA000]",
+                    points: [
+                        "Increased Competition: More brands adopting sustainability as a marketing tool, potentially diluting Patagonia's unique position.",
+                        "Economic Downturns: Premium-priced products are vulnerable during economic recessions when consumers prioritize affordability.",
+                        "Supply Chain Disruptions: Global events (pandemics, geopolitical conflicts) can disrupt supply chains, impacting production and material sourcing.",
+                        "Rising Material Costs: The cost of sustainable and ethically sourced materials can be higher and more volatile.",
+                        "Regulatory Changes: Evolving environmental regulations could impose new costs or challenges, though Patagonia is often ahead of such changes.",
+                        "Consumer Cynicism: General skepticism towards corporate sustainability claims could make it harder to communicate its genuine efforts effectively."
+                    ]
+                }
+            };
+            
+            const swotContentTitle = document.getElementById('swot-content-title');
+            const swotContentPlaceholder = document.getElementById('swot-content-placeholder');
+            const swotContentList = document.getElementById('swot-content-list');
+            const swotQuadrants = document.querySelectorAll('.swot-quadrant');
+
+            swotQuadrants.forEach(quadrant => {
+                quadrant.addEventListener('click', () => {
+                    const type = quadrant.id.split('-')[1];
+                    const data = swotData[type];
+
+                    swotContentTitle.textContent = data.title;
+                    swotContentTitle.className = `text-2xl font-bold mb-4 ${data.color}`;
+                    swotContentPlaceholder.style.display = 'none';
+                    swotContentList.innerHTML = '';
+                    
+                    data.points.forEach(point => {
+                        const li = document.createElement('li');
+                        li.textContent = point; // Use textContent to avoid rendering HTML bold
+                        swotContentList.appendChild(li);
+                    });
+                    
+                    swotQuadrants.forEach(q => q.classList.remove('ring-2', 'ring-offset-2', 'ring-blue-400'));
+                    quadrant.classList.add('ring-2', 'ring-offset-2', 'ring-blue-400');
+                });
+            });
+            
+            // Value Chain Modal Interaction
+            const valueChainData = {
+                inbound: { title: "Inbound Logistics", text: "Patagonia sources high-quality, sustainable raw materials (organic cotton, recycled polyester). It partners with Fair Trade-certified suppliers and maintains traceable supply chains. Strong ethical sourcing reduces reputational risk and enhances brand trust." },
+                operations: { title: "Operations", text: "Efficient, environmentally friendly production with minimal carbon footprint. Focus on repairable, durable products (Worn Wear initiative) reduces waste and strengthens brand differentiation." },
+                outbound: { title: "Outbound Logistics", text: "E-commerce and select retail outlets provide direct-to-consumer distribution. Limited product variety and scarcity strategy maintain premium positioning." },
+                marketing: { title: "Marketing & Sales", text: "Authentic marketing emphasising environmental activism, anti-consumerism campaigns (“Don’t Buy This Jacket”). Loyal customer base attracted by ethical values rather than price competition." },
+                service: { title: "Service", text: "Exceptional after-sales service with repair programs, lifetime guarantees, and recycling initiatives. Creates long-term relationships and customer advocacy." },
+                infrastructure: { title: "Firm Infrastructure", text: "Flat, mission-driven organizational culture aligns employees with environmental and social goals. Transparency in environmental impact reporting (e.g., Footprint Chronicles)." },
+                hr: { title: "Human Resource Management", text: "Employees are selected for both skills and value alignment, fostering intrinsic motivation. Strong retention due to work-life balance and ethical mission." },
+                tech: { title: "Technology Development", text: "Innovation in sustainable fabrics (e.g., bio-based materials, regenerative organic certification). Continuous R&D for environmental impact reduction." },
+                procurement: { title: "Procurement", text: "Strategic partnerships with suppliers who share Patagonia’s sustainability ethos. Ethical audits and strict quality control safeguard brand integrity." }
+            };
+
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modal-content');
+            const modalTitle = document.getElementById('modal-title');
+            const modalText = document.getElementById('modal-text');
+            const modalClose = document.getElementById('modal-close');
+
+            document.querySelectorAll('.value-chain-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const activity = item.dataset.activity;
+                    const data = valueChainData[activity];
+                    modalTitle.textContent = data.title;
+                    modalText.textContent = data.text;
+                    modal.classList.remove('opacity-0', 'pointer-events-none');
+                    modalContent.classList.remove('scale-95');
+                });
+            });
+
+            const closeModal = () => {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                modalContent.classList.add('scale-95');
+            };
+
+            modalClose.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // RBV (VRIN) Interaction
+            const rbvData = {
+                brand: {
+                    title: "Brand Equity & Reputation",
+                    icon: "🌟",
+                    v: "Valuable: Yes. Recognized globally for ethical and environmental leadership. Strong trust, allows for premium pricing, and enables bold, mission-reinforcing marketing campaigns.",
+                    r: "Rare: Yes. The deep, authentic environmental credibility cultivated over decades is exceptionally rare in the global marketplace; few competitors have similar authenticity.",
+                    i: "Inimitable: Yes. It's deeply embedded in culture and the result of 50+ years of consistent action and the founder's philosophy. This depth of authenticity cannot be quickly replicated.",
+                    n: "Non-substitutable: Yes. The specific blend of activism, quality, and anti-consumerist philosophy creates a unique market position with no direct substitute; cannot replace brand ethos easily."
+                },
+                culture: {
+                    title: "Organizational Culture",
+                    icon: "👥",
+                    v: "Valuable: Yes. Mission-first culture (“We’re in business to save our home planet”) guides all decisions, driving innovation and fostering high employee retention.",
+                    r: "Rare: Yes. Few companies integrate purpose so deeply into their daily operations, employee benefits, and hiring philosophy.",
+                    i: "Inimitable: Yes. It's a result of decades of consistent leadership and unique policies. An organizational 'way of being' that is hard to copy.",
+                    n: "Non-substitutable: Yes. There is no direct substitute for this deeply embedded, purpose-driven collective capability."
+                },
+                supplychain: {
+                    title: "Supply Chain & Ethical Sourcing Networks",
+                    icon: "🔗",
+                    v: "Valuable: Yes. Ensures high-quality, sustainable raw materials and reduces reputational risk.",
+                    r: "Rare: Yes. Long-standing relationships with Fair Trade and sustainable material suppliers are hard to build trusted ethical supplier networks.",
+                    i: "Inimitable: Yes. Requires years of investment in building trust and shared values with suppliers.",
+                    n: "Non-substitutable: Yes. Critical for maintaining product integrity and mission alignment."
+                },
+                customerloyalty: {
+                    title: "Customer Loyalty & Community Engagement",
+                    icon: "❤️",
+                    v: "Valuable: Yes. Drives repeat purchases, strong advocacy, and a resilient customer base.",
+                    r: "Rare: Yes. Customers share Patagonia’s activist mindset, creating a tribe-like community with deep activism alignment.",
+                    i: "Inimitable: Yes. Built on authenticity and shared values over decades; authenticity cannot be faked long-term.",
+                    n: "Non-substitutable: Yes. This deep emotional connection and advocacy cannot be easily replaced."
+                },
+                sustainabilityinnovation: {
+                    title: "Sustainability Innovation Capabilities",
+                    icon: "🌱",
+                    v: "Valuable: Yes. Leads to superior, eco-friendly products and processes, enhancing brand reputation.",
+                    r: "Rare: Yes. Patents and know-how in sustainable fabric development make them pioneers.",
+                    i: "Inimitable: Partially. While competitors can eventually imitate technology, the integrated ethos and continuous pursuit of environmental solutions are hard to copy.",
+                    n: "Non-substitutable: Yes. Essential for maintaining leadership in sustainable product development."
+                },
+                leadership: {
+                    title: "Leadership Vision & Governance",
+                    icon: "🏛️",
+                    v: "Valuable: Yes. Founder Yvon Chouinard’s decision to give away ownership to a trust supporting environmental causes reinforces brand authenticity and ensures perpetual mission alignment.",
+                    r: "Rare: Yes. It is a groundbreaking legal and governance structure; few firms would sacrifice billions in profit for the planet.",
+                    i: "Inimitable: Yes. Its creation required unique legal expertise and a founder willing to relinquish billions in wealth. It is a bespoke solution that is immensely challenging to replicate.",
+                    n: "Non-substitutable: Yes. For Patagonia's specific objective of permanent mission protection, this structure is strategically non-substitutable."
+                }
+            };
+            
+            function createRbvCard(resourceKey) {
+                const resource = rbvData[resourceKey];
+                const container = document.getElementById(`rbv-${resourceKey}`);
+                
+                const cardHTML = `
+                    <div class="flex items-start">
+                        <div class="text-4xl mr-4">${resource.icon}</div>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-800">${resource.title}</h4>
+                            <div class="flex flex-wrap gap-2 my-4">
+                                <button class="v-btn vrin-btn bg-gray-200 hover:bg-green-200 px-3 py-1 rounded-full text-sm font-semibold" data-key="${resourceKey}" data-crit="v">Valuable</button>
+                                <button class="r-btn vrin-btn bg-gray-200 hover:bg-blue-200 px-3 py-1 rounded-full text-sm font-semibold" data-key="${resourceKey}" data-crit="r">Rare</button>
+                                <button class="i-btn vrin-btn bg-gray-200 hover:bg-purple-200 px-3 py-1 rounded-full text-sm font-semibold" data-key="${resourceKey}" data-crit="i">Inimitable</button>
+                                <button class="n-btn vrin-btn bg-gray-200 hover:bg-orange-200 px-3 py-1 rounded-full text-sm font-semibold" data-key="${resourceKey}" data-crit="n">Non-substitutable</button>
+                            </div>
+                            <p class="rbv-desc text-gray-600 min-h-[50px] bg-gray-50 p-4 rounded-md">Click a button to see the analysis.</p>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML = cardHTML;
+            }
+
+            createRbvCard('brand');
+            createRbvCard('culture');
+            createRbvCard('supplychain');
+            createRbvCard('customerloyalty');
+            createRbvCard('sustainabilityinnovation');
+            createRbvCard('leadership');
+
+
+            document.querySelectorAll('.vrin-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const key = e.target.dataset.key;
+                    const crit = e.target.dataset.crit;
+                    const text = rbvData[key][crit];
+                    
+                    const parentCard = e.target.closest('.rbv-resource');
+                    parentCard.querySelector('.rbv-desc').textContent = text; // Use textContent to avoid rendering HTML bold
+                    
+                    parentCard.querySelectorAll('.vrin-btn').forEach(btn => btn.classList.remove('bg-green-500', 'bg-blue-500', 'bg-purple-500', 'bg-orange-500', 'text-white'));
+                    e.target.classList.add(`bg-${e.target.classList.contains('v-btn')? 'green' : e.target.classList.contains('r-btn')? 'blue' : e.target.classList.contains('i-btn')? 'purple' : 'orange'}-500`, 'text-white');
+                });
+            });
+
+            // Ownership Chart
+            const ctx = document.getElementById('ownershipChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Private Equity Sale (Estimated)', 'Holdfast Collective (Actual)'],
+                    datasets: [{
+                        label: 'Capital Value',
+                        data: [3000, 100], // Example data in millions USD
+                        backgroundColor: [
+                            'rgba(74, 91, 88, 0.6)', // Darker green/grey for PE
+                            'rgba(46, 125, 50, 0.6)' // Patagonia green for Holdfast
+                        ],
+                        borderColor: [
+                            'rgba(74, 91, 88, 1)',
+                            'rgba(46, 125, 50, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y', // Horizontal bar chart
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Capital (in Millions USD)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false // No legend needed for single dataset
+                        },
+                        tooltip: {
+                             callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.x !== null) {
+                                        label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.x * 1000000); // Display in full USD
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>

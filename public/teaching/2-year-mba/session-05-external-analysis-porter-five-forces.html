@@ -1,0 +1,972 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 5: Industry Structure | Grand Master Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-bg: #ffffff;
+            --secondary-bg: #f8fafc;
+            --primary-text: #0f172a;
+            --accent-blue: #1e3a8a;
+            --accent-teal: #0f766e;
+            --accent-light: #2563eb;
+            --glass: rgba(255, 255, 255, 0.95);
+            --border-light: #e2e8f0;
+            --hud-bg: rgba(15, 23, 42, 0.95);
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--primary-text);
+            font-family: 'Satoshi', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, .serif-font {
+            font-family: 'Playfair Display', serif;
+            color: var(--accent-blue);
+        }
+
+        .mono-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Glass Panel */
+        .glass-panel {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-light);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Card Interactions */
+        .card-panel {
+            background: white;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-panel:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 20px -8px rgba(30, 58, 138, 0.1); 
+            border-color: var(--accent-light);
+        }
+
+        .hero-bg {
+            background: radial-gradient(circle at 50% 0%, #eff6ff 0%, #ffffff 70%);
+        }
+
+        .chart-container {
+            position: relative;
+            height: 500px;
+            width: 100%;
+        }
+
+        /* Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Recap Timeline */
+        .recap-line { position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: #e2e8f0; z-index: 0; }
+        .recap-node { position: relative; z-index: 10; transition: transform 0.3s ease; }
+        .recap-node:hover { transform: scale(1.1); }
+
+        /* S5 Specifics */
+        .force-card { transition: all 0.3s ease; }
+        .force-card:hover { transform: translateY(-4px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); border-color: #1e3a8a; }
+
+        /* Header & Navigation Styles */
+        #main-header { position: sticky; top: 0; z-index: 40; transition: all 0.3s ease; }
+        .nav-link { position: relative; font-weight: 500; color: #64748b; transition: color 0.2s; text-decoration: none; }
+        .nav-link:hover, .nav-link.active { color: var(--accent-blue); }
+        .nav-link.active::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 2px; background: var(--accent-blue); }
+        
+        .chess-logo {
+            width: 40px; height: 40px;
+            background: #1e293b;
+            color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .group:hover .chess-logo {
+            background: #2563eb;
+            transform: rotate(10deg);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-blue-100 selection:text-blue-900">
+
+    <!-- Progress Bar -->
+    <div class="fixed top-0 left-0 w-full h-1 bg-slate-100 z-50">
+        <div id="progress-bar" class="h-full bg-blue-700 w-0 transition-all duration-100 ease-out"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="main-header" class="bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <!-- Top Bar: Strategic Roadmap -->
+        <div class="bg-slate-50 border-b border-slate-100 py-1 text-center hidden md:block">
+            <div class="flex items-center justify-center gap-4 text-[10px] uppercase font-bold tracking-widest text-slate-400">
+                <!-- Active Part -->
+                <span class="text-indigo-600 underline decoration-2 underline-offset-4">Part 1: Strategy Analysis / Session 5: Industry Structure</span>
+                <span class="text-slate-300">/</span>
+                <!-- Inactive Parts -->
+                <span class="text-slate-300 opacity-50">Part 2: Strategy Formulation</span>
+                <span class="text-slate-300">/</span>
+                <span class="text-slate-300 opacity-50">Part 3: Strategy Implementation</span>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Left: Logo Area -->
+            <a href="#" class="flex items-center gap-3 group no-underline">
+                <div class="chess-logo">
+                    <i class="fas fa-chess-rook"></i>
+                </div>
+                <div class="leading-tight">
+                    <h1 class="font-bold text-slate-900 tracking-tight text-xl">The Strategist's Lens</h1>
+                </div>
+            </a>
+            
+            <!-- Center: Navigation Links -->
+            <div class="hidden xl:flex space-x-6 text-sm">
+                <a href="#recap" class="nav-link">The Journey</a>
+                <a href="#paradox" class="nav-link">Profit Paradox</a>
+                <a href="#framework" class="nav-link">5 Forces</a>
+                <a href="#implications" class="nav-link">Implications</a>
+                <a href="#activity" class="nav-link">Activity</a>
+                <a href="#quiz" class="nav-link font-bold text-blue-700">Challenge</a>
+            </div>
+
+            <!-- Right: Social & Functional Icons -->
+            <div class="flex items-center gap-5">
+                <a href="https://swapnilsahoo.com" target="_blank" class="text-slate-400 hover:text-teal-600 transition-colors" title="Dr. Swapnil Sahoo Website">
+                    <i class="fas fa-globe"></i>
+                </a>
+                <a href="#" class="text-slate-400 hover:text-blue-400 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-slate-400 hover:text-pink-600 transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-slate-400 hover:text-blue-600 transition-colors"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.chess.com/member/theswapnilsahoo" target="_blank" class="text-slate-400 hover:text-green-600 transition-colors text-lg" title="Play Chess">
+                    <i class="fas fa-chess-king"></i>
+                </a>
+                <button class="xl:hidden text-slate-600"><i class="fas fa-bars text-xl"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- RECAP: THE NARRATIVE ARC -->
+    <section id="recap" class="py-20 px-6 bg-secondary-bg">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16 fade-up">
+                 <div class="inline-flex items-center gap-2 text-blue-600 font-bold tracking-wider text-xs uppercase mb-2">
+                    <i class="fa-solid fa-timeline"></i> Previously on Strategy Core
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold serif-font text-slate-900">
+                    The Story So Far
+                </h2>
+                <p class="text-slate-500 mt-4 max-w-2xl mx-auto text-lg">
+                    Strategy is not a checklist; it's a narrative. We built the foundation internally (S1-S4). Now, we face the external reality.
+                </p>
+            </div>
+
+            <div class="relative">
+                <!-- Vertical Line -->
+                <div class="recap-line hidden md:block"></div>
+
+                <!-- Session 1 -->
+                <div class="md:flex justify-between items-center mb-12 fade-up relative z-10">
+                    <div class="md:w-5/12 text-right pr-8 hidden md:block">
+                        <h3 class="text-xl font-bold text-slate-900">Session 1: The Definition</h3>
+                        <p class="text-sm text-slate-500 mt-1">Porter vs. Mintzberg</p>
+                    </div>
+                    <div class="md:w-2/12 flex justify-center mb-4 md:mb-0">
+                        <div class="recap-node w-12 h-12 bg-white border-4 border-slate-200 rounded-full flex items-center justify-center text-lg shadow-md font-bold text-slate-400">1</div>
+                    </div>
+                    <div class="md:w-5/12 pl-8 card-panel p-6 rounded-xl border-l-4 border-blue-900">
+                        <div class="text-blue-800 font-serif italic text-lg mb-2">"Is Strategy a Plan or a Pattern?"</div>
+                        <p class="text-slate-600 text-sm">
+                            We learned that <strong>Operational Effectiveness is NOT Strategy</strong>. Strategy is about being <strong>unique</strong>. It is both a deliberate plan (Porter) and an emergent pattern (Mintzberg).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Session 2 -->
+                <div class="md:flex justify-between items-center mb-12 fade-up relative z-10">
+                    <div class="md:w-5/12 pr-8 text-right md:order-1 card-panel p-6 rounded-xl border-l-4 border-blue-700">
+                        <div class="text-blue-800 font-serif italic text-lg mb-2">"Can you be everything to everyone?"</div>
+                        <p class="text-slate-600 text-sm">
+                            <strong>Tesla Case.</strong> We discovered the power of <strong>Trade-offs</strong>. Strategy is choosing what <em>not</em> to do. Serving every customer means serving none efficiently.
+                        </p>
+                    </div>
+                    <div class="md:w-2/12 flex justify-center mb-4 md:mb-0 md:order-2">
+                        <div class="recap-node w-12 h-12 bg-white border-4 border-slate-200 rounded-full flex items-center justify-center text-lg shadow-md font-bold text-slate-400">2</div>
+                    </div>
+                    <div class="md:w-5/12 pl-8 hidden md:block md:order-3">
+                        <h3 class="text-xl font-bold text-slate-900">Session 2: The Choice</h3>
+                        <p class="text-sm text-slate-500 mt-1">Trade-offs & Fit</p>
+                    </div>
+                </div>
+
+                <!-- Session 3 -->
+                <div class="md:flex justify-between items-center mb-12 fade-up relative z-10">
+                    <div class="md:w-5/12 text-right pr-8 hidden md:block">
+                        <h3 class="text-xl font-bold text-slate-900">Session 3: The Architect</h3>
+                        <p class="text-sm text-slate-500 mt-1">The CSO Role</p>
+                    </div>
+                    <div class="md:w-2/12 flex justify-center mb-4 md:mb-0">
+                        <div class="recap-node w-12 h-12 bg-white border-4 border-slate-200 rounded-full flex items-center justify-center text-lg shadow-md font-bold text-slate-400">3</div>
+                    </div>
+                    <div class="md:w-5/12 pl-8 card-panel p-6 rounded-xl border-l-4 border-blue-500">
+                        <div class="text-blue-800 font-serif italic text-lg mb-2">"Who holds the pen?"</div>
+                        <p class="text-slate-600 text-sm">
+                            Strategy doesn't happen by accident; it requires a <strong>Chief Strategy Officer</strong> to align the organization, manage stakeholders, and close the "Say-Do" gap.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Session 4 -->
+                <div class="md:flex justify-between items-center mb-12 fade-up relative z-10">
+                    <div class="md:w-5/12 pr-8 text-right md:order-1 card-panel p-6 rounded-xl border-l-4 border-green-600">
+                        <div class="text-blue-800 font-serif italic text-lg mb-2">"Does profit have a soul?"</div>
+                        <p class="text-slate-600 text-sm">
+                            <strong>Purpose & Values.</strong> The "Why" fuels the "How". A strategy without purpose is just a spreadsheet. Values provide the guardrails for decision-making.
+                        </p>
+                    </div>
+                    <div class="md:w-2/12 flex justify-center mb-4 md:mb-0 md:order-2">
+                        <div class="recap-node w-12 h-12 bg-white border-4 border-slate-200 rounded-full flex items-center justify-center text-lg shadow-md font-bold text-slate-400">4</div>
+                    </div>
+                    <div class="md:w-5/12 pl-8 hidden md:block md:order-3">
+                        <h3 class="text-xl font-bold text-slate-900">Session 4: The Core</h3>
+                        <p class="text-sm text-slate-500 mt-1">Vision & Mission</p>
+                    </div>
+                </div>
+
+                <!-- Transition to S5 -->
+                <div class="text-center mt-16 fade-up">
+                    <div class="inline-block bg-slate-900 text-white px-6 py-3 rounded-full text-sm font-bold shadow-lg animate-bounce">
+                        <i class="fa-solid fa-arrow-down"></i> ENTERING THE BATTLEFIELD
+                    </div>
+                    <p class="mt-6 text-slate-600 max-w-2xl mx-auto">
+                        We have the Plan, the Choice, the Architect, and the Soul. <br><br>
+                        <strong>But a strategy does not exist in a vacuum. It lives in a hostile environment.</strong> <br>
+                        Welcome to Session 5: Industry Structure.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SESSION 5 HERO: THE HOOK -->
+    <header id="paradox" class="py-24 px-6 bg-white border-t border-slate-100">
+        <div class="max-w-6xl mx-auto w-full z-10 fade-up text-center">
+             <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-red-200 bg-red-50 text-red-800 text-xs font-bold tracking-widest uppercase mb-6 shadow-sm">
+                <i class="fa-solid fa-bolt"></i> Fundamental Question
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-8 text-slate-900">
+                Why is it harder to make money in <span class="serif-font italic text-red-600">Aviation</span> than in <span class="serif-font italic text-teal-600">Software</span>?
+            </h1>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto font-light leading-relaxed mb-12">
+                Is it because airline CEOs are less smart than software CEOs? <strong class="text-slate-900">Of course not.</strong> The answer lies not in <em>who</em> is competing, but in the <em>battlefield</em> itself.
+            </p>
+
+            <!-- Chart Container -->
+            <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-2xl max-w-5xl mx-auto">
+                <div class="flex justify-between items-end mb-6 border-b border-slate-100 pb-4">
+                    <h3 class="text-lg font-bold text-slate-900 font-serif">The Profitability Spectrum: Average ROIC by Industry</h3>
+                    <div class="text-right">
+                        <div class="text-xs font-bold uppercase text-slate-400 tracking-wider">Data Source</div>
+                        <div class="text-sm font-mono text-slate-600">US LTM 2025</div>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <canvas id="profitChart"></canvas>
+                </div>
+
+                <!-- KEY INSIGHTS BLOCK -->
+                <div class="mt-8 grid md:grid-cols-3 gap-6 text-left">
+                    <div class="p-6 bg-teal-50 rounded-xl border border-teal-100 shadow-sm hover:shadow-md transition-all">
+                        <div class="text-teal-800 font-bold mb-3 flex items-center gap-2 text-sm uppercase tracking-wide">
+                            <i class="fa-solid fa-trophy"></i> Top Performers
+                        </div>
+                        <p class="text-sm text-slate-700 leading-relaxed">
+                            Asset-light industries such as <strong>Software (50.17%)</strong> and <strong>Tobacco (68.11%)</strong> consistently show the highest average ROIC. They require less capital investment to generate massive revenue.
+                        </p>
+                    </div>
+                    
+                    <div class="p-6 bg-red-50 rounded-xl border border-red-100 shadow-sm hover:shadow-md transition-all">
+                        <div class="text-red-800 font-bold mb-3 flex items-center gap-2 text-sm uppercase tracking-wide">
+                            <i class="fa-solid fa-triangle-exclamation"></i> Bottom Performers
+                        </div>
+                        <p class="text-sm text-slate-700 leading-relaxed">
+                            Capital-intensive sectors like <strong>Air Transport (6.56%)</strong>, <strong>Auto (2.62%)</strong>, and <strong>Coal (-34.87%)</strong> report significantly lower or negative ROIC due to high fixed costs and intense rivalry.
+                        </p>
+                    </div>
+                    
+                    <div class="p-6 bg-blue-50 rounded-xl border border-blue-100 shadow-sm hover:shadow-md transition-all">
+                        <div class="text-blue-800 font-bold mb-3 flex items-center gap-2 text-sm uppercase tracking-wide">
+                            <i class="fa-solid fa-scale-balanced"></i> Value of Comparison
+                        </div>
+                        <p class="text-sm text-slate-700 leading-relaxed">
+                            Comparing a company's ROIC against its industry average provides context. A ROIC above <strong>10-15%</strong> is generally strong, but this benchmark must be viewed relative to the specific sector's dynamics.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- THE 5 FORCES FRAMEWORK -->
+    <section id="framework" class="py-24 px-6 bg-secondary-bg border-t border-slate-200">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 fade-up">
+                 <div class="inline-flex items-center gap-2 text-blue-600 font-bold tracking-wider text-xs uppercase mb-2">
+                    <i class="fa-solid fa-layer-group"></i> Deconstructing Competition
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold serif-font text-slate-900">
+                    The 5 Forces Model
+                </h2>
+                <p class="text-slate-500 mt-4">Click any force to reveal its fundamental question and modern application.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 fade-up">
+                <!-- Force 1 -->
+                <div onclick="selectForce('entrants')" class="force-card cursor-pointer bg-white border border-slate-200 p-8 rounded-xl text-center group relative overflow-hidden shadow-sm">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">🏰</div>
+                    <h3 class="font-bold text-slate-900 group-hover:text-blue-700 mb-2">Threat of New Entrants</h3>
+                    <p class="text-xs text-slate-500 font-mono uppercase">How high are the walls?</p>
+                </div>
+
+                <!-- Force 2 (Center) -->
+                <div onclick="selectForce('rivalry')" class="md:col-start-2 force-card cursor-pointer bg-slate-900 border border-slate-800 p-8 rounded-xl text-center group hover:bg-slate-800 shadow-xl relative overflow-hidden">
+                    <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">⚔️</div>
+                    <h3 class="font-bold text-white group-hover:text-blue-400 mb-2">Rivalry Among Competitors</h3>
+                    <p class="text-xs text-slate-400 font-mono uppercase">The center of the storm</p>
+                </div>
+
+                <!-- Force 3 -->
+                <div onclick="selectForce('substitutes')" class="md:col-start-3 force-card cursor-pointer bg-white border border-slate-200 p-8 rounded-xl text-center group relative overflow-hidden shadow-sm">
+                    <div class="absolute top-0 right-0 w-1 h-full bg-blue-500"></div>
+                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">🎭</div>
+                    <h3 class="font-bold text-slate-900 group-hover:text-blue-700 mb-2">Threat of Substitutes</h3>
+                    <p class="text-xs text-slate-500 font-mono uppercase">The hidden enemy</p>
+                </div>
+
+                <!-- Force 4 -->
+                <div onclick="selectForce('suppliers')" class="md:col-start-1 force-card cursor-pointer bg-white border border-slate-200 p-8 rounded-xl text-center group relative overflow-hidden shadow-sm">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">💎</div>
+                    <h3 class="font-bold text-slate-900 group-hover:text-blue-700 mb-2">Power of Suppliers</h3>
+                    <p class="text-xs text-slate-500 font-mono uppercase">Who owns the magic?</p>
+                </div>
+
+                <!-- Force 5 -->
+                <div onclick="selectForce('buyers')" class="md:col-start-3 force-card cursor-pointer bg-white border border-slate-200 p-8 rounded-xl text-center group relative overflow-hidden shadow-sm">
+                    <div class="absolute top-0 right-0 w-1 h-full bg-blue-500"></div>
+                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">🛒</div>
+                    <h3 class="font-bold text-slate-900 group-hover:text-blue-700 mb-2">Power of Buyers</h3>
+                    <p class="text-xs text-slate-500 font-mono uppercase">Who pays the bill?</p>
+                </div>
+            </div>
+
+            <!-- Dynamic Content Area -->
+            <div id="force-detail-panel" class="bg-white border border-slate-200 rounded-2xl p-10 shadow-lg min-h-[300px] fade-up">
+                <div class="text-center h-full flex flex-col justify-center items-center py-8">
+                    <div class="animate-pulse text-slate-300 text-6xl mb-4"><i class="fa-solid fa-hand-pointer"></i></div>
+                    <h3 class="text-xl font-semibold text-slate-400">Select a force above to analyze the battlefield.</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: CORE CONCEPTS / STRATEGIST'S BLUEPRINT -->
+    <section id="implications" class="py-24 px-6 bg-slate-900 text-white border-t border-slate-800">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 fade-up">
+                <div class="inline-flex items-center gap-2 text-teal-400 font-bold tracking-wider text-xs uppercase mb-2">
+                    <i class="fa-solid fa-chess-board"></i> The "So What?" for 2025
+                </div>
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-white leading-tight">
+                    Reshaping the Battlefield
+                </h2>
+                <p class="text-slate-400 mt-4 max-w-2xl mx-auto text-lg">
+                    Your job is not just to beat rivals. It's to understand the structure, find a profitable position, and reshape that structure.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16 fade-up">
+                <!-- Visual Diagram: Vertical vs Horizontal (ROTATED) -->
+                <div class="relative bg-slate-800 p-8 rounded-2xl border border-slate-700 shadow-2xl">
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-6 text-center">The Cross of Competition</h4>
+                    
+                    <div class="grid grid-cols-3 grid-rows-3 gap-4 text-center text-sm font-bold aspect-square max-w-md mx-auto relative">
+                        <!-- Connecting Lines Background -->
+                        <div class="absolute inset-0 pointer-events-none flex items-center justify-center">
+                            <div class="w-full h-1 bg-slate-600/30"></div>
+                            <div class="absolute h-full w-1 bg-slate-600/30"></div>
+                        </div>
+
+                        <!-- Suppliers (Top Center) -->
+                        <div class="col-start-2 row-start-1 p-4 bg-slate-900 rounded border border-teal-800 flex flex-col justify-center items-center z-10 hover:border-teal-500 transition-colors">
+                            <div class="text-2xl mb-1">💎</div>
+                            <span class="block text-teal-400 text-[10px] uppercase mb-1">Vertical</span>
+                            Suppliers
+                        </div>
+
+                        <!-- Entrants (Middle Left) -->
+                        <div class="col-start-1 row-start-2 p-4 bg-slate-700 rounded border border-slate-600 flex flex-col justify-center items-center z-10 hover:border-white transition-colors">
+                            <div class="text-2xl mb-1">🏰</div>
+                            <span class="block text-slate-300 text-[10px] uppercase mb-1">Horizontal</span>
+                            New Entrants
+                        </div>
+
+                        <!-- Rivalry (Center) -->
+                        <div class="col-start-2 row-start-2 p-6 bg-teal-900/80 rounded-full border-4 border-teal-500 shadow-[0_0_20px_rgba(20,184,166,0.4)] flex flex-col justify-center items-center z-20">
+                            <div class="text-3xl mb-1">⚔️</div>
+                            Rivalry
+                        </div>
+
+                        <!-- Substitutes (Middle Right) -->
+                        <div class="col-start-3 row-start-2 p-4 bg-slate-700 rounded border border-slate-600 flex flex-col justify-center items-center z-10 hover:border-white transition-colors">
+                            <div class="text-2xl mb-1">🎭</div>
+                            <span class="block text-slate-300 text-[10px] uppercase mb-1">Horizontal</span>
+                            Substitutes
+                        </div>
+
+                        <!-- Buyers (Bottom Center) -->
+                        <div class="col-start-2 row-start-3 p-4 bg-slate-900 rounded border border-teal-800 flex flex-col justify-center items-center z-10 hover:border-teal-500 transition-colors">
+                            <div class="text-2xl mb-1">🛒</div>
+                            <span class="block text-teal-400 text-[10px] uppercase mb-1">Vertical</span>
+                            Buyers
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strategic Options -->
+                <div class="space-y-6">
+                    <div class="p-6 rounded-xl border border-teal-900 bg-gradient-to-r from-slate-800 to-slate-900 hover:border-teal-500 transition-all cursor-default group">
+                        <h4 class="text-xl font-bold text-white mb-2 group-hover:text-teal-400">1. Position Your Company</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed mb-3">
+                            Find a 'foxhole' where the forces are weakest.
+                        </p>
+                        <div class="text-xs bg-slate-950 p-3 rounded text-slate-300 font-mono border-l-2 border-teal-500">
+                            <strong>Example: Paccar.</strong> In the brutal truck industry, Paccar avoids powerful fleets. It targets individual owner-operators (less price-sensitive, emotional tie) with luxury custom trucks at a 10% premium.
+                        </div>
+                    </div>
+
+                    <div class="p-6 rounded-xl border border-teal-900 bg-gradient-to-r from-slate-800 to-slate-900 hover:border-teal-500 transition-all cursor-default group">
+                        <h4 class="text-xl font-bold text-white mb-2 group-hover:text-teal-400">2. Exploit Industry Change</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed mb-3">
+                            Wait for a force to shift, then exploit the chaos.
+                        </p>
+                        <div class="text-xs bg-slate-950 p-3 rounded text-slate-300 font-mono border-l-2 border-teal-500">
+                            <strong>Example: Apple.</strong> Illegal file-sharing (Napster) destroyed music labels (Suppliers). Apple stepped into this vacuum with iTunes, becoming the new, powerful gatekeeper.
+                        </div>
+                    </div>
+
+                    <div class="p-6 rounded-xl border border-red-900 bg-gradient-to-r from-slate-800 to-slate-900 hover:border-red-500 transition-all cursor-default group">
+                        <h4 class="text-xl font-bold text-white mb-2 group-hover:text-red-400">3. Shape Industry Structure</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed mb-3">
+                            Don't just play the game; change the rules. (The Master Class).
+                        </p>
+                        <div class="text-xs bg-slate-950 p-3 rounded text-slate-300 font-mono border-l-2 border-red-500">
+                            <strong>Warning: IBM (Dark Side).</strong> IBM created an 'open architecture' for PCs. It won the battle for growth but ceded power to suppliers (Microsoft/Intel), dooming itself to a profitless war.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEEP DIVE: NVIDIA CASE -->
+    <section id="nvidia" class="py-24 px-6 bg-white border-t border-slate-200">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row items-start gap-12">
+                <div class="md:w-1/3 fade-up">
+                    <div class="inline-block px-3 py-1 mb-4 text-xs font-bold tracking-wider text-teal-600 uppercase bg-teal-50 rounded-full border border-teal-200 font-mono">
+                        Case Study 2024
+                    </div>
+                    <h2 class="text-4xl font-serif font-bold mb-6 text-slate-900 leading-tight">The Trillion Dollar Question: Nvidia</h2>
+                    <p class="text-slate-600 text-lg mb-6 leading-relaxed">
+                        In 2024, Nvidia briefly became the world's most valuable company. Everyone wants their H100 chips. 
+                    </p>
+                    <p class="text-slate-500 text-sm leading-relaxed">
+                        Jensen Huang isn't just selling chips; he's managing a delicate ecosystem. But how long can this fortress hold against the Five Forces?
+                    </p>
+                </div>
+                
+                <div class="md:w-2/3 grid gap-6 fade-up">
+                    <!-- Nvidia Analysis Card 1 -->
+                    <div class="bg-slate-50 p-8 rounded-xl border border-slate-200 hover:border-teal-500 transition-colors shadow-sm">
+                        <h3 class="text-xl font-bold text-teal-700 mb-2 font-serif">Supplier Power: The Bottleneck</h3>
+                        <p class="italic text-slate-800 text-lg mb-4 serif-font">"If Nvidia is the king, why is TSMC the emperor?"</p>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Nvidia designs the chips, but <strong>TSMC</strong> manufactures them. Nvidia cannot switch suppliers easily (High Switching Costs). If TSMC raises prices, Nvidia must pay. However, Nvidia also holds power over <em>its</em> buyers (Microsoft, Google) because there is no viable alternative yet.
+                        </p>
+                    </div>
+
+                    <!-- Nvidia Analysis Card 2 -->
+                    <div class="bg-slate-50 p-8 rounded-xl border border-slate-200 hover:border-teal-500 transition-colors shadow-sm">
+                        <h3 class="text-xl font-bold text-teal-700 mb-2 font-serif">Substitutes: Frenemies</h3>
+                        <p class="italic text-slate-800 text-lg mb-4 serif-font">"Are Google and Amazon friends or enemies?"</p>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Nvidia's biggest customers are building their own AI chips (Google TPU, AWS Trainium). This is the <strong>Threat of Substitutes</strong>. The moment their internal chips become "good enough," Nvidia's moat shrinks.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEEP DIVE: INDIAN CONTEXT -->
+    <section id="india" class="py-24 px-6 bg-secondary-bg border-t border-slate-200">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 fade-up">
+                <span class="text-orange-600 font-bold tracking-widest uppercase text-xs font-mono bg-orange-50 px-2 py-1 rounded">Emerging Markets</span>
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-slate-900 mt-4">The Indian Battlefield</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 fade-up">
+                <!-- Quick Commerce -->
+                <div class="card-panel p-8 rounded-2xl border-l-4 border-orange-500">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center text-2xl"><i class="fa-solid fa-motorcycle"></i></div>
+                        <h3 class="font-bold text-xl text-slate-800 font-serif">Blinkit vs. Zepto vs. Swiggy</h3>
+                    </div>
+                    <p class="text-slate-600 mb-6 leading-relaxed text-sm">
+                        <strong>Force in Action: Rivalry.</strong>
+                        This is a classic "War of Attrition". Low switching costs for buyers (you have all 3 apps). High fixed costs (dark stores). Perishable inventory.
+                    </p>
+                    <div class="bg-white p-5 rounded-lg border border-slate-200">
+                        <p class="text-xs font-bold text-slate-500 uppercase tracking-wide mb-1">Trigger Question</p>
+                        <p class="text-sm text-slate-800 italic font-serif">"Is 10-minute delivery a 'feature' or a 'trap'? If everyone offers it, does anyone make money?"</p>
+                    </div>
+                </div>
+
+                <!-- UPI/Fintech -->
+                <div class="card-panel p-8 rounded-2xl border-l-4 border-blue-500">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-2xl"><i class="fa-solid fa-building-columns"></i></div>
+                        <h3 class="font-bold text-xl text-slate-800 font-serif">Paytm & The Regulator</h3>
+                    </div>
+                    <p class="text-slate-600 mb-6 leading-relaxed text-sm">
+                        <strong>Force in Action: Barriers to Entry (Government).</strong>
+                        We often forget Government is a major factor in the 5 Forces (influencing entry and rivalry). The RBI's actions on Paytm Payments Bank showed that regulatory barriers can be the ultimate "Force".
+                    </p>
+                    <div class="bg-white p-5 rounded-lg border border-slate-200">
+                        <p class="text-xs font-bold text-slate-500 uppercase tracking-wide mb-1">Trigger Question</p>
+                        <p class="text-sm text-slate-800 italic font-serif">"Can you build a strategy on a foundation you don't control?"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: CLASSROOM ACTIVITY -->
+    <section id="activity" class="py-24 px-6 bg-white border-t border-slate-200">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 fade-up">
+                <div class="inline-flex items-center gap-2 text-indigo-600 font-bold tracking-wider text-xs uppercase mb-2">
+                    <i class="fa-solid fa-users"></i> Classroom Activity
+                </div>
+                <h2 class="text-3xl font-serif font-bold text-slate-900">Group Breakout: Deconstructing Tesla</h2>
+                <p class="text-slate-500 mt-4">Apply the 5 Forces framework to the automotive disruptor.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 fade-up">
+                <!-- Group 1 -->
+                <div class="card-panel p-6 rounded-xl border-t-4 border-indigo-600 hover:shadow-lg transition-all">
+                    <h4 class="font-bold text-slate-900 mb-3 flex items-center gap-2"><span class="bg-indigo-100 text-indigo-800 rounded px-2 py-0.5 text-xs">Group 1</span> New Entrants</h4>
+                    <ul class="text-sm text-slate-600 space-y-2 list-disc list-inside">
+                        <li>Before Tesla, how high were the barriers to entry?</li>
+                        <li>How did Tesla manage to overcome these barriers?</li>
+                        <li>Has Tesla's entry made it easier or harder for others?</li>
+                    </ul>
+                </div>
+
+                <!-- Group 2 -->
+                <div class="card-panel p-6 rounded-xl border-t-4 border-indigo-600 hover:shadow-lg transition-all">
+                    <h4 class="font-bold text-slate-900 mb-3 flex items-center gap-2"><span class="bg-indigo-100 text-indigo-800 rounded px-2 py-0.5 text-xs">Group 2</span> Power of Buyers</h4>
+                    <ul class="text-sm text-slate-600 space-y-2 list-disc list-inside">
+                        <li>Describe the typical car buyer's power.</li>
+                        <li>How has Tesla's direct-to-consumer model affected this?</li>
+                        <li>Consider individual vs. fleet buyers (e.g., Hertz).</li>
+                    </ul>
+                </div>
+
+                <!-- Group 3 -->
+                <div class="card-panel p-6 rounded-xl border-t-4 border-indigo-600 hover:shadow-lg transition-all">
+                    <h4 class="font-bold text-slate-900 mb-3 flex items-center gap-2"><span class="bg-indigo-100 text-indigo-800 rounded px-2 py-0.5 text-xs">Group 3</span> Suppliers</h4>
+                    <ul class="text-sm text-slate-600 space-y-2 list-disc list-inside">
+                        <li>How powerful are traditional auto suppliers?</li>
+                        <li>Analyze Tesla's vertical integration strategy.</li>
+                        <li>What are the risks and benefits of this strategy?</li>
+                    </ul>
+                </div>
+
+                <!-- Group 4 -->
+                <div class="card-panel p-6 rounded-xl border-t-4 border-indigo-600 hover:shadow-lg transition-all">
+                    <h4 class="font-bold text-slate-900 mb-3 flex items-center gap-2"><span class="bg-indigo-100 text-indigo-800 rounded px-2 py-0.5 text-xs">Group 4</span> Substitutes</h4>
+                    <ul class="text-sm text-slate-600 space-y-2 list-disc list-inside">
+                        <li>What are the primary substitutes for owning a car?</li>
+                        <li>How does ride-sharing affect the industry?</li>
+                        <li>How does Tesla's 'Master Plan, Part Deux' address this?</li>
+                    </ul>
+                </div>
+
+                <!-- Group 5 -->
+                <div class="card-panel p-6 rounded-xl border-t-4 border-indigo-600 hover:shadow-lg transition-all">
+                    <h4 class="font-bold text-slate-900 mb-3 flex items-center gap-2"><span class="bg-indigo-100 text-indigo-800 rounded px-2 py-0.5 text-xs">Group 5</span> Rivalry</h4>
+                    <ul class="text-sm text-slate-600 space-y-2 list-disc list-inside">
+                        <li>Describe rivalry in the traditional auto industry.</li>
+                        <li>How has Tesla changed the basis of competition?</li>
+                        <li>Who are Tesla's most significant rivals today?</li>
+                    </ul>
+                </div>
+
+                <!-- Bonus -->
+                <div class="card-panel p-6 rounded-xl border-t-4 border-yellow-500 bg-yellow-50/50 hover:shadow-lg transition-all">
+                    <h4 class="font-bold text-slate-900 mb-3 flex items-center gap-2"><span class="bg-yellow-100 text-yellow-800 rounded px-2 py-0.5 text-xs">Bonus</span> Complementors</h4>
+                    <ul class="text-sm text-slate-600 space-y-2 list-disc list-inside">
+                        <li>What are key complementors for Tesla?</li>
+                        <li>How has Tesla used its Supercharger network strategically?</li>
+                        <li>How do government incentives act as a complement?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUIZ SECTION -->
+    <section id="quiz" class="py-24 px-6 bg-secondary-bg border-t border-slate-200">
+        <div class="max-w-3xl mx-auto text-center fade-up">
+             <div class="inline-flex items-center gap-2 text-blue-900 font-bold tracking-wider text-xs uppercase mb-2">
+                <i class="fa-solid fa-graduation-cap"></i> Check Your Understanding
+            </div>
+            <h2 class="text-3xl font-serif font-bold mb-8 text-slate-900">The Strategist's Challenge</h2>
+            
+            <div id="quiz-container" class="bg-white p-10 rounded-2xl border border-slate-200 text-left shadow-xl relative">
+                <!-- JS will inject question here -->
+            </div>
+
+            <div class="mt-8 flex justify-center gap-4">
+                <button onclick="nextQuestion()" class="px-8 py-3 bg-slate-900 hover:bg-blue-800 text-white font-semibold rounded-full shadow-lg transition-all transform hover:-translate-y-1">
+                    Next Scenario
+                </button>
+            </div>
+            
+            <div id="quiz-feedback" class="mt-6 hidden">
+                <!-- Feedback text -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-8 text-center text-sm text-slate-400">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0 flex items-center justify-center gap-2">
+                © Dr. Swapnil Sahoo 2025 | All Rights Reserved
+                <i class="fas fa-chess-knight text-slate-300"></i>
+            </div>
+             <div class="flex space-x-6 items-center">
+                <a href="https://swapnilsahoo.com" target="_blank" class="text-slate-400 hover:text-teal-600 transition-colors" title="Website"><i class="fas fa-globe"></i></a>
+                <a href="#" class="text-slate-400 hover:text-blue-400 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-slate-400 hover:text-pink-600 transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-slate-400 hover:text-blue-600 transition-colors"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.chess.com/member/theswapnilsahoo" target="_blank" class="text-slate-400 hover:text-green-600 transition-colors text-lg" title="Play Chess">
+                    <i class="fas fa-chess-king"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripting -->
+    <script>
+        // --- 1. Chart.js for Profitability (Updated LTM 2025 Data) ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('profitChart').getContext('2d');
+            
+            // Selected representative industries to show the "Spectrum" clearly
+            const chartLabels = [
+                'Tobacco', 
+                'Telecom Equipment',
+                'Software (System)', 
+                'Semiconductor', 
+                'Pharma', 
+                'Healthcare Products',
+                'Retail (General)',
+                'Restaurants', 
+                'Hotels/Gaming', 
+                'Railroads',
+                'Oil & Gas (Prod)',
+                'Airlines', 
+                'Auto & Truck', 
+                'Coal'
+            ];
+
+            // Specific LTM 2025 Data Points
+            const chartData = [
+                68.11, // Tobacco
+                52.73, // Telecom Eq
+                50.17, // Software
+                41.83, // Semiconductor
+                29.68, // Pharma
+                22.27, // Healthcare Products
+                20.60, // Retail General
+                18.94, // Restaurants
+                15.84, // Hotels
+                14.24, // Railroads
+                12.35, // Oil/Gas
+                6.56,  // Airlines
+                2.62,  // Auto
+                -34.87 // Coal
+            ];
+
+            // Dynamic Coloring Logic
+            const barColors = chartData.map(val => {
+                if(val >= 40) return '#0f766e'; // High (Teal)
+                if(val >= 20) return '#0ea5e9'; // Good (Blue)
+                if(val >= 10) return '#f59e0b'; // Avg (Amber)
+                if(val >= 0) return '#f97316';  // Low (Orange)
+                return '#ef4444'; // Negative (Red)
+            });
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: chartLabels,
+                    datasets: [{
+                        label: 'LTM ROIC % (2025)',
+                        data: chartData, 
+                        backgroundColor: barColors,
+                        borderRadius: 4,
+                        barPercentage: 0.7
+                    }]
+                },
+                options: {
+                    indexAxis: 'y', // Horizontal bars for readability
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#1e293b',
+                            padding: 16,
+                            titleFont: { family: 'Satoshi', size: 14 },
+                            bodyFont: { family: 'Satoshi', size: 14 },
+                            callbacks: {
+                                label: function(context) {
+                                    return context.raw + '% Return on Capital';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            grid: { display: true, color: '#f1f5f9', drawBorder: false },
+                            title: { display: true, text: 'Return on Invested Capital (%)' }
+                        },
+                        y: {
+                            grid: { display: false },
+                            ticks: { font: { family: 'Satoshi', weight: '600' }, color: '#334155' }
+                        }
+                    }
+                }
+            });
+        });
+
+        // --- 2. 5 Forces Data & Logic ---
+        const forceData = {
+            entrants: {
+                title: "Threat of New Entrants",
+                question: "How high is the castle wall?",
+                definition: "New entrants bring new capacity and a desire for market share, which puts pressure on prices, costs, and the rate of investment necessary to compete.",
+                factors: ["Supply-side economies of scale", "Network effects", "Customer switching costs", "Capital requirements", "Government policy"],
+                example: "<strong>Nvidia Context:</strong> Designing a chip costs $500M+ (High Barrier). But startups like Cerebras are trying. <br><br><strong>India Context:</strong> In UPI apps, barriers are low technically, but high regulatory compliance acts as a barrier."
+            },
+            rivalry: {
+                title: "Rivalry Among Existing Competitors",
+                question: "Is it a price war or a value war?",
+                definition: "High rivalry limits the profitability of an industry. The degree to which rivalry drives down an industry's profit potential depends on the intensity with which companies compete and on the basis on which they compete.",
+                factors: ["Number of competitors", "Industry growth rate", "Exit barriers", "Lack of differentiation"],
+                example: "<strong>Nvidia Context:</strong> AMD is the main rival. But for now, Nvidia is so far ahead, rivalry is 'polite'. <br><br><strong>India Context:</strong> Telecom (Jio vs Airtel) was a bloodbath (Price War) until consolidation happened."
+            },
+            substitutes: {
+                title: "Threat of Substitutes",
+                question: "What is the 'real' job to be done?",
+                definition: "A substitute performs the same or a similar function as an industry's product by a different means. Substitutes place a ceiling on prices.",
+                factors: ["Relative price/performance of substitute", "Switching costs to substitute", "Buyer propensity to substitute"],
+                example: "<strong>Nvidia Context:</strong> Cloud Providers (Google/AWS) making their own chips. <br><br><strong>India Context:</strong> For Airlines, 'Zoom/Teams' is a substitute for business travel, not trains."
+            },
+            suppliers: {
+                title: "Bargaining Power of Suppliers",
+                question: "Who holds the bottleneck?",
+                definition: "Powerful suppliers capture more of the value for themselves by charging higher prices, limiting quality or services, or shifting costs to industry participants.",
+                factors: ["Supplier concentration", "Switching costs", "Forward integration threat", "Uniqueness of input"],
+                example: "<strong>Nvidia Context:</strong> TSMC is the <em>sole</em> supplier of advanced packaging. They have immense power. Nvidia cannot just 'switch'."
+            },
+            buyers: {
+                title: "Bargaining Power of Buyers",
+                question: "Do customers have a choice?",
+                definition: "Powerful buyers can force down prices, demand better quality or more service (driving up costs), and play industry participants off against one another.",
+                factors: ["Buyer volume", "Standardized products", "Low switching costs", "Price sensitivity"],
+                example: "<strong>Nvidia Context:</strong> Buyers (Microsoft/Meta) are huge, but they are desperate for chips. Currently, Buyer Power is LOW. <br><br><strong>India Context:</strong> In Quick Commerce, you (the buyer) have 3 apps installed. You switch instantly for a ₹10 discount. Buyer Power is HIGH."
+            }
+        };
+
+        function selectForce(forceKey) {
+            const data = forceData[forceKey];
+            const panel = document.getElementById('force-detail-panel');
+            
+            panel.innerHTML = `
+                <div class="animate-fade-in-up">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="text-blue-600 font-mono text-xs uppercase tracking-widest border border-blue-200 px-2 py-1 rounded bg-blue-50">Force Analysis</span>
+                    </div>
+                    <h3 class="text-3xl font-serif font-bold text-slate-900 mb-4">${data.title}</h3>
+                    <p class="text-xl font-serif italic text-blue-800 mb-8 border-l-4 border-blue-500 pl-6 py-2 bg-blue-50/50 rounded-r">"${data.question}"</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-10">
+                        <div>
+                            <p class="text-slate-600 mb-6 leading-relaxed text-sm">${data.definition}</p>
+                            <h4 class="font-bold text-slate-900 mb-3 text-xs uppercase tracking-wide font-mono">Key Determinants</h4>
+                            <ul class="list-disc list-inside text-sm text-slate-600 space-y-2 pl-2 marker:text-blue-500">
+                                ${data.factors.map(f => `<li>${f}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-sm">
+                            <h4 class="font-bold text-slate-900 mb-4 flex items-center gap-2 font-serif"><span class="w-2 h-2 rounded-full bg-blue-500"></span> Contemporary Reality</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed">${data.example}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Auto-select rivalry on load
+        selectForce('rivalry');
+
+        // --- 3. Quiz Logic ---
+        const questions = [
+            {
+                q: "A new startup, 'ChipX', wants to compete with Nvidia. They have a faster chip design. According to the Five Forces, what is their biggest hurdle?",
+                options: [
+                    "Rivalry from AMD",
+                    "Power of Buyers (Microsoft)",
+                    "Threat of Substitutes",
+                    "Barriers to Entry (Software Ecosystem/CUDA)"
+                ],
+                correct: 3,
+                feedback: "Correct! Nvidia's 'CUDA' software ecosystem creates a massive network effect and switching cost. Even with a faster chip, ChipX faces the 'Entry Barrier' of software compatibility."
+            },
+            {
+                q: "Indian Quick Commerce (Zepto/Blinkit) is burning cash. Customers switch apps for small discounts. What force explains this profit squeeze?",
+                options: [
+                    "High Supplier Power",
+                    "High Buyer Power & Rivalry",
+                    "Low Threat of Entrants",
+                    "High Threat of Substitutes"
+                ],
+                correct: 1,
+                feedback: "Spot on. When buyers (you) have zero switching costs and can force prices down, and competitors match every move (Rivalry), profits evaporate."
+            },
+            {
+                q: "Why did Michael Porter say 'Operational Effectiveness is NOT Strategy'?",
+                options: [
+                    "Because operations are easy",
+                    "Because you can just copy best practices (Convergence)",
+                    "Because strategy is about marketing",
+                    "Because efficiency doesn't matter"
+                ],
+                correct: 1,
+                feedback: "Exactly. If you just copy 'Best Practices', you look exactly like your competitor. Strategy is about doing things *differently*, not just better."
+            }
+        ];
+
+        let currentQ = 0;
+
+        function loadQuestion() {
+            const q = questions[currentQ];
+            const container = document.getElementById('quiz-container');
+            const feedback = document.getElementById('quiz-feedback');
+            
+            feedback.classList.add('hidden'); 
+            
+            let html = `<h3 class="text-2xl font-bold text-slate-900 mb-8 font-serif">Scenario ${currentQ + 1}: ${q.q}</h3><div class="space-y-4">`;
+            
+            q.options.forEach((opt, idx) => {
+                html += `
+                    <button onclick="checkAnswer(${idx})" class="w-full text-left p-4 rounded-xl border border-slate-200 hover:bg-blue-50 hover:border-blue-500 transition-all font-medium text-slate-700 flex items-center gap-4 group">
+                        <span class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center font-bold text-slate-400 group-hover:bg-blue-200 group-hover:text-blue-800 transition-colors">${String.fromCharCode(65 + idx)}</span>
+                        ${opt}
+                    </button>
+                `;
+            });
+            html += `</div>`;
+            container.innerHTML = html;
+        }
+
+        function checkAnswer(selectedIdx) {
+            const q = questions[currentQ];
+            const feedback = document.getElementById('quiz-feedback');
+            
+            if (selectedIdx === q.correct) {
+                feedback.innerHTML = `<div class="p-6 bg-green-50 text-green-900 rounded-xl border border-green-200 flex items-start gap-4"><div class="text-2xl mt-1">✅</div><div><strong class="font-serif text-lg">Correct!</strong><br><span class="text-sm opacity-90">${q.feedback}</span></div></div>`;
+            } else {
+                feedback.innerHTML = `<div class="p-6 bg-red-50 text-red-900 rounded-xl border border-red-200 flex items-start gap-4"><div class="text-2xl mt-1">❌</div><div><strong class="font-serif text-lg">Think again.</strong><br><span class="text-sm opacity-90">Review the forces and try the next one.</span></div></div>`;
+            }
+            feedback.classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            if (currentQ < questions.length - 1) {
+                currentQ++;
+                loadQuestion();
+            } else {
+                document.getElementById('quiz-container').innerHTML = `<div class="text-center py-12"><div class="text-6xl mb-6 text-blue-600">🎓</div><h3 class="text-3xl font-bold text-slate-900 mb-4 font-serif">Analysis Complete.</h3><p class="text-slate-600 max-w-md mx-auto">You have navigated the complexities of industry structure. You are ready for the class discussion.</p></div>`;
+                document.getElementById('quiz-feedback').classList.add('hidden');
+            }
+        }
+
+        // Init Quiz
+        loadQuestion();
+
+        // Scroll Progress
+        window.onscroll = function() {
+            let h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            document.getElementById("progress-bar").style.width = (window.scrollY/h)*100 + "%";
+            
+            // Fade Up Logic
+            document.querySelectorAll('.fade-up').forEach(el => {
+                if(el.getBoundingClientRect().top < window.innerHeight - 50) {
+                    el.classList.add('visible');
+                }
+            });
+        };
+    </script>
+</body>
+</html>

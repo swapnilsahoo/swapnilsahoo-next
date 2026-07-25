@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <link rel="icon" href="superman.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Swapnil Sahoo | Strategy & Entrepreneurship</title>
+    <meta name="description" content="The academic and professional portfolio of Dr. Swapnil Sahoo, focusing on strategy, innovation, and entrepreneurial resourcefulness.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <style>
+    /* ---------- BACKGROUND + MOTION (white) ---------- */
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+        color: #000000; /* --- User Request: Body text color to black --- */
+    }
+
+        /* --- FORCE WHITE TEXT FOR GALLERY CAPTIONS --- */
+.swiper-slide p {
+    color: #FFFFFF !important;
+}
+
+        /* --- FORCE WHITE TEXT FOR BUTTONS --- */
+a.bg-sky-500,
+a.bg-green-500 {
+    color: #FFFFFF !important;
+}
+    /* Animated white blur shapes */
+    .animated-background {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+        z-index: -1; pointer-events: none;
+        background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(251,253,255,0.95) 100%);
+        background-image:
+            radial-gradient(600px 420px at 8% 30%, rgba(255,255,255,0.95), transparent 35%),
+            radial-gradient(520px 320px at 88% 70%, rgba(255,255,255,0.85), transparent 30%),
+            radial-gradient(420px 260px at 50% 10%, rgba(255,255,255,0.82), transparent 28%);
+        filter: blur(36px);
+        transform-origin: center;
+        animation: move-gradient 20s infinite ease-in-out;
+    }
+    @keyframes move-gradient {
+        0%   { transform: translate(-4%, -4%) scale(1) rotate(0deg); opacity: 0.92; }
+        50%  { transform: translate(4%, 4%) scale(1.06) rotate(180deg); opacity: 0.98; }
+        100% { transform: translate(-4%, -4%) scale(1) rotate(360deg); opacity: 0.92; }
+    }
+
+    /* ---------- TEXT & CARD STYLING (User Requests) ---------- */
+    
+    /* --- Headings color --- */
+    h1, h2, h3, .font-semibold.text-sky-300 {
+        color: #0064FF !important;
+    }
+
+    /* --- User Request: Body text color to black --- */
+    /* Target specific paragraphs that were previously blue */
+    .text-blue-100, .text-blue-200, .text-blue-300\/50, .text-blue-300\/70, .text-sm, .text-lg, .leading-relaxed {
+        color: #000000 !important;
+    }
+    .text-blue-200.mt-2 { /* Carousel text, keep it white for visibility on image */
+        color: #FFFFFF !important;
+    }
+    
+    /* --- Course session blocks styling --- */
+    #teaching .grid a {
+        background-color: #0064FF !important;
+    }
+    #teaching .grid a h3 {
+        color: #FFFFFF !important;
+    }
+    
+    .blue-glass-card {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 100, 255, 0.1);
+        border-radius: 1rem;
+        box-shadow: 0 6px 22px rgba(0, 100, 255, 0.05);
+    }
+    .fade-in-section {
+        opacity: 0; transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .fade-in-section.is-visible {
+        opacity: 1; transform: translateY(0);
+    }
+    .social-icon {
+        fill: currentColor; width: 1.25rem; height: 1.25rem;
+        transition: color 0.3s;
+        color: #000000;
+    }
+    .social-icon:hover { color: #0064FF; }
+    .blue-glass-card .font-semibold.text-blue-100 {
+        color: #0064FF !important;
+    }
+
+    /* Carousel Controls */
+    .swiper-button-next, .swiper-button-prev { color: #0064FF !important; transition: color 0.3s; }
+    .swiper-button-next:hover, .swiper-button-prev:hover { color: #000000 !important; }
+    .swiper-pagination-bullet-active { background: #0064FF !important; }
+    
+    /* Navigation Link Color */
+    nav a { color: #000000; }
+    nav a:hover { color: #0064FF; }
+
+    /* Chat widget and buttons */
+    #chat-icon-btn { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background-color: #0064FF; border-radius: 50%; border: none; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 9999; transition: transform 0.2s ease-in-out, background-color 0.2s; }
+    #chat-icon-btn:hover { transform: scale(1.1); background-color: #00C3FF; }
+    #chat-icon-btn svg { width: 32px; height: 32px; color: white; }
+    #chat-container { position: fixed; bottom: 100px; right: 25px; width: 90%; max-width: 380px; height: 70vh; max-height: 600px; background: #ffffff; border-radius: 16px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); z-index: 10000; overflow: hidden; display: flex; flex-direction: column; opacity: 0; transform: translateY(20px); pointer-events: none; transition: opacity 0.3s ease, transform 0.3s ease; }
+    #chat-container.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    #chat-container gradio-app { width: 100%; height: 100%; }
+    #close-chat-btn { position: absolute; top: 8px; right: 8px; width: 30px; height: 30px; background: rgba(0, 0, 0, 0.06); border: none; border-radius: 50%; color: #333; font-size: 20px; font-weight: bold; line-height: 30px; text-align: center; cursor: pointer; z-index: 10001; }
+    #close-chat-btn:hover { background: rgba(0, 0, 0, 0.12); }
+
+    </style>
+</head>
+<body class="antialiased">
+    <div class="animated-background"></div>
+
+    <header class="py-3 text-center">
+        <div class="container mx-auto px-6 flex justify-between items-center text-sm">
+            <p class="font-medium">© Dr. Swapnil Sahoo 2025 | All Rights Reserved</p>
+            <div class="flex items-center space-x-4">
+                <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" aria-label="X Profile"><svg class="social-icon" viewBox="0 0 16 16"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/></svg></a>
+                <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile"><svg class="social-icon" viewBox="0 0 16 16"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8s.01 2.444.048 3.297c.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.297-.048c.852-.04 1.433-.174 1.942-.372.526-.205.972-.478 1.417-.923.445-.444.718-.891.923-1.417.198-.51.333-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.444-.048-3.297c-.04-.852-.174-1.433-.372-1.942a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.09-.333-1.942-.372C10.445.01 10.173 0 8 0zm0 1.442c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.282.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.598.92c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.389-.009-3.232-.047c-.78-.036-1.203-.166-1.485-.276a2.47 2.47 0 0 1-.92-.598 2.47 2.47 0 0 1-.598-.92c-.11-.28-.24-.705-.276-1.485C1.44 10.389 1.442 10.136 1.442 8s.002-2.389.047-3.232c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.843-.038 1.096-.047 3.232-.047zM8 3.882a4.108 4.108 0 1 0 0 8.216 4.108 4.108 0 0 0 0-8.216zm0 6.772A2.664 2.664 0 1 1 8 5.328a2.664 2.664 0 0 1 0 5.328zm4.965-6.402a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92z"/></svg></a>
+                <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><svg class="social-icon" viewBox="0 0 18 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.482-.635 1.482-1.414s-.645-1.414-1.482-1.414S2.54 3.1 2.54 3.882s.645 1.414 1.203 1.414zm7.258 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.873h2.443V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/></svg></a>
+            </div>
+        </div>
+    </header>
+
+    <nav class="blue-glass-card sticky top-4 z-50 mx-auto max-w-3xl"> <div class="container mx-auto px-6 py-3 flex items-center justify-center space-x-5 md:space-x-8 text-sm font-medium">
+            <a href="#about" class="transition-colors">About</a>
+            <a href="#gallery" class="transition-colors">Gallery</a>
+            <a href="#publications" class="transition-colors">Publications</a>
+            <a href="#conferences" class="transition-colors">Conferences</a>
+            <a href="#teaching" class="transition-colors">Teaching</a>
+            <a href="blogs.html" class="transition-colors">Blog</a>
+            <a href="#mdp" class="transition-colors">MDP</a>
+        </div>
+    </nav>
+    
+    <main class="container mx-auto px-6 py-12">
+        <header class="mb-12 text-center fade-in-section">
+              <h1 class="text-4xl md:text-5xl font-extrabold">Strategy & Entrepreneurship</h1>
+              <p class="text-lg mt-2">The Academic & Professional Portfolio of Dr. Swapnil Sahoo</p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <aside class="lg:col-span-1 space-y-8">
+                <div class="blue-glass-card p-6 text-center fade-in-section">
+                    <img src="profile_pic.jpg" alt="Dr. Swapnil Sahoo" class="mx-auto rounded-full w-32 h-32 object-cover mb-4 border-4 border-blue-900/50 shadow-md">
+                    <h2 class="text-xl font-bold">Dr. Swapnil Sahoo</h2>
+                    <p class="text-sm">Assistant Professor, Great Lakes Institute of Management, Gurgaon</p>
+                    <!-- --- User Request: Button text to black --- -->
+                    <a href="mailto:swapnil.sahoo@greatlakes.edu.in" class="mt-4 inline-block bg-sky-500 text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-sky-600 transition-colors">Contact Me</a>
+                </div>
+
+                <div class="blue-glass-card p-6 fade-in-section">
+                    <h3 class="font-bold border-b border-blue-300/20 pb-2 mb-3">Education</h3>
+                    <ul class="text-sm space-y-2">
+                        <li><b>Ph.D. (Entrepreneurship & Innovation)</b>, XLRI Jamshedpur</li>
+                        <li><b>MBA (Finance & Marketing)</b>, Xavier Institute of Management (XIMB)</li>
+                        <li><b>B.Tech (Electronics & Telecom)</b>, Utkal University (ITER)</li>
+                    </ul>
+                </div>
+
+                <div class="blue-glass-card p-6 fade-in-section">
+                    <h3 class="font-bold border-b border-blue-300/20 pb-2 mb-3">Research Interests</h3>
+                    <ul class="text-sm space-y-2">
+                        <li>▶ Entrepreneurial Resourcefulness</li>
+                        <li>▶ Neurodiversity & Dynamic Capabilities</li>
+                        <li>▶ Frugal Innovation, Jugaad, Bricolage</li>
+                        <li>▶ Effectuation & Family Business Dynamics</li>
+                    </ul>
+                </div>
+
+                <div class="blue-glass-card p-6 fade-in-section">
+                    <h3 class="font-bold border-b border-blue-300/20 pb-2 mb-3">1-on-1 Mentoring Session</h3>
+                    <p class="text-sm mb-4">Discuss your career path, research ideas, or get strategic advice.</p>
+                    <!-- --- User Request: Button text to black --- -->
+                    <a href="https://calendar.app.google/L7zMAVEUFu2rumyf9" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="w-full inline-block bg-green-500 text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-green-600 transition-colors text-center">
+                        Book a Session
+                    </a>
+                </div>
+                <div class="blue-glass-card p-6 fade-in-section">
+                    <h3 class="font-bold border-b border-blue-300/20 pb-2 mb-3">Subscribe to my newsletter</h3>
+                    <p class="text-sm mb-4">AI Safety & Security Researcher. AI Influencer.  My opinions are now yours! For talks/interviews </p>
+                    <!-- --- User Request: Button text to black --- -->
+                    <a href="https://swapnilsahoo.substack.com/" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="w-full inline-block bg-green-500 text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-green-600 transition-colors text-center">
+                        Subscribe
+                    </a>
+                </div>
+            </aside>
+
+            <div class="lg:col-span-2 space-y-8">
+                <section id="about" class="blue-glass-card p-8 fade-in-section">
+                    <h2 class="text-2xl font-bold mb-4">About Me</h2>
+                    <div class="space-y-4 leading-relaxed text-sm">
+                        <p>I hold a Ph.D. from XLRI Jamshedpur, specializing in Entrepreneurship and Innovation. With 17 years of extensive corporate experience, I have held senior strategic roles at leading organizations such as Wipro, Accenture, Cognizant, and Mahindra. Most recently, I served as Global Partnership Head at 42Gears Mobility Pvt Ltd, excelling in building C-suite relationships across Europe, the Middle East, and Africa.</p>
+                        <p>My research explores how businesses creatively leverage limited resources to drive growth and innovation. An advocate for continuous learning, I foster a collaborative and mentoring-oriented approach in both academia and professional spaces.</p>
+                    </div>
+                </section>
+
+                <section id="gallery" class="blue-glass-card p-8 fade-in-section">
+    <h2 class="text-2xl font-bold mb-4">Gallery</h2>
+    <div class="swiper mySwiper rounded-lg overflow-hidden">
+        <div class="swiper-wrapper">
+            <!-- AACSB image FIRST -->
+            <div class="swiper-slide">
+                <img src="gallery/AACSB.jpeg" alt="AACSB Peer Review Visit" class="object-contain w-full h-80 md:h-96" />
+                <p class="text-center text-sm mt-2 absolute bottom-2 left-0 right-0 bg-black/30 p-1 text-white">AACSB Peer Review Visit</p>
+            </div>
+            <div class="swiper-slide">
+                <img src="gallery/conference.jpg" alt="Speaking at AOM 2025" class="object-contain w-full h-80 md:h-96" />
+                <p class="text-center text-sm mt-2 absolute bottom-2 left-0 right-0 bg-black/30 p-1 text-white">Presenting at a Conference</p>
+            </div>
+            <div class="swiper-slide">
+                <img src="gallery/mdp.jpg" alt="MDP Session for IRS Officers" class="object-contain w-full h-80 md:h-96" />
+                <p class="text-center text-sm mt-2 absolute bottom-2 left-0 right-0 bg-black/30 p-1 text-white">Management Development Program Session</p>
+            </div>
+            <div class="swiper-slide">
+                <img src="gallery/award.jpg" alt="Award at IIM Kashipur" class="object-contain w-full h-80 md:h-96" />
+                <p class="text-center text-sm mt-2 absolute bottom-2 left-0 right-0 bg-black/30 p-1 text-white">Receiving Best Paper Award</p>
+            </div>
+            <div class="swiper-slide">
+                <img src="gallery/SPIC.jpg" alt="SPIC MACAY INAUGRATION" class="object-contain w-full h-80 md:h-96" />
+                <p class="text-center text-sm mt-2 absolute bottom-2 left-0 right-0 bg-black/30 p-1 text-white">SPIC MACAY INAUGRATION @GLIM</p>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+</section>
+
+                <section id="publications" class="blue-glass-card p-8 fade-in-section">
+                    <h2 class="text-2xl font-bold mb-4">Publications</h2>
+                    <h3 class="font-semibold text-sky-300 mb-2">Book Chapters</h3>
+                    <ul class="space-y-4 mb-6">
+                        <li><a href="https://link.springer.com/chapter/10.1007/978-3-031-92139-1_1" class="block p-3 rounded-lg hover:bg-blue-900/30 transition-colors" target="_blank" rel="noopener noreferrer"><p class="font-semibold text-blue-100">“An Overview of Ethics and the Indian Philosophy”</p><p class="text-sm mt-1">Applied Ethics and Rationality (Studies in Applied Philosophy, Epistemology and Rational Ethics, Vol. 74)</p></a></li>
+                        <li><a href="https://lnkd.in/eE-pgkqi" class="block p-3 rounded-lg hover:bg-blue-900/30 transition-colors" target="_blank" rel="noopener noreferrer"><p class="font-semibold text-blue-100">“Pulling the Chariot Together: Jagannath, Collective Spirituality, and the Future of Inclusive Organizations(Chapter 6, pp. 49–58)”</p><p class="text-sm mt-1">Inclusive Spirituality and Ethical Leadership: Reimagining Business and Society for Our Collective Flourishing </p></a></li>
+                    </ul>
+                    <h3 class="font-semibold text-sky-300 mb-2">Journal Publications</h3>
+                    <ul class="space-y-4 mb-6">
+                        <li><a href="https://link.springer.com/article/10.1007/s10961-024-10098-2" class="block p-3 rounded-lg hover:bg-blue-900/30 transition-colors" target="_blank" rel="noopener noreferrer"><p class="font-semibold text-blue-100">"Impact of Institutional Pressures and Security on Blockchain Technology Adoption..."</p><p class="text-sm mt-1">The Journal of Technology Transfer</p></a></li>
+                    </ul>
+                    <h3 class="font-semibold text-sky-300 mb-2">Mainstream Press</h3>
+                    <ul class="space-y-2 text-sm list-disc list-inside">
+                        <li><b>Quoted in Story:</b> “Depositing Big Cash Sums? Tax Rules, I-T Notices...", Business Standard, July 10, 2025.</li>
+                        <li><b>Quoted in Story:</b> “Why Earning Just Over Rs. 50L Can Be a Net Loss”, GoodReturns, July 8, 2025.</li>
+                        <li><b>Co-authored Article:</b> “Neuroscience of Learning in an AI Era”, BW Education, July 3, 2025.</li>
+                        <li><b>Quoted in a Story:</b> "Who Is Poor?", India Today, July 3, 2025.</li>
+                        <li><b>Quoted in a story:</b> “RBI MPC meeting highlights...”, Business Standard, June 3, 2025.</li>
+                        <li><b>Authored Article:</b> "How Entrepreneurs Are Building a More Secure Digital Future", DataQuest, Feb 10, 2025.</li>
+                    </ul>
+                </section>
+
+                <section id="conferences" class="blue-glass-card p-8 fade-in-section">
+                    <h2 class="text-2xl font-bold mb-4">Conferences & Presentations</h2>
+                    <ul class="space-y-3 text-sm list-disc list-inside">
+                        <li><b>"Conceptualising Family Business Resourcefulness"</b>, 85th Annual Meeting of the Academy of Management (AOM 2025), Copenhagen, Denmark.</li>
+                        <li><b>"Impact of Family Involvement on Sustainable Innovation"</b>, International Conference on Sustainable Business Management (SBM 2023), IIT Roorkee.</li>
+                        <li><b>"Bibliometrics Analysis of Family Firms Internationalization"</b>, 9th Management Doctoral Colloquium, IIT Kharagpur.</li>
+                        <li><b>"A Study of How Family Involvement Impacts Sustainable Innovation"</b> (Awarded Best Paper), MERC 2023, IIM Kashipur.</li>
+                        <li><b>"Exploring the Innovation Heritage"</b>, POMS India International Conference 2023, XLRI Jamshedpur.</li>
+                        <li><b>"Cultivating Trust... in Family Enterprises"</b>, International Industrial Relations Conference 2024, XLRI Jamshedpur.</li>
+                        <li><b>"Navigating the Maze: Corporate Bribery..."</b>, International Conference on “Enabling Social and Business Responsibility...", XLRI Jamshedpur.</li>
+                        <li><b>"Conceptualizing Family Business Resourcefulness (FBR)..."</b>, Doctoral Colloquium 2024 on Artificial Intelligence and Sustainability, XLRI Jamshedpur.</li>
+                    </ul>
+                </section>
+
+                <section id="teaching" class="blue-glass-card p-8 fade-in-section">
+                    <h2 class="text-2xl font-bold mb-4">Teaching & Professional Development</h2>
+                    
+                    <h3 class="font-semibold text-sky-300 mb-2">Course Sessions</h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                        <a href="Session1_What is Strategy_Porter_Minzberg_v3.html" class="block p-4 bg-blue-900/20 text-center rounded-lg hover:bg-blue-900/40 transition-colors border border-transparent hover:border-sky-400 whitespace-normal break-words"><h3 class="font-semibold text-sm">Session 1: What is Strategy?</h3></a>
+                        <a href="Session_2_Tesla_Exploration_v9.html" class="block p-4 bg-blue-900/20 text-center rounded-lg hover:bg-blue-900/40 transition-colors border border-transparent hover:border-sky-400 whitespace-normal break-words"><h3 class="font-semibold text-sm">Session 2: Strategy of Disruption</h3></a>
+                        <a href="Session3_Purpose_Values_Strategy_v7.html" class="block p-4 bg-blue-900/20 text-center rounded-lg hover:bg-blue-900/40 transition-colors border border-transparent hover:border-sky-400 whitespace-normal break-words"><h3 class="font-semibold text-sm">Session 3: Values, Purpose & BHAGs</h3></a>
+                        <a href="Session4_5forcesV1.html" class="block p-4 bg-blue-900/20 text-center rounded-lg hover:bg-blue-900/40 transition-colors border border-transparent hover:border-sky-400 whitespace-normal break-words"><h3 class="font-semibold text-sm">Session 4: External Industry Analysis</h3></a>
+                        <a href="teaching/Session_5_Internal_Firm_Analysis_v0.91.html" class="block p-4 bg-blue-900/20 text-center rounded-lg hover:bg-blue-900/40 transition-colors border border-transparent hover:border-sky-400 whitespace-normal break-words"><h3 class="font-semibold text-sm">Session 5: Internal Firm Analysis</h3> </a>
+                        <a href="teaching/Session6_Business Strategy_Differentiation, CostLeadership_BlueOceans_v0.8.html" class="block p-4 bg-blue-900/20 text-center rounded-lg hover:bg-blue-900/40 transition-colors border border-transparent hover:border-sky-400 whitespace-normal break-words"><h3 class="font-semibold text-sm">Session 6: Business Strategy - Differentiation, CostLeadership & Blue Ocean</h3> </a>
+                        <a href="teaching/Session_7_Business_Strategy_Innovation_Entrepreneurship_Platforms_V0.003.html" class="block p-4 bg-blue-900/20 text-center rounded-lg hover:bg-blue-900/40 transition-colors border border-transparent hover:border-sky-400 whitespace-normal break-words"><h3 class="font-semibold text-sm">Session 7: Business Strategy - Innovation & Entrepreneurship Platforms</h3> </a>
+                        <a href="teaching/Session8_Corporate Strategy_v0.8.html" class="block p-4 bg-blue-900/20 text-center rounded-lg hover:bg-blue-900/40 transition-colors border border-transparent hover:border-sky-400 whitespace-normal break-words"><h3 class="font-semibold text-sm">Session 8: Corporate Strategy- Vertical Integration, Horizontal Diversification & Geographic Scope</h3> </a>
+                        <a href="teaching/Session_9_Corporate_Strategy_Alliances_Mergers_Acquisitions_v0.91.html" class="block p-4 bg-blue-900/20 text-center rounded-lg hover:bg-blue-900/40 transition-colors border border-transparent hover:border-sky-400 whitespace-normal break-words"><h3 class="font-semibold text-sm">Session 9: Corporate Strategy,Strategic Alliances, Mergers & Acquisitions</h3> </a>
+                        <a href="teaching/Session_10_Global_Strategy_v0.84.html" class="block p-4 bg-blue-900/20 text-center rounded-lg hover:bg-blue-900/40 transition-colors border border-transparent hover:border-sky-400 whitespace-normal break-words"><h3 class="font-semibold text-sm">Session 10: Global Corporate Strategy</h3> </a>
+                        <a href="teaching/Session_11_Organizational_Design_Structure_Culture_Control_v0.297.html" class="block p-4 bg-blue-900/20 text-center rounded-lg hover:bg-blue-900/40 transition-colors border border-transparent hover:border-sky-400 whitespace-normal break-words"><h3 class="font-semibold text-sm">Session 11: Organizational Design: Structure Culture & Control</h3> </a>
+                        <a href="teaching/Session_12_Corporate_Governance_Business_Ethics_Business_Models_V0.293.html" class="block p-4 bg-blue-900/20 text-center rounded-lg hover:bg-blue-900/40 transition-colors border border-transparent hover:border-sky-400 whitespace-normal break-words"><h3 class="font-semibold text-sm">Session 12: Corporate Governance: Business Ethics & Business Models</h3> </a>
+                        <a href="Internal Analysis_Session6_v1.html" class="block p-4 bg-blue-900/20 text-center rounded-lg hover:bg-blue-900/40 transition-colors border border-transparent hover:border-sky-400 whitespace-normal break-words"><h3 class="font-semibold text-sm">Internal Analysis</h3></a>
+                        <a href="EY_Young_Leaders_Finale_StrategyHub_v1.html" class="block p-4 bg-blue-900/20 text-center rounded-lg hover:bg-blue-900/40 transition-colors border border-transparent hover:border-sky-400 whitespace-normal break-words"><h3 class="font-semibold text-sm">EY Young Leaders Finale StrategyHub</h3></a>
+                        <a href="Strategy&OperationsConsulting_v4.html" class="block p-4 bg-blue-900/20 text-center rounded-lg hover:bg-blue-900/40 transition-colors border border-transparent hover:border-sky-400 whitespace-normal break-words"><h3 class="font-semibold text-sm">Strategy & Operations Consulting Prep</h3></a>
+                        <a href="The_Consulting_Interview_Playbook_A&M_v1" class="block p-4 bg-blue-900/20 text-center rounded-lg hover:bg-blue-900/40 transition-colors border border-transparent hover:border-sky-400 whitespace-normal break-words"><h3 class="font-semibold text-sm">The Consulting Interview Playbook</h3></a>
+                        <a href="ZS_Consultant_Preperation" class="block p-4 bg-blue-900/20 text-center rounded-lg hover:bg-blue-900/40 transition-colors border border-transparent hover:border-sky-400 whitespace-normal break-words"><h3 class="font-semibold text-sm">The Case/Guesstimate Consulting Interview Playbook</h3></a>
+                        <a href="Yash_Consultant_Preperation" class="block p-4 bg-blue-900/20 text-center rounded-lg hover:bg-blue-900/40 transition-colors border border-transparent hover:border-sky-400 whitespace-normal break-words"><h3 class="font-semibold text-sm">Yash_Consultant_Preperation</h3></a>
+                        <a href="The_Infosys_Techno-Functional_Playbook" class="block p-4 bg-blue-900/20 text-center rounded-lg hover:bg-blue-900/40 transition-colors border border-transparent hover:border-sky-400 whitespace-normal break-words"><h3 class="font-semibold text-sm">Cracking the Techno-Functional Consultant Interview</h3></a>
+                        <a href="teaching/case_hub.html" class="block p-4 bg-blue-900/20 text-center rounded-lg hover:bg-blue-900/40 transition-colors border border-transparent hover:border-sky-400 whitespace-normal break-words"><h3 class="font-semibold text-sm">Case Hub Consulting</h3></a>
+                    </div> 
+                </section>
+
+                <section id="mdp" class="blue-glass-card p-8 fade-in-section">
+                    <h2 class="text-2xl font-bold mb-4">Management Development Programs (MDPs)</h2>
+                    <p class="text-sm leading-relaxed mb-6">
+                        My MDPs are designed to equip senior leaders and high-potential managers with the frameworks and capabilities to navigate complex strategic landscapes. We focus on the full lifecycle of strategy, from formulation and alignment to implementation and control.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="font-semibold text-sky-300 mb-2">Module 1: Strategic Formulation & Leadership</h3>
+                            <ul class="space-y-2 text-sm list-disc list-inside">
+                                <li>Strategy Formulation Process</li>
+                                <li>Top-down and bottom-up strategy formulation</li>
+                                <li>Influence of key stakeholders on strategy formulation</li>
+                                <li>Strategic leadership</li>
+                                <li>Role of vision & mission: purposeful organization</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="font-semibold text-sky-300 mb-2">Module 2: Implementation & Organizational Design</h3>
+                            <ul class="space-y-2 text-sm list-disc list-inside">
+                                <li>Organizing for Implementation</li>
+                                <li>Relevance of organization capabilities for Implementation</li>
+                                <li>Role of Middle Managers in Strategy Implementation</li>
+                                <li>Organization Structure</li>
+                                <li>Resource allocation</li>
+                                <li>Organisational Alignment</li>
+                                <li>7S framework</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="font-semibold text-sky-300 mb-2">Module 3: Leading Teams & Managing Change</h3>
+                            <ul class="space-y-2 text-sm list-disc list-inside">
+                                <li>Communicating strategy</li>
+                                <li>Building Committed Teams & Right Team configuration</li>
+                                <li>Inspirational (affective) leadership</li>
+                                <li>Negotiation in problem solving</li>
+                                <li>Influencing tactics</li>
+                                <li>Change management</li>
+                                <li>Pervasive commitment</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="font-semibold text-sky-300 mb-2">Module 4: Performance Management & Control Systems</h3>
+                            <ul class="space-y-2 text-sm list-disc list-inside">
+                                <li>Balance Scorecard</li>
+                                <li>Management Control Systems</li>
+                                <li>Dashboards for the performance management system</li>
+                                <li>Finance versus operational control systems</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="font-semibold text-sky-300 mb-2">Module 5: Advanced Strategic Contexts</h3>
+                            <ul class="space-y-2 text-sm list-disc list-inside">
+                                <li>Implementation Illustration: Contextual Intelligence</li>
+                                <li>Innovation: Technology adoption</li>
+                                <li>Internationalization: Overcoming liability of newness</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-center py-10 mt-8">
+        <div class="flex items-center justify-center space-x-4 mb-4">
+            <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" aria-label="X Profile"><svg class="social-icon" viewBox="0 0 16 16"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/></svg></a>
+            <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile"><svg class="social-icon" viewBox="0 0 16 16"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8s.01 2.444.048 3.297c.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.297-.048c.852-.04 1.433-.174 1.942-.372.526-.205.972-.478 1.417-.923.445-.444.718-.891.923-1.417.198-.51.333-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.444-.048-3.297c-.04-.852-.174-1.433-.372-1.942a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.09-.333-1.942-.372C10.445.01 10.173 0 8 0zm0 1.442c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.282.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.598.92c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.389-.009-3.232-.047c-.78-.036-1.203-.166-1.485-.276a2.47 2.47 0 0 1-.92-.598 2.47 2.47 0 0 1-.598-.92c-.11-.28-.24-.705-.276-1.485C1.44 10.389 1.442 10.136 1.442 8s.002-2.389.047-3.232c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.843-.038 1.096-.047 3.232-.047zM8 3.882a4.108 4.108 0 1 0 0 8.216 4.108 4.108 0 0 0 0-8.216zm0 6.772A2.664 2.664 0 1 1 8 5.328a2.664 2.664 0 0 1 0 5.328zm4.965-6.402a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92z"/></svg></a>
+            <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><svg class="social-icon" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.482-.635 1.482-1.414s-.645-1.414-1.482-1.414S2.54 3.1 2.54 3.882s.645 1.414 1.203 1.414zm7.258 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.873h2.443V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/></svg></a>
+        </div>
+        <p class="text-sm">© Dr. Swapnil Sahoo 2025. All Rights Reserved.</p>
+    </footer>
+
+    <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/4.25.0/gradio.js"></script>
+    <div class="gradio-chat-widget">
+        <div id="chat-container" class="chat-container">
+            <button id="close-chat-btn" aria-label="Close Chat">&times;</button>
+            <gradio-app src="https://swapnilsahoo118514-personal.hf.space"></gradio-app>
+        </div>
+        <button id="chat-icon-btn" aria-label="Open Chat">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+        </button>
+    </div>
+
+    <script>
+        // Intersection Observer for fade-in sections
+        const sections = document.querySelectorAll('.fade-in-section');
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        sections.forEach(section => { observer.observe(section); });
+
+        // Gradio Chat Widget Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatIconButton = document.getElementById('chat-icon-btn');
+            const chatContainer = document.getElementById('chat-container');
+            const closeChatButton = document.getElementById('close-chat-btn');
+            chatIconButton.addEventListener('click', () => { chatContainer.classList.toggle('visible'); });
+            closeChatButton.addEventListener('click', () => { chatContainer.classList.remove('visible'); });
+        });
+        
+        // Initialize Swiper Carousel
+        var swiper = new Swiper(".mySwiper", {
+          loop: true,
+          autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+          },
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+        });
+    </script>
+   <a title="GDPR-compliant Web Analytics" href="https://clicky.com/101495447"><img alt="Clicky" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>
+<script async data-id="101495447" src="//static.getclicky.com/js"></script>
+<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101495447ns.gif" /></p></noscript>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

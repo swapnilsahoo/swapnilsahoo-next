@@ -1,0 +1,1794 @@
+<!DOCTYPE html>
+    <html lang="en" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Session 3: The 'Why' of Strategy - Vision, Purpose, and BHAGs</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        <style>
+            :root {
+                --header-height-desktop: 92px; 
+                --header-height-mobile: 52px;
+            }
+
+            body {
+                font-family: 'Inter', sans-serif;
+                background-color: #f8fafc; /* slate-50 */
+                color: #1f2937; /* gray-800 */
+                line-height: 1.6;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+            
+            html {
+                scroll-behavior: smooth;
+                scroll-padding-top: var(--header-height-mobile);
+            }
+            @media (min-width: 640px) {
+                html {
+                    scroll-padding-top: var(--header-height-desktop);
+                }
+            }
+
+            /* Header Elements */
+            #top-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 50; }
+            #main-nav-container { position: fixed; top: 40px; left: 0; right: 0; z-index: 40; }
+            @media (max-width: 639px) {
+                #main-nav-container { top: 0; }
+                #top-bar { display: none; }
+            }
+            
+            /* Main content padding to offset fixed header */
+            main {
+                padding-top: var(--header-height-mobile);
+            }
+            @media (min-width: 640px) {
+                main {
+                    padding-top: var(--header-height-desktop);
+                }
+            }
+
+            /* Navigation Links */
+            .active-nav { color: #2563eb; border-bottom-color: #2563eb; font-weight: 600; }
+            .nav-link { transition: all 0.2s ease-in-out; border-bottom: 2px solid transparent; padding-bottom: 4px; color: #4b5563; }
+            .nav-link:hover { color: #2563eb; border-bottom-color: #2563eb; }
+            
+            /* Card Styling */
+            .content-card {
+                background-color: #fff;
+                border-radius: 12px;
+                box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+                padding: 2rem;
+                margin-bottom: 2.5rem;
+                border-top: 4px solid #2563eb; /* Blue accent */
+                transition: all 0.3s ease-in-out;
+            }
+            .content-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            }
+            
+            /* Connector Styling */
+            .narrative-connector {
+                text-align: center;
+                font-weight: 700;
+                color: #475569; /* slate-600 */
+                margin: 3rem 0;
+                position: relative;
+                font-size: 1.25rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+            .narrative-connector::before, .narrative-connector::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                width: 35%;
+                height: 2px;
+                background: linear-gradient(to right, #f8fafc, #cbd5e1);
+            }
+            .narrative-connector::after { right: 0; background: linear-gradient(to left, #f8fafc, #cbd5e1); }
+            .narrative-connector span { background-color: #f8fafc; padding: 0 1.5rem; position: relative; z-index: 1; }
+            
+            /* Framework Styling (Yin-Yang) */
+            /* This container is now just for the static image */
+            .vision-framework-container {
+                background-color: #f9fafb; /* gray-50 */
+                padding: 1.5rem;
+                border-radius: 8px;
+                border: 1px solid #e5e7eb; /* gray-200 */
+            }
+            
+            @keyframes spin { 100% { transform: rotate(360deg); } }
+            @keyframes spin-reverse { 100% { transform: rotate(-360deg); } }
+
+            /* Simulation Styling */
+            .sim-container {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            @media (min-width: 1024px) {
+                .sim-container { flex-direction: row; justify-content: space-between; }
+            }
+            
+            .sim-column {
+                flex-basis: 32%;
+                background-color: #f9fafb;
+                border-radius: 8px;
+                padding: 1rem;
+                border: 1px dashed #e5e7eb;
+            }
+            .sim-column h4 { font-weight: 700; color: #111827; margin-bottom: 0.75rem; border-bottom: 2px solid #9ca3af; padding-bottom: 0.5rem; }
+            
+            .sim-item {
+                background-color: #fff;
+                border: 1px solid #d1d5db;
+                border-radius: 8px;
+                padding: 0.75rem 1rem;
+                margin-bottom: 0.75rem;
+                font-size: 0.875rem;
+                cursor: grab;
+                transition: all 0.2s ease;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            }
+            .sim-item:hover { box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-color: #3b82f6; }
+            .sim-item.dragging { opacity: 0.5; background: #eff6ff; }
+            .sim-item[data-id="why-1"] { border-left: 5px solid #ef4444; } /* Purpose */
+            .sim-item[data-id="why-2"] { border-left: 5px solid #f97316; } /* BHAG */
+            .sim-item[data-id="why-3"] { border-left: 5px solid #eab308; } /* Value */
+            
+            .sim-target {
+                background-color: #f3f4f6;
+                border: 2px dashed #9ca3af;
+                border-radius: 8px;
+                padding: 1.5rem;
+                margin-bottom: 1rem;
+                min-height: 100px;
+                transition: all 0.2s ease;
+            }
+            .sim-target h5 { font-weight: 600; color: #4b5563; margin-bottom: 0.5rem; }
+            .sim-target.over { background-color: #dbeafe; border-color: #3b82f6; }
+            
+            .sim-result {
+                visibility: hidden;
+                opacity: 0;
+                max-height: 0;
+                overflow: hidden;
+                background-color: #f0fdf4;
+                border: 1px solid #bbf7d0;
+                color: #166534;
+                padding: 0 1rem;
+                margin-top: 0.5rem;
+                border-radius: 8px;
+                font-size: 0.875rem;
+                transition: all 0.4s ease-out;
+            }
+            .sim-result.visible {
+                visibility: visible;
+                opacity: 1;
+                max-height: 150px;
+                padding: 1rem;
+                margin-top: 0.75rem;
+            }
+
+            /* Debate Simulation */
+            .debate-option {
+                background-color: #f9fafb;
+                border: 2px solid #e5e7eb;
+                border-radius: 8px;
+                padding: 1.25rem;
+                margin-bottom: 1rem;
+                cursor: pointer;
+                transition: all 0.2s ease-in-out;
+            }
+            .debate-option:hover {
+                border-color: #3b82f6;
+                background-color: #eff6ff;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            }
+            .debate-option.selected {
+                border-color: #1d4ed8;
+                background-color: #dbeafe;
+            }
+            .debate-analysis {
+                display: none;
+                background-color: #f3f4f6;
+                border-left: 4px solid #4b5563;
+                padding: 1rem;
+                margin-top: 1rem;
+                border-radius: 0 8px 8px 0;
+            }
+            .debate-analysis.visible {
+                display: block;
+            }
+
+            /* Chart Container */
+            .chart-container {
+                position: relative;
+                width: 100%;
+                max-width: 800px;
+                margin-left: auto;
+                margin-right: auto;
+                height: 400px;
+                max-height: 450px;
+                padding: 1rem;
+                background-color: #fff;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+            }
+            
+            /* EXACT ICON STYLES FROM TEMPLATE */
+            .top-bar-link svg, .footer-link svg { width: 1.125rem; height: 1.125rem; fill: currentColor; transition: color 0.2s ease-in-out; }
+            .hexagon-icon { position: relative; width: 28px; height: 28px; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3)); display: inline-block; vertical-align: middle; }
+            .hexagon-icon svg { width: 100%; height: 100%; animation: glow 2.5s infinite ease-in-out; }
+            .hexagon-path { stroke: #B91C1C; stroke-width: 1; } 
+            .hexagon-s { font-family: 'Georgia', serif; font-weight: bold; font-size: 48px; fill: #facc15; text-anchor: middle; dominant-baseline: central; }
+            @keyframes glow { 0%, 100% { filter: drop-shadow(0 0 4px rgba(239, 68, 68, 0.7)); } 50% { filter: drop-shadow(0 0 10px rgba(239, 68, 68, 1)); } }
+            
+            /* Modal Styling */
+            #modal { background-color: rgba(0, 0, 0, 0.7); }
+            #modal-content { max-height: calc(100vh - 4rem); }
+
+            /* Mobile Nav Select */
+            #mobile-nav {
+                -webkit-appearance: none; -moz-appearance: none; appearance: none;
+                background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M7 7l3-3 3 3m0 6l-3 3-3-3'/%3e%3c/svg%3e");
+                background-position: right 0.5rem center; background-repeat: no-repeat; background-size: 1.25em 1.25em;
+                padding: 0.5rem 2.5rem 0.5rem 0.75rem; border: 1px solid #d1d5db;
+            }
+
+            /* --- New Workshop: 5 Whys --- */
+            .five-whys-container {
+                background-color: #f9fafb;
+                border-radius: 8px;
+                padding: 1.5rem;
+                border: 1px dashed #e5e7eb;
+            }
+            .why-level {
+                display: flex;
+                align-items: center;
+                margin-bottom: 1rem;
+                transition: all 0.3s ease-out;
+            }
+            .why-label {
+                flex-shrink: 0;
+                font-weight: 600;
+                color: #4b5563;
+                margin-right: 1rem;
+                width: 80px;
+            }
+            .why-input {
+                width: 100%;
+                border: 1px solid #d1d5db;
+                border-radius: 6px;
+                padding: 0.5rem 0.75rem;
+                font-size: 0.875rem;
+                transition: border-color 0.2s, box-shadow 0.2s;
+            }
+            .why-input:focus {
+                outline: none;
+                border-color: #3b82f6;
+                box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+            }
+            .why-input:disabled {
+                background-color: #f3f4f6;
+                color: #6b7280;
+            }
+            .why-result {
+                max-height: 0;
+                opacity: 0;
+                overflow: hidden;
+                background-color: #f0fdf4;
+                color: #166534;
+                border-left: 4px solid #22c55e;
+                padding: 0 1rem;
+                margin-top: -0.5rem;
+                margin-left: 92px; /* Align with input box */
+                transition: all 0.4s ease-out;
+            }
+            .why-result.visible {
+                max-height: 100px;
+                opacity: 1;
+                padding: 0.75rem 1rem;
+                margin-top: 0.5rem;
+                margin-bottom: 1rem;
+            }
+
+            /* --- New Workshop: BHAG or Not? --- */
+            .bhag-card {
+                background-color: #f9fafb;
+                border: 2px solid #e5e7eb;
+                border-radius: 8px;
+                padding: 1rem;
+                transition: all 0.2s ease-in-out;
+            }
+            .bhag-card-question {
+                font-style: italic;
+                color: #1f2937;
+                font-weight: 500;
+                margin-bottom: 1rem;
+                min-height: 40px; /* Ensure uniform height */
+            }
+            .bhag-btn {
+                padding: 0.5rem 1rem;
+                border-radius: 6px;
+                font-weight: 600;
+                transition: all 0.2s;
+                cursor: pointer;
+            }
+            .bhag-btn-yes { background-color: #dcfce7; color: #166534; border: 1px solid #86efac; }
+            .bhag-btn-yes:hover { background-color: #bbf7d0; }
+            .bhag-btn-no { background-color: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+            .bhag-btn-no:hover { background-color: #fecaca; }
+
+            .bhag-explanation {
+                max-height: 0;
+                opacity: 0;
+                overflow: hidden;
+                margin-top: 0;
+                font-size: 0.875rem;
+                transition: all 0.4s ease-out;
+            }
+            .bhag-explanation.visible {
+                max-height: 150px;
+                opacity: 1;
+                margin-top: 1rem;
+            }
+            .bhag-explanation-content {
+                padding: 0.75rem;
+                border-radius: 6px;
+            }
+            .bhag-explanation-content.correct { background-color: #f0fdf4; border: 1px solid #bbf7d0; color: #15803d; }
+            .bhag-explanation-content.incorrect { background-color: #fef2f2; border: 1px solid #fecaca; color: #b91c1c; }
+
+            /* --- New Workshop: Value Gap Sliders --- */
+            .slider-container {
+                margin-bottom: 1.5rem;
+            }
+            .slider-label {
+                display: flex;
+                justify-content: space-between;
+                font-size: 0.875rem;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+            }
+            .slider-label .theme-name { color: #374151; }
+            .slider-label .theme-value { color: #3b82f6; }
+            input[type="range"] {
+                width: 100%;
+                -webkit-appearance: none;
+                appearance: none;
+                height: 8px;
+                background: #d1d5db;
+                border-radius: 5px;
+                outline: none;
+            }
+            input[type="range"]::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 20px;
+                height: 20px;
+                background: #3b82f6;
+                border-radius: 50%;
+                cursor: pointer;
+                border: 2px solid #fff;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            }
+            input[type="range"]::-moz-range-thumb {
+                width: 20px;
+                height: 20px;
+                background: #3b82f6;
+                border-radius: 50%;
+                cursor: pointer;
+                border: 2px solid #fff;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            }
+            #total-gap-fill {
+                font-size: 1.25rem;
+                font-weight: 700;
+                padding: 0.75rem;
+                border-radius: 8px;
+                transition: all 0.3s;
+            }
+
+            /* --- Quiz Styles --- */
+            .quiz-option {
+                display: block;
+                width: 100%;
+                text-align: left;
+                padding: 0.75rem 1rem;
+                border: 2px solid #e5e7eb;
+                border-radius: 8px;
+                background-color: #fff;
+                margin-bottom: 0.5rem;
+                cursor: pointer;
+                transition: all 0.2s ease-in-out;
+            }
+            .quiz-option:hover {
+                border-color: #3b82f6;
+                background-color: #eff6ff;
+            }
+            .quiz-option:disabled {
+                cursor: not-allowed;
+                opacity: 0.9;
+            }
+            .quiz-option.correct {
+                border-color: #22c55e;
+                background-color: #dcfce7;
+                color: #15803d;
+                font-weight: 600;
+            }
+            .quiz-option.incorrect {
+                border-color: #ef4444;
+                background-color: #fee2e2;
+                color: #b91c1c;
+                font-weight: 600;
+            }
+            .quiz-explanation {
+                max-height: 0;
+                overflow: hidden;
+                opacity: 0;
+                margin-top: 0;
+                padding: 0 1rem;
+                background-color: #f3f4f6;
+                border-left: 4px solid #6b7280;
+                transition: all 0.4s ease-out;
+                font-size: 0.875rem;
+                border-radius: 0 4px 4px 0;
+            }
+            .quiz-explanation.visible {
+                max-height: 250px;
+                opacity: 1;
+                margin-top: 1rem;
+                padding: 1rem;
+            }
+            /* --- End Quiz Styles --- */
+
+            /* --- New Examples Section Styles --- */
+            .example-table {
+                width: 100%;
+                margin-top: 1rem;
+                border-collapse: collapse;
+                font-size: 0.875rem;
+            }
+            .example-table th, .example-table td {
+                padding: 0.75rem 1rem;
+                border: 1px solid #e5e7eb;
+                text-align: left;
+                vertical-align: top;
+            }
+            .example-table th {
+                background-color: #f9fafb;
+                font-weight: 600;
+                color: #374151;
+            }
+            .example-table tr:nth-child(even) {
+                background-color: #f9fafb;
+            }
+            .example-table ul {
+                list-style-type: disc;
+                padding-left: 1.25rem;
+                margin: 0;
+            }
+            .example-icon {
+                display: inline-block;
+                width: 1.5rem;
+                height: 1.5rem;
+                margin-right: 0.75rem;
+                vertical-align: middle;
+                stroke-width: 2;
+            }
+            
+            /* [NEW] Glossary Styles */
+            .glossary-item {
+                margin-bottom: 1.5rem;
+            }
+            .glossary-term {
+                font-size: 1.125rem;
+                font-weight: 600;
+                color: #111827;
+                border-bottom: 2px solid #e5e7eb;
+                padding-bottom: 0.25rem;
+                margin-bottom: 0.5rem;
+            }
+            .glossary-question {
+                font-style: italic;
+                font-weight: 500;
+                color: #1d4ed8;
+                margin-left: 0.25rem;
+            }
+            .glossary-definition {
+                font-size: 0.875rem;
+                color: #4b5563;
+                line-height: 1.6;
+            }
+            .glossary-connection {
+                background-color: #f0f9ff;
+                border-left: 4px solid #0284c7;
+                padding: 1rem;
+                border-radius: 0 8px 8px 0;
+            }
+            .glossary-connection h4 {
+                font-weight: 700;
+                color: #0369a1;
+                font-size: 1.125rem;
+            }
+            .glossary-connection ul {
+                list-style-type: disc;
+                padding-left: 1.25rem;
+                margin-top: 0.75rem;
+                font-size: 0.875rem;
+                color: #075985;
+            }
+
+
+        </style>
+    </head>
+    <body class="bg-slate-50 text-slate-700">
+
+        <!-- HEADER (Copied from Session 2 for consistency) -->
+        <header id="main-header" class="shadow-sm">
+            <div id="top-bar" class="bg-gray-800 text-white py-1" style="height: 40px;">
+                <div class="container mx-auto px-6 flex justify-between items-center h-full">
+                    <p class="text-xs font-medium text-slate-400">© Dr. Swapnil Sahoo 2025</p>
+                    <div class="flex items-center space-x-4">
+                        <a href="https.www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white group" title="Website">
+                            <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
+                                <svg viewBox="0 0 52 60">
+                                    <defs><linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
+                                    <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#redGradient)"/><text class="hexagon-s" x="26" y="32">S</text>
+                                </svg>
+                            </div>
+                        </a>
+                        <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white top-bar-link" title="X/Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                        <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white top-bar-link" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.575 2h.093zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" clip-rule="evenodd"/></svg></a>
+                        <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white top-bar-link" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="main-nav-container" class="bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200 z-50">
+                <div class="container mx-auto px-6 py-3 title-bar">
+                    <div class="flex justify-between items-center">
+                        <h1 class="text-xl font-bold text-slate-900">Session 3: The "Why" of Strategy</h1>
+                        <div class="sm:hidden">
+                            <select id="mobile-nav" class="block w-auto rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm">
+                                <option value="#intro">Intro: The Bridge</option>
+                                <option value="#theory">Vision Framework</option>
+                                <option value="#framework-examples">Framework Examples</option>
+                                <option value="#glossary">Glossary</option> <!-- [NEW] -->
+                                <option value="#workshop-1">Workshop 1: 5 Whys</option>
+                                <option value="#workshop-2">Workshop 2: BHAG?</option>
+                                <option value="#sim-1">Simulation: Why vs. What</option>
+                                <option value="#workshop-3">Workshop 3: Value Gap</option>
+                                <option value="#sim-3">Debate: New BHAG</option>
+                                <option value="#conclusion">Conclusion</option>
+                                <option value="#quiz">Knowledge Check</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <nav id="top-nav" class="bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200 overflow-x-auto whitespace-nowrap hidden sm:block">
+                    <div class="container mx-auto px-6 py-2 flex space-x-4">
+                        <a href="#intro" class="nav-link text-sm active-nav font-medium">Intro</a>
+                        <a href="#theory" class="nav-link text-sm font-medium">Vision Framework</a>
+                        <a href="#framework-examples" class="nav-link text-sm font-medium">Examples</a>
+                        <a href="#glossary" class="nav-link text-sm font-medium">Glossary</a> <!-- [NEW] -->
+                        <a href="#workshop-1" class="nav-link text-sm font-medium">Workshop: 5 Whys</a>
+                        <a href="#workshop-2" class="nav-link text-sm font-medium">Workshop: BHAG?</a>
+                        <a href="#sim-1" class="nav-link text-sm font-medium">Simulation: Why vs. What</a>
+                        <a href="#workshop-3" class="nav-link text-sm font-medium">Workshop: Value Gap</a>
+                        <a href="#sim-3" class="nav-link text-sm font-medium">Debate: New BHAG</a>
+                        <a href="#conclusion" class="nav-link text-sm font-medium">Conclusion</a>
+                        <a href="#quiz" class="nav-link text-sm font-medium">Quiz</a>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <div style="
+  width:20vw;
+  height:20vh;
+  background:transparent;
+"></div>        
+
+        <main class="max-w-5xl mx-auto p-4 sm:p-6 lg:p-8">
+            
+            <!-- [0-10 min] SECTION 1: Introduction & Narrative Bridge -->
+            <section id="intro" class="content-card">
+                <h2 class="text-3xl font-bold text-blue-700 mb-6">Introduction: Building the Bridge from "What" to "Why"</h2>
+                <p class="text-lg text-slate-700 mb-4 pt-2"> <!-- Added pt-2 for 2-point gap -->
+                    Welcome to Session 3. Let's connect the dots:
+                </p>
+                <ul class="list-decimal pl-6 space-y-3 text-lg text-slate-700">
+                    <li>
+                        <strong class="text-slate-900">Session 1: "What is Strategy?"</strong> We debated the nature of strategy itself, contrasting Porter's deliberate "Blueprint" (Position, Trade-offs) with Mintzberg's emergent "Craft" (Learning, adaptation).
+                    </li>
+                    <li>
+                        <strong class="text-slate-900">Session 2: "What was Tesla's Strategy?"</strong> We applied Porter's "Blueprint" to Tesla. We saw their radical <span class="font-bold text-blue-600">Strategic Position</span> (Vertical Integration) and the painful <span class="font-bold text-blue-600">Trade-offs</span> (Production Hell, bypassing dealers) they made.
+                    </li>
+                </ul>
+                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-r-lg my-6">
+                    <p class="text-xl font-semibold text-yellow-800">
+                        This leaves us with the most important question: <span class="font-bold">WHY?</span>
+                    </p>
+                    <p class="text-lg text-yellow-700 mt-2">
+                        What force could possibly be powerful enough to justify that level of chaos, risk, and financial loss? Why not just be a "better" car company?
+                    </p>
+                </div>
+                <p class="text-lg text-slate-700">
+                    Today, we find the answer. We move beyond the "What" (Strategy) to discover the "Why" (the Vision). Using the frameworks from our readings (Collins & Porras), we'll see how an organization's vision acts as the engine for its strategy.
+                </p>
+            </section>
+
+            <div class="narrative-connector">
+                <span>The Core Theory (Collins & Porras)</span>
+            </div>
+
+            <!-- [10-30 min] SECTION 2: The "Yin & Yang" of Vision -->
+            <section id="theory" class="content-card">
+                <h2 class="text-3xl font-bold text-blue-700 mb-6">The "Yin & Yang" of a Company's Vision</h2>
+                <p class="text-lg text-slate-700 mb-6">
+                    Our reading from James Collins and Jerry Porras, "Building Your Company's Vision," gives us a powerful framework. A vision isn't just a fluffy statement; it's a disciplined framework of two distinct parts:
+                </p>
+
+                <div class="text-center mb-6 vision-framework-container">
+                    <!-- Image Updated as per user request -->
+                    
+                    <img 
+                        src="https://i0.wp.com/hbr.org/resources/images/article_assets/hbr/9609/96501_A.gif?ssl=1" 
+                        alt="Diagram from Collins and Porras' HBR article showing Vision composed of Core Ideology (Yin) and Envisioned Future (Yang)" 
+                        class="mx-auto max-w-lg rounded-md border bg-white p-2 shadow-sm"
+                        onerror="this.onerror=null; this.src='https://placehold.co/600x450/f3f4f6/6b7280?text=Collins+%26+Porras+Vision+Framework'; this.alt='Placeholder diagram of the Collins and Porras Vision Framework'">
+                    <p class="text-sm text-slate-500 italic mt-2">The Collins & Porras Vision Framework: A balance of preserving the core and stimulating progress.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- YIN: Core Ideology -->
+                    <div class="bg-slate-800 text-white p-6 rounded-lg border-t-4 border-slate-500">
+                        <h3 class="text-2xl font-bold mb-3">1. Core Ideology (The "Yin")</h3>
+                        <p class="text-sm text-slate-300 mb-4 italic">This defines who you are. It is stable, timeless, and to be *preserved*.</p>
+                        <div class="mb-4">
+                            <h4 class="text-lg font-semibold text-white">Core Values --> Who I am?</h4>
+                            <p class="text-slate-200">The 3-5 essential and enduring principles. The "how you act."</p>
+                            <!-- [EDITED] Updated with specific Musk examples -->
+                            <ul class="text-sm text-slate-400 mt-1 list-disc pl-5 space-y-1">
+                                <li><strong>Reason from "First Principles":</strong> Solving problems by breaking them down to fundamental truths, not by analogy.</li>
+                                <li><strong>Innovation and Risk-Taking:</strong> Challenging the status quo and viewing failure as an option on the path to innovation.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-white">Core Purpose --> Why I exist?</h4>
+                            <p class="text-slate-200">The fundamental reason for being. The "why you exist." A guiding star you *never* reach.</p>
+                            <!-- [EDITED] Updated with specific Musk examples -->
+                            <ul class="text-sm text-slate-400 mt-1 list-disc pl-5 space-y-1">
+                                <li><strong>Ensure long-term survival of humanity.</strong></li>
+                                <li>Accelerate transition to sustainable energy (Tesla).</li>
+                                <li>Make humanity multi-planetary (SpaceX).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- YANG: Envisioned Future -->
+                    <div class="bg-white p-6 rounded-lg border-t-4 border-blue-500 shadow-inner">
+                        <h3 class="text-2xl font-bold mb-3 text-slate-800">2. Envisioned Future (The "Yang")</h3>
+                        <p class="text-sm text-slate-500 mb-4 italic">This defines where you are going. It is dynamic, time-bound, and to be *achieved*.</p>
+                        <div class="mb-4">
+                            <h4 class="text-lg font-semibold text-slate-700">BHAG (Big, Hairy, Audacious Goal)</h4>
+                            <p class="text-slate-600">A 10-30 year "mountain" to climb. It's concrete, energizing, and has a finish line.</p>
+                            <p class="text-sm text-slate-500 mt-1"><strong>Tesla Example:</strong> "The Secret Master Plan (2006)" - Use a sports car to fund a sedan to fund a mass-market car. This was a *perfect* BHAG.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-slate-700">Vivid Description</h4>
+                            <p class="text-slate-600">Painting a picture of what success *looks* and *feels* like.</p>
+                            <p class="text-sm text-slate-500 mt-1"><strong>Tesla Example:</strong> Musk's descriptions of a future with solar roofs, Powerwalls, and EVs creating a complete, clean energy ecosystem.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- SECTION 3: Framework Examples -->
+            <section id="framework-examples" class="content-card border-t-4 border-gray-400">
+                <h2 class="text-3xl font-bold text-gray-700 mb-6">Framework Examples (From Reading)</h2>
+                <p class="text-lg text-slate-700 mb-6">
+                    This is a summary of the classic business examples provided in the Collins & Porras reading, illustrating each component of the Vision Framework.
+                </p>
+
+                <!-- I. Core Ideology -->
+                <h3 class="text-2xl font-bold text-slate-800 mb-4 flex items-center">
+                    <svg class="example-icon text-slate-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                    I. Core Ideology
+                </h3>
+                <p class="text-md text-slate-600 mb-4 italic">Defines the enduring character of an organization. It remains fixed while strategies and practices adapt.</p>
+                
+                <h4 class="text-xl font-semibold text-slate-700 mb-3">A. Core Values (Essential and Enduring Tenets)</h4>
+                <div class="overflow-x-auto shadow-md rounded-lg">
+                    <table class="example-table">
+                        <thead class="bg-slate-50">
+                            <tr>
+                                <th class="w-1/3">Company</th>
+                                <th>Core Values Examples</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200">
+                            <tr>
+                                <td class="font-medium">The Walt Disney Company</td>
+                                <td>Imagination and wholesomeness; No cynicism; Fanatical attention to consistency and detail.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium">Nordstrom</td>
+                                <td>Service to the customer above all else; Hard work and individual productivity.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium">Merck</td>
+                                <td>Corporate social responsibility; Science-based innovation; Unequivocal excellence.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium">Sony</td>
+                                <td>Being a pioneer—not following others; Encouraging individual ability and creativity.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4 class="text-xl font-semibold text-slate-700 mt-8 mb-3">B. Core Purpose (Fundamental Reason for Existence)</h4>
+                <div class="overflow-x-auto shadow-md rounded-lg">
+                    <table class="example-table">
+                        <thead class="bg-slate-50">
+                            <tr>
+                                <th class="w-1/3">Company</th>
+                                <th>Core Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200">
+                            <tr>
+                                <td class="font-medium">3M</td>
+                                <td>To solve unsolved problems innovatively.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium">Walt Disney</td>
+                                <td>To make people happy.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium">McKinsey & Company</td>
+                                <td>To help leading corporations and governments be more successful.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium">Wal-Mart</td>
+                                <td>To give ordinary folk the chance to buy the same things as rich people.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- II. Envisioned Future -->
+                <h3 class="text-2xl font-bold text-slate-800 mt-12 mb-4 flex items-center">
+                    <svg class="example-icon text-slate-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 4.5h14.25M3 9h9.75M3 13.5h5.25m5.25-.75L17.25 9m0 0L21 12.75M17.25 9v12" /></svg>
+                    II. Envisioned Future
+                </h3>
+                <p class="text-md text-slate-600 mb-4 italic">What the organization aspires to become, achieve, or create. It is dynamic and time-bound.</p>
+
+                <h4 class="text-xl font-semibold text-slate-700 mb-3">A. Vision-Level BHAGs (Big, Hairy, Audacious Goals)</h4>
+                <div class="overflow-x-auto shadow-md rounded-lg">
+                    <table class="example-table">
+                        <thead class="bg-slate-50">
+                            <tr>
+                                <th class="w-1/4">BHAG Type</th>
+                                <th class="w-1/4">Company</th>
+                                <th>Example Goal</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200">
+                            <tr>
+                                <td class="font-medium">Target</td>
+                                <td>Wal-Mart (1990)</td>
+                                <td>Become a $125 billion company by the year 2000.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium">Target</td>
+                                <td>Ford (early 1900s)</td>
+                                <td>Democratize the automobile.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium">Common-enemy</td>
+                                <td>Nike (1960s)</td>
+                                <td>Crush Adidas.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium">Common-enemy</td>
+                                <td>Honda (1970s)</td>
+                                <td>"Yamaha wo tsubusu!" (We will destroy Yamaha!).</td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium">Role-model</td>
+                                <td>Giro (1986)</td>
+                                <td>Become the Nike of the cycling industry.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium">Internal-transformation</td>
+                                <td>General Electric (1980s)</td>
+                                <td>Become number one or number two in every market we serve.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4 class="text-xl font-semibold text-slate-700 mt-8 mb-3">B. Vivid Description (Making the BHAG Tangible)</h4>
+                 <div class="overflow-x-auto shadow-md rounded-lg">
+                    <table class="example-table">
+                        <thead class="bg-slate-50">
+                            <tr>
+                                <th class="w-1/3">Company</th>
+                                <th>Vivid Description Example</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200">
+                            <tr>
+                                <td class="font-medium">Ford Motor Company</td>
+                                <td>"I will build a motor car for the great multitude... so low in price that no man making a good salary will be unable to own one... The horse will have disappeared from our highways...".</td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium">Sony (1950s)</td>
+                                <td>"We will be the first Japanese company to go into the U.S. market... We will succeed with innovations that U.S. companies have failed at... 'Made in Japan' will mean something fine, not something shoddy."</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <!-- [END NEW SECTION] -->
+
+            <div class="narrative-connector">
+                <span>Framework Synthesis</span>
+            </div>
+
+            <!-- [NEW] SECTION 4: Glossary -->
+            <section id="glossary" class="content-card border-t-4 border-purple-500">
+                <h2 class="text-3xl font-bold text-purple-700 mb-6">Synthesizing the Frameworks: A Clear Glossary</h2>
+                <p class="text-lg text-slate-700 mb-6">
+                    These terms are often confused, but they form a clear hierarchy. Here is a simple guide to keep them straight.
+                </p>
+
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-800">The Foundation (The "Yin")</h3>
+                        <div class="mt-4 space-y-4">
+                            <div class="glossary-item">
+                                <p class="glossary-term">Core Values<span class="glossary-question">(Who I am?)</span></p>
+                                <p class="glossary-definition">The non-negotiable beliefs and principles that guide behavior and decision-making at all levels.</p>
+                            </div>
+                            <div class="glossary-item">
+                                <p class="glossary-term">Core Purpose<span class="glossary-question">(Why I exist?)</span></p>
+                                <p class="glossary-definition">Your organization's fundamental reason for existence, its "why" beyond just making money.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-800">The Future (The "Yang")</h3>
+                        <div class="mt-4 space-y-4">
+                            <div class="glossary-item">
+                                <p class="glossary-term">Vision<span class="glossary-question">(Where I want to go?)</span></p>
+                                <p class="glossary-definition">A bold, inspirational statement describing what the organization aspires to become in the long term. It provides a clear picture of the desired future.</p>
+                            </div>
+                            <div class="glossary-item">
+                                <p class="glossary-term">Mission<span class="glossary-question">(How I want to go?)</span></p>
+                                <p class="glossary-definition">A more specific statement that defines what the organization does, who it serves, and how it differentiates itself. It is the "how" to achieve the vision.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-800">The Goal (The "How-Much")</h3>
+                        <div class="mt-4 space-y-4">
+                            <div class="glossary-item">
+                                <p class="glossary-term">BHAG (Big, Hairy, Audacious Goal)<span class="glossary-question">(What I want to do?)</span></p>
+                                <p class="glossary-definition">A clear, compelling, long-term goal (10-30 years) that translates the vision into a specific, measurable, and ambitious target. It is the bridge between current execution and the long-term vision.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="narrative-connector" style="margin: 2rem 0;">
+                    <span>How They Connect</span>
+                </div>
+
+                <div class="glossary-connection">
+                    <h4 class="flex items-center">
+                        <svg class="example-icon text-cyan-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                        All Elements Align for Decision-Making
+                    </h4>
+                    
+                    <p class="text-sm text-cyan-800 mb-4">Together, these elements create a framework for strategic decision-making, ensuring that daily activities and long-term goals are aligned with the company's fundamental purpose and values.</p>
+                    <ul>
+                        <li><strong>Purpose and values fuel the vision:</strong> Your core purpose and values are the foundation from which your vision is built.</li>
+                        <li><strong>The vision provides direction for the mission:</strong> The mission is designed to support the achievement of the long-term vision.</li>
+                        <li><strong>The BHAG makes the vision actionable:</strong> The BHAG is a tangible, long-term goal that is a direct outcome of the vision. It acts as the anchor for the company's strategy.</li>
+                    </ul>
+                </div>
+
+            </section>
+            <!-- [END NEW SECTION] -->
+
+
+            <div class="narrative-connector">
+                <span>Hands-on Application Workshops</span>
+            </div>
+
+            <!-- SECTION 5: Workshop 1: Discovering Core Purpose -->
+            <section id="workshop-1" class="content-card border-t-4 border-red-500">
+                <h2 class="text-3xl font-bold text-red-700 mb-6">Workshop 1: Discover Your Core Purpose (The 5 Whys)</h2>
+                <p class="text-lg text-slate-700 mb-6">
+                    Collins & Porras argue you don't *invent* a purpose, you *discover* it. A powerful method is the "5 Whys."
+                </p>
+                <p class="text-md text-slate-600 mb-6">
+                    <span class="font-bold">Your Task:</span> Let's discover Tesla's purpose. Start with what they do, then ask "Why is that important?" five times. Type your answer for "Why #1" to unlock the rest of the chain.
+                </p>
+                <div class="five-whys-container">
+                    <div class="why-level">
+                        <label for="why-1" class="why-label">What we do:</label>
+                        <input type="text" id="why-1" class="why-input" value="We build electric cars." disabled>
+                    </div>
+                    <div class="why-level">
+                        <label for="why-2" class="why-label">Why #1:</label>
+                        <input type="text" id="why-2" class="why-input" placeholder="Why is that important? (e.g., To reduce emissions)">
+                    </div>
+                    <div id="why-level-3" class="why-level" style="opacity: 0; display: none;">
+                        <label for="why-3" class="why-label">Why #2:</label>
+                        <input type="text" id="why-3" class="why-input" value="To help the world stop using fossil fuels." disabled>
+                    </div>
+                    <div id="why-level-4" class="why-level" style="opacity: 0; display: none;">
+                        <label for="why-4" class="why-label">Why #3:</label>
+                        <input type="text" id="why-4" class="why-input" value="To ensure a healthy planet for future generations." disabled>
+                    </div>
+                    <div id="why-level-5" class="why-level" style="opacity: 0; display: none;">
+                        <label for="why-5" class="why-label">Why #4:</label>
+                        <input type="text" id="why-5" class="why-input" value="To help preserve humanity." disabled>
+                    </div>
+                    <div id="why-final-purpose" class="why-result">
+                        <strong>Core Purpose Discovered!</strong> Notice the purpose isn't "to build cars." It's something like "To ensure humanity's future by creating a sustainable energy economy." This is what Tesla claims: "To accelerate the world's transition to sustainable energy."
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 6: Workshop 2: BHAG or Not? -->
+            <section id="workshop-2" class="content-card border-t-4 border-orange-500">
+                <h2 class="text-3xl font-bold text-orange-700 mb-6">Workshop 2: BHAG or Not?</h2>
+                <p class="text-lg text-slate-700 mb-6">
+                    A true BHAG is audacious, energizing, and has a clear finish line. Generic goals are *not* BHAGs.
+                </p>
+                <p class="text-md text-slate-600 mb-6">
+                    <span class="font-bold">Your Task:</span> Read each statement and decide: Is this a true BHAG or just a generic goal?
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- BHAG Card 1 -->
+                    <div class="bhag-card">
+                        <p class="bhag-card-question">"We will maximize shareholder value."</p>
+                        <div class="flex gap-4">
+                            <button class="bhag-btn bhag-btn-yes" onclick="checkBhag('bhag-1', true)">BHAG</button>
+                            <button class="bhag-btn bhag-btn-no" onclick="checkBhag('bhag-1', false)">Not a BHAG</button>
+                        </div>
+                        <div id="bhag-1-exp" class="bhag-explanation">
+                            <div class="bhag-explanation-content incorrect">
+                                <strong>Correct. Not a BHAG.</strong> This is the most generic, uninspiring corporate-speak. It has no finish line, is not energizing, and provides no guidance.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- BHAG Card 2 -->
+                    <div class="bhag-card">
+                        <p class="bhag-card-question">"Put a man on the moon and return him safely to Earth by the end of the 1960s." (NASA, 1961)</p>
+                        <div class="flex gap-4">
+                            <button class="bhag-btn bhag-btn-yes" onclick="checkBhag('bhag-2', true)">BHAG</button>
+                            <button class="bhag-btn bhag-btn-no" onclick="checkBhag('bhag-2', false)">Not a BHAG</button>
+                        </div>
+                        <div id="bhag-2-exp" class="bhag-explanation">
+                            <div class="bhag-explanation-content correct">
+                                <strong>Correct. A Perfect BHAG.</strong> It's Big, Hairy, and Audacious (seemed impossible), and has a crystal-clear finish line.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- BHAG Card 3 -->
+                    <div class="bhag-card">
+                        <p class="bhag-card-question">"We will be the #1 or #2 player in every market we serve." (General Electric, 1980s)</p>
+                        <div class="flex gap-4">
+                            <button class="bhag-btn bhag-btn-yes" onclick="checkBhag('bhag-3', true)">BHAG</button>
+                            <button class="bhag-btn bhag-btn-no" onclick="checkBhag('bhag-3', false)">Not a BHAG</button>
+                        </div>
+                        <div id="bhag-3-exp" class="bhag-explanation">
+                            <div class="bhag-explanation-content correct">
+                                <strong>Correct. A BHAG.</strong> This is a classic "Common-Enemy" or "Target" BHAG. It's quantitative, has a clear target (be #1 or #2), and is highly energizing for a competitive sales force.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- BHAG Card 4 -->
+                    <div class="bhag-card">
+                        <p class="bhag-card-question">"We will pursue continuous improvement and operational excellence."</p>
+                        <div class="flex gap-4">
+                            <button class="bhag-btn bhag-btn-yes" onclick="checkBhag('bhag-4', true)">BHAG</button>
+                            <button class="bhag-btn bhag-btn-no" onclick="checkBhag('bhag-4', false)">Not a BHAG</button>
+                        </div>
+                        <div id="bhag-4-exp" class="bhag-explanation">
+                            <div class="bhag-explanation-content incorrect">
+                                <strong>Correct. Not a BHAG.</strong> This is just good management. It's a *process*, not a *goal*. It has no finish line and is not audacious.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 7: Simulation 1: The "Why" Behind the "Chaos" -->
+            <section id="sim-1" class="content-card">
+                <h2 class="text-3xl font-bold text-blue-700 mb-6">Simulation: The "Why" Behind the "Chaos"</h2>
+                <p class="text-lg text-slate-700 mb-6">
+                    Now let's connect the dots. The "chaos" we saw in Session 2 (Tesla's Strategy) was not random. It was the *necessary consequence* of their Vision (Session 3).
+                </p>
+                <p class="text-md text-slate-600 mb-6">
+                    <span class="font-bold">Your Task:</span> Drag the "Why" (The Vision) from the left column to the "What" (The Strategic Choice) it *logically explains* on the right. Why did they *have* to make that move?
+                </p>
+
+                <div class="sim-container">
+                    <!-- Column 1: The "Why" (Vision) -->
+                    <div class="sim-column">
+                        <h4>The "Why" (Our Vision)</h4>
+                        <div id="sim-source-why">
+                            <div class="sim-item" draggable="true" data-id="why-1"><strong>Core Purpose:</strong> "Accelerate transition to sustainable energy."</div>
+                            <div class="sim-item" draggable="true" data-id="why-2"><strong>The BHAG:</strong> "The Master Plan" (Build a mass-market car - Model 3).</div>
+                            <div class="sim-item" draggable="true" data-id="why-3"><strong>Core Value:</strong> "First-Principles Thinking" (Question everything).</div>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: The "What" (Strategy) -->
+                    <div class="sim-column">
+                        <h4>The "What" (Our Strategy from Session 2)</h4>
+                        
+                        <div class="sim-target" data-id="what-1">
+                            <h5>Strategy: Vertical Integration (Gigafactories)</h5>
+                            <p class="text-sm text-slate-500">Why did we build our own battery factories instead of just buying from suppliers like every other car company?</p>
+                        </div>
+                        <div id="result-1" class="sim-result">
+                            <strong>Correct!</strong> To truly *accelerate* the transition (our Purpose), we couldn't wait for suppliers. We had to build the Gigafactory to *force* the world's battery supply to exist.
+                        </div>
+
+                        <div class="sim-target" data-id="what-2">
+                            <h5>Trade-off: Bypassing Dealerships</h5>
+                            <p class="text-sm text-slate-500">Why did we spend billions building stores and fighting legal battles instead of using the existing 18,000+ US car dealerships?</p>
+                        </div>
+                        <div id="result-2" class="sim-result">
+                            <strong>Exactly!</strong> From *First Principles*, the dealer model (profiting from service) is misaligned with low-maintenance EVs. We had to create a new model to control the customer experience.
+                        </div>
+
+                        <div class="sim-target" data-id="what-3">
+                            <h5>Execution: "Production Hell"</h5>
+                            <p class="text-sm text-slate-500">Why did we endure the chaos, risk bankruptcy, and sleep on the factory floor? Why not just grow slowly and safely?</p>
+                        </div>
+                        <div id="result-3" class="sim-result">
+                            <strong>That's right!</strong> "Production Hell" was the *only* way to meet the impossible deadline of our *BHAG*. Slow and safe would have been a *failure* to achieve the Master Plan.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 8: Workshop 3: The "Value Gap" -->
+            <section id="workshop-3" class="content-card border-t-4 border-teal-500">
+                <h2 class="text-3xl font-bold text-teal-700 mb-6">Workshop 3: Bridge the "Value Gap" (Kaplan & Norton)</h2>
+                <p class="text-lg text-slate-700 mb-6">
+                    Kaplan & Norton's "Value Gap" is the gulf between our BHAG and our "status quo" reality. In 2016, Tesla's BHAG was 500,000 cars. Their status quo projection was perhaps ~100,000.
+                </p>
+                <p class="text-lg text-slate-700 mb-6">
+                    This created a <span class="font-bold text-teal-600">Value Gap of 400,000 cars.</span>
+                </p>
+                <p class="text-md text-slate-600 mb-6">
+                    <span class="font-bold">Your Task:</span> As the strategist, you must *close this gap* by funding strategic themes. Use the sliders to allocate how much of the 400k-car gap you will try to close with each initiative.
+                </p>
+
+                <div class="slider-container">
+                    <label for="theme1" class="slider-label"><span class="theme-name">Theme 1: "Alien Dreadnought" (Radical Automation)</span> <span id="theme1-val" class="theme-value">150k</span></label>
+                    <input type="range" id="theme1" class="gap-slider" min="0" max="400000" value="150000" step="10000">
+                </div>
+                <div class="slider-container">
+                    <label for="theme2" class="slider-label"><span class="theme-name">Theme 2: Gigafactory 1 (Battery Supply)</span> <span id="theme2-val" class="theme-value">150k</span></label>
+                    <input type="range" id="theme2" class="gap-slider" min="0" max="400000" value="150000" step="10000">
+                </div>
+                <div class="slider-container">
+                    <label for="theme3" class="slider-label"><span class="theme-name">Theme 3: New Model 3 Assembly Lines (Traditional)</span> <span id="theme3-val" class="theme-value">100k</span></label>
+                    <input type="range" id="theme3" class="gap-slider" min="0" max="400000" value="100000" step="10000">
+                </div>
+
+                <div class="text-center mt-6">
+                    <div id="total-gap-fill" class="bg-slate-100 text-slate-800 border-2 border-slate-300">
+                        Gap You've Filled: 400,000 / 400,000
+                    </div>
+                </div>
+                <div id="gap-analysis" class="sim-result visible text-center">
+                    <strong>Analysis:</strong> You've allocated your resources. Notice the trade-offs. Putting so much into "Alien Dreadnought" and "Gigafactory" is a *massive*, high-risk bet on unproven tech. This is what *causes* "Production Hell" but is also the *only* strategy that has a chance of hitting the BHAG.
+                </div>
+            </section>
+
+
+            <!-- SECTION 9: Simulation 3: The NEW BHAG -->
+            <section id="sim-3" class="content-card">
+                <h2 class="text-3xl font-bold text-blue-700 mb-6">Debate: What Happens When the Vision "Drifts"?</h2>
+                <p class="text-lg text-slate-700 mb-6">
+                    A visionary company *must* set a new BHAG after achieving its last one. If it doesn't, it suffers the "We've Arrived Syndrome" (like NASA post-moon landing).
+                </p>
+                <p class="text-lg text-slate-700 mb-6">
+                    Tesla largely achieved its 2006 Master Plan. Now, Elon Musk's vision has expanded to "AI & Robotics," "X (the 'everything app')," and "Neuralink."
+                </p>
+                
+                <div class="bg-red-50 border-l-4 border-red-500 p-6 rounded-r-lg mb-6">
+                    <h4 class="text-xl font-bold text-red-800">The 2024 Governance Crisis: A Real-World Debate</h4>
+                    <p class="text-lg text-red-700 mt-2">
+                        In early 2024, Elon Musk publicly stated he was "uncomfortable" growing Tesla into an AI & robotics leader *unless* he had ~25% voting control. He threatened to build these new ventures *outside* of Tesla if his demands weren't met.
+                    </p>
+                </div>
+
+                <p class="text-lg text-slate-700 mb-6">
+                    <span class="font-bold">Your Task:</span> As a board member, how do you interpret this? Click your choice.
+                </p>
+                
+                <div id="debate-container">
+                    <div class="debate-option" data-choice="A">
+                        <strong class="text-lg text-slate-800">A) This is a BETRAYAL of the Core Purpose.</strong>
+                        <p class="text-slate-600">He's holding the company hostage for a new, personal BHAG ("AI") that has nothing to do with the original purpose ("Sustainable Energy").</p>
+                    </div>
+                    <div class="debate-option" data-choice="B">
+                        <strong class="text-lg text-slate-800">B) This is the *EXPRESSION* of the Core Purpose.</strong>
+                        <p class="text-slate-600">The *real* Core Purpose was always "Solve humanity's biggest problems." Sustainable energy was just the first. AI is the next.</p>
+                    </div>
+                    <div class="debate-option" data-choice="C">
+                        <strong class_name="text-lg text-slate-800">C) This is a NEW ENVISIONED FUTURE.</strong>
+                        <p class_name="text-slate-600">This is the (messy) creation of the *next* BHAG. The Core Ideology is stable, but he's forcing the company to climb a new, bigger mountain.</p>
+                    </div>
+                </div>
+
+                <div id="analysis-A" class="debate-analysis">
+                    <h5 class="font-bold text-lg text-slate-700">Framework Analysis (Choice A):</h5>
+                    <p>This is a governance-first view. It implies the *company's* Core Ideology is fixed, and the *leader's* vision has now diverged from it. This is a classic "Founder's Dilemma" and a massive governance risk (linking back to Session 2). It suggests the leader is no longer aligned with the organization's purpose.</p>
+                </div>
+                <div id="analysis-B" class="debate-analysis">
+                    <h5 class="font-bold text-lg text-slate-700">Framework Analysis (Choice B):</h5>
+                    <p>This is a leader-centric view. It implies the Core Ideology is not *Tesla's* but *Musk's*. The company is merely the *vehicle* for his personal Core Purpose. This is a very different, and much riskier, organizational model that makes the leader and the purpose inseparable.</p>
+                </div>
+                <div id="analysis-C" class="debate-analysis">
+                    <h5 class="font-bold text-lg text-slate-700">Framework Analysis (Choice C):</h5>
+                    <p>This perfectly fits the Collins & Porras model. The "Envisioned Future" (Yang) is *supposed* to change. This is the painful, chaotic process of stimulating new progress. The Core Ideology (Yin) of "accelerating" and "first principles" is still there, but the *target* (the BHAG) is evolving from "cars" to "intelligence."</p>
+                </div>
+            </section>
+
+            <div class="narrative-connector">
+                <span>Conclusion: The Full Strategic Picture</span>
+            </div>
+
+            <!-- SECTION 10: Conclusion -->
+            <section id="conclusion" class="content-card">
+                <h2 class="text-3xl font-bold text-blue-700 mb-6">Conclusion: The Strategic Thread</h2>
+                <p class="text-lg text-slate-700 mb-4">
+                    Today, we completed our strategic picture. We've seen how all three sessions are deeply interconnected.
+                </p>
+                <ul class="list-none space-y-4">
+                    <li class="flex items-start">
+                        <span class="text-2xl font-bold text-blue-600 mr-4">S1:</span>
+                        <div>
+                            <h4 class="text-xl font-bold text-slate-800">Porter's "Blueprint" & Mintzberg's "Craft"</h4>
+                            <p class="text-slate-600">We learned the two big-picture theories of strategy.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-2xl font-bold text-blue-600 mr-4">S2:</span>
+                        <div>
+                            <h4 class="text-xl font-bold text-slate-800">Tesla's "Blueprint" (The What)</h4>
+                            <p class="text-slate-600">We saw the radical <span class="font-semibold">Position</span> and <span class="font-semibold">Trade-offs</span> of Tesla's strategy, and the "Production Hell" <span class="font-semibold">Execution</span> that resulted.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-2xl font-bold text-blue-600 mr-4">S3:</span>
+                        <div>
+                            <h4 class="text-xl font-bold text-slate-800">Tesla's "Vision" (The Why)</h4>
+                            <p class="text-slate-600">Today, we saw that this chaos was not random. It was *driven* by a powerful <span class="font-semibold">Core Ideology</span> and a massive, audacious <span class="font-semibold">BHAG</span>.</p>
+                        </div>
+                    </li>
+                </ul>
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg mt-6">
+                    <h4 class="text-xl font-bold text-blue-800">The Final Synthesis</h4>
+                    <p class="text-lg text-blue-700 mt-2">
+                        Tesla's strategy is the ultimate hybrid: It uses the *emergent, chaotic "craft"* (Mintzberg) of "Production Hell" to achieve a *deliberate, audacious "blueprint"* (Porter) which is itself *powered by* an uncompromising *Vision* (Collins & Porras).
+                    </p>
+                </div>
+
+                <h3 class="text-2xl font-bold text-slate-800 mt-8 mb-4">Look-Ahead:</h3>
+                <p class="text-lg text-slate-700">
+                    In our next sessions, we will ask: "How do you *manage* this?" We will move from strategy formulation to execution, exploring tools like the Balanced Scorecard to translate a high-level vision into day-to-day action.
+                </p>
+            </section>
+
+            <!-- SECTION 11: Knowledge Check -->
+            <section id="quiz" class="content-card border-t-4 border-yellow-400">
+                <h2 class="text-3xl font-bold text-yellow-700 mb-6">Knowledge Check: Sessions 1-3</h2>
+                <p class="text-lg text-slate-700 mb-6">
+                    Test your understanding of the concepts from all three sessions. Select an answer to see immediate feedback.
+                </p>
+
+                <div class="bg-slate-50 p-6 rounded-lg shadow-inner">
+                    <div class="flex justify-between items-center mb-6 border-b border-slate-300 pb-4">
+                        <h3 class="text-2xl font-bold text-slate-800">15-Question Quiz</h3>
+                        <div class="text-lg font-bold text-slate-700 bg-slate-200 px-4 py-2 rounded-lg">
+                            Score: <span id="quiz-score">0 / 15</span>
+                        </div>
+                    </div>
+                    <div id="quiz-container" class="space-y-6">
+                        <!-- Questions will be injected by JavaScript -->
+                    </div>
+                </div>
+            </section>
+            
+        </main>
+                
+        <!-- MODAL STRUCTURE -->
+        <div id="modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-[100] opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out">
+            <div id="modal-content" class="bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-[85vh] overflow-y-auto p-6 sm:p-8 relative transform scale-95 opacity-0 transition-all duration-300 ease-in-out">
+                <h3 id="modal-title" class="text-2xl font-bold text-slate-900 mb-4 pr-8"></h3>
+                <div id="modal-body" class="prose-custom text-base text-slate-700"></div>
+                <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 transition-colors rounded-full p-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal">
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="bg-gray-800 mt-16 sm:mt-24 border-t border-gray-700">
+            <div class="container mx-auto px-6 py-5">
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6">
+                    <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-3 group order-first sm:order-none">
+                        <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
+                            <svg viewBox="0 0 52 60">
+                                <defs><linearGradient id="footerRedGradient2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
+                                <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#footerRedGradient2)"/><text class="hexagon-s" x="26" y="32">S</text>
+                            </svg>
+                        </div>
+                        <span class="text-xs font-semibold text-slate-300 group-hover:text-white transition-colors">Dr. Swapnil Sahoo</span>
+                    </a>
+                    <p class="text-xs text-slate-400 order-last sm:order-none">© Dr. Swapnil Sahoo 2025</p>
+                    <div class="flex space-x-5 sm:space-x-6 order-first sm:order-last">
+                        <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white footer-link" title="X/Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                        <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white footer-link" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.575 2h.093zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" clip-rule="evenodd"/></svg></a>
+                        <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white footer-link" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+
+                // --- Navigation Logic ---
+                const navLinks = document.querySelectorAll('.nav-link');
+                const mobileNav = document.getElementById('mobile-nav');
+                const sections = document.querySelectorAll('main section');
+                const header = document.getElementById('main-header');
+
+                function getHeaderHeight() {
+                    return header.offsetHeight;
+                }
+
+                const observer = new IntersectionObserver((entries) => {
+                    let activeId = '';
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting && entry.intersectionRatio > 0.1) {
+                            if (!activeId || entry.boundingClientRect.top < 200) {
+                                activeId = entry.target.id;
+                            }
+                        }
+                    });
+
+                    if (!activeId && entries.length > 0) {
+                        // Fallback: find the one closest to the top
+                        let closest = entries.reduce((prev, curr) => {
+                            return (Math.abs(curr.boundingClientRect.top) < Math.abs(prev.boundingClientRect.top) ? curr : prev);
+                        });
+                        activeId = closest.target.id;
+                    }
+                    
+                    // If still no active ID, default to first section if it's near
+                    if (!activeId && window.scrollY < 200 && sections.length > 0) {
+                        activeId = sections[0].id;
+                    }
+
+                    const targetHref = `#${activeId}`;
+                    navLinks.forEach(link => {
+                        link.classList.toggle('active-nav', link.getAttribute('href') === targetHref);
+                    });
+                    
+                    // Check if the option exists before setting it
+                    if (mobileNav.querySelector(`option[value="${targetHref}"]`)) {
+                        if (mobileNav.value !== targetHref) {
+                            mobileNav.value = targetHref;
+                        }
+                    }
+
+                }, { rootMargin: `-${getHeaderHeight()}px 0px 0px 0px`, threshold: [0.1, 0.5] });
+
+                sections.forEach(section => observer.observe(section));
+
+                mobileNav.addEventListener('change', () => {
+                    const targetId = mobileNav.value;
+                    const targetElement = document.getElementById(targetId.substring(1));
+                    if (targetElement) {
+                        const targetPosition = targetElement.offsetTop - getHeaderHeight();
+                        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                    }
+                });
+
+                // Add smooth scroll for desktop nav links
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.getElementById(targetId.substring(1));
+                        if (targetElement) {
+                            const targetPosition = targetElement.offsetTop - getHeaderHeight();
+                            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                        }
+                    });
+                });
+                
+                // --- [NEW] Workshop 1: 5 Whys ---
+                const whyInput = document.getElementById('why-2');
+                const whyLevel3 = document.getElementById('why-level-3');
+                const whyLevel4 = document.getElementById('why-level-4');
+                const whyLevel5 = document.getElementById('why-level-5');
+                const whyFinalPurpose = document.getElementById('why-final-purpose');
+
+                if (whyInput) {
+                    whyInput.addEventListener('input', () => {
+                        if (whyInput.value.trim() !== '') {
+                            // Unlock the rest of the chain
+                            whyLevel3.style.display = 'flex';
+                            whyLevel4.style.display = 'flex';
+                            whyLevel5.style.display = 'flex';
+                            setTimeout(() => {
+                                whyLevel3.style.opacity = '1';
+                            }, 100);
+                            setTimeout(() => {
+                                whyLevel4.style.opacity = '1';
+                            }, 300);
+                            setTimeout(() => {
+                                whyLevel5.style.opacity = '1';
+                            }, 500);
+                            setTimeout(() => {
+                                whyFinalPurpose.classList.add('visible');
+                            }, 700);
+                        }
+                    });
+                }
+
+                // --- [NEW] Workshop 2: BHAG or Not? ---
+                window.checkBhag = (id, isBHAG) => {
+                    const explanation = document.getElementById(`${id}-exp`);
+                    const content = explanation.querySelector('.bhag-explanation-content');
+                    // Determine if the user's choice was correct
+                    const correct = (id === 'bhag-1' && !isBHAG) ||
+                                    (id === 'bhag-2' && isBHAG) ||
+                                    (id === 'bhag-3' && isBHAG) ||
+                                    (id === 'bhag-4' && !isBHAG);
+
+                    if (correct) {
+                        content.classList.add('correct');
+                        content.classList.remove('incorrect');
+                    } else {
+                        content.classList.add('incorrect');
+                        content.classList.remove('correct');
+                        // Swap the text to show the correct rationale, even if they were wrong
+                        if (id === 'bhag-1' || id === 'bhag-4') {
+                            content.innerHTML = `<strong>Incorrect.</strong> This is just a generic statement / management process. A true BHAG is audacious and has a clear finish line.`;
+                        } else {
+                            content.innerHTML = `<strong>Incorrect.</strong> This *is* a classic BHAG. It's audacious, energizing, and has a clear, measurable goal.`;
+                        }
+                    }
+                    explanation.classList.add('visible');
+                    
+                    // Disable buttons after choice
+                    const buttons = explanation.parentElement.querySelectorAll('.bhag-btn');
+                    buttons.forEach(btn => btn.disabled = true);
+                };
+
+
+                // --- Simulation 1: Drag & Drop ---
+                const simItems = document.querySelectorAll('.sim-item');
+                const simTargets = document.querySelectorAll('.sim-target');
+                let draggedItem = null;
+
+                // Correct data mappings
+                const correctMatches = {
+                    'what-1': 'why-1', // Gigafactories -> Purpose
+                    'what-2': 'why-3', // Dealers -> First-Principles
+                    'what-3': 'why-2'  // Production Hell -> BHAG
+                };
+
+                simItems.forEach(item => {
+                    item.addEventListener('dragstart', (e) => {
+                        draggedItem = e.target;
+                        setTimeout(() => e.target.classList.add('dragging'), 0);
+                    });
+                    item.addEventListener('dragend', () => {
+                        if (draggedItem) { // Check if draggedItem is not null
+                            draggedItem.classList.remove('dragging');
+                        }
+                        draggedItem = null;
+                    });
+                });
+
+                simTargets.forEach(target => {
+                    target.addEventListener('dragover', (e) => {
+                        e.preventDefault();
+                        target.classList.add('over');
+                    });
+                    target.addEventListener('dragleave', () => {
+                        target.classList.remove('over');
+                    });
+                    target.addEventListener('drop', (e) => {
+                        e.preventDefault();
+                        target.classList.remove('over');
+                        if (draggedItem) {
+                            const targetId = target.dataset.id;
+                            const draggedId = draggedItem.dataset.id;
+                            
+                            // Check if the match is correct
+                            if (correctMatches[targetId] === draggedId) {
+                                // Find existing item in target, if any
+                                const existingItem = target.querySelector('.sim-item');
+                                if (existingItem) {
+                                    // Send it back to the source list
+                                    document.getElementById('sim-source-why').appendChild(existingItem);
+                                }
+                                
+                                target.innerHTML = ''; // Clear the target's text content
+                                target.appendChild(draggedItem); // Append the item
+                                draggedItem.setAttribute('draggable', 'false');
+                                draggedItem.style.cursor = 'default';
+                                
+                                // Show the corresponding result
+                                const resultId = `result-${targetId.split('-')[1]}`;
+                                document.getElementById(resultId).classList.add('visible');
+                            } else {
+                                // Shake animation for incorrect match
+                                draggedItem.style.animation = 'shake 0.5s';
+                                setTimeout(() => {
+                                    if (draggedItem) { // Check again in case dragend fired
+                                        draggedItem.style.animation = '';
+                                    }
+                                }, 500);
+                            }
+                        }
+                    });
+                });
+
+                // Add CSS for shake animation
+                const style = document.createElement('style');
+                style.innerHTML = `@keyframes shake { 0% { transform: translateX(0); } 25% { transform: translateX(-5px); } 50% { transform: translateX(5px); } 75% { transform: translateX(-5px); } 100% { transform: translateX(0); } }`;
+                document.head.appendChild(style);
+
+                // --- [UPGRADED] Workshop 3 (Value Gap Sliders) ---
+                const sliders = document.querySelectorAll('.gap-slider');
+                const totalGapFill = document.getElementById('total-gap-fill');
+                const gapAnalysis = document.getElementById('gap-analysis');
+                const totalGap = 400000;
+
+                const formatK = (value) => `${Math.round(value / 1000)}k`;
+
+                function updateGapTotal() {
+                    let currentTotal = 0;
+                    sliders.forEach(slider => {
+                        currentTotal += parseInt(slider.value, 10);
+                        // Update individual label
+                        const valElement = document.getElementById(`${slider.id}-val`);
+                        if (valElement) valElement.textContent = formatK(slider.value);
+                    });
+
+                    if (totalGapFill) {
+                        totalGapFill.textContent = `Gap You've Filled: ${formatK(currentTotal)} / ${formatK(totalGap)}`;
+                        
+                        // Remove all color classes
+                        totalGapFill.classList.remove('bg-red-100', 'text-red-700', 'border-red-300', 'bg-yellow-100', 'text-yellow-700', 'border-yellow-300', 'bg-green-100', 'text-green-700', 'border-green-300', 'bg-slate-100', 'text-slate-800', 'border-slate-300');
+
+                        if (currentTotal > totalGap) {
+                            totalGapFill.classList.add('bg-red-100', 'text-red-700', 'border-red-300');
+                            if(gapAnalysis) gapAnalysis.classList.remove('visible');
+                        } else if (currentTotal < totalGap) {
+                            totalGapFill.classList.add('bg-yellow-100', 'text-yellow-700', 'border-yellow-300');
+                            if(gapAnalysis) gapAnalysis.classList.remove('visible');
+                        } else {
+                            totalGapFill.classList.add('bg-green-100', 'text-green-700', 'border-green-300');
+                            if(gapAnalysis) gapAnalysis.classList.add('visible');
+                        }
+                    }
+                }
+
+                sliders.forEach(slider => {
+                    slider.addEventListener('input', updateGapTotal);
+                });
+                // Initial call to set labels
+                updateGapTotal();
+
+
+                // --- Simulation 3 (Debate) ---
+                const debateOptions = document.querySelectorAll('.debate-option');
+                const debateAnalyses = document.querySelectorAll('.debate-analysis');
+
+                debateOptions.forEach(option => {
+                    option.addEventListener('click', () => {
+                        const choice = option.dataset.choice;
+                        
+                        // Reset all
+                        debateOptions.forEach(opt => opt.classList.remove('selected'));
+                        debateAnalyses.forEach(analysis => analysis.classList.remove('visible'));
+
+                        // Set active
+                        option.classList.add('selected');
+                        const analysisEl = document.getElementById(`analysis-${choice}`);
+                        if (analysisEl) analysisEl.classList.add('visible');
+                    });
+                });
+
+                // --- Quiz Logic ---
+                const quizData = [
+                    {
+                        q: "Session 1 contrasted Porter's 'Blueprint' with Mintzberg's 'Craft'. What is the core difference?",
+                        o: [
+                            "Blueprint is for manufacturing, Craft is for service companies.",
+                            "Blueprint is about deliberate planning (Position), while Craft is about emergent learning (Pattern).",
+                            "Blueprint focuses on Core Values, while Craft focuses on BHAGs.",
+                            "Blueprint is about execution (OE), while Craft is about vision."
+                        ],
+                        a: 1,
+                        e: "This is the core of Session 1. Porter's 'Blueprint' is a deliberate, analytical process of choosing a strategic position. Mintzberg's 'Craft' argues that real strategy often emerges from a pattern of learning and adaptation, rather than being fully planned."
+                    },
+                    {
+                        q: "In Session 2, we defined Tesla's 'Production Hell' as a painful trade-off. This was a consequence of which strategic choice?",
+                        o: [
+                            "Their decision to enter the Chinese market.",
+                            "Their marketing partnership with SpaceX.",
+                            "Their 'First-Principles' Core Value.",
+                            "Their strategic position of Vertical Integration and the BHAG to mass-produce the Model 3."
+                        ],
+                        a: 3,
+                        e: "Production Hell was the direct, painful cost (the trade-off) of achieving their audacious goal (BHAG) of mass-producing the Model 3, which was made even harder by their strategic choice (Position) to vertically integrate (e.g., build the Gigafactory)."
+                    },
+                    {
+                        q: "According to the Collins & Porras framework, a complete Vision consists of what two primary components?",
+                        o: [
+                            "Strategy and Execution",
+                            "Core Ideology and Envisioned Future",
+                            "Core Competence and Core Values",
+                            "BHAG and Core Purpose"
+                        ],
+                        a: 1,
+                        e: "This is the central framework of Session 3. The 'Yin' is the Core Ideology (who you are, stable), and the 'Yang' is the Envisioned Future (where you are going, dynamic)."
+                    },
+                    {
+                        q: "What is the function of the 'Core Ideology' (the Yin)?",
+                        o: [
+                            "To set a 10-30 year goal with a clear finish line.",
+                            "To adapt and change every year with the market.",
+                            "To define the stable, timeless, and enduring character of the organization.",
+                            "To describe the company's products and services."
+                        ],
+                        a: 2,
+                        e: "The Core Ideology is the 'glue' that holds the company together over time. It is stable, timeless, and defines 'who we are' (our values and purpose). It is to be *preserved*."
+                    },
+                    {
+                        q: "What is the function of the 'Envisioned Future' (the Yang)?",
+                        o: [
+                            "To state the company's core values.",
+                            "To be a guiding star that is never reached.",
+                            "To stimulate progress by setting a 10-30 year audacious goal (BHAG) that is achievable.",
+                            "To define the company's reason for being."
+                        ],
+                        a: 2,
+                        e: "The Envisioned Future is the dynamic part of the vision. It's the 'mountain' to be climbed—a Big, Hairy, Audacious Goal (BHAG) with a clear finish line that stimulates progress and change."
+                    },
+                    {
+                        q: "What is Tesla's Core Purpose?",
+                        o: [
+                            "To build the world's best electric cars.",
+                            "To accelerate the world's transition to sustainable energy.",
+                            "To achieve the 'Secret Master Plan'.",
+                            "To become the world's most valuable automaker."
+                        ],
+                        a: 1,
+                        e: "This is crucial. Their purpose is *not* 'to build cars' (which is what they do). Their purpose is 'to accelerate the world's transition to sustainable energy' (which is *why* they do it). This allows them to expand into solar, batteries, etc."
+                    },
+                    {
+                        q: "How does a 'Core Purpose' (like Tesla's) differ from a 'BHAG'?",
+                        o: [
+                            "A Core Purpose is a 10-30 year goal, while a BHAG is timeless.",
+                            "A Core Purpose is a timeless 'guiding star' you never reach, while a BHAG is a concrete 'mountain' you can achieve.",
+                            "A Core Purpose is only about values, while a BHAG is only about profit.",
+                            "They are the same thing."
+                        ],
+                        a: 1,
+                        e: "This is a key distinction. The Core Purpose (e.g., 'accelerate the transition') is like a guiding star on the horizon—you can chase it forever but never fully 'complete' it. The BHAG (e.g., 'The Master Plan') is a concrete, achievable goal that moves you *towards* that star."
+                    },
+                    {
+                        q: "Tesla's 2006 'Secret Master Plan' (sports car -> sedan -> mass-market car) is a perfect example of what?",
+                        o: [
+                            "A Core Value",
+                            "A Core Purpose",
+                            "A Big, Hairy, Audacious Goal (BHAG)",
+                            "Operational Effectiveness (OE)"
+                        ],
+                        a: 2,
+                        e: "The Master Plan was a classic BHAG. It was big (remake the auto industry), hairy (seemed impossible), audacious (for a tiny startup), and had a clear finish line (build the mass-market car). It was the 'mountain' they set out to climb."
+                    },
+                    {
+                        q: "According to Kaplan & Norton, the 'Value Gap' shown in our chart is the difference between...",
+                        o: [
+                            "The company's stock price and its real value.",
+                            "The company's audacious goal (BHAG) and its 'status quo' reality.",
+                            "The company's Core Values and its actual behavior.",
+                            "The price of a Tesla and the price of a gas car."
+                        ],
+                        a: 1,
+                        e: "The Value Gap is the quantitative measure of the BHAG. It's the space between 'Here is our massive goal' (e.g., 500,000 cars) and 'Here is what we'll do if we just keep chugging along' (e.g., 100,000 cars)."
+                    },
+                    {
+                        q: "In Simulation 1, we linked Tesla's strategy of *Vertical Integration* (Gigafactories) to which part of its vision?",
+                        o: [
+                            "Its Core Purpose (To *accelerate* the transition, they couldn't wait for suppliers).",
+                            "Its Core Value of 'Move Fast'.",
+                            "Its BHAG of building a sports car.",
+                            "Its desire to copy other car companies."
+                        ],
+                        a: 0,
+                        e: "This connects the 'Why' to the 'What'. *Why* build the factory? Because their Core Purpose was to *accelerate* the energy transition. They couldn't do that if they were constrained by suppliers, so they *had* to build it themselves."
+                    },
+                    {
+                        q: "In Simulation 1, we saw that 'Production Hell' (The What) was the logical, painful consequence of what?",
+                        o: [
+                            "Musk's 'First-Principles' Core Value.",
+                            "The company's Core Purpose.",
+                            "The company's BHAG (The Master Plan).",
+                            "Poor management."
+                        ],
+                        a: 2,
+                        e: "The 'chaos' of Production Hell was the price of the *goal*. To meet the impossible deadline of their BHAG (mass-produce the Model 3 *now*), they had to endure the chaos. Growing slowly and safely (good OE) would have meant *failing* the BHAG."
+                    },
+                    {
+                        q: "In Simulation 1, we linked Tesla's *bypassing of dealerships* (The What) to which part of its vision?",
+                        o: [
+                            "Its Core Purpose ('Sustainable Energy').",
+                            "Its BHAG (The Master Plan).",
+                            "Its Core Value ('First-Principles Thinking').",
+                            "The Kaplan & Norton 'Value Gap'."
+                        ],
+                        a: 2,
+                        e: "The *value* of 'First-Principles Thinking' (question everything) led them to ask, 'Why do dealerships exist?' They concluded the dealer model (profiting from service) was fundamentally misaligned with low-maintenance EVs, so they *had* to build a new model."
+                    },
+                    {
+                        q: "What is the 'We've Arrived Syndrome' that visionary companies must avoid?",
+                        o: [
+                            "Becoming too profitable.",
+                            "Failing to set a new BHAG after achieving its last one.",
+                            "Changing its Core Values to match the market.",
+                            "Focusing too much on the Envisioned Future."
+                        ],
+                        a: 1,
+                        e: "This is what happened to NASA after the moon landing. A visionary company must *always* be climbing a mountain. Once it reaches the summit (achieves its BHAG), it must set a *new* BHAG to continue stimulating progress."
+                    },
+                    {
+                        q: "The 2024 debate over Musk's 25% control demand for AI/Robotics represents what?",
+                        o: [
+                            "A change in Tesla's Core Values.",
+                            "A failure of its Core Purpose.",
+                            "The chaotic, real-world process of setting a *new* Envisioned Future (a new BHAG).",
+                            "An example of Operational Effectiveness."
+                        ],
+                        a: 2,
+                        e: "This is the most likely interpretation using the Collins & Porras framework. Tesla achieved its first BHAG (the Master Plan). The 25% demand is part of Musk's attempt to force the company to climb a new, bigger mountain (AI/Robotics) as its *next* Envisioned Future."
+                    },
+                    {
+                        q: "What is the final synthesis that connects all three sessions?",
+                        o: [
+                            "Tesla's strategy proves Porter is right and Mintzberg is wrong.",
+                            "Tesla's vision proves Collins & Porras are right and Porter is wrong.",
+                            "Tesla is a hybrid: it uses Mintzberg's 'craft' (chaos) to achieve Porter's 'blueprint' (position), all driven by a powerful Collins & Porras 'vision'.",
+                            "Strategy is just about having a good leader, and all the frameworks are just academic."
+                        ],
+                        a: 2,
+                        e: "This is the 'Aha!' moment. The frameworks are not mutually exclusive. Tesla is a perfect hybrid: Its 'Vision' (Collins & Porras) is the *engine*. This engine powers a deliberate 'Blueprint' (Porter). And the *execution* of that blueprint is a messy, adaptive, chaotic 'Craft' (Mintzberg)."
+                    }
+                ];
+
+                let quizScore = 0;
+                const quizScoreElement = document.getElementById('quiz-score');
+                const quizContainer = document.getElementById('quiz-container');
+
+                function renderQuiz() {
+                    if (!quizContainer) return; // Safety check
+                    quizContainer.innerHTML = '';
+                    quizData.forEach((item, index) => {
+                        const questionWrapper = document.createElement('div');
+                        questionWrapper.className = 'quiz-question-wrapper';
+                        
+                        const questionText = document.createElement('p');
+                        questionText.className = 'text-md font-semibold text-slate-800 mb-4';
+                        questionText.textContent = `${index + 1}. ${item.q}`;
+                        questionWrapper.appendChild(questionText);
+
+                        const optionsContainer = document.createElement('div');
+                        optionsContainer.className = 'quiz-options';
+                        
+                        item.o.forEach((option, optionIndex) => {
+                            const optionButton = document.createElement('button');
+                            optionButton.className = 'quiz-option';
+                            optionButton.textContent = option;
+                            optionButton.onclick = () => checkAnswer(item, optionIndex, optionsContainer);
+                            optionsContainer.appendChild(optionButton);
+                        });
+                        questionWrapper.appendChild(optionsContainer);
+
+                        const explanation = document.createElement('div');
+                        explanation.className = 'quiz-explanation';
+                        explanation.innerHTML = `<strong class="font-bold">Rationale:</strong> ${item.e}`;
+                        questionWrapper.appendChild(explanation);
+
+                        quizContainer.appendChild(questionWrapper);
+                    });
+                }
+
+                function checkAnswer(item, selectedIndex, optionsContainer) {
+                    // Disable all buttons in this group
+                    Array.from(optionsContainer.children).forEach(button => {
+                        button.disabled = true;
+                    });
+
+                    const selectedButton = optionsContainer.children[selectedIndex];
+                    const correctButton = optionsContainer.children[item.a];
+                    const explanation = optionsContainer.nextElementSibling;
+
+                    if (selectedIndex === item.a) {
+                        selectedButton.classList.add('correct');
+                        quizScore++;
+                        if(quizScoreElement) quizScoreElement.textContent = `${quizScore} / ${quizData.length}`;
+                    } else {
+                        selectedButton.classList.add('incorrect');
+                        correctButton.classList.add('correct');
+                    }
+
+                    // Show explanation
+                    explanation.classList.add('visible');
+                }
+
+                // Initial render
+                renderQuiz();
+
+                // --- End Quiz Logic ---
+
+                // --- Modal Logic ---
+                const modal = document.getElementById('modal');
+                const modalContent = document.getElementById('modal-content');
+                window.openModal = (title, body) => { 
+                    if(!modal || !modalContent) return;
+                    document.getElementById('modal-title').innerText = title;
+                    document.getElementById('modal-body').innerHTML = body;
+                    modal.classList.remove('pointer-events-none', 'opacity-0');
+                    document.body.style.overflow = 'hidden';
+                    setTimeout(() => { modalContent.classList.remove('scale-95', 'opacity-0'); }, 10);
+                };
+                window.closeModal = () => { 
+                    if(!modal || !modalContent) return;
+                    modal.classList.add('opacity-0');
+                    modalContent.classList.add('scale-95', 'opacity-0');
+                    document.body.style.overflow = '';
+                    setTimeout(() => modal.classList.add('pointer-events-none'), 300);
+                };
+                if(modal) modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+
+
+            });
+        </script>
+    </body>
+    </html>

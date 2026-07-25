@@ -1,0 +1,1958 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 12: Business-Level Strategy | Strategic Management</title>
+    
+    <!-- Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- GRAND MASTER THEME ADAPTED FOR SESSION 12 --- */
+        :root {
+            --primary-bg: #fdfbf7;      /* Warm paper white */
+            --primary-text: #1a1a1a;    /* Soft black */
+            --accent-color: #0f172a;    /* Deep Slate/Navy for General Strategy */
+            --accent-green: #15803d;    /* Value/Differentiation */
+            --accent-blue: #2563eb;     /* Cost Leadership */
+            --accent-gold: #d97706;     /* Highlights */
+            --glass: rgba(255, 255, 255, 0.95);
+            --border-light: #cbd5e1;    /* Deepened from e2e8f0 for structural contrast */
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--primary-text);
+            font-family: 'Satoshi', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .serif-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .mono-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Navigation Styles */
+        #main-header { position: sticky; top: 0; z-index: 40; transition: all 0.3s ease; }
+        .nav-link { position: relative; font-weight: 500; color: #64748b; transition: color 0.2s; text-decoration: none; }
+        .nav-link:hover, .nav-link.active { color: var(--accent-color); }
+        
+        .chess-logo {
+            width: 40px; height: 40px;
+            background: var(--accent-color);
+            color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .group:hover .chess-logo { transform: rotate(10deg); background: #1e293b; }
+
+        /* Card & Panel Styles */
+        .glass-panel {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-light);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .card-panel {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-panel:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-bg {
+            background: radial-gradient(circle at 50% 0%, #f1f5f9 0%, #fdfbf7 70%);
+        }
+
+        /* Utilities */
+        .slider-thumb {
+            -webkit-appearance: none;
+            width: 100%; height: 6px;
+            background: #94a3b8; /* Deepened track for contrast */
+            border-radius: 3px; outline: none;
+        }
+        .slider-thumb::-webkit-slider-thumb {
+            -webkit-appearance: none; width: 20px; height: 20px;
+            border-radius: 50%; background: var(--accent-color);
+            cursor: pointer; transition: transform 0.1s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .slider-thumb::-webkit-slider-thumb:hover { transform: scale(1.2); }
+
+        .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        
+        .chart-container { position: relative; height: 350px; width: 100%; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: var(--primary-bg); }
+        ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
+        .context-box {
+            background: #f8fafc;
+            border-left: 3px solid #64748b;
+            padding: 1rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+            font-size: 0.85rem;
+        }
+
+        /* Value Wedge Specifics for Light Theme */
+        .wedge-bar { transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="antialiased selection:bg-blue-100 selection:text-blue-900">
+
+    <!-- Top Progress Bar -->
+    <div class="fixed top-0 left-0 w-full h-1 bg-slate-200 z-50">
+        <div id="progress-bar" class="h-full bg-slate-800 w-0 transition-all duration-100 ease-out"></div>
+    </div>
+
+    <!-- HEADER / NAVIGATION -->
+    <nav id="main-header" class="bg-white/95 backdrop-blur-md border-b border-slate-300 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Left: Logo Area -->
+            <a href="#" class="flex items-center gap-3 group no-underline">
+                <div class="chess-logo">
+                    <i class="fas fa-chess-knight"></i>
+                </div>
+                <div class="leading-tight">
+                    <h1 class="font-bold text-slate-900 tracking-tight text-xl">The Strategist's Lens</h1>
+                    <p class="text-[10px] text-slate-600 font-bold uppercase tracking-widest">Session 12: Generic Strategies</p>
+                </div>
+            </a>
+            
+            <!-- Center: Navigation Links -->
+            <div class="hidden xl:flex space-x-6 text-sm font-medium">
+                <a href="#position" class="nav-link text-slate-900 font-bold">Positioning</a>
+                <a href="#generic-strategies" class="nav-link text-slate-900">Generic Strategies</a>
+                <a href="#differentiation" class="nav-link text-green-700"><i class="fas fa-arrow-up-right-dots mr-1"></i>Differentiation</a>
+                <a href="#cost" class="nav-link text-blue-700"><i class="fas fa-arrow-down-up-across-line mr-1"></i>Cost Leadership</a>
+                <a href="#forces" class="nav-link text-slate-900"><i class="fas fa-shield-halved mr-1"></i>Five Forces</a>
+                <a href="#blueocean" class="nav-link text-amber-700 font-bold"><i class="fas fa-water mr-1"></i>Blue Ocean</a>
+            </div>
+
+            <!-- Right: Social Icons -->
+            <div class="flex items-center gap-5">
+                <a href="https://swapnilsahoo.com" target="_blank" class="text-slate-500 hover:text-teal-700 transition-colors" title="Dr. Swapnil Sahoo Website">
+                    <i class="fas fa-globe"></i>
+                </a>
+                <a href="#" class="text-slate-500 hover:text-blue-700 transition-colors"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.chess.com/member/theswapnilsahoo" target="_blank" class="text-slate-500 hover:text-slate-900 transition-colors text-lg" title="Play Chess">
+                    <i class="fas fa-chess-king"></i>
+                </a>
+                <button class="xl:hidden text-slate-700"><i class="fas fa-bars text-xl"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="py-24 px-6 hero-bg border-b border-slate-200 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-slate-200/50 rounded-l-full blur-3xl -z-10"></div>
+        <div class="max-w-6xl mx-auto w-full z-10 fade-up text-center"> 
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-300 bg-white text-slate-800 text-xs font-bold tracking-widest uppercase mb-6 shadow-sm">
+                <i class="fas fa-layer-group"></i> Session 12 Masterclass
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-8 text-slate-900 serif-font">
+                Business-Level Strategy:<br>
+                <span class="italic text-slate-600 font-light">How to Compete for Advantage</span>
+            </h1>
+            <p class="text-xl text-slate-700 max-w-3xl mx-auto font-light leading-relaxed mb-10">
+                Before we examine complex frameworks, we must master First Principles. How do we manipulate the levers of <strong>Value (V)</strong> and <strong>Cost (C)</strong> to carve out a sustainable competitive moat?
+            </p>
+            
+            <!-- Context Injection -->
+            <div class="max-w-3xl mx-auto bg-white/90 backdrop-blur rounded-xl p-5 border border-slate-300 shadow-md text-sm text-slate-700 mb-8 flex items-start gap-4 text-left">
+                <i class="fa-solid fa-graduation-cap text-2xl text-slate-900 mt-1"></i>
+                <div>
+                    <h3 class="text-slate-900 font-bold mb-1">The Professor's Inquiry</h3>
+                    <p class="italic text-slate-600">
+                        "Imagine two companies selling bottled water. Company A sells it for $1. Company B sells it for $4. Both are highly profitable. Why? What fundamental laws of economics govern their profit?"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-12 space-y-32">
+        
+        <!-- 6.1 STRATEGIC POSITION -->
+        <section id="position" class="fade-up">
+            <div class="flex items-end gap-4 mb-10 border-b border-slate-300 pb-6">
+                <span class="text-6xl font-serif text-slate-300">12.1</span>
+                <div class="pb-2">
+                    <h2 class="text-3xl font-serif text-slate-900 font-bold">The Strategic Position</h2>
+                    <p class="text-slate-600">Value Creation vs. Cost Control</p>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <!-- Text Column -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="bg-slate-100 p-6 rounded-xl border border-slate-300 shadow-sm">
+                        <h3 class="font-bold text-slate-900 mb-2 flex items-center gap-2"><i class="fa-solid fa-brain text-slate-500"></i> First Principles: The Value Gap</h3>
+                        <p class="text-slate-700 text-sm mb-4 leading-relaxed">
+                            Economic Value Created is the difference between a buyer's willingness to pay for a product (<strong class="text-green-800">V</strong>) and the firm's total cost to produce it (<strong class="text-blue-800">C</strong>).
+                        </p>
+                        <p class="text-center text-lg font-mono text-slate-900 py-3 bg-white rounded border border-slate-300 shadow-inner">
+                            V - C = Economic Value Created
+                        </p>
+                    </div>
+                    
+                    <h4 class="text-lg font-bold text-slate-900 mb-4 serif-font">Generic Business Strategies</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3 bg-white p-4 rounded-lg border border-slate-300 shadow-sm">
+                            <i class="fa-solid fa-arrow-up-right-dots text-green-700 text-xl mt-1"></i>
+                            <div>
+                                <strong class="text-slate-900 text-sm">Differentiation:</strong>
+                                <p class="text-xs text-slate-600 mt-1">Create higher value (V) for customers than competitors, allowing you to charge a premium price (P).</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 bg-white p-4 rounded-lg border border-slate-300 shadow-sm">
+                            <i class="fa-solid fa-arrow-down-up-across-line text-blue-700 text-xl mt-1"></i>
+                            <div>
+                                <strong class="text-slate-900 text-sm">Cost Leadership:</strong>
+                                <p class="text-xs text-slate-600 mt-1">Create the same or similar value at a lower cost (C) than competitors.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Interactive Lab -->
+                <div class="lg:col-span-7">
+                    <div class="card-panel p-8 bg-white shadow-xl h-full flex flex-col">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="font-bold text-lg text-slate-900">Lab: Strategic Trade-off Simulator</h3>
+                            <span class="px-3 py-1 bg-slate-200 text-slate-700 rounded-full text-[10px] font-bold font-mono tracking-widest border border-slate-300">CONSOLE</span>
+                        </div>
+                        <p class="text-xs text-slate-600 mb-8">Adjust the strategic focus of your firm to see how it impacts Value (V), Price (P), and Cost (C).</p>
+                        
+                        <!-- Controls -->
+                        <div class="mb-10">
+                            <label class="block text-xs font-bold text-slate-500 tracking-widest uppercase mb-3">Strategic Focus Lever</label>
+                            <input type="range" id="strategy-slider" min="0" max="100" value="50" class="slider-thumb">
+                            <div class="flex justify-between text-xs font-mono text-slate-600 mt-3">
+                                <span class="text-blue-700 font-bold">Cost Leadership</span>
+                                <span>Stuck in Middle</span>
+                                <span class="text-green-700 font-bold">Differentiation</span>
+                            </div>
+                        </div>
+
+                        <!-- Visualization -->
+                        <div class="flex justify-center items-end h-56 gap-12 pb-4 border-b border-slate-300">
+                            
+                            <!-- Value Wedge -->
+                            <div class="relative w-28 flex flex-col justify-end h-full">
+                                <div class="text-center font-mono text-xs text-slate-600 font-bold mb-3">Your Firm</div>
+                                <!-- Value Created (V-P) -->
+                                <div id="bar-cs" class="wedge-bar w-full bg-green-100 border border-green-500 rounded-t flex items-center justify-center text-[10px] font-bold text-green-900 uppercase tracking-widest shadow-sm">Cons. Surplus</div>
+                                <!-- Firm Profit (P-C) -->
+                                <div id="bar-profit" class="wedge-bar w-full bg-amber-100 border-x border-amber-500 flex items-center justify-center text-[10px] font-bold text-amber-900 uppercase tracking-widest shadow-sm">Profit</div>
+                                <!-- Cost (C) -->
+                                <div id="bar-cost" class="wedge-bar w-full bg-blue-100 border border-blue-500 rounded-b flex items-center justify-center text-[10px] font-bold text-blue-900 uppercase tracking-widest shadow-sm">Cost (C)</div>
+                                
+                                <!-- Lines connecting P and V -->
+                                <div id="line-v" class="wedge-bar absolute -left-12 border-t border-dashed border-green-600 w-12 flex items-center"><span class="absolute -left-6 text-xs font-mono font-bold text-green-700">V</span></div>
+                                <div id="line-p" class="wedge-bar absolute -left-12 border-t border-dashed border-amber-600 w-12 flex items-center"><span class="absolute -left-6 text-xs font-mono font-bold text-amber-700">P</span></div>
+                            </div>
+
+                            <!-- Competitor (Baseline) -->
+                            <div class="relative w-28 flex flex-col justify-end h-full opacity-80">
+                                <div class="text-center font-mono text-xs text-slate-500 mb-3">Competitor</div>
+                                <div class="w-full h-1/4 bg-slate-200 border border-slate-400 rounded-t"></div>
+                                <div class="w-full h-1/4 bg-slate-200 border-x border-slate-400"></div>
+                                <div class="w-full h-2/4 bg-slate-200 border border-slate-400 rounded-b flex items-center justify-center text-[10px] text-slate-600 font-bold uppercase tracking-widest">Baseline</div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 p-4 bg-slate-100 rounded-lg border border-slate-300 text-center min-h-[80px] flex items-center justify-center shadow-inner">
+                            <p id="strategy-feedback" class="text-sm text-slate-700 leading-relaxed"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 12.1.5 THE WEDGE WORKSHOP (NEW SECTION) -->
+        <section id="wedge-workshop" class="fade-up pt-12">
+            <div class="flex items-end gap-4 mb-10 border-b border-slate-300 pb-6">
+                <span class="text-6xl font-serif text-slate-300">12.1.5</span>
+                <div class="pb-2">
+                    <h2 class="text-3xl font-serif text-slate-900 font-bold">The Economic Wedge Laboratory</h2>
+                    <p class="text-slate-600">Decoding Profitability, Moats, and Strategic Intuition</p>
+                </div>
+            </div>
+
+            <!-- Decoding the Two Companies -->
+            <div class="grid lg:grid-cols-12 gap-8 mb-12">
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="bg-indigo-50 p-6 rounded-xl border border-indigo-200 shadow-sm">
+                        <h3 class="font-bold text-indigo-900 mb-2 font-serif text-lg">The Fundamental Equation</h3>
+                        <p class="text-sm text-slate-700 leading-relaxed mb-4">To answer my earlier inquiry about the $1 vs. $4 water, we must look past the liquid and focus on the "wedge" created between production cost and consumer valuation.</p>
+                        <ul class="space-y-2 text-sm text-slate-800 font-mono bg-white p-4 rounded border border-indigo-100">
+                            <li><strong class="text-indigo-600">Value (V):</strong> Max Willingness to Pay (WTP)</li>
+                            <li><strong class="text-indigo-600">Price (P):</strong> Actual amount charged</li>
+                            <li><strong class="text-indigo-600">Cost (C):</strong> Expenses to produce</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                        <h4 class="font-bold text-slate-900 mb-2">Carving the "Sustainable Moat"</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-3">A moat forms when the <span class="font-mono font-bold text-slate-800">(V - C)</span> relationship is difficult to replicate.</p>
+                        <ul class="text-xs text-slate-700 space-y-3">
+                            <li class="border-l-2 border-blue-500 pl-3"><strong class="text-blue-800">The Cost Moat (Structural):</strong> Company A owns the only spring near a major city. Transport costs are permanently lower.</li>
+                            <li class="border-l-2 border-green-500 pl-3"><strong class="text-green-800">The Value Moat (Intangible):</strong> Company B convinces society their water is the only "pure" status symbol (e.g., Fiji). Identical water cannot command the $4 price without that brand equity.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7">
+                    <div class="card-panel p-6 bg-white shadow-md border-slate-200 h-full">
+                        <h3 class="font-bold text-slate-900 mb-4 text-center uppercase tracking-widest text-xs border-b border-slate-100 pb-3">Decoding the Water Companies</h3>
+                        <div class="overflow-x-auto custom-scrollbar">
+                            <table class="w-full text-left text-sm text-slate-700">
+                                <thead class="bg-slate-100 text-slate-900 text-xs uppercase tracking-wider">
+                                    <tr>
+                                        <th class="px-4 py-3 rounded-tl-lg">Feature</th>
+                                        <th class="px-4 py-3 text-blue-700">Company A: Cost Leader ($1)</th>
+                                        <th class="px-4 py-3 text-green-700 rounded-tr-lg">Company B: Differentiator ($4)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-100 text-xs">
+                                    <tr>
+                                        <td class="px-4 py-3 font-bold text-slate-800">Strategic Focus</td>
+                                        <td class="px-4 py-3">Lowering Cost (C)</td>
+                                        <td class="px-4 py-3">Increasing Value (V)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 font-bold text-slate-800">Market Play</td>
+                                        <td class="px-4 py-3">High volume, low margin.</td>
+                                        <td class="px-4 py-3">Low volume, high margin.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 font-bold text-slate-800">Value Prop</td>
+                                        <td class="px-4 py-3">"It's water. It's cheap."</td>
+                                        <td class="px-4 py-3">"It's an experience/status/health."</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 font-bold text-slate-800">The "Wedge"</td>
+                                        <td class="px-4 py-3 bg-blue-50/50">Profit comes from extreme operational efficiency and scale (e.g., C = $0.70, Profit = $0.30).</td>
+                                        <td class="px-4 py-3 bg-green-50/50">Profit comes from a high WTP that far outpaces the added luxury cost (e.g., C = $1.50, Profit = $2.50).</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strategic Intuition: Trigger Questions -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-serif font-bold text-slate-900 mb-2">Strategic Intuition</h3>
+                <p class="text-sm text-slate-600 mb-6">Move from abstract theory to applied diagnostics. Where is the economic value being captured?</p>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Card 1 -->
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition group">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="bg-green-100 text-green-800 w-6 h-6 rounded flex items-center justify-center text-xs font-bold font-mono">V</span>
+                            <h4 class="font-bold text-slate-900 text-sm">The Differentiation Wedge</h4>
+                        </div>
+                        <p class="text-xs text-slate-700 italic mb-3 border-l-2 border-slate-300 pl-2">"If a Tata Tiago and a Mercedes A-Class both get you from A to B safely, why is the WTP for Mercedes 5x higher? Is the production cost 5x higher?"</p>
+                        <p class="text-[11px] text-slate-500"><strong class="text-slate-800">Global Parallel:</strong> iPhone vs. Nothing Phone. Ecosystem lock-in drives <strong>V</strong> up faster than manufacturing <strong>C</strong>.</p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition group">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="bg-blue-100 text-blue-800 w-6 h-6 rounded flex items-center justify-center text-xs font-bold font-mono">C</span>
+                            <h4 class="font-bold text-slate-900 text-sm">The Cost Frontier</h4>
+                        </div>
+                        <p class="text-xs text-slate-700 italic mb-3 border-l-2 border-slate-300 pl-2">"In the Indian airline industry, why did IndiGo remain profitable while others collapsed? Did they charge more, or ruthlessly manipulate costs?"</p>
+                        <p class="text-[11px] text-slate-500"><strong class="text-slate-800">Local Parallel:</strong> Reliance Jio. Massive upfront capital drove marginal <strong>C</strong> of data to near zero, destroying legacy rivals.</p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition group">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="bg-red-100 text-red-800 w-6 h-6 rounded flex items-center justify-center text-xs font-bold font-mono">X</span>
+                            <h4 class="font-bold text-slate-900 text-sm">Stuck in the Middle</h4>
+                        </div>
+                        <p class="text-xs text-slate-700 italic mb-3 border-l-2 border-slate-300 pl-2">"Why did Indian mid-market brands like Micromax struggle against Xiaomi (Cost Leaders) and Samsung (Differentiators)?"</p>
+                        <p class="text-[11px] text-slate-500"><strong class="text-slate-800">Global Parallel:</strong> Gap vs. Zara. Zara keeps <strong>V</strong> high (trendiness) and <strong>C</strong> low (no waste). Gap relies on heavy discounting (lowering <strong>P</strong>).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Case Study Challenge (Data Debate) -->
+            <div class="card-panel p-8 bg-slate-50 shadow-inner border-slate-300 mb-12">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="font-bold text-xl font-serif text-slate-900">The Data Debate: Find the Moat</h3>
+                    <span class="bg-slate-800 text-white px-3 py-1 rounded text-[10px] font-bold tracking-widest uppercase shadow-sm">6-Min Analysis</span>
+                </div>
+                
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <!-- Debate 1 -->
+                    <div class="bg-white p-5 rounded-lg border border-slate-200 shadow-sm">
+                        <h4 class="font-bold text-slate-800 text-sm mb-3">1. The Sky-High Profitability Gap</h4>
+                        <table class="w-full text-left text-[11px] text-slate-600 mb-3">
+                            <thead class="bg-slate-100 text-slate-500">
+                                <tr><th>Metric</th><th>IndiGo (Low-Cost)</th><th>Air India (Legacy)</th></tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <tr><td>Rev per Aircraft</td><td class="font-bold">₹193 Cr</td><td class="font-bold">₹416 Cr</td></tr>
+                                <tr><td>Flights/Plane/Day</td><td class="font-bold text-blue-600">5.3</td><td>3.9</td></tr>
+                                <tr><td>Net Result</td><td class="font-bold text-green-600">₹7,258 Cr Profit</td><td class="font-bold text-red-500">₹10,859 Cr Loss</td></tr>
+                            </tbody>
+                        </table>
+                        <p class="text-xs text-slate-700 italic">"If Air India earns double the revenue per plane (higher P), why is IndiGo making massive profits? Which levers in C are they pulling?"</p>
+                    </div>
+
+                    <!-- Debate 2 -->
+                    <div class="bg-white p-5 rounded-lg border border-slate-200 shadow-sm">
+                        <h4 class="font-bold text-slate-800 text-sm mb-3">2. The "Speed as Value" Lever</h4>
+                        <table class="w-full text-left text-[11px] text-slate-600 mb-3">
+                            <thead class="bg-slate-100 text-slate-500">
+                                <tr><th>Metric</th><th>Zara (Fast Fashion)</th><th>The Gap (Traditional)</th></tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <tr><td>Design to Shelf</td><td class="font-bold text-blue-600">10-15 Days</td><td>3-6 Months</td></tr>
+                                <tr><td>Ad Spend</td><td class="font-bold">Near Zero</td><td class="font-bold text-red-500">High (Celebrities)</td></tr>
+                            </tbody>
+                        </table>
+                        <p class="text-xs text-slate-700 italic">"Gap spends on ads to increase Brand Value (V). Zara drives V through 'Freshness' and lowers 'Cost of Failure' (unsold stock). Is operational speed a better lever?"</p>
+                    </div>
+                    
+                    <!-- Debate 3 -->
+                    <div class="bg-white p-5 rounded-lg border border-slate-200 shadow-sm">
+                        <h4 class="font-bold text-slate-800 text-sm mb-3">3. The Tech-Disruptor's Wedge</h4>
+                        <table class="w-full text-left text-[11px] text-slate-600 mb-3">
+                            <thead class="bg-slate-100 text-slate-500">
+                                <tr><th>Metric</th><th>Zerodha (Tech)</th><th>Traditional Bank-Brokers</th></tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <tr><td>CAC</td><td class="font-bold text-blue-600">Near Zero</td><td>High (Branch Staff)</td></tr>
+                                <tr><td>Brokerage Fee (P)</td><td class="font-bold text-blue-600">Flat ₹20 / ₹0</td><td>Percentage-based</td></tr>
+                            </tbody>
+                        </table>
+                        <p class="text-xs text-slate-700 italic">"How did Zerodha’s decision to lower V (no human service) but drastically obliterate C (tech-only infrastructure) capture India's market share?"</p>
+                    </div>
+
+                    <!-- Debate 4 -->
+                    <div class="bg-white p-5 rounded-lg border border-slate-200 shadow-sm">
+                        <h4 class="font-bold text-slate-800 text-sm mb-3">4. The Innovation Frontier</h4>
+                        <table class="w-full text-left text-[11px] text-slate-600 mb-3">
+                            <thead class="bg-slate-100 text-slate-500">
+                                <tr><th>Metric</th><th>Tesla (EV Pioneer)</th><th>Ford (Legacy Giant)</th></tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <tr><td>Innovation Focus</td><td class="font-bold text-green-600">Software, Giga-press</td><td>ICE to EV Bridge</td></tr>
+                                <tr><td>Value Lever</td><td class="font-bold">Mission / Vision</td><td class="font-bold">Durability & Scale</td></tr>
+                            </tbody>
+                        </table>
+                        <p class="text-xs text-slate-700 italic">"Tesla’s C was initially higher due to R&D, but they commanded a 'Cult-like' WTP (V). As Ford catches up, will Tesla's moat stay in Product (V) or Mfg Efficiency (C)?"</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Class Activity: Student Handout -->
+            <div class="card-panel p-8 bg-slate-900 text-white shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 rounded-full blur-[80px] pointer-events-none"></div>
+                
+                <div class="relative z-10">
+                    <h3 class="font-bold text-2xl font-serif text-white mb-2">Class Activity: The Wedge Workshop</h3>
+                    <p class="text-slate-400 text-sm mb-8">Design a business model for a commodity by intentionally manipulating the V and C levers.</p>
+                    
+                    <div class="grid lg:grid-cols-2 gap-10">
+                        <!-- Left: Instructions -->
+                        <div class="space-y-6 text-sm">
+                            <div class="bg-slate-800/80 p-5 rounded-xl border border-slate-700">
+                                <strong class="text-amber-400 block mb-2 uppercase tracking-widest text-[10px]">Phase 1: Setup (10 Mins)</strong>
+                                <p class="text-slate-300">Divide into teams. Your target commodity is <strong>Coffee</strong>, a <strong>Plain White T-Shirt</strong>, or a <strong>Commuter Cab</strong>. Team A builds a Cost Leader. Team B builds a Differentiator.</p>
+                            </div>
+                            
+                            <div class="bg-slate-800/80 p-5 rounded-xl border border-slate-700">
+                                <strong class="text-amber-400 block mb-2 uppercase tracking-widest text-[10px]">Phase 2: Fintech Sample Blueprint</strong>
+                                <p class="text-slate-300 mb-3">Study how Neobanks (Revolut/Jupiter) disrupt Legacy Banks:</p>
+                                <ul class="list-disc pl-4 space-y-2 text-slate-400 text-xs marker:text-blue-500">
+                                    <li><strong class="text-white">Lowering Cost (C):</strong> Zero physical branches; automated KYC; cloud infrastructure.</li>
+                                    <li><strong class="text-white">Raising Value (V):</strong> Superior UI/UX; real-time insights; zero-fee transfers; gamification.</li>
+                                    <li><strong class="text-white">The Wedge:</strong> A structurally lower C means even a lower P (fees) yields massive margins.</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-slate-800/80 p-5 rounded-xl border border-slate-700 border-l-4 border-l-red-500">
+                                <strong class="text-red-400 block mb-2 uppercase tracking-widest text-[10px]">Phase 3: The Stress Test</strong>
+                                <p class="text-slate-300 text-xs italic">"If a competitor copies your top 3 features, does your wedge shrink? If you raised prices by 10% tomorrow, would customers stay?"</p>
+                            </div>
+                        </div>
+
+                        <!-- Right: Student Worksheet -->
+                        <div class="bg-white text-slate-900 p-6 rounded-xl shadow-lg font-mono text-xs">
+                            <div class="flex items-center justify-between border-b border-slate-200 pb-3 mb-4">
+                                <h4 class="font-bold text-sm uppercase tracking-widest">Student Blueprint</h4>
+                                <span class="text-slate-400"><i class="fa-solid fa-print"></i></span>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <span class="block text-slate-500 mb-1">Assigned Business:</span>
+                                <div class="border-b border-dashed border-slate-400 h-4"></div>
+                            </div>
+                            
+                            <div class="mb-6 flex gap-4 text-slate-600">
+                                <label><input type="checkbox" class="mr-1"> Cost Leadership (Focus on C)</label>
+                                <label><input type="checkbox" class="mr-1"> Differentiation (Focus on V)</label>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="bg-green-50 p-3 rounded border border-green-200">
+                                    <strong class="text-green-800 block mb-1">Value (V) Tactics:</strong>
+                                    <span class="text-slate-500 text-[10px]">How will you increase "Willingness to Pay"? (Brand, Experience, Speed)</span>
+                                    <div class="border-b border-slate-300 h-4 mt-2"></div>
+                                </div>
+                                <div class="bg-blue-50 p-3 rounded border border-blue-200">
+                                    <strong class="text-blue-800 block mb-1">Cost (C) Tactics:</strong>
+                                    <span class="text-slate-500 text-[10px]">Where will you cut/invest to lower expenses without hurting quality?</span>
+                                    <div class="border-b border-slate-300 h-4 mt-2"></div>
+                                </div>
+                                <div class="bg-amber-50 p-3 rounded border border-amber-200">
+                                    <strong class="text-amber-800 block mb-1">Price (P) Strategy:</strong>
+                                    <span class="text-slate-500 text-[10px]">What is the ideal price point to capture maximum margin?</span>
+                                    <div class="border-b border-slate-300 h-4 mt-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GENERIC BUSINESS STRATEGIES MODULE -->
+        <section id="generic-strategies" class="fade-up pt-12">
+            <div class="flex items-end gap-4 mb-10 border-b border-slate-300 pb-6">
+                <i class="fa-solid fa-chess-board text-4xl text-slate-300 pb-1"></i>
+                <div class="pb-2">
+                    <h2 class="text-3xl font-serif text-slate-900 font-bold">Generic Business Strategies</h2>
+                    <p class="text-slate-600">The Matrix of Position and Scope (Exhibit 12.1)</p>
+                </div>
+            </div>
+
+            <!-- Theory Block -->
+            <div class="grid lg:grid-cols-2 gap-12 mb-12">
+                <div class="space-y-6">
+                    <div class="prose text-slate-700 text-sm leading-relaxed">
+                        <p>There are two fundamentally different generic business strategies—<strong>differentiation</strong> and <strong>cost leadership</strong>. A differentiation strategy seeks to create higher value for customers than the value that competitors create, while keeping costs at a similar level. This enables the firm to charge premium prices. Conversely, a cost-leadership strategy seeks to deliver similar value at a lower cost, enabling the firm to offer lower prices.</p>
+                        <p>These are called <em>generic strategies</em> because they can be utilized by any organization (manufacturing or service, large or small, domestic or foreign) independent of industry context.</p>
+                    </div>
+                    
+                    <div class="bg-amber-50 p-5 rounded-lg border-l-4 border-amber-500 shadow-sm">
+                        <h4 class="font-bold text-amber-900 text-sm mb-2 uppercase tracking-widest">Strategic Trade-offs</h4>
+                        <p class="text-xs text-slate-700 leading-relaxed">
+                            Because value creation and cost tend to be positively correlated, important trade-offs exist. A business strategy is more likely to lead to a competitive advantage if it allows a firm to either perform similar activities differently than its rivals or perform different activities entirely.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="prose text-slate-700 text-sm leading-relaxed">
+                        <h4 class="font-bold text-slate-900 mb-2 font-serif text-lg">The Scope of Competition</h4>
+                        <p>When considering business strategies, strategic leaders must define the <strong>scope of competition</strong>—whether to pursue a specific, narrow part of the market or go after the broader market.</p>
+                        <p><strong>GM vs. Tesla:</strong> GM's competitive scope is broad, with a focus on the mass automotive market (from Chevy's broad cost-leadership to Cadillac's broad differentiation). In contrast, Tesla initially used a focused differentiation strategy, targeting a narrow segment of environmentally conscious luxury consumers willing to pay a premium price.</p>
+                    </div>
+
+                    <div class="bg-blue-50 p-5 rounded-lg border-l-4 border-blue-500 shadow-sm">
+                        <h4 class="font-bold text-blue-900 text-sm mb-2 uppercase tracking-widest">The "Stuck in the Middle" Trap</h4>
+                        <p class="text-xs text-slate-700 leading-relaxed">
+                            Michael Porter warned that firms failing to choose one clear strategy risk becoming "stuck in the middle." For example, <strong>JetBlue</strong> attempted to straddle a cost-leadership position with differentiation. Trying to be "everything to everybody" led to a competitive disadvantage, allowing clear strategic players (like Southwest or Delta) to outperform them.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exhibit 6.2 Matrix -->
+            <div class="mb-16">
+                <div class="bg-white p-8 rounded-xl border border-slate-300 shadow-md overflow-hidden relative">
+                    <div class="flex items-center gap-3 mb-10 text-center justify-center">
+                        <span class="bg-slate-500 text-white px-2 py-1 font-bold text-xs uppercase tracking-widest rounded-sm shadow-sm">Exhibit 12.1</span>
+                        <span class="text-slate-800 font-sans font-medium text-lg">Strategic Position and Competitive Scope:<br>Generic Business Strategies</span>
+                    </div>
+
+                    <div class="w-full overflow-x-auto pb-4 custom-scrollbar flex justify-center">
+                        <div class="flex items-center">
+                            <!-- Y-Axis -->
+                            <div class="flex flex-col items-center mr-4">
+                                <span class="-rotate-90 tracking-widest text-xs font-bold text-slate-500 uppercase h-32 whitespace-nowrap mt-24">Competitive Scope</span>
+                            </div>
+                            
+                            <div>
+                                <!-- Matrix Grid -->
+                                <div class="flex">
+                                    <!-- Y-Axis Labels -->
+                                    <div class="flex flex-col justify-between items-end mr-4 text-xs font-bold text-slate-600 uppercase py-16">
+                                        <span class="-rotate-90">Broad</span>
+                                        <span class="-rotate-90 mt-[120px]">Narrow</span>
+                                    </div>
+
+                                    <!-- The Quadrants -->
+                                    <div class="grid grid-cols-2 grid-rows-2 border-2 border-slate-400">
+                                        <!-- Top Left: Cost Leadership -->
+                                        <div class="w-[220px] h-[160px] md:w-[280px] md:h-[180px] bg-[#90bed0] border border-slate-400 flex items-center justify-center text-center p-4">
+                                            <span class="font-bold text-slate-900 text-lg">Cost<br>Leadership</span>
+                                        </div>
+                                        <!-- Top Right: Differentiation -->
+                                        <div class="w-[220px] h-[160px] md:w-[280px] md:h-[180px] bg-[#c3b68f] border border-slate-400 flex items-center justify-center text-center p-4">
+                                            <span class="font-bold text-slate-900 text-lg">Differentiation</span>
+                                        </div>
+                                        <!-- Bottom Left: Focused Cost Leadership -->
+                                        <div class="w-[220px] h-[160px] md:w-[280px] md:h-[180px] bg-[#d4e4ec] border border-slate-400 flex items-center justify-center text-center p-4">
+                                            <span class="font-bold text-slate-900 text-lg">Focused Cost<br>Leadership</span>
+                                        </div>
+                                        <!-- Bottom Right: Focused Differentiation -->
+                                        <div class="w-[220px] h-[160px] md:w-[280px] md:h-[180px] bg-[#e6e1d1] border border-slate-400 flex items-center justify-center text-center p-4">
+                                            <span class="font-bold text-slate-900 text-lg">Focused<br>Differentiation</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- X-Axis Labels -->
+                                <div class="flex pl-12 mt-4">
+                                    <div class="w-[220px] md:w-[280px] text-center text-xs font-bold text-slate-600 uppercase">Cost</div>
+                                    <div class="w-[220px] md:w-[280px] text-center text-xs font-bold text-slate-600 uppercase">Differentiation</div>
+                                </div>
+                                <div class="text-center font-bold text-sm tracking-widest mt-2 pl-12 text-slate-500 uppercase">Strategic Position</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deep Dive: The Four Strategies & Examples -->
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- 1. Cost Leadership -->
+                <div class="card-panel p-6 bg-white border-t-4 border-t-blue-500 shadow-sm hover:shadow-md transition">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600"><i class="fas fa-compress-arrows-alt"></i></div>
+                        <h4 class="font-bold text-slate-900 text-lg">Cost Leadership</h4>
+                    </div>
+                    <p class="text-xs text-slate-600 mb-4 bg-slate-50 p-2 rounded"><strong>Target:</strong> Broad | <strong>Position:</strong> Low Cost</p>
+                    <p class="text-sm text-slate-700 mb-4">Aims to be the lowest-cost producer for a broad customer base. Success relies on high efficiency, economies of scale, and standardized products.</p>
+                    <div class="grid grid-cols-2 gap-4 text-xs border-t border-slate-100 pt-3">
+                        <div>
+                            <strong class="text-slate-900 block mb-1">Global Giants:</strong>
+                            <ul class="text-slate-600 list-disc pl-4 space-y-1">
+                                <li><strong>Walmart:</strong> Supply chain dominance.</li>
+                                <li><strong>IKEA:</strong> Sourcing scale, self-assembly.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <strong class="text-blue-800 block mb-1">Indian Leaders:</strong>
+                            <ul class="text-slate-600 list-disc pl-4 space-y-1">
+                                <li><strong>Tata Steel:</strong> Captive iron ore/coal ownership.</li>
+                                <li><strong>Nirma:</strong> Low-cost manufacturing revolution.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Differentiation -->
+                <div class="card-panel p-6 bg-white border-t-4 border-t-green-600 shadow-sm hover:shadow-md transition">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-700"><i class="fas fa-gem"></i></div>
+                        <h4 class="font-bold text-slate-900 text-lg">Differentiation</h4>
+                    </div>
+                    <p class="text-xs text-slate-600 mb-4 bg-slate-50 p-2 rounded"><strong>Target:</strong> Broad | <strong>Position:</strong> Unique Value</p>
+                    <p class="text-sm text-slate-700 mb-4">Focuses on creating unique products or services for a broad market that customers perceive as superior, allowing for premium pricing.</p>
+                    <div class="grid grid-cols-2 gap-4 text-xs border-t border-slate-100 pt-3">
+                        <div>
+                            <strong class="text-slate-900 block mb-1">Global Giants:</strong>
+                            <ul class="text-slate-600 list-disc pl-4 space-y-1">
+                                <li><strong>Apple:</strong> Seamless closed ecosystem.</li>
+                                <li><strong>Nike:</strong> Unmatched brand perception.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <strong class="text-green-800 block mb-1">Indian Leaders:</strong>
+                            <ul class="text-slate-600 list-disc pl-4 space-y-1">
+                                <li><strong>Titan:</strong> Premium image & showroom service.</li>
+                                <li><strong>Amul:</strong> Iconic brand identity ("Taste of India").</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Focused Cost Leadership -->
+                <div class="card-panel p-6 bg-white border-t-4 border-t-indigo-400 shadow-sm hover:shadow-md transition">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-8 h-8 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-500"><i class="fas fa-bullseye"></i></div>
+                        <h4 class="font-bold text-slate-900 text-lg">Focused Cost Leadership</h4>
+                    </div>
+                    <p class="text-xs text-slate-600 mb-4 bg-slate-50 p-2 rounded"><strong>Target:</strong> Narrow | <strong>Position:</strong> Low Cost</p>
+                    <p class="text-sm text-slate-700 mb-4">Targets a narrow, price-sensitive niche by being the lowest-cost provider within that highly specific segment.</p>
+                    <div class="grid grid-cols-2 gap-4 text-xs border-t border-slate-100 pt-3">
+                        <div>
+                            <strong class="text-slate-900 block mb-1">Global Giants:</strong>
+                            <ul class="text-slate-600 list-disc pl-4 space-y-1">
+                                <li><strong>Spirit Airlines:</strong> Ultra-frugal "bare fares".</li>
+                                <li><strong>Monster Beverage:</strong> Cheaper per ounce than Red Bull.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <strong class="text-indigo-800 block mb-1">Indian Leaders:</strong>
+                            <ul class="text-slate-600 list-disc pl-4 space-y-1">
+                                <li><strong>IndiGo Airlines:</strong> Uniform fleet, point-to-point focus.</li>
+                                <li><strong>Zepto:</strong> Lean 10-minute urban delivery niche.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Focused Differentiation -->
+                <div class="card-panel p-6 bg-white border-t-4 border-t-amber-500 shadow-sm hover:shadow-md transition">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-8 h-8 rounded-full bg-amber-50 flex items-center justify-center text-amber-600"><i class="fas fa-crown"></i></div>
+                        <h4 class="font-bold text-slate-900 text-lg">Focused Differentiation</h4>
+                    </div>
+                    <p class="text-xs text-slate-600 mb-4 bg-slate-50 p-2 rounded"><strong>Target:</strong> Narrow | <strong>Position:</strong> Unique Value</p>
+                    <p class="text-sm text-slate-700 mb-4">Targets a narrow market segment with highly unique and distinctive products tailored strictly to the specific needs of that niche.</p>
+                    <div class="grid grid-cols-2 gap-4 text-xs border-t border-slate-100 pt-3">
+                        <div>
+                            <strong class="text-slate-900 block mb-1">Global Giants:</strong>
+                            <ul class="text-slate-600 list-disc pl-4 space-y-1">
+                                <li><strong>Rolls Royce:</strong> Ultra-luxury customized vehicles.</li>
+                                <li><strong>Lush:</strong> Handmade, ethical, vegetarian niche.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <strong class="text-amber-800 block mb-1">Indian Leaders:</strong>
+                            <ul class="text-slate-600 list-disc pl-4 space-y-1">
+                                <li><strong>Maybach (India):</strong> Extreme high-end luxury autos.</li>
+                                <li><strong>ICICI Wealth Mgmt:</strong> Specialized services for HNIs.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6.2 DIFFERENTIATION -->
+        <section id="differentiation" class="fade-up">
+            <div class="flex items-end gap-4 mb-10 border-b border-slate-300 pb-6">
+                <span class="text-6xl font-serif text-slate-300">12.2</span>
+                <div class="pb-2">
+                    <h2 class="text-3xl font-serif text-slate-900 font-bold">Differentiation Strategy</h2>
+                    <p class="text-slate-600">Unlocking the Drivers of Value</p>
+                </div>
+            </div>
+
+            <!-- Group Activity / Case Studies -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <div class="card-panel p-8 bg-white hover:border-slate-400">
+                    <h3 class="text-xl font-serif font-bold mb-4 flex items-center gap-3 text-slate-900"><i class="fa-brands fa-apple text-slate-500"></i> Global Case: Apple</h3>
+                    <p class="text-sm text-slate-700 mb-5">
+                        Apple creates immense value by focusing on three primary drivers:
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3 text-sm text-slate-800">
+                            <i class="fa-solid fa-microchip text-green-700 mt-1"></i> 
+                            <div><strong>Product Features:</strong> iOS ecosystem, M-series silicon, premium industrial design.</div>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-slate-800">
+                            <i class="fa-solid fa-headset text-green-700 mt-1"></i> 
+                            <div><strong>Customer Service:</strong> The Genius Bar, seamless in-store support.</div>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-slate-800">
+                            <i class="fa-solid fa-link text-green-700 mt-1"></i> 
+                            <div><strong>Complements:</strong> Apple Watch, AirPods, making the core product indispensible.</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card-panel p-8 bg-slate-100 border-slate-300 hover:border-slate-400">
+                    <h3 class="text-xl font-serif font-bold mb-4 flex items-center gap-3 text-slate-900"><i class="fa-solid fa-motorcycle text-slate-500"></i> Indian Case: Royal Enfield</h3>
+                    <p class="text-sm text-slate-700 mb-6">
+                        How does RE command a massive premium despite selling technologically older, heavier bikes compared to Japanese rivals?
+                    </p>
+                    <div class="bg-white p-5 rounded-lg border-l-4 border-green-700 shadow-md">
+                        <p class="text-sm text-slate-800 italic leading-relaxed">
+                            "They don't sell a commute; they sell a cult, a lifestyle, and a sound (the famous 'thump'). This intangible product feature creates massive willingness to pay (WTP), overriding higher production costs or lower technical specifications."
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Socratic Interactive -->
+            <div class="card-panel p-8 max-w-4xl mx-auto bg-white shadow-xl text-center">
+                <span class="bg-slate-200 text-slate-700 px-3 py-1 rounded-full text-[10px] font-bold font-mono tracking-widest mb-4 inline-block border border-slate-300">BOARDROOM SIMULATION</span>
+                <h3 class="text-2xl font-serif font-bold text-slate-900 mb-3">The Mid-Tier Pivot</h3>
+                <p class="text-slate-700 text-sm mb-8 max-w-2xl mx-auto">As the CEO of a mid-tier hotel chain, your board demands higher profit margins. You propose a Differentiation Strategy. Which of the following Value Drivers will you invest capital into?</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
+                    <button onclick="checkDiff(0)" class="group p-5 rounded-xl border border-slate-300 hover:border-green-600 hover:bg-green-50 transition-all shadow-sm">
+                        <div class="w-10 h-10 rounded-full bg-slate-200 text-slate-700 group-hover:bg-green-200 group-hover:text-green-800 flex items-center justify-center mb-3 transition-colors"><i class="fas fa-bed"></i></div>
+                        <strong class="text-slate-900 block mb-2">Product Features</strong>
+                        <span class="text-xs text-slate-600 leading-relaxed block">Upgrade to Egyptian cotton sheets and organic boutique toiletries.</span>
+                    </button>
+                    <button onclick="checkDiff(1)" class="group p-5 rounded-xl border border-slate-300 hover:border-green-600 hover:bg-green-50 transition-all shadow-sm">
+                        <div class="w-10 h-10 rounded-full bg-slate-200 text-slate-700 group-hover:bg-green-200 group-hover:text-green-800 flex items-center justify-center mb-3 transition-colors"><i class="fas fa-concierge-bell"></i></div>
+                        <strong class="text-slate-900 block mb-2">Customer Service</strong>
+                        <span class="text-xs text-slate-600 leading-relaxed block">Hire a 24/7 personalized concierge for every guest suite.</span>
+                    </button>
+                    <button onclick="checkDiff(2)" class="group p-5 rounded-xl border border-slate-300 hover:border-green-600 hover:bg-green-50 transition-all shadow-sm">
+                        <div class="w-10 h-10 rounded-full bg-slate-200 text-slate-700 group-hover:bg-green-200 group-hover:text-green-800 flex items-center justify-center mb-3 transition-colors"><i class="fas fa-map-marked-alt"></i></div>
+                        <strong class="text-slate-900 block mb-2">Complements</strong>
+                        <span class="text-xs text-slate-600 leading-relaxed block">Partner with local luxury tour guides for exclusive guest packages.</span>
+                    </button>
+                </div>
+                <div id="diff-feedback" class="mt-8 hidden p-5 bg-slate-100 rounded-lg border border-slate-300 text-sm text-slate-800 shadow-inner text-left font-medium"></div>
+            </div>
+        </section>
+
+        <!-- 6.3 COST LEADERSHIP -->
+        <section id="cost" class="fade-up">
+            <div class="flex items-end gap-4 mb-10 border-b border-slate-300 pb-6">
+                <span class="text-6xl font-serif text-slate-300">12.3</span>
+                <div class="pb-2">
+                    <h2 class="text-3xl font-serif text-slate-900 font-bold">Cost-Leadership Strategy</h2>
+                    <p class="text-slate-600">The Physics of Scale and Learning</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <!-- Text / Theory -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="prose text-slate-700 text-sm leading-relaxed">
+                        <p>The objective of Cost Leadership is to reduce the firm's cost below that of its competitors while offering adequate value. This is driven by four primary forces:</p>
+                    </div>
+                    
+                    <ul class="space-y-3 text-sm">
+                        <li class="bg-white p-4 rounded-lg border border-slate-300 shadow-sm flex gap-3">
+                            <span class="font-bold font-mono text-blue-700">01</span>
+                            <div>
+                                <strong class="text-slate-900 block mb-1">Cost of Input Factors</strong>
+                                <span class="text-slate-600 text-xs">Access to lower-cost materials, capital, or labor (e.g., Emirates Airlines in Dubai).</span>
+                            </div>
+                        </li>
+                        <li class="bg-white p-4 rounded-lg border border-slate-300 shadow-sm flex gap-3">
+                            <span class="font-bold font-mono text-blue-700">02</span>
+                            <div>
+                                <strong class="text-slate-900 block mb-1">Economies of Scale</strong>
+                                <span class="text-slate-600 text-xs">Decreases in cost per unit as output increases by spreading fixed costs.</span>
+                            </div>
+                        </li>
+                        <li class="bg-white p-4 rounded-lg border border-slate-300 shadow-sm flex gap-3">
+                            <span class="font-bold font-mono text-blue-700">03</span>
+                            <div>
+                                <strong class="text-slate-900 block mb-1">Learning-Curve Effects</strong>
+                                <span class="text-slate-600 text-xs">Learning by doing. As cumulative output increases, time and cost per unit drop.</span>
+                            </div>
+                        </li>
+                        <li class="bg-white p-4 rounded-lg border border-slate-300 shadow-sm flex gap-3">
+                            <span class="font-bold font-mono text-blue-700">04</span>
+                            <div>
+                                <strong class="text-slate-900 block mb-1">Experience-Curve Effects</strong>
+                                <span class="text-slate-600 text-xs">Implementing new technology to drop the entire learning curve lower.</span>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="context-box border-blue-500 bg-blue-100 mt-6 shadow-sm">
+                        <h5 class="font-bold text-blue-900 mb-1 text-[10px] uppercase tracking-widest">Indian Retail Parallel</h5>
+                        <p class="text-slate-800 text-xs leading-relaxed">
+                            <strong>DMart (Avenue Supermarts):</strong> Radhakishan Damani built DMart on ruthless cost leadership. They buy land instead of leasing (lowers fixed costs), pay suppliers in 7 days for massive discounts (Input Cost), and maintain high inventory turnover (Scale).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Chart Lab -->
+                <div class="lg:col-span-7">
+                    <div class="card-panel p-8 h-full flex flex-col bg-white shadow-xl">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="font-bold text-lg text-slate-900">Simulator: The Learning Curve</h3>
+                            <i class="fas fa-chart-line text-blue-600 text-xl"></i>
+                        </div>
+                        <p class="text-xs text-slate-600 mb-8 leading-relaxed">
+                            Observe how an 80% learning curve impacts unit cost. Every time cumulative output doubles, cost drops by 20%. Adjust cumulative production volume below to ride the curve down.
+                        </p>
+                        
+                        <div class="mb-8 bg-slate-100 p-5 rounded-xl border border-slate-300 shadow-inner">
+                            <div class="flex justify-between text-sm text-slate-700 mb-4 font-bold">
+                                <span>Output: <span id="output-val" class="font-mono text-blue-800 text-lg bg-blue-200 border border-blue-300 px-2 rounded">1000</span> units</span>
+                                <span>Unit Cost: <span id="cost-val" class="font-mono text-amber-800 text-lg bg-amber-200 border border-amber-300 px-2 rounded">$100.00</span></span>
+                            </div>
+                            <input type="range" id="learning-slider" min="1" max="6" step="1" value="1" class="slider-thumb">
+                            <div class="flex justify-between text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-3">
+                                <span>Startup Phase</span>
+                                <span>Mass Scale</span>
+                            </div>
+                        </div>
+
+                        <!-- Chart Container -->
+                        <div class="chart-container flex-grow mt-auto">
+                            <canvas id="learningChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6.4 FIVE FORCES SHIELD -->
+        <section id="forces" class="fade-up">
+            <div class="flex items-end gap-4 mb-10 border-b border-slate-300 pb-6">
+                <span class="text-6xl font-serif text-slate-300">12.4</span>
+                <div class="pb-2">
+                    <h2 class="text-3xl font-serif text-slate-900 font-bold">Strategy & The Five Forces</h2>
+                    <p class="text-slate-600">How Generic Strategies Defend the Moat</p>
+                </div>
+            </div>
+
+            <div class="card-panel p-8 bg-white shadow-xl overflow-hidden relative border-slate-300">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-slate-200 rounded-full blur-[80px] opacity-60 z-0 pointer-events-none"></div>
+                
+                <div class="relative z-10">
+                    <p class="text-sm text-slate-700 mb-8 max-w-3xl text-center mx-auto">
+                        How do these strategic positions defend against the structural forces of an industry? Click the rows below to analyze the defense mechanisms.
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4 text-center text-xs font-bold uppercase tracking-widest border-b border-slate-300 pb-4">
+                        <div class="text-slate-500">Industry Force</div>
+                        <div class="text-green-800 bg-green-100 py-2 rounded border border-green-200">Differentiation Defense</div>
+                        <div class="text-blue-800 bg-blue-100 py-2 rounded border border-blue-200">Cost-Leadership Defense</div>
+                    </div>
+
+                    <!-- Interactive Matrix Rows -->
+                    <div class="space-y-3 font-mono text-xs">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 p-4 bg-slate-50 border border-slate-300 rounded-lg hover:shadow-md hover:border-slate-400 transition-all cursor-pointer group" onclick="showForce('entry')">
+                            <div class="font-bold text-slate-900 flex items-center text-sm"><i class="fa-solid fa-door-open w-8 text-slate-400 group-hover:text-slate-700 transition-colors text-lg"></i> Threat of Entry</div>
+                            <div class="text-slate-700 flex items-center">Protection via intangible resources (brand loyalty, reputation).</div>
+                            <div class="text-slate-700 flex items-center">Protection via economies of scale. Entrants can't match unit costs.</div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 p-4 bg-slate-50 border border-slate-300 rounded-lg hover:shadow-md hover:border-slate-400 transition-all cursor-pointer group" onclick="showForce('supplier')">
+                            <div class="font-bold text-slate-900 flex items-center text-sm"><i class="fa-solid fa-truck-fast w-8 text-slate-400 group-hover:text-slate-700 transition-colors text-lg"></i> Power of Suppliers</div>
+                            <div class="text-slate-700 flex items-center">High margins allow firm to absorb supplier price increases easily.</div>
+                            <div class="text-slate-700 flex items-center">High volume purchases give firm massive bargaining power.</div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 p-4 bg-slate-50 border border-slate-300 rounded-lg hover:shadow-md hover:border-slate-400 transition-all cursor-pointer group" onclick="showForce('buyer')">
+                            <div class="font-bold text-slate-900 flex items-center text-sm"><i class="fa-solid fa-users w-8 text-slate-400 group-hover:text-slate-700 transition-colors text-lg"></i> Power of Buyers</div>
+                            <div class="text-slate-700 flex items-center">Well-differentiated products lack perfect substitutes.</div>
+                            <div class="text-slate-700 flex items-center">Prices already lowest; buyers can't squeeze prices further.</div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 p-4 bg-slate-50 border border-slate-300 rounded-lg hover:shadow-md hover:border-slate-400 transition-all cursor-pointer group" onclick="showForce('substitute')">
+                            <div class="font-bold text-slate-900 flex items-center text-sm"><i class="fa-solid fa-shuffle w-8 text-slate-400 group-hover:text-slate-700 transition-colors text-lg"></i> Threat of Substitutes</div>
+                            <div class="text-slate-700 flex items-center">Brand loyalty makes customers less likely to switch.</div>
+                            <div class="text-slate-700 flex items-center">Low prices make it economically unattractive to switch.</div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 p-4 bg-slate-50 border border-slate-300 rounded-lg hover:shadow-md hover:border-slate-400 transition-all cursor-pointer group" onclick="showForce('rivalry')">
+                            <div class="font-bold text-slate-900 flex items-center text-sm"><i class="fa-solid fa-bolt w-8 text-slate-400 group-hover:text-amber-600 transition-colors text-lg"></i> Rivalry</div>
+                            <div class="text-slate-700 flex items-center">Compete on non-price attributes. Avoids margin-crushing price wars.</div>
+                            <div class="text-slate-700 flex items-center">Can survive price wars far longer than competitors.</div>
+                        </div>
+                    </div>
+
+                    <!-- Detail Panel -->
+                    <div id="force-detail" class="mt-8 p-6 border-l-4 border-slate-800 bg-slate-100 rounded-r-xl hidden transition-all shadow-md">
+                        <h4 id="force-title" class="text-lg font-bold text-slate-900 mb-2 font-serif"></h4>
+                        <p id="force-desc" class="text-slate-700 text-sm leading-relaxed"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6.5 BLUE OCEAN -->
+        <section id="blueocean" class="fade-up">
+            <div class="flex items-end gap-4 mb-10 border-b border-slate-300 pb-6">
+                <span class="text-6xl font-serif text-slate-300">12.5</span>
+                <div class="pb-2">
+                    <h2 class="text-3xl font-serif text-slate-900 font-bold">Blue Ocean Strategy</h2>
+                    <p class="text-slate-600">Value Innovation & The ERRC Framework</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                
+                <!-- Theory & Controls -->
+                <div class="lg:col-span-5 flex flex-col gap-8">
+                    <div class="prose text-slate-700 text-sm leading-relaxed">
+                        <p>A Blue Ocean strategy combines Differentiation and Cost Leadership through <strong>Value Innovation</strong>, creating untapped market space and rendering the competition irrelevant.</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl border border-slate-300 shadow-md">
+                        <h3 class="text-sm font-bold text-slate-900 mb-4 uppercase tracking-widest text-center border-b border-slate-200 pb-3">The ERRC Grid</h3>
+                        <div class="grid grid-cols-2 gap-3 font-mono text-[10px] uppercase">
+                            <div class="bg-blue-100 p-3 rounded border border-blue-300 text-slate-700"><strong class="text-blue-800 block mb-1">Eliminate:</strong> Factors the industry takes for granted. (Lowers Cost)</div>
+                            <div class="bg-blue-100 p-3 rounded border border-blue-300 text-slate-700"><strong class="text-blue-800 block mb-1">Reduce:</strong> Factors well below industry standard. (Lowers Cost)</div>
+                            <div class="bg-green-100 p-3 rounded border border-green-300 text-slate-700"><strong class="text-green-800 block mb-1">Raise:</strong> Factors well above industry standard. (Increases Value)</div>
+                            <div class="bg-green-100 p-3 rounded border border-green-300 text-slate-700"><strong class="text-green-800 block mb-1">Create:</strong> Factors the industry has never offered. (Increases Value)</div>
+                        </div>
+                    </div>
+
+                    <div class="card-panel p-6 bg-slate-900 text-white shadow-2xl border-slate-700">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="font-bold text-lg text-white">Case: Cirque du Soleil</h3>
+                            <i class="fas fa-ticket text-amber-400 text-xl"></i>
+                        </div>
+                        <p class="text-xs text-slate-300 mb-6 leading-relaxed">Toggle the ERRC actions to see how Cirque du Soleil created a Blue Ocean in the declining, traditional circus industry.</p>
+                        
+                        <div class="space-y-3 text-sm">
+                            <label class="flex items-center gap-3 p-3 bg-slate-800 rounded border border-slate-600 cursor-pointer hover:bg-slate-700 transition">
+                                <input type="checkbox" id="bo-eliminate" class="w-4 h-4 accent-blue-500" onchange="updateCanvas()">
+                                <span><strong class="text-blue-400">Eliminate:</strong> Star Performers & Animals</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 bg-slate-800 rounded border border-slate-600 cursor-pointer hover:bg-slate-700 transition">
+                                <input type="checkbox" id="bo-reduce" class="w-4 h-4 accent-blue-500" onchange="updateCanvas()">
+                                <span><strong class="text-blue-400">Reduce:</strong> Fun/Humor & Thrill/Danger</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 bg-slate-800 rounded border border-slate-600 cursor-pointer hover:bg-slate-700 transition">
+                                <input type="checkbox" id="bo-raise" class="w-4 h-4 accent-green-400" onchange="updateCanvas()">
+                                <span><strong class="text-green-400">Raise:</strong> Unique Venue (Refined)</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 bg-slate-800 rounded border border-slate-600 cursor-pointer hover:bg-slate-700 transition">
+                                <input type="checkbox" id="bo-create" class="w-4 h-4 accent-green-400" onchange="updateCanvas()">
+                                <span><strong class="text-green-400">Create:</strong> Artistic Theme & Music</span>
+                            </label>
+                        </div>
+
+                        <div id="bo-status" class="mt-6 text-[10px] uppercase tracking-widest font-mono text-center text-red-400 font-bold p-3 bg-red-950/80 border border-red-500/50 rounded shadow-inner">
+                            Status: Red Ocean (Bloody Competition)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strategy Canvas -->
+                <div class="lg:col-span-7">
+                    <div class="card-panel p-8 bg-white h-full flex flex-col justify-center shadow-xl border-slate-300">
+                        <h3 class="text-sm font-bold text-slate-900 mb-6 text-center uppercase tracking-widest">The Strategy Canvas</h3>
+                        <div class="chart-container" style="height: 60vh; max-height: 500px;">
+                            <canvas id="strategyCanvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <!-- Contextual Note -->
+            <div class="mt-12 bg-amber-100 p-6 rounded-xl border border-amber-300 shadow-md max-w-4xl mx-auto">
+                <h4 class="font-bold text-amber-900 mb-2 flex items-center gap-2 font-serif text-lg">
+                    <i class="fa-solid fa-bolt text-amber-600"></i> Local Context: The IPL Blue Ocean
+                </h4>
+                <p class="text-sm text-slate-800 leading-relaxed">
+                    The Indian Premier League (IPL) executed a textbook Blue Ocean move in sports entertainment. 
+                    They <strong class="text-blue-800 bg-blue-200 px-1 rounded">Eliminated</strong> the slow 5-day format and <strong class="text-blue-800 bg-blue-200 px-1 rounded">Reduced</strong> technical purist elements. 
+                    They <strong class="text-green-800 bg-green-200 px-1 rounded">Raised</strong> the pace and <strong class="text-green-800 bg-green-200 px-1 rounded">Created</strong> a fusion of Bollywood glamour and city-based franchised loyalty—expanding the market drastically to families and non-traditional cricket fans.
+                </p>
+            </div>
+        </section>
+
+        <!-- 12.6 CAPSTONE GROUP ACTIVITY -->
+        <section id="architect-challenge" class="fade-up pt-12">
+            <div class="flex items-end gap-4 mb-10 border-b border-slate-300 pb-6">
+                <span class="text-6xl font-serif text-slate-300">12.6</span>
+                <div class="pb-2">
+                    <h2 class="text-3xl font-serif text-slate-900 font-bold">Capstone Lab: The Strategic Architect</h2>
+                    <p class="text-slate-600">Synthesizing Exhibit 12.2 — Industry & Firm Effects</p>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-12 items-start mb-12">
+                <!-- Left: Exhibit & Theory -->
+                <div class="lg:col-span-6 space-y-8">
+                    <div class="prose text-slate-700 text-sm leading-relaxed">
+                        <p>This paradigm, mapped in <strong>Exhibit 12.2</strong>, illustrates how a firm's competitive advantage is determined by the combined, interacting influence of external <em>industry effects</em> and internal <em>firm effects</em>. A competitive advantage occurs when a firm can either deliver the same benefits as rivals at a lower cost, or provide unique benefits that justify a higher price point.</p>
+                    </div>
+
+                    <!-- RECREATING THE EXHIBIT 6.1 IMAGE VIA HTML/CSS -->
+                    <div class="bg-white p-6 rounded-xl border border-slate-300 shadow-md overflow-hidden">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="bg-slate-500 text-white px-2 py-1 font-bold text-xs uppercase tracking-widest rounded-sm shadow-sm">21</span>
+                            <span class="text-slate-700 font-sans font-medium text-sm md:text-base">Industry and Firm Effects Jointly Determine Competitive Advantage</span>
+                        </div>
+                        
+                        <div class="w-full overflow-x-auto pb-4 custom-scrollbar">
+                            <div class="relative min-w-[850px] h-[340px] mx-auto text-slate-800 font-sans">
+                                
+                                <!-- 1. INDUSTRY EFFECTS -->
+                                <div class="absolute top-[10px] left-[10px] w-[140px] h-[80px] bg-[#c3b68f] border border-[#a39773] shadow-sm flex items-center justify-center font-bold text-center text-sm leading-tight z-20">
+                                    INDUSTRY<br>EFFECTS
+                                </div>
+
+                                <!-- 2. FIRM EFFECTS -->
+                                <div class="absolute top-[228px] left-[10px] w-[140px] h-[80px] bg-[#90bed0] border border-[#78a2b1] shadow-sm flex items-center justify-center font-bold text-center text-sm leading-tight z-20">
+                                    FIRM<br>EFFECTS
+                                </div>
+
+                                <!-- Double Arrow 1 <-> 2 -->
+                                <div class="absolute top-[102px] left-[76px] w-[8px] h-[114px] bg-slate-400 z-10"></div>
+                                <div class="absolute top-[90px] left-[68px] w-0 h-0 border-x-[12px] border-x-transparent border-b-[12px] border-b-slate-400 z-10"></div>
+                                <div class="absolute top-[216px] left-[68px] w-0 h-0 border-x-[12px] border-x-transparent border-t-[12px] border-t-slate-400 z-10"></div>
+
+                                <!-- 3. INDUSTRY ATTRACTIVENESS -->
+                                <div class="absolute top-[10px] left-[220px] w-[170px] h-[80px] bg-[#c3b68f] border border-[#a39773] shadow-sm flex flex-col items-center justify-center z-20">
+                                    <span class="font-bold text-sm leading-tight text-center mb-1">INDUSTRY<br>ATTRACTIVENESS</span>
+                                    <ul class="text-[11px] list-disc pl-4 text-left w-full leading-snug pr-2 text-slate-800">
+                                        <li>5 Forces Model</li>
+                                        <li>Complements</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Line 1 -> 3 -->
+                                <div class="absolute top-[46px] left-[150px] w-[58px] h-[8px] bg-slate-400 z-10"></div>
+                                <div class="absolute top-[38px] left-[208px] w-0 h-0 border-y-[12px] border-y-transparent border-l-[12px] border-l-slate-400 z-10"></div>
+
+                                <!-- 4. WITHIN INDUSTRY -->
+                                <div class="absolute top-[10px] left-[460px] w-[150px] h-[80px] bg-[#c3b68f] border border-[#a39773] shadow-sm flex flex-col items-center justify-center z-20">
+                                    <span class="font-bold text-sm leading-tight text-center mb-1">WITHIN INDUSTRY</span>
+                                    <ul class="text-[11px] list-disc pl-4 text-left w-full leading-snug pr-2 text-slate-800">
+                                        <li>Strategic Groups</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Line 3 -> 4 -->
+                                <div class="absolute top-[46px] left-[390px] w-[58px] h-[8px] bg-slate-400 z-10"></div>
+                                <div class="absolute top-[38px] left-[448px] w-0 h-0 border-y-[12px] border-y-transparent border-l-[12px] border-l-slate-400 z-10"></div>
+
+                                <!-- 5. VALUE POSITION -->
+                                <div class="absolute top-[140px] left-[220px] w-[170px] h-[64px] bg-[#90bed0] border border-[#78a2b1] shadow-sm flex flex-col items-center justify-center z-20">
+                                    <span class="font-bold text-sm leading-tight text-center">VALUE POSITION</span>
+                                    <span class="text-[11px] leading-tight text-center">Relative to<br>Competitors</span>
+                                </div>
+
+                                <!-- 6. COST POSITION -->
+                                <div class="absolute top-[236px] left-[220px] w-[170px] h-[64px] bg-[#90bed0] border border-[#78a2b1] shadow-sm flex flex-col items-center justify-center z-20">
+                                    <span class="font-bold text-sm leading-tight text-center">COST POSITION</span>
+                                    <span class="text-[11px] leading-tight text-center">Relative to<br>Competitors</span>
+                                </div>
+
+                                <!-- Line 2 -> 5 & 6 (Fork) -->
+                                <!-- Main trunk from 2 -->
+                                <div class="absolute top-[264px] left-[150px] w-[30px] h-[8px] bg-slate-400 z-10"></div>
+                                <!-- Vertical bar connecting top and bottom paths -->
+                                <div class="absolute top-[168px] left-[180px] w-[8px] h-[104px] bg-slate-400 z-10"></div>
+                                <!-- Path to 5 -->
+                                <div class="absolute top-[168px] left-[188px] w-[20px] h-[8px] bg-slate-400 z-10"></div>
+                                <div class="absolute top-[160px] left-[208px] w-0 h-0 border-y-[12px] border-y-transparent border-l-[12px] border-l-slate-400 z-10"></div>
+                                <!-- Path to 6 -->
+                                <div class="absolute top-[264px] left-[188px] w-[20px] h-[8px] bg-slate-400 z-10"></div>
+                                <div class="absolute top-[256px] left-[208px] w-0 h-0 border-y-[12px] border-y-transparent border-l-[12px] border-l-slate-400 z-10"></div>
+
+                                <!-- 7. BUSINESS STRATEGY -->
+                                <div class="absolute top-[150px] left-[460px] w-[150px] h-[150px] bg-[#90bed0] border border-[#78a2b1] shadow-sm flex flex-col items-center justify-center z-20">
+                                    <span class="font-bold text-sm leading-tight text-center mb-2">BUSINESS<br>STRATEGY</span>
+                                    <ul class="text-[11px] list-disc pl-4 text-left w-full leading-snug pr-2 text-slate-800 space-y-0.5">
+                                        <li>Cost Leadership</li>
+                                        <li>Differentiation</li>
+                                        <li>Blue Ocean</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Line 5 & 6 -> 7 (Merge) -->
+                                <!-- Path from 5 -->
+                                <div class="absolute top-[168px] left-[390px] w-[30px] h-[8px] bg-slate-400 z-10"></div>
+                                <!-- Path from 6 -->
+                                <div class="absolute top-[264px] left-[390px] w-[30px] h-[8px] bg-slate-400 z-10"></div>
+                                <!-- Vertical bar -->
+                                <div class="absolute top-[168px] left-[420px] w-[8px] h-[104px] bg-slate-400 z-10"></div>
+                                <!-- Combined Path to 7 -->
+                                <div class="absolute top-[221px] left-[428px] w-[20px] h-[8px] bg-slate-400 z-10"></div>
+                                <div class="absolute top-[213px] left-[448px] w-0 h-0 border-y-[12px] border-y-transparent border-l-[12px] border-l-slate-400 z-10"></div>
+
+                                <!-- 8. COMPETITIVE ADVANTAGE -->
+                                <div class="absolute top-[110px] left-[670px] w-[160px] h-[120px] bg-[#aacda8] border border-[#8ba98b] shadow-sm flex flex-col items-center justify-center font-bold text-[15px] leading-tight text-center z-20">
+                                    COMPETITIVE<br>ADVANTAGE
+                                </div>
+
+                                <!-- Line 4 -> 8 -->
+                                <div class="absolute top-[46px] left-[610px] w-[30px] h-[8px] bg-slate-400 z-10"></div>
+                                <div class="absolute top-[46px] left-[640px] w-[8px] h-[102px] bg-slate-400 z-10"></div>
+                                <div class="absolute top-[140px] left-[648px] w-[10px] h-[8px] bg-slate-400 z-10"></div>
+                                <div class="absolute top-[132px] left-[658px] w-0 h-0 border-y-[12px] border-y-transparent border-l-[12px] border-l-slate-400 z-10"></div>
+
+                                <!-- Line 7 -> 8 -->
+                                <div class="absolute top-[221px] left-[610px] w-[30px] h-[8px] bg-slate-400 z-10"></div>
+                                <div class="absolute top-[200px] left-[640px] w-[8px] h-[29px] bg-slate-400 z-10"></div>
+                                <div class="absolute top-[200px] left-[648px] w-[10px] h-[8px] bg-slate-400 z-10"></div>
+                                <div class="absolute top-[192px] left-[658px] w-0 h-0 border-y-[12px] border-y-transparent border-l-[12px] border-l-slate-400 z-10"></div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-panel p-6 bg-white shadow-sm border-slate-200">
+                        <h3 class="font-bold text-slate-900 mb-4 font-serif text-lg border-b border-slate-100 pb-2">Key Components of the Model</h3>
+                        <ul class="space-y-4 text-sm">
+                            <li class="flex items-start gap-3">
+                                <span class="font-bold font-mono text-slate-400">1.</span>
+                                <div>
+                                    <strong class="text-slate-800">Industry Effects (External)</strong>
+                                    <p class="text-slate-600 mt-1">Industry structure attributes impacting all constituent firms. Analyzed via the <em>5 Forces Model</em> (threat of entry, rivalry) and <em>Complements</em>. Sub-divided into <em>Strategic Groups</em> pursuing similar strategies.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="font-bold font-mono text-slate-400">2.</span>
+                                <div>
+                                    <strong class="text-slate-800">Firm Effects (Internal)</strong>
+                                    <p class="text-slate-600 mt-1">Idiosyncratic actions and resources unique to the company. Driven by <em>Value Position</em> (higher perceived value) and <em>Cost Position</em> (lower cost structure).</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="font-bold font-mono text-slate-400">3.</span>
+                                <div>
+                                    <strong class="text-slate-800">Business Strategy</strong>
+                                    <p class="text-slate-600 mt-1">The strategic trade-offs managers deploy: <em>Cost Leadership</em>, <em>Differentiation</em>, or <em>Blue Ocean</em> integration.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Right: Activity & Case -->
+                <div class="lg:col-span-6 space-y-8">
+                    <!-- The Activity -->
+                    <div class="card-panel p-8 bg-slate-900 text-white shadow-xl relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-48 h-48 bg-blue-600/20 rounded-full blur-[60px] pointer-events-none"></div>
+                        <h3 class="font-bold text-2xl font-serif text-white mb-2">Group Activity: The Architect Challenge</h3>
+                        <p class="text-slate-400 text-sm mb-6">Objective: Apply the model to map a real-world firm's competitive moat.</p>
+                        
+                        <div class="space-y-4 text-sm">
+                            <div class="bg-slate-800 p-4 rounded-lg border border-slate-700">
+                                <strong class="text-amber-400 block mb-1">Phase 1: Setup (10 Min)</strong>
+                                <p class="text-slate-300">Divide into groups of 3–5. Assign a high-profile firm (e.g., Tesla, Starbucks, IKEA, Ryanair). Use Exhibit 12.2 as your canvas.</p>
+                            </div>
+                            <div class="bg-slate-800 p-4 rounded-lg border border-slate-700">
+                                <strong class="text-amber-400 block mb-1">Phase 2: The Analysis (30 Min)</strong>
+                                <ul class="list-disc pl-5 text-slate-300 space-y-1 marker:text-amber-500">
+                                    <li><span class="text-white font-medium">Industry Effects:</span> Map the 5 Forces and identify their Strategic Group.</li>
+                                    <li><span class="text-white font-medium">Firm Effects:</span> Define their unique Value "extras" and Cost secrets.</li>
+                                    <li><span class="text-white font-medium">Strategy:</span> Cost Leadership, Differentiation, or Blue Ocean?</li>
+                                </ul>
+                            </div>
+                            <div class="bg-slate-800 p-4 rounded-lg border border-slate-700">
+                                <strong class="text-amber-400 block mb-1">Phase 3: The Pitch (15 Min)</strong>
+                                <p class="text-slate-300">Present the Strategic Map: <em>"Our firm holds a competitive advantage by balancing [Industry Effect] with their unique [Strategy]."</em></p>
+                            </div>
+                            <div class="bg-slate-800 p-4 rounded-lg border border-slate-700">
+                                <strong class="text-amber-400 block mb-1">Phase 4: Reflection</strong>
+                                <p class="text-slate-300">As a large group, discuss: Which is more important for this specific company—the industry they are in (Industry Effects) or the choices their managers made (Firm Effects)?</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Netflix Example -->
+                    <div class="bg-white p-6 rounded-xl border-l-4 border-red-600 shadow-md">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="font-bold text-slate-900 font-serif text-lg">Example: Netflix's Strategic Map</h4>
+                            <span class="bg-red-100 text-red-800 text-[10px] px-2 py-1 rounded font-bold tracking-widest uppercase">Case Guide</span>
+                        </div>
+                        <div class="space-y-4 text-sm text-slate-700">
+                            <div>
+                                <strong class="text-slate-900">1. Industry Effects (The Playing Field)</strong>
+                                <p class="mt-1"><span class="font-medium text-slate-600">5 Forces:</span> Highly competitive "Streaming Wars" (Disney+, Max) elevate rivalry.<br>
+                                <span class="font-medium text-slate-600">Strategic Group:</span> "Global Premium Content" – operating as a major Hollywood studio.</p>
+                            </div>
+                            <div>
+                                <strong class="text-slate-900">2. Firm Effects (The Secret Sauce)</strong>
+                                <p class="mt-1"><span class="font-medium text-slate-600">Value Position:</span> Massive original IP library (Stranger Things) + hyper-personalized algorithms.<br>
+                                <span class="font-medium text-slate-600">Cost Position:</span> Introducing ad-supported tiers to lower entry prices and capture advertiser revenue.</p>
+                            </div>
+                            <div>
+                                <strong class="text-slate-900">3. Business Strategy & Advantage</strong>
+                                <p class="mt-1">Executing a <strong>Differentiation</strong> strategy. By prioritizing unique, "must-have" content over pure cost leadership, they counter high industry rivalry with extreme subscriber loyalty and global scale.</p>
+                            </div>
+                        </div>
+                        <div class="mt-5 pt-4 border-t border-slate-200">
+                            <p class="text-xs text-slate-500 italic"><strong class="text-slate-700">Pro-Tip for the Group:</strong> Firm Effects (what you do) typically account for ~55% of performance, while Industry Effects (where you are) account for ~20%. Managerial agency matters!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Summary Table -->
+            <div class="card-panel p-6 bg-slate-50 border-slate-200 overflow-x-auto">
+                <table class="w-full text-left text-sm text-slate-600">
+                    <thead class="bg-slate-200 text-slate-800 text-xs uppercase font-bold tracking-wider">
+                        <tr>
+                            <th class="px-4 py-3 rounded-tl-lg">Effect Category</th>
+                            <th class="px-4 py-3">Key Drivers</th>
+                            <th class="px-4 py-3 rounded-tr-lg">Goal</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200">
+                        <tr>
+                            <td class="px-4 py-3 font-medium text-slate-900">Industry</td>
+                            <td class="px-4 py-3">5 Forces, Complements, Strategic Groups</td>
+                            <td class="px-4 py-3">Determine industry profit potential</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3 font-medium text-slate-900">Firm</td>
+                            <td class="px-4 py-3">Value Position, Cost Position</td>
+                            <td class="px-4 py-3">Define the firm's strategic profile</td>
+                        </tr>
+                        <tr class="bg-slate-100">
+                            <td class="px-4 py-3 font-bold text-slate-900 rounded-bl-lg">Combined</td>
+                            <td class="px-4 py-3 font-medium text-slate-800">Business Strategy (Cost/Diff/Blue Ocean)</td>
+                            <td class="px-4 py-3 font-bold text-green-700 rounded-br-lg">Gain Competitive Advantage</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 12.7 VALUE INNOVATION LAB (THE INDUSTRY DISRUPTOR) -->
+        <section id="industry-disruptor" class="fade-up pt-12">
+            <div class="flex items-end gap-4 mb-10 border-b border-slate-300 pb-6">
+                <span class="text-6xl font-serif text-slate-300">12.7</span>
+                <div class="pb-2">
+                    <h2 class="text-3xl font-serif text-slate-900 font-bold">Value Innovation Lab</h2>
+                    <p class="text-slate-600">The Industry Disruptor & ERRC Synthesis</p>
+                </div>
+            </div>
+
+            <!-- Comparative Anatomy & Secret Sauce -->
+            <div class="grid lg:grid-cols-12 gap-8 mb-12">
+                <div class="lg:col-span-7">
+                    <div class="card-panel p-6 bg-white shadow-sm border-slate-200 h-full">
+                        <h3 class="font-bold text-slate-900 mb-4 font-serif text-xl border-b border-slate-100 pb-2">Comparative Anatomy: ERRC in Action</h3>
+                        <p class="text-sm text-slate-700 mb-6 leading-relaxed">It is fascinating to observe these two anomalies side-by-side. Both <strong>Cirque du Soleil</strong> and the <strong>IPL</strong> succeeded not by fighting for a larger slice of an existing pie, but by radically altering the industry's architectural "ingredients" to bake an entirely new one.</p>
+                        
+                        <div class="overflow-x-auto custom-scrollbar">
+                            <table class="w-full text-left text-sm text-slate-700 border-collapse">
+                                <thead class="bg-slate-100 text-slate-900 text-[11px] uppercase font-bold tracking-wider">
+                                    <tr>
+                                        <th class="px-4 py-3 rounded-tl-lg">Factor</th>
+                                        <th class="px-4 py-3">Cirque du Soleil (Entertainment)</th>
+                                        <th class="px-4 py-3 rounded-tr-lg">Indian Premier League (Sports)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-100 text-xs">
+                                    <tr>
+                                        <td class="px-4 py-3 font-bold text-blue-800 bg-blue-50/50">Eliminate</td>
+                                        <td class="px-4 py-3">Animals, star performers, aisle concessions.</td>
+                                        <td class="px-4 py-3">5-day format, draws/ties, slow pacing.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 font-bold text-blue-800 bg-blue-50/50">Reduce</td>
+                                        <td class="px-4 py-3">Thrill/danger, slapstick humor.</td>
+                                        <td class="px-4 py-3">Traditional "purist" technicalities, test-match etiquette.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 font-bold text-green-800 bg-green-50/50">Raise</td>
+                                        <td class="px-4 py-3">Venue comfort, elegance, sophistication.</td>
+                                        <td class="px-4 py-3">Speed of play, prize money, broadcasting tech.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 font-bold text-green-800 bg-green-50/50">Create</td>
+                                        <td class="px-4 py-3">Artistic themes, original music, dance.</td>
+                                        <td class="px-4 py-3">Bollywood fusion, city-based loyalty, "Strategic Timeouts."</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 flex flex-col gap-6">
+                    <div class="bg-indigo-50 p-6 rounded-xl border border-indigo-200 shadow-sm flex-grow">
+                        <h4 class="font-bold text-indigo-900 mb-2 font-serif text-lg">Why "Value Innovation" is the Secret Sauce</h4>
+                        <p class="text-xs text-slate-800 leading-relaxed mb-4">Traditional economic models dictate a strict trade-off: Differentiation (high cost) OR Cost Leadership (low value). Blue Ocean Strategy posits you can execute <strong>both</strong> simultaneously:</p>
+                        <ul class="space-y-3 text-xs">
+                            <li class="flex items-start gap-3 bg-white p-3 rounded shadow-sm border border-indigo-100">
+                                <i class="fa-solid fa-arrow-trend-down text-blue-600 mt-0.5 text-lg"></i> 
+                                <div><strong class="text-slate-900">Cost Savings:</strong> By <em>Eliminating</em> and <em>Reducing</em> factors the industry has over-invested in (e.g., exotic animals, 5-day stadium rentals), fixed and marginal costs are driven down.</div>
+                            </li>
+                            <li class="flex items-start gap-3 bg-white p-3 rounded shadow-sm border border-indigo-100">
+                                <i class="fa-solid fa-arrow-trend-up text-green-600 mt-0.5 text-lg"></i> 
+                                <div><strong class="text-slate-900">Value Lift:</strong> By <em>Raising</em> and <em>Creating</em> unprecedented elements (e.g., theatrical orchestration, glamour-meets-sport), perceived consumer utility skyrockets.</div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-amber-50 p-5 rounded-xl border border-amber-200 shadow-sm">
+                        <h4 class="font-bold text-amber-900 mb-1 font-serif text-md">The Result: Market Expansion</h4>
+                        <p class="text-xs text-slate-800 leading-relaxed">The IPL didn't just siphon fans from Test Cricket; it aggressively invited demographics (moms, kids, casual viewers) who historically found cricket tedious. Similarly, Cirque du Soleil targeted theatre-goers and affluent corporate clients, vastly expanding the absolute market boundary rather than fighting for market share.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Group Activity Panel -->
+            <div class="card-panel p-8 bg-slate-900 text-white shadow-2xl relative overflow-hidden">
+                <div class="absolute bottom-0 left-0 w-64 h-64 bg-amber-500/10 rounded-full blur-[80px] pointer-events-none"></div>
+                
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 border-b border-slate-700 pb-6 relative z-10">
+                    <div>
+                        <h3 class="font-bold text-3xl font-serif text-white mb-2">Workshop: The Industry Disruptor</h3>
+                        <p class="text-slate-400 text-sm">Redesigning a saturated "Red Ocean" using the ERRC Grid.</p>
+                    </div>
+                    <span class="bg-amber-500 text-slate-900 px-4 py-2 rounded-full text-xs font-bold font-mono tracking-widest shadow-lg">6 MINUTE LAB</span>
+                </div>
+
+                <div class="grid lg:grid-cols-12 gap-10 relative z-10">
+                    <!-- Left: Instructions & Facilitator Guide -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div class="bg-slate-800/80 p-5 rounded-xl border border-slate-700">
+                            <h4 class="text-amber-400 font-bold mb-3 uppercase tracking-widest text-xs">The Challenge (Setup)</h4>
+                            <p class="text-sm text-slate-300 leading-relaxed mb-4">Divide the room into syndicates of 3–5. Assign each a struggling, heavily commoditized industry:</p>
+                            <ul class="list-disc pl-5 text-sm text-slate-400 space-y-1 mb-4 marker:text-emerald-500">
+                                <li>The Budget Hotel / Motel</li>
+                                <li>The Traditional High-Street Bank</li>
+                                <li>The Standard Gym / Fitness Center</li>
+                            </ul>
+                            <div class="pt-4 border-t border-slate-700 text-xs">
+                                <strong class="text-white block mb-2">Facilitator's Blueprint:</strong>
+                                <table class="w-full text-left text-slate-400">
+                                    <tbody class="divide-y divide-slate-700">
+                                        <tr><td class="py-1 pr-2 text-amber-500 font-mono">00-1m</td><td class="py-1">Define Red vs. Blue Oceans.</td></tr>
+                                        <tr><td class="py-1 pr-2 text-amber-500 font-mono">1-1.5m</td><td class="py-1"><strong>Industry Audit:</strong> Map current competitive factors.</td></tr>
+                                        <tr><td class="py-1 pr-2 text-amber-500 font-mono">1.5-4m</td><td class="py-1"><strong>The ERRC Grind:</strong> Force the elimination of "sacred cows".</td></tr>
+                                        <tr><td class="py-1 pr-2 text-amber-500 font-mono">4-6m</td><td class="py-1"><strong>The Pitch:</strong> Present the new Value Curve.</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: The Yellow Tail Case & ERRC Blank -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="bg-white text-slate-900 p-6 rounded-xl shadow-lg border-l-4 border-emerald-500">
+                            <h4 class="font-bold text-slate-900 font-serif text-lg mb-1">Case Execution: [Yellow Tail] Wine</h4>
+                            <p class="text-xs text-slate-500 mb-4">In the early 2000s, Casella Wines disrupted the pretentious wine industry by engineering a "social drink" for beer/cocktail lovers.</p>
+                            
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left text-[11px] text-slate-700">
+                                    <thead class="bg-slate-100 text-slate-500 uppercase tracking-wider">
+                                        <tr>
+                                            <th class="px-3 py-2 rounded-tl">Action</th>
+                                            <th class="px-3 py-2">Strategy</th>
+                                            <th class="px-3 py-2 rounded-tr">Economic Impact</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-100">
+                                        <tr>
+                                            <td class="px-3 py-2 font-bold text-blue-600">Eliminate</td>
+                                            <td class="px-3 py-2">Enological terminology, aging qualities.</td>
+                                            <td class="px-3 py-2 italic">Lowers production & marketing spend.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-3 py-2 font-bold text-blue-600">Reduce</td>
+                                            <td class="px-3 py-2">Wine complexity, vineyard prestige, range.</td>
+                                            <td class="px-3 py-2 italic">Simplifies supply chain inventory.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-3 py-2 font-bold text-green-600">Raise</td>
+                                            <td class="px-3 py-2">Price relative to budget jugs, retail involvement.</td>
+                                            <td class="px-3 py-2 italic">Higher margins & shelf dominance.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-3 py-2 font-bold text-green-600">Create</td>
+                                            <td class="px-3 py-2">Ease of selection, fun, non-pretentious vibe.</td>
+                                            <td class="px-3 py-2 italic font-medium text-emerald-700">Attracts massive non-consumer base.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Blank Canvas Template -->
+                        <div class="bg-slate-800 border border-slate-600 p-5 rounded-xl border-dashed">
+                            <h4 class="text-white font-bold text-sm mb-3 flex items-center gap-2"><i class="fa-solid fa-pen-ruler text-slate-400"></i> The Blank ERRC Canvas</h4>
+                            <div class="grid grid-cols-2 gap-px bg-slate-600 rounded overflow-hidden">
+                                <div class="bg-slate-900 p-4">
+                                    <strong class="text-blue-400 block mb-1 text-xs uppercase tracking-widest">Eliminate</strong>
+                                    <p class="text-[10px] text-slate-500 mb-2">What does the industry take for granted?</p>
+                                    <div class="border-b border-slate-700 h-4 w-full"></div><div class="border-b border-slate-700 h-4 w-full mt-2"></div>
+                                </div>
+                                <div class="bg-slate-900 p-4">
+                                    <strong class="text-emerald-400 block mb-1 text-xs uppercase tracking-widest">Raise</strong>
+                                    <p class="text-[10px] text-slate-500 mb-2">What should be raised above standards?</p>
+                                    <div class="border-b border-slate-700 h-4 w-full"></div><div class="border-b border-slate-700 h-4 w-full mt-2"></div>
+                                </div>
+                                <div class="bg-slate-900 p-4">
+                                    <strong class="text-blue-400 block mb-1 text-xs uppercase tracking-widest">Reduce</strong>
+                                    <p class="text-[10px] text-slate-500 mb-2">What should be lowered below standards?</p>
+                                    <div class="border-b border-slate-700 h-4 w-full"></div><div class="border-b border-slate-700 h-4 w-full mt-2"></div>
+                                </div>
+                                <div class="bg-slate-900 p-4">
+                                    <strong class="text-emerald-400 block mb-1 text-xs uppercase tracking-widest">Create</strong>
+                                    <p class="text-[10px] text-slate-500 mb-2">What has the industry never offered?</p>
+                                    <div class="border-b border-slate-700 h-4 w-full"></div><div class="border-b border-slate-700 h-4 w-full mt-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 12.8 HBR BLUE OCEAN EXHIBITS & EMPIRICAL DATA -->
+        <section id="hbr-exhibits" class="fade-up pt-12 mb-12">
+            <div class="flex items-end gap-4 mb-10 border-b border-slate-300 pb-6">
+                <span class="text-6xl font-serif text-slate-300">12.8</span>
+                <div class="pb-2">
+                    <h2 class="text-3xl font-serif text-slate-900 font-bold">Empirical Exhibits</h2>
+                    <p class="text-slate-600">Historical Precedents & The Mechanics of Blue Oceans (HBR Data)</p>
+                </div>
+            </div>
+
+            <!-- Exhibit 1 & 2: Strategy Comparison and Simultaneous Pursuit -->
+            <div class="grid lg:grid-cols-2 gap-12 mb-16">
+                
+                <!-- Red vs Blue Ocean Strategy Table -->
+                <div class="card-panel p-8 bg-white shadow-xl flex flex-col justify-center border-slate-200">
+                    <h3 class="font-bold text-2xl font-serif text-slate-900 mb-2">Red Ocean Versus Blue Ocean Strategy</h3>
+                    <p class="text-sm text-slate-600 mb-6">The imperatives for red ocean and blue ocean strategies are starkly different.</p>
+                    
+                    <div class="grid grid-cols-2 text-sm text-center border border-slate-200 rounded-lg overflow-hidden flex-grow">
+                        <div class="bg-red-50/40 p-5 md:p-6 space-y-4 flex flex-col">
+                            <h4 class="font-bold text-red-500 mb-2 uppercase tracking-widest text-[10px] md:text-xs">Red Ocean Strategy</h4>
+                            <div class="p-3 border-b border-red-100/50 text-slate-700 flex-grow flex items-center justify-center">Compete in existing market space</div>
+                            <div class="p-3 border-b border-red-100/50 text-slate-700 flex-grow flex items-center justify-center">Beat the competition</div>
+                            <div class="p-3 border-b border-red-100/50 text-slate-700 flex-grow flex items-center justify-center">Exploit existing demand</div>
+                            <div class="p-3 border-b border-red-100/50 text-slate-700 flex-grow flex items-center justify-center">Make the value/cost trade-off</div>
+                            <div class="p-3 text-slate-700 flex-grow flex items-center justify-center">Align the whole system of a company's activities with its strategic choice of differentiation or low cost</div>
+                        </div>
+                        <div class="bg-blue-50/40 p-5 md:p-6 space-y-4 border-l border-slate-200 flex flex-col">
+                            <h4 class="font-bold text-blue-500 mb-2 uppercase tracking-widest text-[10px] md:text-xs">Blue Ocean Strategy</h4>
+                            <div class="p-3 border-b border-blue-100/50 text-slate-700 flex-grow flex items-center justify-center">Create uncontested market space</div>
+                            <div class="p-3 border-b border-blue-100/50 text-slate-700 flex-grow flex items-center justify-center">Make the competition irrelevant</div>
+                            <div class="p-3 border-b border-blue-100/50 text-slate-700 flex-grow flex items-center justify-center">Create and capture new demand</div>
+                            <div class="p-3 border-b border-blue-100/50 text-slate-700 flex-grow flex items-center justify-center">Break the value/cost trade-off</div>
+                            <div class="p-3 text-slate-700 flex-grow flex items-center justify-center">Align the whole system of a company's activities in pursuit of differentiation and low cost</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- The Simultaneous Pursuit Diagram -->
+                <div class="space-y-6 flex flex-col">
+                    <div class="card-panel p-8 bg-white shadow-xl border-slate-200 flex-grow">
+                        <h3 class="font-bold text-2xl font-serif text-slate-900 mb-4">The Simultaneous Pursuit of Differentiation and Low Cost</h3>
+                        <p class="text-sm text-slate-700 leading-relaxed mb-8">
+                            A blue ocean is created in the region where a company's actions favorably affect both its cost structure and its value proposition to buyers. Cost savings are made from eliminating and reducing the factors an industry competes on. Buyer value is lifted by raising and creating elements the industry has never offered. Over time, costs are reduced further as scale economies kick in, due to the high sales volumes that superior value generates.
+                        </p>
+                        
+                        <div class="flex justify-center items-center py-6 bg-slate-50 border border-slate-100 rounded-xl">
+                            <!-- SVG Representation of the Intersecting Arrows -->
+                            <svg viewBox="0 0 300 400" class="w-full h-auto max-w-[280px]">
+                                <!-- Costs Arrow (pointing down) -->
+                                <path d="M 75,20 L 225,20 L 225,120 L 275,120 L 150,240 L 25,120 L 75,120 Z" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linejoin="round"/>
+                                <text x="150" y="70" text-anchor="middle" font-weight="bold" font-family="sans-serif" fill="#334155" font-size="16">Costs</text>
+
+                                <!-- Buyer Value Arrow (pointing up) -->
+                                <path d="M 150,160 L 275,280 L 225,280 L 225,380 L 75,380 L 75,280 L 25,280 Z" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linejoin="round"/>
+                                <text x="150" y="340" text-anchor="middle" font-weight="bold" font-family="sans-serif" fill="#334155" font-size="16">Buyer value</text>
+
+                                <!-- Diamond (Blue Ocean) -->
+                                <polygon points="150,120 230,200 150,280 70,200" fill="#e0f2fe" stroke="#38bdf8" stroke-width="3" stroke-linejoin="round"/>
+                                <text x="150" y="195" text-anchor="middle" font-weight="bold" font-family="sans-serif" fill="#0369a1" font-size="16">Blue</text>
+                                <text x="150" y="215" text-anchor="middle" font-weight="bold" font-family="sans-serif" fill="#0369a1" font-size="16">ocean</text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exhibit 3: Historical Blue Ocean Creations Table -->
+            <div class="card-panel p-8 bg-white shadow-xl border-slate-200">
+                <h3 class="font-bold text-2xl font-serif text-slate-900 mb-6">Historical Blue Ocean Creations</h3>
+                
+                <div class="overflow-x-auto custom-scrollbar">
+                    <table class="w-full text-left text-sm text-slate-700 min-w-[800px]">
+                        <thead class="bg-slate-100 text-slate-800 text-xs font-bold border-b-2 border-slate-300">
+                            <tr>
+                                <th class="p-4 w-1/3">Key blue ocean creation</th>
+                                <th class="p-4 w-1/5">Was the blue ocean created by a new entrant or an incumbent?</th>
+                                <th class="p-4 w-1/4">Was it driven by technology pioneering or value pioneering?</th>
+                                <th class="p-4 w-1/5">At the time of the blue ocean creation, was the industry attractive or unattractive?</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200">
+                            
+                            <!-- Category: AUTOMOBILES -->
+                            <tr class="bg-slate-50"><td colspan="4" class="p-3 font-bold text-slate-900 tracking-widest uppercase text-xs">Automobiles</td></tr>
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="p-4">
+                                    <strong class="text-slate-900 block mb-1">Ford Model T</strong>
+                                    <span class="text-xs text-slate-600">Unveiled in 1908, the Model T was the first mass-produced car, priced so that many Americans could afford it.</span>
+                                </td>
+                                <td class="p-4 align-top">New entrant</td>
+                                <td class="p-4 align-top">Value pioneering*<br><span class="text-xs text-slate-500">(mostly existing technologies)</span></td>
+                                <td class="p-4 align-top">Unattractive</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="p-4">
+                                    <strong class="text-slate-900 block mb-1">GM's "car for every purse and purpose"</strong>
+                                    <span class="text-xs text-slate-600">GM created a blue ocean in 1924 by injecting fun and fashion into the car.</span>
+                                </td>
+                                <td class="p-4 align-top">Incumbent</td>
+                                <td class="p-4 align-top">Value pioneering<br><span class="text-xs text-slate-500">(some new technologies)</span></td>
+                                <td class="p-4 align-top">Attractive</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="p-4">
+                                    <strong class="text-slate-900 block mb-1">Japanese fuel-efficient autos</strong>
+                                    <span class="text-xs text-slate-600">Japanese automakers created a blue ocean in the mid-1970s with small, reliable lines of cars.</span>
+                                </td>
+                                <td class="p-4 align-top">Incumbent</td>
+                                <td class="p-4 align-top">Value pioneering<br><span class="text-xs text-slate-500">(some new technologies)</span></td>
+                                <td class="p-4 align-top">Unattractive</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="p-4">
+                                    <strong class="text-slate-900 block mb-1">Chrysler minivan</strong>
+                                    <span class="text-xs text-slate-600">With its 1984 minivan, Chrysler created a new class of automobile that was as easy to use as a car but had the passenger space of a van.</span>
+                                </td>
+                                <td class="p-4 align-top">Incumbent</td>
+                                <td class="p-4 align-top">Value pioneering<br><span class="text-xs text-slate-500">(mostly new technologies)</span></td>
+                                <td class="p-4 align-top">Unattractive</td>
+                            </tr>
+
+                            <!-- Category: COMPUTERS -->
+                            <tr class="bg-slate-50"><td colspan="4" class="p-3 font-bold text-slate-900 tracking-widest uppercase text-xs border-t border-slate-300">Computers</td></tr>
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="p-4">
+                                    <strong class="text-slate-900 block mb-1">CTR's tabulating machine</strong>
+                                    <span class="text-xs text-slate-600">In 1914, CTR created the business machine industry by simplifying, modularizing, and leasing tabulating machines. CTR later changed its name to IBM.</span>
+                                </td>
+                                <td class="p-4 align-top">Incumbent</td>
+                                <td class="p-4 align-top">Value pioneering*<br><span class="text-xs text-slate-500">(mostly existing technologies)</span></td>
+                                <td class="p-4 align-top">Unattractive</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="p-4">
+                                    <strong class="text-slate-900 block mb-1">IBM 650 electronic computer and System/360</strong>
+                                    <span class="text-xs text-slate-600">In 1952, IBM created the business computer industry by simplifying and reducing the power and price of existing technology. And it exploded the blue ocean created by the 650 when in 1964 it unveiled the System/360, the first modularized computer system.</span>
+                                </td>
+                                <td class="p-4 align-top">Incumbent</td>
+                                <td class="p-4 align-top">Value pioneering <span class="text-xs text-slate-500">(650: mostly existing technologies)</span><br><br>Value and technology pioneering <span class="text-xs text-slate-500">(System/360: new and existing technologies)</span></td>
+                                <td class="p-4 align-top">Unattractive</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="p-4">
+                                    <strong class="text-slate-900 block mb-1">Apple personal computer</strong>
+                                    <span class="text-xs text-slate-600">Although it was not the first home computer, the all-in-one, simple-to-use Apple II was a blue ocean creation when it appeared in 1978.</span>
+                                </td>
+                                <td class="p-4 align-top">New entrant</td>
+                                <td class="p-4 align-top">Value pioneering<br><span class="text-xs text-slate-500">(some new technologies)</span></td>
+                                <td class="p-4 align-top">Unattractive</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="p-4">
+                                    <strong class="text-slate-900 block mb-1">Compaq PC servers</strong>
+                                    <span class="text-xs text-slate-600">Compaq created a blue ocean in 1992 with its ProSignia server, which gave buyers twice the file and print capability of the minicomputer at one-third the price.</span>
+                                </td>
+                                <td class="p-4 align-top">Incumbent</td>
+                                <td class="p-4 align-top">Value pioneering<br><span class="text-xs text-slate-500">(mostly existing technologies)</span></td>
+                                <td class="p-4 align-top">Nonexistent</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="p-4">
+                                    <strong class="text-slate-900 block mb-1">Dell built-to-order computers</strong>
+                                    <span class="text-xs text-slate-600">In the mid-1990s, Dell created a blue ocean in a highly competitive industry by creating a new purchase and delivery experience for buyers.</span>
+                                </td>
+                                <td class="p-4 align-top">New entrant</td>
+                                <td class="p-4 align-top">Value pioneering<br><span class="text-xs text-slate-500">(mostly existing technologies)</span></td>
+                                <td class="p-4 align-top">Unattractive</td>
+                            </tr>
+
+                            <!-- Category: MOVIE THEATERS -->
+                            <tr class="bg-slate-50"><td colspan="4" class="p-3 font-bold text-slate-900 tracking-widest uppercase text-xs border-t border-slate-300">Movie Theaters</td></tr>
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="p-4">
+                                    <strong class="text-slate-900 block mb-1">Nickelodeon</strong>
+                                    <span class="text-xs text-slate-600">The first Nickelodeon opened its doors in 1905, showing short films around-the-clock to working-class audiences for five cents.</span>
+                                </td>
+                                <td class="p-4 align-top">New entrant</td>
+                                <td class="p-4 align-top">Value pioneering<br><span class="text-xs text-slate-500">(mostly existing technologies)</span></td>
+                                <td class="p-4 align-top">Nonexistent</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="p-4">
+                                    <strong class="text-slate-900 block mb-1">Palace theaters</strong>
+                                    <span class="text-xs text-slate-600">Created by Roxy Rothapfel in 1914, these theaters provided an operalike environment for cinema viewing at an affordable price.</span>
+                                </td>
+                                <td class="p-4 align-top">Incumbent</td>
+                                <td class="p-4 align-top">Value pioneering<br><span class="text-xs text-slate-500">(mostly existing technologies)</span></td>
+                                <td class="p-4 align-top">Attractive</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-slate-300 py-12 text-center text-sm text-slate-500 mt-20">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center justify-center gap-2 font-mono text-[10px] uppercase tracking-widest">
+                <span>© Dr. Swapnil Sahoo 2026 | Session 12 Lab</span>
+                <i class="fas fa-chess-knight text-slate-400"></i>
+            </div>
+            <div class="flex space-x-8 items-center">
+                <a href="https://swapnilsahoo.com" target="_blank" class="text-slate-500 hover:text-teal-700 transition-colors transform hover:-translate-y-1" title="Website"><i class="fas fa-globe text-lg"></i></a>
+                <a href="#" class="text-slate-500 hover:text-blue-700 transition-colors"><i class="fab fa-linkedin text-lg"></i></a>
+                <a href="https://www.chess.com/member/theswapnilsahoo" target="_blank" class="text-slate-500 hover:text-slate-900 transition-colors transform hover:-translate-y-1" title="Play Chess">
+                    <i class="fas fa-chess-king text-lg"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive JavaScript Logic -->
+    <script>
+        // --- 1. Global Utilities & Scroll Spy ---
+        Chart.defaults.font.family = 'JetBrains Mono';
+        Chart.defaults.color = '#64748b'; // Slate 500 for light theme
+        Chart.defaults.scale.grid.color = 'rgba(0,0,0,0.05)';
+
+        window.addEventListener("scroll", () => {
+            let h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            document.getElementById("progress-bar").style.width = (window.scrollY/h)*100 + "%";
+        });
+
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+
+        // --- 2. Strategic Position Lab (Value Wedge) ---
+        const stratSlider = document.getElementById('strategy-slider');
+        const barCs = document.getElementById('bar-cs');
+        const barProfit = document.getElementById('bar-profit');
+        const barCost = document.getElementById('bar-cost');
+        const lineV = document.getElementById('line-v');
+        const lineP = document.getElementById('line-p');
+        const stratFeedback = document.getElementById('strategy-feedback');
+
+        function updateValueWedge() {
+            const val = parseInt(stratSlider.value); 
+            let v = 60, p = 40, c = 30; 
+
+            if (val < 50) {
+                const factor = (50 - val) / 50; 
+                c = 30 - (15 * factor); 
+                p = 40 - (10 * factor); 
+                v = 60 - (10 * factor); 
+                stratFeedback.innerHTML = "<strong class='text-blue-800'>Cost Leadership:</strong> You are ruthlessly cutting costs. Margins widen per unit relative to cost, and low prices drive high volume.";
+            } else if (val > 50) {
+                const factor = (val - 50) / 50; 
+                c = 30 + (20 * factor); 
+                v = 60 + (40 * factor); 
+                p = 40 + (30 * factor); 
+                stratFeedback.innerHTML = "<strong class='text-green-800'>Differentiation:</strong> You are adding premium features. Costs rise, but Willingness to Pay (V) rises much faster, allowing a massive price premium.";
+            } else {
+                stratFeedback.innerHTML = "<strong class='text-slate-900'>Stuck in the Middle:</strong> Average costs, average prices. No clear competitive advantage. Vulnerable to both cost leaders and differentiators.";
+            }
+
+            const csHeight = ((v - p) / 120) * 100;
+            const profitHeight = ((p - c) / 120) * 100;
+            const costHeight = (c / 120) * 100;
+
+            barCs.style.height = `${csHeight}%`;
+            barProfit.style.height = `${profitHeight}%`;
+            barCost.style.height = `${costHeight}%`;
+
+            lineP.style.bottom = `${costHeight + profitHeight}%`;
+            lineV.style.bottom = `${costHeight + profitHeight + csHeight}%`;
+        }
+        stratSlider.addEventListener('input', updateValueWedge);
+        updateValueWedge(); 
+
+        // --- 3. Differentiation Lab ---
+        function checkDiff(choice) {
+            const feedback = document.getElementById('diff-feedback');
+            feedback.classList.remove('hidden');
+            if(choice === 0) {
+                feedback.innerHTML = "<i class='fas fa-info-circle text-blue-600 mr-2'></i><strong>Product Features:</strong> A strong choice. However, remember that high-end physical products are easily imitated by rivals unless protected by patents.";
+            } else if (choice === 1) {
+                feedback.innerHTML = "<i class='fas fa-check-circle text-green-600 mr-2'></i><strong>Customer Service:</strong> Excellent. Intangible services like 'concierge care' are much harder for competitors to copy, creating a sustainable advantage.";
+            } else {
+                feedback.innerHTML = "<i class='fas fa-star text-amber-600 mr-2'></i><strong>Complements:</strong> Very smart. You are building an ecosystem. When the hotel value integrates with local tours, the total perceived value increases exponentially.";
+            }
+        }
+
+        // --- 4. Cost Leadership Lab (Learning Curve Chart) ---
+        let learningChart;
+        function initLearningChart() {
+            const ctx = document.getElementById('learningChart').getContext('2d');
+            const labels = [];
+            const data = [];
+            let currentCost = 100;
+            for(let i=0; i<=6; i++) {
+                const vol = 1000 * Math.pow(2, i);
+                labels.push(`${vol/1000}k`);
+                data.push(currentCost);
+                currentCost = currentCost * 0.8; 
+            }
+
+            learningChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Unit Cost ($)',
+                        data: data,
+                        borderColor: '#2563eb', // blue-600
+                        backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 6,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#2563eb',
+                        pointBorderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { min: 0, max: 120, title: { display: true, text: 'Cost Per Unit ($)' } },
+                        x: { title: { display: true, text: 'Cumulative Output' } }
+                    }
+                }
+            });
+        }
+
+        const learningSlider = document.getElementById('learning-slider');
+        const outputVal = document.getElementById('output-val');
+        const costVal = document.getElementById('cost-val');
+
+        learningSlider.addEventListener('input', (e) => {
+            const step = parseInt(e.target.value) - 1; 
+            const vol = 1000 * Math.pow(2, step);
+            const cost = 100 * Math.pow(0.8, step);
+            
+            outputVal.innerText = vol;
+            costVal.innerText = `$${cost.toFixed(2)}`;
+
+            const pointRadii = [4,4,4,4,4,4,4];
+            pointRadii[step] = 12;
+            learningChart.data.datasets[0].pointRadius = pointRadii;
+            learningChart.data.datasets[0].pointBackgroundColor = pointRadii.map((r,i) => i===step ? '#d97706' : '#fff');
+            learningChart.update();
+        });
+
+        // --- 5. Five Forces Matrix ---
+        const forceData = {
+            'entry': { title: 'Threat of New Entrants', desc: 'Socratic thought: If a well-funded startup wants to compete with you, how does your generic strategy make it impossible for them to survive the first year?' },
+            'supplier': { title: 'Bargaining Power of Suppliers', desc: 'Socratic thought: If the cost of raw materials jumps by 20% globally, who survives? The Differentiator passes the cost to the loyal customer; the Cost Leader absorbs it through massive volume.' },
+            'buyer': { title: 'Bargaining Power of Buyers', desc: 'Socratic thought: If large retail chains demand price cuts, the Cost Leader is already at rock bottom, and the Differentiator threatens to pull their highly sought-after product off the shelves.' },
+            'substitute': { title: 'Threat of Substitutes', desc: 'Socratic thought: Why do people buy a $5 Starbucks coffee when a generic caffeine pill is $0.10? Because Differentiation (the experience) negates the functional substitute.' },
+            'rivalry': { title: 'Rivalry Among Competitors', desc: 'Socratic thought: Price wars destroy industry profit pools. A strong strategic position (either extreme cost or extreme value) allows a firm to opt-out of mutual destruction.' }
+        };
+
+        function showForce(key) {
+            const detail = document.getElementById('force-detail');
+            document.getElementById('force-title').innerText = forceData[key].title;
+            document.getElementById('force-desc').innerText = forceData[key].desc;
+            detail.classList.remove('hidden');
+        }
+
+        // --- 6. Blue Ocean Canvas ---
+        let boChart;
+        function initBOChart() {
+            const ctx = document.getElementById('strategyCanvas').getContext('2d');
+            const labels = ['Price', 'Stars', 'Animals', 'Concessions', 'Multiple Arenas', 'Fun/Humor', 'Danger', 'Venue', 'Art/Music'];
+            const traditionalData = [8, 9, 8, 9, 8, 8, 8, 2, 1]; 
+
+            boChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Traditional Circus (Red Ocean)',
+                            data: traditionalData,
+                            borderColor: '#ef4444', 
+                            backgroundColor: 'transparent',
+                            borderDash: [5, 5],
+                            tension: 0.1
+                        },
+                        {
+                            label: 'Your Strategy',
+                            data: [...traditionalData], 
+                            borderColor: '#15803d', 
+                            backgroundColor: 'rgba(21, 128, 61, 0.1)',
+                            fill: true,
+                            tension: 0.3,
+                            pointBackgroundColor: '#0f172a'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { min: 0, max: 10, title: { display: true, text: 'Offering Level (Low to High)' } },
+                        x: { ticks: { font: { size: 10 } } }
+                    },
+                    plugins: { legend: { position: 'top' } }
+                }
+            });
+        }
+
+        function updateCanvas() {
+            const el = document.getElementById('bo-eliminate').checked;
+            const rd = document.getElementById('bo-reduce').checked;
+            const rs = document.getElementById('bo-raise').checked;
+            const cr = document.getElementById('bo-create').checked;
+            const status = document.getElementById('bo-status');
+
+            const newData = [8, 9, 8, 9, 8, 8, 8, 2, 1]; 
+
+            if (el) { newData[1] = 1; newData[2] = 1; newData[3] = 1; newData[4] = 1; }
+            if (rd) { newData[5] = 3; newData[6] = 4; }
+            if (rs) { newData[7] = 9; }
+            if (cr) { newData[8] = 9; }
+            
+            if (el && cr) { newData[0] = 9; }
+
+            boChart.data.datasets[1].data = newData;
+            boChart.update();
+
+            if (el && rd && rs && cr) {
+                status.className = "mt-6 text-[10px] uppercase tracking-widest font-mono text-center text-green-400 font-bold p-3 bg-green-950/80 border border-green-500 rounded shadow-inner";
+                status.innerText = "Status: Blue Ocean Achieved! (Cirque du Soleil)";
+            } else if (el || rd || rs || cr) {
+                status.className = "mt-6 text-[10px] uppercase tracking-widest font-mono text-center text-amber-400 font-bold p-3 bg-amber-950/80 border border-amber-500 rounded shadow-inner";
+                status.innerText = "Status: Strategy in Transition...";
+            } else {
+                status.className = "mt-6 text-[10px] uppercase tracking-widest font-mono text-center text-red-400 font-bold p-3 bg-red-950/80 border border-red-500/50 rounded shadow-inner";
+                status.innerText = "Status: Red Ocean (Bloody Competition)";
+            }
+        }
+
+        // Initialize
+        window.onload = () => {
+            initLearningChart();
+            initBOChart();
+            learningSlider.dispatchEvent(new Event('input'));
+        };
+
+    </script>
+</body>
+</html>

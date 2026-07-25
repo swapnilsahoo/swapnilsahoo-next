@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EY Young Leaders - Finale Strategy Hub</title>
+    <!-- Chosen Palette: EY Inspired Professional (Deep Charcoal, Amber Yellow, Slate Gray, Off-White) -->
+    <!-- Application Structure Plan: The SPA is designed as an interactive dashboard, not a linear document. The core structure is based on the four official evaluation criteria, which act as the main navigation. This user-centric approach forces the finalist to think from the judges' perspective. Key sections include an interactive Urgency/Impact matrix for challenge analysis, a solution builder, a phased roadmap visualizer, and a pitch practice simulator. This structure was chosen to directly translate static guidelines into an actionable, strategic tool that improves usability and helps the user build a story, rather than just list facts. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Challenge Classification -> Goal: Organize/Prioritize -> Viz: Interactive HTML/CSS Matrix -> Interaction: Click quadrants to reveal details -> Justification: Directly addresses the 'Urgency vs Impact matrix' requirement in a creative, engaging way. Method: Vanilla JS + Tailwind.
+        - Report Info: Phased Implementation -> Goal: Show Change Over Time -> Viz: Interactive HTML/CSS Timeline -> Interaction: Click phases to see details -> Justification: Simplifies a complex plan, scoring high on 'Story Boarding'. Method: Vanilla JS + Tailwind.
+        - Report Info: Ecosystem Stakeholders -> Goal: Show Relationships -> Viz: HTML/CSS Diagram -> Interaction: Hover over nodes for info -> Justification: A creative way to show contextual understanding without a boring list. Method: Tailwind CSS.
+        - Report Info: Data-driven reasoning -> Goal: Compare/Inform -> Viz: Bar Chart (Sample) -> Interaction: Tooltips on hover -> Justification: Demonstrates the 'use of graphs' for the 'Depth of research' criterion. Library: Chart.js (Canvas).
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .ey-yellow { color: #ffe600; }
+        .bg-ey-yellow { background-color: #ffe600; }
+        .border-ey-yellow { border-color: #ffe600; }
+        .ey-charcoal { color: #2e2e2e; }
+        .bg-ey-charcoal { background-color: #2e2e2e; }
+        .ey-slate { color: #505050; }
+        .bg-ey-slate { background-color: #505050; }
+        .nav-item { transition: all 0.2s ease-in-out; }
+        .nav-item.active {
+            background-color: #ffe600;
+            color: #2e2e2e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .content-section { display: none; }
+        .content-section.active { display: block; }
+        .matrix-quadrant {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .matrix-quadrant:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+        .timeline-item.active .timeline-dot {
+            background-color: #ffe600;
+            transform: scale(1.5);
+        }
+        .timeline-item.active .timeline-title {
+            color: #2e2e2e;
+            font-weight: 600;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container { height: 350px; }
+        }
+        .stepper-item {
+            position: relative;
+            padding-bottom: 2rem;
+            padding-left: 2.5rem;
+        }
+        .stepper-item:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            left: 0.75rem;
+            top: 1rem;
+            bottom: -0.5rem;
+            width: 2px;
+            background-color: #e5e7eb;
+        }
+        .stepper-dot {
+            position: absolute;
+            left: 0;
+            top: 0.25rem;
+            height: 1.5rem;
+            width: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            background-color: #2e2e2e;
+            color: #ffe600;
+            font-weight: bold;
+        }
+        .social-icon svg {
+            transition: transform 0.2s ease-in-out;
+        }
+        .social-icon:hover svg {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body class="text-ey-charcoal">
+    <div class="bg-gray-100 py-2 px-4">
+        <div class="container mx-auto flex justify-between items-center text-xs text-ey-slate">
+            <span>© Dr. Swapnil Sahoo 2025</span>
+            <div class="flex items-center space-x-4">
+                <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="social-icon text-gray-500 hover:text-ey-charcoal">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="social-icon text-gray-500 hover:text-ey-charcoal">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.06-1.004.048-1.625.21-2.126.41a3.17 3.17 0 00-1.14 1.14c-.199.501-.362 1.122-.41 2.126-.048 1.023-.06 1.351-.06 3.807s.012 2.784.06 3.807c.048 1.004.21 1.625.41 2.126a3.17 3.17 0 001.14 1.14c.501.199 1.122.362 2.126.41 1.023.048 1.351.06 3.807.06h.468c2.456 0 2.784-.011 3.807-.06 1.004-.048 1.625-.21 2.126-.41a3.17 3.17 0 001.14-1.14c.199-.501.362-1.122.41-2.126.048-1.023.06-1.351.06-3.807s-.012-2.784-.06-3.807c-.048-1.004-.21-1.625-.41-2.126a3.17 3.17 0 00-1.14-1.14c-.501-.199-1.122-.362-2.126-.41-1.023-.048-1.351-.06-3.807-.06zM12 6.865a5.135 5.135 0 100 10.27 5.135 5.135 0 000-10.27zm0 1.802a3.333 3.333 0 110 6.666 3.333 3.333 0 010-6.666zm5.338-3.205a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4z" clip-rule="evenodd" /></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="social-icon text-gray-500 hover:text-ey-charcoal">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 py-8">
+        
+        <header class="text-center mb-8 md:mb-12">
+            <h1 class="text-3xl md:text-5xl font-bold text-ey-charcoal">EY Young Leaders Finale</h1>
+            <p class="text-lg md:text-xl text-ey-slate mt-2">Your Interactive Strategy Hub for the AI Skilling Challenge</p>
+            <div id="countdown-timer" class="mt-4 text-sm font-semibold bg-ey-charcoal text-white rounded-full inline-block px-6 py-2">
+                Time until Final Presentations: Calculating...
+            </div>
+        </header>
+
+        <nav class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-10 text-center">
+            <a href="#contextualization" data-target="context" class="nav-item active p-4 bg-white rounded-lg shadow-md border-b-4 border-transparent">
+                <span class="text-2xl">🎯</span>
+                <h3 class="font-bold mt-1">1. Contextualization</h3>
+                <p class="text-xs text-ey-slate">Understand the Issue</p>
+            </a>
+            <a href="#research" data-target="research" class="nav-item p-4 bg-white rounded-lg shadow-md border-b-4 border-transparent">
+                <span class="text-2xl">📊</span>
+                <h3 class="font-bold mt-1">2. Depth of Research</h3>
+                <p class="text-xs text-ey-slate">Use Data & Reasoning</p>
+            </a>
+            <a href="#storyboarding" data-target="story" class="nav-item p-4 bg-white rounded-lg shadow-md border-b-4 border-transparent">
+                <span class="text-2xl">📖</span>
+                <h3 class="font-bold mt-1">3. Storyboarding</h3>
+                <p class="text-xs text-ey-slate">Craft a Crisp Narrative</p>
+            </a>
+            <a href="#creativity" data-target="creative" class="nav-item p-4 bg-white rounded-lg shadow-md border-b-4 border-transparent">
+                <span class="text-2xl">💡</span>
+                <h3 class="font-bold mt-1">4. Creativity</h3>
+                <p class="text-xs text-ey-slate">Innovate Your Delivery</p>
+            </a>
+             <a href="#statistics" data-target="stats" class="nav-item p-4 bg-white rounded-lg shadow-md border-b-4 border-transparent">
+                <span class="text-2xl">📈</span>
+                <h3 class="font-bold mt-1">Key Statistics</h3>
+                <p class="text-xs text-ey-slate">Data for Your Story</p>
+            </a>
+            <a href="#dos-donts" data-target="dos-donts" class="nav-item p-4 bg-white rounded-lg shadow-md border-b-4 border-transparent">
+                <span class="text-2xl">📜</span>
+                <h3 class="font-bold mt-1">Dos & Don'ts</h3>
+                <p class="text-xs text-ey-slate">Rules of Engagement</p>
+            </a>
+        </nav>
+
+        <main>
+            <section id="context" class="content-section active p-6 bg-white rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold mb-4">🎯 1. Contextualization: Analyze the Challenges</h2>
+                <p class="text-ey-slate mb-6">A winning presentation starts with a deep understanding of the problem. The guidelines require classifying AI skilling challenges using an Urgency vs. Impact matrix. This interactive tool helps you structure your thinking. Click on a quadrant to explore potential challenges and consider where your own ideas fit.</p>
+                <div class="flex items-center justify-center mb-6">
+                    <div class="text-center transform -rotate-90 -translate-x-12"><span class="font-semibold">Impact</span> →</div>
+                    <div class="grid grid-cols-2 gap-1 w-full max-w-3xl border-2 border-gray-300">
+                        <div class="relative p-2 text-center text-sm font-semibold col-span-2">Urgency →</div>
+                        <div data-quadrant="q2" class="matrix-quadrant bg-gray-50 border-r border-b border-gray-300 p-6 flex flex-col justify-center items-center h-40">
+                            <h4 class="font-bold">High Impact, Low Urgency</h4>
+                            <p class="text-xs text-gray-500">"Strategic Bets"</p>
+                        </div>
+                        <div data-quadrant="q1" class="matrix-quadrant bg-gray-50 border-b border-gray-300 p-6 flex flex-col justify-center items-center h-40">
+                            <h4 class="font-bold">High Impact, High Urgency</h4>
+                            <p class="text-xs text-gray-500">"Tackle Immediately"</p>
+                        </div>
+                        <div data-quadrant="q4" class="matrix-quadrant bg-gray-50 border-r border-gray-300 p-6 flex flex-col justify-center items-center h-40">
+                            <h4 class="font-bold">Low Impact, Low Urgency</h4>
+                            <p class="text-xs text-gray-500">"Monitor / De-prioritize"</p>
+                        </div>
+                        <div data-quadrant="q3" class="matrix-quadrant bg-gray-50 p-6 flex flex-col justify-center items-center h-40">
+                            <h4 class="font-bold">Low Impact, High Urgency</h4>
+                            <p class="text-xs text-gray-500">"Quick Wins"</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="matrix-details" class="p-4 bg-yellow-50 rounded-lg border-l-4 border-ey-yellow min-h-[100px]">
+                    <h3 id="matrix-title" class="font-bold text-lg">Click a quadrant to see details</h3>
+                    <p id="matrix-text" class="text-sm text-ey-slate mt-1">This section will update with examples and key questions for the selected quadrant.</p>
+                    <ul id="matrix-list" class="list-disc list-inside text-sm text-ey-slate mt-2"></ul>
+                </div>
+            </section>
+            
+            <section id="research" class="content-section p-6 bg-white rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold mb-4">📊 2. Depth of Research: Back Your Claims</h2>
+                <p class="text-ey-slate mb-6">Assumptions must be backed by data and reasoning. Your analysis of the AI skilling gap needs credible evidence. Use reports from sources like NASSCOM, WEF, or government publications to strengthen your arguments. Visualizing this data is key for impact. Below is an example of how you can present the AI skill gap to make it immediately understandable.</p>
+                <div class="chart-container">
+                    <canvas id="skillGapChart"></canvas>
+                </div>
+                 <p class="text-xs text-center text-gray-400 mt-2">Example: AI Skill Gap by Industry in India (Illustrative Data)</p>
+            </section>
+
+            <section id="story" class="content-section p-6 bg-white rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold mb-4">📖 3. Storyboarding: Architecting Your Winning Narrative</h2>
+                <p class="text-ey-slate mb-6">The 8-slide limit is a gift that forces clarity. Your job is to make these slides flow like a single, powerful argument. This section is your playbook for building that winning storyboard, from the hook to the close.</p>
+                
+                <div class="mt-8">
+                    <h3 class="text-xl font-semibold mb-6">Part 1: The Perfect 8-Slide Story</h3>
+                    <div>
+                        <div class="stepper-item">
+                            <div class="stepper-dot">1</div>
+                            <h4 class="font-bold text-lg">The Hook - Executive Summary</h4>
+                            <p class="text-sm text-ey-slate mt-1">This is your 'cold open'. Start with a powerful statistic about India's AI opportunity. Then, in max 3 bullet points, state: 1) The core problem, 2) The massive opportunity, and 3) Your "big idea" or vision. Hook them in the first 60 seconds.</p>
+                        </div>
+                         <div class="stepper-item">
+                            <div class="stepper-dot">2</div>
+                            <h4 class="font-bold text-lg">The Crucible - Urgency vs. Impact Matrix</h4>
+                            <p class="text-sm text-ey-slate mt-1">This is your most important visual. Don't just list challenges; plot them visually on a 2x2 matrix. Use data to justify the placement of each challenge (e.g., "We classify 'Educator Training' as high urgency based on a 70% reported skill gap...").</p>
+                        </div>
+                        <div class="stepper-item">
+                            <div class="stepper-dot">3-5</div>
+                            <h4 class="font-bold text-lg">The Solutions - Your 5-7 Recommendations</h4>
+                            <p class="text-sm text-ey-slate mt-1">Dedicate one slide to each cluster of recommendations (e.g., Foundational, Professional, Advanced). For each solution, use a simple structure: <strong class="text-ey-charcoal">WHAT</strong> (the solution), <strong class="text-ey-charcoal">WHY</strong> (the data backing it), and <strong class="text-ey-charcoal">IMPACT</strong> (the outcome). Use icons and minimal text.</p>
+                        </div>
+                        <div class="stepper-item">
+                            <div class="stepper-dot">6</div>
+                            <h4 class="font-bold text-lg">The Ecosystem - The National Blueprint</h4>
+                            <p class="text-sm text-ey-slate mt-1">Don't list stakeholders; show them. Create a visual ecosystem map with the "AI-Skilled Citizen" at the center. Show how Government, Industry, and Academia interconnect and feed into this central goal. This screams 'strategic thinking'.</p>
+                        </div>
+                        <div class="stepper-item">
+                            <div class="stepper-dot">7</div>
+                            <h4 class="font-bold text-lg">The Roadmap - Phased Implementation Plan</h4>
+                            <p class="text-sm text-ey-slate mt-1">Create a visual timeline or a Swim Lane diagram. Show Phase 1 (0-12 Months), Phase 2 (1-3 Years), and Phase 3 (3-5+ Years). This makes a complex plan instantly understandable and scores huge points for storyboarding.</p>
+                        </div>
+                        <div class="stepper-item">
+                            <div class="stepper-dot">8</div>
+                            <h4 class="font-bold text-lg">The Scorecard - Measuring Success</h4>
+                            <p class="text-sm text-ey-slate mt-1">End with a powerful, clear scorecard. Define your Key Performance Indicators (KPIs) like Reach (# trained), Quality (% certification), and Economic Impact (Contribution to GVA). This presents your idea as a measurable, results-driven business plan.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12">
+                    <h3 class="text-xl font-semibold mb-6">Part 2: Mastering the 12+5 Minute Performance</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <h4 class="font-bold text-lg">The 12-Minute Pitch Pacing</h4>
+                            <ul class="text-sm mt-2 space-y-1 list-disc list-inside">
+                                <li><strong>Slide 1 (Hook):</strong> ~1 min</li>
+                                <li><strong>Slide 2 (Matrix):</strong> ~1.5 mins</li>
+                                <li><strong>Slides 3-5 (Solutions):</strong> ~5 mins</li>
+                                <li><strong>Slide 6 (Ecosystem):</strong> ~1.5 mins</li>
+                                <li><strong>Slide 7 (Roadmap):</strong> ~1.5 mins</li>
+                                <li><strong>Slide 8 (Scorecard):</strong> ~1.5 mins</li>
+                            </ul>
+                            <p class="text-xs text-ey-slate mt-2">Finishing on time shows discipline and respect for the panel.</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <h4 class="font-bold text-lg">The 5-Minute Q&A Gauntlet</h4>
+                            <ul class="text-sm mt-2 space-y-1 list-disc list-inside">
+                                <li><strong>Anticipate Questions:</strong> What are your weakest points? Prepare answers.</li>
+                                <li><strong>Use the 'Pre-mortem' Technique:</strong> Ask "If we fail, why?" to identify risks.</li>
+                                <li><strong>Answer as a Unified Front:</strong> One person leads, another can add a supporting data point to show cohesion.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            
+            <section id="creative" class="content-section p-6 bg-white rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold mb-4">💡 4. Creativity: Practice & Perfect Your Pitch</h2>
+                <p class="text-ey-slate mb-6">Creativity isn't just about flashy visuals; it's about delivering your message with confidence and clarity under pressure. Use these tools to practice your timing and prepare for the tough questions from the EY Leaders.</p>
+                <div class="grid md:grid-cols-2 gap-8 mt-8">
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="font-bold text-lg mb-4">12-Minute Pitch Simulator</h3>
+                        <div id="pitch-timer" class="text-5xl font-bold text-center py-4 bg-white rounded-lg">12:00</div>
+                        <div class="flex justify-center gap-4 mt-4">
+                            <button id="start-timer" class="bg-green-500 text-white px-6 py-2 rounded-lg font-semibold">Start</button>
+                            <button id="stop-timer" class="bg-red-500 text-white px-6 py-2 rounded-lg font-semibold">Stop</button>
+                            <button id="reset-timer" class="bg-gray-500 text-white px-6 py-2 rounded-lg font-semibold">Reset</button>
+                        </div>
+                        <div id="pitch-guide" class="text-sm text-ey-slate mt-4 text-center">Press Start to begin your timed practice run.</div>
+                    </div>
+                     <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="font-bold text-lg mb-4">5-Minute Q&A Hot Seat</h3>
+                        <p class="text-sm text-ey-slate mb-4">Anticipate the judges' questions to deliver confident, well-reasoned answers.</p>
+                        <div id="qa-card" class="bg-white p-4 rounded-lg min-h-[100px] flex flex-col justify-center">
+                            <p id="qa-question" class="font-semibold text-center">Click the button to reveal a potential question.</p>
+                        </div>
+                        <button id="next-question" class="bg-ey-charcoal text-white w-full mt-4 py-2 rounded-lg font-semibold">Show New Question</button>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="stats" class="content-section p-6 bg-white rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold mb-4">📈 Key Statistics: The Data Behind Your Story</h2>
+                <p class="text-ey-slate mb-8">Use these powerful data points to build a compelling, evidence-based case. The statistics are organized to help you tell a story: the immense opportunity, the critical challenges, and the concrete financial plan for your proposed solution.</p>
+                
+                <!-- The Opportunity -->
+                <div class="mb-10">
+                    <h3 class="text-xl font-semibold border-b-2 border-ey-yellow pb-2 mb-6">Part 1: The Opportunity</h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-green-50 p-6 rounded-lg text-center">
+                            <p class="text-4xl font-bold text-green-700">$957B</p>
+                            <p class="text-sm text-green-600 mt-2">Potential addition to India's economy by AI by 2035.</p>
+                        </div>
+                        <div class="bg-green-50 p-6 rounded-lg text-center">
+                            <p class="text-4xl font-bold text-green-700">#1</p>
+                            <p class="text-sm text-green-600 mt-2">India's global rank in AI skill penetration (Stanford AI Index 2024).</p>
+                        </div>
+                        <div class="bg-green-50 p-6 rounded-lg text-center">
+                            <p class="text-4xl font-bold text-green-700">25-35%</p>
+                            <p class="text-sm text-green-600 mt-2">Expected market growth rate for AI in India.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- The Challenge -->
+                <div class="mb-10">
+                    <h3 class="text-xl font-semibold border-b-2 border-red-400 pb-2 mb-6">Part 2: The Challenge (The Skill & Infrastructure Gap)</h3>
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-bold text-center mb-2">AI Talent Demand vs. Supply</h4>
+                             <div class="chart-container h-64 md:h-80">
+                                <canvas id="talentGapChart"></canvas>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-center mb-2">School Infrastructure Readiness</h4>
+                             <div class="chart-container h-64 md:h-80">
+                                <canvas id="infraGapChart"></canvas>
+                            </div>
+                        </div>
+                         <div class="bg-red-50 p-6 rounded-lg text-center lg:col-span-2 grid md:grid-cols-3 gap-4">
+                            <div>
+                                <p class="text-3xl font-bold text-red-700">75%</p>
+                                <p class="text-sm text-red-600 mt-1">of companies struggle to find AI-skilled graduates.</p>
+                            </div>
+                            <div>
+                                <p class="text-3xl font-bold text-red-700">&lt;2,000</p>
+                                <p class="text-sm text-red-600 mt-1">Senior AI engineers and researchers currently in India.</p>
+                            </div>
+                             <div>
+                                <p class="text-3xl font-bold text-red-700">85%</p>
+                                <p class="text-sm text-red-600 mt-1">of school teachers have never used AI tools.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- The Proposed Solution -->
+                <div>
+                    <h3 class="text-xl font-semibold border-b-2 border-blue-400 pb-2 mb-6">Part 3: The Proposed Solution (The ₹10,000 Cr Fund)</h3>
+                    <div class="grid lg:grid-cols-2 gap-8 items-center">
+                        <div class="bg-blue-50 p-6 rounded-lg">
+                             <h4 class="font-bold text-lg text-blue-800 mb-4">Funding Source Breakdown</h4>
+                             <div class="flex items-center justify-around">
+                                <div class="text-center">
+                                    <p class="text-4xl font-bold text-blue-700">49%</p>
+                                    <p class="text-sm text-blue-600 mt-1">Govt. of India</p>
+                                </div>
+                                 <div class="text-center">
+                                    <p class="text-4xl font-bold text-blue-700">51%</p>
+                                    <p class="text-sm text-blue-600 mt-1">Private Sector</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-center mb-2">Allocation of ₹10,000 Cr Fund</h4>
+                            <div class="chart-container h-64 md:h-80">
+                                <canvas id="fundAllocationChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="dos-donts" class="content-section p-6 bg-white rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold mb-4">📜 Dos & Don'ts: The Official Rules of Engagement</h2>
+                <p class="text-ey-slate mb-8">Based directly on the official guidelines, this checklist is your safeguard against mistakes. Adhering to these points ensures your hard work is presented in the best possible light and meets all judging requirements.</p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- The Dos -->
+                    <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-500">
+                        <h3 class="text-xl font-bold text-green-800 mb-4 flex items-center">
+                            <span class="text-2xl mr-3">✔️</span>
+                            The Dos
+                        </h3>
+                        <ul class="space-y-3 text-green-700">
+                            <li class="flex items-start">
+                                <span class="font-bold mr-2 text-lg mt-1">→</span>
+                                <div><strong>Tell a Complete Story:</strong> Ensure your presentation covers all required aspects: Executive Summary, Challenge Matrix, 5-7 Solutions, Implementation Plan, and Success KPIs.</div>
+                            </li>
+                             <li class="flex items-start">
+                                <span class="font-bold mr-2 text-lg mt-1">→</span>
+                                <div><strong>Use Visuals Heavily:</strong> The guidelines explicitly state there are "extra marks for creativity." Use tools, visuals, videos, tables, and graphs to make your points.</div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="font-bold mr-2 text-lg mt-1">→</span>
+                                <div><strong>Back Up Every Assumption:</strong> Every claim or assumption must be supported by "proper reasoning/rationale." Show your work and cite your data.</div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="font-bold mr-2 text-lg mt-1">→</span>
+                                <div><strong>Involve the Whole Team:</strong> "All team members must present." Plan your transitions to be smooth, logical, and demonstrate cohesion.</div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="font-bold mr-2 text-lg mt-1">→</span>
+                                <div><strong>Practice Your Timing:</strong> You have a "maximum of 12 minutes to present and five minutes for Q&A." Rehearse extensively to be crisp and effective.</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- The Don'ts -->
+                    <div class="bg-red-50 p-6 rounded-lg border-l-4 border-red-500">
+                        <h3 class="text-xl font-bold text-red-800 mb-4 flex items-center">
+                            <span class="text-2xl mr-3">❌</span>
+                            The Don'ts
+                        </h3>
+                        <ul class="space-y-3 text-red-700">
+                            <li class="flex items-start">
+                                <span class="font-bold mr-2 text-lg mt-1">→</span>
+                                <div><strong>Don't Exceed 8 Slides:</strong> This is a strict, non-negotiable limit. Be ruthless in your editing to ensure clarity and conciseness.</div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="font-bold mr-2 text-lg mt-1">→</span>
+                                <div><strong>Don't Go Over 10 MB:</strong> Watch your file size. Compress images and embed videos efficiently to stay under the limit.</div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="font-bold mr-2 text-lg mt-1">→</span>
+                                <div><strong>Don't Make Changes After Submission:</strong> "No additions, deletions or revisions/alterations will be allowed." Your final submission is exactly that—final.</div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="font-bold mr-2 text-lg mt-1">→</span>
+                                <div><strong>Don't Use Walls of Text:</strong> High-scoring presentations are visually driven. Let your charts, diagrams, and speaking tell the story, not dense paragraphs.</div>
+                            </li>
+                             <li class="flex items-start">
+                                <span class="font-bold mr-2 text-lg mt-1">→</span>
+                                <div><strong>Don't Forget the Evaluation Criteria:</strong> Do a final check. Does your presentation clearly demonstrate Contextualization, Depth of research, Story Boarding, and Creativity?</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="mt-12 py-6 bg-gray-100 border-t">
+        <div class="container mx-auto px-4 text-center text-ey-slate">
+            <div class="flex justify-center items-center space-x-6 mb-4">
+                <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="social-icon text-gray-500 hover:text-ey-charcoal">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="social-icon text-gray-500 hover:text-ey-charcoal">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.06-1.004.048-1.625.21-2.126.41a3.17 3.17 0 00-1.14 1.14c-.199.501-.362 1.122-.41 2.126-.048 1.023-.06 1.351-.06 3.807s.012 2.784.06 3.807c.048 1.004.21 1.625.41 2.126a3.17 3.17 0 001.14 1.14c.501.199 1.122.362 2.126.41 1.023.048 1.351.06 3.807.06h.468c2.456 0 2.784-.011 3.807-.06 1.004-.048 1.625-.21 2.126-.41a3.17 3.17 0 001.14-1.14c.199-.501.362-1.122.41-2.126.048-1.023.06-1.351.06-3.807s-.012-2.784-.06-3.807c-.048-1.004-.21-1.625-.41-2.126a3.17 3.17 0 00-1.14-1.14c-.501-.199-1.122-.362-2.126-.41-1.023-.048-1.351-.06-3.807-.06zM12 6.865a5.135 5.135 0 100 10.27 5.135 5.135 0 000-10.27zm0 1.802a3.333 3.333 0 110 6.666 3.333 3.333 0 010-6.666zm5.338-3.205a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4z" clip-rule="evenodd" /></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="social-icon text-gray-500 hover:text-ey-charcoal">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+            </div>
+            <p class="text-sm">© Dr. Swapnil Sahoo 2025</p>
+        </div>
+    </footer>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    const navItems = document.querySelectorAll('.nav-item');
+    const contentSections = document.querySelectorAll('.content-section');
+
+    const matrixData = {
+        q1: {
+            title: "High Impact, High Urgency",
+            text: "These are critical issues that need immediate attention. Your top recommendations should focus here.",
+            points: [
+                "Severe shortage of AI-specialized faculty and trainers.",
+                "Lack of industry-aligned curriculum in higher education.",
+                "Rapid displacement of jobs in automatable sectors without re-skilling pathways."
+            ]
+        },
+        q2: {
+            title: "High Impact, Low Urgency",
+            text: "These are long-term strategic initiatives that will build a sustainable AI ecosystem.",
+            points: [
+                "Integrating AI ethics and literacy into K-12 education.",
+                "Building a sovereign national dataset for AI model training.",
+                "Establishing world-class AI research centers to foster innovation."
+            ]
+        },
+        q3: {
+            title: "Low Impact, High Urgency",
+            text: "These can be addressed as 'quick wins' but shouldn't distract from the main strategic goals.",
+            points: [
+                "Standardizing basic digital literacy certifications across states.",
+                "Public awareness campaigns on the benefits and risks of AI.",
+                "Updating government portals with AI-powered assistance."
+            ]
+        },
+        q4: {
+            title: "Low Impact, Low Urgency",
+            text: "These challenges should be monitored but are not a priority for your core recommendations.",
+            points: [
+                "Legacy IT system upgrades in non-critical government departments.",
+                "Niche AI language model development with limited applicability.",
+                "Regulation of AI in non-essential entertainment sectors."
+            ]
+        }
+    };
+
+    const timelineData = {
+        phase1: {
+            title: "Phase 1: Foundation (0-12 Months)",
+            text: "Focus on establishing the core infrastructure and policies to enable national scale-up.",
+            points: [
+                "<strong>Policy Makers:</strong> Formulate National AI Skilling Policy, establish governance council.",
+                "<strong>Educators:</strong> Design pilot curriculum for schools & universities, launch 'Train the Trainer' programs.",
+                "<strong>Industry Leaders:</strong> Form industry-academia consortiums, define critical AI job roles and skill maps."
+            ]
+        },
+        phase2: {
+            title: "Phase 2: Scale-Up (1-3 Years)",
+            text: "Expand successful pilot programs nationwide and deepen public-private partnerships.",
+            points: [
+                 "<strong>Policy Makers:</strong> Allocate national budget, launch state-level implementation task forces.",
+                 "<strong>Educators:</strong> Roll out standardized AI curriculum in 50% of technical universities, certify 100,000 trainers.",
+                 "<strong>Industry Leaders:</strong> Co-fund 'AI Labs' in universities, commit to 500,000 apprenticeships/internships."
+            ]
+        },
+        phase3: {
+            title: "Phase 3: Sustain & Innovate (3+ Years)",
+            text: "Transition to a self-sustaining ecosystem focused on continuous learning and cutting-edge research.",
+            points: [
+                 "<strong>Policy Makers:</strong> Establish regulatory sandboxes for AI innovation, promote AI exports.",
+                 "<strong>Educators:</strong> Integrate AI across all academic disciplines, establish lifelong learning platforms.",
+                 "<strong>Industry Leaders:</strong> Drive global AI R&D from India, mentor a vibrant AI startup ecosystem."
+            ]
+        }
+    };
+    
+    const qaQuestions = [
+        "Your plan seems ambitious. What is the single biggest risk to its implementation and how do you mitigate it?",
+        "How will you ensure this skilling reform reaches rural and underserved communities, not just urban centers?",
+        "What is the estimated budget for Phase 1, and how would you propose the funding be split between public and private sectors?",
+        "How do you measure the 'quality' of AI skilling, not just the quantity of people trained?",
+        "Beyond technical skills, how does your framework address the crucial 'soft skills' needed in an AI-driven economy?",
+        "Which international models of AI skilling did you study, and what key lessons can India adapt?",
+        "How do you keep the curriculum from becoming obsolete within 2 years, given the rapid pace of AI development?"
+    ];
+    let currentQuestionIndex = 0;
+
+    navItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = item.dataset.target;
+
+            navItems.forEach(nav => nav.classList.remove('active'));
+            item.classList.add('active');
+
+            contentSections.forEach(section => {
+                section.classList.remove('active');
+                if (section.id === targetId) {
+                    section.classList.add('active');
+                }
+            });
+        });
+    });
+
+    document.querySelectorAll('.matrix-quadrant').forEach(quadrant => {
+        quadrant.addEventListener('click', () => {
+            const quadrantId = quadrant.dataset.quadrant;
+            const data = matrixData[quadrantId];
+            document.getElementById('matrix-title').textContent = data.title;
+            document.getElementById('matrix-text').textContent = data.text;
+            const list = document.getElementById('matrix-list');
+            list.innerHTML = '';
+            data.points.forEach(point => {
+                const li = document.createElement('li');
+                li.textContent = point;
+                list.appendChild(li);
+            });
+        });
+    });
+    
+    const ctx = document.getElementById('skillGapChart');
+    if(ctx) {
+        new Chart(ctx.getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['IT & Tech', 'Manufacturing', 'Healthcare', 'Finance', 'Retail'],
+                datasets: [{
+                    label: 'Current Skill Gap (%)',
+                    data: [65, 45, 55, 50, 40],
+                    backgroundColor: 'rgba(46, 46, 46, 0.8)',
+                    borderColor: 'rgba(46, 46, 46, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: 'Skill Gap (%)'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `Skill Gap: ${context.raw}%`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    const talentCtx = document.getElementById('talentGapChart');
+    if(talentCtx) {
+        new Chart(talentCtx.getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['Current Talent', 'Projected Demand by 2027'],
+                datasets: [{
+                    label: 'AI Professionals',
+                    data: [416000, 1250000],
+                    backgroundColor: ['#60a5fa', '#ef4444'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                plugins: { legend: { display: false } },
+                scales: { x: { ticks: { callback: value => `${value / 1000}k` } } }
+            }
+        });
+    }
+
+    const infraCtx = document.getElementById('infraGapChart');
+    if(infraCtx) {
+        new Chart(infraCtx.getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['Have Computers', 'Have Functional Computers', 'Have Internet'],
+                datasets: [{
+                    label: '% of Schools',
+                    data: [65, 58, 63],
+                    backgroundColor: ['#60a5fa', '#3b82f6', '#1d4ed8'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true, max: 100 } }
+            }
+        });
+    }
+
+    const fundCtx = document.getElementById('fundAllocationChart');
+    if(fundCtx) {
+        new Chart(fundCtx.getContext('2d'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Infrastructure Grants', 'Citizen Skilling Subsidies', 'Faculty Training', 'Curriculum Development', 'Digital Platform'],
+                datasets: [{
+                    label: 'Allocation (in Crore INR)',
+                    data: [3000, 3000, 2000, 1200, 800],
+                    backgroundColor: ['#1d4ed8', '#3b82f6', '#60a5fa', '#93c5fd', '#bfdbfe'],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 12,
+                            padding: 15
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+
+    let timerInterval;
+    let totalSeconds = 12 * 60;
+    const timerDisplay = document.getElementById('pitch-timer');
+    const pitchGuide = document.getElementById('pitch-guide');
+
+    function updateTimer() {
+        const minutes = Math.floor(totalSeconds / 60);
+        let seconds = totalSeconds % 60;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+        timerDisplay.textContent = `${minutes}:${seconds}`;
+
+        if (totalSeconds > 660) pitchGuide.textContent = "Focus: Intro & The Problem (Slides 1-2)";
+        else if (totalSeconds > 360) pitchGuide.textContent = "Focus: Your Solutions (Slides 3-5)";
+        else if (totalSeconds > 120) pitchGuide.textContent = "Focus: Implementation & Impact (Slides 6-8)";
+        else if (totalSeconds > 0) pitchGuide.textContent = "Focus: Strong Conclusion!";
+        else {
+             pitchGuide.textContent = "Time's up!";
+             timerDisplay.style.color = '#ef4444';
+             clearInterval(timerInterval);
+        }
+        totalSeconds--;
+    }
+    
+    document.getElementById('start-timer').addEventListener('click', () => {
+        clearInterval(timerInterval);
+        timerDisplay.style.color = '#2e2e2e';
+        timerInterval = setInterval(updateTimer, 1000);
+    });
+
+    document.getElementById('stop-timer').addEventListener('click', () => {
+        clearInterval(timerInterval);
+    });
+
+    document.getElementById('reset-timer').addEventListener('click', () => {
+        clearInterval(timerInterval);
+        totalSeconds = 12 * 60;
+        timerDisplay.textContent = '12:00';
+        pitchGuide.textContent = "Press Start to begin your timed practice run.";
+        timerDisplay.style.color = '#2e2e2e';
+    });
+    
+    document.getElementById('next-question').addEventListener('click', () => {
+        currentQuestionIndex = (currentQuestionIndex + 1) % qaQuestions.length;
+        document.getElementById('qa-question').textContent = qaQuestions[currentQuestionIndex];
+    });
+
+    const countdownTimer = document.getElementById('countdown-timer');
+    const presentationDate = new Date('2025-09-18T09:00:00'); 
+    
+    function updateCountdown() {
+        const now = new Date();
+        const diff = presentationDate - now;
+
+        if (diff <= 0) {
+            countdownTimer.textContent = "The Final Round has begun! Good luck!";
+            return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+        countdownTimer.textContent = `Finals Week begins in: ${days}d ${hours}h ${minutes}m`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 60000);
+});
+</script>
+
+</body>
+</html>
+

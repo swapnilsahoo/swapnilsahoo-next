@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Infosys Techno-Functional Playbook</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Infosys Blue -->
+    <!-- Application Structure Plan: The SPA is designed as a "playbook" for aspiring Infosys consultants, built from the 3 JDs. The IA follows a logical path: 1. The Core Role (What is this job?), 2. The 3 Tracks (What are my options?), 3. Behavioral Prep (How do I prove my fit?), 4. Situational Cases (How do I prove my skills?), 5. Final Checklist. This structure synthesizes the common elements of all JDs (consulting skills, problem-solving) while also clarifying the unique paths (DNA, SAP, Oracle). -->
+    <!-- Visualization & Content Choices: The source JDs are qualitative. No data charts are needed. 1. Report Info: The 3 distinct JDs (DNA, ESAP, ORC). -> Goal: Allow easy comparison of the 3 techno-functional tracks. -> Viz/Method: Interactive tab/toggle buttons. -> Interaction: 'onclick' toggles content visibility. -> Justification: This is the cleanest way to present and contrast the 3 specialized roles. -> Method: Vanilla JS + Tailwind. 2. Report Info: Common required skills (Problem-solving, communication). -> Goal: Provide actionable interview practice. -> Viz/Method: Interactive accordions for "Behavioral Prep" and "Situational Cases". -> Interaction: Click to reveal practice questions and frameworks. -> Justification: Directly maps the JDs' requirements to interview practice. -> Method: Vanilla JS. 3. User Request: Checklist -> Goal: Summarize key actions. -> Viz/Method: A styled list. -> Interaction: None. -> Justification: A clean, scannable final summary. -> Method: HTML/Tailwind. -->
+    <!-- CONFIRMATION: NO SVG graphics used for charts. NO Mermaid JS used. Inline SVGs are used *only* for the user's requested branding icons. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* gray-100 */
+            color: #111827; /* gray-900 */
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
+        }
+        .nav-link:hover {
+            color: #007bff; /* Infosys Blue */
+            border-bottom-color: #007bff;
+        }
+        .nav-link.active {
+            color: #007bff;
+            font-weight: 600;
+            border-bottom-color: #007bff;
+        }
+        /* Track Toggles */
+        .track-button {
+            transition: all 0.2s ease-in-out;
+        }
+        .track-button.active {
+            background-color: #007bff; /* Infosys Blue */
+            color: #ffffff;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+        .track-button:not(.active) {
+            background-color: #e5e7eb; /* gray-200 */
+            color: #374151; /* gray-700 */
+        }
+        .track-button:not(.active):hover {
+            background-color: #d1d5db; /* gray-300 */
+        }
+        .track-content { display: none; }
+        .track-content.active { display: block; }
+
+        /* Accordion */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+        }
+        .accordion-content.open {
+            max-height: 1500px; /* Ample height for content */
+        }
+        .accordion-icon.open { transform: rotate(180deg); }
+        .accordion-icon { transition: transform 0.3s ease-out; }
+
+         /* Checklist Styling */
+         .checklist li {
+            position: relative;
+            padding-left: 1.75rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+         }
+         .checklist li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 1rem;
+            height: 1rem;
+            background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="%23007bff" class="w-6 h-6"%3E%3Cpath stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /%3E%3C/svg%3E'); /* Blue Checkmark */
+            background-size: contain;
+            background-repeat: no-repeat;
+         }
+         .checklist strong {
+             color: #0056b3; /* Darker Infosys Blue */
+         }
+
+        /* Top bar icon styling */
+        .top-bar-link svg, .footer-link svg {
+             width: 1.125rem; /* w-4.5 */
+             height: 1.125rem;
+             fill: currentColor;
+             transition: color 0.2s ease-in-out;
+         }
+         /* Custom Hexagon Icon Styles */
+         .hexagon-icon {
+             position: relative;
+             width: 24px; /* Adjust size as needed */
+             height: 24px;
+             filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3)); /* Basic 3D shadow */
+             display: inline-block; /* Ensure proper alignment */
+             vertical-align: middle; /* Align with text */
+         }
+         .hexagon-icon svg {
+             width: 100%;
+             height: 100%;
+             animation: glow 2.5s infinite ease-in-out; /* Glow animation */
+         }
+        .hexagon-path {
+             stroke: #B91C1C; /* Darker red border */
+             stroke-width: 1;
+         }
+        .hexagon-s {
+             font-family: 'Inter', sans-serif;
+             font-weight: 800; /* Extra bold */
+             font-size: 48px; /* Enlarged S for prominence */
+             fill: yellow; /* Changed to yellow for prominence */
+             text-anchor: middle;
+             dominant-baseline: central;
+         }
+        /* Glow Animation */
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 3px rgba(255, 50, 50, 0.7)); }
+            50% { filter: drop-shadow(0 0 7px rgba(255, 0, 0, 1)); }
+        }
+        /* Ensure sticky header accounts for top bar */
+         header.sticky-nav {
+             position: sticky;
+             z-index: 50;
+             /* top value set by JS */
+         }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Top Bar -->
+    <div id="top-bar" class="bg-gray-800 text-white py-2 hidden sm:block">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <p class="text-sm font-medium">© Dr. Swapnil Sahoo 2025</p>
+            <div class="flex items-center space-x-4">
+                <a href="https://www.swapnilsahoo.com" target="_blank" class="text-gray-300 hover:text-white" title="Website">
+                    <div class="hexagon-icon">
+                        <svg viewBox="0 0 52 60">
+                            <defs>
+                                <linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#redGradient)"/>
+                            <text class="hexagon-s" x="26" y="30">S</text>
+                        </svg>
+                    </div>
+                </a>
+                <a href="https://x.com/swapnilsahoo" target="_blank" class="text-gray-300 hover:text-white top-bar-link" title="X/Twitter">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" class="text-gray-300 hover:text-white top-bar-link" title="Instagram">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2.25c-2.83 0-3.18.01-4.29.06-1.1.05-1.86.22-2.52.48a4.1 4.1 0 00-1.5 1.5c-.26.66-.43 1.42-.48 2.52C2.26 7.82 2.25 8.17 2.25 11s.01 3.18.06 4.29c.05 1.1.22 1.86.48 2.52a4.1 4.1 0 001.5 1.5c.66.26 1.42.43 2.52.48 1.1.05 1.46.06 4.29.06s3.18-.01 4.29-.06c1.1-.05 1.86-.22 2.52-.48a4.1 4.1 0 001.5-1.5c-.26-.66-.43-1.42-.48-2.52.05-1.1.06-1.46.06-4.29s-.01-3.18-.06-4.29c-.05-1.1-.22-1.86-.48-2.52a4.1 4.1 0 00-1.5-1.5c-.66-.26-1.42-.43-2.52-.48C15.18 2.26 14.83 2.25 12 2.25zm0 1.5c2.78 0 3.12.01 4.2.06 1.01.05 1.6.2 2.02.37a2.6 2.6 0 011.03 1.03c.17.42.32 1.01.37 2.02.05 1.08.06 1.42.06 4.2s-.01 3.12-.06 4.2c-.05 1.01-.2 1.6-.37 2.02a2.6 2.6 0 01-1.03 1.03c-.42.17-1.01-.32-2.02-.37-1.08.05-1.42.06-4.2.06s-3.12-.01-4.2-.06c-1.01-.05-1.6-.2-2.02-.37a2.6 2.6 0 01-1.03-1.03c-.17-.42-.32-1.01-.37-2.02C3.81 15.12 3.75 14.78 3.75 12s.01-3.12.06-4.2c.05-1.01.2-1.6.37-2.02a2.6 2.6 0 011.03-1.03c.42-.17 1.01-.32 2.02-.37C8.88 3.81 9.22 3.75 12 3.75zm0 3.18a5.07 5.07 0 100 10.14 5.07 5.07 0 000-10.14zm0 1.5a3.57 3.57 0 110 7.14 3.57 3.57 0 010-7.14zm6.2-3.88a1.2 1.2 0 100-2.4 1.2 1.2 0 000 2.4z" clip-rule="evenodd" /></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" class="text-gray-300 hover:text-white top-bar-link" title="LinkedIn">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Sticky Header -->
+    <header id="main-header" class="bg-white/95 backdrop-blur-sm sticky-nav shadow-md">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <h1 class="text-xl md:text-2xl font-bold text-blue-800">Infosys Playbook</h1>
+                <div class="hidden md:flex space-x-6 lg:space-x-8">
+                    <a href="#why" class="nav-link text-gray-600 font-medium text-sm">The Core Role</a>
+                    <a href="#tracks" class="nav-link text-gray-600 font-medium text-sm">The 3 Tracks</a>
+                    <a href="#behavioral" class="nav-link text-gray-600 font-medium text-sm">Behavioral Prep</a>
+                    <a href="#guesstimates" class="nav-link text-gray-600 font-medium text-sm">Practice Cases</a>
+                    <a href="#checklist" class="nav-link text-gray-600 font-medium text-sm">Checklist</a>
+                    <a href="#finaltips" class="nav-link text-gray-600 font-medium text-sm">Final Tips</a>
+                </div>
+                <div class="md:hidden">
+                    <select id="mobile-nav" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm">
+                        <option value="#why">The Core Role</option>
+                        <option value="#tracks">The 3 Tracks</option>
+                        <option value="#behavioral">Behavioral Prep</option>
+                        <option value="#guesstimates">Practice Cases</option>
+                        <option value="#checklist">Checklist</option>
+                        <option value="#finaltips">Final Tips</option>
+                    </select>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="py-20 md:py-28 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight">The Infosys Techno-Functional Playbook</h2>
+                <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">A preparatory guide for the Associate Consultant role (DNA, SAP & Oracle).</p>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="why" class="py-16 md:py-20">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold text-gray-800">The Core Role: What Infosys is Looking For</h2>
+                    <p class="mt-4 text-lg text-gray-600">Across all three JDs, Infosys is not hiring just a "coder" or just a "talker." They are hiring a **hybrid techno-functional consultant**. Your primary mission is to be the bridge between complex business problems and the technical solutions that solve them.</p>
+                </div>
+                 <div class="mt-12 grid md:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-blue-700">
+                        <h3 class="font-bold text-xl text-gray-800">1. Problem Definition & Diagnosis</h3>
+                        <p class="mt-2 text-gray-600">You won't just be given tasks. You'll be expected to conduct research, help define the client's *actual* problem, and diagnose the root cause.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-blue-700">
+                        <h3 class="font-bold text-xl text-gray-800">2. Solution Generation & Design</h3>
+                        <p class="mt-2 text-gray-600">You will be part of the team that designs the "to-be" process, creates functional design documents, and helps generate the final solution.</p>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+        <!-- EGP Tracks Section -->
+        <section id="tracks" class="py-16 md:py-20 bg-gray-100">
+            <div class="container mx-auto px-6">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold text-gray-800">The 3 Consulting Tracks: Find Your Fit</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">While the core consulting skills are the same, the technical domains are distinct. Understand where your skills and interests align.</p>
+                </div>
+                
+                <!-- Interactive Tab Buttons -->
+                <div class="mt-12 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <button id="btn-dna" class="track-button active text-left p-4 rounded-lg font-semibold">
+                        <span class="text-2xl">01.</span>
+                        <span class="block mt-1 text-lg">DNA (Data & Analytics)</span>
+                    </button>
+                    <button id="btn-sap" class="track-button p-4 text-left rounded-lg font-semibold">
+                        <span class="text-2xl">02.</span>
+                        <span class="block mt-1 text-lg">ESAP (SAP)</span>
+                    </button>
+                    <button id="btn-orc" class="track-button p-4 text-left rounded-lg font-semibold">
+                        <span class="text-2xl">03.</span>
+                        <span class="block mt-1 text-lg">ORC (Oracle)</span>
+                    </button>
+                </div>
+
+                <!-- Tab Content Area -->
+                <div class="mt-8 max-w-4xl mx-auto">
+                    <!-- DNA Content -->
+                    <div id="content-dna" class="track-content active bg-white p-8 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-4">The "Data" Track: DNA (Data & Analytics)</h3>
+                        <p class="text-gray-600 mb-6">This track is for those who love turning raw data into strategic insights. You'll help clients unleash the potential of their data.</p>
+                        <div class="space-y-3">
+                            <p><strong class="text-gray-700">Your Focus:</strong> Helping clients with Data Strategy, Data Governance, Data Management, and building BI solutions.</p>
+                            <p><strong class="text-gray-700">Key Technologies:</strong> This is all about the data stack. You'll be working with reporting tools, dashboards, ETL processes, and data modeling.</p>
+                            <p><strong class="text-gray-700">Prep Focus:</strong> Be ready to discuss data fundamentals. Practice a "dashboard case" (e.g., "Design a BI dashboard for a retail sales manager").</p>
+                        </div>
+                    </div>
+                    <!-- SAP Content -->
+                    <div id="content-sap" class="track-content bg-white p-8 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-4">The "Process (SAP)" Track: ESAP</h3>
+                        <p class="text-gray-600 mb-6">This track is for those who want to re-engineer the core of a business. You'll use SAP's powerful platform to transform how a global company operates.</p>
+                        <div class="space-y-3">
+                            <p><strong class="text-gray-700">Your Focus:</strong> Business process transformation. You'll help clients streamline functions like finance, operations, and supply chain using SAP applications.</p>
+                            <p><strong class="text-gray-700">Key Frameworks:</strong> The JD mentions operational frameworks like ITIL, COBIT, Six Sigma, and CMM. You must be able-to speak the language of process excellence.</p>
+                            <p><strong class="text-gray-700">Prep Focus:</strong> Be ready to discuss a core business process (like "Order-to-Cash") and how a tool like SAP improves it.</p>
+                        </div>
+                    </div>
+                    <!-- ORC Content -->
+                    <div id="content-orc" class="track-content bg-white p-8 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-4">The "Process (Oracle)" Track: ORC</h3>
+                        <p class="text-gray-600 mb-6">Similar to SAP, this track focuses on enterprise transformation, but using the broad Oracle ecosystem (including Oracle Cloud, PeopleSoft, Hyperion, etc.).</p>
+                        <div class="space-y-3">
+                            <p><strong class="text-gray-700">Your Focus:</strong> Implementing business functions (Supply Chain, HR, Finance) on Oracle products. This is also a "techno-functional" role.</p>
+                            <p><strong class="text-gray-700">Key Technologies:</strong> Oracle E-Biz Suite, Oracle SaaS, PeopleSoft, Hyperion. This track has a heavy emphasis on Cloud implementation.</p>
+                            <p><strong class="text-gray-700">Prep Focus:</strong> Be ready to discuss the benefits of moving to a cloud-based system (e.g., "Why should a client move their HR from on-premise PeopleSoft to Oracle SaaS?").</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Behavioral Prep Section -->
+        <section id="behavioral" class="py-16 md:py-20 bg-white">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold text-gray-800">Behavioral Prep: The "Consulting Skills" Toolkit</h2>
+                    <p class="mt-4 text-lg text-gray-600">All three JDs list the same core skills. You MUST have STAR-method stories ready to prove them. This is how you show your "consulting" and "client interfacing" abilities.</p>
+                </div>
+                <div class="mt-12 space-y-4">
+                    <!-- Attribute 1 -->
+                    <div class="accordion-item border rounded-lg overflow-hidden shadow-sm">
+                        <button class="accordion-header flex items-center justify-between w-full p-5 bg-gray-50 font-semibold text-left text-gray-800 hover:bg-gray-100 transition">
+                            <span>Skill: Problem Definition & Solutioning</span>
+                            <span class="accordion-icon transform transition-transform duration-300 font-bold text-xl">▼</span>
+                        </button>
+                        <div class="accordion-content px-6 pb-6">
+                            <p class="font-medium text-gray-700 mt-4">Practice Prompt:</p>
+                            <p class="text-gray-600 mt-1">"Tell me about a time you faced a complex, unstructured problem. What steps did you take to understand the *real* issue and how did you go about developing a solution?"</p>
+                            <p class="font-medium text-gray-700 mt-4">Your story must showcase a logical, structured process: how you diagnosed the problem *before* you jumped to a solution.</p>
+                        </div>
+                    </div>
+                    <!-- Attribute 2 -->
+                    <div class="accordion-item border rounded-lg overflow-hidden shadow-sm">
+                        <button class="accordion-header flex items-center justify-between w-full p-5 bg-gray-50 font-semibold text-left text-gray-800 hover:bg-gray-100 transition">
+                            <span>Skill: Client Interfacing & Communication</span>
+                            <span class="accordion-icon transform transition-transform duration-300 font-bold text-xl">▼</span>
+                        </button>
+                        <div class="accordion-content px-6 pb-6">
+                            <p class="font-medium text-gray-700 mt-4">Practice Prompt:</p>
+                            <p class="text-gray-600 mt-1">"Describe a situation where you had to present a complex idea to a client or stakeholder who was not an expert. How did you ensure they understood the concept and its implications?"</p>
+                            <p class="font-medium text-gray-700 mt-4">This is your "Bridge" story. Focus on how you translated technical jargon into business value.</p>
+                        </div>
+                    </div>
+                    <!-- Attribute 3 -->
+                    <div class="accordion-item border rounded-lg overflow-hidden shadow-sm">
+                        <button class="accordion-header flex items-center justify-between w-full p-5 bg-gray-50 font-semibold text-left text-gray-800 hover:bg-gray-100 transition">
+                            <span>Skill: Domain & Process Understanding</span>
+                            <span class="accordion-icon transform transition-transform duration-300 font-bold text-xl">▼</span>
+                        </button>
+                        <div class="accordion-content px-6 pb-6">
+                            <p class="font-medium text-gray-700 mt-4">Practice Prompt:</p>
+                            <p class="text-gray-600 mt-1">"Walk me through a core business process you are familiar with (e.g., Order-to-Cash, Procure-to-Pay). What are the key steps, and where are the common bottlenecks or areas for improvement?"</p>
+                            <p class="font-medium text-gray-700 mt-4">Pick one process from your MBA studies or prior work and master it. This shows you have the "domain knowledge" they require.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Guesstimates & Situational Cases Section -->
+        <section id="guesstimates" class="py-16 md:py-20 bg-gray-100">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold text-gray-800">Situational Cases & Guesstimates</h2>
+                    <p class="mt-4 text-lg text-gray-600">Be prepared for short, practical cases that test your techno-functional judgment.</p>
+                </div>
+                <div class="mt-12 space-y-4">
+                    <!-- Case 1 -->
+                    <div class="accordion-item border rounded-lg overflow-hidden shadow-sm">
+                        <button class="accordion-header flex items-center justify-between w-full p-5 bg-white font-semibold text-left text-blue-800 hover:bg-blue-50 transition">
+                            <span>Situational Case (DNA Track): The Flawed Dashboard</span>
+                            <span class="accordion-icon transform transition-transform duration-300 font-bold text-xl">▼</span>
+                        </button>
+                        <div class="accordion-content px-6 pb-6">
+                            <p class="font-medium text-gray-700 mt-4">The Prompt:</p>
+                            <p class="text-gray-600 mt-1">"A client's sales dashboard shows revenue is down 10%, but marketing spend is up 20%. The client wants you to 'fix the dashboard.' What are your first steps?"</p>
+                            <p class="font-medium text-gray-700 mt-4">Your Framework:</p>
+                             <ul class="list-disc list-inside space-y-2 mt-2 text-gray-600">
+                                 <li>**Diagnose the *Real* Problem:** The dashboard isn't broken; the *business* is. My first step is to diagnose *why* the metrics are moving in the wrong direction.</li>
+                                 <li>**Formulate Hypotheses:** 1) Is the marketing spend ineffective? 2) Are the wrong channels being used? 3) Is there a data issue (e.g., sales are not being attributed correctly)?</li>
+                                 <li>**Drill Down:** I would ask to analyze the data *behind* the dashboard: marketing spend by channel vs. sales by channel, customer acquisition cost (CAC), and conversion rates. The goal is to find the root cause, not just rebuild the chart.</li>
+                             </ul>
+                        </div>
+                    </div>
+                    <!-- Case 2 -->
+                    <div class="accordion-item border rounded-lg overflow-hidden shadow-sm">
+                        <button class="accordion-header flex items-center justify-between w-full p-5 bg-white font-semibold text-left text-blue-800 hover:bg-blue-50 transition">
+                            <span>Situational Case (SAP/Oracle Track): The Resistant Stakeholder</span>
+                            <span class="accordion-icon transform transition-transform duration-300 font-bold text-xl">▼</span>
+                        </button>
+                        <div class="accordion-content px-6 pb-6">
+                             <p class="font-medium text-gray-700 mt-4">The Prompt:</p>
+                            <p class="text-gray-600 mt-1">"You are 3 months into a large SAP S/4HANA (or Oracle Cloud) implementation. The Head of the Finance department in Germany is refusing to adopt the new global standard process, saying 'our old way is better.' This threatens the entire project. What do you do?"</p>
+                            <p class="font-medium text-gray-700 mt-4">Your Framework:</p>
+                             <ul class="list-disc list-inside space-y-2 mt-2 text-gray-600">
+                                <li><strong>Listen & Understand (Empathy):** My first step is to meet with the Finance Head. I would listen to understand *why* they are resistant. Do they have a valid legal/regulatory reason? Do they feel their team wasn't consulted?</li>
+                                <li><strong>Re-center on Value (Data):** Instead of arguing, I would show the data. I'd present a side-by-side comparison of the old process vs. the new one, highlighting the quantified benefits (e.g., faster month-end close, automated reporting).</li>
+                                <li>**Co-create & Escalate (Collaboration):** I would try to find a "win-win." Can we incorporate 80% of their needs into the new standard? If they still refuse, I would document their concerns and escalate the risk to the project steering committee, framing it as a business decision, not an IT problem.</li>
+                             </ul>
+                        </div>
+                    </div>
+                     <!-- Guesstimate -->
+                    <div class="accordion-item border rounded-lg overflow-hidden shadow-sm">
+                        <button class="accordion-header flex items-center justify-between w-full p-5 bg-white font-semibold text-left text-blue-800 hover:bg-blue-50 transition">
+                            <span>Tech-Focused Guesstimate: Cloud Migration Market</span>
+                            <span class="accordion-icon transform transition-transform duration-300 font-bold text-xl">▼</span>
+                        </button>
+                        <div class="accordion-content px-6 pb-6">
+                             <p class="font-medium text-gray-700 mt-4">The Prompt:</p>
+                            <p class="text-gray-600 mt-1">"Estimate the annual market size for Cloud Migration services in India."</p>
+                            <p class="font-medium text-gray-700 mt-4">Your Framework:</p>
+                             <ul class="list-disc list-inside space-y-2 mt-2 text-gray-600">
+                                 <li><strong>Clarify & Segment:</strong> "Are we talking about all businesses, or just enterprise-level? Let's focus on enterprise (e.g., 500+ employees)." Segment by company size: Large, Medium.</li>
+                                 <li>**Estimate Companies:** Estimate the number of companies in each segment (e.g., ~2,000 large, ~10,000 medium).</li>
+                                 <li>**Estimate Adoption:** Assume a % of these companies undertake a migration project each year (e.g., 20% of large, 10% of medium).</li>
+                                 <li>**Estimate Deal Size:</strong> Assume an average project cost for each segment (e.g., ₹2 Cr for large, ₹50L for medium).</li>
+                                 <li>**Calculate:** (2,000 * 20% * ₹2 Cr) + (10,000 * 10% * ₹50L) = Total Market.</li>
+                             </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Checklist -->
+         <section id="checklist" class="py-16 md:py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold text-gray-800">Your Final Preparation Checklist</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Use this list in the final days before your interview.</p>
+                </div>
+                <div class="mt-12 max-w-3xl mx-auto bg-gray-50 p-6 md:p-8 rounded-lg shadow-lg border border-gray-200">
+                    <ul class="checklist space-y-3 text-gray-700">
+                        <li><strong>Be the "Techno-Functional Bridge":</strong> Have your TMAY and STAR stories ready to prove you can connect business problems to technical solutions.</li>
+                        <li><strong>Know Your Track:</strong> Be able to clearly articulate "Why DNA?" or "Why SAP?" or "Why Oracle?" based on your background and interests.</li>
+                        <li><strong>Master One Business Process:</strong> Be ready to walk the interviewer through "Order-to-Cash" or "Procure-to-Pay" from start to finish.</li>
+                        <li><strong>Practice "Bridge" Stories:</strong> Have specific examples of explaining technical concepts to business users (and vice-versa).</li>
+                        <li><strong>Be Fluent in "Consulting Speak":</strong> Use the JDs' keywords: "problem definition," "solution generation," "stakeholder management," "value-add."</li>
+                        <li><strong>Prepare Insightful Questions:</strong> Ask about the "unit-level initiatives," how they manage knowledge ("BOKs"), or the biggest challenges in a specific track.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Final Tips -->
+        <section id="finaltips" class="py-16 md:py-20 bg-gray-100">
+            <div class="container mx-auto px-6">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold text-gray-800">Final Tips: How to Win</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Remember these three principles during your interview.</p>
+                </div>
+                <div class="mt-12 grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                    <div class="flex items-start bg-white p-6 rounded-lg shadow border-l-4 border-blue-700">
+                        <span class="text-3xl font-bold text-blue-700 mr-4">1</span>
+                        <div>
+                            <h4 class="font-semibold text-lg">Be the "Techno-Functional" Leader</h4>
+                            <p class="mt-1 text-gray-600 text-sm">Constantly connect technology to business impact. How does this solution save costs? How does it drive revenue? This is your key differentiator.</p>
+                        </div>
+                    </div>
+                     <div class="flex items-start bg-white p-6 rounded-lg shadow border-l-4 border-blue-700">
+                         <span class="text-3xl font-bold text-blue-700 mr-4">2</span>
+                        <div>
+                            <h4 class="font-semibold text-lg">Show Proactive Leadership</h4>
+                            <p class="mt-1 text-gray-600 text-sm">Show you are a proactive self-starter who creates structure and defines problems, not someone who just waits for detailed instructions.</p>
+                        </div>
+                    </div>
+                     <div class="flex items-start bg-white p-6 rounded-lg shadow border-l-4 border-blue-700">
+                         <span class="text-3xl font-bold text-blue-700 mr-4">3</span>
+                         <div>
+                            <h4 class="font-semibold text-lg">Think Commercially</h4>
+                            <p class="mt-1 text-gray-600 text-sm">Whether you are in DNA, SAP, or Oracle, your role is to help clients improve their business. Let your business acumen and client-focus shine.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p class="font-semibold">© Dr. Swapnil Sahoo 2025</p>
+            <div class="flex justify-center items-center space-x-6 mt-4">
+                 <a href="https://www.swapnilsahoo.com" target="_blank" class="text-gray-300 hover:text-white" title="Website">
+                    <div class="hexagon-icon" style="width: 28px; height: 28px;">
+                        <svg viewBox="0 0 52 60">
+                            <defs>
+                                <linearGradient id="footerRedGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#footerRedGradient)"/>
+                            <text class="hexagon-s" x="26" y="30">S</text>
+                        </svg>
+                    </div>
+                </a>
+                <a href="https://x.com/swapnilsahoo" target="_blank" class="text-gray-300 hover:text-white footer-link" title="X/Twitter">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" class="text-gray-300 hover:text-white footer-link" title="Instagram">
+                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2.25c-2.83 0-3.18.01-4.29.06-1.1.05-1.86.22-2.52.48a4.1 4.1 0 00-1.5 1.5c-.26.66-.43 1.42-.48 2.52C2.26 7.82 2.25 8.17 2.25 11s.01 3.18.06 4.29c.05 1.1.22 1.86.48 2.52a4.1 4.1 0 001.5 1.5c.66.26 1.42.43 2.52.48 1.1.05 1.46.06 4.29.06s3.18-.01 4.29-.06c1.1-.05 1.86-.22 2.52-.48a4.1 4.1 0 001.5-1.5c-.26-.66-.43-1.42-.48-2.52.05-1.1.06-1.46.06-4.29s-.01-3.18-.06-4.29c-.05-1.1-.22-1.86-.48-2.52a4.1 4.1 0 00-1.5-1.5c-.66-.26-1.42-.43-2.52-.48C15.18 2.26 14.83 2.25 12 2.25zm0 1.5c2.78 0 3.12.01 4.2.06 1.01.05 1.6.2 2.02.37a2.6 2.6 0 011.03 1.03c.17.42.32 1.01.37 2.02.05 1.08.06 1.42.06 4.2s-.01 3.12-.06 4.2c-.05 1.01-.2 1.6-.37 2.02a2.6 2.6 0 01-1.03 1.03c-.42.17-1.01-.32-2.02-.37-1.08.05-1.42.06-4.2.06s-3.12-.01-4.2-.06c-1.01-.05-1.6-.2-2.02-.37a2.6 2.6 0 01-1.03-1.03c-.17-.42-.32-1.01-.37-2.02C3.81 15.12 3.75 14.78 3.75 12s.01-3.12.06-4.2c.05-1.01.2-1.6.37-2.02a2.6 2.6 0 011.03-1.03c.42-.17 1.01-.32 2.02-.37C8.88 3.81 9.22 3.75 12 3.75zm0 3.18a5.07 5.07 0 100 10.14 5.07 5.07 0 000-10.14zm0 1.5a3.57 3.57 0 110 7.14 3.57 3.57 0 010-7.14zm6.2-3.88a1.2 1.2 0 100-2.4 1.2 1.2 0 000 2.4z" clip-rule="evenodd" /></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" class="text-gray-300 hover:text-white footer-link" title="LinkedIn">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // EGP Tracks Toggle Logic
+            const tabs = ['dna', 'sap', 'orc'];
+            const trackButtons = {};
+            const trackContents = {};
+
+            tabs.forEach(tab => {
+                trackButtons[tab] = document.getElementById(`btn-${tab}`);
+                trackContents[tab] = document.getElementById(`content-${tab}`);
+            });
+
+            const switchTab = (activeTab) => {
+                tabs.forEach(tab => {
+                    const button = trackButtons[tab];
+                    const content = trackContents[tab];
+                    
+                    if (button && content) { // Check if elements exist
+                        if (tab === activeTab) {
+                            button.classList.add('active');
+                            content.classList.add('active');
+                        } else {
+                            button.classList.remove('active');
+                            content.classList.remove('active');
+                        }
+                    }
+                });
+            };
+
+            tabs.forEach(tab => {
+                if(trackButtons[tab]) {
+                    trackButtons[tab].addEventListener('click', () => switchTab(tab));
+                }
+            });
+
+            // Accordion Logic
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const icon = header.querySelector('.accordion-icon');
+                    
+                    content.classList.toggle('open');
+                    if (content.classList.contains('open')) {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                         content.style.paddingTop = '1rem'; 
+                         content.style.paddingBottom = '1.5rem'; // pb-6
+                        icon.classList.add('open');
+                         icon.textContent = '▲'; 
+                    } else {
+                        content.style.maxHeight = '0';
+                        content.style.paddingTop = '0'; 
+                        content.style.paddingBottom = '0'; 
+                        icon.classList.remove('open');
+                         icon.textContent = '▼'; 
+                    }
+                });
+            });
+
+            // Navigation Logic
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('main section');
+            const mobileNav = document.getElementById('mobile-nav');
+            const header = document.getElementById('main-header'); // Use ID for main header
+            const topBar = document.getElementById('top-bar'); // Use ID for top bar
+            let headerHeight = header ? header.offsetHeight : 0;
+            let topBarHeight = topBar && window.getComputedStyle(topBar).display !== 'none' ? topBar.offsetHeight : 0;
+            let totalStickyHeight = headerHeight + topBarHeight;
+
+            // Function to set sticky top position
+            function setHeaderTop() {
+                topBarHeight = topBar && window.getComputedStyle(topBar).display !== 'none' ? topBar.offsetHeight : 0;
+                headerHeight = header ? header.offsetHeight : 0;
+                totalStickyHeight = headerHeight + topBarHeight;
+                if(header) {
+                     header.style.top = topBarHeight > 0 ? `${topBarHeight}px` : '0px';
+                }
+            }
+            
+            // Set initial position and on resize
+            setHeaderTop();
+            window.addEventListener('resize', setHeaderTop);
+
+
+            const observer = new IntersectionObserver((entries) => {
+                let activeSectionId = '';
+                 let minDistance = Infinity;
+                 sections.forEach(section => {
+                     const rect = section.getBoundingClientRect();
+                      const distanceToTop = Math.abs(rect.top - totalStickyHeight);
+                     const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, totalStickyHeight);
+                     
+                     if (rect.top >= totalStickyHeight - 50 && rect.top < window.innerHeight / 2) { 
+                         if (distanceToTop < minDistance) {
+                             minDistance = distanceToTop;
+                             activeSectionId = section.id;
+                         }
+                     } else if (visibleHeight > window.innerHeight * 0.3 && distanceToTop < minDistance) { 
+                        minDistance = distanceToTop;
+                        activeSectionId = section.id;
+                    }
+                 });
+
+                if (window.scrollY <= 50) { 
+                    activeSectionId = sections[0]?.id || '';
+                } else if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 50) { 
+                    activeSectionId = sections[sections.length - 1]?.id || '';
+                }
+
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === `#${activeSectionId}`);
+                });
+                
+                if (activeSectionId && mobileNav.value !== `#${activeSectionId}`) {
+                   mobileNav.value = `#${activeSectionId}`;
+                }
+            }, { 
+                 rootMargin: `-${totalStickyHeight}px 0px -40% 0px`, 
+                 threshold: 0 
+            }); 
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            mobileNav.addEventListener('change', () => {
+                const targetId = mobileNav.value;
+                 const targetElement = document.querySelector(targetId);
+                 if (targetElement) {
+                     const targetPosition = targetElement.offsetTop - totalStickyHeight;
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                 }
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId.startsWith('#')) {
+                        e.preventDefault();
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            const targetPosition = targetElement.offsetTop - totalStickyHeight;
+                            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+

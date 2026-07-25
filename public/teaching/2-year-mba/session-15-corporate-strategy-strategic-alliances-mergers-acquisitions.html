@@ -1,0 +1,2678 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corporate Strategy: Alliances & M&A</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chosen Palette: Strategic Calm -->
+    
+    <style>
+        :root {
+            --sticky-offset: 130px; /* Adjusted for double sticky header height */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1f2937;
+            -webkit-font-smoothing: antialiased;
+        }
+        .font-serif { font-family: 'Merriweather', serif; }
+
+        /* --- STICKY HEADER LOGIC --- */
+        /* Top Bar remains sticky */
+        #top-bar { position: sticky; top: 0; z-index: 50; }
+        
+        /* Main Nav remains sticky below top bar */
+        #main-header { position: sticky; top: 40px; /* Height of top bar */ z-index: 40; }
+        
+        .active-nav { color: #2563eb; border-bottom-color: #2563eb; font-weight: 600; }
+        .nav-link { transition: all 0.2s ease-in-out; border-bottom: 2px solid transparent; padding-bottom: 4px; color: #4b5563; }
+        .nav-link:hover { color: #2563eb; border-bottom-color: #2563eb; }
+        
+        /* Icons */
+        .hexagon-icon { position: relative; width: 28px; height: 28px; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3)); display: inline-block; vertical-align: middle; }
+        .hexagon-icon svg { width: 100%; height: 100%; animation: glow 2.5s infinite ease-in-out; }
+        .hexagon-path { stroke: #B91C1C; stroke-width: 1; }
+        .hexagon-s { font-family: 'Georgia', serif; font-weight: bold; font-size: 48px; fill: #facc15; text-anchor: middle; dominant-baseline: central; }
+        @keyframes glow { 0%, 100% { filter: drop-shadow(0 0 4px rgba(239, 68, 68, 0.7)); } 50% { filter: drop-shadow(0 0 10px rgba(239, 68, 68, 1)); } }
+        
+        .top-bar-link svg, .footer-link svg, .top-bar-link i, .footer-link i { width: 1.125rem; height: 1.125rem; fill: currentColor; transition: color 0.2s ease-in-out; font-size: 1.125rem; }
+        
+        /* Scroll Margin */
+        section[id] { scroll-margin-top: var(--sticky-offset); }
+        
+        /* Interactive Modal Styles */
+        .modal {
+            transition: opacity 0.3s ease-in-out;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 100;
+        }
+        .modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        /* Image Container Styles */
+        .image-container {
+            overflow: hidden;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+        .image-container:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transform: scale(1.01);
+        }
+
+        /* Trigger Box Styling */
+        .trigger-box {
+            border-left: 4px solid #4f46e5;
+            background: linear-gradient(to right, #eef2ff, #ffffff);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .trigger-box::before {
+            content: "\f059"; /* FontAwesome Question Circle */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: #4f46e5;
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Chart Containers */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 640px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        
+        /* Example Cards */
+        .example-card {
+            border-left-width: 4px;
+            transition: all 0.3s;
+        }
+        .example-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Simulation Specific Styles */
+        .sim-option {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .sim-option:hover {
+            border-color: #4f46e5;
+            background-color: #eef2ff;
+        }
+        .sim-feedback {
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        /* Why Alliances Card Hover Effect */
+        .reason-card {
+            transition: all 0.3s ease;
+        }
+        .reason-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        /* Comparison Table Styles */
+        .compare-table th {
+            background-color: #f1f5f9;
+            color: #334155;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+        .compare-table td {
+            vertical-align: top;
+        }
+        .compare-table tr:hover td {
+            background-color: #f8fafc;
+        }
+
+        /* Quiz Styles */
+        .quiz-option {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .quiz-option:hover {
+            background-color: #f1f5f9;
+        }
+        .quiz-option.correct {
+            background-color: #dcfce7; /* green-100 */
+            border-color: #22c55e; /* green-500 */
+            color: #15803d; /* green-700 */
+        }
+        .quiz-option.wrong {
+            background-color: #fee2e2; /* red-100 */
+            border-color: #ef4444; /* red-500 */
+            color: #b91c1c; /* red-700 */
+        }
+        .quiz-option.disabled {
+            pointer-events: none;
+        }
+
+        /* --- Socratic Chat & Flowchart Styling --- */
+        .professor-msg { background-color: #eef2ff; border-left: 4px solid #4f46e5; animation: fadeIn 0.3s ease-in; }
+        .user-msg { background-color: #f0fdf4; border-right: 4px solid #22c55e; text-align: right; animation: fadeIn 0.3s ease-in; }
+        .bbb-step { animation: fadeIn 0.4s ease-out; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 relative">
+
+    <!-- Top Bar (Sticky) -->
+    <div id="top-bar" class="bg-gray-800 text-white py-1 hidden sm:block">
+        <div class="container mx-auto px-6 flex justify-between items-center h-10">
+            <p class="text-xs font-medium text-slate-400">© Dr. Swapnil Sahoo 2025 | All Rights Reserved</p>
+            <div class="flex items-center space-x-4">
+                <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white group" title="Website">
+                    <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
+                        <svg viewBox="0 0 52 60">
+                            <defs><linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
+                            <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#redGradient)"/><text class="hexagon-s" x="26" y="32">S</text>
+                        </svg>
+                    </div>
+                </a>
+                <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="top-bar-link" title="X/Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="top-bar-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="top-bar-link" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.chess.com/member/theswapnilsahoo" target="_blank" rel="noopener noreferrer" class="top-bar-link" title="Chess.com">
+                    <i class="fas fa-chess-king"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Bar (Sticky) -->
+    <nav id="main-header" class="bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                 <div class="flex items-center space-x-2 sm:hidden">
+                     <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="text-gray-300 group" title="Website">
+                        <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
+                            <svg viewBox="0 0 52 60">
+                                <defs><linearGradient id="mobileRedGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
+                                <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#mobileRedGradient)"/><text class="hexagon-s" x="26" y="32">S</text>
+                            </svg>
+                        </div>
+                    </a>
+                    <h1 class="text-lg font-semibold text-slate-900">Corp. Strategy</h1>
+                </div>
+                <h1 class="text-xl font-bold text-slate-900 hidden sm:block">Corporate Strategy Explorer</h1>
+                
+                <div class="hidden md:flex space-x-6">
+                    <a href="#recap" class="nav-link text-sm font-medium">Recap</a>
+                    <a href="#home" class="nav-link text-sm font-medium">Core Decision</a>
+                    <a href="#why-alliances" class="nav-link text-sm font-medium">Why Alliances?</a>
+                    <a href="#framework" class="nav-link text-sm font-medium">Framework</a>
+                    <a href="#strategic-examples" class="nav-link text-sm font-medium">Examples</a>
+                    <a href="#alliances" class="nav-link text-sm font-medium">Alliances</a>
+                    <a href="#mna" class="nav-link text-sm font-medium">M&A</a>
+                    <a href="#pitfalls" class="nav-link text-sm font-medium">Pitfalls</a>
+                    <a href="#warroom" class="nav-link text-sm font-medium text-indigo-600 font-bold">War Room</a>
+                    <a href="#roleplay" class="nav-link text-sm font-medium text-purple-600 font-bold">Roleplay</a>
+                    <a href="#quiz" class="nav-link text-sm font-medium text-green-600 font-bold">Quiz</a>
+                </div>
+                
+                <div class="md:hidden">
+                    <select id="mobile-nav" class="block w-auto rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-xs py-1 px-2" onchange="window.location.href=this.value">
+                        <option value="#recap">Recap</option>
+                        <option value="#home">Core Decision</option>
+                        <option value="#why-alliances">Why Alliances?</option>
+                        <option value="#framework">The Framework</option>
+                        <option value="#strategic-examples">Global Examples</option>
+                        <option value="#alliances">Alliances</option>
+                        <option value="#mna">M&A</option>
+                        <option value="#pitfalls">Pitfalls</option>
+                        <option value="#simulation">Minigame</option>
+                        <option value="#warroom">Socratic War Room</option>
+                        <option value="#roleplay">Roleplay</option>
+                        <option value="#quiz">Quiz</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 min-h-screen">
+
+        <!-- RECAP SECTION: The Storyline -->
+        <section id="recap" class="mb-24">
+            <!-- TRIGGER QUESTION -->
+            <div class="trigger-box">
+                <p class="font-serif italic text-lg text-slate-700 leading-relaxed">
+                    "Before we engineer the future, we must deconstruct the past. Applying First Principles: What is a firm, fundamentally, if not a bundle of resources and capabilities attempting to generate superior value?"
+                </p>
+            </div>
+
+            <div class="text-center mb-12">
+                <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-800 text-xs font-bold rounded-full mb-2">The Strategist's Journey</span>
+                <h2 class="text-3xl font-bold text-slate-900">From Foundation to Expansion</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto mt-3">
+                    We have spent weeks building the engine of our firm. Now, we face the ultimate test of scale. Here is the logical flow of our semester leading to today's crisis.
+                </p>
+            </div>
+
+            <div class="relative max-w-3xl mx-auto">
+                <!-- Vertical Line -->
+                <div class="timeline-line hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-indigo-200"></div>
+
+                <div class="space-y-8">
+                    <!-- S1-S3: Foundation -->
+                    <div class="relative z-10 bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-200 transition-colors">
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">The Awakening: Identity & Purpose</h3>
+                        <p class="text-sm text-slate-600 mb-3">Sessions 1, 2, & 3 (Tesla Case)</p>
+                        <p class="text-slate-700 text-sm italic mb-2">"Who are we and why do we matter?"</p>
+                        <p class="text-slate-600 text-sm">We realized that <strong>Operational Effectiveness</strong> is not strategy. We defined our <strong>Vision</strong> (The "Why") and set a <strong>BHAG</strong> to drive us forward.</p>
+                    </div>
+
+                    <!-- S4: External -->
+                    <div class="relative z-10 bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:border-red-200 transition-colors">
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">The Battlefield: External Analysis</h3>
+                        <p class="text-sm text-slate-600 mb-3">Session 4 (Five Forces)</p>
+                        <p class="text-slate-700 text-sm italic mb-2">"Is the game rigged against us?"</p>
+                        <p class="text-slate-600 text-sm">We looked outward. We analyzed the <strong>Five Forces</strong> to find a profitable industry structure. We learned that some battles (like Airlines) are harder to win than others (like Software).</p>
+                    </div>
+
+                    <!-- S5: Internal -->
+                    <div class="relative z-10 bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:border-green-200 transition-colors">
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">The Arsenal: Internal Analysis</h3>
+                        <p class="text-sm text-slate-600 mb-3">Session 5 (VRIO)</p>
+                        <p class="text-slate-700 text-sm italic mb-2">"Do we have a superpower?"</p>
+                        <p class="text-slate-600 text-sm">We looked inward. We used the <strong>VRIO Framework</strong> to identify our rare, valuable, and inimitable resources—our "moat" against the competition.</p>
+                    </div>
+
+                    <!-- S6: Business Strategy -->
+                    <div class="relative z-10 bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:border-blue-200 transition-colors">
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">The Choice: Business Strategy</h3>
+                        <p class="text-sm text-slate-600 mb-3">Session 6 (Differentiation vs. Cost)</p>
+                        <p class="text-slate-700 text-sm italic mb-2">"Do we win on price or value?"</p>
+                        <p class="text-slate-600 text-sm">We chose our path. Are we a <strong>Cost Leader</strong> (SpaceX) or a <strong>Differentiator</strong> (Apple)? We learned that being "stuck in the middle" is fatal.</p>
+                    </div>
+
+                    <!-- S8: Corp Strategy Part 1 -->
+                    <div class="relative z-10 bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:border-purple-200 transition-colors">
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">The Expansion: Scope</h3>
+                        <p class="text-sm text-slate-600 mb-3">Session 8 (Vertical Integration)</p>
+                        <p class="text-slate-700 text-sm italic mb-2">"Where else can we play?"</p>
+                        <p class="text-slate-600 text-sm">We decided to grow. We explored <strong>Vertical Integration</strong> (owning the supply chain) and <strong>Diversification</strong> (entering new product markets).</p>
+                    </div>
+
+                    <!-- S9: CURRENT SESSION -->
+                    <div class="relative z-10 bg-indigo-50 p-6 rounded-xl border-2 border-indigo-500 shadow-md transform md:scale-105">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold text-indigo-900 mb-1">The Limit: Alliances & M&A</h3>
+                                <p class="text-sm text-indigo-700 font-bold mb-3">Session 9 (Today's Topic)</p>
+                            </div>
+                            <span class="bg-indigo-200 text-indigo-800 text-[10px] font-bold px-2 py-1 rounded uppercase">Current</span>
+                        </div>
+                        <p class="text-indigo-800 text-lg font-serif italic mb-3">"What happens when we run out of internal resources?"</p>
+                        <p class="text-slate-700 text-sm mb-4">
+                            We have a great strategy, but we lack the specific tech or market access to execute it immediately. First Principle Question: <strong>Why build it if we can borrow it?</strong> 
+                        </p>
+                        <p class="text-slate-700 text-sm">
+                            Today, we use the <strong>Build-Borrow-Buy</strong> framework to decide when to partner (Alliance) and when to conquer (Acquisition).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Home (Case Study) -->
+        <section id="home" class="mb-12">
+            <!-- TRIGGER QUESTION 1 -->
+            <div class="trigger-box">
+                <p class="font-serif italic text-lg text-slate-700 leading-relaxed">
+                    "Previously, we asked <em>why</em> firms need to grow. Now, the fundamental question is: <span class="font-bold text-indigo-700">How do firms grow?</span>"
+                </p>
+                <p class="mt-2 text-sm text-slate-600">
+                    When a firm hits a growth ceiling, it faces a choice: Do we grow internally (<strong>organic growth</strong>) by reinvesting our own profits? Or do we look outside, using <strong>alliances</strong> and <strong>acquisitions</strong> to buy or borrow what we lack?
+                </p>
+            </div>
+
+            <!-- FEATURED CASE STUDY -->
+            <div class="mb-10 bg-white rounded-2xl p-6 sm:p-10 border border-slate-200 shadow-sm">
+                <div class="flex flex-col lg:flex-row gap-10 items-start">
+                    <div class="flex-1 space-y-6">
+                        <div>
+                            <span class="inline-block px-3 py-1 bg-indigo-600 text-white text-xs font-semibold rounded-full mb-2">Case Study</span>
+                            <h2 class="text-3xl font-bold text-slate-900">Little Lyft Gets Big Alliance Partners</h2>
+                            <h3 class="text-xl text-indigo-700 font-medium">How an underdog Beat Uber to IPO</h3>
+                        </div>
+                        <div class="prose prose-slate text-slate-700 leading-relaxed">
+                            <p><strong>The Problem:</strong> Uber was the giant. Lyft was the underdog. How do you fight a giant?</p>
+                            <p><strong>The Strategy:</strong> Lyft realized it couldn't win alone. It used <strong>Strategic Alliances</strong> with GM (for cars/cash) and Waymo (for tech) to close the gap.</p>
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-1/3 bg-slate-50 p-6 rounded-xl shadow-inner border border-slate-100">
+                        <h4 class="font-semibold text-slate-800 mb-2 text-center">The IPO Race: Valuation Impact</h4>
+                        <div class="chart-container" style="height: 250px;">
+                            <canvas id="lyftUberChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New "David vs Goliath" Block -->
+                <div class="mt-10 bg-slate-50 rounded-xl p-6 border border-indigo-100 shadow-sm relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-5">
+                        <i class="fas fa-car-side text-9xl text-indigo-900"></i>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4">🚗 David vs. Goliath: How Lyft Outmaneuvered Uber</h3>
+                    
+                    <div class="prose prose-slate max-w-none text-slate-600 mb-6">
+                        <p>In 2019, Uber was the untouchable global giant ($82B valuation). Yet, Lyft, focused only on North America, beat them to IPO with a $26B valuation. <strong>How?</strong> Instead of matching scale, Lyft used alliances.</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <!-- GM Card -->
+                        <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-blue-500">
+                            <h4 class="font-bold text-blue-700 mb-2">🔹 2016: General Motors</h4>
+                            <ul class="text-sm text-slate-600 list-disc pl-4 space-y-1">
+                                <li>$500M equity investment.</li>
+                                <li>Access to fleet management expertise.</li>
+                                <li>Entry point for GM into MaaS (Mobility-as-a-Service).</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Waymo Card -->
+                        <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-teal-500">
+                            <h4 class="font-bold text-teal-700 mb-2">🔹 2017: Waymo Alliance</h4>
+                            <ul class="text-sm text-slate-600 list-disc pl-4 space-y-1">
+                                <li>Autonomous tech from Alphabet (Google).</li>
+                                <li>Formed during Waymo vs. Uber IP battle.</li>
+                                <li>Critical for lowering long-term ride costs.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-indigo-900 text-white p-5 rounded-lg shadow-md">
+                        <h4 class="font-bold text-yellow-400 mb-2"><i class="fas fa-lightbulb mr-2"></i>Lesson for Entrepreneurs</h4>
+                        <p class="text-sm opacity-90">Even if you start smaller, the right alliances can help you punch above your weight and seize market moments before your rivals.</p>
+                    </div>
+                    
+                    <!-- Post IPO Comparison -->
+                    <div class="mt-6 pt-6 border-t border-slate-200">
+                        <h4 class="font-bold text-slate-800 mb-3">The Long Run: Focus vs. Diversification</h4>
+                        <div class="flex flex-col sm:flex-row gap-4 text-sm">
+                            <div class="flex-1 bg-red-50 p-3 rounded border border-red-100">
+                                <span class="block font-bold text-red-800 mb-1">Lyft (The Specialist)</span>
+                                Stayed focused on North America ride-hailing. Still unprofitable in 2021 ($1B loss).
+                            </div>
+                            <div class="flex-1 bg-gray-800 text-white p-3 rounded border border-gray-700">
+                                <span class="block font-bold text-gray-200 mb-1">Uber (The Ecosystem)</span>
+                                Diversified into Eats & Freight. "Uber Eats" now >50% of revenue. Smaller loss ($500M).
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-3 italic">What do you think — in the long run, will Lyft’s focused strategy beat Uber’s diversification play?</p>
+                    </div>
+
+                    <!-- Financial Trajectory Graphs -->
+                    <div class="mt-8 border-t border-indigo-100 pt-6">
+                        <h4 class="font-bold text-slate-900 mb-4 text-lg">Financial Trajectory: Revenue & Profitability (2016–2024)</h4>
+                        <p class="text-sm text-slate-600 mb-6">From their respective inceptions, Uber has consistently generated significantly higher revenue than Lyft. While both companies incurred substantial losses for many years as they prioritized market share, Uber's larger, diversified business (including Uber Eats and Freight) enabled it to achieve net profitability sooner and on a much larger scale.</p>
+                        
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div class="bg-white p-4 rounded-lg shadow-sm border border-slate-200">
+                                <h5 class="font-semibold text-center mb-2 text-sm">Annual Revenue (Billions USD)</h5>
+                                <div class="chart-container" style="height: 250px;">
+                                    <canvas id="uberLyftRevChart"></canvas>
+                                </div>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg shadow-sm border border-slate-200">
+                                <h5 class="font-semibold text-center mb-2 text-sm">Net Income (Billions USD)</h5>
+                                <div class="chart-container" style="height: 250px;">
+                                    <canvas id="uberLyftProfitChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-100 p-5 rounded-lg border-l-4 border-indigo-500">
+                            <h5 class="font-bold text-slate-800 mb-2">Strategic Analysis</h5>
+                            <ul class="space-y-2 text-sm text-slate-700">
+                                <li><strong>Revenue Growth:</strong> Both Uber and Lyft have seen significant revenue growth over time, with Uber consistently maintaining a much higher revenue base. Uber's revenue was minimally impacted during the pandemic due to the rise of its delivery services, whereas Lyft, a primarily ride-hailing company, saw a steeper dip.</li>
+                                <li><strong>Profitability Challenges:</strong> For most of their histories, both companies were heavily unprofitable, posting significant net losses each year while focusing on growth and market dominance.</li>
+                                <li><strong>Path to Profitability:</strong> Uber achieved consistent annual profitability in 2023 and 2024, reporting a net income of $9.86 billion in 2024. Lyft followed a similar trend, reporting its first annual net profit in 2024, albeit on a much smaller scale, at $22.8 million.</li>
+                                <li><strong>Strategic Differences:</strong> Uber's success is attributed to its strategic diversification into food delivery (Uber Eats), which became critical during the pandemic and has since contributed significantly to overall revenue and profitability. Lyft's focus on ride-hailing has limited its ability to compete on the same financial scale.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- POST-SCRIPT: THE REALITY CHECK -->
+                <div class="mt-10 pt-10 border-t border-slate-200">
+                    <h3 class="text-lg font-bold text-slate-800 mb-3">Ride-Sharing Reality Check (2022)</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-slate-50 p-5 rounded-lg text-sm text-slate-700 border border-slate-200">
+                            <h4 class="font-bold text-indigo-600 mb-2">Black Swans & Inflation</h4>
+                            <p class="mb-2">By 2022, the landscape shifted dramatically. Two "Black Swan" events—the pandemic and war in Ukraine—spiked gas prices.</p>
+                            <p>The result? <strong>Drivers quit.</strong> High gas prices made driving for Lyft/Uber unprofitable. This supply shock forced ride costs up 35%, alienating riders.</p>
+                        </div>
+                        <div class="bg-slate-50 p-5 rounded-lg text-sm text-slate-700 border border-slate-200">
+                            <h4 class="font-bold text-indigo-600 mb-2">The Elusive Profit</h4>
+                            <p class="mb-2">Despite the IPO hype, neither company was profitable. Uber lost $500 million; Lyft lost $1 billion.</p>
+                            <p class="italic"><strong>First Principle Question:</strong> Does a strategy of "growth at all costs" work if the underlying unit economics (profit per ride) are broken?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: WHY DO FIRMS ENTER STRATEGIC ALLIANCES -->
+        <section id="why-alliances" class="mb-24 pt-8">
+            <div class="text-center mb-10">
+                <span class="inline-block px-3 py-1 bg-indigo-50 text-indigo-600 text-xs font-bold rounded-full mb-3 uppercase tracking-wider">Strategic Motivation</span>
+                <h2 class="text-3xl font-bold text-slate-900">Why Do Firms Enter Strategic Alliances?</h2>
+                <p class="text-slate-600 max-w-3xl mx-auto mt-4 text-lg">
+                    To affect competitive advantage, an alliance must promise a positive effect on the firm’s <span class="font-semibold text-indigo-700">Economic Value Creation</span> by either increasing value (V) or lowering costs (C).
+                </p>
+            </div>
+
+            <!-- 5 REASONS GRID -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- 1. Strengthen Competitive Position -->
+                <div class="reason-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fas fa-chess-rook text-6xl text-indigo-600"></i>
+                    </div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 text-lg">
+                            <i class="fas fa-fist-raised"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg">Strengthen Competitive Position</h3>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                        Firms ally to change industry structure in their favor or reduce rivalry. This is critical when competing to set an industry standard.
+                    </p>
+                    
+                    <div class="mt-4 border-t border-slate-100 pt-3 space-y-3">
+                        <!-- Global -->
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider"><i class="fas fa-globe mr-1"></i>Global</span>
+                                <span class="text-xs font-bold text-slate-800">HP & Microsoft</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-snug">The long-standing alliance enabled integrated technology solutions (OS + Hardware), enhancing joint competitiveness against giants like IBM and Oracle.</p>
+                        </div>
+                        <!-- India -->
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="bg-indigo-50 text-indigo-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">India</span>
+                                <span class="text-xs font-bold text-slate-800">BrahMos Aerospace</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-snug">A JV between DRDO and Russia's NPO Mashinostroyeniya created the world-class BrahMos missile system by pooling technical expertise and financial resources.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Enter New Markets -->
+                <div class="reason-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fas fa-globe-americas text-6xl text-blue-600"></i>
+                    </div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-lg">
+                            <i class="fas fa-door-open"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg">Enter New Markets</h3>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                        Alliances unlock new geographies or product services that are too costly or regulated to enter alone.
+                    </p>
+                    
+                    <div class="mt-4 border-t border-slate-100 pt-3 space-y-3">
+                        <!-- Global -->
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider"><i class="fas fa-globe mr-1"></i>Global</span>
+                                <span class="text-xs font-bold text-slate-800">Starbucks & Tata</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-snug">Starbucks entered the complex Indian market via a JV with Tata, leveraging Tata’s local knowledge, supply chain for coffee sourcing, and reputation.</p>
+                        </div>
+                        <!-- India -->
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="bg-blue-50 text-blue-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">India</span>
+                                <span class="text-xs font-bold text-slate-800">ICICI Bank & Vodafone</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-snug">Launched 'm-pesa' to penetrate the mobile banking market, utilizing Vodafone's vast telecom network to reach unbanked customers.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Hedge Against Uncertainty -->
+                <div class="reason-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fas fa-chart-line text-6xl text-teal-600"></i>
+                    </div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center text-teal-600 text-lg">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg">Hedge Against Uncertainty</h3>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                        In dynamic markets, alliances act as <strong>Real Options</strong>: buying the right, but not the obligation, to make future investments.
+                    </p>
+                    
+                    <div class="mt-4 border-t border-slate-100 pt-3 space-y-3">
+                        <!-- Global -->
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider"><i class="fas fa-globe mr-1"></i>Global</span>
+                                <span class="text-xs font-bold text-slate-800">Tesla & Panasonic</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-snug">A partnership to share the massive costs and risks of developing advanced EV batteries in a high-risk R&D environment.</p>
+                        </div>
+                        <!-- India -->
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="bg-teal-50 text-teal-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">India</span>
+                                <span class="text-xs font-bold text-slate-800">Reliance & BP</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-snug">Shared significant financial risks and technical challenges associated with deep-water oil exploration in India's difficult basins.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Access Complementary Assets -->
+                <div class="reason-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fas fa-puzzle-piece text-6xl text-purple-600"></i>
+                    </div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 text-lg">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg">Access Complementary Assets</h3>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                        Innovation needs commercialization. Startups often have the tech (upstream) but lack the distribution/marketing (downstream).
+                    </p>
+                    
+                    <div class="mt-4 border-t border-slate-100 pt-3 space-y-3">
+                        <!-- Global -->
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider"><i class="fas fa-globe mr-1"></i>Global</span>
+                                <span class="text-xs font-bold text-slate-800">Uber & Spotify</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-snug">Combined Uber's customer base with Spotify's streaming tech. Riders could control music, enhancing the experience for both services.</p>
+                        </div>
+                        <!-- India -->
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="bg-purple-50 text-purple-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">India</span>
+                                <span class="text-xs font-bold text-slate-800">Tata Motors & Fiat</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-snug">Shared dealer networks and manufacturing. Tata used Fiat’s surplus capacity; Fiat gained access to Tata’s massive distribution network.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Learn New Capabilities -->
+                <div class="reason-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden group md:col-span-2 lg:col-span-1">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fas fa-graduation-cap text-6xl text-orange-600"></i>
+                    </div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 text-lg">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg">Learn New Capabilities</h3>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                        Firms compete to learn from each other ("Co-opetition"). This creates a <strong>Learning Race</strong>: whoever learns faster wins and may exit the alliance.
+                    </p>
+                    
+                    <div class="mt-4 border-t border-slate-100 pt-3 space-y-3">
+                        <!-- Global -->
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider"><i class="fas fa-globe mr-1"></i>Global</span>
+                                <span class="text-xs font-bold text-slate-800">Apple & IBM</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-snug">Apple sought IBM’s enterprise sales expertise to penetrate corporate markets; IBM leveraged Apple's user-friendly iOS devices.</p>
+                        </div>
+                        <!-- India -->
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="bg-orange-50 text-orange-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">India</span>
+                                <span class="text-xs font-bold text-slate-800">Maruti & Suzuki</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-snug">Maruti learned essential manufacturing and quality control from Suzuki, which was crucial for establishing the modern Indian auto industry.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Summary Block -->
+                <div class="bg-gradient-to-br from-slate-800 to-slate-900 text-white p-6 rounded-xl shadow-lg flex flex-col justify-center items-center text-center md:col-span-2 lg:col-span-1">
+                    <h3 class="font-serif font-bold text-xl mb-3 text-yellow-400">The Core Logic</h3>
+                    <p class="text-sm opacity-90 mb-4">Alliance formation is often motivated by leveraging economies of scale, scope, specialization, and learning.</p>
+                    <div class="w-16 h-1 bg-white/20 rounded-full"></div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section 1b: The Framework -->
+        <section id="framework" class="mb-24 pt-8">
+            <!-- TRIGGER QUESTION -->
+            <div class="trigger-box">
+                <p class="font-serif italic text-lg text-slate-700 leading-relaxed">
+                    "When a firm realizes it lacks a specific resource to survive tomorrow's market, what are the <span class="font-bold text-indigo-700">only three fundamental pathways</span> it can take to acquire it?"
+                </p>
+            </div>
+
+            <div class="relative flex py-5 items-center mb-8">
+                <div class="flex-grow border-t border-slate-200"></div>
+                <span class="flex-shrink-0 mx-4 text-slate-400 text-sm font-medium">The Build-Borrow-Buy Framework</span>
+                <div class="flex-grow border-t border-slate-200"></div>
+            </div>
+            
+            <!-- Framework Overview Recreated as HTML Flowchart -->
+            <div class="bg-white p-8 rounded-2xl border border-slate-200 mb-12 shadow-sm overflow-x-auto">
+                <h3 class="text-2xl font-bold text-slate-900 mb-8 text-center font-serif">Exhibit 9.1: The Build-Borrow-or-Buy Framework</h3>
+                
+                <div class="flex flex-col items-center w-full max-w-3xl mx-auto font-sans relative pb-4 min-w-[600px]">
+                    <!-- Start Node -->
+                    <div class="bg-slate-800 text-white font-bold py-3 px-8 rounded-md shadow-md z-10 text-center mb-0 w-64">
+                        Strategic Resource Gap
+                    </div>
+
+                    <!-- Connector -->
+                    <div class="w-1 h-8 bg-slate-300 z-0"></div>
+
+                    <!-- Q1: Relevancy -->
+                    <div class="relative flex flex-col items-center w-full">
+                        <!-- Question Box -->
+                        <div class="bg-white border-2 border-indigo-300 p-4 rounded-lg shadow-sm z-10 w-64 text-center">
+                            <span class="font-bold text-slate-800 text-sm">How <span class="text-indigo-600">relevant</span> are the firm's internal resources?</span>
+                        </div>
+
+                        <!-- Right Branch (High -> Build) -->
+                        <div class="absolute top-[2.2rem] left-[calc(50%+8rem)] w-16 h-1 bg-slate-300 z-0"></div>
+                        <span class="absolute top-[1.2rem] left-[calc(50%+9rem)] text-xs font-bold text-slate-600 bg-white px-1">High</span>
+                        <div class="absolute top-[2.2rem] left-[calc(50%+12rem)] transform -translate-y-1/2 z-10">
+                            <div class="bg-blue-50 border-2 border-blue-500 p-3 rounded-lg shadow w-40 text-center transition-transform hover:scale-105 cursor-pointer" onclick="openModal('buildModal')">
+                                <span class="font-bold text-blue-800 block text-lg">BUILD</span>
+                                <span class="text-xs text-blue-600 font-medium">Internal Development</span>
+                            </div>
+                        </div>
+
+                        <!-- Down Branch -->
+                        <div class="w-1 h-12 bg-slate-300 z-0 relative">
+                             <span class="absolute top-3 left-3 text-xs font-bold text-slate-600 bg-white px-1">Low</span>
+                        </div>
+                    </div>
+
+                    <!-- Q2: Tradability -->
+                    <div class="relative flex flex-col items-center w-full">
+                        <div class="bg-white border-2 border-indigo-300 p-4 rounded-lg shadow-sm z-10 w-64 text-center">
+                            <span class="font-bold text-slate-800 text-sm">How <span class="text-indigo-600">tradable</span> are the targeted resources that may be available externally?</span>
+                        </div>
+
+                        <!-- Right Branch (High -> Borrow Contract) -->
+                        <div class="absolute top-[2.2rem] left-[calc(50%+8rem)] w-16 h-1 bg-slate-300 z-0"></div>
+                        <span class="absolute top-[1.2rem] left-[calc(50%+9rem)] text-xs font-bold text-slate-600 bg-white px-1">High</span>
+                        <div class="absolute top-[2.2rem] left-[calc(50%+12rem)] transform -translate-y-1/2 z-10">
+                            <div class="bg-indigo-50 border-2 border-indigo-500 p-3 rounded-lg shadow w-40 text-center transition-transform hover:scale-105">
+                                <span class="font-bold text-indigo-800 block text-lg">BORROW</span>
+                                <span class="text-xs text-indigo-600 font-medium">Contract / Licensing</span>
+                            </div>
+                        </div>
+
+                        <!-- Down Branch -->
+                        <div class="w-1 h-12 bg-slate-300 z-0 relative">
+                             <span class="absolute top-3 left-3 text-xs font-bold text-slate-600 bg-white px-1">Low</span>
+                        </div>
+                    </div>
+
+                    <!-- Q3: Closeness -->
+                    <div class="relative flex flex-col items-center w-full">
+                        <div class="bg-white border-2 border-indigo-300 p-4 rounded-lg shadow-sm z-10 w-64 text-center">
+                            <span class="font-bold text-slate-800 text-sm">How <span class="text-indigo-600">close</span> do you need to be to your external resource partner?</span>
+                        </div>
+
+                        <!-- Right Branch (Low -> Borrow Alliance) -->
+                        <div class="absolute top-[2.2rem] left-[calc(50%+8rem)] w-16 h-1 bg-slate-300 z-0"></div>
+                        <span class="absolute top-[1.2rem] left-[calc(50%+9rem)] text-xs font-bold text-slate-600 bg-white px-1">Low</span>
+                        <div class="absolute top-[2.2rem] left-[calc(50%+12rem)] transform -translate-y-1/2 z-10">
+                            <div class="bg-indigo-50 border-2 border-indigo-500 p-3 rounded-lg shadow w-40 text-center transition-transform hover:scale-105">
+                                <span class="font-bold text-indigo-800 block text-lg">BORROW</span>
+                                <span class="text-xs text-indigo-600 font-medium">Equity Alliance / JV</span>
+                            </div>
+                        </div>
+
+                        <!-- Down Branch -->
+                        <div class="w-1 h-12 bg-slate-300 z-0 relative">
+                             <span class="absolute top-3 left-3 text-xs font-bold text-slate-600 bg-white px-1">High</span>
+                        </div>
+                    </div>
+
+                    <!-- Q4: Integration -->
+                    <div class="relative flex flex-col items-center w-full">
+                        <div class="bg-white border-2 border-indigo-300 p-4 rounded-lg shadow-sm z-10 w-64 text-center">
+                            <span class="font-bold text-slate-800 text-sm">How well can you <span class="text-indigo-600">integrate</span> the targeted firm, should you determine you need to acquire the resource partner?</span>
+                        </div>
+
+                        <!-- Right Branch (High -> Buy) -->
+                        <div class="absolute top-[2.2rem] left-[calc(50%+8rem)] w-16 h-1 bg-slate-300 z-0"></div>
+                        <span class="absolute top-[1.2rem] left-[calc(50%+9rem)] text-xs font-bold text-slate-600 bg-white px-1">High</span>
+                        <div class="absolute top-[2.2rem] left-[calc(50%+12rem)] transform -translate-y-1/2 z-10">
+                            <div class="bg-purple-50 border-2 border-purple-500 p-3 rounded-lg shadow w-40 text-center transition-transform hover:scale-105">
+                                <span class="font-bold text-purple-800 block text-lg">BUY</span>
+                                <span class="text-xs text-purple-600 font-medium">Acquisition</span>
+                            </div>
+                        </div>
+
+                        <!-- Down Branch -->
+                        <div class="w-1 h-12 bg-slate-300 z-0 relative">
+                             <span class="absolute top-3 left-3 text-xs font-bold text-slate-600 bg-white px-1">Low</span>
+                        </div>
+                        
+                        <!-- Final Node -->
+                        <div class="bg-slate-100 border-2 border-slate-400 p-3 rounded-lg shadow w-64 text-center z-10">
+                            <span class="font-bold text-slate-700 block text-sm">Revisit Build-Borrow-Buy Options</span>
+                            <span class="text-xs text-slate-500">or Reformulate Strategy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <!-- 1. BUILD CARD -->
+                <div class="bg-white p-6 rounded-lg shadow-md border border-blue-200 hover:border-blue-400 transition-all relative overflow-hidden group cursor-pointer transform hover:-translate-y-1" onclick="openModal('buildModal')">
+                    <div class="absolute top-0 right-0 bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-bl-lg">Organic Growth</div>
+                    <div class="h-12 w-12 bg-blue-50 rounded-full flex items-center justify-center mb-4 text-blue-600 text-2xl font-bold group-hover:scale-110 transition-transform">1</div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-2">Build</h3>
+                    <p class="text-sm font-medium text-blue-600 mb-3 uppercase tracking-wide">Internal Development</p>
+                    <p class="text-slate-600 text-sm mb-6">Grow organically. Develop the resource yourself. High control, but slow and hard.</p>
+                    <button class="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-md shadow-md transition-all flex items-center justify-center gap-2 animate-pulse group-hover:animate-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                        Click to Explore Logic
+                    </button>
+                </div>
+
+                <!-- 2. BORROW CARD -->
+                <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200 hover:border-indigo-400 transition-all relative overflow-hidden group cursor-pointer transform hover:-translate-y-1" onclick="openModal('borrowModal')">
+                    <div class="absolute top-0 right-0 bg-indigo-100 text-indigo-800 text-xs font-bold px-2 py-1 rounded-bl-lg">External</div>
+                    <div class="h-12 w-12 bg-indigo-50 rounded-full flex items-center justify-center mb-4 text-indigo-600 text-2xl font-bold group-hover:scale-110 transition-transform">2</div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-2">Borrow</h3>
+                    <p class="text-sm font-medium text-indigo-600 mb-3 uppercase tracking-wide">Strategic Alliance</p>
+                    <p class="text-slate-600 text-sm mb-6">Partner to access resources. Faster than building, cheaper than buying. (Contracts, JVs, Equity).</p>
+                    <button class="w-full py-3 px-4 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold rounded-md shadow-md transition-all flex items-center justify-center gap-2 animate-pulse group-hover:animate-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                        Click to Explore Logic
+                    </button>
+                </div>
+
+                <!-- 3. BUY CARD -->
+                <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200 hover:border-purple-400 transition-all relative overflow-hidden group cursor-pointer transform hover:-translate-y-1" onclick="openModal('buyModal')">
+                    <div class="absolute top-0 right-0 bg-purple-100 text-purple-800 text-xs font-bold px-2 py-1 rounded-bl-lg">External</div>
+                    <div class="h-12 w-12 bg-purple-50 rounded-full flex items-center justify-center mb-4 text-purple-600 text-2xl font-bold group-hover:scale-110 transition-transform">3</div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-2">Buy</h3>
+                    <p class="text-sm font-medium text-purple-600 mb-3 uppercase tracking-wide">Acquisition</p>
+                    <p class="text-slate-600 text-sm mb-6">Purchase another firm. Fastest access, but highest cost and risk.</p>
+                    <button class="w-full py-3 px-4 bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold rounded-md shadow-md transition-all flex items-center justify-center gap-2 animate-pulse group-hover:animate-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                        Click to Explore Logic
+                    </button>
+                </div>
+            </div>
+
+            <!-- INTERACTIVE FLOWCHART (From Professor's Module) -->
+            <div class="bg-slate-900 text-white p-8 rounded-xl shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-4 opacity-10 text-6xl"><i class="fas fa-network-wired"></i></div>
+                <h3 class="text-2xl font-bold mb-6 border-b border-slate-700 pb-2 text-indigo-400">Interactive Logic Flow</h3>
+                
+                <div id="bbb-step-1" class="bbb-step text-center">
+                    <h4 class="text-yellow-400 text-sm font-bold uppercase tracking-widest mb-2">Step 1: Relevancy</h4>
+                    <p class="text-2xl font-serif mb-6">Are the firm's internal resources highly relevant to solving the strategic gap?</p>
+                    <div class="flex justify-center space-x-4">
+                        <button onclick="bbbNext('build', 1)" class="bg-green-600 hover:bg-green-500 px-6 py-3 rounded font-bold transition">Yes (High)</button>
+                        <button onclick="bbbNext('step-2', 1)" class="bg-red-600 hover:bg-red-500 px-6 py-3 rounded font-bold transition">No (Low)</button>
+                    </div>
+                </div>
+
+                <div id="bbb-step-2" class="bbb-step text-center hidden">
+                    <h4 class="text-yellow-400 text-sm font-bold uppercase tracking-widest mb-2">Step 2: Tradability</h4>
+                    <p class="text-2xl font-serif mb-6">Can the targeted resources be easily traded via contracts (e.g., licensing/franchising)?</p>
+                    <div class="flex justify-center space-x-4">
+                        <button onclick="bbbNext('contract', 2)" class="bg-green-600 hover:bg-green-500 px-6 py-3 rounded font-bold transition">Yes (High)</button>
+                        <button onclick="bbbNext('step-3', 2)" class="bg-red-600 hover:bg-red-500 px-6 py-3 rounded font-bold transition">No (Low)</button>
+                    </div>
+                </div>
+
+                <div id="bbb-step-3" class="bbb-step text-center hidden">
+                    <h4 class="text-yellow-400 text-sm font-bold uppercase tracking-widest mb-2">Step 3: Closeness</h4>
+                    <p class="text-2xl font-serif mb-6">Does the firm need extreme closeness to the resource partner to succeed?</p>
+                    <div class="flex justify-center space-x-4">
+                        <button onclick="bbbNext('step-4', 3)" class="bg-green-600 hover:bg-green-500 px-6 py-3 rounded font-bold transition">Yes (High)</button>
+                        <button onclick="bbbNext('alliance', 3)" class="bg-red-600 hover:bg-red-500 px-6 py-3 rounded font-bold transition">No (Low)</button>
+                    </div>
+                </div>
+
+                <div id="bbb-step-4" class="bbb-step text-center hidden">
+                    <h4 class="text-yellow-400 text-sm font-bold uppercase tracking-widest mb-2">Step 4: Integration</h4>
+                    <p class="text-2xl font-serif mb-6">Can the firm easily integrate the target company's culture and systems if acquired?</p>
+                    <div class="flex justify-center space-x-4">
+                        <button onclick="bbbNext('acquire', 4)" class="bg-green-600 hover:bg-green-500 px-6 py-3 rounded font-bold transition">Yes (High)</button>
+                        <button onclick="bbbNext('revisit', 4)" class="bg-red-600 hover:bg-red-500 px-6 py-3 rounded font-bold transition">No (Low)</button>
+                    </div>
+                </div>
+
+                <!-- Results states -->
+                <div id="bbb-result-build" class="bbb-step text-center hidden">
+                    <div class="text-6xl mb-4 text-blue-400"><i class="fas fa-hammer"></i></div>
+                    <h4 class="text-3xl font-bold text-blue-400 mb-2">Outcome: BUILD</h4>
+                    <p class="text-lg">Internal Development. Your current resources are highly relevant. Develop the capability internally.</p>
+                    <button onclick="bbbReset()" class="mt-6 px-4 py-2 border border-slate-500 rounded text-sm text-slate-300 hover:bg-slate-800">Restart Analysis</button>
+                </div>
+                <div id="bbb-result-contract" class="bbb-step text-center hidden">
+                    <div class="text-6xl mb-4 text-indigo-400"><i class="fas fa-file-signature"></i></div>
+                    <h4 class="text-3xl font-bold text-indigo-400 mb-2">Outcome: BORROW (Contract)</h4>
+                    <p class="text-lg">Non-Equity Alliance. Resources are highly tradable. Form a licensing or franchising agreement.</p>
+                    <button onclick="bbbReset()" class="mt-6 px-4 py-2 border border-slate-500 rounded text-sm text-slate-300 hover:bg-slate-800">Restart Analysis</button>
+                </div>
+                <div id="bbb-result-alliance" class="bbb-step text-center hidden">
+                    <div class="text-6xl mb-4 text-indigo-400"><i class="fas fa-handshake"></i></div>
+                    <h4 class="text-3xl font-bold text-indigo-400 mb-2">Outcome: BORROW (Alliance)</h4>
+                    <p class="text-lg">Equity Alliance or Joint Venture. You need to combine resources but don't need absolute control.</p>
+                    <button onclick="bbbReset()" class="mt-6 px-4 py-2 border border-slate-500 rounded text-sm text-slate-300 hover:bg-slate-800">Restart Analysis</button>
+                </div>
+                <div id="bbb-result-acquire" class="bbb-step text-center hidden">
+                    <div class="text-6xl mb-4 text-purple-400"><i class="fas fa-building"></i></div>
+                    <h4 class="text-3xl font-bold text-purple-400 mb-2">Outcome: BUY</h4>
+                    <p class="text-lg">Acquisition. Resources are not relevant, not tradable, require closeness, and you can integrate them.</p>
+                    <button onclick="bbbReset()" class="mt-6 px-4 py-2 border border-slate-500 rounded text-sm text-slate-300 hover:bg-slate-800">Restart Analysis</button>
+                </div>
+                <div id="bbb-result-revisit" class="bbb-step text-center hidden">
+                    <div class="text-6xl mb-4 text-red-500"><i class="fas fa-exclamation-triangle"></i></div>
+                    <h4 class="text-3xl font-bold text-red-400 mb-2">WARNING: Revisit Strategy</h4>
+                    <p class="text-lg">Integration will fail. You cannot build, trade, partner easily, or acquire safely. You must rethink your strategic goal.</p>
+                    <button onclick="bbbReset()" class="mt-6 px-4 py-2 border border-slate-500 rounded text-sm text-slate-300 hover:bg-slate-800">Restart Analysis</button>
+                </div>
+            </div>
+
+        </section>
+        
+        <!-- Section 1c: Strategic Moves - Indian & Global Examples -->
+        <section id="strategic-examples" class="mb-24 pt-8 bg-slate-100 -mx-4 sm:-mx-8 px-4 sm:px-8 py-12">
+            <div class="max-w-7xl mx-auto">
+                <!-- TRIGGER QUESTION -->
+                <div class="trigger-box mb-8 bg-white border-l-4 border-indigo-500 shadow-sm rounded p-6">
+                    <p class="font-serif italic text-lg text-slate-700 leading-relaxed">
+                        "Theory is void without empirical evidence. How do the axioms of corporate strategy manifest in the brutal reality of global and emerging markets?"
+                    </p>
+                </div>
+
+                <h2 class="text-3xl font-bold text-slate-900 mb-2 text-center">Strategic Moves in Action</h2>
+                <p class="text-slate-600 text-center mb-10 max-w-2xl mx-auto">Applying the Build-Borrow-Buy framework to real-world giants. How do Indian and World famous businesses grow?</p>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- BUILD Examples -->
+                    <div class="example-card bg-white p-6 rounded-xl shadow-sm border-l-blue-500">
+                        <div class="flex items-center gap-3 mb-4 border-b border-slate-100 pb-3">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold">1</div>
+                            <h3 class="text-xl font-bold text-slate-800">BUILD (Internal)</h3>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2 py-1 rounded">India</span>
+                            <h4 class="font-bold text-lg mt-2">Zomato</h4>
+                            <p class="text-sm text-slate-600 mt-1">Instead of relying entirely on third-party logistics initially, Zomato built its own extensive delivery fleet technology to ensure reliability and speed in the chaotic Indian traffic.</p>
+                        </div>
+                        
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-500 bg-slate-100 px-2 py-1 rounded">World</span>
+                            <h4 class="font-bold text-lg mt-2">Meta (Threads)</h4>
+                            <p class="text-sm text-slate-600 mt-1">Rather than buying Twitter, Meta used its internal engineering resources (Instagram team) to build and launch "Threads," a direct competitor, in record time.</p>
+                        </div>
+                    </div>
+
+                    <!-- BORROW Examples -->
+                    <div class="example-card bg-white p-6 rounded-xl shadow-sm border-l-indigo-500">
+                        <div class="flex items-center gap-3 mb-4 border-b border-slate-100 pb-3">
+                            <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold">2</div>
+                            <h3 class="text-xl font-bold text-slate-800">BORROW (Alliance)</h3>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2 py-1 rounded">India</span>
+                            <h4 class="font-bold text-lg mt-2">Ola + PhonePe</h4>
+                            <p class="text-sm text-slate-600 mt-1">Ola partnered with PhonePe to integrate payment solutions. Instead of building a complex payment gateway from scratch, Ola "borrowed" PhonePe's tech to reduce friction for riders.</p>
+                        </div>
+                        
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-500 bg-slate-100 px-2 py-1 rounded">World</span>
+                            <h4 class="font-bold text-lg mt-2">Lyft + GM</h4>
+                            <p class="text-sm text-slate-600 mt-1">As seen in the case study, Lyft borrowed GM's manufacturing might and cash ($500M investment) to compete with Uber, while GM borrowed Lyft's network to test autonomous fleets.</p>
+                        </div>
+                    </div>
+
+                    <!-- BUY Examples -->
+                    <div class="example-card bg-white p-6 rounded-xl shadow-sm border-l-purple-500">
+                        <div class="flex items-center gap-3 mb-4 border-b border-slate-100 pb-3">
+                            <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-bold">3</div>
+                            <h3 class="text-xl font-bold text-slate-800">BUY (Acquisition)</h3>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <span class="text-xs font-bold uppercase tracking-wider text-purple-600 bg-purple-50 px-2 py-1 rounded">India</span>
+                            <h4 class="font-bold text-lg mt-2">Walmart buys Flipkart</h4>
+                            <p class="text-sm text-slate-600 mt-1">To instantly gain a dominant position in Indian e-commerce, Walmart acquired Flipkart for $16B. Building a rival network from scratch would have taken decades.</p>
+                        </div>
+                        
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-500 bg-slate-100 px-2 py-1 rounded">World</span>
+                            <h4 class="font-bold text-lg mt-2">Disney buys Pixar</h4>
+                            <p class="text-sm text-slate-600 mt-1">Disney realized its internal animation (Build) was failing. It bought Pixar for $7.4B to instantly acquire the world's best digital animation capabilities and characters.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cautionary Tale -->
+                <div class="mt-8 p-4 bg-red-50 border border-red-100 rounded-lg">
+                    <h4 class="text-red-800 font-bold flex items-center"><i class="fas fa-exclamation-triangle mr-2"></i> When "Buy" Goes Wrong</h4>
+                    <p class="text-sm text-red-700 mt-1"><strong>Microsoft + Nokia:</strong> Microsoft bought Nokia's mobile unit for $9.4B to compete with Apple. It failed due to integration issues and lack of cultural fit. Microsoft wrote off nearly the entire deal. <span class="italic">Lesson: Buying is the riskiest strategy.</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Strategic Alliances -->
+        <section id="alliances" class="mb-24 pt-8">
+            <!-- TRIGGER QUESTION 2 -->
+            <div class="trigger-box">
+                <p class="font-serif italic text-lg text-slate-700 leading-relaxed">
+                    "Why would a firm voluntarily share its trade secrets and control with a potential rival? When is <span class="font-bold text-green-700">Borrowing</span> smarter than owning?"
+                </p>
+            </div>
+
+            <h2 class="text-2xl font-bold text-slate-800 mb-6">The "Borrow" Spectrum: Types of Alliances</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                <!-- Non-Equity -->
+                <div class="flex flex-col bg-white rounded-lg shadow-sm border-l-4 border-green-500 overflow-hidden">
+                    <div class="p-5 bg-green-50 border-b border-green-100">
+                        <h3 class="font-bold text-green-800">1. Non-Equity Alliance</h3>
+                        <p class="text-xs text-green-600 mt-1">Contract-based</p>
+                    </div>
+                    <div class="p-5 flex-grow">
+                        <p class="text-sm text-slate-600 mb-4">
+                            Non-equity alliances are based on contracts between firms. They are the most frequent form of alliances and involve sharing explicit knowledge, often in the form of licensing agreements, supply agreements, or distribution agreements.
+                        </p>
+                        
+                        <div class="mt-4 border-t border-slate-100 pt-3 space-y-3">
+                            <!-- Global -->
+                            <div class="bg-slate-50 p-3 rounded border border-slate-100">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="bg-slate-200 text-slate-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider"><i class="fas fa-globe mr-1"></i>Global</span>
+                                    <span class="text-xs font-bold text-slate-800">Starbucks & Spotify</span>
+                                </div>
+                                <p class="text-xs text-slate-600 leading-snug">Collaborate through a contractual agreement to integrate music streaming into the Starbucks app, enhancing customer experience without exchanging equity.</p>
+                            </div>
+                            <!-- India -->
+                            <div class="bg-slate-50 p-3 rounded border border-slate-100">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="bg-green-100 text-green-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">India</span>
+                                    <span class="text-xs font-bold text-slate-800">Maruti Suzuki & Suppliers</span>
+                                </div>
+                                <p class="text-xs text-slate-600 leading-snug">Long-standing supply contracts with vendors like Bharat Forge ensure a reliable supply chain without Maruti taking ownership stakes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Equity -->
+                <div class="flex flex-col bg-white rounded-lg shadow-sm border-l-4 border-blue-500 overflow-hidden">
+                    <div class="p-5 bg-blue-50 border-b border-blue-100">
+                        <h3 class="font-bold text-blue-800">2. Equity Alliance</h3>
+                        <p class="text-xs text-blue-600 mt-1">Partial Ownership</p>
+                    </div>
+                    <div class="p-5 flex-grow">
+                        <p class="text-sm text-slate-600 mb-4">
+                            Equity alliances involve one partner taking a minority ownership stake in the other partner. This mechanism often facilitates the transfer of tacit knowledge, which is difficult to codify.
+                        </p>
+                        
+                        <div class="mt-4 border-t border-slate-100 pt-3 space-y-3">
+                            <!-- Global -->
+                            <div class="bg-slate-50 p-3 rounded border border-slate-100">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="bg-slate-200 text-slate-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider"><i class="fas fa-globe mr-1"></i>Global</span>
+                                    <span class="text-xs font-bold text-slate-800">Apple & Sharp</span>
+                                </div>
+                                <p class="text-xs text-slate-600 leading-snug">Apple invested in Sharp to secure reliable screen supply and influence production processes.</p>
+                            </div>
+                            <!-- India -->
+                            <div class="bg-slate-50 p-3 rounded border border-slate-100">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="bg-blue-100 text-blue-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">India</span>
+                                    <span class="text-xs font-bold text-slate-800">Hero MotoCorp & Honda</span>
+                                </div>
+                                <p class="text-xs text-slate-600 leading-snug">Honda held a minority stake in Hero for years, enabling deep technology transfer before they parted ways.</p>
+                            </div>
+                             <!-- India Startup -->
+                            <div class="bg-slate-50 p-3 rounded border border-slate-100">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="bg-blue-100 text-blue-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">India Startup</span>
+                                    <span class="text-xs font-bold text-slate-800">Flipkart & Walmart</span>
+                                </div>
+                                <p class="text-xs text-slate-600 leading-snug">Walmart acquired a majority stake in Flipkart, leveraging retail expertise while keeping Flipkart's management structure.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- JV -->
+                <div class="flex flex-col bg-white rounded-lg shadow-sm border-l-4 border-indigo-500 overflow-hidden">
+                    <div class="p-5 bg-indigo-50 border-b border-indigo-100">
+                        <h3 class="font-bold text-indigo-800">3. Joint Venture (JV)</h3>
+                        <p class="text-xs text-indigo-600 mt-1">New Independent Company</p>
+                    </div>
+                    <div class="p-5 flex-grow">
+                        <p class="text-sm text-slate-600 mb-4">
+                            A joint venture (JV) involves the creation of a new, independent legal entity that is jointly owned by two or more parent companies. JVs require significant commitment and are used for strategic initiatives.
+                        </p>
+                        
+                        <div class="mt-4 border-t border-slate-100 pt-3 space-y-3">
+                            <!-- Global -->
+                            <div class="bg-slate-50 p-3 rounded border border-slate-100">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="bg-slate-200 text-slate-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider"><i class="fas fa-globe mr-1"></i>Global</span>
+                                    <span class="text-xs font-bold text-slate-800">Sony Ericsson</span>
+                                </div>
+                                <p class="text-xs text-slate-600 leading-snug">Combined Sony's electronics expertise with Ericsson's telecom tech to compete in mobile phones.</p>
+                            </div>
+                            <!-- India -->
+                            <div class="bg-slate-50 p-3 rounded border border-slate-100">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="bg-indigo-100 text-indigo-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">India</span>
+                                    <span class="text-xs font-bold text-slate-800">Vistara (Tata SIA)</span>
+                                </div>
+                                <p class="text-xs text-slate-600 leading-snug">51:49 JV between Tata and Singapore Airlines, merging local reputation with global service excellence.</p>
+                            </div>
+                            <!-- India -->
+                            <div class="bg-slate-50 p-3 rounded border border-slate-100">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="bg-indigo-100 text-indigo-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">India</span>
+                                    <span class="text-xs font-bold text-slate-800">Indus Towers</span>
+                                </div>
+                                <p class="text-xs text-slate-600 leading-snug">Formed by merging tower ops of Airtel, Vodafone, and Idea to manage infrastructure efficiently.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COMPARISON TABLE SECTION -->
+            <div class="mb-10">
+                <h3 class="text-xl font-bold text-slate-800 mb-4 border-l-4 border-indigo-600 pl-4">Key Characteristics of Strategic Alliances</h3>
+                <div class="overflow-x-auto bg-white rounded-xl shadow-sm border border-slate-200">
+                    <table class="min-w-full text-sm text-left compare-table">
+                        <thead class="bg-slate-100 text-slate-700 border-b border-slate-200">
+                            <tr>
+                                <th class="px-4 py-3 w-1/6">Alliance Type</th>
+                                <th class="px-4 py-3 w-1/6">Governance</th>
+                                <th class="px-4 py-3 w-1/6">Knowledge</th>
+                                <th class="px-4 py-3 w-1/6">Pros</th>
+                                <th class="px-4 py-3 w-1/6">Cons</th>
+                                <th class="px-4 py-3 w-1/6">Examples</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <!-- Non-Equity Row -->
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="px-4 py-4 font-bold text-green-700">
+                                    Non-Equity
+                                    <span class="block text-xs font-normal text-slate-500 mt-1">Most Common</span>
+                                </td>
+                                <td class="px-4 py-4 text-slate-600">Contract<br><span class="text-xs text-slate-400">(Licensing, Supply, Distribution)</span></td>
+                                <td class="px-4 py-4 text-slate-600">Explicit<br><span class="text-xs text-slate-400">(Codifiable info)</span></td>
+                                <td class="px-4 py-4 text-slate-600">
+                                    <ul class="list-disc pl-4 space-y-1">
+                                        <li>Flexible & Fast</li>
+                                        <li>Easy to start/end</li>
+                                    </ul>
+                                </td>
+                                <td class="px-4 py-4 text-slate-600">
+                                    <ul class="list-disc pl-4 space-y-1">
+                                        <li>Weak tie</li>
+                                        <li>Lack of trust/commitment</li>
+                                    </ul>
+                                </td>
+                                <td class="px-4 py-4 text-slate-600 text-xs space-y-2">
+                                    <p><strong>BioNTech-Pfizer:</strong> Exclusive licensing for Covid vaccine.</p>
+                                    <p><strong>Microsoft-IBM:</strong> Non-exclusive licensing for MS-DOS.</p>
+                                </td>
+                            </tr>
+                            
+                            <!-- Equity Row -->
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="px-4 py-4 font-bold text-blue-700">
+                                    Equity
+                                    <span class="block text-xs font-normal text-slate-500 mt-1">Less Common</span>
+                                </td>
+                                <td class="px-4 py-4 text-slate-600">Equity Investment<br><span class="text-xs text-slate-400">(Purchase of stock/stake)</span></td>
+                                <td class="px-4 py-4 text-slate-600">Explicit + Tacit<br><span class="text-xs text-slate-400">(Know-how exchange possible)</span></td>
+                                <td class="px-4 py-4 text-slate-600">
+                                    <ul class="list-disc pl-4 space-y-1">
+                                        <li>Stronger tie</li>
+                                        <li>Trust emerges</li>
+                                        <li>Window into new tech (Option Value)</li>
+                                    </ul>
+                                </td>
+                                <td class="px-4 py-4 text-slate-600">
+                                    <ul class="list-disc pl-4 space-y-1">
+                                        <li>Less flexible</li>
+                                        <li>Slower to setup</li>
+                                        <li>Significant investment</li>
+                                    </ul>
+                                </td>
+                                <td class="px-4 py-4 text-slate-600 text-xs space-y-2">
+                                    <p><strong>GM in Lyft:</strong> Equity investment to access ride-sharing data.</p>
+                                    <p><strong>Coca-Cola in Monster:</strong> Equity stake in energy drinks.</p>
+                                </td>
+                            </tr>
+
+                            <!-- JV Row -->
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="px-4 py-4 font-bold text-indigo-700">
+                                    Joint Venture (JV)
+                                    <span class="block text-xs font-normal text-slate-500 mt-1">Least Common</span>
+                                </td>
+                                <td class="px-4 py-4 text-slate-600">New Entity Creation<br><span class="text-xs text-slate-400">(Owned by 2+ parents)</span></td>
+                                <td class="px-4 py-4 text-slate-600">Both Tacit & Explicit<br><span class="text-xs text-slate-400">(Deep knowledge exchange)</span></td>
+                                <td class="px-4 py-4 text-slate-600">
+                                    <ul class="list-disc pl-4 space-y-1">
+                                        <li>Strongest tie</li>
+                                        <li>High trust likely</li>
+                                        <li>May be required by regulations</li>
+                                    </ul>
+                                </td>
+                                <td class="px-4 py-4 text-slate-600">
+                                    <ul class="list-disc pl-4 space-y-1">
+                                        <li>Long negotiations</li>
+                                        <li>High cost</li>
+                                        <li>2 Bosses (Double reporting lines)</li>
+                                    </ul>
+                                </td>
+                                <td class="px-4 py-4 text-slate-600 text-xs space-y-2">
+                                    <p><strong>Hulu:</strong> Owned by Disney (67%) & Comcast (33%).</p>
+                                    <p><strong>A++ Alliance:</strong> Trans-Atlantic JV (United, Lufthansa, Air Canada).</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- TESLA ALLIANCE CASE STUDY BUTTON -->
+            <div class="bg-white p-8 rounded-xl shadow-lg border border-slate-200 relative overflow-hidden group">
+                <div class="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-red-500 to-red-600"></div>
+                <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                    <div class="flex-1">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="bg-red-100 text-red-700 text-xs font-bold px-2 py-1 rounded uppercase">Featured Case Study</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-2">How Tesla Used Alliances Strategically</h3>
+                        <p class="text-slate-600">Before becoming a trillion-dollar titan, Tesla survived by "borrowing" resources from Daimler, Toyota, and Panasonic. Learn how strategic partnerships saved the company.</p>
+                    </div>
+                    <button onclick="openModal('teslaAllianceModal')" class="px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-lg shadow transition-all transform group-hover:scale-105 whitespace-nowrap">
+                        Read Full Case Study <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: M&A -->
+        <section id="mna" class="mb-24 pt-8">
+            <!-- TRIGGER QUESTION 3 -->
+            <div class="trigger-box">
+                <p class="font-serif italic text-lg text-slate-700 leading-relaxed">
+                    "Why spend billions to <span class="font-bold text-purple-700">Buy</span> a company when you could build it yourself? Is the speed of acquisition worth the premium price tag?"
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                <!-- Chart -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="font-semibold text-slate-800 mb-4">Drivers of M&A Activity</h3>
+                    <div class="chart-container">
+                        <canvas id="maDriversChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Types -->
+                <div class="space-y-4">
+                    <div class="group cursor-pointer bg-white p-5 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-400 transition-all">
+                        <h3 class="text-lg font-bold text-indigo-700 flex items-center">
+                            Horizontal Acquisition
+                            <span class="ml-auto text-xs font-normal bg-indigo-50 text-indigo-600 px-2 py-1 rounded">Competitor</span>
+                        </h3>
+                        <p class="text-sm text-slate-600 mt-2">Buying a rival in the same industry to reduce competition.</p>
+                        <div class="mt-3 pt-3 border-t border-slate-100">
+                            <p class="text-sm"><strong>Example:</strong> <em>Zomato buys Uber Eats India.</em> Less competition, more market share.</p>
+                        </div>
+                    </div>
+
+                    <div class="group cursor-pointer bg-white p-5 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-400 transition-all">
+                        <h3 class="text-lg font-bold text-indigo-700 flex items-center">
+                            Vertical / Capability Acquisition
+                            <span class="ml-auto text-xs font-normal bg-indigo-50 text-indigo-600 px-2 py-1 rounded">New Skill</span>
+                        </h3>
+                        <p class="text-sm text-slate-600 mt-2">Buying a firm up/down the supply chain or for a specific tech.</p>
+                        <div class="mt-3 pt-3 border-t border-slate-100">
+                            <p class="text-sm"><strong>Example:</strong> <em>Byju's buys Aakash.</em> An online giant buying physical coaching centers (new capability).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- M&A DEEP DIVE -->
+            <div class="bg-indigo-50 p-8 rounded-2xl border border-indigo-100">
+                <h3 class="text-2xl font-bold text-indigo-900 mb-6 text-center">Why Do Firms Merge with Competitors?</h3>
+                <p class="text-center text-slate-600 mb-8 max-w-2xl mx-auto">Horizontal integration is the process of merging with competitors at the same stage of the industry value chain. It leads to industry consolidation.</p>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Benefit 1 -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all border border-blue-100">
+                        <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xl mb-4"><i class="fas fa-compress-arrows-alt"></i></div>
+                        <h4 class="font-bold text-slate-800 mb-2">Reduce Competition & Increase Power</h4>
+                        <p class="text-sm text-slate-600 mb-4">Eliminating rivals increases market share and pricing power by consolidating the industry.</p>
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-blue-50 p-2 rounded border-l-2 border-blue-400">
+                                <span class="font-bold block text-blue-800">Global: US Airlines</span>
+                                Delta/Northwest & United/Continental mergers consolidated a fragmented market to stabilize prices.
+                            </div>
+                            <div class="bg-indigo-50 p-2 rounded border-l-2 border-indigo-400">
+                                <span class="font-bold block text-indigo-800">India: Vodafone Idea</span>
+                                Merged to consolidate subscriber bases and spectrum to survive competition from Jio.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Benefit 2 -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all border border-green-100">
+                        <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xl mb-4"><i class="fas fa-piggy-bank"></i></div>
+                        <h4 class="font-bold text-slate-800 mb-2">Lower Costs & Economies of Scale</h4>
+                        <p class="text-sm text-slate-600 mb-4">Critical for industries with high fixed costs. Merging allows spreading costs over a larger base.</p>
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-green-50 p-2 rounded border-l-2 border-green-400">
+                                <span class="font-bold block text-green-800">Global: P&G + Gillette</span>
+                                $57B deal. Massive R&D and marketing cost synergies for consumer goods.
+                            </div>
+                            <div class="bg-teal-50 p-2 rounded border-l-2 border-teal-400">
+                                <span class="font-bold block text-teal-800">India: ACC & Damodar</span>
+                                ACC acquired Damodar Cement to improve productivity and scale in Eastern India.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Benefit 3 -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all border border-purple-100">
+                        <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xl mb-4"><i class="fas fa-magic"></i></div>
+                        <h4 class="font-bold text-slate-800 mb-2">Increase Differentiation</h4>
+                        <p class="text-sm text-slate-600 mb-4">Filling product gaps to offer a complete suite of services, enhancing competitive position.</p>
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-purple-50 p-2 rounded border-l-2 border-purple-400">
+                                <span class="font-bold block text-purple-800">Global: Disney + Marvel</span>
+                                $4B acquisition added superheroes to Disney's parks/merch ecosystem.
+                            </div>
+                            <div class="bg-pink-50 p-2 rounded border-l-2 border-pink-400">
+                                <span class="font-bold block text-pink-800">India: Flipkart + Myntra</span>
+                                Allowed Flipkart to instantly dominate online fashion, differentiating beyond electronics.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Antitrust Block -->
+                <div class="mt-8 p-6 bg-red-50 border-l-4 border-red-500 rounded-r-xl">
+                    <h4 class="font-bold text-red-800 mb-2"><i class="fas fa-gavel mr-2"></i>Antitrust Watch: The Staples & Office Depot Saga</h4>
+                    <p class="text-sm text-red-800 mb-2">
+                        <strong>1997:</strong> FTC blocked merger. Argued monopoly in "office supplies" market.
+                    </p>
+                    <p class="text-sm text-red-800 mb-2">
+                        <strong>2013:</strong> Office Depot & OfficeMax merger approved (Walmart/Amazon competition changed landscape).
+                    </p>
+                    <p class="text-sm text-red-800">
+                        <strong>2015:</strong> Staples tried to buy Office Depot again. <strong>Blocked.</strong> FTC argued it would create a monopoly in the B2B contract market for large corporations.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Pitfalls -->
+        <section id="pitfalls" class="mb-24 pt-8">
+            <!-- TRIGGER QUESTION 6 -->
+            <div class="trigger-box">
+                <p class="font-serif italic text-lg text-slate-700 leading-relaxed">
+                    "If M&A is so popular, why do nearly <span class="font-bold text-red-700">70%</span> of deals fail to create shareholder value?"
+                </p>
+            </div>
+
+            <h2 class="text-2xl font-bold text-slate-800 mb-6">The "Winner's Curse" & Failure</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-red-50 p-6 rounded-xl border border-red-100">
+                    <h3 class="text-lg font-bold text-red-800 mb-4">Major Pitfalls</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="mr-2 text-red-500">⚠</span>
+                            <span class="text-sm text-red-900"><strong>Winner's Curse:</strong> Overpaying for a target during a bidding war.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2 text-red-500">⚠</span>
+                            <span class="text-sm text-red-900"><strong>Culture Clash:</strong> Employees leave because they hate the new management style.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2 text-red-500">⚠</span>
+                            <span class="text-sm text-red-900"><strong>Synergy Illusion:</strong> Thinking 1+1=3, when often 1+1 < 2 due to complexity.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <h3 class="text-lg font-bold text-slate-800 mb-2">Real World Failure: Snapdeal & FreeCharge</h3>
+                    <div class="prose prose-sm text-slate-600">
+                        <p><strong>The Deal:</strong> In 2015, Snapdeal (India) bought FreeCharge for ~$400 million to create a digital ecosystem like Alibaba.</p>
+                        <p><strong>The Reality:</strong> Integration failed. Snapdeal lost market share to Amazon/Flipkart. Cash ran out.</p>
+                        <p><strong>The Exit:</strong> Just 2 years later, Snapdeal sold FreeCharge for only ~$60 million. A massive destruction of value.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SIMULATION SECTION (Baseline Multiple Choice Game) -->
+        <section id="simulation" class="mb-12 pt-8 bg-gradient-to-br from-slate-900 to-indigo-900 -mx-4 sm:-mx-8 px-4 sm:px-8 py-16 text-white">
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <span class="inline-block px-3 py-1 bg-indigo-500 text-white text-xs font-bold rounded-full mb-4">Basic Simulation</span>
+                <h2 class="text-4xl font-bold mb-4">The Corporate Strategy Challenge</h2>
+                <p class="text-lg text-slate-300">Step into the shoes of a CEO. Navigate three critical growth stages using the Build-Borrow-Buy framework.</p>
+            </div>
+
+            <!-- Game Container -->
+            <div id="game-container" class="max-w-3xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden text-slate-900 p-8 min-h-[400px]">
+                
+                <!-- Start Screen -->
+                <div id="start-screen" class="text-center py-10">
+                    <div class="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-chess-knight text-3xl text-indigo-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Welcome, CEO.</h3>
+                    <p class="text-slate-600 mb-8">Your company, StratCorp, is at a crossroads. You face three major strategic decisions affecting your future growth. Choose wisely based on the <span class="font-semibold text-indigo-600">Build-Borrow-Buy</span> framework.</p>
+                    <button onclick="startGame()" class="px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-full transition-transform transform hover:scale-105 shadow-lg">Start Simulation</button>
+                </div>
+
+                <!-- Gameplay Screen (Hidden by default) -->
+                <div id="gameplay-screen" class="hidden">
+                    <!-- Progress Bar -->
+                    <div class="w-full bg-slate-200 rounded-full h-2.5 mb-6">
+                        <div id="progress-bar" class="bg-indigo-600 h-2.5 rounded-full" style="width: 0%"></div>
+                    </div>
+
+                    <div class="flex justify-between items-center mb-6">
+                        <span id="stage-indicator" class="text-sm font-bold text-indigo-600 uppercase tracking-wider">Stage 1 of 3</span>
+                        <span class="text-sm font-medium text-slate-500">Score: <span id="current-score">0</span></span>
+                    </div>
+
+                    <h3 id="question-title" class="text-2xl font-bold mb-4"></h3>
+                    <p id="question-desc" class="text-slate-600 mb-8 leading-relaxed"></p>
+
+                    <div id="options-container" class="space-y-3">
+                        <!-- Options injected via JS -->
+                    </div>
+
+                    <div id="feedback-area" class="mt-6 p-4 rounded-lg bg-slate-50 border border-slate-200 hidden sim-feedback">
+                        <h4 id="feedback-title" class="font-bold mb-2"></h4>
+                        <p id="feedback-text" class="text-sm text-slate-700"></p>
+                        <div id="comparison-table-container" class="mt-4 hidden"></div> <!-- Container for Comparison Table -->
+                        <button id="next-btn" onclick="nextStage()" class="mt-4 px-6 py-2 bg-slate-900 text-white rounded-md hover:bg-slate-800 text-sm font-medium">Next Challenge</button>
+                    </div>
+                </div>
+
+                <!-- Result Screen (Hidden by default) -->
+                <div id="result-screen" class="hidden text-center py-10">
+                    <div id="result-icon" class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl"></div>
+                    <h3 id="result-title" class="text-3xl font-bold mb-2"></h3>
+                    <p id="result-score-text" class="text-xl font-medium text-indigo-600 mb-6"></p>
+                    <p id="result-msg" class="text-slate-600 mb-8 max-w-md mx-auto"></p>
+                    <button onclick="startGame()" class="px-6 py-2 border-2 border-slate-900 text-slate-900 font-bold rounded-full hover:bg-slate-900 hover:text-white transition-colors">Play Again</button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- WAR ROOM SECTION (Socratic Chat Simulation) -->
+        <section id="warroom" class="mb-24 pt-8">
+            <!-- TRIGGER QUESTION -->
+            <div class="trigger-box">
+                <p class="font-serif italic text-lg text-slate-700 leading-relaxed">
+                    "Knowledge is only a rumor until it is in the muscle. Faced with an existential technological gap, how will you apply First Principles to secure your firm's survival?"
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                 <header class="mb-8 border-b-2 border-slate-200 pb-4">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-2">The War Room: Advanced CEO Simulation</h2>
+                    <p class="text-lg text-slate-600">Engage in a Socratic dialogue with the Professor.</p>
+                </header>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-200 mb-8">
+                    <p class="mb-4 leading-relaxed text-slate-700">
+                        This advanced module places you in the role of a CEO facing a strategic growth dilemma. Using Socratic reasoning and the Build-Borrow-Buy framework, you must navigate a hypothetical, yet realistic, business scenario based on Indian startups.
+                    </p>
+                </div>
+
+                <div class="bg-white shadow-xl rounded-xl overflow-hidden border border-slate-300 flex flex-col" style="height: 600px;">
+                    <!-- Chat Header -->
+                    <div class="bg-slate-800 text-white p-4 flex items-center justify-between">
+                        <div class="font-bold flex items-center">
+                            <span class="text-2xl mr-3"><i class="fas fa-user-graduate text-indigo-400"></i></span> 
+                            <div>
+                                <div class="text-lg">Prof. Strategy Bot</div>
+                                <div class="text-xs text-green-400 font-normal flex items-center"><span class="w-2 h-2 rounded-full bg-green-400 mr-1"></span> Online</div>
+                            </div>
+                        </div>
+                        <button onclick="startChatSimulation()" class="text-sm bg-slate-700 text-white px-3 py-1 rounded hover:bg-slate-600 border border-slate-500 transition">Restart Dialogue</button>
+                    </div>
+
+                    <!-- Chat Log -->
+                    <div id="chat-sim-log" class="flex-1 overflow-y-auto p-6 space-y-4 bg-slate-50">
+                        <!-- Messages injected here by JS -->
+                    </div>
+
+                    <!-- Chat Controls -->
+                    <div id="chat-sim-controls" class="p-4 bg-white border-t border-slate-200 flex flex-col gap-2">
+                        <!-- Buttons injected here by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ROLEPLAY SECTION: Zomato vs Blinkit -->
+        <section id="roleplay" class="mb-24 pt-8">
+            <!-- TRIGGER QUESTION -->
+            <div class="trigger-box">
+                <p class="font-serif italic text-lg text-slate-700 leading-relaxed">
+                    "A firm is not a monolith; it is a coalition of conflicting interests. How do different stakeholders weaponize the exact same strategic framework to force entirely different outcomes?"
+                </p>
+            </div>
+
+             <div class="max-w-4xl mx-auto">
+                 <header class="mb-8 border-b-2 border-slate-200 pb-4">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-2">Boardroom Roleplay: The Quick-Commerce Scenario</h2>
+                    <p class="text-lg text-slate-600">A structured group activity simulating an M&A negotiation.</p>
+                </header>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-200 mb-8">
+                    <p class="mb-4 leading-relaxed text-slate-700">
+                        To truly grasp the complexities of corporate strategy, one must understand stakeholder perspectives. Imagine you are facilitating a session with three individuals. Read the briefs for each role to understand why M&A is not just math, but intense corporate politics.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-slate-200">
+                    <div class="p-6 bg-slate-100 border-b border-slate-200">
+                        <h4 class="font-bold text-xl uppercase tracking-wide text-slate-800"><i class="fas fa-briefcase text-indigo-600 mr-2"></i>The Scenario</h4>
+                        <p class="mt-2 text-slate-700">Food delivery giant "Z-Food" (Acquirer) is considering acquiring "Q-Mart", a struggling but highly capable 10-minute grocery delivery startup (Target). Z-Food's internal delivery fleet is not optimized for groceries. Q-Mart is burning cash rapidly.</p>
+                    </div>
+                    
+                    <div class="p-0">
+                        <!-- Role 1 -->
+                        <div class="border-b border-slate-200 flex flex-col md:flex-row hover:bg-slate-50 transition">
+                            <div class="p-6 md:w-1/3 border-r border-slate-200 bg-slate-800 text-white flex flex-col justify-center items-center text-center">
+                                <div class="text-5xl mb-3"><i class="fas fa-user-tie text-indigo-400"></i></div>
+                                <h5 class="font-bold text-lg">CEO of Z-Food</h5>
+                                <p class="text-xs uppercase tracking-widest text-indigo-300 mt-1">The Acquirer</p>
+                            </div>
+                            <div class="p-6 md:w-2/3">
+                                <h6 class="font-bold text-slate-900 mb-2">Primary Objective:</h6>
+                                <p class="text-sm mb-4 text-slate-700">Acquire Q-Mart's dark-store network and capability to preempt rivals from entering the quick-commerce space. Buy it as cheaply as possible.</p>
+                                <h6 class="font-bold text-indigo-700 mb-2">First Principles Argument:</h6>
+                                <p class="text-sm italic border-l-4 border-indigo-300 pl-3 text-slate-600">"We cannot build a 10-minute delivery network from scratch fast enough. Relevancy is low. We need extreme closeness to integrate their app with ours. Acquisition is our only path to growth. But they are out of cash; we have the leverage."</p>
+                            </div>
+                        </div>
+
+                        <!-- Role 2 -->
+                        <div class="border-b border-slate-200 flex flex-col md:flex-row hover:bg-slate-50 transition">
+                            <div class="p-6 md:w-1/3 border-r border-slate-200 bg-indigo-700 text-white flex flex-col justify-center items-center text-center">
+                                <div class="text-5xl mb-3"><i class="fas fa-chart-line text-blue-300"></i></div>
+                                <h5 class="font-bold text-lg">Lead Investor, Q-Mart</h5>
+                                <p class="text-xs uppercase tracking-widest text-blue-200 mt-1">The Target</p>
+                            </div>
+                            <div class="p-6 md:w-2/3">
+                                <h6 class="font-bold text-indigo-800 mb-2">Primary Objective:</h6>
+                                <p class="text-sm mb-4 text-slate-700">Secure an acquisition premium. Exit the investment before Q-Mart runs out of cash completely, but project strength and alternative options.</p>
+                                <h6 class="font-bold text-indigo-800 mb-2">First Principles Argument:</h6>
+                                <p class="text-sm italic border-l-4 border-indigo-300 pl-3 text-slate-600">"Our capability is highly valuable and perfectly complements Z-Food. If Z-Food doesn't buy us, their biggest rival will. We demand an all-stock deal at a 30% premium so we benefit from the synergies."</p>
+                            </div>
+                        </div>
+
+                        <!-- Role 3 -->
+                        <div class="flex flex-col md:flex-row hover:bg-slate-50 transition">
+                            <div class="p-6 md:w-1/3 border-r border-slate-200 bg-red-800 text-white flex flex-col justify-center items-center text-center">
+                                <div class="text-5xl mb-3"><i class="fas fa-bullhorn text-red-300"></i></div>
+                                <h5 class="font-bold text-lg">Activist Shareholder</h5>
+                                <p class="text-xs uppercase tracking-widest text-red-200 mt-1">Z-Food Board</p>
+                            </div>
+                            <div class="p-6 md:w-2/3">
+                                <h6 class="font-bold text-red-800 mb-2">Primary Objective:</h6>
+                                <p class="text-sm mb-4 text-slate-700">Prevent value destruction. Argue that the acquisition is driven by managerial hubris and will destroy shareholder value through overpaying.</p>
+                                <h6 class="font-bold text-red-800 mb-2">First Principles Argument:</h6>
+                                <p class="text-sm italic border-l-4 border-red-300 pl-3 text-slate-600">"Most M&As destroy value. The Winner's Curse is real. Why buy them? Let them go bankrupt and hire their talent, or just form a non-equity alliance. Do not burn our capital on a cash-burning target!"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <p class="text-sm text-slate-500 italic">In a live seminar, you would now debate. Notice how the Build-Borrow-Buy framework is weaponized differently by each stakeholder.</p>
+                </div>
+
+             </div>
+        </section>
+
+        <!-- QUIZ SECTION -->
+        <section id="quiz" class="mb-24 pt-8">
+            <!-- TRIGGER QUESTION -->
+            <div class="trigger-box">
+                <p class="font-serif italic text-lg text-slate-700 leading-relaxed">
+                    "Socratic dialogue demands rigorous self-examination. Can you defend your strategic choices under academic scrutiny?"
+                </p>
+            </div>
+
+            <div class="text-center mb-12">
+                <span class="inline-block px-3 py-1 bg-green-100 text-green-800 text-xs font-bold rounded-full mb-2">Self Assessment</span>
+                <h2 class="text-3xl font-bold text-slate-900">Test Your Knowledge</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto mt-3">
+                    Have you mastered the concepts of Build-Borrow-Buy, Alliances, and M&A? Complete these questions to certify your understanding.
+                </p>
+            </div>
+
+            <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
+                <div class="p-6 bg-slate-50 border-b border-slate-200 flex justify-between items-center sticky top-0 z-10">
+                    <h3 class="text-lg font-bold text-slate-800">Corporate Strategy Quiz</h3>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-sm font-medium text-slate-600">Score:</span>
+                        <span id="quiz-score" class="text-lg font-bold text-green-600">0</span>
+                        <span class="text-sm text-slate-400">/ 15</span>
+                    </div>
+                </div>
+                
+                <div id="quiz-container" class="p-6 space-y-8">
+                    <!-- Questions will be injected here by JS -->
+                </div>
+                
+                <div class="p-6 bg-slate-50 border-t border-slate-200 text-center">
+                    <button onclick="resetQuiz()" class="px-6 py-2 bg-slate-800 text-white font-medium rounded-lg hover:bg-slate-900 transition-colors">
+                        Reset Quiz
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 mt-16 sm:mt-24 border-t border-gray-700">
+        <div class="container mx-auto px-6 py-5">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6">
+                <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-3 group order-first sm:order-none">
+                    <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
+                         <svg viewBox="0 0 52 60">
+                            <defs><linearGradient id="footerRedGradient2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
+                            <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#footerRedGradient2)"/><text class="hexagon-s" x="26" y="32">S</text>
+                        </svg>
+                    </div>
+                    <span class="text-xs font-semibold text-slate-300 group-hover:text-white transition-colors">Dr. Swapnil Sahoo</span>
+                </a>
+                <p class="text-xs text-slate-400 order-last sm:order-none">© Dr. Swapnil Sahoo 2025 | All Rights Reserved</p>
+                <div class="flex space-x-5 sm:space-x-6 order-first sm:order-last">
+                    <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white footer-link" title="X/Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white footer-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white footer-link" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.chess.com/member/theswapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white footer-link" title="Chess.com">
+                        <i class="fas fa-chess-king"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODALS (Build, Framework, Tesla Case) -->
+    <div id="buildModal" class="modal fixed inset-0 flex items-center justify-center bg-slate-900/80 backdrop-blur-sm p-4 z-[100]">
+        <div class="bg-white w-full max-w-6xl h-[80vh] rounded-2xl shadow-2xl overflow-hidden relative animate-fade-in-up">
+            <button onclick="closeModal('buildModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-800 z-10 bg-slate-100 rounded-full p-2 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+            <div class="flex flex-col md:flex-row h-full">
+                <div class="w-full md:w-1/3 bg-blue-600 p-10 text-white flex flex-col justify-center relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-64 h-64 bg-blue-500 rounded-full -translate-x-1/2 -translate-y-1/2 opacity-50"></div>
+                    <div class="relative z-10">
+                        <div class="h-16 w-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-6 border border-white/30">
+                            <span class="text-3xl font-bold">1</span>
+                        </div>
+                        <h2 class="text-4xl font-bold mb-6">Organic Growth</h2>
+                        <p class="text-blue-100 mb-8 leading-relaxed text-lg">
+                            "Building" means developing new resources internally. It is the path of <strong>Internal Analysis</strong>. This involves creating unique strengths (Core Competencies) from the inside out.
+                        </p>
+                        <div class="bg-blue-700/50 rounded-xl p-6 border-l-4 border-blue-300">
+                            <p class="text-xs uppercase font-bold text-blue-300 mb-2 tracking-wider">Key Concept</p>
+                            <p class="text-sm leading-relaxed">You don't just "buy" a competitive advantage. You build it by combining what you <em>have</em> (Resources) with what you can <em>do</em> (Capabilities).</p>
+                        </div>
+
+                        <!-- Mini-Sim: The NYT Dilemma -->
+                        <div class="mt-6 bg-slate-900/40 rounded-xl p-5 border border-blue-400/50 backdrop-blur-md shadow-lg">
+                            <h4 class="text-lg font-bold text-white mb-3 flex items-center"><i class="fas fa-newspaper text-blue-300 mr-2"></i> Mini-Sim: The NYT Dilemma</h4>
+                            
+                            <div id="nyt-sim-step1">
+                                <p class="text-sm text-blue-50 mb-4 leading-relaxed">You are an executive at a newspaper publisher like <strong>The New York Times</strong>. You want to shift to an online newspaper.<br><br><strong>Decision:</strong> Since researching, reporting, writing, and editing are similar for print and online, should you just BUILD the new digital resource using your existing print capabilities?</p>
+                                <div class="flex flex-col space-y-2">
+                                    <button onclick="nytSimAnswer(true)" class="w-full bg-white text-blue-900 font-bold py-2.5 px-4 rounded hover:bg-blue-50 transition text-sm text-left flex items-center shadow-sm"><i class="fas fa-check-circle text-green-500 mr-2 text-lg"></i> Yes, news is news. The activities are similar.</button>
+                                    <button onclick="nytSimAnswer(false)" class="w-full bg-blue-800 text-white border border-blue-400 font-bold py-2.5 px-4 rounded hover:bg-blue-700 transition text-sm text-left flex items-center shadow-sm"><i class="fas fa-times-circle text-red-400 mr-2 text-lg"></i> No, the underlying model is entirely different.</button>
+                                </div>
+                            </div>
+                            
+                            <div id="nyt-sim-feedback" class="hidden">
+                                <div class="bg-white text-slate-800 p-4 rounded-lg text-sm shadow-inner mb-3">
+                                    <p id="nyt-sim-text" class="mb-2 leading-relaxed"></p>
+                                    <div class="bg-red-50 p-2 mt-3 rounded border border-red-200">
+                                        <p class="font-bold text-red-700 text-xs uppercase tracking-wide"><i class="fas fa-ban mr-1"></i> Conclusion</p>
+                                        <p class="text-red-900 font-semibold mt-1">Building the new resource through internal development is NOT an option. The firm must consider external (Borrow or Buy) options.</p>
+                                    </div>
+                                </div>
+                                <button onclick="closeModal('buildModal')" class="w-full bg-blue-500 hover:bg-blue-400 text-white font-bold py-2.5 rounded transition shadow-md flex justify-center items-center">Explore Borrow & Buy <i class="fas fa-arrow-right ml-2"></i></button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="w-full md:w-2/3 bg-slate-100 flex flex-col justify-center items-center p-8 relative">
+                    <h3 class="text-xl font-bold text-slate-800 mb-6 text-center z-10">The Internal Growth Engine</h3>
+                    <p class="text-sm text-slate-500 mb-6 text-center z-10">Linking Resources & Capabilities</p>
+                    
+                    <div class="max-w-full z-10 bg-white p-4 sm:p-8 rounded-xl shadow-inner border border-slate-200 w-full overflow-hidden flex justify-center items-center">
+                        <!-- Recreated Exhibit: Linking Resources & Capabilities -->
+                        <div class="relative w-full max-w-[320px] sm:max-w-sm flex flex-col items-center">
+                            
+                            <!-- Reinvest Arrow Path (Left Side) -->
+                            <div class="absolute left-0 top-[2.2rem] bottom-[2.5rem] w-8 border-l-2 border-t-2 border-b-2 border-dashed border-indigo-400 rounded-l-xl z-0"></div>
+                            <!-- Arrow tip pointing back to Resources -->
+                            <div class="absolute left-[1.6rem] top-[1.8rem] text-indigo-500 text-lg"><i class="fas fa-caret-right"></i></div>
+                            <!-- Vertical Text -->
+                            <div class="absolute left-[-2rem] top-1/2 -translate-y-1/2 -rotate-90 bg-white px-2 py-1 text-[9px] sm:text-[10px] font-bold text-indigo-700 tracking-widest whitespace-nowrap z-10 rounded border border-indigo-100 shadow-sm">REINVEST, HONE & UPGRADE</div>
+
+                            <!-- Top row -->
+                            <div class="flex justify-center gap-4 w-full pl-8 relative z-10">
+                                <div class="flex-1 bg-white border-2 border-slate-300 shadow-sm py-3 px-2 rounded-lg text-center relative">
+                                    <span class="block font-bold text-slate-700 text-xs sm:text-sm">Resources</span>
+                                </div>
+                                <div class="flex-1 bg-white border-2 border-slate-300 shadow-sm py-3 px-2 rounded-lg text-center relative">
+                                    <span class="block font-bold text-slate-700 text-xs sm:text-sm">Capabilities</span>
+                                </div>
+                            </div>
+
+                            <!-- Converging Arrows -->
+                            <div class="flex justify-center gap-20 w-full pl-8 h-8 relative z-10">
+                                <div class="w-0.5 h-full bg-slate-300 relative"><i class="fas fa-caret-down absolute -bottom-2 -left-[5px] text-slate-400"></i></div>
+                                <div class="w-0.5 h-full bg-slate-300 relative"><i class="fas fa-caret-down absolute -bottom-2 -left-[5px] text-slate-400"></i></div>
+                            </div>
+
+                            <!-- Core Competencies -->
+                            <div class="w-full pl-8">
+                                <div class="w-full mt-1 bg-indigo-50 border-2 border-indigo-400 shadow-md p-4 rounded-xl text-center relative z-10">
+                                    <span class="block font-bold text-indigo-900 text-base sm:text-lg uppercase tracking-wide">Core Competencies</span>
+                                </div>
+                            </div>
+
+                            <!-- Arrow Down -->
+                            <div class="w-0.5 h-8 bg-slate-300 relative ml-8 z-10"><i class="fas fa-caret-down absolute -bottom-2 -left-[5px] text-slate-400"></i></div>
+
+                            <!-- Activities -->
+                            <div class="w-full pl-8 flex justify-center">
+                                <div class="w-3/4 mt-1 bg-white border-2 border-slate-300 shadow-sm p-3 rounded-lg text-center relative z-10">
+                                    <span class="block font-bold text-slate-700 text-sm uppercase tracking-wide">Firm Activities</span>
+                                </div>
+                            </div>
+
+                            <!-- Arrow Down -->
+                            <div class="w-0.5 h-8 bg-slate-300 relative ml-8 z-10"><i class="fas fa-caret-down absolute -bottom-2 -left-[5px] text-slate-400"></i></div>
+
+                            <!-- Competitive Advantage -->
+                            <div class="w-full pl-8 relative z-10">
+                                <div class="w-full mt-1 bg-green-50 border-2 border-green-500 shadow-md p-4 rounded-xl text-center relative z-10">
+                                    <span class="block font-bold text-green-800 text-base sm:text-lg uppercase tracking-wide">Competitive Advantage</span>
+                                    <span class="block text-xs font-medium text-green-600 mt-1">Superior Firm Performance</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- BORROW MODAL -->
+    <div id="borrowModal" class="modal fixed inset-0 flex items-center justify-center bg-slate-900/80 backdrop-blur-sm p-4 z-[100]">
+        <div class="bg-white w-full max-w-6xl h-[80vh] rounded-2xl shadow-2xl overflow-hidden relative animate-fade-in-up">
+            <button onclick="closeModal('borrowModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-800 z-10 bg-slate-100 rounded-full p-2 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+            <div class="flex flex-col md:flex-row h-full">
+                <!-- Left Context Panel -->
+                <div class="w-full md:w-1/3 bg-indigo-600 p-10 text-white flex flex-col justify-center relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-64 h-64 bg-indigo-500 rounded-full -translate-x-1/2 -translate-y-1/2 opacity-50"></div>
+                    <div class="relative z-10">
+                        <div class="h-16 w-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-6 border border-white/30">
+                            <span class="text-3xl font-bold">2</span>
+                        </div>
+                        <h2 class="text-4xl font-bold mb-6">Tradability</h2>
+                        <p class="text-indigo-100 mb-8 leading-relaxed text-lg">
+                            For external options, the firm needs to determine how <strong>tradable</strong> the targeted resources may be before pursuing a deeper alliance.
+                        </p>
+                        <div class="bg-indigo-700/50 rounded-xl p-6 border-l-4 border-indigo-300">
+                            <p class="text-xs uppercase font-bold text-indigo-300 mb-2 tracking-wider">Key Concept</p>
+                            <p class="text-sm leading-relaxed">A tradable resource is one that the firm can source externally through a contract that allows for the transfer of ownership or use (e.g., short-term/long-term contracts, licensing, franchising).</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Simulation Panel -->
+                <div class="w-full md:w-2/3 bg-slate-100 flex flex-col justify-center items-center p-8 relative overflow-y-auto">
+                    <h3 class="text-xl font-bold text-slate-800 mb-6 text-center z-10">The External Resource Engine</h3>
+                    <p class="text-sm text-slate-500 mb-6 text-center z-10">Evaluating Contractual Feasibility</p>
+                    
+                    <!-- Mini-Sim: The Tradability Dilemma -->
+                    <div class="w-full max-w-xl bg-white rounded-xl p-6 border border-slate-200 shadow-lg relative z-10">
+                        <h4 class="text-lg font-bold text-indigo-900 mb-4 flex items-center"><i class="fas fa-prescription-bottle-alt text-indigo-500 mr-2"></i> Mini-Sim: The BioNTech Dilemma</h4>
+                        
+                        <div id="tradability-sim-step1">
+                            <p class="text-sm text-slate-700 mb-4 leading-relaxed">You are an executive at <strong>Pfizer</strong> during the outbreak of Covid-19. A new venture, <strong>BioNTech</strong>, has developed a breakthrough mRNA vaccine technology.</p>
+                            <p class="text-sm text-slate-700 mb-6 leading-relaxed font-semibold bg-indigo-50 p-3 rounded border border-indigo-100">Decision: Because intellectual property like scientific formulas and patents can be highly defined and protected, how should you secure this resource to manufacture the vaccine rapidly?</p>
+                            
+                            <div class="flex flex-col space-y-3">
+                                <button onclick="tradabilitySimAnswer('buy')" class="w-full bg-white text-slate-700 border-2 border-slate-200 font-bold py-3 px-4 rounded-lg hover:border-indigo-400 hover:bg-indigo-50 transition text-sm text-left flex items-center"><i class="fas fa-building text-slate-400 mr-3 text-lg"></i> Outright Acquisition (Buy BioNTech)</button>
+                                <button onclick="tradabilitySimAnswer('license')" class="w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-indigo-700 transition text-sm text-left flex items-center shadow-md"><i class="fas fa-file-signature text-indigo-200 mr-3 text-lg"></i> Licensing Agreement (Borrow via Contract)</button>
+                                <button onclick="tradabilitySimAnswer('jv')" class="w-full bg-white text-slate-700 border-2 border-slate-200 font-bold py-3 px-4 rounded-lg hover:border-indigo-400 hover:bg-indigo-50 transition text-sm text-left flex items-center"><i class="fas fa-handshake text-slate-400 mr-3 text-lg"></i> Create a new Joint Venture Entity</button>
+                            </div>
+                        </div>
+                        
+                        <div id="tradability-sim-feedback" class="hidden">
+                            <div class="bg-indigo-50 text-slate-800 p-5 rounded-lg text-sm shadow-inner mb-4 border border-indigo-100">
+                                <p id="tradability-sim-text" class="mb-3 leading-relaxed"></p>
+                                <div class="bg-white p-3 rounded border border-indigo-200 mt-4 shadow-sm">
+                                    <p class="font-bold text-indigo-800 text-xs uppercase tracking-wide"><i class="fas fa-book-open mr-1"></i> Strategic Implication</p>
+                                    <p class="text-slate-700 font-medium mt-1 text-xs sm:text-sm">If a resource is highly tradable, it should be borrowed via a licensing or contractual agreement. Only if it is NOT easily tradable should you consider deeper equity alliances, JVs, or outright acquisitions.</p>
+                                </div>
+                            </div>
+                            <button onclick="closeModal('borrowModal')" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-lg transition shadow-md flex justify-center items-center">Proceed to Closeness <i class="fas fa-arrow-right ml-2"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BUY MODAL -->
+    <div id="buyModal" class="modal fixed inset-0 flex items-center justify-center bg-slate-900/80 backdrop-blur-sm p-4 z-[100]">
+        <div class="bg-white w-full max-w-6xl h-[80vh] rounded-2xl shadow-2xl overflow-hidden relative animate-fade-in-up">
+            <button onclick="closeModal('buyModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-800 z-10 bg-slate-100 rounded-full p-2 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+            <div class="flex flex-col md:flex-row h-full">
+                <!-- Left Context Panel -->
+                <div class="w-full md:w-1/3 bg-purple-600 p-10 text-white flex flex-col justify-center relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-64 h-64 bg-purple-500 rounded-full -translate-x-1/2 -translate-y-1/2 opacity-50"></div>
+                    <div class="relative z-10">
+                        <div class="h-16 w-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-6 border border-white/30">
+                            <span class="text-3xl font-bold">3 & 4</span>
+                        </div>
+                        <h2 class="text-4xl font-bold mb-4">Closeness & Integration</h2>
+                        <p class="text-purple-100 mb-6 leading-relaxed text-sm">
+                            Many times, firms can fill strategic gaps through equity alliances or joint ventures (like GM entering an equity alliance with Lyft) rather than through outright acquisition.
+                        </p>
+                        <p class="text-purple-100 mb-8 leading-relaxed text-sm">
+                            M&A is the most costly, complex, and difficult to reverse option. Only if <strong>extreme closeness</strong> to the resource partner is necessary should M&A be considered the buy option.
+                        </p>
+                        <div class="bg-purple-700/50 rounded-xl p-5 border-l-4 border-purple-300">
+                            <p class="text-xs uppercase font-bold text-purple-300 mb-1 tracking-wider">Final Lens</p>
+                            <p class="text-sm leading-relaxed">Can you integrate the targeted firm? If low relevancy, low tradability, and high need for closeness are met, integration is the final hurdle before acquiring.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Simulation Panel -->
+                <div class="w-full md:w-2/3 bg-slate-100 flex flex-col justify-center items-center p-8 relative overflow-y-auto">
+                    <h3 class="text-xl font-bold text-slate-800 mb-6 text-center z-10">The Acquisition Reality Check</h3>
+                    <p class="text-sm text-slate-500 mb-6 text-center z-10">Evaluating Post-Merger Integration</p>
+                    
+                    <!-- Mini-Sim: The Integration Dilemma -->
+                    <div class="w-full max-w-xl bg-white rounded-xl p-6 border border-slate-200 shadow-lg relative z-10">
+                        <h4 class="text-lg font-bold text-purple-900 mb-4 flex items-center"><i class="fab fa-windows text-purple-500 mr-2"></i> Mini-Sim: The Microsoft-Nokia Gamble</h4>
+                        
+                        <div id="integration-sim-step1">
+                            <p class="text-sm text-slate-700 mb-4 leading-relaxed">You are Microsoft CEO Steve Ballmer. You desperately need a presence in mobile devices. Internal development (Build) is not an option. A loose alliance (Borrow) with Nokia isn't giving you enough control over the hardware.</p>
+                            <p class="text-sm text-slate-700 mb-6 leading-relaxed font-semibold bg-purple-50 p-3 rounded border border-purple-100">Decision: You conclude you need "extreme closeness" and decide to Buy Nokia for $9.4 Billion. What is the crucial final question you MUST honestly answer before signing?</p>
+                            
+                            <div class="flex flex-col space-y-3">
+                                <button onclick="integrationSimAnswer('cost')" class="w-full bg-white text-slate-700 border-2 border-slate-200 font-bold py-3 px-4 rounded-lg hover:border-purple-400 hover:bg-purple-50 transition text-sm text-left flex items-center"><i class="fas fa-dollar-sign text-slate-400 mr-3 text-lg"></i> Can we afford the $9.4 Billion price tag?</button>
+                                <button onclick="integrationSimAnswer('culture')" class="w-full bg-purple-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-purple-700 transition text-sm text-left flex items-center shadow-md"><i class="fas fa-users-cog text-purple-200 mr-3 text-lg"></i> How well can we successfully integrate the targeted firm and its culture?</button>
+                                <button onclick="integrationSimAnswer('market')" class="w-full bg-white text-slate-700 border-2 border-slate-200 font-bold py-3 px-4 rounded-lg hover:border-purple-400 hover:bg-purple-50 transition text-sm text-left flex items-center"><i class="fas fa-chart-line text-slate-400 mr-3 text-lg"></i> Will this acquisition immediately increase our market share against Apple?</button>
+                            </div>
+                        </div>
+                        
+                        <div id="integration-sim-feedback" class="hidden">
+                            <div class="bg-purple-50 text-slate-800 p-5 rounded-lg text-sm shadow-inner mb-4 border border-purple-100">
+                                <p id="integration-sim-text" class="mb-3 leading-relaxed"></p>
+                                <div class="bg-white p-3 rounded border border-purple-200 mt-4 shadow-sm">
+                                    <p class="font-bold text-purple-800 text-xs uppercase tracking-wide"><i class="fas fa-exclamation-triangle mr-1"></i> The Graveyard of M&A</p>
+                                    <p class="text-slate-700 font-medium mt-1 text-xs sm:text-sm">Multibillion-dollar integration failures are common: Bayer/Monsanto, Alcatel/Lucent, Daimler/Chrysler, AOL/Time Warner, HP/Autonomy, and Bank of America/Countrywide. You should always consider finding a less costly borrow arrangement first.</p>
+                                </div>
+                            </div>
+                            <button onclick="closeModal('buyModal')" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 rounded-lg transition shadow-md flex justify-center items-center">Complete Framework <i class="fas fa-check-circle ml-2"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="teslaAllianceModal" class="modal fixed inset-0 flex items-center justify-center bg-slate-900/80 backdrop-blur-sm p-4 z-[100]">
+        <div class="bg-white w-full max-w-4xl h-auto max-h-[90vh] rounded-2xl shadow-2xl overflow-y-auto relative animate-fade-in-up">
+            <button onclick="closeModal('teslaAllianceModal')" class="absolute top-6 right-6 text-slate-400 hover:text-slate-800 bg-slate-100 rounded-full p-2 transition-colors z-50">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+            <div class="p-8 md:p-12">
+                <span class="bg-red-100 text-red-700 text-xs font-bold px-2 py-1 rounded uppercase mb-4 inline-block">Strategic Alliances Case Study</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">How Tesla Used Alliances Strategically</h2>
+                <div class="prose prose-slate max-w-none text-slate-700 leading-relaxed">
+                    <p class="mb-6 text-lg font-medium">Since its IPO in 2010, the electric-car manufacturer Tesla has had a tremendous impact. Indeed, Tesla crossed $1 trillion in market cap (in 2021), making it more valuable than all of the legacy carmakers combined.</p>
+                    <p class="mb-8">One critical factor in the early success of the California startup is the role its alliance strategy played, in particular its alliances with Daimler, Toyota, and Panasonic.</p>
+                    <div class="grid md:grid-cols-2 gap-8 mb-8">
+                        <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                            <h3 class="text-xl font-bold text-slate-900 mb-3 flex items-center"><i class="fas fa-handshake text-indigo-600 mr-2"></i> Daimler (2009)</h3>
+                            <p class="text-sm">Initially, Tesla had neither a market nor legitimacy and was plagued with technical problems. In 2009, Tesla allied with Daimler. The deal provided Tesla with <strong>superior engineering expertise</strong> and a cash infusion of <strong>$50 million</strong>, which helped to save the company from potential bankruptcy.</p>
+                        </div>
+                        <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                            <h3 class="text-xl font-bold text-slate-900 mb-3 flex items-center"><i class="fas fa-industry text-indigo-600 mr-2"></i> Toyota (2010)</h3>
+                            <p class="text-sm">The alliance with Toyota enabled Tesla to buy the former NUMMI factory in Fremont, California. Without this factory, Tesla would not have been able to produce the Model S. This partnership also helped Tesla learn <strong>large-scale, high-quality manufacturing</strong> from the pioneer of lean manufacturing.</p>
+                        </div>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 mb-8">
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 flex items-center"><i class="fas fa-battery-full text-indigo-600 mr-2"></i> Panasonic (2014)</h3>
+                        <p class="text-sm">Tesla signed a strategic alliance with Osaka-based Panasonic, a world leader in battery technology. The two companies jointly invested <strong>$5 billion</strong> to build a lithium-ion battery plant ("Gigafactory") in Nevada. This partnership enabled Tesla to develop its core competency: designing battery packs with high performance and range without overheating.</p>
+                    </div>
+                    <div class="border-l-4 border-indigo-500 pl-6 py-2 bg-indigo-50/50">
+                        <h4 class="font-bold text-slate-900 mb-2">Strategic Lesson</h4>
+                        <p class="text-sm">Tesla’s ability to attract and work with leading companies in the automotive and other key industries as strategic alliance partners is an important part of its formula for success.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal Logic
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+            document.body.style.overflow = ''; 
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                closeModal(event.target.id);
+            }
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                const modals = document.querySelectorAll('.modal.active');
+                modals.forEach(modal => closeModal(modal.id));
+            }
+        });
+
+        // ----------------------------------------------------
+        // BUILD-BORROW-BUY INTERACTIVE FLOWCHART LOGIC
+        // ----------------------------------------------------
+        function bbbNext(nextStepId, currentStepNum) {
+            document.getElementById('bbb-step-' + currentStepNum).classList.add('hidden');
+            if(nextStepId.startsWith('step-')) {
+                document.getElementById('bbb-' + nextStepId).classList.remove('hidden');
+            } else {
+                // It's a result
+                document.getElementById('bbb-result-' + nextStepId).classList.remove('hidden');
+            }
+        }
+
+        function bbbReset() {
+            document.querySelectorAll('.bbb-step').forEach(el => el.classList.add('hidden'));
+            document.getElementById('bbb-step-1').classList.remove('hidden');
+        }
+
+        // ----------------------------------------------------
+        // BUILD MODAL: NYT MINI-SIM LOGIC
+        // ----------------------------------------------------
+        function nytSimAnswer(choseYes) {
+            document.getElementById('nyt-sim-step1').classList.add('hidden');
+            const feedbackDiv = document.getElementById('nyt-sim-feedback');
+            const feedbackText = document.getElementById('nyt-sim-text');
+            
+            let responseText = "";
+            if (choseYes) {
+                responseText = "<strong>Strategic Trap!</strong> Although the activities may seem similar, the underlying business model and technology for online publishing are radically different from traditional print media.<br><br>";
+            } else {
+                responseText = "<strong>Correct Insight!</strong> Even though reporting activities seem similar, the underlying business model and technology are radically different.<br><br>";
+            }
+
+            responseText += "Managing community interactions and applying data analytics to understand reader engagement are entirely new elements. Online news requires real-time, <strong>24/7, 365 days a year</strong> reporting. Old-line news companies are now competing with millions of 'citizen journalists' on social media (Twitter, Weibo) who often have an edge on breaking news.<br><br>";
+            responseText += "<strong>The Second Test:</strong> Applying the <strong>VRIO framework</strong> shows that your internal resources are neither similar to what is needed nor superior to competitors' resources in the digital space.";
+            
+            feedbackText.innerHTML = responseText;
+            
+            feedbackDiv.classList.remove('hidden');
+            feedbackDiv.classList.add('animate-fade-in-up');
+        }
+
+        // ----------------------------------------------------
+        // BUY MODAL: INTEGRATION MINI-SIM LOGIC
+        // ----------------------------------------------------
+        function integrationSimAnswer(choice) {
+            document.getElementById('integration-sim-step1').classList.add('hidden');
+            const feedbackDiv = document.getElementById('integration-sim-feedback');
+            const feedbackText = document.getElementById('integration-sim-text');
+            
+            let responseText = "";
+            if (choice === 'culture') {
+                responseText = "<strong class='text-green-600'>Correctly Identified!</strong> The final question of the Build-Borrow-Buy lens is: Can you integrate the target firm?<br><br>";
+            } else {
+                responseText = "<strong class='text-red-600'>Strategic Blindspot!</strong> While cost and market share matter, the absolute killer of M&A deals is the inability to integrate the target firm after the purchase.<br><br>";
+            }
+
+            responseText += "Unfortunately, Microsoft failed this critical integration test. Due to deep cultural differences and operational friction, the desperate gamble failed. Just 15 months later, new CEO Satya Nadella was forced to write down <strong>$7.6 billion in losses (over 80% of the value)</strong> on the $9.4 billion Nokia deal.";
+            
+            feedbackText.innerHTML = responseText;
+            
+            feedbackDiv.classList.remove('hidden');
+            feedbackDiv.classList.add('animate-fade-in-up');
+        }
+
+        // ----------------------------------------------------
+        // SOCRATIC CHAT SIMULATION LOGIC (WAR ROOM)
+        // ----------------------------------------------------
+        const chatSimLog = document.getElementById('chat-sim-log');
+        const chatSimControls = document.getElementById('chat-sim-controls');
+        
+        const chatScenarioData = {
+            nodes: {
+                0: {
+                    prof: "Welcome to the War Room. You are the CEO of 'AutoTech India', a successful domestic manufacturer of conventional automotive parts. The industry is shifting rapidly to Electric Vehicles (EVs) and smart infotainment. You currently lack advanced software capabilities. <br><br>Applying First Principles, how do you diagnose your situation?",
+                    options: [
+                        { text: "My internal resources (metal manufacturing) are highly relevant to writing EV software.", next: 1 },
+                        { text: "My internal resources are NOT relevant to the software gap.", next: 2 }
+                    ]
+                },
+                1: {
+                    prof: "Incorrect. Bending metal and writing autonomous driving algorithms are fundamentally different capabilities. Your internal resource relevancy is LOW. Let's correct course. You lack the capability. Can you easily trade for it via a contract (like licensing software off the shelf)?",
+                    options: [
+                        { text: "Yes, software is highly tradable. I'll just license it.", next: 3 },
+                        { text: "No, proprietary EV integration software is complex, tacit knowledge. Hard to trade.", next: 4 }
+                    ]
+                },
+                2: {
+                    prof: "Correct. Relevancy is LOW. You cannot 'Build' this quickly. <br><br>Next question in the framework: Can you easily trade for this capability? (e.g., license the software off the shelf).",
+                    options: [
+                        { text: "Yes, software is highly tradable. I'll just license it.", next: 3 },
+                        { text: "No, proprietary EV integration software requires deep, tacit knowledge sharing. Hard to trade.", next: 4 }
+                    ]
+                },
+                3: {
+                    prof: "A poor choice. While generic software is tradable, deep EV integration requires tacit knowledge and custom engineering that cannot be easily codified in a simple licensing contract. <br><br>Let us assume Tradability is LOW. Do you need extreme closeness (integration of teams) with the software provider to succeed?",
+                    options: [
+                        { text: "Yes, our engineers must work side-by-side continuously.", next: 5 },
+                        { text: "No, a joint venture or equity alliance gives enough closeness.", next: 6 }
+                    ]
+                },
+                4: {
+                    prof: "Excellent Socratic reasoning. Tradability is LOW because the knowledge is tacit. <br><br>Now, evaluate 'Closeness'. To build the car of the future, do you need extreme closeness (total control) with the software firm, or is a partnership sufficient?",
+                    options: [
+                        { text: "Yes, I need total control to integrate their code perfectly into our hardware.", next: 5 },
+                        { text: "No, we can achieve closeness through a Joint Venture without full integration.", next: 6 }
+                    ]
+                },
+                5: {
+                    prof: "You desire extreme closeness. The final hurdle: Integration. You are a traditional, hierarchical Indian manufacturing firm. The target is an agile, flat-hierarchy software startup in Bangalore. Can you easily integrate them if you buy them?",
+                    options: [
+                        { text: "Yes, I will just fire their management and enforce our rules.", next: 7 },
+                        { text: "No, cultural clash is highly likely. Our cultures are oil and water.", next: 8 }
+                    ]
+                },
+                6: {
+                    prof: "Strategic wisdom! You recognize that you don't need total ownership to get closeness. An Equity Alliance or Joint Venture is optimal here. <br><br><strong>Outcome: ALLIANCE.</strong> Similar to Tata Motors partnering with tech firms. You have successfully navigated the framework!",
+                    options: [
+                        { text: "Finish Simulation", next: 99 }
+                    ]
+                },
+                7: {
+                    prof: "Catastrophic failure. This is classic CEO hubris. You acquired them ('BUY'), but by forcing a manufacturing culture onto software engineers, top talent will leave. You destroyed value. <br><br><strong>Outcome: FAILED M&A.</strong>",
+                    options: [
+                        { text: "Finish Simulation", next: 99 }
+                    ]
+                },
+                8: {
+                    prof: "Astute observation! You recognized the integration risk. Because you cannot easily integrate them, you should NOT acquire them, even if you want closeness. <br><br><strong>Outcome: REVISIT STRATEGY or pursue a Joint Venture.</strong> You avoided a massive M&A disaster!",
+                    options: [
+                        { text: "Finish Simulation", next: 99 }
+                    ]
+                },
+                99: {
+                    prof: "Simulation complete. You have applied the Build-Borrow-Buy framework and analyzed Alliance vs M&A logic.",
+                    options: []
+                }
+            }
+        };
+
+        let chatSimState = { step: 0 };
+
+        function addProfMessage(htmlText) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'p-4 rounded-lg shadow-sm mb-4 professor-msg text-slate-800 w-5/6 mr-auto';
+            msgDiv.innerHTML = `<div class="font-bold text-sm text-indigo-700 mb-1 flex items-center"><i class="fas fa-user-graduate mr-2"></i> Professor:</div>${htmlText}`;
+            chatSimLog.appendChild(msgDiv);
+            chatSimLog.scrollTop = chatSimLog.scrollHeight;
+        }
+
+        function addUserMessage(text) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'p-4 rounded-lg shadow-sm mb-4 user-msg text-slate-800 w-5/6 ml-auto';
+            msgDiv.innerHTML = `<div class="font-bold text-sm text-green-700 mb-1 flex items-center justify-end">You (CEO) <i class="fas fa-briefcase ml-2"></i></div>${text}`;
+            chatSimLog.appendChild(msgDiv);
+            chatSimLog.scrollTop = chatSimLog.scrollHeight;
+        }
+
+        function renderChatOptions(options) {
+            chatSimControls.innerHTML = '';
+            if(!options || options.length === 0) {
+                 const btn = document.createElement('button');
+                 btn.className = 'p-3 bg-slate-200 text-slate-700 rounded font-semibold hover:bg-slate-300 transition w-full text-center';
+                 btn.innerText = "Restart Simulation";
+                 btn.onclick = () => startChatSimulation();
+                 chatSimControls.appendChild(btn);
+                 return;
+            }
+
+            options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'p-3 bg-white border border-indigo-200 text-indigo-700 rounded shadow-sm hover:bg-indigo-50 hover:border-indigo-400 transition w-full text-left font-medium';
+                btn.innerText = opt.text;
+                btn.onclick = () => handleChatChoice(opt.text, opt.next);
+                chatSimControls.appendChild(btn);
+            });
+        }
+
+        function handleChatChoice(text, nextStep) {
+            addUserMessage(text);
+            chatSimControls.innerHTML = '<div class="text-center text-slate-400 text-sm py-2"><i class="fas fa-spinner fa-spin mr-2"></i> Professor is analyzing...</div>';
+            
+            setTimeout(() => {
+                chatSimState.step = nextStep;
+                const node = chatScenarioData.nodes[nextStep];
+                addProfMessage(node.prof);
+                renderChatOptions(node.options);
+            }, 800);
+        }
+
+        function startChatSimulation() {
+            chatSimLog.innerHTML = '';
+            chatSimState.step = 0;
+            const node = chatScenarioData.nodes[0];
+            addProfMessage(node.prof);
+            renderChatOptions(node.options);
+        }
+
+        // ----------------------------------------------------
+        // BASELINE SIMULATION GAME LOGIC
+        // ----------------------------------------------------
+        const stages = [
+            {
+                title: "Stage 1: The Innovation Gap",
+                desc: "Your tech company needs a mobile OS to survive. Your engineers are desktop experts (Low Internal Relevance). A tradable license isn't available (Low Tradability). You need close collaboration with the mobile tech creators (High Closeness).",
+                options: [
+                    { text: "Build In-House (Internal)", score: 0, feedback: "Risky and slow. Your team lacks the skills, and time compression diseconomies will hurt you." },
+                    { text: "License a Generic OS (Contract)", score: 10, feedback: "Fast, but offers no differentiation. Low tradability makes this difficult." },
+                    { text: "Equity Alliance (Borrow)", score: 30, feedback: "<strong>Perfect Choice!</strong> High closeness is required, but full integration isn't necessary yet. An equity alliance secures the tech without the full risk of acquisition." },
+                    { text: "Acquire the Startup (Buy)", score: 15, feedback: "High risk of 'Winner's Curse' and culture clash. You paid too much for technology you could have accessed via alliance." }
+                ]
+            },
+            {
+                title: "Stage 2: Global Expansion",
+                desc: "You must enter the Indian market to grow. The cultural and administrative distance is HIGH. You lack local knowledge.",
+                options: [
+                    { text: "Export only", score: 5, feedback: "Fails to address local responsiveness needs in a culturally distant market." },
+                    { text: "Joint Venture (Borrow)", score: 30, feedback: "<strong>Excellent!</strong> A JV allows you to access the local partner's knowledge and navigate administrative hurdles while sharing risk." },
+                    { text: "Wholly Owned Subsidiary", score: 10, feedback: "High control, but you face the 'Liability of Foreignness' alone. High risk of failure." }
+                ]
+            },
+            {
+                title: "Stage 3: Market Consolidation",
+                desc: "The industry is maturing. A rival, DataX, is starting a price war. You need to reduce competitive intensity and gain scale. Control, Speed, or Cost: Which variable drives the final decision?",
+                options: [
+                    { text: "Start a Price War", score: -10, feedback: "<strong>Wrong.</strong> This is a negative-sum game that destroys industry profits." },
+                    { text: "Horizontal Acquisition (Buy)", score: 30, feedback: "<strong>Correct!</strong> Buying a competitor reduces rivalry (excess capacity) and increases market power (consolidation). See the comparison table below." },
+                    { text: "Do Nothing", score: 10, feedback: "Safe, but you risk losing market share to a consolidated competitor." }
+                ]
+            }
+        ];
+
+        let currentStageIndex = 0;
+        let totalScore = 0;
+
+        function startGame() {
+            currentStageIndex = 0;
+            totalScore = 0;
+            document.getElementById('start-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('gameplay-screen').classList.remove('hidden');
+            loadStage();
+        }
+
+        function loadStage() {
+            const stage = stages[currentStageIndex];
+            document.getElementById('stage-indicator').innerText = `Stage ${currentStageIndex + 1} of ${stages.length}`;
+            document.getElementById('current-score').innerText = totalScore;
+            document.getElementById('question-title').innerText = stage.title;
+            document.getElementById('question-desc').innerText = stage.desc;
+            document.getElementById('progress-bar').style.width = `${((currentStageIndex) / stages.length) * 100}%`;
+            
+            // Reset UI
+            document.getElementById('feedback-area').classList.add('hidden');
+            document.getElementById('comparison-table-container').classList.add('hidden'); // Hide table initially
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
+
+            stage.options.forEach((opt, index) => {
+                const btn = document.createElement('div');
+                btn.className = "sim-option p-4 border-2 border-slate-200 rounded-lg font-semibold text-slate-700 hover:shadow-md";
+                btn.innerText = opt.text;
+                btn.onclick = () => selectOption(index);
+                container.appendChild(btn);
+            });
+        }
+
+        function selectOption(index) {
+            const stage = stages[currentStageIndex];
+            const selected = stage.options[index];
+            
+            // Update score
+            totalScore += selected.score;
+            document.getElementById('current-score').innerText = totalScore;
+
+            // Show feedback
+            const feedbackArea = document.getElementById('feedback-area');
+            feedbackArea.classList.remove('hidden');
+            document.getElementById('feedback-title').innerHTML = selected.score >= 20 ? "<i class='fas fa-check-circle text-green-600 mr-2'></i> Strategic Success" : "<i class='fas fa-exclamation-circle text-red-600 mr-2'></i> Strategic Misstep";
+            document.getElementById('feedback-text').innerHTML = selected.feedback + ` <span class='font-bold block mt-2'>Points: ${selected.score > 0 ? '+' : ''}${selected.score}</span>`;
+
+            // Show Comparison Table ONLY for Stage 3 (Index 2) if they chose Acquisition or want to learn
+            if (currentStageIndex === 2) {
+                 const tableContainer = document.getElementById('comparison-table-container');
+                 tableContainer.innerHTML = `
+                    <div class="mt-4 overflow-x-auto">
+                        <h5 class="text-sm font-bold text-slate-800 mb-2">Compare: Borrow vs. Buy</h5>
+                        <table class="min-w-full text-sm border-collapse border border-slate-300">
+                            <thead class="bg-slate-100">
+                                <tr>
+                                    <th class="border border-slate-300 p-2 text-left">Feature</th>
+                                    <th class="border border-slate-300 p-2 text-left text-indigo-600">Strategic Alliance</th>
+                                    <th class="border border-slate-300 p-2 text-left text-purple-600">Acquisition</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border border-slate-300 p-2 font-semibold">Control</td>
+                                    <td class="border border-slate-300 p-2">Shared / Negotiated</td>
+                                    <td class="border border-slate-300 p-2">Full / Absolute</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-slate-300 p-2 font-semibold">Cost</td>
+                                    <td class="border border-slate-300 p-2">Low (Organizational cost)</td>
+                                    <td class="border border-slate-300 p-2">High (Premium price)</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-slate-300 p-2 font-semibold">Reversibility</td>
+                                    <td class="border border-slate-300 p-2">High (Easier to exit)</td>
+                                    <td class="border border-slate-300 p-2">Low (Hard to undo)</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-slate-300 p-2 font-semibold">Integration Risk</td>
+                                    <td class="border border-slate-300 p-2">Low to Medium</td>
+                                    <td class="border border-slate-300 p-2">Very High</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                 `;
+                 tableContainer.classList.remove('hidden');
+            }
+
+            // Disable options
+            const opts = document.querySelectorAll('.sim-option');
+            opts.forEach(opt => {
+                opt.style.pointerEvents = 'none';
+                opt.classList.add('opacity-50');
+            });
+            opts[index].classList.remove('opacity-50');
+            opts[index].classList.add(selected.score >= 20 ? 'bg-green-50' : 'bg-red-50', selected.score >= 20 ? 'border-green-500' : 'border-red-500');
+        }
+
+        function nextStage() {
+            currentStageIndex++;
+            if (currentStageIndex < stages.length) {
+                loadStage();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('gameplay-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+            
+            const title = document.getElementById('result-title');
+            const icon = document.getElementById('result-icon');
+            const msg = document.getElementById('result-msg');
+            const scoreText = document.getElementById('result-score-text');
+
+            scoreText.innerText = `Final Score: ${totalScore} / 90`;
+
+            if (totalScore >= 80) {
+                icon.className = "w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl";
+                icon.innerHTML = "<i class='fas fa-trophy'></i>";
+                title.innerText = "Strategic Mastermind";
+                msg.innerText = "Incredible! You navigated the complexities of corporate strategy perfectly. Your firm is now a global dominator.";
+            } else if (totalScore >= 50) {
+                icon.className = "w-20 h-20 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl";
+                icon.innerHTML = "<i class='fas fa-user-tie'></i>";
+                title.innerText = "Competent Strategist";
+                msg.innerText = "Solid performance. You made some good calls, but missed a few nuances in the framework. Review the VRIO and CAGE models and try again!";
+            } else {
+                icon.className = "w-20 h-20 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl";
+                icon.innerHTML = "<i class='fas fa-chart-line-down'></i>";
+                title.innerText = "Strategy Intern";
+                msg.innerText = "Your firm struggled to grow. Revisit the Build-Borrow-Buy framework to understand when to partner and when to acquire.";
+            }
+        }
+
+        function resetQuiz() {
+            renderQuiz();
+            document.getElementById('quiz').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Scroll Spy Logic
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('main section[id]');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 180) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active-nav');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active-nav');
+                }
+            });
+        });
+
+        // ----------------------------------------------------
+        // QUIZ LOGIC
+        // ----------------------------------------------------
+        const quizQuestions = [
+            {
+                q: "Which of the following is NOT one of the three options in the Build-Borrow-Buy framework?",
+                a: ["Build (Internal)", "Borrow (Alliance)", "Barter (Trade)", "Buy (Acquisition)"],
+                correct: 2,
+                desc: "The framework consists of Build (Internal), Borrow (Alliances), and Buy (Acquisition). 'Barter' is not a strategic component of this framework."
+            },
+            {
+                q: "In the context of alliances, what does 'Real Options' refer to?",
+                a: ["The right to sue a partner", "The obligation to buy a partner", "The right, but not the obligation, to make future investments", "The tangible assets of a firm"],
+                correct: 2,
+                desc: "Real options allow firms to make small initial investments (buy an option) to wait and see if a technology or market succeeds before committing fully."
+            },
+            {
+                q: "What defines a 'Horizontal Integration'?",
+                a: ["Merging with a supplier", "Merging with a competitor at the same stage of the value chain", "Merging with a distributor", "Outsourcing manufacturing"],
+                correct: 1,
+                desc: "Horizontal integration is the process of merging with or acquiring competitors to consolidate the industry."
+            },
+            {
+                q: "Which alliance type has the highest cost and usually requires the longest negotiation?",
+                a: ["Non-equity Alliance", "Equity Alliance", "Joint Venture (JV)", "Licensing Agreement"],
+                correct: 2,
+                desc: "Joint Ventures involve creating a separate legal entity, requiring significant capital, legal work, and shared management."
+            },
+            {
+                q: "Why did the FTC block the Staples and Office Depot merger in 2015?",
+                a: ["They were not profitable", "It would reduce competition in the B2B contract market", "Amazon was too small", "They had different cultures"],
+                correct: 1,
+                desc: "The FTC argued that while retail competition (Walmart/Amazon) was strong, a merger would create a monopoly in the B2B contract market for large corporations."
+            },
+            {
+                q: "What is the 'Winner's Curse' in M&A?",
+                a: ["Winning a deal but overpaying for the target company", "Losing a deal to a rival", "Acquiring a company that has no patents", "Winning a lawsuit against the FTC"],
+                correct: 0,
+                desc: "The winner's curse occurs when a firm wins a bidding war but pays a price so high that it destroys shareholder value."
+            },
+            {
+                q: "Which of the following is a 'Non-Equity' alliance?",
+                a: ["Buying 10% stock in a partner", "Creating a third company together", "A licensing contract between Microsoft and IBM", "A hostile takeover"],
+                correct: 2,
+                desc: "Non-equity alliances are based on contracts (licensing, supply, distribution) and do not involve ownership stakes."
+            },
+            {
+                q: "In the VRIO framework, if a resource is Valuable, Rare, and Costly to Imitate, but the firm is not Organized to capture value, what is the result?",
+                a: ["Sustainable Competitive Advantage", "Temporary Competitive Advantage", "Unused Competitive Advantage", "Competitive Parity"],
+                correct: 2,
+                desc: "Without the 'O' (Organization), a firm cannot fully exploit its VRI resources."
+            },
+            {
+                q: "What was the primary motivation for the Disney-Pixar acquisition?",
+                a: ["To shut down Pixar", "To acquire complementary assets (Distribution)", "To access new capabilities (CGI Animation)", "To lower the cost of theme parks"],
+                correct: 2,
+                desc: "Disney's internal animation (Build) was failing. They bought Pixar to access superior digital animation capabilities."
+            },
+            {
+                q: "What is 'Co-opetition'?",
+                a: ["Illegal price fixing", "Cooperation by competitors to achieve a strategic objective", "Hostile takeover attempts", "Ignoring competitors completely"],
+                correct: 1,
+                desc: "Co-opetition describes the simultaneous cooperation and competition between firms (e.g., Samsung supplies screens to Apple)."
+            },
+            {
+                q: "When should a firm choose to 'Build' internally?",
+                a: ["When the resource is highly relevant to the firm's existing internal resources", "When the resource is easily tradable", "When the firm needs to move very fast", "When the market is highly uncertain"],
+                correct: 0,
+                desc: "Firms should build when they have high internal resource relevance—meaning their existing skills are similar to what is needed."
+            },
+            {
+                q: "What is a 'Hostile Takeover'?",
+                a: ["A merger of equals", "An acquisition where the target firm does not wish to be acquired", "A joint venture that fails", "Buying a company for $1"],
+                correct: 1,
+                desc: "A hostile takeover happens when the target company's management rejects the offer, but the acquirer pursues it directly with shareholders."
+            },
+            {
+                q: "Which company used alliances with Daimler and Toyota to survive its early years?",
+                a: ["Ford", "Tesla", "Rivian", "Lucid"],
+                correct: 1,
+                desc: "Tesla relied on strategic alliances with Daimler (cash/engineering) and Toyota (NUMMI factory) to survive before becoming profitable."
+            },
+            {
+                q: "In a Joint Venture, how many reporting lines do managers typically have?",
+                a: ["One", "Two (Double reporting lines)", "None", "Three"],
+                correct: 1,
+                desc: "JV managers often report to bosses at both parent companies, creating a 'two bosses' problem."
+            },
+            {
+                q: "What is the main benefit of Horizontal Integration regarding industry structure?",
+                a: ["Increases rivalry", "Decreases competitive intensity by reducing excess capacity", "Increases the threat of new entrants", " lowers barriers to entry"],
+                correct: 1,
+                desc: "By consolidating the industry, horizontal integration reduces the number of players and excess capacity, generally lowering rivalry."
+            }
+        ];
+
+        let quizScore = 0;
+
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            quizScore = 0;
+            document.getElementById('quiz-score').innerText = '0';
+
+            quizQuestions.forEach((item, index) => {
+                const qDiv = document.createElement('div');
+                qDiv.className = "border-b border-slate-200 pb-6 last:border-0";
+                
+                // Question Title
+                const title = document.createElement('h4');
+                title.className = "font-bold text-slate-800 text-lg mb-4 flex";
+                title.innerHTML = `<span class="text-indigo-600 mr-2">${index + 1}.</span> ${item.q}`;
+                qDiv.appendChild(title);
+
+                // Options Container
+                const optsDiv = document.createElement('div');
+                optsDiv.className = "space-y-2";
+                optsDiv.id = `q-${index}-options`;
+
+                item.a.forEach((opt, optIndex) => {
+                    const btn = document.createElement('div');
+                    btn.className = "quiz-option p-3 rounded border border-slate-300 text-slate-700 font-medium flex items-center";
+                    btn.innerHTML = `<div class="w-6 h-6 rounded-full border-2 border-slate-400 mr-3 flex items-center justify-center text-xs font-bold option-circle">${String.fromCharCode(65+optIndex)}</div> ${opt}`;
+                    btn.onclick = () => checkAnswer(index, optIndex, item.correct, item.desc);
+                    optsDiv.appendChild(btn);
+                });
+
+                qDiv.appendChild(optsDiv);
+
+                // Feedback Div (Hidden initially)
+                const feedDiv = document.createElement('div');
+                feedDiv.id = `q-${index}-feedback`;
+                feedDiv.className = "hidden mt-3 p-3 rounded bg-slate-100 text-sm text-slate-700";
+                qDiv.appendChild(feedDiv);
+
+                container.appendChild(qDiv);
+            });
+        }
+
+        function checkAnswer(qIndex, selectedIndex, correctIndex, explanation) {
+            const optionsDiv = document.getElementById(`q-${qIndex}-options`);
+            const feedbackDiv = document.getElementById(`q-${qIndex}-feedback`);
+            const options = optionsDiv.children;
+
+            // Update Score if correct
+            if (selectedIndex === correctIndex) {
+                quizScore++;
+                document.getElementById('quiz-score').innerText = quizScore;
+                options[selectedIndex].classList.add('correct');
+                options[selectedIndex].querySelector('.option-circle').style.borderColor = '#22c55e';
+                options[selectedIndex].querySelector('.option-circle').innerHTML = '<i class="fas fa-check"></i>';
+            } else {
+                options[selectedIndex].classList.add('wrong');
+                options[selectedIndex].querySelector('.option-circle').style.borderColor = '#ef4444';
+                options[selectedIndex].querySelector('.option-circle').innerHTML = '<i class="fas fa-times"></i>';
+                
+                // Highlight correct one
+                options[correctIndex].classList.add('correct');
+                options[correctIndex].querySelector('.option-circle').style.borderColor = '#22c55e';
+                options[correctIndex].querySelector('.option-circle').innerHTML = '<i class="fas fa-check"></i>';
+            }
+
+            // Disable all options
+            for (let btn of options) {
+                btn.classList.add('disabled');
+                btn.onclick = null;
+            }
+
+            // Show Feedback
+            feedbackDiv.innerHTML = `<strong>${selectedIndex === correctIndex ? "Correct!" : "Incorrect."}</strong> ${explanation}`;
+            feedbackDiv.classList.remove('hidden');
+            feedbackDiv.classList.add(selectedIndex === correctIndex ? 'bg-green-50' : 'bg-red-50');
+            feedbackDiv.classList.add(selectedIndex === correctIndex ? 'text-green-800' : 'text-red-800');
+        }
+
+        // Initialize Everything on Load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Start Socratic Chat Simulation
+            startChatSimulation();
+
+            // Initialize Charts if they exist
+            const lyftRevCanvas = document.getElementById('uberLyftRevChart');
+            if (lyftRevCanvas) {
+                const ctxLyftRev = lyftRevCanvas.getContext('2d');
+                new Chart(ctxLyftRev, {
+                    type: 'bar',
+                    data: {
+                        labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+                        datasets: [
+                            {
+                                label: 'Uber',
+                                data: [3.8, 7.9, 11.3, 14.1, 11.1, 17.5, 31.8, 37.2, 40.0],
+                                backgroundColor: 'rgba(30, 41, 59, 0.8)',
+                                borderRadius: 4
+                            },
+                            {
+                                label: 'Lyft',
+                                data: [0.3, 1.0, 2.1, 3.6, 2.3, 3.2, 4.1, 4.4, 5.0],
+                                backgroundColor: 'rgba(236, 72, 153, 0.8)',
+                                borderRadius: 4
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { position: 'bottom' }
+                        },
+                        scales: {
+                            y: { beginAtZero: true, title: { display: true, text: 'Billions ($)' } }
+                        }
+                    }
+                });
+            }
+
+            const lyftProfitCanvas = document.getElementById('uberLyftProfitChart');
+            if (lyftProfitCanvas) {
+                const ctxLyftProfit = lyftProfitCanvas.getContext('2d');
+                new Chart(ctxLyftProfit, {
+                    type: 'line',
+                    data: {
+                        labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+                        datasets: [
+                            {
+                                label: 'Uber',
+                                data: [-2.8, -4.0, -1.8, -8.5, -6.7, -0.4, -9.1, 1.1, 9.86],
+                                borderColor: 'rgba(30, 41, 59, 1)',
+                                backgroundColor: 'rgba(30, 41, 59, 0.1)',
+                                tension: 0.3,
+                                fill: false
+                            },
+                            {
+                                label: 'Lyft',
+                                data: [-0.6, -0.6, -0.9, -2.6, -1.7, -1.0, -1.6, -0.3, 0.023],
+                                borderColor: 'rgba(236, 72, 153, 1)',
+                                backgroundColor: 'rgba(236, 72, 153, 0.1)',
+                                tension: 0.3,
+                                fill: false
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { position: 'bottom' }
+                        },
+                        scales: {
+                            y: { title: { display: true, text: 'Net Income ($B)' } }
+                        }
+                    }
+                });
+            }
+
+            // Initialize Lyft Pre/Post IPO Chart (Small one)
+            const lyftCanvas = document.getElementById('lyftUberChart');
+            if (lyftCanvas) {
+                const ctxLyft = lyftCanvas.getContext('2d');
+                new Chart(ctxLyft, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Pre-IPO Valuation', 'Post-IPO Day 1'],
+                        datasets: [
+                            { label: 'Lyft ($B)', data: [15, 26], backgroundColor: 'rgba(236, 72, 153, 0.8)' },
+                            { label: 'Uber ($B)', data: [82, 76], backgroundColor: 'rgba(30, 41, 59, 0.8)' }
+                        ]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false }
+                });
+            }
+
+            const maCanvas = document.getElementById('maDriversChart');
+            if (maCanvas) {
+                const ctxMA = maCanvas.getContext('2d');
+                new Chart(ctxMA, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Market Share', 'New Capabilities', 'New Markets', 'Pre-empt Rivals', 'Cost Synergy'],
+                        datasets: [{
+                            label: 'Strategic Importance (%)',
+                            data: [85, 90, 75, 60, 70],
+                            backgroundColor: [
+                                'rgba(79, 70, 229, 0.7)',
+                                'rgba(59, 130, 246, 0.7)',
+                                'rgba(34, 197, 94, 0.7)',
+                                'rgba(245, 158, 11, 0.7)',
+                                'rgba(139, 92, 246, 0.7)'
+                            ],
+                            borderWidth: 0,
+                            borderRadius: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        indexAxis: 'y',
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            x: { beginAtZero: true, max: 100 }
+                        }
+                    }
+                });
+            }
+
+            // Initialize Quiz
+            renderQuiz();
+        });
+
+    </script>
+</body>
+</html>

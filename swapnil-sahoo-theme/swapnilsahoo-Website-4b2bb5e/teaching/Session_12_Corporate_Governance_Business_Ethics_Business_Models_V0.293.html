@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 12: Governance, Ethics & Models</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Markdown Parser for AI responses -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-dark: #0f172a;
+            --accent-blue: #3B82F6;
+            --ikea-blue: #0051ba;
+            --ikea-yellow: #ffda1a;
+            /* Chapter 12 Specific Colors */
+            --organic-green: #10b981;
+            --mechanistic-blue: #3b82f6;
+            --danger-red: #ef4444;
+            --warning-amber: #f59e0b;
+        }
+        
+        body {
+            font-family: 'Satoshi', sans-serif;
+            background-color: #fafafa;
+            color: #334155;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        h1, h2, h3, h4, .serif { font-family: 'Playfair Display', serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        /* Progress Bar */
+        #progress-bar {
+            position: fixed; top: 0; left: 0; height: 4px;
+            background: var(--accent-blue); width: 0%; z-index: 100; transition: width 0.1s;
+        }
+
+        /* Navigation */
+        #main-header { position: sticky; top: 0; z-index: 40; transition: all 0.3s ease; }
+        .nav-link { 
+            position: relative; font-weight: 500; color: #64748b; transition: color 0.2s;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--primary-dark); }
+        .nav-link.active::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 100%; height: 2px; background: var(--accent-blue);
+        }
+
+        /* Animations */
+        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        .fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .spinner { animation: spin 1s linear infinite; }
+
+        /* Components */
+        .content-card {
+            background: white; border-radius: 1rem;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+            border: 1px solid #f1f5f9;
+        }
+        .content-card:hover { transform: translateY(-5px); }
+        
+        /* Tabs */
+        .tab-btn { transition: all 0.2s; border-left: 4px solid transparent; }
+        .tab-btn.active { background: #eff6ff; border-left-color: var(--accent-blue); color: var(--accent-blue); }
+        
+        /* Custom Slider */
+        .slider-thumb::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--accent-blue); cursor: pointer; box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2); }
+        
+        /* Simulation specific */
+        .hidden-section { display: none; }
+        .option-card { cursor: pointer; transition: all 0.2s; border: 1px solid #e2e8f0; }
+        .option-card:hover { border-color: var(--accent-blue); background-color: #eff6ff; }
+        .option-card.selected { border-color: var(--accent-blue); background-color: #dbeafe; box-shadow: 0 0 0 2px var(--accent-blue); }
+
+        .chart-container { position: relative; width: 100%; max-width: 600px; margin: 0 auto; height: 350px; max-height: 400px; }
+        
+        /* Badges */
+        .badge { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; padding: 0.15rem 0.5rem; border-radius: 99px; letter-spacing: 0.05em; }
+        .badge-in { background-color: #fff7ed; color: #c2410c; border: 1px solid #ffedd5; }
+        .badge-gl { background-color: #eff6ff; color: #1d4ed8; border: 1px solid #dbeafe; }
+        
+        /* First Principle Question Box */
+        .fp-box {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-left: 4px solid #6366f1;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 0 0.75rem 0.75rem 0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Chess Icon Container */
+        .chess-logo {
+            width: 40px; height: 40px;
+            background: #1e293b;
+            color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .group:hover .chess-logo {
+            background: #2563eb;
+            transform: rotate(10deg);
+        }
+        
+        /* Outline List Styling */
+        .outline-list { list-style: none; padding-left: 0; counter-reset: section; }
+        .outline-list > li { position: relative; padding-left: 2.5rem; margin-bottom: 1rem; }
+        .outline-list > li::before { 
+            counter-increment: section; content: counter(section); 
+            position: absolute; left: 0; top: 0;
+            width: 1.75rem; height: 1.75rem; background: #e0e7ff; color: #4f46e5;
+            border-radius: 50%; font-size: 0.75rem; font-weight: bold;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        /* Matrix Table Styles */
+        .matrix-table th { background-color: #f1f5f9; color: #475569; padding: 1rem; text-align: left; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .matrix-table td { padding: 1rem; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
+        .matrix-table tr:hover { background-color: #f8fafc; }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <div id="progress-bar"></div>
+
+    <!-- Image Modal -->
+    <div id="image-modal" class="fixed inset-0 z-[100] bg-black/90 opacity-0 flex items-center justify-center p-4 hidden" onclick="closeImageModal()">
+        <button class="absolute top-4 right-4 text-white text-4xl font-bold hover:text-gray-300">&times;</button>
+        <img id="modal-image" src="" alt="Zoomed View" class="max-h-[90vh] max-w-full rounded-lg shadow-2xl object-contain cursor-zoom-out">
+        <p id="modal-caption" class="absolute bottom-8 left-0 right-0 text-center text-white text-sm bg-black/50 py-2 px-4"></p>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="main-header" class="bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <!-- Top Context Bar -->
+        <div class="bg-slate-50 border-b border-slate-100 py-1 text-center">
+            <div class="flex items-center justify-center gap-4 text-[10px] uppercase font-bold tracking-widest text-slate-400">
+                <span>Part 1: Analysis</span>
+                <span class="text-slate-300">/</span>
+                <span>Part 2: Formulation</span>
+                <span class="text-slate-300">/</span>
+                <span class="text-indigo-600 underline decoration-2 underline-offset-4">Part 3: Implementation</span>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="https://www.swapnilsahoo.com" target="_blank" class="flex items-center gap-3 group no-underline">
+                <!-- CHESS ICON -->
+                <div class="chess-logo">
+                    <i class="fas fa-chess-knight"></i>
+                </div>
+                <div class="leading-tight">
+                    <h1 class="font-bold text-slate-900 tracking-tight text-xl">Governance and Ethics</h1>
+                </div>
+            </a>
+            
+            <div class="hidden xl:flex space-x-6 text-sm">
+                <a href="#intro" class="nav-link active">The Fraud</a>
+                <a href="#global-parallels" class="nav-link">Global Cases</a>
+                <a href="#governance" class="nav-link">Governance</a>
+                <a href="#ethics" class="nav-link">Ethics</a>
+                <a href="#models" class="nav-link">Business Models</a>
+                <a href="#long-tail" class="nav-link">Long Tail</a>
+                <a href="#ai-consultant" class="nav-link text-indigo-600 font-bold">✨ AI Guardian</a>
+                <a href="#simulation" class="nav-link">Challenge</a>
+            </div>
+
+            <div class="flex items-center gap-5">
+                <a href="https://x.com/swapnilsahoo" target="_blank" class="text-slate-400 hover:text-blue-400 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" class="text-slate-400 hover:text-pink-600 transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" class="text-slate-400 hover:text-blue-600 transition-colors"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.chess.com/member/swapnilsahoo" target="_blank" class="text-slate-400 hover:text-green-600 transition-colors text-lg" title="Play Chess">
+                    <i class="fas fa-chess-king"></i>
+                </a>
+                <button class="xl:hidden text-slate-600"><i class="fas fa-bars text-xl"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <!-- SESSION OUTLINE & OBJECTIVES -->
+        <section id="outline" class="mb-24 fade-up">
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Outline -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                    <h2 class="text-2xl font-serif font-bold text-slate-900 mb-6">Session Outline</h2>
+                    <ul class="outline-list space-y-4 text-sm text-slate-600">
+                        <li>
+                            <strong class="text-slate-800">Corporate Governance</strong>
+                            <p class="mt-1 text-xs">Agency Theory, Board of Directors, Mechanisms</p>
+                        </li>
+                        <li>
+                            <strong class="text-slate-800">Strategy and Business Ethics</strong>
+                            <p class="mt-1 text-xs">Bad Apples vs. Bad Barrels, The MBA Oath</p>
+                        </li>
+                        <li>
+                            <strong class="text-slate-800">Business Models: Strategy in Action</strong>
+                            <p class="mt-1 text-xs">Razor-Razorblade, Subscription, Freemium, etc.</p>
+                        </li>
+                        <li>
+                            <strong class="text-slate-800">Dynamic Business Models</strong>
+                            <p class="mt-1 text-xs">Innovation, The Long Tail Concept</p>
+                        </li>
+                        <li>
+                            <strong class="text-slate-800">Implications for Strategic Leaders</strong>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Learning Objectives -->
+                <div class="bg-indigo-50 p-8 rounded-2xl border border-indigo-100">
+                    <h2 class="text-2xl font-serif font-bold text-indigo-900 mb-6">Learning Objectives</h2>
+                    <div class="space-y-4 text-sm text-indigo-800">
+                        <div class="flex gap-3">
+                            <span class="font-bold text-indigo-400">1.</span>
+                            <p>Explain the role of corporate governance and the principal-agent problem.</p>
+                        </div>
+                        <div class="flex gap-3">
+                            <span class="font-bold text-indigo-400">2.</span>
+                            <p>Apply agency theory to explain governance mechanisms.</p>
+                        </div>
+                        <div class="flex gap-3">
+                            <span class="font-bold text-indigo-400">3.</span>
+                            <p>Evaluate the board of directors as the central governance mechanism.</p>
+                        </div>
+                        <div class="flex gap-3">
+                            <span class="font-bold text-indigo-400">4.</span>
+                            <p>Explain the relationship between strategy and business ethics.</p>
+                        </div>
+                        <div class="flex gap-3">
+                            <span class="font-bold text-indigo-400">5.</span>
+                            <p>Use the business model framework to put strategy into action.</p>
+                        </div>
+                        <div class="flex gap-3">
+                            <span class="font-bold text-indigo-400">6.</span>
+                            <p>Explain the long-tail concept and business model innovation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HERO SECTION & CASE STUDY -->
+        <section id="intro" class="mb-24 fade-up">
+            <div class="text-center max-w-4xl mx-auto">
+                <!-- Fundamental Question Hook -->
+                <div class="bg-indigo-50 border-l-8 border-indigo-600 p-8 rounded-r-2xl text-left mb-12 shadow-sm">
+                    <p class="text-sm font-bold text-indigo-600 uppercase tracking-widest mb-2">Fundamental Question</p>
+                    <h1 class="text-3xl md:text-4xl font-serif font-bold text-slate-900 leading-tight mb-4">
+                        At what precise moment does the startup mantra of "fake it 'til you make it" cross the invisible line into criminal fraud?
+                    </h1>
+                    <p class="text-lg text-slate-700 leading-relaxed">
+                        While ambition fuels innovation, the stories of Theranos, Wirecard, and Satyam reveal a dark pattern: the transition from optimistic projection to systemic deception. This analysis explores parallel corporate failures in Global and Indian contexts, where governance vacuums and charismatic leadership blinded stakeholders to reality.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Theranos Deep Dive -->
+            <div class="grid md:grid-cols-2 gap-12 mb-16">
+                <div class="content-card p-8 border-t-4 border-red-500">
+                    <h2 class="text-2xl font-serif font-bold text-slate-900 mb-4">Theranos: The Unraveling</h2>
+                    <p class="text-slate-600 mb-4">
+                        The illusion began to crack in October 2015, when investigative reporter John Carreyrou of <em>The Wall Street Journal</em> published a bombshell report. Theranos's proprietary Edison device wasn't used for most tests; instead, they secretly ran samples on standard Siemens machines, often diluting blood to make it work—compromising accuracy.
+                    </p>
+                    <div class="space-y-4 mt-6">
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center shrink-0 mt-1"><i class="fas fa-bullhorn"></i></div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">The Whistleblowers</h4>
+                                <p class="text-sm text-slate-600">Tyler Shultz and Erika Cheung defied NDAs and legal threats to expose a culture of fear and data manipulation.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center shrink-0 mt-1"><i class="fas fa-gavel"></i></div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">The Verdict</h4>
+                                <p class="text-sm text-slate-600">Elizabeth Holmes convicted on fraud. 11.25-year prison sentence. $452M restitution. $10B value dissolved.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Global Parallels -->
+                <div class="space-y-6">
+                    <div class="content-card p-6 border-l-4 border-blue-500">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="font-bold text-slate-900">Wirecard (Germany)</h3>
+                            <span class="badge badge-gl">Global</span>
+                        </div>
+                        <p class="text-xs font-bold text-blue-600 mb-2 uppercase">The Missing Billions</p>
+                        <p class="text-sm text-slate-600">Once a DAX 30 pride, collapsed in 2020 when auditors found €1.9B cash never existed. Exposed massive regulatory failure.</p>
+                    </div>
+                    
+                    <div class="content-card p-6 border-l-4 border-purple-500">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="font-bold text-slate-900">FTX (USA/Bahamas)</h3>
+                            <span class="badge badge-gl">Global</span>
+                        </div>
+                        <p class="text-xs font-bold text-purple-600 mb-2 uppercase">The Governance Vacuum</p>
+                        <p class="text-sm text-slate-600">Sam Bankman-Fried (SBF) misused $8B customer funds for Alameda Research. "Complete failure of corporate controls." 25 years prison.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Indian Case Studies -->
+            <h3 class="text-2xl font-serif font-bold text-slate-900 mb-8 border-b border-slate-200 pb-4">Indian Case Studies: Riding the Tiger</h3>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <!-- Satyam -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-orange-500 hover:translate-y-[-2px] transition-transform">
+                    <h4 class="font-bold text-slate-800 mb-2">Satyam Computers</h4>
+                    <p class="text-xs font-bold text-orange-600 mb-3 uppercase">The Enron of India</p>
+                    <p class="text-sm text-slate-600 mb-4">Chairman Ramalinga Raju confessed to inflating cash balances by ₹7,000 crore ($1.5B). Described it as "riding a tiger, not knowing how to get off without being eaten."</p>
+                </div>
+
+                <!-- Ranbaxy -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-orange-500 hover:translate-y-[-2px] transition-transform">
+                    <h4 class="font-bold text-slate-800 mb-2">Ranbaxy</h4>
+                    <p class="text-xs font-bold text-orange-600 mb-3 uppercase">Data Fabrication</p>
+                    <p class="text-sm text-slate-600 mb-4">Systematically falsified data submitted to the FDA. Whistleblower Dinesh Thakur exposed the sale of substandard medication. Paid $500M fine in 2013.</p>
+                </div>
+
+                <!-- GoMechanic -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-orange-500 hover:translate-y-[-2px] transition-transform">
+                    <h4 class="font-bold text-slate-800 mb-2">GoMechanic</h4>
+                    <p class="text-xs font-bold text-orange-600 mb-3 uppercase">The Valuation Trap</p>
+                    <p class="text-sm text-slate-600 mb-4">Co-founder admitted to "errors in judgment" regarding financial reporting to secure SoftBank funding. Highlights the pressure for "hockey stick" growth.</p>
+                </div>
+            </div>
+
+            <!-- Comparative Analysis Table -->
+            <div class="content-card overflow-hidden">
+                <div class="bg-slate-50 px-6 py-4 border-b border-slate-100">
+                    <h3 class="font-bold text-slate-800">Comparative Analysis of Failure</h3>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left matrix-table">
+                        <thead class="bg-slate-50 text-slate-500 uppercase text-xs">
+                            <tr>
+                                <th class="p-4">Company</th>
+                                <th class="p-4">The Lie</th>
+                                <th class="p-4">The Enabler</th>
+                                <th class="p-4">The Outcome</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-4 font-bold">Theranos</td>
+                                <td class="p-4 text-red-600">Technology (Edison) did not work.</td>
+                                <td class="p-4">Secrecy & High-profile Board</td>
+                                <td class="p-4 font-bold text-slate-900">11.25 Years Prison (Holmes)</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-4 font-bold">Wirecard</td>
+                                <td class="p-4 text-red-600">€1.9B Cash did not exist.</td>
+                                <td class="p-4 text-red-500">Complex subsidiary structure</td>
+                                <td class="p-4 font-bold text-slate-900">Insolvency & Arrests</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-4 font-bold">FTX</td>
+                                <td class="p-4 text-red-600">Customer funds were safe.</td>
+                                <td class="p-4 text-red-500">Lack of Board/Audits</td>
+                                <td class="p-4 font-bold text-slate-900">25 Years Prison (SBF)</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-4 font-bold">Satyam</td>
+                                <td class="p-4 text-red-600">Inflated Cash Reserves.</td>
+                                <td class="p-4 text-red-500">Promoter Control</td>
+                                <td class="p-4 font-bold text-slate-900">Acquired by Tech Mahindra</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 1: GOVERNANCE (OPTIMIZED FOR AGENCY THEORY) -->
+        <section id="governance" class="mb-32 fade-up">
+            <div class="fp-box">
+                <p class="text-xs font-bold text-indigo-500 uppercase tracking-widest mb-1">First Principle Question</p>
+                <h3 class="text-2xl font-serif font-bold text-slate-800">If you cannot watch your employees 24/7, how do you prevent them from lying or taking reckless risks?</h3>
+                <p class="text-slate-600 mt-2">This dilemma is the heart of <strong>Agency Theory</strong>. When contracts fail to align incentives, results are catastrophic.</p>
+            </div>
+
+            <!-- Agency Theory Deep Dive -->
+            <div class="content-card p-8 mb-12 border-t-4 border-indigo-500">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xl"><i class="fas fa-user-secret"></i></div>
+                            <h4 class="text-xl font-bold text-slate-900">1. Adverse Selection</h4>
+                        </div>
+                        <p class="text-sm font-bold text-indigo-600 mb-2 uppercase tracking-wide">"The Hidden Information Problem"</p>
+                        <p class="text-sm text-slate-600 mb-4">Occurs <strong>before</strong> the transaction. The agent hides critical flaws or risks to secure the deal.</p>
+                        <div class="bg-white p-3 rounded border border-slate-200 text-xs">
+                            <p><strong>Classic Example:</strong> The "Lemons Market" (Used Cars).</p>
+                            <p class="mt-2"><strong>Real World (Global): Nikola Motors.</strong> Founder Trevor Milton rolled a non-working truck down a hill to fake a demo video. Investors bought a "lemon" stock based on hidden information.</p>
+                            <p class="mt-2"><strong>Real World (India): TCS Recruitment Scam (2023).</strong> HR staff accepted bribes to hire unqualified candidates ("lemons") who looked like "peaches" on paper.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-xl"><i class="fas fa-dice"></i></div>
+                            <h4 class="text-xl font-bold text-slate-900">2. Moral Hazard</h4>
+                        </div>
+                        <p class="text-sm font-bold text-red-600 mb-2 uppercase tracking-wide">"The Hidden Action Problem"</p>
+                        <p class="text-sm text-slate-600 mb-4">Occurs <strong>after</strong> the transaction. Secure in the contract, the agent takes undue risks because they don't bear the full cost of failure.</p>
+                        <div class="bg-white p-3 rounded border border-slate-200 text-xs">
+                            <p><strong>Classic Example:</strong> Insurance (Reckless driving because you're insured).</p>
+                             <p class="mt-2"><strong>Real World (Global): 2008 Financial Crisis.</strong> Banks took massive risks on subprime mortgages for bonuses, knowing the government ("The Principal") would bail them out.</p>
+                             <p class="mt-2"><strong>Real World (India): PNB & Nirav Modi.</strong> Bank officials issued unauthorized guarantees (LOUs) for kickbacks, taking the risk while the bank bore the liability.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Study: The Rogue Agent -->
+                <div class="mt-8 bg-slate-800 text-white p-6 rounded-xl shadow-md">
+                     <div class="flex justify-between items-start mb-4">
+                        <h4 class="text-lg font-bold text-white"><i class="fas fa-robot mr-2"></i> Case Study: The Rogue Agent (Waymo vs. Uber)</h4>
+                        <span class="badge badge-gl">Moral Hazard</span>
+                    </div>
+                    <p class="text-sm text-slate-300 mb-4">
+                        Star engineer Anthony Levandowski downloaded 14,000 confidential files from Waymo (Google) to build his own startup, Otto, which Uber then acquired.
+                    </p>
+                    <div class="grid md:grid-cols-3 gap-4 text-xs">
+                        <div class="bg-slate-700 p-3 rounded">
+                            <strong class="block text-blue-300 mb-1">The Failure</strong>
+                            Used Waymo resources to serve his own interest over his employer's.
+                        </div>
+                        <div class="bg-slate-700 p-3 rounded">
+                            <strong class="block text-blue-300 mb-1">The Outcome</strong>
+                            Sentenced to 18 months prison. Uber paid Waymo $245M.
+                        </div>
+                         <div class="bg-slate-700 p-3 rounded">
+                            <strong class="block text-blue-300 mb-1">The Lesson</strong>
+                            Without monitoring, agents will exploit assets for personal gain.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comparison Table -->
+                <div class="mt-8 overflow-x-auto">
+                    <table class="w-full text-sm text-left border border-slate-200">
+                        <thead class="bg-slate-100 text-slate-700 uppercase text-xs">
+                            <tr>
+                                <th class="p-3">Feature</th>
+                                <th class="p-3">Adverse Selection</th>
+                                <th class="p-3">Moral Hazard</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200">
+                            <tr>
+                                <td class="p-3 font-bold">Timing</td>
+                                <td class="p-3">Pre-Contract (Hiring/Lending)</td>
+                                <td class="p-3">Post-Contract (Employment)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold">The Problem</td>
+                                <td class="p-3 text-red-600">Hidden Information (Lying about quality)</td>
+                                <td class="p-3 text-red-600">Hidden Action (Taking undue risks)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold">Solution</td>
+                                <td class="p-3 text-green-600">Screening, Background Checks, Signaling</td>
+                                <td class="p-3 text-green-600">Monitoring, Incentives (Stock Options), Audits</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: ETHICS (Bad Apples vs Bad Barrels) -->
+        <section id="ethics" class="mb-32 fade-up">
+            <div class="fp-box">
+                <p class="text-xs font-bold text-indigo-500 uppercase tracking-widest mb-1">Fundamental Question</p>
+                <h3 class="text-2xl font-serif font-bold text-slate-800">Is unethical behavior the result of a few rogue employees or a toxic culture?</h3>
+                <p class="text-slate-600 mt-2">While "bad apples" exist, research consistently points to the <strong>"Bad Barrel"</strong> (systemic pressure) as the common driver of widespread misconduct.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <!-- Bad Barrel Examples -->
+                <div class="content-card p-8 border-t-4 border-red-500 bg-slate-50">
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="fas fa-radiation text-red-500 text-xl"></i>
+                        <h3 class="text-xl font-bold text-slate-900">🛑 The "Bad Barrel" Examples</h3>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-6">When the system is broken, good people make bad choices under pressure.</p>
+                    
+                    <div class="space-y-4">
+                         <div class="bg-white p-4 rounded-lg shadow-sm border border-slate-200">
+                            <div class="flex justify-between mb-1">
+                                <h4 class="font-bold text-sm text-slate-800">ICICI Bank (India)</h4>
+                                <span class="badge badge-in">Loan Scandal</span>
+                            </div>
+                            <p class="text-xs text-slate-600"><strong>Conflict of Interest:</strong> CEO Chanda Kochhar sanctioned large loans to the Videocon Group while her husband received investments from the same group. The culture allowed power to be centralized without checks.</p>
+                        </div>
+                        
+                        <div class="bg-white p-4 rounded-lg shadow-sm border border-slate-200">
+                            <div class="flex justify-between mb-1">
+                                <h4 class="font-bold text-sm text-slate-800">Wells Fargo (Global)</h4>
+                                <span class="badge badge-gl">Fake Accounts</span>
+                            </div>
+                            <p class="text-xs text-slate-600"><strong>Systemic Pressure:</strong> Employees opened millions of unauthorized accounts to meet extreme daily sales goals. The "barrel" punished those who didn't cheat.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Good Barrel Examples -->
+                <div class="content-card p-8 border-t-4 border-emerald-500 bg-slate-50">
+                    <div class="flex items-center gap-2 mb-4">
+                         <i class="fas fa-shield-alt text-emerald-500 text-xl"></i>
+                        <h3 class="text-xl font-bold text-slate-900">✅ The "Good Barrel" Examples</h3>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-6">A strong ethical culture encourages heroic behavior even in crisis.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-white p-4 rounded-lg shadow-sm border border-slate-200">
+                            <div class="flex justify-between mb-1">
+                                <h4 class="font-bold text-sm text-slate-800">Tata Group (India)</h4>
+                                <span class="badge badge-in">26/11 Response</span>
+                            </div>
+                            <p class="text-xs text-slate-600"><strong>Values in Action:</strong> Employees stayed to save guests during the terror attack. The company supported victims' families and street vendors, driven by the "Tata Code of Conduct."</p>
+                        </div>
+
+                         <div class="bg-white p-4 rounded-lg shadow-sm border border-slate-200">
+                            <div class="flex justify-between mb-1">
+                                <h4 class="font-bold text-sm text-slate-800">Johnson & Johnson</h4>
+                                <span class="badge badge-gl">Tylenol Crisis</span>
+                            </div>
+                            <p class="text-xs text-slate-600"><strong>Public Safety First:</strong> Voluntarily recalled 31 million bottles ($100M cost) after a poisoning incident. Prioritized the "Credo" over profit, building immense trust.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary Table -->
+            <div class="content-card overflow-hidden shadow-lg">
+                <div class="bg-slate-800 text-white px-6 py-3 text-sm font-bold uppercase tracking-wider">Summary for Students</div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left matrix-table">
+                        <thead class="bg-slate-100 text-slate-600 uppercase text-xs font-bold border-b border-slate-200">
+                            <tr>
+                                <th class="p-4">Aspect</th>
+                                <th class="p-4">Bad Apples (Few Individuals)</th>
+                                <th class="p-4">Bad Barrels (Toxic Culture)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-4 font-bold text-slate-800">Focus</td>
+                                <td class="p-4 text-slate-600">Individual intent, personal greed.</td>
+                                <td class="p-4 text-slate-600">Systemic pressure, leadership tone.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-4 font-bold text-slate-800">Examples</td>
+                                <td class="p-4 text-slate-600">A single embezzler.</td>
+                                <td class="p-4 text-slate-600">VW, Wells Fargo, Enron, Satyam, ICICI.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-4 font-bold text-slate-800">The Fix</td>
+                                <td class="p-4 text-red-600 font-medium">Fire and punish the individual.</td>
+                                <td class="p-4 text-emerald-600 font-medium">Culture change, ethical leadership, new controls.</td>
+                            </tr>
+                             <tr class="bg-indigo-50">
+                                <td class="p-4 font-bold text-indigo-900" colspan="3">
+                                    <i class="fas fa-lightbulb text-indigo-500 mr-2"></i><strong>The Takeaway:</strong> While individuals are accountable, leaders must focus on building a "good barrel"—an environment where people feel safe doing the right thing.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+         <!-- SECTION 2 CONTINUED: DIESELGATE -->
+        <section id="dieselgate" class="mb-32 fade-up">
+             <div class="content-card p-8 mb-12 border-t-4 border-slate-800 bg-slate-900 text-white">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div>
+                        <h3 class="text-2xl font-serif font-bold text-white mb-4">VW Dieselgate: The School of Hard NOx</h3>
+                        <p class="text-slate-300 mb-4">
+                            Under CEO Martin Winterkorn, VW bet its future on "Clean Diesel". Engineers faced an impossible "Iron Triangle": they could not maximize Performance and Fuel Economy while simultaneously meeting strict US Emissions Standards.
+                        </p>
+                         <div class="bg-slate-800 p-4 rounded border border-slate-700 mb-4">
+                             <h4 class="font-bold text-blue-400 mb-1">The Cheat</h4>
+                             <p class="text-sm text-slate-400">Engineers installed a "Defeat Device" (software). It detected when the car was being tested (based on steering lack of movement) and engaged pollution controls. On the road, it disabled them.</p>
+                         </div>
+                         <div class="text-xs font-bold text-red-400">THE COST: $33 BILLION+ IN FINES</div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-slate-300 border-b border-slate-700 pb-2">Global Parallels: Culture of Concealment</h4>
+                        <div class="flex gap-3">
+                            <div class="mt-1"><i class="fas fa-plane text-blue-500"></i></div>
+                            <div>
+                                <strong class="text-white">Boeing 737 MAX</strong>
+                                <p class="text-xs text-slate-400">Hid MCAS software to avoid pilot training costs. Result: 346 Deaths, $20B Loss.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <div class="mt-1"><i class="fas fa-car text-red-500"></i></div>
+                            <div>
+                                <strong class="text-white">Toyota (Daihatsu)</strong>
+                                <p class="text-xs text-slate-400">Admitted rigging safety tests for 64 models over 30 years. Modified doors/airbags specifically for crash tests.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Indian Case Studies: Jugaad Gone Wrong -->
+            <h3 class="text-xl font-bold text-slate-900 mb-6">Indian Case Studies: The "Jugaad" That Went Too Far</h3>
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-orange-500">
+                    <div class="flex justify-between mb-2">
+                        <h4 class="font-bold text-slate-900">General Motors India (Tavera)</h4>
+                        <span class="badge badge-in">Hardware Cheat</span>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-3">
+                        Executives physically swapped high-performance engines into prototypes sent for government emission testing. Production cars were sold with different, non-compliant engines.
+                    </p>
+                    <div class="text-xs text-orange-600 font-bold bg-orange-50 p-2 rounded">Outcome: 1.14 Lakh Recall, 35 Execs Fired.</div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-orange-500">
+                    <div class="flex justify-between mb-2">
+                        <h4 class="font-bold text-slate-900">EV Industry (FAME II Scandal)</h4>
+                        <span class="badge badge-in">Subsidy Arbitrage</span>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-3">
+                        Top EV makers imported critical parts from China but disguised them as Indian-made to claim ₹297 crore in "Make in India" subsidies.
+                    </p>
+                     <div class="text-xs text-orange-600 font-bold bg-orange-50 p-2 rounded">Outcome: Subsidies Clawed Back.</div>
+                </div>
+            </div>
+
+             <!-- Comparative Analysis Table -->
+            <div class="content-card overflow-hidden">
+                 <div class="bg-slate-50 px-6 py-4 border-b border-slate-100">
+                    <h3 class="font-bold text-slate-800 text-sm uppercase">Taxonomy of Cheating</h3>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left matrix-table">
+                        <thead class="bg-slate-50 text-slate-500 uppercase text-xs">
+                            <tr>
+                                <th class="p-4">Case</th>
+                                <th class="p-4">The Mechanism</th>
+                                <th class="p-4">The Rationalization</th>
+                                <th class="p-4">The Outcome</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr>
+                                <td class="p-4 font-bold">VW Dieselgate</td>
+                                <td class="p-4">Software Defeat Device</td>
+                                <td class="p-4 text-slate-500">"Physics makes it impossible to meet laws legally."</td>
+                                <td class="p-4 font-bold text-red-600">$33B+ Cost</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold">GM India</td>
+                                <td class="p-4">Hardware Engine Swap</td>
+                                <td class="p-4 text-slate-500">"We need to sell the car now, fix it later."</td>
+                                <td class="p-4 font-bold text-red-600">Market Exit</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold">Boeing 737</td>
+                                <td class="p-4">Concealment of MCAS</td>
+                                <td class="p-4 text-slate-500">"Pilot training is too expensive for customers."</td>
+                                <td class="p-4 font-bold text-red-600">346 Deaths</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: BUSINESS MODELS -->
+        <section id="models" class="mb-32 fade-up">
+            <div class="fp-box">
+                <p class="text-xs font-bold text-indigo-500 uppercase tracking-widest mb-1">Fundamental Question</p>
+                <h3 class="text-2xl font-serif font-bold text-slate-800">Is your product the source of your profit, or merely the bait to capture a customer?</h3>
+                <p class="text-slate-600 mt-2">Business model innovation (better economics) builds empires, while product innovation just grabs headlines.</p>
+            </div>
+
+            <!-- 1. The Razor & The Blade -->
+            <div class="content-card p-8 mb-8 border-l-4 border-blue-500">
+                <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2"><i class="fas fa-cut text-blue-500"></i> The Razor & The Blade: Bait and Hook</h3>
+                <p class="text-sm text-slate-600 mb-6">Selling a durable "platform" at a loss (Bait) to drive demand for a high-margin consumable (Hook).</p>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <div class="flex justify-between mb-2">
+                            <h4 class="font-bold text-slate-800">Global: Nespresso</h4>
+                            <span class="badge badge-gl">Global</span>
+                        </div>
+                        <ul class="text-xs text-slate-600 space-y-2">
+                            <li><strong>The Bait:</strong> Stylish coffee machines sold at cost or licensed to partners.</li>
+                            <li><strong>The Hook:</strong> Proprietary coffee pods with ~85% gross margins.</li>
+                            <li><strong>The Lock-in:</strong> Patented capsule design forced users to buy only from Nespresso.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <div class="flex justify-between mb-2">
+                            <h4 class="font-bold text-slate-800">India: Eureka Forbes (Aquaguard)</h4>
+                            <span class="badge badge-in">India</span>
+                        </div>
+                        <ul class="text-xs text-slate-600 space-y-2">
+                            <li><strong>The Bait:</strong> The Water Purifier unit (RO/UV).</li>
+                            <li><strong>The Hook:</strong> Annual Maintenance Contract (AMC) and filters.</li>
+                            <li><strong>The Lock-in:</strong> Fear of water-borne diseases drives recurring AMC fees (~₹599/year), contributing ~30% of total revenue.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Ultra-Low Cost -->
+            <div class="content-card p-8 mb-8 border-l-4 border-yellow-500">
+                <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2"><i class="fas fa-tags text-yellow-500"></i> Ultra-Low Cost: The Discounter's Edge</h3>
+                 <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+                    <div class="flex justify-between mb-2">
+                        <h4 class="font-bold text-slate-800">D-Mart (Avenue Supermarts)</h4>
+                        <span class="badge badge-in">India</span>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-3">Radhakishan Damani's "Everyday Low Cost" model.</p>
+                    <ul class="text-xs text-slate-600 space-y-2">
+                        <li><strong>Asset Ownership:</strong> Owns land/buildings to eliminate rent inflation.</li>
+                        <li><strong>Limited SKUs:</strong> Massive volume on fewer items = bargaining power.</li>
+                        <li><strong>The Payoff:</strong> Pays suppliers in days (vs. weeks) to secure cash discounts, passing savings to customers.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 3. The Ecosystem Bundle -->
+            <div class="content-card p-8 mb-8 border-l-4 border-purple-500">
+                <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2"><i class="fas fa-layer-group text-purple-500"></i> The Ecosystem Bundle: Monetizing the Wall</h3>
+                <p class="text-sm text-slate-600 mb-6">Bundling negatively correlated products creates a "walled garden" where perceived value exceeds the sum of parts.</p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <div class="flex justify-between mb-2">
+                            <h4 class="font-bold text-slate-800">Global: Amazon Prime</h4>
+                            <span class="badge badge-gl">Global</span>
+                        </div>
+                        <p class="text-xs text-slate-600">Bundles logistics (Shipping) with entertainment (Video). Prime members spend significantly more due to the "sunk cost" psychology.</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <div class="flex justify-between mb-2">
+                            <h4 class="font-bold text-slate-800">India: Jio's Digital Life</h4>
+                            <span class="badge badge-in">India</span>
+                        </div>
+                        <p class="text-xs text-slate-600">Entered with a <strong>Freemium/Loss Leader</strong> strategy to acquire 100M+ users. Now monetizing via the ecosystem: Fiber (Pipe) + Cinema (Content) + Mart (Commerce). Strategy: Connectivity is the low-margin gateway to high-margin services.</p>
+                    </div>
+                </div>
+            </div>
+
+             <!-- 4. Food Tech War -->
+             <div class="content-card overflow-hidden mb-8">
+                <div class="bg-slate-800 px-6 py-4 border-b border-slate-700">
+                    <h3 class="font-bold text-white text-sm uppercase">Food Tech: The Platform War</h3>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left matrix-table">
+                        <thead class="bg-slate-50 text-slate-500 uppercase text-xs">
+                            <tr>
+                                <th class="p-4">Feature</th>
+                                <th class="p-4">Zomato (Aggregator)</th>
+                                <th class="p-4">Swiggy (Logistics)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr>
+                                <td class="p-4 font-bold">Core Strength</td>
+                                <td class="p-4">Discovery & Marketing (Ad Revenue)</td>
+                                <td class="p-4">Logistics & Operations (Delivery Fleet)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold">Expansion Strategy</td>
+                                <td class="p-4">Acquisition (Blinkit for Quick Comm)</td>
+                                <td class="p-4">Diversification (Instamart, Genie, Dineout)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold">Profit Driver</td>
+                                <td class="p-4">Commissions + Ads + Gold</td>
+                                <td class="p-4">Delivery Fees + Instamart + Swiggy One</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+             <!-- 5. D2C Subscription -->
+            <div class="content-card p-8 border-l-4 border-emerald-500 bg-emerald-50/20">
+                 <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-bold text-slate-900 flex items-center gap-2"><i class="fas fa-box-open text-emerald-500"></i> Direct-to-Consumer (D2C) Subscription</h3>
+                    <span class="badge badge-in">India: Country Delight</span>
+                </div>
+                <p class="text-sm text-slate-600 mb-3"><strong>Problem:</strong> Traditional dairy supply chains are fragmented, leading to adulteration and aged stock.</p>
+                <p class="text-sm text-slate-600 mb-3"><strong>Solution:</strong> Full-stack <strong>Subscription Model</strong>. Delivering directly from farm to doorstep within 24-36 hours eliminates middlemen.</p>
+                <p class="text-sm text-slate-600"><strong>The Advantage:</strong> Subscription allows precise <strong>demand forecasting</strong>, reducing spoilage (a major cost in perishables) to <1%, compared to industry standard high waste.</p>
+            </div>
+        </section>
+
+        <!-- LONG TAIL -->
+        <section id="long-tail" class="mb-32 fade-up">
+             <div class="content-card p-8">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="mb-6">
+                            <h3 class="text-xl font-bold text-slate-900">The Long Tail</h3>
+                            <p class="text-sm text-slate-500">Selling less of more. Technology allows companies to sell small amounts of hard-to-find items to many people.</p>
+                        </div>
+                        <div class="chart-container h-64">
+                            <canvas id="longTailChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-blue-500 pl-4">
+                             <h4 class="font-bold text-slate-800">Dollar Shave Club</h4>
+                            <p class="text-xs text-slate-600 mt-1">Disrupted Gillette using subscription model. Improved the business model, not the tech.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SIMULATION: 10-STAGE BOARDROOM GUARDIAN -->
+        <section id="simulation" class="mb-24 pt-8 bg-slate-900 -mx-4 sm:-mx-8 px-4 sm:px-8 py-16 text-white">
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <span class="inline-block px-3 py-1 bg-amber-500 text-white text-xs font-bold rounded-full mb-4">Advanced Simulation</span>
+                <h2 class="text-4xl font-bold mb-4">The Boardroom Guardian: Grand Crisis</h2>
+                <p class="text-lg text-slate-300">Navigate 10 levels of escalating corporate chaos. Will you become a Legend or a Disgrace?</p>
+            </div>
+
+            <div id="sim-wrapper" class="max-w-3xl mx-auto bg-slate-800 rounded-2xl shadow-2xl border border-slate-700 p-8 min-h-[500px] relative">
+                
+                <!-- Game Header -->
+                <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-600">
+                    <div>
+                        <span class="text-[10px] font-bold text-slate-400 uppercase">Role</span>
+                        <div class="text-sm font-bold text-white">Independent Director</div>
+                    </div>
+                    <div class="text-right w-1/2">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase block mb-1">Reputation Score</span>
+                        <div class="flex items-center gap-3 justify-end">
+                            <div class="w-full bg-slate-700 rounded-full h-3 overflow-hidden border border-slate-600">
+                                <div id="score-bar" class="h-full bg-emerald-500 w-full transition-all duration-700 ease-out shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
+                            </div>
+                            <span id="score-text" class="text-lg font-mono font-bold text-emerald-400">100</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Start Screen -->
+                <div id="start-screen" class="text-center py-12 fade-in">
+                    <div class="w-24 h-24 bg-slate-700/50 rounded-full flex items-center justify-center mx-auto mb-8 border border-slate-600 shadow-inner">
+                        <i class="fas fa-gavel text-5xl text-indigo-400"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold mb-4 text-white">Session is in Order</h3>
+                    <p class="text-slate-400 mb-10 text-sm max-w-lg mx-auto leading-relaxed">
+                        Welcome to the Board of <strong>TitanCorp</strong>. You face 10 critical quarters. 
+                        From agency conflicts to hostile takeovers, every vote counts.
+                        <br><br>
+                        <em>Survival Threshold: Score > 0.</em>
+                    </p>
+                    <button onclick="startGame()" class="bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white font-bold py-4 px-12 rounded-full shadow-lg transition-all transform hover:scale-105">
+                        Take Your Seat
+                    </button>
+                </div>
+
+                <!-- Gameplay Screen -->
+                <div id="gameplay-screen" class="hidden fade-in">
+                    <div class="flex justify-between items-center mb-6">
+                        <span class="text-xs font-bold text-indigo-300 bg-indigo-900/50 px-3 py-1 rounded-full border border-indigo-700">LEVEL <span id="q-num">1</span>/10</span>
+                        <span class="text-xs font-bold text-amber-400 uppercase tracking-widest" id="topic-tag">TOPIC</span>
+                    </div>
+                    
+                    <h3 id="q-text" class="text-xl font-serif text-white mb-8 leading-relaxed border-l-4 border-indigo-500 pl-6">Question...</h3>
+                    
+                    <div id="options-container" class="space-y-4"></div>
+                </div>
+
+                <!-- Result Screen -->
+                <div id="result-screen" class="hidden text-center py-12 fade-in">
+                    <div id="res-icon" class="text-7xl mb-6 animate-bounce"></div>
+                    <h3 id="res-title" class="text-3xl font-bold mb-3 text-white">Title</h3>
+                    <p id="res-desc" class="text-slate-300 mb-10 text-lg max-w-md mx-auto">Desc</p>
+                    <div class="text-sm text-slate-500 mb-8 font-mono" id="final-stats">Final Score: 0</div>
+                    <button onclick="resetGame()" class="bg-slate-700 hover:bg-slate-600 text-white font-bold py-3 px-10 rounded-full shadow-lg transition-all border border-slate-500 hover:border-white">
+                        <i class="fas fa-redo mr-2"></i> Replay Simulation
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI SECTION -->
+        <section id="ai-consultant" class="mb-32 fade-up">
+            <div class="bg-gradient-to-br from-indigo-900 to-slate-900 rounded-3xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500 rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-pulse"></div>
+                
+                <div class="relative z-10">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+                        <div>
+                            <span class="inline-block px-3 py-1 bg-indigo-500/30 text-indigo-200 border border-indigo-500/50 rounded-full text-xs font-bold tracking-wider uppercase mb-3">
+                                <i class="fas fa-robot mr-1"></i> Powered by Gemini
+                            </span>
+                            <h2 class="text-3xl font-bold mb-2">Governance Guardian AI</h2>
+                            <p class="text-slate-300 text-sm max-w-xl">Describe a business scenario, and the AI will identify potential Agency Problems and Ethical Risks.</p>
+                        </div>
+                    </div>
+
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <div class="bg-white/5 rounded-xl p-6 border border-white/10">
+                            <label class="block text-xs font-bold text-indigo-300 uppercase tracking-wider mb-2">Scenario</label>
+                            <textarea id="ethicsInput" rows="4" class="w-full bg-slate-800/50 border border-slate-600 rounded-lg p-4 text-sm text-slate-200 focus:ring-2 focus:ring-indigo-500 transition-all mb-4" placeholder="e.g., The CEO wants to use company funds to buy a private jet..."></textarea>
+                            <button onclick="analyzeEthics()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition-all flex items-center justify-center gap-2">
+                                <span>Analyze Risks</span>
+                            </button>
+                        </div>
+
+                        <div class="bg-white rounded-xl p-6 text-slate-800 min-h-[200px] relative">
+                            <div id="ai-loading" class="hidden absolute inset-0 bg-white/90 z-20 flex items-center justify-center rounded-xl">
+                                <div class="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full spinner"></div>
+                            </div>
+                            <div id="ai-result" class="h-full overflow-y-auto prose prose-sm max-w-none flex flex-col justify-center items-center text-slate-400">
+                                <i class="fas fa-shield-alt text-4xl mb-2 text-slate-300"></i>
+                                <p>Results will appear here.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-8 text-center text-sm text-slate-400">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0 flex items-center justify-center gap-2">
+                © Dr. Swapnil Sahoo 2025 | All Rights Reserved
+                <i class="fas fa-chess-knight text-slate-300"></i>
+            </div>
+             <div class="flex space-x-6 items-center">
+                <a href="#" class="text-slate-400 hover:text-blue-400 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-slate-400 hover:text-pink-600 transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-slate-400 hover:text-blue-600 transition-colors"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- CHART CONFIG ---
+        Chart.defaults.font.family = "'Satoshi', sans-serif";
+        
+        document.addEventListener("DOMContentLoaded", () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) entry.target.classList.add('visible');
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+            initCharts();
+        });
+
+        function initCharts() {
+            const tailCtx = document.getElementById('longTailChart').getContext('2d');
+            const labels = Array.from({length: 40}, (_, i) => i + 1);
+            const dataPoints = labels.map(i => 100 / i);
+            new Chart(tailCtx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Sales Volume',
+                        data: dataPoints,
+                        borderColor: '#3B82F6',
+                        backgroundColor: (ctx) => {
+                            const idx = ctx.dataIndex;
+                            return idx < 5 ? 'rgba(239, 68, 68, 0.2)' : 'rgba(59, 130, 246, 0.2)'; 
+                        },
+                        fill: true,
+                        pointRadius: 0,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { x: { display: false }, y: { display: false } }
+                }
+            });
+        }
+
+        // --- 10-STAGE SIMULATION ENGINE ---
+        const scenarios = [
+            {
+                topic: "1. Agency Theory: The Jet",
+                q: "The CEO requests a $60M corporate jet for 'efficiency'. Commercial flights are 10x cheaper. It smells like on-the-job consumption.",
+                opts: [
+                    { text: "Approve. Keep him happy.", score: -20, feedback: "❌ Bad Governance! You prioritized agent perks over shareholder value." },
+                    { text: "Reject. Protect capital.", score: 10, feedback: "✅ Good! You mitigated Moral Hazard." },
+                    { text: "Defer to committee.", score: -5, feedback: "⚠️ Weak. Indecision wastes resources." }
+                ]
+            },
+            {
+                topic: "2. Ethics: The Whistleblower",
+                q: "An engineer reports faked safety data. The stock will crash if released.",
+                opts: [
+                    { text: "Bury it.", score: -50, feedback: "❌ Unethical! This is the 'Theranos' path. Jail risk." },
+                    { text: "Investigate & Disclose.", score: 20, feedback: "✅ Excellent. Short-term pain, long-term trust." },
+                    { text: "Fire the engineer.", score: -40, feedback: "❌ Illegal retaliation." }
+                ]
+            },
+            {
+                topic: "3. Governance: Nepotism",
+                q: "The Chairman wants to appoint his unqualified son to the board.",
+                opts: [
+                    { text: "Agree. It's his company.", score: -30, feedback: "❌ Poor Governance. Boards need competence, not family ties." },
+                    { text: "Veto. Demand meritocracy.", score: 15, feedback: "✅ Correct. Protect board independence." },
+                    { text: "Abstain.", score: -10, feedback: "⚠️ Cowardice is not a strategy." }
+                ]
+            },
+            {
+                topic: "4. Finance: Creative Accounting",
+                q: "CFO wants to capitalize operating expenses to hit quarterly targets.",
+                opts: [
+                    { text: "Do it. Boost the stock.", score: -40, feedback: "❌ Fraud! This is how WorldCom collapsed." },
+                    { text: "Reject. Stick to GAAP.", score: 20, feedback: "✅ Integrity maintained." },
+                    { text: "Ask auditors.", score: 5, feedback: "⚠️ Passive oversight." }
+                ]
+            },
+            {
+                topic: "5. Strategy: Disruption",
+                q: "A competitor undercuts you with a subscription model. CEO wants to sue.",
+                opts: [
+                    { text: "Sue them.", score: -10, feedback: "⚠️ Defensive. Lawsuits don't stop innovation." },
+                    { text: "Pivot business model.", score: 25, feedback: "✅ Visionary! Adapt to survive." },
+                    { text: "Ignore them.", score: -20, feedback: "❌ Complacency kills incumbents." }
+                ]
+            },
+            {
+                topic: "6. M&A: The Empire Builder",
+                q: "CEO wants to buy a movie studio. It has zero synergy with your tech business.",
+                opts: [
+                    { text: "Approve. It's exciting!", score: -30, feedback: "❌ Empire Building! Agency problem alert." },
+                    { text: "Block the deal.", score: 20, feedback: "✅ Good stewardship of capital." },
+                    { text: "Buy a small stake.", score: -10, feedback: "⚠️ Waste of focus." }
+                ]
+            },
+            {
+                topic: "7. ESG: The Oil Spill",
+                q: "A leak is detected in a remote facility. Fixing it costs millions.",
+                opts: [
+                    { text: "Fix it immediately.", score: 20, feedback: "✅ Responsible leadership." },
+                    { text: "Ignore until inspection.", score: -50, feedback: "❌ Catastrophic risk! BP-style disaster awaits." },
+                    { text: "Cover it up.", score: -60, feedback: "❌ Criminal negligence." }
+                ]
+            },
+             {
+                topic: "8. Hostile Takeover",
+                q: "An activist investor launches a hostile bid, claiming the board is lazy.",
+                opts: [
+                    { text: "Implement Poison Pill.", score: -10, feedback: "⚠️ Entrenchment. Protects bad managers." },
+                    { text: "Engage & Improve.", score: 20, feedback: "✅ Market for corporate control works." },
+                    { text: "Resign.", score: -20, feedback: "❌ Abandoning ship." }
+                ]
+            },
+             {
+                topic: "9. Succession Planning",
+                q: "The CEO dies suddenly. There is no successor groomed.",
+                opts: [
+                    { text: "Panic / Hire Search Firm.", score: -20, feedback: "❌ Failure of duty. Succession is board's #1 job." },
+                    { text: "Promote COO (Interim).", score: 10, feedback: "✅ Stability first." },
+                    { text: "Sell the company.", score: -30, feedback: "❌ Extreme reaction." }
+                ]
+            },
+             {
+                topic: "10. The Golden Parachute",
+                q: "The failed CEO is fired but demands a $50M severance package per contract.",
+                opts: [
+                    { text: "Pay it. It's a contract.", score: -10, feedback: "⚠️ Legal but bad optics." },
+                    { text: "Fight it in court.", score: 10, feedback: "✅ Fight for shareholders." },
+                    { text: "Pay double to silence him.", score: -40, feedback: "❌ Waste of funds." }
+                ]
+            }
+        ];
+
+        let currentSimIndex = 0;
+        let score = 100;
+        let streak = 0;
+
+        function startGame() {
+            document.getElementById('start-screen').classList.add('hidden');
+            document.getElementById('gameplay-screen').classList.remove('hidden');
+            loadScenario();
+        }
+
+        function loadScenario() {
+            const s = scenarios[currentSimIndex];
+            document.getElementById('q-num').innerText = currentSimIndex + 1;
+            document.getElementById('topic-tag').innerText = s.topic;
+            document.getElementById('q-text').innerHTML = s.q;
+            
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
+            
+            s.opts.forEach((opt, idx) => {
+                const btn = document.createElement('div');
+                btn.className = 'option-card p-5 rounded-xl bg-slate-700/50 text-slate-200 border border-slate-600 hover:border-indigo-500 hover:bg-slate-700 cursor-pointer transition-all flex items-center gap-4 group';
+                btn.innerHTML = `
+                    <div class="w-8 h-8 rounded-full bg-slate-800 border border-slate-500 flex items-center justify-center text-xs font-bold group-hover:bg-indigo-600 group-hover:border-indigo-400 transition-colors">${String.fromCharCode(65+idx)}</div>
+                    <p class="text-sm font-medium">${opt.text}</p>
+                `;
+                btn.onclick = () => handleChoice(opt, btn);
+                container.appendChild(btn);
+            });
+        }
+
+        function handleChoice(opt, btn) {
+            // Disable interactions
+            const allOpts = document.getElementById('options-container').children;
+            for(let c of allOpts) c.style.pointerEvents = 'none';
+
+            // Score Logic
+            if(opt.score > 0) streak++; else streak = 0;
+            let finalScore = opt.score + (streak > 2 ? 5 : 0); // Streak bonus
+            
+            score = Math.max(0, Math.min(100, score + finalScore));
+            updateScoreUI();
+            
+            // Visuals
+            if(opt.score > 0) {
+                btn.classList.remove('bg-slate-700/50', 'border-slate-600');
+                btn.classList.add('bg-emerald-900/30', 'border-emerald-500');
+            } else {
+                btn.classList.remove('bg-slate-700/50', 'border-slate-600');
+                btn.classList.add('bg-red-900/30', 'border-red-500');
+            }
+
+            setTimeout(() => {
+                // Modal Feedback
+                const modal = document.createElement('div');
+                modal.className = "fixed inset-0 bg-black/80 z-[60] flex items-center justify-center p-4 fade-in";
+                modal.innerHTML = `
+                    <div class="bg-slate-800 border border-slate-600 p-8 rounded-2xl max-w-md text-center shadow-2xl">
+                        <div class="text-5xl mb-4">${opt.score > 0 ? '🛡️' : '⚠️'}</div>
+                        <h4 class="text-xl font-bold text-white mb-2">${opt.score > 0 ? 'Good Call!' : 'Governance Failure'}</h4>
+                        <p class="text-sm text-slate-300 mb-6 leading-relaxed">${opt.feedback}</p>
+                        <button id="next-btn" class="bg-indigo-600 hover:bg-indigo-500 text-white px-8 py-3 rounded-full font-bold shadow-lg transition-transform hover:scale-105">Next</button>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+                
+                document.getElementById('next-btn').onclick = () => {
+                    modal.remove();
+                    currentSimIndex++;
+                    if(currentSimIndex < scenarios.length) {
+                        if (score <= 0) endGame(true); // Early failure
+                        else loadScenario();
+                    } else {
+                        endGame(false);
+                    }
+                };
+            }, 600);
+        }
+
+        function updateScoreUI() {
+            const bar = document.getElementById('score-bar');
+            const txt = document.getElementById('score-text');
+            bar.style.width = score + "%";
+            txt.innerText = score;
+            
+            if(score >= 80) { 
+                bar.className = 'h-full bg-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.6)] transition-all duration-500'; 
+                txt.className = 'text-lg font-mono font-bold text-emerald-400'; 
+            }
+            else if(score >= 50) { 
+                bar.className = 'h-full bg-amber-500 shadow-[0_0_15px_rgba(245,158,11,0.6)] transition-all duration-500'; 
+                txt.className = 'text-lg font-mono font-bold text-amber-400'; 
+            }
+            else { 
+                bar.className = 'h-full bg-red-600 shadow-[0_0_15px_rgba(239,68,68,0.6)] transition-all duration-500'; 
+                txt.className = 'text-lg font-mono font-bold text-red-500 animate-pulse'; 
+            }
+        }
+
+        function endGame(earlyFail) {
+            document.getElementById('gameplay-screen').classList.add('hidden');
+            const resScreen = document.getElementById('result-screen');
+            resScreen.classList.remove('hidden');
+            
+            const title = document.getElementById('res-title');
+            const desc = document.getElementById('res-desc');
+            const icon = document.getElementById('res-icon');
+            const stats = document.getElementById('final-stats');
+
+            stats.innerText = `Final Score: ${score} | Stages Survived: ${currentSimIndex}/10`;
+
+            if (earlyFail || score < 30) {
+                icon.innerHTML = "☠️"; 
+                title.innerText = "Boardroom Disaster"; 
+                title.className = "text-3xl font-bold mb-3 text-red-500";
+                desc.innerText = "Your decisions led to scandal, bankruptcy, or jail. The firm has collapsed.";
+            } else if(score >= 80) {
+                icon.innerHTML = "👑"; 
+                title.innerText = "Governance Legend"; 
+                title.className = "text-3xl font-bold mb-3 text-emerald-400";
+                desc.innerText = "Flawless victory. You balanced ethics, strategy, and finance perfectly. Shareholders worship you.";
+            } else {
+                icon.innerHTML = "⚖️"; 
+                title.innerText = "The Survivor"; 
+                title.className = "text-3xl font-bold mb-3 text-amber-400";
+                desc.innerText = "You kept the company alive, but some ethical compromises were made. Room for improvement.";
+            }
+        }
+
+        function resetGame() {
+            currentSimIndex = 0; score = 100; streak = 0;
+            updateScoreUI();
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('start-screen').classList.remove('hidden');
+        }
+
+        // --- AI FUNCTION ---
+        async function analyzeEthics() {
+            // Placeholder AI logic as per previous instructions, retained for completeness
+            const input = document.getElementById('ethicsInput').value;
+            if(!input) return alert("Please enter a scenario.");
+            document.getElementById('ai-loading').classList.remove('hidden');
+            
+            const prompt = `Analyze this corporate governance scenario: "${input}". Identify Principal-Agent conflicts and Ethical risks.`;
+            
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+                });
+                const data = await response.json();
+                const text = data.candidates[0].content.parts[0].text;
+                document.getElementById('ai-result').innerHTML = marked.parse(text);
+            } catch(e) {
+                document.getElementById('ai-result').innerHTML = "AI analysis unavailable.";
+            } finally {
+                document.getElementById('ai-loading').classList.add('hidden');
+            }
+        }
+
+        // Scroll Progress
+        window.onscroll = function() {
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (window.scrollY / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) entry.target.classList.add('visible');
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+        };
+    </script>
+</body>
+</html>
