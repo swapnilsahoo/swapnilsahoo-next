@@ -10,8 +10,8 @@ export const teachingDropdown: NavDropdown = {
   label: "Teaching",
   href: "#teaching",
   items: [
-    { label: "1-Year MBA", href: "https://swapnilsahoo.com/1_year_mba_class_sessions/", external: true },
-    { label: "2-Year MBA", href: "https://swapnilsahoo.com/2-year-mba-index-page/" },
+    { label: "1-Year MBA", href: "/teaching/1-year-mba" },
+    { label: "2-Year MBA", href: "/teaching/2-year-mba" },
     {
       label: "Case Study Preparation",
       href: "https://swapnilsahoo.com/case-study-preparation/",
@@ -34,7 +34,7 @@ export const moreDropdown: NavDropdown = {
   items: [
     { label: "Press & Media", href: "#press" },
     { label: "Gallery", href: "#gallery" },
-    { label: "Spirituality", href: "https://swapnilsahoo.com/hanuman-chalisa/", external: true },
+    { label: "Spirituality", href: "/spirituality/hanuman-chalisa.html" },
     { label: "Contact", href: "#contact" },
   ],
 };

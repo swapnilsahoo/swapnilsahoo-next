@@ -10,6 +10,26 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/teaching/2-year-mba",
+        destination: "/teaching/2-year-mba/index.html",
+      },
+      {
+        source: "/teaching/2-year-mba/",
+        destination: "/teaching/2-year-mba/index.html",
+      },
+      {
+        source: "/teaching/1-year-mba",
+        destination: "/teaching/1-year-mba/index.html",
+      },
+      {
+        source: "/teaching/1-year-mba/",
+        destination: "/teaching/1-year-mba/index.html",
+      },
+    ];
+  },
 };
 
 export default nextConfig;
