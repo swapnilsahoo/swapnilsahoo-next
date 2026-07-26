@@ -68,11 +68,13 @@ export function NavDropdownMenu({ dropdown }: { dropdown: NavDropdown }) {
         </svg>
       </a>
       <div
-        className="nav-glass dropdown-content absolute top-[calc(100%+10px)] left-1/2 z-50 min-w-[220px] -translate-x-1/2 rounded-[14px] p-2 opacity-0 transition-[opacity,transform] duration-200"
+        className="nav-glass dropdown-content absolute top-[calc(100%+10px)] left-1/2 z-50 min-w-[220px] rounded-[14px] p-2 opacity-0 transition-[opacity,transform] duration-200"
         style={{
           pointerEvents: open ? "auto" : "none",
           opacity: open ? 1 : 0,
-          transform: open ? "translateX(-50%) translateY(0)" : "translateX(-50%) translateY(4px)",
+          transform: open
+            ? "translateX(-50%) translateY(0)"
+            : "translateX(-50%) translateY(4px)",
         }}
       >
         {dropdown.items.map((item) =>
