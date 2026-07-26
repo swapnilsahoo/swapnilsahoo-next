@@ -5,8 +5,7 @@ export const profile = {
   title: "Assistant Professor · Strategy",
   location: "Gurgaon, India",
   email: "swapnil.sahoo@greatlakes.edu.in",
-  profileImage:
-    "https://swapnilsahoo.com/wp-content/themes/swapnil-sahoo-theme/material%20assests/images/profile_pic.jpg",
+  profileImage: "/images/profile_pic.jpg",
   bookingUrl: "https://calendar.app.google/L7zMAVEUFu2rumyf9",
 } as const;
 
