@@ -17,7 +17,7 @@ export const teachingDropdown: NavDropdown = {
       href: "https://swapnilsahoo.com/case-study-preparation/",
       external: true,
     },
-    { label: "AI Hackathon", href: "https://swapnilsahoo.com/ai-hackathon/", external: true },
+    { label: "AI Hackathon", href: "/teaching/ai-hackathon" },
     { label: "Placements", href: "https://swapnilsahoo.com/placements", external: true },
     { label: "Executive MDPs", href: "#mdp" },
   ],

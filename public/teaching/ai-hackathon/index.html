@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Hackathon</title>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .navbar-spacer { height: 88px; width: 100%; }
+        .main-content { padding: 20px 0; width: 100%; }
+        .quant-grid-wrapper { width: 1166px; max-width: 100%; margin: 0 auto; }
+        .header-text { color: #000; font-size: 26px; font-weight: 400; margin-bottom: 40px; text-align: left; }
+
+        .resource-card {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            width: 320px;
+            max-width: 100%;
+            padding: 18px 22px;
+            background: #FFF;
+            box-shadow: 3px 3px 15px 0px rgba(0, 0, 0, 0.25);
+            text-decoration: none !important;
+            transition: transform 0.3s;
+        }
+        .resource-card:hover { transform: scale(1.05); }
+        .resource-icon { width: 40px; height: 40px; flex-shrink: 0; }
+        .resource-text { display: flex; flex-direction: column; gap: 2px; }
+        .resource-title { color: #000; font-size: 17px; font-weight: 600; }
+        .resource-sub { color: #555; font-size: 13px; font-weight: 400; }
+
+        @media (max-width: 1200px) {
+            .quant-grid-wrapper { width: 100%; padding: 0 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar-spacer"></div>
+
+<div class="main-content">
+    <div class="quant-grid-wrapper">
+        <div class="header-text">AI Hackathon</div>
+
+        <a class="resource-card" href="https://pub-fe4ef7996d794eafbcca10e6093e62af.r2.dev/ai-hackathon/AI_in_45_Minutes_v7.pdf" target="_blank" rel="noopener noreferrer">
+            <svg class="resource-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 2C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2H6Z" fill="#E2574C"/>
+                <path d="M14 2V8H20L14 2Z" fill="#B33A30"/>
+                <text x="12" y="17" font-size="7" font-weight="700" fill="#FFF" text-anchor="middle" font-family="Inter, sans-serif">PDF</text>
+            </svg>
+            <div class="resource-text">
+                <span class="resource-title">AI in 45 Minutes</span>
+                <span class="resource-sub">Hackathon briefing deck (PDF)</span>
+            </div>
+        </a>
+    </div>
+</div>
+</body>
+</html>
