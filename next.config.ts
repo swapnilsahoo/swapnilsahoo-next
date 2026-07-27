@@ -28,14 +28,6 @@ const nextConfig: NextConfig = {
         source: "/teaching/1-year-mba/",
         destination: "/teaching/1-year-mba/index.html",
       },
-      {
-        source: "/teaching/ai-hackathon",
-        destination: "/teaching/ai-hackathon/index.html",
-      },
-      {
-        source: "/teaching/ai-hackathon/",
-        destination: "/teaching/ai-hackathon/index.html",
-      },
     ];
   },
 };

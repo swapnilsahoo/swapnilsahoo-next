@@ -2,10 +2,10 @@ import { Container } from "@/components/ui/Container";
 import { InstagramIcon, LinkedInIcon, SubstackIcon, XIcon } from "@/components/icons/SocialIcons";
 
 const footerLinks = [
-  { label: "About", href: "#about" },
-  { label: "Research", href: "#research" },
-  { label: "Publications", href: "#publications" },
-  { label: "PhD supervision", href: "#phd" },
+  { label: "About", href: "/#about" },
+  { label: "Research", href: "/#research" },
+  { label: "Publications", href: "/#publications" },
+  { label: "PhD supervision", href: "/#phd" },
 ];
 
 const socials = [

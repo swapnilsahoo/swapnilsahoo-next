@@ -5,14 +5,13 @@ export const teachingLinks: TeachingLink[] = [
     eyebrow: "Programme",
     title: "1-Year MBA",
     description: "Class sessions, cases & reading lists for the PGPM cohort.",
-    href: "https://swapnilsahoo.com/1_year_mba_class_sessions/",
-    external: true,
+    href: "/teaching/1-year-mba",
   },
   {
     eyebrow: "Programme",
     title: "2-Year MBA",
     description: "Index of strategy & entrepreneurship modules across terms.",
-    href: "https://swapnilsahoo.com/2-year-mba-index-page/",
+    href: "/teaching/2-year-mba",
   },
   {
     eyebrow: "Teaching Resource",
@@ -23,12 +22,11 @@ export const teachingLinks: TeachingLink[] = [
     external: true,
   },
   {
-    eyebrow: "Experiential Learning",
+    eyebrow: "MBA & PhD",
     title: "AI Hackathon",
     description:
-      "Problem statements, prototype links, evaluation parameters and student innovation showcases.",
-    href: "https://swapnilsahoo.com/ai-hackathon/",
-    external: true,
+      "A build-first AI experience grounded in 26 prototypes, an alumni-juried final, and responsible innovation.",
+    href: "/teaching/ai-hackathon",
   },
   {
     eyebrow: "Career",

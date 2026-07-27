@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Swapnil Sahoo</title>
+    <title>2-Year MBA Strategy Sessions | Dr. Swapnil Sahoo</title>
     <style>
         body { font-family: 'Inter', sans-serif; }
         .white-box, .white-box * { text-decoration: none !important; }
@@ -35,6 +35,46 @@
             min-height: 90px;
             width: 100%;
         }
+        .genai-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 28px;
+            max-width: 860px;
+            padding: 24px 26px;
+            border: 1px solid #d9e4f3;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #f8fbff 0%, #eef5ff 60%, #fff8ea 100%);
+            box-shadow: 0 20px 48px -32px rgba(15, 23, 42, 0.45);
+        }
+        .genai-kicker {
+            margin: 0 0 7px;
+            color: #1d4ed8;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+        .genai-title { margin: 0; color: #0a1426; font-size: 20px; font-weight: 650; }
+        .genai-description {
+            max-width: 610px;
+            margin: 8px 0 0;
+            color: #3e4c63;
+            font-size: 14px;
+            line-height: 1.65;
+        }
+        .genai-actions { display: flex; flex-shrink: 0; flex-direction: column; gap: 8px; }
+        .genai-link {
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: #1d4ed8;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 650;
+            text-align: center;
+            text-decoration: none;
+        }
+        .genai-link.secondary { background: #fff; color: #1d4ed8; border: 1px solid #bfdbfe; }
 
         @media (max-width: 1200px) {
             .quant-grid-wrapper { width: 100%; padding: 0 10px; }
@@ -44,6 +84,8 @@
         @media (max-width: 600px) {
             .quant-grid-wrapper { padding: 0 2vw; }
             .white-box-container { grid-template-columns: 1fr; }
+            .genai-card { align-items: flex-start; flex-direction: column; }
+            .genai-actions { width: 100%; }
         }
     </style>
 </head>
@@ -90,7 +132,22 @@
 
             <div class="content-block">
                 <div class="content-header">GenAI for Business</div>
-                <div class="content-placeholder"></div>
+                <div class="content-placeholder">
+                    <div class="genai-card">
+                        <div>
+                            <p class="genai-kicker">Build · Test · Verify</p>
+                            <h3 class="genai-title">Turn a consequential question into an AI prototype.</h3>
+                            <p class="genai-description">
+                                Explore a Great Lakes Gurgaon induction challenge that generated 26 prototype submissions,
+                                used an alumni jury, and placed responsible AI alongside usefulness and adoption.
+                            </p>
+                        </div>
+                        <div class="genai-actions">
+                            <a class="genai-link" href="/teaching/ai-hackathon">Explore the AI Hackathon</a>
+                            <a class="genai-link secondary" href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer">LinkedIn field notes</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

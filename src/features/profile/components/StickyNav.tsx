@@ -12,14 +12,14 @@ export function StickyNav() {
   return (
     <nav className="sticky top-3 z-40 mx-auto max-w-5xl px-4">
       <div className="nav-glass flex items-center justify-between rounded-full px-5 py-2.5">
-        <a href="#top" className="flex items-center gap-2">
+        <Link href="/#top" className="flex items-center gap-2">
           <span className="bg-ink-900 dark:bg-brand-500 flex h-7 w-7 items-center justify-center rounded-full font-serif text-sm font-bold text-white">
             S
           </span>
           <span className="hidden font-serif text-sm font-semibold tracking-tight sm:block">
             Swapnil Sahoo
           </span>
-        </a>
+        </Link>
         <div className="flex items-center gap-1 text-[13px] font-medium">
           {primaryNavLinks.map((link, index) => (
             <a
