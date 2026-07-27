@@ -14,11 +14,10 @@ export const teachingDropdown: NavDropdown = {
     { label: "2-Year MBA", href: "/teaching/2-year-mba" },
     {
       label: "Case Study Preparation",
-      href: "https://swapnilsahoo.com/case-study-preparation/",
-      external: true,
+      href: "/case-study-preparation/",
     },
     { label: "AI Hackathon", href: "/teaching/ai-hackathon" },
-    { label: "Placements", href: "https://swapnilsahoo.com/placements", external: true },
+    { label: "Placements", href: "/placements" },
     { label: "Executive MDPs", href: "/#mdp" },
   ],
 };
@@ -34,7 +33,7 @@ export const moreDropdown: NavDropdown = {
   items: [
     { label: "Press & Media", href: "/#press" },
     { label: "Gallery", href: "/#gallery" },
-    { label: "Spirituality", href: "/spirituality/hanuman-chalisa.html" },
+    { label: "Spirituality", href: "/spirituality/" },
     { label: "Contact", href: "/#contact" },
   ],
 };
