@@ -13,8 +13,8 @@ export function MdpSection() {
             <h2 className="display text-4xl font-semibold md:text-5xl">For senior leaders.</h2>
           </div>
           <p className="text-ink-600 dark:text-ink-300 self-end text-sm leading-relaxed md:col-span-8">
-            A modular MDP curriculum, plus selected engagements with public-sector institutions
-            and community programmes.
+            A modular MDP curriculum, plus selected engagements with public-sector institutions and
+            community programmes.
           </p>
         </div>
 
@@ -49,8 +49,8 @@ export function MdpSection() {
               </ul>
             </div>
           ))}
-          <div className="glass-card bg-ink-900 dark:bg-brand-900/40 border-0 p-6 text-white">
-            <p className="eyebrow text-ink-300">Custom</p>
+          <div className="glass-card glass-card-inverse border-0 p-6">
+            <p className="eyebrow">Custom</p>
             <h3 className="mb-3 font-serif text-xl font-semibold">Bespoke Programmes</h3>
             <p className="text-ink-100 mb-4 text-sm">
               I co-design MDPs for corporates, government academies, and family business owners.

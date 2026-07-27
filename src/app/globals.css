@@ -56,8 +56,7 @@
   --glass-strong: rgba(255, 255, 255, 0.82);
   --glass-border: rgba(15, 23, 42, 0.1);
   --glass-highlight: rgba(255, 255, 255, 0.72);
-  --glass-shadow:
-    0 24px 80px -36px rgba(15, 23, 42, 0.26), 0 1px 0 rgba(255, 255, 255, 0.62) inset;
+  --glass-shadow: 0 24px 80px -36px rgba(15, 23, 42, 0.26), 0 1px 0 rgba(255, 255, 255, 0.62) inset;
   --nav-shadow: 0 18px 42px -24px rgba(15, 23, 42, 0.42);
 }
 
@@ -89,10 +88,7 @@ body {
     linear-gradient(135deg, #f8fbff 0%, #eef5ff 46%, #fff8ea 100%);
   background-attachment: fixed;
   color: #0a1426;
-  font-feature-settings:
-    "ss01",
-    "ss02",
-    "cv11";
+  font-feature-settings: "ss01", "ss02", "cv11";
   transition:
     background 0.35s ease,
     color 0.25s ease;
@@ -215,12 +211,29 @@ body::after {
 
 .glass-card:hover {
   border-color: rgba(37, 99, 235, 0.22);
-  box-shadow: 0 28px 70px -36px rgba(15, 23, 42, 0.42), 0 1px 0 var(--glass-highlight) inset;
+  box-shadow:
+    0 28px 70px -36px rgba(15, 23, 42, 0.42),
+    0 1px 0 var(--glass-highlight) inset;
 }
 
 .dark .glass-card:hover {
   border-color: rgba(147, 197, 253, 0.28);
-  box-shadow: 0 30px 86px -34px rgba(0, 0, 0, 0.86), 0 1px 0 var(--glass-highlight) inset;
+  box-shadow:
+    0 30px 86px -34px rgba(0, 0, 0, 0.86),
+    0 1px 0 var(--glass-highlight) inset;
+}
+
+.glass-card-inverse {
+  background: linear-gradient(135deg, #0a1426 0%, #27354b 100%);
+  color: #fff;
+}
+
+.glass-card-inverse .eyebrow {
+  color: #bfdbfe;
+}
+
+.dark .glass-card-inverse {
+  background: linear-gradient(135deg, #1e3a8a 0%, #162033 100%);
 }
 
 .hr-fade {
@@ -237,7 +250,9 @@ body::after {
   backdrop-filter: saturate(190%) blur(24px);
   -webkit-backdrop-filter: saturate(190%) blur(24px);
   border: 1px solid var(--glass-border);
-  box-shadow: var(--nav-shadow), 0 1px 0 var(--glass-highlight) inset;
+  box-shadow:
+    var(--nav-shadow),
+    0 1px 0 var(--glass-highlight) inset;
 }
 
 .link-underline {
@@ -333,7 +348,9 @@ body::after {
     transform 0.2s ease,
     background 0.2s ease,
     box-shadow 0.2s ease;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 16px 34px -18px rgba(10, 37, 64, 0.72);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.1) inset,
+    0 16px 34px -18px rgba(10, 37, 64, 0.72);
 }
 
 .btn-primary:hover {
@@ -491,7 +508,9 @@ body::after {
   -webkit-backdrop-filter: saturate(170%) blur(24px);
   border: 1px solid var(--glass-border);
   border-radius: 18px;
-  box-shadow: 0 28px 80px -28px rgba(0, 0, 0, 0.48), 0 1px 0 var(--glass-highlight) inset;
+  box-shadow:
+    0 28px 80px -28px rgba(0, 0, 0, 0.48),
+    0 1px 0 var(--glass-highlight) inset;
   opacity: 0;
   transform: translateY(16px);
   pointer-events: none;
