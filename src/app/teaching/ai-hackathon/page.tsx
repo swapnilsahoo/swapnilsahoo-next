@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 import {
   ArrowRightIcon,
   BricolageIcon,
-  CalendarIcon,
   CompassIcon,
   GraduationCapIcon,
   NetworkIcon,
@@ -20,11 +20,10 @@ const responsibleAiPost = linkedInHighlights[0];
 export const metadata: Metadata = {
   title: "AI Hackathon for MBA & PhD Audiences",
   description:
-    "Inside the July 2026 AI Hackathon at Great Lakes Gurgaon: 26 AI-enabled prototype submissions, an alumni-jury final, and learning lenses for MBA and PhD audiences.",
+    "A build-first AI Hackathon at Great Lakes Gurgaon: real problems, working prototypes, responsible innovation, and learning lenses for MBA and PhD audiences.",
   keywords: [
     "AI Hackathon",
     "Great Lakes Gurgaon",
-    "PGDM 2026–28",
     "AI in management education",
     "MBA experiential learning",
     "responsible AI",
@@ -37,7 +36,7 @@ export const metadata: Metadata = {
     type: "article",
     title: "AI Hackathon — From Real Problems to Working Prototypes",
     description:
-      "A PGDM induction experience at Great Lakes Gurgaon with 26 AI-enabled prototype submissions and an alumni-juried final.",
+      "A build-first learning experience at Great Lakes Gurgaon, moving from real problems to responsible AI-enabled prototypes.",
     url: "/teaching/ai-hackathon",
   },
 };
@@ -124,66 +123,73 @@ export default function AiHackathonPage() {
               aria-hidden="true"
             />
 
-            <div className="relative max-w-4xl">
-              <div className="mb-6 flex flex-wrap items-center gap-3">
-                <span className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-3 py-1.5 font-mono text-[11px] tracking-[0.14em] text-blue-100 uppercase backdrop-blur-sm">
-                  Experiential learning · MBA &amp; PhD lenses
-                </span>
-                <span className="inline-flex items-center gap-2 rounded-full border border-amber-300/25 bg-amber-300/10 px-3 py-1.5 text-xs font-medium text-amber-200">
-                  <CalendarIcon className="h-3.5 w-3.5" aria-hidden="true" />
-                  2, 3 &amp; 5 July 2026
-                </span>
+            <div className="relative grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+              <div>
+                <div className="mb-6 flex flex-wrap items-center gap-3">
+                  <span className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-3 py-1.5 font-mono text-[11px] tracking-[0.14em] text-blue-100 uppercase backdrop-blur-sm">
+                    Experiential learning · MBA &amp; PhD lenses
+                  </span>
+                </div>
+
+                <h1 className="display text-4xl font-semibold text-balance sm:text-6xl lg:text-7xl">
+                  AI Hackathon:{" "}
+                  <span className="text-brand-200 font-normal italic">
+                    from real problems to working prototypes.
+                  </span>
+                </h1>
+                <p className="mt-6 max-w-3xl text-base leading-relaxed text-blue-100 sm:text-lg">
+                  At Great Lakes Gurgaon, teams identify consequential student and business
+                  problems, then build AI-enabled prototypes they can demonstrate—not just describe.
+                </p>
+
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <a
+                    href={briefingDeckUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="focus-visible:ring-brand-300 inline-flex items-center justify-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-slate-950/20 transition hover:-translate-y-0.5 hover:bg-blue-50 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:outline-none"
+                  >
+                    Open the briefing deck
+                    <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                  <a
+                    href="#experience"
+                    className="focus-visible:ring-brand-300 inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:outline-none"
+                  >
+                    Explore the experience
+                  </a>
+                </div>
               </div>
 
-              <h1 className="display text-4xl font-semibold text-balance sm:text-6xl lg:text-7xl">
-                AI Hackathon:{" "}
-                <span className="text-brand-200 font-normal italic">
-                  from real problems to working prototypes.
-                </span>
-              </h1>
-              <p className="mt-6 max-w-3xl text-base leading-relaxed text-blue-100 sm:text-lg">
-                During the PGDM 2026–28 induction at Great Lakes Gurgaon, teams identified
-                consequential student and business problems, then built AI-enabled prototypes they
-                could demonstrate—not just describe.
-              </p>
-
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a
-                  href={briefingDeckUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="focus-visible:ring-brand-300 inline-flex items-center justify-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-slate-950/20 transition hover:-translate-y-0.5 hover:bg-blue-50 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:outline-none"
-                >
-                  Open the briefing deck
-                  <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
-                  <span className="sr-only"> (opens in a new tab)</span>
-                </a>
-                <a
-                  href="#experience"
-                  className="focus-visible:ring-brand-300 inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:outline-none"
-                >
-                  Explore the experience
-                </a>
-              </div>
+              <figure className="relative overflow-hidden rounded-[22px] border border-white/15 bg-white/5 shadow-2xl shadow-slate-950/25">
+                <Image
+                  src="/images/ai-hackathon/hackathon-demo-enhanced.png"
+                  alt="A presenter explaining an AI-enabled prototype during the hackathon"
+                  width={1536}
+                  height={1024}
+                  priority
+                  sizes="(min-width: 1024px) 32vw, 100vw"
+                  className="aspect-[4/5] w-full object-cover object-[52%_center]"
+                />
+                <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/90 to-transparent px-5 pt-16 pb-4 text-xs text-blue-100">
+                  A working prototype is demonstrated and questioned in the room.
+                </figcaption>
+              </figure>
             </div>
           </div>
 
-          <dl className="relative z-10 mx-3 -mt-5 grid gap-3 sm:mx-6 sm:grid-cols-2 lg:mx-10 lg:grid-cols-4">
+          <dl
+            aria-label="Hackathon statistics"
+            className="relative z-10 mx-3 -mt-5 grid gap-3 sm:mx-6 sm:grid-cols-2 lg:mx-10"
+          >
             <div className="glass-card p-5">
-              <dt className="eyebrow">Build dates</dt>
-              <dd className="mt-2 font-serif text-xl font-semibold">02 · 03 · 05 July</dd>
+              <dt className="eyebrow">Statistics · recorded output</dt>
+              <dd className="mt-2 font-serif text-3xl font-semibold">26 prototypes</dd>
             </div>
             <div className="glass-card p-5">
-              <dt className="eyebrow">Cohort</dt>
-              <dd className="mt-2 font-serif text-xl font-semibold">PGDM 2026–28</dd>
-            </div>
-            <div className="glass-card p-5">
-              <dt className="eyebrow">Final output</dt>
-              <dd className="mt-2 font-serif text-xl font-semibold">26 submissions</dd>
-            </div>
-            <div className="glass-card p-5">
-              <dt className="eyebrow">Final evaluation</dt>
-              <dd className="mt-2 font-serif text-xl font-semibold">Alumni jury</dd>
+              <dt className="eyebrow">Statistics · finalist pipeline</dt>
+              <dd className="mt-2 font-serif text-3xl font-semibold">9 shortlisted teams</dd>
             </div>
           </dl>
         </Container>
@@ -199,8 +205,8 @@ export default function AiHackathonPage() {
                 Learn by making.
               </h2>
               <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-relaxed">
-                Across three dates, teams moved from awareness and responsible-AI guardrails to
-                rapid building, refinement and a final demonstration.
+                Teams move from awareness and responsible-AI guardrails to rapid building,
+                refinement and a final demonstration.
               </p>
             </div>
 
@@ -233,9 +239,9 @@ export default function AiHackathonPage() {
               One challenge, two ways to interrogate it.
             </h2>
             <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-relaxed">
-              The July event was delivered for the incoming PGDM cohort. The PhD lens below is a
-              research-oriented extension of the same learning design, not a claim that doctoral
-              scholars attended this edition.
+              The management lens reflects the delivered format. The PhD lens is a research-oriented
+              extension of the same learning design, not a claim about attendance in any particular
+              edition.
             </p>
           </div>
 
@@ -379,11 +385,43 @@ export default function AiHackathonPage() {
 
       <div className="hr-fade mx-auto max-w-6xl" />
 
+      <section aria-labelledby="gallery-title" className="py-16 sm:py-24">
+        <Container className="max-w-6xl">
+          <div className="grid items-center gap-8 lg:grid-cols-12">
+            <div className="lg:col-span-4">
+              <span className="accent-rule" />
+              <p className="eyebrow mb-3">04 / In the room</p>
+              <h2 id="gallery-title" className="display text-4xl font-semibold md:text-5xl">
+                Ideas become discussable.
+              </h2>
+              <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-relaxed">
+                The demonstration is part of the learning: teams explain what they built, surface
+                assumptions and respond to questions about usefulness, adoption and judgment.
+              </p>
+            </div>
+            <figure className="glass-card overflow-hidden p-2 lg:col-span-8">
+              <Image
+                src="/images/ai-hackathon/hackathon-room.jpg"
+                alt="A presenter explaining an AI-enabled prototype during the hackathon"
+                width={4608}
+                height={3072}
+                className="aspect-[16/9] w-full rounded-[14px] object-cover object-center"
+              />
+              <figcaption className="text-ink-500 dark:text-ink-400 px-3 py-3 text-xs">
+                Prototype demonstration and live discussion during the hackathon.
+              </figcaption>
+            </figure>
+          </div>
+        </Container>
+      </section>
+
+      <div className="hr-fade mx-auto max-w-6xl" />
+
       <section aria-labelledby="evaluation-title" className="py-16 sm:py-24">
         <Container className="max-w-6xl">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
-            <p className="eyebrow mb-3">04 / Evaluation</p>
+            <p className="eyebrow mb-3">05 / Evaluation</p>
             <h2 id="evaluation-title" className="display text-4xl font-semibold md:text-5xl">
               A prototype had to make its case.
             </h2>
@@ -429,7 +467,7 @@ export default function AiHackathonPage() {
             />
             <div className="relative mb-8 max-w-2xl">
               <span className="accent-rule" />
-              <p className="eyebrow mb-3">05 / Continue exploring</p>
+              <p className="eyebrow mb-3">06 / Continue exploring</p>
               <h2 id="resources-title" className="display text-4xl font-semibold">
                 Briefing and field notes.
               </h2>
