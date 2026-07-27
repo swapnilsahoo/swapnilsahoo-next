@@ -39,6 +39,7 @@ export function GalleryCarousel({ images }: { images: GalleryImage[] }) {
                   alt={image.alt}
                   fill
                   className="object-cover"
+                  style={{ objectPosition: image.objectPosition }}
                   sizes="(min-width: 1024px) 1000px, 100vw"
                 />
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4">
@@ -55,7 +56,13 @@ export function GalleryCarousel({ images }: { images: GalleryImage[] }) {
           onClick={scrollPrev}
           className="nav-glass absolute top-1/2 left-3 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full"
         >
-          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <svg
+            className="h-4 w-4"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+          >
             <polyline points="15 18 9 12 15 6" />
           </svg>
         </button>
@@ -65,7 +72,13 @@ export function GalleryCarousel({ images }: { images: GalleryImage[] }) {
           onClick={scrollNext}
           className="nav-glass absolute top-1/2 right-3 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full"
         >
-          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <svg
+            className="h-4 w-4"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+          >
             <polyline points="9 18 15 12 9 6" />
           </svg>
         </button>

@@ -23,12 +23,7 @@ export interface ResearchStream {
   icon: "bricolage" | "compass" | "spark" | "network";
 }
 
-export type PublicationCategory =
-  | "journal"
-  | "chapter"
-  | "case"
-  | "essay"
-  | "press";
+export type PublicationCategory = "journal" | "chapter" | "case" | "essay" | "press";
 
 export interface Publication {
   title: string;
@@ -73,6 +68,7 @@ export interface GalleryImage {
   src: string;
   alt: string;
   caption: string;
+  objectPosition?: string;
 }
 
 export interface ContactCard {

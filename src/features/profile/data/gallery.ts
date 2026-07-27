@@ -1,8 +1,15 @@
 import type { GalleryImage } from "@/features/profile/types";
 
-const base = "https://swapnilsahoo.com/wp-content/themes/swapnil-sahoo-theme/material%20assests/images";
+const base =
+  "https://swapnilsahoo.com/wp-content/themes/swapnil-sahoo-theme/material%20assests/images";
 
 export const galleryImages: GalleryImage[] = [
+  {
+    src: "/images/gallery/classroom-dialogue.png",
+    alt: "Swapnil Sahoo facilitating an interactive classroom dialogue",
+    caption: "Ideas in motion · Interactive classroom dialogue",
+    objectPosition: "center 62%",
+  },
   {
     src: `${base}/AACSB.jpeg`,
     alt: "AACSB Peer Review Visit",
