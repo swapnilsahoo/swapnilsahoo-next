@@ -1,5 +1,11 @@
 import { Reveal } from "@/components/ui/Reveal";
-import { GraduationCapIcon, BricolageIcon, CompassIcon, SparkIcon, NetworkIcon } from "@/components/icons/LineIcons";
+import {
+  GraduationCapIcon,
+  BricolageIcon,
+  CompassIcon,
+  SparkIcon,
+  NetworkIcon,
+} from "@/components/icons/LineIcons";
 import { dissertation, researchStreams } from "@/features/profile/data/research";
 import type { ResearchStream } from "@/features/profile/types";
 
@@ -26,13 +32,13 @@ export function Research() {
           </p>
         </div>
 
-        <div className="from-ink-900 to-ink-700 dark:from-brand-900 dark:to-ink-800 glass-card mb-8 border-0 bg-gradient-to-br p-6 text-white md:p-8">
+        <div className="glass-card glass-card-inverse mb-8 border-0 p-6 md:p-8">
           <div className="flex items-start gap-4">
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/10">
               <GraduationCapIcon className="h-6 w-6" />
             </div>
             <div>
-              <p className="eyebrow mb-2 text-white/60">{dissertation.eyebrow}</p>
+              <p className="eyebrow mb-2">{dissertation.eyebrow}</p>
               <h3 className="font-serif text-xl leading-snug font-semibold md:text-2xl">
                 {dissertation.title}
               </h3>
