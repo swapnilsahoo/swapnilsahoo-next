@@ -17,15 +17,14 @@ export const teachingLinks: TeachingLink[] = [
     eyebrow: "Teaching Resource",
     title: "Case Study Preparation",
     description:
-      "Structured support for case writing, analysis, classroom discussion and debrief design.",
-    href: "https://swapnilsahoo.com/case-study-preparation/",
-    external: true,
+      "A practice-first studio for structuring, analysing and communicating consulting cases.",
+    href: "/case-study-preparation/",
   },
   {
     eyebrow: "MBA & PhD",
     title: "AI Hackathon",
     description:
-      "A build-first AI experience grounded in 26 prototypes, an alumni-juried final, and responsible innovation.",
+      "A build-first AI experience grounded in real problems, working prototypes and responsible innovation.",
     href: "/teaching/ai-hackathon",
   },
   {
