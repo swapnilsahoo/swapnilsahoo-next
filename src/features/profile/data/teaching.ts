@@ -30,9 +30,8 @@ export const teachingLinks: TeachingLink[] = [
   {
     eyebrow: "Career",
     title: "Placements",
-    description: "Placement support, recruiter notes and student outcomes.",
-    href: "https://swapnilsahoo.com/placements",
-    external: true,
+    description: "Role fit, proof-led CVs, interview stories and deliberate practice.",
+    href: "/placements",
   },
 ];
 
