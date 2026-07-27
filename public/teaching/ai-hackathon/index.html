@@ -3,13 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Hackathon</title>
+    <title>AI Hackathon for MBA &amp; PhD Scholars</title>
+    <meta
+        name="description"
+        content="An experiential AI hackathon for MBA participants and PhD researchers, focused on turning consequential questions into useful, responsible prototypes."
+    >
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            background: #f7f9fc;
+            color: #0a1426;
+            font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
         .navbar-spacer { height: 88px; width: 100%; }
-        .main-content { padding: 20px 0; width: 100%; }
+        .main-content { padding: 24px 32px 72px; width: 100%; }
         .quant-grid-wrapper { width: 1166px; max-width: 100%; margin: 0 auto; }
-        .header-text { color: #000; font-size: 26px; font-weight: 400; margin-bottom: 40px; text-align: left; }
+
+        .hackathon-hero {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            margin-bottom: 40px;
+            padding: clamp(36px, 6vw, 72px);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 28px;
+            background:
+                radial-gradient(circle at 88% 12%, rgba(240, 180, 41, 0.28), transparent 24rem),
+                radial-gradient(circle at 12% 110%, rgba(59, 130, 246, 0.42), transparent 28rem),
+                linear-gradient(135deg, #07152f 0%, #102a57 54%, #163f65 100%);
+            box-shadow: 0 30px 80px -42px rgba(10, 20, 38, 0.8);
+            color: #fff;
+        }
+        .hackathon-hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            opacity: 0.16;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.18) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.18) 1px, transparent 1px);
+            background-size: 44px 44px;
+            mask-image: linear-gradient(90deg, transparent, #000 62%);
+            -webkit-mask-image: linear-gradient(90deg, transparent, #000 62%);
+        }
+        .hero-content { position: relative; max-width: 920px; }
+        .hero-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 0 20px;
+            color: #bfdbfe;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+        .hero-eyebrow::before {
+            content: "";
+            width: 28px;
+            height: 2px;
+            border-radius: 999px;
+            background: #f0b429;
+        }
+        .hero-title {
+            max-width: 850px;
+            margin: 0;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(42px, 6vw, 72px);
+            font-weight: 600;
+            letter-spacing: -0.045em;
+            line-height: 1.02;
+            text-wrap: balance;
+        }
+        .hero-title span { color: #bfdbfe; }
+        .hero-intro {
+            max-width: 790px;
+            margin: 24px 0 0;
+            color: #dbeafe;
+            font-size: clamp(16px, 2vw, 19px);
+            line-height: 1.7;
+            text-wrap: pretty;
+        }
+        .audience-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 30px 0 0;
+            padding: 0;
+            list-style: none;
+        }
+        .audience-list li {
+            padding: 10px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.09);
+            color: #eff6ff;
+            font-size: 13px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .audience-list strong { color: #fbbf24; }
 
         .resource-card {
             display: flex;
@@ -30,7 +126,14 @@
         .resource-sub { color: #555; font-size: 13px; font-weight: 400; }
 
         @media (max-width: 1200px) {
-            .quant-grid-wrapper { width: 100%; padding: 0 10px; }
+            .quant-grid-wrapper { width: 100%; }
+        }
+        @media (max-width: 640px) {
+            .navbar-spacer { height: 72px; }
+            .main-content { padding: 16px 16px 56px; }
+            .hackathon-hero { border-radius: 20px; }
+            .hero-eyebrow { align-items: flex-start; line-height: 1.5; }
+            .audience-list { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
@@ -40,7 +143,23 @@
 
 <div class="main-content">
     <div class="quant-grid-wrapper">
-        <div class="header-text">AI Hackathon</div>
+        <header class="hackathon-hero">
+            <div class="hero-content">
+                <p class="hero-eyebrow">Experiential learning · MBA &amp; PhD</p>
+                <h1 class="hero-title">
+                    AI Hackathon:
+                    <span>From Questions to Prototypes</span>
+                </h1>
+                <p class="hero-intro">
+                    Frame a consequential business or research problem, build a rapid AI prototype,
+                    and evaluate it for strategic value, evidence quality, ethics, and real-world feasibility.
+                </p>
+                <ul class="audience-list" aria-label="Hackathon learning paths">
+                    <li><strong>MBA</strong> · Strategy, value &amp; implementation</li>
+                    <li><strong>PhD</strong> · Evidence, rigor &amp; responsible AI</li>
+                </ul>
+            </div>
+        </header>
 
         <a class="resource-card" href="https://pub-fe4ef7996d794eafbcca10e6093e62af.r2.dev/ai-hackathon/AI_in_45_Minutes_v7.pdf" target="_blank" rel="noopener noreferrer">
             <svg class="resource-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
