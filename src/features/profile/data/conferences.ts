@@ -29,6 +29,12 @@ export interface ConferenceEntry {
 
 export const conferenceEntries: ConferenceEntry[] = [
   {
+    badge: "AOM 2026",
+    location: "Philadelphia, PA, USA · 4 Aug, 1:15–2:45 PM · Marriott Downtown, Franklin 8",
+    title: "Entrepreneurship Under Constraint: How Bricolage Transitions into Effectuation in Family Businesses",
+    subtitle: "86th Annual Meeting of the Academy of Management",
+  },
+  {
     badge: "AOM 2025",
     location: "Copenhagen, Denmark · Jul 25–29",
     title:
