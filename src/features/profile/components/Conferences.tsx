@@ -18,28 +18,6 @@ export function Conferences() {
         </div>
 
         <ol className="border-ink-200 dark:border-ink-700 relative ms-2 border-s">
-          <li className="ms-6 pb-8">
-            <span className="bg-brand-600 dark:ring-ink-900 absolute -start-2 mt-1.5 h-3.5 w-3.5 rounded-full ring-4 ring-white" />
-            <div className="glass-card p-6">
-              <div className="mb-3 flex flex-wrap items-center gap-2">
-                <span className="tag">{bamCluster.badge}</span>
-                <span className="tag tag-ink">{bamCluster.venue}</span>
-                <span className="tag tag-amber">{bamCluster.highlight}</span>
-              </div>
-              <p className="text-ink-500 dark:text-ink-400 mb-3 text-xs italic">
-                {bamCluster.note}
-              </p>
-              <ul className="space-y-2 text-sm">
-                {bamCluster.papers.map((paper) => (
-                  <li key={paper} className="flex gap-2">
-                    <span className="text-brand-500 mt-1">·</span>
-                    <span className="font-serif font-semibold">{paper}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </li>
-
           {conferenceEntries.map((entry, index) => (
             <li
               key={entry.title}
@@ -61,6 +39,27 @@ export function Conferences() {
                   <p className="text-ink-500 dark:text-ink-300 mt-1 text-xs">{entry.subtitle}</p>
                 )}
               </div>
+
+              {index === 0 && (
+                <div className="glass-card mt-3 p-6">
+                  <div className="mb-3 flex flex-wrap items-center gap-2">
+                    <span className="tag">{bamCluster.badge}</span>
+                    <span className="tag tag-ink">{bamCluster.venue}</span>
+                    <span className="tag tag-amber">{bamCluster.highlight}</span>
+                  </div>
+                  <p className="text-ink-500 dark:text-ink-400 mb-3 text-xs italic">
+                    {bamCluster.note}
+                  </p>
+                  <ul className="space-y-2 text-sm">
+                    {bamCluster.papers.map((paper) => (
+                      <li key={paper} className="flex gap-2">
+                        <span className="text-brand-500 mt-1">·</span>
+                        <span className="font-serif font-semibold">{paper}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </li>
           ))}
         </ol>
