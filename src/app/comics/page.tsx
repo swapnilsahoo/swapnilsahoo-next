@@ -180,7 +180,10 @@ export default function ComicsPage() {
         </Container>
       </header>
 
-      <section aria-label="Superman at a glance" className="border-b border-slate-200 bg-white dark:border-white/10 dark:bg-[#07101f]">
+      <section
+        aria-label="Superman at a glance"
+        className="border-b border-slate-200 bg-white dark:border-white/10 dark:bg-[#07101f]"
+      >
         <Container className="max-w-7xl">
           <dl className="grid sm:grid-cols-2 lg:grid-cols-4">
             {[
@@ -223,6 +226,39 @@ export default function ComicsPage() {
                   “Hope is not a forecast. It is a moral position.”
                 </p>
               </div>
+              <figure className="mt-10 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl shadow-slate-950/10 dark:border-white/10 dark:bg-[#07101f]">
+                <Image
+                  src="/images/comics/flying-superman.jpg"
+                  alt="A Superman cosplayer in a blue suit and red cape leaping upward with one arm raised"
+                  width={2592}
+                  height={3605}
+                  className="h-auto w-full"
+                  sizes="(min-width: 1024px) 34vw, (min-width: 640px) 70vw, 100vw"
+                />
+                <figcaption className="px-4 py-3 text-[11px] leading-5 text-slate-500 dark:text-slate-400">
+                  Superman cosplay at Dragon Con 2009. Photograph by{" "}
+                  <a
+                    href="https://commons.wikimedia.org/wiki/File:Flying_Superman.jpg"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-blue-700 underline decoration-blue-300 underline-offset-2 hover:text-red-700 dark:text-blue-300"
+                  >
+                    J F Willis / Wikimedia Commons
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                  , licensed under{" "}
+                  <a
+                    href="https://creativecommons.org/licenses/by-sa/2.0/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-blue-700 underline decoration-blue-300 underline-offset-2 hover:text-red-700 dark:text-blue-300"
+                  >
+                    CC BY-SA 2.0
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                  .
+                </figcaption>
+              </figure>
             </div>
 
             <div className={`${styles.prose} text-slate-700 dark:text-slate-300`}>
@@ -234,14 +270,14 @@ export default function ComicsPage() {
               <p>
                 Created by writer Jerry Siegel and artist Joe Shuster, Superman first appeared in{" "}
                 <em>Action Comics</em> #1 in 1938. He helped popularize the superhero form: the
-                costume, the secret identity, the extraordinary ability directed toward public
-                good. But conventions alone do not explain nearly nine decades of attention.
+                costume, the secret identity, the extraordinary ability directed toward public good.
+                But conventions alone do not explain nearly nine decades of attention.
               </p>
               <p>
-                His deeper appeal is a reversal of the usual fantasy of power. Superman can dominate,
-                yet chooses to serve. He can stand above humanity, yet chooses to live among people
-                as Clark Kent. He arrives from a world that could not be saved, yet does not make
-                loss an excuse for bitterness.
+                His deeper appeal is a reversal of the usual fantasy of power. Superman can
+                dominate, yet chooses to serve. He can stand above humanity, yet chooses to live
+                among people as Clark Kent. He arrives from a world that could not be saved, yet
+                does not make loss an excuse for bitterness.
               </p>
               <p>
                 That is where hope enters. Hope is not his confidence that he will always win. It is
@@ -252,7 +288,10 @@ export default function ComicsPage() {
         </Container>
       </section>
 
-      <section aria-labelledby="history-title" className={`${styles.historyBand} py-20 text-white sm:py-24`}>
+      <section
+        aria-labelledby="history-title"
+        className={`${styles.historyBand} py-20 text-white sm:py-24`}
+      >
         <Container className="max-w-7xl">
           <div className="max-w-3xl">
             <p className="text-sm font-bold text-yellow-300 uppercase">02 / A changing symbol</p>
@@ -278,7 +317,9 @@ export default function ComicsPage() {
                 <p className="font-mono text-sm font-bold text-red-400">{moment.year}</p>
                 <h3 className="mt-4 font-serif text-2xl font-bold">{moment.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-slate-300">{moment.description}</p>
-                <span className="sr-only">Milestone {index + 1} of {history.length}</span>
+                <span className="sr-only">
+                  Milestone {index + 1} of {history.length}
+                </span>
               </li>
             ))}
           </ol>
@@ -305,7 +346,10 @@ export default function ComicsPage() {
 
             <div className="divide-y divide-slate-200 border-y border-slate-200 dark:divide-white/10 dark:border-white/10">
               <article className="grid gap-5 py-10 sm:grid-cols-[3rem_1fr]">
-                <SparkIcon className="h-7 w-7 text-yellow-600 dark:text-yellow-300" aria-hidden="true" />
+                <SparkIcon
+                  className="h-7 w-7 text-yellow-600 dark:text-yellow-300"
+                  aria-hidden="true"
+                />
                 <div>
                   <h3 className="font-serif text-3xl font-bold">Hope survives the journey.</h3>
                   <p className="mt-4 leading-8 text-slate-700 dark:text-slate-300">
@@ -318,7 +362,10 @@ export default function ComicsPage() {
               </article>
 
               <article className="grid gap-5 py-10 sm:grid-cols-[3rem_1fr]">
-                <CompassIcon className="h-7 w-7 text-blue-700 dark:text-blue-300" aria-hidden="true" />
+                <CompassIcon
+                  className="h-7 w-7 text-blue-700 dark:text-blue-300"
+                  aria-hidden="true"
+                />
                 <div>
                   <h3 className="font-serif text-3xl font-bold">Power chooses restraint.</h3>
                   <p className="mt-4 leading-8 text-slate-700 dark:text-slate-300">
@@ -331,7 +378,10 @@ export default function ComicsPage() {
               </article>
 
               <article className="grid gap-5 py-10 sm:grid-cols-[3rem_1fr]">
-                <BricolageIcon className="h-7 w-7 text-red-700 dark:text-red-400" aria-hidden="true" />
+                <BricolageIcon
+                  className="h-7 w-7 text-red-700 dark:text-red-400"
+                  aria-hidden="true"
+                />
                 <div>
                   <h3 className="font-serif text-3xl font-bold">Clark Kent keeps him near.</h3>
                   <p className="mt-4 leading-8 text-slate-700 dark:text-slate-300">
@@ -344,7 +394,10 @@ export default function ComicsPage() {
               </article>
 
               <article className="grid gap-5 py-10 sm:grid-cols-[3rem_1fr]">
-                <ArrowRightIcon className="h-7 w-7 text-slate-700 dark:text-slate-200" aria-hidden="true" />
+                <ArrowRightIcon
+                  className="h-7 w-7 text-slate-700 dark:text-slate-200"
+                  aria-hidden="true"
+                />
                 <div>
                   <h3 className="font-serif text-3xl font-bold">Tomorrow is a direction.</h3>
                   <p className="mt-4 leading-8 text-slate-700 dark:text-slate-300">
@@ -379,7 +432,7 @@ export default function ComicsPage() {
             {principles.map((principle) => (
               <li
                 key={principle.number}
-                className="min-h-64 border-b border-slate-900/15 p-6 md:border-r md:even:border-r-0 lg:border-b-0 lg:even:border-r lg:last:border-r-0"
+                className="min-h-64 border-b border-slate-900/15 p-6 md:border-r md:even:border-r-0 lg:border-b-0 lg:last:border-r-0 lg:even:border-r"
               >
                 <span className="font-mono text-sm font-bold text-red-700">{principle.number}</span>
                 <h3 className="mt-10 font-serif text-3xl font-bold text-slate-950">
@@ -433,17 +486,25 @@ export default function ComicsPage() {
         </Container>
       </section>
 
-      <section aria-labelledby="closing-title" className={`${styles.closing} relative overflow-hidden py-24 text-white sm:py-32`}>
+      <section
+        aria-labelledby="closing-title"
+        className={`${styles.closing} relative overflow-hidden py-24 text-white sm:py-32`}
+      >
         <Container className="relative z-10 max-w-5xl text-center">
           <p className="text-sm font-bold text-yellow-300 uppercase">The last panel</p>
-          <h2 id="closing-title" className="mx-auto mt-5 max-w-4xl font-serif text-4xl leading-tight font-bold sm:text-6xl">
+          <h2
+            id="closing-title"
+            className="mx-auto mt-5 max-w-4xl font-serif text-4xl leading-tight font-bold sm:text-6xl"
+          >
             The world does not need us to be invulnerable.
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-blue-100">
             It needs us to remain available to one another: honest enough to see the danger, strong
             enough to help, and hopeful enough to believe that help still matters.
           </p>
-          <p className="mt-9 font-serif text-2xl text-yellow-200 italic">Look up. Then look around.</p>
+          <p className="mt-9 font-serif text-2xl text-yellow-200 italic">
+            Look up. Then look around.
+          </p>
         </Container>
       </section>
 
