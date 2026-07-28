@@ -10,6 +10,7 @@ import {
   teachingDropdown,
 } from "@/features/profile/data/navigation";
 import type { NavLink } from "@/features/profile/types";
+import { cn } from "@/lib/cn";
 
 const mobileLinks: Array<NavLink & { group: string }> = [
   ...primaryNavLinks.map((link) => ({ ...link, group: "Profile" })),
@@ -18,9 +19,20 @@ const mobileLinks: Array<NavLink & { group: string }> = [
   ...moreDropdown.items.map((link) => ({ ...link, group: "More" })),
 ];
 
-function MobileLink({ link, onNavigate }: { link: NavLink; onNavigate: () => void }) {
-  const className =
-    "hover:bg-brand-50 dark:hover:bg-brand-900/20 focus-visible:bg-brand-50 dark:focus-visible:bg-brand-900/20 flex min-h-11 items-center rounded-xl px-3 py-2.5 text-sm font-semibold";
+function MobileLink({
+  link,
+  nested = false,
+  onNavigate,
+}: {
+  link: NavLink;
+  nested?: boolean;
+  onNavigate: () => void;
+}) {
+  const className = cn(
+    "hover:bg-brand-50 dark:hover:bg-brand-900/20 focus-visible:bg-brand-50 dark:focus-visible:bg-brand-900/20 flex min-h-11 items-center rounded-xl px-3 py-2.5 text-sm font-semibold",
+    nested &&
+      "border-ink-200 text-ink-600 dark:border-ink-700 dark:text-ink-300 ml-3 rounded-l-none border-l pl-4 text-[13px] font-medium"
+  );
 
   if (link.external || !link.href.startsWith("/")) {
     return (
@@ -92,13 +104,13 @@ export function MobileNav() {
       >
         <span aria-hidden="true" className="grid w-4 gap-1">
           <span
-            className={`bg-current block h-0.5 rounded-full transition-transform ${open ? "translate-y-1.5 rotate-45" : ""}`}
+            className={`block h-0.5 rounded-full bg-current transition-transform ${open ? "translate-y-1.5 rotate-45" : ""}`}
           />
           <span
-            className={`bg-current block h-0.5 rounded-full transition-opacity ${open ? "opacity-0" : ""}`}
+            className={`block h-0.5 rounded-full bg-current transition-opacity ${open ? "opacity-0" : ""}`}
           />
           <span
-            className={`bg-current block h-0.5 rounded-full transition-transform ${open ? "-translate-y-1.5 -rotate-45" : ""}`}
+            className={`block h-0.5 rounded-full bg-current transition-transform ${open ? "-translate-y-1.5 -rotate-45" : ""}`}
           />
         </span>
         Menu
@@ -121,15 +133,24 @@ export function MobileNav() {
               className="border-ink-200 dark:border-ink-700 border-b py-2 last:border-b-0"
             >
               <p className="eyebrow px-3 py-2">{group}</p>
-              {mobileLinks
-                .filter((link) => link.group === group)
-                .map((link) => (
-                  <MobileLink
-                    key={`${group}-${link.label}`}
-                    link={link}
-                    onNavigate={() => setOpen(false)}
-                  />
-                ))}
+              <ul>
+                {mobileLinks
+                  .filter((link) => link.group === group)
+                  .map((link) => (
+                    <li key={`${group}-${link.label}`}>
+                      <MobileLink link={link} onNavigate={() => setOpen(false)} />
+                      {link.children?.length ? (
+                        <ul aria-label={`${link.label} pages`}>
+                          {link.children.map((child) => (
+                            <li key={child.label}>
+                              <MobileLink link={child} nested onNavigate={() => setOpen(false)} />
+                            </li>
+                          ))}
+                        </ul>
+                      ) : null}
+                    </li>
+                  ))}
+              </ul>
             </div>
           ))}
         </nav>

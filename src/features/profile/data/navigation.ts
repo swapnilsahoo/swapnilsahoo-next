@@ -37,6 +37,20 @@ export const moreDropdown: NavDropdown = {
     { label: "Gallery", href: "/#gallery" },
     { label: "Spirituality", href: "/spirituality/" },
     { label: "Comics & Fiction", href: "/comics/" },
+    {
+      label: "Mythology",
+      href: "/mythology/",
+      children: [
+        {
+          label: "Mahabharata (Original)",
+          href: "/mythology/#mahabharata-original",
+        },
+        {
+          label: "Ramayana (Original)",
+          href: "/mythology/#ramayana-original",
+        },
+      ],
+    },
     { label: "Contact", href: "/#contact" },
   ],
 };

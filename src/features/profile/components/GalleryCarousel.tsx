@@ -152,7 +152,7 @@ export function GalleryCarousel({ images }: { images: GalleryImage[] }) {
               aria-label={`Go to slide ${index + 1}`}
               aria-current={index === selectedIndex ? "true" : undefined}
               onClick={() => scrollTo(index)}
-              className="grid h-8 w-8 place-items-center rounded-full"
+              className="grid h-8 w-6 place-items-center rounded-full sm:w-8"
             >
               <span
                 className="block h-2.5 w-2.5 rounded-full bg-white shadow-sm transition-opacity"
