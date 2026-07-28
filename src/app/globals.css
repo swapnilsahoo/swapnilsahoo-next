@@ -11,7 +11,7 @@
   --color-ink-100: #eef1f5;
   --color-ink-200: #d9dee6;
   --color-ink-300: #b6bfcc;
-  --color-ink-400: #8593a6;
+  --color-ink-400: #66758a;
   --color-ink-500: #5b6b82;
   --color-ink-600: #3e4c63;
   --color-ink-700: #27354b;
@@ -74,6 +74,58 @@
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-padding-top: 7rem;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+.dark {
+  --color-ink-400: #9aa9bd;
+}
+
+::selection {
+  background: rgba(37, 99, 235, 0.22);
+  color: #0a1426;
+}
+
+.dark ::selection {
+  background: rgba(147, 197, 253, 0.3);
+  color: #f7f8fa;
+}
+
+:where(a, button, input, select, textarea, summary):focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 3px;
+}
+
+.dark :where(a, button, input, select, textarea, summary):focus-visible {
+  outline-color: #93c5fd;
+}
+
+section[id],
+header[id],
+div[id] {
+  scroll-margin-top: 7rem;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 10000;
+  transform: translateY(-180%);
+  border-radius: 999px;
+  background: #0a2540;
+  color: #fff;
+  padding: 0.7rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  box-shadow: 0 18px 38px -16px rgba(10, 37, 64, 0.75);
+  transition: transform 0.18s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
 }
 
 body {
@@ -273,6 +325,11 @@ body::after {
 }
 
 .link-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+.link-underline:focus-visible::after {
   transform: scaleX(1);
   transform-origin: left center;
 }
@@ -577,6 +634,10 @@ body::after {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   *,
   *::before,
   *::after {

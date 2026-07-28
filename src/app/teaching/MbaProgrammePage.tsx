@@ -65,7 +65,7 @@ function Citations({ ids }: { ids: number[] }) {
 
 export function MbaProgrammePage({ config }: { config: ProgrammeConfig }) {
   return (
-    <main>
+    <main id="main-content">
       <header className="relative overflow-hidden pt-14 pb-16 sm:pt-20 sm:pb-24">
         <div className="aurora" aria-hidden="true" />
         <Container className="max-w-6xl">

@@ -38,6 +38,7 @@ export const metadata: Metadata = {
     description:
       "A build-first learning experience at Great Lakes Gurgaon, moving from real problems to responsible AI-enabled prototypes.",
     url: "/teaching/ai-hackathon",
+    images: ["/images/ai-hackathon/hackathon-demo-enhanced.png"],
   },
 };
 
@@ -109,7 +110,7 @@ const evaluationGroups = [
 
 export default function AiHackathonPage() {
   return (
-    <main>
+    <main id="main-content">
       <header className="relative overflow-hidden pt-14 pb-16 sm:pt-20 sm:pb-20">
         <div className="aurora" aria-hidden="true" />
         <Container className="max-w-6xl">

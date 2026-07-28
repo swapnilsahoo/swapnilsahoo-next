@@ -12,7 +12,7 @@ import { Teaching } from "@/features/profile/components/Teaching";
 
 export default function Home() {
   return (
-    <>
+    <main id="main-content">
       <Hero />
       <Stats />
       <About />
@@ -24,6 +24,6 @@ export default function Home() {
       <MdpSection />
       <Gallery />
       <Contact />
-    </>
+    </main>
   );
 }

@@ -24,6 +24,7 @@ export const metadata: Metadata = {
     title: "Sacred Texts — Read, Reflect, Return",
     description: "A respectful multilingual reader for three beloved devotional works.",
     url: "/spirituality/",
+    images: ["/images/profile_pic.jpg"],
   },
 };
 
@@ -47,7 +48,7 @@ const collections = [
 
 export default function SpiritualityPage() {
   return (
-    <main>
+    <main id="main-content">
       <header className="relative overflow-hidden pt-14 pb-16 sm:pt-20 sm:pb-24">
         <div className="aurora" aria-hidden="true" />
         <Container className="max-w-6xl">

@@ -34,6 +34,7 @@ export const metadata: Metadata = {
     description:
       "A practice-first system for structuring, analyzing and communicating consulting cases.",
     url: "/case-study-preparation/",
+    images: ["/images/gallery/classroom-dialogue.png"],
   },
 };
 
@@ -108,7 +109,7 @@ const industryLenses = [
 
 export default function CaseStudyPreparationPage() {
   return (
-    <main>
+    <main id="main-content">
       <header className="relative overflow-hidden pt-14 pb-16 sm:pt-20 sm:pb-24">
         <div className="aurora" aria-hidden="true" />
         <Container className="max-w-6xl">

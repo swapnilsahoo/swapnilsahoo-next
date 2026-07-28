@@ -1,4 +1,5 @@
 import { Container } from "@/components/ui/Container";
+import Link from "next/link";
 import { InstagramIcon, LinkedInIcon, SubstackIcon, XIcon } from "@/components/icons/SocialIcons";
 
 const footerLinks = [
@@ -29,12 +30,12 @@ export function Footer() {
         </div>
         <div>
           <p className="eyebrow mb-3">Site</p>
-          <ul className="space-y-1.5 text-sm">
+          <ul className="space-y-1.5 text-sm" aria-label="Footer navigation">
             {footerLinks.map((link) => (
               <li key={link.label}>
-                <a href={link.href} className="link-underline">
+                <Link href={link.href} className="link-underline inline-flex min-h-8 items-center">
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -49,7 +50,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="bg-ink-100 dark:bg-ink-800 hover:bg-ink-200 dark:hover:bg-ink-700 rounded-full p-2 transition-colors"
+                className="bg-ink-100 dark:bg-ink-800 hover:bg-ink-200 dark:hover:bg-ink-700 flex h-10 w-10 items-center justify-center rounded-full transition-colors"
               >
                 <Icon className="h-4 w-4" />
               </a>
@@ -59,7 +60,7 @@ export function Footer() {
       </Container>
       <Container className="text-ink-500 dark:text-ink-400 flex flex-wrap items-center justify-between gap-2 pb-8 text-xs">
         <p>© {year} Dr. Swapnil Sahoo. All rights reserved.</p>
-        <p className="font-mono">v3.1 · Made with care.</p>
+        <p className="font-mono">Designed for clarity · Built with care.</p>
       </Container>
     </footer>
   );

@@ -15,10 +15,13 @@ export function Hero() {
           <div className="mb-5 flex flex-wrap items-center gap-3">
             <span className="eyebrow">{profile.title}</span>
             <span className="tag tag-amber">
-              <span className="bg-accent-500 h-1.5 w-1.5 animate-pulse rounded-full" />
+              <span
+                className="bg-accent-500 h-1.5 w-1.5 animate-pulse rounded-full"
+                aria-hidden="true"
+              />
               Accepting PhD enquiries
             </span>
-            <span className="tag tag-emerald">Writer · Educator . Executor</span>
+            <span className="tag tag-emerald">Writer · Educator · Executor</span>
           </div>
           <h1 className="display mb-6 text-5xl font-semibold md:text-7xl">
             Dr. {profile.firstName}{" "}
@@ -28,11 +31,10 @@ export function Hero() {
             .
           </h1>
           <p className="text-ink-700 dark:text-ink-200 mb-8 max-w-2xl text-lg leading-relaxed md:text-xl">
-            I research how organisations — from young ventures to multi-generational family firms
-            — build <em>resourcefulness</em> under constraint, and how AI is reshaping the way we
-            teach strategy. Faculty at{" "}
-            <strong>Great Lakes Institute of Management, Gurgaon</strong>; Ph.D. from{" "}
-            <strong>XLRI Jamshedpur</strong>.
+            I research how organisations — from young ventures to multi-generational family firms —
+            build <em>resourcefulness</em> under constraint, and how AI is reshaping the way we
+            teach strategy. Faculty at <strong>Great Lakes Institute of Management, Gurgaon</strong>
+            ; Ph.D. from <strong>XLRI Jamshedpur</strong>.
           </p>
           <div className="flex flex-wrap items-center gap-3">
             <a href="#contact" className="btn-primary">

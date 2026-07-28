@@ -88,7 +88,7 @@ function Citations({ ids }: { ids: readonly number[] }) {
 
 export function TwoYearMbaExperience() {
   return (
-    <main className="overflow-clip">
+    <main id="main-content" className="overflow-clip">
       <header className="px-4 pt-10 pb-8 sm:px-6 sm:pt-16 lg:px-8">
         <div
           className={`${styles.heroShell} mx-auto max-w-[92rem] overflow-hidden rounded-[2rem] text-white shadow-[0_40px_120px_-48px_rgba(3,7,18,0.95)] sm:rounded-[2.5rem]`}

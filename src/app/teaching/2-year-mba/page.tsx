@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     description:
       "Twenty cumulative sessions, original field evidence and a complete path from diagnosis to coordinated action.",
     url: "/teaching/2-year-mba",
+    images: ["/images/teaching/pgdm-strategy-classroom.png"],
   },
 };
 

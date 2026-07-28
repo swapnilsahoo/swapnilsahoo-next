@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 
 import type { NavDropdown } from "@/features/profile/types";
 
@@ -10,6 +10,7 @@ const CLOSE_DELAY_MS = 500;
 export function NavDropdownMenu({ dropdown }: { dropdown: NavDropdown }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const menuId = useId();
   const closeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const clearCloseTimeout = () => {
@@ -37,6 +38,11 @@ export function NavDropdownMenu({ dropdown }: { dropdown: NavDropdown }) {
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
+  const closeMenu = () => {
+    clearCloseTimeout();
+    setOpen(false);
+  };
+
   return (
     <div
       ref={ref}
@@ -46,12 +52,23 @@ export function NavDropdownMenu({ dropdown }: { dropdown: NavDropdown }) {
         setOpen(true);
       }}
       onMouseLeave={scheduleClose}
+      onKeyDown={(event) => {
+        if (event.key === "Escape") {
+          closeMenu();
+          ref.current?.querySelector("button")?.focus();
+        }
+      }}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) closeMenu();
+      }}
     >
-      <a
-        href={dropdown.href}
-        className="link-underline inline-flex items-center gap-1 rounded-full px-3 py-1.5"
-        onClick={(event) => {
-          event.preventDefault();
+      <button
+        type="button"
+        aria-expanded={open}
+        aria-controls={menuId}
+        aria-haspopup="true"
+        className="link-underline inline-flex min-h-10 items-center gap-1 rounded-full px-3 py-1.5"
+        onClick={() => {
           clearCloseTimeout();
           setOpen((value) => !value);
         }}
@@ -66,24 +83,31 @@ export function NavDropdownMenu({ dropdown }: { dropdown: NavDropdown }) {
         >
           <polyline points="6 9 12 15 18 9" />
         </svg>
-      </a>
+      </button>
       <div
+        id={menuId}
+        aria-hidden={!open}
+        inert={!open}
         className="nav-glass dropdown-content absolute top-[calc(100%+10px)] left-1/2 z-50 min-w-[220px] rounded-[14px] p-2 opacity-0 transition-[opacity,transform] duration-200"
         style={{
           pointerEvents: open ? "auto" : "none",
           opacity: open ? 1 : 0,
-          transform: open
-            ? "translateX(-50%) translateY(0)"
-            : "translateX(-50%) translateY(4px)",
+          transform: open ? "translateX(-50%) translateY(0)" : "translateX(-50%) translateY(4px)",
         }}
       >
         {dropdown.items.map((item) =>
           item.external ? (
-            <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer">
+            <a
+              key={item.label}
+              href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={closeMenu}
+            >
               {item.label}
             </a>
           ) : (
-            <Link key={item.label} href={item.href}>
+            <Link key={item.label} href={item.href} onClick={closeMenu}>
               {item.label}
             </Link>
           )

@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     description:
       "Thirteen discussion-intensive sessions that turn professional experience into strategic range.",
     url: "/teaching/1-year-mba",
+    images: ["/images/gallery/classroom-dialogue.png"],
   },
 };
 

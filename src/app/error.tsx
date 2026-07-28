@@ -18,7 +18,11 @@ export default function ErrorPage({
   }, [error]);
 
   return (
-    <Container className="flex min-h-[60vh] flex-col items-center justify-center gap-4 text-center">
+    <Container
+      id="main-content"
+      role="main"
+      className="flex min-h-[60vh] flex-col items-center justify-center gap-4 text-center"
+    >
       <Typography as="h1" variant="h2">
         Something went wrong
       </Typography>

@@ -24,7 +24,7 @@ export const teachingDropdown: NavDropdown = {
 
 export const secondaryNavLinks: NavLink[] = [
   { label: "PhD", href: "/#phd" },
-  { label: "Writing", href: "/blogs" },
+  { label: "Writing", href: "https://swapnilsahoo.substack.com/", external: true },
 ];
 
 export const moreDropdown: NavDropdown = {

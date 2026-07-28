@@ -9,6 +9,7 @@ import {
   SparkIcon,
 } from "@/components/icons/LineIcons";
 import { Container } from "@/components/ui/Container";
+import { profile } from "@/features/profile/data/profile";
 
 import { ReadinessStudio } from "./ReadinessStudio";
 
@@ -32,6 +33,7 @@ export const metadata: Metadata = {
     description:
       "Build a clear role thesis, proof-led CV, strong story bank and disciplined interview practice.",
     url: "/placements",
+    images: ["/images/gallery/crest-judging-panel.png"],
   },
 };
 
@@ -114,7 +116,7 @@ const interviewSignals = [
 
 export default function PlacementsPage() {
   return (
-    <main>
+    <main id="main-content">
       <header className="relative overflow-hidden pt-14 pb-16 sm:pt-20 sm:pb-24">
         <div className="aurora" aria-hidden="true" />
         <Container className="max-w-6xl">
@@ -358,7 +360,7 @@ export default function PlacementsPage() {
                 </p>
               </a>
               <a
-                href="mailto:swapnil.s@greatlakes.edu.in?subject=Placement%20Preparation%20Mentoring"
+                href={`mailto:${profile.email}?subject=Placement%20Preparation%20Mentoring`}
                 className="border-ink-200 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 rounded-2xl border p-6 transition focus-visible:ring-2 focus-visible:outline-none"
               >
                 <p className="eyebrow mb-2">Mentoring</p>

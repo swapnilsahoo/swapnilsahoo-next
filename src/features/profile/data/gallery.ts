@@ -1,8 +1,5 @@
 import type { GalleryImage } from "@/features/profile/types";
 
-const base =
-  "https://swapnilsahoo.com/wp-content/themes/swapnil-sahoo-theme/material%20assests/images";
-
 export const galleryImages: GalleryImage[] = [
   {
     src: "/images/gallery/classroom-dialogue.png",
@@ -35,28 +32,21 @@ export const galleryImages: GalleryImage[] = [
     objectPosition: "center 48%",
   },
   {
-    src: `${base}/AACSB.jpeg`,
-    alt: "AACSB Peer Review Visit",
-    caption: "AACSB Peer Review Visit",
+    src: "/images/teaching/pgdm-strategy-classroom.png",
+    alt: "Swapnil Sahoo leading a strategic management discussion in a tiered classroom",
+    caption: "Strategy in dialogue · PGDM classroom",
+    objectPosition: "center 48%",
   },
   {
-    src: `${base}/conference.jpg`,
-    alt: "Speaking at AOM 2025",
-    caption: "Presenting at a Conference",
+    src: "/images/ai-hackathon/hackathon-demo-enhanced.png",
+    alt: "Swapnil Sahoo presenting during an AI hackathon prototype demonstration",
+    caption: "From problem to prototype · AI Hackathon",
+    objectPosition: "center 44%",
   },
   {
-    src: `${base}/mdp.jpg`,
-    alt: "MDP Session for IRS Officers",
-    caption: "MDP Session · IRS Officers, NADT Delhi",
-  },
-  {
-    src: `${base}/award.jpg`,
-    alt: "Award at IIM Kashipur",
-    caption: "Best Paper Award · IIM Kashipur (MERC 2023)",
-  },
-  {
-    src: `${base}/SPIC.jpg`,
-    alt: "SPIC MACAY Inauguration at GLIM",
-    caption: "SPIC MACAY Inauguration · GLIM",
+    src: "/images/ai-hackathon/hackathon-room.jpg",
+    alt: "Teams, faculty and participants gathered in the AI hackathon room",
+    caption: "The room where ideas become working demonstrations",
+    objectPosition: "center 52%",
   },
 ];

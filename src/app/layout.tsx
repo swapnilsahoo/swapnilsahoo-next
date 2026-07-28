@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
 
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
@@ -28,7 +28,7 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://swapnilsahoo.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.swapnilsahoo.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -40,6 +40,24 @@ export const metadata: Metadata = {
   description:
     "Academic and professional portfolio of Dr. Swapnil Sahoo (Ph.D., XLRI Jamshedpur). Assistant Professor of Strategy at Great Lakes Institute of Management, Gurgaon. Research on entrepreneurial resourcefulness, family business, frugal innovation, and AI in management education.",
   authors: [{ name: profile.name }],
+  creator: profile.name,
+  publisher: profile.name,
+  category: "Education",
+  alternates: {
+    canonical: "/",
+  },
+  manifest: "/manifest.webmanifest",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   keywords: [
     "Swapnil Sahoo",
     "Strategy",
@@ -59,6 +77,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: "profile",
+    locale: "en_IN",
     title: "Dr. Swapnil Sahoo — Strategy & Entrepreneurship",
     description:
       "Faculty, researcher, and PhD supervisor working on entrepreneurial resourcefulness, family business, and AI-enabled management education.",
@@ -71,7 +90,16 @@ export const metadata: Metadata = {
     creator: "@swapnilsahoo",
     title: "Dr. Swapnil Sahoo — Strategy & Entrepreneurship",
     description: "Assistant Professor in Strategy at Great Lakes Institute of Management, Gurgaon.",
+    images: [profile.profileImage],
   },
+};
+
+export const viewport: Viewport = {
+  colorScheme: "light dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f8fbff" },
+    { media: "(prefers-color-scheme: dark)", color: "#020617" },
+  ],
 };
 
 const jsonLd = {
@@ -118,6 +146,9 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body>
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
