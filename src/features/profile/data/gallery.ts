@@ -2,6 +2,14 @@ import type { GalleryImage } from "@/features/profile/types";
 
 export const galleryImages: GalleryImage[] = [
   {
+    src: "/images/gallery/aacsb-societal-impact-visit.jpeg",
+    alt: "Swapnil Sahoo with Dr. Raju Balakrishnan and Great Lakes colleagues during the AACSB peer review visit",
+    caption: "AACSB peer review visit · Societal impact in dialogue",
+    description:
+      "With Dr. Raju Balakrishnan and Great Lakes colleagues—connecting Karma Yoga and the Sustainability CoE with SDG 4 and SDG 11.",
+    objectPosition: "center 45%",
+  },
+  {
     src: "/images/gallery/classroom-dialogue.png",
     alt: "Swapnil Sahoo facilitating an interactive classroom dialogue",
     caption: "Ideas in motion · Interactive classroom dialogue",
