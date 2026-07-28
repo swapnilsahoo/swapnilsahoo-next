@@ -14,6 +14,20 @@ export const teachingLinks: TeachingLink[] = [
     href: "/teaching/2-year-mba",
   },
   {
+    eyebrow: "Experiential Leadership",
+    title: "Karma Yoga",
+    description:
+      "A community field lab for empathy, responsible action, measurable impact and reflective leadership.",
+    href: "/teaching/karma-yoga",
+  },
+  {
+    eyebrow: "Strategy Capstone",
+    title: "Business Simulation",
+    description:
+      "Twenty decision-rich sessions connecting strategy, finance, markets, operations, people and ESG.",
+    href: "/teaching/business-simulation",
+  },
+  {
     eyebrow: "Teaching Resource",
     title: "Case Study Preparation",
     description:

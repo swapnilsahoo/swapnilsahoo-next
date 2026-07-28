@@ -68,6 +68,7 @@ export interface GalleryImage {
   src: string;
   alt: string;
   caption: string;
+  description?: string;
   objectPosition?: string;
 }
 

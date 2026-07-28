@@ -12,6 +12,8 @@ export const teachingDropdown: NavDropdown = {
   items: [
     { label: "1-Year MBA", href: "/teaching/1-year-mba" },
     { label: "2-Year MBA", href: "/teaching/2-year-mba" },
+    { label: "Karma Yoga", href: "/teaching/karma-yoga" },
+    { label: "Business Simulation", href: "/teaching/business-simulation" },
     {
       label: "Case Study Preparation",
       href: "/case-study-preparation/",
