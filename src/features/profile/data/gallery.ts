@@ -52,6 +52,20 @@ export const galleryImages: GalleryImage[] = [
     objectPosition: "center 44%",
   },
   {
+    src: "/images/gallery/ai-mini-hackathon-winners-2026.jpg",
+    alt: "Students and faculty gathered around a trophy during the AI Mini Hackathon awards ceremony",
+    caption: "AI Mini Hackathon 2026 · Awards and applause",
+    description: "Students and faculty celebrate a winning prototype team at Great Lakes Gurgaon.",
+    objectPosition: "center 48%",
+  },
+  {
+    src: "/images/gallery/ai-mini-hackathon-team-2026.jpg",
+    alt: "Student hackathon team celebrating with its trophy outside Great Lakes Gurgaon",
+    caption: "From prototype to podium · AI Mini Hackathon 2026",
+    description: "A student team marks its achievement together on campus.",
+    objectPosition: "center 46%",
+  },
+  {
     src: "/images/ai-hackathon/hackathon-room.jpg",
     alt: "Teams, faculty and participants gathered in the AI hackathon room",
     caption: "The room where ideas become working demonstrations",

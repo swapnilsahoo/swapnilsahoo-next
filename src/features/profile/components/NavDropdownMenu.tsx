@@ -3,9 +3,41 @@
 import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 
-import type { NavDropdown } from "@/features/profile/types";
+import type { NavDropdown, NavLink } from "@/features/profile/types";
 
 const CLOSE_DELAY_MS = 500;
+
+function DropdownLink({
+  item,
+  nested = false,
+  onNavigate,
+}: {
+  item: NavLink;
+  nested?: boolean;
+  onNavigate: () => void;
+}) {
+  const className = nested ? "nav-child" : undefined;
+
+  if (item.external) {
+    return (
+      <a
+        href={item.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={className}
+        onClick={onNavigate}
+      >
+        {item.label}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={item.href} className={className} onClick={onNavigate}>
+      {item.label}
+    </Link>
+  );
+}
 
 export function NavDropdownMenu({ dropdown }: { dropdown: NavDropdown }) {
   const [open, setOpen] = useState(false);
@@ -66,7 +98,6 @@ export function NavDropdownMenu({ dropdown }: { dropdown: NavDropdown }) {
         type="button"
         aria-expanded={open}
         aria-controls={menuId}
-        aria-haspopup="true"
         className="link-underline inline-flex min-h-10 items-center gap-1 rounded-full px-3 py-1.5"
         onClick={() => {
           clearCloseTimeout();
@@ -95,23 +126,22 @@ export function NavDropdownMenu({ dropdown }: { dropdown: NavDropdown }) {
           transform: open ? "translateX(-50%) translateY(0)" : "translateX(-50%) translateY(4px)",
         }}
       >
-        {dropdown.items.map((item) =>
-          item.external ? (
-            <a
-              key={item.label}
-              href={item.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={closeMenu}
-            >
-              {item.label}
-            </a>
-          ) : (
-            <Link key={item.label} href={item.href} onClick={closeMenu}>
-              {item.label}
-            </Link>
-          )
-        )}
+        <ul>
+          {dropdown.items.map((item) => (
+            <li key={item.label}>
+              <DropdownLink item={item} onNavigate={closeMenu} />
+              {item.children?.length ? (
+                <ul aria-label={`${item.label} pages`}>
+                  {item.children.map((child) => (
+                    <li key={child.label}>
+                      <DropdownLink item={child} nested onNavigate={closeMenu} />
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
