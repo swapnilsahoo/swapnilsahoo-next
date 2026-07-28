@@ -1,22 +1,21 @@
 import type { Metadata } from "next";
 
-import { MbaProgrammePage } from "../MbaProgrammePage";
-import { twoYearMba } from "../mbaData";
+import { TwoYearMbaExperience } from "./TwoYearMbaExperience";
 
 export const metadata: Metadata = {
-  title: "2-Year MBA — Strategy & Entrepreneurship Pathway",
+  title: "2-Year MBA — Strategy, End to End",
   description:
-    "A scaffolded, research-grounded MBA pathway from strategic foundations to independent judgment.",
+    "A complete 20-session Strategic Management learning system for PGDM professionals—from competitive foundations to corporate scope, execution and global change.",
   alternates: { canonical: "/teaching/2-year-mba" },
   openGraph: {
     type: "website",
-    title: "2-Year MBA — Build the Foundations. Earn the Judgment.",
+    title: "2-Year MBA — Strategy, End to End",
     description:
-      "A cumulative learning journey through cases, experiments, simulations and live decisions.",
+      "Twenty cumulative sessions, original field evidence and a complete path from diagnosis to coordinated action.",
     url: "/teaching/2-year-mba",
   },
 };
 
 export default function TwoYearMbaPage() {
-  return <MbaProgrammePage config={twoYearMba} />;
+  return <TwoYearMbaExperience />;
 }

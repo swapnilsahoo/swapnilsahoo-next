@@ -1,0 +1,155 @@
+.heroShell {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 8% 0%, rgb(16 185 129 / 0.2), transparent 30rem),
+    radial-gradient(circle at 92% 8%, rgb(245 158 11 / 0.16), transparent 28rem),
+    linear-gradient(145deg, #020617 0%, #071528 48%, #092035 100%);
+}
+
+.heroShell::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  background-image:
+    linear-gradient(rgb(148 163 184 / 0.075) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(148 163 184 / 0.075) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(110deg, #000 8%, transparent 62%);
+}
+
+.photoFrame::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, #061326 0%, rgb(6 19 38 / 0.4) 18%, transparent 56%),
+    linear-gradient(0deg, rgb(2 6 23 / 0.8), transparent 48%);
+}
+
+.phaseRail {
+  position: relative;
+}
+
+.phaseRail::before {
+  position: absolute;
+  top: 1.45rem;
+  right: 2rem;
+  left: 2rem;
+  height: 1px;
+  content: "";
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(52 211 153 / 0.55) 14%,
+    rgb(96 165 250 / 0.55) 58%,
+    rgb(251 191 36 / 0.55) 88%,
+    transparent
+  );
+}
+
+.assessmentRing {
+  position: relative;
+  display: grid;
+  width: min(18rem, 72vw);
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 9999px;
+  background: conic-gradient(
+    #059669 0deg 72deg,
+    #34d399 72deg 90deg,
+    #2563eb 90deg 144deg,
+    #1e3a8a 144deg 270deg,
+    #d97706 270deg 360deg
+  );
+  box-shadow:
+    0 30px 74px -34px rgb(15 23 42 / 0.72),
+    0 0 0 10px rgb(255 255 255 / 0.58);
+}
+
+.assessmentRing::after {
+  position: absolute;
+  width: 63%;
+  aspect-ratio: 1;
+  border-radius: inherit;
+  content: "";
+  background: #f8fafc;
+  box-shadow: inset 0 0 0 1px rgb(15 23 42 / 0.08);
+}
+
+.assessmentValue {
+  position: relative;
+  z-index: 1;
+}
+
+.projectLine {
+  position: absolute;
+  top: 1.5rem;
+  right: 7%;
+  left: 7%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(110 231 183 / 0.55), transparent);
+}
+
+.questionGrid {
+  background-image:
+    linear-gradient(rgb(15 23 42 / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(15 23 42 / 0.04) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+:global(.dark) .assessmentRing {
+  box-shadow:
+    0 30px 74px -34px rgb(0 0 0 / 0.92),
+    0 0 0 10px rgb(15 23 42 / 0.62);
+}
+
+:global(.dark) .assessmentRing::after {
+  background: #081426;
+  box-shadow: inset 0 0 0 1px rgb(226 232 240 / 0.12);
+}
+
+:global(.dark) .questionGrid {
+  background-image:
+    linear-gradient(rgb(226 232 240 / 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(226 232 240 / 0.045) 1px, transparent 1px);
+}
+
+@media (max-width: 767px) {
+  .phaseRail::before {
+    top: 2rem;
+    bottom: 2rem;
+    left: 1.45rem;
+    width: 1px;
+    height: auto;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(52 211 153 / 0.55) 14%,
+      rgb(96 165 250 / 0.55) 58%,
+      rgb(251 191 36 / 0.55) 88%,
+      transparent
+    );
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .heroShell::before {
+    animation: grid-drift 28s linear infinite;
+  }
+}
+
+@keyframes grid-drift {
+  from {
+    background-position:
+      0 0,
+      0 0;
+  }
+  to {
+    background-position:
+      48px 48px,
+      48px 48px;
+  }
+}
