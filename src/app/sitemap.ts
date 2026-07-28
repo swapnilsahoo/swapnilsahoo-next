@@ -12,6 +12,7 @@ const routes = [
   { path: "/case-study-preparation", changeFrequency: "monthly", priority: 0.8 },
   { path: "/placements", changeFrequency: "monthly", priority: 0.8 },
   { path: "/spirituality", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/comics", changeFrequency: "monthly", priority: 0.7 },
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {

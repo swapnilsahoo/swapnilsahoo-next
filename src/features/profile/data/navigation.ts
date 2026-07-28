@@ -36,6 +36,7 @@ export const moreDropdown: NavDropdown = {
     { label: "Press & Media", href: "/#press" },
     { label: "Gallery", href: "/#gallery" },
     { label: "Spirituality", href: "/spirituality/" },
+    { label: "Comics & Fiction", href: "/comics/" },
     { label: "Contact", href: "/#contact" },
   ],
 };
