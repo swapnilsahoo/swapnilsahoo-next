@@ -47,8 +47,8 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   icons: {
-    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
-    shortcut: "/icon.svg",
+    icon: [{ url: "/icon.svg?v=superman", type: "image/svg+xml" }],
+    shortcut: "/icon.svg?v=superman",
   },
   manifest: "/manifest.webmanifest",
   robots: {
