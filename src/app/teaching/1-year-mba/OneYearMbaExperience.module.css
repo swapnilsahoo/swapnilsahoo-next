@@ -1,0 +1,148 @@
+.heroShell {
+  position: relative;
+  isolation: isolate;
+}
+
+.heroShell::before {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  content: "";
+  background:
+    radial-gradient(circle at 16% 10%, rgb(59 130 246 / 0.3), transparent 32rem),
+    radial-gradient(circle at 82% 8%, rgb(240 180 41 / 0.18), transparent 26rem),
+    linear-gradient(145deg, #030712 0%, #07152c 54%, #0b1f3a 100%);
+}
+
+.heroShell::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  background-image:
+    linear-gradient(rgb(148 163 184 / 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(148 163 184 / 0.08) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(90deg, #000, transparent 72%);
+}
+
+.imageFrame::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background:
+    linear-gradient(90deg, #061123 0%, transparent 35%),
+    linear-gradient(0deg, rgb(3 7 18 / 0.7) 0%, transparent 52%);
+  pointer-events: none;
+}
+
+.courseTrack {
+  position: relative;
+}
+
+.courseTrack::before {
+  position: absolute;
+  top: 2rem;
+  bottom: 2rem;
+  left: 1.45rem;
+  width: 1px;
+  content: "";
+  background: linear-gradient(
+    to bottom,
+    rgb(37 99 235 / 0),
+    rgb(37 99 235 / 0.45) 12%,
+    rgb(222 145 29 / 0.45) 86%,
+    rgb(222 145 29 / 0)
+  );
+}
+
+.assessmentRing {
+  position: relative;
+  display: grid;
+  width: min(17rem, 70vw);
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 9999px;
+  background: conic-gradient(
+    #2563eb 0deg 90deg,
+    #60a5fa 90deg 126deg,
+    #f0b429 126deg 180deg,
+    #de911d 180deg 288deg,
+    #0f766e 288deg 360deg
+  );
+  box-shadow:
+    0 28px 70px -32px rgb(15 23 42 / 0.7),
+    0 0 0 10px rgb(255 255 255 / 0.5);
+}
+
+.assessmentRing::after {
+  position: absolute;
+  width: 64%;
+  aspect-ratio: 1;
+  border-radius: inherit;
+  content: "";
+  background: #f8fafc;
+  box-shadow: inset 0 0 0 1px rgb(15 23 42 / 0.08);
+}
+
+.assessmentValue {
+  position: relative;
+  z-index: 1;
+}
+
+.fieldLine {
+  position: absolute;
+  top: 1.5rem;
+  right: 8%;
+  left: 8%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(147 197 253 / 0.5), transparent);
+}
+
+:global(.dark) .assessmentRing {
+  box-shadow:
+    0 28px 70px -32px rgb(0 0 0 / 0.9),
+    0 0 0 10px rgb(15 23 42 / 0.58);
+}
+
+:global(.dark) .assessmentRing::after {
+  background: #081426;
+  box-shadow: inset 0 0 0 1px rgb(226 232 240 / 0.12);
+}
+
+@media (min-width: 768px) {
+  .courseTrack::before {
+    top: 1.45rem;
+    right: 2rem;
+    bottom: auto;
+    left: 2rem;
+    width: auto;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      rgb(37 99 235 / 0),
+      rgb(37 99 235 / 0.45) 12%,
+      rgb(222 145 29 / 0.45) 86%,
+      rgb(222 145 29 / 0)
+    );
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .heroShell::after {
+    animation: drift 24s linear infinite;
+  }
+}
+
+@keyframes drift {
+  from {
+    background-position:
+      0 0,
+      0 0;
+  }
+  to {
+    background-position:
+      44px 44px,
+      44px 44px;
+  }
+}

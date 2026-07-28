@@ -1,22 +1,21 @@
 import type { Metadata } from "next";
 
-import { MbaProgrammePage } from "../MbaProgrammePage";
-import { oneYearMba } from "../mbaData";
+import { OneYearMbaExperience } from "./OneYearMbaExperience";
 
 export const metadata: Metadata = {
-  title: "1-Year MBA — Executive Strategy Learning System",
+  title: "1-Year MBA — Strategy at Executive Speed",
   description:
-    "An intensive, research-grounded strategy and entrepreneurship learning journey for experienced MBA professionals.",
+    "A 13-session, research-grounded strategy learning journey for experienced MBA professionals—built around cases, decisions, reflection and primary field evidence.",
   alternates: { canonical: "/teaching/1-year-mba" },
   openGraph: {
     type: "website",
-    title: "1-Year MBA — Experience Becomes Strategic Range",
+    title: "1-Year MBA — Strategy at Executive Speed",
     description:
-      "Cases, simulations, live challenges and responsible AI for enterprise-level judgment.",
+      "Thirteen discussion-intensive sessions that turn professional experience into strategic range.",
     url: "/teaching/1-year-mba",
   },
 };
 
 export default function OneYearMbaPage() {
-  return <MbaProgrammePage config={oneYearMba} />;
+  return <OneYearMbaExperience />;
 }
