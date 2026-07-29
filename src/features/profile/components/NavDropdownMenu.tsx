@@ -44,6 +44,10 @@ export function NavDropdownMenu({ dropdown }: { dropdown: NavDropdown }) {
   const ref = useRef<HTMLDivElement>(null);
   const menuId = useId();
   const closeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const alignRight = dropdown.label === "More";
+  const menuTransform = alignRight
+    ? `translateY(${open ? "0" : "4px"})`
+    : `translateX(-50%) translateY(${open ? "0" : "4px"})`;
 
   const clearCloseTimeout = () => {
     if (closeTimeout.current) {
@@ -119,11 +123,13 @@ export function NavDropdownMenu({ dropdown }: { dropdown: NavDropdown }) {
         id={menuId}
         aria-hidden={!open}
         inert={!open}
-        className="nav-glass dropdown-content absolute top-[calc(100%+10px)] left-1/2 z-50 min-w-[220px] rounded-[14px] p-2 opacity-0 transition-[opacity,transform] duration-200"
+        className={`nav-glass dropdown-content absolute top-[calc(100%+10px)] z-50 rounded-[14px] p-2 opacity-0 transition-[opacity,transform] duration-200 ${
+          alignRight ? "right-0 min-w-[300px]" : "left-1/2 min-w-[240px]"
+        }`}
         style={{
           pointerEvents: open ? "auto" : "none",
           opacity: open ? 1 : 0,
-          transform: open ? "translateX(-50%) translateY(0)" : "translateX(-50%) translateY(4px)",
+          transform: menuTransform,
         }}
       >
         <ul>

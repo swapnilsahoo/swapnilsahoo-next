@@ -1,29 +1,29 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { ArrowRightIcon, CompassIcon, SparkIcon } from "@/components/icons/LineIcons";
 import { Container } from "@/components/ui/Container";
 
-import { ScriptureExplorer } from "./ScriptureExplorer";
-
 export const metadata: Metadata = {
   title: "Spirituality — Sacred Texts for Study and Reflection",
   description:
-    "A multilingual devotional study library for the Hanuman Chalisa, Vishnu Sahasranama and Lalita Sahasranama with Sanskrit, Roman transliteration, Hindi explanation and English meaning.",
+    "Source-aware devotional study editions of the Hanuman Chalisa, Vishnu Sahasranama and Lalita Sahasranama with original script, clearly labeled romanization, word-level meaning, provenance and author biographies.",
   keywords: [
     "Hanuman Chalisa",
     "Vishnu Sahasranama",
     "Lalita Sahasranama",
     "Sanskrit transliteration",
-    "Hindi meaning",
+    "word by word meaning",
     "English meaning",
+    "textual provenance",
     "devotional study",
   ],
-  alternates: { canonical: "/spirituality/" },
+  alternates: { canonical: "/spirituality" },
   openGraph: {
     type: "website",
     title: "Sacred Texts — Read, Reflect, Return",
     description: "A respectful multilingual reader for three beloved devotional works.",
-    url: "/spirituality/",
+    url: "/spirituality",
     images: ["/images/profile_pic.jpg"],
   },
 };
@@ -32,17 +32,56 @@ const collections = [
   {
     title: "हनुमान चालीसा",
     transliteration: "Hanumān Cālīsā",
-    description: "Devotion expressed through courage, wisdom, service and remembrance.",
+    label: "Authentic Hanuman Chalisa",
+    href: "/spirituality/hanuman-chalisa",
+    language: "Old Awadhi",
+    scope: "Complete · 86 annotated lines",
+    description:
+      "The complete forty-caupāī poem with word-level romanization, close meaning, literary form, and a historically careful Tulsidas biography.",
   },
   {
     title: "विष्णु सहस्रनाम",
     transliteration: "Viṣṇu Sahasranāma",
-    description: "A thousand names contemplating the all-pervading sustaining presence.",
+    label: "Authentic Vishnu Sahasranama",
+    href: "/spirituality/vishnu-sahasranama",
+    language: "Sanskrit",
+    scope: "Guided opening · names 1–36",
+    description:
+      "Compound-level study of the opening names inside their Mahabharata setting, with Bhishma, Vyasa, and commentary attributions clearly separated.",
   },
   {
     title: "ललिता सहस्रनाम",
     transliteration: "Lalitā Sahasranāma",
-    description: "A thousand names celebrating the Divine Mother, consciousness and grace.",
+    label: "Authentic Lalita Sahasranama",
+    href: "/spirituality/lalita-sahasranama",
+    language: "Sanskrit",
+    scope: "Guided opening · names 1–12",
+    description:
+      "Long Sanskrit names opened word by word, with the Vagdevī, Hayagriva–Agastya, and Bhaskararaya traditions presented without blurred authorship.",
+  },
+] as const;
+
+const readingLayers = [
+  {
+    title: "Source line",
+    detail: "The transmitted Devanagari reading stays visible before interpretation.",
+  },
+  {
+    title: "Declared romanization",
+    detail:
+      "The Sanskrit branches use IAST; the Awadhi branch labels its pronunciation-friendly reading rather than presenting it as strict IAST.",
+  },
+  {
+    title: "Word or compound study",
+    detail: "Editorial segmentation opens each learning unit without hiding the received form.",
+  },
+  {
+    title: "Close meaning",
+    detail: "Original concise glosses orient the reader without claiming to replace commentary.",
+  },
+  {
+    title: "Attribution & sources",
+    detail: "Poet, narrative speaker, traditional compiler, and commentator are named separately.",
   },
 ] as const;
 
@@ -72,15 +111,15 @@ export default function SpiritualityPage() {
                   <span className="font-normal text-amber-200 italic">Return inward.</span>
                 </h1>
                 <p className="mt-6 max-w-3xl text-base leading-relaxed text-amber-50 sm:text-lg">
-                  A multilingual devotional library designed for understanding as well as
-                  recitation—bringing Sanskrit, Roman transliteration, Hindi explanation and English
-                  meaning into one calm reading experience.
+                  Three source-aware devotional editions designed for understanding as well as
+                  recitation—bringing original script, clearly labeled romanization, word-level
+                  meaning, authorship, and textual history into one calm reading experience.
                 </p>
                 <a
-                  href="#scripture-reader"
+                  href="#collections"
                   className="mt-8 inline-flex items-center gap-2 rounded-lg bg-amber-50 px-5 py-3 text-sm font-semibold text-amber-950 shadow-lg shadow-amber-950/20 transition hover:-translate-y-0.5 hover:bg-white focus-visible:ring-2 focus-visible:ring-amber-200 focus-visible:outline-none"
                 >
-                  Begin the guided reading
+                  Choose a sacred-text branch
                   <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
                 </a>
               </div>
@@ -99,31 +138,59 @@ export default function SpiritualityPage() {
         </Container>
       </header>
 
-      <section aria-labelledby="collection-title" className="py-16 sm:py-24">
+      <section id="collections" aria-labelledby="collection-title" className="py-16 sm:py-24">
         <Container className="max-w-6xl">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">01 / The collection</p>
             <h2 id="collection-title" className="display text-4xl font-semibold md:text-5xl">
-              Three paths of remembrance.
+              Three authentic branches.
             </h2>
+            <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-relaxed">
+              “Authentic” means source-disclosed and editorially transparent—not a claim that one
+              modern edition cancels every manuscript, recension, lineage, or living pronunciation.
+            </p>
           </div>
           <div className="grid gap-4 md:grid-cols-3">
             {collections.map((collection, index) => (
-              <article key={collection.title} className="glass-card p-6">
-                <span className="text-ink-400 font-mono text-[10px]">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <h3 lang="sa" className="mt-3 font-serif text-2xl font-semibold">
+              <Link
+                key={collection.title}
+                href={collection.href}
+                className="glass-card group flex min-h-full flex-col p-6 transition hover:-translate-y-1 hover:border-amber-300 hover:shadow-2xl hover:shadow-amber-950/10 focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none dark:hover:border-amber-500/40"
+              >
+                <div className="flex items-center justify-between gap-4">
+                  <span className="text-ink-400 font-mono text-[10px]">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="rounded-full bg-amber-100 px-2.5 py-1 font-mono text-[9px] font-semibold tracking-wide text-amber-900 uppercase dark:bg-amber-400/10 dark:text-amber-200">
+                    {collection.language}
+                  </span>
+                </div>
+                <h3
+                  lang={index === 0 ? "awa" : "sa"}
+                  className="mt-5 font-serif text-2xl font-semibold"
+                >
                   {collection.title}
                 </h3>
                 <p className="text-brand-700 dark:text-brand-300 mt-1 text-sm italic">
                   {collection.transliteration}
                 </p>
-                <p className="text-ink-600 dark:text-ink-300 mt-4 text-sm leading-relaxed">
+                <p className="mt-4 text-sm font-semibold">{collection.label}</p>
+                <p className="text-ink-600 dark:text-ink-300 mt-3 text-sm leading-relaxed">
                   {collection.description}
                 </p>
-              </article>
+                <div className="mt-auto pt-6">
+                  <div className="border-ink-200 dark:border-ink-700 border-t pt-4">
+                    <p className="text-ink-500 font-mono text-[10px] tracking-wide uppercase">
+                      {collection.scope}
+                    </p>
+                    <span className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-amber-800 group-hover:gap-3 dark:text-amber-300">
+                      Open word-by-word edition
+                      <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
+                    </span>
+                  </div>
+                </div>
+              </Link>
             ))}
           </div>
         </Container>
@@ -131,22 +198,35 @@ export default function SpiritualityPage() {
 
       <div className="hr-fade mx-auto max-w-6xl" />
 
-      <section id="scripture-reader" aria-labelledby="reader-title" className="py-16 sm:py-24">
+      <section id="reading-method" aria-labelledby="reader-title" className="py-16 sm:py-24">
         <Container className="max-w-6xl">
           <div className="mb-10 grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <span className="accent-rule" />
-              <p className="eyebrow mb-3">02 / Multilingual reader</p>
+              <p className="eyebrow mb-3">02 / Reading architecture</p>
               <h2 id="reader-title" className="display text-4xl font-semibold md:text-5xl">
-                Sound, script and meaning together.
+                Five layers. No hidden editorial leaps.
               </h2>
             </div>
             <p className="text-ink-600 dark:text-ink-300 self-end text-sm leading-relaxed lg:col-span-7">
-              Roman transliteration supports pronunciation; Hindi and English glosses support
-              contemplation. Search across all four layers, then continue into the complete text.
+              Every branch uses the same reading logic, but its provenance is specific to that text.
+              The Chalisa is treated as Old Awadhi; the two Sahasranamas receive Sanskrit compound
+              analysis and IAST.
             </p>
           </div>
-          <ScriptureExplorer />
+          <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {readingLayers.map((layer, index) => (
+              <li key={layer.title} className="glass-card p-5">
+                <span className="grid h-8 w-8 place-items-center rounded-full bg-amber-100 font-mono text-[10px] font-semibold text-amber-950 dark:bg-amber-400/15 dark:text-amber-200">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-5 font-serif text-xl font-semibold">{layer.title}</h3>
+                <p className="text-ink-600 dark:text-ink-300 mt-3 text-sm leading-relaxed">
+                  {layer.detail}
+                </p>
+              </li>
+            ))}
+          </ol>
         </Container>
       </section>
 
@@ -157,7 +237,7 @@ export default function SpiritualityPage() {
               <div>
                 <CompassIcon className="h-7 w-7 text-amber-300" aria-hidden="true" />
                 <h2 className="mt-5 font-serif text-4xl font-semibold">
-                  A reader for study—not a substitute for tradition.
+                  A study companion—not a substitute for lineage.
                 </h2>
               </div>
               <div className="space-y-4 text-sm leading-relaxed text-amber-50">
@@ -190,12 +270,13 @@ export default function SpiritualityPage() {
             </div>
             <div className="text-ink-600 dark:text-ink-300 space-y-4 text-sm leading-relaxed">
               <p>
-                Text order and spellings were checked against the Sanskrit Documents archive:
-                Tulsidas&apos;s Hanuman Chalisa, the Mahabharata&apos;s Vishnu Sahasranama, and the
-                Brahmanda Purana tradition of Lalita Sahasranama.
+                The branch pages cite primary text repositories, critical-edition context,
+                manuscript records, and modern scholarship. The Tulsidas attribution is qualified;
+                Bhishma, Vyasa, the Vagdevīs, Hayagriva, and later commentators are assigned their
+                distinct textual roles.
               </p>
               <p>
-                Sanskrit source editions remain with their respective custodians. This site hosts
+                External source editions remain with their respective custodians. This site hosts
                 original concise study glosses and links readers to the complete source editions
                 where reposting restrictions apply.
               </p>

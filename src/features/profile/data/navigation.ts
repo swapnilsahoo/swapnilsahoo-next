@@ -35,7 +35,24 @@ export const moreDropdown: NavDropdown = {
   items: [
     { label: "Press & Media", href: "/#press" },
     { label: "Gallery", href: "/#gallery" },
-    { label: "Spirituality", href: "/spirituality/" },
+    {
+      label: "Spirituality",
+      href: "/spirituality",
+      children: [
+        {
+          label: "Authentic Hanuman Chalisa",
+          href: "/spirituality/hanuman-chalisa",
+        },
+        {
+          label: "Authentic Vishnu Sahasranama",
+          href: "/spirituality/vishnu-sahasranama",
+        },
+        {
+          label: "Authentic Lalita Sahasranama",
+          href: "/spirituality/lalita-sahasranama",
+        },
+      ],
+    },
     { label: "Comics & Fiction", href: "/comics/" },
     {
       label: "Mythology",
