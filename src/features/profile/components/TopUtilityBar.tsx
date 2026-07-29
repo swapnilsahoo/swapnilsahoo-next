@@ -14,11 +14,11 @@ export function TopUtilityBar() {
 
   return (
     <div className="relative z-10">
-      <Container className="flex items-center justify-between py-3 text-xs">
-        <p className="text-ink-500 dark:text-ink-300 font-mono tracking-wider">
+      <Container className="flex items-center justify-end py-3 text-xs sm:justify-between">
+        <p className="text-ink-500 dark:text-ink-300 hidden font-mono tracking-wider sm:block">
           © Dr. Swapnil Sahoo · {year}
         </p>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1 sm:gap-3">
           {socialLinks.map((social) => {
             const Icon = socialIcons[social.label];
             return (
@@ -28,7 +28,7 @@ export function TopUtilityBar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                className="hover:bg-ink-100 dark:hover:bg-ink-800 flex h-10 w-10 items-center justify-center rounded-full transition-colors"
+                className="hover:bg-ink-100 dark:hover:bg-ink-800 flex h-11 w-11 items-center justify-center rounded-full transition-colors"
               >
                 <Icon className="h-4 w-4" />
               </a>

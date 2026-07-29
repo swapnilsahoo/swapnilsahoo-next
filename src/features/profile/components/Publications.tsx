@@ -19,9 +19,7 @@ function PublicationRow({ publication }: { publication: Publication }) {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="min-w-[260px] flex-1">
           <h3 className="font-serif text-lg leading-snug font-semibold">{publication.title}</h3>
-          <p className="text-ink-600 dark:text-ink-300 mt-1 text-sm italic">
-            {publication.meta}
-          </p>
+          <p className="text-ink-600 dark:text-ink-300 mt-1 text-sm italic">{publication.meta}</p>
         </div>
         <div className="flex items-center gap-2">
           <span className="tag tag-ink">{publication.year}</span>
@@ -43,8 +41,8 @@ export function Publications() {
             <h2 className="display text-4xl font-semibold md:text-5xl">In print.</h2>
           </div>
           <p className="text-ink-600 dark:text-ink-300 self-end text-sm leading-relaxed md:col-span-8">
-            Peer-reviewed journals, Springer book chapters, teaching cases, and signed essays in
-            the national press. Click any item for the source record.
+            Peer-reviewed journals, Springer book chapters, teaching cases, and signed essays in the
+            national press. Click any item for the source record.
           </p>
         </div>
 

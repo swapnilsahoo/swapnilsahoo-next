@@ -180,7 +180,7 @@ export async function loadScriptureEntries(slug: ScriptureSlug): Promise<ReaderE
     case "vishnu-sahasranama":
       return validateEntries(slug, vishnuSahasranamaEntries, 36);
     case "lalita-sahasranama":
-      return validateEntries(slug, lalitaSahasranamaEntries, 12);
+      return validateEntries(slug, lalitaSahasranamaEntries, 1000);
     case "shiva-tandava-stotram":
       return validateEntries(slug, shivaTandavaStotramEntries, 17);
   }

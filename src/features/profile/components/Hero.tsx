@@ -21,7 +21,7 @@ export function Hero() {
               />
               Accepting PhD enquiries
             </span>
-            <span className="tag tag-emerald">Writer · Educator · Executor</span>
+            <span className="tag tag-emerald">Researcher · Teacher · Former industry leader</span>
           </div>
           <h1 className="display mb-6 text-5xl font-semibold md:text-7xl">
             Dr. {profile.firstName}{" "}
@@ -31,10 +31,11 @@ export function Hero() {
             .
           </h1>
           <p className="text-ink-700 dark:text-ink-200 mb-8 max-w-2xl text-lg leading-relaxed md:text-xl">
-            I research how organisations — from young ventures to multi-generational family firms —
-            build <em>resourcefulness</em> under constraint, and how AI is reshaping the way we
-            teach strategy. Faculty at <strong>Great Lakes Institute of Management, Gurgaon</strong>
-            ; Ph.D. from <strong>XLRI Jamshedpur</strong>.
+            I study how organisations—from young ventures to multi-generational family firms—find
+            ways forward when resources are tight. I also experiment carefully with AI in strategy
+            teaching. I am on the faculty at{" "}
+            <strong>Great Lakes Institute of Management, Gurgaon</strong> and earned my Ph.D. at{" "}
+            <strong>XLRI Jamshedpur</strong>.
           </p>
           <div className="flex flex-wrap items-center gap-3">
             <a href="#contact" className="btn-primary">
@@ -56,7 +57,7 @@ export function Hero() {
           </div>
 
           <div className="mt-12">
-            <p className="eyebrow mb-4">17 years across industry &amp; academia</p>
+            <p className="eyebrow mb-4">The organisations that shaped my work</p>
             <AffiliationMarquee />
           </div>
         </Reveal>

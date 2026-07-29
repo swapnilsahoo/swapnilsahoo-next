@@ -48,7 +48,7 @@ export const galleryImages: GalleryImage[] = [
   {
     src: "/images/ai-hackathon/hackathon-demo-enhanced.png",
     alt: "Swapnil Sahoo presenting during an AI hackathon prototype demonstration",
-    caption: "From problem to prototype · AI Hackathon",
+    caption: "From problem to prototype · AI Mini Hackathon",
     objectPosition: "center 44%",
   },
   {

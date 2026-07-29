@@ -18,7 +18,7 @@ export const teachingDropdown: NavDropdown = {
       label: "Case Study Preparation",
       href: "/case-study-preparation/",
     },
-    { label: "AI Hackathon", href: "/teaching/ai-hackathon" },
+    { label: "AI Mini Hackathon", href: "/teaching/ai-hackathon" },
     { label: "Placements", href: "/placements" },
     { label: "Executive MDPs", href: "/#mdp" },
   ],

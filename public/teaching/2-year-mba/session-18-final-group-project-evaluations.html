@@ -6,7 +6,6 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">  
   <style>    
-    /* --- GRAND MASTER THEME ADAPTED FOR PATAGONIA CASE --- */
     :root {
         --primary-bg: #fdfbf7;      /* Warm paper white */
         --primary-text: #1a1a1a;    /* Soft black */
@@ -26,8 +25,6 @@
     a { transition: color 0.2s; }  
     input[type=range] { -webkit-appearance: none; background: rgba(21,128,61,0.2); height: 4px; border-radius: 2px; outline: none; }    
     input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--accent-color); cursor: pointer; }  
-    
-    /* Template Specific Classes */
     .chess-logo {
         width: 40px; height: 40px;
         background: #15803d;
@@ -39,7 +36,8 @@
         transition: all 0.3s ease;
     }
     .group:hover .chess-logo { transform: rotate(10deg); background: #166534; }
-  </style></head><body class="antialiased selection:bg-green-100 selection:text-green-900">  <div id="root"></div>
+  </style>    <link rel="stylesheet" href="/teaching/responsive.css">
+</head><body class="antialiased selection:bg-green-100 selection:text-green-900">  <div id="root"></div>
   <script type="text/babel">    const { useState, useEffect } = React;
     const sections = [      { id: "intro", label: "Introduction" },      { id: "what", label: "What is AI?" },      { id: "landscape", label: "AI Landscape" },      { id: "business", label: "Business Impact" },      { id: "teaching", label: "Teaching with AI" },      { id: "tools", label: "Tools" },      { id: "ethics", label: "Ethics" },      { id: "future", label: "The Road Ahead" },    ];
     const bodyStyle = {      fontSize: "1rem", lineHeight: 1.85, color: "#475569",      fontFamily: "'Satoshi', sans-serif", marginBottom: "1.5rem",    };
@@ -50,9 +48,9 @@
     function AISyllabusModule() {
       return (
         <div style={{ marginTop: "6rem", borderTop: "1px solid #e2e8f0", paddingTop: "4rem" }}>
-          <div style={{ color: "rgba(21,128,61,0.8)", fontSize: "0.7rem", fontFamily: "sans-serif", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: "0.8rem", fontWeight: "bold" }}>Pedagogical Architecture</div>
-          <h3 style={{ fontSize: "2.2rem", color: "#1a1a1a", marginBottom: "1.5rem", fontWeight: "bold", lineHeight: 1.2, fontFamily: "'Playfair Display', serif" }}>The 4-Week Foundational Curriculum</h3>
-          <p style={{ ...bodyStyle, maxWidth: "900px" }}>I have structured this baseline epistemology into a four-phase organizational curriculum. To truly grasp the sociological and economic rupture of AI, we must systematically traverse from fundamental data mechanics to macro-societal implications. This curriculum isolates the noise, focusing exclusively on what drives strategic transformation.</p>
+          <div style={{ color: "rgba(21,128,61,0.8)", fontSize: "0.7rem", fontFamily: "sans-serif", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: "0.8rem", fontWeight: "bold" }}>Teaching sequence</div>
+          <h3 style={{ fontSize: "2.2rem", color: "#1a1a1a", marginBottom: "1.5rem", fontWeight: "bold", lineHeight: 1.2, fontFamily: "'Playfair Display', serif" }}>A four-week foundation</h3>
+          <p style={{ ...bodyStyle, maxWidth: "900px" }}>The course begins with the mechanics of data and machine learning, then moves into project choices, organisational adoption and social consequences. Each week gives managers enough technical grounding to ask better strategic questions without pretending that every learner must become an engineer.</p>
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem", marginTop: "3rem", marginBottom: "4rem" }}>
             
@@ -162,20 +160,20 @@
             </div>
           </div>
 
-          <div style={{ color: "rgba(21,128,61,0.8)", fontSize: "0.7rem", fontFamily: "sans-serif", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: "0.8rem", fontWeight: "bold" }}>Macroeconomic Simulation</div>
-          <h3 style={{ fontSize: "2.2rem", color: "#1a1a1a", marginBottom: "1.5rem", fontWeight: "bold", lineHeight: 1.2, fontFamily: "'Playfair Display', serif" }}>The Generative Productivity Frontier</h3>
-          <p style={{ ...bodyStyle, maxWidth: "900px" }}>I have digitized the core findings of the McKinsey report into a strategic simulation. Generative AI fundamentally rewrites the anatomy of work. It is not an incremental tool; it is a profound economic catalyst. Let me demonstrate the precise vectors of this disruption.</p>
+          <div style={{ color: "rgba(21,128,61,0.8)", fontSize: "0.7rem", fontFamily: "sans-serif", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: "0.8rem", fontWeight: "bold" }}>Reading the evidence</div>
+          <h3 style={{ fontSize: "2.2rem", color: "#1a1a1a", marginBottom: "1.5rem", fontWeight: "bold", lineHeight: 1.2, fontFamily: "'Playfair Display', serif" }}>Where projected value is concentrated</h3>
+          <p style={{ ...bodyStyle, maxWidth: "900px" }}>This exercise turns estimates from the cited McKinsey report into questions a management team can debate. The figures are projections, not promises. Use them to compare where generative AI may change tasks, costs and decisions—and where the assumptions deserve scrutiny.</p>
 
           {/* 75% Concentration */}
           <div style={{ marginBottom: "4rem", marginTop: "3rem" }}>
-            <h4 style={{ color: "#15803d", fontSize: "1.1rem", marginBottom: "1rem", fontFamily: "'Playfair Display', serif", fontWeight: "bold" }}>I. The 75% Value Concentration</h4>
-            <p style={{ ...bodyStyle, fontSize: "0.95rem", marginBottom: "1.5rem" }}>Three-quarters of the projected $2.6T–$4.4T value resides in just four operational domains. As an executive, do not disperse your capital broadly. Concentrate your AI investments here.</p>
+            <h4 style={{ color: "#15803d", fontSize: "1.1rem", marginBottom: "1rem", fontFamily: "'Playfair Display', serif", fontWeight: "bold" }}>I. Four functions in the foreground</h4>
+            <p style={{ ...bodyStyle, fontSize: "0.95rem", marginBottom: "1.5rem" }}>The report places roughly three-quarters of its projected $2.6–$4.4 trillion range in four functions. That concentration is a useful starting point for inquiry, but an investment decision still depends on the organisation’s data, workflow and risk.</p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1rem" }}>
               {[
-                { title: "Customer Operations", icon: "🎧", desc: "Self-service automated resolution and real-time agent copilot integration." },
-                { title: "Marketing & Sales", icon: "📈", desc: "Hyper-personalized content generation and predictive lead targeting at scale." },
-                { title: "Software Engineering", icon: "💻", desc: "Drafting code, automated refactoring, and root-cause systems analysis." },
-                { title: "Product R&D", icon: "🔬", desc: "Generative material design and deep learning surrogates for rapid virtual simulation." }
+                { title: "Customer Operations", icon: "🎧", desc: "Answer routine questions, help agents find information and draft responses." },
+                { title: "Marketing & Sales", icon: "📈", desc: "Draft and adapt content, summarise customer signals and support lead research." },
+                { title: "Software Engineering", icon: "💻", desc: "Suggest code, explain unfamiliar systems and help diagnose faults." },
+                { title: "Product R&D", icon: "🔬", desc: "Compare design options, search technical knowledge and speed early experiments." }
               ].map(card => (
                 <div key={card.title} style={{ background: "#ffffff", padding: "1.5rem", borderRadius: "8px", border: "1px solid #e2e8f0", boxShadow: "0 2px 4px rgba(0,0,0,0.02)" }}>
                   <div style={{ fontSize: "2rem", marginBottom: "1rem" }}>{card.icon}</div>
@@ -189,7 +187,7 @@
           {/* Timeline Acceleration */}
           <div style={{ marginBottom: "4rem" }}>
             <h4 style={{ color: "#15803d", fontSize: "1.1rem", marginBottom: "1rem", fontFamily: "'Playfair Display', serif", fontWeight: "bold" }}>II. The Timeline Acceleration</h4>
-            <p style={{ ...bodyStyle, fontSize: "0.95rem", marginBottom: "1.5rem" }}>Historically, McKinsey modeled that 50% of global work activities would be automated by 2053. Generative AI’s sudden mastery of natural language has violently shifted this adoption curve left by an entire decade.</p>
+            <p style={{ ...bodyStyle, fontSize: "0.95rem", marginBottom: "1.5rem" }}>McKinsey’s earlier midpoint estimate placed automation of half of current work activities around 2053. Its generative-AI scenario moved that midpoint roughly a decade earlier. Treat the dates as modelled scenarios rather than a timetable.</p>
             <div style={{ background: "#f8fafc", padding: "2rem", borderRadius: "12px", border: "1px solid #e2e8f0" }}>
               <div style={{ marginBottom: "2rem" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", fontFamily: "sans-serif", fontSize: "0.85rem", fontWeight: "bold", color: "#64748b", marginBottom: "0.5rem" }}>
@@ -350,7 +348,7 @@
         <div style={{ marginTop: "6rem", borderTop: "1px solid #e2e8f0", paddingTop: "4rem" }}>
           <div style={{ color: "rgba(21,128,61,0.8)", fontSize: "0.7rem", fontFamily: "sans-serif", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: "0.8rem", fontWeight: "bold" }}>Organizational Sociology</div>
           <h3 style={{ fontSize: "2.2rem", color: "#1a1a1a", marginBottom: "1.5rem", fontWeight: "normal", lineHeight: 1.2, fontFamily: "'Playfair Display', serif" }}>What Makes an AI Company?</h3>
-          <p style={{ ...bodyStyle, maxWidth: "900px" }}>I frequently observe legacy organizations falling into a predictable cognitive trap: they assume that bolting deep learning algorithms onto existing infrastructure fundamentally transforms their firm. Drawing from Andrew Ng's economic framework, we can view this through a historical lens. Just as a shopping mall with a website did not magically become a true internet company (which required A/B testing, short iteration cycles, and decentralized decision-making), a traditional company adopting neural networks does not equal an AI company.</p>
+          <p style={{ ...bodyStyle, maxWidth: "900px" }}>Adding a model to an old workflow does not, by itself, change how a company learns. Andrew Ng makes the comparison with the early internet: putting a catalogue online was different from building short feedback cycles, experiments and decision rights around digital behaviour. The same distinction helps us examine claims that a company has become “AI-driven.”</p>
           
           {/* Legacy vs True AI Comparison */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem", marginBottom: "4rem", marginTop: "2rem" }}>
@@ -386,7 +384,7 @@
                 { step: "02", title: "Build an In-House AI Team", desc: "Transition from external reliance to internal capability. Centralize talent to support multiple business units before eventually decentralizing them as maturity grows." },
                 { step: "03", title: "Provide Broad AI Training", desc: "Literacy cannot be isolated to engineers. Executives, division leaders, and managers must understand the sociological and economic capabilities of AI to identify relevant A $\rightarrow$ B mappings in their departments." },
                 { step: "04", title: "Develop an AI Strategy", desc: "Only after foundational literacy and early wins should you codify a long-term AI strategy. Map out sustainable data acquisition and proprietary technical moats." },
-                { step: "05", title: "Internal and External Communications", desc: "Align all stakeholders—employees, investors, and customers—so they understand exactly how the firm is navigating the automation rupture and ensuring responsible integration." }
+                { step: "05", title: "Internal and External Communications", desc: "Tell employees, investors and customers what is changing, what remains under human oversight and how concerns will be handled." }
               ].map((phase, i) => (
                 <div key={phase.step} style={{ display: "flex", alignItems: "flex-start", gap: "1.5rem", background: "#ffffff", border: "1px solid #e2e8f0", padding: "1.5rem", borderRadius: "8px", boxShadow: "0 2px 4px rgba(0,0,0,0.02)" }}>
                   <div style={{ color: "#15803d", fontSize: "1.8rem", fontWeight: "bold", fontFamily: "'Playfair Display', serif", lineHeight: 1 }}>{phase.step}</div>
@@ -444,7 +442,7 @@
           <div style={{ marginTop: "4rem", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "center" }}>
             <div>
               <h4 style={{ color: "#15803d", fontSize: "1.1rem", marginBottom: "1rem", fontFamily: "'Playfair Display', serif", fontWeight: "bold" }}>The Generative Illusion</h4>
-              <p style={{ ...bodyStyle, fontSize: "0.95rem" }}>Large Language Models (LLMs) appear highly sentient, but they are fundamentally governed by this exact same A→B paradigm. They ingest massive datasets to perform a singular supervised task: <strong>predicting the next word</strong>.</p>
+              <p style={{ ...bodyStyle, fontSize: "0.95rem" }}>Large language models can produce remarkably fluent responses without being sentient. During pre-training, a central objective is to predict the next token from patterns learned across large text collections.</p>
             </div>
             <div style={{ background: "#ffffff", border: "1px solid #e2e8f0", padding: "2rem", fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#64748b", borderRadius: "1rem", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.05)" }}>
               <div style={{ marginBottom: "0.8rem" }}>[A] "My favorite drink" <br/><span style={{color:"#15803d", fontWeight: "bold"}}>➔ [B] "is"</span></div>
@@ -458,7 +456,7 @@
           <div style={{ background: "#0f172a", padding: "3rem", borderRadius: "12px", marginTop: "4rem", color: "#fff", position: "relative", overflow: "hidden" }}>
             <div style={{ position: "absolute", top: 0, right: 0, width: "300px", height: "300px", background: "#3b82f6", borderRadius: "50%", filter: "blur(80px)", opacity: 0.2, transform: "translate(30%, -30%)" }}></div>
             <h4 style={{ color: "#38bdf8", fontSize: "1.3rem", marginBottom: "1rem", fontFamily: "'Playfair Display', serif", fontWeight: "bold", position: "relative", zIndex: 10 }}>The Mathematical Substrate: Attention & Emergence</h4>
-            <p style={{ fontSize: "0.95rem", color: "#cbd5e1", lineHeight: 1.6, marginBottom: "2rem", position: "relative", zIndex: 10 }}>I want you to grasp the sheer, terrifying scale of this. Prior to 2017, models read text sequentially, word-by-word. Then came the paradigm shift: <strong>The Transformer</strong>.</p>
+            <p style={{ fontSize: "0.95rem", color: "#cbd5e1", lineHeight: 1.6, marginBottom: "2rem", position: "relative", zIndex: 10 }}>Before 2017, widely used language models processed text in sequence. The transformer architecture changed that design by letting a model weigh relationships across a passage in parallel.</p>
             
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem", position: "relative", zIndex: 10 }}>
               <div>
@@ -624,7 +622,7 @@
                 <h4 style={{ fontWeight: "bold", color: "#1e293b", margin: 0, fontFamily: "sans-serif" }}>Information Cascades</h4>
               </div>
               <p style={{ fontSize: "0.85rem", color: "#475569", lineHeight: 1.6, margin: 0 }}>
-                A single hallucinated token accepted by an agent network can cascade, fundamentally altering the shared ontology of the system.
+                One unchecked error can pass from one agent to the next and distort the shared record on which later actions depend.
               </p>
             </div>
           </div>
@@ -660,7 +658,7 @@
 
       return (
         <div style={{ marginTop: "4rem", borderTop: "1px solid #e2e8f0", paddingTop: "4rem" }}>
-          <div style={{ color: "rgba(21,128,61,0.8)", fontSize: "0.7rem", fontFamily: "sans-serif", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: "0.8rem", fontWeight: "bold" }}>Sociological Rupture</div>
+          <div style={{ color: "rgba(21,128,61,0.8)", fontSize: "0.7rem", fontFamily: "sans-serif", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: "0.8rem", fontWeight: "bold" }}>Work and society</div>
           <h3 style={{ fontSize: "2.2rem", color: "#1a1a1a", marginBottom: "1.5rem", fontWeight: "bold", lineHeight: 1.2, fontFamily: "'Playfair Display', serif" }}>The Vibe Economy: Syntactic Death</h3>
           <p style={{ ...bodyStyle, maxWidth: "900px" }}>A sociological shockwave is rupturing the labor market. Syntactic coding is dead. Business acumen—your deep logic—is the new compiler. Coined by Andrej Karpathy in early 2025, <strong>"Vibe Coding"</strong> represents the shift from knowing <em>how</em> to write syntax to knowing <em>what</em> to build. We have reached "Code AGI."</p>
 
@@ -987,7 +985,7 @@
             </div>
           </nav>
 
-          {/* ── HERO ── */}          <section id="intro" style={{ minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", padding: "8rem 8rem 6rem", background: "radial-gradient(circle at 50% 0%, #f0fdf4 0%, #fdfbf7 70%)", position: "relative", overflow: "hidden" }}>            <div style={{ position: "absolute", top: 0, right: 0, width: "50%", height: "100%", background: "rgba(21,128,61,0.03)", borderRadius: "100% 0 0 100%", filter: "blur(60px)", zIndex: 0 }} />            <div style={{ position: "relative", maxWidth: "680px", zIndex: 10 }}>              <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.5rem 1rem", borderRadius: "9999px", border: "1px solid #bbf7d0", backgroundColor: "#f0fdf4", color: "#166534", fontSize: "0.75rem", fontWeight: "bold", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "2rem", boxShadow: "0 1px 2px rgba(0,0,0,0.05)" }}>                <i className="fas fa-layer-group"></i> A Comprehensive Guide              </div>              <h1 style={{ fontSize: "clamp(3rem, 5.5vw, 5rem)", lineHeight: 1.05, fontWeight: "bold", marginBottom: "2rem", color: "#1a1a1a", fontFamily: "'Playfair Display', serif" }}>                Artificial<br />                <span style={{ color: "#15803d", fontStyle: "italic" }}>Intelligence</span><br />                in Strategic<br />Management              </h1>              <p style={{ fontSize: "1.05rem", lineHeight: 1.85, color: "#475569", maxWidth: "500px", marginBottom: "3rem" }}>                Everything a business school faculty member needs to understand, teach, and responsibly apply AI — from foundational concepts to classroom strategy and ethical leadership.              </p>            </div>            <div style={{ position: "absolute", bottom: "3rem", left: "8rem", right: "8rem", display: "flex", gap: "3rem", borderTop: "1px solid #e2e8f0", paddingTop: "2rem", zIndex: 10 }}>              {[{ num: "72%", label: "Fortune 500 companies actively deploying AI" }, { num: "$4.4T", label: "Estimated annual value AI could add globally" }, { num: "85%", label: "Of jobs in 2030 don't yet fully exist today" }, { num: "2024", label: "Year generative AI became business mainstream" }].map(({ num, label }) => (                <div key={num}>                  <div style={{ fontSize: "1.7rem", color: "#15803d", fontStyle: "italic", fontFamily: "'Playfair Display', serif", fontWeight: "bold" }}>{num}</div>                  <div style={{ fontSize: "0.72rem", color: "#64748b", fontFamily: "sans-serif", maxWidth: "130px", lineHeight: 1.4, marginTop: "0.3rem", fontWeight: "500" }}>{label}</div>                </div>              ))}            </div>          </section>
+          {/* ── HERO ── */}          <section id="intro" style={{ minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", padding: "8rem 8rem 6rem", background: "radial-gradient(circle at 50% 0%, #f0fdf4 0%, #fdfbf7 70%)", position: "relative", overflow: "hidden" }}>            <div style={{ position: "absolute", top: 0, right: 0, width: "50%", height: "100%", background: "rgba(21,128,61,0.03)", borderRadius: "100% 0 0 100%", filter: "blur(60px)", zIndex: 0 }} />            <div style={{ position: "relative", maxWidth: "680px", zIndex: 10 }}>              <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.5rem 1rem", borderRadius: "9999px", border: "1px solid #bbf7d0", backgroundColor: "#f0fdf4", color: "#166534", fontSize: "0.75rem", fontWeight: "bold", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "2rem", boxShadow: "0 1px 2px rgba(0,0,0,0.05)" }}>                <i className="fas fa-layer-group"></i> Faculty teaching guide              </div>              <h1 style={{ fontSize: "clamp(3rem, 5.5vw, 5rem)", lineHeight: 1.05, fontWeight: "bold", marginBottom: "2rem", color: "#1a1a1a", fontFamily: "'Playfair Display', serif" }}>                Artificial<br />                <span style={{ color: "#15803d", fontStyle: "italic" }}>Intelligence</span><br />                in Strategic<br />Management              </h1>              <p style={{ fontSize: "1.05rem", lineHeight: 1.85, color: "#475569", maxWidth: "500px", marginBottom: "3rem" }}>                A practical route from AI basics to project choices, classroom use and responsible leadership.              </p>            </div>            <div style={{ position: "absolute", bottom: "3rem", left: "8rem", right: "8rem", display: "flex", gap: "3rem", borderTop: "1px solid #e2e8f0", paddingTop: "2rem", zIndex: 10 }}>              {[{ num: "01", label: "How learning systems use data" }, { num: "02", label: "How teams choose and build projects" }, { num: "03", label: "How adoption changes organisations" }, { num: "04", label: "How managers govern risks and trade-offs" }].map(({ num, label }) => (                <div key={num}>                  <div style={{ fontSize: "1.7rem", color: "#15803d", fontStyle: "italic", fontFamily: "'Playfair Display', serif", fontWeight: "bold" }}>{num}</div>                  <div style={{ fontSize: "0.72rem", color: "#64748b", fontFamily: "sans-serif", maxWidth: "130px", lineHeight: 1.4, marginTop: "0.3rem", fontWeight: "500" }}>{label}</div>                </div>              ))}            </div>          </section>
           {/* ── CH1: WHAT IS AI ── */}          <section id="what" style={{ padding: "7rem 8rem", maxWidth: "1400px", margin: "0 auto" }}>            <ChapterHeader number="01" title="What Is Artificial Intelligence?" subtitle="Foundational concepts every educator must know" />            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "start" }}>              <div>                <p style={bodyStyle}>Artificial Intelligence refers to computational systems designed to perform tasks that typically require human cognition — perceiving, reasoning, learning, and acting. Unlike traditional software that executes explicit instructions, AI systems <em>learn patterns</em> from data to make decisions or generate outputs.</p>                <p style={bodyStyle}>For business faculty, the critical distinction is between <strong style={{ color: "#15803d" }}>Narrow AI</strong> (systems optimized for specific tasks like credit scoring or fraud detection) and the more distant concept of <strong style={{ color: "#15803d" }}>General AI</strong> (hypothetical systems with human-level versatility). Every commercial AI tool in use today is narrow AI.</p>                <p style={bodyStyle}>The modern AI revolution is driven by three converging forces: <em>massive datasets</em>, <em>powerful computing hardware</em> (particularly GPUs), and <em>architectural breakthroughs</em> in neural network design — specifically the Transformer architecture introduced in 2017. Understanding this triangle helps explain why AI capabilities have accelerated so dramatically.</p>                <div style={{ background: "rgba(21,128,61,0.05)", border: "1px solid rgba(21,128,61,0.15)", padding: "1.5rem", marginTop: "1rem", borderRadius: "8px" }}>                  <div style={{ color: "#15803d", fontSize: "0.72rem", fontFamily: "sans-serif", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "0.8rem", fontWeight: "bold" }}>Key Insight for Faculty</div>                  <p style={{ color: "#475569", fontSize: "0.85rem", fontFamily: "sans-serif", lineHeight: 1.7, margin: 0 }}>Students will encounter AI through its outputs. Your role is to help them understand the mechanisms well enough to evaluate claims, spot limitations, and make strategic decisions — not to train them as AI engineers.</p>                </div>              </div>              <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>                <ConceptCard title="The AI Hierarchy" items={[                  { label: "Artificial Intelligence", desc: "Broad field of making machines perform intelligent tasks", color: "#15803d" },                  { label: "Machine Learning", desc: "Systems that learn from data without explicit programming", color: "#16a34a" },                  { label: "Deep Learning", desc: "Multi-layered neural networks that mimic brain structure", color: "#22c55e" },                  { label: "Foundation Models", desc: "Massive pre-trained models (GPT, Claude, Gemini, Llama)", color: "#4ade80" },                  { label: "Generative AI", desc: "AI that creates new content: text, images, code, audio", color: "#86efac" },                ]} />                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "1rem" }}>                  {[{ icon: "🧠", title: "Machine Learning", body: "Models identify statistical patterns in training data and encode them as billions of numerical weights — tuned iteratively to minimise prediction error." }, { icon: "💬", title: "Large Language Models", body: "Trained on vast text to predict the next token. This simple objective, massively scaled, produces emergent capabilities: reasoning, coding, creative synthesis." }, { icon: "🎨", title: "Multimodal AI", body: "Modern systems process and generate across text, images, audio, video, and code — enabling entirely new classes of business application." }].map(({ icon, title, body }) => (                    <div key={title} style={{ background: "#ffffff", border: "1px solid #e2e8f0", padding: "1.2rem", borderRadius: "8px", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.05)" }}>                      <div style={{ fontSize: "1.5rem", marginBottom: "0.6rem" }}>{icon}</div>                      <h3 style={{ color: "#15803d", fontSize: "0.78rem", margin: "0 0 0.5rem 0", fontFamily: "sans-serif", fontWeight: "700", letterSpacing: "0.05em" }}>{title}</h3>                      <p style={{ color: "#475569", fontSize: "0.75rem", lineHeight: 1.6, fontFamily: "sans-serif", margin: 0 }}>{body}</p>                    </div>                  ))}                </div>              </div>            </div>
 
             {/* INJECTING ALL THE EMPIRICAL MODULES HERE IN ORDER */}

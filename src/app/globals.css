@@ -75,6 +75,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-padding-top: 7rem;
+  overflow-x: clip;
   text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -131,7 +132,8 @@ div[id] {
 body {
   position: relative;
   min-height: 100vh;
-  overflow-x: hidden;
+  min-width: 320px;
+  overflow-x: clip;
   isolation: isolate;
   background:
     radial-gradient(circle at 8% 6%, rgba(37, 99, 235, 0.18), transparent 28rem),
@@ -144,6 +146,39 @@ body {
   transition:
     background 0.35s ease,
     color 0.25s ease;
+}
+
+main,
+section,
+article,
+aside,
+nav,
+header,
+footer,
+div {
+  min-width: 0;
+}
+
+:where(h1, h2, h3, h4) {
+  text-wrap: balance;
+}
+
+:where(p, li, figcaption, dd) {
+  text-wrap: pretty;
+}
+
+:where(p, li, dd, a) {
+  overflow-wrap: anywhere;
+}
+
+:where(img, video, canvas) {
+  max-width: 100%;
+  height: auto;
+}
+
+:where(input, select, textarea) {
+  max-width: 100%;
+  font: inherit;
 }
 
 .dark body {
@@ -541,8 +576,8 @@ body::after {
 
 #chat-icon-btn {
   position: fixed;
-  bottom: 22px;
-  right: 22px;
+  bottom: max(22px, calc(env(safe-area-inset-bottom) + 12px));
+  right: max(16px, calc(env(safe-area-inset-right) + 12px));
   width: 56px;
   height: 56px;
   background: #0a2540;
@@ -571,10 +606,10 @@ body::after {
 
 #chat-container {
   position: fixed;
-  bottom: 92px;
-  right: 22px;
-  width: min(92vw, 380px);
-  height: min(70vh, 600px);
+  bottom: max(92px, calc(env(safe-area-inset-bottom) + 82px));
+  right: max(12px, env(safe-area-inset-right));
+  width: min(calc(100vw - 24px), 380px);
+  height: min(70dvh, 600px);
   background: var(--glass-strong);
   backdrop-filter: saturate(170%) blur(24px);
   -webkit-backdrop-filter: saturate(170%) blur(24px);
@@ -646,6 +681,60 @@ body::after {
 
 .dark .pub-item:hover {
   background: rgba(96, 165, 250, 0.06);
+}
+
+@media (max-width: 48rem) {
+  body {
+    background-attachment: scroll;
+  }
+
+  :where(input, select, textarea) {
+    font-size: 16px;
+  }
+
+  .glass-card {
+    border-radius: 16px;
+  }
+
+  #chat-container {
+    left: 12px;
+    width: auto;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .glass-card:hover,
+  .pub-item:hover,
+  #chat-icon-btn:hover,
+  .btn-primary:hover {
+    transform: none;
+  }
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass-card,
+  .nav-glass,
+  #chat-container {
+    background: #fff;
+  }
+
+  .dark .glass-card,
+  .dark .nav-glass,
+  .dark #chat-container {
+    background: #0b1220;
+  }
+}
+
+@media (forced-colors: active) {
+  .stat-num {
+    background: none;
+    color: CanvasText;
+  }
+
+  .glass-card,
+  .nav-glass {
+    border: 1px solid CanvasText;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

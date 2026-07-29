@@ -10,11 +10,13 @@ export function MdpSection() {
           <div className="md:col-span-4">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">07 / Executive education</p>
-            <h2 className="display text-4xl font-semibold md:text-5xl">For senior leaders.</h2>
+            <h2 className="display text-4xl font-semibold md:text-5xl">
+              Learning built around the work leaders face.
+            </h2>
           </div>
           <p className="text-ink-600 dark:text-ink-300 self-end text-sm leading-relaxed md:col-span-8">
-            A modular MDP curriculum, plus selected engagements with public-sector institutions and
-            community programmes.
+            I adapt these management-development modules to the decisions, constraints and
+            participants in the room. The examples below include public-sector and community work.
           </p>
         </div>
 
@@ -51,10 +53,11 @@ export function MdpSection() {
           ))}
           <div className="glass-card glass-card-inverse border-0 p-6">
             <p className="eyebrow">Custom</p>
-            <h3 className="mb-3 font-serif text-xl font-semibold">Bespoke Programmes</h3>
+            <h3 className="mb-3 font-serif text-xl font-semibold">A programme for your context</h3>
             <p className="text-ink-100 mb-4 text-sm">
-              I co-design MDPs for corporates, government academies, and family business owners.
-              Recent engagements include IRS officer training and senior PSU leadership.
+              I co-design programmes with companies, government academies and family-business
+              owners. We begin with the decisions participants need to make, then choose the cases,
+              exercises and follow-through that will help.
             </p>
             <a
               href="mailto:swapnil.sahoo@greatlakes.edu.in?subject=MDP%20enquiry"

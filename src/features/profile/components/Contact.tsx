@@ -20,8 +20,8 @@ export function Contact() {
             <p className="eyebrow mb-3">09 / Get in touch</p>
             <h2 className="display mb-5 text-4xl font-semibold md:text-5xl">Let&rsquo;s talk.</h2>
             <p className="text-ink-700 dark:text-ink-200 text-base leading-relaxed">
-              For PhD enquiries, MDP collaborations, speaking invitations, or to share your work —
-              I read every email. Choose the path that fits.
+              Write if you are considering PhD work, planning an executive programme, inviting a
+              speaker or simply want to share something relevant. I read my own email.
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 md:col-span-7">

@@ -9,11 +9,13 @@ export function Conferences() {
           <div className="md:col-span-4">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">04 / Conferences &amp; talks</p>
-            <h2 className="display text-4xl font-semibold md:text-5xl">On the podium.</h2>
+            <h2 className="display text-4xl font-semibold md:text-5xl">
+              Where I present the work.
+            </h2>
           </div>
           <p className="text-ink-600 dark:text-ink-300 self-end text-sm leading-relaxed md:col-span-8">
-            From Copenhagen to Kashipur, Kent to Kharagpur — presenting work-in-progress at the
-            venues where the field shows up.
+            Conferences are where unfinished ideas meet hard questions. This record includes the
+            papers, doctoral work and collaborations I have taken into those conversations.
           </p>
         </div>
 

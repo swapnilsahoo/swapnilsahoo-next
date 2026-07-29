@@ -4,47 +4,48 @@ export const teachingLinks: TeachingLink[] = [
   {
     eyebrow: "Programme",
     title: "1-Year MBA",
-    description: "Class sessions, cases & reading lists for the PGPM cohort.",
+    description: "Sessions, cases and reading lists for the experienced PGPM cohort.",
     href: "/teaching/1-year-mba",
   },
   {
     eyebrow: "Programme",
     title: "2-Year MBA",
-    description: "Index of strategy & entrepreneurship modules across terms.",
+    description: "The strategy and entrepreneurship modules taught across the PGDM terms.",
     href: "/teaching/2-year-mba",
   },
   {
     eyebrow: "Experiential Leadership",
     title: "Karma Yoga",
     description:
-      "A community field lab for empathy, responsible action, measurable impact and reflective leadership.",
+      "Students work with community partners, test useful interventions and reflect on what responsible leadership asks of them.",
     href: "/teaching/karma-yoga",
   },
   {
     eyebrow: "Strategy Capstone",
     title: "Business Simulation",
     description:
-      "Twenty decision-rich sessions connecting strategy, finance, markets, operations, people and ESG.",
+      "Twenty connected sessions in which choices in strategy, finance, markets, operations, people and ESG affect one another.",
     href: "/teaching/business-simulation",
   },
   {
     eyebrow: "Teaching Resource",
     title: "Case Study Preparation",
     description:
-      "A practice-first studio for structuring, analysing and communicating consulting cases.",
+      "Practice for structuring consulting cases, doing the analysis and explaining the recommendation clearly.",
     href: "/case-study-preparation/",
   },
   {
     eyebrow: "MBA & PhD",
-    title: "AI Hackathon",
+    title: "AI Mini Hackathon",
     description:
-      "A build-first AI experience grounded in real problems, working prototypes and responsible innovation.",
+      "The July 2026 build programme in which the incoming PGDM cohort turned student problems into testable GenAI prototypes.",
     href: "/teaching/ai-hackathon",
   },
   {
     eyebrow: "Career",
     title: "Placements",
-    description: "Role fit, proof-led CVs, interview stories and deliberate practice.",
+    description:
+      "Choose roles carefully, make the CV evidential and rehearse stories until they sound like your own.",
     href: "/placements",
   },
 ];

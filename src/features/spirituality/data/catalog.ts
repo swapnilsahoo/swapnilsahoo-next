@@ -192,17 +192,17 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
     language: "Sanskrit · Devanagari + IAST",
     form: "Śrīvidyā hymn · one thousand names",
     glyph: "श्री",
-    dek: "Read the opening names as precise Sanskrit compounds, then follow the hymn’s own sacred chain of transmission—from the Vāgdevīs to Lalitā’s court, and from Hayagrīva to Agastya.",
-    scopeLabel: "Guided opening edition",
+    dek: "Meet all one thousand names in their received order, with Devanagari, consistent IAST, a concise name-level gloss, and a clear path back to the hymn’s sacred and textual history.",
+    scopeLabel: "Complete 1,000-name reader",
     scopeNote:
-      "This on-site study reader covers names 1–12 in compound-level detail. The complete text is linked below; recension placement and name numbering are stated rather than silently harmonized.",
-    entryCountLabel: "Names 1–12",
+      "All 1,000 names are present in the common enumeration represented by the declared Sanskrit Wikisource reading. Each card offers a reviewed name-level gloss; it does not pretend that a concise web gloss replaces Bhāskararāya’s layered compound analysis.",
+    entryCountLabel: "All 1,000 names",
     authenticity: [
       {
         label: "Transmission",
         value: "Lalitopākhyāna tradition",
         detail:
-          "Colophons associate the hymn with the Brahmāṇḍa Purāṇa’s Uttarakhaṇḍa, though its placement is not uniform across recensions.",
+          "Colophons associate the 182½-verse thousand-name hymn with the Brahmāṇḍa Purāṇa’s Uttarakhaṇḍa, though some printed recensions omit it or treat it as supplementary (khila) material.",
       },
       {
         label: "Sacred attribution",
@@ -218,9 +218,9 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
       },
       {
         label: "Reader standard",
-        value: "Compound analysis + IAST",
+        value: "Complete order + IAST",
         detail:
-          "Long names remain intact while their component words and close lexical senses are opened below.",
+          "Every counted name remains intact. IAST follows the declared Devanagari reading, and the English layer is explicitly a concise name-level gloss.",
       },
     ],
     profiles: [
@@ -248,23 +248,36 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
       },
     ],
     editorialPolicy: [
-      "The unbroken transmitted name is retained before editorial compound splitting, because grammatical analysis and liturgical counting serve different purposes.",
-      "IAST marks long vowels, retroflex consonants, sibilants, and anusvāra consistently; pronunciation still benefits from lineage-based instruction.",
-      "The glosses give close lexical orientation. Symbolic and tantric readings are not presented as a single universal translation.",
-      "The page says ‘transmitted with the Lalitopākhyāna tradition’ because the hymn’s placement and numbering are not uniform in all Brahmāṇḍa Purāṇa recensions.",
+      "The sequence follows the common 1,000-name division checked against the open-license Sanskrit Wikisource stotra and the public-domain 1925 Sastry edition of Bhāskararāya’s commentary.",
+      "The declared Devanagari layer is adapted from Sanskrit Wikisource under CC BY-SA 4.0. Presentation punctuation and zero-width characters were cleaned, the stated base readings were normalized, and IAST was generated mechanically from that normalized layer.",
+      "The English is a newly edited, concise orientation based on the public-domain commentary translation. It is name-level, not a claim of exhaustive word-by-word analysis.",
+      "At name 879 this reader selects the Wikisource base reading सुधासृतिः (sudhāsṛtiḥ); the same witness records सुधास्रुतिः (sudhāsrutiḥ) as a variant.",
+      "The hymn is described as transmitted with the Lalitopākhyāna tradition because its placement is not uniform in printed Brahmāṇḍa Purāṇa recensions; ‘authentic’ does not mean that textual history has been erased.",
     ],
     sources: [
       {
         title: "Śrī Lalitāsahasranāmastotram",
-        institution: "Sanskrit Wikisource",
+        institution: "Sanskrit Wikisource · CC BY-SA 4.0",
         href: "https://sa.wikisource.org/wiki/%E0%A4%B6%E0%A5%8D%E0%A4%B0%E0%A5%80_%E0%A4%B2%E0%A4%B2%E0%A4%BF%E0%A4%A4%E0%A4%BE%E0%A4%B8%E0%A4%B9%E0%A4%B8%E0%A5%8D%E0%A4%B0%E0%A4%A8%E0%A4%BE%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%A4%E0%A5%8B%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A4%AE%E0%A5%8D",
-        note: "A complete Sanskrit reading with the Hayagrīva–Agastya frame, colophon, and open-license provenance.",
+        note: "Base text for the 1,000-name sequence, checked on 29 July 2026. This site cleans presentation punctuation and zero-width characters, declares normalized readings, and generates IAST from the normalized Devanagari.",
+      },
+      {
+        title: "Creative Commons Attribution-ShareAlike 4.0 International",
+        institution: "Creative Commons",
+        href: "https://creativecommons.org/licenses/by-sa/4.0/",
+        note: "License governing the Wikisource-derived Devanagari and IAST layers; attribution, change indication, and ShareAlike apply.",
+      },
+      {
+        title: "Lalita Sahasranama with Bhaskararaya’s Commentary · 2nd edition",
+        institution: "Internet Archive · R. Ananthakrishna Sastry, 1925",
+        href: "https://archive.org/details/pli.kerala.rare.25882",
+        note: "A public-domain English translation of Bhāskararāya’s Saubhāgyabhāskara used to verify the enumeration and prepare concise modern name-glosses.",
       },
       {
         title: "Lalitāsahasranāma with pūrvapīṭhikā",
         institution: "Sanskrit Documents",
         href: "https://sanskritdocuments.org/doc_devii/lalitacomplete.html",
-        note: "A full traditional reading used for comparison and linked under its custodian’s terms.",
+        note: "A full traditional reading used only for comparison and linked under its custodian’s terms; its volunteer text and translation are not reposted here.",
       },
       {
         title: "Rahasyasahasranāmastotra manuscript A 961-32",

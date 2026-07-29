@@ -158,7 +158,7 @@ export function SubjectCoursePage({ config }: { config: SubjectCourseConfig }) {
                   href="#journey"
                   className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-slate-950 shadow-xl shadow-black/20 transition hover:-translate-y-0.5 hover:bg-blue-50 focus-visible:ring-2 focus-visible:ring-blue-200 focus-visible:outline-none"
                 >
-                  Explore the full journey
+                  View the complete course
                   <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
                 </a>
                 <a
@@ -200,7 +200,7 @@ export function SubjectCoursePage({ config }: { config: SubjectCourseConfig }) {
               ["Promise", "#promise"],
               ["Learning loop", "#learning-loop"],
               ["Outcomes", "#outcomes"],
-              ["Journey", "#journey"],
+              ["Sessions", "#journey"],
               ["Practice", "#practice"],
               ["Assessment", "#assessment"],
               ["Integrity", "#integrity"],
@@ -331,7 +331,7 @@ export function SubjectCoursePage({ config }: { config: SubjectCourseConfig }) {
           <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
               <span className="accent-rule" />
-              <p className="eyebrow mb-3">04 / Complete learning journey</p>
+              <p className="eyebrow mb-3">04 / Complete session sequence</p>
               <h2
                 id="journey-title"
                 className="display max-w-3xl text-4xl leading-[1.04] font-semibold text-balance sm:text-6xl"

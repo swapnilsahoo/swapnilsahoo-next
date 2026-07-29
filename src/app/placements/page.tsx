@@ -16,7 +16,7 @@ import { ReadinessStudio } from "./ReadinessStudio";
 export const metadata: Metadata = {
   title: "Placement Readiness Studio",
   description:
-    "A practice-first placement preparation studio for role fit, proof-led CVs, behavioral stories, business cases and interview execution.",
+    "Placement preparation for MBA students: choosing a credible role, writing an evidence-led CV and practising interviews with honest feedback.",
   keywords: [
     "MBA placements",
     "placement preparation",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     type: "website",
     title: "Placement Readiness Studio — From Experience to Evidence",
     description:
-      "Build a clear role thesis, proof-led CV, strong story bank and disciplined interview practice.",
+      "Choose a credible role, find the evidence in your experience and practise saying it clearly.",
     url: "/placements",
     images: ["/images/gallery/crest-judging-panel.png"],
   },
@@ -140,9 +140,9 @@ export default function PlacementsPage() {
                   <span className="text-brand-200 font-normal italic">into evidence.</span>
                 </h1>
                 <p className="mt-6 max-w-3xl text-base leading-relaxed text-blue-100 sm:text-lg">
-                  A practice-first studio for building a credible role thesis, proof-led CV,
-                  interview stories and the judgment to perform when the conversation becomes
-                  unscripted.
+                  Start by deciding which role makes sense for you. Then find the evidence in your
+                  experience, write it plainly and practise until you can discuss it without
+                  sounding rehearsed.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <a
@@ -189,15 +189,15 @@ export default function PlacementsPage() {
           <div className="mb-10 grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <span className="accent-rule" />
-              <p className="eyebrow mb-3">01 / The readiness journey</p>
+              <p className="eyebrow mb-3">01 / A useful order of work</p>
               <h2 id="journey-title" className="display text-4xl font-semibold md:text-5xl">
-                Preparation with a point of view.
+                Know what you are trying to prove.
               </h2>
             </div>
             <p className="text-ink-600 dark:text-ink-300 self-end text-sm leading-relaxed lg:col-span-7">
-              Placement preparation is not a collection of polished answers. It is a coherent
-              argument about where you can create value, supported by evidence and tested through
-              deliberate practice.
+              A folder of polished answers is not a placement strategy. You need a believable
+              account of where you can contribute, specific evidence from your work and enough
+              practice to handle the question you did not predict.
             </p>
           </div>
 
@@ -229,8 +229,8 @@ export default function PlacementsPage() {
               Prepare for the role you actually want.
             </h2>
             <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-relaxed">
-              Switch role lenses to see the evidence and practice each path demands. Use the
-              readiness pulse to identify the next gap worth closing.
+              Different roles ask for different proof. Switch between them, look at what each one
+              requires and use the readiness check to choose your next practice task.
             </p>
           </div>
           <ReadinessStudio />
@@ -246,11 +246,11 @@ export default function PlacementsPage() {
               <span className="accent-rule" />
               <p className="eyebrow mb-3">03 / Story bank</p>
               <h2 id="stories-title" className="display text-4xl font-semibold md:text-5xl">
-                Six stories. Distinct evidence.
+                Prepare six stories you can tell honestly.
               </h2>
               <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-relaxed">
-                Use STAR as an editing discipline: enough situation to orient, a precise task,
-                specific actions and a result with meaning.
+                STAR is useful as an editing tool, not a script. Give just enough context, say what
+                you were responsible for, describe what you did and explain what changed.
               </p>
             </div>
             <div className="grid gap-4 sm:grid-cols-2 lg:col-span-8">

@@ -462,7 +462,7 @@ export function TwoYearMbaExperience() {
             <article className="glass-card p-7 sm:p-9">
               <p className="eyebrow">Tentative deliverable timeline</p>
               <h3 className="mt-4 font-serif text-3xl font-semibold">
-                Five milestones. One cumulative journey.
+                Five milestones, each building on the evidence before it.
               </h3>
               <ol className="mt-7 grid gap-3 sm:grid-cols-2">
                 {deliverables.map(([when, title, description], index) => (
@@ -514,9 +514,9 @@ export function TwoYearMbaExperience() {
               </div>
               <div>
                 <p className="max-w-2xl text-sm leading-6 text-emerald-50">
-                  Teams of up to six immerse themselves in a real strategic journey through a live
-                  founder, CXO or core-team interview. Websites and reports may provide context, but
-                  marks depend on the originality and depth of primary evidence.
+                  Teams of up to six study a real company through a live founder, CXO or core-team
+                  interview. Websites and reports may provide context, but marks depend on the
+                  originality and depth of primary evidence.
                 </p>
                 <div className="mt-5 flex flex-wrap gap-2">
                   <span className="rounded-full border border-amber-200/20 bg-amber-200/10 px-3 py-1.5 font-mono text-[10px] tracking-[0.14em] text-amber-100 uppercase">
@@ -899,7 +899,7 @@ export function TwoYearMbaExperience() {
 
             <div className="flex flex-col gap-4 border-t border-slate-900/10 bg-slate-950/[0.025] px-7 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-10 dark:border-white/10 dark:bg-white/[0.025]">
               <p className="text-ink-600 dark:text-ink-300 text-sm">
-                Looking for the accelerated executive-format journey?
+                Looking for the accelerated executive-format course?
               </p>
               <Link
                 href="/teaching/1-year-mba"

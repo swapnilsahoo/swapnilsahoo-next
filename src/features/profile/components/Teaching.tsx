@@ -17,8 +17,8 @@ export function Teaching() {
             </h2>
           </div>
           <p className="text-ink-600 dark:text-ink-300 self-end text-sm leading-relaxed md:col-span-8">
-            Experiential, simulation-based, case-led, and AI-enabled. Full course materials and
-            learning activities are organised here.
+            I teach through cases, simulations, fieldwork and, where it genuinely helps, AI. These
+            pages collect the briefs, session material and practice activities my students use.
           </p>
         </div>
 
@@ -49,7 +49,7 @@ export function Teaching() {
                 id="linkedin-notes-heading"
                 className="display text-ink-900 dark:text-ink-50 text-3xl font-semibold"
               >
-                Ideas carried beyond the classroom.
+                Notes from work still in progress.
               </h3>
             </div>
             <a

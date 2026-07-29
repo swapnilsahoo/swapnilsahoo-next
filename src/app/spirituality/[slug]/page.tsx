@@ -87,6 +87,7 @@ export default async function ScripturePage({ params }: PageProps) {
   const scripture = scriptureCatalog[slug];
   const entries = await loadScriptureEntries(slug);
   const theme = themes[slug];
+  const isSahasranama = slug === "vishnu-sahasranama" || slug === "lalita-sahasranama";
   const languageCode = slug === "hanuman-chalisa" ? "awa" : "sa";
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.swapnilsahoo.com";
   const structuredData = {
@@ -100,7 +101,9 @@ export default async function ScripturePage({ params }: PageProps) {
     learningResourceType:
       slug === "shiva-tandava-stotram"
         ? "Pada-and-compound sacred-text study edition"
-        : "Word-and-compound sacred-text study edition",
+        : isSahasranama
+          ? "Complete name-by-name sacred-text study edition"
+          : "Word-and-compound sacred-text study edition",
     isBasedOn: scripture.sources.map((source) => source.href),
     publisher: {
       "@type": "Person",
@@ -166,7 +169,9 @@ export default async function ScripturePage({ params }: PageProps) {
                   Source-aware ·{" "}
                   {slug === "shiva-tandava-stotram"
                     ? "pāda & compound edition"
-                    : "word-by-word edition"}
+                    : isSahasranama
+                      ? "complete name-by-name edition"
+                      : "word-by-word edition"}
                 </span>
                 <p lang={languageCode} className={`mt-8 font-serif text-3xl ${theme.badge}`}>
                   {scripture.originalTitle}
@@ -257,7 +262,12 @@ export default async function ScripturePage({ params }: PageProps) {
             <div>
               <span className="accent-rule" />
               <p className="eyebrow mb-3">
-                02 / {slug === "shiva-tandava-stotram" ? "Pāda & compound" : "Word & compound"}{" "}
+                02 /{" "}
+                {slug === "shiva-tandava-stotram"
+                  ? "Pāda & compound"
+                  : isSahasranama
+                    ? "Name-by-name"
+                    : "Word & compound"}{" "}
                 reader
               </p>
               <h2 id="reader-title" className="display text-4xl font-semibold md:text-5xl">
