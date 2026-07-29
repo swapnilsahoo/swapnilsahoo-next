@@ -51,6 +51,10 @@ export const moreDropdown: NavDropdown = {
           label: "Authentic Lalita Sahasranama",
           href: "/spirituality/lalita-sahasranama",
         },
+        {
+          label: "Authentic Shiva Tandava Stotram",
+          href: "/spirituality/shiva-tandava-stotram",
+        },
       ],
     },
     { label: "Comics & Fiction", href: "/comics/" },

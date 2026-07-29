@@ -2,6 +2,7 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 
 import { lalitaSahasranamaEntries } from "@/features/spirituality/data/lalita-sahasranama";
+import { shivaTandavaStotramEntries } from "@/features/spirituality/data/shiva-tandava-stotram";
 import { vishnuSahasranamaEntries } from "@/features/spirituality/data/vishnu-sahasranama";
 import type { ReaderEntry, ScriptureSlug, WordGloss } from "@/features/spirituality/types";
 
@@ -154,10 +155,11 @@ function validateEntries(
 ): ReaderEntry[] {
   const ids = new Set(entries.map((entry) => entry.id));
   const hasIncompleteEntry = entries.some(
-    (entry) =>
+    (entry, index) =>
       !entry.original ||
       !entry.transliteration ||
       !entry.meaning ||
+      entry.sequence !== index + 1 ||
       entry.words.length === 0 ||
       entry.words.some((word) => !word.original)
   );
@@ -172,11 +174,14 @@ function validateEntries(
 }
 
 export async function loadScriptureEntries(slug: ScriptureSlug): Promise<ReaderEntry[]> {
-  if (slug === "hanuman-chalisa") {
-    return validateEntries(slug, await loadHanumanChalisaEntries(), 86);
+  switch (slug) {
+    case "hanuman-chalisa":
+      return validateEntries(slug, await loadHanumanChalisaEntries(), 86);
+    case "vishnu-sahasranama":
+      return validateEntries(slug, vishnuSahasranamaEntries, 36);
+    case "lalita-sahasranama":
+      return validateEntries(slug, lalitaSahasranamaEntries, 12);
+    case "shiva-tandava-stotram":
+      return validateEntries(slug, shivaTandavaStotramEntries, 17);
   }
-  if (slug === "vishnu-sahasranama") {
-    return validateEntries(slug, vishnuSahasranamaEntries, 36);
-  }
-  return validateEntries(slug, lalitaSahasranamaEntries, 12);
 }

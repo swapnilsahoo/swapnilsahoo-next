@@ -40,6 +40,11 @@ const themes: Record<
     glow: "bg-rose-200/20",
     badge: "text-rose-200",
   },
+  "shiva-tandava-stotram": {
+    hero: "from-[#080f1f] via-[#25324a] to-[#8a3f16]",
+    glow: "bg-orange-300/20",
+    badge: "text-orange-200",
+  },
 };
 
 export const dynamicParams = false;
@@ -59,7 +64,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     keywords: [
       scripture.shortTitle,
       scripture.transliteratedTitle,
-      "word by word meaning",
+      slug === "shiva-tandava-stotram" ? "pada by pada meaning" : "word by word meaning",
       slug === "hanuman-chalisa" ? "Awadhi romanization" : "IAST transliteration",
       "authorship and provenance",
       "sacred text study",
@@ -92,7 +97,10 @@ export default async function ScripturePage({ params }: PageProps) {
     description: scripture.dek,
     url: `${siteUrl}/spirituality/${slug}`,
     inLanguage: slug === "hanuman-chalisa" ? ["awa-Deva", "en"] : ["sa-Deva", "en"],
-    learningResourceType: "Word-by-word sacred-text study edition",
+    learningResourceType:
+      slug === "shiva-tandava-stotram"
+        ? "Pada-and-compound sacred-text study edition"
+        : "Word-and-compound sacred-text study edition",
     isBasedOn: scripture.sources.map((source) => source.href),
     publisher: {
       "@type": "Person",
@@ -155,7 +163,10 @@ export default async function ScripturePage({ params }: PageProps) {
             <div className="grid items-end gap-10 lg:grid-cols-[1fr_0.34fr]">
               <div>
                 <span className="inline-flex rounded-full border border-white/15 bg-white/10 px-3 py-1.5 font-mono text-[10px] tracking-[0.16em] uppercase backdrop-blur-sm">
-                  Source-aware · word-by-word edition
+                  Source-aware ·{" "}
+                  {slug === "shiva-tandava-stotram"
+                    ? "pāda & compound edition"
+                    : "word-by-word edition"}
                 </span>
                 <p lang={languageCode} className={`mt-8 font-serif text-3xl ${theme.badge}`}>
                   {scripture.originalTitle}
@@ -245,7 +256,10 @@ export default async function ScripturePage({ params }: PageProps) {
           <div className="mb-10 grid gap-6 lg:grid-cols-[1fr_0.7fr] lg:items-end">
             <div>
               <span className="accent-rule" />
-              <p className="eyebrow mb-3">02 / Word-by-word reader</p>
+              <p className="eyebrow mb-3">
+                02 / {slug === "shiva-tandava-stotram" ? "Pāda & compound" : "Word & compound"}{" "}
+                reader
+              </p>
               <h2 id="reader-title" className="display text-4xl font-semibold md:text-5xl">
                 The text, opened carefully.
               </h2>
@@ -292,7 +306,15 @@ export default async function ScripturePage({ params }: PageProps) {
             </p>
           </div>
 
-          <div className="mt-10 grid gap-5 lg:grid-cols-3">
+          <div
+            className={`mt-10 grid gap-5 ${
+              scripture.profiles.length === 1
+                ? "max-w-3xl"
+                : scripture.profiles.length === 2
+                  ? "lg:grid-cols-2"
+                  : "lg:grid-cols-3"
+            }`}
+          >
             {scripture.profiles.map((profile, index) => (
               <article
                 key={`${profile.name}-${profile.role}`}
@@ -395,7 +417,7 @@ export default async function ScripturePage({ params }: PageProps) {
 
           <nav aria-label="Other sacred-text branches" className="mt-10">
             <p className="eyebrow mb-4">Continue through the library</p>
-            <div className="grid gap-3 md:grid-cols-3">
+            <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
               {scriptureSlugs.map((branchSlug) => {
                 const branch = scriptureCatalog[branchSlug];
                 const current = branchSlug === slug;

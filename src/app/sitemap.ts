@@ -27,6 +27,11 @@ const routes = [
     changeFrequency: "monthly",
     priority: 0.72,
   },
+  {
+    path: "/spirituality/shiva-tandava-stotram",
+    changeFrequency: "monthly",
+    priority: 0.72,
+  },
   { path: "/comics", changeFrequency: "monthly", priority: 0.7 },
   { path: "/mythology", changeFrequency: "monthly", priority: 0.7 },
 ] as const;
