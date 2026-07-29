@@ -280,6 +280,90 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
       },
     ],
   },
+  "shiva-tandava-stotram": {
+    slug: "shiva-tandava-stotram",
+    navLabel: "Authentic Shiva Tandava Stotram",
+    shortTitle: "Shiva Tandava Stotram",
+    title: "Authentic Shiva Tandava Stotram",
+    originalTitle: "शिवताण्डवस्तोत्रम्",
+    transliteratedTitle: "Śivatāṇḍavastotram",
+    language: "Sanskrit · Devanagari + IAST",
+    form: "15 body stanzas · phalaśruti · received supplement",
+    glyph: "शिव",
+    dek: "Feel the hymn's drum-like movement while studying every received stanza through Devanagari, consistent IAST of the selected reading, a pāda-by-pāda compound guide, close meaning, manuscript-aware variants, metre, and a careful account of the Rāvaṇa attribution.",
+    scopeLabel: "Complete declared study sequence",
+    scopeNote:
+      "The reader includes 17 units following a documented popular sequence: 15 body stanzas, one concluding phalaśruti, and one transmitted supplementary stanza. It is a transparent received edition, not a reconstructed critical edition.",
+    entryCountLabel: "17 annotated units",
+    authenticity: [
+      {
+        label: "Declared sequence",
+        value: "17-unit received edition",
+        detail:
+          "The sequence follows Rohana Seneviratne's 2025 presentation of the popular recension. Manuscripts differ in stanza count, order, openings, and wording.",
+      },
+      {
+        label: "Attribution",
+        value: "Traditionally Rāvaṇa",
+        detail:
+          "Devotional tradition credits the hymn to the Rāmāyaṇa's king of Laṅkā. The historical poet and date have not been securely established.",
+      },
+      {
+        label: "Poetic form",
+        value: "Predominantly Pañcacāmara",
+        detail:
+          "The body uses an energetic sixteen-syllable line with strong short-long alternation. The common pūjāvasāna phalaśruti is in Vasantatilakā.",
+      },
+      {
+        label: "Reader standard",
+        value: "Pāda guide + IAST",
+        detail:
+          "The selected surface reading remains intact, consistent IAST tracks it, and each long metrical unit is opened through an editorial compound guide.",
+      },
+    ],
+    profiles: [
+      {
+        role: "Poet in devotional tradition",
+        name: "Rāvaṇa · first called Daśagrīva",
+        evidenceLabel: "Traditional attribution",
+        summary:
+          "Rāvaṇa is the mythic king of Laṅkā in the Rāmāyaṇa: son of Viśravas and Kaikasī, brother of Kumbhakarṇa, Śūrpaṇakhā, and Vibhīṣaṇa, and half-brother of Kubera. The epic portrays immense ascetic power and royal ambition alongside grave wrongdoing. Uttarakāṇḍa tells how Śiva's pressure on Kailāsa provoked Daśagrīva's great cry and the name Rāvaṇa; the surviving passage does not quote this hymn. This is a traditional literary biography, not a historically verifiable life. Devotional tradition credits him with the stotram; its historical poet remains unidentified.",
+      },
+    ],
+    editorialPolicy: [
+      "The 17-unit sequence and IAST base are adapted from Rohana Seneviratne's 2025 CC BY 4.0 study; the Devanagari presentation, segmentation, close glosses, and notes are newly prepared for this site.",
+      "The page names its received sequence: 15 body stanzas, the pūjāvasāna phalaśruti, and the idaṃ hi nityam supplement. Other recensions are not silently folded into it.",
+      "Devanagari and consistent IAST represent the selected surface reading. Pāda boundaries, hyphenated compound guides, and concise English glosses are editorial study aids.",
+      "High-impact variants—including digambare/cidambare, akharva/agarva, jayatyad/jayatvad, stanza order, and concluding material—are disclosed instead of declaring one universal wording.",
+      "Benefits in the phalaśruti are reported as the transmitted stanza's devotional promise, not as a scientific, financial, or guaranteed outcome.",
+    ],
+    sources: [
+      {
+        title: "Rāvaṇa as a Poet: Divine Dynamism and Devotion in a Hymn of Penitence",
+        institution: "Ancient Lanka · Rohana Seneviratne",
+        href: "https://doi.org/10.29173/anlk937",
+        note: "A 2025 CC BY 4.0 study of authorship, metre, manuscripts, variants, and the popular 17-unit sequence used here.",
+      },
+      {
+        title: "Śivatāṇḍava manuscript · Ms. Coll. 390 Item 2531",
+        institution: "University of Pennsylvania Libraries",
+        href: "https://openn.library.upenn.edu/Data/0002/html/mscoll390_item2531.html",
+        note: "A public-domain four-leaf Sanskrit manuscript dated 1818, with corrections and additions visible in the witness.",
+      },
+      {
+        title: "Vālmīki Rāmāyaṇa · Uttarakāṇḍa",
+        institution: "GRETIL · Tokunaga/Smith electronic text",
+        href: "https://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/ramayana/ram_07_u.htm",
+        note: "Primary epic context for Rāvaṇa's genealogy and the Kailāsa episode; it does not quote the present hymn.",
+      },
+      {
+        title: "Śivatāṇḍavastotram",
+        institution: "Sanskrit Wikisource",
+        href: "https://sa.wikisource.org/wiki/%E0%A4%B6%E0%A4%BF%E0%A4%B5%E0%A4%A4%E0%A4%BE%E0%A4%A3%E0%A5%8D%E0%A4%A1%E0%A4%B5%E0%A4%B8%E0%A5%8D%E0%A4%A4%E0%A5%8B%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A4%AE%E0%A5%8D",
+        note: "An open-license Devanagari comparison reading; its sequence and wording are not treated as the only recension.",
+      },
+    ],
+  },
 };
 
 export const scriptureSlugs = Object.keys(scriptureCatalog) as ScriptureSlug[];

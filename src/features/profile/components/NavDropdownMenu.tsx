@@ -123,7 +123,7 @@ export function NavDropdownMenu({ dropdown }: { dropdown: NavDropdown }) {
         id={menuId}
         aria-hidden={!open}
         inert={!open}
-        className={`nav-glass dropdown-content absolute top-[calc(100%+10px)] z-50 rounded-[14px] p-2 opacity-0 transition-[opacity,transform] duration-200 ${
+        className={`nav-glass dropdown-content absolute top-[calc(100%+10px)] z-50 max-h-[calc(100vh-6rem)] overflow-y-auto rounded-[14px] p-2 opacity-0 transition-[opacity,transform] duration-200 ${
           alignRight ? "right-0 min-w-[300px]" : "left-1/2 min-w-[240px]"
         }`}
         style={{

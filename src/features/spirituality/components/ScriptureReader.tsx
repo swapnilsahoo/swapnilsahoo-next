@@ -25,6 +25,9 @@ export function ScriptureReader({
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const romanizationLabel = slug === "hanuman-chalisa" ? "romanization" : "IAST";
+  const studyLayerLabel = slug === "shiva-tandava-stotram" ? "Pāda study" : "Word study";
+  const studyGuideLabel =
+    slug === "shiva-tandava-stotram" ? "Pāda & compound guide" : "Word & compound study";
 
   const sections = useMemo(
     () => ["All sections", ...Array.from(new Set(entries.map((entry) => entry.section)))],
@@ -88,8 +91,8 @@ export function ScriptureReader({
               Move between script, sound, and sense.
             </h3>
             <p className="text-ink-600 dark:text-ink-300 mt-2 max-w-2xl text-sm leading-relaxed">
-              Search every layer, narrow by section, or switch to the uncluttered line view. Word
-              study is the default.
+              Search every layer, narrow by section, or switch to the uncluttered line view. The
+              detailed study guide is the default.
             </p>
           </div>
           <p
@@ -155,7 +158,7 @@ export function ScriptureReader({
             <div className="border-ink-200 dark:border-ink-700 flex rounded-xl border bg-white/80 p-1 dark:bg-white/5">
               {(
                 [
-                  ["word", "Word study"],
+                  ["word", studyLayerLabel],
                   ["line", "Line view"],
                 ] as const
               ).map(([value, label]) => (
@@ -222,11 +225,11 @@ export function ScriptureReader({
                 <div>
                   <p
                     lang={language}
-                    className="font-serif text-2xl leading-relaxed font-semibold text-balance sm:text-3xl"
+                    className="font-serif text-2xl leading-relaxed font-semibold [overflow-wrap:anywhere] whitespace-pre-line sm:text-3xl"
                   >
                     {entry.original}
                   </p>
-                  <p className="mt-3 text-sm leading-relaxed font-medium text-amber-800 italic dark:text-amber-300">
+                  <p className="mt-3 text-sm leading-relaxed font-medium [overflow-wrap:anywhere] whitespace-pre-line text-amber-800 italic dark:text-amber-300">
                     {entry.transliteration}
                   </p>
                 </div>
@@ -243,7 +246,7 @@ export function ScriptureReader({
 
               {readingLayer === "word" ? (
                 <div className="mt-6 border-t border-dashed border-amber-900/15 pt-5 dark:border-amber-100/15">
-                  <p className="eyebrow mb-3">Word-by-word</p>
+                  <p className="eyebrow mb-3">{studyGuideLabel}</p>
                   <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
                     {entry.words.map((word, wordIndex) => (
                       <div
@@ -252,11 +255,14 @@ export function ScriptureReader({
                       >
                         <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
                           {word.original ? (
-                            <span lang={language} className="font-serif text-lg font-semibold">
+                            <span
+                              lang={language}
+                              className="font-serif text-lg font-semibold [overflow-wrap:anywhere]"
+                            >
                               {word.original}
                             </span>
                           ) : null}
-                          <span className="text-xs font-semibold text-amber-800 italic dark:text-amber-300">
+                          <span className="text-xs font-semibold [overflow-wrap:anywhere] text-amber-800 italic dark:text-amber-300">
                             {word.transliteration}
                           </span>
                         </div>
