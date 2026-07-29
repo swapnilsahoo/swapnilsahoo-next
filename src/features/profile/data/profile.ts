@@ -10,9 +10,9 @@ export const profile = {
 } as const;
 
 export const aboutParagraphs: string[] = [
-  "I hold a Ph.D. from XLRI Jamshedpur, specialising in Entrepreneurship and Innovation, and currently serve as Assistant Professor of Strategy at Great Lakes Institute of Management, Gurgaon — an AACSB- and AMBA-accredited institution. My role spans academic programming, experiential learning design, social-impact initiatives, and institutional strategy.",
-  "Before academia, I spent 17 years in senior strategic roles across Wipro, Accenture, Cognizant and Mahindra, most recently as Global Partnership Head at 42Gears Mobility, building C-suite relationships across Europe, the Middle East and Africa. That dual lens — corporate operator and academic researcher — shapes how I teach and how I write.",
-  "My research asks a deceptively simple question: how do organisations do more with less, and what makes that capability endure? The answer takes me through frugal innovation, jugaad, bricolage, effectuation, and the dynamic capabilities of family firms and neurodiverse teams.",
+  "I am an Assistant Professor of Strategy at Great Lakes Institute of Management, Gurgaon, where my work includes teaching, academic programme design, social-impact initiatives and institutional strategy. I earned my Ph.D. from XLRI Jamshedpur, specialising in Entrepreneurship and Innovation. Great Lakes is accredited by AACSB and AMBA.",
+  "I came to academia after 17 years in industry, with strategic roles at Wipro, Accenture, Cognizant and Mahindra. Most recently, as Global Partnership Head at 42Gears Mobility, I worked with senior leaders across Europe, the Middle East and Africa. I still bring that operator’s habit to the classroom: ideas have to survive contact with decisions, people and constraints.",
+  "My research begins with a question I kept encountering in practice: how do organisations manage to do more with less, and why are some able to keep doing it? I study that question through frugal innovation, jugaad, bricolage, effectuation, family firms and neurodiverse teams.",
 ];
 
 export const education: string[] = [

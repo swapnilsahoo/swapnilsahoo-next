@@ -72,11 +72,11 @@ export const oneYearMba: ProgrammeConfig = {
   title: "Thirteen sessions.",
   accent: "One integrated strategy.",
   description:
-    "An accelerated, discussion-intensive journey for experienced professionals—moving from business strategy to corporate scope through tightly sequenced cases, reflection and original field evidence.",
+    "A fast, discussion-heavy course for experienced professionals. Thirteen linked sessions move from business strategy to corporate scope through cases, handwritten reflection and a founder interview.",
   audience: "PGPM · experienced cohort",
   pace: "13 × 90-minute sessions",
   outcome: "Formulate, defend, reflect",
-  promise: "A compressed journey through the whole firm.",
+  promise: "Thirteen sessions that keep the whole firm in view.",
   principles: [
     {
       title: "Experience is evidence",
@@ -93,7 +93,7 @@ export const oneYearMba: ProgrammeConfig = {
     {
       title: "Transfer every week",
       description:
-        "Each concept travels from case discussion to handwritten reflection and a live founder conversation.",
+        "Students use each concept in a case discussion, revisit it in writing and test it in a live founder conversation.",
       citations: [2, 7],
     },
   ],
@@ -187,7 +187,7 @@ export const oneYearMba: ProgrammeConfig = {
   ],
   references,
   siblingHref: "/teaching/2-year-mba",
-  siblingLabel: "2-Year MBA journey",
+  siblingLabel: "2-Year MBA course",
 };
 
 export const twoYearMba: ProgrammeConfig = {
@@ -195,7 +195,7 @@ export const twoYearMba: ProgrammeConfig = {
   title: "Twenty sessions.",
   accent: "Strategy in full.",
   description:
-    "A cumulative strategy journey from purpose and industry structure to corporate parenting, execution and internationalization—anchored in cases, assessment and a primary-research company project.",
+    "Twenty sessions connect purpose and industry structure with corporate parenting, execution and internationalisation. Cases support the discussion; a company field project asks students to work from primary evidence.",
   audience: "PGDM · multidisciplinary cohort",
   pace: "20 × 90-minute sessions",
   outcome: "Analyze, recommend, execute",
@@ -210,13 +210,13 @@ export const twoYearMba: ProgrammeConfig = {
     {
       title: "Participation creates learning",
       description:
-        "Preparation, peer challenge, active listening and reflection turn cases into judgment practice.",
+        "A case becomes useful when students prepare, challenge one another, listen closely and explain why their view changed.",
       citations: [2],
     },
     {
       title: "Evidence closes the loop",
       description:
-        "Direct assessment and feedback make conceptual and analytical development visible.",
+        "Short assessments and feedback show students where their concepts and analysis are becoming stronger—and where they are not.",
       citations: [7],
     },
   ],
@@ -346,5 +346,5 @@ export const twoYearMba: ProgrammeConfig = {
   ],
   references,
   siblingHref: "/teaching/1-year-mba",
-  siblingLabel: "1-Year MBA journey",
+  siblingLabel: "1-Year MBA course",
 };

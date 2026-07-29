@@ -1,13 +1,19 @@
 "use client";
 
 import Script from "next/script";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const GRADIO_SPACE_URL = "https://swapnilsahoo118514-personal.hf.space";
 
 export function ChatWidget() {
   const [open, setOpen] = useState(false);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const triggerButtonRef = useRef<HTMLButtonElement>(null);
+
+  const closeChat = useCallback(() => {
+    setOpen(false);
+    window.requestAnimationFrame(() => triggerButtonRef.current?.focus());
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -15,12 +21,12 @@ export function ChatWidget() {
     closeButtonRef.current?.focus();
 
     function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setOpen(false);
+      if (event.key === "Escape") closeChat();
     }
 
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [open]);
+  }, [closeChat, open]);
 
   return (
     <>
@@ -35,6 +41,7 @@ export function ChatWidget() {
       <div
         id="chat-container"
         role="dialog"
+        aria-modal="true"
         aria-label="Ask Dr. Swapnil Sahoo"
         aria-hidden={!open}
         inert={!open}
@@ -44,7 +51,7 @@ export function ChatWidget() {
           ref={closeButtonRef}
           id="close-chat-btn"
           aria-label="Close chat"
-          onClick={() => setOpen(false)}
+          onClick={closeChat}
         >
           &times;
         </button>
@@ -57,11 +64,12 @@ export function ChatWidget() {
       </div>
 
       <button
+        ref={triggerButtonRef}
         id="chat-icon-btn"
         aria-label={open ? "Close chat" : "Open chat"}
         aria-controls="chat-container"
         aria-expanded={open}
-        onClick={() => setOpen((value) => !value)}
+        onClick={() => (open ? closeChat() : setOpen(true))}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

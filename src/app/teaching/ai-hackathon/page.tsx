@@ -18,9 +18,9 @@ const briefingDeckUrl =
 const responsibleAiPost = linkedInHighlights[0];
 
 export const metadata: Metadata = {
-  title: "AI Hackathon for MBA & PhD Audiences",
+  title: "AI Mini Hackathon for MBA & PhD Audiences",
   description:
-    "A build-first AI Hackathon at Great Lakes Gurgaon: real problems, working prototypes, responsible innovation, and learning lenses for MBA and PhD audiences.",
+    "The AI Mini Hackathon delivered for the incoming PGDM 2026–28 cohort at Great Lakes Gurgaon, with a clearly labelled research extension for PhD readers.",
   keywords: [
     "AI Hackathon",
     "Great Lakes Gurgaon",
@@ -34,9 +34,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "article",
-    title: "AI Hackathon — From Real Problems to Working Prototypes",
+    title: "AI Mini Hackathon — Build-First. By Students, For Students.",
     description:
-      "A build-first learning experience at Great Lakes Gurgaon, moving from real problems to responsible AI-enabled prototypes.",
+      "How the incoming PGDM 2026–28 cohort moved from student problems to testable, responsibly framed GenAI prototypes.",
     url: "/teaching/ai-hackathon",
     images: ["/images/ai-hackathon/hackathon-demo-enhanced.png"],
   },
@@ -45,38 +45,40 @@ export const metadata: Metadata = {
 const buildFlow = [
   {
     index: "01",
-    title: "Kickoff & guardrails",
+    title: "Kickoff together",
     description:
-      "Begin with the challenge brief, responsible-AI expectations and a shared standard for useful work.",
+      "The full batch met in the Auditorium on 2 July to hear the brief, see what GenAI could do and agree on responsible-use expectations.",
   },
   {
     index: "02",
-    title: "Awareness & framing",
+    title: "Choose a student problem",
     description:
-      "Explore what AI can enable, then anchor the build in a real student or business problem.",
+      "Teams named a pain area, the people living with it and the practical change their idea should make.",
   },
   {
     index: "03",
-    title: "Rapid build",
+    title: "Build in pods",
     description:
-      "Use rapid, “vibe coding” methods to turn the problem into a working AI-enabled prototype.",
+      "Build, Users & Business, and Story & Demo pods worked in parallel, connected by the team lead and pod leads.",
   },
   {
     index: "04",
-    title: "Refine & demo",
-    description: "Test, sharpen and present the final prototype for evaluation by an alumni jury.",
+    title: "Show the work",
+    description:
+      "Two semifinal groups presented on 3 July. Shortlisted teams returned to the Auditorium on 5 July for the final jury.",
   },
 ] as const;
 
 const challengeThemes = [
   "Student productivity",
-  "Learning & case preparation",
+  "Learning & class preparation",
+  "Case analysis & class participation",
   "Placements & careers",
-  "Entrepreneurship",
-  "Campus life",
+  "Entrepreneurship & startups",
+  "Campus operations & student life",
   "Sustainability & social impact",
-  "Wellness",
-  "Responsible & ethical decisions",
+  "Wellness & personal development",
+  "Responsible & ethical decision-making",
 ] as const;
 
 const prototypeAreas = [
@@ -89,22 +91,49 @@ const prototypeAreas = [
   "Wellness",
 ] as const;
 
-const evaluationGroups = [
+const finalJuryCriteria = [
+  "Clarity and relevance of the problem",
+  "Practicality of the GenAI solution",
+  "Prototype quality and usability",
+  "Ease of adoption at Great Lakes",
+  "Potential institutional impact",
+] as const;
+
+const learningRubric = [
+  "Originality",
+  "AI integration",
+  "User experience",
+  "Feasibility & scalability",
+  "Responsible AI",
+  "Collaboration",
+  "Presentation",
+  "Live demonstration",
+] as const;
+
+const eventSchedule = [
   {
-    title: "Problem & value",
-    criteria: ["Problem clarity & relevance", "Usefulness"],
+    date: "Thursday, 2 July 2026",
+    time: "6:00–8:00 PM",
+    place: "Auditorium",
+    detail: "Full-batch kickoff",
   },
   {
-    title: "Build quality",
-    criteria: ["AI integration", "Usability"],
+    date: "Friday, 3 July 2026",
+    time: "2:30–5:00 PM",
+    place: "A16",
+    detail: "Semifinal · Group 1",
   },
   {
-    title: "Path to adoption",
-    criteria: ["Feasibility & adoption", "Institutional impact"],
+    date: "Friday, 3 July 2026",
+    time: "6:00–8:30 PM",
+    place: "Auditorium",
+    detail: "Semifinal · Group 2",
   },
   {
-    title: "Judgment & communication",
-    criteria: ["Responsible AI", "Demo quality"],
+    date: "Sunday, 5 July 2026",
+    time: "2:30–5:00 PM",
+    place: "Auditorium",
+    detail: "Final",
   },
 ] as const;
 
@@ -128,19 +157,21 @@ export default function AiHackathonPage() {
               <div>
                 <div className="mb-6 flex flex-wrap items-center gap-3">
                   <span className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-3 py-1.5 font-mono text-[11px] tracking-[0.14em] text-blue-100 uppercase backdrop-blur-sm">
-                    Experiential learning · MBA &amp; PhD lenses
+                    Incoming PGDM 2026–28 · Great Lakes Gurgaon
                   </span>
                 </div>
 
                 <h1 className="display text-4xl font-semibold text-balance sm:text-6xl lg:text-7xl">
-                  AI Hackathon:{" "}
+                  AI Mini Hackathon:{" "}
                   <span className="text-brand-200 font-normal italic">
-                    from real problems to working prototypes.
+                    Build-First. By Students, For Students.
                   </span>
                 </h1>
                 <p className="mt-6 max-w-3xl text-base leading-relaxed text-blue-100 sm:text-lg">
-                  At Great Lakes Gurgaon, teams identify consequential student and business
-                  problems, then build AI-enabled prototypes they can demonstrate—not just describe.
+                  The incoming PGDM cohort started with problems they knew from student life, then
+                  built GenAI prototypes that people could open, test and question. This page
+                  records that July 2026 programme and offers a separate research lens for PhD
+                  readers.
                 </p>
 
                 <div className="mt-8 flex flex-wrap gap-3">
@@ -186,7 +217,9 @@ export default function AiHackathonPage() {
           >
             <div className="glass-card p-5">
               <dt className="eyebrow">Statistics · recorded output</dt>
-              <dd className="mt-2 font-serif text-3xl font-semibold">26 prototypes</dd>
+              <dd className="mt-2 font-serif text-3xl font-semibold">
+                26 recorded submission entries
+              </dd>
             </div>
             <div className="glass-card p-5">
               <dt className="eyebrow">Statistics · finalist pipeline</dt>
@@ -201,13 +234,14 @@ export default function AiHackathonPage() {
           <div className="grid gap-10 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <span className="accent-rule" />
-              <p className="eyebrow mb-3">01 / The build journey</p>
+              <p className="eyebrow mb-3">01 / What happened</p>
               <h2 id="experience-title" className="display text-4xl font-semibold md:text-5xl">
                 Learn by making.
               </h2>
               <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-relaxed">
-                Teams move from awareness and responsible-AI guardrails to rapid building,
-                refinement and a final demonstration.
+                The programme ran over three days: one shared kickoff, two semifinal rooms and a
+                final for the shortlisted teams. Each stage asked students to make the idea more
+                useful and easier to explain.
               </p>
             </div>
 
@@ -231,18 +265,49 @@ export default function AiHackathonPage() {
 
       <div className="hr-fade mx-auto max-w-6xl" />
 
+      <section aria-labelledby="schedule-title" className="py-16 sm:py-24">
+        <Container className="max-w-6xl">
+          <div className="mb-10 max-w-3xl">
+            <span className="accent-rule" />
+            <p className="eyebrow mb-3">02 / Programme schedule</p>
+            <h2 id="schedule-title" className="display text-4xl font-semibold md:text-5xl">
+              Three days, with time to build between rooms.
+            </h2>
+            <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-relaxed">
+              The kickoff set a common brief. The two semifinal groups kept presentations to three
+              minutes, and the final allowed roughly nine minutes for the pitch and demonstration,
+              followed by two to three minutes of questions.
+            </p>
+          </div>
+          <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {eventSchedule.map((item) => (
+              <li key={`${item.date}-${item.detail}`} className="glass-card p-6">
+                <p className="eyebrow">{item.detail}</p>
+                <h3 className="mt-3 font-serif text-xl font-semibold">{item.date}</h3>
+                <p className="text-brand-700 dark:text-brand-300 mt-3 text-sm font-semibold">
+                  {item.time}
+                </p>
+                <p className="text-ink-600 dark:text-ink-300 mt-1 text-sm">{item.place}</p>
+              </li>
+            ))}
+          </ol>
+        </Container>
+      </section>
+
+      <div className="hr-fade mx-auto max-w-6xl" />
+
       <section aria-labelledby="lenses-title" className="py-16 sm:py-24">
         <Container className="max-w-6xl">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
-            <p className="eyebrow mb-3">02 / Audience lenses</p>
+            <p className="eyebrow mb-3">03 / Audience lenses</p>
             <h2 id="lenses-title" className="display text-4xl font-semibold md:text-5xl">
-              One challenge, two ways to interrogate it.
+              The build is also something researchers can study.
             </h2>
             <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-relaxed">
-              The management lens reflects the delivered format. The PhD lens is a research-oriented
-              extension of the same learning design, not a claim about attendance in any particular
-              edition.
+              The management lens describes the programme delivered to the incoming PGDM 2026–28
+              cohort. The PhD lens below is an invitation to study the design; it does not imply
+              that doctoral students attended this edition.
             </p>
           </div>
 
@@ -327,14 +392,14 @@ export default function AiHackathonPage() {
           <div className="mb-10 grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <span className="accent-rule" />
-              <p className="eyebrow mb-3">03 / The opportunity space</p>
+              <p className="eyebrow mb-3">04 / The opportunity space</p>
               <h2 id="challenge-title" className="display text-4xl font-semibold md:text-5xl">
                 Start with a problem worth solving.
               </h2>
             </div>
             <p className="text-ink-600 dark:text-ink-300 self-end text-sm leading-relaxed lg:col-span-7">
-              Teams worked across practical campus, career, learning and business needs. The themes
-              created direction without prescribing a single type of solution.
+              Students could choose from nine themes. The list gave teams a place to begin while
+              leaving the actual problem, user and form of the prototype to them.
             </p>
           </div>
 
@@ -391,13 +456,14 @@ export default function AiHackathonPage() {
           <div className="grid items-center gap-8 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <span className="accent-rule" />
-              <p className="eyebrow mb-3">04 / In the room</p>
+              <p className="eyebrow mb-3">05 / In the room</p>
               <h2 id="gallery-title" className="display text-4xl font-semibold md:text-5xl">
-                Ideas become discussable.
+                A demo makes assumptions visible.
               </h2>
               <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-relaxed">
-                The demonstration is part of the learning: teams explain what they built, surface
-                assumptions and respond to questions about usefulness, adoption and judgment.
+                A working link changes the conversation. Teams had to show what their prototype did,
+                explain who it helped and answer questions about whether Great Lakes could actually
+                use it.
               </p>
             </div>
             <figure className="glass-card overflow-hidden p-2 lg:col-span-8">
@@ -422,39 +488,88 @@ export default function AiHackathonPage() {
         <Container className="max-w-6xl">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
-            <p className="eyebrow mb-3">05 / Evaluation</p>
+            <p className="eyebrow mb-3">06 / What the jury considered</p>
             <h2 id="evaluation-title" className="display text-4xl font-semibold md:text-5xl">
-              A prototype had to make its case.
+              The final decision rested on five practical questions.
             </h2>
             <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-relaxed">
-              Final demos were considered as more than technical builds. The alumni jury examined
-              the problem, the product, its route to adoption and the judgment behind it.
+              The final jury used the five criteria below. They are intentionally narrower than the
+              broader learning rubric introduced at the kickoff.
             </p>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {evaluationGroups.map((group, index) => {
-              const Icon = [CompassIcon, BricolageIcon, NetworkIcon, SparkIcon][index];
+          <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {finalJuryCriteria.map((criterion, index) => (
+              <li key={criterion} className="glass-card p-6">
+                <p className="text-brand-600 dark:text-brand-300 font-mono text-sm">
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+                <p className="mt-4 font-serif text-lg font-semibold">{criterion}</p>
+              </li>
+            ))}
+          </ol>
 
-              return (
-                <article key={group.title} className="glass-card p-6">
-                  <div className="bg-brand-50 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300 mb-5 flex h-10 w-10 items-center justify-center rounded-xl">
-                    <Icon className="h-5 w-5" aria-hidden="true" />
-                  </div>
-                  <h3 className="font-serif text-lg font-semibold">{group.title}</h3>
-                  <ul className="text-ink-600 dark:text-ink-300 mt-3 space-y-2 text-sm">
-                    {group.criteria.map((criterion) => (
-                      <li key={criterion} className="flex gap-2">
-                        <span className="text-accent-500" aria-hidden="true">
-                          /
-                        </span>
-                        {criterion}
-                      </li>
-                    ))}
-                  </ul>
-                </article>
-              );
-            })}
+          <article className="border-ink-200/80 dark:border-ink-700 mt-6 rounded-[18px] border p-6 sm:p-8">
+            <h3 className="font-serif text-2xl font-semibold">The broader learning rubric</h3>
+            <p className="text-ink-600 dark:text-ink-300 mt-2 max-w-3xl text-sm leading-relaxed">
+              At kickoff, teams were also asked to think about originality, teamwork and responsible
+              use—not only the final ranking. Keeping these two lists separate matters: one guided
+              the learning; the other guided the final jury.
+            </p>
+            <ul className="mt-5 flex flex-wrap gap-2">
+              {learningRubric.map((criterion) => (
+                <li key={criterion} className="tag tag-ink">
+                  {criterion}
+                </li>
+              ))}
+            </ul>
+          </article>
+        </Container>
+      </section>
+
+      <section aria-labelledby="outputs-title" className="pb-16 sm:pb-24">
+        <Container className="max-w-6xl">
+          <div className="from-ink-950 to-brand-900 rounded-[24px] bg-gradient-to-br p-7 text-white sm:p-10">
+            <p className="font-mono text-[11px] tracking-[0.16em] text-blue-200 uppercase">
+              07 / What each team brought
+            </p>
+            <h2 id="outputs-title" className="mt-3 font-serif text-4xl font-semibold">
+              Each team had to bring work the room could test.
+            </h2>
+            <p className="mt-4 max-w-3xl text-sm leading-relaxed text-blue-100">
+              Teams of up to about fifteen could divide the work across Build, Users &amp; Business,
+              and Story &amp; Demo pods. The team lead, three pod leads and a nominated presenter
+              kept those streams connected.
+            </p>
+            <div className="mt-8 grid gap-5 lg:grid-cols-2">
+              <article className="rounded-2xl border border-white/10 bg-white/5 p-6">
+                <h3 className="font-serif text-2xl font-semibold">Required submission</h3>
+                <ul className="mt-4 space-y-2 text-sm text-blue-50">
+                  <li>Pain area, problem statement and target user</li>
+                  <li>An accessible prototype link and working demonstration</li>
+                  <li>A short pitch covering the problem, solution and user benefit</li>
+                  <li>A clear account of responsible AI choices</li>
+                </ul>
+              </article>
+              <article className="rounded-2xl border border-white/10 bg-white/5 p-6">
+                <h3 className="font-serif text-2xl font-semibold">The seven-slide deck</h3>
+                <ol className="mt-4 grid gap-x-5 gap-y-2 text-sm text-blue-50 sm:grid-cols-2">
+                  {[
+                    "Title",
+                    "Problem",
+                    "Solution",
+                    "Live Demo",
+                    "User Benefit",
+                    "Responsible AI",
+                    "What’s Next",
+                  ].map((slide, index) => (
+                    <li key={slide}>
+                      <span className="text-blue-300">{index + 1}.</span> {slide}
+                    </li>
+                  ))}
+                </ol>
+              </article>
+            </div>
           </div>
         </Container>
       </section>
@@ -468,9 +583,9 @@ export default function AiHackathonPage() {
             />
             <div className="relative mb-8 max-w-2xl">
               <span className="accent-rule" />
-              <p className="eyebrow mb-3">06 / Continue exploring</p>
+              <p className="eyebrow mb-3">08 / Source material and notes</p>
               <h2 id="resources-title" className="display text-4xl font-semibold">
-                Briefing and field notes.
+                Read the brief and the thinking behind it.
               </h2>
             </div>
 
@@ -489,7 +604,7 @@ export default function AiHackathonPage() {
                     <p className="eyebrow mb-2">Public briefing deck · PDF</p>
                     <h3 className="font-serif text-2xl font-semibold">AI in 45 Minutes</h3>
                     <p className="text-ink-600 dark:text-ink-300 mt-2 text-sm leading-relaxed">
-                      Open the briefing resource used to orient the hackathon experience.
+                      This is the public briefing resource used to introduce the build.
                     </p>
                     <span className="text-brand-700 dark:text-brand-400 mt-5 inline-flex items-center gap-2 text-sm font-semibold">
                       View the deck
@@ -553,8 +668,8 @@ export default function AiHackathonPage() {
                       Follow the public conversation
                     </h3>
                     <p className="mt-2 text-sm leading-relaxed text-blue-50">
-                      Visit Dr. Swapnil Sahoo&apos;s public profile for posts and updates on
-                      AI-enabled learning, strategy teaching and future experiments.
+                      I use LinkedIn to share what I am testing in the classroom, what students
+                      teach me and where the next question leads.
                     </p>
                     <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold">
                       Open LinkedIn

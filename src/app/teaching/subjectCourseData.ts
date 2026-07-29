@@ -43,7 +43,7 @@ export const karmaYogaCourse = {
     name: "Field learning loop",
     title: "Listen. Co-design. Deliver. Learn.",
     description:
-      "The journey is deliberately iterative. Evidence from every visit can reopen the problem frame, alter the intervention or stop a solution that is unsafe, unwanted or unsustainable.",
+      "The work is deliberately iterative. What students hear on any visit may reopen the problem, change the intervention or stop an idea that is unsafe, unwanted or unlikely to last.",
     steps: [
       {
         label: "Prepare",

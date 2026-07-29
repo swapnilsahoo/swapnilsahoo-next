@@ -17,7 +17,7 @@ const casebookUrl = "/1761125938034.pdf";
 export const metadata: Metadata = {
   title: "Consulting Case Study Preparation",
   description:
-    "A structured, practice-first consulting case preparation studio: frameworks, guesstimates, synthesis, industry fluency and interview-day judgment.",
+    "Consulting case practice for MBA students: structure unfamiliar problems, work with numbers, make a recommendation and learn from each mock interview.",
   keywords: [
     "consulting case interview",
     "case study preparation",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     type: "article",
     title: "Consulting Case Studio — Think Clearly Under Pressure",
     description:
-      "A practice-first system for structuring, analyzing and communicating consulting cases.",
+      "Practice for structuring an unfamiliar business problem, analysing it and explaining what you would do.",
     url: "/case-study-preparation/",
     images: ["/images/gallery/classroom-dialogue.png"],
   },
@@ -133,8 +133,9 @@ export default function CaseStudyPreparationPage() {
                   <span className="text-brand-200 font-normal italic">under pressure.</span>
                 </h1>
                 <p className="mt-6 max-w-3xl text-base leading-relaxed text-blue-100 sm:text-lg">
-                  A modern preparation system for turning ambiguous business problems into
-                  structured analysis, defensible insight and executive-level recommendations.
+                  Case interviews rarely fail because someone forgot a framework. They fail when the
+                  candidate stops listening, hides an assumption or reaches a recommendation the
+                  analysis does not support. This page helps you practise those moments.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <a
@@ -188,9 +189,9 @@ export default function CaseStudyPreparationPage() {
               </h2>
             </div>
             <p className="text-ink-600 dark:text-ink-300 self-end text-sm leading-relaxed lg:col-span-7">
-              Frameworks are scaffolding. Strong candidates clarify the question, build a
-              situation-specific structure, follow the evidence and communicate the implication. The
-              loop below turns that behavior into a repeatable habit.
+              A framework can help you begin, but it cannot listen for you. Clarify the question,
+              build a structure for this particular situation, follow the evidence and say what it
+              means. Then review the attempt while it is still fresh.
             </p>
           </div>
 
@@ -222,8 +223,9 @@ export default function CaseStudyPreparationPage() {
               Rehearse the moments that matter.
             </h2>
             <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-relaxed">
-              Switch between structuring, quantitative reasoning and synthesis. After a live case,
-              use the reflection checklist to convert feedback into your next practice goal.
+              Practise structuring, quantitative reasoning and synthesis separately before combining
+              them in a full case. After each mock, turn one piece of feedback into the next
+              session&apos;s goal.
             </p>
           </div>
           <CasePracticeLab />
@@ -239,11 +241,11 @@ export default function CaseStudyPreparationPage() {
               <span className="accent-rule" />
               <p className="eyebrow mb-3">03 / Case architecture</p>
               <h2 id="cases-title" className="display text-4xl font-semibold md:text-5xl">
-                Recognize the family. Build for the situation.
+                Recognise the pattern; do not force the template.
               </h2>
               <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-relaxed">
-                These common families help you orient quickly. They should guide the first question,
-                never replace judgment.
+                These case families can help you find a sensible first question. After that, the
+                facts of the case should determine the structure.
               </p>
             </div>
             <div className="grid gap-4 sm:grid-cols-2 lg:col-span-8">
@@ -301,7 +303,7 @@ export default function CaseStudyPreparationPage() {
             <span className="accent-rule" />
             <p className="eyebrow mb-3">04 / Interview fluency</p>
             <h2 id="fluency-title" className="display text-4xl font-semibold md:text-5xl">
-              Four capabilities. One coherent conversation.
+              What the interviewer needs to hear.
             </h2>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -372,7 +374,7 @@ export default function CaseStudyPreparationPage() {
           <div className="from-brand-50 to-accent-400/10 dark:from-brand-900/30 dark:to-accent-400/5 border-brand-200/70 dark:border-brand-700/40 rounded-[24px] border bg-gradient-to-br p-7 sm:p-10">
             <p className="eyebrow mb-3">Source &amp; further study</p>
             <h2 id="source-title" className="display text-4xl font-semibold">
-              Go deeper with the original casebook.
+              Read the casebook this page draws from.
             </h2>
             <p className="text-ink-600 dark:text-ink-300 mt-4 max-w-3xl text-sm leading-relaxed">
               This learning experience is an original adaptation informed by the structure of the

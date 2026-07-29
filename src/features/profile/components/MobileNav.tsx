@@ -92,7 +92,7 @@ export function MobileNav() {
   const groups = ["Profile", "Teaching", "More"] as const;
 
   return (
-    <div ref={wrapperRef} className="relative sm:hidden">
+    <div ref={wrapperRef} className="relative lg:hidden">
       <button
         ref={triggerRef}
         type="button"
@@ -120,13 +120,16 @@ export function MobileNav() {
         id="mobile-site-navigation"
         aria-hidden={!open}
         inert={!open}
-        className={`nav-glass absolute top-[calc(100%+0.65rem)] right-0 w-[min(88vw,22rem)] origin-top-right rounded-3xl p-3 transition ${
+        className={`nav-glass fixed top-[calc(env(safe-area-inset-top)+5.25rem)] right-3 left-3 max-h-[calc(100dvh-6.25rem-env(safe-area-inset-bottom))] origin-top-right overflow-hidden rounded-3xl p-3 transition sm:absolute sm:top-[calc(100%+0.65rem)] sm:right-0 sm:left-auto sm:w-[min(88vw,22rem)] ${
           open
             ? "pointer-events-auto translate-y-0 scale-100 opacity-100"
             : "pointer-events-none -translate-y-1 scale-[0.98] opacity-0"
         }`}
       >
-        <nav aria-label="Mobile navigation" className="max-h-[min(72vh,34rem)] overflow-y-auto">
+        <nav
+          aria-label="Mobile navigation"
+          className="max-h-[calc(100dvh-7.75rem-env(safe-area-inset-bottom))] overflow-y-auto overscroll-contain sm:max-h-[min(72vh,34rem)]"
+        >
           {groups.map((group) => (
             <div
               key={group}

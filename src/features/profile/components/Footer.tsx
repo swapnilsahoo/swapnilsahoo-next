@@ -33,7 +33,7 @@ export function Footer() {
           <ul className="space-y-1.5 text-sm" aria-label="Footer navigation">
             {footerLinks.map((link) => (
               <li key={link.label}>
-                <Link href={link.href} className="link-underline inline-flex min-h-8 items-center">
+                <Link href={link.href} className="link-underline inline-flex min-h-11 items-center">
                   {link.label}
                 </Link>
               </li>
@@ -50,7 +50,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="bg-ink-100 dark:bg-ink-800 hover:bg-ink-200 dark:hover:bg-ink-700 flex h-10 w-10 items-center justify-center rounded-full transition-colors"
+                className="bg-ink-100 dark:bg-ink-800 hover:bg-ink-200 dark:hover:bg-ink-700 flex h-11 w-11 items-center justify-center rounded-full transition-colors"
               >
                 <Icon className="h-4 w-4" />
               </a>
@@ -60,7 +60,7 @@ export function Footer() {
       </Container>
       <Container className="text-ink-500 dark:text-ink-400 flex flex-wrap items-center justify-between gap-2 pb-8 text-xs">
         <p>© {year} Dr. Swapnil Sahoo. All rights reserved.</p>
-        <p className="font-mono">Designed for clarity · Built with care.</p>
+        <p className="font-mono">Research, teaching and field notes.</p>
       </Container>
     </footer>
   );

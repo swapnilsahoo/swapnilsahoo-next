@@ -25,7 +25,7 @@ export function ThemeToggle() {
       aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
       aria-pressed={isDark}
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="relative h-9 w-[60px] rounded-full border p-0 backdrop-blur-[16px]"
+      className="relative h-11 w-[68px] rounded-full border p-0 backdrop-blur-[16px]"
       style={{
         borderColor: "var(--glass-border)",
         background: isDark ? "rgba(8,15,30,0.72)" : "rgba(255,255,255,0.58)",
@@ -33,14 +33,14 @@ export function ThemeToggle() {
       }}
     >
       <span
-        className="absolute top-[4px] left-[4px] h-[26px] w-[26px] rounded-full bg-white shadow-[0_6px_16px_-8px_rgba(15,23,42,0.8)] transition-transform duration-250 ease-out"
+        className="absolute top-[8px] left-[5px] h-[26px] w-[26px] rounded-full bg-white shadow-[0_6px_16px_-8px_rgba(15,23,42,0.8)] transition-transform duration-250 ease-out"
         style={{
-          transform: isDark ? "translateX(24px)" : "translateX(0)",
+          transform: isDark ? "translateX(32px)" : "translateX(0)",
           background: isDark ? "#93C5FD" : "#fff",
         }}
       />
       <svg
-        className="absolute top-1/2 right-[8px] h-3.5 w-3.5 -translate-y-1/2"
+        className="absolute top-1/2 right-[10px] h-3.5 w-3.5 -translate-y-1/2"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -57,7 +57,7 @@ export function ThemeToggle() {
         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
       </svg>
       <svg
-        className="absolute top-1/2 left-[8px] h-3.5 w-3.5 -translate-y-1/2"
+        className="absolute top-1/2 left-[10px] h-3.5 w-3.5 -translate-y-1/2"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"

@@ -1,0 +1,140 @@
+/*
+ * Shared safeguards for the standalone teaching rooms.
+ * Individual lessons keep their own visual language; these rules make the
+ * material readable and operable on small screens, touch devices, and print.
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: clip;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-width: 320px;
+  overflow-x: clip;
+}
+
+:where(main, section, article, aside, header, footer, nav, div) {
+  min-width: 0;
+}
+
+:where(h1, h2, h3, h4) {
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+:where(p, li, figcaption, dd) {
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+
+:where(img, video, canvas) {
+  max-width: 100%;
+  height: auto;
+}
+
+:where(input, select, textarea, button) {
+  max-width: 100%;
+  font: inherit;
+}
+
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 3px;
+}
+
+:where(button, [role="button"], a) {
+  touch-action: manipulation;
+}
+
+table {
+  max-width: 100%;
+}
+
+@media (max-width: 640px) {
+  :where(input, select, textarea) {
+    font-size: 16px;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /*
+   * A few legacy lesson rooms use inline React styles for desktop grids and
+   * generous horizontal section padding. These targeted overrides keep the
+   * content in one readable column without changing the desktop composition.
+   */
+  [style*="grid-template-columns"],
+  [style*="gridTemplateColumns"] {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  section[style] {
+    padding-right: clamp(1rem, 5vw, 1.5rem) !important;
+    padding-left: clamp(1rem, 5vw, 1.5rem) !important;
+  }
+
+  [style*="width: 900px"],
+  [style*="width:900px"],
+  [style*="width: 800px"],
+  [style*="width:800px"] {
+    width: 100% !important;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  :where(a, button, [role="button"]) {
+    min-height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  nav,
+  .navbar-spacer,
+  [aria-label*="navigation" i] {
+    display: none !important;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
+
+  section,
+  article,
+  figure,
+  table {
+    break-inside: avoid;
+  }
+}

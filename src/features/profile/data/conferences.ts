@@ -31,7 +31,8 @@ export const conferenceEntries: ConferenceEntry[] = [
   {
     badge: "AOM 2026",
     location: "Philadelphia, PA, USA · 4 Aug, 1:15–2:45 PM · Marriott Downtown, Franklin 8",
-    title: "Entrepreneurship Under Constraint: How Bricolage Transitions into Effectuation in Family Businesses",
+    title:
+      "Entrepreneurship Under Constraint: How Bricolage Transitions into Effectuation in Family Businesses",
     subtitle: "86th Annual Meeting of the Academy of Management",
   },
   {
@@ -43,7 +44,8 @@ export const conferenceEntries: ConferenceEntry[] = [
   },
   {
     badge: "XLRI · 2024",
-    title: "Cultivating Trust: Human Capital and Organizational Citizenship Behaviour in Family Enterprises",
+    title:
+      "Cultivating Trust: Human Capital and Organizational Citizenship Behaviour in Family Enterprises",
     subtitle:
       "International Industrial Relations Conference · with Leeds University Business School & Friedrich Ebert Stiftung",
   },
@@ -54,7 +56,8 @@ export const conferenceEntries: ConferenceEntry[] = [
   },
   {
     badge: "XLRI · 2024",
-    title: "Conceptualizing Family Business Resourcefulness (FBR) in a Resource-Constrained Environment",
+    title:
+      "Conceptualizing Family Business Resourcefulness (FBR) in a Resource-Constrained Environment",
     subtitle: "Doctoral Colloquium on AI & Sustainability",
   },
   {
@@ -65,11 +68,13 @@ export const conferenceEntries: ConferenceEntry[] = [
   },
   {
     badge: "SBM 2023 · IIT Roorkee + ASU",
-    title: "An In-depth Analysis of the Impact of Family Involvement on Sustainable Innovation in Family Firms",
+    title:
+      "An In-depth Analysis of the Impact of Family Involvement on Sustainable Innovation in Family Firms",
   },
   {
     badge: "POMS India 2023 · XLRI",
-    title: "Exploring the Innovation Heritage: Family Involvement in Propelling R&D within Family Enterprises",
+    title:
+      "Exploring the Innovation Heritage: Family Involvement in Propelling R&D within Family Enterprises",
   },
   {
     badge: "IIT Kharagpur · 9th MDC",

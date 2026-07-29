@@ -102,7 +102,7 @@ export function NavDropdownMenu({ dropdown }: { dropdown: NavDropdown }) {
         type="button"
         aria-expanded={open}
         aria-controls={menuId}
-        className="link-underline inline-flex min-h-10 items-center gap-1 rounded-full px-3 py-1.5"
+        className="link-underline inline-flex min-h-11 items-center gap-1 rounded-full px-3 py-1.5"
         onClick={() => {
           clearCloseTimeout();
           setOpen((value) => !value);

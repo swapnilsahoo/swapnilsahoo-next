@@ -1203,7 +1203,7 @@ export function OneYearMbaExperience() {
             </details>
             <div className="flex flex-col gap-4 border-t border-slate-900/10 bg-slate-950/[0.025] px-7 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-10 dark:border-white/10 dark:bg-white/[0.025]">
               <p className="text-ink-600 dark:text-ink-300 text-sm">
-                Looking for the longer, cumulative strategy journey?
+                Looking for the longer two-year strategy course?
               </p>
               <Link
                 href="/teaching/2-year-mba"

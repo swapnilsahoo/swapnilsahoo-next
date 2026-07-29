@@ -11,7 +11,10 @@ import { MobileNav } from "./MobileNav";
 
 export function StickyNav() {
   return (
-    <nav aria-label="Primary navigation" className="sticky top-3 z-40 mx-auto max-w-5xl px-4">
+    <nav
+      aria-label="Primary navigation"
+      className="sticky top-3 z-40 mx-auto max-w-5xl px-3 sm:px-4"
+    >
       <div className="nav-glass flex items-center justify-between rounded-full px-5 py-2.5">
         <Link
           href="/#top"
@@ -25,12 +28,12 @@ export function StickyNav() {
             Swapnil Sahoo
           </span>
         </Link>
-        <div className="hidden items-center gap-1 text-[13px] font-medium sm:flex">
+        <div className="hidden items-center gap-1 text-[13px] font-medium lg:flex">
           {primaryNavLinks.map((link, index) => (
             <Link
               key={link.label}
               href={link.href}
-              className={`link-underline inline-flex min-h-10 items-center rounded-full px-3 py-1.5 ${
+              className={`link-underline inline-flex min-h-11 items-center rounded-full px-3 py-1.5 ${
                 index === 1 ? "hidden md:inline-block" : ""
               }`}
             >
@@ -43,7 +46,7 @@ export function StickyNav() {
               <Link
                 key={link.label}
                 href={link.href}
-                className={`link-underline inline-flex min-h-10 items-center rounded-full px-3 py-1.5 ${
+                className={`link-underline inline-flex min-h-11 items-center rounded-full px-3 py-1.5 ${
                   link.label === "PhD" ? "hidden md:inline-block" : ""
                 }`}
               >
@@ -55,7 +58,7 @@ export function StickyNav() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`link-underline inline-flex min-h-10 items-center rounded-full px-3 py-1.5 ${
+                className={`link-underline inline-flex min-h-11 items-center rounded-full px-3 py-1.5 ${
                   link.label === "PhD" ? "hidden md:inline-block" : ""
                 }`}
               >

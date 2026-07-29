@@ -27,8 +27,8 @@ export function Research() {
             <h2 className="display text-4xl font-semibold md:text-5xl">Doing more with less.</h2>
           </div>
           <p className="text-ink-600 dark:text-ink-300 max-w-md text-sm">
-            Four interlocking streams that share one question: how organisations turn constraint
-            into capability.
+            These four lines of inquiry return to the same practical question: what do people and
+            organisations actually do when the resources they need are not available?
           </p>
         </div>
 

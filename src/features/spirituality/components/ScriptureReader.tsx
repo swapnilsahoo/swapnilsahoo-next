@@ -24,10 +24,16 @@ export function ScriptureReader({
   const [readingLayer, setReadingLayer] = useState<ReadingLayer>("word");
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const isSahasranama = slug === "vishnu-sahasranama" || slug === "lalita-sahasranama";
   const romanizationLabel = slug === "hanuman-chalisa" ? "romanization" : "IAST";
-  const studyLayerLabel = slug === "shiva-tandava-stotram" ? "Pāda study" : "Word study";
+  const studyLayerLabel =
+    slug === "shiva-tandava-stotram" ? "Pāda study" : isSahasranama ? "Name study" : "Word study";
   const studyGuideLabel =
-    slug === "shiva-tandava-stotram" ? "Pāda & compound guide" : "Word & compound study";
+    slug === "shiva-tandava-stotram"
+      ? "Pāda & compound guide"
+      : isSahasranama
+        ? "Received name & close gloss"
+        : "Word & compound study";
 
   const sections = useMemo(
     () => ["All sections", ...Array.from(new Set(entries.map((entry) => entry.section)))],
@@ -91,8 +97,9 @@ export function ScriptureReader({
               Move between script, sound, and sense.
             </h3>
             <p className="text-ink-600 dark:text-ink-300 mt-2 max-w-2xl text-sm leading-relaxed">
-              Search every layer, narrow by section, or switch to the uncluttered line view. The
-              detailed study guide is the default.
+              Search every layer, narrow the list by section, or switch to the uncluttered line
+              view. Only a small set is rendered at once, so the complete reader stays quick on
+              phones as well as larger screens.
             </p>
           </div>
           <p
