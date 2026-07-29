@@ -12,6 +12,21 @@ const routes = [
   { path: "/case-study-preparation", changeFrequency: "monthly", priority: 0.8 },
   { path: "/placements", changeFrequency: "monthly", priority: 0.8 },
   { path: "/spirituality", changeFrequency: "monthly", priority: 0.7 },
+  {
+    path: "/spirituality/hanuman-chalisa",
+    changeFrequency: "monthly",
+    priority: 0.72,
+  },
+  {
+    path: "/spirituality/vishnu-sahasranama",
+    changeFrequency: "monthly",
+    priority: 0.72,
+  },
+  {
+    path: "/spirituality/lalita-sahasranama",
+    changeFrequency: "monthly",
+    priority: 0.72,
+  },
   { path: "/comics", changeFrequency: "monthly", priority: 0.7 },
   { path: "/mythology", changeFrequency: "monthly", priority: 0.7 },
 ] as const;

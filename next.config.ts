@@ -46,6 +46,11 @@ const nextConfig: NextConfig = {
         destination: "https://swapnilsahoo.substack.com/",
         permanent: true,
       },
+      {
+        source: "/spirituality/hanuman-chalisa.html",
+        destination: "/spirituality/hanuman-chalisa",
+        permanent: true,
+      },
     ];
   },
   async rewrites() {

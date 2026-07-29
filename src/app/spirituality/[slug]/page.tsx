@@ -1,0 +1,432 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+
+import { ArrowRightIcon } from "@/components/icons/LineIcons";
+import { Container } from "@/components/ui/Container";
+import { ScriptureReader } from "@/features/spirituality/components/ScriptureReader";
+import {
+  isScriptureSlug,
+  scriptureCatalog,
+  scriptureSlugs,
+} from "@/features/spirituality/data/catalog";
+import { loadScriptureEntries } from "@/features/spirituality/data/load-entries";
+import type { ScriptureSlug } from "@/features/spirituality/types";
+
+type PageProps = {
+  params: Promise<{ slug: string }>;
+};
+
+const themes: Record<
+  ScriptureSlug,
+  {
+    hero: string;
+    glow: string;
+    badge: string;
+  }
+> = {
+  "hanuman-chalisa": {
+    hero: "from-[#2b0b06] via-[#8a260e] to-[#db6509]",
+    glow: "bg-amber-300/25",
+    badge: "text-amber-200",
+  },
+  "vishnu-sahasranama": {
+    hero: "from-[#081a34] via-[#123f69] to-[#187f8d]",
+    glow: "bg-cyan-300/20",
+    badge: "text-cyan-200",
+  },
+  "lalita-sahasranama": {
+    hero: "from-[#31091d] via-[#881744] to-[#c54b62]",
+    glow: "bg-rose-200/20",
+    badge: "text-rose-200",
+  },
+};
+
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return scriptureSlugs.map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  if (!isScriptureSlug(slug)) return {};
+  const scripture = scriptureCatalog[slug];
+
+  return {
+    title: scripture.title,
+    description: scripture.dek,
+    keywords: [
+      scripture.shortTitle,
+      scripture.transliteratedTitle,
+      "word by word meaning",
+      slug === "hanuman-chalisa" ? "Awadhi romanization" : "IAST transliteration",
+      "authorship and provenance",
+      "sacred text study",
+    ],
+    alternates: { canonical: `/spirituality/${slug}` },
+    openGraph: {
+      type: "article",
+      title: scripture.title,
+      description: scripture.dek,
+      url: `/spirituality/${slug}`,
+      images: ["/images/profile_pic.jpg"],
+    },
+  };
+}
+
+export default async function ScripturePage({ params }: PageProps) {
+  const { slug } = await params;
+  if (!isScriptureSlug(slug)) notFound();
+
+  const scripture = scriptureCatalog[slug];
+  const entries = await loadScriptureEntries(slug);
+  const theme = themes[slug];
+  const languageCode = slug === "hanuman-chalisa" ? "awa" : "sa";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.swapnilsahoo.com";
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    name: scripture.title,
+    headline: scripture.originalTitle,
+    description: scripture.dek,
+    url: `${siteUrl}/spirituality/${slug}`,
+    inLanguage: slug === "hanuman-chalisa" ? ["awa-Deva", "en"] : ["sa-Deva", "en"],
+    learningResourceType: "Word-by-word sacred-text study edition",
+    isBasedOn: scripture.sources.map((source) => source.href),
+    publisher: {
+      "@type": "Person",
+      name: "Dr. Swapnil Sahoo",
+      url: siteUrl,
+    },
+  };
+
+  return (
+    <main id="main-content">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+
+      <header className="relative overflow-hidden pt-10 pb-12 sm:pt-16 sm:pb-20">
+        <div className="aurora" aria-hidden="true" />
+        <Container className="max-w-6xl">
+          <nav
+            aria-label="Breadcrumb"
+            className="text-ink-500 mb-5 flex flex-wrap items-center gap-2 text-xs"
+          >
+            <Link href="/" className="transition hover:text-blue-700 dark:hover:text-blue-300">
+              Home
+            </Link>
+            <span aria-hidden="true">/</span>
+            <Link
+              href="/spirituality"
+              className="transition hover:text-blue-700 dark:hover:text-blue-300"
+            >
+              Spirituality
+            </Link>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page" className="text-ink-800 dark:text-ink-100">
+              {scripture.shortTitle}
+            </span>
+          </nav>
+
+          <div
+            className={`relative isolate overflow-hidden rounded-[34px] border border-white/15 bg-gradient-to-br ${theme.hero} px-6 py-11 text-white shadow-2xl shadow-slate-950/25 sm:px-10 sm:py-16 lg:px-14`}
+          >
+            <div
+              className={`absolute -top-32 -right-24 -z-10 h-96 w-96 rounded-full ${theme.glow} blur-3xl`}
+              aria-hidden="true"
+            />
+            <div
+              className="absolute -bottom-40 -left-24 -z-10 h-96 w-96 rounded-full bg-white/8 blur-3xl"
+              aria-hidden="true"
+            />
+            <div
+              className="pointer-events-none absolute inset-0 -z-10 opacity-[0.07]"
+              aria-hidden="true"
+              style={{
+                backgroundImage:
+                  "radial-gradient(circle at center, currentColor 1px, transparent 1px)",
+                backgroundSize: "22px 22px",
+              }}
+            />
+
+            <div className="grid items-end gap-10 lg:grid-cols-[1fr_0.34fr]">
+              <div>
+                <span className="inline-flex rounded-full border border-white/15 bg-white/10 px-3 py-1.5 font-mono text-[10px] tracking-[0.16em] uppercase backdrop-blur-sm">
+                  Source-aware · word-by-word edition
+                </span>
+                <p lang={languageCode} className={`mt-8 font-serif text-3xl ${theme.badge}`}>
+                  {scripture.originalTitle}
+                </p>
+                <h1 className="display mt-3 max-w-4xl text-4xl font-semibold text-balance sm:text-6xl lg:text-7xl">
+                  {scripture.title}
+                </h1>
+                <p className="mt-4 text-sm font-medium text-white/70 italic">
+                  {scripture.transliteratedTitle}
+                </p>
+                <p className="mt-6 max-w-3xl text-base leading-relaxed text-white/85 sm:text-lg">
+                  {scripture.dek}
+                </p>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <a
+                    href="#reader"
+                    className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-950 shadow-xl shadow-slate-950/20 transition hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
+                  >
+                    Open the reader
+                    <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
+                  </a>
+                  <a
+                    href="#attribution"
+                    className="inline-flex min-h-11 items-center rounded-xl border border-white/20 bg-white/8 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/15 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
+                  >
+                    Attribution &amp; biography
+                  </a>
+                </div>
+              </div>
+
+              <div className="rounded-[28px] border border-white/15 bg-black/10 p-6 text-center backdrop-blur-md">
+                <p lang={languageCode} className={`font-serif text-6xl ${theme.badge}`}>
+                  {scripture.glyph}
+                </p>
+                <div className="my-5 h-px bg-white/15" />
+                <p className="font-mono text-[10px] tracking-[0.16em] text-white/60 uppercase">
+                  On-site scope
+                </p>
+                <p className="mt-2 font-serif text-xl font-semibold">{scripture.entryCountLabel}</p>
+                <p className="mt-4 text-xs leading-relaxed text-white/65">{scripture.language}</p>
+                <p className="mt-1 text-xs leading-relaxed text-white/50">{scripture.form}</p>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </header>
+
+      <section aria-labelledby="authentic-title" className="py-14 sm:py-20">
+        <Container className="max-w-6xl">
+          <div className="grid gap-8 lg:grid-cols-[0.42fr_1fr]">
+            <div>
+              <span className="accent-rule" />
+              <p className="eyebrow mb-3">01 / Authenticity ledger</p>
+              <h2 id="authentic-title" className="display text-4xl font-semibold md:text-5xl">
+                What “authentic” means here.
+              </h2>
+              <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-relaxed">
+                Source disclosed. Language named. Attribution qualified. Editorial choices made
+                visible. It does not mean that one modern web page has erased every living recension
+                or interpretive tradition.
+              </p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {scripture.authenticity.map((item, index) => (
+                <article key={item.label} className="glass-card p-6">
+                  <div className="flex items-start justify-between gap-4">
+                    <p className="eyebrow">{item.label}</p>
+                    <span className="text-ink-400 font-mono text-[10px]">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <h3 className="mt-3 font-serif text-xl font-semibold">{item.value}</h3>
+                  <p className="text-ink-600 dark:text-ink-300 mt-3 text-sm leading-relaxed">
+                    {item.detail}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <div className="hr-fade mx-auto max-w-6xl" />
+
+      <section id="reader" aria-labelledby="reader-title" className="py-16 sm:py-24">
+        <Container className="max-w-6xl">
+          <div className="mb-10 grid gap-6 lg:grid-cols-[1fr_0.7fr] lg:items-end">
+            <div>
+              <span className="accent-rule" />
+              <p className="eyebrow mb-3">02 / Word-by-word reader</p>
+              <h2 id="reader-title" className="display text-4xl font-semibold md:text-5xl">
+                The text, opened carefully.
+              </h2>
+            </div>
+            <div className="rounded-2xl border border-amber-900/10 bg-amber-50/70 p-5 dark:border-amber-100/10 dark:bg-amber-400/[0.045]">
+              <p className="text-xs font-semibold tracking-wide text-amber-900 uppercase dark:text-amber-200">
+                {scripture.scopeLabel}
+              </p>
+              <p className="text-ink-600 dark:text-ink-300 mt-2 text-sm leading-relaxed">
+                {scripture.scopeNote}
+              </p>
+            </div>
+          </div>
+          <ScriptureReader entries={entries} slug={slug} language={languageCode} />
+        </Container>
+      </section>
+
+      <section
+        id="attribution"
+        aria-labelledby="attribution-title"
+        className="relative overflow-hidden bg-slate-950 py-16 text-white sm:py-24"
+      >
+        <div
+          className="absolute inset-0 opacity-[0.08]"
+          aria-hidden="true"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.2) 1px, transparent 1px)",
+            backgroundSize: "42px 42px",
+          }}
+        />
+        <Container className="relative max-w-6xl">
+          <div className="max-w-3xl">
+            <p className="font-mono text-[10px] tracking-[0.16em] text-amber-300 uppercase">
+              03 / Attribution &amp; biography
+            </p>
+            <h2 id="attribution-title" className="display mt-3 text-4xl font-semibold md:text-5xl">
+              People, voices, and tradition.
+            </h2>
+            <p className="mt-5 text-sm leading-relaxed text-slate-300">
+              A sacred text can have a poet, a speaker inside its story, a traditional compiler, and
+              later commentators. These roles are named separately so reverence never requires
+              blurred history.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-5 lg:grid-cols-3">
+            {scripture.profiles.map((profile, index) => (
+              <article
+                key={`${profile.name}-${profile.role}`}
+                className="rounded-[26px] border border-white/10 bg-white/[0.055] p-6 backdrop-blur-sm sm:p-7"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 font-mono text-[9px] tracking-wider text-amber-200 uppercase">
+                    {profile.evidenceLabel}
+                  </span>
+                  <span className="font-mono text-[10px] text-white/35">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <p className="mt-6 text-xs font-semibold tracking-wide text-slate-400 uppercase">
+                  {profile.role}
+                </p>
+                <h3 className="mt-2 font-serif text-3xl font-semibold">{profile.name}</h3>
+                {profile.dates ? (
+                  <p className="mt-1 text-xs font-medium text-amber-300">{profile.dates}</p>
+                ) : null}
+                <p className="mt-5 text-sm leading-relaxed text-slate-300">{profile.summary}</p>
+              </article>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section id="method" aria-labelledby="method-title" className="py-16 sm:py-24">
+        <Container className="max-w-6xl">
+          <div className="grid gap-9 lg:grid-cols-[0.42fr_1fr]">
+            <div>
+              <span className="accent-rule" />
+              <p className="eyebrow mb-3">04 / Editorial method</p>
+              <h2 id="method-title" className="display text-4xl font-semibold md:text-5xl">
+                Designed for honest study.
+              </h2>
+            </div>
+            <ol className="grid gap-4 sm:grid-cols-2">
+              {scripture.editorialPolicy.map((policy, index) => (
+                <li key={policy} className="glass-card flex gap-4 p-5">
+                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-amber-100 font-mono text-[10px] font-semibold text-amber-950 dark:bg-amber-400/15 dark:text-amber-200">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <p className="text-ink-600 dark:text-ink-300 text-sm leading-relaxed">{policy}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </Container>
+      </section>
+
+      <section aria-labelledby="sources-title" className="pb-16 sm:pb-24">
+        <Container className="max-w-6xl">
+          <div className="overflow-hidden rounded-[30px] border border-slate-200 bg-white shadow-xl shadow-slate-950/5 dark:border-slate-800 dark:bg-slate-950">
+            <div className="border-b border-slate-200 p-7 sm:p-10 dark:border-slate-800">
+              <p className="eyebrow mb-3">05 / Source shelf</p>
+              <h2 id="sources-title" className="display text-4xl font-semibold">
+                Read beyond this edition.
+              </h2>
+              <p className="text-ink-600 dark:text-ink-300 mt-4 max-w-3xl text-sm leading-relaxed">
+                Primary texts, manuscript records, and scholarly studies are linked directly.
+                External texts remain with their custodians and under their stated terms.
+              </p>
+            </div>
+            <ol className="divide-y divide-slate-200 dark:divide-slate-800">
+              {scripture.sources.map((source, index) => (
+                <li key={source.href}>
+                  <a
+                    href={source.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group grid gap-4 p-6 transition hover:bg-amber-50/60 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none focus-visible:ring-inset sm:grid-cols-[auto_1fr_auto] sm:items-center sm:p-8 dark:hover:bg-white/[0.035]"
+                  >
+                    <span className="text-ink-400 font-mono text-xs">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span>
+                      <span className="block font-serif text-xl font-semibold group-hover:text-amber-800 dark:group-hover:text-amber-300">
+                        {source.title}
+                      </span>
+                      <span className="text-ink-500 mt-1 block text-xs font-semibold">
+                        {source.institution}
+                      </span>
+                      <span className="text-ink-600 dark:text-ink-300 mt-2 block text-sm leading-relaxed">
+                        {source.note}
+                      </span>
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="text-ink-400 transition group-hover:translate-x-1 group-hover:text-amber-700"
+                    >
+                      ↗
+                    </span>
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <nav aria-label="Other sacred-text branches" className="mt-10">
+            <p className="eyebrow mb-4">Continue through the library</p>
+            <div className="grid gap-3 md:grid-cols-3">
+              {scriptureSlugs.map((branchSlug) => {
+                const branch = scriptureCatalog[branchSlug];
+                const current = branchSlug === slug;
+                return (
+                  <Link
+                    key={branchSlug}
+                    href={`/spirituality/${branchSlug}`}
+                    aria-current={current ? "page" : undefined}
+                    className={`rounded-2xl border p-5 transition focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none ${
+                      current
+                        ? "border-amber-400 bg-amber-50 dark:border-amber-500/60 dark:bg-amber-400/10"
+                        : "border-ink-200 dark:border-ink-700 hover:border-amber-300 hover:bg-amber-50/50 dark:hover:border-amber-500/40 dark:hover:bg-amber-400/5"
+                    }`}
+                  >
+                    <span
+                      lang={branchSlug === "hanuman-chalisa" ? "awa" : "sa"}
+                      className="font-serif text-xl"
+                    >
+                      {branch.originalTitle}
+                    </span>
+                    <span className="mt-2 block text-sm font-semibold">{branch.shortTitle}</span>
+                    <span className="text-ink-500 mt-1 block text-xs">
+                      {current ? "You are here" : "Open branch →"}
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
+          </nav>
+        </Container>
+      </section>
+    </main>
+  );
+}
