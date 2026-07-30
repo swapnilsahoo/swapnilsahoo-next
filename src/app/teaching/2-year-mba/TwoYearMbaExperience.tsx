@@ -8,7 +8,9 @@ import {
   NetworkIcon,
   SparkIcon,
 } from "@/components/icons/LineIcons";
+import { LinkedInIcon } from "@/components/icons/SocialIcons";
 import { Container } from "@/components/ui/Container";
+import { linkedInHighlights } from "@/features/profile/data/linkedin";
 
 import { twoYearMba } from "../mbaData";
 import { interviewQuestionThemes } from "./interviewQuestionBank";
@@ -22,6 +24,8 @@ import {
   programmeOutcomes,
   sessions,
 } from "./twoYearMbaCourseData";
+
+const responsibleAiPost = linkedInHighlights[0];
 
 const assessmentColours = [
   "bg-emerald-600",
@@ -821,6 +825,69 @@ export function TwoYearMbaExperience() {
           </div>
         </Container>
       </section>
+
+      <aside aria-labelledby="connected-practice-title" className="pb-20 sm:pb-28">
+        <Container className="max-w-6xl">
+          <div className="glass-card grid gap-8 p-7 sm:p-10 lg:grid-cols-[0.7fr_1.3fr] lg:items-center">
+            <div>
+              <p className="eyebrow">Connected practice</p>
+              <h2
+                id="connected-practice-title"
+                className="mt-4 font-serif text-3xl leading-tight font-semibold tracking-[-0.03em] sm:text-4xl"
+              >
+                Move from AI opportunity to responsible adoption.
+              </h2>
+              <p className="text-ink-600 dark:text-ink-300 mt-4 text-sm leading-6">
+                The build record and field note extend this course’s work on technology, evidence
+                and implementation.
+              </p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Link
+                href="/teaching/ai-hackathon"
+                className="border-ink-200/80 dark:border-ink-700 group rounded-2xl border p-5 transition hover:border-emerald-400 dark:hover:border-emerald-500"
+              >
+                <p className="eyebrow">PGDM learning lab</p>
+                <h3 className="mt-2 font-serif text-xl font-semibold">AI Mini Hackathon</h3>
+                <p className="text-ink-600 dark:text-ink-300 mt-2 text-xs leading-5">
+                  See how an incoming PGDM cohort turned student problems into testable GenAI
+                  prototypes.
+                </p>
+                <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-emerald-700 dark:text-emerald-300">
+                  Explore the programme
+                  <ArrowRightIcon
+                    className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </span>
+              </Link>
+              <a
+                href={responsibleAiPost.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-ink-200/80 dark:border-ink-700 group rounded-2xl border p-5 transition hover:border-emerald-400 dark:hover:border-emerald-500"
+              >
+                <p className="eyebrow inline-flex items-center gap-2">
+                  <LinkedInIcon className="h-4 w-4" aria-hidden="true" />
+                  LinkedIn field note
+                </p>
+                <h3 className="mt-2 font-serif text-xl font-semibold">{responsibleAiPost.title}</h3>
+                <p className="text-ink-600 dark:text-ink-300 mt-2 text-xs leading-5">
+                  {responsibleAiPost.description}
+                </p>
+                <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-emerald-700 dark:text-emerald-300">
+                  Read on LinkedIn
+                  <ArrowRightIcon
+                    className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </span>
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
+            </div>
+          </div>
+        </Container>
+      </aside>
 
       <section id="references" aria-labelledby="references-title" className="pb-20 sm:pb-28">
         <Container className="max-w-6xl">

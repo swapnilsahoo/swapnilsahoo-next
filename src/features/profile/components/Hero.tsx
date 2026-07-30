@@ -8,7 +8,7 @@ import { AffiliationMarquee } from "./AffiliationMarquee";
 
 export function Hero() {
   return (
-    <header id="top" className="relative pt-16 pb-20 md:pt-24 md:pb-28">
+    <header id="top" className="relative overflow-x-clip pt-16 pb-20 md:pt-24 md:pb-28">
       <div className="aurora" />
       <Container className="grid items-center gap-10 md:grid-cols-12">
         <Reveal className="md:col-span-8">

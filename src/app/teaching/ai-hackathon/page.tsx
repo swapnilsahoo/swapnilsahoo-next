@@ -65,7 +65,7 @@ const buildFlow = [
     index: "04",
     title: "Show the work",
     description:
-      "Two semifinal groups presented on 3 July. Shortlisted teams returned to the Auditorium on 5 July for the final jury.",
+      "Two semifinal groups presented on 3 July. The final notice announced ten teams for the 5 July jury in the Auditorium.",
   },
 ] as const;
 
@@ -212,18 +212,44 @@ export default function AiHackathonPage() {
           </div>
 
           <dl
-            aria-label="Hackathon statistics"
-            className="relative z-10 mx-3 -mt-5 grid gap-3 sm:mx-6 sm:grid-cols-2 lg:mx-10"
+            aria-label="Hackathon evidence counts"
+            className="relative z-10 mx-3 -mt-5 grid gap-3 sm:mx-6 sm:grid-cols-2 lg:mx-10 lg:grid-cols-3"
           >
             <div className="glass-card p-5">
-              <dt className="eyebrow">Statistics · recorded output</dt>
-              <dd className="mt-2 font-serif text-3xl font-semibold">
-                26 recorded submission entries
+              <dt className="eyebrow">Registration file · raw records</dt>
+              <dd className="mt-2 font-serif text-3xl font-semibold">29 registration records</dd>
+              <dd className="text-ink-600 dark:text-ink-300 mt-2 text-xs leading-relaxed">
+                The original registration file includes repeat team registrations, so this is not a
+                unique-team count.
               </dd>
             </div>
             <div className="glass-card p-5">
-              <dt className="eyebrow">Statistics · finalist pipeline</dt>
-              <dd className="mt-2 font-serif text-3xl font-semibold">9 shortlisted teams</dd>
+              <dt className="eyebrow">Prototype response sheet · final rows</dt>
+              <dd className="mt-2 font-serif text-3xl font-semibold">
+                24 timestamped response rows
+              </dd>
+              <dd className="text-ink-600 dark:text-ink-300 mt-2 text-xs leading-relaxed">
+                These are the auditable rows in the shared final problem-statement and prototype
+                response sheet.
+              </dd>
+            </div>
+            <div className="glass-card p-5">
+              <dt className="eyebrow">Final notice · 4 July 2026</dt>
+              <dd className="mt-2 font-serif text-3xl font-semibold">
+                10 teams announced for the final
+              </dd>
+              <dd className="text-ink-600 dark:text-ink-300 mt-2 text-xs leading-relaxed">
+                The contemporaneous notice also named a final jury of three alumni.
+              </dd>
+            </div>
+            <div className="glass-card p-5 sm:col-span-2 lg:col-span-3">
+              <dt className="eyebrow">Evidence note</dt>
+              <dd className="text-ink-600 dark:text-ink-300 mt-2 text-xs leading-relaxed">
+                These records capture different workflow stages and are not identical. A later 27
+                July institutional summary reports 26 recorded entries and nine shortlisted teams
+                without documenting its reconciliation method. The figures above remain
+                stage-specific, so 26 is not presented as a count of unique prototypes.
+              </dd>
             </div>
           </dl>
         </Container>
@@ -493,8 +519,9 @@ export default function AiHackathonPage() {
               The final decision rested on five practical questions.
             </h2>
             <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-relaxed">
-              The final jury used the five criteria below. They are intentionally narrower than the
-              broader learning rubric introduced at the kickoff.
+              The 4 July final notice announced ten teams and a jury of three alumni. That panel
+              used the five criteria below, which are intentionally narrower than the broader
+              learning rubric introduced at the kickoff.
             </p>
           </div>
 

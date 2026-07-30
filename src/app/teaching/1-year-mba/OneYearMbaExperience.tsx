@@ -9,10 +9,14 @@ import {
   NetworkIcon,
   SparkIcon,
 } from "@/components/icons/LineIcons";
+import { LinkedInIcon } from "@/components/icons/SocialIcons";
 import { Container } from "@/components/ui/Container";
+import { linkedInHighlights } from "@/features/profile/data/linkedin";
 
 import { oneYearMba } from "../mbaData";
 import styles from "./OneYearMbaExperience.module.css";
+
+const mbaClassroomPost = linkedInHighlights[1];
 
 const sessionActs = [
   {
@@ -1118,6 +1122,68 @@ export function OneYearMbaExperience() {
           </details>
         </Container>
       </section>
+
+      <aside aria-labelledby="connected-practice-title" className="pb-20 sm:pb-28">
+        <Container className="max-w-6xl">
+          <div className="glass-card grid gap-8 p-7 sm:p-10 lg:grid-cols-[0.7fr_1.3fr] lg:items-center">
+            <div>
+              <p className="eyebrow">Connected practice</p>
+              <h2
+                id="connected-practice-title"
+                className="mt-4 font-serif text-3xl leading-tight font-semibold tracking-[-0.03em] sm:text-4xl"
+              >
+                See judgment under a different kind of time pressure.
+              </h2>
+              <p className="text-ink-600 dark:text-ink-300 mt-4 text-sm leading-6">
+                These two field notes connect the course’s emphasis on choice and evidence with
+                adjacent classroom practice.
+              </p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Link
+                href="/teaching/ai-hackathon"
+                className="border-ink-200/80 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 group rounded-2xl border p-5 transition"
+              >
+                <p className="eyebrow">Build-first learning</p>
+                <h3 className="mt-2 font-serif text-xl font-semibold">AI Mini Hackathon</h3>
+                <p className="text-ink-600 dark:text-ink-300 mt-2 text-xs leading-5">
+                  Follow an incoming PGDM cohort from student problem to testable GenAI prototype.
+                </p>
+                <span className="text-brand-700 dark:text-brand-300 mt-4 inline-flex items-center gap-2 text-sm font-bold">
+                  Explore the programme
+                  <ArrowRightIcon
+                    className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </span>
+              </Link>
+              <a
+                href={mbaClassroomPost.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-ink-200/80 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 group rounded-2xl border p-5 transition"
+              >
+                <p className="eyebrow inline-flex items-center gap-2">
+                  <LinkedInIcon className="h-4 w-4" aria-hidden="true" />
+                  LinkedIn field note
+                </p>
+                <h3 className="mt-2 font-serif text-xl font-semibold">{mbaClassroomPost.title}</h3>
+                <p className="text-ink-600 dark:text-ink-300 mt-2 text-xs leading-5">
+                  {mbaClassroomPost.description}
+                </p>
+                <span className="text-brand-700 dark:text-brand-300 mt-4 inline-flex items-center gap-2 text-sm font-bold">
+                  Read on LinkedIn
+                  <ArrowRightIcon
+                    className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </span>
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
+            </div>
+          </div>
+        </Container>
+      </aside>
 
       <section id="references" aria-labelledby="references-title" className="pb-20 sm:pb-28">
         <Container className="max-w-6xl">
