@@ -59,7 +59,7 @@ export function Footer() {
         </div>
       </Container>
       <Container className="text-ink-500 dark:text-ink-400 flex flex-wrap items-center justify-between gap-2 pb-8 text-xs">
-        <p>© {year} Dr. Swapnil Sahoo. All rights reserved.</p>
+        <p>© {year} Dr. Swapnil Sahoo. Except where a source or license states otherwise.</p>
         <p className="font-mono">Research, teaching and field notes.</p>
       </Container>
     </footer>

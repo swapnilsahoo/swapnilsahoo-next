@@ -194,12 +194,16 @@ export function ScriptureReader({
             <article
               key={entry.id}
               id={entry.id}
+              aria-labelledby={`${entry.id}-title`}
               className="group border-ink-200/80 dark:border-ink-700 relative overflow-hidden rounded-3xl border bg-white/80 p-5 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-amber-950/8 sm:p-7 dark:bg-white/[0.035]"
             >
               <div
                 className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-amber-400 via-orange-500 to-rose-500 opacity-65"
                 aria-hidden="true"
               />
+              <h4 id={`${entry.id}-title`} className="sr-only">
+                {entry.label}: {entry.transliteration}
+              </h4>
 
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="flex flex-wrap items-center gap-2">

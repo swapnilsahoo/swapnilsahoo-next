@@ -64,7 +64,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     keywords: [
       scripture.shortTitle,
       scripture.transliteratedTitle,
-      slug === "shiva-tandava-stotram" ? "pada by pada meaning" : "word by word meaning",
+      slug === "shiva-tandava-stotram"
+        ? "pada by pada meaning"
+        : slug === "vishnu-sahasranama" || slug === "lalita-sahasranama"
+          ? "name by name meaning"
+          : "word by word meaning",
       slug === "hanuman-chalisa" ? "Awadhi romanization" : "IAST transliteration",
       "authorship and provenance",
       "sacred text study",
