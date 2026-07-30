@@ -7,14 +7,14 @@ import { Container } from "@/components/ui/Container";
 export const metadata: Metadata = {
   title: "Spirituality — Sacred Texts for Study and Reflection",
   description:
-    "Source-aware devotional study editions of the Hanuman Chalisa, Vishnu Sahasranama, Lalita Sahasranama and Shiva Tandava Stotram with original script, clearly labeled romanization, compound-level meaning, provenance and attribution biographies.",
+    "Source-aware devotional study editions of the Hanuman Chalisa, Vishnu Sahasranama, Lalita Sahasranama and Shiva Tandava Stotram with original script, clearly labeled romanization, close meaning, provenance and attribution biographies.",
   keywords: [
     "Hanuman Chalisa",
     "Vishnu Sahasranama",
     "Lalita Sahasranama",
     "Shiva Tandava Stotram",
     "Sanskrit transliteration",
-    "word by word meaning",
+    "name and line meanings",
     "English meaning",
     "textual provenance",
     "devotional study",
@@ -46,9 +46,9 @@ const collections = [
     label: "Authentic Vishnu Sahasranama",
     href: "/spirituality/vishnu-sahasranama",
     language: "Sanskrit",
-    scope: "Guided opening · names 1–36",
+    scope: "Complete · all 1,000 names",
     description:
-      "Compound-level study of the opening names inside their Mahabharata setting, with Bhishma, Vyasa, and commentary attributions clearly separated.",
+      "All one thousand names in their Mahābhārata setting, with consistent IAST, concise name-level meanings, and Bhīṣma, Vyāsa, and commentary roles clearly separated.",
   },
   {
     title: "ललिता सहस्रनाम",
@@ -56,9 +56,9 @@ const collections = [
     label: "Authentic Lalita Sahasranama",
     href: "/spirituality/lalita-sahasranama",
     language: "Sanskrit",
-    scope: "Guided opening · names 1–12",
+    scope: "Complete · all 1,000 names",
     description:
-      "Long Sanskrit names opened word by word, with the Vagdevī, Hayagriva–Agastya, and Bhaskararaya traditions presented without blurred authorship.",
+      "All one thousand names with consistent IAST and concise name-level meanings, while the Vāgdevī, Hayagrīva–Agastya, and Bhāskararāya traditions remain clearly distinguished.",
   },
   {
     title: "शिवताण्डवस्तोत्रम्",
@@ -83,8 +83,9 @@ const readingLayers = [
       "The Sanskrit branches use IAST; the Awadhi branch labels its pronunciation-friendly reading rather than presenting it as strict IAST.",
   },
   {
-    title: "Word, pāda, or compound study",
-    detail: "Editorial segmentation opens each learning unit without hiding the received form.",
+    title: "Name, word, or pāda study",
+    detail:
+      "Each branch labels its actual study unit—whole name, word, or pāda—without hiding the received form.",
   },
   {
     title: "Close meaning",
@@ -123,9 +124,9 @@ export default function SpiritualityPage() {
                 </h1>
                 <p className="mt-6 max-w-3xl text-base leading-relaxed text-amber-50 sm:text-lg">
                   Four source-aware devotional editions designed for understanding as well as
-                  recitation—bringing original script, clearly labeled romanization, word- and
-                  pāda-level meaning, authorship, and textual history into one calm reading
-                  experience.
+                  recitation—bringing original script, clearly labeled romanization, close name-,
+                  word-, or pāda-level meaning, authorship, and textual history into one calm
+                  reading experience.
                 </p>
                 <a
                   href="#collections"
@@ -222,8 +223,9 @@ export default function SpiritualityPage() {
             </div>
             <p className="text-ink-600 dark:text-ink-300 self-end text-sm leading-relaxed lg:col-span-7">
               Every branch uses the same reading logic, but its provenance is specific to that text.
-              The Chalisa is treated as Old Awadhi; the two Sahasranamas and the Shiva Tandava
-              Stotram receive Sanskrit compound analysis and IAST.
+              The Chalisa is treated as Old Awadhi; the two Sahasranāmas use complete, name-by-name
+              Sanskrit readers; and the Shiva Tandava Stotram receives pāda-level compound study.
+              Each Sanskrit branch uses IAST.
             </p>
           </div>
           <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">

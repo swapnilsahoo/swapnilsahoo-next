@@ -94,11 +94,11 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
     language: "Sanskrit · Devanagari + IAST",
     form: "Mahābhārata hymn · one thousand names",
     glyph: "ॐ",
-    dek: "Enter the Mahābhārata’s celebrated litany through a carefully segmented opening sequence, then place every name back inside Bhīṣma’s answer to Yudhiṣṭhira.",
-    scopeLabel: "Guided opening edition",
+    dek: "Meet all one thousand names in their received order, with Devanagari, consistent IAST, a concise name-level gloss, and the Mahābhārata setting in which Bhīṣma teaches Yudhiṣṭhira.",
+    scopeLabel: "Complete 1,000-name reader",
     scopeNote:
-      "This on-site study reader covers names 1–36. The complete Sanskrit source remains linked below; expanding all one thousand names requires a declared edition, stable numbering, and independent Sanskrit review.",
-    entryCountLabel: "Names 1–36",
+      "All 1,000 names are present in the common enumeration documented by the declared 1927 Sastry edition and checked against the Sanskrit Wikisource stotra. Each card offers a reviewed name-level gloss; it does not pretend that a concise web gloss replaces the interpretive depth of the commentary traditions.",
+    entryCountLabel: "All 1,000 names",
     authenticity: [
       {
         label: "Textual home",
@@ -120,9 +120,9 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
       },
       {
         label: "Reader standard",
-        value: "Padaccheda + IAST",
+        value: "Complete order + IAST",
         detail:
-          "Compounds are opened into learning units, while the unbroken transmitted name remains visible above them.",
+          "Every counted name remains intact. IAST follows the declared Devanagari reading, and the English layer is explicitly a concise name-level gloss.",
       },
     ],
     profiles: [
@@ -150,10 +150,12 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
       },
     ],
     editorialPolicy: [
-      "Numbering follows a familiar traditional division of the thousand names; name boundaries can differ when compounds and sandhi are resolved differently.",
-      "Each card keeps the received Sanskrit name intact, then supplies editorial padaccheda and standard scholarly IAST.",
-      "Lexical glosses stay deliberately concise. They do not collapse the distinct readings of Advaita, Viśiṣṭādvaita, and other commentary traditions into one answer.",
-      "The reader is an opening study sequence, not a claim to host a fully proofread critical edition of all one thousand names.",
+      "The sequence follows the common 1,000-name division documented by the 1927 Sastry edition and checked against the declared Sanskrit Wikisource stotra. Multiword expressions can count as one name, repeated epithets remain part of the received sequence, and name boundaries can differ when compounds and sandhi are resolved in other editions.",
+      "The Devanagari layer is adapted from Sanskrit Wikisource under CC BY-SA 4.0. Presentation punctuation and zero-width characters were cleaned, names were segmented according to the declared enumeration, and IAST was prepared from that normalized layer.",
+      "At name 396 this reader selects the Wikisource base reading विरजः (virajaḥ); that witness also prints विरतः (virataḥ) as a variant.",
+      "The English is a newly edited, concise orientation informed by R. Ananthakrishna Sastry’s public-domain 1927 translation of the commentary traditionally attributed to Śaṅkara. It is name-level, not a claim of exhaustive word-by-word or doctrinal commentary.",
+      "Short glosses cannot collapse the distinct readings of Advaita, Viśiṣṭādvaita, Dvaita, and other commentary traditions into one final answer.",
+      "The Mahābhārata setting and its chapter-numbering variants are stated openly: the BORI critical edition places the episode at Anuśāsanaparvan 13.135, while many traditional editions identify it as chapter 149.",
     ],
     sources: [
       {
@@ -164,9 +166,21 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
       },
       {
         title: "Viṣṇusahasranāmastotram",
-        institution: "Sanskrit Wikisource",
+        institution: "Sanskrit Wikisource · CC BY-SA 4.0",
         href: "https://sa.wikisource.org/wiki/%E0%A4%B5%E0%A4%BF%E0%A4%B7%E0%A5%8D%E0%A4%A3%E0%A5%81%E0%A4%B8%E0%A4%B9%E0%A4%B8%E0%A5%8D%E0%A4%B0%E0%A4%A8%E0%A4%BE%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%A4%E0%A5%8B%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A4%AE%E0%A5%8D%E2%80%8C",
-        note: "A complete Sanskrit reading with the Yudhiṣṭhira–Bhīṣma frame and open-license provenance.",
+        note: "Base verse reading, checked on 30 July 2026. This site cleans presentation punctuation and zero-width characters, applies the declared name segmentation, and prepares IAST from the normalized Devanagari.",
+      },
+      {
+        title: "Creative Commons Attribution-ShareAlike 4.0 International",
+        institution: "Creative Commons",
+        href: "https://creativecommons.org/licenses/by-sa/4.0/",
+        note: "License governing the Wikisource-derived Devanagari and corresponding IAST layer; attribution, change indication, and ShareAlike apply.",
+      },
+      {
+        title: "The Vishnu Sahasranama with the Bhāṣya of Śrī Śaṅkarācārya · 2nd edition",
+        institution: "Internet Archive · R. Ananthakrishna Sastry, 1927",
+        href: "https://archive.org/details/Vishnu.Sahasranama.with.the.Bhasya.of.Sankaracharya",
+        note: "A public-domain English translation of the commentary traditionally attributed to Śaṅkara, used as a lexical and commentarial witness while preparing the concise modern name-glosses.",
       },
       {
         title: "Viṣṇu Sahasranāma",
