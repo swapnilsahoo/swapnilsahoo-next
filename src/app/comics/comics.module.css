@@ -1,0 +1,152 @@
+.hero {
+  min-height: 620px;
+  background:
+    radial-gradient(circle at 78% 18%, rgb(220 38 38 / 0.36), transparent 26rem),
+    radial-gradient(circle at 18% 88%, rgb(37 99 235 / 0.32), transparent 30rem),
+    linear-gradient(135deg, #030915 0%, #071a36 54%, #111827 100%);
+}
+
+.heroGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, black, transparent 88%);
+}
+
+.heroGrid::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background-image: radial-gradient(rgb(255 255 255 / 0.18) 0.7px, transparent 0.7px);
+  background-size: 6px 6px;
+  mix-blend-mode: soft-light;
+  opacity: 0.28;
+}
+
+.heroOrbOne,
+.heroOrbTwo {
+  position: absolute;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  border-radius: 9999px;
+}
+
+.heroOrbOne {
+  top: 8%;
+  right: -10rem;
+  width: 34rem;
+  height: 34rem;
+  box-shadow:
+    0 0 0 5rem rgb(255 255 255 / 0.018),
+    0 0 0 10rem rgb(255 255 255 / 0.012);
+}
+
+.heroOrbTwo {
+  bottom: -15rem;
+  left: -8rem;
+  width: 28rem;
+  height: 28rem;
+  border-color: rgb(250 204 21 / 0.16);
+}
+
+.branchCard {
+  background: linear-gradient(145deg, transparent 62%, rgb(37 99 235 / 0.045)), transparent;
+}
+
+.branchCard:hover {
+  background:
+    linear-gradient(145deg, transparent 48%, rgb(220 38 38 / 0.065)), rgb(248 250 252 / 0.72);
+}
+
+:global(.dark) .branchCard:hover {
+  background:
+    linear-gradient(145deg, transparent 48%, rgb(250 204 21 / 0.07)), rgb(255 255 255 / 0.025);
+}
+
+.pullQuote {
+  border-top: 6px solid #dc2626;
+  padding-top: 1.5rem;
+}
+
+.prose {
+  font-size: 1rem;
+  line-height: 2;
+}
+
+.prose p + p {
+  margin-top: 1.5rem;
+}
+
+.supermanBand {
+  position: relative;
+  background: linear-gradient(120deg, rgb(220 38 38 / 0.12), transparent 44%), #06152c;
+}
+
+.supermanBand::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.supermanBand > * {
+  position: relative;
+  z-index: 1;
+}
+
+.heManBand {
+  color: #111827;
+  background:
+    radial-gradient(circle at 88% 18%, rgb(126 34 206 / 0.14), transparent 24rem),
+    linear-gradient(135deg, #facc15 0%, #fde68a 52%, #fff7d1 100%);
+}
+
+.closing {
+  background: linear-gradient(135deg, rgb(6 20 46 / 0.28), rgb(6 20 46 / 0.78)), #0b3b8f;
+}
+
+.closing::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background-image:
+    radial-gradient(rgb(255 255 255 / 0.15) 0.8px, transparent 0.8px),
+    linear-gradient(90deg, transparent 49.8%, rgb(255 255 255 / 0.04) 50%, transparent 50.2%);
+  background-size:
+    6px 6px,
+    96px 100%;
+  opacity: 0.32;
+}
+
+@media (max-width: 767px) {
+  .heroOrbOne {
+    top: 10%;
+    right: -18rem;
+  }
+
+  .heroOrbTwo {
+    bottom: -18rem;
+    left: -14rem;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .heroOrbOne {
+    animation: drift 10s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-1.5rem, 1rem, 0);
+  }
+}

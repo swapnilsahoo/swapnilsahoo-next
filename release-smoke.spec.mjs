@@ -91,6 +91,53 @@ for (const route of routes) {
   }
 }
 
+test("Comics & Fiction branches · page and navigation", async ({ page }) => {
+  const branches = [
+    { label: "Spider-Man", hash: "#spider-man" },
+    { label: "Superman", hash: "#superman" },
+    { label: "He-Man", hash: "#he-man" },
+  ];
+
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto(`${baseUrl}/comics`, { waitUntil: "domcontentloaded" });
+
+  const branchNav = page.getByRole("navigation", {
+    name: "Choose a Comics and Fiction branch",
+  });
+  for (const branch of branches) {
+    await expect(page.locator(branch.hash)).toHaveCount(1);
+    await expect(branchNav.getByRole("link", { name: branch.label, exact: true })).toHaveAttribute(
+      "href",
+      branch.hash
+    );
+  }
+
+  const primaryNav = page.getByRole("navigation", { name: "Primary navigation" });
+  const moreTrigger = primaryNav.getByRole("button", { name: "More", exact: true });
+  const menuId = await moreTrigger.getAttribute("aria-controls");
+  expect(menuId).toBeTruthy();
+  await moreTrigger.hover();
+
+  const desktopMenu = page.locator(`#${menuId}`);
+  for (const branch of branches) {
+    await expect(
+      desktopMenu.getByRole("link", { name: branch.label, exact: true })
+    ).toHaveAttribute("href", `/comics${branch.hash}`);
+  }
+
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto(`${baseUrl}/comics`, { waitUntil: "domcontentloaded" });
+  await page.getByRole("button", { name: "Open site menu" }).click();
+
+  const mobileNav = page.getByRole("navigation", { name: "Mobile navigation" });
+  for (const branch of branches) {
+    await expect(mobileNav.getByRole("link", { name: branch.label, exact: true })).toHaveAttribute(
+      "href",
+      `/comics${branch.hash}`
+    );
+  }
+});
+
 for (const dropdown of [
   {
     label: "Teaching",

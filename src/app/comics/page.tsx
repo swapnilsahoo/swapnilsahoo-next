@@ -9,466 +9,490 @@ import {
 } from "@/components/icons/LineIcons";
 import { Container } from "@/components/ui/Container";
 
-import styles from "./superman.module.css";
+import styles from "./comics.module.css";
 
 export const metadata: Metadata = {
-  title: "Superman — The Discipline of Hope",
+  title: "Comics & Fiction — Aspiration, Hope and Resilience",
   description:
-    "An original reflection on Superman, comics and hope: why the character's deepest power is the repeated choice to protect, serve and believe in a better tomorrow.",
+    "An original reflection on Spider-Man, Superman and He-Man—and what their stories can teach us about aspiration, hope and surviving against the odds.",
   keywords: [
+    "comics and fiction",
+    "Spider-Man",
     "Superman",
-    "comics",
-    "fiction",
+    "He-Man",
+    "aspiration",
     "hope",
-    "Clark Kent",
-    "Kal-El",
-    "Jerry Siegel",
-    "Joe Shuster",
-    "Action Comics",
+    "resilience",
+    "surviving against the odds",
   ],
   alternates: { canonical: "/comics" },
   openGraph: {
     type: "article",
-    title: "Superman — The Discipline of Hope",
+    title: "Comics & Fiction — Three Ways to Keep Going",
     description:
-      "Power may make the spectacle. Hope makes the hero. An essay on Superman's enduring moral imagination.",
+      "Spider-Man, Superman and He-Man offer three different reflections on responsibility, hope and courage when the odds are difficult.",
     url: "/comics",
-    images: [
-      {
-        url: "/images/comics/flying-superman.jpg",
-        width: 2592,
-        height: 3605,
-        alt: "A Superman cosplayer leaping upward with one arm raised",
-      },
-    ],
   },
 };
 
-const history = [
-  {
-    year: "1938",
-    title: "A new archetype",
-    description:
-      "Jerry Siegel and Joe Shuster's creation appears in Action Comics #1 and helps establish the grammar of the modern superhero.",
-  },
-  {
-    year: "1978",
-    title: "A crest becomes inheritance",
-    description:
-      "The feature film reframes the chest mark as the crest of the House of El, connecting identity with family and origin.",
-  },
-  {
-    year: "2003",
-    title: "The mark becomes hope",
-    description:
-      "Superman: Birthright describes the crest as an old Kryptonian symbol for hope, deepening a meaning readers had long felt.",
-  },
-  {
-    year: "Today",
-    title: "A better tomorrow",
-    description:
-      "Across comics and screens, the durable idea is not invulnerability. It is strength placed in service of other people.",
-  },
-] as const;
-
-const principles = [
+const branches = [
   {
     number: "01",
-    title: "Look up",
+    name: "Spider-Man",
+    href: "#spider-man",
+    theme: "Responsibility after failure",
     description:
-      "Hope begins by refusing to make the present moment the limit of what is possible.",
+      "An ordinary life under extraordinary pressure—and the decision to let a mistake become a beginning, not an ending.",
   },
   {
     number: "02",
-    title: "Move closer",
+    name: "Superman",
+    href: "#superman",
+    theme: "Hope placed in service",
     description:
-      "Compassion is not observation from a distance. It closes the space between power and need.",
+      "A survivor of a lost world who finds belonging, then measures strength by how carefully it protects other people.",
   },
   {
     number: "03",
-    title: "Choose restraint",
+    name: "He-Man",
+    href: "#he-man",
+    theme: "Courage with a purpose",
     description:
-      "The moral use of strength is measured as much by what it refuses to do as by what it can do.",
-  },
-  {
-    number: "04",
-    title: "Leave light behind",
-    description:
-      "A hopeful act enlarges another person's capacity to act. Rescue should return agency, not collect admiration.",
+      "A fantasy of immense power whose better lesson is stewardship: strength matters when it answers to something larger.",
   },
 ] as const;
 
-const readingTrail = [
+const sharedPractices = [
   {
-    title: "Superman: Birthright",
-    meta: "Mark Waid & Leinil Francis Yu · 2003–04",
-    reason: "For belonging, identity and the explicit language of the crest as hope.",
+    number: "01",
+    title: "Name the difficulty",
+    icon: SparkIcon,
+    description:
+      "Hope does not ask us to pretend that loss, fear or failure is smaller than it is. We begin by seeing clearly.",
   },
   {
-    title: "Superman for All Seasons",
-    meta: "Jeph Loeb & Tim Sale · 1998",
-    reason: "For the quiet moral education of Clark Kent and the people who make him human.",
+    number: "02",
+    title: "Choose the next act",
+    icon: ArrowRightIcon,
+    description:
+      "Aspirations become real through the next responsible decision—not through certainty about the final outcome.",
   },
   {
-    title: "All-Star Superman",
-    meta: "Grant Morrison & Frank Quitely · 2005–08",
-    reason: "For mortality, tenderness and the question of what great power leaves behind.",
+    number: "03",
+    title: "Use strength carefully",
+    icon: BricolageIcon,
+    description:
+      "Ability becomes character when it protects dignity, shares agency and leaves other people stronger.",
   },
   {
-    title: "Action Comics #775",
-    meta: "Joe Kelly, Doug Mahnke & Lee Bermejo · 2001",
-    reason: "For a defence of principle when cynicism mistakes cruelty for realism.",
+    number: "04",
+    title: "Keep tomorrow open",
+    icon: CompassIcon,
+    description:
+      "Resilience is not endless toughness. It is the refusal to let today write every remaining page.",
   },
 ] as const;
+
+const sourceLinkClass =
+  "inline-flex min-h-11 items-center gap-2 font-semibold text-blue-700 underline decoration-blue-300 underline-offset-4 transition hover:text-red-700 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-4 focus-visible:outline-none dark:text-blue-300 dark:focus-visible:ring-offset-slate-950";
 
 export default function ComicsPage() {
   return (
     <main id="main-content">
       <header className={`${styles.hero} relative isolate overflow-hidden text-white`}>
-        <Image
-          src="/images/comics/flying-superman.jpg"
-          alt="A Superman cosplayer in a blue suit and red cape leaping upward with one arm raised"
-          fill
-          priority
-          className="object-cover object-[76%_24%]"
-          sizes="100vw"
-        />
-        <div className={styles.heroOverlay} aria-hidden="true" />
+        <div className={styles.heroGrid} aria-hidden="true" />
+        <div className={styles.heroOrbOne} aria-hidden="true" />
+        <div className={styles.heroOrbTwo} aria-hidden="true" />
 
-        <Container className="relative z-10 flex min-h-[68svh] max-w-7xl flex-col justify-between py-8 sm:min-h-[720px] sm:py-16 lg:py-20">
-          <div className="flex items-center gap-3 text-xs font-semibold uppercase">
+        <Container className="relative z-10 flex min-h-[620px] max-w-7xl flex-col justify-between py-8 sm:min-h-[700px] sm:py-16 lg:py-20">
+          <div className="flex items-center gap-3 text-xs font-semibold tracking-[0.14em] uppercase">
             <span className="h-px w-10 bg-yellow-300" aria-hidden="true" />
-            Comics &amp; Fiction · Reading 01
+            Comics &amp; Fiction · Three ways to keep going
           </div>
 
-          <div className="max-w-3xl py-10 sm:py-20">
+          <div className="max-w-5xl py-14 sm:py-20">
             <p className="mb-5 font-serif text-xl text-yellow-200 italic sm:text-2xl">
-              Power makes the spectacle. Hope makes the hero.
+              The odds may shape the struggle. They do not get the final word.
             </p>
-            <h1 className="font-serif text-5xl leading-[0.92] font-bold sm:text-7xl lg:text-8xl">
-              Superman
-              <span className="mt-3 block text-3xl font-normal text-white sm:text-5xl">
-                The discipline of hope.
-              </span>
+            <h1 className="max-w-5xl font-serif text-5xl leading-[0.94] font-bold text-balance sm:text-7xl lg:text-8xl">
+              Stories for the days when trying feels impossible.
             </h1>
-            <p className="mt-7 max-w-2xl text-[15px] leading-7 text-slate-100 sm:text-lg sm:leading-8">
-              Not optimism without evidence. Not confidence that nothing will break. Hope is the
-              decision that, even when the world is breakable, our strength can still be used to
-              hold it together.
+            <p className="mt-7 max-w-3xl text-base leading-8 text-slate-100 sm:text-xl sm:leading-9">
+              Comics make inner battles visible. Fear acquires a face. Responsibility becomes a
+              choice. Hope takes action. Through three very different heroes, this page asks a
+              simple question: when life narrows our options, what helps us continue?
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href="#essay"
-                className="inline-flex min-h-11 items-center gap-2 rounded-md bg-yellow-300 px-5 py-3 text-sm font-bold text-slate-950 transition hover:bg-yellow-200 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
-              >
-                Read the essay
-                <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
-              </a>
-              <a
-                href="#reading-trail"
-                className="inline-flex min-h-11 items-center gap-2 rounded-md border border-white/40 bg-slate-950/20 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-slate-950/40 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
-              >
-                Find a story
-              </a>
-            </div>
+
+            <nav
+              aria-label="Choose a Comics and Fiction branch"
+              className="mt-9 flex flex-wrap gap-3"
+            >
+              {branches.map((branch) => (
+                <a
+                  key={branch.href}
+                  href={branch.href}
+                  className="inline-flex min-h-11 items-center gap-2 rounded-md border border-white/30 bg-slate-950/20 px-5 py-3 text-sm font-bold text-white backdrop-blur-sm transition hover:border-yellow-300 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
+                >
+                  {branch.name}
+                  <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
+                </a>
+              ))}
+            </nav>
           </div>
 
-          <p className="max-w-2xl border-l-2 border-red-500 pl-4 text-[11px] leading-5 text-slate-200 sm:text-xs">
-            Superman cosplay at Dragon Con 2009. Photograph by{" "}
-            <a
-              href="https://commons.wikimedia.org/wiki/File:Flying_Superman.jpg"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold text-white underline decoration-white/60 underline-offset-2 hover:text-yellow-200"
-            >
-              J F Willis / Wikimedia Commons
-              <span className="sr-only"> (opens in a new tab)</span>
-            </a>
-            , licensed under{" "}
-            <a
-              href="https://creativecommons.org/licenses/by-sa/2.0/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold text-white underline decoration-white/60 underline-offset-2 hover:text-yellow-200"
-            >
-              CC BY-SA 2.0
-              <span className="sr-only"> (opens in a new tab)</span>
-            </a>
-            .
+          <p className="max-w-3xl border-l-2 border-yellow-300 pl-4 text-xs leading-6 text-slate-300">
+            An independent critical reflection on fictional characters—not a canon guide or a claim
+            that courage always wins quickly.
           </p>
         </Container>
       </header>
 
       <section
-        aria-label="Superman at a glance"
-        className="border-b border-slate-200 bg-white dark:border-white/10 dark:bg-[#07101f]"
+        aria-labelledby="branches-title"
+        className="border-b border-slate-200 bg-white py-16 sm:py-20 dark:border-white/10 dark:bg-[#07101f]"
       >
         <Container className="max-w-7xl">
-          <dl className="grid sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              ["18 April 1938", "First published"],
-              ["Jerry Siegel", "Writer and co-creator"],
-              ["Joe Shuster", "Artist and co-creator"],
-              ["Action Comics #1", "First appearance"],
-            ].map(([value, label]) => (
-              <div
-                key={label}
-                className="border-b border-slate-200 px-4 py-6 sm:border-r sm:px-6 sm:last:border-r-0 lg:border-b-0 dark:border-white/10"
+          <div className="max-w-3xl">
+            <p className="text-sm font-bold text-red-700 uppercase dark:text-red-400">
+              Choose a branch
+            </p>
+            <h2 id="branches-title" className="mt-4 font-serif text-4xl font-bold sm:text-5xl">
+              Three heroes. Three kinds of endurance.
+            </h2>
+          </div>
+
+          <div className="mt-10 grid border border-slate-200 md:grid-cols-3 dark:border-white/10">
+            {branches.map((branch) => (
+              <a
+                key={branch.href}
+                href={branch.href}
+                className={`${styles.branchCard} group min-h-72 border-b border-slate-200 p-6 transition focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none md:border-r md:border-b-0 md:last:border-r-0 dark:border-white/10`}
               >
-                <dt className="text-xs font-semibold text-slate-500 uppercase dark:text-slate-400">
-                  {label}
-                </dt>
-                <dd className="mt-2 font-serif text-xl font-bold text-slate-950 dark:text-white">
-                  {value}
-                </dd>
-              </div>
+                <span className="font-mono text-sm font-bold text-red-700 dark:text-red-400">
+                  {branch.number}
+                </span>
+                <h3 className="mt-10 font-serif text-3xl font-bold text-slate-950 dark:text-white">
+                  {branch.name}
+                </h3>
+                <p className="mt-2 text-sm font-bold text-blue-700 dark:text-blue-300">
+                  {branch.theme}
+                </p>
+                <p className="mt-4 text-sm leading-7 text-slate-600 dark:text-slate-300">
+                  {branch.description}
+                </p>
+                <span className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-slate-950 group-hover:text-red-700 dark:text-white dark:group-hover:text-yellow-200">
+                  Enter this branch
+                  <ArrowRightIcon
+                    className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </span>
+              </a>
             ))}
-          </dl>
+          </div>
         </Container>
       </section>
 
-      <section id="essay" aria-labelledby="essay-title" className="py-20 sm:py-28">
+      <section
+        id="spider-man"
+        aria-labelledby="spider-man-title"
+        className="scroll-mt-28 py-20 sm:py-28"
+      >
         <Container className="max-w-6xl">
-          <div className="grid gap-12 lg:grid-cols-[0.76fr_1.24fr] lg:gap-20">
-            <div>
+          <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
+            <div className="lg:sticky lg:top-32 lg:self-start">
               <p className="text-sm font-bold text-red-700 uppercase dark:text-red-400">
-                01 / The enduring question
+                01 / Spider-Man
               </p>
               <h2
-                id="essay-title"
-                className="mt-4 font-serif text-4xl leading-tight font-bold text-slate-950 sm:text-6xl dark:text-white"
+                id="spider-man-title"
+                className="mt-4 font-serif text-4xl leading-tight font-bold sm:text-6xl"
               >
-                What is strength for?
+                Responsibility begins after the mistake.
               </h2>
-              <div className={`${styles.pullQuote} mt-10`}>
-                <p className="font-serif text-2xl leading-snug font-semibold text-slate-950 sm:text-3xl dark:text-white">
-                  “Hope is not a forecast. It is a moral position.”
-                </p>
-              </div>
+              <p
+                className={`${styles.pullQuote} mt-10 font-serif text-2xl font-semibold sm:text-3xl`}
+              >
+                We are not only what went wrong. We are also what we decide to do next.
+              </p>
             </div>
 
-            <div className={`${styles.prose} text-slate-700 dark:text-slate-300`}>
-              <p className="text-xl leading-9 text-slate-950 dark:text-white">
-                Superman has survived because his central problem was never whether he could lift
-                the impossible weight. It was whether a person with almost unlimited power could
-                remain gentle, accountable and close to ordinary life.
-              </p>
-              <p>
-                Created by writer Jerry Siegel and artist Joe Shuster, Superman first appeared in{" "}
-                <em>Action Comics</em> #1 in 1938. He helped popularize the superhero form: the
-                costume, the secret identity, the extraordinary ability directed toward public good.
-                But conventions alone do not explain nearly nine decades of attention.
-              </p>
-              <p>
-                His deeper appeal is a reversal of the usual fantasy of power. Superman can
-                dominate, yet chooses to serve. He can stand above humanity, yet chooses to live
-                among people as Clark Kent. He arrives from a world that could not be saved, yet
-                does not make loss an excuse for bitterness.
-              </p>
-              <p>
-                That is where hope enters. Hope is not his confidence that he will always win. It is
-                his refusal to let suffering decide what kind of person he becomes.
-              </p>
+            <div>
+              <div className={`${styles.prose} text-slate-700 dark:text-slate-300`}>
+                <p className="text-xl leading-9 text-slate-950 dark:text-white">
+                  Peter Parker is compelling because extraordinary ability does not free him from
+                  ordinary pressure. He still faces grief, self-doubt, relationships, work and the
+                  fear of not being enough.
+                </p>
+                <p>
+                  Created by Stan Lee and Steve Ditko, Spider-Man first appeared in{" "}
+                  <em>Amazing Fantasy</em> #15 in 1962. His origin turns on a painful failure to
+                  act. The lasting idea is not that a hero never fails; it is that remorse can
+                  become responsibility when it changes the way a person lives.
+                </p>
+                <p>
+                  His version of survival is untidy. He carries competing duties and seldom receives
+                  a clean reward. Yet he returns, repairs what he can and accepts that doing the
+                  right thing may remain difficult. Aspiration here is not escape from an ordinary
+                  life. It is the effort to live that life with greater care.
+                </p>
+              </div>
+
+              <dl className="mt-10 grid border-y border-slate-200 sm:grid-cols-3 dark:border-white/10">
+                {[
+                  ["1962", "First appearance"],
+                  ["Amazing Fantasy #15", "Debut story"],
+                  ["Lee & Ditko", "Credited creators"],
+                ].map(([value, label]) => (
+                  <div
+                    key={label}
+                    className="border-b border-slate-200 py-5 sm:border-r sm:border-b-0 sm:px-5 sm:first:pl-0 sm:last:border-r-0 dark:border-white/10"
+                  >
+                    <dt className="text-xs font-semibold text-slate-500 uppercase dark:text-slate-400">
+                      {label}
+                    </dt>
+                    <dd className="mt-2 font-serif text-lg font-bold text-slate-950 dark:text-white">
+                      {value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+
+              <a
+                href="https://en.wikipedia.org/wiki/Spider-Man"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${sourceLinkClass} mt-8`}
+              >
+                Read the Spider-Man reference
+                <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
             </div>
           </div>
         </Container>
       </section>
 
       <section
-        aria-labelledby="history-title"
-        className={`${styles.historyBand} py-20 text-white sm:py-24`}
+        id="superman"
+        aria-labelledby="superman-title"
+        className={`${styles.supermanBand} scroll-mt-28 py-20 text-white sm:py-28`}
       >
         <Container className="max-w-7xl">
-          <div className="max-w-3xl">
-            <p className="text-sm font-bold text-yellow-300 uppercase">02 / A changing symbol</p>
-            <h2 id="history-title" className="mt-4 font-serif text-4xl font-bold sm:text-6xl">
-              From initial to inheritance to hope.
-            </h2>
-            <p className="mt-5 text-base leading-7 text-slate-300">
-              The meaning of the chest emblem evolved across media. The evolution matters because
-              stories often discover their deepest significance slowly.
-            </p>
-          </div>
-
-          <ol className="mt-14 grid gap-0 border-t border-white/20 md:grid-cols-4">
-            {history.map((moment, index) => (
-              <li
-                key={moment.year}
-                className="relative border-b border-white/20 px-5 py-8 md:border-r md:border-b-0 md:last:border-r-0"
-              >
-                <span
-                  className="absolute -top-1.5 left-5 h-3 w-3 bg-yellow-300"
-                  aria-hidden="true"
+          <div className="grid gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:gap-20">
+            <figure>
+              <div className="relative aspect-[4/5] overflow-hidden border border-white/20 bg-slate-900">
+                <Image
+                  src="/images/comics/flying-superman.jpg"
+                  alt="A Superman cosplayer in a blue suit and red cape leaping upward with one arm raised"
+                  fill
+                  className="object-cover object-[70%_24%]"
+                  sizes="(min-width: 1024px) 42vw, 100vw"
                 />
-                <p className="font-mono text-sm font-bold text-red-400">{moment.year}</p>
-                <h3 className="mt-4 font-serif text-2xl font-bold">{moment.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{moment.description}</p>
-                <span className="sr-only">
-                  Milestone {index + 1} of {history.length}
-                </span>
-              </li>
-            ))}
-          </ol>
-        </Container>
-      </section>
+              </div>
+              <figcaption className="mt-4 text-[11px] leading-5 text-slate-300 sm:text-xs">
+                Superman cosplay at Dragon Con 2009, cropped for display. Photograph by{" "}
+                <a
+                  href="https://commons.wikimedia.org/wiki/File:Flying_Superman.jpg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-white underline decoration-white/60 underline-offset-2 hover:text-yellow-200"
+                >
+                  J F Willis / Wikimedia Commons
+                  <span className="sr-only"> (opens in a new tab)</span>
+                </a>
+                , licensed under{" "}
+                <a
+                  href="https://creativecommons.org/licenses/by-sa/2.0/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-white underline decoration-white/60 underline-offset-2 hover:text-yellow-200"
+                >
+                  CC BY-SA 2.0
+                  <span className="sr-only"> (opens in a new tab)</span>
+                </a>
+                .
+              </figcaption>
+            </figure>
 
-      <section aria-labelledby="four-meanings-title" className="py-20 sm:py-28">
-        <Container className="max-w-6xl">
-          <div className="grid gap-12 lg:grid-cols-[0.68fr_1.32fr] lg:gap-20">
-            <div className="lg:sticky lg:top-32 lg:self-start">
-              <p className="text-sm font-bold text-red-700 uppercase dark:text-red-400">
-                03 / Four meanings
-              </p>
+            <div>
+              <p className="text-sm font-bold text-yellow-300 uppercase">02 / Superman</p>
               <h2
-                id="four-meanings-title"
-                className="mt-4 font-serif text-4xl leading-tight font-bold sm:text-5xl"
+                id="superman-title"
+                className="mt-4 font-serif text-4xl leading-tight font-bold sm:text-6xl"
               >
-                The humanity inside the myth.
+                Hope is power that stays gentle.
               </h2>
-              <p className="mt-5 text-sm leading-7 text-slate-600 dark:text-slate-300">
-                The cape attracts attention. The choices beneath it sustain the story.
-              </p>
-            </div>
+              <div className={`${styles.prose} mt-8 text-slate-300`}>
+                <p className="text-xl leading-9 text-white">
+                  Superman begins as a survivor. Kal-El is sent to Earth as a baby shortly before
+                  Krypton is destroyed, finds a home with Jonathan and Martha Kent, and grows into
+                  Clark Kent. His future is not a restoration of the world he lost. It is a life of
+                  belonging built after loss.
+                </p>
+                <p>
+                  Jerry Siegel and Joe Shuster introduced Superman in <em>Action Comics</em> #1 in
+                  1938. The character helped establish the language of the modern superhero, but
+                  spectacle is only part of his endurance. The deeper question is what someone with
+                  immense power chooses to do with it.
+                </p>
+                <p>
+                  Superman can stand above humanity, yet repeatedly chooses closeness, service and
+                  restraint. His hope is not a forecast that nothing will break. It is a commitment
+                  to protect what can still be saved without allowing catastrophe to turn strength
+                  into bitterness.
+                </p>
+              </div>
 
-            <div className="divide-y divide-slate-200 border-y border-slate-200 dark:divide-white/10 dark:border-white/10">
-              <article className="grid gap-5 py-10 sm:grid-cols-[3rem_1fr]">
-                <SparkIcon
-                  className="h-7 w-7 text-yellow-600 dark:text-yellow-300"
-                  aria-hidden="true"
-                />
-                <div>
-                  <h3 className="font-serif text-3xl font-bold">Hope survives the journey.</h3>
-                  <p className="mt-4 leading-8 text-slate-700 dark:text-slate-300">
-                    Kal-El&apos;s story begins with catastrophe. Krypton is lost, his parents cannot
-                    follow, and a child crosses the dark alone. Yet his life on Earth becomes more
-                    than survival. Jonathan and Martha Kent give him language, belonging and a moral
-                    home. Hope here is not a return to what was. It is the courage to belong again.
-                  </p>
-                </div>
-              </article>
+              <dl className="mt-10 grid border-y border-white/20 sm:grid-cols-3">
+                {[
+                  ["18 April 1938", "First published"],
+                  ["Action Comics #1", "First appearance"],
+                  ["Siegel & Shuster", "Credited creators"],
+                ].map(([value, label]) => (
+                  <div
+                    key={label}
+                    className="border-b border-white/20 py-5 sm:border-r sm:border-b-0 sm:px-5 sm:first:pl-0 sm:last:border-r-0"
+                  >
+                    <dt className="text-xs font-semibold text-slate-400 uppercase">{label}</dt>
+                    <dd className="mt-2 font-serif text-lg font-bold text-white">{value}</dd>
+                  </div>
+                ))}
+              </dl>
 
-              <article className="grid gap-5 py-10 sm:grid-cols-[3rem_1fr]">
-                <CompassIcon
-                  className="h-7 w-7 text-blue-700 dark:text-blue-300"
-                  aria-hidden="true"
-                />
-                <div>
-                  <h3 className="font-serif text-3xl font-bold">Power chooses restraint.</h3>
-                  <p className="mt-4 leading-8 text-slate-700 dark:text-slate-300">
-                    Invulnerability is a physical condition; restraint is a moral achievement. The
-                    hopeful Superman does not ask only, “Can I stop this?” He asks what protection
-                    preserves dignity, what force is proportionate and what future remains after the
-                    rescue. His power is credible because it accepts limits from within.
-                  </p>
-                </div>
-              </article>
-
-              <article className="grid gap-5 py-10 sm:grid-cols-[3rem_1fr]">
-                <BricolageIcon
-                  className="h-7 w-7 text-red-700 dark:text-red-400"
-                  aria-hidden="true"
-                />
-                <div>
-                  <h3 className="font-serif text-3xl font-bold">Clark Kent keeps him near.</h3>
-                  <p className="mt-4 leading-8 text-slate-700 dark:text-slate-300">
-                    Clark is not merely camouflage. As a reporter, colleague, son and friend, he
-                    remains accountable to the human scale: deadlines, questions, evidence and
-                    relationships. The secret identity protects something more valuable than
-                    anonymity. It protects his capacity to listen before he acts.
-                  </p>
-                </div>
-              </article>
-
-              <article className="grid gap-5 py-10 sm:grid-cols-[3rem_1fr]">
-                <ArrowRightIcon
-                  className="h-7 w-7 text-slate-700 dark:text-slate-200"
-                  aria-hidden="true"
-                />
-                <div>
-                  <h3 className="font-serif text-3xl font-bold">Tomorrow is a direction.</h3>
-                  <p className="mt-4 leading-8 text-slate-700 dark:text-slate-300">
-                    “A better tomorrow” is deliberately unfinished. It turns hope from a feeling
-                    into orientation. We may not control the whole horizon, but we can choose the
-                    next truthful report, the next protective act, the next use of strength that
-                    leaves another person standing taller.
-                  </p>
-                </div>
-              </article>
+              <a
+                href="https://en.wikipedia.org/wiki/Superman"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-8 inline-flex min-h-11 items-center gap-2 font-semibold text-yellow-200 underline decoration-yellow-300/70 underline-offset-4 transition hover:text-white focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-slate-950 focus-visible:outline-none"
+              >
+                Read the Superman reference
+                <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
             </div>
           </div>
         </Container>
       </section>
 
-      <section aria-labelledby="practice-title" className={`${styles.practice} py-20 sm:py-24`}>
+      <section
+        id="he-man"
+        aria-labelledby="he-man-title"
+        className={`${styles.heManBand} scroll-mt-28 py-20 sm:py-28`}
+      >
+        <Container className="max-w-6xl">
+          <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+            <div className="lg:sticky lg:top-32 lg:self-start">
+              <p className="text-sm font-bold text-purple-900 uppercase">03 / He-Man</p>
+              <h2
+                id="he-man-title"
+                className="mt-4 font-serif text-4xl leading-tight font-bold text-slate-950 sm:text-6xl"
+              >
+                Strength answers to something larger.
+              </h2>
+              <div className="mt-10 grid grid-cols-[3rem_1fr] gap-5 border-t-4 border-purple-800 pt-6">
+                <CompassIcon className="h-8 w-8 text-purple-800" aria-hidden="true" />
+                <p className="font-serif text-2xl font-semibold text-slate-950 sm:text-3xl">
+                  Courage is not the absence of fear. It is power given a purpose.
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <div className={`${styles.prose} text-slate-800`}>
+                <p className="text-xl leading-9 text-slate-950">
+                  He-Man&apos;s world is openly mythic: swords, sorcery, transformation and a battle
+                  to defend Eternia. Yet beneath the scale sits a familiar question. Is strength a
+                  possession, or is it a responsibility held on behalf of others?
+                </p>
+                <p>
+                  Developed for Mattel by designers including Roger Sweet and Mark Taylor, He-Man
+                  first appeared in <em>He-Man and the Power Sword</em> in 1981. His origin changes
+                  across continuities. The early mini-comics present a barbarian hero; the familiar
+                  Filmation series presents Prince Adam transforming through the Power Sword.
+                </p>
+                <p>
+                  That variation is part of the character&apos;s long life. A recurring idea is
+                  stewardship: He-Man and his allies protect a vulnerable world from forces that
+                  would turn power into domination. Surviving against the odds is a shared effort,
+                  sustained by loyalty, courage and the willingness to stand between danger and
+                  those who cannot face it alone.
+                </p>
+              </div>
+
+              <dl className="mt-10 grid border-y border-slate-900/20 sm:grid-cols-3">
+                {[
+                  ["1981", "First appearance"],
+                  ["Masters of the Universe", "Story world"],
+                  ["Adam / He-Man", "Familiar continuity"],
+                ].map(([value, label]) => (
+                  <div
+                    key={label}
+                    className="border-b border-slate-900/20 py-5 sm:border-r sm:border-b-0 sm:px-5 sm:first:pl-0 sm:last:border-r-0"
+                  >
+                    <dt className="text-xs font-semibold text-slate-600 uppercase">{label}</dt>
+                    <dd className="mt-2 font-serif text-lg font-bold text-slate-950">{value}</dd>
+                  </div>
+                ))}
+              </dl>
+
+              <a
+                href="https://en.wikipedia.org/wiki/He-Man"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-8 inline-flex min-h-11 items-center gap-2 font-semibold text-purple-900 underline decoration-purple-500 underline-offset-4 transition hover:text-red-800 focus-visible:ring-2 focus-visible:ring-purple-800 focus-visible:ring-offset-4 focus-visible:outline-none"
+              >
+                Read the He-Man reference
+                <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section aria-labelledby="shared-map-title" className="py-20 sm:py-28">
         <Container className="max-w-7xl">
           <div className="grid gap-10 lg:grid-cols-[0.74fr_1.26fr] lg:items-end">
             <div>
-              <p className="text-sm font-bold text-red-700 uppercase">04 / The hope protocol</p>
-              <h2 id="practice-title" className="mt-4 font-serif text-4xl font-bold sm:text-6xl">
+              <p className="text-sm font-bold text-red-700 uppercase dark:text-red-400">
+                A shared map
+              </p>
+              <h2 id="shared-map-title" className="mt-4 font-serif text-4xl font-bold sm:text-6xl">
                 Four moves for ordinary days.
               </h2>
             </div>
-            <p className="max-w-2xl text-base leading-7 text-slate-700">
-              Fiction earns its place when it returns us to reality with better questions. These are
-              not superpowers. They are choices available before the cape arrives.
+            <p className="max-w-2xl text-base leading-8 text-slate-700 dark:text-slate-300">
+              Fiction matters when it returns us to real life with a little more room to act. These
+              are not superpowers. They are practices available before the outcome is certain.
             </p>
           </div>
 
-          <ol className="mt-14 grid border border-slate-900/15 bg-white md:grid-cols-2 lg:grid-cols-4">
-            {principles.map((principle) => (
-              <li
-                key={principle.number}
-                className="min-h-64 border-b border-slate-900/15 p-6 md:border-r md:even:border-r-0 lg:border-b-0 lg:last:border-r-0 lg:even:border-r"
-              >
-                <span className="font-mono text-sm font-bold text-red-700">{principle.number}</span>
-                <h3 className="mt-10 font-serif text-3xl font-bold text-slate-950">
-                  {principle.title}
-                </h3>
-                <p className="mt-4 text-sm leading-6 text-slate-600">{principle.description}</p>
-              </li>
-            ))}
-          </ol>
-        </Container>
-      </section>
+          <ol className="mt-14 grid border border-slate-200 bg-white md:grid-cols-2 lg:grid-cols-4 dark:border-white/10 dark:bg-[#07101f]">
+            {sharedPractices.map((practice) => {
+              const Icon = practice.icon;
 
-      <section id="reading-trail" aria-labelledby="reading-title" className="py-20 sm:py-28">
-        <Container className="max-w-6xl">
-          <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
-            <div>
-              <p className="text-sm font-bold text-red-700 uppercase dark:text-red-400">
-                05 / Reading trail
-              </p>
-              <h2 id="reading-title" className="mt-4 font-serif text-4xl font-bold sm:text-5xl">
-                Four doors into hope.
-              </h2>
-              <p className="mt-5 text-sm leading-7 text-slate-600 dark:text-slate-300">
-                Not a ranking. Each story illuminates a different part of the character&apos;s moral
-                imagination.
-              </p>
-            </div>
-
-            <div className="border-t border-slate-300 dark:border-white/15">
-              {readingTrail.map((book, index) => (
-                <article
-                  key={book.title}
-                  className="grid gap-4 border-b border-slate-300 py-7 sm:grid-cols-[3rem_1fr] dark:border-white/15"
+              return (
+                <li
+                  key={practice.number}
+                  className="min-h-72 border-b border-slate-200 p-6 md:border-r md:even:border-r-0 lg:border-b-0 lg:last:border-r-0 lg:even:border-r dark:border-white/10"
                 >
-                  <span className="font-mono text-sm font-bold text-red-700 dark:text-red-400">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <div>
-                    <h3 className="font-serif text-2xl font-bold">{book.title}</h3>
-                    <p className="mt-1 text-xs font-semibold text-blue-700 dark:text-blue-300">
-                      {book.meta}
-                    </p>
-                    <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
-                      {book.reason}
-                    </p>
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-sm font-bold text-red-700 dark:text-red-400">
+                      {practice.number}
+                    </span>
+                    <Icon className="h-6 w-6 text-blue-700 dark:text-blue-300" aria-hidden="true" />
                   </div>
-                </article>
-              ))}
-            </div>
-          </div>
+                  <h3 className="mt-10 font-serif text-3xl font-bold text-slate-950 dark:text-white">
+                    {practice.title}
+                  </h3>
+                  <p className="mt-4 text-sm leading-7 text-slate-600 dark:text-slate-300">
+                    {practice.description}
+                  </p>
+                </li>
+              );
+            })}
+          </ol>
         </Container>
       </section>
 
@@ -477,19 +501,21 @@ export default function ComicsPage() {
         className={`${styles.closing} relative overflow-hidden py-24 text-white sm:py-32`}
       >
         <Container className="relative z-10 max-w-5xl text-center">
-          <p className="text-sm font-bold text-yellow-300 uppercase">The last panel</p>
+          <p className="text-sm font-bold text-yellow-300 uppercase">The next panel</p>
           <h2
             id="closing-title"
             className="mx-auto mt-5 max-w-4xl font-serif text-4xl leading-tight font-bold sm:text-6xl"
           >
-            The world does not need us to be invulnerable.
+            Survival is not the last page. It is the chance to write the next one.
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-blue-100">
-            It needs us to remain available to one another: honest enough to see the danger, strong
-            enough to help, and hopeful enough to believe that help still matters.
+          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-blue-100">
+            Spider-Man does not erase his mistake. Superman does not recover Krypton. He-Man does
+            not make Eternia safe forever. Their stories endure because each hero continues:
+            responsible enough to return, hopeful enough to serve and courageous enough to stand up
+            again.
           </p>
           <p className="mt-9 font-serif text-2xl text-yellow-200 italic">
-            Look up. Then look around.
+            We do not need to be invulnerable. We need a reason to keep going.
           </p>
         </Container>
       </section>
@@ -502,50 +528,36 @@ export default function ComicsPage() {
                 Sources &amp; note
               </p>
               <h2 id="sources-title" className="mt-3 font-serif text-3xl font-bold">
-                Read beyond this page.
+                Read beyond this reflection.
               </h2>
             </div>
             <div>
-              <ul className="space-y-3 text-sm">
-                <li>
-                  <a
-                    href="https://en.wikipedia.org/wiki/Superman"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-semibold text-blue-700 underline decoration-blue-300 underline-offset-4 hover:text-red-700 dark:text-blue-300"
-                  >
-                    Wikipedia · Superman
-                    <span className="sr-only"> (opens in a new tab)</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://en.wikipedia.org/wiki/Origin_of_Superman"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-semibold text-blue-700 underline decoration-blue-300 underline-offset-4 hover:text-red-700 dark:text-blue-300"
-                  >
-                    Wikipedia · Origin of Superman
-                    <span className="sr-only"> (opens in a new tab)</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.dc.com/characters/superman"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-semibold text-blue-700 underline decoration-blue-300 underline-offset-4 hover:text-red-700 dark:text-blue-300"
-                  >
-                    DC · Official Superman character profile
-                    <span className="sr-only"> (opens in a new tab)</span>
-                  </a>
-                </li>
+              <ul className="grid gap-3 text-sm sm:grid-cols-3">
+                {[
+                  ["Spider-Man", "https://en.wikipedia.org/wiki/Spider-Man"],
+                  ["Superman", "https://en.wikipedia.org/wiki/Superman"],
+                  ["He-Man", "https://en.wikipedia.org/wiki/He-Man"],
+                ].map(([name, href]) => (
+                  <li key={name}>
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={sourceLinkClass}
+                    >
+                      Wikipedia · {name}
+                      <span className="sr-only"> (opens in a new tab)</span>
+                    </a>
+                  </li>
+                ))}
               </ul>
               <p className="mt-7 max-w-3xl text-xs leading-6 text-slate-500 dark:text-slate-400">
-                This is an independent, non-commercial critical reflection. Superman and related
-                character names are trademarks of DC. The independently licensed cosplay photograph
-                is credited above; its use does not imply endorsement by the photographer, DC or
-                Wikimedia Commons.
+                Character facts are summarized from the linked overview pages; the interpretations
+                here are original reflections. Comic and screen continuities vary, especially for
+                He-Man. This is an independent, non-commercial critical essay. Spider-Man, Superman,
+                He-Man and their related properties belong to their respective rights holders. The
+                independently licensed Superman cosplay photograph is credited above; its use does
+                not imply endorsement by the photographer, Wikimedia Commons or any rights holder.
               </p>
             </div>
           </div>

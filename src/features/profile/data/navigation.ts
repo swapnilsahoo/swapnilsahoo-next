@@ -57,7 +57,15 @@ export const moreDropdown: NavDropdown = {
         },
       ],
     },
-    { label: "Comics & Fiction", href: "/comics" },
+    {
+      label: "Comics & Fiction",
+      href: "/comics",
+      children: [
+        { label: "Spider-Man", href: "/comics#spider-man" },
+        { label: "Superman", href: "/comics#superman" },
+        { label: "He-Man", href: "/comics#he-man" },
+      ],
+    },
     {
       label: "Mythology",
       href: "/mythology",
