@@ -26,13 +26,13 @@ export const metadata: Metadata = {
     "Joe Shuster",
     "Action Comics",
   ],
-  alternates: { canonical: "/comics/" },
+  alternates: { canonical: "/comics" },
   openGraph: {
     type: "article",
     title: "Superman — The Discipline of Hope",
     description:
       "Power may make the spectacle. Hope makes the hero. An essay on Superman's enduring moral imagination.",
-    url: "/comics/",
+    url: "/comics",
     images: [
       {
         url: "/images/comics/flying-superman.jpg",

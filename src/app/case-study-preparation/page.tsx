@@ -27,13 +27,13 @@ export const metadata: Metadata = {
     "market entry framework",
     "consulting interview India",
   ],
-  alternates: { canonical: "/case-study-preparation/" },
+  alternates: { canonical: "/case-study-preparation" },
   openGraph: {
     type: "article",
     title: "Consulting Case Studio — Think Clearly Under Pressure",
     description:
       "Practice for structuring an unfamiliar business problem, analysing it and explaining what you would do.",
-    url: "/case-study-preparation/",
+    url: "/case-study-preparation",
     images: ["/images/profile_pic.jpg"],
   },
 };

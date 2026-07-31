@@ -19,7 +19,7 @@ Their authenticated Drive identifiers remain in the source email and connected
 Drive account. They are deliberately not repeated in this public repository.
 
 The local import did not preserve the original Drive file IDs or filenames.
-Both assets can therefore be mapped honestly to the shared event-media
+These four assets can therefore be mapped honestly to the shared event-media
 collection, but not to a particular source file or one of the three folders.
 
 | Local asset                                                | SHA-256                                                            | Recorded source                                                                      | Public provenance                                                                         | Rights and credit status                                                                                                                |

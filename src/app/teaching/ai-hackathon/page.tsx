@@ -34,9 +34,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "article",
-    title: "AI Mini Hackathon — Build-First. By Students, For Students.",
+    title: "AI Mini Hackathon for MBA & PhD Audiences",
     description:
-      "How the incoming PGDM 2026–28 cohort moved from student problems to testable, responsibly framed GenAI prototypes.",
+      "How the incoming PGDM 2026–28 cohort built responsibly framed GenAI prototypes, with a separate research lens for PhD readers.",
     url: "/teaching/ai-hackathon",
     images: ["/images/ai-hackathon/hackathon-demo.jpg"],
   },
@@ -158,6 +158,9 @@ export default function AiHackathonPage() {
                 <div className="mb-6 flex flex-wrap items-center gap-3">
                   <span className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-3 py-1.5 font-mono text-[11px] tracking-[0.14em] text-blue-100 uppercase backdrop-blur-sm">
                     Incoming PGDM 2026–28 · Great Lakes Gurgaon
+                  </span>
+                  <span className="inline-flex items-center rounded-full border border-blue-200/20 bg-blue-300/10 px-3 py-1.5 font-mono text-[11px] tracking-[0.14em] text-blue-100 uppercase backdrop-blur-sm">
+                    MBA / PGDM audience · PhD research lens
                   </span>
                 </div>
 

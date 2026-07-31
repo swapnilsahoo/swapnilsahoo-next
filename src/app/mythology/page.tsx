@@ -15,13 +15,13 @@ export const metadata: Metadata = {
     "Sanskrit epics",
     "Indian mythology",
   ],
-  alternates: { canonical: "/mythology/" },
+  alternates: { canonical: "/mythology" },
   openGraph: {
     type: "website",
     title: "Mythology — Two Epics, Many Tellings",
     description:
       "A careful reading space for the Mahabharata and Valmiki Ramayana, grounded in their Sanskrit textual traditions.",
-    url: "/mythology/",
+    url: "/mythology",
     images: ["/images/profile_pic.jpg"],
   },
 };

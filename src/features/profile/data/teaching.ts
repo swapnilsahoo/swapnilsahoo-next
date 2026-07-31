@@ -32,7 +32,7 @@ export const teachingLinks: TeachingLink[] = [
     title: "Case Study Preparation",
     description:
       "Practice for structuring consulting cases, doing the analysis and explaining the recommendation clearly.",
-    href: "/case-study-preparation/",
+    href: "/case-study-preparation",
   },
   {
     eyebrow: "MBA event · PhD lens",
