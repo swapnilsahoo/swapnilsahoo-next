@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     description:
       "Choose a credible role, find the evidence in your experience and practise saying it clearly.",
     url: "/placements",
-    images: ["/images/gallery/crest-judging-panel.png"],
+    images: ["/images/profile_pic.jpg"],
   },
 };
 
@@ -54,13 +54,13 @@ const readinessJourney = [
     index: "03",
     title: "Rehearse the signal",
     description:
-      "Practice role-specific cases, behavioral probes and concise answers under realistic pressure.",
+      "Practise role-specific cases, behavioural follow-up questions and concise answers under realistic pressure.",
   },
   {
     index: "04",
     title: "Close with judgment",
     description:
-      "Synthesize clearly, discuss trade-offs and ask questions that demonstrate genuine business curiosity.",
+      "State your conclusion clearly, discuss trade-offs and ask questions that show genuine business curiosity.",
   },
 ] as const;
 
@@ -87,7 +87,7 @@ const starPrompts = [
   },
   {
     title: "Execution under pressure",
-    prompt: "How did you prioritize when time, data or resources were constrained?",
+    prompt: "How did you prioritise when time, data or resources were constrained?",
   },
 ] as const;
 
@@ -156,7 +156,7 @@ export default function PlacementsPage() {
                     href="/case-study-preparation"
                     className="focus-visible:ring-brand-300 inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:outline-none"
                   >
-                    Practice consulting cases
+                    Practise consulting cases
                   </a>
                 </div>
               </div>
@@ -343,7 +343,7 @@ export default function PlacementsPage() {
               <div className="bg-accent-400/10 text-accent-600 dark:text-accent-400 mb-5 flex h-11 w-11 items-center justify-center rounded-xl">
                 <GraduationCapIcon className="h-5 w-5" aria-hidden="true" />
               </div>
-              <p className="eyebrow mb-3">05 / Continue practicing</p>
+              <p className="eyebrow mb-3">05 / Continue practising</p>
               <h2 id="resources-title" className="display text-4xl font-semibold">
                 Build range without losing depth.
               </h2>
@@ -356,7 +356,7 @@ export default function PlacementsPage() {
                 <p className="eyebrow mb-2">Consulting practice</p>
                 <h3 className="font-serif text-2xl font-semibold">Case Study Studio</h3>
                 <p className="text-ink-600 dark:text-ink-300 mt-2 text-sm leading-relaxed">
-                  Practice structure, quantitative reasoning and executive synthesis.
+                  Practise structuring, quantitative reasoning and executive synthesis.
                 </p>
               </a>
               <a

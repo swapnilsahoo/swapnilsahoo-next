@@ -402,15 +402,15 @@ export function OneYearMbaExperience() {
                   </span>
                 </h1>
                 <p className="mt-8 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
-                  Thirteen discussion-intensive sessions that turn professional experience into
-                  strategic range—from reading an industry to choosing what belongs inside the firm.
+                  Thirteen discussion-intensive sessions connect professional experience to
+                  decisions about industry, competitive advantage and firm boundaries.
                 </p>
                 <div className="mt-9 flex flex-wrap gap-3">
                   <a
                     href="#course-map"
                     className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-slate-950 shadow-xl shadow-black/20 transition hover:-translate-y-0.5 hover:bg-blue-50 focus-visible:ring-2 focus-visible:ring-blue-200 focus-visible:outline-none"
                   >
-                    Enter the 13-session arc
+                    See all 13 sessions
                     <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
                   </a>
                   <a
@@ -427,7 +427,8 @@ export function OneYearMbaExperience() {
                   <SparkIcon className="h-4 w-4 text-amber-200" aria-hidden="true" />
                 </span>
                 <p className="max-w-xl">
-                  Cases become decisions. Experience becomes evidence. Reflection becomes transfer.
+                  Cases become decisions, professional experience is tested as evidence, and
+                  reflection carries the learning back to work.
                 </p>
               </div>
             </div>
@@ -436,20 +437,20 @@ export function OneYearMbaExperience() {
               className={`${styles.imageFrame} relative min-h-[520px] overflow-hidden border-t border-white/10 lg:min-h-full lg:border-t-0 lg:border-l`}
             >
               <Image
-                src="/images/gallery/classroom-dialogue.png"
-                alt="Swapnil Sahoo facilitating a discussion with an executive MBA classroom"
+                src="/images/ai-hackathon/hackathon-demo.jpg"
+                alt="Dr Swapnil Sahoo speaking during the July 2026 AI Mini Hackathon"
                 fill
                 priority
                 className="object-cover"
-                style={{ objectPosition: "center 54%" }}
+                style={{ objectPosition: "54% center" }}
                 sizes="(min-width: 1024px) 46vw, 100vw"
               />
               <div className="absolute right-5 bottom-5 left-5 z-10 rounded-2xl border border-white/15 bg-slate-950/65 p-5 backdrop-blur-xl sm:right-8 sm:bottom-8 sm:left-auto sm:max-w-sm">
                 <p className="font-mono text-[10px] tracking-[0.18em] text-blue-200 uppercase">
-                  The classroom contract
+                  Teaching in practice
                 </p>
                 <p className="mt-3 font-serif text-xl leading-snug font-semibold">
-                  Arrive prepared to choose. Leave ready to explain why.
+                  A build-first teaching moment from the July 2026 AI Mini Hackathon.
                 </p>
               </div>
             </div>
@@ -482,7 +483,7 @@ export function OneYearMbaExperience() {
           className="nav-glass my-8 hidden items-center justify-between rounded-full px-5 py-2.5 lg:flex"
         >
           <p className="font-mono text-[10px] tracking-[0.16em] text-slate-500 uppercase dark:text-slate-400">
-            Course fieldbook
+            Course guide
           </p>
           <div className="flex items-center gap-1 text-xs font-semibold">
             {[
@@ -514,7 +515,7 @@ export function OneYearMbaExperience() {
                 id="promise-title"
                 className="mt-4 max-w-xl font-serif text-4xl leading-[1.02] font-semibold tracking-[-0.035em] text-balance sm:text-6xl"
               >
-                Experience enters as an asset. It leaves as judgment.
+                Professional experience becomes evidence to test.
               </h2>
               <p className="text-ink-600 dark:text-ink-300 mt-6 max-w-xl text-base leading-7">
                 The compressed format is not a shorter survey. It is a deliberate sequence of
@@ -609,7 +610,7 @@ export function OneYearMbaExperience() {
                 id="course-map-title"
                 className="mt-4 max-w-3xl font-serif text-4xl leading-[1.02] font-semibold tracking-[-0.035em] text-balance sm:text-6xl"
               >
-                One strategy. Four acts.
+                Four stages of one strategy course.
               </h2>
             </div>
             <p className="max-w-md text-sm leading-6 text-slate-300">
@@ -662,7 +663,7 @@ export function OneYearMbaExperience() {
                 id="sessions-title"
                 className="mt-4 max-w-3xl font-serif text-4xl leading-[1.02] font-semibold tracking-[-0.035em] text-balance sm:text-6xl"
               >
-                Every session. Every reading. One cumulative argument.
+                How the thirteen sessions build one cumulative argument.
               </h2>
             </div>
             <p className="text-ink-600 dark:text-ink-300 max-w-md text-sm leading-6">
@@ -766,14 +767,17 @@ export function OneYearMbaExperience() {
               </div>
               <div className="absolute inset-x-0 bottom-0 h-[52%]">
                 <Image
-                  src="/images/gallery/classroom-dialogue.png"
-                  alt="Swapnil Sahoo leading an interactive case discussion"
+                  src="/images/ai-hackathon/hackathon-room.jpg"
+                  alt="Dr Swapnil Sahoo speaking during the July 2026 AI Mini Hackathon final"
                   fill
                   className="object-cover"
-                  style={{ objectPosition: "center 61%" }}
+                  style={{ objectPosition: "52% center" }}
                   sizes="(min-width: 1024px) 650px, 100vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-white via-white/20 to-slate-950/10 dark:from-[#09152a] dark:via-[#09152a]/30" />
+                <p className="absolute right-4 bottom-3 left-4 text-[10px] leading-4 text-white/85">
+                  Teaching photograph · AI Mini Hackathon, July 2026 · photographer not identified
+                </p>
               </div>
             </article>
 
@@ -877,7 +881,7 @@ export function OneYearMbaExperience() {
                   id="field-title"
                   className="mt-4 font-serif text-4xl leading-[1.03] font-semibold tracking-[-0.035em] sm:text-5xl"
                 >
-                  Primary evidence. Real consequences.
+                  The project starts with a live conversation.
                 </h2>
               </div>
               <div>
@@ -1001,8 +1005,8 @@ export function OneYearMbaExperience() {
                 </article>
               ))}
               <p className="text-ink-500 dark:text-ink-400 mt-3 text-xs leading-5">
-                Multiple direct demonstrations make conceptual, analytical and critical-thinking
-                development visible.
+                Quizzes, reflections, examinations and field analysis show different parts of each
+                learner&apos;s progress.
                 <Citations ids={[7]} />
               </p>
             </div>
@@ -1132,11 +1136,11 @@ export function OneYearMbaExperience() {
                 id="connected-practice-title"
                 className="mt-4 font-serif text-3xl leading-tight font-semibold tracking-[-0.03em] sm:text-4xl"
               >
-                See judgment under a different kind of time pressure.
+                See how these ideas carry into a rapid build.
               </h2>
               <p className="text-ink-600 dark:text-ink-300 mt-4 text-sm leading-6">
-                These two field notes connect the course’s emphasis on choice and evidence with
-                adjacent classroom practice.
+                The hackathon and classroom note show the same emphasis on choice and evidence in
+                other teaching settings.
               </p>
             </div>
             <div className="grid gap-4 sm:grid-cols-2">

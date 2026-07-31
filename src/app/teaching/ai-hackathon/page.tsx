@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     description:
       "How the incoming PGDM 2026–28 cohort moved from student problems to testable, responsibly framed GenAI prototypes.",
     url: "/teaching/ai-hackathon",
-    images: ["/images/ai-hackathon/hackathon-demo-enhanced.png"],
+    images: ["/images/ai-hackathon/hackathon-demo.jpg"],
   },
 };
 
@@ -189,23 +189,24 @@ export default function AiHackathonPage() {
                     href="#experience"
                     className="focus-visible:ring-brand-300 inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:outline-none"
                   >
-                    Explore the experience
+                    See how it worked
                   </a>
                 </div>
               </div>
 
               <figure className="relative overflow-hidden rounded-[22px] border border-white/15 bg-white/5 shadow-2xl shadow-slate-950/25">
                 <Image
-                  src="/images/ai-hackathon/hackathon-demo-enhanced.png"
-                  alt="A presenter explaining an AI-enabled prototype during the hackathon"
-                  width={1536}
-                  height={1024}
+                  src="/images/ai-hackathon/hackathon-demo.jpg"
+                  alt="Dr Swapnil Sahoo speaking during the AI Mini Hackathon final"
+                  width={4608}
+                  height={3072}
                   priority
                   sizes="(min-width: 1024px) 32vw, 100vw"
                   className="aspect-[4/5] w-full object-cover object-[52%_center]"
                 />
                 <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/90 to-transparent px-5 pt-16 pb-4 text-xs text-blue-100">
-                  A working prototype is demonstrated and questioned in the room.
+                  Dr Swapnil Sahoo speaks during the 5 July final. Event photograph; photographer
+                  not identified.
                 </figcaption>
               </figure>
             </div>
@@ -328,7 +329,7 @@ export default function AiHackathonPage() {
             <span className="accent-rule" />
             <p className="eyebrow mb-3">03 / Audience lenses</p>
             <h2 id="lenses-title" className="display text-4xl font-semibold md:text-5xl">
-              The build is also something researchers can study.
+              The hackathon can also be studied as a learning design.
             </h2>
             <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-relaxed">
               The management lens describes the programme delivered to the incoming PGDM 2026–28
@@ -418,7 +419,7 @@ export default function AiHackathonPage() {
           <div className="mb-10 grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <span className="accent-rule" />
-              <p className="eyebrow mb-3">04 / The opportunity space</p>
+              <p className="eyebrow mb-3">04 / Challenge themes</p>
               <h2 id="challenge-title" className="display text-4xl font-semibold md:text-5xl">
                 Start with a problem worth solving.
               </h2>
@@ -455,7 +456,7 @@ export default function AiHackathonPage() {
                   <SparkIcon className="h-5 w-5" aria-hidden="true" />
                 </div>
                 <div>
-                  <p className="eyebrow">Prototype territory</p>
+                  <p className="eyebrow">Prototype areas</p>
                   <h3 className="font-serif text-xl font-semibold">What emerged</h3>
                 </div>
               </div>

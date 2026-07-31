@@ -12,7 +12,7 @@ const practiceTracks = [
     moves: [
       "Confirm the objective, time horizon and geography",
       "Separate revenue and cost drivers before forming hypotheses",
-      "Prioritize the branch most likely to explain the decline",
+      "Start with the branch most likely to explain the decline",
       "State what data would validate or reject the hypothesis",
     ],
   },
@@ -49,7 +49,7 @@ const checklist = [
   "My structure was mutually exclusive and collectively exhaustive",
   "I made a hypothesis and updated it with evidence",
   "I calculated cleanly and explained the implication",
-  "I synthesized the answer, risks and next step",
+  "I stated the answer, risks and next step clearly",
 ] as const;
 
 export function CasePracticeLab() {

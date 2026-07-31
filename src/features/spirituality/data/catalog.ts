@@ -97,7 +97,7 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
     dek: "Meet all one thousand names in their received order, with Devanagari, consistent IAST, a concise name-level gloss, and the Mahābhārata setting in which Bhīṣma teaches Yudhiṣṭhira.",
     scopeLabel: "Complete 1,000-name reader",
     scopeNote:
-      "All 1,000 names are present in the common enumeration documented by the declared 1927 Sastry edition and checked against the Sanskrit Wikisource stotra. Each card offers a reviewed name-level gloss; it does not pretend that a concise web gloss replaces the interpretive depth of the commentary traditions.",
+      "All 1,000 names are present in the common enumeration documented by the declared 1927 Sastry edition and checked against the Sanskrit Wikisource stotra. Each card offers a concise editorial name-level gloss; it does not pretend that a web gloss replaces the interpretive depth of the commentary traditions.",
     entryCountLabel: "All 1,000 names",
     authenticity: [
       {
@@ -209,7 +209,7 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
     dek: "Meet all one thousand names in their received order, with Devanagari, consistent IAST, a concise name-level gloss, and a clear path back to the hymn’s sacred and textual history.",
     scopeLabel: "Complete 1,000-name reader",
     scopeNote:
-      "All 1,000 names are present in the common enumeration represented by the declared Sanskrit Wikisource reading. Each card offers a reviewed name-level gloss; it does not pretend that a concise web gloss replaces Bhāskararāya’s layered compound analysis.",
+      "All 1,000 names are present in the common enumeration represented by the declared Sanskrit Wikisource reading. Each card offers a concise editorial name-level gloss; it does not pretend that a web gloss replaces Bhāskararāya’s layered compound analysis.",
     entryCountLabel: "All 1,000 names",
     authenticity: [
       {

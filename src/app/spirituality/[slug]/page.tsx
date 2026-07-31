@@ -68,7 +68,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         ? "pada by pada meaning"
         : slug === "vishnu-sahasranama" || slug === "lalita-sahasranama"
           ? "name by name meaning"
-          : "word by word meaning",
+          : "line and word study",
       slug === "hanuman-chalisa" ? "Awadhi romanization" : "IAST transliteration",
       "authorship and provenance",
       "sacred text study",
@@ -120,7 +120,9 @@ export default async function ScripturePage({ params }: PageProps) {
     <main id="main-content">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+        }}
       />
 
       <header className="relative overflow-hidden pt-10 pb-12 sm:pt-16 sm:pb-20">
@@ -175,7 +177,7 @@ export default async function ScripturePage({ params }: PageProps) {
                     ? "pāda & compound edition"
                     : isSahasranama
                       ? "complete name-by-name edition"
-                      : "word-by-word edition"}
+                      : "line & word study edition"}
                 </span>
                 <p lang={languageCode} className={`mt-8 font-serif text-3xl ${theme.badge}`}>
                   {scripture.originalTitle}

@@ -116,9 +116,9 @@ export function TwoYearMbaExperience() {
                   </span>
                 </h1>
                 <p className="mt-8 max-w-xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
-                  Twenty cumulative sessions that travel from competitive foundations to corporate
-                  scope, execution and global change—then test the whole system against original
-                  field evidence.
+                  Twenty linked sessions move from competitive foundations to corporate scope,
+                  execution and global change, then test the whole system against original field
+                  evidence.
                 </p>
 
                 <div className="mt-9 flex flex-wrap gap-3">
@@ -143,7 +143,8 @@ export function TwoYearMbaExperience() {
                   <SparkIcon className="h-4 w-4 text-amber-200" aria-hidden="true" />
                 </span>
                 <p className="max-w-lg">
-                  Diagnose the system. Design the choice. Deliver the recommendation.
+                  The course moves from diagnosis and strategic choice to a recommendation that can
+                  be implemented.
                 </p>
               </div>
             </div>
@@ -152,20 +153,20 @@ export function TwoYearMbaExperience() {
               className={`${styles.photoFrame} relative min-h-[560px] overflow-hidden border-t border-white/10 lg:min-h-full lg:border-t-0 lg:border-l`}
             >
               <Image
-                src="/images/teaching/pgdm-strategy-classroom.png"
-                alt="Swapnil Sahoo facilitating an interactive Strategic Management session with PGDM students"
+                src="/images/ai-hackathon/hackathon-room.jpg"
+                alt="Dr Swapnil Sahoo speaking during the incoming PGDM cohort's July 2026 AI Mini Hackathon"
                 fill
                 priority
                 className="object-cover"
-                style={{ objectPosition: "center 48%" }}
+                style={{ objectPosition: "52% center" }}
                 sizes="(min-width: 1024px) 55vw, 100vw"
               />
               <div className="absolute right-5 bottom-5 left-5 z-10 rounded-2xl border border-white/15 bg-slate-950/68 p-5 backdrop-blur-xl sm:right-8 sm:bottom-8 sm:left-auto sm:max-w-sm">
                 <p className="font-mono text-[10px] tracking-[0.18em] text-emerald-200 uppercase">
-                  The learning environment
+                  PGDM teaching in practice
                 </p>
                 <p className="mt-3 font-serif text-xl leading-snug font-semibold">
-                  A serious room for testing choices, evidence and the courage to revise.
+                  A live build session from the July 2026 AI Mini Hackathon.
                 </p>
               </div>
             </div>
@@ -198,7 +199,7 @@ export function TwoYearMbaExperience() {
           className="nav-glass my-8 hidden items-center justify-between rounded-full px-5 py-2.5 lg:flex"
         >
           <p className="font-mono text-[10px] tracking-[0.16em] text-slate-500 uppercase dark:text-slate-400">
-            Strategy operating system
+            Course map
           </p>
           <div className="flex items-center gap-1 text-xs font-semibold">
             {[
@@ -303,12 +304,12 @@ export function TwoYearMbaExperience() {
                 id="pathway-title"
                 className="mt-4 max-w-3xl font-serif text-4xl leading-[1.02] font-semibold tracking-[-0.035em] text-balance sm:text-6xl"
               >
-                Twenty sessions. Five horizons.
+                Five stages across twenty sessions.
               </h2>
             </div>
             <p className="max-w-md text-sm leading-6 text-slate-300">
-              The unit of analysis expands deliberately: arena, advantage, corporation, execution
-              mode, then the global and organizational future.
+              The course widens its focus in stages: from industry and competitive advantage to
+              corporate scope, execution and global change.
             </p>
           </div>
 
@@ -441,7 +442,7 @@ export function TwoYearMbaExperience() {
                 id="practice-title"
                 className="mt-4 font-serif text-4xl leading-[1.03] font-semibold tracking-[-0.035em] sm:text-5xl"
               >
-                Workshop energy. Seminar discipline.
+                A workshop with seminar discipline.
               </h2>
               <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-7">
                 Learners lead discussion from mandatory papers, cases and current evidence. The
@@ -590,12 +591,12 @@ export function TwoYearMbaExperience() {
           >
             <div className="grid gap-8 p-7 sm:p-10 lg:grid-cols-[0.38fr_0.62fr]">
               <div>
-                <p className="eyebrow">06 / Interview intelligence</p>
+                <p className="eyebrow">06 / Interview question bank</p>
                 <h2
                   id="question-bank-title"
                   className="mt-4 font-serif text-4xl leading-[1.03] font-semibold tracking-[-0.035em] sm:text-5xl"
                 >
-                  A 58-question field bank.
+                  A bank of 58 field-interview questions.
                 </h2>
               </div>
               <p className="text-ink-600 dark:text-ink-300 max-w-2xl text-sm leading-7">
@@ -711,7 +712,7 @@ export function TwoYearMbaExperience() {
             <article className="glass-card p-7">
               <p className="eyebrow">Reflection rubric</p>
               <h3 className="mt-4 font-serif text-3xl font-semibold">
-                Understanding meets judgment.
+                Concepts and critical thinking carry equal weight.
               </h3>
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
                 {[
@@ -899,7 +900,7 @@ export function TwoYearMbaExperience() {
                   id="references-title"
                   className="mt-4 font-serif text-4xl leading-tight font-semibold tracking-[-0.03em]"
                 >
-                  Research behind the architecture.
+                  Research behind the course design.
                 </h2>
                 <p className="text-ink-600 dark:text-ink-300 mt-4 text-sm leading-6">
                   Inline citations connect the learning design to established work on strategy, the

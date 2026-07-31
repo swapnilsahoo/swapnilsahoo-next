@@ -6,7 +6,7 @@ const roleTracks = [
   {
     id: "consulting",
     label: "Consulting",
-    title: "Frame ambiguity. Build conviction.",
+    title: "Bring structure to ambiguous problems.",
     positioning:
       "Show that you can turn an open-ended business problem into a structured, evidence-led recommendation.",
     evidence: [
@@ -20,7 +20,7 @@ const roleTracks = [
   {
     id: "techno-functional",
     label: "Techno-functional",
-    title: "Bridge technology and business value.",
+    title: "Connect technology to business value.",
     positioning:
       "Demonstrate technical credibility, process understanding and the ability to translate between client and delivery teams.",
     evidence: [
@@ -36,7 +36,7 @@ const roleTracks = [
     label: "Growth & product",
     title: "Connect customer insight to commercial action.",
     positioning:
-      "Prove that you can identify a user need, prioritize opportunities and make trade-offs across growth, experience and feasibility.",
+      "Prove that you can identify a user need, prioritise opportunities and make trade-offs across growth, experience and feasibility.",
     evidence: [
       "A customer insight that changed a decision",
       "An experiment or launch with a clear success metric",
@@ -53,7 +53,7 @@ const readinessItems = [
   "Story bank: I have six distinct STAR stories with specific evidence.",
   "Business judgment: I can structure an unfamiliar problem aloud.",
   "Company depth: I understand the business model, priorities and role.",
-  "Interview finish: I can synthesize my answer and ask thoughtful questions.",
+  "Interview finish: I can summarise my answer and ask thoughtful questions.",
 ] as const;
 
 export function ReadinessStudio() {

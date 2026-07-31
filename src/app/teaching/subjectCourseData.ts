@@ -89,7 +89,7 @@ export const karmaYogaCourse = {
         label: "Transfer",
         title: "Reflect",
         description:
-          "Handover ownership, defend the evidence and translate field learning into leadership.",
+          "Hand over ownership, defend the evidence and translate field learning into leadership practice.",
       },
     ],
   },
@@ -97,7 +97,7 @@ export const karmaYogaCourse = {
     "Demonstrate stakeholder empathy by listening, observing and reframing a societal challenge with—not for—the people affected.",
     "Apply structured problem solving to generate, compare and adapt feasible interventions under real resource constraints.",
     "Lead a self-managed team through role clarity, ethical decisions, partner coordination, execution and course correction.",
-    "Evaluate outputs, outcomes and limitations using multiple forms of evidence, then communicate a responsible learning narrative.",
+    "Evaluate outputs, outcomes and limitations using multiple forms of evidence, then give an honest account of what the team learned.",
   ],
   sessions: [
     {
@@ -252,7 +252,7 @@ export const karmaYogaCourse = {
     {
       title: "Community listening lab",
       description:
-        "Teams practice observation, stakeholder interviews and asset mapping before any intervention is approved.",
+        "Teams practise observation, stakeholder interviews and asset mapping before any intervention is approved.",
       evidence: "Field note + validated problem frame",
     },
     {
@@ -343,7 +343,7 @@ export const karmaYogaCourse = {
     },
   ],
   evidenceNote: {
-    title: "A two-sided evidence system",
+    title: "How the evidence is assembled",
     description:
       "The course architecture follows the approved 2025–27 outline, executive note, current field-operation briefs and Frugal Play Lab instructions held in the teaching source pack. Public programme statistics are shown as statistics—not promises of causal impact—and learner/community identifiers remain private.",
     indicators: [
@@ -426,25 +426,25 @@ export const businessSimulationCourse = {
     { label: "Faculty", value: "Dr Poornima Gupta · Dr Smita Mazumdar · Dr Swapnil Sahoo" },
   ],
   promise: {
-    title: "Run the whole business. See the system. Defend every trade-off.",
+    title: "Run the whole business and defend every trade-off.",
     description:
       "The simulation makes interdependence unavoidable. A product launch can be strategically attractive and financially impossible; a stockout can validate demand and destroy value; an ESG choice can reshape both operating performance and stakeholder outcomes.",
   },
   principles: [
     {
-      title: "Coherence over isolated excellence",
+      title: "Make the functions cohere",
       description:
         "Marketing, R&D, operations, finance, people and ESG decisions are judged as one mutually reinforcing system—not as six functional answers.",
       citations: [1, 2],
     },
     {
-      title: "Evidence over hindsight",
+      title: "Preserve the forecast",
       description:
         "Teams must forecast before submitting, preserve their decision logic and compare intent with the operational and financial results that follow.",
       citations: [1, 5],
     },
     {
-      title: "Adaptation over attachment",
+      title: "Change course deliberately",
       description:
         "A strategy is a testable set of choices. Strong teams distinguish a weak execution signal from a broken strategic assumption and adapt deliberately.",
       citations: [2, 3, 4],
@@ -567,7 +567,7 @@ export const businessSimulationCourse = {
     {
       number: "04",
       phase: "Foundation · Practice 2 preparation",
-      title: "Build the analytic cockpit",
+      title: "Build the dashboard",
       question: "Which few indicators reveal whether the strategy is working—and why?",
       topics: [
         "Leading and lagging indicators",
@@ -585,7 +585,7 @@ export const businessSimulationCourse = {
     {
       number: "05",
       phase: "Foundation · Practice Round 2",
-      title: "Submit with disciplined challenge",
+      title: "Challenge the plan before submitting",
       question: "Can the team improve its thesis without overreacting to one practice result?",
       topics: [
         "Benchmarking and forecast revision",
@@ -675,7 +675,7 @@ export const businessSimulationCourse = {
     {
       number: "10",
       phase: "Competition · Round 2",
-      title: "Compete with a stronger point of view",
+      title: "Use the evidence to sharpen Round 2",
       question: "How will the team create advantage rather than merely repair last round?",
       topics: [
         "Positioning and capability commitment",
@@ -730,7 +730,7 @@ export const businessSimulationCourse = {
     {
       number: "13",
       phase: "Competition · Round 3 debrief / Round 4",
-      title: "Write the board-quality performance story",
+      title: "Explain performance to the board",
       question: "Can the team explain performance with evidence—and choose the next move?",
       topics: [
         "Board reporting and causal explanation",
@@ -784,7 +784,7 @@ export const businessSimulationCourse = {
     {
       number: "16",
       phase: "Diagnosis · Decision quality",
-      title: "Forecast better; fail more intelligently",
+      title: "Correct recurring forecast errors",
       question: "Which recurring error is the team now equipped to eliminate?",
       topics: [
         "Benchmarking and forecast calibration",
@@ -964,7 +964,7 @@ export const businessSimulationCourse = {
       citations: [5],
     },
     {
-      title: "Leaderboard is not learning",
+      title: "Use more than the leaderboard",
       description:
         "Performance metrics are combined with quizzes, logs, peer evidence, reflection and viva so polished narrative or a lucky round cannot stand alone.",
       citations: [5],

@@ -161,7 +161,9 @@ function validateEntries(
       !entry.meaning ||
       entry.sequence !== index + 1 ||
       entry.words.length === 0 ||
-      entry.words.some((word) => !word.original)
+      entry.words.some(
+        (word) => !word.original || !word.transliteration.trim() || !word.meaning.trim()
+      )
   );
 
   if (entries.length !== expectedCount || ids.size !== entries.length || hasIncompleteEntry) {

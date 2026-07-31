@@ -193,7 +193,7 @@ export function SubjectCoursePage({ config }: { config: SubjectCourseConfig }) {
           className="nav-glass my-8 hidden items-center justify-between rounded-full px-5 py-2.5 lg:flex"
         >
           <p className="font-mono text-[10px] tracking-[0.16em] text-slate-500 uppercase dark:text-slate-400">
-            Learning architecture
+            Course map
           </p>
           <div className="flex items-center gap-1 text-xs font-semibold">
             {[
@@ -305,7 +305,7 @@ export function SubjectCoursePage({ config }: { config: SubjectCourseConfig }) {
                   03 / Learning outcomes
                 </p>
                 <h2 id="outcomes-title" className="mt-3 font-serif text-4xl font-semibold">
-                  Capability that travels beyond the classroom.
+                  What learners should be able to do.
                 </h2>
               </div>
               <ol className="grid gap-3 sm:grid-cols-2">
@@ -336,7 +336,7 @@ export function SubjectCoursePage({ config }: { config: SubjectCourseConfig }) {
                 id="journey-title"
                 className="display max-w-3xl text-4xl leading-[1.04] font-semibold text-balance sm:text-6xl"
               >
-                Every stage. Every decision. One cumulative arc.
+                How each stage builds on the last.
               </h2>
             </div>
             <p className="text-ink-600 dark:text-ink-300 max-w-md text-sm leading-6">
@@ -420,7 +420,7 @@ export function SubjectCoursePage({ config }: { config: SubjectCourseConfig }) {
 
                   <div className="mt-6 border-t border-slate-900/10 pt-5 dark:border-white/10">
                     <p className="text-ink-500 dark:text-ink-400 font-mono text-[10px] font-bold tracking-[0.15em] uppercase">
-                      Evidence / artifact
+                      Evidence / output
                     </p>
                     <p className="text-ink-800 dark:text-ink-100 mt-2 text-sm leading-6">
                       {session.artifact}
@@ -442,11 +442,11 @@ export function SubjectCoursePage({ config }: { config: SubjectCourseConfig }) {
               id="practice-title"
               className="display text-4xl leading-[1.04] font-semibold text-balance sm:text-6xl"
             >
-              Practice is the curriculum.
+              Practice produces work that can be reviewed.
             </h2>
             <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-7">
-              Each studio makes judgment observable through a concrete action and a reviewable piece
-              of evidence.
+              Each studio asks learners to take a concrete action and submit evidence of what they
+              did.
             </p>
           </div>
 
@@ -486,11 +486,11 @@ export function SubjectCoursePage({ config }: { config: SubjectCourseConfig }) {
                 id="assessment-title"
                 className="mt-4 font-serif text-4xl leading-[1.04] font-semibold text-balance sm:text-6xl"
               >
-                Assessment that resembles the work.
+                Assessment built around the work.
               </h2>
               <p className="mt-6 max-w-xl text-sm leading-7 text-slate-300">
-                Multiple signals value preparation, action, reflection and demonstrated transfer—not
-                performance on a single instrument.
+                Learners are assessed through preparation, action, reflection and evidence from
+                several tasks—not a single test.
               </p>
             </div>
 
@@ -527,7 +527,7 @@ export function SubjectCoursePage({ config }: { config: SubjectCourseConfig }) {
                 id="integrity-title"
                 className="display text-4xl leading-[1.04] font-semibold text-balance sm:text-6xl"
               >
-                Ambition with guardrails.
+                Clear boundaries for responsible work.
               </h2>
               <p className="text-ink-600 dark:text-ink-300 mt-6 text-sm leading-7">
                 Clear boundaries protect people, learning quality and the legitimacy of the evidence

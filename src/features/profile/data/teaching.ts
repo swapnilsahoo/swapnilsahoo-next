@@ -35,10 +35,10 @@ export const teachingLinks: TeachingLink[] = [
     href: "/case-study-preparation/",
   },
   {
-    eyebrow: "MBA & PhD",
+    eyebrow: "MBA event · PhD lens",
     title: "AI Mini Hackathon",
     description:
-      "The July 2026 build programme in which the incoming PGDM cohort turned student problems into testable GenAI prototypes.",
+      "The July 2026 PGDM build programme, with a clearly labelled research lens for doctoral readers.",
     href: "/teaching/ai-hackathon",
   },
   {

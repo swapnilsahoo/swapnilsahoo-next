@@ -44,6 +44,7 @@ export function NavDropdownMenu({ dropdown }: { dropdown: NavDropdown }) {
   const ref = useRef<HTMLDivElement>(null);
   const menuId = useId();
   const closeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const hoverOpened = useRef(false);
   const alignRight = dropdown.label === "More";
   const menuTransform = alignRight
     ? `translateY(${open ? "0" : "4px"})`
@@ -58,7 +59,13 @@ export function NavDropdownMenu({ dropdown }: { dropdown: NavDropdown }) {
 
   const scheduleClose = () => {
     clearCloseTimeout();
-    closeTimeout.current = setTimeout(() => setOpen(false), CLOSE_DELAY_MS);
+    closeTimeout.current = setTimeout(() => {
+      closeTimeout.current = null;
+      if (!ref.current?.contains(document.activeElement)) {
+        hoverOpened.current = false;
+        setOpen(false);
+      }
+    }, CLOSE_DELAY_MS);
   };
 
   useEffect(() => clearCloseTimeout, []);
@@ -67,6 +74,7 @@ export function NavDropdownMenu({ dropdown }: { dropdown: NavDropdown }) {
     function handleClickOutside(event: MouseEvent) {
       if (ref.current && !ref.current.contains(event.target as Node)) {
         clearCloseTimeout();
+        hoverOpened.current = false;
         setOpen(false);
       }
     }
@@ -74,8 +82,27 @@ export function NavDropdownMenu({ dropdown }: { dropdown: NavDropdown }) {
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    if (!open) return;
+
+    function handleEscape(event: KeyboardEvent) {
+      if (event.key !== "Escape") return;
+      if (closeTimeout.current) {
+        clearTimeout(closeTimeout.current);
+        closeTimeout.current = null;
+      }
+      hoverOpened.current = false;
+      setOpen(false);
+      ref.current?.querySelector("button")?.focus();
+    }
+
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [open]);
+
   const closeMenu = () => {
     clearCloseTimeout();
+    hoverOpened.current = false;
     setOpen(false);
   };
 
@@ -85,15 +112,10 @@ export function NavDropdownMenu({ dropdown }: { dropdown: NavDropdown }) {
       className="relative"
       onMouseEnter={() => {
         clearCloseTimeout();
+        if (!open) hoverOpened.current = true;
         setOpen(true);
       }}
       onMouseLeave={scheduleClose}
-      onKeyDown={(event) => {
-        if (event.key === "Escape") {
-          closeMenu();
-          ref.current?.querySelector("button")?.focus();
-        }
-      }}
       onBlur={(event) => {
         if (!event.currentTarget.contains(event.relatedTarget)) closeMenu();
       }}
@@ -103,14 +125,24 @@ export function NavDropdownMenu({ dropdown }: { dropdown: NavDropdown }) {
         aria-expanded={open}
         aria-controls={menuId}
         className="link-underline inline-flex min-h-11 items-center gap-1 rounded-full px-3 py-1.5"
-        onClick={() => {
+        onClick={(event) => {
           clearCloseTimeout();
-          setOpen((value) => !value);
+          if (event.detail === 0) {
+            hoverOpened.current = false;
+            setOpen((value) => !value);
+          } else if (hoverOpened.current) {
+            hoverOpened.current = false;
+            setOpen(true);
+          } else {
+            setOpen((value) => !value);
+          }
         }}
       >
         {dropdown.label}
         <svg
-          className="h-3 w-3"
+          aria-hidden="true"
+          focusable="false"
+          className={`h-3 w-3 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -119,14 +151,25 @@ export function NavDropdownMenu({ dropdown }: { dropdown: NavDropdown }) {
           <polyline points="6 9 12 15 18 9" />
         </svg>
       </button>
+      {open ? (
+        <span
+          aria-hidden="true"
+          data-dropdown-hover-bridge={dropdown.label}
+          className={`pointer-events-auto absolute top-full z-50 block h-[14px] ${
+            alignRight ? "right-0" : "left-1/2 -translate-x-1/2"
+          }`}
+          style={{ width: alignRight ? 300 : 240 }}
+        />
+      ) : null}
       <div
         id={menuId}
         aria-hidden={!open}
         inert={!open}
-        className={`nav-glass dropdown-content absolute top-[calc(100%+10px)] z-50 max-h-[calc(100vh-6rem)] overflow-y-auto rounded-[14px] p-2 opacity-0 transition-[opacity,transform] duration-200 ${
-          alignRight ? "right-0 min-w-[300px]" : "left-1/2 min-w-[240px]"
+        className={`nav-glass dropdown-content absolute top-[calc(100%+10px)] z-50 max-h-[calc(100vh-10rem)] overflow-y-auto rounded-[14px] p-2 opacity-0 transition-[opacity,transform] duration-200 ${
+          alignRight ? "right-0" : "left-1/2"
         }`}
         style={{
+          minWidth: alignRight ? 300 : 240,
           pointerEvents: open ? "auto" : "none",
           opacity: open ? 1 : 0,
           transform: menuTransform,

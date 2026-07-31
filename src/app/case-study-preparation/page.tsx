@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     description:
       "Practice for structuring an unfamiliar business problem, analysing it and explaining what you would do.",
     url: "/case-study-preparation/",
-    images: ["/images/gallery/classroom-dialogue.png"],
+    images: ["/images/profile_pic.jpg"],
   },
 };
 
@@ -47,9 +47,9 @@ const preparationSystem = [
   },
   {
     index: "02",
-    title: "Build reusable muscles",
+    title: "Practise the building blocks",
     description:
-      "Practice issue trees, business arithmetic, chart reading and top-down communication before adding case complexity.",
+      "Practise issue trees, business arithmetic, chart reading and top-down communication before adding case complexity.",
   },
   {
     index: "03",
@@ -83,12 +83,13 @@ const caseFamilies = [
   },
   {
     name: "Pricing",
-    question: "What is the value, willingness to pay and strategic response?",
+    question:
+      "What value does the offer create, what will customers pay and how might competitors respond?",
     accent: "tag-amber",
   },
   {
     name: "M&A / PE",
-    question: "Is the asset attractive, synergistic and executable?",
+    question: "Will the asset create value, and can the deal be completed and integrated?",
     accent: "tag-blue",
   },
   {
@@ -163,7 +164,7 @@ export default function CaseStudyPreparationPage() {
                     Core loop
                   </p>
                   <p className="mt-2 font-serif text-2xl font-semibold">
-                    Scope → Structure → Synthesize
+                    Scope → Structure → Synthesise
                   </p>
                 </div>
                 <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
@@ -270,10 +271,10 @@ export default function CaseStudyPreparationPage() {
             <div className="relative grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
               <div>
                 <p className="font-mono text-[11px] tracking-[0.16em] text-blue-200 uppercase">
-                  Guesstimate operating system
+                  A disciplined guesstimate
                 </p>
                 <h2 className="mt-3 font-serif text-4xl font-semibold">
-                  Assumptions are visible. Logic is auditable.
+                  Keep assumptions visible and logic easy to check.
                 </h2>
               </div>
               <ol className="grid gap-3 sm:grid-cols-2">
@@ -318,7 +319,7 @@ export default function CaseStudyPreparationPage() {
               [
                 SparkIcon,
                 "Executive synthesis",
-                "Recommend, support, de-risk and define next steps.",
+                "State the recommendation, support it, address the main risk and define the next step.",
               ],
             ].map(([Icon, title, description]) => {
               const Component = Icon as typeof CompassIcon;
@@ -379,8 +380,8 @@ export default function CaseStudyPreparationPage() {
             <p className="text-ink-600 dark:text-ink-300 mt-4 max-w-3xl text-sm leading-relaxed">
               This learning experience is an original adaptation informed by the structure of the
               ISB Consulting Club&apos;s <em>Consulting Prep Casebook 2025</em>. The source contains
-              detailed frameworks, practice cases, guesstimates and industry primers. Copyright
-              remains with its respective owner.
+              detailed frameworks, practice cases, guesstimates and industry primers. Copyright in
+              the casebook remains with its owner.
             </p>
             <a
               href={casebookUrl}

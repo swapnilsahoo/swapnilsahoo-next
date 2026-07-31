@@ -12,7 +12,7 @@ export const linkedInHighlights = [
     eyebrow: "MBA classroom",
     title: "Strategy is choices, trade-offs and clear judgment",
     description:
-      "Reflections from teaching an experienced one-year MBA cohort through debate, real-world insight and learning by doing.",
+      "Reflections on teaching an experienced one-year MBA cohort through debate, professional experience and learning by doing.",
     href: "https://www.linkedin.com/posts/swapnilsahoo_greatlakes-strategicmanagement-teachingjourney-activity-7403351669478150145-GJG4",
   },
   {

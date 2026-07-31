@@ -90,3 +90,152 @@ for (const route of routes) {
     });
   }
 }
+
+for (const dropdown of [
+  {
+    label: "Teaching",
+    firstLink: "1-Year MBA",
+    lastLink: "Executive MDPs",
+    minimumWidth: 240,
+    adjacentLink: "PhD",
+  },
+  {
+    label: "More",
+    firstLink: "Press & Media",
+    lastLink: "Contact",
+    minimumWidth: 300,
+    adjacentLink: "Writing",
+  },
+]) {
+  test(`desktop header · ${dropdown.label} dropdown`, async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto(`${baseUrl}/`, { waitUntil: "domcontentloaded" });
+
+    const primaryNav = page.getByRole("navigation", { name: "Primary navigation" });
+    const trigger = primaryNav.getByRole("button", {
+      name: dropdown.label,
+      exact: true,
+    });
+    const adjacentLink = primaryNav.getByRole("link", {
+      name: dropdown.adjacentLink,
+      exact: true,
+    });
+    const menuId = await trigger.getAttribute("aria-controls");
+    const headerStyles = await primaryNav.evaluate((element) => ({
+      backdropFilter: window.getComputedStyle(element.firstElementChild).backdropFilter,
+      position: window.getComputedStyle(element).position,
+    }));
+
+    expect(menuId).toBeTruthy();
+    expect(headerStyles.position).toBe("sticky");
+    expect(headerStyles.backdropFilter).not.toBe("none");
+    await page.evaluate(() => window.scrollTo({ top: 600, behavior: "instant" }));
+    await expect
+      .poll(async () => {
+        const navBox = await primaryNav.boundingBox();
+        return Math.abs((navBox?.y ?? Number.POSITIVE_INFINITY) - 12);
+      })
+      .toBeLessThanOrEqual(1);
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+    await expect(trigger).toBeVisible();
+    await page.mouse.move(0, 0);
+    await trigger.hover();
+    await expect(trigger).toHaveAttribute("aria-expanded", "true");
+
+    const menu = page.locator(`#${menuId}`);
+    const bridge = page.locator(`[data-dropdown-hover-bridge="${dropdown.label}"]`);
+    await expect(menu).toBeVisible();
+    await expect(bridge).toBeVisible();
+    await expect(menu.getByRole("link", { name: dropdown.firstLink, exact: true })).toBeVisible();
+    await expect(menu.getByRole("link", { name: dropdown.lastLink, exact: true })).toBeVisible();
+
+    const box = await menu.boundingBox();
+    const bridgeBox = await bridge.boundingBox();
+    const adjacentLinkBox = await adjacentLink.boundingBox();
+    const styles = await menu.evaluate((element) => {
+      const computed = window.getComputedStyle(element);
+
+      return {
+        className: element.className,
+        backdropFilter: computed.backdropFilter,
+        maxHeight: computed.maxHeight,
+        minWidth: computed.minWidth,
+        overflowY: computed.overflowY,
+      };
+    });
+    expect(box, `${dropdown.label} menu has no rendered box`).not.toBeNull();
+    expect(bridgeBox, `${dropdown.label} bridge has no rendered box`).not.toBeNull();
+    expect(adjacentLinkBox, `${dropdown.adjacentLink} has no rendered box`).not.toBeNull();
+    expect(styles.backdropFilter).not.toBe("none");
+    expect(box.width, `${dropdown.label} menu is too narrow`).toBeGreaterThanOrEqual(
+      dropdown.minimumWidth
+    );
+    expect(box.x, `${dropdown.label} menu crosses the left viewport edge`).toBeGreaterThanOrEqual(
+      0
+    );
+    expect(
+      box.x + box.width,
+      `${dropdown.label} menu crosses the right viewport edge`
+    ).toBeLessThanOrEqual(1440);
+    expect(box.y, `${dropdown.label} menu renders above the header`).toBeGreaterThan(0);
+    expect(
+      box.y + box.height,
+      `${dropdown.label} menu crosses the bottom viewport edge: ${JSON.stringify({ box, styles })}`
+    ).toBeLessThanOrEqual(900);
+    expect(bridgeBox.x).toBeCloseTo(box.x, 0);
+    expect(bridgeBox.width).toBeCloseTo(box.width, 0);
+    expect(bridgeBox.y).toBeLessThanOrEqual(box.y);
+    expect(bridgeBox.y + bridgeBox.height).toBeGreaterThanOrEqual(box.y);
+
+    const adjacentHitTarget = await page.evaluate(
+      ({ x, y }) => document.elementFromPoint(x, y)?.closest("a, button")?.textContent?.trim(),
+      {
+        x: adjacentLinkBox.x + adjacentLinkBox.width / 2,
+        y: adjacentLinkBox.y + adjacentLinkBox.height / 2,
+      }
+    );
+    expect(adjacentHitTarget).toBe(dropdown.adjacentLink);
+
+    await bridge.hover();
+    await page.waitForTimeout(550);
+    await expect(trigger).toHaveAttribute("aria-expanded", "true");
+    await menu.hover();
+
+    await page.mouse.move(0, 0);
+    await page.waitForTimeout(550);
+    await expect(trigger).toHaveAttribute("aria-expanded", "false");
+
+    await trigger.click();
+    await expect(trigger).toHaveAttribute("aria-expanded", "true");
+    await trigger.click();
+    await expect(trigger).toHaveAttribute("aria-expanded", "false");
+    await trigger.click();
+    await expect(trigger).toHaveAttribute("aria-expanded", "true");
+
+    await page.mouse.click(0, 0);
+    await expect(trigger).toHaveAttribute("aria-expanded", "false");
+
+    await trigger.focus();
+    await page.keyboard.press("Enter");
+    await expect(trigger).toHaveAttribute("aria-expanded", "true");
+    await page.keyboard.press("Tab");
+    await expect(menu.getByRole("link", { name: dropdown.firstLink, exact: true })).toBeFocused();
+
+    await page.mouse.move(0, 0);
+    await page.waitForTimeout(550);
+    await expect(trigger).toHaveAttribute("aria-expanded", "true");
+    await expect(menu.getByRole("link", { name: dropdown.firstLink, exact: true })).toBeFocused();
+
+    await page.keyboard.press("Escape");
+    await expect(trigger).toHaveAttribute("aria-expanded", "false");
+    await expect(trigger).toBeFocused();
+
+    await page.evaluate(() => document.activeElement?.blur());
+    await trigger.hover();
+    await expect(trigger).toHaveAttribute("aria-expanded", "true");
+    await page.keyboard.press("Escape");
+    await expect(trigger).toHaveAttribute("aria-expanded", "false");
+    await expect(trigger).toBeFocused();
+  });
+}

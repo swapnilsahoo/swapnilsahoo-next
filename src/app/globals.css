@@ -190,12 +190,11 @@ div {
   color: #eef1f5;
 }
 
-body > * {
-  position: relative;
-}
-
-body > *:not(nav) {
-  z-index: 1;
+@layer base {
+  body > *:not(nav) {
+    position: relative;
+    z-index: 1;
+  }
 }
 
 body::before {
@@ -284,8 +283,8 @@ body::after {
 
 .glass-card {
   background: var(--glass-bg);
-  backdrop-filter: saturate(170%) blur(var(--glass-blur));
   -webkit-backdrop-filter: saturate(170%) blur(var(--glass-blur));
+  backdrop-filter: saturate(170%) blur(var(--glass-blur));
   border: 1px solid var(--glass-border);
   border-radius: 18px;
   box-shadow: var(--glass-shadow);
@@ -334,8 +333,8 @@ body::after {
 
 .nav-glass {
   background: var(--glass-strong);
-  backdrop-filter: saturate(190%) blur(24px);
   -webkit-backdrop-filter: saturate(190%) blur(24px);
+  backdrop-filter: saturate(190%) blur(24px);
   border: 1px solid var(--glass-border);
   box-shadow:
     var(--nav-shadow),
@@ -470,8 +469,8 @@ body::after {
   font-weight: 600;
   font-size: 14px;
   border: 1px solid var(--glass-border);
-  backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
   transition:
     background 0.2s ease,
     border-color 0.2s ease;
@@ -611,8 +610,8 @@ body::after {
   width: min(calc(100vw - 24px), 380px);
   height: min(70dvh, 600px);
   background: var(--glass-strong);
-  backdrop-filter: saturate(170%) blur(24px);
   -webkit-backdrop-filter: saturate(170%) blur(24px);
+  backdrop-filter: saturate(170%) blur(24px);
   border: 1px solid var(--glass-border);
   border-radius: 18px;
   box-shadow:

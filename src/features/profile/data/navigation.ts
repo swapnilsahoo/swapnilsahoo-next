@@ -16,7 +16,7 @@ export const teachingDropdown: NavDropdown = {
     { label: "Business Simulation", href: "/teaching/business-simulation" },
     {
       label: "Case Study Preparation",
-      href: "/case-study-preparation/",
+      href: "/case-study-preparation",
     },
     { label: "AI Mini Hackathon", href: "/teaching/ai-hackathon" },
     { label: "Placements", href: "/placements" },
@@ -57,18 +57,18 @@ export const moreDropdown: NavDropdown = {
         },
       ],
     },
-    { label: "Comics & Fiction", href: "/comics/" },
+    { label: "Comics & Fiction", href: "/comics" },
     {
       label: "Mythology",
-      href: "/mythology/",
+      href: "/mythology",
       children: [
         {
           label: "Mahabharata (Original)",
-          href: "/mythology/#mahabharata-original",
+          href: "/mythology#mahabharata-original",
         },
         {
           label: "Ramayana (Original)",
-          href: "/mythology/#ramayana-original",
+          href: "/mythology#ramayana-original",
         },
       ],
     },

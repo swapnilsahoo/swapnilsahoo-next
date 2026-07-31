@@ -35,10 +35,10 @@ export const metadata: Metadata = {
     url: "/comics/",
     images: [
       {
-        url: "/images/comics/guardian-of-hope.png",
-        width: 1672,
-        height: 941,
-        alt: "An original comic-book guardian overlooking a city at sunrise",
+        url: "/images/comics/flying-superman.jpg",
+        width: 2592,
+        height: 3605,
+        alt: "A Superman cosplayer leaping upward with one arm raised",
       },
     ],
   },
@@ -126,11 +126,11 @@ export default function ComicsPage() {
     <main id="main-content">
       <header className={`${styles.hero} relative isolate overflow-hidden text-white`}>
         <Image
-          src="/images/comics/guardian-of-hope.png"
-          alt="An original comic-book illustration of a caped guardian watching a city awaken as teachers, neighbors and first responders help others"
+          src="/images/comics/flying-superman.jpg"
+          alt="A Superman cosplayer in a blue suit and red cape leaping upward with one arm raised"
           fill
           priority
-          className="object-cover"
+          className="object-cover object-[76%_24%]"
           sizes="100vw"
         />
         <div className={styles.heroOverlay} aria-hidden="true" />
@@ -173,9 +173,28 @@ export default function ComicsPage() {
             </div>
           </div>
 
-          <p className="max-w-xl border-l-2 border-red-500 pl-4 text-[11px] leading-5 text-slate-300 sm:text-xs">
-            Original editorial artwork: an unnamed guardian inspired by the hopeful tradition of
-            superhero comics.
+          <p className="max-w-2xl border-l-2 border-red-500 pl-4 text-[11px] leading-5 text-slate-200 sm:text-xs">
+            Superman cosplay at Dragon Con 2009. Photograph by{" "}
+            <a
+              href="https://commons.wikimedia.org/wiki/File:Flying_Superman.jpg"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-white underline decoration-white/60 underline-offset-2 hover:text-yellow-200"
+            >
+              J F Willis / Wikimedia Commons
+              <span className="sr-only"> (opens in a new tab)</span>
+            </a>
+            , licensed under{" "}
+            <a
+              href="https://creativecommons.org/licenses/by-sa/2.0/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-white underline decoration-white/60 underline-offset-2 hover:text-yellow-200"
+            >
+              CC BY-SA 2.0
+              <span className="sr-only"> (opens in a new tab)</span>
+            </a>
+            .
           </p>
         </Container>
       </header>
@@ -226,39 +245,6 @@ export default function ComicsPage() {
                   “Hope is not a forecast. It is a moral position.”
                 </p>
               </div>
-              <figure className="mt-10 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl shadow-slate-950/10 dark:border-white/10 dark:bg-[#07101f]">
-                <Image
-                  src="/images/comics/flying-superman.jpg"
-                  alt="A Superman cosplayer in a blue suit and red cape leaping upward with one arm raised"
-                  width={2592}
-                  height={3605}
-                  className="h-auto w-full"
-                  sizes="(min-width: 1024px) 34vw, (min-width: 640px) 70vw, 100vw"
-                />
-                <figcaption className="px-4 py-3 text-[11px] leading-5 text-slate-500 dark:text-slate-400">
-                  Superman cosplay at Dragon Con 2009. Photograph by{" "}
-                  <a
-                    href="https://commons.wikimedia.org/wiki/File:Flying_Superman.jpg"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-semibold text-blue-700 underline decoration-blue-300 underline-offset-2 hover:text-red-700 dark:text-blue-300"
-                  >
-                    J F Willis / Wikimedia Commons
-                    <span className="sr-only"> (opens in a new tab)</span>
-                  </a>
-                  , licensed under{" "}
-                  <a
-                    href="https://creativecommons.org/licenses/by-sa/2.0/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-semibold text-blue-700 underline decoration-blue-300 underline-offset-2 hover:text-red-700 dark:text-blue-300"
-                  >
-                    CC BY-SA 2.0
-                    <span className="sr-only"> (opens in a new tab)</span>
-                  </a>
-                  .
-                </figcaption>
-              </figure>
             </div>
 
             <div className={`${styles.prose} text-slate-700 dark:text-slate-300`}>
@@ -557,8 +543,9 @@ export default function ComicsPage() {
               </ul>
               <p className="mt-7 max-w-3xl text-xs leading-6 text-slate-500 dark:text-slate-400">
                 This is an independent, non-commercial critical reflection. Superman and related
-                character names are trademarks of DC. The hero artwork on this page is an original
-                illustration of an unnamed guardian and is not official DC artwork.
+                character names are trademarks of DC. The independently licensed cosplay photograph
+                is credited above; its use does not imply endorsement by the photographer, DC or
+                Wikimedia Commons.
               </p>
             </div>
           </div>
