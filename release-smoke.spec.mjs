@@ -138,6 +138,77 @@ test("Comics & Fiction branches · page and navigation", async ({ page }) => {
   }
 });
 
+test("Comics & Fiction story cycles · structure and disclosure behaviour", async ({ page }) => {
+  const cycles = ["spider-man", "superman", "he-man"];
+
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto(`${baseUrl}/comics`, { waitUntil: "domcontentloaded" });
+
+  await expect(page.locator("[data-story-cycle]")).toHaveCount(3);
+  for (const slug of cycles) {
+    const cycle = page.locator(`[data-story-cycle="${slug}"]`);
+    const chapters = cycle.locator("details");
+
+    await expect(chapters).toHaveCount(6);
+    await expect(chapters.locator("summary")).toHaveCount(6);
+    expect(await chapters.evaluateAll((items) => items.every((item) => !item.open))).toBe(true);
+    expect(
+      await chapters.evaluateAll((items) =>
+        items.every((item) => item.firstElementChild?.tagName === "SUMMARY")
+      )
+    ).toBe(true);
+  }
+
+  const firstChapter = page.locator("#spider-man-chapter-1");
+  const secondChapter = page.locator("#spider-man-chapter-2");
+  const firstSummary = firstChapter.locator("summary");
+  const secondSummary = secondChapter.locator("summary");
+
+  await firstSummary.focus();
+  await page.keyboard.press("Enter");
+  await expect(firstChapter).toHaveAttribute("open", "");
+  await expect(firstSummary).toBeFocused();
+
+  await secondSummary.focus();
+  await page.keyboard.press("Enter");
+  await expect(firstChapter).toHaveAttribute("open", "");
+  await expect(secondChapter).toHaveAttribute("open", "");
+
+  await firstSummary.focus();
+  await page.keyboard.press("Space");
+  await expect(firstChapter).not.toHaveAttribute("open", "");
+  await expect(firstSummary).toBeFocused();
+
+  const documentText = await page.locator("body").textContent();
+  expect(documentText).toContain("Responsibility that does not take over");
+  expect(documentText).toContain("Hope a city can practise");
+  expect(documentText).toContain("Power that makes itself less necessary");
+
+  await page.setViewportSize({ width: 320, height: 720 });
+  await page.goto(`${baseUrl}/comics`, { waitUntil: "domcontentloaded" });
+
+  for (const slug of cycles) {
+    const summaries = page.locator(`[data-story-cycle="${slug}"] summary`);
+    const summaryHeights = await summaries.evaluateAll((items) =>
+      items.map((item) => Math.round(item.getBoundingClientRect().height))
+    );
+    expect(Math.min(...summaryHeights), `${slug} has a summary below 44px`).toBeGreaterThanOrEqual(
+      44
+    );
+    await page.locator(`#${slug}-chapter-6 > summary`).click();
+  }
+
+  const expandedOverflow = await page.evaluate(
+    () => document.documentElement.scrollWidth - window.innerWidth
+  );
+  expect(expandedOverflow).toBeLessThanOrEqual(1);
+
+  const storyIds = await page
+    .locator("[data-story-cycle] [id]")
+    .evaluateAll((items) => items.map((item) => item.id));
+  expect(new Set(storyIds).size).toBe(storyIds.length);
+});
+
 for (const dropdown of [
   {
     label: "Teaching",

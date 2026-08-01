@@ -9,12 +9,14 @@ import {
 } from "@/components/icons/LineIcons";
 import { Container } from "@/components/ui/Container";
 
+import { StoryCycle } from "./StoryCycle";
 import styles from "./comics.module.css";
+import { heManStory, spiderManStory, supermanStory } from "./storyCycles";
 
 export const metadata: Metadata = {
   title: "Comics & Fiction — Aspiration, Hope and Resilience",
   description:
-    "An original reflection on Spider-Man, Superman and He-Man—and what their stories can teach us about aspiration, hope and surviving against the odds.",
+    "Three original, unofficial six-chapter story cycles exploring Spider-Man, Superman and He-Man through aspiration, hope and surviving against the odds.",
   keywords: [
     "comics and fiction",
     "Spider-Man",
@@ -30,7 +32,7 @@ export const metadata: Metadata = {
     type: "article",
     title: "Comics & Fiction — Three Ways to Keep Going",
     description:
-      "Spider-Man, Superman and He-Man offer three different reflections on responsibility, hope and courage when the odds are difficult.",
+      "Three unofficial six-chapter story cycles move from immediate choices to higher-order ideas about responsibility, hope and stewardship.",
     url: "/comics",
   },
 };
@@ -119,8 +121,8 @@ export default function ComicsPage() {
             </h1>
             <p className="mt-7 max-w-3xl text-base leading-8 text-slate-100 sm:text-xl sm:leading-9">
               Comics make inner battles visible. Fear acquires a face. Responsibility becomes a
-              choice. Hope takes action. Through three very different heroes, this page asks a
-              simple question: when life narrows our options, what helps us continue?
+              choice. Hope takes action. Through three original interpretive story cycles, this page
+              asks a simple question: when life narrows our options, what helps us continue?
             </p>
 
             <nav
@@ -141,7 +143,8 @@ export default function ComicsPage() {
           </div>
 
           <p className="max-w-3xl border-l-2 border-yellow-300 pl-4 text-xs leading-6 text-slate-300">
-            An independent critical reflection on fictional characters—not a canon guide or a claim
+            These are independent critical reflections and unofficial works of fiction. They are
+            neither part of any published canon nor authorised continuations, and they do not claim
             that courage always wins quickly.
           </p>
         </Container>
@@ -270,6 +273,13 @@ export default function ComicsPage() {
               </a>
             </div>
           </div>
+
+          <StoryCycle
+            story={spiderManStory}
+            characterName="Spider-Man"
+            slug="spider-man"
+            tone="spider"
+          />
         </Container>
       </section>
 
@@ -372,6 +382,13 @@ export default function ComicsPage() {
               </a>
             </div>
           </div>
+
+          <StoryCycle
+            story={supermanStory}
+            characterName="Superman"
+            slug="superman"
+            tone="superman"
+          />
         </Container>
       </section>
 
@@ -448,6 +465,8 @@ export default function ComicsPage() {
               </a>
             </div>
           </div>
+
+          <StoryCycle story={heManStory} characterName="He-Man" slug="he-man" tone="heMan" />
         </Container>
       </section>
 
@@ -552,12 +571,14 @@ export default function ComicsPage() {
                 ))}
               </ul>
               <p className="mt-7 max-w-3xl text-xs leading-6 text-slate-500 dark:text-slate-400">
-                Character facts are summarized from the linked overview pages; the interpretations
-                here are original reflections. Comic and screen continuities vary, especially for
-                He-Man. This is an independent, non-commercial critical essay. Spider-Man, Superman,
-                He-Man and their related properties belong to their respective rights holders. The
-                independently licensed Superman cosplay photograph is credited above; its use does
-                not imply endorsement by the photographer, Wikimedia Commons or any rights holder.
+                Character facts are summarised from the linked overview pages. These story cycles
+                and their fictional situations were written for this page as an independent,
+                unofficial critical reflection. They are not summaries of published stories, part of
+                any official canon, or authorised continuations. Comic and screen continuities vary,
+                especially for He-Man. Spider-Man, Superman, He-Man and their related properties
+                belong to their respective rights holders. The independently licensed Superman
+                cosplay photograph is credited above; nothing on this page implies endorsement by
+                the photographer, Wikimedia Commons or any rights holder.
               </p>
             </div>
           </div>

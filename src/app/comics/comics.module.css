@@ -79,6 +79,25 @@
   margin-top: 1.5rem;
 }
 
+.storySummary {
+  list-style: none;
+  overflow-wrap: anywhere;
+}
+
+.storySummary::-webkit-details-marker {
+  display: none;
+}
+
+.storyChevron {
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease;
+}
+
+.storyChapter[open] .storyChevron {
+  transform: rotate(180deg);
+}
+
 .supermanBand {
   position: relative;
   background: linear-gradient(120deg, rgb(220 38 38 / 0.12), transparent 44%), #06152c;
@@ -139,6 +158,28 @@
 @media (prefers-reduced-motion: no-preference) {
   .heroOrbOne {
     animation: drift 10s ease-in-out infinite alternate;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .storyChevron {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .storyChevron {
+    border: 1px solid ButtonText;
+  }
+}
+
+@media print {
+  .storyChapter > :not(.storySummary) {
+    display: block !important;
+  }
+
+  .storyChevron {
+    display: none;
   }
 }
 
