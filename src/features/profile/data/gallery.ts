@@ -11,6 +11,16 @@ export const galleryImages: GalleryImage[] = [
     objectPosition: "center",
   },
   {
+    src: "/images/gallery/aom-2026-global-scholar-development.webp",
+    alt: "AOM 2026 participants gathered around a conference table after the Global Scholar Development session",
+    caption: "Meeting the Global Scholar Development panel · AOM 2026",
+    description:
+      "With panelists Dean Shepherd, Madeline Toubiana and Raj Shankar; coordinator Trenton Williams; and organizer Golshan Javadian for “Entrepreneurship Research in Non-WEIRD Contexts.”",
+    objectFit: "contain",
+    objectPosition: "center",
+    sourceUrl: "https://events.aom.org/events/aom-2026/session/UFVyz8CpQb3JGVqoouUNt",
+  },
+  {
     src: "/images/gallery/aacsb-societal-impact-visit.jpeg",
     alt: "Swapnil Sahoo with Dr. Raju Balakrishnan and Great Lakes colleagues during the AACSB peer review visit",
     caption: "AACSB peer review visit · Societal impact in dialogue",
