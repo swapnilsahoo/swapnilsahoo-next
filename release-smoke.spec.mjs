@@ -238,9 +238,6 @@ test("Homepage gallery · AOM 2026 event photographs", async ({ page }) => {
   const sessionPhoto = secondSlide.getByRole("img", {
     name: /AOM 2026 participants gathered around a conference table/,
   });
-  const sourceLink = secondSlide.getByRole("link", {
-    name: /Meeting the Global Scholar Development panel · AOM 2026/,
-  });
 
   await expect(gallery.getByRole("button", { name: "Go to slide 2" })).toHaveAttribute(
     "aria-current",
@@ -250,10 +247,7 @@ test("Homepage gallery · AOM 2026 event photographs", async ({ page }) => {
   await expect(secondSlide).toContainText("Dean Shepherd, Madeline Toubiana and Raj Shankar");
   await expect(secondSlide).toContainText("Trenton Williams");
   await expect(secondSlide).toContainText("Golshan Javadian");
-  await expect(sourceLink).toHaveAttribute(
-    "href",
-    "https://events.aom.org/events/aom-2026/session/UFVyz8CpQb3JGVqoouUNt"
-  );
+  await expect(secondSlide.getByRole("link")).toHaveCount(0);
 });
 
 for (const dropdown of [

@@ -18,7 +18,6 @@ export const galleryImages: GalleryImage[] = [
       "With panelists Dean Shepherd, Madeline Toubiana and Raj Shankar; coordinator Trenton Williams; and organizer Golshan Javadian for “Entrepreneurship Research in Non-WEIRD Contexts.”",
     objectFit: "contain",
     objectPosition: "center",
-    sourceUrl: "https://events.aom.org/events/aom-2026/session/UFVyz8CpQb3JGVqoouUNt",
   },
   {
     src: "/images/gallery/aacsb-societal-impact-visit.jpeg",
