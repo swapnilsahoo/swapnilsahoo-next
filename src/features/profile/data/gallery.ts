@@ -2,6 +2,15 @@ import type { GalleryImage } from "@/features/profile/types";
 
 export const galleryImages: GalleryImage[] = [
   {
+    src: "/images/gallery/aom-2026-philadelphia-convention-center.webp",
+    alt: "Swapnil Sahoo with four fellow Academy of Management attendees at AOM 2026 in the Philadelphia Convention Center",
+    caption: "AOM 2026 · Philadelphia Convention Center",
+    description:
+      "With fellow scholars at the Academy of Management gathering in Philadelphia—a warm moment of connection between conversations. Personal event photograph supplied by Swapnil Sahoo.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
+  {
     src: "/images/gallery/aacsb-societal-impact-visit.jpeg",
     alt: "Swapnil Sahoo with Dr. Raju Balakrishnan and Great Lakes colleagues during the AACSB peer review visit",
     caption: "AACSB peer review visit · Societal impact in dialogue",

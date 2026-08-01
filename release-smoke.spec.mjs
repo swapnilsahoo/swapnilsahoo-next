@@ -209,6 +209,30 @@ test("Comics & Fiction story cycles · structure and disclosure behaviour", asyn
   expect(new Set(storyIds).size).toBe(storyIds.length);
 });
 
+test("Homepage gallery · AOM 2026 event photograph", async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 720 });
+  await page.goto(`${baseUrl}/#gallery`, { waitUntil: "domcontentloaded" });
+
+  const gallery = page.getByRole("region", { name: "Fieldwork and teaching gallery" });
+  const firstSlide = gallery.getByRole("group", { name: "1 of 6" });
+  const photo = firstSlide.getByRole("img", {
+    name: /Swapnil Sahoo with four fellow Academy of Management attendees at AOM 2026/,
+  });
+
+  await expect(firstSlide).toBeVisible();
+  await expect(photo).toBeVisible();
+  await expect(firstSlide).toContainText("AOM 2026 · Philadelphia Convention Center");
+  await expect(photo).toHaveJSProperty("complete", true);
+
+  const dimensions = await photo.evaluate((image) => ({
+    naturalWidth: image.naturalWidth,
+    naturalHeight: image.naturalHeight,
+  }));
+  expect(dimensions.naturalWidth).toBeGreaterThan(0);
+  expect(dimensions.naturalHeight).toBeGreaterThan(0);
+  expect(dimensions.naturalWidth / dimensions.naturalHeight).toBeCloseTo(4 / 3, 2);
+});
+
 for (const dropdown of [
   {
     label: "Teaching",

@@ -70,6 +70,7 @@ export interface GalleryImage {
   alt: string;
   caption: string;
   description?: string;
+  objectFit?: "cover" | "contain";
   objectPosition?: string;
 }
 
