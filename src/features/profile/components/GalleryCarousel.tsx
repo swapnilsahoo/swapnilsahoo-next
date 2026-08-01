@@ -77,13 +77,28 @@ export function GalleryCarousel({ images }: { images: GalleryImage[] }) {
                 role="group"
                 aria-roledescription="slide"
                 aria-label={`${index + 1} of ${images.length}`}
-                className="relative h-[min(64vh,32rem)] min-w-0 flex-[0_0_100%] sm:h-[420px]"
+                className="relative h-[min(64vh,32rem)] min-w-0 flex-[0_0_100%] overflow-hidden bg-slate-950 sm:h-[420px]"
               >
+                {image.objectFit === "contain" ? (
+                  <>
+                    <Image
+                      src={image.src}
+                      alt=""
+                      fill
+                      aria-hidden="true"
+                      className="scale-110 object-cover opacity-45 blur-2xl"
+                      style={{ objectPosition: image.objectPosition }}
+                      sizes="(min-width: 1024px) 1000px, 100vw"
+                      quality={45}
+                    />
+                    <div className="absolute inset-0 bg-black/35" aria-hidden="true" />
+                  </>
+                ) : null}
                 <Image
                   src={image.src}
                   alt={image.alt}
                   fill
-                  className="object-cover"
+                  className={image.objectFit === "contain" ? "object-contain" : "object-cover"}
                   style={{ objectPosition: image.objectPosition }}
                   sizes="(min-width: 1024px) 1000px, 100vw"
                   quality={85}
