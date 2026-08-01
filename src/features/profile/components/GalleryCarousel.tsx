@@ -104,7 +104,24 @@ export function GalleryCarousel({ images }: { images: GalleryImage[] }) {
                   quality={85}
                 />
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/55 to-transparent px-4 pt-20 pb-4 sm:px-6 sm:pb-5">
-                  <p className="font-serif text-lg font-semibold text-white">{image.caption}</p>
+                  <p className="font-serif text-lg font-semibold text-white">
+                    {image.sourceUrl ? (
+                      <a
+                        href={image.sourceUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline decoration-white/45 underline-offset-4 transition-colors hover:decoration-white focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                      >
+                        {image.caption}
+                        <span className="sr-only">
+                          {" "}
+                          (opens the official session listing in a new tab)
+                        </span>
+                      </a>
+                    ) : (
+                      image.caption
+                    )}
+                  </p>
                   {image.description ? (
                     <p className="mt-1.5 max-w-3xl text-xs leading-relaxed text-white/85 sm:text-sm">
                       {image.description}

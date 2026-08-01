@@ -209,12 +209,12 @@ test("Comics & Fiction story cycles · structure and disclosure behaviour", asyn
   expect(new Set(storyIds).size).toBe(storyIds.length);
 });
 
-test("Homepage gallery · AOM 2026 event photograph", async ({ page }) => {
+test("Homepage gallery · AOM 2026 event photographs", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 720 });
   await page.goto(`${baseUrl}/#gallery`, { waitUntil: "domcontentloaded" });
 
   const gallery = page.getByRole("region", { name: "Fieldwork and teaching gallery" });
-  const firstSlide = gallery.getByRole("group", { name: "1 of 6" });
+  const firstSlide = gallery.getByRole("group", { name: "1 of 7" });
   const photo = firstSlide.getByRole("img", {
     name: /Swapnil Sahoo with four fellow Academy of Management attendees at AOM 2026/,
   });
@@ -231,6 +231,29 @@ test("Homepage gallery · AOM 2026 event photograph", async ({ page }) => {
   expect(dimensions.naturalWidth).toBeGreaterThan(0);
   expect(dimensions.naturalHeight).toBeGreaterThan(0);
   expect(dimensions.naturalWidth / dimensions.naturalHeight).toBeCloseTo(4 / 3, 2);
+
+  await gallery.getByRole("button", { name: "Go to slide 2" }).click();
+
+  const secondSlide = gallery.getByRole("group", { name: "2 of 7" });
+  const sessionPhoto = secondSlide.getByRole("img", {
+    name: /AOM 2026 participants gathered around a conference table/,
+  });
+  const sourceLink = secondSlide.getByRole("link", {
+    name: /Meeting the Global Scholar Development panel · AOM 2026/,
+  });
+
+  await expect(gallery.getByRole("button", { name: "Go to slide 2" })).toHaveAttribute(
+    "aria-current",
+    "true"
+  );
+  await expect(sessionPhoto).toBeVisible();
+  await expect(secondSlide).toContainText("Dean Shepherd, Madeline Toubiana and Raj Shankar");
+  await expect(secondSlide).toContainText("Trenton Williams");
+  await expect(secondSlide).toContainText("Golshan Javadian");
+  await expect(sourceLink).toHaveAttribute(
+    "href",
+    "https://events.aom.org/events/aom-2026/session/UFVyz8CpQb3JGVqoouUNt"
+  );
 });
 
 for (const dropdown of [
