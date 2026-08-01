@@ -72,7 +72,6 @@ export interface GalleryImage {
   description?: string;
   objectFit?: "cover" | "contain";
   objectPosition?: string;
-  sourceUrl?: string;
 }
 
 export interface ContactCard {
