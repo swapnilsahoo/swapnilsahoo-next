@@ -13,12 +13,13 @@ export function Teaching() {
             <span className="accent-rule" />
             <p className="eyebrow mb-3">05 / Teaching</p>
             <h2 className="display text-4xl font-semibold md:text-5xl">
-              Strategic Management, Business Simulation and GenAI for Business.
+              Teaching strategy through decisions, trade-offs and practice.
             </h2>
           </div>
           <p className="text-ink-600 dark:text-ink-300 self-end text-sm leading-relaxed md:col-span-8">
-            I teach through cases, simulations, fieldwork and, where it genuinely helps, AI. These
-            pages collect the briefs, session material and practice activities my students use.
+            Across PGPM and PGDM classrooms, I use cases, simulations, fieldwork and build exercises
+            to move from a framework to a defensible decision. AI appears where it genuinely
+            improves the work; fluent output still needs verification and human judgment.
           </p>
         </div>
 
@@ -49,7 +50,7 @@ export function Teaching() {
                 id="linkedin-notes-heading"
                 className="display text-ink-900 dark:text-ink-50 text-3xl font-semibold"
               >
-                Notes from work still in progress.
+                Questions I am working through in public.
               </h3>
             </div>
             <a
@@ -88,12 +89,15 @@ export function Teaching() {
           </div>
         </aside>
 
-        <figure className="mx-auto mt-14 max-w-3xl text-center">
-          <blockquote className="display text-ink-800 dark:text-ink-100 text-2xl leading-snug font-medium md:text-3xl">
-            &ldquo;{teachingPhilosophy.quote}&rdquo;
-          </blockquote>
-          <figcaption className="eyebrow mt-4">— {teachingPhilosophy.attribution}</figcaption>
-        </figure>
+        <aside className="glass-card mx-auto mt-14 max-w-3xl p-7 md:p-9">
+          <p className="eyebrow mb-3">Teaching approach</p>
+          <h3 className="display text-ink-900 dark:text-ink-50 text-2xl font-semibold md:text-3xl">
+            {teachingPhilosophy.title}
+          </h3>
+          <p className="text-ink-700 dark:text-ink-200 mt-4 leading-relaxed">
+            {teachingPhilosophy.description}
+          </p>
+        </aside>
       </section>
       <div className="hr-fade mx-auto max-w-6xl" />
     </Reveal>

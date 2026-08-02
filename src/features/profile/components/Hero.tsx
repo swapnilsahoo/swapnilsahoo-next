@@ -21,7 +21,7 @@ export function Hero() {
               />
               Accepting PhD enquiries
             </span>
-            <span className="tag tag-emerald">Researcher · Teacher · Former industry leader</span>
+            <span className="tag tag-emerald">17 years in industry · now in academia</span>
           </div>
           <h1 className="display mb-6 text-5xl font-semibold md:text-7xl">
             Dr. {profile.firstName}{" "}
@@ -31,10 +31,10 @@ export function Hero() {
             .
           </h1>
           <p className="text-ink-700 dark:text-ink-200 mb-8 max-w-2xl text-lg leading-relaxed md:text-xl">
-            I study how organisations—from young ventures to multi-generational family firms—find
-            ways forward when resources are tight. I also experiment carefully with AI in strategy
-            teaching. I am on the faculty at{" "}
-            <strong>Great Lakes Institute of Management, Gurgaon</strong> and earned my Ph.D. at{" "}
+            Before joining academia, I spent 17 years in strategic roles at Wipro, Accenture,
+            Cognizant, Mahindra and 42Gears Mobility. That experience now shapes my research on how
+            organisations act when resources are tight and the way I teach Strategy at{" "}
+            <strong>Great Lakes Institute of Management, Gurgaon</strong>. I earned my Ph.D. at{" "}
             <strong>XLRI Jamshedpur</strong>.
           </p>
           <div className="flex flex-wrap items-center gap-3">

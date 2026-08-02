@@ -11,29 +11,44 @@ export const researchStreams: ResearchStream[] = [
   {
     index: "Stream 01",
     title: "Entrepreneurial Resourcefulness",
-    description:
-      "I study how founders and family firms put scarce resources to work, and where bricolage, effectuation and dynamic-capabilities theory help explain what they do.",
+    centralQuestion:
+      "How do founders and family firms put scarce resources to work, and how can bricolage transition into effectuation?",
+    context:
+      "Founders and family businesses operating in resource-constrained environments and institutional voids.",
+    whyItMatters:
+      "This stream connects my doctoral work on entrepreneurial resourcefulness with questions about dynamic capabilities and repeatable adaptation.",
     icon: "bricolage",
   },
   {
     index: "Stream 02",
     title: "Neurodiversity & Dynamic Capabilities",
-    description:
-      'I study how cognitively diverse teams notice opportunities, act on them and adapt. This includes my work on the "spiky profile" in entrepreneurship theory (BAM 2025).',
+    centralQuestion:
+      "How might cognitively diverse teams notice opportunities, act on them and adapt?",
+    context:
+      'Neurodiversity, entrepreneurial teams and the "spiky profile" in entrepreneurship theory.',
+    whyItMatters:
+      "The work brings neurodiversity into the same opportunity-recognition and dynamic-capabilities conversation as the rest of my research.",
     icon: "compass",
   },
   {
     index: "Stream 03",
     title: "Frugal Innovation, Jugaad & Bricolage",
-    description:
-      "I look at how people create useful, affordable solutions when money and infrastructure are scarce, especially in family enterprises and emerging markets.",
+    centralQuestion:
+      "How do people create useful, affordable solutions when money and infrastructure are scarce?",
+    context: "Frugal innovation, jugaad and bricolage in family enterprises and emerging markets.",
+    whyItMatters:
+      "This stream connects resource-constrained innovation with my conference work on family involvement, sustainable innovation and R&D.",
     icon: "spark",
   },
   {
     index: "Stream 04",
     title: "Effectuation & Family Business Dynamics",
-    description:
-      "I examine how governance, trust, succession and AI adoption shape innovation in family enterprises across generations.",
+    centralQuestion:
+      "How do governance, trust, succession and AI adoption shape innovation across generations?",
+    context:
+      "Multi-generational family enterprises, where family relationships and strategic decisions meet.",
+    whyItMatters:
+      "The work links resourcefulness with my conference research on trust, sustainable innovation and family involvement.",
     icon: "network",
   },
 ];

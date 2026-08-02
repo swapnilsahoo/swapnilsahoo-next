@@ -9,6 +9,8 @@ const routes = [
   "/teaching/ai-hackathon",
   "/teaching/1-year-mba",
   "/teaching/2-year-mba",
+  "/placements",
+  "/case-study-preparation",
   "/comics",
   "/mythology",
   "/spirituality",
@@ -248,6 +250,27 @@ test("Homepage gallery · AOM 2026 event photographs", async ({ page }) => {
   await expect(secondSlide).toContainText("Trenton Williams");
   await expect(secondSlide).toContainText("Golshan Javadian");
   await expect(secondSlide.getByRole("link")).toHaveCount(0);
+});
+
+test("Lalita Sahasranama · range and direct-name navigation", async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 720 });
+  await page.goto(`${baseUrl}/spirituality/lalita-sahasranama#lalita-879`, {
+    waitUntil: "domcontentloaded",
+  });
+
+  const reader = page.locator("#reader");
+  const rangeSelect = reader.getByLabel("Name range");
+  const directEntry = page.locator("#lalita-879");
+
+  await expect(rangeSelect).toHaveValue("Names 851–900");
+  await expect(directEntry).toBeVisible();
+
+  await reader.getByLabel("Jump to name").fill("471");
+  await reader.getByRole("button", { name: "Go", exact: true }).click();
+
+  await expect(page).toHaveURL(/#lalita-471$/);
+  await expect(rangeSelect).toHaveValue("Names 451–500");
+  await expect(page.locator("#lalita-471")).toContainText("सिद्धेश्वरी");
 });
 
 for (const dropdown of [

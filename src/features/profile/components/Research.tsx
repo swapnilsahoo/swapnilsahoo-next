@@ -24,11 +24,14 @@ export function Research() {
           <div>
             <span className="accent-rule" />
             <p className="eyebrow mb-3">02 / Research agenda</p>
-            <h2 className="display text-4xl font-semibold md:text-5xl">Doing more with less.</h2>
+            <h2 className="display text-4xl font-semibold md:text-5xl">
+              How organisations act when resources are scarce.
+            </h2>
           </div>
           <p className="text-ink-600 dark:text-ink-300 max-w-md text-sm">
-            These four lines of inquiry return to the same practical question: what do people and
-            organisations actually do when the resources they need are not available?
+            My dissertation at XLRI examined entrepreneurial resourcefulness in resource-constrained
+            environments. These four lines of inquiry carry that question into family firms, frugal
+            innovation, neurodiverse teams and AI adoption.
           </p>
         </div>
 
@@ -59,9 +62,20 @@ export function Research() {
                   <span className="tag tag-ink">{stream.index}</span>
                 </div>
                 <h3 className="mb-2 font-serif text-2xl font-semibold">{stream.title}</h3>
-                <p className="text-ink-600 dark:text-ink-300 text-sm leading-relaxed">
-                  {stream.description}
-                </p>
+                <dl className="space-y-4 text-sm leading-relaxed">
+                  <div>
+                    <dt className="eyebrow mb-1">Central question</dt>
+                    <dd className="text-ink-700 dark:text-ink-200">{stream.centralQuestion}</dd>
+                  </div>
+                  <div>
+                    <dt className="eyebrow mb-1">Context</dt>
+                    <dd className="text-ink-600 dark:text-ink-300">{stream.context}</dd>
+                  </div>
+                  <div>
+                    <dt className="eyebrow mb-1">Connection</dt>
+                    <dd className="text-ink-600 dark:text-ink-300">{stream.whyItMatters}</dd>
+                  </div>
+                </dl>
               </div>
             );
           })}

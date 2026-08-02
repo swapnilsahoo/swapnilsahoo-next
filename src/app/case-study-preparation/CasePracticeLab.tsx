@@ -21,11 +21,11 @@ const practiceTracks = [
     label: "Quant",
     title: "Translate business language into numbers",
     prompt:
-      "A subscription product has 2 million users, 30% are paid, monthly ARPU is ₹500 and annual churn is 20%. Estimate current annual recurring revenue.",
+      "A subscription product has 2 million users, 30% are paid, monthly ARPU is ₹500 and annual churn is 20%. Estimate current annual recurring revenue—and say which information you did not need.",
     moves: [
       "Write the governing equation before calculating",
       "Keep units visible at every step",
-      "Sanity-check the order of magnitude",
+      "Explain why churn is not needed for a current ARR snapshot",
       "Interpret what the number means for the client",
     ],
   },
@@ -46,7 +46,7 @@ const practiceTracks = [
 
 const checklist = [
   "I clarified the objective and constraints",
-  "My structure was mutually exclusive and collectively exhaustive",
+  "My branches were distinct enough and collectively sufficient for this question",
   "I made a hypothesis and updated it with evidence",
   "I calculated cleanly and explained the implication",
   "I stated the answer, risks and next step clearly",
@@ -138,7 +138,7 @@ export function CasePracticeLab() {
         />
         <div className="relative">
           <p className="font-mono text-[11px] tracking-[0.16em] text-blue-200 uppercase">
-            Reflection score
+            Reflection checklist
           </p>
           <div className="mt-3 flex items-end gap-2">
             <span className="font-serif text-5xl font-semibold">{score}</span>
@@ -168,7 +168,8 @@ export function CasePracticeLab() {
             ))}
           </div>
           <p className="mt-5 text-xs leading-relaxed text-blue-200">
-            Your checklist is saved privately in this browser.
+            This is a memory aid, not a validated readiness score. Your choices are saved privately
+            in this browser.
           </p>
         </div>
       </aside>

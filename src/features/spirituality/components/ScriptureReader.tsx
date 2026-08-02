@@ -1,12 +1,26 @@
 "use client";
 
-import { useId, useMemo, useState } from "react";
+import type { FormEvent } from "react";
+import { useEffect, useId, useMemo, useState } from "react";
 
 import type { ReaderEntry, ScriptureSlug } from "@/features/spirituality/types";
 
 type ReadingLayer = "word" | "line";
 
+const ALL_SECTIONS = "All sections";
 const PAGE_SIZE = 12;
+const SAHASRANAMA_RANGE_SIZE = 50;
+
+function hasDistinctStudyRows(entry: ReaderEntry) {
+  if (entry.words.length !== 1) return entry.words.length > 0;
+
+  const [word] = entry.words;
+  return (
+    (word.original ?? "") !== entry.original ||
+    word.transliteration.trim() !== entry.transliteration.trim() ||
+    word.meaning.trim() !== entry.meaning.trim()
+  );
+}
 
 export function ScriptureReader({
   entries,
@@ -17,34 +31,44 @@ export function ScriptureReader({
   slug: ScriptureSlug;
   language: string;
 }) {
+  const isSahasranama = slug === "vishnu-sahasranama" || slug === "lalita-sahasranama";
+  const initialSection = isSahasranama ? (entries[0]?.section ?? ALL_SECTIONS) : ALL_SECTIONS;
   const searchId = useId();
   const sectionId = useId();
+  const jumpId = useId();
   const [query, setQuery] = useState("");
-  const [section, setSection] = useState("All sections");
+  const [section, setSection] = useState(initialSection);
   const [readingLayer, setReadingLayer] = useState<ReadingLayer>("word");
-  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const [visibleCount, setVisibleCount] = useState(
+    isSahasranama ? SAHASRANAMA_RANGE_SIZE : PAGE_SIZE
+  );
   const [copiedId, setCopiedId] = useState<string | null>(null);
-  const isSahasranama = slug === "vishnu-sahasranama" || slug === "lalita-sahasranama";
+  const [jumpValue, setJumpValue] = useState("1");
+  const [pendingEntryId, setPendingEntryId] = useState<string | null>(null);
+  const [navigationMessage, setNavigationMessage] = useState("");
   const romanizationLabel = slug === "hanuman-chalisa" ? "romanization" : "IAST";
   const studyLayerLabel =
     slug === "shiva-tandava-stotram" ? "Pāda study" : isSahasranama ? "Name study" : "Word study";
   const studyGuideLabel =
     slug === "shiva-tandava-stotram"
-      ? "Pāda & compound guide"
+      ? "Pāda-level reading guide"
       : isSahasranama
         ? "Received name & close gloss"
         : "Word & compound study";
 
   const sections = useMemo(
-    () => ["All sections", ...Array.from(new Set(entries.map((entry) => entry.section)))],
+    () => [ALL_SECTIONS, ...Array.from(new Set(entries.map((entry) => entry.section)))],
     [entries]
   );
+  const ranges = useMemo(() => sections.filter((option) => option !== ALL_SECTIONS), [sections]);
+  const activeRangeIndex = ranges.indexOf(section);
+  const supportsStudyLayer = useMemo(() => entries.some(hasDistinctStudyRows), [entries]);
 
   const filteredEntries = useMemo(() => {
     const normalizedQuery = query.trim().toLocaleLowerCase();
 
     return entries.filter((entry) => {
-      const inSection = section === "All sections" || entry.section === section;
+      const inSection = section === ALL_SECTIONS || entry.section === section;
       if (!inSection) return false;
       if (!normalizedQuery) return true;
 
@@ -63,20 +87,119 @@ export function ScriptureReader({
     filteredEntries.length === 1 ? "entry" : "entries"
   }`;
 
-  const resetVisibleCount = () => setVisibleCount(PAGE_SIZE);
+  const resetVisibleCount = (nextSection = section) => {
+    setVisibleCount(
+      isSahasranama && nextSection !== ALL_SECTIONS ? SAHASRANAMA_RANGE_SIZE : PAGE_SIZE
+    );
+  };
+
+  const chooseSection = (nextSection: string) => {
+    setQuery("");
+    setSection(nextSection);
+    resetVisibleCount(nextSection);
+    setNavigationMessage(
+      nextSection === ALL_SECTIONS ? "Showing all sections." : `Showing ${nextSection}.`
+    );
+  };
+
+  const moveRange = (direction: -1 | 1) => {
+    const nextIndex = activeRangeIndex + direction;
+    const nextRange = ranges[nextIndex];
+    if (nextRange) chooseSection(nextRange);
+  };
+
+  const showEntry = (sequence: number, updateHash = true) => {
+    const entry = entries.find((candidate) => candidate.sequence === sequence);
+    if (!entry) {
+      setNavigationMessage(`Choose a number from 1 to ${entries.length}.`);
+      return;
+    }
+
+    setQuery("");
+    setSection(entry.section);
+    setVisibleCount(SAHASRANAMA_RANGE_SIZE);
+    setJumpValue(String(entry.sequence));
+    setPendingEntryId(entry.id);
+    setNavigationMessage(`${entry.label} is ready.`);
+
+    if (updateHash) {
+      window.history.pushState(null, "", `#${entry.id}`);
+    }
+  };
+
+  const submitJump = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    showEntry(Number.parseInt(jumpValue, 10));
+  };
+
+  useEffect(() => {
+    if (!isSahasranama) return;
+
+    const showHashEntry = () => {
+      let entryId = "";
+      try {
+        entryId = decodeURIComponent(window.location.hash.slice(1));
+      } catch {
+        return;
+      }
+
+      const entry = entries.find((candidate) => candidate.id === entryId);
+      if (!entry) return;
+
+      setQuery("");
+      setSection(entry.section);
+      setVisibleCount(SAHASRANAMA_RANGE_SIZE);
+      setJumpValue(String(entry.sequence));
+      setPendingEntryId(entry.id);
+      setNavigationMessage(`${entry.label} is ready.`);
+    };
+
+    showHashEntry();
+    window.addEventListener("hashchange", showHashEntry);
+    window.addEventListener("popstate", showHashEntry);
+    return () => {
+      window.removeEventListener("hashchange", showHashEntry);
+      window.removeEventListener("popstate", showHashEntry);
+    };
+  }, [entries, isSahasranama]);
+
+  useEffect(() => {
+    if (!pendingEntryId) return;
+
+    const animationFrame = window.requestAnimationFrame(() => {
+      const target = document.getElementById(pendingEntryId);
+      if (!target) return;
+
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+      setPendingEntryId(null);
+    });
+
+    return () => window.cancelAnimationFrame(animationFrame);
+  }, [pendingEntryId]);
 
   const copyEntry = async (entry: ReaderEntry) => {
+    const distinctStudyRows = hasDistinctStudyRows(entry)
+      ? entry.words
+          .map(
+            (word) =>
+              `${word.original ? `${word.original} · ` : ""}${word.transliteration} — ${word.meaning}`
+          )
+          .join("\n")
+      : "";
+    const entryUrl = isSahasranama
+      ? `${window.location.origin}${window.location.pathname}#${entry.id}`
+      : "";
     const studyText = [
+      `${entry.label} · ${entry.section}`,
       entry.original,
       entry.transliteration,
       entry.meaning,
-      entry.words
-        .map(
-          (word) =>
-            `${word.original ? `${word.original} · ` : ""}${word.transliteration} — ${word.meaning}`
-        )
-        .join("\n"),
-    ].join("\n");
+      distinctStudyRows,
+      entryUrl,
+    ]
+      .filter(Boolean)
+      .join("\n");
 
     try {
       await navigator.clipboard.writeText(studyText);
@@ -97,9 +220,9 @@ export function ScriptureReader({
               Move between script, sound, and sense.
             </h3>
             <p className="text-ink-600 dark:text-ink-300 mt-2 max-w-2xl text-sm leading-relaxed">
-              Search every layer, narrow the list by section, or switch to the uncluttered line
-              view. Only a small set is rendered at once, so the complete reader stays quick on
-              phones as well as larger screens.
+              {isSahasranama
+                ? "Search every layer, move through fifty-name ranges, or jump directly to any numbered name. Each range stays quick to scan on phones as well as larger screens."
+                : "Search every layer, narrow the list by section, or switch to the uncluttered line view. Only a small set is rendered at once, so the reader stays quick on phones as well as larger screens."}
             </p>
           </div>
           <p
@@ -136,56 +259,129 @@ export function ScriptureReader({
                   resetVisibleCount();
                 }}
                 placeholder={`Devanagari, ${romanizationLabel}, or meaning`}
-                className="border-ink-200 focus:border-brand-500 focus:ring-brand-500/20 dark:border-ink-700 w-full rounded-xl border bg-white/80 py-3 pr-4 pl-11 text-sm outline-none focus:ring-4 dark:bg-white/5"
+                className="border-ink-200 focus:border-brand-500 focus:ring-brand-500/20 dark:border-ink-700 min-h-11 w-full rounded-xl border bg-white/80 py-3 pr-4 pl-11 text-sm outline-none focus:ring-4 dark:bg-white/5"
               />
             </div>
           </div>
 
           <div>
             <label htmlFor={sectionId} className="mb-2 block text-xs font-semibold">
-              Section
+              {isSahasranama ? "Name range" : "Section"}
             </label>
             <select
               id={sectionId}
               value={section}
-              onChange={(event) => {
-                setSection(event.target.value);
-                resetVisibleCount();
-              }}
-              className="border-ink-200 focus:border-brand-500 focus:ring-brand-500/20 dark:border-ink-700 w-full rounded-xl border bg-white/80 px-4 py-3 text-sm outline-none focus:ring-4 dark:bg-slate-950"
+              onChange={(event) => chooseSection(event.target.value)}
+              className="border-ink-200 focus:border-brand-500 focus:ring-brand-500/20 dark:border-ink-700 min-h-11 w-full rounded-xl border bg-white/80 px-4 py-3 text-sm outline-none focus:ring-4 dark:bg-slate-950"
             >
               {sections.map((option) => (
-                <option key={option}>{option}</option>
+                <option key={option} value={option}>
+                  {isSahasranama && option === ALL_SECTIONS ? "All 1,000 names" : option}
+                </option>
               ))}
             </select>
           </div>
 
-          <fieldset>
-            <legend className="mb-2 text-xs font-semibold">Reading layer</legend>
-            <div className="border-ink-200 dark:border-ink-700 flex rounded-xl border bg-white/80 p-1 dark:bg-white/5">
-              {(
-                [
-                  ["word", studyLayerLabel],
-                  ["line", "Line view"],
-                ] as const
-              ).map(([value, label]) => (
-                <button
-                  key={value}
-                  type="button"
-                  aria-pressed={readingLayer === value}
-                  onClick={() => setReadingLayer(value)}
-                  className={`focus-visible:ring-brand-500 rounded-lg px-3 py-2 text-xs font-semibold whitespace-nowrap transition focus-visible:ring-2 focus-visible:outline-none ${
-                    readingLayer === value
-                      ? "bg-slate-950 text-white shadow-sm dark:bg-amber-100 dark:text-amber-950"
-                      : "text-ink-600 dark:text-ink-300"
-                  }`}
-                >
-                  {label}
-                </button>
-              ))}
+          {supportsStudyLayer ? (
+            <fieldset>
+              <legend className="mb-2 text-xs font-semibold">Reading layer</legend>
+              <div className="border-ink-200 dark:border-ink-700 flex rounded-xl border bg-white/80 p-1 dark:bg-white/5">
+                {(
+                  [
+                    ["word", studyLayerLabel],
+                    ["line", "Line view"],
+                  ] as const
+                ).map(([value, label]) => (
+                  <button
+                    key={value}
+                    type="button"
+                    aria-pressed={readingLayer === value}
+                    onClick={() => setReadingLayer(value)}
+                    className={`focus-visible:ring-brand-500 min-h-11 rounded-lg px-3 py-2 text-xs font-semibold whitespace-nowrap transition focus-visible:ring-2 focus-visible:outline-none ${
+                      readingLayer === value
+                        ? "bg-slate-950 text-white shadow-sm dark:bg-amber-100 dark:text-amber-950"
+                        : "text-ink-600 dark:text-ink-300"
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+            </fieldset>
+          ) : (
+            <div>
+              <p className="mb-2 text-xs font-semibold">Study unit</p>
+              <p className="border-ink-200 text-ink-600 dark:border-ink-700 dark:text-ink-300 flex min-h-11 items-center rounded-xl border bg-white/80 px-3 text-xs dark:bg-white/5">
+                Numbered name with close gloss
+              </p>
             </div>
-          </fieldset>
+          )}
         </div>
+
+        {isSahasranama ? (
+          <nav
+            aria-label="Thousand-name reader navigation"
+            className="border-ink-200/80 dark:border-ink-700 mt-5 grid gap-4 border-t pt-5 lg:grid-cols-[1fr_auto] lg:items-end"
+          >
+            <div>
+              <p className="mb-2 text-xs font-semibold">Move by range</p>
+              <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => moveRange(-1)}
+                  disabled={activeRangeIndex <= 0}
+                  className="border-ink-200 text-ink-700 focus-visible:ring-brand-500 dark:border-ink-700 dark:text-ink-100 inline-flex min-h-11 min-w-11 items-center justify-center rounded-xl border bg-white/80 px-3 text-xs font-semibold transition hover:border-amber-400 focus-visible:ring-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-40 dark:bg-white/5"
+                >
+                  <span aria-hidden="true">←</span>
+                  <span className="ml-1 hidden sm:inline">Previous range</span>
+                  <span className="sr-only sm:hidden">Previous range</span>
+                </button>
+                <p className="text-ink-600 dark:text-ink-300 min-w-0 text-center text-xs font-semibold">
+                  {section === ALL_SECTIONS ? "All 1,000 names" : section}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => moveRange(1)}
+                  disabled={activeRangeIndex < 0 || activeRangeIndex >= ranges.length - 1}
+                  className="border-ink-200 text-ink-700 focus-visible:ring-brand-500 dark:border-ink-700 dark:text-ink-100 inline-flex min-h-11 min-w-11 items-center justify-center rounded-xl border bg-white/80 px-3 text-xs font-semibold transition hover:border-amber-400 focus-visible:ring-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-40 dark:bg-white/5"
+                >
+                  <span className="mr-1 hidden sm:inline">Next range</span>
+                  <span className="sr-only sm:hidden">Next range</span>
+                  <span aria-hidden="true">→</span>
+                </button>
+              </div>
+            </div>
+
+            <form onSubmit={submitJump}>
+              <label htmlFor={jumpId} className="mb-2 block text-xs font-semibold">
+                Jump to name
+              </label>
+              <div className="flex gap-2">
+                <input
+                  id={jumpId}
+                  type="number"
+                  min={1}
+                  max={entries.length}
+                  step={1}
+                  required
+                  inputMode="numeric"
+                  value={jumpValue}
+                  onChange={(event) => setJumpValue(event.target.value)}
+                  className="border-ink-200 focus:border-brand-500 focus:ring-brand-500/20 dark:border-ink-700 min-h-11 w-28 rounded-xl border bg-white/80 px-3 text-sm outline-none focus:ring-4 dark:bg-slate-950"
+                />
+                <button
+                  type="submit"
+                  className="bg-ink-950 focus-visible:ring-brand-500 inline-flex min-h-11 items-center justify-center rounded-xl px-4 text-sm font-semibold text-white transition hover:bg-slate-800 focus-visible:ring-2 focus-visible:outline-none dark:bg-white dark:text-slate-950"
+                >
+                  Go
+                </button>
+              </div>
+            </form>
+            <p className="sr-only" aria-live="polite">
+              {navigationMessage}
+            </p>
+          </nav>
+        ) : null}
       </div>
 
       <div className="p-4 sm:p-7">
@@ -195,7 +391,7 @@ export function ScriptureReader({
               key={entry.id}
               id={entry.id}
               aria-labelledby={`${entry.id}-title`}
-              className="group border-ink-200/80 dark:border-ink-700 relative overflow-hidden rounded-3xl border bg-white/80 p-5 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-amber-950/8 sm:p-7 dark:bg-white/[0.035]"
+              className="group border-ink-200/80 dark:border-ink-700 relative scroll-mt-28 overflow-hidden rounded-3xl border bg-white/80 p-5 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-amber-950/8 sm:p-7 dark:bg-white/[0.035]"
             >
               <div
                 className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-amber-400 via-orange-500 to-rose-500 opacity-65"
@@ -207,15 +403,25 @@ export function ScriptureReader({
 
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="rounded-full bg-amber-100 px-2.5 py-1 font-mono text-[10px] font-semibold tracking-wider text-amber-950 uppercase dark:bg-amber-400/15 dark:text-amber-200">
-                    {entry.label}
-                  </span>
+                  {isSahasranama ? (
+                    <a
+                      href={`#${entry.id}`}
+                      className="focus-visible:ring-brand-500 inline-flex min-h-11 items-center rounded-full bg-amber-100 px-3 font-mono text-[10px] font-semibold tracking-wider text-amber-950 uppercase focus-visible:ring-2 focus-visible:outline-none dark:bg-amber-400/15 dark:text-amber-200"
+                    >
+                      {entry.label}
+                      <span className="sr-only"> permalink</span>
+                    </a>
+                  ) : (
+                    <span className="rounded-full bg-amber-100 px-2.5 py-1 font-mono text-[10px] font-semibold tracking-wider text-amber-950 uppercase dark:bg-amber-400/15 dark:text-amber-200">
+                      {entry.label}
+                    </span>
+                  )}
                   <span className="text-ink-400 font-mono text-[10px]">{entry.section}</span>
                 </div>
                 <button
                   type="button"
                   onClick={() => copyEntry(entry)}
-                  className="text-ink-500 hover:text-brand-700 focus-visible:ring-brand-500 inline-flex min-h-9 items-center gap-1.5 rounded-lg px-2 text-xs font-semibold transition focus-visible:ring-2 focus-visible:outline-none dark:hover:text-blue-300"
+                  className="text-ink-500 hover:text-brand-700 focus-visible:ring-brand-500 inline-flex min-h-11 items-center gap-1.5 rounded-lg px-2 text-xs font-semibold transition focus-visible:ring-2 focus-visible:outline-none dark:hover:text-blue-300"
                 >
                   <svg
                     aria-hidden="true"
@@ -255,7 +461,7 @@ export function ScriptureReader({
                 </div>
               </div>
 
-              {readingLayer === "word" ? (
+              {readingLayer === "word" && hasDistinctStudyRows(entry) ? (
                 <div className="mt-6 border-t border-dashed border-amber-900/15 pt-5 dark:border-amber-100/15">
                   <p className="eyebrow mb-3">{studyGuideLabel}</p>
                   <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
@@ -297,10 +503,10 @@ export function ScriptureReader({
               type="button"
               onClick={() => {
                 setQuery("");
-                setSection("All sections");
-                resetVisibleCount();
+                setSection(initialSection);
+                resetVisibleCount(initialSection);
               }}
-              className="btn-ghost mt-5"
+              className="btn-ghost mt-5 min-h-11"
             >
               Reset reader
             </button>

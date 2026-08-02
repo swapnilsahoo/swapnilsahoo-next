@@ -46,7 +46,7 @@ const collections = [
     label: "Authentic Vishnu Sahasranama",
     href: "/spirituality/vishnu-sahasranama",
     language: "Sanskrit",
-    scope: "Complete · all 1,000 names",
+    scope: "Declared enumeration · all 1,000 names",
     description:
       "All one thousand names in their Mahābhārata setting, with consistent IAST, concise name-level meanings, and Bhīṣma, Vyāsa, and commentary roles clearly separated.",
   },
@@ -56,7 +56,7 @@ const collections = [
     label: "Authentic Lalita Sahasranama",
     href: "/spirituality/lalita-sahasranama",
     language: "Sanskrit",
-    scope: "Complete · all 1,000 names",
+    scope: "Declared enumeration · all 1,000 names",
     description:
       "All one thousand names with consistent IAST and concise name-level meanings, while the Vāgdevī, Hayagrīva–Agastya, and Bhāskararāya traditions remain clearly distinguished.",
   },
@@ -68,7 +68,7 @@ const collections = [
     language: "Sanskrit",
     scope: "Received edition · 17 annotated units",
     description:
-      "A drum-like complete study sequence with consistent IAST, a pāda-by-pāda compound guide, metre, manuscript variants, and a carefully qualified Rāvaṇa attribution.",
+      "A drum-like complete study sequence with consistent IAST, a pāda-level reading guide, metre, manuscript variants, and a carefully qualified Rāvaṇa attribution.",
   },
 ] as const;
 

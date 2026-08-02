@@ -18,10 +18,14 @@ export function Contact() {
           <div className="md:col-span-5">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">09 / Get in touch</p>
-            <h2 className="display mb-5 text-4xl font-semibold md:text-5xl">Let&rsquo;s talk.</h2>
+            <h2 className="display mb-5 text-4xl font-semibold md:text-5xl">
+              Start with a specific question.
+            </h2>
             <p className="text-ink-700 dark:text-ink-200 text-base leading-relaxed">
-              Write if you are considering PhD work, planning an executive programme, inviting a
-              speaker or simply want to share something relevant. I read my own email.
+              For PhD work, begin with the research puzzle and a one-page concept note. For an
+              executive programme, describe the participants and the decisions they need to work
+              through. You can also write with a speaking invitation or a relevant idea. I read my
+              own email.
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 md:col-span-7">

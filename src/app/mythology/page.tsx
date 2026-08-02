@@ -40,6 +40,65 @@ const ramayanaLenses = [
   "Justice, loss and consequence",
 ] as const;
 
+const mahabharataReadingMap = [
+  {
+    span: "Ādi & Sabhā",
+    movement: "Lineage, vows, inheritance and the court",
+    question: "Which earlier promises and exclusions make the later conflict possible?",
+  },
+  {
+    span: "Vana & Virāṭa",
+    movement: "Exile, learning, endurance and life under concealment",
+    question: "What changes when status is removed but obligation remains?",
+  },
+  {
+    span: "Udyoga",
+    movement: "Counsel, embassies and the failure of settlement",
+    question: "At what point does each side stop believing that peace is still workable?",
+  },
+  {
+    span: "Bhīṣma through Strī",
+    movement: "War, justification, bereavement and the cost carried by survivors",
+    question: "How does each speaker explain a choice whose consequences cannot be contained?",
+  },
+  {
+    span: "Śānti through Svargārohaṇa",
+    movement: "Rule, instruction, withdrawal, collapse and the final journey",
+    question: "What can victory repair—and what must remain unresolved?",
+  },
+] as const;
+
+const ramayanaReadingMap = [
+  {
+    span: "Bāla Kāṇḍa",
+    movement: "Origins, formation and the world into which the journey begins",
+    question: "How does the opening establish the qualities by which later choices are judged?",
+  },
+  {
+    span: "Ayodhyā Kāṇḍa",
+    movement: "Succession, promises, exile and a household divided by duty",
+    question: "When obligations conflict, who is allowed to define the honourable response?",
+  },
+  {
+    span: "Araṇya & Kiṣkindhā",
+    movement: "Forest life, abduction, grief, search and a difficult alliance",
+    question: "How do loss and dependence reshape relationships between strangers?",
+  },
+  {
+    span: "Sundara & Yuddha",
+    movement: "Recognition, message, crossing, battle and return",
+    question: "Where do courage, loyalty and restraint appear in actions rather than declarations?",
+  },
+  {
+    span: "Uttara Kāṇḍa",
+    movement: "Kingship, public judgment and the unsettled aftermath",
+    question:
+      "How does the chosen edition frame the tension between private bonds and public rule?",
+  },
+] as const;
+
+type ReadingMapItem = (typeof mahabharataReadingMap)[number] | (typeof ramayanaReadingMap)[number];
+
 function StudyLenses({ items }: { items: readonly string[] }) {
   return (
     <div className="grid gap-3 sm:grid-cols-2">
@@ -54,6 +113,42 @@ function StudyLenses({ items }: { items: readonly string[] }) {
           <p className="mt-2 text-sm font-semibold">{item}</p>
         </div>
       ))}
+    </div>
+  );
+}
+
+function EpicReadingMap({
+  title,
+  description,
+  items,
+}: {
+  title: string;
+  description: string;
+  items: readonly ReadingMapItem[];
+}) {
+  return (
+    <div className="mt-12">
+      <div className="mb-6 max-w-3xl">
+        <p className="eyebrow">A reading map</p>
+        <h3 className="mt-2 font-serif text-3xl font-semibold">{title}</h3>
+        <p className="text-ink-600 dark:text-ink-300 mt-3 text-sm leading-relaxed">{description}</p>
+      </div>
+      <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        {items.map((item, index) => (
+          <li key={item.span} className="glass-card flex h-full flex-col p-5">
+            <p className="text-brand-700 dark:text-brand-300 font-mono text-[10px] tracking-[0.14em] uppercase">
+              Passage {String(index + 1).padStart(2, "0")}
+            </p>
+            <h4 className="mt-3 font-serif text-lg font-semibold">{item.span}</h4>
+            <p className="text-ink-600 dark:text-ink-300 mt-2 text-sm leading-relaxed">
+              {item.movement}
+            </p>
+            <p className="border-ink-200/80 dark:border-ink-700 text-ink-700 dark:text-ink-200 mt-5 border-t pt-4 text-xs leading-relaxed">
+              <span className="font-semibold">Keep asking:</span> {item.question}
+            </p>
+          </li>
+        ))}
+      </ol>
     </div>
   );
 }
@@ -199,6 +294,12 @@ export default function MythologyPage() {
               <StudyLenses items={mahabharataLenses} />
             </aside>
           </div>
+
+          <EpicReadingMap
+            title="Follow the argument, not only the battle."
+            description="The eighteen-parvan architecture can feel forbidding at first. This five-part path keeps the earlier vows, failed negotiations, human cost and long aftermath in view, so the war does not become the whole epic."
+            items={mahabharataReadingMap}
+          />
         </Container>
       </section>
 
@@ -253,6 +354,12 @@ export default function MythologyPage() {
               </a>
             </article>
           </div>
+
+          <EpicReadingMap
+            title="Read the journey as a sequence of changing obligations."
+            description="A seven-kāṇḍa map helps readers notice how the central questions change: formation gives way to exile, exile to alliance and recovery, and return to an aftermath that must be read with the chosen edition clearly identified."
+            items={ramayanaReadingMap}
+          />
         </Container>
       </section>
 
@@ -271,14 +378,21 @@ export default function MythologyPage() {
               </div>
               <div className="space-y-4 text-sm leading-relaxed text-indigo-50">
                 <p>
-                  Each article will distinguish the Sanskrit edition, translation, commentary and
-                  later retelling being used. Verse references and significant textual variants will
-                  be identified rather than presented as universally settled.
+                  The maps above are orientation, not substitutes for the text. Close reading should
+                  name the Sanskrit edition, translation, commentary and later retelling being used.
+                  Verse references and significant textual variants should be identified rather than
+                  presented as universally settled.
                 </p>
                 <p>
                   “Mythology” is used here as a library category; it does not adjudicate questions
                   of faith, sacred authority or historicity. Later retellings remain important works
                   in their own contexts.
+                </p>
+                <p>
+                  Begin with the scene before reaching for a lesson: who speaks, who remains silent,
+                  what promise is already in force, what information is missing and who will live
+                  with the result. That slower method leaves room for disagreement instead of
+                  flattening either epic into a list of modern management rules.
                 </p>
               </div>
             </div>

@@ -5,15 +5,21 @@ export const mdpProgramsConducted: MdpProgram[] = [
     venue: "NADT, Delhi",
     audience: "75 IRS officers",
     title: "Creativity in Problem Solving & Task Prioritization through Visual Thinking",
-    description:
-      "A 1-day programme for the Indian Revenue Service at the National Academy of Direct Taxes, Delhi Campus — co-facilitated with Prof. S. K. Palhan. Participants left with visual problem maps and 30-60-90-day execution plans.",
+    context:
+      "A one-day programme for the Indian Revenue Service at the National Academy of Direct Taxes, Delhi Campus, co-facilitated with Prof. S. K. Palhan.",
+    inTheRoom:
+      "The session used visual thinking to work through creativity in problem solving and task prioritisation.",
+    followThrough: "Participants developed visual problem maps and 30-60-90-day execution plans.",
   },
   {
     venue: "Karma Yoga",
     audience: "Arya Samaj School, GK-2 New Delhi",
     title: "Experiential Learning for Underprivileged Students & Volunteer Teachers",
-    description:
-      "Story-based values learning, creative puzzles, STEM demonstrations and team games — with replicable classroom activity templates left behind for the teachers.",
+    context:
+      "A Karma Yoga programme with students and volunteer teachers at Arya Samaj School, GK-2, New Delhi.",
+    inTheRoom:
+      "The work combined story-based values learning, creative puzzles, STEM demonstrations and team games.",
+    followThrough: "Volunteer teachers received replicable classroom activity templates.",
   },
 ];
 

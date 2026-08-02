@@ -38,11 +38,14 @@ export function Publications() {
           <div className="md:col-span-4">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">03 / Selected publications</p>
-            <h2 className="display text-4xl font-semibold md:text-5xl">In print.</h2>
+            <h2 className="display text-4xl font-semibold md:text-5xl">
+              Research, cases and public questions.
+            </h2>
           </div>
           <p className="text-ink-600 dark:text-ink-300 self-end text-sm leading-relaxed md:col-span-8">
-            Peer-reviewed journals, Springer book chapters, teaching cases, and signed essays in the
-            national press. Click any item for the source record.
+            My writing moves from research on organisations under constraint to teaching cases and
+            public essays about decisions facing businesses, students and policy readers. Where a
+            source record is available, the item links to it.
           </p>
         </div>
 
