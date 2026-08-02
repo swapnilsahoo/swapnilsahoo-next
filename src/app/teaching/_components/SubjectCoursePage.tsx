@@ -9,6 +9,7 @@ import {
   SparkIcon,
 } from "@/components/icons/LineIcons";
 import { Container } from "@/components/ui/Container";
+import { InquiryPrelude } from "@/components/ui/InquiryPrelude";
 
 export type SubjectReference = {
   id: number;
@@ -72,6 +73,12 @@ export type SubjectCourseConfig = {
     label: string;
     value: string;
   }[];
+  inquiry: {
+    title: string;
+    introduction: string;
+    socraticQuestions: readonly [string, string, string, string];
+    firstPrinciplesQuestions: readonly [string, string, string, string];
+  };
   promise: {
     title: string;
     description: string;
@@ -217,6 +224,14 @@ export function SubjectCoursePage({ config }: { config: SubjectCourseConfig }) {
           </div>
         </nav>
       </Container>
+
+      <InquiryPrelude
+        id="course-inquiry"
+        title={config.inquiry.title}
+        introduction={config.inquiry.introduction}
+        socraticQuestions={config.inquiry.socraticQuestions}
+        firstPrinciplesQuestions={config.inquiry.firstPrinciplesQuestions}
+      />
 
       <section id="promise" aria-labelledby="promise-title" className="py-16 sm:py-24">
         <Container className="max-w-6xl">

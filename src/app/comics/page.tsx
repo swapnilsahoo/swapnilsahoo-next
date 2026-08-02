@@ -8,6 +8,7 @@ import {
   SparkIcon,
 } from "@/components/icons/LineIcons";
 import { Container } from "@/components/ui/Container";
+import { InquiryPrelude } from "@/components/ui/InquiryPrelude";
 
 import { StoryCycle } from "./StoryCycle";
 import styles from "./comics.module.css";
@@ -98,6 +99,21 @@ const sharedPractices = [
 const sourceLinkClass =
   "inline-flex min-h-11 items-center gap-2 font-semibold text-blue-700 underline decoration-blue-300 underline-offset-4 transition hover:text-red-700 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-4 focus-visible:outline-none dark:text-blue-300 dark:focus-visible:ring-offset-slate-950";
 
+const comicsInquiry = {
+  socratic: [
+    "Which part of a hero’s achievement depends on exceptional power, and which part remains available to an ordinary person?",
+    "When does responsibility help repair a failure—and when can it harden into guilt that leaves no room for rest or growth?",
+    "Who bears the cost when a powerful person decides alone what protection, justice, or rescue should mean?",
+    "What would hope look like if victory remained uncertain, recognition never arrived, and only the next choice was available?",
+  ],
+  firstPrinciples: [
+    "What makes an act courageous: the danger faced, the intention behind it, the cost accepted, or the person it serves?",
+    "What minimum freedoms, relationships, and knowledge does anyone need in order to make a responsible choice under pressure?",
+    "If power is simply the capacity to affect another life, what constraints turn that capacity into trustworthy stewardship?",
+    "What evidence would distinguish resilience from mere endurance—and recovery from the demand to remain endlessly strong?",
+  ],
+} as const;
+
 export default function ComicsPage() {
   return (
     <main id="main-content">
@@ -149,6 +165,15 @@ export default function ComicsPage() {
           </p>
         </Container>
       </header>
+
+      <InquiryPrelude
+        id="comics-inquiry"
+        eyebrow="Before the first panel"
+        title="What are we really asking a hero to carry?"
+        introduction="These stories are invitations, not moral formulas. Begin by questioning what courage, power, failure and hope mean when choices are constrained and consequences are shared. The aim is to notice the human problem beneath the costume before drawing a lesson from the plot."
+        socraticQuestions={comicsInquiry.socratic}
+        firstPrinciplesQuestions={comicsInquiry.firstPrinciples}
+      />
 
       <section
         aria-labelledby="branches-title"
