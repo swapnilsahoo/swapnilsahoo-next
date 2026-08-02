@@ -1,12 +1,6 @@
-import Link from "next/link";
-
 import { Reveal } from "@/components/ui/Reveal";
 import { ArrowRightIcon } from "@/components/icons/LineIcons";
-import { LinkedInIcon } from "@/components/icons/SocialIcons";
-import { linkedInHighlights } from "@/features/profile/data/linkedin";
 import { phdColumns, phdSupervision } from "@/features/profile/data/phd";
-
-const responsibleAiPost = linkedInHighlights[0];
 
 export function PhdSupervision() {
   return (
@@ -19,54 +13,22 @@ export function PhdSupervision() {
             <div className="md:col-span-5">
               <span className="accent-rule" />
               <p className="eyebrow mb-3">06 / PhD supervision</p>
-              <h2 className="display mb-5 text-4xl font-semibold md:text-5xl">Working with me.</h2>
+              <h2 className="display mb-5 text-4xl font-semibold md:text-5xl">
+                A practical guide to working together.
+              </h2>
               <p className="text-ink-600 dark:text-ink-300 mb-6 text-sm leading-relaxed">
                 {phdSupervision.description}
               </p>
+              <div className="border-brand-200 dark:border-brand-800 bg-brand-50/70 dark:bg-brand-950/30 mb-6 rounded-2xl border p-5">
+                <p className="eyebrow mb-2">Your first note</p>
+                <p className="text-ink-700 dark:text-ink-200 text-sm leading-relaxed">
+                  {phdSupervision.proposalPrompt}
+                </p>
+              </div>
               <a href={phdSupervision.ctaHref} className="btn-primary">
                 {phdSupervision.ctaLabel}
                 <ArrowRightIcon className="h-4 w-4" />
               </a>
-              <div className="mt-8 grid gap-3">
-                <Link
-                  href="/teaching/ai-hackathon#lenses-title"
-                  className="border-ink-200/80 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 group rounded-2xl border bg-white/35 p-4 transition dark:bg-white/[0.025]"
-                >
-                  <p className="eyebrow">Research extension</p>
-                  <p className="mt-2 font-serif text-lg font-semibold">AI Mini Hackathon</p>
-                  <p className="text-ink-600 dark:text-ink-300 mt-1 text-xs leading-5">
-                    Examine a documented PGDM learning design. Doctoral students did not attend this
-                    edition.
-                  </p>
-                  <span className="text-brand-700 dark:text-brand-300 mt-3 inline-flex items-center gap-2 text-xs font-bold">
-                    Open the PhD research lens
-                    <ArrowRightIcon
-                      className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1"
-                      aria-hidden="true"
-                    />
-                  </span>
-                </Link>
-                <a
-                  href={responsibleAiPost.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="border-ink-200/80 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 group rounded-2xl border bg-white/35 p-4 transition dark:bg-white/[0.025]"
-                >
-                  <p className="eyebrow inline-flex items-center gap-2">
-                    <LinkedInIcon className="h-3.5 w-3.5" aria-hidden="true" />
-                    Responsible AI field note
-                  </p>
-                  <p className="mt-2 font-serif text-lg font-semibold">{responsibleAiPost.title}</p>
-                  <span className="text-brand-700 dark:text-brand-300 mt-3 inline-flex items-center gap-2 text-xs font-bold">
-                    Read on LinkedIn
-                    <ArrowRightIcon
-                      className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1"
-                      aria-hidden="true"
-                    />
-                  </span>
-                  <span className="sr-only"> (opens in a new tab)</span>
-                </a>
-              </div>
             </div>
             <div className="grid gap-4 sm:grid-cols-2 md:col-span-7">
               {phdColumns.map((column) => (

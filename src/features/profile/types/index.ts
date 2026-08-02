@@ -20,7 +20,9 @@ export interface StatItem {
 export interface ResearchStream {
   index: string;
   title: string;
-  description: string;
+  centralQuestion: string;
+  context: string;
+  whyItMatters: string;
   icon: "bricolage" | "compass" | "spark" | "network";
 }
 
@@ -62,7 +64,9 @@ export interface MdpProgram {
   venue: string;
   audience: string;
   title: string;
-  description: string;
+  context: string;
+  inTheRoom: string;
+  followThrough: string;
 }
 
 export interface GalleryImage {

@@ -18,9 +18,9 @@ const briefingDeckUrl =
 const responsibleAiPost = linkedInHighlights[0];
 
 export const metadata: Metadata = {
-  title: "AI Mini Hackathon for MBA & PhD Audiences",
+  title: "AI Mini Hackathon for PGDM Students | Proposed PhD Research Lens",
   description:
-    "The AI Mini Hackathon delivered for the incoming PGDM 2026–28 cohort at Great Lakes Gurgaon, with a clearly labelled research extension for PhD readers.",
+    "The AI Mini Hackathon delivered to the incoming PGDM 2026–28 cohort at Great Lakes Gurgaon, with a separate proposed research extension for PhD readers.",
   keywords: [
     "AI Hackathon",
     "Great Lakes Gurgaon",
@@ -34,9 +34,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "article",
-    title: "AI Mini Hackathon for MBA & PhD Audiences",
+    title: "AI Mini Hackathon for PGDM Students — With a Proposed PhD Research Lens",
     description:
-      "How the incoming PGDM 2026–28 cohort built responsibly framed GenAI prototypes, with a separate research lens for PhD readers.",
+      "How the incoming PGDM 2026–28 cohort built responsibly framed GenAI prototypes, followed by a clearly labelled proposed PhD research extension.",
     url: "/teaching/ai-hackathon",
     images: ["/images/ai-hackathon/hackathon-demo.jpg"],
   },
@@ -137,6 +137,98 @@ const eventSchedule = [
   },
 ] as const;
 
+const managementLearningPathway = [
+  {
+    stage: "Pre-work",
+    title: "Notice before proposing",
+    description:
+      "Keep a short problem diary from student life. Record what happened, who experienced the friction and what people currently do to work around it. Arrive with observations as well as assumptions.",
+    artifact: "Problem diary + assumption list",
+  },
+  {
+    stage: "Problem",
+    title: "Draw a useful boundary",
+    description:
+      "Name the user, the job they are trying to complete, the consequence of the present difficulty and what the team will not try to solve. A narrower problem usually produces a more testable build.",
+    artifact: "One-sentence problem frame",
+  },
+  {
+    stage: "User",
+    title: "Listen for disconfirming evidence",
+    description:
+      "Ask potential users about the current workflow, exceptions and reasons they might reject the idea. Treat disagreement as useful evidence rather than something to edit out of the pitch.",
+    artifact: "User notes + revised assumptions",
+  },
+  {
+    stage: "Adoption",
+    title: "Explain how use would begin",
+    description:
+      "Identify the likely owner, the workflow that would change, the support people would need and a modest measure of useful adoption. A clever demo is not yet an operating case.",
+    artifact: "Adoption map + success measure",
+  },
+  {
+    stage: "Build",
+    title: "Test the smallest honest promise",
+    description:
+      "Build only enough to let someone attempt the core task. Observe where they hesitate, record failure modes and distinguish a working interface from a reliable AI-enabled service.",
+    artifact: "Testable prototype + test log",
+  },
+  {
+    stage: "Responsible AI",
+    title: "Make safeguards visible",
+    description:
+      "Document the model and data used, keep personal or institutional information out unless authorised, test factual claims, provide human review and consider bias, accessibility, security and foreseeable misuse.",
+    artifact: "Responsible-AI check + disclosure",
+  },
+  {
+    stage: "Reflection",
+    title: "Show how judgment changed",
+    description:
+      "End with the decision trail: what the team first believed, what users or tests challenged, what changed in the build and which question should be answered next.",
+    artifact: "Decision log + next experiment",
+  },
+] as const;
+
+const proposedResearchQuestions = [
+  "How does closeness to a personally experienced problem shape problem framing, iteration and willingness to abandon an early idea?",
+  "How does work divided across build, user-and-business, and story-and-demo roles affect integration, shared learning and prototype coherence?",
+  "When do responsible-AI checks change a feature, narrow a claim or alter a team’s view of adoption readiness?",
+  "How do live user and jury questions influence managerial judgment after the demonstration, not only the quality of the final pitch?",
+] as const;
+
+const proposedResearchDesign = [
+  {
+    title: "Constructs and operationalisation",
+    description:
+      "Possible constructs include problem-framing quality, iteration depth, team integration, responsible-AI maturity and adoption readiness. Define each before analysis—for example, through rubric dimensions, version changes and documented decisions—and treat these as candidate measures, not validated scales.",
+  },
+  {
+    title: "Unit of analysis and data sources",
+    description:
+      "Choose whether the study concerns an individual learner, a team, a decision episode or a prototype. With permission, evidence might include briefs, decks, version histories, demonstrations, decision logs, rubrics, interviews and reflections. Do not merge workflow counts as though they describe the same unit.",
+  },
+  {
+    title: "Consent, ethics and role separation",
+    description:
+      "Secure the relevant institutional ethics review before collecting research data. Separate research consent from course participation and grading, minimise personal data, explain withdrawal, de-identify reporting and obtain fresh permission before reusing administrative or classroom records.",
+  },
+  {
+    title: "Limitations and rival explanations",
+    description:
+      "A single institution and cohort cannot establish broad effects. Selection into a final, prior AI experience, facilitator support, team composition, jury questions and incomplete records may all shape what appears to be a learning outcome. Report these rather than smoothing them away.",
+  },
+  {
+    title: "Longitudinal follow-up",
+    description:
+      "Pre-specify follow-up points that ask whether prototypes were used, revised, transferred or discontinued and whether learners retained the underlying decision practices. Continued use and learning are different outcomes and should be analysed separately.",
+  },
+  {
+    title: "Reproducibility and audit trail",
+    description:
+      "Where appropriate, preregister questions and analysis choices; version the protocol, codebook and rubrics; preserve a transparent trail of exclusions and changes; and share only materials that can be de-identified and released within the consent granted.",
+  },
+] as const;
+
 export default function AiHackathonPage() {
   return (
     <main id="main-content">
@@ -160,7 +252,7 @@ export default function AiHackathonPage() {
                     Incoming PGDM 2026–28 · Great Lakes Gurgaon
                   </span>
                   <span className="inline-flex items-center rounded-full border border-blue-200/20 bg-blue-300/10 px-3 py-1.5 font-mono text-[11px] tracking-[0.14em] text-blue-100 uppercase backdrop-blur-sm">
-                    MBA / PGDM audience · PhD research lens
+                    Delivered to PGDM students · Proposed PhD research extension
                   </span>
                 </div>
 
@@ -173,8 +265,9 @@ export default function AiHackathonPage() {
                 <p className="mt-6 max-w-3xl text-base leading-relaxed text-blue-100 sm:text-lg">
                   The incoming PGDM cohort started with problems they knew from student life, then
                   built GenAI prototypes that people could open, test and question. This page
-                  records that July 2026 programme and offers a separate research lens for PhD
-                  readers.
+                  records that July 2026 programme. A later, clearly labelled section shows how a
+                  PhD researcher might study this kind of learning design; it is not a record of
+                  doctoral participation.
                 </p>
 
                 <div className="mt-8 flex flex-wrap gap-3">
@@ -332,12 +425,13 @@ export default function AiHackathonPage() {
             <span className="accent-rule" />
             <p className="eyebrow mb-3">03 / Audience lenses</p>
             <h2 id="lenses-title" className="display text-4xl font-semibold md:text-5xl">
-              The hackathon can also be studied as a learning design.
+              One event record, two clearly separated uses.
             </h2>
             <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-relaxed">
-              The management lens describes the programme delivered to the incoming PGDM 2026–28
-              cohort. The PhD lens below is an invitation to study the design; it does not imply
-              that doctoral students attended this edition.
+              The management material begins with the programme delivered to the incoming PGDM
+              2026–28 cohort and develops it into a reusable classroom pathway. The doctoral
+              material is a proposed research extension only. PhD students were not participants in
+              this edition, and none of the questions below is presented as a finding.
             </p>
           </div>
 
@@ -353,11 +447,11 @@ export default function AiHackathonPage() {
                     <CompassIcon className="h-5 w-5" aria-hidden="true" />
                   </div>
                   <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1 font-mono text-[10px] tracking-wider text-blue-100 uppercase">
-                    Delivered context
+                    Delivered PGDM context
                   </span>
                 </div>
                 <p className="font-mono text-xs tracking-[0.16em] text-blue-200 uppercase">
-                  MBA / management lens
+                  MBA / PGDM learning lens
                 </p>
                 <h3 className="mt-3 font-serif text-3xl font-semibold">
                   Turn a user problem into an adoption case.
@@ -389,9 +483,9 @@ export default function AiHackathonPage() {
                   <div className="bg-accent-400/10 text-accent-600 dark:text-accent-400 flex h-11 w-11 items-center justify-center rounded-xl">
                     <GraduationCapIcon className="h-5 w-5" aria-hidden="true" />
                   </div>
-                  <span className="tag tag-amber">Research extension</span>
+                  <span className="tag tag-amber">Proposed research extension</span>
                 </div>
-                <p className="eyebrow">PhD / research lens</p>
+                <p className="eyebrow">PhD lens · proposal, not participation</p>
                 <h3 className="mt-3 font-serif text-3xl font-semibold">
                   Treat the prototype as an intervention to examine.
                 </h3>
@@ -411,6 +505,101 @@ export default function AiHackathonPage() {
                 </ul>
               </div>
             </article>
+          </div>
+
+          <div className="mt-14">
+            <div className="grid gap-7 lg:grid-cols-[0.68fr_1.32fr] lg:items-end">
+              <div>
+                <p className="eyebrow mb-3">Management learning pathway</p>
+                <h3 className="display text-3xl font-semibold sm:text-4xl">
+                  Give each prototype a trail of decisions.
+                </h3>
+              </div>
+              <p className="text-ink-600 dark:text-ink-300 text-sm leading-relaxed">
+                The event record establishes the brief, pods, presentations and jury process. For an
+                MBA or PGDM classroom reusing the format, the sequence below adds depth around the
+                moments that can disappear inside a fast build. It is a learning-design scaffold,
+                not a claim that every activity occurred in July 2026.
+              </p>
+            </div>
+
+            <ol className="mt-8 grid gap-4 md:grid-cols-2">
+              {managementLearningPathway.map((step, index) => (
+                <li key={step.stage} className="glass-card grid gap-4 p-6 sm:grid-cols-[auto_1fr]">
+                  <span className="bg-brand-600 flex h-9 w-9 items-center justify-center rounded-full font-mono text-[10px] font-semibold text-white">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <p className="eyebrow">{step.stage}</p>
+                    <h4 className="mt-2 font-serif text-xl font-semibold">{step.title}</h4>
+                    <p className="text-ink-600 dark:text-ink-300 mt-3 text-sm leading-relaxed">
+                      {step.description}
+                    </p>
+                    <p className="text-brand-700 dark:text-brand-300 mt-4 font-mono text-[10px] font-semibold tracking-[0.12em] uppercase">
+                      Useful artifact · {step.artifact}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <div className="border-accent-400/30 from-accent-400/8 to-brand-500/5 mt-16 rounded-[24px] border bg-gradient-to-br p-7 sm:p-10">
+            <div className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr]">
+              <div>
+                <span className="tag tag-amber">Proposed PhD research extension</span>
+                <h3 className="display mt-5 text-3xl font-semibold sm:text-4xl">
+                  Move from an interesting event to a defensible study.
+                </h3>
+              </div>
+              <div>
+                <p className="text-ink-700 dark:text-ink-200 text-sm leading-relaxed">
+                  The questions and design choices below are examples for doctoral readers. They do
+                  not describe research already conducted, doctoral attendance or effects produced
+                  by the July 2026 event. A real study would need a protocol, appropriate ethics
+                  review, consent and a clear separation between research participation and course
+                  assessment.
+                </p>
+                <p className="text-ink-500 dark:text-ink-400 mt-3 text-xs leading-relaxed">
+                  Proposed extension · no findings are reported here
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-10 grid gap-5 lg:grid-cols-[0.78fr_1.22fr]">
+              <article className="from-ink-950 to-brand-900 rounded-[20px] bg-gradient-to-br p-6 text-white sm:p-8">
+                <p className="font-mono text-[10px] tracking-[0.16em] text-blue-200 uppercase">
+                  Sample research questions
+                </p>
+                <ol className="mt-5 space-y-5">
+                  {proposedResearchQuestions.map((question, index) => (
+                    <li key={question} className="grid grid-cols-[auto_1fr] gap-3">
+                      <span className="font-mono text-[10px] font-semibold text-blue-300">
+                        RQ{index + 1}
+                      </span>
+                      <p className="text-sm leading-relaxed text-blue-50">{question}</p>
+                    </li>
+                  ))}
+                </ol>
+              </article>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                {proposedResearchDesign.map((item, index) => (
+                  <article
+                    key={item.title}
+                    className="border-ink-200/80 dark:border-ink-700 rounded-[18px] border bg-white/55 p-5 dark:bg-white/[0.03]"
+                  >
+                    <p className="text-accent-700 dark:text-accent-300 font-mono text-[10px] font-semibold">
+                      D{String(index + 1).padStart(2, "0")}
+                    </p>
+                    <h4 className="mt-2 font-serif text-xl font-semibold">{item.title}</h4>
+                    <p className="text-ink-600 dark:text-ink-300 mt-3 text-sm leading-relaxed">
+                      {item.description}
+                    </p>
+                  </article>
+                ))}
+              </div>
+            </div>
           </div>
         </Container>
       </section>

@@ -114,6 +114,62 @@ const interviewSignals = [
   },
 ] as const;
 
+const preparationWindows = [
+  {
+    window: "Six weeks out",
+    focus: "Choose before you polish",
+    work: "Compare a small set of role descriptions. Mark the problems, decisions and capabilities that recur, then write a one-paragraph role thesis in your own words.",
+    artifact: "Role thesis · capability-gap list",
+  },
+  {
+    window: "Four weeks out",
+    focus: "Build an evidence bank",
+    work: "Collect examples from work, internships, projects and campus responsibility. Record the decision, your action, the scale, the result and what you would now do differently.",
+    artifact: "Eight evidence records · first CV rewrite",
+  },
+  {
+    window: "Two weeks out",
+    focus: "Practise with friction",
+    work: "Run role-specific questions aloud. Ask a partner to interrupt, probe weak numbers and request another example. Keep a log of what became clearer after each attempt.",
+    artifact: "Mock-interview log · revised story bank",
+  },
+  {
+    window: "Before each interview",
+    focus: "Study this company, not a category",
+    work: "Write a one-page brief on how the company creates value, what appears to matter now, why the role exists and which questions the public evidence cannot answer.",
+    artifact: "Company brief · three genuine questions",
+  },
+] as const;
+
+const candidateStartingPoints = [
+  {
+    title: "If you have substantial experience",
+    description:
+      "Do not retell your job description. Select moments that reveal judgment: a priority you changed, a stakeholder you aligned, a risk you surfaced or a result you can explain without hiding the trade-off.",
+  },
+  {
+    title: "If you are early in your career",
+    description:
+      "Internships, live projects, research, volunteering and campus responsibility all count when the example is specific. Be exact about your contribution and resist borrowing the team’s entire result as your own.",
+  },
+  {
+    title: "If you are changing direction",
+    description:
+      "Name what transfers, what does not and what you have done to close the gap. A believable transition connects past evidence to present preparation; it does not pretend the new role is identical to the old one.",
+  },
+] as const;
+
+const evidenceBankFields = [
+  ["Context", "What was happening? Keep this to the few facts needed to understand the choice."],
+  ["Responsibility", "What were you personally expected to decide, deliver or repair?"],
+  ["Action", "What did you actually do—and which part was yours rather than the team’s?"],
+  ["Scale", "Add honest numbers: people, time, money, volume, geography or frequency."],
+  ["Result", "What changed? Separate measured outcomes from reasonable interpretation."],
+  ["Tension", "What constraint, disagreement or trade-off made the work difficult?"],
+  ["Learning", "What would you repeat, stop or do differently now?"],
+  ["Role link", "Why is this evidence relevant to the role in front of you?"],
+] as const;
+
 export default function PlacementsPage() {
   return (
     <main id="main-content">
@@ -220,11 +276,64 @@ export default function PlacementsPage() {
 
       <div className="hr-fade mx-auto max-w-6xl" />
 
+      <section aria-labelledby="plan-title" className="py-16 sm:py-24">
+        <Container className="max-w-6xl">
+          <div className="mb-10 grid gap-8 lg:grid-cols-12">
+            <div className="lg:col-span-5">
+              <span className="accent-rule" />
+              <p className="eyebrow mb-3">02 / A preparation rhythm</p>
+              <h2 id="plan-title" className="display text-4xl font-semibold md:text-5xl">
+                Give each week a job.
+              </h2>
+            </div>
+            <p className="text-ink-600 dark:text-ink-300 self-end text-sm leading-relaxed lg:col-span-7">
+              More preparation is not always better preparation. The sequence below moves from
+              direction to evidence, from evidence to rehearsal and finally to the specific
+              organisation. If time is short, start with the window you have and keep the artifacts
+              small enough to finish.
+            </p>
+          </div>
+
+          <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {preparationWindows.map((item, index) => (
+              <li key={item.window} className="glass-card flex h-full flex-col p-6">
+                <p className="text-brand-700 dark:text-brand-300 font-mono text-[10px] tracking-[0.14em] uppercase">
+                  {String(index + 1).padStart(2, "0")} · {item.window}
+                </p>
+                <h3 className="mt-3 font-serif text-xl font-semibold">{item.focus}</h3>
+                <p className="text-ink-600 dark:text-ink-300 mt-3 text-sm leading-relaxed">
+                  {item.work}
+                </p>
+                <p className="border-ink-200/80 dark:border-ink-700 text-ink-700 dark:text-ink-200 mt-5 border-t pt-4 text-xs leading-relaxed">
+                  <span className="font-semibold">Leave with:</span> {item.artifact}
+                </p>
+              </li>
+            ))}
+          </ol>
+
+          <div className="mt-8 grid gap-4 lg:grid-cols-3">
+            {candidateStartingPoints.map((item) => (
+              <article
+                key={item.title}
+                className="border-ink-200/80 dark:border-ink-700 rounded-2xl border p-6"
+              >
+                <h3 className="font-serif text-xl font-semibold">{item.title}</h3>
+                <p className="text-ink-600 dark:text-ink-300 mt-3 text-sm leading-relaxed">
+                  {item.description}
+                </p>
+              </article>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <div className="hr-fade mx-auto max-w-6xl" />
+
       <section id="readiness-studio" aria-labelledby="studio-title" className="py-16 sm:py-24">
         <Container className="max-w-6xl">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
-            <p className="eyebrow mb-3">02 / Interactive readiness studio</p>
+            <p className="eyebrow mb-3">03 / Interactive readiness studio</p>
             <h2 id="studio-title" className="display text-4xl font-semibold md:text-5xl">
               Prepare for the role you actually want.
             </h2>
@@ -244,7 +353,7 @@ export default function PlacementsPage() {
           <div className="grid gap-10 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <span className="accent-rule" />
-              <p className="eyebrow mb-3">03 / Story bank</p>
+              <p className="eyebrow mb-3">04 / Story bank</p>
               <h2 id="stories-title" className="display text-4xl font-semibold md:text-5xl">
                 Prepare six stories you can tell honestly.
               </h2>
@@ -270,6 +379,46 @@ export default function PlacementsPage() {
                 </article>
               ))}
             </div>
+          </div>
+        </Container>
+      </section>
+
+      <section aria-labelledby="evidence-bank-title" className="pb-16 sm:pb-24">
+        <Container className="max-w-6xl">
+          <div className="glass-card overflow-hidden p-7 sm:p-10">
+            <div className="mb-8 grid gap-7 lg:grid-cols-[0.7fr_1.3fr]">
+              <div>
+                <p className="eyebrow mb-3">05 / Evidence-bank template</p>
+                <h2 id="evidence-bank-title" className="display text-4xl font-semibold">
+                  Write the full truth before editing the short answer.
+                </h2>
+              </div>
+              <div className="text-ink-600 dark:text-ink-300 space-y-3 text-sm leading-relaxed">
+                <p>
+                  A CV bullet and a ninety-second answer are compressed forms. Build them from a
+                  fuller record so that a follow-up question does not expose a gap between the neat
+                  sentence and what actually happened.
+                </p>
+                <p>
+                  One experience may support more than one interview question, but do not force it
+                  to prove everything. Keep distinct examples for leadership, failure, conflict,
+                  customer value, ambiguity and execution.
+                </p>
+              </div>
+            </div>
+            <dl className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {evidenceBankFields.map(([term, description]) => (
+                <div
+                  key={term}
+                  className="border-ink-200/80 dark:border-ink-700 rounded-2xl border p-5"
+                >
+                  <dt className="font-serif text-lg font-semibold">{term}</dt>
+                  <dd className="text-ink-600 dark:text-ink-300 mt-2 text-xs leading-relaxed">
+                    {description}
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </Container>
       </section>
@@ -315,7 +464,7 @@ export default function PlacementsPage() {
         <Container className="max-w-6xl">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
-            <p className="eyebrow mb-3">04 / Interview signals</p>
+            <p className="eyebrow mb-3">06 / Interview signals</p>
             <h2 id="signals-title" className="display text-4xl font-semibold md:text-5xl">
               What strong performance sounds like.
             </h2>
@@ -343,7 +492,7 @@ export default function PlacementsPage() {
               <div className="bg-accent-400/10 text-accent-600 dark:text-accent-400 mb-5 flex h-11 w-11 items-center justify-center rounded-xl">
                 <GraduationCapIcon className="h-5 w-5" aria-hidden="true" />
               </div>
-              <p className="eyebrow mb-3">05 / Continue practising</p>
+              <p className="eyebrow mb-3">07 / Continue practising</p>
               <h2 id="resources-title" className="display text-4xl font-semibold">
                 Build range without losing depth.
               </h2>

@@ -800,7 +800,7 @@ const lalitaNames = [
   ["वज्रेश्वरी", "vajreśvarī", "Vajreśvarī, sovereign of adamantine power."],
   ["वामदेवी", "vāmadevī", "Vāmadevī, the gracious Goddess."],
   ["वयोऽवस्थाविवर्जिता", "vayo'vasthāvivarjitā", "Exempt from the states of life."],
-  ["सिद्धेश्वरि", "siddheśvari", "Queen of the siddhas."],
+  ["सिद्धेश्वरी", "siddheśvarī", "Queen of the siddhas."],
   ["सिद्धविद्या", "siddhavidyā", "Eternal sacred knowledge."],
   ["सिद्धमाता", "siddhamātā", "Mother of the perfected ones."],
   ["यशस्विनी", "yaśasvinī", "Widely celebrated."],

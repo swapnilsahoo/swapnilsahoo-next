@@ -95,7 +95,7 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
     form: "Mahābhārata hymn · one thousand names",
     glyph: "ॐ",
     dek: "Meet all one thousand names in their received order, with Devanagari, consistent IAST, a concise name-level gloss, and the Mahābhārata setting in which Bhīṣma teaches Yudhiṣṭhira.",
-    scopeLabel: "Complete 1,000-name reader",
+    scopeLabel: "Complete declared 1,000-name enumeration",
     scopeNote:
       "All 1,000 names are present in the common enumeration documented by the declared 1927 Sastry edition and checked against the Sanskrit Wikisource stotra. Each card offers a concise editorial name-level gloss; it does not pretend that a web gloss replaces the interpretive depth of the commentary traditions.",
     entryCountLabel: "All 1,000 names",
@@ -207,7 +207,7 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
     form: "Śrīvidyā hymn · one thousand names",
     glyph: "श्री",
     dek: "Meet all one thousand names in their received order, with Devanagari, consistent IAST, a concise name-level gloss, and a clear path back to the hymn’s sacred and textual history.",
-    scopeLabel: "Complete 1,000-name reader",
+    scopeLabel: "Complete declared 1,000-name enumeration",
     scopeNote:
       "All 1,000 names are present in the common enumeration represented by the declared Sanskrit Wikisource reading. Each card offers a concise editorial name-level gloss; it does not pretend that a web gloss replaces Bhāskararāya’s layered compound analysis.",
     entryCountLabel: "All 1,000 names",
@@ -317,7 +317,7 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
     language: "Sanskrit · Devanagari + IAST",
     form: "15 body stanzas · phalaśruti · received supplement",
     glyph: "शिव",
-    dek: "Feel the hymn's drum-like movement while studying every received stanza through Devanagari, consistent IAST of the selected reading, a pāda-by-pāda compound guide, close meaning, manuscript-aware variants, metre, and a careful account of the Rāvaṇa attribution.",
+    dek: "Feel the hymn's drum-like movement while studying every received stanza through Devanagari, consistent IAST of the selected reading, a pāda-level reading guide, close meaning, manuscript-aware variants, metre, and a careful account of the Rāvaṇa attribution.",
     scopeLabel: "Complete declared study sequence",
     scopeNote:
       "The reader includes 17 units following a documented popular sequence: 15 body stanzas, one concluding phalaśruti, and one transmitted supplementary stanza. It is a transparent received edition, not a reconstructed critical edition.",
@@ -360,7 +360,7 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
     editorialPolicy: [
       "The 17-unit sequence and IAST base are adapted from Rohana Seneviratne's 2025 CC BY 4.0 study; the Devanagari presentation, segmentation, close glosses, and notes are newly prepared for this site.",
       "The page names its received sequence: 15 body stanzas, the pūjāvasāna phalaśruti, and the idaṃ hi nityam supplement. Other recensions are not silently folded into it.",
-      "Devanagari and consistent IAST represent the selected surface reading. Pāda boundaries, hyphenated compound guides, and concise English glosses are editorial study aids.",
+      "Devanagari and consistent IAST represent the selected surface reading. Pāda boundaries, hyphenated romanization, pāda-level guides, and concise English glosses are editorial study aids.",
       "High-impact variants—including digambare/cidambare, akharva/agarva, jayatyad/jayatvad, stanza order, and concluding material—are disclosed instead of declaring one universal wording.",
       "Benefits in the phalaśruti are reported as the transmitted stanza's devotional promise, not as a scientific, financial, or guaranteed outcome.",
     ],

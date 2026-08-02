@@ -4,13 +4,15 @@ export const teachingLinks: TeachingLink[] = [
   {
     eyebrow: "Programme",
     title: "1-Year MBA",
-    description: "Sessions, cases and reading lists for the experienced PGPM cohort.",
+    description:
+      "Strategy sessions, cases and reading lists designed for an experienced PGPM cohort.",
     href: "/teaching/1-year-mba",
   },
   {
     eyebrow: "Programme",
     title: "2-Year MBA",
-    description: "The strategy and entrepreneurship modules taught across the PGDM terms.",
+    description:
+      "Strategy and entrepreneurship modules, session material and practice across the PGDM terms.",
     href: "/teaching/2-year-mba",
   },
   {
@@ -35,10 +37,10 @@ export const teachingLinks: TeachingLink[] = [
     href: "/case-study-preparation",
   },
   {
-    eyebrow: "MBA event · PhD lens",
+    eyebrow: "PGDM event · Proposed PhD lens",
     title: "AI Mini Hackathon",
     description:
-      "The July 2026 PGDM build programme, with a clearly labelled research lens for doctoral readers.",
+      "The July 2026 PGDM build programme, followed by a clearly labelled proposed research extension for doctoral readers.",
     href: "/teaching/ai-hackathon",
   },
   {
@@ -51,7 +53,7 @@ export const teachingLinks: TeachingLink[] = [
 ];
 
 export const teachingPhilosophy = {
-  quote:
-    "Strategy is taught best in the same key it is lived — under constraint, with imperfect information, and in the company of people who disagree well.",
-  attribution: "Teaching philosophy",
+  title: "How the classroom works",
+  description:
+    "Students work with incomplete information, make choices across functions and explain the trade-offs. Cases develop analysis; simulations show how one decision changes the next; fieldwork tests whether an idea remains useful outside the classroom.",
 };
