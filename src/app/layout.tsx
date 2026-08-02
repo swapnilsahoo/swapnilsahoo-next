@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     template: "%s | Dr. Swapnil Sahoo",
   },
   description:
-    "Academic and professional portfolio of Dr. Swapnil Sahoo (Ph.D., XLRI Jamshedpur). Assistant Professor of Strategy at Great Lakes Institute of Management, Gurgaon. Research on entrepreneurial resourcefulness, family business, frugal innovation, and AI in management education.",
+    "Academic and professional portfolio of Dr. Swapnil Sahoo, Assistant Professor of Strategy at Great Lakes Gurgaon, where he teaches Strategy and Entrepreneurship and heads Entrepreneurship and AI initiatives. Ph.D. in Entrepreneurship from XLRI Jamshedpur.",
   authors: [{ name: profile.name }],
   creator: profile.name,
   publisher: profile.name,
@@ -84,7 +84,7 @@ export const metadata: Metadata = {
     locale: "en_IN",
     title: "Dr. Swapnil Sahoo — Strategy & Entrepreneurship",
     description:
-      "Faculty, researcher, and PhD supervisor working on entrepreneurial resourcefulness, family business, and AI-enabled management education.",
+      "Assistant Professor of Strategy, researcher, head of Entrepreneurship and AI initiatives, and PhD supervisor working on entrepreneurial resourcefulness, family business, and AI-enabled management education.",
     images: [profile.profileImage],
     url: siteUrl,
     siteName: "Dr. Swapnil Sahoo",
@@ -93,7 +93,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     creator: "@swapnilsahoo",
     title: "Dr. Swapnil Sahoo — Strategy & Entrepreneurship",
-    description: "Assistant Professor in Strategy at Great Lakes Institute of Management, Gurgaon.",
+    description:
+      "Assistant Professor of Strategy at Great Lakes Gurgaon, teaching Strategy and Entrepreneurship and heading Entrepreneurship and AI initiatives.",
     images: [profile.profileImage],
   },
 };
@@ -113,7 +114,9 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: profile.name,
-  jobTitle: "Assistant Professor, Strategy",
+  jobTitle: "Assistant Professor of Strategy",
+  description:
+    "Teaches Strategy and Entrepreneurship and heads Entrepreneurship and AI initiatives at Great Lakes Institute of Management, Gurgaon.",
   affiliation: {
     "@type": "CollegeOrUniversity",
     name: "Great Lakes Institute of Management, Gurgaon",

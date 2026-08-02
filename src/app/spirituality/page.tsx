@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { ArrowRightIcon, CompassIcon, SparkIcon } from "@/components/icons/LineIcons";
 import { Container } from "@/components/ui/Container";
+import { InquiryPrelude } from "@/components/ui/InquiryPrelude";
 
 export const metadata: Metadata = {
   title: "Spirituality — Sacred Texts for Study and Reflection",
@@ -97,6 +98,21 @@ const readingLayers = [
   },
 ] as const;
 
+const spiritualityInquiry = {
+  socratic: [
+    "Am I approaching this text for recitation, language study, devotional reflection, historical context—or some combination, and how does that purpose shape what I notice?",
+    "When an English gloss feels self-evident, what possibilities in Awadhi or Sanskrit grammar, poetic form, and commentary might it leave unopened?",
+    "What kind of authority is invoked when an edition is called authentic: that of a manuscript witness, a received recitation, an editor, a commentator, a teacher, or a lineage?",
+    "Can reverence become more attentive—not less—when variants, editorial choices, and uncertain historical attributions are stated openly?",
+  ],
+  firstPrinciples: [
+    "Which layer is the declared base text, and which layers were added here as romanization, word, name, or pāda segmentation, concise glosses, source notes, and commentarial context?",
+    "What named sources anchor the wording, order, and count presented in each branch, and where do those sources differ?",
+    "What must a romanization preserve so readers can trace the displayed script without mistaking it for the only living pronunciation?",
+    "Which claims can a close gloss reasonably support, and which require grammar, a fuller commentary tradition, or guidance from a qualified teacher?",
+  ],
+} as const;
+
 export default function SpiritualityPage() {
   return (
     <main id="main-content">
@@ -150,6 +166,15 @@ export default function SpiritualityPage() {
           </div>
         </Container>
       </header>
+
+      <InquiryPrelude
+        id="spirituality-inquiry"
+        eyebrow="Before recitation or study"
+        title="What kind of attention does a sacred text ask of us?"
+        introduction="Each branch keeps its declared base reading visible while labeling the site’s added layers: romanization, editorial segmentation, concise glosses, source notes, and commentarial context. Begin with questions that make room for devotion and textual care together, without presenting one edition, pronunciation, or interpretation as the only possible tradition."
+        socraticQuestions={spiritualityInquiry.socratic}
+        firstPrinciplesQuestions={spiritualityInquiry.firstPrinciples}
+      />
 
       <section id="collections" aria-labelledby="collection-title" className="py-16 sm:py-24">
         <Container className="max-w-6xl">

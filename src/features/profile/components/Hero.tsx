@@ -33,9 +33,17 @@ export function Hero() {
           <p className="text-ink-700 dark:text-ink-200 mb-8 max-w-2xl text-lg leading-relaxed md:text-xl">
             Before joining academia, I spent 17 years in strategic roles at Wipro, Accenture,
             Cognizant, Mahindra and 42Gears Mobility. That experience now shapes my research on how
-            organisations act when resources are tight and the way I teach Strategy at{" "}
-            <strong>Great Lakes Institute of Management, Gurgaon</strong>. I earned my Ph.D. at{" "}
-            <strong>XLRI Jamshedpur</strong>.
+            organisations act when resources are tight and the way I teach{" "}
+            <strong>
+              Strategy &amp; Entrepreneurship at Great Lakes Institute of Management, Gurgaon, where
+              I head the Entrepreneurship and AI initiatives.
+            </strong>{" "}
+            I earned my <strong>Ph.D. in Entrepreneurship from XLRI Jamshedpur</strong>, with a
+            dissertation titled{" "}
+            <cite>
+              &ldquo;Entrepreneurial Resourcefulness in Resource-Constrained Environments&rdquo;
+            </cite>
+            .
           </p>
           <div className="flex flex-wrap items-center gap-3">
             <a href="#contact" className="btn-primary">

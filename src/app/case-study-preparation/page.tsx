@@ -9,6 +9,7 @@ import {
   SparkIcon,
 } from "@/components/icons/LineIcons";
 import { Container } from "@/components/ui/Container";
+import { InquiryPrelude } from "@/components/ui/InquiryPrelude";
 
 import { CasePracticeLab } from "./CasePracticeLab";
 
@@ -204,6 +205,24 @@ export default function CaseStudyPreparationPage() {
           </div>
         </Container>
       </header>
+
+      <InquiryPrelude
+        id="case-questions"
+        title="Define the decision before you reach for a framework."
+        introduction="A strong case response is not a performance of familiar templates. It is a disciplined passage from an ambiguous question to a defensible decision. Begin by testing the language, assumptions and evidence that will carry your reasoning."
+        socraticQuestions={[
+          "What decision is actually being made, by whom, for what purpose and over what time horizon?",
+          "Which assumption is doing the most work in my structure, and what evidence would overturn it?",
+          "Could the arithmetic be correct while the model of the business is wrong—and how would I notice?",
+          "Does my recommendation follow from the evidence, including facts that complicate the answer?",
+        ]}
+        firstPrinciplesQuestions={[
+          "What objective are we optimising, and which constraint cannot be ignored?",
+          "What is the smallest causal or quantitative model that explains the outcome, and what does each element represent?",
+          "Which facts are known, which are estimates and which require a test before I can rely on them?",
+          "What conclusion survives when I combine the economics, human consequences, risks and next action?",
+        ]}
+      />
 
       <section aria-labelledby="system-title" className="py-16 sm:py-24">
         <Container className="max-w-6xl">

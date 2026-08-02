@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { ArrowRightIcon, CompassIcon, SparkIcon } from "@/components/icons/LineIcons";
 import { Container } from "@/components/ui/Container";
+import { InquiryPrelude } from "@/components/ui/InquiryPrelude";
 
 export const metadata: Metadata = {
   title: "Mythology — Mahabharata & Ramayana",
@@ -39,6 +40,21 @@ const ramayanaLenses = [
   "Kingship and public duty",
   "Justice, loss and consequence",
 ] as const;
+
+const mythologyInquiry = {
+  socratic: [
+    "Before calling a character righteous or wrong, which obligations are colliding—and whose voice or suffering is absent from the scene?",
+    "Would the same action appear different if it were taken by someone with less status, less knowledge, or fewer choices?",
+    "When recensions, translations, and commentaries differ, what do we actually mean when we say, ‘the epic says’?",
+    "What does the aftermath reveal about a celebrated decision that the moment of heroism or victory can conceal?",
+  ],
+  firstPrinciples: [
+    "Which edition or recension, passage, translation, and—where relevant—commentary support the reading in front of us?",
+    "Can we separate what the scene depicts, what its narrator frames, what a commentator argues, and what a modern reader infers?",
+    "If dharma concerns action amid competing obligations, which relationships, promises, constraints, and foreseeable consequences must be understood first?",
+    "What remains in the episode when we suspend familiar summaries, devotional conclusions, and contemporary leadership analogies?",
+  ],
+} as const;
 
 const mahabharataReadingMap = [
   {
@@ -215,6 +231,15 @@ export default function MythologyPage() {
           </div>
         </Container>
       </header>
+
+      <InquiryPrelude
+        id="mythology-inquiry"
+        eyebrow="Before entering the epics"
+        title="Which question is the story refusing to simplify?"
+        introduction="The Mahābhārata and Vālmīki Rāmāyaṇa reach us through long textual and interpretive histories, not through a single uncontested authorial manuscript. These questions help us read a chosen witness carefully, distinguish scene from commentary, and remain attentive to moral complexity without deciding questions of faith or historicity for the reader."
+        socraticQuestions={mythologyInquiry.socratic}
+        firstPrinciplesQuestions={mythologyInquiry.firstPrinciples}
+      />
 
       <section aria-labelledby="original-note-title" className="pb-16 sm:pb-24">
         <Container className="max-w-6xl">

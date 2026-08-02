@@ -9,6 +9,8 @@ const routes = [
   "/teaching/ai-hackathon",
   "/teaching/1-year-mba",
   "/teaching/2-year-mba",
+  "/teaching/karma-yoga",
+  "/teaching/business-simulation",
   "/placements",
   "/case-study-preparation",
   "/comics",
@@ -91,6 +93,39 @@ for (const route of routes) {
       expect(pageErrors, `Uncaught browser errors on ${route}`).toEqual([]);
     });
   }
+}
+
+for (const route of routes) {
+  test(`${route} · inquiry prelude`, async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 720 });
+    await page.goto(`${baseUrl}${route}`, { waitUntil: "domcontentloaded" });
+
+    const inquiry = page.locator("[data-inquiry-prelude]");
+    await expect(inquiry).toHaveCount(1);
+    await expect(inquiry).toBeVisible();
+    const labelledBy = await inquiry.getAttribute("aria-labelledby");
+    expect(labelledBy).toBeTruthy();
+    await expect(inquiry.locator(`#${labelledBy}`)).toHaveCount(1);
+    await expect(inquiry.getByText("Socratic lens", { exact: true })).toBeVisible();
+    await expect(inquiry.getByText("First-principles lens", { exact: true })).toBeVisible();
+
+    const socraticQuestions = inquiry.locator(
+      '[data-inquiry-lens="socratic"] ol[role="list"] > li > p'
+    );
+    const firstPrinciplesQuestions = inquiry.locator(
+      '[data-inquiry-lens="first-principles"] ol[role="list"] > li > p'
+    );
+    await expect(socraticQuestions).toHaveCount(4);
+    await expect(firstPrinciplesQuestions).toHaveCount(4);
+
+    const questions = inquiry.locator('ol[role="list"] > li > p');
+    await expect(questions).toHaveCount(8);
+    expect(
+      await questions.evaluateAll((items) =>
+        items.every((item) => item.textContent?.trim().endsWith("?"))
+      )
+    ).toBe(true);
+  });
 }
 
 test("Comics & Fiction branches · page and navigation", async ({ page }) => {
@@ -224,7 +259,16 @@ test("Homepage gallery · AOM 2026 event photographs", async ({ page }) => {
   await expect(firstSlide).toBeVisible();
   await expect(photo).toBeVisible();
   await expect(firstSlide).toContainText("AOM 2026 · Philadelphia Convention Center");
-  await expect(photo).toHaveJSProperty("complete", true);
+  await photo.scrollIntoViewIfNeeded();
+  await expect
+    .poll(
+      () =>
+        photo.evaluate(
+          (image) => image.complete && image.naturalWidth > 0 && image.naturalHeight > 0
+        ),
+      { timeout: 15_000 }
+    )
+    .toBe(true);
 
   const dimensions = await photo.evaluate((image) => ({
     naturalWidth: image.naturalWidth,

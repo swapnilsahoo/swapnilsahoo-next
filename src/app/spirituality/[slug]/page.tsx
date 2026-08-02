@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 
 import { ArrowRightIcon } from "@/components/icons/LineIcons";
 import { Container } from "@/components/ui/Container";
+import { InquiryPrelude, type InquiryQuestions } from "@/components/ui/InquiryPrelude";
 import { ScriptureReader } from "@/features/spirituality/components/ScriptureReader";
 import {
   isScriptureSlug,
@@ -44,6 +45,85 @@ const themes: Record<
     hero: "from-[#080f1f] via-[#25324a] to-[#8a3f16]",
     glow: "bg-orange-300/20",
     badge: "text-orange-200",
+  },
+};
+
+const scriptureInquiry: Record<
+  ScriptureSlug,
+  {
+    title: string;
+    introduction: string;
+    socraticQuestions: InquiryQuestions;
+    firstPrinciplesQuestions: InquiryQuestions;
+  }
+> = {
+  "hanuman-chalisa": {
+    title: "What becomes audible when familiarity slows down?",
+    introduction:
+      "The declared normalized Devanagari reading of the Old Awadhi poem comes first. The word divisions, pronunciation-friendly romanization, close meanings, and notes are editorial study aids, not replacement verses or claims of exhaustive commentary.",
+    socraticQuestions: [
+      "What changes when the Chalisa is read as Old Awadhi devotional poetry rather than assuming that Devanagari script makes it a Sanskrit composition?",
+      "When printed and recited traditions divide or pronounce a phrase differently, which meanings depend on the editor’s decision?",
+      "How can we honour the traditional attribution to Tulsidas while distinguishing historical evidence from later devotional biography?",
+      "How do praise, memory, rhythm, and ethical formation work together without reducing the poem to a list of propositions?",
+    ],
+    firstPrinciplesQuestions: [
+      "Which words belong to the declared Devanagari reading, and which boundaries, romanization choices, and English glosses have been supplied by this edition?",
+      "What must be present to call the sequence complete: two opening dohās, forty numbered caupāīs, and the closing dohā?",
+      "What evidence would justify preferring one variant reading, and how should that choice be documented without dismissing living recitation traditions?",
+      "What can a close word-level gloss establish, and what still requires Awadhi grammar, literary context, or a fuller commentary?",
+    ],
+  },
+  "vishnu-sahasranama": {
+    title: "What changes when one thousand names are heard as an answer?",
+    introduction:
+      "The declared Sanskrit base reading and one-thousand-name enumeration are presented within the Mahābhārata frame, then kept distinct from this site’s normalization, name segmentation, IAST, concise glosses, and editorial notes.",
+    socraticQuestions: [
+      "How does hearing Bhīṣma answer Yudhiṣṭhira in the Anuśāsanaparvan change a reading that might otherwise seem like an isolated list?",
+      "When an epithet recurs, do its neighbours and narrative setting invite a different emphasis rather than mere repetition?",
+      "If chapter numbering and name boundaries vary across editions, what assumptions sit behind the apparently simple claim of exactly one thousand names?",
+      "How can distinct Vedānta commentary traditions illuminate a name without being compressed into one supposedly final meaning?",
+    ],
+    firstPrinciplesQuestions: [
+      "What counts as one name when sandhi, compounds, multiword expressions, and repeated epithets complicate segmentation?",
+      "Which wording and enumeration come from the declared base sources, and which normalization, segmentation, IAST, and English wording are editorial?",
+      "What evidence distinguishes Bhīṣma as narrative speaker, Vyāsa as traditional compiler-seer, and Śaṅkara as an attributed commentator rather than treating all three as historical authors?",
+      "Which interpretations follow closely from grammar and context, and which depend on a particular doctrinal commentary?",
+    ],
+  },
+  "lalita-sahasranama": {
+    title: "How should a thousand names remain more than a thousand labels?",
+    introduction:
+      "The complete declared sequence stays visible in its received order. The site separately identifies normalized Devanagari, mechanically prepared IAST, editorial name boundaries, concise meanings, and commentarial context.",
+    socraticQuestions: [
+      "How do the Vāgdevī attribution and Hayagrīva–Agastya teaching frame shape devotional reading without becoming modern biographical claims?",
+      "If the hymn’s placement is not uniform across printed Brahmāṇḍa Purāṇa recensions, what does it mean to describe it carefully as transmitted with the Lalitopākhyāna tradition?",
+      "How might a name change when read beside its neighbours or through Bhāskararāya’s compound analysis rather than as an isolated glossary entry?",
+      "Can devotional trust and critical attention to witnesses, variants, and editorial decisions deepen one another?",
+    ],
+    firstPrinciplesQuestions: [
+      "How is the one-thousand-name count established when sandhi and Sanskrit compounds permit more than one defensible segmentation?",
+      "Which Sanskrit wording comes from the declared base reading, and which normalization, IAST, name division, and English meaning have been prepared for this reader?",
+      "What source evidence supports a selected base reading when the same witness or another recension records a variant?",
+      "What can a concise name-level meaning clarify, and what remains dependent on grammar, Śrīvidyā context, and extended commentary?",
+    ],
+  },
+  "shiva-tandava-stotram": {
+    title: "What does the hymn’s movement reveal before explanation begins?",
+    introduction:
+      "This page declares a popular seventeen-unit received sequence rather than a reconstructed critical edition. The selected surface reading is kept distinct from editorial pāda boundaries, hyphenation, IAST, pāda-level reading guides, concise meanings, and notes.",
+    socraticQuestions: [
+      "What does the traditional Rāvaṇa attribution contribute to devotional memory, and what can it not establish about a historically identifiable poet?",
+      "How do metre, alliteration, and the drum-like movement create an experience that an English paraphrase cannot fully carry?",
+      "When manuscripts differ in stanza count, order, and wording, what is gained—and what must be disclosed—when this seventeen-unit sequence is described as complete within its declared scope?",
+      "How should a phalaśruti’s promised benefits be heard within devotional genre without turning them into guaranteed empirical outcomes?",
+    ],
+    firstPrinciplesQuestions: [
+      "What exactly composes this declared sequence: fifteen body stanzas, one phalaśruti, and one received supplementary stanza?",
+      "Which features make this a transparent received edition rather than a claim to have reconstructed an original text?",
+      "Which Sanskrit wording belongs to the selected surface reading, how do the displayed Devanagari and IAST encode it, and which pāda breaks, hyphens, reading guides, and English meanings are additional editorial aids?",
+      "Which variants materially alter metre, image, or interpretation enough that a careful reader needs to see them?",
+    ],
   },
 };
 
@@ -91,6 +171,7 @@ export default async function ScripturePage({ params }: PageProps) {
   const scripture = scriptureCatalog[slug];
   const entries = await loadScriptureEntries(slug);
   const theme = themes[slug];
+  const inquiry = scriptureInquiry[slug];
   const isSahasranama = slug === "vishnu-sahasranama" || slug === "lalita-sahasranama";
   const languageCode = slug === "hanuman-chalisa" ? "awa" : "sa";
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.swapnilsahoo.com";
@@ -224,6 +305,15 @@ export default async function ScripturePage({ params }: PageProps) {
           </div>
         </Container>
       </header>
+
+      <InquiryPrelude
+        id={`${slug}-inquiry`}
+        eyebrow="Before opening the reader"
+        title={inquiry.title}
+        introduction={inquiry.introduction}
+        socraticQuestions={inquiry.socraticQuestions}
+        firstPrinciplesQuestions={inquiry.firstPrinciplesQuestions}
+      />
 
       <section aria-labelledby="authentic-title" className="py-14 sm:py-20">
         <Container className="max-w-6xl">

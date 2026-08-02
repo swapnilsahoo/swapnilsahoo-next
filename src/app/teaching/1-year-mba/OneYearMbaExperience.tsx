@@ -11,12 +11,28 @@ import {
 } from "@/components/icons/LineIcons";
 import { LinkedInIcon } from "@/components/icons/SocialIcons";
 import { Container } from "@/components/ui/Container";
+import { InquiryPrelude } from "@/components/ui/InquiryPrelude";
 import { linkedInHighlights } from "@/features/profile/data/linkedin";
 
 import { oneYearMba } from "../mbaData";
 import styles from "./OneYearMbaExperience.module.css";
 
 const mbaClassroomPost = linkedInHighlights[1];
+
+const executiveStrategyInquiry = {
+  socraticQuestions: [
+    "When an experienced manager says, “This worked before,” which conditions made it work—and what evidence would show that those conditions no longer hold?",
+    "If a firm is outperforming, how would we distinguish the effects of industry position, distinctive resources, execution, timing and luck?",
+    "Whose value is created by a strategic choice, whose costs remain outside the calculation and how might those stakeholders alter the outcome?",
+    "When leaders claim synergy from owning more of the value chain, what mechanism must outweigh coordination cost, lost flexibility and managerial attention?",
+  ],
+  firstPrinciplesQuestions: [
+    "Who is choosing the offering, what do they value enough to pay or participate, and where does the firm capture part of that value?",
+    "Which minimum set of activities and capabilities must reinforce one another for the chosen position to be credible rather than aspirational?",
+    "What is the binding constraint—capital, time, information, talent, legitimacy or attention—and what opportunity cost follows from committing it here?",
+    "Under what conditions should the firm build, buy, ally, outsource or exit, and which evidence would trigger a change in that boundary?",
+  ],
+} as const;
 
 const sessionActs = [
   {
@@ -505,6 +521,14 @@ export function OneYearMbaExperience() {
           </div>
         </nav>
       </Container>
+
+      <InquiryPrelude
+        id="executive-strategy-inquiry"
+        title="Experience enters the room as a hypothesis."
+        introduction="The compressed course moves quickly, but it does not reward quick certainty. These questions help experienced managers expose the assumptions beneath familiar answers, trace the mechanism behind performance and make the cost of every commitment visible."
+        socraticQuestions={executiveStrategyInquiry.socraticQuestions}
+        firstPrinciplesQuestions={executiveStrategyInquiry.firstPrinciplesQuestions}
+      />
 
       <section id="promise" aria-labelledby="promise-title" className="py-16 sm:py-24">
         <Container className="max-w-6xl">

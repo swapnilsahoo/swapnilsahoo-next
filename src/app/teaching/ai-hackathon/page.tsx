@@ -11,11 +11,27 @@ import {
 } from "@/components/icons/LineIcons";
 import { LinkedInIcon } from "@/components/icons/SocialIcons";
 import { Container } from "@/components/ui/Container";
+import { InquiryPrelude } from "@/components/ui/InquiryPrelude";
 import { linkedInHighlights, linkedInProfileUrl } from "@/features/profile/data/linkedin";
 
 const briefingDeckUrl =
   "https://pub-fe4ef7996d794eafbcca10e6093e62af.r2.dev/ai-hackathon/AI_in_45_Minutes_v7.pdf";
 const responsibleAiPost = linkedInHighlights[0];
+
+const hackathonInquiry = {
+  socraticQuestions: [
+    "If a team begins with what a model can generate, whose problem is it actually solving—and what evidence would persuade the team that the problem has been framed incorrectly?",
+    "What separates a prototype that performs once during a demonstration from a service that students can trust, adopt and use within a real campus workflow?",
+    "When an impressive AI response conceals an error, bias or privacy risk, who bears the consequence—and who should have the authority to pause its use?",
+    "If a jury rewards a polished story, how can it still distinguish persuasive presentation from validated usefulness, responsible judgment and genuine learning?",
+  ],
+  firstPrinciplesQuestions: [
+    "What human task or outcome must improve before AI is relevant, and what is the smallest honest promise a prototype can make about that improvement?",
+    "Which inputs, transformations, human reviews and feedback loops must work reliably for the proposed solution to create value?",
+    "Which constraints—consent, privacy, access, time, cost and user capability—shape what the team may responsibly build, and who will own each safeguard?",
+    "What observable test would separate novelty from usefulness and adoption, and what next decision should that evidence enable?",
+  ],
+} as const;
 
 export const metadata: Metadata = {
   title: "AI Mini Hackathon for PGDM Students | Proposed PhD Research Lens",
@@ -351,6 +367,14 @@ export default function AiHackathonPage() {
           </dl>
         </Container>
       </header>
+
+      <InquiryPrelude
+        id="questions-before-building"
+        title="Before building, ask what deserves to exist."
+        introduction="The build is only the visible surface of the hackathon. These questions invite management learners to examine need, adoption and responsibility, while giving doctoral readers a route from an engaging event to testable mechanisms and evidence."
+        socraticQuestions={hackathonInquiry.socraticQuestions}
+        firstPrinciplesQuestions={hackathonInquiry.firstPrinciplesQuestions}
+      />
 
       <section id="experience" aria-labelledby="experience-title" className="py-16 sm:py-24">
         <Container className="max-w-6xl">

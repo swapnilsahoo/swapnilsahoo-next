@@ -10,6 +10,7 @@ import {
 } from "@/components/icons/LineIcons";
 import { LinkedInIcon } from "@/components/icons/SocialIcons";
 import { Container } from "@/components/ui/Container";
+import { InquiryPrelude } from "@/components/ui/InquiryPrelude";
 import { linkedInHighlights } from "@/features/profile/data/linkedin";
 
 import { twoYearMba } from "../mbaData";
@@ -26,6 +27,21 @@ import {
 } from "./twoYearMbaCourseData";
 
 const responsibleAiPost = linkedInHighlights[0];
+
+const strategicManagementInquiry = {
+  socraticQuestions: [
+    "Does a framework predict what a firm should do, or merely give us a tidy label after the outcome—and what evidence could tell the difference?",
+    "Can a recommendation still be called coherent if marketing, operations, finance or people must absorb contradictions that the strategy slide leaves unresolved?",
+    "How should a decision change when competitors, regulators, employees and customers can respond rather than remain fixed assumptions in the analysis?",
+    "When growth looks attractive, which cash demands, capability gaps, implementation owners and stakeholder consequences might reverse the recommendation?",
+  ],
+  firstPrinciplesQuestions: [
+    "What causal chain connects a change in the environment to a managerial choice, a configuration of activities and an outcome the firm can observe?",
+    "Which constraint currently limits value creation or capture, and would the proposed action remove that constraint or simply move it elsewhere?",
+    "What must be different relative to rivals for advantage to exist, and what would make that difference valuable, difficult to copy and durable enough to matter?",
+    "Who must do what differently for the strategy to become action, which leading signals will reveal progress and what evidence should trigger correction?",
+  ],
+} as const;
 
 const assessmentColours = [
   "bg-emerald-600",
@@ -221,6 +237,14 @@ export function TwoYearMbaExperience() {
           </div>
         </nav>
       </Container>
+
+      <InquiryPrelude
+        id="strategic-management-inquiry"
+        title="Strategy begins where the obvious answer stops."
+        introduction="Before moving through the course architecture, these questions make the work beneath a recommendation visible: causal reasoning, competitive response, cross-functional coherence, stakeholder consequences and the conditions under which a decision should change."
+        socraticQuestions={strategicManagementInquiry.socraticQuestions}
+        firstPrinciplesQuestions={strategicManagementInquiry.firstPrinciplesQuestions}
+      />
 
       <section
         id="course-profile"
