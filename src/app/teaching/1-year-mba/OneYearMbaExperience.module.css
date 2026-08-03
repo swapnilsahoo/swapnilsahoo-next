@@ -8,22 +8,7 @@
   inset: 0;
   z-index: -2;
   content: "";
-  background:
-    radial-gradient(circle at 16% 10%, rgb(59 130 246 / 0.3), transparent 32rem),
-    radial-gradient(circle at 82% 8%, rgb(240 180 41 / 0.18), transparent 26rem),
-    linear-gradient(145deg, #030712 0%, #07152c 54%, #0b1f3a 100%);
-}
-
-.heroShell::after {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  content: "";
-  background-image:
-    linear-gradient(rgb(148 163 184 / 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(148 163 184 / 0.08) 1px, transparent 1px);
-  background-size: 44px 44px;
-  mask-image: linear-gradient(90deg, #000, transparent 72%);
+  background: #0e1726;
 }
 
 .imageFrame::after {
@@ -70,9 +55,7 @@
     #de911d 180deg 288deg,
     #0f766e 288deg 360deg
   );
-  box-shadow:
-    0 28px 70px -32px rgb(15 23 42 / 0.7),
-    0 0 0 10px rgb(255 255 255 / 0.5);
+  box-shadow: 0 0 0 1px rgb(15 23 42 / 0.12);
 }
 
 .assessmentRing::after {
@@ -100,9 +83,7 @@
 }
 
 :global(.dark) .assessmentRing {
-  box-shadow:
-    0 28px 70px -32px rgb(0 0 0 / 0.9),
-    0 0 0 10px rgb(15 23 42 / 0.58);
+  box-shadow: 0 0 0 1px rgb(226 232 240 / 0.14);
 }
 
 :global(.dark) .assessmentRing::after {
@@ -125,24 +106,5 @@
       rgb(222 145 29 / 0.45) 86%,
       rgb(222 145 29 / 0)
     );
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .heroShell::after {
-    animation: drift 24s linear infinite;
-  }
-}
-
-@keyframes drift {
-  from {
-    background-position:
-      0 0,
-      0 0;
-  }
-  to {
-    background-position:
-      44px 44px,
-      44px 44px;
   }
 }

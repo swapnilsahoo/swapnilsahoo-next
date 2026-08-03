@@ -13,7 +13,7 @@ import { Teaching } from "@/features/profile/components/Teaching";
 
 export default function Home() {
   return (
-    <main id="main-content">
+    <main id="main-content" tabIndex={-1}>
       <Hero />
       <InquiryPrelude
         id="questions"

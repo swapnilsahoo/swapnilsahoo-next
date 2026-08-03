@@ -1,6 +1,6 @@
 export default function Loading() {
   return (
-    <div id="main-content" role="main" className="flex min-h-[60vh] items-center justify-center">
+    <div aria-busy="true" className="flex min-h-[60vh] items-center justify-center">
       <div
         role="status"
         aria-label="Loading"

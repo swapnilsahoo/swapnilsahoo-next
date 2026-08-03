@@ -1,26 +1,14 @@
 "use client";
 
-import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import type { GalleryImage } from "@/features/profile/types";
 
 export function GalleryCarousel({ images }: { images: GalleryImage[] }) {
-  const autoplay = useMemo(
-    () =>
-      Autoplay({
-        delay: 5000,
-        stopOnFocusIn: true,
-        stopOnInteraction: false,
-        stopOnMouseEnter: true,
-      }),
-    []
-  );
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [autoplay]);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
 
   const scrollTo = useCallback((index: number) => emblaApi?.scrollTo(index), [emblaApi]);
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
@@ -35,31 +23,6 @@ export function GalleryCarousel({ images }: { images: GalleryImage[] }) {
       emblaApi.off("select", onSelect);
     };
   }, [emblaApi]);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-    const syncMotionPreference = () => {
-      if (mediaQuery.matches) {
-        autoplay.stop();
-        setIsPlaying(false);
-      }
-    };
-
-    syncMotionPreference();
-    mediaQuery.addEventListener("change", syncMotionPreference);
-    return () => mediaQuery.removeEventListener("change", syncMotionPreference);
-  }, [autoplay]);
-
-  const toggleAutoplay = () => {
-    if (isPlaying) {
-      autoplay.stop();
-      setIsPlaying(false);
-    } else {
-      autoplay.play();
-      setIsPlaying(true);
-    }
-  };
 
   return (
     <div
@@ -147,16 +110,6 @@ export function GalleryCarousel({ images }: { images: GalleryImage[] }) {
           >
             <polyline points="9 18 15 12 9 6" />
           </svg>
-        </button>
-
-        <button
-          type="button"
-          aria-label={isPlaying ? "Pause slideshow" : "Play slideshow"}
-          aria-pressed={!isPlaying}
-          onClick={toggleAutoplay}
-          className="nav-glass absolute top-3 right-3 flex min-h-11 items-center justify-center rounded-full px-3 text-xs font-semibold"
-        >
-          {isPlaying ? "Pause" : "Play"}
         </button>
 
         <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2">

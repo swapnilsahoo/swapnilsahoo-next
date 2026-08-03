@@ -5,7 +5,7 @@ import { useEffect, useId, useRef, useState } from "react";
 
 import type { NavDropdown, NavLink } from "@/features/profile/types";
 
-const CLOSE_DELAY_MS = 500;
+const CLOSE_DELAY_MS = 240;
 
 function DropdownLink({
   item,
@@ -124,7 +124,7 @@ export function NavDropdownMenu({ dropdown }: { dropdown: NavDropdown }) {
         type="button"
         aria-expanded={open}
         aria-controls={menuId}
-        className="link-underline inline-flex min-h-11 items-center gap-1 rounded-full px-3 py-1.5"
+        className="link-underline inline-flex min-h-11 items-center gap-1 rounded-lg px-3 py-1.5"
         onClick={(event) => {
           clearCloseTimeout();
           if (event.detail === 0) {
@@ -165,7 +165,7 @@ export function NavDropdownMenu({ dropdown }: { dropdown: NavDropdown }) {
         id={menuId}
         aria-hidden={!open}
         inert={!open}
-        className={`nav-glass dropdown-content absolute top-[calc(100%+10px)] z-50 max-h-[calc(100vh-10rem)] overflow-y-auto rounded-[14px] p-2 opacity-0 transition-[opacity,transform] duration-200 ${
+        className={`nav-glass dropdown-content absolute top-[calc(100%+10px)] z-50 max-h-[calc(100vh-7rem)] overflow-y-auto rounded-xl p-2 opacity-0 transition-[opacity,transform] duration-150 ${
           alignRight ? "right-0" : "left-1/2"
         }`}
         style={{

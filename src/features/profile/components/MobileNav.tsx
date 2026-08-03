@@ -92,7 +92,13 @@ export function MobileNav() {
   const groups = ["Profile", "Teaching", "More"] as const;
 
   return (
-    <div ref={wrapperRef} className="relative lg:hidden">
+    <div
+      ref={wrapperRef}
+      className="relative lg:hidden"
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false);
+      }}
+    >
       <button
         ref={triggerRef}
         type="button"
@@ -100,7 +106,7 @@ export function MobileNav() {
         aria-controls="mobile-site-navigation"
         aria-label={open ? "Close site menu" : "Open site menu"}
         onClick={() => setOpen((value) => !value)}
-        className="hover:bg-ink-100 dark:hover:bg-ink-800 flex h-11 items-center gap-2 rounded-full px-3 text-sm font-semibold"
+        className="hover:bg-ink-100 dark:hover:bg-ink-800 flex h-11 items-center gap-2 rounded-lg px-3 text-sm font-semibold"
       >
         <span aria-hidden="true" className="grid w-4 gap-1">
           <span
@@ -120,15 +126,15 @@ export function MobileNav() {
         id="mobile-site-navigation"
         aria-hidden={!open}
         inert={!open}
-        className={`nav-glass fixed top-[calc(env(safe-area-inset-top)+5.25rem)] right-3 left-3 max-h-[calc(100dvh-6.25rem-env(safe-area-inset-bottom))] origin-top-right overflow-hidden rounded-3xl p-3 transition sm:absolute sm:top-[calc(100%+0.65rem)] sm:right-0 sm:left-auto sm:w-[min(88vw,22rem)] ${
+        className={`nav-glass absolute top-[calc(100%+0.75rem)] right-0 z-50 max-h-[calc(100dvh-5.5rem-env(safe-area-inset-bottom))] w-[min(calc(100vw-1.625rem),22rem)] overflow-hidden rounded-2xl p-3 transition ${
           open
-            ? "pointer-events-auto translate-y-0 scale-100 opacity-100"
-            : "pointer-events-none -translate-y-1 scale-[0.98] opacity-0"
+            ? "pointer-events-auto translate-y-0 opacity-100"
+            : "pointer-events-none -translate-y-1 opacity-0"
         }`}
       >
         <nav
           aria-label="Mobile navigation"
-          className="max-h-[calc(100dvh-7.75rem-env(safe-area-inset-bottom))] overflow-y-auto overscroll-contain sm:max-h-[min(72vh,34rem)]"
+          className="max-h-[calc(100dvh-7rem-env(safe-area-inset-bottom))] overflow-y-auto overscroll-contain"
         >
           {groups.map((group) => (
             <div

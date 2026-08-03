@@ -30,15 +30,20 @@ export function Footer() {
         </div>
         <div>
           <p className="eyebrow mb-3">Site</p>
-          <ul className="space-y-1.5 text-sm" aria-label="Footer navigation">
-            {footerLinks.map((link) => (
-              <li key={link.label}>
-                <Link href={link.href} className="link-underline inline-flex min-h-11 items-center">
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <nav aria-label="Footer navigation">
+            <ul className="space-y-1.5 text-sm">
+              {footerLinks.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="link-underline inline-flex min-h-11 items-center"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
         <div>
           <p className="eyebrow mb-3">Elsewhere</p>
@@ -49,10 +54,11 @@ export function Footer() {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={label}
-                className="bg-ink-100 dark:bg-ink-800 hover:bg-ink-200 dark:hover:bg-ink-700 flex h-11 w-11 items-center justify-center rounded-full transition-colors"
+                aria-label={`Swapnil Sahoo on ${label}`}
+                className="bg-ink-100 dark:bg-ink-800 hover:bg-ink-200 dark:hover:bg-ink-700 flex h-11 w-11 items-center justify-center rounded-lg transition-colors"
               >
                 <Icon className="h-4 w-4" />
+                <span className="sr-only"> (opens in a new tab)</span>
               </a>
             ))}
           </div>

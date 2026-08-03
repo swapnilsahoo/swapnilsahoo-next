@@ -8,22 +8,19 @@ import { AffiliationMarquee } from "./AffiliationMarquee";
 
 export function Hero() {
   return (
-    <header id="top" className="relative overflow-x-clip pt-16 pb-20 md:pt-24 md:pb-28">
+    <header id="top" className="relative overflow-x-clip pt-14 pb-16 md:pt-20 md:pb-24">
       <div className="aurora" />
       <Container className="grid items-center gap-10 md:grid-cols-12">
         <Reveal className="md:col-span-8">
           <div className="mb-5 flex flex-wrap items-center gap-3">
             <span className="eyebrow">{profile.title}</span>
             <span className="tag tag-amber">
-              <span
-                className="bg-accent-500 h-1.5 w-1.5 animate-pulse rounded-full"
-                aria-hidden="true"
-              />
+              <span className="bg-accent-500 h-1.5 w-1.5 rounded-full" aria-hidden="true" />
               Accepting PhD enquiries
             </span>
             <span className="tag tag-emerald">17 years in industry · now in academia</span>
           </div>
-          <h1 className="display mb-6 text-5xl font-semibold md:text-7xl">
+          <h1 className="display mb-6 text-5xl font-semibold md:text-6xl lg:text-7xl">
             Dr. {profile.firstName}{" "}
             <span className="text-brand-700 dark:text-brand-400 font-normal italic">
               {profile.lastName}
@@ -72,7 +69,6 @@ export function Hero() {
 
         <Reveal className="md:col-span-4" delay={0.1}>
           <div className="relative">
-            <div className="from-brand-500/20 via-accent-500/10 absolute -inset-4 rounded-[28px] bg-gradient-to-br to-transparent blur-2xl" />
             <div className="glass-card relative p-3">
               <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl">
                 <Image
