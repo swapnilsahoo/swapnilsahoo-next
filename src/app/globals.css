@@ -690,6 +690,40 @@ main :where(article, aside, div)[class*="from-brand-50"][class*="bg-gradient-to-
   box-shadow: none !important;
 }
 
+/* Site-wide restraint for legacy one-off treatments. */
+main [class*="shadow-"] {
+  box-shadow: none !important;
+}
+
+main
+  :where(section, article, aside, div, figure, details)[class*="backdrop-blur"]:not(
+    [class*="absolute"]
+  ) {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+main :where(section, article, aside, div, figure, details)[class*="rounded-[2"],
+main :where(section, article, aside, div, figure, details)[class*="rounded-[3"] {
+  border-radius: 16px !important;
+}
+
+main
+  :where(
+    section,
+    article,
+    aside,
+    div,
+    details
+  )[class*="from-slate-950"][class*="bg-gradient-to-br"],
+main :where(section, article, aside, div, details)[class*="from-[#"][class*="bg-gradient-to-br"] {
+  background: #111827 !important;
+}
+
+main :where(section, article, aside, div)[class*="from-accent-"][class*="bg-gradient-to-br"] {
+  background: var(--surface-subtle) !important;
+}
+
 main :where(a, button, article)[class*="hover:-translate"] {
   translate: none !important;
 }
@@ -719,6 +753,19 @@ main [class*="text-[11px]"] {
 
   .glass-card {
     border-radius: 16px;
+  }
+
+  [data-page-hero] h1 {
+    font-size: clamp(2.35rem, 12vw, 3.75rem) !important;
+    line-height: 1 !important;
+  }
+
+  main :where(section, header)[class*="py-20"],
+  main :where(section, header)[class*="py-24"],
+  main :where(section, header)[class*="py-28"],
+  main :where(section, header)[class*="py-32"] {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
   }
 
   #chat-container {
