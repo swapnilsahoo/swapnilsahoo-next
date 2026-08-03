@@ -171,11 +171,14 @@ function EpicReadingMap({
 
 export default function MythologyPage() {
   return (
-    <main id="main-content">
+    <main id="main-content" tabIndex={-1}>
       <header className="relative overflow-hidden pt-14 pb-16 sm:pt-20 sm:pb-24">
         <div className="aurora" aria-hidden="true" />
         <Container className="max-w-6xl">
-          <div className="relative isolate overflow-hidden rounded-[30px] border border-indigo-200/20 bg-gradient-to-br from-[#15113d] via-[#312e81] to-[#9a3412] px-6 py-12 text-white shadow-2xl shadow-indigo-950/25 sm:px-10 sm:py-16 lg:px-14">
+          <div
+            data-page-hero="mythology"
+            className="relative isolate overflow-hidden rounded-[30px] border border-indigo-200/20 bg-gradient-to-br from-[#15113d] via-[#312e81] to-[#9a3412] px-6 py-12 text-white shadow-2xl shadow-indigo-950/25 sm:px-10 sm:py-16 lg:px-14"
+          >
             <div
               className="absolute -top-32 -right-24 -z-10 h-96 w-96 rounded-full bg-amber-300/20 blur-3xl"
               aria-hidden="true"

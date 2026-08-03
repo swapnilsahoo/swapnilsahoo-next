@@ -6,6 +6,7 @@ import {
   secondaryNavLinks,
   teachingDropdown,
 } from "@/features/profile/data/navigation";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { NavDropdownMenu } from "./NavDropdownMenu";
 import { MobileNav } from "./MobileNav";
 
@@ -13,15 +14,15 @@ export function StickyNav() {
   return (
     <nav
       aria-label="Primary navigation"
-      className="sticky top-3 z-40 mx-auto max-w-5xl px-3 sm:px-4"
+      className="sticky top-3 z-40 mx-auto max-w-7xl px-3 sm:px-6 lg:px-8"
     >
-      <div className="nav-glass flex items-center justify-between rounded-full px-5 py-2.5">
+      <div className="nav-glass flex items-center justify-between rounded-2xl px-3 py-1.5 sm:px-4">
         <Link
           href="/#top"
           aria-label="Dr. Swapnil Sahoo — home"
           className="flex min-h-11 items-center gap-2"
         >
-          <span className="bg-ink-900 dark:bg-brand-500 flex h-7 w-7 items-center justify-center rounded-full font-serif text-sm font-bold text-white">
+          <span className="bg-ink-900 dark:bg-brand-500 flex h-8 w-8 items-center justify-center rounded-lg font-serif text-sm font-bold text-white">
             S
           </span>
           <span className="hidden font-serif text-sm font-semibold tracking-tight sm:block">
@@ -33,7 +34,7 @@ export function StickyNav() {
             <Link
               key={link.label}
               href={link.href}
-              className={`link-underline inline-flex min-h-11 items-center rounded-full px-3 py-1.5 ${
+              className={`link-underline inline-flex min-h-11 items-center rounded-lg px-3 py-1.5 ${
                 index === 1 ? "hidden md:inline-block" : ""
               }`}
             >
@@ -46,7 +47,7 @@ export function StickyNav() {
               <Link
                 key={link.label}
                 href={link.href}
-                className={`link-underline inline-flex min-h-11 items-center rounded-full px-3 py-1.5 ${
+                className={`link-underline inline-flex min-h-11 items-center rounded-lg px-3 py-1.5 ${
                   link.label === "PhD" ? "hidden md:inline-block" : ""
                 }`}
               >
@@ -58,7 +59,7 @@ export function StickyNav() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`link-underline inline-flex min-h-11 items-center rounded-full px-3 py-1.5 ${
+                className={`link-underline inline-flex min-h-11 items-center rounded-lg px-3 py-1.5 ${
                   link.label === "PhD" ? "hidden md:inline-block" : ""
                 }`}
               >
@@ -68,7 +69,10 @@ export function StickyNav() {
           )}
           <NavDropdownMenu dropdown={moreDropdown} />
         </div>
-        <MobileNav />
+        <div className="flex items-center gap-1">
+          <ThemeToggle />
+          <MobileNav />
+        </div>
       </div>
     </nav>
   );

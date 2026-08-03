@@ -198,7 +198,7 @@ export default async function ScripturePage({ params }: PageProps) {
   };
 
   return (
-    <main id="main-content">
+    <main id="main-content" tabIndex={-1}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -230,6 +230,7 @@ export default async function ScripturePage({ params }: PageProps) {
           </nav>
 
           <div
+            data-page-hero="scripture"
             className={`relative isolate overflow-hidden rounded-[34px] border border-white/15 bg-gradient-to-br ${theme.hero} px-6 py-11 text-white shadow-2xl shadow-slate-950/25 sm:px-10 sm:py-16 lg:px-14`}
           >
             <div

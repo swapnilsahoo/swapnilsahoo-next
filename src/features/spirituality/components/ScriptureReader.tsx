@@ -211,8 +211,8 @@ export function ScriptureReader({
   };
 
   return (
-    <div className="overflow-hidden rounded-[28px] border border-amber-900/10 bg-white/75 shadow-2xl shadow-amber-950/8 backdrop-blur-xl dark:border-amber-100/10 dark:bg-slate-950/65">
-      <div className="border-b border-amber-900/10 bg-gradient-to-br from-amber-50/90 via-white to-rose-50/70 p-5 sm:p-7 dark:border-amber-100/10 dark:from-amber-950/30 dark:via-slate-950 dark:to-rose-950/20">
+    <div className="overflow-hidden rounded-2xl border border-amber-900/10 bg-white dark:border-amber-100/10 dark:bg-slate-950">
+      <div className="border-b border-amber-900/10 bg-amber-50/55 p-5 sm:p-7 dark:border-amber-100/10 dark:bg-slate-900">
         <div className="grid gap-5 lg:grid-cols-[1fr_0.55fr]">
           <div>
             <p className="eyebrow mb-2">Reader controls</p>
@@ -226,7 +226,7 @@ export function ScriptureReader({
             </p>
           </div>
           <p
-            className="self-end rounded-2xl border border-amber-900/10 bg-white/70 px-4 py-3 font-mono text-xs text-amber-950 dark:border-amber-100/10 dark:bg-white/5 dark:text-amber-100"
+            className="self-end rounded-lg border border-amber-900/10 bg-white px-4 py-3 font-mono text-xs text-amber-950 dark:border-amber-100/10 dark:bg-white/5 dark:text-amber-100"
             aria-live="polite"
           >
             Showing {Math.min(visibleCount, filteredEntries.length)} of {resultLabel}
@@ -259,7 +259,7 @@ export function ScriptureReader({
                   resetVisibleCount();
                 }}
                 placeholder={`Devanagari, ${romanizationLabel}, or meaning`}
-                className="border-ink-200 focus:border-brand-500 focus:ring-brand-500/20 dark:border-ink-700 min-h-11 w-full rounded-xl border bg-white/80 py-3 pr-4 pl-11 text-sm outline-none focus:ring-4 dark:bg-white/5"
+                className="border-ink-200 focus:border-brand-500 focus:ring-brand-500/20 dark:border-ink-700 min-h-11 w-full rounded-lg border bg-white py-3 pr-4 pl-11 text-sm outline-none focus:ring-4 dark:bg-white/5"
               />
             </div>
           </div>
@@ -272,7 +272,7 @@ export function ScriptureReader({
               id={sectionId}
               value={section}
               onChange={(event) => chooseSection(event.target.value)}
-              className="border-ink-200 focus:border-brand-500 focus:ring-brand-500/20 dark:border-ink-700 min-h-11 w-full rounded-xl border bg-white/80 px-4 py-3 text-sm outline-none focus:ring-4 dark:bg-slate-950"
+              className="border-ink-200 focus:border-brand-500 focus:ring-brand-500/20 dark:border-ink-700 min-h-11 w-full rounded-lg border bg-white px-4 py-3 text-sm outline-none focus:ring-4 dark:bg-slate-950"
             >
               {sections.map((option) => (
                 <option key={option} value={option}>
@@ -285,7 +285,7 @@ export function ScriptureReader({
           {supportsStudyLayer ? (
             <fieldset>
               <legend className="mb-2 text-xs font-semibold">Reading layer</legend>
-              <div className="border-ink-200 dark:border-ink-700 flex rounded-xl border bg-white/80 p-1 dark:bg-white/5">
+              <div className="border-ink-200 dark:border-ink-700 flex rounded-lg border bg-white p-1 dark:bg-white/5">
                 {(
                   [
                     ["word", studyLayerLabel],
@@ -311,7 +311,7 @@ export function ScriptureReader({
           ) : (
             <div>
               <p className="mb-2 text-xs font-semibold">Study unit</p>
-              <p className="border-ink-200 text-ink-600 dark:border-ink-700 dark:text-ink-300 flex min-h-11 items-center rounded-xl border bg-white/80 px-3 text-xs dark:bg-white/5">
+              <p className="border-ink-200 text-ink-600 dark:border-ink-700 dark:text-ink-300 flex min-h-11 items-center rounded-lg border bg-white px-3 text-xs dark:bg-white/5">
                 Numbered name with close gloss
               </p>
             </div>
@@ -330,7 +330,7 @@ export function ScriptureReader({
                   type="button"
                   onClick={() => moveRange(-1)}
                   disabled={activeRangeIndex <= 0}
-                  className="border-ink-200 text-ink-700 focus-visible:ring-brand-500 dark:border-ink-700 dark:text-ink-100 inline-flex min-h-11 min-w-11 items-center justify-center rounded-xl border bg-white/80 px-3 text-xs font-semibold transition hover:border-amber-400 focus-visible:ring-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-40 dark:bg-white/5"
+                  className="border-ink-200 text-ink-700 focus-visible:ring-brand-500 dark:border-ink-700 dark:text-ink-100 inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg border bg-white px-3 text-xs font-semibold transition hover:border-amber-400 focus-visible:ring-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-40 dark:bg-white/5"
                 >
                   <span aria-hidden="true">←</span>
                   <span className="ml-1 hidden sm:inline">Previous range</span>
@@ -343,7 +343,7 @@ export function ScriptureReader({
                   type="button"
                   onClick={() => moveRange(1)}
                   disabled={activeRangeIndex < 0 || activeRangeIndex >= ranges.length - 1}
-                  className="border-ink-200 text-ink-700 focus-visible:ring-brand-500 dark:border-ink-700 dark:text-ink-100 inline-flex min-h-11 min-w-11 items-center justify-center rounded-xl border bg-white/80 px-3 text-xs font-semibold transition hover:border-amber-400 focus-visible:ring-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-40 dark:bg-white/5"
+                  className="border-ink-200 text-ink-700 focus-visible:ring-brand-500 dark:border-ink-700 dark:text-ink-100 inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg border bg-white px-3 text-xs font-semibold transition hover:border-amber-400 focus-visible:ring-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-40 dark:bg-white/5"
                 >
                   <span className="mr-1 hidden sm:inline">Next range</span>
                   <span className="sr-only sm:hidden">Next range</span>
@@ -367,11 +367,11 @@ export function ScriptureReader({
                   inputMode="numeric"
                   value={jumpValue}
                   onChange={(event) => setJumpValue(event.target.value)}
-                  className="border-ink-200 focus:border-brand-500 focus:ring-brand-500/20 dark:border-ink-700 min-h-11 w-28 rounded-xl border bg-white/80 px-3 text-sm outline-none focus:ring-4 dark:bg-slate-950"
+                  className="border-ink-200 focus:border-brand-500 focus:ring-brand-500/20 dark:border-ink-700 min-h-11 w-28 rounded-lg border bg-white px-3 text-sm outline-none focus:ring-4 dark:bg-slate-950"
                 />
                 <button
                   type="submit"
-                  className="bg-ink-950 focus-visible:ring-brand-500 inline-flex min-h-11 items-center justify-center rounded-xl px-4 text-sm font-semibold text-white transition hover:bg-slate-800 focus-visible:ring-2 focus-visible:outline-none dark:bg-white dark:text-slate-950"
+                  className="bg-ink-950 focus-visible:ring-brand-500 inline-flex min-h-11 items-center justify-center rounded-lg px-4 text-sm font-semibold text-white transition hover:bg-slate-800 focus-visible:ring-2 focus-visible:outline-none dark:bg-white dark:text-slate-950"
                 >
                   Go
                 </button>
@@ -391,12 +391,9 @@ export function ScriptureReader({
               key={entry.id}
               id={entry.id}
               aria-labelledby={`${entry.id}-title`}
-              className="group border-ink-200/80 dark:border-ink-700 relative scroll-mt-28 overflow-hidden rounded-3xl border bg-white/80 p-5 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-amber-950/8 sm:p-7 dark:bg-white/[0.035]"
+              className="group border-ink-200/80 dark:border-ink-700 relative scroll-mt-28 overflow-hidden rounded-xl border bg-white p-5 sm:p-7 dark:bg-white/[0.035]"
             >
-              <div
-                className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-amber-400 via-orange-500 to-rose-500 opacity-65"
-                aria-hidden="true"
-              />
+              <div className="absolute inset-y-0 left-0 w-px bg-amber-500" aria-hidden="true" />
               <h4 id={`${entry.id}-title`} className="sr-only">
                 {entry.label}: {entry.transliteration}
               </h4>
@@ -450,7 +447,7 @@ export function ScriptureReader({
                     {entry.transliteration}
                   </p>
                 </div>
-                <div className="rounded-2xl bg-slate-50 p-4 dark:bg-white/[0.045]">
+                <div className="rounded-lg bg-slate-50 p-4 dark:bg-white/[0.045]">
                   <p className="eyebrow mb-2">Close meaning</p>
                   <p className="text-ink-700 dark:text-ink-100 text-sm leading-relaxed sm:text-base">
                     {entry.meaning}
@@ -468,7 +465,7 @@ export function ScriptureReader({
                     {entry.words.map((word, wordIndex) => (
                       <div
                         key={`${entry.id}-${word.transliteration}-${wordIndex}`}
-                        className="rounded-xl border border-amber-900/10 bg-amber-50/65 p-3 dark:border-amber-100/10 dark:bg-amber-400/[0.045]"
+                        className="rounded-lg border border-amber-900/10 bg-amber-50/65 p-3 dark:border-amber-100/10 dark:bg-amber-400/[0.045]"
                       >
                         <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
                           {word.original ? (
@@ -518,7 +515,7 @@ export function ScriptureReader({
             <button
               type="button"
               onClick={() => setVisibleCount((count) => count + PAGE_SIZE)}
-              className="bg-ink-950 focus-visible:ring-brand-500 inline-flex min-h-11 items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-slate-800 focus-visible:ring-2 focus-visible:outline-none dark:bg-white dark:text-slate-950"
+              className="bg-ink-950 focus-visible:ring-brand-500 inline-flex min-h-11 items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 focus-visible:ring-2 focus-visible:outline-none dark:bg-white dark:text-slate-950"
             >
               Load {Math.min(PAGE_SIZE, filteredEntries.length - visibleEntries.length)} more
             </button>

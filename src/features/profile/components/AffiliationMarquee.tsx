@@ -2,20 +2,15 @@ import { affiliationMarquee } from "@/features/profile/data/stats";
 
 export function AffiliationMarquee() {
   return (
-    <div className="marquee">
-      <p className="sr-only">{affiliationMarquee.join(", ")}</p>
-      <div className="marquee-track text-ink-500 dark:text-ink-300 font-serif text-xl font-medium italic">
-        {[false, true].map((duplicate) => (
-          <span key={String(duplicate)} aria-hidden="true" className="flex items-center gap-14">
-            {affiliationMarquee.map((item) => (
-              <span key={item} className="flex items-center gap-14">
-                {item}
-                <span>·</span>
-              </span>
-            ))}
+    <ul className="text-ink-500 dark:text-ink-300 flex flex-wrap gap-x-8 gap-y-2 font-serif text-lg font-medium italic">
+      {affiliationMarquee.map((item) => (
+        <li key={item} className="flex items-center gap-8">
+          {item}
+          <span className="text-ink-300 dark:text-ink-600" aria-hidden="true">
+            ·
           </span>
-        ))}
-      </div>
-    </div>
+        </li>
+      ))}
+    </ul>
   );
 }

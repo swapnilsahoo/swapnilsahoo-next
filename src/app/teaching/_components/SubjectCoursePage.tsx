@@ -130,9 +130,12 @@ export function SubjectCoursePage({ config }: { config: SubjectCourseConfig }) {
   const studioIcons = [CompassIcon, NetworkIcon, BricolageIcon, GraduationCapIcon] as const;
 
   return (
-    <main id="main-content" className="overflow-clip">
+    <main id="main-content" tabIndex={-1} className="overflow-clip">
       <header className="px-4 pt-10 pb-8 sm:px-6 sm:pt-16 lg:px-8">
-        <div className="from-ink-950 via-brand-950 to-ink-900 relative isolate mx-auto max-w-[92rem] overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br text-white shadow-[0_40px_120px_-48px_rgba(3,7,18,0.9)] sm:rounded-[2.5rem]">
+        <div
+          data-page-hero="course"
+          className="from-ink-950 via-brand-950 to-ink-900 relative isolate mx-auto max-w-[92rem] overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br text-white shadow-[0_40px_120px_-48px_rgba(3,7,18,0.9)] sm:rounded-[2.5rem]"
+        >
           <div
             className="bg-brand-500/20 absolute -top-40 -left-28 -z-10 h-[30rem] w-[30rem] rounded-full blur-3xl"
             aria-hidden="true"
@@ -197,12 +200,12 @@ export function SubjectCoursePage({ config }: { config: SubjectCourseConfig }) {
       <Container className="max-w-6xl">
         <nav
           aria-label="On this subject page"
-          className="nav-glass my-8 hidden items-center justify-between rounded-full px-5 py-2.5 lg:flex"
+          className="nav-glass my-6 flex items-center gap-4 overflow-x-auto rounded-xl px-4 py-2 lg:my-8 lg:justify-between"
         >
-          <p className="font-mono text-[10px] tracking-[0.16em] text-slate-500 uppercase dark:text-slate-400">
+          <p className="shrink-0 font-mono text-[10px] tracking-[0.16em] text-slate-500 uppercase dark:text-slate-400">
             Course map
           </p>
-          <div className="flex items-center gap-1 text-xs font-semibold">
+          <div className="flex shrink-0 items-center gap-1 text-xs font-semibold">
             {[
               ["Promise", "#promise"],
               ["Learning loop", "#learning-loop"],
@@ -216,7 +219,7 @@ export function SubjectCoursePage({ config }: { config: SubjectCourseConfig }) {
               <a
                 key={href}
                 href={href}
-                className="rounded-full px-3 py-2 transition hover:bg-blue-600/8 hover:text-blue-700 dark:hover:text-blue-300"
+                className="rounded-md px-3 py-2 whitespace-nowrap transition hover:bg-blue-600/8 hover:text-blue-700 dark:hover:text-blue-300"
               >
                 {label}
               </a>

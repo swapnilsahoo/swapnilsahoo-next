@@ -108,9 +108,10 @@ function Citations({ ids }: { ids: readonly number[] }) {
 
 export function TwoYearMbaExperience() {
   return (
-    <main id="main-content" className="overflow-clip">
+    <main id="main-content" tabIndex={-1} className="overflow-clip">
       <header className="px-4 pt-10 pb-8 sm:px-6 sm:pt-16 lg:px-8">
         <div
+          data-page-hero="course"
           className={`${styles.heroShell} mx-auto max-w-[92rem] overflow-hidden rounded-[2rem] text-white shadow-[0_40px_120px_-48px_rgba(3,7,18,0.95)] sm:rounded-[2.5rem]`}
         >
           <div className="grid min-h-[700px] lg:grid-cols-[0.84fr_1.16fr]">
@@ -212,12 +213,12 @@ export function TwoYearMbaExperience() {
       <Container className="max-w-6xl">
         <nav
           aria-label="On this course page"
-          className="nav-glass my-8 hidden items-center justify-between rounded-full px-5 py-2.5 lg:flex"
+          className="nav-glass my-6 flex items-center gap-4 overflow-x-auto rounded-xl px-4 py-2 lg:my-8 lg:justify-between"
         >
-          <p className="font-mono text-[10px] tracking-[0.16em] text-slate-500 uppercase dark:text-slate-400">
+          <p className="shrink-0 font-mono text-[10px] tracking-[0.16em] text-slate-500 uppercase dark:text-slate-400">
             Course map
           </p>
-          <div className="flex items-center gap-1 text-xs font-semibold">
+          <div className="flex shrink-0 items-center gap-1 text-xs font-semibold">
             {[
               ["Profile", "#course-profile"],
               ["Pathway", "#pathway"],
@@ -229,7 +230,7 @@ export function TwoYearMbaExperience() {
               <a
                 key={href}
                 href={href}
-                className="rounded-full px-3 py-2 transition hover:bg-emerald-600/8 hover:text-emerald-700 dark:hover:text-emerald-300"
+                className="rounded-md px-3 py-2 whitespace-nowrap transition hover:bg-emerald-600/8 hover:text-emerald-700 dark:hover:text-emerald-300"
               >
                 {label}
               </a>

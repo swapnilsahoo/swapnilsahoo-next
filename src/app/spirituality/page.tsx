@@ -115,11 +115,14 @@ const spiritualityInquiry = {
 
 export default function SpiritualityPage() {
   return (
-    <main id="main-content">
+    <main id="main-content" tabIndex={-1}>
       <header className="relative overflow-hidden pt-14 pb-16 sm:pt-20 sm:pb-24">
         <div className="aurora" aria-hidden="true" />
         <Container className="max-w-6xl">
-          <div className="relative isolate overflow-hidden rounded-[30px] border border-amber-200/20 bg-gradient-to-br from-[#220b09] via-[#70230f] to-[#b45309] px-6 py-12 text-white shadow-2xl shadow-amber-950/25 sm:px-10 sm:py-16 lg:px-14">
+          <div
+            data-page-hero="spirituality"
+            className="relative isolate overflow-hidden rounded-[30px] border border-amber-200/20 bg-gradient-to-br from-[#220b09] via-[#70230f] to-[#b45309] px-6 py-12 text-white shadow-2xl shadow-amber-950/25 sm:px-10 sm:py-16 lg:px-14"
+          >
             <div
               className="absolute -top-28 -right-24 -z-10 h-80 w-80 rounded-full bg-amber-300/20 blur-3xl"
               aria-hidden="true"

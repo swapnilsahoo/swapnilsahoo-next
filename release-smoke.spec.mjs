@@ -128,6 +128,85 @@ for (const route of routes) {
   });
 }
 
+test("skip link · transfers keyboard focus to main content", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto(`${baseUrl}/`, { waitUntil: "domcontentloaded" });
+
+  await page.keyboard.press("Tab");
+  const skipLink = page.getByRole("link", { name: "Skip to main content" });
+  await expect(skipLink).toBeFocused();
+  await page.keyboard.press("Enter");
+
+  await expect(page.locator("#main-content")).toBeFocused();
+  await expect(page).toHaveURL(/#main-content$/);
+});
+
+for (const viewport of [
+  { label: "phone-320", width: 320, height: 720 },
+  { label: "phone-375", width: 375, height: 812 },
+  { label: "tablet-768", width: 768, height: 1024 },
+]) {
+  test(`mobile header · contained menu at ${viewport.label}`, async ({ page }) => {
+    await page.setViewportSize({ width: viewport.width, height: viewport.height });
+    await page.goto(`${baseUrl}/`, { waitUntil: "domcontentloaded" });
+
+    const trigger = page.getByRole("button", { name: "Open site menu" });
+    await trigger.click();
+
+    const mobileNav = page.getByRole("navigation", { name: "Mobile navigation" });
+    await expect(mobileNav).toBeVisible();
+    const panel = page.locator("#mobile-site-navigation");
+    const box = await panel.boundingBox();
+
+    expect(box).not.toBeNull();
+    expect(box.x).toBeGreaterThanOrEqual(0);
+    expect(box.y).toBeGreaterThanOrEqual(0);
+    expect(box.x + box.width).toBeLessThanOrEqual(viewport.width);
+    expect(box.y + box.height).toBeLessThanOrEqual(viewport.height);
+  });
+}
+
+test("mobile header · closes when keyboard focus leaves", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto(`${baseUrl}/`, { waitUntil: "domcontentloaded" });
+
+  const trigger = page.getByRole("button", { name: "Open site menu" });
+  await trigger.click();
+  const contact = page
+    .getByRole("navigation", { name: "Mobile navigation" })
+    .getByRole("link", { name: "Contact", exact: true });
+  await contact.scrollIntoViewIfNeeded();
+  await contact.focus();
+  await page.keyboard.press("Tab");
+
+  await expect(trigger).toHaveAttribute("aria-expanded", "false");
+});
+
+test("course map · remains available on mobile", async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 720 });
+  await page.goto(`${baseUrl}/teaching/1-year-mba`, { waitUntil: "domcontentloaded" });
+
+  const courseMap = page.getByRole("navigation", { name: "On this course page" });
+  await expect(courseMap).toBeVisible();
+  await expect(courseMap.getByRole("link", { name: "Promise", exact: true })).toBeVisible();
+  await expect(
+    courseMap.getByRole("link", { name: "All 13 sessions", exact: true })
+  ).toHaveAttribute("href", "#sessions");
+});
+
+test("theme toggle · persists dark mode after reload", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto(`${baseUrl}/`, { waitUntil: "domcontentloaded" });
+
+  const toggle = page.getByRole("button", { name: "Switch to dark theme" });
+  await toggle.click();
+  await expect(page.locator("html")).toHaveClass(/dark/);
+  await expect(page.getByRole("button", { name: "Switch to light theme" })).toBeVisible();
+
+  await page.reload({ waitUntil: "domcontentloaded" });
+  await expect(page.locator("html")).toHaveClass(/dark/);
+});
+
 test("Comics & Fiction branches · page and navigation", async ({ page }) => {
   const branches = [
     { label: "Spider-Man", hash: "#spider-man" },
@@ -223,6 +302,7 @@ test("Comics & Fiction story cycles · structure and disclosure behaviour", asyn
 
   await page.setViewportSize({ width: 320, height: 720 });
   await page.goto(`${baseUrl}/comics`, { waitUntil: "domcontentloaded" });
+  await expect(page.locator("[data-story-cycle]")).toHaveCount(3);
 
   for (const slug of cycles) {
     const summaries = page.locator(`[data-story-cycle="${slug}"] summary`);

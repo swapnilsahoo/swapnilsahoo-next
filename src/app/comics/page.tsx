@@ -116,8 +116,11 @@ const comicsInquiry = {
 
 export default function ComicsPage() {
   return (
-    <main id="main-content">
-      <header className={`${styles.hero} relative isolate overflow-hidden text-white`}>
+    <main id="main-content" tabIndex={-1}>
+      <header
+        data-page-hero="full"
+        className={`${styles.hero} relative isolate overflow-hidden text-white`}
+      >
         <div className={styles.heroGrid} aria-hidden="true" />
         <div className={styles.heroOrbOne} aria-hidden="true" />
         <div className={styles.heroOrbTwo} aria-hidden="true" />

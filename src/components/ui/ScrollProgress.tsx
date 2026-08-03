@@ -1,21 +1,42 @@
 "use client";
 
-import { motion, useScroll, useSpring } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 export function ScrollProgress() {
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 200,
-    damping: 40,
-    restDelta: 0.001,
-  });
+  const progressRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let frame = 0;
+
+    const update = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = scrollable > 0 ? Math.min(1, window.scrollY / scrollable) : 0;
+        if (progressRef.current) {
+          progressRef.current.style.transform = `scaleX(${progress})`;
+        }
+      });
+    };
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
 
   return (
-    <motion.div
+    <div
+      ref={progressRef}
       aria-hidden="true"
       id="scroll-progress"
-      style={{ scaleX, transformOrigin: "0% 50%", width: "100%" }}
-      className="fixed top-0 left-0 z-[9999] h-[3px] bg-gradient-to-r from-[#60A5FA] via-[#14B8A6] to-[#F0B429] shadow-[0_0_18px_rgba(96,165,250,0.36)]"
+      style={{ transform: "scaleX(0)", transformOrigin: "0% 50%", width: "100%" }}
+      className="bg-brand-600 fixed top-0 left-0 z-[9999] h-px"
     />
   );
 }
