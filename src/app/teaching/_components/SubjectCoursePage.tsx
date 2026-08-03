@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 import {
   ArrowRightIcon,
@@ -82,6 +83,21 @@ export type SubjectCourseConfig = {
   promise: {
     title: string;
     description: string;
+  };
+  fieldStory?: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    image: {
+      src: string;
+      alt: string;
+      width: number;
+      height: number;
+    };
+    moments: readonly [
+      { title: string; description: string },
+      { title: string; description: string },
+    ];
   };
   principles: readonly [SubjectPrinciple, SubjectPrinciple, SubjectPrinciple];
   learningLoop: {
@@ -270,6 +286,52 @@ export function SubjectCoursePage({ config }: { config: SubjectCourseConfig }) {
           </div>
         </Container>
       </section>
+
+      {config.fieldStory ? (
+        <section aria-labelledby="field-story-title" className="pb-16 sm:pb-24">
+          <Container className="max-w-6xl">
+            <figure className="overflow-hidden rounded-2xl border border-slate-900/10 bg-white dark:border-white/10 dark:bg-slate-950">
+              <div className="relative aspect-[3/2] overflow-hidden bg-slate-100 dark:bg-slate-900">
+                <Image
+                  src={config.fieldStory.image.src}
+                  alt={config.fieldStory.image.alt}
+                  width={config.fieldStory.image.width}
+                  height={config.fieldStory.image.height}
+                  sizes="(min-width: 1280px) 1152px, (min-width: 768px) calc(100vw - 96px), calc(100vw - 32px)"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <figcaption className="grid gap-8 border-t border-slate-900/10 px-6 py-8 sm:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:px-10 lg:py-10 dark:border-white/10">
+                <div>
+                  <p className="eyebrow mb-3">{config.fieldStory.eyebrow}</p>
+                  <h2
+                    id="field-story-title"
+                    className="display text-3xl leading-tight font-semibold text-balance sm:text-5xl"
+                  >
+                    {config.fieldStory.title}
+                  </h2>
+                  <p className="text-ink-600 dark:text-ink-300 mt-5 max-w-xl text-sm leading-7">
+                    {config.fieldStory.description}
+                  </p>
+                </div>
+                <div className="grid gap-6 sm:grid-cols-2">
+                  {config.fieldStory.moments.map((moment, index) => (
+                    <div key={moment.title} className="border-l border-amber-400/70 pl-5">
+                      <p className="font-mono text-[10px] font-bold tracking-[0.14em] text-amber-700 uppercase dark:text-amber-300">
+                        Moment {String(index + 1).padStart(2, "0")}
+                      </p>
+                      <h3 className="mt-2 font-serif text-xl font-semibold">{moment.title}</h3>
+                      <p className="text-ink-600 dark:text-ink-300 mt-3 text-sm leading-6">
+                        {moment.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </figcaption>
+            </figure>
+          </Container>
+        </section>
+      ) : null}
 
       <div className="hr-fade mx-auto max-w-6xl" />
 

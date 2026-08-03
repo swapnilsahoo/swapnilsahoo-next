@@ -4,7 +4,7 @@ import { SubjectCoursePage } from "../_components/SubjectCoursePage";
 import { karmaYogaCourse } from "../subjectCourseData";
 
 export const metadata: Metadata = {
-  title: "Karma Yoga — Experiential Leadership Through Service",
+  title: "Karma Yoga for All — Experiential Leadership Through Service",
   description:
     "An evidence-led Karma Yoga field journey for PGDM learners: listen, frame, co-design, build, deliver, measure, hand over and reflect.",
   keywords: [
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/teaching/karma-yoga" },
   openGraph: {
     type: "article",
-    title: "Karma Yoga — Leadership Through Service, Evidence and Reflection",
+    title: "Karma Yoga for All — Leadership Through Service, Evidence and Reflection",
     description:
       "A complete community field-learning architecture connecting empathy, responsible action, measurable impact and reflective leadership.",
     url: "/teaching/karma-yoga",
