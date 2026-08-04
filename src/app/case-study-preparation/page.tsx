@@ -13,12 +13,10 @@ import { InquiryPrelude } from "@/components/ui/InquiryPrelude";
 
 import { CasePracticeLab } from "./CasePracticeLab";
 
-const casebookUrl = "/1761125938034.pdf";
-
 export const metadata: Metadata = {
-  title: "Consulting Case Study Preparation",
+  title: "Great Lakes Consulting Club | Case Study Preparation",
   description:
-    "Consulting case practice for MBA students: structure unfamiliar problems, work with numbers, make a recommendation and learn from each mock interview.",
+    "Great Lakes Consulting Club case practice: structure unfamiliar problems, work with numbers, make a recommendation and learn from each mock interview.",
   keywords: [
     "consulting case interview",
     "case study preparation",
@@ -31,7 +29,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/case-study-preparation" },
   openGraph: {
     type: "article",
-    title: "Consulting Case Studio — Think Clearly Under Pressure",
+    title: "Great Lakes Consulting Club — Case Study Studio",
     description:
       "Practice for structuring an unfamiliar business problem, analysing it and explaining what you would do.",
     url: "/case-study-preparation",
@@ -101,12 +99,44 @@ const caseFamilies = [
 ] as const;
 
 const industryLenses = [
-  "Consumer & retail",
-  "Financial services",
-  "Healthcare & pharma",
-  "Technology & AI",
-  "Industrial & logistics",
-  "Energy & infrastructure",
+  "E-commerce, retail & FMCG",
+  "Banking, NBFCs & insurance",
+  "Healthcare & pharmaceuticals",
+  "Technology, AI & IT services",
+  "Automobile, airlines & logistics",
+  "Energy, infrastructure & real estate",
+] as const;
+
+const casebookPath = [
+  {
+    number: "01",
+    title: "Consulting prep 101",
+    description:
+      "Know the interview process, evaluation criteria and how to use a case group well.",
+  },
+  {
+    number: "02",
+    title: "Case frameworks",
+    description:
+      "Build adaptable starting structures for common case families and unusual prompts.",
+  },
+  {
+    number: "03",
+    title: "Case examples",
+    description:
+      "Move from candidate brief to analysis, exhibits, synthesis and interviewer feedback.",
+  },
+  {
+    number: "04",
+    title: "Guesstimates",
+    description: "Define, decompose, estimate and sanity-check with visible assumptions and units.",
+  },
+  {
+    number: "05",
+    title: "Industry primers",
+    description:
+      "Learn business models, value chains, economics, KPIs, competition and emerging trends.",
+  },
 ] as const;
 
 const workedCaseMetrics = [
@@ -157,7 +187,7 @@ export default function CaseStudyPreparationPage() {
             <div className="grid items-end gap-12 lg:grid-cols-[1fr_0.42fr]">
               <div>
                 <span className="inline-flex rounded-full border border-white/15 bg-white/10 px-3 py-1.5 font-mono text-[11px] tracking-[0.14em] text-blue-100 uppercase backdrop-blur-sm">
-                  Consulting case studio · Practice-first
+                  Great Lakes Consulting Club · Practice-first
                 </span>
                 <h1 className="display mt-7 max-w-4xl text-5xl font-semibold text-balance sm:text-7xl">
                   Think clearly{" "}
@@ -177,13 +207,10 @@ export default function CaseStudyPreparationPage() {
                     <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
                   </a>
                   <a
-                    href={casebookUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="#casebook-path"
                     className="focus-visible:ring-brand-300 inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:outline-none"
                   >
-                    Open the source casebook
-                    <span className="sr-only"> (opens in a new tab)</span>
+                    Explore the preparation path
                   </a>
                 </div>
               </div>
@@ -643,29 +670,41 @@ export default function CaseStudyPreparationPage() {
         </Container>
       </section>
 
-      <section aria-labelledby="source-title" className="pb-20 sm:pb-28">
+      <section id="casebook-path" aria-labelledby="source-title" className="pb-20 sm:pb-28">
         <Container className="max-w-6xl">
           <div className="from-brand-50 to-accent-400/10 dark:from-brand-900/30 dark:to-accent-400/5 border-brand-200/70 dark:border-brand-700/40 rounded-[24px] border bg-gradient-to-br p-7 sm:p-10">
-            <p className="eyebrow mb-3">Source &amp; further study</p>
+            <p className="eyebrow mb-3">Great Lakes Consulting Club learning path</p>
             <h2 id="source-title" className="display text-4xl font-semibold">
-              Read the casebook this page draws from.
+              Build readiness in five connected layers.
             </h2>
             <p className="text-ink-600 dark:text-ink-300 mt-4 max-w-3xl text-sm leading-relaxed">
-              This learning experience is an original adaptation informed by the structure of the
-              ISB Consulting Club&apos;s <em>Consulting Prep Casebook 2025</em>. The source contains
-              detailed frameworks, practice cases, guesstimates and industry primers. Copyright in
-              the casebook remains with its owner.
+              Use this sequence as a curriculum rather than a reading list. Learn how the interview
+              works, practise the building blocks, solve full cases, sharpen estimation and then add
+              the industry context needed to make commercially grounded recommendations.
             </p>
-            <a
-              href={casebookUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-ink-950 focus-visible:ring-brand-500 mt-7 inline-flex items-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-slate-800 focus-visible:ring-2 focus-visible:outline-none dark:bg-white dark:text-slate-950 dark:hover:bg-blue-50"
-            >
-              Read the 2025 casebook
-              <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
-              <span className="sr-only"> (opens in a new tab)</span>
-            </a>
+            <ol className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+              {casebookPath.map((item) => (
+                <li
+                  key={item.number}
+                  className="border-brand-200/70 dark:border-brand-700/40 rounded-2xl border bg-white/60 p-5 dark:bg-white/5"
+                >
+                  <span className="text-brand-700 dark:text-brand-300 font-mono text-[11px] font-semibold">
+                    {item.number}
+                  </span>
+                  <h3 className="mt-2 font-serif text-lg font-semibold">{item.title}</h3>
+                  <p className="text-ink-600 dark:text-ink-300 mt-2 text-xs leading-relaxed">
+                    {item.description}
+                  </p>
+                </li>
+              ))}
+            </ol>
+            <p className="text-ink-600 dark:text-ink-300 mt-7 max-w-4xl text-sm leading-relaxed">
+              A practical cadence is to form a diverse group of four to six people 45–60 days before
+              interviews, run realistic 20–25 minute cases in pairs, keep a feedback log and revisit
+              recurring mistakes every four or five days. Rotate interviewers and industries, and
+              finish with random mocks and back-to-back simulations. The goal is progress, not case
+              count.
+            </p>
           </div>
         </Container>
       </section>
