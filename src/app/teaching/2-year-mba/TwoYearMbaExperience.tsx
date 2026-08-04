@@ -170,8 +170,8 @@ export function TwoYearMbaExperience() {
               className={`${styles.photoFrame} relative min-h-[560px] overflow-hidden border-t border-white/10 lg:min-h-full lg:border-t-0 lg:border-l`}
             >
               <Image
-                src="/images/ai-hackathon/hackathon-room.jpg"
-                alt="Dr Swapnil Sahoo speaking during the incoming PGDM cohort's July 2026 AI Mini Hackathon"
+                src="/images/teaching/two-year/cohort-listening.webp"
+                alt="A two-year management cohort listening closely during a live classroom exchange"
                 fill
                 priority
                 className="object-cover"
@@ -183,7 +183,7 @@ export function TwoYearMbaExperience() {
                   PGDM teaching in practice
                 </p>
                 <p className="mt-3 font-serif text-xl leading-snug font-semibold">
-                  A live build session from the July 2026 AI Mini Hackathon.
+                  Strategy develops through sustained attention, challenge and cumulative practice.
                 </p>
               </div>
             </div>
@@ -520,6 +520,36 @@ export function TwoYearMbaExperience() {
               </p>
             </article>
           </div>
+        </Container>
+      </section>
+
+      <section aria-labelledby="cohort-story-title" className="pb-20 sm:pb-28">
+        <Container className="max-w-6xl">
+          <figure className="grid overflow-hidden rounded-[2rem] border border-slate-900/10 bg-white shadow-xl shadow-slate-950/5 lg:grid-cols-[1.18fr_0.82fr] dark:border-white/10 dark:bg-slate-950">
+            <div className="relative min-h-[360px] lg:min-h-[470px]">
+              <Image
+                src="/images/teaching/two-year/team-showcase.webp"
+                alt="A student team presenting its work to a live audience and review panel"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 58vw, 100vw"
+              />
+            </div>
+            <figcaption className="flex flex-col justify-center p-7 sm:p-10 lg:p-12">
+              <p className="eyebrow">Learning in public</p>
+              <h2
+                id="cohort-story-title"
+                className="mt-4 font-serif text-4xl leading-[1.03] font-semibold tracking-[-0.035em] text-balance sm:text-5xl"
+              >
+                Teams turn analysis into a position they can defend.
+              </h2>
+              <p className="text-ink-600 dark:text-ink-300 mt-6 text-sm leading-7">
+                The two-year journey creates room to revisit assumptions, integrate functional
+                perspectives and communicate a recommendation before peers, faculty and external
+                reviewers.
+              </p>
+            </figcaption>
+          </figure>
         </Container>
       </section>
 
