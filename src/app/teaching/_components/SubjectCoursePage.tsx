@@ -99,6 +99,18 @@ export type SubjectCourseConfig = {
       { title: string; description: string },
     ];
   };
+  teachingMoment?: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    image: {
+      src: string;
+      alt: string;
+      width: number;
+      height: number;
+    };
+    caption: string;
+  };
   principles: readonly [SubjectPrinciple, SubjectPrinciple, SubjectPrinciple];
   learningLoop: {
     name: string;
@@ -327,6 +339,40 @@ export function SubjectCoursePage({ config }: { config: SubjectCourseConfig }) {
                     </div>
                   ))}
                 </div>
+              </figcaption>
+            </figure>
+          </Container>
+        </section>
+      ) : null}
+
+      {config.teachingMoment ? (
+        <section aria-labelledby="teaching-moment-title" className="pb-16 sm:pb-24">
+          <Container className="max-w-6xl">
+            <figure className="grid overflow-hidden rounded-2xl border border-slate-900/10 bg-white shadow-xl shadow-slate-950/5 lg:grid-cols-[1.15fr_0.85fr] dark:border-white/10 dark:bg-slate-950">
+              <div className="relative min-h-[340px] lg:min-h-[460px]">
+                <Image
+                  src={config.teachingMoment.image.src}
+                  alt={config.teachingMoment.image.alt}
+                  width={config.teachingMoment.image.width}
+                  height={config.teachingMoment.image.height}
+                  sizes="(min-width: 1280px) 660px, (min-width: 1024px) 58vw, 100vw"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+              </div>
+              <figcaption className="flex flex-col justify-center p-7 sm:p-10 lg:p-12">
+                <p className="eyebrow">{config.teachingMoment.eyebrow}</p>
+                <h2
+                  id="teaching-moment-title"
+                  className="display mt-4 text-3xl leading-tight font-semibold text-balance sm:text-5xl"
+                >
+                  {config.teachingMoment.title}
+                </h2>
+                <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-7">
+                  {config.teachingMoment.description}
+                </p>
+                <p className="text-ink-500 dark:text-ink-400 mt-7 border-t border-slate-900/10 pt-4 text-xs leading-5 dark:border-white/10">
+                  {config.teachingMoment.caption}
+                </p>
               </figcaption>
             </figure>
           </Container>

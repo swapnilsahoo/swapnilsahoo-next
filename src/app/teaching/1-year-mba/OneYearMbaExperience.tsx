@@ -454,8 +454,8 @@ export function OneYearMbaExperience() {
               className={`${styles.imageFrame} relative min-h-[520px] overflow-hidden border-t border-white/10 lg:min-h-full lg:border-t-0 lg:border-l`}
             >
               <Image
-                src="/images/ai-hackathon/hackathon-demo.jpg"
-                alt="Dr Swapnil Sahoo speaking during the July 2026 AI Mini Hackathon"
+                src="/images/teaching/one-year/intensive-classroom.webp"
+                alt="An intensive management classroom with learners gathered for a live strategic discussion"
                 fill
                 priority
                 className="object-cover"
@@ -467,7 +467,7 @@ export function OneYearMbaExperience() {
                   Teaching in practice
                 </p>
                 <p className="mt-3 font-serif text-xl leading-snug font-semibold">
-                  A build-first teaching moment from the July 2026 AI Mini Hackathon.
+                  A compressed programme works when every minute becomes active decision practice.
                 </p>
               </div>
             </div>
@@ -792,8 +792,8 @@ export function OneYearMbaExperience() {
               </div>
               <div className="absolute inset-x-0 bottom-0 h-[52%]">
                 <Image
-                  src="/images/ai-hackathon/hackathon-room.jpg"
-                  alt="Dr Swapnil Sahoo speaking during the July 2026 AI Mini Hackathon final"
+                  src="/images/teaching/one-year/facilitated-dialogue.webp"
+                  alt="Dr Swapnil Sahoo facilitating a live exchange with a participant in the classroom"
                   fill
                   className="object-cover"
                   style={{ objectPosition: "52% center" }}
@@ -801,7 +801,7 @@ export function OneYearMbaExperience() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-white via-white/20 to-slate-950/10 dark:from-[#09152a] dark:via-[#09152a]/30" />
                 <p className="absolute right-4 bottom-3 left-4 text-[10px] leading-4 text-white/85">
-                  Teaching photograph · AI Mini Hackathon, July 2026 · photographer not identified
+                  Facilitated dialogue · experience becomes a claim to examine, challenge and revise
                 </p>
               </div>
             </article>

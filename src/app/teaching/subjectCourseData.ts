@@ -60,6 +60,20 @@ export const karmaYogaCourse = {
       },
     ],
   },
+  teachingMoment: {
+    eyebrow: "Reflective practice",
+    title: "Service begins with disciplined attention.",
+    description:
+      "Karma Yoga connects embodied practice, collective presence and reflection. The field asks learners to slow down, notice context and understand that responsible action begins before a solution is proposed.",
+    image: {
+      src: "/images/teaching/karma-yoga/field-practice.webp",
+      alt: "A large community participating together in an outdoor reflective practice session.",
+      width: 1800,
+      height: 1200,
+    },
+    caption:
+      "Collective practice · attention, humility and the discipline to listen before acting.",
+  },
   principles: [
     {
       title: "Dignity before solution",
@@ -487,6 +501,20 @@ export const businessSimulationCourse = {
     title: "Run the whole business and defend every trade-off.",
     description:
       "The simulation makes interdependence unavoidable. A product launch can be strategically attractive and financially impossible; a stockout can validate demand and destroy value; an ESG choice can reshape both operating performance and stakeholder outcomes.",
+  },
+  teachingMoment: {
+    eyebrow: "Decision debrief",
+    title: "The learning happens when the logic is made visible.",
+    description:
+      "Teams must explain what they expected, what they chose and why the result differed. A live debrief turns performance into evidence, surfaces cross-functional contradictions and gives the next round a sharper strategic thesis.",
+    image: {
+      src: "/images/teaching/business-simulation/decision-debrief.webp",
+      alt: "Dr Swapnil Sahoo facilitating a live decision debrief with management learners.",
+      width: 1800,
+      height: 1200,
+    },
+    caption:
+      "Facilitated debrief · forecast, decision, result, variance and the next adaptive move.",
   },
   principles: [
     {

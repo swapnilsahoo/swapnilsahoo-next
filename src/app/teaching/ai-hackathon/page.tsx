@@ -311,8 +311,8 @@ export default function AiHackathonPage() {
 
               <figure className="relative overflow-hidden rounded-[22px] border border-white/15 bg-white/5 shadow-2xl shadow-slate-950/25">
                 <Image
-                  src="/images/ai-hackathon/hackathon-demo.jpg"
-                  alt="Dr Swapnil Sahoo speaking during the AI Mini Hackathon final"
+                  src="/images/teaching/ai-hackathon/live-pitch.webp"
+                  alt="A student team presenting an AI prototype during a live hackathon pitch"
                   width={4608}
                   height={3072}
                   priority
@@ -320,8 +320,7 @@ export default function AiHackathonPage() {
                   className="aspect-[4/5] w-full object-cover object-[52%_center]"
                 />
                 <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/90 to-transparent px-5 pt-16 pb-4 text-xs text-blue-100">
-                  Dr Swapnil Sahoo speaks during the 5 July final. Event photograph; photographer
-                  not identified.
+                  The prototype enters the room: a team explains its choices before questions begin.
                 </figcaption>
               </figure>
             </div>
@@ -714,14 +713,14 @@ export default function AiHackathonPage() {
             </div>
             <figure className="glass-card overflow-hidden p-2 lg:col-span-8">
               <Image
-                src="/images/ai-hackathon/hackathon-room.jpg"
-                alt="A presenter explaining an AI-enabled prototype during the hackathon"
+                src="/images/teaching/ai-hackathon/jury-room.webp"
+                alt="A hackathon jury and audience reviewing teams in a live presentation room"
                 width={4608}
                 height={3072}
                 className="aspect-[16/9] w-full rounded-[14px] object-cover object-center"
               />
               <figcaption className="text-ink-500 dark:text-ink-400 px-3 py-3 text-xs">
-                Prototype demonstration and live discussion during the hackathon.
+                Jury-room review: claims, evidence and feasibility are tested in public.
               </figcaption>
             </figure>
           </div>
