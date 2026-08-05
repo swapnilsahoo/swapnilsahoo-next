@@ -4,6 +4,15 @@ This internal register records the evidence trail available for locally hosted
 gallery assets. It is not a copyright clearance record, a licence, or evidence
 of consent from people pictured.
 
+## AOM 2026
+
+The presentation photograph below was supplied directly by Swapnil Sahoo. Its
+session context was checked against the [official AOM 2026 programme](https://events.aom.org/events/aom-2026/session/cBpcAGEGq2KU8qoDBFRUV).
+
+| Local asset                                                            | SHA-256                                                            | Recorded source                                                               | Public provenance                                   | Rights and credit status                                                                                                |
+| ---------------------------------------------------------------------- | ------------------------------------------------------------------ | ----------------------------------------------------------------------------- | --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `public/images/gallery/aom-2026-entrepreneurship-under-constraint.png` | `6df55e3c5d283456ede98bf2b6bcea48592247ea0430c1804f4b1f6c0fdb083b` | Personal event photograph supplied directly by Swapnil Sahoo for this gallery | Personal event photograph supplied by Swapnil Sahoo | Photographer, copyright owner, formal licence, and publication-permission records are not documented in this repository |
+
 ## AI Mini Hackathon 2026
 
 Sagar Aggarwal shared the Great Lakes Gurgaon event-media folders by email.

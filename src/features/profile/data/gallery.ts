@@ -20,6 +20,15 @@ export const galleryImages: GalleryImage[] = [
     objectPosition: "center",
   },
   {
+    src: "/images/gallery/aom-2026-entrepreneurship-under-constraint.png",
+    alt: "Swapnil Sahoo presenting Reconstructing Entrepreneurship Under Constraint at AOM 2026 in Philadelphia",
+    caption: "Presenting entrepreneurship under constraint · AOM 2026",
+    description:
+      "Presenting ‘Entrepreneurship Under Constraint: How Bricolage Transitions into Effectuation in Family Businesses,’ co-authored with Munish Thakur. Personal event photograph supplied by Swapnil Sahoo.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
+  {
     src: "/images/gallery/aacsb-societal-impact-visit.jpeg",
     alt: "Swapnil Sahoo with Dr. Raju Balakrishnan and Great Lakes colleagues during the AACSB peer review visit",
     caption: "AACSB peer review visit · Societal impact in dialogue",

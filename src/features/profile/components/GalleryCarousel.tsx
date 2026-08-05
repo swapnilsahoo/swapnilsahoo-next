@@ -66,7 +66,7 @@ export function GalleryCarousel({ images }: { images: GalleryImage[] }) {
                   sizes="(min-width: 1024px) 1000px, 100vw"
                   quality={85}
                 />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/55 to-transparent px-4 pt-20 pb-4 sm:px-6 sm:pb-5">
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/55 to-transparent px-4 pt-20 pb-12 sm:px-6">
                   <p className="font-serif text-lg font-semibold text-white">{image.caption}</p>
                   {image.description ? (
                     <p className="mt-1.5 max-w-3xl text-xs leading-relaxed text-white/85 sm:text-sm">
