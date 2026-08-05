@@ -29,6 +29,15 @@ export const galleryImages: GalleryImage[] = [
     objectPosition: "center",
   },
   {
+    src: "/images/gallery/aom-2026-with-jp-eggers.png",
+    alt: "Swapnil Sahoo with Prof. J.P. Eggers at AOM 2026",
+    caption: "With Prof. J.P. Eggers · AOM 2026",
+    description:
+      "“The best conversations do not close questions; they give them a more interesting future.”",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
+  {
     src: "/images/gallery/aacsb-societal-impact-visit.jpeg",
     alt: "Swapnil Sahoo with Dr. Raju Balakrishnan and Great Lakes colleagues during the AACSB peer review visit",
     caption: "AACSB peer review visit · Societal impact in dialogue",

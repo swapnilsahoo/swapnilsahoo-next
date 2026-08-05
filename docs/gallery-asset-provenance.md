@@ -6,12 +6,14 @@ of consent from people pictured.
 
 ## AOM 2026
 
-The presentation photograph below was supplied directly by Swapnil Sahoo. Its
-session context was checked against the [official AOM 2026 programme](https://events.aom.org/events/aom-2026/session/cBpcAGEGq2KU8qoDBFRUV).
+The event photographs below were supplied directly by Swapnil Sahoo. The
+presentation photograph's session context was checked against the
+[official AOM 2026 programme](https://events.aom.org/events/aom-2026/session/cBpcAGEGq2KU8qoDBFRUV).
 
-| Local asset                                                            | SHA-256                                                            | Recorded source                                                               | Public provenance                                   | Rights and credit status                                                                                                |
-| ---------------------------------------------------------------------- | ------------------------------------------------------------------ | ----------------------------------------------------------------------------- | --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `public/images/gallery/aom-2026-entrepreneurship-under-constraint.png` | `6df55e3c5d283456ede98bf2b6bcea48592247ea0430c1804f4b1f6c0fdb083b` | Personal event photograph supplied directly by Swapnil Sahoo for this gallery | Personal event photograph supplied by Swapnil Sahoo | Photographer, copyright owner, formal licence, and publication-permission records are not documented in this repository |
+| Local asset                                                            | SHA-256                                                            | Recorded source                                                                                                                                                  | Public provenance                                                                                         | Rights and credit status                                                                                                |
+| ---------------------------------------------------------------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `public/images/gallery/aom-2026-entrepreneurship-under-constraint.png` | `6df55e3c5d283456ede98bf2b6bcea48592247ea0430c1804f4b1f6c0fdb083b` | Personal event photograph supplied directly by Swapnil Sahoo for this gallery                                                                                    | Personal event photograph supplied by Swapnil Sahoo                                                       | Photographer, copyright owner, formal licence, and publication-permission records are not documented in this repository |
+| `public/images/gallery/aom-2026-with-jp-eggers.png`                    | `99ccfd068b16984dbb9ece89a57c81581f27606357fd272f9bfffaa98d3f1f19` | User-supplied portrait (`163dbe4f956623d0d90e862e9371143eb9b3a10ec7615a7cf791a740fa9e4295`); identity-preserving professional retouch requested by Swapnil Sahoo | AI-assisted professional retouch of a user-supplied event photograph; embedded OpenAI provenance retained | Photographer, copyright owner, formal licence, and publication-permission records are not documented in this repository |
 
 ## AI Mini Hackathon 2026
 
@@ -46,8 +48,14 @@ not identify a photographer.
 
 ## Generated-media audit
 
-The 30 July 2026 audit removed every public raster asset carrying OpenAI Media
-Service provenance metadata. The gallery and teaching pages now use the
+The 30 July 2026 audit removed every previously public raster asset carrying
+OpenAI Media Service provenance metadata. The sole current exception is the
+user-approved, identity-preserving retouch
+`public/images/gallery/aom-2026-with-jp-eggers.png`. Its embedded provenance is
+retained, and the media check admits it only at the registered path with the
+registered SHA-256. Every other marked raster fails the check; any byte change
+to this asset also fails until both this register and the checksum allowlist are
+deliberately updated. The other gallery and teaching images use the
 camera-original or programme-shared photographs listed above. The comics page
 uses a separately credited human photograph under CC BY-SA 2.0.
 
@@ -57,7 +65,7 @@ uses a separately credited human photograph under CC BY-SA 2.0.
   evidence establishes that attribution.
 - Do not attach a Creative Commons or other licence without a documented
   rights grant.
-- Keep the visible provenance statement with each image while its photographer
+- Keep the applicable provenance record in this register while the photographer
   remains unidentified.
 - Before distributing either image beyond this website, confirm the exact Drive
   source file, photographer/copyright owner, permitted uses, and any required

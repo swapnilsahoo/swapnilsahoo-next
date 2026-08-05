@@ -331,7 +331,7 @@ test("Homepage gallery · AOM 2026 event photographs", async ({ page }) => {
   await page.goto(`${baseUrl}/#gallery`, { waitUntil: "domcontentloaded" });
 
   const gallery = page.getByRole("region", { name: "Fieldwork and teaching gallery" });
-  const firstSlide = gallery.getByRole("group", { name: "1 of 8" });
+  const firstSlide = gallery.getByRole("group", { name: "1 of 9" });
   const photo = firstSlide.getByRole("img", {
     name: /Swapnil Sahoo with four fellow Academy of Management attendees at AOM 2026/,
   });
@@ -360,7 +360,7 @@ test("Homepage gallery · AOM 2026 event photographs", async ({ page }) => {
 
   await gallery.getByRole("button", { name: "Go to slide 2" }).click();
 
-  const secondSlide = gallery.getByRole("group", { name: "2 of 8" });
+  const secondSlide = gallery.getByRole("group", { name: "2 of 9" });
   const sessionPhoto = secondSlide.getByRole("img", {
     name: /AOM 2026 participants gathered around a conference table/,
   });
@@ -377,7 +377,7 @@ test("Homepage gallery · AOM 2026 event photographs", async ({ page }) => {
 
   await gallery.getByRole("button", { name: "Go to slide 3" }).click();
 
-  const thirdSlide = gallery.getByRole("group", { name: "3 of 8" });
+  const thirdSlide = gallery.getByRole("group", { name: "3 of 9" });
   const presentationPhoto = thirdSlide.getByRole("img", {
     name: /Swapnil Sahoo presenting Reconstructing Entrepreneurship Under Constraint at AOM 2026/,
   });
@@ -409,6 +409,38 @@ test("Homepage gallery · AOM 2026 event photographs", async ({ page }) => {
     3 / 2,
     2
   );
+
+  await gallery.getByRole("button", { name: "Go to slide 4" }).click();
+
+  const fourthSlide = gallery.getByRole("group", { name: "4 of 9" });
+  const portrait = fourthSlide.getByRole("img", {
+    name: /Swapnil Sahoo with Prof\. J\.P\. Eggers at AOM 2026/,
+  });
+
+  await expect(gallery.getByRole("button", { name: "Go to slide 4" })).toHaveAttribute(
+    "aria-current",
+    "true"
+  );
+  await expect(portrait).toBeVisible();
+  await expect(fourthSlide).toContainText("With Prof. J.P. Eggers");
+  await expect(fourthSlide).toContainText("best conversations do not close questions");
+  await expect(fourthSlide.getByRole("link")).toHaveCount(0);
+  await portrait.scrollIntoViewIfNeeded();
+  await expect
+    .poll(
+      () =>
+        portrait.evaluate(
+          (image) => image.complete && image.naturalWidth > 0 && image.naturalHeight > 0
+        ),
+      { timeout: 15_000 }
+    )
+    .toBe(true);
+
+  const portraitDimensions = await portrait.evaluate((image) => ({
+    naturalWidth: image.naturalWidth,
+    naturalHeight: image.naturalHeight,
+  }));
+  expect(portraitDimensions.naturalWidth / portraitDimensions.naturalHeight).toBeCloseTo(4 / 3, 2);
 });
 
 test("Lalita Sahasranama · range and direct-name navigation", async ({ page }) => {
