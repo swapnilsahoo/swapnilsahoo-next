@@ -6,7 +6,7 @@ export const galleryImages: GalleryImage[] = [
     alt: "Swapnil Sahoo with four fellow Academy of Management attendees at AOM 2026 in the Philadelphia Convention Center",
     caption: "AOM 2026 · Philadelphia Convention Center",
     description:
-      "With fellow scholars at the Academy of Management gathering in Philadelphia—a warm moment of connection between conversations. Personal event photograph supplied by Swapnil Sahoo.",
+      "With fellow scholars at the Academy of Management gathering in Philadelphia—a warm moment of connection between conversations.",
     objectFit: "contain",
     objectPosition: "center",
   },
@@ -24,7 +24,7 @@ export const galleryImages: GalleryImage[] = [
     alt: "Swapnil Sahoo presenting Reconstructing Entrepreneurship Under Constraint at AOM 2026 in Philadelphia",
     caption: "Presenting entrepreneurship under constraint · AOM 2026",
     description:
-      "Presenting ‘Entrepreneurship Under Constraint: How Bricolage Transitions into Effectuation in Family Businesses,’ co-authored with Munish Thakur. Personal event photograph supplied by Swapnil Sahoo.",
+      "Presenting ‘Entrepreneurship Under Constraint: How Bricolage Transitions into Effectuation in Family Businesses,’ co-authored with Munish Thakur.",
     objectFit: "contain",
     objectPosition: "center",
   },
