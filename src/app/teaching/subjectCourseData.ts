@@ -2,16 +2,20 @@ import type { SubjectCourseConfig } from "./_components/SubjectCoursePage";
 
 export const karmaYogaCourse = {
   hero: {
-    eyebrow: "Experiential leadership · PGDM",
+    eyebrow: "Experiential leadership · Two pathways",
     title: "Karma Yoga",
-    accent: "leadership through service, evidence and reflection.",
+    accent: "two pathways, one ethic of responsible action.",
     description:
-      "A community field lab where self-managed teams listen before acting, frame consequential problems with stakeholders, build feasible interventions, measure what changed and reflect on the responsibility of managerial action.",
+      "Karma Yoga for B-Schools turns community engagement into a rigorous field-learning architecture. Karma Yoga for India follows longer relationships with place—beginning here with the story of Mehalchauri in Uttarakhand.",
+    actions: [
+      { label: "Explore B-Schools", href: "#karma-yoga-b-schools" },
+      { label: "Explore India", href: "#karma-yoga-india" },
+    ],
   },
   metadata: [
-    { label: "Course name", value: "Karma Yoga for All" },
-    { label: "Format", value: "Terms 1 & 2 · 1 credit" },
-    { label: "Learning mode", value: "Community field immersion" },
+    { label: "Programme", value: "Karma Yoga" },
+    { label: "Pathways", value: "B-Schools · India" },
+    { label: "Learning mode", value: "Field immersion · Community partnership" },
     { label: "Faculty", value: "Prof. S. K. Palhan · Dr. Swapnil Sahoo" },
   ],
   inquiry: {
@@ -35,44 +39,6 @@ export const karmaYogaCourse = {
     title: "Learn to lead with communities—not merely for them.",
     description:
       "Karma Yoga treats the field as a serious management laboratory. Learners move from empathy to diagnosis, from co-design to disciplined execution, and from visible activity to defensible evidence of value.",
-  },
-  fieldStory: {
-    eyebrow: "In the field",
-    title: "Learning begins with presence.",
-    description:
-      "Two encounters, one learning philosophy: meet people where they are, listen before interpreting and let service remain connected to reflection, dignity and lived wisdom.",
-    image: {
-      src: "/images/teaching/karma-yoga-field-diptych.webp",
-      alt: "Two photographs: Swapnil Sahoo with schoolchildren outdoors, and with an older colleague holding a Vedanta book.",
-      width: 1536,
-      height: 1024,
-    },
-    moments: [
-      {
-        title: "Community presence",
-        description:
-          "Showing up before proposing solutions—learning how young people experience their school and community context.",
-      },
-      {
-        title: "Learning across generations",
-        description:
-          "A reminder that service, reflection and management education deepen through dialogue with lived wisdom.",
-      },
-    ],
-  },
-  teachingMoment: {
-    eyebrow: "Reflective practice",
-    title: "Service begins with disciplined attention.",
-    description:
-      "Karma Yoga connects embodied practice, collective presence and reflection. The field asks learners to slow down, notice context and understand that responsible action begins before a solution is proposed.",
-    image: {
-      src: "/images/teaching/karma-yoga/field-practice.webp",
-      alt: "A large community participating together in an outdoor reflective practice session.",
-      width: 1800,
-      height: 1200,
-    },
-    caption:
-      "Collective practice · attention, humility and the discipline to listen before acting.",
   },
   principles: [
     {

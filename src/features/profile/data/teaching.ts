@@ -19,7 +19,7 @@ export const teachingLinks: TeachingLink[] = [
     eyebrow: "Experiential Leadership",
     title: "Karma Yoga",
     description:
-      "Students work with community partners, test useful interventions and reflect on what responsible leadership asks of them.",
+      "Two pathways: a B-school field-learning architecture and longer community partnerships, beginning with the story of Mehalchauri.",
     href: "/teaching/karma-yoga",
   },
   {

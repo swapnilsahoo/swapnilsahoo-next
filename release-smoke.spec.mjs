@@ -128,6 +128,70 @@ for (const route of routes) {
   });
 }
 
+test("Karma Yoga · separate B-school and India pathways", async ({ page }) => {
+  test.setTimeout(60_000);
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto(`${baseUrl}/teaching/karma-yoga`, { waitUntil: "domcontentloaded" });
+
+  const bSchools = page.locator("#karma-yoga-b-schools");
+  const india = page.locator("#karma-yoga-india");
+
+  await expect(bSchools.getByRole("heading", { name: "Karma Yoga for B-Schools" })).toBeVisible();
+  await expect(india.getByRole("heading", { name: "Karma Yoga for India" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "B-Schools", exact: true })).toHaveAttribute(
+    "href",
+    "#karma-yoga-b-schools"
+  );
+  await expect(page.getByRole("link", { name: "India", exact: true })).toHaveAttribute(
+    "href",
+    "#karma-yoga-india"
+  );
+
+  await expect(india).toContainText("Mehalchauri");
+  await expect(india).toContainText("around 2009–10");
+  await expect(india).toContainText("1–6 Apr 2026");
+  await expect(india).toContainText("100+ children");
+  await expect(india).toContainText("Ruhan Bhatia");
+
+  const bSchoolPhotoSet = bSchools.locator('[data-photo-set="b-schools"]');
+  const indiaPhotoSet = india.locator('[data-photo-set="india"]');
+  await expect(bSchoolPhotoSet.locator("figure")).toHaveCount(7);
+  await expect(indiaPhotoSet.locator("figure")).toHaveCount(4);
+
+  for (const photoSet of [bSchoolPhotoSet, indiaPhotoSet]) {
+    const figures = photoSet.locator("figure");
+    const figureCount = await figures.count();
+    await expect(photoSet.locator("figcaption")).toHaveCount(figureCount);
+
+    for (let index = 0; index < figureCount; index += 1) {
+      const image = figures.nth(index).getByRole("img");
+      await image.scrollIntoViewIfNeeded();
+      await expect(image).toBeVisible();
+      await expect
+        .poll(
+          () =>
+            image.evaluate(
+              (element) => element.complete && element.naturalWidth > 0 && element.naturalHeight > 0
+            ),
+          { timeout: 15_000 }
+        )
+        .toBe(true);
+      expect((await image.getAttribute("alt"))?.trim()).toBeTruthy();
+      expect((await figures.nth(index).locator("figcaption").textContent())?.trim()).toBeTruthy();
+    }
+  }
+
+  const bSchoolSources = await bSchoolPhotoSet
+    .locator("figure")
+    .evaluateAll((figures) => figures.map((figure) => figure.getAttribute("data-photo-src")));
+  const indiaSources = await indiaPhotoSet
+    .locator("figure")
+    .evaluateAll((figures) => figures.map((figure) => figure.getAttribute("data-photo-src")));
+  expect(bSchoolSources.every((source) => source?.includes("/b-schools/"))).toBe(true);
+  expect(indiaSources.every((source) => source?.includes("/mehalchauri/"))).toBe(true);
+  expect(bSchoolSources.filter((source) => indiaSources.includes(source))).toEqual([]);
+});
+
 test("skip link · transfers keyboard focus to main content", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto(`${baseUrl}/`, { waitUntil: "domcontentloaded" });

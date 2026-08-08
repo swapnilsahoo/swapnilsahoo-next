@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { ReactNode } from "react";
 
 import {
   ArrowRightIcon,
@@ -69,6 +70,10 @@ export type SubjectCourseConfig = {
     title: string;
     accent: string;
     description: string;
+    actions?: readonly [
+      { label: string; href: `#${string}` },
+      { label: string; href: `#${string}` },
+    ];
   };
   metadata: readonly {
     label: string;
@@ -154,8 +159,33 @@ function Citations({ ids }: { ids: readonly number[] }) {
   );
 }
 
-export function SubjectCoursePage({ config }: { config: SubjectCourseConfig }) {
+export function SubjectCoursePage({
+  config,
+  featuredContent,
+  leadingNavigationItems = [],
+}: {
+  config: SubjectCourseConfig;
+  featuredContent?: ReactNode;
+  leadingNavigationItems?: readonly { label: string; href: `#${string}` }[];
+}) {
   const studioIcons = [CompassIcon, NetworkIcon, BricolageIcon, GraduationCapIcon] as const;
+  const heroActions =
+    config.hero.actions ??
+    ([
+      { label: "View the complete course", href: "#journey" },
+      { label: "See evidence of learning", href: "#assessment" },
+    ] as const);
+  const navigationItems = [
+    ...leadingNavigationItems,
+    { label: "Promise", href: "#promise" },
+    { label: "Learning loop", href: "#learning-loop" },
+    { label: "Outcomes", href: "#outcomes" },
+    { label: "Sessions", href: "#journey" },
+    { label: "Practice", href: "#practice" },
+    { label: "Assessment", href: "#assessment" },
+    { label: "Integrity", href: "#integrity" },
+    { label: "References", href: "#references" },
+  ] as const;
 
   return (
     <main id="main-content" tabIndex={-1} className="overflow-clip">
@@ -193,17 +223,17 @@ export function SubjectCoursePage({ config }: { config: SubjectCourseConfig }) {
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
                 <a
-                  href="#journey"
+                  href={heroActions[0].href}
                   className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-slate-950 shadow-xl shadow-black/20 transition hover:-translate-y-0.5 hover:bg-blue-50 focus-visible:ring-2 focus-visible:ring-blue-200 focus-visible:outline-none"
                 >
-                  View the complete course
+                  {heroActions[0].label}
                   <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
                 </a>
                 <a
-                  href="#assessment"
+                  href={heroActions[1].href}
                   className="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:border-white/30 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-blue-200 focus-visible:outline-none"
                 >
-                  See evidence of learning
+                  {heroActions[1].label}
                 </a>
               </div>
             </div>
@@ -234,16 +264,7 @@ export function SubjectCoursePage({ config }: { config: SubjectCourseConfig }) {
             Course map
           </p>
           <div className="flex shrink-0 items-center gap-1 text-xs font-semibold">
-            {[
-              ["Promise", "#promise"],
-              ["Learning loop", "#learning-loop"],
-              ["Outcomes", "#outcomes"],
-              ["Sessions", "#journey"],
-              ["Practice", "#practice"],
-              ["Assessment", "#assessment"],
-              ["Integrity", "#integrity"],
-              ["References", "#references"],
-            ].map(([label, href]) => (
+            {navigationItems.map(({ label, href }) => (
               <a
                 key={href}
                 href={href}
@@ -263,6 +284,8 @@ export function SubjectCoursePage({ config }: { config: SubjectCourseConfig }) {
         socraticQuestions={config.inquiry.socraticQuestions}
         firstPrinciplesQuestions={config.inquiry.firstPrinciplesQuestions}
       />
+
+      {featuredContent}
 
       <section id="promise" aria-labelledby="promise-title" className="py-16 sm:py-24">
         <Container className="max-w-6xl">

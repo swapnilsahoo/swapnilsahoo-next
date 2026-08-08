@@ -2,13 +2,18 @@ import type { Metadata } from "next";
 
 import { SubjectCoursePage } from "../_components/SubjectCoursePage";
 import { karmaYogaCourse } from "../subjectCourseData";
+import { KarmaYogaPathways } from "./KarmaYogaPathways";
 
 export const metadata: Metadata = {
-  title: "Karma Yoga for All — Experiential Leadership Through Service",
+  title: "Karma Yoga for B-Schools and India — Learning Through Service",
   description:
-    "An evidence-led Karma Yoga field journey for PGDM learners: listen, frame, co-design, build, deliver, measure, hand over and reflect.",
+    "Two Karma Yoga pathways: a rigorous B-school field-learning architecture and the long-horizon Mehalchauri community partnership in Uttarakhand.",
   keywords: [
     "Karma Yoga",
+    "Karma Yoga for B-Schools",
+    "Karma Yoga for India",
+    "Mehalchauri",
+    "Uttarakhand",
     "experiential leadership",
     "community engagement",
     "societal impact",
@@ -20,13 +25,22 @@ export const metadata: Metadata = {
   alternates: { canonical: "/teaching/karma-yoga" },
   openGraph: {
     type: "article",
-    title: "Karma Yoga for All — Leadership Through Service, Evidence and Reflection",
+    title: "Karma Yoga for B-Schools and India",
     description:
-      "A complete community field-learning architecture connecting empathy, responsible action, measurable impact and reflective leadership.",
+      "A B-school field-learning pathway and the story of a sustained community relationship in Mehalchauri, Uttarakhand.",
     url: "/teaching/karma-yoga",
   },
 };
 
 export default function KarmaYogaPage() {
-  return <SubjectCoursePage config={karmaYogaCourse} />;
+  return (
+    <SubjectCoursePage
+      config={karmaYogaCourse}
+      leadingNavigationItems={[
+        { label: "B-Schools", href: "#karma-yoga-b-schools" },
+        { label: "India", href: "#karma-yoga-india" },
+      ]}
+      featuredContent={<KarmaYogaPathways />}
+    />
+  );
 }
