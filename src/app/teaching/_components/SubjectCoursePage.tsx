@@ -161,10 +161,12 @@ function Citations({ ids }: { ids: readonly number[] }) {
 
 export function SubjectCoursePage({
   config,
+  contextNavigation,
   featuredContent,
   leadingNavigationItems = [],
 }: {
   config: SubjectCourseConfig;
+  contextNavigation?: ReactNode;
   featuredContent?: ReactNode;
   leadingNavigationItems?: readonly { label: string; href: `#${string}` }[];
 }) {
@@ -254,6 +256,8 @@ export function SubjectCoursePage({
           </div>
         </div>
       </header>
+
+      {contextNavigation}
 
       <Container className="max-w-6xl">
         <nav

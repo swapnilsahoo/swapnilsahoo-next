@@ -34,6 +34,20 @@ post-visit deck `Karma_Yoga_Mehalchauri_Apr2026.pptx`, which records the
 | `public/images/teaching/karma-yoga/mehalchauri/community-welcome.webp`        | `c3b22f35dbf0999337905fbe819f5346c8564b76267039a8cc8dce39b385db4e` | Post-visit deck `ppt/media/image10.jpeg`; source SHA-256 `2c4ca6aca8f139fb5d749ae02437e09727323b1c10d01dc9c8d2a27d95fd802f` |
 | `public/images/teaching/karma-yoga/mehalchauri/clouds-and-rain-workshop.webp` | `3b292bfb92614ca7f74bf28a60eeeea27d4a7f19ae8cadf9057425333c3aaddc` | Post-visit deck `ppt/media/image12.jpeg`; source SHA-256 `661619db7dfde977c813b3b21712fca51b8ffafd014290bbc6582f77c37f817b` |
 
+### Historical programme archive (pre-April 2026)
+
+The three images below were extracted from the user-supplied and explicitly
+authorised deck `MEHALCHAURI-ALL activities.pptx`. The deck predates April 2026,
+so these assets are recorded as historical programme-archive material and are
+not represented as photographs of the 1–6 April 2026 visit. Slide 35 records a
+Panchayat dialogue in neighbouring Silanga, rather than Mehalchauri.
+
+| Local asset                                                                                | SHA-256                                                            | Recorded source                                                                                                                                             |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `public/images/teaching/karma-yoga/mehalchauri/historical/hands-on-science.webp`           | `f9bc7f411a1b407f7410df93ca12675c2bb2b40c0eb9bf6dc6c6aa176894b0c8` | Historical deck slide 15, `ppt/media/image21.png`; source SHA-256 `05e1d1a5f4710653ca78eefd699a58a1c6dc2048588e98d80fdbee60969eff69`                        |
+| `public/images/teaching/karma-yoga/mehalchauri/historical/girls-football-coaching.webp`    | `d7f9ffe150d4199710e5946ffa6fadf456be18220768348ca112e7473f558b43` | Historical deck slide 53, `ppt/media/image72.png`; source SHA-256 `bb160a0d1bfea73fb80d3b3c76942d43b9bd7221c3ac9aa9f52956d600ec3b0c`                        |
+| `public/images/teaching/karma-yoga/mehalchauri/historical/village-panchayat-dialogue.webp` | `e7756a2f183ccb28a3c0c6c7fd28587e7a2b927fee428b0a1605e65e72093299` | Historical deck slide 35, `ppt/media/image48.png` (neighbouring Silanga); source SHA-256 `663d2210d769729d78487201ab0c8f20ba247cc935bdd1e561146fa79e15d995` |
+
 ## Rights and handling notes
 
 - Publication on this Karma Yoga page follows Swapnil Sahoo's direct request.

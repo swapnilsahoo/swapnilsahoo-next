@@ -1,46 +1,39 @@
 import type { Metadata } from "next";
 
-import { SubjectCoursePage } from "../_components/SubjectCoursePage";
-import { karmaYogaCourse } from "../subjectCourseData";
-import { KarmaYogaPathways } from "./KarmaYogaPathways";
+import { KarmaYogaHub } from "./KarmaYogaHub";
+
+const title = "Karma Yoga — Two Pathways";
+const description =
+  "Explore two Karma Yoga pathways: field learning for B-schools and the long-horizon Mehalchauri community partnership in Uttarakhand.";
+const image = "/images/teaching/karma-yoga/mehalchauri/community-circle.webp";
 
 export const metadata: Metadata = {
-  title: "Karma Yoga for B-Schools and India — Learning Through Service",
-  description:
-    "Two Karma Yoga pathways: a rigorous B-school field-learning architecture and the long-horizon Mehalchauri community partnership in Uttarakhand.",
+  title,
+  description,
   keywords: [
     "Karma Yoga",
     "Karma Yoga for B-Schools",
     "Karma Yoga for India",
     "Mehalchauri",
-    "Uttarakhand",
     "experiential leadership",
     "community engagement",
-    "societal impact",
-    "PGDM",
-    "Great Lakes Gurgaon",
-    "SDG 4",
-    "SDG 11",
   ],
   alternates: { canonical: "/teaching/karma-yoga" },
   openGraph: {
     type: "article",
-    title: "Karma Yoga for B-Schools and India",
-    description:
-      "A B-school field-learning pathway and the story of a sustained community relationship in Mehalchauri, Uttarakhand.",
+    title,
+    description,
     url: "/teaching/karma-yoga",
+    images: [{ url: image, width: 1600, height: 900, alt: "A community circle in Mehalchauri" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: [image],
   },
 };
 
 export default function KarmaYogaPage() {
-  return (
-    <SubjectCoursePage
-      config={karmaYogaCourse}
-      leadingNavigationItems={[
-        { label: "B-Schools", href: "#karma-yoga-b-schools" },
-        { label: "India", href: "#karma-yoga-india" },
-      ]}
-      featuredContent={<KarmaYogaPathways />}
-    />
-  );
+  return <KarmaYogaHub />;
 }

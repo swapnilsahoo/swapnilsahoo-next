@@ -2,20 +2,20 @@ import type { SubjectCourseConfig } from "./_components/SubjectCoursePage";
 
 export const karmaYogaCourse = {
   hero: {
-    eyebrow: "Experiential leadership · Two pathways",
-    title: "Karma Yoga",
-    accent: "two pathways, one ethic of responsible action.",
+    eyebrow: "Experiential leadership · B-school field pedagogy",
+    title: "Karma Yoga for B-Schools",
+    accent: "service becomes a rigorous management laboratory.",
     description:
-      "Karma Yoga for B-Schools turns community engagement into a rigorous field-learning architecture. Karma Yoga for India follows longer relationships with place—beginning here with the story of Mehalchauri in Uttarakhand.",
+      "A field-learning architecture for management education, where student teams listen, frame, co-design, deliver, measure, hand over and reflect with community partners.",
     actions: [
-      { label: "Explore B-Schools", href: "#karma-yoga-b-schools" },
-      { label: "Explore India", href: "#karma-yoga-india" },
+      { label: "See field practice", href: "#karma-yoga-b-schools" },
+      { label: "Explore the learning loop", href: "#learning-loop" },
     ],
   },
   metadata: [
     { label: "Programme", value: "Karma Yoga" },
-    { label: "Pathways", value: "B-Schools · India" },
-    { label: "Learning mode", value: "Field immersion · Community partnership" },
+    { label: "Pathway", value: "For B-Schools" },
+    { label: "Learning mode", value: "Field immersion · Community co-design" },
     { label: "Faculty", value: "Prof. S. K. Palhan · Dr. Swapnil Sahoo" },
   ],
   inquiry: {
@@ -427,8 +427,8 @@ export const karmaYogaCourse = {
       href: "https://www.services.bis.gov.in/tmp/PCD43124680_08092025_1.pdf",
     },
   ],
-  siblingHref: "/teaching/business-simulation",
-  siblingLabel: "Business Simulation",
+  siblingHref: "/teaching/karma-yoga/india",
+  siblingLabel: "Karma Yoga for India · Mehalchauri",
 } satisfies SubjectCourseConfig;
 
 export const businessSimulationCourse = {

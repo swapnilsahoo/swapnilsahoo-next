@@ -10,6 +10,8 @@ const routes = [
   "/teaching/1-year-mba",
   "/teaching/2-year-mba",
   "/teaching/karma-yoga",
+  "/teaching/karma-yoga/b-schools",
+  "/teaching/karma-yoga/india",
   "/teaching/business-simulation",
   "/placements",
   "/case-study-preparation",
@@ -20,6 +22,16 @@ const routes = [
   "/spirituality/vishnu-sahasranama",
   "/spirituality/lalita-sahasranama",
   "/spirituality/shiva-tandava-stotram",
+];
+
+const inquiryRoutes = routes.filter(
+  (route) => route !== "/teaching/karma-yoga" && route !== "/teaching/karma-yoga/india"
+);
+
+const karmaYogaRoutes = [
+  "/teaching/karma-yoga",
+  "/teaching/karma-yoga/b-schools",
+  "/teaching/karma-yoga/india",
 ];
 
 const viewports = [
@@ -95,7 +107,7 @@ for (const route of routes) {
   }
 }
 
-for (const route of routes) {
+for (const route of inquiryRoutes) {
   test(`${route} · inquiry prelude`, async ({ page }) => {
     await page.setViewportSize({ width: 320, height: 720 });
     await page.goto(`${baseUrl}${route}`, { waitUntil: "domcontentloaded" });
@@ -128,84 +140,238 @@ for (const route of routes) {
   });
 }
 
-test("Karma Yoga · separate B-school and India pathways", async ({ page }) => {
+async function expectLoadedPhotoSet(photoSet, expectedCount) {
+  const figures = photoSet.locator("figure");
+
+  await expect(figures).toHaveCount(expectedCount);
+  await expect(photoSet.locator("figcaption")).toHaveCount(expectedCount);
+
+  for (let index = 0; index < expectedCount; index += 1) {
+    const figure = figures.nth(index);
+    const image = figure.getByRole("img");
+
+    await image.scrollIntoViewIfNeeded();
+    await expect(image).toBeVisible();
+    await expect
+      .poll(
+        () =>
+          image.evaluate(
+            (element) => element.complete && element.naturalWidth > 0 && element.naturalHeight > 0
+          ),
+        { timeout: 15_000 }
+      )
+      .toBe(true);
+    expect((await image.getAttribute("alt"))?.trim()).toBeTruthy();
+    expect((await figure.locator("figcaption").textContent())?.trim()).toBeTruthy();
+  }
+}
+
+test("Karma Yoga hub · routes visitors to two focused pathways", async ({ page }) => {
   test.setTimeout(60_000);
   await page.setViewportSize({ width: 375, height: 812 });
   await page.goto(`${baseUrl}/teaching/karma-yoga`, { waitUntil: "domcontentloaded" });
 
-  const bSchools = page.locator("#karma-yoga-b-schools");
-  const india = page.locator("#karma-yoga-india");
+  const pathwayChooser = page.locator('[aria-label="Choose a Karma Yoga pathway"]');
 
-  await expect(bSchools.getByRole("heading", { name: "Karma Yoga for B-Schools" })).toBeVisible();
-  await expect(india.getByRole("heading", { name: "Karma Yoga for India" })).toBeVisible();
-  await expect(page.getByRole("link", { name: "B-Schools", exact: true })).toHaveAttribute(
-    "href",
-    "#karma-yoga-b-schools"
+  await expect(pathwayChooser).toHaveCount(1);
+  await expect(pathwayChooser).toBeVisible();
+  await expect(pathwayChooser.locator('a[href="/teaching/karma-yoga/b-schools"]')).toHaveCount(1);
+  await expect(pathwayChooser.locator('a[href="/teaching/karma-yoga/india"]')).toHaveCount(1);
+  await expect(page.locator("#karma-yoga-b-schools")).toHaveCount(1);
+  await expect(page.locator("#karma-yoga-india")).toHaveCount(1);
+  await expect(page.locator("[data-photo-set]")).toHaveCount(0);
+  await expect(page.locator("#mehalchauri-timeline-title")).toHaveCount(0);
+  await expect(page.getByRole("heading", { name: "A documented return", exact: true })).toHaveCount(
+    0
   );
-  await expect(page.getByRole("link", { name: "India", exact: true })).toHaveAttribute(
-    "href",
-    "#karma-yoga-india"
-  );
+});
 
-  await expect(india).toContainText("Mehalchauri");
-  await expect(india).toContainText("around 2009–10");
-  await expect(india).toContainText("1–6 Apr 2026");
-  await expect(india).toContainText("100+ children");
-  await expect(india).toContainText("Ruhan Bhatia");
+test("Karma Yoga for B-Schools · field-learning story and photographs", async ({ page }) => {
+  test.setTimeout(60_000);
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto(`${baseUrl}/teaching/karma-yoga/b-schools`, {
+    waitUntil: "domcontentloaded",
+  });
+
+  const main = page.locator("main");
+  const bSchoolPhotoSet = main.locator('[data-photo-set="b-schools"]');
+
   await expect(
-    india.getByRole("heading", {
+    main.getByRole("heading", { level: 1, name: "Karma Yoga for B-Schools" })
+  ).toBeVisible();
+  await expectLoadedPhotoSet(bSchoolPhotoSet, 7);
+  await expect(main.locator('[data-photo-set="india"]')).toHaveCount(0);
+  await expect(main.locator('[data-photo-set="historical"]')).toHaveCount(0);
+  await expect(main.locator('a[href="/teaching/karma-yoga"]').first()).toHaveAttribute(
+    "href",
+    "/teaching/karma-yoga"
+  );
+  await expect(main.locator('a[href="/teaching/karma-yoga/india"]').first()).toHaveAttribute(
+    "href",
+    "/teaching/karma-yoga/india"
+  );
+
+  const photoSources = await bSchoolPhotoSet
+    .locator("figure")
+    .evaluateAll((figures) => figures.map((figure) => figure.getAttribute("data-photo-src")));
+  expect(photoSources.every((source) => source?.includes("/b-schools/"))).toBe(true);
+  expect(new Set(photoSources).size).toBe(photoSources.length);
+});
+
+test("Karma Yoga for India · Mehalchauri story and two documented photo sets", async ({ page }) => {
+  test.setTimeout(60_000);
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto(`${baseUrl}/teaching/karma-yoga/india`, { waitUntil: "domcontentloaded" });
+
+  const main = page.locator("main");
+  const historicalPhotoSet = main.locator('[data-photo-set="historical"]');
+  const indiaPhotoSet = main.locator('[data-photo-set="india"]');
+  const heroImage = main.locator("[data-india-hero-photo] img");
+
+  await expect(main.getByRole("heading", { level: 1, name: "Karma Yoga for India" })).toBeVisible();
+  await expect(main).toContainText("Mehalchauri");
+  await expect(main).toContainText("around 2009–10");
+  await expect(main).toContainText("1–6 Apr 2026");
+  await expect(main).toContainText("100+ children");
+  await expect(main).toContainText("Ruhan Bhatia");
+  await expect(
+    main.getByRole("heading", {
       name: "A village partnership built through many small, connected acts.",
     })
   ).toBeVisible();
-  await expect(india.getByRole("heading", { name: "Learning infrastructure" })).toBeVisible();
-  await expect(india.getByRole("heading", { name: "Sport and confidence" })).toBeVisible();
-  await expect(india.getByRole("heading", { name: "Livelihood experiments" })).toBeVisible();
-  await expect(india).toContainText("Napier grass, mulberry and walnut");
-  await expect(india).toContainText("Two LED lamps per household");
-  await expect(india).toContainText("100 oak trees");
-  await expect(india).toContainText("117 walnut trees");
-  await expect(india).toContainText("four Mehalchauri students");
+  await expect(main.getByRole("heading", { name: "Learning infrastructure" })).toBeVisible();
+  await expect(main.getByRole("heading", { name: "Sport and confidence" })).toBeVisible();
+  await expect(main.getByRole("heading", { name: "Livelihood experiments" })).toBeVisible();
+  await expect(main).toContainText("Napier grass, mulberry and walnut");
+  await expect(main).toContainText("Two LED lamps per household");
+  await expect(main).toContainText("100 oak trees");
+  await expect(main).toContainText("117 walnut trees");
+  await expect(main).toContainText("four Mehalchauri students");
   await expect(
-    india.getByRole("heading", { name: "A documented return", exact: true })
+    main.getByRole("heading", { name: "A documented return", exact: true })
   ).toBeVisible();
 
-  const bSchoolPhotoSet = bSchools.locator('[data-photo-set="b-schools"]');
-  const indiaPhotoSet = india.locator('[data-photo-set="india"]');
-  await expect(bSchoolPhotoSet.locator("figure")).toHaveCount(7);
-  await expect(indiaPhotoSet.locator("figure")).toHaveCount(4);
+  await expectLoadedPhotoSet(historicalPhotoSet, 3);
+  await expectLoadedPhotoSet(indiaPhotoSet, 3);
+  await expect(main.locator('[data-photo-set="b-schools"]')).toHaveCount(0);
+  await expect(heroImage).toHaveCount(1);
+  await heroImage.scrollIntoViewIfNeeded();
+  await expect(heroImage).toBeVisible();
+  await expect
+    .poll(
+      () =>
+        heroImage.evaluate(
+          (image) => image.complete && image.naturalWidth > 0 && image.naturalHeight > 0
+        ),
+      { timeout: 15_000 }
+    )
+    .toBe(true);
+  expect((await heroImage.getAttribute("alt"))?.trim()).toBeTruthy();
+  await expect(main.locator('a[href="/teaching/karma-yoga"]').first()).toHaveAttribute(
+    "href",
+    "/teaching/karma-yoga"
+  );
+  await expect(main.locator('a[href="/teaching/karma-yoga/b-schools"]').first()).toHaveAttribute(
+    "href",
+    "/teaching/karma-yoga/b-schools"
+  );
 
-  for (const photoSet of [bSchoolPhotoSet, indiaPhotoSet]) {
-    const figures = photoSet.locator("figure");
-    const figureCount = await figures.count();
-    await expect(photoSet.locator("figcaption")).toHaveCount(figureCount);
-
-    for (let index = 0; index < figureCount; index += 1) {
-      const image = figures.nth(index).getByRole("img");
-      await image.scrollIntoViewIfNeeded();
-      await expect(image).toBeVisible();
-      await expect
-        .poll(
-          () =>
-            image.evaluate(
-              (element) => element.complete && element.naturalWidth > 0 && element.naturalHeight > 0
-            ),
-          { timeout: 15_000 }
-        )
-        .toBe(true);
-      expect((await image.getAttribute("alt"))?.trim()).toBeTruthy();
-      expect((await figures.nth(index).locator("figcaption").textContent())?.trim()).toBeTruthy();
-    }
-  }
-
-  const bSchoolSources = await bSchoolPhotoSet
+  const historicalSources = await historicalPhotoSet
     .locator("figure")
     .evaluateAll((figures) => figures.map((figure) => figure.getAttribute("data-photo-src")));
   const indiaSources = await indiaPhotoSet
     .locator("figure")
     .evaluateAll((figures) => figures.map((figure) => figure.getAttribute("data-photo-src")));
-  expect(bSchoolSources.every((source) => source?.includes("/b-schools/"))).toBe(true);
+  expect(historicalSources.every((source) => source?.includes("/mehalchauri/historical/"))).toBe(
+    true
+  );
   expect(indiaSources.every((source) => source?.includes("/mehalchauri/"))).toBe(true);
-  expect(bSchoolSources.filter((source) => indiaSources.includes(source))).toEqual([]);
+  expect(historicalSources.filter((source) => indiaSources.includes(source))).toEqual([]);
+});
+
+test("Karma Yoga routes · unique self-canonical and Open Graph URLs", async ({ page }) => {
+  const canonicalUrls = [];
+  const openGraphUrls = [];
+
+  for (const route of karmaYogaRoutes) {
+    await page.goto(`${baseUrl}${route}`, { waitUntil: "domcontentloaded" });
+
+    const canonical = page.locator('link[rel="canonical"]');
+    const openGraphUrl = page.locator('meta[property="og:url"]');
+    await expect(canonical).toHaveCount(1);
+    await expect(openGraphUrl).toHaveCount(1);
+
+    const canonicalHref = await canonical.getAttribute("href");
+    const openGraphContent = await openGraphUrl.getAttribute("content");
+    expect(canonicalHref).toBeTruthy();
+    expect(openGraphContent).toBeTruthy();
+
+    const canonicalUrl = new URL(canonicalHref);
+    const ogUrl = new URL(openGraphContent);
+    expect(canonicalUrl.pathname).toBe(route);
+    expect(canonicalUrl.search).toBe("");
+    expect(canonicalUrl.hash).toBe("");
+    expect(ogUrl.href).toBe(canonicalUrl.href);
+
+    canonicalUrls.push(canonicalUrl.href);
+    openGraphUrls.push(ogUrl.href);
+  }
+
+  expect(new Set(canonicalUrls).size).toBe(karmaYogaRoutes.length);
+  expect(new Set(openGraphUrls).size).toBe(karmaYogaRoutes.length);
+});
+
+test("Karma Yoga routes · appear exactly once in the sitemap", async ({ request }) => {
+  const response = await request.get(`${baseUrl}/sitemap.xml`);
+  expect(response.ok()).toBe(true);
+
+  const xml = await response.text();
+  const sitemapPaths = Array.from(
+    xml.matchAll(/<loc>([^<]+)<\/loc>/g),
+    ([, location]) => new URL(location).pathname
+  );
+
+  for (const route of karmaYogaRoutes) {
+    expect(sitemapPaths.filter((path) => path === route)).toHaveLength(1);
+  }
+});
+
+test("Karma Yoga branches · nested desktop and mobile navigation", async ({ page }) => {
+  const branches = [
+    { label: "For B-Schools", href: "/teaching/karma-yoga/b-schools" },
+    { label: "For India · Mehalchauri", href: "/teaching/karma-yoga/india" },
+  ];
+
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto(`${baseUrl}/teaching/karma-yoga`, { waitUntil: "domcontentloaded" });
+
+  const primaryNav = page.getByRole("navigation", { name: "Primary navigation" });
+  const teachingTrigger = primaryNav.getByRole("button", { name: "Teaching", exact: true });
+  const menuId = await teachingTrigger.getAttribute("aria-controls");
+  expect(menuId).toBeTruthy();
+  await teachingTrigger.hover();
+
+  const desktopBranches = page.locator(`#${menuId}`).getByRole("list", {
+    name: "Karma Yoga pages",
+  });
+  for (const branch of branches) {
+    await expect(
+      desktopBranches.getByRole("link", { name: branch.label, exact: true })
+    ).toHaveAttribute("href", branch.href);
+  }
+
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto(`${baseUrl}/teaching/karma-yoga`, { waitUntil: "domcontentloaded" });
+  await page.getByRole("button", { name: "Open site menu" }).click();
+
+  const mobileBranches = page
+    .getByRole("navigation", { name: "Mobile navigation" })
+    .getByRole("list", { name: "Karma Yoga pages" });
+  for (const branch of branches) {
+    await expect(
+      mobileBranches.getByRole("link", { name: branch.label, exact: true })
+    ).toHaveAttribute("href", branch.href);
+  }
 });
 
 test("skip link · transfers keyboard focus to main content", async ({ page }) => {

@@ -7,6 +7,16 @@ const routes = [
   { path: "/teaching/1-year-mba", changeFrequency: "monthly", priority: 0.9 },
   { path: "/teaching/2-year-mba", changeFrequency: "monthly", priority: 0.9 },
   { path: "/teaching/karma-yoga", changeFrequency: "monthly", priority: 0.9 },
+  {
+    path: "/teaching/karma-yoga/b-schools",
+    changeFrequency: "monthly",
+    priority: 0.88,
+  },
+  {
+    path: "/teaching/karma-yoga/india",
+    changeFrequency: "monthly",
+    priority: 0.88,
+  },
   { path: "/teaching/business-simulation", changeFrequency: "monthly", priority: 0.9 },
   { path: "/teaching/ai-hackathon", changeFrequency: "monthly", priority: 0.85 },
   { path: "/case-study-preparation", changeFrequency: "monthly", priority: 0.8 },

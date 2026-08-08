@@ -12,7 +12,20 @@ export const teachingDropdown: NavDropdown = {
   items: [
     { label: "1-Year MBA", href: "/teaching/1-year-mba" },
     { label: "2-Year MBA", href: "/teaching/2-year-mba" },
-    { label: "Karma Yoga", href: "/teaching/karma-yoga" },
+    {
+      label: "Karma Yoga",
+      href: "/teaching/karma-yoga",
+      children: [
+        {
+          label: "For B-Schools",
+          href: "/teaching/karma-yoga/b-schools",
+        },
+        {
+          label: "For India · Mehalchauri",
+          href: "/teaching/karma-yoga/india",
+        },
+      ],
+    },
     { label: "Business Simulation", href: "/teaching/business-simulation" },
     {
       label: "Case Study Preparation",

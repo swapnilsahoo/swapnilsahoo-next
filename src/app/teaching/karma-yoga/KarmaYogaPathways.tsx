@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { ArrowRightIcon } from "@/components/icons/LineIcons";
 import { Container } from "@/components/ui/Container";
@@ -90,15 +91,6 @@ const bSchoolPhotos: readonly PathwayPhoto[] = [
 
 const indiaPhotos: readonly PathwayPhoto[] = [
   {
-    src: "/images/teaching/karma-yoga/mehalchauri/community-circle.webp",
-    alt: "Women and girls forming a community circle in a Mehalchauri courtyard",
-    caption: "A community circle · participation begins with shared presence.",
-    width: 1600,
-    height: 900,
-    cardClassName: "md:col-span-8",
-    frameClassName: "aspect-[16/9]",
-  },
-  {
     src: "/images/teaching/karma-yoga/mehalchauri/clouds-and-rain-workshop.webp",
     alt: "Children at Saraswati Shishu Mandir holding artwork from a clouds and rain workshop",
     caption: "Clouds & Rain · children share their creative work during the April 2026 workshop.",
@@ -124,6 +116,39 @@ const indiaPhotos: readonly PathwayPhoto[] = [
     width: 1600,
     height: 903,
     cardClassName: "md:col-span-5",
+    frameClassName: "aspect-[16/9]",
+  },
+];
+
+const historicalPhotos: readonly PathwayPhoto[] = [
+  {
+    src: "/images/teaching/karma-yoga/mehalchauri/historical/hands-on-science.webp",
+    alt: "A facilitator guiding schoolchildren through a hands-on science activity",
+    caption:
+      "Learning by doing · children explore science through experiment and observation in the historical programme archive.",
+    width: 1600,
+    height: 900,
+    cardClassName: "md:col-span-7",
+    frameClassName: "aspect-[16/9]",
+  },
+  {
+    src: "/images/teaching/karma-yoga/mehalchauri/historical/girls-football-coaching.webp",
+    alt: "Girls in sports uniforms gathered with programme facilitators on a Himalayan playing field",
+    caption:
+      "Confidence in motion · a team-side conversation during girls’ football in the historical programme archive.",
+    width: 1600,
+    height: 900,
+    cardClassName: "md:col-span-5",
+    frameClassName: "aspect-[16/9]",
+  },
+  {
+    src: "/images/teaching/karma-yoga/mehalchauri/historical/village-panchayat-dialogue.webp",
+    alt: "Village residents and programme partners seated together in a courtyard discussion",
+    caption:
+      "Listening before action · the archive records residents and programme partners meeting with the Panchayat in neighbouring Silanga.",
+    width: 1600,
+    height: 1200,
+    cardClassName: "md:col-span-12",
     frameClassName: "aspect-[16/9]",
   },
 ];
@@ -202,10 +227,12 @@ const mehalchauriTimeline = [
 
 function PhotoSet({
   name,
+  ariaLabel,
   photos,
   dark = false,
 }: {
-  name: "b-schools" | "india";
+  name: "b-schools" | "historical" | "india";
+  ariaLabel: string;
   photos: readonly PathwayPhoto[];
   dark?: boolean;
 }) {
@@ -213,7 +240,7 @@ function PhotoSet({
     <div
       data-photo-set={name}
       role="group"
-      aria-label={`${name === "b-schools" ? "Karma Yoga for B-Schools" : "Karma Yoga for India"} photographs`}
+      aria-label={ariaLabel}
       className="mt-10 grid items-start gap-4 md:grid-cols-12"
     >
       {photos.map((photo) => (
@@ -250,275 +277,345 @@ function PhotoSet({
   );
 }
 
-export function KarmaYogaPathways() {
+export function KarmaYogaBranchNav({ current }: { current: "b-schools" | "india" }) {
   return (
-    <div>
-      <section
-        id="karma-yoga-b-schools"
-        aria-labelledby="karma-yoga-b-schools-title"
-        className="scroll-mt-24 py-16 sm:py-24"
+    <Container className="max-w-6xl">
+      <nav
+        aria-label="Karma Yoga pathways"
+        className="nav-glass my-6 flex flex-wrap items-center gap-2 rounded-xl px-4 py-3 text-xs font-semibold lg:my-8"
       >
-        <Container className="max-w-6xl">
-          <div className="grid gap-10 lg:grid-cols-[1.12fr_0.88fr] lg:items-end">
-            <div>
-              <span className="accent-rule" />
-              <p className="eyebrow mb-3">Pathway 01 · Field pedagogy</p>
-              <h2
-                id="karma-yoga-b-schools-title"
-                className="display text-4xl leading-[1.02] font-semibold text-balance sm:text-6xl"
-              >
-                Karma Yoga for B-Schools
-              </h2>
-              <p className="text-ink-600 dark:text-ink-300 mt-6 max-w-3xl text-base leading-8">
-                Designed for management education, this pathway turns community engagement into a
-                rigorous field laboratory. Student teams move from listening and problem framing to
-                co-design, delivery, measurement, handover and reflection.
-              </p>
-            </div>
+        <Link
+          href="/teaching/karma-yoga"
+          className="rounded-lg px-3 py-2 transition hover:bg-blue-600/8 hover:text-blue-700 dark:hover:text-blue-300"
+        >
+          Karma Yoga hub
+        </Link>
+        <span className="text-ink-300 dark:text-ink-600" aria-hidden="true">
+          /
+        </span>
+        <Link
+          href="/teaching/karma-yoga/b-schools"
+          aria-current={current === "b-schools" ? "page" : undefined}
+          className="aria-[current=page]:bg-brand-50 aria-[current=page]:text-brand-800 dark:aria-[current=page]:bg-brand-950 rounded-lg px-3 py-2 transition hover:bg-blue-600/8 hover:text-blue-700 dark:hover:text-blue-300"
+        >
+          For B-Schools
+        </Link>
+        <Link
+          href="/teaching/karma-yoga/india"
+          aria-current={current === "india" ? "page" : undefined}
+          className="aria-[current=page]:bg-brand-50 aria-[current=page]:text-brand-800 dark:aria-[current=page]:bg-brand-950 rounded-lg px-3 py-2 transition hover:bg-blue-600/8 hover:text-blue-700 dark:hover:text-blue-300"
+        >
+          For India · Mehalchauri
+        </Link>
+      </nav>
+    </Container>
+  );
+}
 
-            <blockquote className="border-brand-500/40 from-brand-50 to-accent-50/60 dark:from-brand-950/60 rounded-2xl border bg-gradient-to-br p-6 dark:to-slate-950">
-              <p className="font-serif text-2xl leading-snug font-semibold text-balance">
-                “The classroom travels to the community—and returns with better questions.”
-              </p>
-              <footer className="text-ink-500 dark:text-ink-400 mt-4 text-xs">
-                Field-learning principle
-              </footer>
-            </blockquote>
+export function KarmaYogaBschoolsStory() {
+  return (
+    <section
+      id="karma-yoga-b-schools"
+      aria-labelledby="karma-yoga-b-schools-title"
+      className="scroll-mt-24 py-16 sm:py-24"
+    >
+      <Container className="max-w-6xl">
+        <div className="grid gap-10 lg:grid-cols-[1.12fr_0.88fr] lg:items-end">
+          <div>
+            <span className="accent-rule" />
+            <p className="eyebrow mb-3">Pathway 01 · Field pedagogy</p>
+            <h2
+              id="karma-yoga-b-schools-title"
+              className="display text-4xl leading-[1.02] font-semibold text-balance sm:text-6xl"
+            >
+              Karma Yoga for B-Schools
+            </h2>
+            <p className="text-ink-600 dark:text-ink-300 mt-6 max-w-3xl text-base leading-8">
+              Designed for management education, this pathway turns community engagement into a
+              rigorous field laboratory. Student teams move from listening and problem framing to
+              co-design, delivery, measurement, handover and reflection.
+            </p>
           </div>
 
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
-            {[
-              [
-                "Field before framework",
-                "Learners encounter people, place and constraint before deciding which managerial lens is useful.",
-              ],
-              [
-                "Service as practice",
-                "Teams plan, coordinate, adapt and take responsibility for work whose consequences are real.",
-              ],
-              [
-                "Evidence after action",
-                "Outputs, outcomes, partner feedback, limits and handover matter more than a polished activity story.",
-              ],
-            ].map(([title, description], index) => (
-              <article key={title} className="glass-card p-6">
-                <span className="text-brand-600 dark:text-brand-300 font-mono text-[10px] font-bold">
-                  0{index + 1}
-                </span>
-                <h3 className="mt-4 font-serif text-xl font-semibold">{title}</h3>
-                <p className="text-ink-600 dark:text-ink-300 mt-3 text-sm leading-6">
-                  {description}
-                </p>
+          <blockquote className="border-brand-500/40 from-brand-50 to-accent-50/60 dark:from-brand-950/60 rounded-2xl border bg-gradient-to-br p-6 dark:to-slate-950">
+            <p className="font-serif text-2xl leading-snug font-semibold text-balance">
+              “The classroom travels to the community—and returns with better questions.”
+            </p>
+            <footer className="text-ink-500 dark:text-ink-400 mt-4 text-xs">
+              Field-learning principle
+            </footer>
+          </blockquote>
+        </div>
+
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
+          {[
+            [
+              "Field before framework",
+              "Learners encounter people, place and constraint before deciding which managerial lens is useful.",
+            ],
+            [
+              "Service as practice",
+              "Teams plan, coordinate, adapt and take responsibility for work whose consequences are real.",
+            ],
+            [
+              "Evidence after action",
+              "Outputs, outcomes, partner feedback, limits and handover matter more than a polished activity story.",
+            ],
+          ].map(([title, description], index) => (
+            <article key={title} className="glass-card p-6">
+              <span className="text-brand-600 dark:text-brand-300 font-mono text-[10px] font-bold">
+                0{index + 1}
+              </span>
+              <h3 className="mt-4 font-serif text-xl font-semibold">{title}</h3>
+              <p className="text-ink-600 dark:text-ink-300 mt-3 text-sm leading-6">{description}</p>
+            </article>
+          ))}
+        </div>
+
+        <PhotoSet
+          name="b-schools"
+          ariaLabel="Karma Yoga for B-Schools photographs"
+          photos={bSchoolPhotos}
+        />
+
+        <a
+          href="#learning-loop"
+          className="text-brand-700 dark:text-brand-300 mt-8 inline-flex items-center gap-2 text-sm font-bold hover:underline"
+        >
+          Explore the complete B-school learning architecture
+          <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
+        </a>
+      </Container>
+    </section>
+  );
+}
+
+export function KarmaYogaIndiaStory() {
+  return (
+    <section
+      id="mehalchauri-story"
+      aria-labelledby="mehalchauri-story-title"
+      className="scroll-mt-24 bg-slate-950 py-16 text-white sm:py-24"
+    >
+      <Container className="max-w-6xl">
+        <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+          <div>
+            <span className="block h-1 w-14 rounded-full bg-emerald-300" />
+            <p className="mt-5 font-mono text-[10px] font-bold tracking-[0.18em] text-emerald-200 uppercase">
+              Mehalchauri · Chamoli district, Uttarakhand
+            </p>
+            <h2
+              id="mehalchauri-story-title"
+              className="mt-4 font-serif text-4xl leading-[1.02] font-semibold tracking-tight text-balance sm:text-6xl"
+            >
+              A relationship measured in returns, not visits.
+            </h2>
+            <p className="mt-6 text-base leading-8 text-slate-300">
+              Mehalchauri is not a one-visit story. In the Himalayan foothills of Chamoli district,
+              Uttarakhand—roughly a 12-hour road journey from Delhi and about 1,750 metres above sea
+              level—the relationship described in the programme record began around 2009–10 and grew
+              through education, local participation, sport, environmental stewardship and
+              livelihood experiments.
+            </p>
+          </div>
+
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8">
+            <p className="font-mono text-[10px] font-bold tracking-[0.16em] text-emerald-200 uppercase">
+              The partnership principle
+            </p>
+            <h3 className="mt-4 font-serif text-3xl font-semibold text-balance sm:text-4xl">
+              Begin with local relationships. Stay long enough to learn.
+            </h3>
+            <p className="mt-5 text-sm leading-7 text-slate-300">
+              The Indus Quality Foundation extended its work beyond Delhi through Heera Singh Negi’s
+              connection to his home village. Over time, local schools, Panchayat members, teachers,
+              children and volunteers became partners in a wider programme to connect learning,
+              confidence, community capability and care for place.
+            </p>
+          </div>
+        </div>
+
+        <dl className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            ["c. 2009–10", "Partnership begins"],
+            ["~1,750 m", "Himalayan foothills"],
+            ["1–6 Apr 2026", "Documented return"],
+            ["100+ children", "Reported in the post-visit deck"],
+          ].map(([value, label]) => (
+            <div key={label} className="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <dt className="text-xs leading-5 text-slate-400">{label}</dt>
+              <dd className="mt-2 font-serif text-2xl font-semibold text-white">{value}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <section aria-labelledby="mehalchauri-archive-title" className="mt-16 sm:mt-20">
+          <div className="max-w-3xl">
+            <p className="font-mono text-[10px] font-bold tracking-[0.16em] text-emerald-200 uppercase">
+              Historical programme archive · Before April 2026
+            </p>
+            <h3
+              id="mehalchauri-archive-title"
+              className="mt-4 font-serif text-3xl font-semibold text-balance sm:text-5xl"
+            >
+              Science, sport and village dialogue in the field.
+            </h3>
+            <p className="mt-5 text-sm leading-7 text-slate-300 sm:text-base">
+              These photographs come from the historical programme deck. They document earlier
+              activity in and around the Mehalchauri relationship; the Panchayat image is from
+              neighbouring Silanga and is identified accordingly.
+            </p>
+          </div>
+
+          <PhotoSet
+            name="historical"
+            ariaLabel="Historical Mehalchauri programme photographs"
+            photos={historicalPhotos}
+            dark
+          />
+        </section>
+
+        <section aria-labelledby="mehalchauri-work-title" className="mt-16 sm:mt-20">
+          <div className="max-w-3xl">
+            <p className="font-mono text-[10px] font-bold tracking-[0.16em] text-emerald-200 uppercase">
+              Work in Mehalchauri · Historical programme record
+            </p>
+            <h3
+              id="mehalchauri-work-title"
+              className="mt-4 font-serif text-3xl font-semibold text-balance sm:text-5xl"
+            >
+              A village partnership built through many small, connected acts.
+            </h3>
+            <p className="mt-5 text-sm leading-7 text-slate-300 sm:text-base">
+              Across the 2010s, the supplied programme record documents work spanning learning,
+              sport, energy, environment, livelihoods and community institutions. These are
+              historical programme activities and reported outcomes—not claims about present-day
+              conditions.
+            </p>
+          </div>
+
+          <div className="mt-9 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {mehalchauriWorkstreams.map(({ number, title, description }) => (
+              <article key={title} className="rounded-2xl border border-white/10 bg-white/5 p-6">
+                <span className="font-mono text-[10px] font-bold text-emerald-200">{number}</span>
+                <h4 className="mt-4 font-serif text-xl font-semibold">{title}</h4>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{description}</p>
               </article>
             ))}
           </div>
+        </section>
 
-          <PhotoSet name="b-schools" photos={bSchoolPhotos} />
-
-          <a
-            href="#learning-loop"
-            className="text-brand-700 dark:text-brand-300 mt-8 inline-flex items-center gap-2 text-sm font-bold hover:underline"
-          >
-            Explore the complete B-school learning architecture
-            <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
-          </a>
-        </Container>
-      </section>
-
-      <section
-        id="karma-yoga-india"
-        aria-labelledby="karma-yoga-india-title"
-        className="scroll-mt-24 bg-slate-950 py-16 text-white sm:py-24"
-      >
-        <Container className="max-w-6xl">
-          <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+        <section
+          aria-labelledby="mehalchauri-connected-title"
+          className="mt-10 overflow-hidden rounded-3xl border border-emerald-300/20 bg-emerald-300/8 p-6 sm:p-9"
+        >
+          <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
             <div>
-              <span className="block h-1 w-14 rounded-full bg-emerald-300" />
-              <p className="mt-5 font-mono text-[10px] font-bold tracking-[0.18em] text-emerald-200 uppercase">
-                Pathway 02 · Long-horizon partnership
-              </p>
-              <h2
-                id="karma-yoga-india-title"
-                className="mt-4 font-serif text-4xl leading-[1.02] font-semibold tracking-tight text-balance sm:text-6xl"
-              >
-                Karma Yoga for India
-              </h2>
-              <p className="mt-6 text-base leading-8 text-slate-300">
-                Mehalchauri is not a one-visit story. In the Himalayan foothills of Chamoli
-                district, Uttarakhand—roughly a 12-hour road journey from Delhi and about 1,750
-                metres above sea level—the relationship described in the programme record began
-                around 2009–10 and grew through education, local participation, sport, environmental
-                stewardship and livelihood experiments.
-              </p>
-            </div>
-
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8">
               <p className="font-mono text-[10px] font-bold tracking-[0.16em] text-emerald-200 uppercase">
-                The Mehalchauri story
-              </p>
-              <h3 className="mt-4 font-serif text-3xl font-semibold text-balance sm:text-4xl">
-                A relationship measured in returns, not visits.
-              </h3>
-              <p className="mt-5 text-sm leading-7 text-slate-300">
-                The Indus Quality Foundation extended its work beyond Delhi through Heera Singh
-                Negi’s connection to his home village. Over time, local schools, Panchayat members,
-                teachers, children and volunteers became partners in a wider programme to connect
-                learning, confidence, community capability and care for place.
-              </p>
-            </div>
-          </div>
-
-          <dl className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              ["c. 2009–10", "Partnership begins"],
-              ["~1,750 m", "Himalayan foothills"],
-              ["1–6 Apr 2026", "Documented return"],
-              ["100+ children", "Reported in the post-visit deck"],
-            ].map(([value, label]) => (
-              <div key={label} className="rounded-2xl border border-white/10 bg-white/5 p-5">
-                <dt className="text-xs leading-5 text-slate-400">{label}</dt>
-                <dd className="mt-2 font-serif text-2xl font-semibold text-white">{value}</dd>
-              </div>
-            ))}
-          </dl>
-
-          <section aria-labelledby="mehalchauri-work-title" className="mt-16 sm:mt-20">
-            <div className="max-w-3xl">
-              <p className="font-mono text-[10px] font-bold tracking-[0.16em] text-emerald-200 uppercase">
-                Work in Mehalchauri · Historical programme record
+                Connected experiments · Historical case record
               </p>
               <h3
-                id="mehalchauri-work-title"
-                className="mt-4 font-serif text-3xl font-semibold text-balance sm:text-5xl"
+                id="mehalchauri-connected-title"
+                className="mt-4 font-serif text-3xl font-semibold text-balance"
               >
-                A village partnership built through many small, connected acts.
+                One action was designed to unlock another.
               </h3>
-              <p className="mt-5 text-sm leading-7 text-slate-300 sm:text-base">
-                Across the 2010s, the supplied programme record documents work spanning learning,
-                sport, energy, environment, livelihoods and community institutions. These are
-                historical programme activities and reported outcomes—not claims about present-day
-                conditions.
+              <p className="mt-4 text-sm leading-7 text-emerald-50/80">
+                The historical case describes practical exchanges that linked education, energy,
+                agriculture and collective environmental action.
               </p>
             </div>
 
-            <div className="mt-9 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {mehalchauriWorkstreams.map(({ number, title, description }) => (
-                <article key={title} className="rounded-2xl border border-white/10 bg-white/5 p-6">
-                  <span className="font-mono text-[10px] font-bold text-emerald-200">{number}</span>
-                  <h4 className="mt-4 font-serif text-xl font-semibold">{title}</h4>
-                  <p className="mt-3 text-sm leading-6 text-slate-300">{description}</p>
+            <div className="grid gap-3 sm:grid-cols-3">
+              {[
+                [
+                  "Light + fodder",
+                  "Two LED lamps per household were tied to planting ten mulberry trees, linking energy access with cattle fodder.",
+                ],
+                [
+                  "Technology + trees",
+                  "A village could earn a computer by planting 100 oak trees, making school technology depend on collective action.",
+                ],
+                [
+                  "Planting + practice",
+                  "The case exhibit records 117 walnut trees planted; later agricultural advice broadened the cultivation experiments.",
+                ],
+              ].map(([title, description]) => (
+                <article
+                  key={title}
+                  className="rounded-2xl border border-white/10 bg-slate-950/35 p-5"
+                >
+                  <h4 className="font-serif text-lg font-semibold text-emerald-50">{title}</h4>
+                  <p className="mt-3 text-xs leading-6 text-slate-300">{description}</p>
                 </article>
               ))}
             </div>
-          </section>
+          </div>
+        </section>
 
-          <section
-            aria-labelledby="mehalchauri-connected-title"
-            className="mt-10 overflow-hidden rounded-3xl border border-emerald-300/20 bg-emerald-300/8 p-6 sm:p-9"
-          >
-            <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
-              <div>
-                <p className="font-mono text-[10px] font-bold tracking-[0.16em] text-emerald-200 uppercase">
-                  Connected experiments · Historical case record
-                </p>
-                <h3
-                  id="mehalchauri-connected-title"
-                  className="mt-4 font-serif text-3xl font-semibold text-balance"
-                >
-                  One action was designed to unlock another.
-                </h3>
-                <p className="mt-4 text-sm leading-7 text-emerald-50/80">
-                  The historical case describes practical exchanges that linked education, energy,
-                  agriculture and collective environmental action.
-                </p>
-              </div>
-
-              <div className="grid gap-3 sm:grid-cols-3">
-                {[
-                  [
-                    "Light + fodder",
-                    "Two LED lamps per household were tied to planting ten mulberry trees, linking energy access with cattle fodder.",
-                  ],
-                  [
-                    "Technology + trees",
-                    "A village could earn a computer by planting 100 oak trees, making school technology depend on collective action.",
-                  ],
-                  [
-                    "Planting + practice",
-                    "The case exhibit records 117 walnut trees planted; later agricultural advice broadened the cultivation experiments.",
-                  ],
-                ].map(([title, description]) => (
-                  <article
-                    key={title}
-                    className="rounded-2xl border border-white/10 bg-slate-950/35 p-5"
-                  >
-                    <h4 className="font-serif text-lg font-semibold text-emerald-50">{title}</h4>
-                    <p className="mt-3 text-xs leading-6 text-slate-300">{description}</p>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          <section aria-labelledby="mehalchauri-timeline-title" className="mt-16">
-            <div className="max-w-2xl">
-              <p className="font-mono text-[10px] font-bold tracking-[0.16em] text-emerald-200 uppercase">
-                The relationship over time
-              </p>
-              <h3
-                id="mehalchauri-timeline-title"
-                className="mt-4 font-serif text-3xl font-semibold text-balance sm:text-4xl"
-              >
-                From invitation to a documented return.
-              </h3>
-            </div>
-
-            <ol className="mt-8 grid gap-4 lg:grid-cols-5">
-              {mehalchauriTimeline.map(({ date, title, description }) => (
-                <li key={date} className="rounded-2xl border border-white/10 bg-white/5 p-5">
-                  <span className="font-mono text-[10px] font-bold text-emerald-200">{date}</span>
-                  <h4 className="mt-4 font-serif text-xl font-semibold">{title}</h4>
-                  <p className="mt-3 text-sm leading-6 text-slate-300">{description}</p>
-                </li>
-              ))}
-            </ol>
-          </section>
-
-          <div className="mt-16 max-w-2xl">
+        <section aria-labelledby="mehalchauri-timeline-title" className="mt-16">
+          <div className="max-w-2xl">
             <p className="font-mono text-[10px] font-bold tracking-[0.16em] text-emerald-200 uppercase">
-              The April 2026 return · In pictures
+              The relationship over time
             </p>
-            <h3 className="mt-4 font-serif text-3xl font-semibold text-balance sm:text-4xl">
-              Learning, welcome and creative exchange.
+            <h3
+              id="mehalchauri-timeline-title"
+              className="mt-4 font-serif text-3xl font-semibold text-balance sm:text-4xl"
+            >
+              From invitation to a documented return.
             </h3>
           </div>
 
-          <PhotoSet name="india" photos={indiaPhotos} dark />
+          <ol className="mt-8 grid gap-4 lg:grid-cols-5">
+            {mehalchauriTimeline.map(({ date, title, description }) => (
+              <li key={date} className="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <span className="font-mono text-[10px] font-bold text-emerald-200">{date}</span>
+                <h4 className="mt-4 font-serif text-xl font-semibold">{title}</h4>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{description}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
 
-          <div className="mt-10 grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
-            <blockquote className="rounded-3xl border border-emerald-300/25 bg-emerald-300/8 p-7 sm:p-9">
-              <p className="font-serif text-2xl leading-snug font-semibold text-balance sm:text-3xl">
-                “They taught us hope in the simplest way, and left their smiles with us to stay.”
-              </p>
-              <footer className="mt-5 text-sm text-emerald-100">
-                Ruhan Bhatia · student reflection, April 2026
-              </footer>
-            </blockquote>
+        <div className="mt-16 max-w-2xl">
+          <p className="font-mono text-[10px] font-bold tracking-[0.16em] text-emerald-200 uppercase">
+            The April 2026 return · In pictures
+          </p>
+          <h3 className="mt-4 font-serif text-3xl font-semibold text-balance sm:text-4xl">
+            Learning, welcome and creative exchange.
+          </h3>
+        </div>
 
-            <aside className="rounded-2xl border border-white/10 bg-white/5 p-6 text-xs leading-6 text-slate-400">
-              <p className="font-mono font-bold tracking-[0.14em] text-slate-300 uppercase">
-                Editorial note
-              </p>
-              <p className="mt-3">
-                This account draws on the April 2026 post-visit deck, the pre-visit planning note
-                and the historical case supplied for this page. Planned activities are not described
-                as completed unless the post-visit deck records them; historical outcomes are
-                labelled as historical.
-              </p>
-            </aside>
-          </div>
-        </Container>
-      </section>
-    </div>
+        <PhotoSet
+          name="india"
+          ariaLabel="April 2026 Mehalchauri return photographs"
+          photos={indiaPhotos}
+          dark
+        />
+
+        <div className="mt-10 grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+          <blockquote className="rounded-3xl border border-emerald-300/25 bg-emerald-300/8 p-7 sm:p-9">
+            <p className="font-serif text-2xl leading-snug font-semibold text-balance sm:text-3xl">
+              “They taught us hope in the simplest way, and left their smiles with us to stay.”
+            </p>
+            <footer className="mt-5 text-sm text-emerald-100">
+              Ruhan Bhatia · student reflection, April 2026
+            </footer>
+          </blockquote>
+
+          <aside className="rounded-2xl border border-white/10 bg-white/5 p-6 text-xs leading-6 text-slate-400">
+            <p className="font-mono font-bold tracking-[0.14em] text-slate-300 uppercase">
+              Editorial note
+            </p>
+            <p className="mt-3">
+              This account draws on the April 2026 post-visit deck, the pre-visit planning note and
+              the historical case supplied for this page. Planned activities are not described as
+              completed unless the post-visit deck records them; historical outcomes are labelled as
+              historical.
+            </p>
+          </aside>
+        </div>
+      </Container>
+    </section>
   );
 }
