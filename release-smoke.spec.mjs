@@ -152,6 +152,22 @@ test("Karma Yoga · separate B-school and India pathways", async ({ page }) => {
   await expect(india).toContainText("1–6 Apr 2026");
   await expect(india).toContainText("100+ children");
   await expect(india).toContainText("Ruhan Bhatia");
+  await expect(
+    india.getByRole("heading", {
+      name: "A village partnership built through many small, connected acts.",
+    })
+  ).toBeVisible();
+  await expect(india.getByRole("heading", { name: "Learning infrastructure" })).toBeVisible();
+  await expect(india.getByRole("heading", { name: "Sport and confidence" })).toBeVisible();
+  await expect(india.getByRole("heading", { name: "Livelihood experiments" })).toBeVisible();
+  await expect(india).toContainText("Napier grass, mulberry and walnut");
+  await expect(india).toContainText("Two LED lamps per household");
+  await expect(india).toContainText("100 oak trees");
+  await expect(india).toContainText("117 walnut trees");
+  await expect(india).toContainText("four Mehalchauri students");
+  await expect(
+    india.getByRole("heading", { name: "A documented return", exact: true })
+  ).toBeVisible();
 
   const bSchoolPhotoSet = bSchools.locator('[data-photo-set="b-schools"]');
   const indiaPhotoSet = india.locator('[data-photo-set="india"]');

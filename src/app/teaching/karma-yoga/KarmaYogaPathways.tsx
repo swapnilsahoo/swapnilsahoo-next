@@ -128,6 +128,78 @@ const indiaPhotos: readonly PathwayPhoto[] = [
   },
 ];
 
+const mehalchauriWorkstreams = [
+  {
+    number: "01",
+    title: "Learning infrastructure",
+    description:
+      "Computer literacy and centres, libraries, science labs, toy banks and classroom support widened the spaces in which children could learn.",
+  },
+  {
+    number: "02",
+    title: "Sport and confidence",
+    description:
+      "Girls’ football and team games made participation visible. The 2019 case reports four local students selected for Uttarakhand’s Under-14 football team.",
+  },
+  {
+    number: "03",
+    title: "Energy and environment",
+    description:
+      "Solar lamps, LED lighting, cleanliness drives and tree planting joined practical community needs with care for the Himalayan landscape.",
+  },
+  {
+    number: "04",
+    title: "Livelihood experiments",
+    description:
+      "Napier grass, mulberry and walnut cultivation were explored; agricultural advice in 2016 connected fodder, farming and longer-term resilience.",
+  },
+  {
+    number: "05",
+    title: "Community capability",
+    description:
+      "Panchayat consultation, tool-sharing centres, teacher workshops and career guidance placed local institutions at the centre of the work.",
+  },
+  {
+    number: "06",
+    title: "Creativity and culture",
+    description:
+      "Creative programmes, cultural events, student exchanges, yoga centres and Centres of Joy created recurring spaces for expression and connection.",
+  },
+] as const;
+
+const mehalchauriTimeline = [
+  {
+    date: "2008",
+    title: "The invitation",
+    description:
+      "As the Indus Quality Foundation considered work beyond Delhi, Heera Singh Negi proposed a relationship with his home village.",
+  },
+  {
+    date: "c. 2009–10",
+    title: "Field partnership begins",
+    description:
+      "The supplied sources differ by a year, so the beginning is dated carefully. Schools, children, local leaders and volunteers became recurring partners.",
+  },
+  {
+    date: "2016",
+    title: "Agricultural knowledge joins",
+    description:
+      "Agricultural scientist Dr. Anil Kishore Joshi advised on Napier grass, mulberry and walnut cultivation as the work broadened beyond education.",
+  },
+  {
+    date: "2019 case record",
+    title: "Sport becomes a signal",
+    description:
+      "The historical case reports four Mehalchauri students selected for Uttarakhand’s state Under-14 football team—a marker of confidence built over time.",
+  },
+  {
+    date: "1–6 Apr 2026",
+    title: "A documented return",
+    description:
+      "The post-visit deck records a school assembly, Clouds & Rain workshops, a riverbank clean-up, games, cultural exchange and reflection, reporting participation by 100+ children across 3+ schools and villages.",
+  },
+] as const;
+
 function PhotoSet({
   name,
   photos,
@@ -310,41 +382,116 @@ export function KarmaYogaPathways() {
             ))}
           </dl>
 
-          <ol className="mt-12 grid gap-4 lg:grid-cols-5">
-            {[
-              [
-                "01",
-                "A relationship begins",
-                "The source record differs on the exact starting year, so the story is dated carefully to around 2009–10.",
-              ],
-              [
-                "02",
-                "Trust through learning",
-                "Libraries, computer literacy, science, creativity, sport and teacher engagement created repeated points of connection.",
-              ],
-              [
-                "03",
-                "Small, linked experiments",
-                "Historical programme records connect solar lighting with mulberry planting, and school technology with oak plantation.",
-              ],
-              [
-                "04",
-                "The 2026 return",
-                "The April deck documents school assembly, creative workshops, river stewardship, games, cultural exchange and reflection.",
-              ],
-              [
-                "05",
-                "Learning travels both ways",
-                "The work treats community members as partners in judgment—not recipients at the end of a management exercise.",
-              ],
-            ].map(([number, title, description]) => (
-              <li key={number} className="rounded-2xl border border-white/10 bg-white/5 p-5">
-                <span className="font-mono text-[10px] font-bold text-emerald-200">{number}</span>
-                <h3 className="mt-4 font-serif text-xl font-semibold">{title}</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{description}</p>
-              </li>
-            ))}
-          </ol>
+          <section aria-labelledby="mehalchauri-work-title" className="mt-16 sm:mt-20">
+            <div className="max-w-3xl">
+              <p className="font-mono text-[10px] font-bold tracking-[0.16em] text-emerald-200 uppercase">
+                Work in Mehalchauri · Historical programme record
+              </p>
+              <h3
+                id="mehalchauri-work-title"
+                className="mt-4 font-serif text-3xl font-semibold text-balance sm:text-5xl"
+              >
+                A village partnership built through many small, connected acts.
+              </h3>
+              <p className="mt-5 text-sm leading-7 text-slate-300 sm:text-base">
+                Across the 2010s, the supplied programme record documents work spanning learning,
+                sport, energy, environment, livelihoods and community institutions. These are
+                historical programme activities and reported outcomes—not claims about present-day
+                conditions.
+              </p>
+            </div>
+
+            <div className="mt-9 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {mehalchauriWorkstreams.map(({ number, title, description }) => (
+                <article key={title} className="rounded-2xl border border-white/10 bg-white/5 p-6">
+                  <span className="font-mono text-[10px] font-bold text-emerald-200">{number}</span>
+                  <h4 className="mt-4 font-serif text-xl font-semibold">{title}</h4>
+                  <p className="mt-3 text-sm leading-6 text-slate-300">{description}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section
+            aria-labelledby="mehalchauri-connected-title"
+            className="mt-10 overflow-hidden rounded-3xl border border-emerald-300/20 bg-emerald-300/8 p-6 sm:p-9"
+          >
+            <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+              <div>
+                <p className="font-mono text-[10px] font-bold tracking-[0.16em] text-emerald-200 uppercase">
+                  Connected experiments · Historical case record
+                </p>
+                <h3
+                  id="mehalchauri-connected-title"
+                  className="mt-4 font-serif text-3xl font-semibold text-balance"
+                >
+                  One action was designed to unlock another.
+                </h3>
+                <p className="mt-4 text-sm leading-7 text-emerald-50/80">
+                  The historical case describes practical exchanges that linked education, energy,
+                  agriculture and collective environmental action.
+                </p>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-3">
+                {[
+                  [
+                    "Light + fodder",
+                    "Two LED lamps per household were tied to planting ten mulberry trees, linking energy access with cattle fodder.",
+                  ],
+                  [
+                    "Technology + trees",
+                    "A village could earn a computer by planting 100 oak trees, making school technology depend on collective action.",
+                  ],
+                  [
+                    "Planting + practice",
+                    "The case exhibit records 117 walnut trees planted; later agricultural advice broadened the cultivation experiments.",
+                  ],
+                ].map(([title, description]) => (
+                  <article
+                    key={title}
+                    className="rounded-2xl border border-white/10 bg-slate-950/35 p-5"
+                  >
+                    <h4 className="font-serif text-lg font-semibold text-emerald-50">{title}</h4>
+                    <p className="mt-3 text-xs leading-6 text-slate-300">{description}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section aria-labelledby="mehalchauri-timeline-title" className="mt-16">
+            <div className="max-w-2xl">
+              <p className="font-mono text-[10px] font-bold tracking-[0.16em] text-emerald-200 uppercase">
+                The relationship over time
+              </p>
+              <h3
+                id="mehalchauri-timeline-title"
+                className="mt-4 font-serif text-3xl font-semibold text-balance sm:text-4xl"
+              >
+                From invitation to a documented return.
+              </h3>
+            </div>
+
+            <ol className="mt-8 grid gap-4 lg:grid-cols-5">
+              {mehalchauriTimeline.map(({ date, title, description }) => (
+                <li key={date} className="rounded-2xl border border-white/10 bg-white/5 p-5">
+                  <span className="font-mono text-[10px] font-bold text-emerald-200">{date}</span>
+                  <h4 className="mt-4 font-serif text-xl font-semibold">{title}</h4>
+                  <p className="mt-3 text-sm leading-6 text-slate-300">{description}</p>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          <div className="mt-16 max-w-2xl">
+            <p className="font-mono text-[10px] font-bold tracking-[0.16em] text-emerald-200 uppercase">
+              The April 2026 return · In pictures
+            </p>
+            <h3 className="mt-4 font-serif text-3xl font-semibold text-balance sm:text-4xl">
+              Learning, welcome and creative exchange.
+            </h3>
+          </div>
 
           <PhotoSet name="india" photos={indiaPhotos} dark />
 
