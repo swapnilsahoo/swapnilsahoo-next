@@ -425,8 +425,8 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
     dek: "Tulsidas's sixteenth-century Awadhi retelling of Rama's story, opened kāṇḍa by kāṇḍa. This edition currently carries the complete, verified text of Bālakāṇḍa, with full word-by-word study for the maṅgalācaraṇa, close translation continuing through the poet's preface, and translation extending further section by section.",
     scopeLabel: "Bālakāṇḍa (kāṇḍa 1 of 7) · in progress",
     scopeNote:
-      "All 369 declared units of Bālakāṇḍa — 7 opening Sanskrit ślokas plus 362 Awadhi dohā, sorathā and chhand units — carry verified Devanagari and IAST. The first 13 units (the maṅgalācaraṇa) additionally carry full word-by-word study; a further 14 units (the poet's preface — praise of holy company, of Rāma's name, of earlier poets, and the bows to Ayodhyā) carry a close English translation. The remaining units of Bālakāṇḍa are marked as verified text with translation still to come, and the six kāṇḍas after Bālakāṇḍa are not yet begun. Nothing here is invented to look complete before it is.",
-    entryCountLabel: "369 of Bālakāṇḍa's units · 27 translated (13 with word-by-word)",
+      "All 369 declared units of Bālakāṇḍa — 7 opening Sanskrit ślokas plus 362 Awadhi dohā, sorathā and chhand units — carry verified Devanagari and IAST. The first 13 units (the maṅgalācaraṇa) additionally carry full word-by-word study; a further 29 units carry a close English translation, running through the poet's preface, the glory of Rāma's name, and the celebrated extended image of the Mānasa itself as a sacred lake. The remaining units of Bālakāṇḍa are marked as verified text with translation still to come, and the six kāṇḍas after Bālakāṇḍa are not yet begun. Nothing here is invented to look complete before it is.",
+    entryCountLabel: "369 of Bālakāṇḍa's units · 42 translated (13 with word-by-word)",
     authenticity: [
       {
         label: "Textual home",
@@ -444,7 +444,7 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
         label: "Declared coverage",
         value: "Bālakāṇḍa, 369 of 369 units verified",
         detail:
-          "Every unit of the first kāṇḍa has checked Devanagari and IAST. Full word-by-word study covers the 13-unit opening invocation; close translation extends a further 14 units through the poet's preface; the rest of Bālakāṇḍa is disclosed as text-verified, translation pending.",
+          "Every unit of the first kāṇḍa has checked Devanagari and IAST. Full word-by-word study covers the 13-unit opening invocation; close translation extends a further 29 units through the poet's preface and the Mānasa-as-a-lake metaphor; the rest of Bālakāṇḍa is disclosed as text-verified, translation pending.",
       },
       {
         label: "Traditional attribution",

@@ -165,7 +165,7 @@ const scriptureInquiry: Record<
     firstPrinciplesQuestions: [
       "Which Awadhi and Sanskrit wording comes from the declared base source, and which normalization, transliteration, and translation were prepared for this reader?",
       "What must be true of a source correction — like the one disclosed doha label — before it is reasonable to fix it rather than reproduce an evident typo?",
-      "Of the 369 units in this kāṇḍa, which thirteen carry full word-by-word study, which further fourteen carry only a close translation, and what distinguishes each layer from the verified-but-untranslated remainder?",
+      "Of the 369 units in this kāṇḍa, which thirteen carry full word-by-word study, which further twenty-nine carry only a close translation, and what distinguishes each layer from the verified-but-untranslated remainder?",
       "What would it take to extend this same standard of verification across the rest of Bālakāṇḍa and into the six kāṇḍas that follow?",
     ],
   },
