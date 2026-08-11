@@ -27,18 +27,18 @@ export const teachingDropdown: NavDropdown = {
       ],
     },
     { label: "Business Simulation", href: "/teaching/business-simulation" },
-    {
-      label: "Case Study Preparation",
-      href: "/case-study-preparation",
-    },
     { label: "AI Mini Hackathon", href: "/teaching/ai-hackathon" },
     {
-      label: "Placements",
+      label: "Placement Assistance",
       href: "/placements",
       children: [
         {
           label: "Rigorous Industry Analysis",
           href: "/placements/industry-analysis",
+        },
+        {
+          label: "Case Study Preparation",
+          href: "/placements/case-study-preparation",
         },
       ],
     },

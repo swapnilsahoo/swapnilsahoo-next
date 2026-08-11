@@ -27,7 +27,7 @@ const routes = [
   "/teaching/business-simulation",
   "/placements",
   "/placements/industry-analysis",
-  "/case-study-preparation",
+  "/placements/case-study-preparation",
   "/comics",
   "/mythology",
   immortalsRoute,

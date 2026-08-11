@@ -87,7 +87,7 @@ export default function IndustryAnalysisPage() {
               href="/placements"
               className="transition hover:text-blue-700 dark:hover:text-blue-300"
             >
-              Placements
+              Placement Assistance
             </Link>
             <span aria-hidden="true">/</span>
             <span aria-current="page" className="text-ink-800 dark:text-ink-100">
@@ -527,7 +527,7 @@ export default function IndustryAnalysisPage() {
               </p>
               <div className="mt-6 grid gap-3">
                 <Link
-                  href="/case-study-preparation"
+                  href="/placements/case-study-preparation"
                   className="border-ink-200 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 rounded-2xl border p-5 transition focus-visible:ring-2 focus-visible:outline-none"
                 >
                   <p className="eyebrow mb-1">Consulting practice</p>

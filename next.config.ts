@@ -51,6 +51,11 @@ const nextConfig: NextConfig = {
         destination: "/spirituality/hanuman-chalisa",
         permanent: true,
       },
+      {
+        source: "/case-study-preparation",
+        destination: "/placements/case-study-preparation",
+        permanent: true,
+      },
     ];
   },
   async rewrites() {

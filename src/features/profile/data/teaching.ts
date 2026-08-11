@@ -30,13 +30,6 @@ export const teachingLinks: TeachingLink[] = [
     href: "/teaching/business-simulation",
   },
   {
-    eyebrow: "Teaching Resource",
-    title: "Case Study Preparation",
-    description:
-      "Practice for structuring consulting cases, doing the analysis and explaining the recommendation clearly.",
-    href: "/case-study-preparation",
-  },
-  {
     eyebrow: "PGDM event · Proposed PhD lens",
     title: "AI Mini Hackathon",
     description:
@@ -45,9 +38,9 @@ export const teachingLinks: TeachingLink[] = [
   },
   {
     eyebrow: "Career",
-    title: "Placements",
+    title: "Placement Assistance",
     description:
-      "Choose roles carefully, make the CV evidential and rehearse stories until they sound like your own.",
+      "Choose roles carefully, make the CV evidential and rehearse stories until they sound like your own. Includes rigorous industry analysis and case study preparation.",
     href: "/placements",
   },
 ];

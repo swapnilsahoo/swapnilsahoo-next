@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import {
   ArrowRightIcon,
@@ -26,13 +27,13 @@ export const metadata: Metadata = {
     "market entry framework",
     "consulting interview India",
   ],
-  alternates: { canonical: "/case-study-preparation" },
+  alternates: { canonical: "/placements/case-study-preparation" },
   openGraph: {
     type: "article",
     title: "Great Lakes Consulting Club — Case Study Studio",
     description:
       "Practice for structuring an unfamiliar business problem, analysing it and explaining what you would do.",
-    url: "/case-study-preparation",
+    url: "/placements/case-study-preparation",
     images: ["/images/profile_pic.jpg"],
   },
 };
@@ -171,6 +172,26 @@ export default function CaseStudyPreparationPage() {
       <header className="relative overflow-hidden pt-14 pb-16 sm:pt-20 sm:pb-24">
         <div className="aurora" aria-hidden="true" />
         <Container className="max-w-6xl">
+          <nav
+            aria-label="Breadcrumb"
+            className="text-ink-500 mb-5 flex flex-wrap items-center gap-2 text-xs"
+          >
+            <Link href="/" className="transition hover:text-blue-700 dark:hover:text-blue-300">
+              Home
+            </Link>
+            <span aria-hidden="true">/</span>
+            <Link
+              href="/placements"
+              className="transition hover:text-blue-700 dark:hover:text-blue-300"
+            >
+              Placement Assistance
+            </Link>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page" className="text-ink-800 dark:text-ink-100">
+              Case Study Preparation
+            </span>
+          </nav>
+
           <div
             data-page-hero="academic"
             className="from-ink-950 via-brand-900 to-ink-800 relative isolate overflow-hidden rounded-[30px] border border-white/10 bg-gradient-to-br px-6 py-12 text-white shadow-2xl shadow-blue-950/20 sm:px-10 sm:py-16 lg:px-14"

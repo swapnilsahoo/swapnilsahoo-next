@@ -29,9 +29,9 @@ const routes = [
   },
   { path: "/teaching/business-simulation", changeFrequency: "monthly", priority: 0.9 },
   { path: "/teaching/ai-hackathon", changeFrequency: "monthly", priority: 0.85 },
-  { path: "/case-study-preparation", changeFrequency: "monthly", priority: 0.8 },
   { path: "/placements", changeFrequency: "monthly", priority: 0.8 },
   { path: "/placements/industry-analysis", changeFrequency: "monthly", priority: 0.78 },
+  { path: "/placements/case-study-preparation", changeFrequency: "monthly", priority: 0.8 },
   { path: "/spirituality", changeFrequency: "monthly", priority: 0.7 },
   {
     path: "/spirituality/bhagavad-gita",
