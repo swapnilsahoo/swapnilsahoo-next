@@ -8,9 +8,10 @@ import { InquiryPrelude } from "@/components/ui/InquiryPrelude";
 export const metadata: Metadata = {
   title: "Spirituality — Sacred Texts for Study and Reflection",
   description:
-    "Source-aware devotional study editions of the Bhagavad Gita, Hanuman Chalisa, Vishnu Sahasranama, Lalita Sahasranama and Shiva Tandava Stotram with original script, clearly labeled romanization, close meaning, provenance and attribution biographies.",
+    "Source-aware devotional study editions of the Bhagavad Gita, Ramcharitmanas, Hanuman Chalisa, Vishnu Sahasranama, Lalita Sahasranama and Shiva Tandava Stotram with original script, clearly labeled romanization, close meaning, provenance and attribution biographies.",
   keywords: [
     "Bhagavad Gita",
+    "Ramcharitmanas",
     "Hanuman Chalisa",
     "Vishnu Sahasranama",
     "Lalita Sahasranama",
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     title: "Sacred Texts — Read, Reflect, Return",
-    description: "A respectful multilingual reader for five beloved devotional works.",
+    description: "A respectful multilingual reader for six beloved devotional works.",
     url: "/spirituality",
     images: ["/images/profile_pic.jpg"],
   },
@@ -83,6 +84,16 @@ const collections = [
     description:
       "All eighteen chapters of Krishna's counsel to Arjuna, with consistent IAST, a close English rendering, and a grammatical word-by-word split for every verse.",
   },
+  {
+    title: "श्रीरामचरितमानस",
+    transliteration: "Śrī Rāmacaritamānasa",
+    label: "Authentic Ramcharitmanas",
+    href: "/spirituality/ramcharitmanas",
+    language: "Old Awadhi",
+    scope: "Bālakāṇḍa in progress · 13 of 369 units translated",
+    description:
+      "Tulsidas's Awadhi retelling of Rama's story, opened kāṇḍa by kāṇḍa. Bālakāṇḍa's opening invocation is complete with word-by-word study; the rest of its text is verified with translation under way.",
+  },
 ] as const;
 
 const readingLayers = [
@@ -93,7 +104,7 @@ const readingLayers = [
   {
     title: "Declared romanization",
     detail:
-      "The Sanskrit branches use IAST; the Awadhi branch labels its pronunciation-friendly reading rather than presenting it as strict IAST.",
+      "The Sanskrit branches, and Ramcharitmanas, use IAST; the Hanuman Chalisa labels its pronunciation-friendly reading rather than presenting it as strict IAST.",
   },
   {
     title: "Name, word, or pāda study",
@@ -154,7 +165,7 @@ export default function SpiritualityPage() {
                   <span className="font-normal text-amber-200 italic">Return inward.</span>
                 </h1>
                 <p className="mt-6 max-w-3xl text-base leading-relaxed text-amber-50 sm:text-lg">
-                  Five source-aware devotional editions designed for understanding as well as
+                  Six source-aware devotional editions designed for understanding as well as
                   recitation—bringing original script, clearly labeled romanization, close name-,
                   word-, or pāda-level meaning, authorship, and textual history into one calm
                   reading experience.
@@ -197,7 +208,7 @@ export default function SpiritualityPage() {
             <span className="accent-rule" />
             <p className="eyebrow mb-3">01 / The collection</p>
             <h2 id="collection-title" className="display text-4xl font-semibold md:text-5xl">
-              Five authentic branches.
+              Six authentic branches.
             </h2>
             <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-relaxed">
               “Authentic” means source-disclosed and editorially transparent—not a claim that one
@@ -264,9 +275,11 @@ export default function SpiritualityPage() {
             <p className="text-ink-600 dark:text-ink-300 self-end text-sm leading-relaxed lg:col-span-7">
               Every branch uses the same reading logic, but its provenance is specific to that text.
               The Chalisa is treated as Old Awadhi; the two Sahasranāmas use complete, name-by-name
-              Sanskrit readers; the Shiva Tandava Stotram receives pāda-level compound study; and
-              the Bhagavad Gita receives a full verse-by-verse, word-by-word Sanskrit reading across
-              all eighteen chapters. Each Sanskrit branch uses IAST.
+              Sanskrit readers; the Shiva Tandava Stotram receives pāda-level compound study; the
+              Bhagavad Gita receives a full verse-by-verse, word-by-word Sanskrit reading across all
+              eighteen chapters; and the Ramcharitmanas is being opened kāṇḍa by kāṇḍa, with its
+              declared coverage stated plainly rather than smoothed over. Each Sanskrit branch, and
+              Ramcharitmanas, uses IAST.
             </p>
           </div>
           <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">

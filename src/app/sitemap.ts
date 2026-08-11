@@ -39,6 +39,11 @@ const routes = [
     priority: 0.72,
   },
   {
+    path: "/spirituality/ramcharitmanas",
+    changeFrequency: "weekly",
+    priority: 0.72,
+  },
+  {
     path: "/spirituality/hanuman-chalisa",
     changeFrequency: "monthly",
     priority: 0.72,

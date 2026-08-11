@@ -3,7 +3,8 @@ export type ScriptureSlug =
   | "vishnu-sahasranama"
   | "lalita-sahasranama"
   | "shiva-tandava-stotram"
-  | "bhagavad-gita";
+  | "bhagavad-gita"
+  | "ramcharitmanas";
 
 export type WordGloss = {
   original?: string;

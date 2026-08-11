@@ -412,6 +412,93 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
       },
     ],
   },
+  "ramcharitmanas": {
+    slug: "ramcharitmanas",
+    navLabel: "Authentic Ramcharitmanas",
+    shortTitle: "Ramcharitmanas",
+    title: "Authentic Ramcharitmanas",
+    originalTitle: "श्रीरामचरितमानस",
+    transliteratedTitle: "Śrī Rāmacaritamānasa",
+    language: "Awadhi (with Sanskrit invocation) · Devanagari + IAST",
+    form: "Tulsidas's retelling of the Rama story · 7 kāṇḍas",
+    glyph: "राम",
+    dek: "Tulsidas's sixteenth-century Awadhi retelling of Rama's story, opened kāṇḍa by kāṇḍa. This edition currently carries the complete, verified text of Bālakāṇḍa's opening invocation and narrative frame, with full word-by-word study for the maṅgalācaraṇa and close translation continuing section by section.",
+    scopeLabel: "Bālakāṇḍa (kāṇḍa 1 of 7) · in progress",
+    scopeNote:
+      "All 369 declared units of Bālakāṇḍa — 7 opening Sanskrit ślokas plus 362 Awadhi dohā, sorathā and chhand units — carry verified Devanagari and IAST. The 7 ślokas and the 6 units of the maṅgalācaraṇa (13 units in total) additionally carry full word-by-word study and a close English translation. The remaining units of Bālakāṇḍa are marked as verified text with translation still to come, and the six kāṇḍas after Bālakāṇḍa are not yet begun. Nothing here is invented to look complete before it is.",
+    entryCountLabel: "369 of Bālakāṇḍa's units · 13 fully translated",
+    authenticity: [
+      {
+        label: "Textual home",
+        value: "Tulsidas's Rāmacaritamānasa",
+        detail:
+          "Composed in Awadhi, traditionally dated to 1574–1577 CE, structured in seven kāṇḍas following the arc of Vālmīki's Sanskrit Rāmāyaṇa while remaining an independent devotional retelling.",
+      },
+      {
+        label: "Language",
+        value: "Awadhi, with Sanskrit ślokas",
+        detail:
+          "The narrative verses (dohā, sorathā, caupāī, chhand) are Awadhi; each kāṇḍa opens with Sanskrit invocatory ślokas in the classical style, both preserved here in their own register.",
+      },
+      {
+        label: "Declared coverage",
+        value: "Bālakāṇḍa, 369 of 369 units verified",
+        detail:
+          "Every unit of the first kāṇḍa has checked Devanagari and IAST. Word-by-word study and English translation currently cover the 13-unit opening invocation; the rest of Bālakāṇḍa is disclosed as text-verified, translation pending.",
+      },
+      {
+        label: "Traditional attribution",
+        value: "Goswami Tulsidas",
+        detail:
+          "Devotional and literary tradition is consistent in attributing the whole work to Tulsidas; exact biographical dates rest on tradition rather than independently documented record, as with the Hanuman Chalisa also attributed to him.",
+      },
+    ],
+    profiles: [
+      {
+        role: "Poet",
+        name: "Goswami Tulsidas",
+        dates: "traditionally c. 1532–1623 CE",
+        evidenceLabel: "Historical profile",
+        summary:
+          "Tulsidas was among the most influential Rama-bhakti poets of early modern North India, writing across Awadhi and Braj to bring theology and devotion to audiences beyond Sanskrit-reading circles. The Rāmacaritamānasa, begun by his own account in 1574, became foundational to North Indian devotional literature and performance tradition (the Ramlila). As with the Hanuman Chalisa also attributed to him, precise biographical dates rest on later hagiography more than independently documented record.",
+      },
+      {
+        role: "Narrator within the text",
+        name: "Yājñavalkya and Bharadvāja; Śiva and Pārvatī",
+        evidenceLabel: "Narrative voice",
+        summary:
+          "Like the Sanskrit Rāmāyaṇa tradition, the Mānasa layers its narration: Tulsidas recounts a dialogue between the sage Yājñavalkya and Bharadvāja, which itself contains Śiva narrating the story to Pārvatī, and further tellings besides. This identifies the text's narrative frame, not a claim about a historically documented storytelling event.",
+      },
+    ],
+    editorialPolicy: [
+      "The Awadhi and Sanskrit base text for Bālakāṇḍa follows the volunteer-prepared edition at sanskritdocuments.org (transliterated by Balram J. Rathore), the same toolchain and site used for this reader's Bhagavad Gita edition.",
+      "Devanagari and IAST are generated mechanically from that base text using a standard ITRANS-based transliteration library, not retyped by hand. This source's own hiatus marker (keeping adjacent vowels from merging into a diphthong, as in karau rather than karau read as one syllable) is rendered as a hyphen in the IAST layer so the distinction stays visible.",
+      "One isolated typo in the source file — a missing closing parenthesis in the sub-verse label at doha 120(gha) — was corrected against the same label's consistently closed form elsewhere in the identical document, and is disclosed here rather than silently fixed.",
+      "Word-by-word study and close English translation are prepared unit by unit and currently cover the maṅgalācaraṇa (the seven opening ślokas and the six-unit invocation to the gurus and gods that follows). No comparable word-meaning source exists for Awadhi the way sanskritdocuments.org's companion files support the Gita; each translated unit here reflects direct editorial preparation, not a lookup from an existing dictionary.",
+      "Units without a prepared translation carry their own honest label rather than an invented English rendering or an empty field: the Devanagari and IAST are verified, and translation is stated as pending.",
+      "This reader is being built kāṇḍa by kāṇḍa. Coverage will expand within Bālakāṇḍa and then into the remaining six kāṇḍas over time, at the same standard of verification applied here — nothing is back-filled with placeholder or approximate text to appear more complete than it is.",
+    ],
+    sources: [
+      {
+        title: "Shri Ram Charit Manas — Bālakāṇḍa",
+        institution: "Sanskrit Documents · sanskritdocuments.org (transliterated by Balram J. Rathore)",
+        href: "https://sanskritdocuments.org/doc_z_otherlang_hindi/manas1_i.itx",
+        note: "Base Awadhi/Sanskrit Devanagari-via-ITRANS text for Bālakāṇḍa, checked while preparing this reader.",
+      },
+      {
+        title: "The Rámáyana of Tulsi Dás",
+        institution: "Internet Archive · trans. F. S. Growse, 1883",
+        href: "https://archive.org/details/in.ernet.dli.2015.283665",
+        note: "A public-domain 19th-century English translation of the complete Mānasa, consulted for comparison while preparing this edition's close translations.",
+      },
+      {
+        title: "Rāmacaritamānasa — full text",
+        institution: "Hindi Wikisource",
+        href: "https://hi.wikisource.org/wiki/रामचरितमानस",
+        note: "A comparison reading for the complete seven-kāṇḍa text, linked for study rather than reposted.",
+      },
+    ],
+  },
   "shiva-tandava-stotram": {
     slug: "shiva-tandava-stotram",
     navLabel: "Authentic Shiva Tandava Stotram",

@@ -51,6 +51,11 @@ const themes: Record<
     glow: "bg-amber-300/20",
     badge: "text-amber-200",
   },
+  ramcharitmanas: {
+    hero: "from-[#1a0300] via-[#7c1d0e] to-[#1f2d0a]",
+    glow: "bg-orange-300/20",
+    badge: "text-orange-100",
+  },
 };
 
 const scriptureInquiry: Record<
@@ -147,6 +152,23 @@ const scriptureInquiry: Record<
       "What evidence distinguishes Sañjaya as narrator, Kṛṣṇa as the dialogue's speaker, and Vyāsa as the epic's traditional compiler, rather than treating all three as equivalent historical authors?",
     ],
   },
+  ramcharitmanas: {
+    title: "What does it mean for a reading edition to say, plainly, how much of it is done?",
+    introduction:
+      "Bālakāṇḍa's opening invocation is presented complete, word by word, with the rest of the kāṇḍa's Awadhi text verified but not yet translated, and the six kāṇḍas after it not yet begun. The declared coverage is stated before the reader, not discovered partway through it.",
+    socraticQuestions: [
+      "What is lost, and what is gained, by reading Tulsi's Awadhi retelling as a devotional work in its own right rather than as a translation of Vālmīki's Sanskrit Rāmāyaṇa?",
+      "When a verse's translation is marked pending rather than supplied, does that absence teach something a confident but uncertain guess would not?",
+      "How does the layered narration — Tulsidas recounting Yājñavalkya recounting Śiva's telling to Pārvatī — change what it means to ask who is speaking at any given verse?",
+      "What does it cost a reader when a study edition of a sacred text quietly pads out an unfinished section to look complete, and what does it cost when it does not?",
+    ],
+    firstPrinciplesQuestions: [
+      "Which Awadhi and Sanskrit wording comes from the declared base source, and which normalization, transliteration, and translation were prepared for this reader?",
+      "What must be true of a source correction — like the one disclosed doha label — before it is reasonable to fix it rather than reproduce an evident typo?",
+      "Of the 369 units in this kāṇḍa, which thirteen carry full word-by-word study, and what distinguishes that layer from the verified-but-untranslated remainder?",
+      "What would it take to extend this same standard of verification across the rest of Bālakāṇḍa and into the six kāṇḍas that follow?",
+    ],
+  },
 };
 
 export const dynamicParams = false;
@@ -171,7 +193,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         : slug === "vishnu-sahasranama" || slug === "lalita-sahasranama"
           ? "name by name meaning"
           : "line and word study",
-      slug === "hanuman-chalisa" ? "Awadhi romanization" : "IAST transliteration",
+      slug === "hanuman-chalisa" || slug === "ramcharitmanas"
+        ? "Awadhi romanization"
+        : "IAST transliteration",
       "authorship and provenance",
       "sacred text study",
     ],
@@ -195,7 +219,7 @@ export default async function ScripturePage({ params }: PageProps) {
   const theme = themes[slug];
   const inquiry = scriptureInquiry[slug];
   const isSahasranama = slug === "vishnu-sahasranama" || slug === "lalita-sahasranama";
-  const languageCode = slug === "hanuman-chalisa" ? "awa" : "sa";
+  const languageCode = slug === "hanuman-chalisa" || slug === "ramcharitmanas" ? "awa" : "sa";
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.swapnilsahoo.com";
   const structuredData = {
     "@context": "https://schema.org",
@@ -204,7 +228,12 @@ export default async function ScripturePage({ params }: PageProps) {
     headline: scripture.originalTitle,
     description: scripture.dek,
     url: `${siteUrl}/spirituality/${slug}`,
-    inLanguage: slug === "hanuman-chalisa" ? ["awa-Deva", "en"] : ["sa-Deva", "en"],
+    inLanguage:
+      slug === "ramcharitmanas"
+        ? ["awa-Deva", "sa-Deva", "en"]
+        : slug === "hanuman-chalisa"
+          ? ["awa-Deva", "en"]
+          : ["sa-Deva", "en"],
     learningResourceType:
       slug === "shiva-tandava-stotram"
         ? "Pada-and-compound sacred-text study edition"
@@ -562,7 +591,11 @@ export default async function ScripturePage({ params }: PageProps) {
                     }`}
                   >
                     <span
-                      lang={branchSlug === "hanuman-chalisa" ? "awa" : "sa"}
+                      lang={
+                        branchSlug === "hanuman-chalisa" || branchSlug === "ramcharitmanas"
+                          ? "awa"
+                          : "sa"
+                      }
                       className="font-serif text-xl"
                     >
                       {branch.originalTitle}

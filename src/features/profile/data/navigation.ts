@@ -66,6 +66,10 @@ export const moreDropdown: NavDropdown = {
           href: "/spirituality/bhagavad-gita",
         },
         {
+          label: "Authentic Ramcharitmanas",
+          href: "/spirituality/ramcharitmanas",
+        },
+        {
           label: "Authentic Hanuman Chalisa",
           href: "/spirituality/hanuman-chalisa",
         },

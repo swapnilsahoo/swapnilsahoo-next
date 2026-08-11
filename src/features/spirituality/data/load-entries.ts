@@ -3,6 +3,7 @@ import path from "node:path";
 
 import { bhagavadGitaEntries } from "@/features/spirituality/data/bhagavad-gita";
 import { lalitaSahasranamaEntries } from "@/features/spirituality/data/lalita-sahasranama";
+import { ramcharitmanasEntries } from "@/features/spirituality/data/ramcharitmanas";
 import { shivaTandavaStotramEntries } from "@/features/spirituality/data/shiva-tandava-stotram";
 import { vishnuSahasranamaEntries } from "@/features/spirituality/data/vishnu-sahasranama";
 import type { ReaderEntry, ScriptureSlug, WordGloss } from "@/features/spirituality/types";
@@ -188,5 +189,7 @@ export async function loadScriptureEntries(slug: ScriptureSlug): Promise<ReaderE
       return validateEntries(slug, shivaTandavaStotramEntries, 17);
     case "bhagavad-gita":
       return validateEntries(slug, bhagavadGitaEntries, 701);
+    case "ramcharitmanas":
+      return validateEntries(slug, ramcharitmanasEntries, 369);
   }
 }
