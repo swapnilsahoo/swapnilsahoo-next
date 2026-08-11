@@ -91,6 +91,10 @@ export const moreDropdown: NavDropdown = {
           label: "Ramayana (Original)",
           href: "/mythology#ramayana-original",
         },
+        {
+          label: "Immortals · 17 profiles",
+          href: "/mythology/immortals",
+        },
       ],
     },
     { label: "Contact", href: "/#contact" },

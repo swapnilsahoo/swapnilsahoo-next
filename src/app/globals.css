@@ -234,6 +234,49 @@ body::after {
   font-feature-settings: "ss01";
 }
 
+.script-devanagari {
+  font-family: var(--font-devanagari), "Nirmala UI", Mangal, serif;
+  font-variant-ligatures: common-ligatures;
+  letter-spacing: 0;
+  text-rendering: optimizeLegibility;
+}
+
+.script-bengali {
+  font-family: var(--font-bengali), "Nirmala UI", Vrinda, sans-serif;
+  letter-spacing: 0;
+}
+
+.script-gurmukhi {
+  font-family: var(--font-gurmukhi), "Nirmala UI", Raavi, sans-serif;
+  letter-spacing: 0;
+}
+
+.script-tamil {
+  font-family: var(--font-tamil), "Nirmala UI", Latha, sans-serif;
+  letter-spacing: 0;
+}
+
+.script-tibetan {
+  font-family: var(--font-tibetan), "Microsoft Himalaya", serif;
+  letter-spacing: 0;
+}
+
+.script-myanmar {
+  font-family: var(--font-myanmar), "Myanmar Text", sans-serif;
+  letter-spacing: 0;
+}
+
+.script-cjk {
+  font-family: var(--font-cjk-japanese), var(--font-cjk-traditional), "Yu Gothic",
+    "Microsoft JhengHei", sans-serif;
+  letter-spacing: 0;
+}
+
+:lang(zh-Hant).script-cjk {
+  font-family: var(--font-cjk-traditional), var(--font-cjk-japanese), "Microsoft JhengHei",
+    sans-serif;
+}
+
 .eyebrow {
   font-family: var(--font-mono);
   font-size: 11px;

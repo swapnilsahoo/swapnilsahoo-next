@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
+import { Fraunces, Inter, JetBrains_Mono, Noto_Serif_Devanagari } from "next/font/google";
 
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
@@ -22,6 +22,14 @@ const fraunces = Fraunces({
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
+});
+
+const notoSerifDevanagari = Noto_Serif_Devanagari({
+  variable: "--font-devanagari",
+  subsets: ["devanagari"],
+  display: "swap",
+  preload: false,
+  fallback: ["Nirmala UI", "Mangal", "serif"],
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.swapnilsahoo.com";
@@ -148,7 +156,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${fraunces.variable} ${jetbrainsMono.variable} scroll-smooth antialiased`}
+      className={`${inter.variable} ${fraunces.variable} ${jetbrainsMono.variable} ${notoSerifDevanagari.variable} scroll-smooth antialiased`}
       suppressHydrationWarning
     >
       <body>

@@ -12,6 +12,8 @@ const researchBranchRoutes = [
   "/research/frugal-innovation-dynamic-capabilities",
 ];
 
+const immortalsRoute = "/mythology/immortals";
+
 const routes = [
   "/",
   researchHubRoute,
@@ -27,6 +29,7 @@ const routes = [
   "/case-study-preparation",
   "/comics",
   "/mythology",
+  immortalsRoute,
   "/spirituality",
   "/spirituality/hanuman-chalisa",
   "/spirituality/vishnu-sahasranama",
@@ -723,6 +726,149 @@ test("Lalita Sahasranama · range and direct-name navigation", async ({ page }) 
   await expect(page.locator("#lalita-471")).toContainText("सिद्धेश्वरी");
 });
 
+test("Immortals · source-aware 17-profile atlas and interaction", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto(`${baseUrl}${immortalsRoute}`, { waitUntil: "domcontentloaded" });
+
+  const main = page.locator("main");
+  await expect(main.getByRole("heading", { level: 1 })).toContainText("Immortals");
+  await expect(page.locator("[data-immortal-profile]")).toHaveCount(17);
+  await expect(main.getByText("No verified physical immortality.", { exact: true })).toBeVisible();
+
+  const search = main.getByLabel("Search names, places, traditions, or terms");
+  await search.fill("Vallalar");
+  await expect(main.getByRole("status")).toContainText("Showing 1 of 17 profiles");
+  await expect(page.locator("[data-immortal-profile]:visible")).toHaveCount(1);
+  await expect(page.locator('[data-immortal-profile="vallalar"]')).toBeVisible();
+
+  await search.clear();
+  await main
+    .getByRole("button", { name: "Buddhist continuing & transformed presence", exact: true })
+    .click();
+  await expect(main.getByRole("status")).toContainText("Showing 4 of 17 profiles");
+  await main.getByRole("button", { name: "Bön transformed body", exact: true }).click();
+  await expect(main.getByRole("status")).toContainText("Showing 1 of 17 profiles");
+  await expect(page.locator('[data-immortal-profile="shardza-tashi-gyaltsen"]')).toBeVisible();
+  await main.getByRole("button", { name: "All 17", exact: true }).click();
+
+  const kukai = page.locator("#kukai");
+  const kukaiSummary = kukai.locator("summary");
+  await kukaiSummary.focus();
+  await page.keyboard.press("Enter");
+  await expect(kukai).toHaveAttribute("open", "");
+  await expect(kukai.getByText("Sources establish", { exact: true })).toBeVisible();
+  await expect(kukai.getByText("Tradition records", { exact: true })).toBeVisible();
+  await expect(
+    kukai.getByText("Independent evidence does not establish", { exact: true })
+  ).toBeVisible();
+
+  expect(
+    await kukaiSummary.evaluate((element) => element.getBoundingClientRect().height)
+  ).toBeGreaterThanOrEqual(44);
+
+  await page.goto(`${baseUrl}${immortalsRoute}#kukai`, { waitUntil: "domcontentloaded" });
+  await expect(page.locator("#kukai")).toHaveAttribute("open", "");
+});
+
+test("Immortals · authentic scripts and responsible publication boundary", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto(`${baseUrl}${immortalsRoute}`, { waitUntil: "domcontentloaded" });
+
+  const devanagari = page.locator('[lang="sa-Deva"]').first();
+  const iast = page.locator('[lang="sa-Latn"]').first();
+  await expect(devanagari).toBeVisible();
+  await expect(iast).toBeVisible();
+  expect(await devanagari.textContent()).toMatch(/[\u0900-\u097F]/u);
+  expect(await iast.textContent()).toMatch(/[āīūṛṃṇṭḍṣś]/u);
+
+  const fontVariable = await page
+    .locator("html")
+    .evaluate((element) => getComputedStyle(element).getPropertyValue("--font-devanagari"));
+  expect(fontVariable).toMatch(/Noto[ _]Serif[ _]Devanagari/i);
+  const devanagariFont = await devanagari.evaluate(async (element) => {
+    await document.fonts.ready;
+    return getComputedStyle(element).fontFamily;
+  });
+  expect(devanagariFont).toMatch(/Noto.*Serif.*Devanagari/i);
+
+  const multilingualVariables = await page.locator("main").evaluate((element) => {
+    const styles = getComputedStyle(element);
+    return [
+      "--font-bengali",
+      "--font-gurmukhi",
+      "--font-tamil",
+      "--font-tibetan",
+      "--font-myanmar",
+      "--font-cjk-japanese",
+      "--font-cjk-traditional",
+    ].map((name) => styles.getPropertyValue(name));
+  });
+  expect(multilingualVariables.every((value) => /Noto/i.test(value))).toBe(true);
+
+  const text = await page.locator("main").innerText();
+  expect(text).not.toMatch(/�|à¤|à¥|â€|Â|■■|s{8,}/u);
+  expect(text).not.toContain("8:32:16");
+  expect(text).not.toContain("Stage 6");
+  expect(text).not.toContain("Immortality_Traditions_FINAL.pdf");
+  expect(text).not.toContain("Immortality_Traditions_Integrated_With_Original_10_Masters.pdf");
+  await expect(page.locator('a[href*="Immortality_Traditions"]')).toHaveCount(0);
+});
+
+test("Immortals · metadata, branch navigation and sitemap discovery", async ({ page, request }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto(`${baseUrl}${immortalsRoute}`, { waitUntil: "domcontentloaded" });
+
+  const canonical = await page.locator('link[rel="canonical"]').getAttribute("href");
+  const openGraphUrl = await page.locator('meta[property="og:url"]').getAttribute("content");
+  expect(canonical).toBeTruthy();
+  expect(openGraphUrl).toBe(canonical);
+  expect(new URL(canonical).pathname).toBe(immortalsRoute);
+  expect(new URL(openGraphUrl).pathname).toBe(immortalsRoute);
+
+  const branchNav = page.getByRole("navigation", { name: "Mythology branches" });
+  await expect(
+    branchNav.getByRole("link", { name: "Immortals atlas", exact: true })
+  ).toHaveAttribute("aria-current", "page");
+
+  const primaryNav = page.getByRole("navigation", { name: "Primary navigation" });
+  const moreTrigger = primaryNav.getByRole("button", { name: "More", exact: true });
+  const menuId = await moreTrigger.getAttribute("aria-controls");
+  expect(menuId).toBeTruthy();
+  await moreTrigger.hover();
+  await expect(
+    page
+      .locator(`#${menuId}`)
+      .getByRole("list", { name: "Mythology pages" })
+      .getByRole("link", { name: "Immortals · 17 profiles", exact: true })
+  ).toHaveAttribute("href", immortalsRoute);
+
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto(`${baseUrl}${immortalsRoute}`, { waitUntil: "domcontentloaded" });
+  await page.getByRole("button", { name: "Open site menu" }).click();
+  await expect(
+    page
+      .getByRole("navigation", { name: "Mobile navigation" })
+      .getByRole("list", { name: "Mythology pages" })
+      .getByRole("link", { name: "Immortals · 17 profiles", exact: true })
+  ).toHaveAttribute("href", immortalsRoute);
+
+  await page.goto(`${baseUrl}/mythology`, { waitUntil: "domcontentloaded" });
+  await expect(
+    page
+      .getByRole("navigation", { name: "Mythology branches" })
+      .getByRole("link", { name: "Immortals atlas", exact: true })
+  ).toHaveAttribute("href", immortalsRoute);
+
+  const sitemapResponse = await request.get(`${baseUrl}/sitemap.xml`);
+  expect(sitemapResponse.ok()).toBe(true);
+  const xml = await sitemapResponse.text();
+  const matches = Array.from(
+    xml.matchAll(/<loc>([^<]+)<\/loc>/g),
+    ([, location]) => new URL(location).pathname
+  ).filter((path) => path === immortalsRoute);
+  expect(matches).toHaveLength(1);
+});
+
 test("Research hub · thesis foundation, four branches and collaboration boundary", async ({
   page,
 }) => {
@@ -743,7 +889,9 @@ test("Research hub · thesis foundation, four branches and collaboration boundar
   }
 
   const thesis = page.locator("#doctoral-foundation");
-  await expect(thesis).toContainText("Entrepreneurial Resourcefulness in Resource-Constrained Environments");
+  await expect(thesis).toContainText(
+    "Entrepreneurial Resourcefulness in Resource-Constrained Environments"
+  );
   await expect(thesis).toContainText("Prof. Fr. Kuruvilla Pandikattu, S.J.");
   await expect(thesis).toContainText("Prof. Munish Thakur");
   await expect(thesis).toContainText("Prof. Rahul Shukla");

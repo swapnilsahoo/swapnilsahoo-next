@@ -54,6 +54,7 @@ const routes = [
   },
   { path: "/comics", changeFrequency: "monthly", priority: 0.7 },
   { path: "/mythology", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/mythology/immortals", changeFrequency: "monthly", priority: 0.72 },
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {

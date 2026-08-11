@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { ArrowRightIcon, CompassIcon, SparkIcon } from "@/components/icons/LineIcons";
 import { Container } from "@/components/ui/Container";
 import { InquiryPrelude } from "@/components/ui/InquiryPrelude";
+import { MythologyBranchNav } from "@/features/mythology/components/MythologyBranchNav";
 
 export const metadata: Metadata = {
-  title: "Mythology — Mahabharata & Ramayana",
+  title: "Mythology — Epics & Immortality Traditions",
   description:
-    "A careful reading space for the Mahabharata and Valmiki Ramayana, grounded in their Sanskrit textual traditions.",
+    "A source-aware reading library for the Mahabharata, Valmiki Ramayana, and 17 cross-cultural profiles of deathlessness.",
   keywords: [
     "Mahabharata original",
     "Ramayana original",
@@ -15,13 +17,15 @@ export const metadata: Metadata = {
     "Vyasa Mahabharata",
     "Sanskrit epics",
     "Indian mythology",
+    "immortality traditions",
+    "siddha traditions",
   ],
   alternates: { canonical: "/mythology" },
   openGraph: {
     type: "website",
-    title: "Mythology — Two Epics, Many Tellings",
+    title: "Mythology — Epics, Immortals & Many Tellings",
     description:
-      "A careful reading space for the Mahabharata and Valmiki Ramayana, grounded in their Sanskrit textual traditions.",
+      "A source-aware reading library for two Sanskrit epics and 17 cross-cultural profiles of deathlessness.",
     url: "/mythology",
     images: ["/images/profile_pic.jpg"],
   },
@@ -121,7 +125,7 @@ function StudyLenses({ items }: { items: readonly string[] }) {
       {items.map((item, index) => (
         <div
           key={item}
-          className="border-ink-200/80 bg-paper/70 dark:border-ink-700 dark:bg-ink-900/50 rounded-2xl border p-4"
+          className="border-ink-200/80 bg-white/70 dark:border-ink-700 dark:bg-ink-900/50 rounded-2xl border p-4"
         >
           <span className="text-accent-600 dark:text-accent-400 font-mono text-[10px]">
             {String(index + 1).padStart(2, "0")}
@@ -191,17 +195,18 @@ export default function MythologyPage() {
             <div className="grid items-end gap-12 lg:grid-cols-[1fr_0.42fr]">
               <div>
                 <span className="inline-flex rounded-full border border-indigo-100/20 bg-white/10 px-3 py-1.5 font-mono text-[11px] tracking-[0.14em] text-indigo-100 uppercase backdrop-blur-sm">
-                  Mythology · Sanskrit source traditions
+                  Mythology · text, tradition & evidence
                 </span>
                 <h1 className="display mt-7 max-w-4xl text-5xl font-semibold text-balance sm:text-7xl">
-                  Two epics.{" "}
+                  Two epics. Seventeen profiles.{" "}
                   <span className="font-normal text-amber-200 italic">Many tellings.</span>
                 </h1>
                 <p className="mt-6 max-w-3xl text-base leading-relaxed text-indigo-50 sm:text-lg">
-                  A reading space for the Mahābhārata and Vālmīki Rāmāyaṇa—two enduring inquiries
-                  into dharma, power, kinship, exile, choice and consequence.
+                  Read the Mahābhārata and Vālmīki Rāmāyaṇa alongside a new source-aware atlas of
+                  immortality traditions—without collapsing sacred testimony, textual history and
+                  scientific evidence into one kind of claim.
                 </p>
-                <nav aria-label="Explore the epics" className="mt-8 flex flex-wrap gap-3">
+                <nav aria-label="Explore mythology branches" className="mt-8 flex flex-wrap gap-3">
                   <a
                     href="#mahabharata-original"
                     className="inline-flex items-center gap-2 rounded-lg bg-amber-50 px-5 py-3 text-sm font-semibold text-indigo-950 shadow-lg shadow-indigo-950/20 transition hover:-translate-y-0.5 hover:bg-white focus-visible:ring-2 focus-visible:ring-amber-200 focus-visible:outline-none"
@@ -216,24 +221,37 @@ export default function MythologyPage() {
                     Ramayana
                     <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
                   </a>
+                  <Link
+                    href="/mythology/immortals"
+                    className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white/15 focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:outline-none"
+                  >
+                    Immortals
+                    <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
+                  </Link>
                 </nav>
               </div>
 
               <div className="rounded-3xl border border-indigo-100/15 bg-white/5 p-6 text-center backdrop-blur-sm">
-                <p lang="sa" className="font-serif text-4xl font-semibold text-amber-200">
+                <p lang="sa-Deva" className="script-devanagari text-4xl leading-relaxed font-semibold text-amber-200">
                   इतिहास
                 </p>
-                <p lang="sa" className="mt-4 font-serif text-2xl font-semibold">
-                  धर्म · काव्य · स्मृति
+                <p lang="sa-Deva" className="script-devanagari mt-4 text-2xl leading-relaxed font-semibold">
+                  धर्म · काव्य · अमृतत्व
                 </p>
                 <p className="mt-2 text-xs tracking-wider text-indigo-100 uppercase">
-                  Narrative · Ethics · Poetry
+                  Ethics · Poetry · Deathlessness
                 </p>
               </div>
             </div>
           </div>
         </Container>
       </header>
+
+      <section aria-label="Mythology library navigation" className="pb-12 sm:pb-16">
+        <Container className="max-w-6xl">
+          <MythologyBranchNav current="overview" />
+        </Container>
+      </section>
 
       <InquiryPrelude
         id="mythology-inquiry"
@@ -284,7 +302,9 @@ export default function MythologyPage() {
               <span className="accent-rule" />
               <p className="eyebrow mb-3">01 / Mahabharata · Original</p>
               <h2 id="mahabharata-title" className="display text-4xl font-semibold md:text-5xl">
-                <span lang="sa">महाभारतम्</span>
+                <span lang="sa-Deva" className="script-devanagari leading-relaxed">
+                  महाभारतम्
+                </span>
                 <span className="text-ink-400 dark:text-ink-500"> · </span>
                 Mahābhārata
               </h2>
@@ -357,7 +377,9 @@ export default function MythologyPage() {
               <span className="accent-rule" />
               <p className="eyebrow mb-3">02 / Ramayana · Original</p>
               <h2 id="ramayana-title" className="display text-4xl font-semibold md:text-5xl">
-                <span lang="sa">वाल्मीकिरामायणम्</span>
+                <span lang="sa-Deva" className="script-devanagari leading-relaxed">
+                  वाल्मीकिरामायणम्
+                </span>
                 <span className="text-ink-400 dark:text-ink-500"> · </span>
                 Vālmīki Rāmāyaṇa
               </h2>
@@ -391,6 +413,60 @@ export default function MythologyPage() {
         </Container>
       </section>
 
+      <div className="hr-fade mx-auto max-w-6xl" />
+
+      <section id="immortals" aria-labelledby="immortals-title" className="py-16 sm:py-24">
+        <Container className="max-w-6xl">
+          <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
+            <article>
+              <span className="accent-rule" />
+              <p className="eyebrow mb-3">03 / Immortals · Source-aware atlas</p>
+              <h2 id="immortals-title" className="display text-4xl font-semibold md:text-5xl">
+                <span lang="sa-Deva" className="script-devanagari leading-relaxed">
+                  अमृतत्व
+                </span>
+                <span className="text-ink-400 dark:text-ink-500"> · </span>
+                Traditions of deathlessness
+              </h2>
+              <p className="text-ink-600 dark:text-ink-300 mt-7 text-base leading-relaxed">
+                Seventeen profiles across Indic, Japanese, Burmese, Tibetan, Chinese and European
+                settings ask what “immortal” can mean: an extraordinary lifespan, a teacher’s
+                continuing presence, a luminous body, or alchemical transformation.
+              </p>
+              <Link
+                href="/mythology/immortals"
+                className="link-underline text-brand-700 dark:text-brand-300 mt-7 inline-flex items-center gap-2 text-sm font-semibold"
+              >
+                Enter the Immortals atlas
+                <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            </article>
+
+            <aside aria-label="Immortals editorial contract" className="glass-card p-6 sm:p-8">
+              <CompassIcon className="text-accent-600 dark:text-accent-400 h-7 w-7" aria-hidden="true" />
+              <h3 className="mt-4 font-serif text-2xl font-semibold">Every profile is read in three layers.</h3>
+              <ol className="mt-6 grid gap-3">
+                {[
+                  ["Sources establish", "The historical record, text, institution, or documented public life."],
+                  ["Tradition records", "The devotional, lineage, hagiographic, or esoteric account in its own register."],
+                  ["Evidence does not establish", "The lifespan, miracle, identity, or physical mechanism that remains unverified."],
+                ].map(([title, description], index) => (
+                  <li key={title} className="border-ink-200/80 dark:border-ink-700 rounded-2xl border p-4">
+                    <span className="text-brand-700 dark:text-brand-300 font-mono text-xs">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <p className="mt-2 text-sm font-semibold">{title}</p>
+                    <p className="text-ink-600 dark:text-ink-300 mt-1 text-sm leading-relaxed">
+                      {description}
+                    </p>
+                  </li>
+                ))}
+              </ol>
+            </aside>
+          </div>
+        </Container>
+      </section>
+
       <section aria-labelledby="reading-method-title" className="pb-20 sm:pb-28">
         <Container className="max-w-6xl">
           <div className="relative overflow-hidden rounded-[26px] bg-gradient-to-br from-[#15113d] via-[#312e81] to-[#7c2d12] p-7 text-white shadow-xl shadow-indigo-950/15 sm:p-10">
@@ -410,6 +486,11 @@ export default function MythologyPage() {
                   name the Sanskrit edition, translation, commentary and later retelling being used.
                   Verse references and significant textual variants should be identified rather than
                   presented as universally settled.
+                </p>
+                <p>
+                  The Immortals atlas applies the same discipline to sacred biography: a historical
+                  record, a tradition’s testimony, and an extraordinary claim are related layers,
+                  not interchangeable kinds of evidence.
                 </p>
                 <p>
                   “Mythology” is used here as a library category; it does not adjudicate questions
