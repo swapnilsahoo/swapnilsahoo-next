@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import {
   ArrowRightIcon,
@@ -217,6 +218,12 @@ export default function PlacementsPage() {
                     className="focus-visible:ring-brand-300 inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:outline-none"
                   >
                     Practise consulting cases
+                  </a>
+                  <a
+                    href="/placements/industry-analysis"
+                    className="focus-visible:ring-brand-300 inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:outline-none"
+                  >
+                    Learn industry analysis
                   </a>
                 </div>
               </div>
@@ -519,7 +526,17 @@ export default function PlacementsPage() {
                 Build range without losing depth.
               </h2>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <Link
+                href="/placements/industry-analysis"
+                className="border-ink-200 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 rounded-2xl border p-6 transition focus-visible:ring-2 focus-visible:outline-none"
+              >
+                <p className="eyebrow mb-2">Analytical framework</p>
+                <h3 className="font-serif text-2xl font-semibold">Rigorous Industry Analysis</h3>
+                <p className="text-ink-600 dark:text-ink-300 mt-2 text-sm leading-relaxed">
+                  A six-question, evidence-first framework for decision-grade industry analysis.
+                </p>
+              </Link>
               <a
                 href="/case-study-preparation"
                 className="border-ink-200 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 rounded-2xl border p-6 transition focus-visible:ring-2 focus-visible:outline-none"

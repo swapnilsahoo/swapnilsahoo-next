@@ -32,7 +32,16 @@ export const teachingDropdown: NavDropdown = {
       href: "/case-study-preparation",
     },
     { label: "AI Mini Hackathon", href: "/teaching/ai-hackathon" },
-    { label: "Placements", href: "/placements" },
+    {
+      label: "Placements",
+      href: "/placements",
+      children: [
+        {
+          label: "Rigorous Industry Analysis",
+          href: "/placements/industry-analysis",
+        },
+      ],
+    },
     { label: "Executive MDPs", href: "/#mdp" },
   ],
 };

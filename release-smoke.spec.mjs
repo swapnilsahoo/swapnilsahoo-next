@@ -26,6 +26,7 @@ const routes = [
   "/teaching/karma-yoga/india",
   "/teaching/business-simulation",
   "/placements",
+  "/placements/industry-analysis",
   "/case-study-preparation",
   "/comics",
   "/mythology",
