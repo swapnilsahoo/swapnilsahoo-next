@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { ArrowRightIcon } from "@/components/icons/LineIcons";
 import { Container } from "@/components/ui/Container";
+import { InquiryPrelude } from "@/components/ui/InquiryPrelude";
 
 const sharedPrinciples = [
   {
@@ -80,6 +81,24 @@ export function KarmaYogaHub() {
           </div>
         </div>
       </header>
+
+      <InquiryPrelude
+        id="karma-yoga-inquiry"
+        title="Which pathway are you actually choosing — and why?"
+        introduction="“Field learning” and “long-horizon partnership” are not the same commitment wearing different names. Before choosing a pathway, or judging one from the outside, these questions are worth sitting with."
+        socraticQuestions={[
+          "Does “field learning” mean the same thing when a cohort visits for a project as when a partnership commits to a place for years?",
+          "Who benefits first when a visiting team enters a community — the students who learn, or the community that is visited — and does the order matter?",
+          "What does “evidence before narrative” rule out that a compelling story alone would let through?",
+          "If a team could not return next year, would the project still have been worth doing?",
+        ]}
+        firstPrinciplesQuestions={[
+          "What exactly distinguishes a field-learning engagement from a long-horizon partnership, beyond duration?",
+          "What must be in place — consent, local ownership, a handover plan — before a team's departure counts as a responsible exit rather than an abandonment?",
+          "Which of the three shared principles would be hardest to keep under time pressure, and why?",
+          "What would a visitor need to observe, not just be told, to know a project is actually working?",
+        ]}
+      />
 
       <section aria-label="Choose a Karma Yoga pathway" className="py-14 sm:py-20">
         <Container className="max-w-6xl">

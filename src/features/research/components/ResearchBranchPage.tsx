@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { ArrowRightIcon } from "@/components/icons/LineIcons";
 import { Container } from "@/components/ui/Container";
+import { InquiryPrelude } from "@/components/ui/InquiryPrelude";
 import type { ResearchBranch } from "@/features/research/types";
 
 import { CollaborationInvite } from "./CollaborationInvite";
@@ -70,6 +71,24 @@ export function ResearchBranchPage({ branch }: { branch: ResearchBranch }) {
           </div>
         </Container>
       </header>
+
+      <InquiryPrelude
+        id={`${branch.slug}-inquiry`}
+        title="What would make this branch's central claim wrong?"
+        introduction={`This branch's central question — “${branch.centralQuestion}” — is a genuine open question, not a settled result. These are worth returning to before treating any single study, including a future one on this branch, as the final word.`}
+        socraticQuestions={[
+          `Is ${branch.shortTitle.toLowerCase()} describing a real mechanism, or a label applied after the outcome was already known?`,
+          "Whose evidence would most change this branch's conclusions: a founder's own account, a comparison group, or a replication in a different setting?",
+          "What assumption does this branch share with the other three, and where does it actually diverge from them?",
+          "If a finding here turned out to apply only to the specific context it was studied in, what would still be worth knowing?",
+        ]}
+        firstPrinciplesQuestions={[
+          `What must be true for "${branch.centralQuestion}" to even be answerable with the evidence described on this page?`,
+          "Which of the listed contributions are established by the thesis, and which are propositions still awaiting a study?",
+          "What is this mechanism's smallest testable step, and what result would falsify it?",
+          "Who is best positioned to supply the evidence this branch is still missing?",
+        ]}
+      />
 
       <Container className="max-w-6xl pb-10">
         <ResearchBranchNav currentSlug={branch.slug} />
