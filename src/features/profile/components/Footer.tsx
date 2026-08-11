@@ -4,7 +4,7 @@ import { InstagramIcon, LinkedInIcon, SubstackIcon, XIcon } from "@/components/i
 
 const footerLinks = [
   { label: "About", href: "/#about" },
-  { label: "Research", href: "/#research" },
+  { label: "Research", href: "/research" },
   { label: "Publications", href: "/#publications" },
   { label: "PhD supervision", href: "/#phd" },
 ];

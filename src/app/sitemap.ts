@@ -1,9 +1,19 @@
 import type { MetadataRoute } from "next";
 
+import { researchBranches } from "@/features/research/data/researchAgenda";
+
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.swapnilsahoo.com";
+
+const researchBranchRoutes = researchBranches.map((branch) => ({
+  path: `/research/${branch.slug}`,
+  changeFrequency: "monthly" as const,
+  priority: 0.82,
+}));
 
 const routes = [
   { path: "", changeFrequency: "monthly", priority: 1 },
+  { path: "/research", changeFrequency: "monthly", priority: 0.9 },
+  ...researchBranchRoutes,
   { path: "/teaching/1-year-mba", changeFrequency: "monthly", priority: 0.9 },
   { path: "/teaching/2-year-mba", changeFrequency: "monthly", priority: 0.9 },
   { path: "/teaching/karma-yoga", changeFrequency: "monthly", priority: 0.9 },

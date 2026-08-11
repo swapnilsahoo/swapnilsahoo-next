@@ -4,8 +4,18 @@ import { expect, test } from "playwright/test";
 
 const baseUrl = process.env.SMOKE_BASE_URL || "http://127.0.0.1:3000";
 
+const researchHubRoute = "/research";
+const researchBranchRoutes = [
+  "/research/neurodiversity-entrepreneurial-agency",
+  "/research/bricolage-to-effectuation",
+  "/research/family-business-resourcefulness",
+  "/research/frugal-innovation-dynamic-capabilities",
+];
+
 const routes = [
   "/",
+  researchHubRoute,
+  ...researchBranchRoutes,
   "/teaching/ai-hackathon",
   "/teaching/1-year-mba",
   "/teaching/2-year-mba",
@@ -25,7 +35,10 @@ const routes = [
 ];
 
 const inquiryRoutes = routes.filter(
-  (route) => route !== "/teaching/karma-yoga" && route !== "/teaching/karma-yoga/india"
+  (route) =>
+    !route.startsWith("/research") &&
+    route !== "/teaching/karma-yoga" &&
+    route !== "/teaching/karma-yoga/india"
 );
 
 const karmaYogaRoutes = [
@@ -708,6 +721,110 @@ test("Lalita Sahasranama · range and direct-name navigation", async ({ page }) 
   await expect(page).toHaveURL(/#lalita-471$/);
   await expect(rangeSelect).toHaveValue("Names 451–500");
   await expect(page.locator("#lalita-471")).toContainText("सिद्धेश्वरी");
+});
+
+test("Research hub · thesis foundation, four branches and collaboration boundary", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto(`${baseUrl}${researchHubRoute}`, { waitUntil: "domcontentloaded" });
+
+  const main = page.locator("main");
+  await expect(main.getByRole("heading", { level: 1 })).toContainText(
+    "Creating strategic possibility under constraint"
+  );
+
+  const branchNav = main.getByRole("navigation", { name: "Research branches" });
+  await expect(branchNav).toHaveCount(1);
+  await expect(branchNav.locator('a[href^="/research"]')).toHaveCount(5);
+
+  for (const route of researchBranchRoutes) {
+    await expect(main.locator(`a[href="${route}"]`).first()).toHaveAttribute("href", route);
+  }
+
+  const thesis = page.locator("#doctoral-foundation");
+  await expect(thesis).toContainText("Entrepreneurial Resourcefulness in Resource-Constrained Environments");
+  await expect(thesis).toContainText("Prof. Fr. Kuruvilla Pandikattu, S.J.");
+  await expect(thesis).toContainText("Prof. Munish Thakur");
+  await expect(thesis).toContainText("Prof. Rahul Shukla");
+  await expect(thesis.getByRole("link", { name: "Request the thesis" })).toHaveAttribute(
+    "href",
+    /^mailto:swapnil\.sahoo@greatlakes\.edu\.in/
+  );
+
+  await expect(main.locator('a[href$=".docx"], a[href$=".pdf"]')).toHaveCount(0);
+  await expect(main).toContainText("Unpublished essay manuscripts are not hosted");
+});
+
+for (const branch of [
+  {
+    route: "/research/neurodiversity-entrepreneurial-agency",
+    title: "Neurodiversity & Entrepreneurial Agency",
+  },
+  {
+    route: "/research/bricolage-to-effectuation",
+    title: "From Bricolage to Effectuation",
+  },
+  {
+    route: "/research/family-business-resourcefulness",
+    title: "Family Business Resourcefulness",
+  },
+  {
+    route: "/research/frugal-innovation-dynamic-capabilities",
+    title: "Frugal Innovation & Dynamic Capabilities",
+  },
+]) {
+  test(`${branch.title} · research branch contract`, async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 812 });
+    await page.goto(`${baseUrl}${branch.route}`, { waitUntil: "domcontentloaded" });
+
+    const main = page.locator("main");
+    await expect(main.getByRole("heading", { level: 1 })).toHaveText(branch.title);
+    await expect(main.getByText("Evidence boundary", { exact: true })).toBeVisible();
+    await expect(page.locator("#open-questions li")).toHaveCount(4);
+
+    const branchNavs = main.getByRole("navigation", { name: "Research branches" });
+    await expect(branchNavs).toHaveCount(2);
+    await expect(branchNavs.first().locator('a[href^="/research"]')).toHaveCount(5);
+    await expect(branchNavs.first().locator(`a[href="${branch.route}"]`)).toHaveAttribute(
+      "aria-current",
+      "page"
+    );
+
+    await expect(main.getByRole("link", { name: "Propose a collaboration" })).toHaveAttribute(
+      "href",
+      /^mailto:swapnil\.sahoo@greatlakes\.edu\.in/
+    );
+    await expect(main.locator('a[href$=".docx"], a[href$=".pdf"]')).toHaveCount(0);
+
+    const canonical = await page.locator('link[rel="canonical"]').getAttribute("href");
+    const openGraphUrl = await page.locator('meta[property="og:url"]').getAttribute("content");
+    expect(new URL(canonical).pathname).toBe(branch.route);
+    expect(new URL(openGraphUrl).pathname).toBe(branch.route);
+  });
+}
+
+test("Research · site navigation and sitemap discovery", async ({ page, request }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto(`${baseUrl}/`, { waitUntil: "domcontentloaded" });
+
+  const primaryNav = page.getByRole("navigation", { name: "Primary navigation" });
+  await expect(primaryNav.getByRole("link", { name: "Research", exact: true })).toHaveAttribute(
+    "href",
+    researchHubRoute
+  );
+
+  const sitemapResponse = await request.get(`${baseUrl}/sitemap.xml`);
+  expect(sitemapResponse.ok()).toBe(true);
+  const xml = await sitemapResponse.text();
+  const sitemapPaths = Array.from(
+    xml.matchAll(/<loc>([^<]+)<\/loc>/g),
+    ([, location]) => new URL(location).pathname
+  );
+
+  for (const route of [researchHubRoute, ...researchBranchRoutes]) {
+    expect(sitemapPaths.filter((path) => path === route)).toHaveLength(1);
+  }
 });
 
 for (const dropdown of [

@@ -2,7 +2,7 @@ import type { NavDropdown, NavLink } from "@/features/profile/types";
 
 export const primaryNavLinks: NavLink[] = [
   { label: "About", href: "/#about" },
-  { label: "Research", href: "/#research" },
+  { label: "Research", href: "/research" },
   { label: "Publications", href: "/#publications" },
 ];
 
