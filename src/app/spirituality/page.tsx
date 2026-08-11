@@ -90,7 +90,7 @@ const collections = [
     label: "Authentic Ramcharitmanas",
     href: "/spirituality/ramcharitmanas",
     language: "Old Awadhi",
-    scope: "Bālakāṇḍa in progress · 13 of 369 units translated",
+    scope: "Bālakāṇḍa in progress · 27 of 369 units translated",
     description:
       "Tulsidas's Awadhi retelling of Rama's story, opened kāṇḍa by kāṇḍa. Bālakāṇḍa's opening invocation is complete with word-by-word study; the rest of its text is verified with translation under way.",
   },
