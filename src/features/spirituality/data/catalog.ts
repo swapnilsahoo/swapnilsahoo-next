@@ -307,6 +307,110 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
       },
     ],
   },
+  "bhagavad-gita": {
+    slug: "bhagavad-gita",
+    navLabel: "Authentic Bhagavad Gita",
+    shortTitle: "Bhagavad Gita",
+    title: "Authentic Bhagavad Gita",
+    originalTitle: "श्रीमद्भगवद्गीता",
+    transliteratedTitle: "Śrīmadbhagavadgītā",
+    language: "Sanskrit · Devanagari + IAST",
+    form: "Mahābhārata dialogue · 18 chapters, 701 verses",
+    glyph: "कृ",
+    dek: "Read all eighteen chapters in their received Sanskrit, with consistent IAST, a close English rendering, and a grammatical word-by-word split for every verse, set within the Bhīṣmaparvan battlefield dialogue between Kṛṣṇa and Arjuna.",
+    scopeLabel: "Complete 701-verse reading edition",
+    scopeNote:
+      "Every verse across all eighteen chapters is present, including the additional Arjuna-uvāca opening verse of Chapter 13 carried by this edition's base text (see the note on 13.1). Each verse is split into its grammatical constituents with a sourced or editorially supplied meaning for every word.",
+    entryCountLabel: "All 701 verses",
+    authenticity: [
+      {
+        label: "Textual home",
+        value: "Mahābhārata · Bhīṣmaparvan",
+        detail:
+          "The Gītā is Kṛṣṇa's counsel to Arjuna on the eve of battle, embedded in the Bhīṣmaparvan of the Mahābhārata and narrated to Dhṛtarāṣṭra by Sañjaya.",
+      },
+      {
+        label: "Narrative frame",
+        value: "Sañjaya narrates · Kṛṣṇa teaches",
+        detail:
+          "Sañjaya, granted far-sight by Vyāsa, reports the dialogue to the blind king Dhṛtarāṣṭra; within that report, Kṛṣṇa is the dialogue's speaker and teacher.",
+      },
+      {
+        label: "Traditional attribution",
+        value: "Vyāsa as compiler-seer",
+        detail:
+          "Hindu tradition remembers Vyāsa as the Mahābhārata's compiler, within which the Gītā is set. This is a sacred textual attribution, not a modern authorship claim.",
+      },
+      {
+        label: "Reader standard",
+        value: "Every verse, every word",
+        detail:
+          "All 701 verses carry Devanagari, IAST, a close English rendering, and a word-by-word grammatical split with a meaning for each word.",
+      },
+    ],
+    profiles: [
+      {
+        role: "Narrator within the epic",
+        name: "Sañjaya",
+        evidenceLabel: "Narrative voice",
+        summary:
+          "Sañjaya is the charioteer-minister granted divine sight by Vyāsa so he can witness and report the Kurukṣetra war to the blind king Dhṛtarāṣṭra. He narrates the entire Gītā dialogue at one remove; the closing chapter returns to his voice describing what he has seen and heard.",
+      },
+      {
+        role: "Speaker inside the dialogue",
+        name: "Kṛṣṇa",
+        evidenceLabel: "Narrative voice",
+        summary:
+          "Kṛṣṇa, Arjuna's charioteer and cousin, is the Gītā's teacher within the story: a divine figure in the epic's own terms who answers Arjuna's crisis of conscience with teachings on duty, action, knowledge, and devotion. This identifies the dialogue's speaker inside the narrative, not a historically documented author.",
+      },
+      {
+        role: "Traditional epic compiler and seer",
+        name: "Kṛṣṇa Dvaipāyana Vyāsa",
+        evidenceLabel: "Traditional attribution",
+        summary:
+          "Hindu tradition remembers Vyāsa as the compiler of the Mahābhārata, within which the Gītā appears as an episode of Book Six. He is presented here as a traditional compiler-seer, not as a modern author with independently verifiable dates.",
+      },
+    ],
+    editorialPolicy: [
+      "The Sanskrit base text follows the widely circulated recension prepared by volunteers at sanskritdocuments.org, cross-checked verse by verse against its companion word-meaning and sandhi-vigraha (compound-splitting) files from the same source.",
+      "Devanagari and IAST are generated mechanically from that base text using a standard ITRANS-based transliteration library, not retyped by hand; a small number of source-specific spelling conventions (such as this edition's own notation for jña) were normalized before conversion so the two layers agree.",
+      "Word-by-word entries follow the grammatical compound-splitting (sandhi-vigraha) prepared for the cited source. Meanings are drawn from that source's companion word-meaning file where available; a minority of inflected or compound forms not covered there received a concise editorial gloss, checked against standard dictionaries.",
+      "The close English rendering for each verse is newly composed for this edition, checked against the word-by-word data verse by verse. It aims at a clear, literal reading rather than a polished literary paraphrase, and it does not replace the depth of a full commentary tradition (Śaṅkara, Rāmānuja, Madhusūdana, and others read many verses differently).",
+      "This edition's base text carries 701 verses because it includes the Arjuna-uvāca verse opening Chapter 13, present in many popular printed editions; Śaṅkara's recension omits that verse and begins the chapter with what this reader numbers 13.2, arriving at the more commonly cited total of 700. Both countings describe the same received text; nothing is silently dropped either way.",
+    ],
+    sources: [
+      {
+        title: "Śrīmadbhagavadgītā — mūla text",
+        institution: "Sanskrit Documents · sanskritdocuments.org",
+        href: "https://sanskritdocuments.org/doc_giitaa/bhagvadnew.itx",
+        note: "Base Devanagari/ITRANS verse text for all eighteen chapters, checked while preparing this reader.",
+      },
+      {
+        title: "Bhagavad Gītā śabdārtha (word meanings)",
+        institution: "Sanskrit Documents · sanskritdocuments.org",
+        href: "https://sanskritdocuments.org/doc_giitaa/bgwords.itx",
+        note: "Volunteer-prepared word-by-word meanings used as the primary source for this reader's word-study layer; the file itself notes these glosses are not exhaustively scholar-verified.",
+      },
+      {
+        title: "Gītā anvaya and sandhi-vigraha",
+        institution: "Sanskrit Documents · sanskritdocuments.org (prepared by Sunder Hattangadi)",
+        href: "https://sanskritdocuments.org/doc_giitaa/gitAanvayasandhivigraha.itx",
+        note: "Grammatical compound-splitting and prose word-order for every verse, used to build this reader's word-by-word division.",
+      },
+      {
+        title: "Mahābhārata, Book 6 (Bhīṣmaparvan) critical-edition text",
+        institution: "GRETIL · based on the BORI critical edition",
+        href: "https://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_06_u.htm",
+        note: "Scholarly context for the Gītā's placement within the Bhīṣmaparvan.",
+      },
+      {
+        title: "The Bhagavad Gītā (Sacred Books of the East, vol. 8)",
+        institution: "Internet Archive · trans. Kāshināth Trimbak Telang, 1882",
+        href: "https://archive.org/details/wg908",
+        note: "A public-domain 19th-century scholarly translation, consulted for comparison while preparing this edition's close English rendering.",
+      },
+    ],
+  },
   "shiva-tandava-stotram": {
     slug: "shiva-tandava-stotram",
     navLabel: "Authentic Shiva Tandava Stotram",

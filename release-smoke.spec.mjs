@@ -31,6 +31,7 @@ const routes = [
   "/mythology",
   immortalsRoute,
   "/spirituality",
+  "/spirituality/bhagavad-gita",
   "/spirituality/hanuman-chalisa",
   "/spirituality/vishnu-sahasranama",
   "/spirituality/lalita-sahasranama",

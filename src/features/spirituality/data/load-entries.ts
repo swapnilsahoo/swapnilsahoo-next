@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
+import { bhagavadGitaEntries } from "@/features/spirituality/data/bhagavad-gita";
 import { lalitaSahasranamaEntries } from "@/features/spirituality/data/lalita-sahasranama";
 import { shivaTandavaStotramEntries } from "@/features/spirituality/data/shiva-tandava-stotram";
 import { vishnuSahasranamaEntries } from "@/features/spirituality/data/vishnu-sahasranama";
@@ -185,5 +186,7 @@ export async function loadScriptureEntries(slug: ScriptureSlug): Promise<ReaderE
       return validateEntries(slug, lalitaSahasranamaEntries, 1000);
     case "shiva-tandava-stotram":
       return validateEntries(slug, shivaTandavaStotramEntries, 17);
+    case "bhagavad-gita":
+      return validateEntries(slug, bhagavadGitaEntries, 701);
   }
 }

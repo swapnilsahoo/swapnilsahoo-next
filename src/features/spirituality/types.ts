@@ -1,5 +1,9 @@
 export type ScriptureSlug =
-  "hanuman-chalisa" | "vishnu-sahasranama" | "lalita-sahasranama" | "shiva-tandava-stotram";
+  | "hanuman-chalisa"
+  | "vishnu-sahasranama"
+  | "lalita-sahasranama"
+  | "shiva-tandava-stotram"
+  | "bhagavad-gita";
 
 export type WordGloss = {
   original?: string;

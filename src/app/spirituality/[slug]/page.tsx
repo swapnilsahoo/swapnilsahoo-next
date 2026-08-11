@@ -46,6 +46,11 @@ const themes: Record<
     glow: "bg-orange-300/20",
     badge: "text-orange-200",
   },
+  "bhagavad-gita": {
+    hero: "from-[#1a0f00] via-[#5c3a10] to-[#0f2d3a]",
+    glow: "bg-amber-300/20",
+    badge: "text-amber-200",
+  },
 };
 
 const scriptureInquiry: Record<
@@ -123,6 +128,23 @@ const scriptureInquiry: Record<
       "Which features make this a transparent received edition rather than a claim to have reconstructed an original text?",
       "Which Sanskrit wording belongs to the selected surface reading, how do the displayed Devanagari and IAST encode it, and which pāda breaks, hyphens, reading guides, and English meanings are additional editorial aids?",
       "Which variants materially alter metre, image, or interpretation enough that a careful reader needs to see them?",
+    ],
+  },
+  "bhagavad-gita": {
+    title: "What changes when Krishna's counsel is read verse by verse, word by word?",
+    introduction:
+      "The declared Sanskrit base text and its grammatical word-division are presented for all eighteen chapters, kept distinct from this site's mechanical transliteration, sourced or editorially supplied word meanings, and newly composed close English rendering.",
+    socraticQuestions: [
+      "How does hearing this as Sañjaya's report to Dhṛtarāṣṭra, rather than an abstract philosophical treatise, change what Kṛṣṇa's counsel to Arjuna is doing?",
+      "When a single Sanskrit compound can be split and glossed in more than one defensible way, what does the chosen word-by-word division make visible, and what does it foreclose?",
+      "How can the many centuries of commentary on this text (Śaṅkara, Rāmānuja, Madhusūdana, and others) be honoured rather than flattened by one close, literal English rendering?",
+      "What does it mean to call this edition complete: is completeness about verse count alone, or also about the layers of reading a single verse can support?",
+    ],
+    firstPrinciplesQuestions: [
+      "Which Sanskrit wording comes from the declared base source, and which normalization, transliteration, word-division, and English wording were prepared for this reader?",
+      "Why does this edition carry 701 verses when 700 is the more commonly cited total, and what does that difference actually consist of?",
+      "What can a concise, literal, word-grounded English rendering establish about a verse, and what does it still leave to grammar, philosophical context, and commentary?",
+      "What evidence distinguishes Sañjaya as narrator, Kṛṣṇa as the dialogue's speaker, and Vyāsa as the epic's traditional compiler, rather than treating all three as equivalent historical authors?",
     ],
   },
 };

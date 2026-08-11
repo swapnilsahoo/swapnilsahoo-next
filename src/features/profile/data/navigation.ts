@@ -53,6 +53,10 @@ export const moreDropdown: NavDropdown = {
       href: "/spirituality",
       children: [
         {
+          label: "Authentic Bhagavad Gita",
+          href: "/spirituality/bhagavad-gita",
+        },
+        {
           label: "Authentic Hanuman Chalisa",
           href: "/spirituality/hanuman-chalisa",
         },
