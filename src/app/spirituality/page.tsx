@@ -278,8 +278,8 @@ export default function SpiritualityPage() {
               Sanskrit readers; the Shiva Tandava Stotram receives pāda-level compound study; the
               Bhagavad Gita receives a full verse-by-verse, word-by-word Sanskrit reading across all
               eighteen chapters; and the Ramcharitmanas is being opened kāṇḍa by kāṇḍa, with its
-              declared coverage stated plainly rather than smoothed over. Each Sanskrit branch, and
-              Ramcharitmanas, uses IAST.
+              declared coverage stated plainly rather than smoothed over. Every branch except the
+              Hanuman Chalisa uses consistent IAST.
             </p>
           </div>
           <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
