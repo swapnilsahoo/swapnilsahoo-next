@@ -104,7 +104,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "च", transliteration: "ca", meaning: "and" },
       { original: "सर्वे", transliteration: "sarve", meaning: "all" },
       { original: "एव", transliteration: "eva", meaning: "certainly" },
-      { original: "महारथाः", transliteration: "mahārathāḥ", meaning: "great fighter" }
+      { original: "महारथाः", transliteration: "mahārathāḥ", meaning: "great chariot fighters" }
   ]),
   verse(1, 7, 7, "Chapter 01 · Arjuna's Despondency", "अस्माकं तु विशिष्टा ये तान्निबोध द्विजोत्तम । नायका मम सैन्यस्य संज्ञार्थं तान्ब्रवीमि ते", "asmākaṃ tu viśiṣṭā ye tānnibodha dvijottama | nāyakā mama sainyasya saṃjñārthaṃ tānbravīmi te", "But know also, best of the twice-born, the distinguished ones among us; I name for you the leaders of my army.", [
       { original: "अस्माकम्", transliteration: "asmākam", meaning: "our" },
@@ -214,7 +214,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "स्यन्दने", transliteration: "syandane", meaning: "chariot" },
       { original: "स्थितौ", transliteration: "sthitau", meaning: "situated" },
       { original: "माधवः", transliteration: "mādhavaḥ", meaning: "KRiShNa (the husband of the goddess of fortune)" },
-      { original: "पाण्डवः", transliteration: "pāṇḍavaḥ", meaning: "the sons of Pandu" },
+      { original: "पाण्डवः", transliteration: "pāṇḍavaḥ", meaning: "Arjuna" },
       { original: "च", transliteration: "ca", meaning: "and" },
       { original: "एव", transliteration: "eva", meaning: "certainly" },
       { original: "दिव्यौ", transliteration: "divyau", meaning: "transcendental" },
@@ -294,7 +294,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "शस्त्रसम्पाते", transliteration: "śastra-sampāte", meaning: "in releasing his arrows" },
       { original: "धनुः", transliteration: "dhanuḥ", meaning: "bow" },
       { original: "उद्यम्य", transliteration: "udyamya", meaning: "taking up" },
-      { original: "पाण्डवः", transliteration: "pāṇḍavaḥ", meaning: "the sons of Pandu" }
+      { original: "पाण्डवः", transliteration: "pāṇḍavaḥ", meaning: "Arjuna" }
   ]),
   verse(1, 21, 21, "Chapter 01 · Arjuna's Despondency", "हृषीकेशं तदा वाक्यमिदमाह महीपते । सेनयोरुभयोर्मध्ये रथं स्थापय मेऽच्युत", "hṛṣīkeśaṃ tadā vākyamidamāha mahīpate | senayorubhayormadhye rathaṃ sthāpaya me'cyuta", "Arjuna said to Krishna: place my chariot between the two armies, Achyuta,", [
       { original: "सेनयोः", transliteration: "senayoḥ", meaning: "of the armies" },
@@ -488,7 +488,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "तथा", transliteration: "tathā", meaning: "as well as" },
       { original: "एव", transliteration: "eva", meaning: "certainly" },
       { original: "च", transliteration: "ca", meaning: "and" },
-      { original: "पितामहाः", transliteration: "pitāmahāḥ", meaning: "the grandfather" },
+      { original: "पितामहाः", transliteration: "pitāmahāḥ", meaning: "grandfathers" },
       { original: "मातुलाः", transliteration: "mātulāḥ", meaning: "maternal uncles" },
       { original: "श्वशुराः", transliteration: "śvaśurāḥ", meaning: "fathers-in-law" },
       { original: "पौत्राः", transliteration: "pautrāḥ", meaning: "grandsons" },
@@ -953,7 +953,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "इमे", transliteration: "ime", meaning: "these" },
       { original: "देहाः", transliteration: "dehāḥ", meaning: "material bodies" },
       { original: "नित्यस्य", transliteration: "nityasya", meaning: "eternal in existence" },
-      { original: "उक्ताः", transliteration: "uktāḥ", meaning: "addressed" },
+      { original: "उक्ताः", transliteration: "uktāḥ", meaning: "are said" },
       { original: "शरीरिणः", transliteration: "śarīriṇaḥ", meaning: "of the embodied soul" },
       { original: "अनाशिनः", transliteration: "anāśinaḥ", meaning: "never to be destroyed" },
       { original: "अप्रमेयस्य", transliteration: "aprameyasya", meaning: "immeasurable" },
@@ -996,7 +996,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "भूयः", transliteration: "bhūyaḥ", meaning: "or is again coming to be" },
       { original: "अजः", transliteration: "ajaḥ", meaning: "unborn" },
       { original: "नित्यः", transliteration: "nityaḥ", meaning: "eternal" },
-      { original: "शाश्वतः", transliteration: "śāśvataḥ", meaning: "eternal" },
+      { original: "शाश्वतः", transliteration: "śāśvataḥ", meaning: "permanent" },
       { original: "अयम्", transliteration: "ayam", meaning: "this" },
       { original: "पुराणः", transliteration: "purāṇaḥ", meaning: "the oldest" },
       { original: "न", transliteration: "na", meaning: "nor" },
@@ -1244,7 +1244,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "उपरतम्", transliteration: "uparatam", meaning: "ceased" },
       { original: "मंस्यन्ते", transliteration: "maṃsyante", meaning: "they will consider" },
       { original: "त्वाम्", transliteration: "tvām", meaning: "unto You" },
-      { original: "महारथाः", transliteration: "mahārathāḥ", meaning: "great fighter" },
+      { original: "महारथाः", transliteration: "mahārathāḥ", meaning: "great chariot fighters" },
       { original: "येषाम्", transliteration: "yeṣām", meaning: "of whom" },
       { original: "च", transliteration: "ca", meaning: "and" },
       { original: "त्वम्", transliteration: "tvam", meaning: "unto You" },
@@ -1301,7 +1301,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "एषा", transliteration: "eṣā", meaning: "all this" },
       { original: "ते", transliteration: "te", meaning: "to you" },
       { original: "अभिहिता", transliteration: "abhihitā", meaning: "described" },
-      { original: "साङ्ख्ये", transliteration: "sāṅkhye", meaning: "in the battlefield" },
+      { original: "साङ्ख्ये", transliteration: "sāṅkhye", meaning: "by analytical study" },
       { original: "बुद्धिः", transliteration: "buddhiḥ", meaning: "intelligence" },
       { original: "योगे", transliteration: "yoge", meaning: "in work without fruitive result" },
       { original: "तु", transliteration: "tu", meaning: "but" },
@@ -1722,7 +1722,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "प्रविशन्ति", transliteration: "praviśanti", meaning: "enter" },
       { original: "यद्वत्", transliteration: "yadvat", meaning: "as" },
       { original: "तद्वत्", transliteration: "tadvat", meaning: "so" },
-      { original: "कामाः", transliteration: "kāmāḥ", meaning: "desire" },
+      { original: "कामाः", transliteration: "kāmāḥ", meaning: "desires" },
       { original: "यम्", transliteration: "yam", meaning: "one to whom" },
       { original: "प्रविशन्ति", transliteration: "praviśanti", meaning: "enter" },
       { original: "सर्वे", transliteration: "sarve", meaning: "all" },
@@ -2047,7 +2047,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "कर्म", transliteration: "karma", meaning: "activity" },
       { original: "परम्", transliteration: "param", meaning: "far superior things" },
       { original: "आप्नोति", transliteration: "āpnoti", meaning: "achieves" },
-      { original: "पूरुषः", transliteration: "pūruṣaḥ", meaning: "person" }
+      { original: "पूरुषः", transliteration: "pūruṣaḥ", meaning: "a man" }
   ]),
   verse(3, 20, 139, "Chapter 03 · The Yoga of Action", "कर्मणैव हि संसिद्धिमास्थिता जनकादयः । लोकसङ्ग्रहमेवापि सम्पश्यन्कर्तुमर्हसि", "karmaṇaiva hi saṃsiddhimāsthitā janakādayaḥ | lokasaṅgrahamevāpi sampaśyankartumarhasi", "It was indeed by action alone that Janaka and others attained perfection; likewise, having regard for the welfare of the world, you should act.", [
       { original: "कर्मणा", transliteration: "karmaṇā", meaning: "by work" },
@@ -2117,7 +2117,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
   verse(3, 24, 143, "Chapter 03 · The Yoga of Action", "उत्सीदेयुरिमे लोका न कुर्यां कर्म चेदहम् । सङ्करस्य च कर्ता स्यामुपहन्यामिमाः प्रजाः", "utsīdeyurime lokā na kuryāṃ karma cedaham | saṅkarasya ca kartā syāmupahanyāmimāḥ prajāḥ", "If I did not perform action, these worlds would perish, and I would be the cause of confusion, and I would destroy these beings.", [
       { original: "उत्सीदेयुः", transliteration: "utsīdeyuḥ", meaning: "would be put into ruin" },
       { original: "इमे", transliteration: "ime", meaning: "these" },
-      { original: "लोकाः", transliteration: "lokāḥ", meaning: "world" },
+      { original: "लोकाः", transliteration: "lokāḥ", meaning: "all people" },
       { original: "न", transliteration: "na", meaning: "nor" },
       { original: "कुर्याम्", transliteration: "kuryām", meaning: "I perform" },
       { original: "कर्म", transliteration: "karma", meaning: "activity" },
@@ -2213,7 +2213,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "इदम्", transliteration: "idam", meaning: "all this" },
       { original: "नित्यम्", transliteration: "nityam", meaning: "always existing" },
       { original: "अनुतिष्ठन्ति", transliteration: "anutiṣṭhanti", meaning: "execute regularly" },
-      { original: "मानवाः", transliteration: "mānavāḥ", meaning: "a man" },
+      { original: "मानवाः", transliteration: "mānavāḥ", meaning: "human beings" },
       { original: "श्रद्धावन्तः", transliteration: "śraddhāvantaḥ", meaning: "with faith and devotion" },
       { original: "अनसूयन्तः", transliteration: "anasūyantaḥ", meaning: "without envy" },
       { original: "मुच्यन्ते", transliteration: "mucyante", meaning: "get relief" },
@@ -2283,7 +2283,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "अयं", transliteration: "ayaṃ", meaning: "this" },
       { original: "पापम्", transliteration: "pāpam", meaning: "vices" },
       { original: "चरति", transliteration: "carati", meaning: "lives" },
-      { original: "पूरुषः", transliteration: "pūruṣaḥ", meaning: "person" },
+      { original: "पूरुषः", transliteration: "pūruṣaḥ", meaning: "a man" },
       { original: "अनिच्छन्", transliteration: "anicchan", meaning: "without desiring" },
       { original: "अपि", transliteration: "api", meaning: "including" },
       { original: "वार्ष्णेय", transliteration: "vārṣṇeya", meaning: "O descendant of VRiShNi" },
@@ -2368,7 +2368,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "इन्द्रियेभ्यः", transliteration: "indriyebhyaḥ", meaning: "more than the senses" },
       { original: "परम्", transliteration: "param", meaning: "far superior things" },
       { original: "मनः", transliteration: "manaḥ", meaning: "mind" },
-      { original: "मनसः", transliteration: "manasaḥ", meaning: "within the mind" },
+      { original: "मनसः", transliteration: "manasaḥ", meaning: "more than the mind" },
       { original: "तु", transliteration: "tu", meaning: "but" },
       { original: "परा", transliteration: "parā", meaning: "superior" },
       { original: "बुद्धिः", transliteration: "buddhiḥ", meaning: "intelligence" },
@@ -2606,7 +2606,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "अभिजानाति", transliteration: "abhijānāti", meaning: "does know" },
       { original: "कर्मभिः", transliteration: "karmabhiḥ", meaning: "from the bondage of the law of fruitive actions" },
       { original: "न", transliteration: "na", meaning: "nor" },
-      { original: "स", transliteration: "sa", meaning: "that is" },
+      { original: "स", transliteration: "sa", meaning: "that" },
       { original: "बध्यते", transliteration: "badhyate", meaning: "becomes entangled" }
   ]),
   verse(4, 15, 177, "Chapter 04 · The Yoga of Knowledge and Renunciation of Action", "एवं ज्ञात्वा कृतं कर्म पूर्वैरपि मुमुक्षुभिः । कुरु कर्मैव तस्मात्त्वं पूर्वैः पूर्वतरं कृतम्", "evaṃ jñātvā kṛtaṃ karma pūrvairapi mumukṣubhiḥ | kuru karmaiva tasmāttvaṃ pūrvaiḥ pūrvataraṃ kṛtam", "Knowing this, action was performed even by the ancient seekers of liberation; therefore perform action just as it was performed by the ancients of old.", [
@@ -2781,7 +2781,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "प्राणकर्माणि", transliteration: "prāṇa-karmāṇi", meaning: "functions of the life breath" },
       { original: "च", transliteration: "ca", meaning: "and" },
       { original: "अपरे", transliteration: "apare", meaning: "some others" },
-      { original: "आत्मसंयमयोगाग्नौ", transliteration: "ātma-saṃyama-yoga-agnau", meaning: "soul + of restraint + the linking process + in the fire of consummation" },
+      { original: "आत्मसंयमयोगाग्नौ", transliteration: "ātma-saṃyama-yoga-agnau", meaning: "Your own + of restraint + the linking process + in the fire of consummation" },
       { original: "जुह्वति", transliteration: "juhvati", meaning: "offer" },
       { original: "ज्ञानदीपिते", transliteration: "jñāna-dīpite", meaning: "because of the urge for self-realization" }
   ]),
@@ -3058,7 +3058,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "च", transliteration: "ca", meaning: "and" },
       { original: "यः", transliteration: "yaḥ", meaning: "anyone who" },
       { original: "पश्यति", transliteration: "paśyati", meaning: "sees" },
-      { original: "स", transliteration: "sa", meaning: "that is" },
+      { original: "स", transliteration: "sa", meaning: "that" },
       { original: "पश्यति", transliteration: "paśyati", meaning: "sees" }
   ]),
   verse(5, 6, 210, "Chapter 05 · The Yoga of Renunciation of Action", "संन्यासस्तु महाबाहो दुःखमाप्तुमयोगतः । योगयुक्तो मुनिर्ब्रह्म नचिरेणाधिगच्छति", "saṃnyāsastu mahābāho duḥkhamāptumayogataḥ | yogayukto munirbrahma nacireṇādhigacchati", "But renunciation, mighty-armed one, is difficult to attain without yoga; the sage disciplined in yoga attains Brahman before long.", [
@@ -3079,8 +3079,8 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "विशुद्धआत्मा", transliteration: "viśuddha-ātmā", meaning: "a purified soul" },
       { original: "विजितआत्मा", transliteration: "vijita-ātmā", meaning: "self-controlled" },
       { original: "जितैन्द्रियः", transliteration: "jita-indriyaḥ", meaning: "having conquered + senses" },
-      { original: "सर्वभूतआत्मभूतआत्मा", transliteration: "sarva-bhūta-ātma-bhūta-ātmā", meaning: "all respectively + of everything that be + soul + of everything that be + soul" },
-      { original: "कुर्वन्", transliteration: "kurvan", meaning: "doing" },
+      { original: "सर्वभूतआत्मभूतआत्मा", transliteration: "sarva-bhūta-ātma-bhūta-ātmā", meaning: "all respectively + of everything that be + Your own + of everything that be + soul" },
+      { original: "कुर्वन्", transliteration: "kurvan", meaning: "doing anything" },
       { original: "अपि", transliteration: "api", meaning: "including" },
       { original: "न", transliteration: "na", meaning: "nor" },
       { original: "लिप्यते", transliteration: "lipyate", meaning: "is entangled" }
@@ -3144,7 +3144,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "कुर्वन्ति", transliteration: "kurvanti", meaning: "they do" },
       { original: "सङ्गम्", transliteration: "saṅgam", meaning: "attachment" },
       { original: "त्यक्त्वा", transliteration: "tyaktvā", meaning: "giving up" },
-      { original: "आत्मशुद्धये", transliteration: "ātma-śuddhaye", meaning: "soul + for the purpose of purification" }
+      { original: "आत्मशुद्धये", transliteration: "ātma-śuddhaye", meaning: "Your own + for the purpose of purification" }
   ]),
   verse(5, 12, 216, "Chapter 05 · The Yoga of Renunciation of Action", "युक्तः कर्मफलं त्यक्त्वा शान्तिमाप्नोति नैष्ठिकीम् । अयुक्तः कामकारेण फले सक्तो निबध्यते", "yuktaḥ karmaphalaṃ tyaktvā śāntimāpnoti naiṣṭhikīm | ayuktaḥ kāmakāreṇa phale sakto nibadhyate", "The disciplined, having abandoned the fruit of action, attain lasting peace; the undisciplined, attached to fruit through desire, are bound.", [
       { original: "युक्तः", transliteration: "yuktaḥ", meaning: "dovetailed" },
@@ -3171,7 +3171,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "देही", transliteration: "dehī", meaning: "the embodied" },
       { original: "न", transliteration: "na", meaning: "nor" },
       { original: "एव", transliteration: "eva", meaning: "certainly" },
-      { original: "कुर्वन्", transliteration: "kurvan", meaning: "doing" },
+      { original: "कुर्वन्", transliteration: "kurvan", meaning: "doing anything" },
       { original: "न", transliteration: "na", meaning: "nor" },
       { original: "कारयन्", transliteration: "kārayan", meaning: "causing to be done" }
   ]),
@@ -3280,7 +3280,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "असम्मूढः", transliteration: "asammūḍhaḥ", meaning: "unbewildered" },
       { original: "ब्रह्मवित्", transliteration: "brahmavit", meaning: "one who knows the Supreme perfectly" },
       { original: "ब्रह्मणि", transliteration: "brahmaṇi", meaning: "unto the Supreme Personality of Godhead" },
-      { original: "स्थितः", transliteration: "sthitaḥ", meaning: "are situated" }
+      { original: "स्थितः", transliteration: "sthitaḥ", meaning: "being situated" }
   ]),
   verse(5, 21, 225, "Chapter 05 · The Yoga of Renunciation of Action", "बाह्यस्पर्शेष्वसक्तात्मा विन्दत्यात्मनि यत्सुखम् । स ब्रह्मयोगयुक्तात्मा सुखमक्षयमश्नुते", "bāhyasparśeṣvasaktātmā vindatyātmani yatsukham | sa brahmayogayuktātmā sukhamakṣayamaśnute", "With the self unattached to external contacts, one finds happiness within the self; united by yoga with Brahman, one attains everlasting happiness.", [
       { original: "बाह्यस्पर्शेषु", transliteration: "bāhya-sparśeṣu", meaning: "in external sense pleasure" },
@@ -3309,7 +3309,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "न", transliteration: "na", meaning: "nor" },
       { original: "तेषु", transliteration: "teṣu", meaning: "in the sense objects" },
       { original: "रमते", transliteration: "ramate", meaning: "takes delight" },
-      { original: "बुधः", transliteration: "budhaḥ", meaning: "those who know" }
+      { original: "बुधः", transliteration: "budhaḥ", meaning: "the intelligent person" }
   ]),
   verse(5, 23, 227, "Chapter 05 · The Yoga of Renunciation of Action", "शक्नोतीहैव यः सोढुं प्राक्शरीरविमोक्षणात् । कामक्रोधोद्भवं वेगं स युक्तः स सुखी नरः", "śaknotīhaiva yaḥ soḍhuṃ prākśarīravimokṣaṇāt | kāmakrodhodbhavaṃ vegaṃ sa yuktaḥ sa sukhī naraḥ", "One who is able to withstand, even here before liberation from the body, the impulse born of desire and anger, that one is disciplined; that one is happy.", [
       { original: "शक्नोति", transliteration: "śaknoti", meaning: "is able" },
@@ -3379,7 +3379,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "यतैन्द्रियमनः", transliteration: "yata-indriya-manaḥ", meaning: "controlled + of the sense organs + mind" },
       { original: "बुद्धिः", transliteration: "buddhiḥ", meaning: "intelligence" },
       { original: "मुनिः", transliteration: "muniḥ", meaning: "a sage" },
-      { original: "मोक्षपरायणः", transliteration: "mokṣa-parāyaṇaḥ", meaning: "for liberation + so inclined" },
+      { original: "मोक्षपरायणः", transliteration: "mokṣa-parāyaṇaḥ", meaning: "for liberation + being so destined" },
       { original: "विगतैच्छाभयक्रोधः", transliteration: "vigata-icchā-bhaya-krodhaḥ", meaning: "having discarded + wishes + fear + and anger" },
       { original: "यः", transliteration: "yaḥ", meaning: "anyone who" },
       { original: "सदा", transliteration: "sadā", meaning: "always" },
@@ -3529,7 +3529,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "सततम्", transliteration: "satatam", meaning: "constantly" },
       { original: "आत्मानम्", transliteration: "ātmānam", meaning: "the mind" },
       { original: "रहसि", transliteration: "rahasi", meaning: "in a secluded place" },
-      { original: "स्थितः", transliteration: "sthitaḥ", meaning: "are situated" },
+      { original: "स्थितः", transliteration: "sthitaḥ", meaning: "being situated" },
       { original: "एकाकी", transliteration: "ekākī", meaning: "alone" },
       { original: "यतचित्तआत्मा", transliteration: "yata-citta-ātmā", meaning: "always careful in mind" },
       { original: "निराशीः", transliteration: "nirāśīḥ", meaning: "without desire for profit" },
@@ -3553,12 +3553,12 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "एकाग्रम्", transliteration: "ekāgram", meaning: "with one attention" },
       { original: "मनः", transliteration: "manaḥ", meaning: "mind" },
       { original: "कृत्वा", transliteration: "kṛtvā", meaning: "doing so" },
-      { original: "यतचित्तैन्द्रियक्रियः", transliteration: "yata-citta-indriya-kriyaḥ", meaning: "controlled + by anxieties + of the sense organs + performances" },
+      { original: "यतचित्तैन्द्रियक्रियः", transliteration: "yata-citta-indriya-kriyaḥ", meaning: "controlled + by anxieties + of the sense organs + and activities" },
       { original: "उपविश्य", transliteration: "upaviśya", meaning: "sitting" },
       { original: "आसने", transliteration: "āsane", meaning: "on the seat" },
       { original: "युञ्ज्यात्", transliteration: "yuñjyāt", meaning: "should execute" },
       { original: "योगम्", transliteration: "yogam", meaning: "self-realization" },
-      { original: "आत्मविशुद्धये", transliteration: "ātma-viśuddhaye", meaning: "soul + for clarifying" }
+      { original: "आत्मविशुद्धये", transliteration: "ātma-viśuddhaye", meaning: "Your own + for clarifying" }
   ]),
   verse(6, 13, 246, "Chapter 06 · The Yoga of Meditation", "समं कायशिरोग्रीवं धारयन्नचलं स्थिरः । सम्प्रेक्ष्य नासिकाग्रं स्वं दिशश्चानवलोकयन्", "samaṃ kāyaśirogrīvaṃ dhārayannacalaṃ sthiraḥ | samprekṣya nāsikāgraṃ svaṃ diśaścānavalokayan", "Holding the body, head, and neck erect and unmoving, steady, gazing at the tip of one's own nose, without looking around in any direction,", [
       { original: "समम्", transliteration: "samam", meaning: "in equanimity" },
@@ -3577,7 +3577,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "प्रशान्तआत्मा", transliteration: "praśānta-ātmā", meaning: "unagitated + soul" },
       { original: "विगतभीः", transliteration: "vigata-bhīḥ", meaning: "devoid of fear" },
       { original: "ब्रह्मचारिव्रते", transliteration: "brahmacāri-vrate", meaning: "in the vow of celibacy" },
-      { original: "स्थितः", transliteration: "sthitaḥ", meaning: "are situated" },
+      { original: "स्थितः", transliteration: "sthitaḥ", meaning: "being situated" },
       { original: "मनः", transliteration: "manaḥ", meaning: "mind" },
       { original: "संयम्य", transliteration: "saṃyamya", meaning: "keeping under control" },
       { original: "मत्चित्तः", transliteration: "mat-cittaḥ", meaning: "upon Me (KRiShNa) + concentrating the mind" },
@@ -3654,12 +3654,12 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "आत्मनः", transliteration: "ātmanaḥ", meaning: "of the person" }
   ]),
   verse(6, 20, 253, "Chapter 06 · The Yoga of Meditation", "यत्रोपरमते चित्तं निरुद्धं योगसेवया । यत्र चैवात्मनात्मानं पश्यन्नात्मनि तुष्यति", "yatroparamate cittaṃ niruddhaṃ yogasevayā | yatra caivātmanātmānaṃ paśyannātmani tuṣyati", "That state in which the mind, restrained by the practice of yoga, comes to rest, and in which one, seeing the self by the self, is content within the self,", [
-      { original: "यत्र", transliteration: "yatra", meaning: "maintenance" },
+      { original: "यत्र", transliteration: "yatra", meaning: "at which" },
       { original: "उपरमते", transliteration: "uparamate", meaning: "cease (because one feels transcendental happiness)" },
       { original: "चित्तम्", transliteration: "cittam", meaning: "the mind and its activities" },
       { original: "निरुद्धम्", transliteration: "niruddham", meaning: "being restrained from matter" },
       { original: "योगसेवया", transliteration: "yoga-sevayā", meaning: "by performance of yoga" },
-      { original: "यत्र", transliteration: "yatra", meaning: "maintenance" },
+      { original: "यत्र", transliteration: "yatra", meaning: "at which" },
       { original: "च", transliteration: "ca", meaning: "and" },
       { original: "एव", transliteration: "eva", meaning: "certainly" },
       { original: "आत्मना", transliteration: "ātmanā", meaning: "by the purified mind" },
@@ -3675,12 +3675,12 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "तत्", transliteration: "tat", meaning: "that" },
       { original: "बुद्धिग्राह्यमतीन्द्रियम्", transliteration: "buddhi-grāhyam-atīndriyam", meaning: "by intelligence + accessible + transcendental" },
       { original: "वेत्ति", transliteration: "vetti", meaning: "knows" },
-      { original: "यत्र", transliteration: "yatra", meaning: "maintenance" },
+      { original: "यत्र", transliteration: "yatra", meaning: "at which" },
       { original: "न", transliteration: "na", meaning: "nor" },
       { original: "च", transliteration: "ca", meaning: "and" },
       { original: "एव", transliteration: "eva", meaning: "certainly" },
       { original: "अयम्", transliteration: "ayam", meaning: "this" },
-      { original: "स्थितः", transliteration: "sthitaḥ", meaning: "are situated" },
+      { original: "स्थितः", transliteration: "sthitaḥ", meaning: "being situated" },
       { original: "चलति", transliteration: "calati", meaning: "moves" },
       { original: "तत्त्वतः", transliteration: "tattvataḥ", meaning: "in reality" }
   ]),
@@ -3695,7 +3695,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "अधिकम्", transliteration: "adhikam", meaning: "more" },
       { original: "ततः", transliteration: "tataḥ", meaning: "thereafter" },
       { original: "यस्मिन्", transliteration: "yasmin", meaning: "in which" },
-      { original: "स्थितः", transliteration: "sthitaḥ", meaning: "are situated" },
+      { original: "स्थितः", transliteration: "sthitaḥ", meaning: "being situated" },
       { original: "न", transliteration: "na", meaning: "nor" },
       { original: "दुःखेन", transliteration: "duḥkhena", meaning: "by miseries" },
       { original: "गुरुणा", transliteration: "guruṇā", meaning: "by the teacher" },
@@ -3773,7 +3773,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "सदा", transliteration: "sadā", meaning: "always" },
       { original: "आत्मानम्", transliteration: "ātmānam", meaning: "the mind" },
       { original: "योगी", transliteration: "yogī", meaning: "a mystic" },
-      { original: "विगतकल्मषः", transliteration: "vigata-kalmaṣaḥ", meaning: "having discarded + of sinful reactions" },
+      { original: "विगतकल्मषः", transliteration: "vigata-kalmaṣaḥ", meaning: "having discarded + all material contamination" },
       { original: "सुखेन", transliteration: "sukhena", meaning: "in transcendental happiness" },
       { original: "ब्रह्मसंस्पर्शम्", transliteration: "brahma-saṃsparśam", meaning: "being in constant touch with the Supreme" },
       { original: "अत्यन्तम्", transliteration: "atyantam", meaning: "the highest" },
@@ -4231,8 +4231,8 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "च", transliteration: "ca", meaning: "and" },
       { original: "एव", transliteration: "eva", meaning: "certainly" },
       { original: "सात्त्विकाः", transliteration: "sāttvikāḥ", meaning: "in goodness" },
-      { original: "भावाः", transliteration: "bhāvāḥ", meaning: "endurance" },
-      { original: "राजसाः", transliteration: "rājasāḥ", meaning: "in the mode of passion" },
+      { original: "भावाः", transliteration: "bhāvāḥ", meaning: "natures" },
+      { original: "राजसाः", transliteration: "rājasāḥ", meaning: "those situated in the mode of passion" },
       { original: "तामसाः", transliteration: "tāmasāḥ", meaning: "in the mode of ignorance" },
       { original: "च", transliteration: "ca", meaning: "and" },
       { original: "ये", transliteration: "ye", meaning: "who" },
@@ -4263,7 +4263,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "एषा", transliteration: "eṣā", meaning: "all this" },
       { original: "गुणमयी", transliteration: "guṇamayī", meaning: "consisting of the three modes of material nature" },
       { original: "मम", transliteration: "mama", meaning: "my" },
-      { original: "माया", transliteration: "māyā", meaning: "by me" },
+      { original: "माया", transliteration: "māyā", meaning: "energy" },
       { original: "दुरत्यया", transliteration: "duratyayā", meaning: "very difficult to overcome" },
       { original: "माम्", transliteration: "mām", meaning: "me" },
       { original: "एव", transliteration: "eva", meaning: "certainly" },
@@ -4278,7 +4278,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "न", transliteration: "na", meaning: "nor" },
       { original: "माम्", transliteration: "mām", meaning: "me" },
       { original: "दुष्कृतिनः", transliteration: "duṣkṛtinaḥ", meaning: "miscreants" },
-      { original: "मूढाः", transliteration: "mūḍhāḥ", meaning: "foolish" },
+      { original: "मूढाः", transliteration: "mūḍhāḥ", meaning: "foolish men" },
       { original: "प्रपद्यन्ते", transliteration: "prapadyante", meaning: "surrender" },
       { original: "नराधमाः", transliteration: "nara-adhamāḥ", meaning: "lowest among mankind" },
       { original: "मायया", transliteration: "māyayā", meaning: "by the illusory energy" },
@@ -4291,7 +4291,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "चतुःविधाः", transliteration: "catuḥ-vidhāḥ", meaning: "of four kinds" },
       { original: "भजन्ते", transliteration: "bhajante", meaning: "render services" },
       { original: "माम्", transliteration: "mām", meaning: "me" },
-      { original: "जनाः", transliteration: "janāḥ", meaning: "person" },
+      { original: "जनाः", transliteration: "janāḥ", meaning: "people" },
       { original: "सुकृतिनः", transliteration: "sukṛtinaḥ", meaning: "those who are pious" },
       { original: "अर्जुन", transliteration: "arjuna", meaning: "O Arjuna" },
       { original: "आर्तः", transliteration: "ārtaḥ", meaning: "the distressed" },
@@ -4415,7 +4415,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "देवयजः", transliteration: "deva-yajaḥ", meaning: "the worshipers of the demigods" },
       { original: "यान्ति", transliteration: "yānti", meaning: "undergo" },
       { original: "मत्", transliteration: "mat", meaning: "upon Me (KRiShNa)" },
-      { original: "भक्ताः", transliteration: "bhaktāḥ", meaning: "devotee" },
+      { original: "भक्ताः", transliteration: "bhaktāḥ", meaning: "devotees" },
       { original: "यान्ति", transliteration: "yānti", meaning: "undergo" },
       { original: "माम्", transliteration: "mām", meaning: "me" },
       { original: "अपि", transliteration: "api", meaning: "including" }
@@ -4439,7 +4439,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "अहम्", transliteration: "aham", meaning: "I" },
       { original: "प्रकाशः", transliteration: "prakāśaḥ", meaning: "manifest" },
       { original: "सर्वस्य", transliteration: "sarvasya", meaning: "of everyone" },
-      { original: "योगमायासमावृतः", transliteration: "yoga-māyā-samāvṛtaḥ", meaning: "the linking process + by me + covered" },
+      { original: "योगमायासमावृतः", transliteration: "yoga-māyā-samāvṛtaḥ", meaning: "the linking process + energy + covered" },
       { original: "मूढः", transliteration: "mūḍhaḥ", meaning: "foolish" },
       { original: "अयम्", transliteration: "ayam", meaning: "this" },
       { original: "न", transliteration: "na", meaning: "nor" },
@@ -4654,7 +4654,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "धातारम्", transliteration: "dhātāram", meaning: "the maintainer" },
       { original: "अचिन्त्यरूपं", transliteration: "acintya-rūpaṃ", meaning: "inconceivable + whose form" },
       { original: "आदित्यवर्णम्", transliteration: "āditya-varṇam", meaning: "luminous like the sun" },
-      { original: "तमसः", transliteration: "tamasaḥ", meaning: "in the mode of ignorance" },
+      { original: "तमसः", transliteration: "tamasaḥ", meaning: "from the mode of ignorance" },
       { original: "परस्तात्", transliteration: "parastāt", meaning: "transcendental" }
   ]),
   verse(8, 10, 320, "Chapter 08 · The Yoga of the Imperishable Brahman", "प्रयाणकाले मनसाऽचलेन भक्त्या युक्तो योगबलेन चैव । भ्रुवोर्मध्ये प्राणमावेश्य सम्यक् स तं परं पुरुषमुपैति दिव्यम्", "prayāṇakāle manasā'calena bhaktyā yukto yogabalena caiva | bhruvormadhye prāṇamāveśya samyak sa taṃ paraṃ puruṣamupaiti divyam", "at the time of departure, with unwavering mind, endowed with devotion and the power of yoga, drawing the life-breath fully between the eyebrows, that one attains this supreme divine person.", [
@@ -4757,7 +4757,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
   ]),
   verse(8, 16, 326, "Chapter 08 · The Yoga of the Imperishable Brahman", "आब्रह्मभुवनाल्लोकाः पुनरावर्तिनोऽर्जुन । मामुपेत्य तु कौन्तेय पुनर्जन्म न विद्यते", "ābrahmabhuvanāllokāḥ punarāvartino'rjuna | māmupetya tu kaunteya punarjanma na vidyate", "Worlds up to the realm of Brahma are subject to rebirth, Arjuna; but on attaining Me, son of Kunti, there is no rebirth.", [
       { original: "आब्रह्मभुवनात्", transliteration: "ābrahma-bhuvanāt", meaning: "up to the Brahmaloka planet" },
-      { original: "लोकाः", transliteration: "lokāḥ", meaning: "world" },
+      { original: "लोकाः", transliteration: "lokāḥ", meaning: "all people" },
       { original: "पुनःआवर्तिनः", transliteration: "punaḥ-āvartinaḥ", meaning: "again + returning" },
       { original: "अर्जुन", transliteration: "arjuna", meaning: "O Arjuna" },
       { original: "माम्", transliteration: "mām", meaning: "me" },
@@ -4778,7 +4778,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "युगसहस्रान्ताम्", transliteration: "yuga-sahasra-antām", meaning: "millenniums + one thousand + or end" },
       { original: "ते", transliteration: "te", meaning: "to you" },
       { original: "अहोरात्रविदः", transliteration: "ahorātra-vidaḥ", meaning: "day and night + who understand" },
-      { original: "जनाः", transliteration: "janāḥ", meaning: "person" }
+      { original: "जनाः", transliteration: "janāḥ", meaning: "people" }
   ]),
   verse(8, 18, 328, "Chapter 08 · The Yoga of the Imperishable Brahman", "अव्यक्ताद् व्यक्तयः सर्वाः प्रभवन्त्यहरागमे । रात्र्यागमे प्रलीयन्ते तत्रैवाव्यक्तसंज्ञके", "avyaktād vyaktayaḥ sarvāḥ prabhavantyaharāgame | rātryāgame pralīyante tatraivāvyaktasaṃjñake", "At the coming of that day, all manifest things emerge from the unmanifest; at the coming of that night, they dissolve back into that same, called the unmanifest.", [
       { original: "अव्यक्तात्", transliteration: "avyaktāt", meaning: "from the unmanifest" },
@@ -4863,7 +4863,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "ततम्", transliteration: "tatam", meaning: "pervaded" }
   ]),
   verse(8, 23, 333, "Chapter 08 · The Yoga of the Imperishable Brahman", "यत्र काले त्वनावृत्तिमावृत्तिं चैव योगिनः । प्रयाता यान्ति तं कालं वक्ष्यामि भरतर्षभ", "yatra kāle tvanāvṛttimāvṛttiṃ caiva yoginaḥ | prayātā yānti taṃ kālaṃ vakṣyāmi bharatarṣabha", "I shall now declare to you, bull of the Bharatas, the time in which yogis departing do not return, and also that in which, departing, they do return.", [
-      { original: "यत्र", transliteration: "yatra", meaning: "maintenance" },
+      { original: "यत्र", transliteration: "yatra", meaning: "at which" },
       { original: "काले", transliteration: "kāle", meaning: "at the time" },
       { original: "तु", transliteration: "tu", meaning: "but" },
       { original: "अनावृत्तिम्", transliteration: "anāvṛttim", meaning: "no return" },
@@ -4890,7 +4890,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "गच्छन्ति", transliteration: "gacchanti", meaning: "they reach" },
       { original: "ब्रह्म", transliteration: "brahma", meaning: "from the Vedas" },
       { original: "ब्रह्मविदः", transliteration: "brahmavidaḥ", meaning: "who know the Absolute" },
-      { original: "जनाः", transliteration: "janāḥ", meaning: "person" }
+      { original: "जनाः", transliteration: "janāḥ", meaning: "people" }
   ]),
   verse(8, 25, 335, "Chapter 08 · The Yoga of the Imperishable Brahman", "धूमो रात्रिस्तथा कृष्णः षण्मासा दक्षिणायनम् । तत्र चान्द्रमसं ज्योतिर्योगी प्राप्य निवर्तते", "dhūmo rātristathā kṛṣṇaḥ ṣaṇmāsā dakṣiṇāyanam | tatra cāndramasaṃ jyotiryogī prāpya nivartate", "Smoke, night, likewise the dark fortnight, the six months of the southern course of the sun—departing then, the yogi attains the lunar light and returns.", [
       { original: "धूमः", transliteration: "dhūmaḥ", meaning: "smoke" },
@@ -4986,8 +4986,8 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "अव्ययम्", transliteration: "avyayam", meaning: "immutable" }
   ]),
   verse(9, 3, 341, "Chapter 09 · The Yoga of Sovereign Knowledge and Sovereign Secret", "अश्रद्दधानाः पुरुषा धर्मस्यास्य परन्तप । अप्राप्य मां निवर्तन्ते मृत्युसंसारवर्त्मनि", "aśraddadhānāḥ puruṣā dharmasyāsya parantapa | aprāpya māṃ nivartante mṛtyusaṃsāravartmani", "Persons without faith in this teaching, scorcher of foes, not attaining Me, return to the path of repeated death and rebirth.", [
-      { original: "अश्रद्दधानाः", transliteration: "aśraddadhānāḥ", meaning: "without faith in revealed scriptures" },
-      { original: "पुरुषाः", transliteration: "puruṣāḥ", meaning: "person" },
+      { original: "अश्रद्दधानाः", transliteration: "aśraddadhānāḥ", meaning: "those who are faithless" },
+      { original: "पुरुषाः", transliteration: "puruṣāḥ", meaning: "such persons" },
       { original: "धर्मस्य", transliteration: "dharmasya", meaning: "occupation" },
       { original: "अस्य", transliteration: "asya", meaning: "of it" },
       { original: "परन्तप", transliteration: "parantapa", meaning: "O chastiser of the enemies" },
@@ -5098,7 +5098,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
   verse(9, 11, 349, "Chapter 09 · The Yoga of Sovereign Knowledge and Sovereign Secret", "अवजानन्ति मां मूढा मानुषीं तनुमाश्रितम् । परं भावमजानन्तो मम भूतमहेश्वरम्", "avajānanti māṃ mūḍhā mānuṣīṃ tanumāśritam | paraṃ bhāvamajānanto mama bhūtamaheśvaram", "The unwise despise Me clad in a human form, not knowing My higher nature as the great Lord of beings.", [
       { original: "अवजानन्ति", transliteration: "avajānanti", meaning: "deride" },
       { original: "माम्", transliteration: "mām", meaning: "me" },
-      { original: "मूढाः", transliteration: "mūḍhāḥ", meaning: "foolish" },
+      { original: "मूढाः", transliteration: "mūḍhāḥ", meaning: "foolish men" },
       { original: "मानुषीम्", transliteration: "mānuṣīm", meaning: "in a human form" },
       { original: "तनुम्", transliteration: "tanum", meaning: "form of a demigod" },
       { original: "आश्रितम्", transliteration: "āśritam", meaning: "assuming" },
@@ -5183,13 +5183,13 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "अहम्", transliteration: "aham", meaning: "I" },
       { original: "अस्य", transliteration: "asya", meaning: "of it" },
       { original: "जगतः", transliteration: "jagataḥ", meaning: "of the world" },
-      { original: "माता", transliteration: "mātā", meaning: "is considered" },
+      { original: "माता", transliteration: "mātā", meaning: "mother" },
       { original: "धाता", transliteration: "dhātā", meaning: "supporter" },
       { original: "पितामहः", transliteration: "pitāmahaḥ", meaning: "the grandfather" },
       { original: "वेद्यम्", transliteration: "vedyam", meaning: "what is to be known" },
       { original: "पवित्रम्", transliteration: "pavitram", meaning: "sanctified" },
       { original: "ओंकारः", transliteration: "oṃkāraḥ", meaning: "the syllable Om" },
-      { original: "ऋक्साम", transliteration: "ṛk-sāma", meaning: "the Rg Veda + unaltered" },
+      { original: "ऋक्साम", transliteration: "ṛk-sāma", meaning: "the Rg Veda + the Sama Veda" },
       { original: "यजुः", transliteration: "yajuḥ", meaning: "the Yajur Veda" },
       { original: "एव", transliteration: "eva", meaning: "certainly" },
       { original: "च", transliteration: "ca", meaning: "and" }
@@ -5268,7 +5268,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "चिन्तयन्तः", transliteration: "cintayantaḥ", meaning: "concentrating" },
       { original: "माम्", transliteration: "mām", meaning: "me" },
       { original: "ये", transliteration: "ye", meaning: "who" },
-      { original: "जनाः", transliteration: "janāḥ", meaning: "person" },
+      { original: "जनाः", transliteration: "janāḥ", meaning: "people" },
       { original: "पर्युपासते", transliteration: "paryupāsate", meaning: "worship perfectly" },
       { original: "तेषाम्", transliteration: "teṣām", meaning: "their" },
       { original: "नित्याभियुक्तानाम्", transliteration: "nitya-abhiyuktānām", meaning: "always + fixed in devotion" },
@@ -5279,7 +5279,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
   verse(9, 23, 361, "Chapter 09 · The Yoga of Sovereign Knowledge and Sovereign Secret", "येऽप्यन्यदेवता भक्ता यजन्ते श्रद्धयान्विताः । तेऽपि मामेव कौन्तेय यजन्त्यविधिपूर्वकम्", "ye'pyanyadevatā bhaktā yajante śraddhayānvitāḥ | te'pi māmeva kaunteya yajantyavidhipūrvakam", "Even those devotees of other gods who worship them, endowed with faith, worship Me alone, son of Kunti, though not according to the true rule.", [
       { original: "ये", transliteration: "ye", meaning: "who" },
       { original: "अपि", transliteration: "api", meaning: "including" },
-      { original: "अन्यदेवताभक्ताः", transliteration: "anya-devatā-bhaktāḥ", meaning: "to other + gods + devotee" },
+      { original: "अन्यदेवताभक्ताः", transliteration: "anya-devatā-bhaktāḥ", meaning: "to other + gods + devotees" },
       { original: "यजन्ते", transliteration: "yajante", meaning: "they worship by sacrifices" },
       { original: "श्रद्धया", transliteration: "śraddhayā", meaning: "with faith" },
       { original: "अन्विताः", transliteration: "anvitāḥ", meaning: "absorbed" },
@@ -5442,9 +5442,9 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
   verse(9, 33, 371, "Chapter 09 · The Yoga of Sovereign Knowledge and Sovereign Secret", "किं पुनर्ब्राह्मणाः पुण्या भक्ता राजर्षयस्तथा । अनित्यमसुखं लोकमिमं प्राप्य भजस्व माम्", "kiṃ punarbrāhmaṇāḥ puṇyā bhaktā rājarṣayastathā | anityamasukhaṃ lokamimaṃ prāpya bhajasva mām", "How much more, then, virtuous brahmins and devoted royal sages; having come into this transient, joyless world, worship Me.", [
       { original: "किम्", transliteration: "kim", meaning: "what" },
       { original: "पुनः", transliteration: "punaḥ", meaning: "again" },
-      { original: "ब्राह्मणाः", transliteration: "brāhmaṇāḥ", meaning: "of the Vedas" },
-      { original: "पुण्याः", transliteration: "puṇyāḥ", meaning: "original" },
-      { original: "भक्ताः", transliteration: "bhaktāḥ", meaning: "devotee" },
+      { original: "ब्राह्मणाः", transliteration: "brāhmaṇāḥ", meaning: "brahmanas" },
+      { original: "पुण्याः", transliteration: "puṇyāḥ", meaning: "righteous" },
+      { original: "भक्ताः", transliteration: "bhaktāḥ", meaning: "devotees" },
       { original: "राजर्षयः", transliteration: "rājarṣayaḥ", meaning: "the saintly kings" },
       { original: "तथा", transliteration: "tathā", meaning: "as well as" },
       { original: "अनित्यम्", transliteration: "anityam", meaning: "temporary" },
@@ -5525,7 +5525,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "शमः", transliteration: "śamaḥ", meaning: "cessation of all material activities" },
       { original: "सुखम्", transliteration: "sukham", meaning: "and happiness" },
       { original: "दुःखम्", transliteration: "duḥkham", meaning: "distress" },
-      { original: "भवः", transliteration: "bhavaḥ", meaning: "endurance" },
+      { original: "भवः", transliteration: "bhavaḥ", meaning: "birth" },
       { original: "अभावः", transliteration: "abhāvaḥ", meaning: "changing quality" },
       { original: "भयम्", transliteration: "bhayam", meaning: "fear" },
       { original: "च", transliteration: "ca", meaning: "and" },
@@ -5542,7 +5542,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "यशः", transliteration: "yaśaḥ", meaning: "fame" },
       { original: "अयशः", transliteration: "ayaśaḥ", meaning: "infamy" },
       { original: "भवन्ति", transliteration: "bhavanti", meaning: "grow" },
-      { original: "भावाः", transliteration: "bhāvāḥ", meaning: "endurance" },
+      { original: "भावाः", transliteration: "bhāvāḥ", meaning: "natures" },
       { original: "भूतानाम्", transliteration: "bhūtānām", meaning: "of living entities" },
       { original: "मत्तः", transliteration: "mattaḥ", meaning: "beyond Me" },
       { original: "एव", transliteration: "eva", meaning: "certainly" },
@@ -5553,11 +5553,11 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "सप्त", transliteration: "sapta", meaning: "seven" },
       { original: "पूर्वे", transliteration: "pūrve", meaning: "before" },
       { original: "चत्वारः", transliteration: "catvāraḥ", meaning: "four" },
-      { original: "मनवः", transliteration: "manavaḥ", meaning: "a man" },
+      { original: "मनवः", transliteration: "manavaḥ", meaning: "Manus" },
       { original: "तथा", transliteration: "tathā", meaning: "as well as" },
       { original: "मत्", transliteration: "mat", meaning: "upon Me (KRiShNa)" },
-      { original: "भावाः", transliteration: "bhāvāḥ", meaning: "endurance" },
-      { original: "मानसाः", transliteration: "mānasāḥ", meaning: "within the mind" },
+      { original: "भावाः", transliteration: "bhāvāḥ", meaning: "natures" },
+      { original: "मानसाः", transliteration: "mānasāḥ", meaning: "from the mind" },
       { original: "जाताः", transliteration: "jātāḥ", meaning: "born" },
       { original: "येषाम्", transliteration: "yeṣām", meaning: "of whom" },
       { original: "लोके", transliteration: "loke", meaning: "in this world" },
@@ -5768,7 +5768,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "अहम्", transliteration: "aham", meaning: "I" },
       { original: "आत्मा", transliteration: "ātmā", meaning: "soul" },
       { original: "गुडाकाईश", transliteration: "guḍākā-īśa", meaning: "over sleep + lord (conqueror of sleep, Arjuna)" },
-      { original: "सर्वभूतआशयस्थितः", transliteration: "sarva-bhūta-āśaya-sthitaḥ", meaning: "all respectively + of everything that be + abode, resting place + are situated" },
+      { original: "सर्वभूतआशयस्थितः", transliteration: "sarva-bhūta-āśaya-sthitaḥ", meaning: "all respectively + of everything that be + abode, resting place + being situated" },
       { original: "अहम्", transliteration: "aham", meaning: "I" },
       { original: "आदिः", transliteration: "ādiḥ", meaning: "the origin" },
       { original: "च", transliteration: "ca", meaning: "and" },
@@ -5892,7 +5892,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "वासुकिः", transliteration: "vāsukiḥ", meaning: "Vasuki" }
   ]),
   verse(10, 29, 401, "Chapter 10 · The Yoga of Divine Glories", "अनन्तश्चास्मि नागानां वरुणो यादसामहम् । पितॄणामर्यमा चास्मि यमः संयमतामहम्", "anantaścāsmi nāgānāṃ varuṇo yādasāmaham | pitṝṇāmaryamā cāsmi yamaḥ saṃyamatāmaham", "Among the multitude of serpents I am Ananta; among water-beings I am Varuna; among ancestors I am Aryaman; among enforcers of law I am Yama.", [
-      { original: "अनन्तः", transliteration: "anantaḥ", meaning: "unlimited" },
+      { original: "अनन्तः", transliteration: "anantaḥ", meaning: "Ananta" },
       { original: "च", transliteration: "ca", meaning: "and" },
       { original: "अस्मि", transliteration: "asmi", meaning: "I am" },
       { original: "नागानाम्", transliteration: "nāgānām", meaning: "of the manyhooded serpents" },
@@ -6110,7 +6110,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "इदम्", transliteration: "idam", meaning: "all this" },
       { original: "कृत्स्नम्", transliteration: "kṛtsnam", meaning: "whole" },
       { original: "एकांशेन", transliteration: "eka-aṃśena", meaning: "only one + part" },
-      { original: "स्थितः", transliteration: "sthitaḥ", meaning: "are situated" },
+      { original: "स्थितः", transliteration: "sthitaḥ", meaning: "being situated" },
       { original: "जगत्", transliteration: "jagat", meaning: "the material world" }
   ]),
   verse(11, 1, 415, "Chapter 11 · The Vision of the Universal Form", "मदनुग्रहाय परमं गुह्यमध्यात्मसंज्ञितम् । यत्त्वयोक्तं वचस्तेन मोहोऽयं विगतो मम", "madanugrahāya paramaṃ guhyamadhyātmasaṃjñitam | yattvayoktaṃ vacastena moho'yaṃ vigato mama", "Arjuna said: by the supreme secret concerning the self, called the teaching on adhyatma, which you have spoken out of grace for me, this delusion of mine has departed.", [
@@ -6291,7 +6291,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "अपश्यत्", transliteration: "apaśyat", meaning: "he could see" },
       { original: "देवदेवस्य", transliteration: "deva-devasya", meaning: "of the Supreme Personality of Godhead" },
       { original: "शरीरे", transliteration: "śarīre", meaning: "on the body" },
-      { original: "पाण्डवः", transliteration: "pāṇḍavaḥ", meaning: "the sons of Pandu" },
+      { original: "पाण्डवः", transliteration: "pāṇḍavaḥ", meaning: "Arjuna" },
       { original: "तदा", transliteration: "tadā", meaning: "at that time" }
   ]),
   verse(11, 14, 428, "Chapter 11 · The Vision of the Universal Form", "ततः स विस्मयाविष्टो हृष्टरोमा धनञ्जयः । प्रणम्य शिरसा देवं कृताञ्जलिरभाषत", "tataḥ sa vismayāviṣṭo hṛṣṭaromā dhanañjayaḥ | praṇamya śirasā devaṃ kṛtāñjalirabhāṣata", "Then Dhananjaya, struck with amazement, his hair standing on end, bowed his head to the deity and, with joined palms, spoke.", [
@@ -6432,13 +6432,13 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
   ]),
   verse(11, 22, 436, "Chapter 11 · The Vision of the Universal Form", "रुद्रादित्या वसवो ये च साध्या विश्वेऽश्विनौ मरुतश्चोष्मपाश्च । गन्धर्वयक्षासुरसिद्धसङ्घा वीक्षन्ते त्वां विस्मिताश्चैव सर्वे", "rudrādityā vasavo ye ca sādhyā viśve'śvinau marutaścoṣmapāśca | gandharvayakṣāsurasiddhasaṅghā vīkṣante tvāṃ vismitāścaiva sarve", "The Rudras, the Adityas, the Vasus, the Sadhyas, the Vishvedevas, the two Ashvins, the Maruts, and the ancestors, the hosts of heavenly musicians, spirits, demons, and perfected beings, all gaze upon you, and all are astonished.", [
       { original: "रुद्रआदित्याः", transliteration: "rudra-ādityāḥ", meaning: "manifestations of Lord Siva + the Adityas" },
-      { original: "वसवः", transliteration: "vasavaḥ", meaning: "the heavenly king" },
+      { original: "वसवः", transliteration: "vasavaḥ", meaning: "the Vasus" },
       { original: "ये", transliteration: "ye", meaning: "who" },
       { original: "च", transliteration: "ca", meaning: "and" },
       { original: "साध्याः", transliteration: "sādhyāḥ", meaning: "the Sadhyas" },
       { original: "विश्वे", transliteration: "viśve", meaning: "the Visvedevas" },
       { original: "अश्विनौ", transliteration: "aśvinau", meaning: "the two Asvinis" },
-      { original: "मरुतः", transliteration: "marutaḥ", meaning: "wind" },
+      { original: "मरुतः", transliteration: "marutaḥ", meaning: "the Maruts" },
       { original: "च", transliteration: "ca", meaning: "and" },
       { original: "उष्मपाः", transliteration: "uṣmapāḥ", meaning: "the forefathers" },
       { original: "च", transliteration: "ca", meaning: "and" },
@@ -6454,13 +6454,13 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "रूपम्", transliteration: "rūpam", meaning: "whose form" },
       { original: "महत्", transliteration: "mahat", meaning: "great" },
       { original: "ते", transliteration: "te", meaning: "to you" },
-      { original: "बहुवक्त्रनेत्रम्", transliteration: "bahu-vaktra-netram", meaning: "arms + mouths + eyes" },
+      { original: "बहुवक्त्रनेत्रम्", transliteration: "bahu-vaktra-netram", meaning: "many + mouths + eyes" },
       { original: "महाबाहो", transliteration: "mahā-bāho", meaning: "O mighty-armed one" },
-      { original: "बहुबाहुऊरुपादम्", transliteration: "bahu-bāhu-ūru-pādam", meaning: "arms + arms + thighs + position" },
+      { original: "बहुबाहुऊरुपादम्", transliteration: "bahu-bāhu-ūru-pādam", meaning: "many + arms + thighs + position" },
       { original: "बहूदरम्", transliteration: "bahu-udaram", meaning: "many bellies" },
-      { original: "बहुदंष्ट्राकरालम्", transliteration: "bahu-daṃṣṭrā-karālam", meaning: "arms + teeth + horrible" },
+      { original: "बहुदंष्ट्राकरालम्", transliteration: "bahu-daṃṣṭrā-karālam", meaning: "many + teeth + horrible" },
       { original: "दृष्ट्वा", transliteration: "dṛṣṭvā", meaning: "after seeing" },
-      { original: "लोकाः", transliteration: "lokāḥ", meaning: "world" },
+      { original: "लोकाः", transliteration: "lokāḥ", meaning: "all people" },
       { original: "प्रव्यथिताः", transliteration: "pravyathitāḥ", meaning: "perturbed" },
       { original: "तथा", transliteration: "tathā", meaning: "as well as" },
       { original: "अहम्", transliteration: "aham", meaning: "I" }
@@ -6564,7 +6564,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "एव", transliteration: "eva", meaning: "certainly" },
       { original: "नाशाय", transliteration: "nāśāya", meaning: "for destruction" },
       { original: "विशन्ति", transliteration: "viśanti", meaning: "enter" },
-      { original: "लोकाः", transliteration: "lokāḥ", meaning: "world" },
+      { original: "लोकाः", transliteration: "lokāḥ", meaning: "all people" },
       { original: "तव", transliteration: "tava", meaning: "your" },
       { original: "अपि", transliteration: "api", meaning: "including" },
       { original: "वक्त्राणि", transliteration: "vaktrāṇi", meaning: "mouths" },
@@ -7020,7 +7020,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "संवृत्तः", transliteration: "saṃvṛttaḥ", meaning: "settled" },
       { original: "सचेताः", transliteration: "sacetāḥ", meaning: "in my consciousness" },
       { original: "प्रकृतिम्", transliteration: "prakṛtim", meaning: "nature" },
-      { original: "गतः", transliteration: "gataḥ", meaning: "having achieved" }
+      { original: "गतः", transliteration: "gataḥ", meaning: "returned" }
   ]),
   verse(11, 52, 466, "Chapter 11 · The Vision of the Universal Form", "श्रीभगवानुवाच । सुदुर्दर्शमिदं रूपं दृष्टवानसि यन्मम । देवा अप्यस्य रूपस्य नित्यं दर्शनकाङ्क्षिणः", "śrībhagavānuvāca | sudurdarśamidaṃ rūpaṃ dṛṣṭavānasi yanmama | devā apyasya rūpasya nityaṃ darśanakāṅkṣiṇaḥ", "The Blessed Lord said: this form of Mine that you have seen is very difficult indeed to see; even the gods are ever desirous of the sight of this form.", [
       { original: "सुदुर्दर्शम्", transliteration: "sudurdarśam", meaning: "very difficult to see" },
@@ -7087,9 +7087,9 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
   ]),
   verse(12, 1, 470, "Chapter 12 · The Yoga of Devotion", "एवं सततयुक्ता ये भक्तास्त्वां पर्युपासते । ये चाप्यक्षरमव्यक्तं तेषां के योगवित्तमाः", "evaṃ satatayuktā ye bhaktāstvāṃ paryupāsate | ye cāpyakṣaramavyaktaṃ teṣāṃ ke yogavittamāḥ", "Arjuna said: those devotees who, ever disciplined, worship you thus, and those who worship the imperishable, unmanifest—which of these best know yoga?", [
       { original: "एवम्", transliteration: "evam", meaning: "thus" },
-      { original: "सततयुक्ताः", transliteration: "satata-yuktāḥ", meaning: "always + dovetailed" },
+      { original: "सततयुक्ताः", transliteration: "satata-yuktāḥ", meaning: "always + engaged" },
       { original: "ये", transliteration: "ye", meaning: "who" },
-      { original: "भक्ताः", transliteration: "bhaktāḥ", meaning: "devotee" },
+      { original: "भक्ताः", transliteration: "bhaktāḥ", meaning: "devotees" },
       { original: "त्वाम्", transliteration: "tvām", meaning: "unto You" },
       { original: "पर्युपासते", transliteration: "paryupāsate", meaning: "worship perfectly" },
       { original: "ये", transliteration: "ye", meaning: "who" },
@@ -7114,8 +7114,8 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "उपेताः", transliteration: "upetāḥ", meaning: "engaged" },
       { original: "ते", transliteration: "te", meaning: "to you" },
       { original: "मे", transliteration: "me", meaning: "my" },
-      { original: "युक्ततमाः", transliteration: "yuktatamāḥ", meaning: "the greatest yogi" },
-      { original: "मताः", transliteration: "matāḥ", meaning: "is considered" }
+      { original: "युक्ततमाः", transliteration: "yuktatamāḥ", meaning: "most perfect in yoga" },
+      { original: "मताः", transliteration: "matāḥ", meaning: "are considered" }
   ]),
   verse(12, 3, 472, "Chapter 12 · The Yoga of Devotion", "ये त्वक्षरमनिर्देश्यमव्यक्तं पर्युपासते । सर्वत्रगमचिन्त्यञ्च कूटस्थमचलन्ध्रुवम्", "ye tvakṣaramanirdeśyamavyaktaṃ paryupāsate | sarvatragamacintyañca kūṭasthamacalandhruvam", "But those who worship the imperishable, the indefinable, the unmanifest, the omnipresent, the unthinkable, the unchanging, the immovable, and the constant,", [
       { original: "ये", transliteration: "ye", meaning: "who" },
@@ -7148,7 +7148,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "अधिकतरः", transliteration: "adhikataraḥ", meaning: "very much" },
       { original: "तेषाम्", transliteration: "teṣām", meaning: "their" },
       { original: "अव्यक्तआसक्तचेतसाम्", transliteration: "avyakta-āsakta-cetasām", meaning: "nonmanifested + attached + of those whose minds" },
-      { original: "अव्यक्ता", transliteration: "avyaktā", meaning: "nonmanifested" },
+      { original: "अव्यक्ता", transliteration: "avyaktā", meaning: "toward the unmanifested" },
       { original: "हि", transliteration: "hi", meaning: "certainly" },
       { original: "गतिः", transliteration: "gatiḥ", meaning: "entrance" },
       { original: "दुःखम्", transliteration: "duḥkham", meaning: "distress" },
@@ -7223,7 +7223,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "मतर्थम्", transliteration: "mat-artham", meaning: "upon Me (KRiShNa) + for the sake" },
       { original: "अपि", transliteration: "api", meaning: "including" },
       { original: "कर्माणि", transliteration: "karmāṇi", meaning: "in prescribed duties" },
-      { original: "कुर्वन्", transliteration: "kurvan", meaning: "doing" },
+      { original: "कुर्वन्", transliteration: "kurvan", meaning: "doing anything" },
       { original: "सिद्धिम्", transliteration: "siddhim", meaning: "success" },
       { original: "अवाप्स्यसि", transliteration: "avāpsyasi", meaning: "will gain" }
   ]),
@@ -7235,7 +7235,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "असि", transliteration: "asi", meaning: "you are" },
       { original: "कर्तुम्", transliteration: "kartum", meaning: "to perform" },
       { original: "मत्योगम्", transliteration: "mat-yogam", meaning: "upon Me (KRiShNa) + self-realization" },
-      { original: "आश्रितः", transliteration: "āśritaḥ", meaning: "accepting" },
+      { original: "आश्रितः", transliteration: "āśritaḥ", meaning: "situated" },
       { original: "सर्वकर्मफलत्यागम्", transliteration: "sarva-karma-phala-tyāgam", meaning: "all respectively + activity + of the results + renunciation" },
       { original: "ततः", transliteration: "tataḥ", meaning: "thereafter" },
       { original: "कुरु", transliteration: "kuru", meaning: "perform" },
@@ -7364,11 +7364,11 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "पर्युपासते", transliteration: "paryupāsate", meaning: "worship perfectly" },
       { original: "श्रद्दधानाः", transliteration: "śraddadhānāḥ", meaning: "with faith" },
       { original: "मत्परमाः", transliteration: "mat-paramāḥ", meaning: "considering Me the Supreme" },
-      { original: "भक्ताः", transliteration: "bhaktāḥ", meaning: "devotee" },
+      { original: "भक्ताः", transliteration: "bhaktāḥ", meaning: "devotees" },
       { original: "ते", transliteration: "te", meaning: "to you" },
       { original: "अतीव", transliteration: "atīva", meaning: "very, very" },
       { original: "मे", transliteration: "me", meaning: "my" },
-      { original: "प्रियाः", transliteration: "priyāḥ", meaning: "very dear" }
+      { original: "प्रियाः", transliteration: "priyāḥ", meaning: "palatable" }
   ]),
   verse(13, 1, 490, "Chapter 13 · The Yoga of the Field and Its Knower", "प्रकृतिं पुरुषं चैव क्षेत्रं क्षेत्रज्ञमेव च । एतद्वेदितुमिच्छामि ज्ञानं ज्ञेयं च केशव", "prakṛtiṃ puruṣaṃ caiva kṣetraṃ kṣetrajñameva ca | etadveditumicchāmi jñānaṃ jñeyaṃ ca keśava", "Arjuna said: I wish to learn, Keshava, of prakriti and purusha, of the field and the knower of the field, and of knowledge and what is to be known.", [
       { original: "इदम्", transliteration: "idam", meaning: "all this" },
@@ -7418,7 +7418,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "च", transliteration: "ca", meaning: "and" },
       { original: "यः", transliteration: "yaḥ", meaning: "anyone who" },
       { original: "यत्", transliteration: "yat", meaning: "because" },
-      { original: "प्रभावः", transliteration: "prabhāvaḥ", meaning: "the source of manifestation" },
+      { original: "प्रभावः", transliteration: "prabhāvaḥ", meaning: "influence" },
       { original: "च", transliteration: "ca", meaning: "and" },
       { original: "तत्", transliteration: "tat", meaning: "that" },
       { original: "समासेन", transliteration: "samāsena", meaning: "in summary" },
@@ -7598,7 +7598,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "अपि", transliteration: "api", meaning: "including" },
       { original: "तत्", transliteration: "tat", meaning: "that" },
       { original: "ज्योतिः", transliteration: "jyotiḥ", meaning: "light" },
-      { original: "तमसः", transliteration: "tamasaḥ", meaning: "in the mode of ignorance" },
+      { original: "तमसः", transliteration: "tamasaḥ", meaning: "from the mode of ignorance" },
       { original: "परम्", transliteration: "param", meaning: "far superior things" },
       { original: "उच्यते", transliteration: "ucyate", meaning: "is said" },
       { original: "ज्ञानम्", transliteration: "jñānam", meaning: "pure consciousness" },
@@ -7933,7 +7933,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "तमः", transliteration: "tamaḥ", meaning: "darkness" },
       { original: "इति", transliteration: "iti", meaning: "thus" },
       { original: "गुणाः", transliteration: "guṇāḥ", meaning: "senses" },
-      { original: "प्रकृतिसम्भवाः", transliteration: "prakṛti-sambhavāḥ", meaning: "material nature + production" },
+      { original: "प्रकृतिसम्भवाः", transliteration: "prakṛti-sambhavāḥ", meaning: "material nature + produced of" },
       { original: "निबध्नन्ति", transliteration: "nibadhnanti", meaning: "do bind" },
       { original: "महाबाहो", transliteration: "mahā-bāho", meaning: "O mighty-armed one" },
       { original: "देहे", transliteration: "dehe", meaning: "in the body" },
@@ -8083,24 +8083,24 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "सात्त्विकम्", transliteration: "sāttvikam", meaning: "in the mode of goodness" },
       { original: "निर्मलम्", transliteration: "nirmalam", meaning: "purified" },
       { original: "फलम्", transliteration: "phalam", meaning: "results" },
-      { original: "रजसः", transliteration: "rajasaḥ", meaning: "in the mode of passion" },
+      { original: "रजसः", transliteration: "rajasaḥ", meaning: "from the mode of passion" },
       { original: "तु", transliteration: "tu", meaning: "but" },
       { original: "फलम्", transliteration: "phalam", meaning: "results" },
       { original: "दुःखम्", transliteration: "duḥkham", meaning: "distress" },
       { original: "अज्ञानम्", transliteration: "ajñānam", meaning: "of the foolish" },
-      { original: "तमसः", transliteration: "tamasaḥ", meaning: "in the mode of ignorance" },
+      { original: "तमसः", transliteration: "tamasaḥ", meaning: "from the mode of ignorance" },
       { original: "फलम्", transliteration: "phalam", meaning: "results" }
   ]),
   verse(14, 17, 541, "Chapter 14 · The Yoga of the Division of the Three Gunas", "सत्त्वात्सञ्जायते ज्ञानं रजसो लोभ एव च । प्रमादमोहौ तमसो भवतोऽज्ञानमेव च", "sattvātsañjāyate jñānaṃ rajaso lobha eva ca | pramādamohau tamaso bhavato'jñānameva ca", "From purity is born knowledge, and from passion, greed indeed; from dullness are born negligence and delusion, and ignorance too.", [
       { original: "सत्त्वात्", transliteration: "sattvāt", meaning: "from the mode of goodness" },
       { original: "सञ्जायते", transliteration: "sañjāyate", meaning: "develops" },
       { original: "ज्ञानम्", transliteration: "jñānam", meaning: "pure consciousness" },
-      { original: "रजसः", transliteration: "rajasaḥ", meaning: "in the mode of passion" },
+      { original: "रजसः", transliteration: "rajasaḥ", meaning: "from the mode of passion" },
       { original: "लोभः", transliteration: "lobhaḥ", meaning: "greed" },
       { original: "एव", transliteration: "eva", meaning: "certainly" },
       { original: "च", transliteration: "ca", meaning: "and" },
       { original: "प्रमादमोहौ", transliteration: "pramāda-mohau", meaning: "with madness + and illusion" },
-      { original: "तमसः", transliteration: "tamasaḥ", meaning: "in the mode of ignorance" },
+      { original: "तमसः", transliteration: "tamasaḥ", meaning: "from the mode of ignorance" },
       { original: "भवतः", transliteration: "bhavataḥ", meaning: "Your" },
       { original: "अज्ञानम्", transliteration: "ajñānam", meaning: "of the foolish" },
       { original: "एव", transliteration: "eva", meaning: "certainly" },
@@ -8112,7 +8112,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "सत्त्वस्थाः", transliteration: "sattvasthāḥ", meaning: "those situated in the mode of goodness" },
       { original: "मध्ये", transliteration: "madhye", meaning: "between" },
       { original: "तिष्ठन्ति", transliteration: "tiṣṭhanti", meaning: "dwell" },
-      { original: "राजसाः", transliteration: "rājasāḥ", meaning: "in the mode of passion" },
+      { original: "राजसाः", transliteration: "rājasāḥ", meaning: "those situated in the mode of passion" },
       { original: "जघन्यगुणवृत्तिस्थाः", transliteration: "jaghanya-guṇa-vṛttisthāḥ", meaning: "of abominable + by the modes + whose occupation" },
       { original: "अधः", transliteration: "adhaḥ", meaning: "down" },
       { original: "गच्छन्ति", transliteration: "gacchanti", meaning: "they reach" },
@@ -8265,7 +8265,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "प्रसृताः", transliteration: "prasṛtāḥ", meaning: "extended" },
       { original: "तस्य", transliteration: "tasya", meaning: "his" },
       { original: "शाखाः", transliteration: "śākhāḥ", meaning: "branches" },
-      { original: "गुणप्रवृद्धाः", transliteration: "guṇa-pravṛddhāḥ", meaning: "by the modes + great" },
+      { original: "गुणप्रवृद्धाः", transliteration: "guṇa-pravṛddhāḥ", meaning: "by the modes + developed" },
       { original: "विषयप्रवालाः", transliteration: "viṣaya-pravālāḥ", meaning: "sense objects + twigs" },
       { original: "अधः", transliteration: "adhaḥ", meaning: "down" },
       { original: "च", transliteration: "ca", meaning: "and" },
@@ -8320,8 +8320,8 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
   verse(15, 5, 556, "Chapter 15 · The Yoga of the Supreme Person", "निर्मानमोहा जितसङ्गदोषा अध्यात्मनित्या विनिवृत्तकामाः । द्वन्द्वैर्विमुक्ताः सुखदुःखसंज्ञै र्गच्छन्त्यमूढाः पदमव्ययं तत्", "nirmānamohā jitasaṅgadoṣā adhyātmanityā vinivṛttakāmāḥ | dvandvairvimuktāḥ sukhaduḥkhasaṃjñai rgacchantyamūḍhāḥ padamavyayaṃ tat", "Free from pride and delusion, with the fault of attachment conquered, ever dwelling in the knowledge of the inner self, desires having turned away entirely, freed from the pairs of opposites called pleasure and pain, the undeluded go to that imperishable state.", [
       { original: "निर्मानमोहाः", transliteration: "nirmāna-mohāḥ", meaning: "free from pride + illusion" },
       { original: "जितसङ्गदोषाः", transliteration: "jitasaṅgadoṣāḥ", meaning: "who have conquered the fault of attachment" },
-      { original: "अध्यात्मनित्याः", transliteration: "adhyātma-nityāḥ", meaning: "with full knowledge of the self + eternal" },
-      { original: "विनिवृत्तकामाः", transliteration: "vinivṛtta-kāmāḥ", meaning: "disassociated + desire" },
+      { original: "अध्यात्मनित्याः", transliteration: "adhyātma-nityāḥ", meaning: "with full knowledge of the self + in eternity" },
+      { original: "विनिवृत्तकामाः", transliteration: "vinivṛtta-kāmāḥ", meaning: "disassociated + desires" },
       { original: "द्वन्द्वैः", transliteration: "dvandvaiḥ", meaning: "from the dualities" },
       { original: "विमुक्ताः", transliteration: "vimuktāḥ", meaning: "liberated" },
       { original: "सुखदुःखसंज्ञैः", transliteration: "sukha-duḥkha-saṃjñaiḥ", meaning: "happiness + and pain + named" },
@@ -8401,7 +8401,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "भुञ्जानम्", transliteration: "bhuñjānam", meaning: "enjoying" },
       { original: "वा", transliteration: "vā", meaning: "either" },
       { original: "गुणान्वितम्", transliteration: "guṇa-anvitam", meaning: "under the spell of the modes of material nature" },
-      { original: "विमूढाः", transliteration: "vimūḍhāḥ", meaning: "bewildered" },
+      { original: "विमूढाः", transliteration: "vimūḍhāḥ", meaning: "foolish persons" },
       { original: "न", transliteration: "na", meaning: "nor" },
       { original: "अनुपश्यन्ति", transliteration: "anupaśyanti", meaning: "can see" },
       { original: "पश्यन्ति", transliteration: "paśyanti", meaning: "see" },
@@ -8462,7 +8462,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "भूत्वा", transliteration: "bhūtvā", meaning: "having come into being" },
       { original: "प्राणिनाम्", transliteration: "prāṇinām", meaning: "of all living entities" },
       { original: "देहम्", transliteration: "deham", meaning: "this body" },
-      { original: "आश्रितः", transliteration: "āśritaḥ", meaning: "accepting" },
+      { original: "आश्रितः", transliteration: "āśritaḥ", meaning: "situated" },
       { original: "प्राणापानसमआयुक्तः", transliteration: "prāṇa-apāna-sama-āyuktaḥ", meaning: "of the air going outward + and the air going downward + unaltered + one who is not in KRiShNa consciousness" },
       { original: "पचामि", transliteration: "pacāmi", meaning: "I digest" },
       { original: "अन्नम्", transliteration: "annam", meaning: "foodstuff" },
@@ -8664,7 +8664,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "च", transliteration: "ca", meaning: "and" },
       { original: "निवृत्तिम्", transliteration: "nivṛttim", meaning: "not acting improperly" },
       { original: "च", transliteration: "ca", meaning: "and" },
-      { original: "जनाः", transliteration: "janāḥ", meaning: "person" },
+      { original: "जनाः", transliteration: "janāḥ", meaning: "people" },
       { original: "न", transliteration: "na", meaning: "nor" },
       { original: "विदुः", transliteration: "viduḥ", meaning: "understood" },
       { original: "आसुराः", transliteration: "āsurāḥ", meaning: "demoniac" },
@@ -8721,7 +8721,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "च", transliteration: "ca", meaning: "and" },
       { original: "प्रलयान्ताम्", transliteration: "pralayāntām", meaning: "unto the point of death" },
       { original: "उपाश्रिताः", transliteration: "upāśritāḥ", meaning: "being fully situated" },
-      { original: "कामौपभोगपरमाः", transliteration: "kāma-upabhoga-paramāḥ", meaning: "based on desire for sense gratification + enjoyment + perfect" },
+      { original: "कामौपभोगपरमाः", transliteration: "kāma-upabhoga-paramāḥ", meaning: "based on desire for sense gratification + enjoyment + the highest goal of life" },
       { original: "एतावत्", transliteration: "etāvat", meaning: "thus" },
       { original: "इति", transliteration: "iti", meaning: "thus" },
       { original: "निश्चिताः", transliteration: "niścitāḥ", meaning: "having ascertained" }
@@ -8813,7 +8813,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "च", transliteration: "ca", meaning: "and" },
       { original: "संश्रिताः", transliteration: "saṃśritāḥ", meaning: "having taken shelter of" },
       { original: "माम्", transliteration: "mām", meaning: "me" },
-      { original: "आत्मपरदेहेषु", transliteration: "ātma-para-deheṣu", meaning: "soul + superior + bodies" },
+      { original: "आत्मपरदेहेषु", transliteration: "ātma-para-deheṣu", meaning: "Your own + and in other + bodies" },
       { original: "प्रद्विषन्तः", transliteration: "pradviṣantaḥ", meaning: "blaspheming" },
       { original: "अभ्यसूयकाः", transliteration: "abhyasūyakāḥ", meaning: "envious" }
   ]),
@@ -8835,7 +8835,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "आसुरीम्", transliteration: "āsurīm", meaning: "atheistic" },
       { original: "योनिम्", transliteration: "yonim", meaning: "species" },
       { original: "आपन्नाः", transliteration: "āpannāḥ", meaning: "gaining" },
-      { original: "मूढाः", transliteration: "mūḍhāḥ", meaning: "foolish" },
+      { original: "मूढाः", transliteration: "mūḍhāḥ", meaning: "foolish men" },
       { original: "जन्मनि", transliteration: "janmani", meaning: "births" },
       { original: "जन्मनि", transliteration: "janmani", meaning: "births" },
       { original: "माम्", transliteration: "mām", meaning: "me" },
@@ -8901,7 +8901,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "ते", transliteration: "te", meaning: "to you" },
       { original: "कार्याकार्यव्यवस्थितौ", transliteration: "kārya-akārya-vyavasthitau", meaning: "of effect + and forbidden activities + put under regulations" },
       { original: "ज्ञात्वा", transliteration: "jñātvā", meaning: "knowing well" },
-      { original: "शास्त्रविधानौक्तम्", transliteration: "śāstra-vidhāna-uktam", meaning: "weapons + the regulations + said" },
+      { original: "शास्त्रविधानौक्तम्", transliteration: "śāstra-vidhāna-uktam", meaning: "of scripture + the regulations + said" },
       { original: "कर्म", transliteration: "karma", meaning: "activity" },
       { original: "कर्तुम्", transliteration: "kartum", meaning: "to perform" },
       { original: "इह", transliteration: "iha", meaning: "in this life" },
@@ -8920,7 +8920,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "का", transliteration: "kā", meaning: "what" },
       { original: "कृष्ण", transliteration: "kṛṣṇa", meaning: "O KRiShNa" },
       { original: "सत्त्वम्", transliteration: "sattvam", meaning: "the strength" },
-      { original: "आहो", transliteration: "āho", meaning: "alas" },
+      { original: "आहो", transliteration: "āho", meaning: "or else" },
       { original: "रजः", transliteration: "rajaḥ", meaning: "the mode of passion" },
       { original: "तमः", transliteration: "tamaḥ", meaning: "darkness" }
   ]),
@@ -8932,10 +8932,10 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "सा", transliteration: "sā", meaning: "that is" },
       { original: "स्वभावजा", transliteration: "svabhāvajā", meaning: "according to his mode of material nature" },
       { original: "सात्त्विकी", transliteration: "sāttvikī", meaning: "in the mode of goodness" },
-      { original: "राजसी", transliteration: "rājasī", meaning: "of the mode of passion" },
+      { original: "राजसी", transliteration: "rājasī", meaning: "in the mode of passion" },
       { original: "च", transliteration: "ca", meaning: "and" },
       { original: "एव", transliteration: "eva", meaning: "certainly" },
-      { original: "तामसी", transliteration: "tāmasī", meaning: "the mode of ignorance" },
+      { original: "तामसी", transliteration: "tāmasī", meaning: "in the mode of ignorance" },
       { original: "च", transliteration: "ca", meaning: "and" },
       { original: "इति", transliteration: "iti", meaning: "thus" },
       { original: "ताम्", transliteration: "tām", meaning: "unto Arjuna" },
@@ -8962,14 +8962,14 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "सात्त्विकाः", transliteration: "sāttvikāḥ", meaning: "in goodness" },
       { original: "देवान्", transliteration: "devān", meaning: "demigods" },
       { original: "यक्षरक्षांसि", transliteration: "yakṣa-rakṣāṃsi", meaning: "demons" },
-      { original: "राजसाः", transliteration: "rājasāḥ", meaning: "in the mode of passion" },
+      { original: "राजसाः", transliteration: "rājasāḥ", meaning: "those situated in the mode of passion" },
       { original: "प्रेतान्", transliteration: "pretān", meaning: "spirits of the dead" },
       { original: "भूतगणान्", transliteration: "bhūtagaṇān", meaning: "ghosts" },
       { original: "च", transliteration: "ca", meaning: "and" },
       { original: "अन्ये", transliteration: "anye", meaning: "others" },
       { original: "यजन्ते", transliteration: "yajante", meaning: "they worship by sacrifices" },
       { original: "तामसाः", transliteration: "tāmasāḥ", meaning: "in the mode of ignorance" },
-      { original: "जनाः", transliteration: "janāḥ", meaning: "person" }
+      { original: "जनाः", transliteration: "janāḥ", meaning: "people" }
   ]),
   verse(17, 5, 600, "Chapter 17 · The Yoga of the Threefold Faith", "अशास्त्रविहितं घोरं तप्यन्ते ये तपो जनाः । दम्भाहङ्कारसंयुक्ताः कामरागबलान्विताः", "aśāstravihitaṃ ghoraṃ tapyante ye tapo janāḥ | dambhāhaṅkārasaṃyuktāḥ kāmarāgabalānvitāḥ", "Those who practise severe austerity not enjoined by scripture, given to hypocrisy and egoism, impelled by the force of desire and attachment,", [
       { original: "अशास्त्रविहितम्", transliteration: "aśāstra-vihitam", meaning: "not in the scriptures + directed" },
@@ -8977,7 +8977,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "तप्यन्ते", transliteration: "tapyante", meaning: "undergo" },
       { original: "ये", transliteration: "ye", meaning: "who" },
       { original: "तपः", transliteration: "tapaḥ", meaning: "penance" },
-      { original: "जनाः", transliteration: "janāḥ", meaning: "person" },
+      { original: "जनाः", transliteration: "janāḥ", meaning: "people" },
       { original: "दम्भाहंकारसंयुक्ताः", transliteration: "dambha-ahaṃkāra-saṃyuktāḥ", meaning: "of pride + and egoism + engaged" },
       { original: "कामरागबलान्विताः", transliteration: "kāma-rāga-bala-anvitāḥ", meaning: "based on desire for sense gratification + attachment + by the force + absorbed" }
   ]),
@@ -9015,10 +9015,10 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "आयुःसत्त्वबलआरोग्यसुखप्रीतिविवर्धनाः", transliteration: "āyuḥ-sattva-bala-ārogya-sukha-prīti-vivardhanāḥ", meaning: "duration of life + existence + by the force + health + happiness + and satisfaction + increasing" },
       { original: "रस्याः", transliteration: "rasyāḥ", meaning: "juicy" },
       { original: "स्निग्धाः", transliteration: "snigdhāḥ", meaning: "fatty" },
-      { original: "स्थिराः", transliteration: "sthirāḥ", meaning: "still" },
+      { original: "स्थिराः", transliteration: "sthirāḥ", meaning: "enduring" },
       { original: "हृद्याः", transliteration: "hṛdyāḥ", meaning: "pleasing to the heart" },
       { original: "आहाराः", transliteration: "āhārāḥ", meaning: "eating" },
-      { original: "सात्त्विकप्रियाः", transliteration: "sāttvika-priyāḥ", meaning: "to one in goodness + very dear" }
+      { original: "सात्त्विकप्रियाः", transliteration: "sāttvika-priyāḥ", meaning: "to one in goodness + palatable" }
   ]),
   verse(17, 9, 604, "Chapter 17 · The Yoga of the Threefold Faith", "कट्वम्ललवणात्युष्णतीक्ष्णरूक्षविदाहिनः । आहारा राजसस्येष्टा दुःखशोकामयप्रदाः", "kaṭvamlalavaṇātyuṣṇatīkṣṇarūkṣavidāhinaḥ | āhārā rājasasyeṣṭā duḥkhaśokāmayapradāḥ", "Foods that are bitter, sour, salty, excessively hot, sharp, dry, and burning are desired by the passionate, and bring about pain, grief, and disease.", [
       { original: "कट्वम्ललवणातिउष्णतीक्ष्णरूक्षविदाहिनः", transliteration: "kaṭvamla-lavaṇa-ati-uṣṇa-tīkṣṇa-rūkṣa-vidāhinaḥ", meaning: "pungent, sour, salty, excessively hot, sharp, dry, and burning" },
@@ -9053,7 +9053,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "मनः", transliteration: "manaḥ", meaning: "mind" },
       { original: "समाधाय", transliteration: "samādhāya", meaning: "fixing" },
       { original: "सः", transliteration: "saḥ", meaning: "that" },
-      { original: "सात्त्विकः", transliteration: "sāttvikaḥ", meaning: "in goodness" }
+      { original: "सात्त्विकः", transliteration: "sāttvikaḥ", meaning: "in the mode of goodness" }
   ]),
   verse(17, 12, 607, "Chapter 17 · The Yoga of the Threefold Faith", "अभिसन्धाय तु फलं दम्भार्थमपि चैव यत् । इज्यते भरतश्रेष्ठ तं यज्ञं विद्धि राजसम्", "abhisandhāya tu phalaṃ dambhārthamapi caiva yat | ijyate bharataśreṣṭha taṃ yajñaṃ viddhi rājasam", "But know that sacrifice which is offered looking to its fruit, and also for the sake of ostentation, best of the Bharatas, to be of the nature of passion.", [
       { original: "अभिसन्धाय", transliteration: "abhisandhāya", meaning: "desiring" },
@@ -9215,7 +9215,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "ब्रह्मणः", transliteration: "brahmaṇaḥ", meaning: "of the Vedas" },
       { original: "त्रिविधः", transliteration: "trividhaḥ", meaning: "of three kinds" },
       { original: "स्मृतः", transliteration: "smṛtaḥ", meaning: "is considered" },
-      { original: "ब्राह्मणाः", transliteration: "brāhmaṇāḥ", meaning: "of the Vedas" },
+      { original: "ब्राह्मणाः", transliteration: "brāhmaṇāḥ", meaning: "brahmanas" },
       { original: "तेन", transliteration: "tena", meaning: "by that lust" },
       { original: "वेदाः", transliteration: "vedāḥ", meaning: "Vedic literatures" },
       { original: "च", transliteration: "ca", meaning: "and" },
@@ -9231,7 +9231,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "उदाहृत्य", transliteration: "udāhṛtya", meaning: "indicating" },
       { original: "यज्ञदानतपःक्रियाः", transliteration: "yajña-dāna-tapaḥ-kriyāḥ", meaning: "of sacrifices + charity + penance + performances" },
       { original: "प्रवर्तन्ते", transliteration: "pravartante", meaning: "they flourish" },
-      { original: "विधानौक्ताः", transliteration: "vidhāna-uktāḥ", meaning: "the regulations + addressed" },
+      { original: "विधानौक्ताः", transliteration: "vidhāna-uktāḥ", meaning: "the regulations + are said" },
       { original: "सततम्", transliteration: "satatam", meaning: "constantly" },
       { original: "ब्रह्मवादिनाम्", transliteration: "brahma-vādinām", meaning: "of the transcendentalists" }
   ]),
@@ -9432,7 +9432,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "एव", transliteration: "eva", meaning: "certainly" },
       { original: "सः", transliteration: "saḥ", meaning: "that" },
       { original: "त्यागः", transliteration: "tyāgaḥ", meaning: "renunciation" },
-      { original: "सात्त्विकः", transliteration: "sāttvikaḥ", meaning: "in goodness" },
+      { original: "सात्त्विकः", transliteration: "sāttvikaḥ", meaning: "in the mode of goodness" },
       { original: "मतः", transliteration: "mataḥ", meaning: "is considered" }
   ]),
   verse(18, 10, 633, "Chapter 18 · The Yoga of Liberation through Renunciation", "न द्वेष्ट्यकुशलं कर्म कुशले नानुषज्जते । त्यागी सत्त्वसमाविष्टो मेधावी छिन्नसंशयः", "na dveṣṭyakuśalaṃ karma kuśale nānuṣajjate | tyāgī sattvasamāviṣṭo medhāvī chinnasaṃśayaḥ", "The wise relinquisher, whose doubt is cut away, endowed with purity, does not hate unpleasant action, nor is attached to pleasant action.", [
@@ -9487,7 +9487,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "कारणानि", transliteration: "kāraṇāni", meaning: "causes" },
       { original: "निबोध", transliteration: "nibodha", meaning: "just take note of, be informed" },
       { original: "मे", transliteration: "me", meaning: "my" },
-      { original: "साङ्ख्ये", transliteration: "sāṅkhye", meaning: "in the battlefield" },
+      { original: "साङ्ख्ये", transliteration: "sāṅkhye", meaning: "by analytical study" },
       { original: "कृतान्ते", transliteration: "kṛta-ante", meaning: "in the conclusion" },
       { original: "प्रोक्तानि", transliteration: "proktāni", meaning: "said" },
       { original: "सिद्धये", transliteration: "siddhaye", meaning: "for perfection" },
@@ -9682,7 +9682,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "सिद्धिअसिद्ध्योः", transliteration: "siddhi-asiddhyoḥ", meaning: "in perfection + and failure" },
       { original: "निर्विकारः", transliteration: "nirvikāraḥ", meaning: "without change" },
       { original: "कर्ता", transliteration: "kartā", meaning: "creator" },
-      { original: "सात्त्विकः", transliteration: "sāttvikaḥ", meaning: "in goodness" },
+      { original: "सात्त्विकः", transliteration: "sāttvikaḥ", meaning: "in the mode of goodness" },
       { original: "उच्यते", transliteration: "ucyate", meaning: "is said" }
   ]),
   verse(18, 27, 650, "Chapter 18 · The Yoga of Liberation through Renunciation", "रागी कर्मफलप्रेप्सुर्लुब्धो हिंसात्मकोऽशुचिः । हर्षशोकान्वितः कर्ता राजसः परिकीर्तितः", "rāgī karmaphalaprepsurlubdho hiṃsātmako'śuciḥ | harṣaśokānvitaḥ kartā rājasaḥ parikīrtitaḥ", "An agent who is passionate, who seeks the fruit of actions, who is greedy, of harmful intent, impure, and moved by joy and sorrow, is declared to be of the nature of passion.", [
@@ -9756,7 +9756,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "बुद्धिः", transliteration: "buddhiḥ", meaning: "intelligence" },
       { original: "सा", transliteration: "sā", meaning: "that is" },
       { original: "पार्थ", transliteration: "pārtha", meaning: "O son of Pritha" },
-      { original: "राजसी", transliteration: "rājasī", meaning: "of the mode of passion" }
+      { original: "राजसी", transliteration: "rājasī", meaning: "in the mode of passion" }
   ]),
   verse(18, 32, 655, "Chapter 18 · The Yoga of Liberation through Renunciation", "अधर्मं धर्ममिति या मन्यते तमसावृता । सर्वार्थान्विपरीतांश्च बुद्धिः सा पार्थ तामसी", "adharmaṃ dharmamiti yā manyate tamasāvṛtā | sarvārthānviparītāṃśca buddhiḥ sā pārtha tāmasī", "That which, enveloped in darkness, imagines wrong to be right, and views all things in a perverted way, is of the nature of dullness, son of Pritha.", [
       { original: "अधर्मम्", transliteration: "adharmam", meaning: "irreligion" },
@@ -9772,7 +9772,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "बुद्धिः", transliteration: "buddhiḥ", meaning: "intelligence" },
       { original: "सा", transliteration: "sā", meaning: "that is" },
       { original: "पार्थ", transliteration: "pārtha", meaning: "O son of Pritha" },
-      { original: "तामसी", transliteration: "tāmasī", meaning: "the mode of ignorance" }
+      { original: "तामसी", transliteration: "tāmasī", meaning: "in the mode of ignorance" }
   ]),
   verse(18, 33, 656, "Chapter 18 · The Yoga of Liberation through Renunciation", "धृत्या यया धारयते मनःप्राणेन्द्रियक्रियाः । योगेनाव्यभिचारिण्या धृतिः सा पार्थ सात्त्विकी", "dhṛtyā yayā dhārayate manaḥprāṇendriyakriyāḥ | yogenāvyabhicāriṇyā dhṛtiḥ sā pārtha sāttvikī", "That unwavering steadfastness by which one controls the functions of mind, life-breath, and senses through unswerving discipline is of the nature of purity, son of Pritha.", [
       { original: "धृत्या", transliteration: "dhṛtyā", meaning: "determination" },
@@ -9798,7 +9798,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "धृतिः", transliteration: "dhṛtiḥ", meaning: "firmness" },
       { original: "सा", transliteration: "sā", meaning: "that is" },
       { original: "पार्थ", transliteration: "pārtha", meaning: "O son of Pritha" },
-      { original: "राजसी", transliteration: "rājasī", meaning: "of the mode of passion" }
+      { original: "राजसी", transliteration: "rājasī", meaning: "in the mode of passion" }
   ]),
   verse(18, 35, 658, "Chapter 18 · The Yoga of Liberation through Renunciation", "यया स्वप्नं भयं शोकं विषादं मदमेव च । न विमुञ्चति दुर्मेधा धृतिः सा पार्थ तामसी", "yayā svapnaṃ bhayaṃ śokaṃ viṣādaṃ madameva ca | na vimuñcati durmedhā dhṛtiḥ sā pārtha tāmasī", "That by which a foolish person does not give up sleep, fear, grief, despondency, and also arrogance, is of the nature of dullness, son of Pritha.", [
       { original: "यया", transliteration: "yayā", meaning: "by which" },
@@ -9815,7 +9815,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "धृतिः", transliteration: "dhṛtiḥ", meaning: "firmness" },
       { original: "सा", transliteration: "sā", meaning: "that is" },
       { original: "पार्थ", transliteration: "pārtha", meaning: "O son of Pritha" },
-      { original: "तामसी", transliteration: "tāmasī", meaning: "the mode of ignorance" }
+      { original: "तामसी", transliteration: "tāmasī", meaning: "in the mode of ignorance" }
   ]),
   verse(18, 36, 659, "Chapter 18 · The Yoga of Liberation through Renunciation", "सुखं त्विदानीं त्रिविधं शृणु मे भरतर्षभ । अभ्यासाद्रमते यत्र दुःखान्तं च निगच्छति", "sukhaṃ tvidānīṃ trividhaṃ śṛṇu me bharatarṣabha | abhyāsādramate yatra duḥkhāntaṃ ca nigacchati", "Now hear from Me, best of the Bharatas, of the threefold happiness in which one delights through practice, and in which one reaches the end of sorrow.", [
       { original: "सुखम्", transliteration: "sukham", meaning: "and happiness" },
@@ -9827,7 +9827,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "भरतर्षभ", transliteration: "bharatarṣabha", meaning: "O chief amongst the descendants of Bharata" },
       { original: "अभ्यासात्", transliteration: "abhyāsāt", meaning: "than practice" },
       { original: "रमते", transliteration: "ramate", meaning: "takes delight" },
-      { original: "यत्र", transliteration: "yatra", meaning: "maintenance" },
+      { original: "यत्र", transliteration: "yatra", meaning: "at which" },
       { original: "दुःखान्तम्", transliteration: "duḥkhāntam", meaning: "the end of sorrow" },
       { original: "च", transliteration: "ca", meaning: "and" },
       { original: "निगच्छति", transliteration: "nigacchati", meaning: "attains" }
@@ -9844,7 +9844,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "सुखम्", transliteration: "sukham", meaning: "and happiness" },
       { original: "सात्त्विकम्", transliteration: "sāttvikam", meaning: "in the mode of goodness" },
       { original: "प्रोक्तम्", transliteration: "proktam", meaning: "is called" },
-      { original: "आत्मबुद्धिप्रसादजम्", transliteration: "ātma-buddhi-prasādajam", meaning: "soul + by intelligence + born of the satisfaction" }
+      { original: "आत्मबुद्धिप्रसादजम्", transliteration: "ātma-buddhi-prasādajam", meaning: "Your own + by intelligence + born of the satisfaction" }
   ]),
   verse(18, 38, 661, "Chapter 18 · The Yoga of Liberation through Renunciation", "विषयेन्द्रियसंयोगाद्यत्तदग्रेऽमृतोपमम् । परिणामे विषमिव तत्सुखं राजसं स्मृतम्", "viṣayendriyasaṃyogādyattadagre'mṛtopamam | pariṇāme viṣamiva tatsukhaṃ rājasaṃ smṛtam", "That happiness which arises from the contact of the senses with their objects, like nectar at first but like poison in the end, is declared to be of the nature of passion.", [
       { original: "विषयैन्द्रियसंयोगात्", transliteration: "viṣaya-indriya-saṃyogāt", meaning: "sense objects + of the sense organs + by the union between" },
@@ -9894,7 +9894,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "गुणैः", transliteration: "guṇaiḥ", meaning: "by the qualities" }
   ]),
   verse(18, 41, 664, "Chapter 18 · The Yoga of Liberation through Renunciation", "ब्राह्मणक्षत्रियविशां शूद्राणां च परन्तप । कर्माणि प्रविभक्तानि स्वभावप्रभवैर्गुणैः", "brāhmaṇakṣatriyaviśāṃ śūdrāṇāṃ ca parantapa | karmāṇi pravibhaktāni svabhāvaprabhavairguṇaiḥ", "The actions of brahmins, kshatriyas, vaishyas, and shudras, scorcher of foes, are distinguished according to the gunas born of their own nature.", [
-      { original: "ब्राह्मणक्षत्रियविशाम्", transliteration: "brāhmaṇa-kṣatriya-viśām", meaning: "by the spirit soul + the ksatriyas + and the vaisyas" },
+      { original: "ब्राह्मणक्षत्रियविशाम्", transliteration: "brāhmaṇa-kṣatriya-viśām", meaning: "of the brahmanas + the ksatriyas + and the vaisyas" },
       { original: "शूद्राणाम्", transliteration: "śūdrāṇām", meaning: "of the shudras" },
       { original: "च", transliteration: "ca", meaning: "and" },
       { original: "परन्तप", transliteration: "parantapa", meaning: "O chastiser of the enemies" },
@@ -9982,7 +9982,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "स्वनुष्ठितात्", transliteration: "svanuṣṭhitāt", meaning: "perfectly done" },
       { original: "स्वभावनियतम्", transliteration: "svabhāva-niyatam", meaning: "prescribed according to one's nature" },
       { original: "कर्म", transliteration: "karma", meaning: "activity" },
-      { original: "कुर्वन्", transliteration: "kurvan", meaning: "doing" },
+      { original: "कुर्वन्", transliteration: "kurvan", meaning: "doing anything" },
       { original: "न", transliteration: "na", meaning: "nor" },
       { original: "आप्नोति", transliteration: "āpnoti", meaning: "achieves" },
       { original: "किल्बिषम्", transliteration: "kilbiṣam", meaning: "sinful reactions" }
@@ -10001,7 +10001,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "धूमेन", transliteration: "dhūmena", meaning: "by smoke" },
       { original: "अग्निः", transliteration: "agniḥ", meaning: "fire" },
       { original: "इव", transliteration: "iva", meaning: "as" },
-      { original: "आवृताः", transliteration: "āvṛtāḥ", meaning: "is covered" }
+      { original: "आवृताः", transliteration: "āvṛtāḥ", meaning: "covered" }
   ]),
   verse(18, 49, 672, "Chapter 18 · The Yoga of Liberation through Renunciation", "असक्तबुद्धिः सर्वत्र जितात्मा विगतस्पृहः । नैष्कर्म्यसिद्धिं परमां संन्यासेनाधिगच्छति", "asaktabuddhiḥ sarvatra jitātmā vigataspṛhaḥ | naiṣkarmyasiddhiṃ paramāṃ saṃnyāsenādhigacchati", "One whose understanding is unattached everywhere, whose self is conquered, from whom desire has departed, attains through relinquishment the supreme state of freedom from action.", [
       { original: "असक्तबुद्धिः", transliteration: "asakta-buddhiḥ", meaning: "having unattached intelligence" },
@@ -10364,7 +10364,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "प्रसादात्", transliteration: "prasādāt", meaning: "by the grace" },
       { original: "मया", transliteration: "mayā", meaning: "by me" },
       { original: "अच्युत", transliteration: "acyuta", meaning: "O infallible one" },
-      { original: "स्थितः", transliteration: "sthitaḥ", meaning: "are situated" },
+      { original: "स्थितः", transliteration: "sthitaḥ", meaning: "being situated" },
       { original: "अस्मि", transliteration: "asmi", meaning: "I am" },
       { original: "गतसन्देहः", transliteration: "gata-sandehaḥ", meaning: "lost + all doubts" },
       { original: "करिष्ये", transliteration: "kariṣye", meaning: "I shall execute" },
@@ -10430,10 +10430,10 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "पुनः", transliteration: "punaḥ", meaning: "again" }
   ]),
   verse(18, 78, 701, "Chapter 18 · The Yoga of Liberation through Renunciation", "यत्र योगेश्वरः कृष्णो यत्र पार्थो धनुर्धरः । तत्र श्रीर्विजयो भूतिर्ध्रुवा नीतिर्मतिर्मम", "yatra yogeśvaraḥ kṛṣṇo yatra pārtho dhanurdharaḥ | tatra śrīrvijayo bhūtirdhruvā nītirmatirmama", "Wherever there is Krishna, the lord of yoga, and wherever there is Arjuna, the wielder of the bow, there, I am certain, are prosperity, victory, welfare, and steadfast justice.", [
-      { original: "यत्र", transliteration: "yatra", meaning: "maintenance" },
+      { original: "यत्र", transliteration: "yatra", meaning: "at which" },
       { original: "योगेश्वरः", transliteration: "yogeśvaraḥ", meaning: "the master of mysticism" },
-      { original: "कृष्णः", transliteration: "kṛṣṇaḥ", meaning: "the fortnight of the dark moon" },
-      { original: "यत्र", transliteration: "yatra", meaning: "maintenance" },
+      { original: "कृष्णः", transliteration: "kṛṣṇaḥ", meaning: "Lord Krishna" },
+      { original: "यत्र", transliteration: "yatra", meaning: "at which" },
       { original: "पार्थः", transliteration: "pārthaḥ", meaning: "Arjuna" },
       { original: "धनुर्धरः", transliteration: "dhanurdharaḥ", meaning: "the carrier of the bow and arrow" },
       { original: "तत्र", transliteration: "tatra", meaning: "there" },
