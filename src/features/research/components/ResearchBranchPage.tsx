@@ -9,10 +9,17 @@ import { CollaborationInvite } from "./CollaborationInvite";
 import { ResearchBranchNav } from "./ResearchBranchNav";
 
 /**
- * The four questions per InquiryPrelude list that can't be derived from a single
- * branch field (shortTitle / centralQuestion) are hand-grounded here in each
- * branch's actual evidenceNote, methodNote, mechanism and contributions, so the
- * prelude reads differently branch to branch instead of repeating one template.
+ * Three of the four questions in each InquiryPrelude list are hand-grounded here
+ * in that branch's actual evidenceNote, methodNote, mechanism and contributions,
+ * so the prelude reads differently branch to branch instead of repeating one
+ * template. The remaining (first) question in each list is already derived
+ * directly from branch.shortTitle / branch.centralQuestion below and doesn't
+ * need an entry here.
+ *
+ * Every slug in researchBranches must have a matching entry below — if a new
+ * branch is ever added without one, renderInquiryCopy() falls back to a
+ * clearly-generic set rather than crashing, but that fallback is a safety net,
+ * not a substitute for writing the branch-specific version.
  */
 const branchInquiryCopy: Record<
   string,
@@ -83,8 +90,29 @@ const branchInquiryCopy: Record<
   },
 };
 
+/**
+ * Only reached if a branch is missing from branchInquiryCopy above — every
+ * current branch has its own entry. Kept honestly generic rather than
+ * pretending to be branch-specific, so a missing entry degrades gracefully
+ * instead of crashing on `undefined.socraticSecond`.
+ */
+const fallbackInquiryCopy = {
+  socraticSecond:
+    "Whose evidence would most change this branch's conclusions: a founder's own account, a comparison group, or a replication in a different setting?",
+  socraticThird:
+    "Which of this branch's claims rest on a single study design, and what would a different method have to show to leave the claim standing?",
+  socraticFourth:
+    "If a finding here turned out to apply only to the specific context it was studied in, what would still be worth knowing?",
+  firstPrinciplesSecond:
+    "Which of the listed contributions are established by the evidence on this page, and which are propositions still awaiting a study?",
+  firstPrinciplesThird:
+    "What is this mechanism's smallest testable step, and what result would falsify it?",
+  firstPrinciplesFourth:
+    "Who is best positioned to supply the evidence this branch is still missing?",
+};
+
 export function ResearchBranchPage({ branch }: { branch: ResearchBranch }) {
-  const inquiryCopy = branchInquiryCopy[branch.slug];
+  const inquiryCopy = branchInquiryCopy[branch.slug] ?? fallbackInquiryCopy;
   return (
     <main id="main-content" tabIndex={-1}>
       <header className="relative overflow-hidden pt-10 pb-12 sm:pt-16 sm:pb-16">
