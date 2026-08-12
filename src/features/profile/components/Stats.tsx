@@ -4,7 +4,7 @@ import { stats } from "@/features/profile/data/stats";
 export function Stats() {
   return (
     <section className="mb-20">
-      <Container>
+      <Container className="max-w-6xl">
         <div className="glass-card grid grid-cols-2 gap-6 p-8 text-center md:grid-cols-5 md:p-10 md:text-left">
           {stats.map((stat) => (
             <div key={stat.label}>
