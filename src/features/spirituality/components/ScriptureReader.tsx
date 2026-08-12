@@ -3,6 +3,7 @@
 import type { FormEvent } from "react";
 import { useEffect, useId, useMemo, useState } from "react";
 
+import { CopyIcon, SearchIcon } from "@/components/icons/LineIcons";
 import type { ReaderEntry, ScriptureSlug } from "@/features/spirituality/types";
 
 type ReadingLayer = "word" | "line";
@@ -239,17 +240,10 @@ export function ScriptureReader({
               Search the reader
             </label>
             <div className="relative">
-              <svg
+              <SearchIcon
                 aria-hidden="true"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
                 className="text-ink-400 pointer-events-none absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2"
-              >
-                <circle cx="11" cy="11" r="7" />
-                <path d="m20 20-3.4-3.4" />
-              </svg>
+              />
               <input
                 id={searchId}
                 type="search"
@@ -420,17 +414,7 @@ export function ScriptureReader({
                   onClick={() => copyEntry(entry)}
                   className="text-ink-500 hover:text-brand-700 focus-visible:ring-brand-500 inline-flex min-h-11 items-center gap-1.5 rounded-lg px-2 text-xs font-semibold transition focus-visible:ring-2 focus-visible:outline-none dark:hover:text-blue-300"
                 >
-                  <svg
-                    aria-hidden="true"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    className="h-3.5 w-3.5"
-                  >
-                    <rect x="9" y="9" width="11" height="11" rx="2" />
-                    <path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3" />
-                  </svg>
+                  <CopyIcon aria-hidden="true" className="h-3.5 w-3.5" />
                   {copiedId === entry.id ? "Copied" : "Copy study note"}
                 </button>
               </div>

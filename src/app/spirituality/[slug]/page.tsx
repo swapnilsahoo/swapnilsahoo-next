@@ -292,15 +292,6 @@ export default async function ScripturePage({ params }: PageProps) {
               className="absolute -bottom-40 -left-24 -z-10 h-96 w-96 rounded-full bg-white/8 blur-3xl"
               aria-hidden="true"
             />
-            <div
-              className="pointer-events-none absolute inset-0 -z-10 opacity-[0.07]"
-              aria-hidden="true"
-              style={{
-                backgroundImage:
-                  "radial-gradient(circle at center, currentColor 1px, transparent 1px)",
-                backgroundSize: "22px 22px",
-              }}
-            />
 
             <div className="grid items-end gap-10 lg:grid-cols-[1fr_0.34fr]">
               <div>
@@ -440,15 +431,6 @@ export default async function ScripturePage({ params }: PageProps) {
         aria-labelledby="attribution-title"
         className="relative overflow-hidden bg-slate-950 py-16 text-white sm:py-24"
       >
-        <div
-          className="absolute inset-0 opacity-[0.08]"
-          aria-hidden="true"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.2) 1px, transparent 1px)",
-            backgroundSize: "42px 42px",
-          }}
-        />
         <Container className="relative max-w-6xl">
           <div className="max-w-3xl">
             <p className="font-mono text-[10px] tracking-[0.16em] text-amber-300 uppercase">

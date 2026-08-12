@@ -298,13 +298,16 @@ export default function SpiritualityPage() {
         </Container>
       </section>
 
-      <section className="pb-16 sm:pb-24">
+      <section aria-labelledby="companion-title" className="pb-16 sm:pb-24">
         <Container className="max-w-6xl">
           <div className="relative overflow-hidden rounded-[26px] bg-gradient-to-br from-[#220b09] to-[#7c2d12] p-7 text-white shadow-xl shadow-amber-950/15 sm:p-10">
             <div className="grid gap-8 lg:grid-cols-2">
               <div>
                 <CompassIcon className="h-7 w-7 text-amber-300" aria-hidden="true" />
-                <h2 className="mt-5 font-serif text-4xl font-semibold">
+                <p className="mt-5 mb-3 font-mono text-[10px] tracking-[0.16em] text-amber-200 uppercase">
+                  03 / Study companion
+                </p>
+                <h2 id="companion-title" className="font-serif text-4xl font-semibold">
                   A study companion—not a substitute for lineage.
                 </h2>
               </div>
@@ -331,7 +334,7 @@ export default function SpiritualityPage() {
                 className="text-accent-600 dark:text-accent-400 h-7 w-7"
                 aria-hidden="true"
               />
-              <p className="eyebrow mt-5 mb-3">03 / Textual care</p>
+              <p className="eyebrow mt-5 mb-3">04 / Textual care</p>
               <h2 id="sources-title" className="display text-4xl font-semibold">
                 Sources and editorial note.
               </h2>
