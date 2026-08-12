@@ -38,6 +38,60 @@ export const galleryImages: GalleryImage[] = [
     objectPosition: "center",
   },
   {
+    src: "/images/gallery/aom-2026-proceedings-abstract.jpg",
+    alt: "Academy of Management Proceedings abstract page for 'Entrepreneurship Under Constraint: How Bricolage Transitions into Effectuation in Family Businesses'",
+    caption: "Published in AOM Proceedings · AOM 2026",
+    description:
+      "“Entrepreneurship Under Constraint: How Bricolage Transitions into Effectuation in Family Businesses,” with Munish Thakur, published online 17 Jul 2026.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
+  {
+    src: "/images/gallery/aom-2026-conference-badge.jpg",
+    alt: "Swapnil Sahoo's AOM 2026 conference badge, Great Lakes Institute of Management, Gurgaon",
+    caption: "Conference badge · 86th AOM Annual Meeting",
+    description:
+      "Presenting on firms that begin with almost nothing, and how the improvising slowly hands over to something more deliberate as relationships and standing build up. Tuesday, 4 August, Philadelphia Marriott Downtown, Franklin 8.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
+  {
+    src: "/images/gallery/great-lakes-gurgaon-tree-plantation.jpg",
+    alt: "Dr. Sudhakar and Dr. Raj planting a tree on the Great Lakes Gurgaon campus",
+    caption: "Tree plantation · Great Lakes Gurgaon campus",
+    description:
+      "Dr. Sudhakar and Dr. Raj planting a sacred ginkgo tree from Japan and a citrus fruit tree on campus.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
+  {
+    src: "/images/gallery/csr-times-sustainability-and-strategy-jun-2026.jpg",
+    alt: "CSR Times magazine spread of 'Sustainability and Strategy: Why Responsible Growth Is Now a Business Imperative' by Dr. Swapnil Sahoo",
+    caption: "Published in CSR Times · June 2026",
+    description:
+      "An essay on AI's sustainability paradox: it can cut waste and sharpen ESG reporting, even as its own energy footprint raises real questions about responsible digital transformation.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
+  {
+    src: "/images/gallery/karma-yoga-salinga-mehalchauri-bag-reuse.jpg",
+    alt: "Residents of Salinga and Mehalchauri holding saplings and repurposed cloth carry bags",
+    caption: "Reuse over plastic · Salinga & Mehalchauri",
+    description:
+      "Used hostel bedsheets repurposed into durable carry bags and distributed to residents of Salinga and Mehalchauri alongside saplings—cutting textile waste while replacing single-use plastic.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
+  {
+    src: "/images/gallery/karma-yoga-repurposed-bedsheet-bags.jpg",
+    alt: "Repurposed cloth carry bags printed with an anti-plastic message, laid out ready for distribution in Mehalchauri",
+    caption: "Ready for distribution · Salinga & Mehalchauri",
+    description:
+      "The finished bags, each printed with the message “those who love the earth refuse plastic,” before handover to village residents.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
+  {
     src: "/images/gallery/aacsb-societal-impact-visit.jpeg",
     alt: "Swapnil Sahoo with Dr. Raju Balakrishnan and Great Lakes colleagues during the AACSB peer review visit",
     caption: "AACSB peer review visit · Societal impact in dialogue",
