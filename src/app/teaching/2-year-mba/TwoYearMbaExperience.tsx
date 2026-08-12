@@ -30,13 +30,13 @@ const responsibleAiPost = linkedInHighlights[0];
 
 const strategicManagementInquiry = {
   socraticQuestions: [
-    "Does a framework predict what a firm should do, or merely give us a tidy label after the outcome—and what evidence could tell the difference?",
+    "When a founder sends back a low relevance rating, has the framework failed, or is the team defending a recommendation it should have abandoned—and what evidence would tell those two apart?",
     "Can a recommendation still be called coherent if marketing, operations, finance or people must absorb contradictions that the strategy slide leaves unresolved?",
     "How should a decision change when competitors, regulators, employees and customers can respond rather than remain fixed assumptions in the analysis?",
     "When growth looks attractive, which cash demands, capability gaps, implementation owners and stakeholder consequences might reverse the recommendation?",
   ],
   firstPrinciplesQuestions: [
-    "What causal chain connects a change in the environment to a managerial choice, a configuration of activities and an outcome the firm can observe?",
+    "The field project sends recommendations back to the founder or CXO and asks for a 1–10 relevance rating—what causal claim is the team actually making, and would a low rating falsify the analysis or just reflect a founder who prefers the status quo?",
     "Which constraint currently limits value creation or capture, and would the proposed action remove that constraint or simply move it elsewhere?",
     "What must be different relative to rivals for advantage to exist, and what would make that difference valuable, difficult to copy and durable enough to matter?",
     "Who must do what differently for the strategy to become action, which leading signals will reveal progress and what evidence should trigger correction?",
@@ -641,9 +641,7 @@ export function TwoYearMbaExperience() {
 
       <section aria-labelledby="question-bank-title" className="pb-20 sm:pb-28">
         <Container className="max-w-6xl">
-          <div
-            className={`${styles.questionGrid} glass-card overflow-hidden border-emerald-900/10 dark:border-emerald-200/10`}
-          >
+          <div className="glass-card overflow-hidden border-emerald-900/10 dark:border-emerald-200/10">
             <div className="grid gap-8 p-7 sm:p-10 lg:grid-cols-[0.38fr_0.62fr]">
               <div>
                 <p className="eyebrow">06 / Interview question bank</p>

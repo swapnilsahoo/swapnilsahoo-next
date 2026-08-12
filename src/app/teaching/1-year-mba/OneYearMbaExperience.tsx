@@ -22,14 +22,14 @@ const mbaClassroomPost = linkedInHighlights[1];
 const executiveStrategyInquiry = {
   socraticQuestions: [
     "When an experienced manager says, “This worked before,” which conditions made it work—and what evidence would show that those conditions no longer hold?",
-    "If a firm is outperforming, how would we distinguish the effects of industry position, distinctive resources, execution, timing and luck?",
-    "Whose value is created by a strategic choice, whose costs remain outside the calculation and how might those stakeholders alter the outcome?",
+    "This course gives each idea exactly one case, one quiz and one founder conversation before the next module begins—what would have to be true for that single pass to be enough evidence to change an experienced manager’s standing view?",
+    "When an executive cohort gets only one session per concept, whose cost quietly gets assumed away because no one in the room bears it—and would a second pass even surface it?",
     "When leaders claim synergy from owning more of the value chain, what mechanism must outweigh coordination cost, lost flexibility and managerial attention?",
   ],
   firstPrinciplesQuestions: [
     "Who is choosing the offering, what do they value enough to pay or participate, and where does the firm capture part of that value?",
     "Which minimum set of activities and capabilities must reinforce one another for the chosen position to be credible rather than aspirational?",
-    "What is the binding constraint—capital, time, information, talent, legitimacy or attention—and what opportunity cost follows from committing it here?",
+    "This programme’s own binding constraint is thirteen sessions, not capital or talent—so what depth gets traded for coverage when the audience already brings functional depth, and which modules can least afford that trade?",
     "Under what conditions should the firm build, buy, ally, outsource or exit, and which evidence would trigger a change in that boundary?",
   ],
 } as const;

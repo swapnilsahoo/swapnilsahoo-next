@@ -76,10 +76,6 @@
   background: linear-gradient(90deg, transparent, rgb(110 231 183 / 0.55), transparent);
 }
 
-.questionGrid {
-  background-image: none;
-}
-
 :global(.dark) .assessmentRing {
   box-shadow: 0 0 0 1px rgb(226 232 240 / 0.14);
 }
@@ -87,10 +83,6 @@
 :global(.dark) .assessmentRing::after {
   background: #081426;
   box-shadow: inset 0 0 0 1px rgb(226 232 240 / 0.12);
-}
-
-:global(.dark) .questionGrid {
-  background-image: none;
 }
 
 @media (max-width: 767px) {
