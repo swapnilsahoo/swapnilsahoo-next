@@ -131,4 +131,13 @@ export const galleryImages: GalleryImage[] = [
       "A student team marks its achievement together on campus. Event media shared by the Great Lakes Gurgaon programme team; photographer not identified.",
     objectPosition: "center 46%",
   },
+  {
+    src: "/images/gallery/ai-mini-hackathon-jury-panel-2026.jpg",
+    alt: "Jury panel and audience during the AI Mini Hackathon 2026 finals at Great Lakes Gurgaon",
+    caption: "Jury panel · AI Mini Hackathon 2026",
+    description:
+      "Judges review pitches and prepare to award the trophies at the close of the finals.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
 ];
