@@ -8,7 +8,83 @@ import type { ResearchBranch } from "@/features/research/types";
 import { CollaborationInvite } from "./CollaborationInvite";
 import { ResearchBranchNav } from "./ResearchBranchNav";
 
+/**
+ * The four questions per InquiryPrelude list that can't be derived from a single
+ * branch field (shortTitle / centralQuestion) are hand-grounded here in each
+ * branch's actual evidenceNote, methodNote, mechanism and contributions, so the
+ * prelude reads differently branch to branch instead of repeating one template.
+ */
+const branchInquiryCopy: Record<
+  string,
+  {
+    socraticSecond: string;
+    socraticThird: string;
+    socraticFourth: string;
+    firstPrinciplesSecond: string;
+    firstPrinciplesThird: string;
+    firstPrinciplesFourth: string;
+  }
+> = {
+  "neurodiversity-entrepreneurial-agency": {
+    socraticSecond:
+      "This branch is a conceptual synthesis rather than fieldwork — whose account would most test it: a founder describing their own coping practices, an outside observer coding the same events, or a comparison founder without a spiky profile?",
+    socraticThird:
+      "The other three branches treat resources, legitimacy or family coordination as the scarce input; this one treats cognitive profile as the variable that matters — where does that framing blur once scaffolding and support enter the picture?",
+    socraticFourth:
+      "This branch is explicitly a conceptual synthesis, not fieldwork — if a coping strategy that helps one founder turns out to depend entirely on that founder's specific support network, what would still be worth knowing?",
+    firstPrinciplesSecond:
+      "The spiky-profile framework and its coping typology are conceptual contributions here, not measured results — which of the three listed contributions could be tested with existing methods, and which would need a new instrument first?",
+    firstPrinciplesThird:
+      "If scaffolding — tools, routines, relationships — really does convert cognitive strengths into opportunity action, what is the smallest observable step in that conversion, and what would show the scaffolding did nothing?",
+    firstPrinciplesFourth:
+      "The next step described here is a longitudinal, person-centred study following founders across venture stages — who is better placed to run it: an incubator with continuing access to founders, or an independent research team?",
+  },
+  "bricolage-to-effectuation": {
+    socraticSecond:
+      "The transition claim rests on one retrospective case plus a cross-sectional survey — whose account would most change it: the family's own retelling, a comparison firm that never transitioned, or a longitudinal replication?",
+    socraticThird:
+      "The other three branches ask what activates a founder's agency or a family's institutional workaround; this one asks whether one entrepreneurial logic converts into another — does legitimacy actually explain that conversion, or just correlate with firms that were already changing?",
+    socraticFourth:
+      "If the transition from bricolage to effectuation described here turned out to hold only for the family enterprise studied in depth, what would still be worth knowing about how legitimacy and access operate elsewhere?",
+    firstPrinciplesSecond:
+      "The retrospective case and the survey are both consistent with a transition pathway — which of this branch's three contributions is actually established by that evidence, and which is a proposition still waiting on a longitudinal study?",
+    firstPrinciplesThird:
+      "If legitimacy really is what opens access to conventional resources and expands a venture's action set, what is the smallest change in a firm's affordable-loss commitments that would count as evidence, and what result would falsify it?",
+    firstPrinciplesFourth:
+      "The clearest next design triangulates repeated observation with resource, partnership and performance records — who is positioned to gather that: the family enterprises themselves, or an outside research team with continuing access to their records?",
+  },
+  "family-business-resourcefulness": {
+    socraticSecond:
+      "FBR currently rests on an initial four-item measure — whose evidence would most change this branch's conclusions: a family firm's own account of how it mobilised resources, a matched non-family comparison, or an independent replication of the measure in another country?",
+    socraticThird:
+      "The other three branches ask how individual cognition or entrepreneurial logic responds to scarcity; this one asks whether family coordination itself is the resource — where does that assumption break down once a firm needs something family ties cannot supply?",
+    socraticFourth:
+      "If family coordination turns out to mobilise resources well in one institutional void but not another, what would that still tell us about where the FBR construct applies?",
+    firstPrinciplesSecond:
+      "FBR is introduced here as a construct with an initial four-item measure — which of its four listed contributions is established by that measure, and which remain propositions until an independent sample tests them?",
+    firstPrinciplesThird:
+      "If family effort genuinely substitutes for missing market intermediaries, what is the smallest observable instance of that substitution, and what result — a firm that mobilises just as well without family coordination — would undercut the claim?",
+    firstPrinciplesFourth:
+      "FBR is measured with an initial four-item scale still awaiting independent validation — who is positioned to run that test, and what result would count as it failing?",
+  },
+  "frugal-innovation-dynamic-capabilities": {
+    socraticSecond:
+      "The mediation evidence here is survey-based and some of the moderation results are mixed — whose account would most change this branch's conclusions: a firm's own report of its innovation process, an objective measure of the resulting product, or a replication in a resource-rich setting?",
+    socraticThird:
+      "The sibling branches treat resourcefulness as the outcome to explain; this one treats it as the input to a capability process — does that reframing still hold once sensing and seizing are measured with the same kind of survey items as resourcefulness itself?",
+    socraticFourth:
+      "If dynamic capabilities turn out to mediate resourcefulness only for the family firms surveyed here, what would still be worth knowing about how sensing, seizing and reconfiguring operate elsewhere?",
+    firstPrinciplesSecond:
+      "This branch's three contributions rest on relationships consistent with mediation, not a confirmed causal chain — which would survive an objective, longitudinal test, and which depend on the mixed moderation evidence noted here?",
+    firstPrinciplesThird:
+      'The mediation evidence here is survey-based and the moderation results are mixed — what is the smallest observable action that would count as "reconfiguring" rather than firms simply doing more with resources they already had?',
+    firstPrinciplesFourth:
+      "The clearest next design pairs survey data with objective innovation and performance records — who is best positioned to supply those records: the firms themselves, or an independent auditor of their outcomes?",
+  },
+};
+
 export function ResearchBranchPage({ branch }: { branch: ResearchBranch }) {
+  const inquiryCopy = branchInquiryCopy[branch.slug];
   return (
     <main id="main-content" tabIndex={-1}>
       <header className="relative overflow-hidden pt-10 pb-12 sm:pt-16 sm:pb-16">
@@ -78,15 +154,15 @@ export function ResearchBranchPage({ branch }: { branch: ResearchBranch }) {
         introduction={`This branch's central question — “${branch.centralQuestion}” — is a genuine open question, not a settled result. These are worth returning to before treating any single study, including a future one on this branch, as the final word.`}
         socraticQuestions={[
           `Is ${branch.shortTitle.toLowerCase()} describing a real mechanism, or a label applied after the outcome was already known?`,
-          "Whose evidence would most change this branch's conclusions: a founder's own account, a comparison group, or a replication in a different setting?",
-          "What assumption does this branch share with the other three, and where does it actually diverge from them?",
-          "If a finding here turned out to apply only to the specific context it was studied in, what would still be worth knowing?",
+          inquiryCopy.socraticSecond,
+          inquiryCopy.socraticThird,
+          inquiryCopy.socraticFourth,
         ]}
         firstPrinciplesQuestions={[
           `What must be true for "${branch.centralQuestion}" to even be answerable with the evidence described on this page?`,
-          "Which of the listed contributions are established by the thesis, and which are propositions still awaiting a study?",
-          "What is this mechanism's smallest testable step, and what result would falsify it?",
-          "Who is best positioned to supply the evidence this branch is still missing?",
+          inquiryCopy.firstPrinciplesSecond,
+          inquiryCopy.firstPrinciplesThird,
+          inquiryCopy.firstPrinciplesFourth,
         ]}
       />
 
