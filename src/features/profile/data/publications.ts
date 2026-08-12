@@ -6,9 +6,11 @@ export const journalArticles: Publication[] = [
       "Entrepreneurship Under Constraint: How Bricolage Transitions into Effectuation in Family Businesses",
     meta: "with Munish Thakur · Academy of Management Proceedings",
     year: "2026",
-    href: "https://lnkd.in/e5pRnNYb",
+    href: "https://journals.aom.org/doi/abs/10.5465/AMPROC.2026.12395abstract",
     category: "journal",
     badge: "AOM 2026",
+    image: "/images/gallery/aom-2026-proceedings-abstract.jpg",
+    imageAlt: "Academy of Management Proceedings abstract page for this paper",
   },
   {
     title:
@@ -82,6 +84,12 @@ export interface Essay {
 }
 
 export const authoredEssays: Essay[] = [
+  {
+    outlet: "CSR Times",
+    date: "Jun 2026",
+    title: "Sustainability and Strategy: Why Responsible Growth Is Now a Business Imperative",
+    href: "https://csrtimes.org/sustainability-and-strategy-why-responsible-growth-is-now-a-business-imperative/",
+  },
   {
     outlet: "CSR Times",
     date: "Feb 2026",

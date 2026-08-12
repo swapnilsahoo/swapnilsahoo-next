@@ -35,6 +35,8 @@ export interface Publication {
   href: string;
   category: PublicationCategory;
   badge?: string;
+  image?: string;
+  imageAlt?: string;
 }
 
 export interface ConferenceEntry {

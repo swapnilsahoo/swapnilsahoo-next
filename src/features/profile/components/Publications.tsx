@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { Reveal } from "@/components/ui/Reveal";
 import {
   authoredEssays,
@@ -17,6 +19,15 @@ function PublicationRow({ publication }: { publication: Publication }) {
       className="pub-item glass-card mb-3 block p-6 last:mb-0"
     >
       <div className="flex flex-wrap items-start justify-between gap-4">
+        {publication.image && (
+          <Image
+            src={publication.image}
+            alt={publication.imageAlt ?? `${publication.title} — published page`}
+            width={56}
+            height={72}
+            className="border-ink-200/80 dark:border-ink-700 h-18 w-14 shrink-0 rounded-md border object-cover"
+          />
+        )}
         <div className="min-w-[260px] flex-1">
           <h3 className="font-serif text-lg leading-snug font-semibold">{publication.title}</h3>
           <p className="text-ink-600 dark:text-ink-300 mt-1 text-sm italic">{publication.meta}</p>
