@@ -62,6 +62,8 @@
   --glass-highlight: rgba(255, 255, 255, 0.8);
   --glass-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
   --nav-shadow: 0 8px 28px -22px rgba(15, 23, 42, 0.45);
+  --color-cta: #0a2540;
+  --color-cta-hover: #0f3360;
 }
 
 .dark {
@@ -77,6 +79,8 @@
   --glass-highlight: rgba(255, 255, 255, 0.08);
   --glass-shadow: 0 1px 2px rgba(0, 0, 0, 0.28);
   --nav-shadow: 0 10px 34px -24px rgba(0, 0, 0, 0.88);
+  --color-cta: #2563eb;
+  --color-cta-hover: #3b82f6;
 }
 
 html {
@@ -124,7 +128,7 @@ div[id] {
   z-index: 10000;
   transform: translateY(-180%);
   border-radius: 999px;
-  background: #0a2540;
+  background: var(--color-cta);
   color: #fff;
   padding: 0.7rem 1rem;
   font-size: 0.875rem;
@@ -194,22 +198,6 @@ div {
     position: relative;
     z-index: 1;
   }
-}
-
-body::before {
-  display: none;
-}
-
-.dark body::before {
-  display: none;
-}
-
-body::after {
-  display: none;
-}
-
-.dark body::after {
-  display: none;
 }
 
 .aurora {
@@ -304,11 +292,6 @@ body::after {
   box-shadow: var(--glass-shadow);
 }
 
-.dark .glass-card:hover {
-  border-color: var(--line-strong);
-  box-shadow: var(--glass-shadow);
-}
-
 .glass-card-inverse {
   background: #111827;
   color: #fff;
@@ -324,10 +307,6 @@ body::after {
 
 .hr-fade {
   height: 1px;
-  background: var(--line);
-}
-
-.dark .hr-fade {
   background: var(--line);
 }
 
@@ -429,7 +408,7 @@ body::after {
   gap: 8px;
   padding: 11px 18px;
   border-radius: 8px;
-  background: #0a2540;
+  background: var(--color-cta);
   color: #fff;
   font-weight: 600;
   font-size: 14px;
@@ -438,15 +417,7 @@ body::after {
 }
 
 .btn-primary:hover {
-  background: #0f3360;
-}
-
-.dark .btn-primary {
-  background: #2563eb;
-}
-
-.dark .btn-primary:hover {
-  background: #3b82f6;
+  background: var(--color-cta-hover);
 }
 
 .btn-ghost {
@@ -556,89 +527,6 @@ body::after {
   to {
     transform: translateX(-50%);
   }
-}
-
-#chat-icon-btn {
-  position: fixed;
-  bottom: max(22px, calc(env(safe-area-inset-bottom) + 12px));
-  right: max(16px, calc(env(safe-area-inset-right) + 12px));
-  width: 56px;
-  height: 56px;
-  background: #0a2540;
-  color: #fff;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 8px 24px -16px rgba(10, 37, 64, 0.72);
-  z-index: 9999;
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease;
-}
-
-#chat-icon-btn:hover {
-  background: #0f3360;
-}
-
-.dark #chat-icon-btn {
-  background: #2563eb;
-}
-
-#chat-container {
-  position: fixed;
-  bottom: max(92px, calc(env(safe-area-inset-bottom) + 82px));
-  right: max(12px, env(safe-area-inset-right));
-  width: min(calc(100vw - 24px), 380px);
-  height: min(70dvh, 600px);
-  background: var(--glass-strong);
-  -webkit-backdrop-filter: saturate(170%) blur(24px);
-  backdrop-filter: saturate(170%) blur(24px);
-  border: 1px solid var(--glass-border);
-  border-radius: 14px;
-  box-shadow: 0 18px 48px -28px rgba(0, 0, 0, 0.48);
-  opacity: 0;
-  transform: translateY(16px);
-  pointer-events: none;
-  transition:
-    opacity 0.25s ease,
-    transform 0.25s ease;
-  overflow: hidden;
-  z-index: 9998;
-}
-
-#chat-container.visible {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-#chat-container gradio-app {
-  width: 100%;
-  height: 100%;
-}
-
-#close-chat-btn {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  width: 30px;
-  height: 30px;
-  border-radius: 999px;
-  border: 1px solid var(--glass-border);
-  cursor: pointer;
-  background: rgba(255, 255, 255, 0.72);
-  color: #27354b;
-  font-size: 18px;
-  font-weight: 700;
-  z-index: 10001;
-}
-
-.dark #close-chat-btn {
-  background: rgba(8, 15, 30, 0.72);
-  color: #eef1f5;
 }
 
 .accent-rule {
@@ -810,17 +698,11 @@ main [class*="text-[11px]"] {
     padding-top: 4rem !important;
     padding-bottom: 4rem !important;
   }
-
-  #chat-container {
-    left: 12px;
-    width: auto;
-  }
 }
 
 @media (hover: none), (pointer: coarse) {
   .glass-card:hover,
   .pub-item:hover,
-  #chat-icon-btn:hover,
   .btn-primary:hover {
     transform: none;
   }
@@ -828,14 +710,12 @@ main [class*="text-[11px]"] {
 
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .glass-card,
-  .nav-glass,
-  #chat-container {
+  .nav-glass {
     background: #fff;
   }
 
   .dark .glass-card,
-  .dark .nav-glass,
-  .dark #chat-container {
+  .dark .nav-glass {
     background: #0b1220;
   }
 }

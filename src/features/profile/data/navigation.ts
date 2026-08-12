@@ -117,9 +117,3 @@ export const moreDropdown: NavDropdown = {
     { label: "Contact", href: "/#contact" },
   ],
 };
-
-export const socialLinks = [
-  { label: "X", href: "https://x.com/swapnilsahoo" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/swapnilsahoo/" },
-  { label: "Instagram", href: "https://www.instagram.com/swapnilsahoo/" },
-] as const;

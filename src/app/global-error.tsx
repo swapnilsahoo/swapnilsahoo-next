@@ -12,7 +12,7 @@ export default function GlobalError({
         <main className="flex min-h-screen flex-col items-center justify-center gap-4 px-6 text-center">
           <h1 className="text-2xl font-bold">Something went wrong</h1>
           <p className="text-ink-600 dark:text-ink-300">
-            A critical error occurred. Please try again.
+            Something broke at the root of the page. A refresh should bring it back.
           </p>
           <button
             onClick={() => unstable_retry()}

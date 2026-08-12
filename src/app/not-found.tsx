@@ -2,7 +2,6 @@ import Link from "next/link";
 
 import { Container } from "@/components/ui/Container";
 import { Typography } from "@/components/ui/Typography";
-import { buttonClassName } from "@/components/ui/Button";
 
 export default function NotFound() {
   return (
@@ -15,9 +14,10 @@ export default function NotFound() {
         Page not found
       </Typography>
       <Typography variant="body">
-        The page you&apos;re looking for doesn&apos;t exist or has been moved.
+        That page doesn&apos;t exist, or it moved when the site was restructured. Try Research,
+        Teaching, or head back to the homepage.
       </Typography>
-      <Link href="/" className={buttonClassName()}>
+      <Link href="/" className="btn-primary">
         Back to home
       </Link>
     </Container>
