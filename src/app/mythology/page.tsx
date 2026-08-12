@@ -48,7 +48,7 @@ const ramayanaLenses = [
 const mythologyInquiry = {
   socratic: [
     "Before calling a character righteous or wrong, which obligations are colliding—and whose voice or suffering is absent from the scene?",
-    "Would the same action appear different if it were taken by someone with less status, less knowledge, or fewer choices?",
+    "Karna is judged for pride and Yudhiṣṭhira for a reckless wager—would either verdict survive if their birth status, and the choices it foreclosed, were reversed?",
     "When recensions, translations, and commentaries differ, what do we actually mean when we say, ‘the epic says’?",
     "What does the aftermath reveal about a celebrated decision that the moment of heroism or victory can conceal?",
   ],
@@ -183,15 +183,6 @@ export default function MythologyPage() {
             data-page-hero="mythology"
             className="relative isolate overflow-hidden rounded-[30px] border border-indigo-200/20 bg-gradient-to-br from-[#15113d] via-[#312e81] to-[#9a3412] px-6 py-12 text-white shadow-2xl shadow-indigo-950/25 sm:px-10 sm:py-16 lg:px-14"
           >
-            <div
-              className="absolute -top-32 -right-24 -z-10 h-96 w-96 rounded-full bg-amber-300/20 blur-3xl"
-              aria-hidden="true"
-            />
-            <div
-              className="absolute -bottom-36 -left-16 -z-10 h-96 w-96 rounded-full bg-indigo-400/20 blur-3xl"
-              aria-hidden="true"
-            />
-
             <div className="grid items-end gap-12 lg:grid-cols-[1fr_0.42fr]">
               <div>
                 <span className="inline-flex rounded-full border border-indigo-100/20 bg-white/10 px-3 py-1.5 font-mono text-[11px] tracking-[0.14em] text-indigo-100 uppercase backdrop-blur-sm">
