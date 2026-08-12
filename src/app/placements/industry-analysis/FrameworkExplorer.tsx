@@ -11,11 +11,11 @@ export function FrameworkExplorer() {
   const active = sixQFramework.find((module) => module.id === activeId) ?? sixQFramework[0];
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-blue-900/10 bg-white dark:border-blue-100/10 dark:bg-slate-950">
+    <div className="border-ink-200/80 dark:border-ink-700 overflow-hidden rounded-2xl border bg-white dark:bg-ink-950">
       <div
         role="tablist"
         aria-label="The six-question framework"
-        className="grid grid-cols-2 gap-px bg-slate-200 sm:grid-cols-3 lg:grid-cols-6 dark:bg-slate-800"
+        className="border-ink-200/80 dark:border-ink-700 grid grid-cols-2 gap-1 border-b p-2 sm:grid-cols-3 lg:grid-cols-6"
       >
         {sixQFramework.map((module) => (
           <button
@@ -26,10 +26,10 @@ export function FrameworkExplorer() {
             aria-selected={module.id === activeId}
             aria-controls={`sixq-panel-${module.id}`}
             onClick={() => setActiveId(module.id)}
-            className={`min-h-[4.5rem] px-3 py-3 text-left text-xs font-semibold transition focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none focus-visible:ring-inset ${
+            className={`focus-visible:ring-brand-500 min-h-[4.5rem] rounded-xl px-3 py-3 text-left text-xs font-semibold transition focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-inset ${
               module.id === activeId
                 ? "bg-ink-950 text-white dark:bg-white dark:text-slate-950"
-                : "bg-white text-ink-600 hover:bg-blue-50 dark:bg-slate-950 dark:text-ink-300 dark:hover:bg-white/5"
+                : "text-ink-600 hover:bg-ink-100 dark:text-ink-300 dark:hover:bg-white/5"
             }`}
           >
             <span className="block font-mono text-[10px] tracking-wider opacity-70">
@@ -51,9 +51,7 @@ export function FrameworkExplorer() {
             <p className="eyebrow mb-2">{active.lens}</p>
             <h3 className="font-serif text-2xl font-semibold sm:text-3xl">{active.question}</h3>
           </div>
-          <p className="rounded-lg border border-blue-900/10 bg-blue-50/70 px-4 py-2 text-xs font-semibold text-blue-900 dark:border-blue-100/10 dark:bg-blue-400/10 dark:text-blue-200">
-            {active.decisionOutput}
-          </p>
+          <p className="tag">{active.decisionOutput}</p>
         </div>
 
         <div className="mt-8 grid gap-8 lg:grid-cols-2">
@@ -91,10 +89,7 @@ export function FrameworkExplorer() {
             <p className="eyebrow mb-3">Required exhibits</p>
             <div className="flex flex-wrap gap-2">
               {active.requiredExhibits.map((exhibit) => (
-                <span
-                  key={exhibit}
-                  className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-700 dark:bg-white/10 dark:text-slate-200"
-                >
+                <span key={exhibit} className="tag tag-ink">
                   {exhibit}
                 </span>
               ))}

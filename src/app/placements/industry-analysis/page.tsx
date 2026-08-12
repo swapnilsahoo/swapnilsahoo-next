@@ -247,7 +247,7 @@ export default function IndustryAnalysisPage() {
               </p>
             </div>
 
-            <div className="rounded-2xl bg-slate-950 p-6 text-white">
+            <div className="from-ink-950 to-brand-900 rounded-2xl bg-gradient-to-br p-6 text-white">
               <p className="font-mono text-[10px] tracking-[0.16em] text-blue-300 uppercase">
                 The student rule
               </p>
@@ -304,7 +304,7 @@ export default function IndustryAnalysisPage() {
                 key={section.q}
                 className="border-ink-200/80 dark:border-ink-700 rounded-2xl border p-6"
               >
-                <span className="rounded-full bg-blue-100 px-2.5 py-1 font-mono text-[10px] font-semibold tracking-wide text-blue-900 uppercase dark:bg-blue-400/10 dark:text-blue-200">
+                <span className="tag font-mono text-[10px] tracking-wide uppercase">
                   {section.q}
                 </span>
                 <h3 className="mt-3 font-serif text-lg font-semibold">{section.title}</h3>
@@ -344,10 +344,10 @@ export default function IndustryAnalysisPage() {
             </p>
           </div>
 
-          <div className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800">
+          <div className="border-ink-200/80 dark:border-ink-700 overflow-x-auto rounded-2xl border">
             <table className="w-full min-w-[720px] border-collapse text-left text-sm">
               <thead>
-                <tr className="bg-slate-50 dark:bg-white/5">
+                <tr className="bg-ink-50 dark:bg-white/5">
                   <th scope="col" className="p-4 font-semibold">
                     Week
                   </th>
@@ -362,7 +362,7 @@ export default function IndustryAnalysisPage() {
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
+              <tbody className="divide-ink-200/80 dark:divide-ink-700 divide-y">
                 {eightWeekSprint.map((row) => (
                   <tr key={row.week}>
                     <td className="text-ink-700 dark:text-ink-200 p-4 font-mono text-xs whitespace-nowrap">
@@ -398,10 +398,10 @@ export default function IndustryAnalysisPage() {
           </div>
 
           <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-            <div className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800">
+            <div className="border-ink-200/80 dark:border-ink-700 overflow-x-auto rounded-2xl border">
               <table className="w-full min-w-[480px] border-collapse text-left text-sm">
                 <thead>
-                  <tr className="bg-slate-50 dark:bg-white/5">
+                  <tr className="bg-ink-50 dark:bg-white/5">
                     <th scope="col" className="p-4 font-semibold">
                       Dimension
                     </th>
@@ -413,7 +413,7 @@ export default function IndustryAnalysisPage() {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
+                <tbody className="divide-ink-200/80 dark:divide-ink-700 divide-y">
                   {rubric.map((row) => (
                     <tr key={row.dimension}>
                       <td className="p-4 font-semibold whitespace-nowrap">{row.dimension}</td>
@@ -425,7 +425,7 @@ export default function IndustryAnalysisPage() {
                   ))}
                 </tbody>
                 <tfoot>
-                  <tr className="bg-slate-50 font-semibold dark:bg-white/5">
+                  <tr className="bg-ink-50 font-semibold dark:bg-white/5">
                     <td className="p-4">Total</td>
                     <td className="p-4 text-right font-mono">100</td>
                     <td className="p-4" />

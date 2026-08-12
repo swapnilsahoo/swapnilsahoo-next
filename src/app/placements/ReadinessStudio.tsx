@@ -121,15 +121,9 @@ export function ReadinessStudio() {
                 {current.evidence.map((item) => (
                   <li
                     key={item}
-                    className="border-ink-200/80 dark:border-ink-700 flex gap-3 rounded-xl border p-3"
+                    className="border-ink-200/80 dark:border-ink-700 text-ink-700 dark:text-ink-200 rounded-xl border p-3 text-sm leading-relaxed"
                   >
-                    <span
-                      className="bg-accent-500 mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full"
-                      aria-hidden="true"
-                    />
-                    <span className="text-ink-700 dark:text-ink-200 text-sm leading-relaxed">
-                      {item}
-                    </span>
+                    {item}
                   </li>
                 ))}
               </ul>

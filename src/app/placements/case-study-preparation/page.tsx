@@ -678,12 +678,9 @@ export default function CaseStudyPreparationPage() {
               {industryLenses.map((industry) => (
                 <li
                   key={industry}
-                  className="border-ink-200/80 dark:border-ink-700 flex items-center gap-3 rounded-xl border p-4"
+                  className="border-ink-200/80 dark:border-ink-700 text-ink-700 dark:text-ink-200 rounded-xl border p-4 text-sm font-medium"
                 >
-                  <span className="bg-accent-500 h-2 w-2 rounded-full" aria-hidden="true" />
-                  <span className="text-ink-700 dark:text-ink-200 text-sm font-medium">
-                    {industry}
-                  </span>
+                  {industry}
                 </li>
               ))}
             </ul>
