@@ -69,7 +69,7 @@ const caseFamilies = [
   {
     name: "Profitability",
     question: "What changed in revenue, cost or mix?",
-    accent: "tag-blue",
+    accent: "",
   },
   {
     name: "Market entry",
@@ -79,7 +79,7 @@ const caseFamilies = [
   {
     name: "Growth",
     question: "Where can value expand—and what must be true?",
-    accent: "tag-blue",
+    accent: "",
   },
   {
     name: "Pricing",
@@ -90,7 +90,7 @@ const caseFamilies = [
   {
     name: "M&A / PE",
     question: "Will the asset create value, and can the deal be completed and integrated?",
-    accent: "tag-blue",
+    accent: "",
   },
   {
     name: "Abstract",
