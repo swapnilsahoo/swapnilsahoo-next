@@ -593,6 +593,27 @@ export function KarmaYogaIndiaStory() {
           dark
         />
 
+        <section
+          aria-labelledby="mehalchauri-reuse-title"
+          className="mt-10 overflow-hidden rounded-3xl border border-emerald-300/20 bg-emerald-300/8 p-6 sm:p-9"
+        >
+          <p className="font-mono text-[10px] font-bold tracking-[0.16em] text-emerald-200 uppercase">
+            Documented April 2026 activity
+          </p>
+          <h3
+            id="mehalchauri-reuse-title"
+            className="mt-4 font-serif text-2xl font-semibold text-balance sm:text-3xl"
+          >
+            Over 500 hostel bedsheets became carry bags.
+          </h3>
+          <p className="mt-4 text-sm leading-7 text-emerald-50/80 sm:text-base">
+            Used hostel bedsheets were repurposed into durable carry bags and distributed to
+            residents of Salinga and Mehalchauri alongside saplings during the return visit,
+            cutting textile waste while offering a practical, reusable alternative to
+            single-use plastic.
+          </p>
+        </section>
+
         <div className="mt-10 grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
           <blockquote className="rounded-3xl border border-emerald-300/25 bg-emerald-300/8 p-7 sm:p-9">
             <p className="font-serif text-2xl leading-snug font-semibold text-balance sm:text-3xl">
