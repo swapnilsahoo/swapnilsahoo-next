@@ -3,19 +3,6 @@
   background: #111827;
 }
 
-.heroGrid {
-  display: none;
-}
-
-.heroGrid::after {
-  display: none;
-}
-
-.heroOrbOne,
-.heroOrbTwo {
-  display: none;
-}
-
 .branchCard {
   background: transparent;
 }
@@ -66,10 +53,6 @@
   background: #111827;
 }
 
-.supermanBand::after {
-  display: none;
-}
-
 .supermanBand > * {
   position: relative;
   z-index: 1;
@@ -82,10 +65,6 @@
 
 .closing {
   background: #152238;
-}
-
-.closing::after {
-  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

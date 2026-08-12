@@ -108,7 +108,7 @@ const comicsInquiry = {
   ],
   firstPrinciples: [
     "What makes an act courageous: the danger faced, the intention behind it, the cost accepted, or the person it serves?",
-    "What minimum freedoms, relationships, and knowledge does anyone need in order to make a responsible choice under pressure?",
+    "Peter Parker gets no clean reward and returns anyway—apart from any superhuman power, what relationships and knowledge have to already be in place for that kind of return to even be possible?",
     "If power is simply the capacity to affect another life, what constraints turn that capacity into trustworthy stewardship?",
     "What evidence would distinguish resilience from mere endurance—and recovery from the demand to remain endlessly strong?",
   ],
@@ -121,10 +121,6 @@ export default function ComicsPage() {
         data-page-hero="full"
         className={`${styles.hero} relative isolate overflow-hidden text-white`}
       >
-        <div className={styles.heroGrid} aria-hidden="true" />
-        <div className={styles.heroOrbOne} aria-hidden="true" />
-        <div className={styles.heroOrbTwo} aria-hidden="true" />
-
         <Container className="relative z-10 flex min-h-[620px] max-w-7xl flex-col justify-between py-8 sm:min-h-[700px] sm:py-16 lg:py-20">
           <div className="flex items-center gap-3 text-xs font-semibold tracking-[0.14em] uppercase">
             <span className="h-px w-10 bg-yellow-300" aria-hidden="true" />
@@ -184,9 +180,8 @@ export default function ComicsPage() {
       >
         <Container className="max-w-7xl">
           <div className="max-w-3xl">
-            <p className="text-sm font-bold text-red-700 uppercase dark:text-red-400">
-              Choose a branch
-            </p>
+            <span className="accent-rule" />
+            <p className="eyebrow">Choose a branch</p>
             <h2 id="branches-title" className="mt-4 font-serif text-4xl font-bold sm:text-5xl">
               Three heroes. Three kinds of endurance.
             </h2>
@@ -502,9 +497,8 @@ export default function ComicsPage() {
         <Container className="max-w-7xl">
           <div className="grid gap-10 lg:grid-cols-[0.74fr_1.26fr] lg:items-end">
             <div>
-              <p className="text-sm font-bold text-red-700 uppercase dark:text-red-400">
-                A shared map
-              </p>
+              <span className="accent-rule" />
+              <p className="eyebrow">A shared map</p>
               <h2 id="shared-map-title" className="mt-4 font-serif text-4xl font-bold sm:text-6xl">
                 Four moves for ordinary days.
               </h2>
@@ -548,7 +542,9 @@ export default function ComicsPage() {
         className={`${styles.closing} relative overflow-hidden py-24 text-white sm:py-32`}
       >
         <Container className="relative z-10 max-w-5xl text-center">
-          <p className="text-sm font-bold text-yellow-300 uppercase">The next panel</p>
+          <p className="eyebrow" style={{ color: "var(--color-yellow-300)" }}>
+            The next panel
+          </p>
           <h2
             id="closing-title"
             className="mx-auto mt-5 max-w-4xl font-serif text-4xl leading-tight font-bold sm:text-6xl"
@@ -571,9 +567,8 @@ export default function ComicsPage() {
         <Container className="max-w-6xl">
           <div className="grid gap-10 border-t border-slate-300 pt-10 lg:grid-cols-[0.7fr_1.3fr] dark:border-white/15">
             <div>
-              <p className="text-sm font-bold text-red-700 uppercase dark:text-red-400">
-                Sources &amp; note
-              </p>
+              <span className="accent-rule" />
+              <p className="eyebrow">Sources &amp; note</p>
               <h2 id="sources-title" className="mt-3 font-serif text-3xl font-bold">
                 Read beyond this reflection.
               </h2>
