@@ -241,7 +241,7 @@ export default function PlacementsPage() {
                   <p className="font-mono text-[10px] tracking-[0.16em] text-blue-200 uppercase">
                     Strong preparation
                   </p>
-                  <p className="mt-2 font-serif text-2xl font-semibold">
+                  <p className="mt-2 font-serif text-2xl font-semibold break-normal!">
                     Role fit → Reps → Reflection
                   </p>
                 </div>
@@ -552,7 +552,9 @@ export default function PlacementsPage() {
                 className="border-ink-200 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 rounded-2xl border p-6 transition focus-visible:ring-2 focus-visible:outline-none"
               >
                 <p className="eyebrow mb-2">Mentoring</p>
-                <h3 className="font-serif text-2xl font-semibold">Discuss your preparation</h3>
+                <h3 className="font-serif text-2xl font-semibold break-normal">
+                  Discuss your preparation
+                </h3>
                 <p className="text-ink-600 dark:text-ink-300 mt-2 text-sm leading-relaxed">
                   Share your target role and the preparation gap you want to work through.
                 </p>
