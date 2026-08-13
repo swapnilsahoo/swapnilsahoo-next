@@ -190,4 +190,22 @@ export const pressMentions: PressMention[] = [
     description: "Budget 2025 expectations: geospatial & satellite tech",
     href: "https://www.business-standard.com/budget/news/union-budget-2025-expectations-live-updates-nirmala-sitharaman-tax-relief-education-india-gdp-budget-latest-news-125011700390_1.html",
   },
+  {
+    outlet: "ET Now",
+    date: "Jan 2025",
+    description: "Budget 2025: easing regulation to grow startup jobs",
+    href: "https://www.etnownews.com/budget/budget-2025-expectations-education-sectors-expectations-from-this-years-budget-article-117516818",
+  },
+  {
+    outlet: "Education21",
+    date: "Jan 2025",
+    description: "Budget 2025: Startup India, skill gaps & tax relief",
+    href: "https://education21.in/union-budget-2025-expectations-for-education-and-skills/",
+  },
+  {
+    outlet: "Curriculum Magazine",
+    date: "Jan 2025",
+    description: "Budget 2025: closing skill gaps in AI, IoT & green tech",
+    href: "https://curriculum-magazine.com/union-budget-2025-expectations-for-education-and-skills/",
+  },
 ];

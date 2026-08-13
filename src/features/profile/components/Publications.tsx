@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { ArrowRightIcon } from "@/components/icons/LineIcons";
 import { Reveal } from "@/components/ui/Reveal";
 import {
   authoredEssays,
@@ -17,7 +18,7 @@ function PublicationRow({ publication }: { publication: Publication }) {
       href={publication.href}
       target="_blank"
       rel="noopener noreferrer"
-      className="pub-item glass-card mb-3 block p-6 last:mb-0"
+      className="pub-item glass-card block p-6"
     >
       <div className="flex flex-wrap items-start justify-between gap-4">
         {publication.image && (
@@ -42,6 +43,15 @@ function PublicationRow({ publication }: { publication: Publication }) {
   );
 }
 
+const stats = [
+  ["Research & chapters", journalArticles.length + bookChapters.length],
+  ["Case studies", teachingCases.length],
+  ["Essays", authoredEssays.length],
+  ["Press mentions", pressMentions.length],
+] as const;
+
+const latestMention = pressMentions[0];
+
 export function Publications() {
   return (
     <Reveal>
@@ -56,106 +66,46 @@ export function Publications() {
           </div>
           <p className="text-ink-600 dark:text-ink-300 self-end text-sm leading-relaxed md:col-span-8">
             My writing moves from research on organisations under constraint to teaching cases and
-            public essays about decisions facing businesses, students and policy readers. Where a
-            source record is available, the item links to it.
+            public essays about decisions facing businesses, students and policy readers, plus the
+            interviews national outlets have carried. The complete record — every article, case,
+            essay and press mention — lives on the Press &amp; Media page.
           </p>
         </div>
 
-        <div className="mb-12">
-          <div className="mb-4 flex items-center gap-3">
-            <span className="tag">Journal articles</span>
-            <span className="hr-fade flex-1" />
-          </div>
-          {journalArticles.map((publication) => (
-            <PublicationRow key={publication.title} publication={publication} />
+        <div className="mb-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {stats.map(([label, count]) => (
+            <div key={label} className="glass-card p-4 text-center">
+              <p className="display text-3xl font-semibold">{count}</p>
+              <p className="text-ink-500 dark:text-ink-400 mt-1 text-xs">{label}</p>
+            </div>
           ))}
         </div>
 
-        <div className="mb-12">
-          <div className="mb-4 flex items-center gap-3">
-            <span className="tag">Book chapters</span>
-            <span className="hr-fade flex-1" />
-          </div>
-          {bookChapters.map((publication) => (
-            <PublicationRow key={publication.title} publication={publication} />
-          ))}
+        <div className="mb-8 grid gap-4 md:grid-cols-2">
+          <PublicationRow publication={journalArticles[0]} />
+          <a
+            href={latestMention.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pub-item glass-card block p-6"
+          >
+            <p className="eyebrow mb-1">
+              {latestMention.outlet} · {latestMention.date}
+            </p>
+            <p className="font-serif text-lg leading-snug font-semibold">
+              {latestMention.description}
+            </p>
+            <p className="text-ink-500 dark:text-ink-400 mt-2 text-xs">Most recent press mention</p>
+          </a>
         </div>
 
-        <div className="mb-12">
-          <div className="mb-4 flex items-center gap-3">
-            <span className="tag">Teaching cases</span>
-            <span className="hr-fade flex-1" />
-          </div>
-          <p className="text-ink-500 dark:text-ink-400 mb-4 text-xs">
-            Three short-form strategy cases on Indian companies, published in Business Standard
-            Smart (2026).
-          </p>
-          <div className="grid gap-3 md:grid-cols-3">
-            {teachingCases.map((teachingCase) => (
-              <div key={teachingCase.title} className="glass-card p-5">
-                <p className="eyebrow mb-2">Case · {teachingCase.year}</p>
-                <h3 className="font-serif text-base leading-snug font-semibold">
-                  {teachingCase.title}
-                </h3>
-                <p className="text-ink-500 dark:text-ink-400 mt-2 text-xs">
-                  {teachingCase.publication}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mb-12">
-          <div className="mb-4 flex items-center gap-3">
-            <span className="tag">Authored essays</span>
-            <span className="hr-fade flex-1" />
-          </div>
-          <div className="grid gap-3 md:grid-cols-2">
-            {authoredEssays.map((essay) => (
-              <a
-                key={essay.href}
-                href={essay.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="pub-item glass-card block p-5"
-              >
-                <p className="eyebrow mb-1">
-                  {essay.outlet} · {essay.date}
-                </p>
-                <p className="font-serif text-sm font-semibold">{essay.title}</p>
-              </a>
-            ))}
-          </div>
-        </div>
-
-        <div id="press">
-          <div className="mb-4 flex items-center gap-3">
-            <span className="tag">Quoted in the press</span>
-            <span className="hr-fade flex-1" />
-            <Link
-              href="/press"
-              className="text-brand-700 dark:text-brand-300 shrink-0 text-xs font-semibold hover:underline"
-            >
-              Full press page →
-            </Link>
-          </div>
-          <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-            {pressMentions.map((mention) => (
-              <a
-                key={mention.href}
-                href={mention.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="pub-item glass-card block p-5"
-              >
-                <p className="eyebrow mb-1">
-                  {mention.outlet} · {mention.date}
-                </p>
-                <p className="text-sm">{mention.description}</p>
-              </a>
-            ))}
-          </div>
-        </div>
+        <Link
+          href="/press"
+          className="focus-visible:ring-brand-500 group inline-flex items-center gap-2 text-sm font-semibold text-brand-700 focus-visible:ring-2 focus-visible:outline-none dark:text-brand-300"
+        >
+          See every publication, case, essay and press mention
+          <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden="true" />
+        </Link>
       </section>
       <div className="hr-fade mx-auto max-w-6xl" />
     </Reveal>
