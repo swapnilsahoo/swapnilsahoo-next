@@ -424,18 +424,16 @@ export const karmaYogaCourse = {
 
 export const businessSimulationCourse = {
   hero: {
-    eyebrow: "Strategy capstone · PGDM Term 4",
+    eyebrow: "Strategy capstone · MBA & eMBA Term 4",
     title: "Business Simulation",
     accent: "strategy under pressure, with consequences.",
     description:
       "A 20-session executive decision laboratory in which teams run a global technology company across Asia, Europe and the United States—integrating strategy, marketing, R&D, production, people, finance, tax and ESG while rivals move at the same time.",
   },
   metadata: [
-    { label: "Course", value: "PGDM-2025-27-G/C-T4-BSIM" },
+    { label: "Course", value: "MBA & eMBA · Term 4" },
     { label: "Format", value: "20 sessions · 90 minutes each" },
-    { label: "Credits", value: "3 credits · Term 4" },
     { label: "Decision unit", value: "5–7 member management teams" },
-    { label: "Faculty", value: "Dr Poornima Gupta · Dr Smita Mazumdar · Dr Swapnil Sahoo" },
   ],
   inquiry: {
     title: "Before the first round, make the logic visible.",
