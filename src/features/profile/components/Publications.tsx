@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { Reveal } from "@/components/ui/Reveal";
 import {
@@ -131,6 +132,12 @@ export function Publications() {
           <div className="mb-4 flex items-center gap-3">
             <span className="tag">Quoted in the press</span>
             <span className="hr-fade flex-1" />
+            <Link
+              href="/press"
+              className="text-brand-700 dark:text-brand-300 shrink-0 text-xs font-semibold hover:underline"
+            >
+              Full press page →
+            </Link>
           </div>
           <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
             {pressMentions.map((mention) => (

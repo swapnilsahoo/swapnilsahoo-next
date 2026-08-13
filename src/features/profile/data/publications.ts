@@ -131,6 +131,12 @@ export interface PressMention {
 
 export const pressMentions: PressMention[] = [
   {
+    outlet: "Open Magazine",
+    date: "Jun 2026",
+    description: "OpenAI's $2.4B ad bet before its IPO, and the shift to point-of-intent advertising",
+    href: "https://openthemagazine.com/branding-marketing-and-advertising/openais-cannes-gambit-the-24-billion-ad-bet-before-the-ipo",
+  },
+  {
     outlet: "NDTV",
     date: "Sep 2025",
     description: "India's employability gap & Yogya Bharat Mission",
