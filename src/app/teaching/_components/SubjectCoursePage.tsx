@@ -87,6 +87,17 @@ export type SubjectCourseConfig = {
     title: string;
     description: string;
   };
+  roundArc?: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    rounds: readonly {
+      round: string;
+      focus: string;
+      shift: string;
+      question: string;
+    }[];
+  };
   fieldStory?: {
     eyebrow: string;
     title: string;
@@ -321,6 +332,58 @@ export function SubjectCoursePage({
           </div>
         </Container>
       </section>
+
+      {config.roundArc ? (
+        <section aria-labelledby="round-arc-title" className="pb-16 sm:pb-24">
+          <Container className="max-w-6xl">
+            <div className="mb-10 max-w-3xl">
+              <span className="accent-rule" />
+              <p className="eyebrow mb-3">{config.roundArc.eyebrow}</p>
+              <h2
+                id="round-arc-title"
+                className="display text-4xl leading-[1.04] font-semibold text-balance sm:text-6xl"
+              >
+                {config.roundArc.title}
+              </h2>
+              <p className="text-ink-600 dark:text-ink-300 mt-5 max-w-2xl text-sm leading-7">
+                {config.roundArc.description}
+              </p>
+            </div>
+
+            <ol className="grid items-start gap-4 lg:grid-cols-3">
+              {config.roundArc.rounds.map((stage, index) => (
+                <li key={stage.round} className="relative">
+                  <article className="glass-card h-full p-6">
+                    <span className="text-brand-600 dark:text-brand-300 font-mono text-[10px] font-bold tracking-[0.14em] uppercase">
+                      {stage.round}
+                    </span>
+                    <h3 className="mt-3 font-serif text-xl font-semibold">{stage.focus}</h3>
+                    <p className="text-ink-600 dark:text-ink-300 mt-3 text-sm leading-6">
+                      {stage.shift}
+                    </p>
+                    <div className="bg-brand-50/70 dark:bg-brand-950/45 mt-5 rounded-2xl p-4">
+                      <p className="font-mono text-[10px] font-bold tracking-[0.14em] text-blue-700 uppercase dark:text-blue-300">
+                        Driving question
+                      </p>
+                      <p className="text-ink-900 dark:text-ink-50 mt-2 text-sm leading-6 font-semibold">
+                        {stage.question}
+                      </p>
+                    </div>
+                  </article>
+                  {index < config.roundArc!.rounds.length - 1 ? (
+                    <span
+                      className="text-ink-300 dark:text-ink-600 pointer-events-none absolute top-1/2 -right-4 z-10 hidden -translate-y-1/2 text-2xl lg:block"
+                      aria-hidden="true"
+                    >
+                      →
+                    </span>
+                  ) : null}
+                </li>
+              ))}
+            </ol>
+          </Container>
+        </section>
+      ) : null}
 
       {config.fieldStory ? (
         <section aria-labelledby="field-story-title" className="pb-16 sm:pb-24">

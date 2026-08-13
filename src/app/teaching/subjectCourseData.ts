@@ -450,6 +450,35 @@ export const businessSimulationCourse = {
     description:
       "The simulation makes interdependence unavoidable. A product launch can be strategically attractive and financially impossible; a stockout can validate demand and destroy value; an ESG choice can reshape both operating performance and stakeholder outcomes.",
   },
+  roundArc: {
+    eyebrow: "How the rounds compound",
+    title: "Each round removes an excuse.",
+    description:
+      "The simulation is not three isolated contests. Every round inherits the last round's decisions, and every debrief raises the bar for what counts as a defensible choice.",
+    rounds: [
+      {
+        round: "Round 1",
+        focus: "Commit to a thesis",
+        shift:
+          "Teams choose price, product mix and capacity with the least evidence they will ever have in the course.",
+        question: "Did your team buy growth, earn it, or gamble on it?",
+      },
+      {
+        round: "Round 2",
+        focus: "Meet the causal chain",
+        shift:
+          "Forecasts meet results. Teams must trace which numbers were caused by their own strategy, by a rival's move, or by a hidden assumption.",
+        question: "Which number is an outcome, and which one was the cause?",
+      },
+      {
+        round: "Round 3",
+        focus: "Defend coherence",
+        shift:
+          "Growth, margin, cash, risk and sustainability choices are now read as one connected system—winning on one axis while breaking another no longer counts as winning.",
+        question: "Would this decision survive being read back to you as a single, connected story?",
+      },
+    ],
+  },
   teachingMoment: {
     eyebrow: "Decision debrief",
     title: "The learning happens when the logic is made visible.",
