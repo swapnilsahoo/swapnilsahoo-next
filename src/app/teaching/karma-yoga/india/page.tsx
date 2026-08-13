@@ -75,9 +75,9 @@ export default function KarmaYogaForIndiaPage() {
 
             <div
               data-india-hero-photo
-              className="relative flex flex-col gap-1 overflow-hidden lg:h-full lg:justify-center"
+              className="relative flex flex-col gap-1.5 overflow-hidden lg:h-full lg:justify-center"
             >
-              <figure className="relative aspect-[16/9] w-full overflow-hidden">
+              <figure className="relative aspect-[16/10] w-full overflow-hidden">
                 <Image
                   src={image}
                   alt="Women and girls forming a community circle in a Mehalchauri courtyard"
@@ -91,14 +91,15 @@ export default function KarmaYogaForIndiaPage() {
                   A community circle · participation begins with shared presence.
                 </figcaption>
               </figure>
-              <figure className="relative aspect-[3/4] w-full overflow-hidden bg-slate-950">
+              <figure className="relative aspect-[16/10] w-full overflow-hidden">
                 <Image
                   src="/images/teaching/karma-yoga/mehalchauri/girls-football-trophy-2026.jpg"
                   alt="Prof. S. K. Palhan presenting the trophy to Mehalchauri-Salinga's first girls' football team"
                   fill
                   sizes="(min-width: 1024px) 54vw, 100vw"
-                  className="object-contain"
+                  className="object-cover object-[center_38%]"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-transparent lg:bg-gradient-to-r lg:from-slate-950/35 lg:via-transparent" />
                 <figcaption className="absolute right-6 bottom-4 left-6 max-w-xl rounded-xl border border-white/10 bg-slate-950/55 px-4 py-3 text-xs leading-5 text-slate-200 backdrop-blur-md">
                   April 2026 · Prof. S. K. Palhan, founder of the Karma Yoga initiative, presents
                   the trophy to Mehalchauri-Salinga&apos;s first-ever girls&apos; football
