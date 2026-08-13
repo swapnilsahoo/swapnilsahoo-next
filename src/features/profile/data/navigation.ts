@@ -88,6 +88,16 @@ export const moreDropdown: NavDropdown = {
       ],
     },
     {
+      label: "Holistic Wellbeing",
+      href: "/holistic-wellbeing",
+      children: [
+        {
+          label: "Mental Wellbeing",
+          href: "/holistic-wellbeing/mental-wellbeing",
+        },
+      ],
+    },
+    {
       label: "Comics & Fiction",
       href: "/comics",
       children: [
