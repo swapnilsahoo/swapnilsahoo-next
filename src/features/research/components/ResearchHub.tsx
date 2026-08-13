@@ -125,18 +125,10 @@ export function ResearchHub() {
       <InquiryPrelude
         id="research-inquiry"
         title="What does “resourcefulness” explain that “resources” alone cannot?"
-        introduction="Each branch below rests on a claim about mechanism, not just outcome. These questions are worth asking before treating any finding as settled — including the ones grounded in the submitted thesis."
-        socraticQuestions={[
-          "When a paper calls a founder “resourceful,” is that a description of what they did, or a compliment dressed up as an explanation?",
-          "If two founders face the same scarcity and only one adapts, is the difference in the constraint or in the person — and how would a researcher tell those apart?",
-          "Whose account of “what worked” is being trusted: the founder's own retelling, an outside observer's coding, or a metric collected after the fact?",
-          "What would have to be true for a finding from one resource-constrained setting to transfer to another, rather than merely sound similar?",
-        ]}
-        firstPrinciplesQuestions={[
-          "What exactly is held constant across these four branches, and what is allowed to vary?",
-          "Which claims here rest on the submitted 2024 thesis, and which are open questions still needing evidence?",
-          "What is the smallest observable action that would count as evidence of entrepreneurial agency, rather than luck retold as strategy?",
-          "If a branch's central mechanism were wrong, what result would we expect to see instead?",
+        questions={[
+          "When a study calls a founder “resourceful,” is that a description of what happened, or a label standing in for an explanation?",
+          "Which of these claims rest on the submitted 2024 thesis, and which are still open questions?",
+          "If a branch's central mechanism were wrong, what would we expect to see instead?",
         ]}
       />
 

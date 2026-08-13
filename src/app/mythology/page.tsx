@@ -45,20 +45,11 @@ const ramayanaLenses = [
   "Justice, loss and consequence",
 ] as const;
 
-const mythologyInquiry = {
-  socratic: [
-    "Before calling a character righteous or wrong, which obligations are colliding—and whose voice or suffering is absent from the scene?",
-    "Karna is judged for pride and Yudhiṣṭhira for a reckless wager—would either verdict survive if their birth status, and the choices it foreclosed, were reversed?",
-    "When recensions, translations, and commentaries differ, what do we actually mean when we say, ‘the epic says’?",
-    "What does the aftermath reveal about a celebrated decision that the moment of heroism or victory can conceal?",
-  ],
-  firstPrinciples: [
-    "Which edition or recension, passage, translation, and—where relevant—commentary support the reading in front of us?",
-    "Can we separate what the scene depicts, what its narrator frames, what a commentator argues, and what a modern reader infers?",
-    "If dharma concerns action amid competing obligations, which relationships, promises, constraints, and foreseeable consequences must be understood first?",
-    "What remains in the episode when we suspend familiar summaries, devotional conclusions, and contemporary leadership analogies?",
-  ],
-} as const;
+const mythologyQuestions = [
+  "Karna is condemned for pride and Yudhiṣṭhira for a reckless wager—would either verdict survive if their birth status were swapped?",
+  "When editions, translations, and commentaries disagree, what do we actually mean by ‘the epic says’?",
+  "What does the aftermath of a celebrated victory reveal that the moment of heroism hides?",
+] as const;
 
 const mahabharataReadingMap = [
   {
@@ -248,9 +239,7 @@ export default function MythologyPage() {
         id="mythology-inquiry"
         eyebrow="Before entering the epics"
         title="Which question is the story refusing to simplify?"
-        introduction="The Mahābhārata and Vālmīki Rāmāyaṇa reach us through long textual and interpretive histories, not through a single uncontested authorial manuscript. These questions help us read a chosen witness carefully, distinguish scene from commentary, and remain attentive to moral complexity without deciding questions of faith or historicity for the reader."
-        socraticQuestions={mythologyInquiry.socratic}
-        firstPrinciplesQuestions={mythologyInquiry.firstPrinciples}
+        questions={mythologyQuestions}
       />
 
       <section aria-labelledby="original-note-title" className="pb-16 sm:pb-24">

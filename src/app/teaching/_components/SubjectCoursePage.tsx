@@ -81,9 +81,7 @@ export type SubjectCourseConfig = {
   }[];
   inquiry: {
     title: string;
-    introduction: string;
-    socraticQuestions: readonly [string, string, string, string];
-    firstPrinciplesQuestions: readonly [string, string, string, string];
+    questions: readonly string[];
   };
   promise: {
     title: string;
@@ -284,9 +282,7 @@ export function SubjectCoursePage({
       <InquiryPrelude
         id="course-inquiry"
         title={config.inquiry.title}
-        introduction={config.inquiry.introduction}
-        socraticQuestions={config.inquiry.socraticQuestions}
-        firstPrinciplesQuestions={config.inquiry.firstPrinciplesQuestions}
+        questions={config.inquiry.questions}
       />
 
       {featuredContent}

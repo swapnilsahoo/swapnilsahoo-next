@@ -20,19 +20,10 @@ export const karmaYogaCourse = {
   ],
   inquiry: {
     title: "Before serving, question the meaning of help.",
-    introduction:
-      "Karma Yoga asks learners to enter the field with humility and managerial discipline. These questions surface voice, power, causality and continuity before a team mistakes visible activity for responsible impact.",
-    socraticQuestions: [
-      "Who defined the problem as a problem, whose knowledge is missing from that definition and how could the community refuse or reshape the proposed intervention?",
-      "When students call an action “help,” what evidence shows that it preserves dignity, responds to a local priority and does not transfer hidden costs to the partner?",
-      "If participation rises or a story sounds moving, what rival explanations should be considered before attributing meaningful change to the intervention?",
-      "Who owns, maintains, repairs or stops the intervention after the team leaves—and what does that answer reveal about power and genuine partnership?",
-    ],
-    firstPrinciplesQuestions: [
-      "What human capability, agency or condition should improve, for whom, and what boundary keeps the team within its responsible reach?",
-      "Through what concrete mechanism should the intervention produce change, and which baseline, observation and stakeholder evidence could test that mechanism?",
-      "Which constraints—safety, consent, time, trust, materials, skill and local capacity—must shape the design before activity begins?",
-      "What is the smallest safe and useful action the community can help test, and what must be true for its value to continue without the student team?",
+    questions: [
+      "Who defined this problem—you, or the community living it?",
+      "If it photographs well but changes nothing, is it still help?",
+      "Who keeps it running after your team leaves the village?",
     ],
   },
   promise: {
@@ -448,19 +439,10 @@ export const businessSimulationCourse = {
   ],
   inquiry: {
     title: "Before the first round, make the logic visible.",
-    introduction:
-      "The simulation compresses a living enterprise into consequential choices. These questions keep the leaderboard from replacing learning by exposing cross-functional mechanisms, rival response, uncertainty and the evidence needed to adapt without losing coherence.",
-    socraticQuestions: [
-      "If the team leads the round, which result came from a sound strategy, which from execution, which from competitors’ choices and which may simply be temporary luck?",
-      "When each function recommends a locally sensible decision, where do those decisions collide—and who has the evidence and authority to resolve the trade-off?",
-      "Does a missed forecast invalidate the strategic thesis, reveal an execution error or expose a flawed assumption about the market—and how can the team distinguish among them?",
-      "Who benefits from a decision that improves short-run performance, who absorbs its operational, financial or ESG risk and when might that stakeholder response undermine the gain?",
-    ],
-    firstPrinciplesQuestions: [
-      "How do demand, price, product, capacity, inventory, cash and stakeholder choices flow through one another before they appear in the score?",
-      "Which scarce resource or binding constraint limits the next move, and what option is the team giving up by committing it here?",
-      "What must the company do differently from rivals to create and capture value across regions, and which competitor response would weaken that advantage?",
-      "What did the team predict, what did it decide, what actually happened and which variance contains enough evidence to justify adaptation?",
+    questions: [
+      "Did your team win, or did a rival just lose?",
+      "If a number surprises you, was it bad luck—or a hidden assumption?",
+      "Would you make the same call if the ESG cost hit this quarter, not year five?",
     ],
   },
   promise: {

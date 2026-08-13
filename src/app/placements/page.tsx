@@ -254,18 +254,9 @@ export default function PlacementsPage() {
       <InquiryPrelude
         id="placement-questions"
         title="Before you prepare an answer, question the story you are telling."
-        introduction="Placement preparation is partly about technique, but it is also an inquiry into fit, identity and evidence. These questions help you notice the difference between a role you genuinely understand and one you have merely learned to describe."
-        socraticQuestions={[
-          "Do I want this role because its daily work fits me, or because its title carries status in my environment?",
-          "Which claims in my story are supported by decisions and outcomes—and which are still aspirations?",
-          "What part of my professional identity remains true across roles, and what am I changing merely to sound suitable?",
-          "What trade-offs am I willing to accept for this direction, and which compromises would make the choice misaligned with what I value or can sustain?",
-        ]}
-        firstPrinciplesQuestions={[
-          "What problem does this role exist to solve, and what capabilities are indispensable to solving it?",
-          "What is the smallest piece of observable evidence that would make each capability claim credible?",
-          "Can I explain my fit through choices, actions, outcomes and learning without relying on job titles?",
-          "Given limited time, which practice would most improve my judgment rather than only polish my delivery?",
+        questions={[
+          "Do you want this role, or the status its title carries?",
+          "Strip your story down to Claim → Evidence → Insight—what's actually sitting in the middle?",
         ]}
       />
 

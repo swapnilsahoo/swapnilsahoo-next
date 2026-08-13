@@ -19,20 +19,11 @@ import styles from "./OneYearMbaExperience.module.css";
 
 const mbaClassroomPost = linkedInHighlights[1];
 
-const executiveStrategyInquiry = {
-  socraticQuestions: [
-    "When an experienced manager says, “This worked before,” which conditions made it work—and what evidence would show that those conditions no longer hold?",
-    "This course gives each idea exactly one case, one quiz and one founder conversation before the next module begins—what would have to be true for that single pass to be enough evidence to change an experienced manager’s standing view?",
-    "When an executive cohort gets only one session per concept, whose cost quietly gets assumed away because no one in the room bears it—and would a second pass even surface it?",
-    "When leaders claim synergy from owning more of the value chain, what mechanism must outweigh coordination cost, lost flexibility and managerial attention?",
-  ],
-  firstPrinciplesQuestions: [
-    "Who is choosing the offering, what do they value enough to pay or participate, and where does the firm capture part of that value?",
-    "Which minimum set of activities and capabilities must reinforce one another for the chosen position to be credible rather than aspirational?",
-    "This programme’s own binding constraint is thirteen sessions, not capital or talent—so what depth gets traded for coverage when the audience already brings functional depth, and which modules can least afford that trade?",
-    "Under what conditions should the firm build, buy, ally, outsource or exit, and which evidence would trigger a change in that boundary?",
-  ],
-} as const;
+const executiveStrategyQuestions = [
+  "When your experience says “this worked before,” what conditions made it true—and do they still hold here?",
+  "This course gives each idea one case and one pass before the next module begins. Is that enough to change your mind?",
+  "When a firm claims synergy from owning more of its value chain, what has to be true for that to beat the added coordination cost?",
+] as const;
 
 const sessionActs = [
   {
@@ -526,9 +517,7 @@ export function OneYearMbaExperience() {
       <InquiryPrelude
         id="executive-strategy-inquiry"
         title="Experience enters the room as a hypothesis."
-        introduction="The compressed course moves quickly, but it does not reward quick certainty. These questions help experienced managers expose the assumptions beneath familiar answers, trace the mechanism behind performance and make the cost of every commitment visible."
-        socraticQuestions={executiveStrategyInquiry.socraticQuestions}
-        firstPrinciplesQuestions={executiveStrategyInquiry.firstPrinciplesQuestions}
+        questions={executiveStrategyQuestions}
       />
 
       <section id="promise" aria-labelledby="promise-title" className="py-16 sm:py-24">

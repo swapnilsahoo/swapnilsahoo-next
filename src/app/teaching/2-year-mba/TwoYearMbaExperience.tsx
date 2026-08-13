@@ -28,20 +28,10 @@ import {
 
 const responsibleAiPost = linkedInHighlights[0];
 
-const strategicManagementInquiry = {
-  socraticQuestions: [
-    "When a founder sends back a low relevance rating, has the framework failed, or is the team defending a recommendation it should have abandoned—and what evidence would tell those two apart?",
-    "Can a recommendation still be called coherent if marketing, operations, finance or people must absorb contradictions that the strategy slide leaves unresolved?",
-    "How should a decision change when competitors, regulators, employees and customers can respond rather than remain fixed assumptions in the analysis?",
-    "When growth looks attractive, which cash demands, capability gaps, implementation owners and stakeholder consequences might reverse the recommendation?",
-  ],
-  firstPrinciplesQuestions: [
-    "The field project sends recommendations back to the founder or CXO and asks for a 1–10 relevance rating—what causal claim is the team actually making, and would a low rating falsify the analysis or just reflect a founder who prefers the status quo?",
-    "Which constraint currently limits value creation or capture, and would the proposed action remove that constraint or simply move it elsewhere?",
-    "What must be different relative to rivals for advantage to exist, and what would make that difference valuable, difficult to copy and durable enough to matter?",
-    "Who must do what differently for the strategy to become action, which leading signals will reveal progress and what evidence should trigger correction?",
-  ],
-} as const;
+const strategicManagementQuestions = [
+  "If the founder scores your recommendation a 3 out of 10, does that disprove your analysis—or just reveal a founder defending the status quo?",
+  "Would your recommendation survive competitors, regulators, and employees actually reacting to it?",
+] as const;
 
 const assessmentColours = [
   "bg-emerald-600",
@@ -242,9 +232,7 @@ export function TwoYearMbaExperience() {
       <InquiryPrelude
         id="strategic-management-inquiry"
         title="Strategy begins where the obvious answer stops."
-        introduction="Before moving through the course architecture, these questions make the work beneath a recommendation visible: causal reasoning, competitive response, cross-functional coherence, stakeholder consequences and the conditions under which a decision should change."
-        socraticQuestions={strategicManagementInquiry.socraticQuestions}
-        firstPrinciplesQuestions={strategicManagementInquiry.firstPrinciplesQuestions}
+        questions={strategicManagementQuestions}
       />
 
       <section

@@ -114,18 +114,9 @@ export default function KarmaYogaForIndiaPage() {
       <InquiryPrelude
         id="karma-yoga-india-inquiry"
         title="What does “partnership” mean over years rather than one visit?"
-        introduction="A relationship with a place changes what a visitor is entitled to claim about it. These questions frame the story that follows — and are worth asking of any long-horizon commitment, not only this one."
-        socraticQuestions={[
-          "Does returning to the same place year after year change what a visitor is entitled to claim about it?",
-          "Whose definition of progress governs here — the partnership's own metrics, or what the community of Mehalchauri would say has changed?",
-          "What is lost, and what is gained, when a relationship with a place is documented mainly through photographs and milestones?",
-          "If the partnership ended tomorrow, what would remain standing without it?",
-        ]}
-        firstPrinciplesQuestions={[
-          "What distinguishes a long-horizon partnership from a series of well-intentioned short visits?",
-          "Which changes described here are attributable to the partnership, and which would likely have happened anyway?",
-          "What capability is the community meant to hold on its own by the end of this work, and how would that be verified?",
-          "What decision, made early in this relationship, would be hardest to reverse now?",
+        questions={[
+          "If the partnership ended tomorrow, what would still be standing in Mehalchauri without it?",
+          "Would one visit have produced Mehalchauri's first girls' football team — or did that take years of returning?",
         ]}
       />
 

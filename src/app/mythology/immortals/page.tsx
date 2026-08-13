@@ -119,20 +119,11 @@ export const metadata: Metadata = {
   },
 };
 
-const inquiry = {
-  socratic: [
-    "When a tradition calls someone deathless, does it mean an unusually long life, continuing spiritual presence, an incorrupt body, or liberation from rebirth?",
-    "Which part of the account comes from a contemporary record, which from a lineage biography, and which from a much later retelling?",
-    "What is lost if sacred testimony is treated as laboratory evidence—and what is lost if it is dismissed before its religious meaning is understood?",
-    "Whose language are we using when a Tamil, Japanese, Burmese, or Tibetan teaching is translated into a single generic vocabulary of ‘immortality’?",
-  ],
-  firstPrinciples: [
-    "What observable claim is actually being made, and what evidence would be needed to distinguish it from metaphor, memory, or devotion?",
-    "Can the historical person, the received teaching, and the later legend be described independently before their relationship is interpreted?",
-    "Does a scientific study examine this person or phenomenon directly, or is it only an analogy involving meditation, ageing, light, or altered metabolism?",
-    "What can remain meaningful in the tradition even when an extraordinary biological claim cannot be independently established?",
-  ],
-} as const;
+const inquiryQuestions = [
+  "When this atlas calls someone 'immortal,' does it mean a long life, a felt presence, or freedom from rebirth?",
+  "The longest verified human life is 122 years. What would convince you a claim of centuries is more than legend?",
+  "Does folding a Tamil, Japanese, or Tibetan practice into one English word erase what made it distinct?",
+] as const;
 
 const claimFamilies = [
   {
@@ -284,9 +275,7 @@ export default function ImmortalsPage() {
         id="immortals-inquiry"
         eyebrow="Before reading extraordinary lives"
         title="What kind of deathlessness is this tradition asking us to imagine?"
-        introduction="‘Immortal’ is used here as a comparative library label, not a finding about human biology. These questions keep historical persons, devotional memories, textual metaphors, lineage claims, and scientific evidence from being collapsed into one category."
-        socraticQuestions={inquiry.socratic}
-        firstPrinciplesQuestions={inquiry.firstPrinciples}
+        questions={inquiryQuestions}
       />
 
       <section id="evidence" aria-labelledby="evidence-title" className="py-16 sm:py-24">

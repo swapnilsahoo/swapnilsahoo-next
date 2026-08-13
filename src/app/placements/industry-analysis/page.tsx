@@ -162,18 +162,9 @@ export default function IndustryAnalysisPage() {
         id="industry-analysis-inquiry"
         eyebrow="Before opening a template"
         title="A framework is a discipline, not a checklist to fill in."
-        introduction="Most student reports fail not from missing frameworks but from missing decisions: pages of PESTEL and Five Forces that do not change the conclusion. These questions are meant to be asked before, during and after the analysis — not answered once and filed away."
-        socraticQuestions={[
-          "If a senior reader removed every framework page from this report, would the recommendation actually change — or were the frameworks decorative?",
-          "Which of my numbers are facts with a stated source, which are estimates with a stated method, and which are simply assumptions I have not labelled as such?",
-          "Whose incentive would be served if my central conclusion turned out to be wrong — and have I sought out that person's view?",
-          "Am I segmenting, scoring and mapping because it reveals something new, or because the framework expects a slide in that shape?",
-        ]}
-        firstPrinciplesQuestions={[
-          "What decision, for whom, over what time horizon, is this analysis actually meant to support?",
-          "Where in the value chain is revenue actually generated, and — a separate question — where is profit actually captured?",
-          "What would have to be true for each force in Five Forces to be strengthening rather than weakening, and what evidence would show which is happening?",
-          "What is the smallest set of assumptions my recommendation depends on, and what observable evidence would prove any one of them wrong?",
+        questions={[
+          "If you deleted every framework slide, would the recommendation actually change?",
+          "Which of your numbers are facts, which are estimates, and which are unlabelled assumptions?",
         ]}
       />
 

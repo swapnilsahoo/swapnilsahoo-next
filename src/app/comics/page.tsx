@@ -99,20 +99,11 @@ const sharedPractices = [
 const sourceLinkClass =
   "inline-flex min-h-11 items-center gap-2 font-semibold text-blue-700 underline decoration-blue-300 underline-offset-4 transition hover:text-red-700 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-4 focus-visible:outline-none dark:text-blue-300 dark:focus-visible:ring-offset-slate-950";
 
-const comicsInquiry = {
-  socratic: [
-    "Which part of a hero’s achievement depends on exceptional power, and which part remains available to an ordinary person?",
-    "When does responsibility help repair a failure—and when can it harden into guilt that leaves no room for rest or growth?",
-    "Who bears the cost when a powerful person decides alone what protection, justice, or rescue should mean?",
-    "What would hope look like if victory remained uncertain, recognition never arrived, and only the next choice was available?",
-  ],
-  firstPrinciples: [
-    "What makes an act courageous: the danger faced, the intention behind it, the cost accepted, or the person it serves?",
-    "Peter Parker gets no clean reward and returns anyway—apart from any superhuman power, what relationships and knowledge have to already be in place for that kind of return to even be possible?",
-    "If power is simply the capacity to affect another life, what constraints turn that capacity into trustworthy stewardship?",
-    "What evidence would distinguish resilience from mere endurance—and recovery from the demand to remain endlessly strong?",
-  ],
-} as const;
+const comicsInquiryQuestions = [
+  "Which part of what these heroes do actually requires superpowers?",
+  "When Superman decides alone what saving the world requires, who never got a say?",
+  "Is Peter Parker's return after failure different from just not letting go of the guilt?",
+] as const;
 
 export default function ComicsPage() {
   return (
@@ -169,9 +160,7 @@ export default function ComicsPage() {
         id="comics-inquiry"
         eyebrow="Before the first panel"
         title="What are we really asking a hero to carry?"
-        introduction="These stories are invitations, not moral formulas. Begin by questioning what courage, power, failure and hope mean when choices are constrained and consequences are shared. The aim is to notice the human problem beneath the costume before drawing a lesson from the plot."
-        socraticQuestions={comicsInquiry.socratic}
-        firstPrinciplesQuestions={comicsInquiry.firstPrinciples}
+        questions={comicsInquiryQuestions}
       />
 
       <section

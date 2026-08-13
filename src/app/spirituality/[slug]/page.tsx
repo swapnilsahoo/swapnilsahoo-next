@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 
 import { ArrowRightIcon } from "@/components/icons/LineIcons";
 import { Container } from "@/components/ui/Container";
-import { InquiryPrelude, type InquiryQuestions } from "@/components/ui/InquiryPrelude";
+import { InquiryPrelude } from "@/components/ui/InquiryPrelude";
 import { ScriptureReader } from "@/features/spirituality/components/ScriptureReader";
 import {
   isScriptureSlug,
@@ -62,111 +62,49 @@ const scriptureInquiry: Record<
   ScriptureSlug,
   {
     title: string;
-    introduction: string;
-    socraticQuestions: InquiryQuestions;
-    firstPrinciplesQuestions: InquiryQuestions;
+    questions: readonly string[];
   }
 > = {
   "hanuman-chalisa": {
     title: "What becomes audible when familiarity slows down?",
-    introduction:
-      "The declared normalized Devanagari reading of the Old Awadhi poem comes first. The word divisions, pronunciation-friendly romanization, close meanings, and notes are editorial study aids, not replacement verses or claims of exhaustive commentary.",
-    socraticQuestions: [
-      "What changes when the Chalisa is read as Old Awadhi devotional poetry rather than assuming that Devanagari script makes it a Sanskrit composition?",
-      "When printed and recited traditions divide or pronounce a phrase differently, which meanings depend on the editor’s decision?",
-      "How can we honour the traditional attribution to Tulsidas while distinguishing historical evidence from later devotional biography?",
-      "How do praise, memory, rhythm, and ethical formation work together without reducing the poem to a list of propositions?",
-    ],
-    firstPrinciplesQuestions: [
-      "Which words belong to the declared Devanagari reading, and which boundaries, romanization choices, and English glosses have been supplied by this edition?",
-      "What must be present to call the sequence complete: two opening dohās, forty numbered caupāīs, and the closing dohā?",
-      "What evidence would justify preferring one variant reading, and how should that choice be documented without dismissing living recitation traditions?",
-      "What can a close word-level gloss establish, and what still requires Awadhi grammar, literary context, or a fuller commentary?",
+    questions: [
+      "Would you read this differently knowing it's Old Awadhi devotional poetry, not Sanskrit scripture?",
+      "Is Tulsidas's authorship something the evidence shows, or something tradition has decided?",
     ],
   },
   "vishnu-sahasranama": {
     title: "What changes when one thousand names are heard as an answer?",
-    introduction:
-      "The declared Sanskrit base reading and one-thousand-name enumeration are presented within the Mahābhārata frame, then kept distinct from this site’s normalization, name segmentation, IAST, concise glosses, and editorial notes.",
-    socraticQuestions: [
-      "How does hearing Bhīṣma answer Yudhiṣṭhira in the Anuśāsanaparvan change a reading that might otherwise seem like an isolated list?",
-      "When an epithet recurs, do its neighbours and narrative setting invite a different emphasis rather than mere repetition?",
-      "If chapter numbering and name boundaries vary across editions, what assumptions sit behind the apparently simple claim of exactly one thousand names?",
-      "How can distinct Vedānta commentary traditions illuminate a name without being compressed into one supposedly final meaning?",
-    ],
-    firstPrinciplesQuestions: [
-      "What counts as one name when sandhi, compounds, multiword expressions, and repeated epithets complicate segmentation?",
-      "Which wording and enumeration come from the declared base sources, and which normalization, segmentation, IAST, and English wording are editorial?",
-      "What evidence distinguishes Bhīṣma as narrative speaker, Vyāsa as traditional compiler-seer, and Śaṅkara as an attributed commentator rather than treating all three as historical authors?",
-      "Which interpretations follow closely from grammar and context, and which depend on a particular doctrinal commentary?",
+    questions: [
+      "Does a name read differently once you know Bhīṣma is answering Yudhiṣṭhira, not reciting a list?",
+      "If editions split compounds differently, is \"exactly one thousand names\" really fixed?",
     ],
   },
   "lalita-sahasranama": {
     title: "How should a thousand names remain more than a thousand labels?",
-    introduction:
-      "The complete declared sequence stays visible in its received order. The site separately identifies normalized Devanagari, mechanically prepared IAST, editorial name boundaries, concise meanings, and commentarial context.",
-    socraticQuestions: [
-      "How do the Vāgdevī attribution and Hayagrīva–Agastya teaching frame shape devotional reading without becoming modern biographical claims?",
-      "If the hymn’s placement is not uniform across printed Brahmāṇḍa Purāṇa recensions, what does it mean to describe it carefully as transmitted with the Lalitopākhyāna tradition?",
-      "How might a name change when read beside its neighbours or through Bhāskararāya’s compound analysis rather than as an isolated glossary entry?",
-      "Can devotional trust and critical attention to witnesses, variants, and editorial decisions deepen one another?",
-    ],
-    firstPrinciplesQuestions: [
-      "How is the one-thousand-name count established when sandhi and Sanskrit compounds permit more than one defensible segmentation?",
-      "Which Sanskrit wording comes from the declared base reading, and which normalization, IAST, name division, and English meaning have been prepared for this reader?",
-      "What source evidence supports a selected base reading when the same witness or another recension records a variant?",
-      "What can a concise name-level meaning clarify, and what remains dependent on grammar, Śrīvidyā context, and extended commentary?",
+    questions: [
+      "If the hymn's place in the Brahmāṇḍa Purāṇa shifts across manuscripts, what exactly is \"the text\"?",
+      "Does a name mean something different read through Bhāskararāya's commentary than read alone?",
     ],
   },
   "shiva-tandava-stotram": {
-    title: "What does the hymn’s movement reveal before explanation begins?",
-    introduction:
-      "This page declares a popular seventeen-unit received sequence rather than a reconstructed critical edition. The selected surface reading is kept distinct from editorial pāda boundaries, hyphenation, IAST, pāda-level reading guides, concise meanings, and notes.",
-    socraticQuestions: [
-      "What does the traditional Rāvaṇa attribution contribute to devotional memory, and what can it not establish about a historically identifiable poet?",
-      "How do metre, alliteration, and the drum-like movement create an experience that an English paraphrase cannot fully carry?",
-      "When manuscripts differ in stanza count, order, and wording, what is gained—and what must be disclosed—when this seventeen-unit sequence is described as complete within its declared scope?",
-      "How should a phalaśruti’s promised benefits be heard within devotional genre without turning them into guaranteed empirical outcomes?",
-    ],
-    firstPrinciplesQuestions: [
-      "What exactly composes this declared sequence: fifteen body stanzas, one phalaśruti, and one received supplementary stanza?",
-      "Which features make this a transparent received edition rather than a claim to have reconstructed an original text?",
-      "Which Sanskrit wording belongs to the selected surface reading, how do the displayed Devanagari and IAST encode it, and which pāda breaks, hyphens, reading guides, and English meanings are additional editorial aids?",
-      "Which variants materially alter metre, image, or interpretation enough that a careful reader needs to see them?",
+    title: "What does the hymn's movement reveal before explanation begins?",
+    questions: [
+      "Would this hymn move you differently if Rāvaṇa never actually wrote it?",
+      "Is the phalaśruti's promised reward a guarantee, or just how devotion talks?",
     ],
   },
   "bhagavad-gita": {
     title: "What changes when Krishna's counsel is read verse by verse, word by word?",
-    introduction:
-      "The declared Sanskrit base text and its grammatical word-division are presented for all eighteen chapters, kept distinct from this site's mechanical transliteration, sourced or editorially supplied word meanings, and newly composed close English rendering.",
-    socraticQuestions: [
-      "How does hearing this as Sañjaya's report to Dhṛtarāṣṭra, rather than an abstract philosophical treatise, change what Kṛṣṇa's counsel to Arjuna is doing?",
-      "When a single Sanskrit compound can be split and glossed in more than one defensible way, what does the chosen word-by-word division make visible, and what does it foreclose?",
-      "How can the many centuries of commentary on this text (Śaṅkara, Rāmānuja, Madhusūdana, and others) be honoured rather than flattened by one close, literal English rendering?",
-      "What does it mean to call this edition complete: is completeness about verse count alone, or also about the layers of reading a single verse can support?",
-    ],
-    firstPrinciplesQuestions: [
-      "Which Sanskrit wording comes from the declared base source, and which normalization, transliteration, word-division, and English wording were prepared for this reader?",
-      "Why does this edition carry 701 verses when 700 is the more commonly cited total, and what does that difference actually consist of?",
-      "What can a concise, literal, word-grounded English rendering establish about a verse, and what does it still leave to grammar, philosophical context, and commentary?",
-      "What evidence distinguishes Sañjaya as narrator, Kṛṣṇa as the dialogue's speaker, and Vyāsa as the epic's traditional compiler, rather than treating all three as equivalent historical authors?",
+    questions: [
+      "Does it change anything that you're hearing Sañjaya's report, not a direct transcript of the battlefield?",
+      "This edition counts 701 verses against the usual 700 — does one extra verse change what \"complete\" means?",
     ],
   },
   ramcharitmanas: {
     title: "What does it mean for a reading edition to say, plainly, how much of it is done?",
-    introduction:
-      "Bālakāṇḍa's opening invocation is presented complete, word by word, with the rest of the kāṇḍa's Awadhi text verified but not yet translated, and the six kāṇḍas after it not yet begun. The declared coverage is stated before the reader, not discovered partway through it.",
-    socraticQuestions: [
-      "What is lost, and what is gained, by reading Tulsi's Awadhi retelling as a devotional work in its own right rather than as a translation of Vālmīki's Sanskrit Rāmāyaṇa?",
-      "When a verse's translation is marked pending rather than supplied, does that absence teach something a confident but uncertain guess would not?",
-      "How does the layered narration — Tulsidas recounting Yājñavalkya recounting Śiva's telling to Pārvatī — change what it means to ask who is speaking at any given verse?",
-      "What does it cost a reader when a study edition of a sacred text quietly pads out an unfinished section to look complete, and what does it cost when it does not?",
-    ],
-    firstPrinciplesQuestions: [
-      "Which Awadhi and Sanskrit wording comes from the declared base source, and which normalization, transliteration, and translation were prepared for this reader?",
-      "What must be true of a source correction — like the one disclosed doha label — before it is reasonable to fix it rather than reproduce an evident typo?",
-      "Of the 369 units in this kāṇḍa, which thirteen carry full word-by-word study, which further twenty-nine carry only a close translation, and what distinguishes each layer from the verified-but-untranslated remainder?",
-      "What would it take to extend this same standard of verification across the rest of Bālakāṇḍa and into the six kāṇḍas that follow?",
+    questions: [
+      "With Śiva telling Pārvatī, Yājñavalkya retelling it, and Tulsidas retelling that — who's actually speaking in any one verse?",
+      "Would you rather have 13 verses fully translated, or 369 stretched thin to look finished?",
     ],
   },
 };
@@ -353,9 +291,7 @@ export default async function ScripturePage({ params }: PageProps) {
         id={`${slug}-inquiry`}
         eyebrow="Before opening the reader"
         title={inquiry.title}
-        introduction={inquiry.introduction}
-        socraticQuestions={inquiry.socraticQuestions}
-        firstPrinciplesQuestions={inquiry.firstPrinciplesQuestions}
+        questions={inquiry.questions}
       />
 
       <section aria-labelledby="authentic-title" className="py-14 sm:py-20">
