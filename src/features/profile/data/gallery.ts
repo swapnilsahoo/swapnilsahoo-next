@@ -140,4 +140,20 @@ export const galleryImages: GalleryImage[] = [
     objectFit: "contain",
     objectPosition: "center",
   },
+  {
+    src: "/images/gallery/2-year-mba-strategic-management-closure-1.jpg",
+    alt: "The 2-Year MBA Strategic Management cohort gathered for a group photo at the close of the course",
+    caption: "Strategic Management · Course closure",
+    description: "The 2-Year MBA cohort marking the end of the course together in the classroom.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
+  {
+    src: "/images/gallery/2-year-mba-strategic-management-closure-2.jpg",
+    alt: "A second Strategic Management cohort gathered for a group photo at the close of the course",
+    caption: "Strategic Management · Course closure",
+    description: "Another Strategic Management cohort at their own course-closure group photo.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
 ];
