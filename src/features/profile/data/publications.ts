@@ -122,6 +122,135 @@ export const authoredEssays: Essay[] = [
   },
 ];
 
+export const linkedInArticles: Essay[] = [
+  {
+    outlet: "LinkedIn",
+    date: "Jul 2026",
+    title: "Eloquence: The Gift — and the Danger — of Powerful Words",
+    href: "https://www.linkedin.com/pulse/eloquence-giftand-dangerof-powerful-words-dr-swapnil-sahoo-pqwhe",
+  },
+  {
+    outlet: "LinkedIn",
+    date: "Jul 2026",
+    title: "Day 5: Data — Why Machines Stop Following Rules and Start Finding Patterns",
+    href: "https://www.linkedin.com/pulse/day-5-data-why-machines-stop-following-rules-start-finding-sahoo-toize",
+  },
+  {
+    outlet: "LinkedIn",
+    date: "Jul 2026",
+    title: "Why Outsiders Often See What Insiders Miss",
+    href: "https://www.linkedin.com/pulse/why-outsiders-often-see-what-insiders-miss-dr-swapnil-sahoo-jckde",
+  },
+  {
+    outlet: "LinkedIn",
+    date: "Jul 2026",
+    title: "Day 4: What Is Machine Learning?",
+    href: "https://www.linkedin.com/pulse/day-4-what-machine-learning-learn-ai-31-days-30-minutes-sahoo-hs8te",
+  },
+  {
+    outlet: "LinkedIn",
+    date: "Jul 2026",
+    title: "Day 3: Types of AI — Predictive, Generative and Agentic",
+    href: "https://www.linkedin.com/pulse/day-3-types-ai-predictive-generative-agentic-learn-31-sahoo-bhxre",
+  },
+  {
+    outlet: "LinkedIn",
+    date: "Jul 2026",
+    title: "Beyond the Hype: Why AI Isn't Magic (and Why That's a Good Thing)",
+    href: "https://www.linkedin.com/pulse/beyond-hype-why-ai-isnt-magic-thats-good-thing-dr-swapnil-sahoo-alyve",
+  },
+  {
+    outlet: "LinkedIn",
+    date: "Jul 2026",
+    title: "Day 2: A Short History of AI",
+    href: "https://www.linkedin.com/pulse/learn-ai-31-days-30-minutes-day-2-short-history-dr-swapnil-sahoo-hrmxe",
+  },
+  {
+    outlet: "LinkedIn",
+    date: "Jul 2026",
+    title: "Day 1: What Is Artificial Intelligence?",
+    href: "https://www.linkedin.com/pulse/learn-ai-31-days-30-minutes-day-1-what-artificial-dr-swapnil-sahoo-tdnqe",
+  },
+  {
+    outlet: "LinkedIn",
+    date: "Jun 2026",
+    title: "The Ghost in the Machine — Can AI Be Conscious?",
+    href: "https://www.linkedin.com/pulse/ghost-machine-can-ai-conscious-dr-swapnil-sahoo-oau0e",
+  },
+  {
+    outlet: "LinkedIn",
+    date: "Oct 2024",
+    title: "Calling All Family Business Owners and Entrepreneurs",
+    href: "https://www.linkedin.com/pulse/calling-all-family-business-owners-entrepreneurs-swapnil-sahoo-zroee",
+  },
+  {
+    outlet: "LinkedIn",
+    date: "Aug 2018",
+    title: "Eliminating Mobility Silos",
+    href: "https://www.linkedin.com/pulse/eliminating-mobility-silos-swapnil-sahoo",
+  },
+  {
+    outlet: "LinkedIn",
+    date: "Aug 2018",
+    title: "Innovation in Alliances and Partnerships for Enterprise Mobility Management",
+    href: "https://www.linkedin.com/pulse/innovation-alliances-partnerships-enterprise-mobility-swapnil-sahoo",
+  },
+  {
+    outlet: "LinkedIn",
+    date: "Jul 2018",
+    title: "India's EdTech Industry and Future",
+    href: "https://www.linkedin.com/pulse/indias-edtech-industry-future-swapnil-sahoo",
+  },
+  {
+    outlet: "LinkedIn",
+    date: "Jul 2018",
+    title: "Future of Financial Markets in the United Kingdom Post-Brexit",
+    href: "https://www.linkedin.com/pulse/future-financial-markets-united-kingdom-post-breexit-swapnil-sahoo",
+  },
+  {
+    outlet: "LinkedIn",
+    date: "Apr 2017",
+    title: "The Future of Global Digital Payments",
+    href: "https://www.linkedin.com/pulse/future-global-digital-payments-swapnil-sahoo",
+  },
+  {
+    outlet: "LinkedIn",
+    date: "Apr 2017",
+    title: "Millennials: The Fastest-Growing Customer Base — A Banking Point of View",
+    href: "https://www.linkedin.com/pulse/millennials-fastest-growing-customer-base-banking-pov-swapnil-sahoo",
+  },
+  {
+    outlet: "LinkedIn",
+    date: "Apr 2017",
+    title: "Banking on Blockchain — Literally",
+    href: "https://www.linkedin.com/pulse/banking-blockchain-literally-swapnil-sahoo",
+  },
+  {
+    outlet: "LinkedIn",
+    date: "Aug 2015",
+    title: "Value-Added Services and Big Data: To Be or Not to Be",
+    href: "https://www.linkedin.com/pulse/value-added-services-big-data-swapnil-sahoo",
+  },
+  {
+    outlet: "LinkedIn",
+    date: "Jun 2015",
+    title: "Monetizing Cloud Computing",
+    href: "https://www.linkedin.com/pulse/monetizing-cloud-computing-swapnil-sahoo-6011002933980774400",
+  },
+  {
+    outlet: "LinkedIn",
+    date: "May 2015",
+    title: "Data Post 1",
+    href: "https://www.linkedin.com/pulse/data-post-1-swapnil-sahoo",
+  },
+  {
+    outlet: "LinkedIn",
+    date: "Jun 2014",
+    title: "Harnessing BI",
+    href: "https://www.linkedin.com/pulse/20140610042621-27661454-harnessing-bi",
+  },
+];
+
 export interface PressMention {
   outlet: string;
   date: string;

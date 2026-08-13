@@ -9,6 +9,7 @@ import {
   authoredEssays,
   bookChapters,
   journalArticles,
+  linkedInArticles,
   pressMentions,
   teachingCases,
 } from "@/features/profile/data/publications";
@@ -62,7 +63,7 @@ const outletCount = new Set(pressMentions.map((m) => m.outlet)).size;
 const heroStats = [
   ["Research & chapters", String(journalArticles.length + bookChapters.length)],
   ["Case studies", String(teachingCases.length)],
-  ["Essays", String(authoredEssays.length)],
+  ["Essays", String(authoredEssays.length + linkedInArticles.length)],
   ["Press mentions", String(pressMentions.length)],
 ] as const;
 
@@ -262,12 +263,56 @@ export default function PressPage() {
 
       <div className="hr-fade mx-auto max-w-6xl" />
 
+      <section aria-labelledby="linkedin-title" className="py-14 sm:py-20">
+        <Container className="max-w-4xl">
+          <div className="mb-8">
+            <span className="accent-rule" />
+            <p className="eyebrow mb-3">05 / LinkedIn writing</p>
+            <h2 id="linkedin-title" className="display text-4xl font-semibold sm:text-5xl">
+              A public record of thinking out loud.
+            </h2>
+            <p className="text-ink-600 dark:text-ink-300 mt-3 max-w-2xl text-sm leading-relaxed sm:text-base">
+              {linkedInArticles.length} long-form articles published on LinkedIn since 2014 — from
+              early writing on banking, telecom and enterprise mobility to a 2026 series on
+              artificial intelligence and a handful of essays on language and perspective.
+            </p>
+          </div>
+          <ol role="list" className="space-y-3">
+            {linkedInArticles.map((article) => (
+              <li key={article.href}>
+                <a
+                  href={article.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="pub-item glass-card group flex flex-wrap items-center justify-between gap-4 p-5"
+                >
+                  <span className="min-w-0">
+                    <span className="font-serif text-base leading-snug font-semibold sm:text-lg">
+                      {article.title}
+                    </span>
+                    <span className="text-ink-500 dark:text-ink-400 mt-1 block text-xs">
+                      {article.outlet} · {article.date}
+                    </span>
+                  </span>
+                  <ArrowRightIcon
+                    className="text-brand-700 dark:text-brand-300 h-5 w-5 shrink-0 transition group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </a>
+              </li>
+            ))}
+          </ol>
+        </Container>
+      </section>
+
+      <div className="hr-fade mx-auto max-w-6xl" />
+
       <section aria-labelledby="mentions-title" className="py-14 sm:py-20">
         <Container className="max-w-4xl">
           <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
             <div>
               <span className="accent-rule" />
-              <p className="eyebrow mb-3">05 / Quoted in the press</p>
+              <p className="eyebrow mb-3">06 / Quoted in the press</p>
               <h2 id="mentions-title" className="display text-4xl font-semibold sm:text-5xl">
                 Media coverage.
               </h2>
