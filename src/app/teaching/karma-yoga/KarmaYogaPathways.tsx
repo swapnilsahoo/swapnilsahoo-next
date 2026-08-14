@@ -151,6 +151,26 @@ const historicalPhotos: readonly PathwayPhoto[] = [
     cardClassName: "md:col-span-12",
     frameClassName: "aspect-[16/9]",
   },
+  {
+    src: "/images/teaching/karma-yoga/mehalchauri/historical/geometry-activity.webp",
+    alt: "Schoolchildren gathered around a pattern-block geometry activity with a facilitator",
+    caption:
+      "Shapes and patterns · a hands-on geometry activity from the historical programme archive.",
+    width: 1600,
+    height: 1200,
+    cardClassName: "md:col-span-7",
+    frameClassName: "aspect-[4/3]",
+  },
+  {
+    src: "/images/teaching/karma-yoga/mehalchauri/historical/volunteer-teaching.webp",
+    alt: "A student volunteer demonstrating an activity with wooden sticks to schoolchildren in a classroom",
+    caption:
+      "A volunteer-led lesson · the archive records a hands-on classroom activity with local schoolchildren.",
+    width: 1280,
+    height: 960,
+    cardClassName: "md:col-span-5",
+    frameClassName: "aspect-[4/3]",
+  },
 ];
 
 const mehalchauriWorkstreams = [

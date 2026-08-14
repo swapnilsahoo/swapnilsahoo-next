@@ -165,4 +165,37 @@ export const galleryImages: GalleryImage[] = [
     objectFit: "contain",
     objectPosition: "center",
   },
+  {
+    src: "/images/gallery/strategy-cohort-sept-2025.jpg",
+    alt: "A Strategy cohort gathered for a joyful group photo in the lecture hall, several wearing Great Lakes branded shirts",
+    caption: "Strategy cohort · September 2025",
+    description: "A full-class group photo at the end of a Strategy session.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
+  {
+    src: "/images/gallery/strategy-kodak-case-teaching-2026.jpg",
+    alt: "Dr Swapnil Sahoo teaching the Kodak legacy case to a Strategy classroom",
+    caption: "Teaching the Kodak case · Strategy, January 2026",
+    description: "A live case-teaching moment on Kodak's strategic legacy.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
+  {
+    src: "/images/gallery/spic-macay-koodiyattam-performance-2025.jpg",
+    alt: "A Koodiyattam classical performer on stage with musicians, at a SPIC MACAY cultural evening",
+    caption: "Koodiyattam · SPIC MACAY cultural evening, November 2025",
+    description:
+      "A classical Koodiyattam performance hosted by the SPIC MACAY chapter at Great Lakes Gurgaon.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
+  {
+    src: "/images/gallery/spic-macay-koodiyattam-poster-2025.jpg",
+    alt: "Official event poster for a SPIC MACAY Koodiyattam classical performance at Great Lakes Institute of Management, Gurgaon",
+    caption: "SPIC MACAY · Bringing classical arts to campus",
+    description: "The official poster for the Koodiyattam cultural evening.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
 ];

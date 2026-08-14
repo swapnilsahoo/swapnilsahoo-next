@@ -184,6 +184,38 @@ export function KarmaYogaHub() {
         </Container>
       </section>
 
+      <section aria-labelledby="recognition-title" className="pb-20 sm:pb-28">
+        <Container className="max-w-6xl">
+          <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+            <blockquote className="border-brand-200 bg-brand-50/65 dark:border-brand-800 dark:bg-brand-950/35 rounded-3xl border p-7 sm:p-9">
+              <p className="font-serif text-2xl leading-snug font-semibold text-balance sm:text-3xl">
+                “My major takeaway from Karma Yoga at Great Lakes is that every problem can be
+                solved if you just initiate and move forward with whatever you can do… It has all
+                the components that a good manager should have, starting from problem
+                identification, teamwork, and most importantly—empathy.”
+              </p>
+              <footer className="text-ink-600 dark:text-ink-300 mt-5 text-sm">
+                Sumit Gupta · PGPM 2021–22
+              </footer>
+            </blockquote>
+
+            <aside className="glass-card p-6">
+              <p id="recognition-title" className="eyebrow">
+                Recognition
+              </p>
+              <h2 className="mt-3 font-serif text-xl font-semibold">
+                Nominated · ET Education Excellence Awards, 3rd Edition
+              </h2>
+              <p className="text-ink-600 dark:text-ink-300 mt-3 text-sm leading-6">
+                Karma Yoga was put forward for &ldquo;Excellence in Innovative Teaching and
+                Experiential Learning&rdquo;—recognition for treating field service as management
+                education enacted in the field, not outreach added to it.
+              </p>
+            </aside>
+          </div>
+        </Container>
+      </section>
+
       <section aria-labelledby="shared-ethic-title" className="pb-20 sm:pb-28">
         <Container className="max-w-6xl">
           <div className="rounded-[2rem] border border-slate-900/10 bg-white/65 p-6 shadow-xl shadow-slate-950/5 sm:p-10 dark:border-white/10 dark:bg-slate-950/55">

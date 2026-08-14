@@ -91,6 +91,12 @@ export const authoredEssays: Essay[] = [
     href: "https://csrtimes.org/sustainability-and-strategy-why-responsible-growth-is-now-a-business-imperative/",
   },
   {
+    outlet: "Education Times",
+    date: "May 2026",
+    title: "B-Schools Must Produce Entrepreneurs, Not Just Employees",
+    href: "/images/press/education-times-b-schools-entrepreneurs-may-2026.jpg",
+  },
+  {
     outlet: "CSR Times",
     date: "Feb 2026",
     title: "Why Budget 2026 Must Be a Doctrine of Defence, Not Just a Statement of Accounts",

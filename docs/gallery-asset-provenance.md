@@ -98,6 +98,47 @@ no separate consent/model-release record is held for the students shown.
 | `public/images/teaching/business-simulation/decision-debrief.jpg`     | `8f160ffa644138c4c89dad213b223073655435a85188c13635051350e961f2ac` | Personal classroom photograph supplied directly by Swapnil Sahoo (WhatsApp Image 2026-01-12) | Personal classroom photograph supplied by Swapnil Sahoo | Photographer, copyright owner, formal licence, publication permission, and consent/model-release records are not documented in this repository |
 | `public/images/gallery/winter-conference-2025-classroom.jpg`         | `b46beef58d9b023053c6b38af366e6f1822248f52d08d902de127f8def6c8c48` | Personal classroom photograph supplied directly by Swapnil Sahoo (WhatsApp Image 2026-01-06), Winter Conference on Sustainable Business 2025 | Personal classroom photograph supplied by Swapnil Sahoo | Photographer, copyright owner, formal licence, publication permission, and consent/model-release records are not documented in this repository |
 
+## Mehalchauri historical programme archive — additional finds (Aug 2026)
+
+Extracted from `Karma Yoga/Mehalchauri/MEHALCHAURI-ALL activities.pptx` (a ~1.4GB
+compiled programme deck), supplied directly by Swapnil Sahoo. `geometry-activity.webp`
+carries embedded EXIF identifying a Lava Iris 406Q phone camera and a
+2015-04-22 capture date, confirming it belongs to the pre-2026 historical
+programme record already documented on this page; `volunteer-teaching.webp`
+has no EXIF but matches the same historical-era classroom setting (no
+Great Lakes branding, older-style uniforms) and is recorded on the same basis.
+
+| Local asset                                                                          | SHA-256                                                            | Recorded source                                                                                    | Public provenance                                              | Rights and credit status                                                                                                             |
+| -------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `public/images/teaching/karma-yoga/mehalchauri/historical/geometry-activity.webp`     | `05717c40ab541bd5709f806d4143b963ddb68726c46a6da716a36f5e0adb8559` | Embedded photo from the MEHALCHAURI-ALL activities.pptx programme archive; EXIF dates capture to 2015-04-22 | Historical programme photograph, pre-2026; photographer not identified | Photographer, copyright owner, formal licence, publication permission, and consent/model-release records are not documented in this repository |
+| `public/images/teaching/karma-yoga/mehalchauri/historical/volunteer-teaching.webp`    | `63f48cf6cdb6d0ea1c63d09b28207daf2de46f4f48bd2bbcca6a220259682611` | Embedded photo from the MEHALCHAURI-ALL activities.pptx programme archive; no EXIF, dated by context to the historical (pre-2026) era | Historical programme photograph, pre-2026; photographer not identified | Photographer, copyright owner, formal licence, publication permission, and consent/model-release records are not documented in this repository |
+
+## Additional Strategy classroom & SPIC MACAY photos (Aug 2026)
+
+Sourced directly from Swapnil Sahoo's OneDrive: `Strategy/Class Pics` (Sept 2025
+Strategy cohort), the same "2 Year Course" Strategy Sessions classroom folder
+used above (Jan 2026 case-teaching), and `Clubs/SPIC MACAY` (Nov 2025 cultural
+evening). Student name placards are visible in the classroom photo; no
+separate consent/model-release record is held for any of the students or
+performers shown.
+
+| Local asset                                                          | SHA-256                                                            | Recorded source                                                                                    | Public provenance                                    | Rights and credit status                                                                                                             |
+| --------------------------------------------------------------------- | ------------------------------------------------------------------ | -------------------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `public/images/gallery/strategy-cohort-sept-2025.jpg`                 | `aa5caeef058fd7fcd5559813f7775f2ae69eb6ff83c06c954b43787bcd85cdbe` | Personal classroom photograph supplied directly by Swapnil Sahoo (WhatsApp Image 2025-09-17) | Personal classroom photograph supplied by Swapnil Sahoo | Photographer, copyright owner, formal licence, publication permission, and consent/model-release records are not documented in this repository |
+| `public/images/gallery/strategy-kodak-case-teaching-2026.jpg`         | `d4782f7b184530fb252ec50ae503a0498dfbe6d60b50a1ef47541f2df24d6d68` | Personal classroom photograph supplied directly by Swapnil Sahoo (WhatsApp Image 2026-01-06) | Personal classroom photograph supplied by Swapnil Sahoo | Photographer, copyright owner, formal licence, publication permission, and consent/model-release records are not documented in this repository |
+| `public/images/gallery/spic-macay-koodiyattam-performance-2025.jpg`   | `820619ef81211967a10c75a1cecffacdbc8a785f3a426405ef3f49d10ab49907` | Event photograph supplied directly by Swapnil Sahoo, SPIC MACAY cultural evening (Nov 2025) | Personal event photograph supplied by Swapnil Sahoo | Photographer, copyright owner, formal licence, publication permission, and consent/model-release records are not documented in this repository |
+| `public/images/gallery/spic-macay-koodiyattam-poster-2025.jpg`        | `9056db3614bc7fb5829e8ce4ffe711dad900352dcdac166ead95ee0977781ad7` | Official event poster supplied directly by Swapnil Sahoo, SPIC MACAY chapter, Great Lakes Gurgaon | Official SPIC MACAY / Great Lakes Gurgaon event poster | Designer/publisher not identified in this repository; poster bears SPIC MACAY, Government of India and Great Lakes Gurgaon branding |
+
+## Education Times press clipping (May 2026)
+
+A photographed print clipping supplied directly by Swapnil Sahoo. No online
+publication URL exists (confirmed print-only via his own publication-tracking
+record), so this local image is used as the essay's link target on `/press`.
+
+| Local asset                                                                      | SHA-256                                                            | Recorded source                                          | Public provenance                                        | Rights and credit status                                                                                     |
+| ----------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------ | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `public/images/press/education-times-b-schools-entrepreneurs-may-2026.jpg`         | `8427b1329760cdc92b5143568eb40cd91a8eaac82dd0618c58a23ee708214971` | Photographed print clipping supplied directly by Swapnil Sahoo | Print publication, Education Times, May 2026; no online edition | Publisher (Education Times); photographer of the clipping and formal licence are not documented in this repository |
+
 ## Generated-media audit
 
 The 30 July 2026 audit removed every previously public raster asset carrying
