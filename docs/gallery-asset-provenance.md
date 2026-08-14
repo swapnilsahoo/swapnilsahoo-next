@@ -85,6 +85,19 @@ a photographer. The two gallery exports are 1920 × 1080 JPEG files whose
 embedded metadata identifies Adobe Lightroom as the export software but does
 not identify a photographer.
 
+## 2-Year Course — Strategy Sessions classroom (Jan 2026)
+
+WhatsApp-shared classroom photographs supplied directly by Swapnil Sahoo from
+the "2 Year Course" Strategy Sessions folder, covering sessions between 5 and
+14 January 2026 (including the Great Lakes Gurgaon Winter Conference on
+Sustainable Business 2025). Student name placards are visible in some frames;
+no separate consent/model-release record is held for the students shown.
+
+| Local asset                                                          | SHA-256                                                            | Recorded source                                              | Public provenance                                    | Rights and credit status                                                                                                             |
+| --------------------------------------------------------------------- | ------------------------------------------------------------------ | -------------------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `public/images/teaching/business-simulation/decision-debrief.jpg`     | `8f160ffa644138c4c89dad213b223073655435a85188c13635051350e961f2ac` | Personal classroom photograph supplied directly by Swapnil Sahoo (WhatsApp Image 2026-01-12) | Personal classroom photograph supplied by Swapnil Sahoo | Photographer, copyright owner, formal licence, publication permission, and consent/model-release records are not documented in this repository |
+| `public/images/gallery/winter-conference-2025-classroom.jpg`         | `b46beef58d9b023053c6b38af366e6f1822248f52d08d902de127f8def6c8c48` | Personal classroom photograph supplied directly by Swapnil Sahoo (WhatsApp Image 2026-01-06), Winter Conference on Sustainable Business 2025 | Personal classroom photograph supplied by Swapnil Sahoo | Photographer, copyright owner, formal licence, publication permission, and consent/model-release records are not documented in this repository |
+
 ## Generated-media audit
 
 The 30 July 2026 audit removed every previously public raster asset carrying

@@ -483,10 +483,11 @@ export const businessSimulationCourse = {
     description:
       "Teams must explain what they expected, what they chose and why the result differed. A live debrief turns performance into evidence, surfaces cross-functional contradictions and gives the next round a sharper strategic thesis.",
     image: {
-      src: "/images/teaching/business-simulation/decision-debrief.webp",
+      src: "/images/teaching/business-simulation/decision-debrief.jpg",
       alt: "Dr Swapnil Sahoo facilitating a live decision debrief with management learners.",
-      width: 1800,
-      height: 1200,
+      width: 960,
+      height: 1280,
+      objectPosition: "center 68%",
     },
     caption:
       "Facilitated debrief · forecast, decision, result, variance and the next adaptive move.",

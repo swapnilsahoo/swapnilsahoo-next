@@ -122,6 +122,7 @@ export type SubjectCourseConfig = {
       alt: string;
       width: number;
       height: number;
+      objectPosition?: string;
     };
     caption: string;
   };
@@ -443,6 +444,11 @@ export function SubjectCoursePage({
                   height={config.teachingMoment.image.height}
                   sizes="(min-width: 1280px) 660px, (min-width: 1024px) 58vw, 100vw"
                   className="absolute inset-0 h-full w-full object-cover"
+                  style={
+                    config.teachingMoment.image.objectPosition
+                      ? { objectPosition: config.teachingMoment.image.objectPosition }
+                      : undefined
+                  }
                 />
               </div>
               <figcaption className="flex flex-col justify-center p-7 sm:p-10 lg:p-12">

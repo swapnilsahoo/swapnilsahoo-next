@@ -156,4 +156,13 @@ export const galleryImages: GalleryImage[] = [
     objectFit: "contain",
     objectPosition: "center",
   },
+  {
+    src: "/images/gallery/winter-conference-2025-classroom.jpg",
+    alt: "Students at laptops during the Great Lakes Gurgaon Winter Conference on Sustainable Business 2025",
+    caption: "Winter Conference on Sustainable Business · 2025",
+    description:
+      "Teams present workshop findings on the classroom screens during the Winter Conference on Sustainable Business.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
 ];
