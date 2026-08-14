@@ -378,7 +378,7 @@ export default function PressPage() {
                 requests.
               </p>
             </div>
-            <a href="mailto:swapnil.sahoo@greatlakes.edu.in" className="btn-primary shrink-0">
+            <a href="mailto:swapnil.s@greatlakes.edu.in" className="btn-primary shrink-0">
               Email for an interview
             </a>
           </div>

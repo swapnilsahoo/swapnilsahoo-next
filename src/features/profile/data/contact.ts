@@ -3,8 +3,8 @@ import type { ContactCard } from "@/features/profile/types";
 export const contactCards: ContactCard[] = [
   {
     title: "Email",
-    description: "swapnil.sahoo@greatlakes.edu.in",
-    href: "mailto:swapnil.sahoo@greatlakes.edu.in",
+    description: "swapnil.s@greatlakes.edu.in",
+    href: "mailto:swapnil.s@greatlakes.edu.in",
     icon: "mail",
   },
   {

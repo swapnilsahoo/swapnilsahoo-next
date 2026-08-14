@@ -75,7 +75,7 @@ export function MdpSection() {
               exercises and follow-through that will help.
             </p>
             <a
-              href="mailto:swapnil.sahoo@greatlakes.edu.in?subject=MDP%20enquiry"
+              href="mailto:swapnil.s@greatlakes.edu.in?subject=MDP%20enquiry"
               className="link-underline inline-flex items-center gap-1 text-sm font-semibold text-white"
             >
               Discuss a programme <ArrowRightIcon className="h-3.5 w-3.5" />

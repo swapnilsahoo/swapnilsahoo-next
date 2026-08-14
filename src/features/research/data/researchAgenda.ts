@@ -334,7 +334,7 @@ export function getResearchBranch(slug: string) {
 }
 
 export function researchCollaborationHref(subject: string) {
-  const email = "swapnil.sahoo@greatlakes.edu.in";
+  const email = "swapnil.s@greatlakes.edu.in";
   const body = [
     "Dear Dr. Sahoo,",
     "",

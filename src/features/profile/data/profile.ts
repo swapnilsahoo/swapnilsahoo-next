@@ -4,7 +4,7 @@ export const profile = {
   lastName: "Sahoo",
   title: "Assistant Professor · Strategy",
   location: "Gurgaon, India",
-  email: "swapnil.sahoo@greatlakes.edu.in",
+  email: "swapnil.s@greatlakes.edu.in",
   profileImage: "/images/profile_pic.jpg",
   bookingUrl: "https://calendar.app.google/L7zMAVEUFu2rumyf9",
 } as const;
