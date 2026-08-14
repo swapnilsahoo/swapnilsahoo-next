@@ -43,6 +43,14 @@ export const journalArticles: Publication[] = [
 
 export const bookChapters: Publication[] = [
   {
+    title:
+      "Magnificence of Being Human: A Creative Critique for Human Flourishing Inspired by Pope Francis",
+    meta: "Edited volume · Cambridge Scholars Publishing",
+    year: "2026",
+    category: "book",
+    badge: "Proposal accepted · forthcoming",
+  },
+  {
     title: "An Overview of Ethics and the Indian Philosophy",
     meta: "In: Applied Ethics and Rationality (SAPERE, Vol. 74) · Springer · ed. Kuruvilla Pandikattu",
     year: "2025",

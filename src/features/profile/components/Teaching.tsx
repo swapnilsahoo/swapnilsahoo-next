@@ -2,7 +2,12 @@ import { Reveal } from "@/components/ui/Reveal";
 import { ArrowRightIcon } from "@/components/icons/LineIcons";
 import { LinkedInIcon } from "@/components/icons/SocialIcons";
 import { linkedInHighlights, linkedInProfileUrl } from "@/features/profile/data/linkedin";
-import { teachingLinks, teachingPhilosophy } from "@/features/profile/data/teaching";
+import {
+  feedbackHighlight,
+  strategyShowdownHighlight,
+  teachingLinks,
+  teachingPhilosophy,
+} from "@/features/profile/data/teaching";
 
 export function Teaching() {
   return (
@@ -98,6 +103,35 @@ export function Teaching() {
             {teachingPhilosophy.description}
           </p>
         </aside>
+
+        <div className="mx-auto mt-6 grid max-w-3xl gap-5 sm:grid-cols-2">
+          <div className="glass-card p-6">
+            <p className="eyebrow mb-2">Student mentoring</p>
+            <h4 className="font-serif text-lg font-semibold">{strategyShowdownHighlight.title}</h4>
+            <p className="text-ink-600 dark:text-ink-300 mt-2 text-sm leading-relaxed">
+              {strategyShowdownHighlight.description}
+            </p>
+            <p className="text-ink-500 dark:text-ink-400 mt-3 text-xs">
+              {strategyShowdownHighlight.result}
+            </p>
+          </div>
+
+          <div className="glass-card p-6">
+            <p className="eyebrow mb-2">Student feedback</p>
+            <h4 className="font-serif text-lg font-semibold">{feedbackHighlight.title}</h4>
+            <p className="mt-2">
+              <span className="display text-3xl font-semibold">{feedbackHighlight.rating}</span>
+              <span className="text-ink-500 dark:text-ink-400 ml-2 text-xs">
+                {feedbackHighlight.ratingLabel}
+              </span>
+            </p>
+            <ul className="text-ink-600 dark:text-ink-300 mt-3 space-y-1.5 text-sm italic">
+              {feedbackHighlight.quotes.map((quote) => (
+                <li key={quote}>&ldquo;{quote}&rdquo;</li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </section>
       <div className="hr-fade mx-auto max-w-6xl" />
     </Reveal>

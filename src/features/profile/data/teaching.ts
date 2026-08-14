@@ -50,3 +50,21 @@ export const teachingPhilosophy = {
   description:
     "Students work with incomplete information, make choices across functions and explain the trade-offs. Cases develop analysis; simulations show how one decision changes the next; fieldwork tests whether an idea remains useful outside the classroom.",
 };
+
+export const strategyShowdownHighlight = {
+  title: "Strategy Showdown",
+  description:
+    "Faculty mentor for a student-run, four-stage business competition — a 15-question qualifying quiz narrowing the field to 8 teams, then a judged 90-second video round scored on content, creativity, teamwork and impact.",
+  result: "Winner: Cognify (66.7 pts) · Runners-up: Logistics Issue (66.6) and Alpha Strategists (60.5)",
+};
+
+export const feedbackHighlight = {
+  title: "Strategic Management, PGDM · student feedback",
+  rating: "4.48 / 5",
+  ratingLabel: "overall faculty rating",
+  quotes: [
+    "Good and engaging classes.",
+    "Very interactive and engaging class.",
+    "The way he is open to our opinions and viewpoints makes us feel very valuable.",
+  ],
+};

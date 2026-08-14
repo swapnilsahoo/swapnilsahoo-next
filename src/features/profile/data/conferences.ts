@@ -9,8 +9,8 @@ export interface ConferenceCluster {
 export const bamCluster: ConferenceCluster = {
   badge: "BAM 2025",
   venue: "Kent Business School, UK",
-  highlight: "4 papers · dissertation cluster",
-  note: 'Drawn from the doctoral dissertation, "Entrepreneurial Resourcefulness in Resource-Constrained Environments."',
+  highlight: "4 papers · Session Chair, Entrepreneurship Track",
+  note: 'Drawn from the doctoral dissertation, "Entrepreneurial Resourcefulness in Resource-Constrained Environments." Also served as Session Chair for the Entrepreneurship Track (held online).',
   papers: [
     "Thriving with Less: Family Entrepreneurship in Institutional Voids",
     "Towards a Unified Theory of Entrepreneurship: A Neurodiverse Promise of the Spiky Profile",
@@ -25,6 +25,7 @@ export interface ConferenceEntry {
   title: string;
   subtitle?: string;
   award?: string;
+  note?: string;
 }
 
 export const conferenceEntries: ConferenceEntry[] = [
@@ -34,6 +35,13 @@ export const conferenceEntries: ConferenceEntry[] = [
     title:
       "Entrepreneurship Under Constraint: How Bricolage Transitions into Effectuation in Family Businesses",
     subtitle: "86th Annual Meeting of the Academy of Management",
+    note: "Also at AOM 2026: a research conversation with Prof. Saras Sarasvathy on the bricolage–effectuation work, and a session with the Saxbys and Drexel teams on their student-led café model.",
+  },
+  {
+    badge: "AOM 2026 · PDW",
+    location: "Philadelphia, PA, USA",
+    title: "AI and Algorithmic Governance in Inter-Firm Relationships",
+    subtitle: "AOM Paper Development Workshop · roundtable led by Prof. Robert Seamans, NYU Stern",
   },
   {
     badge: "AOM 2025",

@@ -26,13 +26,13 @@ export interface ResearchStream {
   icon: "bricolage" | "compass" | "spark" | "network";
 }
 
-export type PublicationCategory = "journal" | "chapter" | "case" | "essay" | "press";
+export type PublicationCategory = "journal" | "chapter" | "book" | "case" | "essay" | "press";
 
 export interface Publication {
   title: string;
   meta: string;
   year: string;
-  href: string;
+  href?: string;
   category: PublicationCategory;
   badge?: string;
   image?: string;

@@ -68,6 +68,32 @@ const heroStats = [
 ] as const;
 
 function PublicationRow({ publication }: { publication: Publication }) {
+  const content = (
+    <div className="flex flex-wrap items-start justify-between gap-4">
+      {publication.image && (
+        <Image
+          src={publication.image}
+          alt={publication.imageAlt ?? `${publication.title} — published page`}
+          width={56}
+          height={72}
+          className="border-ink-200/80 dark:border-ink-700 h-18 w-14 shrink-0 rounded-md border object-cover"
+        />
+      )}
+      <div className="min-w-[260px] flex-1">
+        <h3 className="font-serif text-lg leading-snug font-semibold">{publication.title}</h3>
+        <p className="text-ink-600 dark:text-ink-300 mt-1 text-sm italic">{publication.meta}</p>
+      </div>
+      <div className="flex items-center gap-2">
+        <span className="tag tag-ink">{publication.year}</span>
+        {publication.badge && <span className="tag tag-emerald">{publication.badge}</span>}
+      </div>
+    </div>
+  );
+
+  if (!publication.href) {
+    return <div className="pub-item glass-card mb-3 block p-6 last:mb-0">{content}</div>;
+  }
+
   return (
     <a
       href={publication.href}
@@ -75,25 +101,7 @@ function PublicationRow({ publication }: { publication: Publication }) {
       rel="noopener noreferrer"
       className="pub-item glass-card mb-3 block p-6 last:mb-0"
     >
-      <div className="flex flex-wrap items-start justify-between gap-4">
-        {publication.image && (
-          <Image
-            src={publication.image}
-            alt={publication.imageAlt ?? `${publication.title} — published page`}
-            width={56}
-            height={72}
-            className="border-ink-200/80 dark:border-ink-700 h-18 w-14 shrink-0 rounded-md border object-cover"
-          />
-        )}
-        <div className="min-w-[260px] flex-1">
-          <h3 className="font-serif text-lg leading-snug font-semibold">{publication.title}</h3>
-          <p className="text-ink-600 dark:text-ink-300 mt-1 text-sm italic">{publication.meta}</p>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="tag tag-ink">{publication.year}</span>
-          {publication.badge && <span className="tag tag-emerald">{publication.badge}</span>}
-        </div>
-      </div>
+      {content}
     </a>
   );
 }

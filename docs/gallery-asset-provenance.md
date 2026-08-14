@@ -152,6 +152,21 @@ alongside the other confirmed photos from that trip.
 | `public/images/teaching/karma-yoga/mehalchauri/community-shrine-visit-2026.webp`   | `359425e189019b6b20425cd625b6571f30e9cc3257354b7911aae6474da4d3bd` | Embedded photo from the MEHALCHAURI-ALL activities.pptx programme archive; confirmed by Swapnil Sahoo as April 2026 | Personal event photograph, April 2026 return visit; photographer not identified | Photographer, copyright owner, formal licence, publication permission, and consent/model-release records are not documented in this repository |
 | `public/images/teaching/karma-yoga/mehalchauri/family-visit-2026.webp`             | `a1df17a69dbcbb4a3e6c913ddf879a0e716b7642acdb663f9e3a014308953d41` | Embedded photo from the MEHALCHAURI-ALL activities.pptx programme archive; confirmed by Swapnil Sahoo as April 2026 | Personal event photograph, April 2026 return visit; photographer not identified | Photographer, copyright owner, formal licence, publication permission, and consent/model-release records are not documented in this repository |
 
+## SAPIENCE 2025 Entrepreneurship Panel (Aug 2026)
+
+Sourced from Swapnil Sahoo's evidence archive (`08_Photo_Assets/Unclassified_Candidates`),
+originally exported from his Google Drive. On-screen event signage in the photos themselves
+confirms "SAPIENCE 2025 | JULY 30-31, Entrepreneurship Panel" at Great Lakes Gurgaon. Other
+identifiable panelists and attendees appear in these photos; the professor confirmed he is
+comfortable with their public use, but photographer credit and other individuals' consent are
+not independently documented in this repository.
+
+| Local asset                                                        | SHA-256                                                            | Recorded source                                                              | Public provenance                                              | Rights and credit status                                                                                                             |
+| ---------------------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `public/images/gallery/sapience-2025-entrepreneurship-panel.jpg` | `521db3ff07e8ec8dd4e87add494b924ca76254f6db165a8a81dd255c6fb2b2e5` | Personal event photograph supplied directly by Swapnil Sahoo (IMG_1255.JPG), SAPIENCE 2025 | Personal event photograph, SAPIENCE 2025, Great Lakes Gurgaon | Photographer, copyright owner, formal licence, and other attendees' consent/model-release records are not documented in this repository |
+| `public/images/gallery/sapience-2025-panel-speaking.jpg`         | `d19808c381a2439cf259afe754dce895fb55ee8b2fda0e56ef490eb6dfcb6e69` | Personal event photograph supplied directly by Swapnil Sahoo (DSC00527.jpg), SAPIENCE 2025 | Personal event photograph, SAPIENCE 2025, Great Lakes Gurgaon | Photographer, copyright owner, formal licence, and other attendees' consent/model-release records are not documented in this repository |
+| `public/images/gallery/sapience-2025-panel-group.jpg`            | `5b3e52e61bd15cf8897c12630c1e79fac1e692f212741f30e9816332dac6dd05` | Personal event photograph supplied directly by Swapnil Sahoo (IMG_1266.JPG), SAPIENCE 2025 | Personal event photograph, SAPIENCE 2025, Great Lakes Gurgaon | Photographer, copyright owner, formal licence, and other attendees' consent/model-release records are not documented in this repository |
+
 ## Generated-media audit
 
 The 30 July 2026 audit removed every previously public raster asset carrying

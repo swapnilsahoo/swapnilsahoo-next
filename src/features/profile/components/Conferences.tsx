@@ -40,6 +40,11 @@ export function Conferences() {
                 {entry.subtitle && (
                   <p className="text-ink-500 dark:text-ink-300 mt-1 text-xs">{entry.subtitle}</p>
                 )}
+                {entry.note && (
+                  <p className="text-ink-500 dark:text-ink-400 border-ink-200/70 dark:border-ink-700 mt-3 border-t pt-3 text-xs leading-5 italic">
+                    {entry.note}
+                  </p>
+                )}
               </div>
 
               {index === 0 && (

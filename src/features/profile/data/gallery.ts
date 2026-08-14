@@ -198,4 +198,28 @@ export const galleryImages: GalleryImage[] = [
     objectFit: "contain",
     objectPosition: "center",
   },
+  {
+    src: "/images/gallery/sapience-2025-entrepreneurship-panel.jpg",
+    alt: "Swapnil Sahoo speaking on an Entrepreneurship Panel at SAPIENCE 2025, Great Lakes Gurgaon",
+    caption: "Entrepreneurship Panel · SAPIENCE 2025",
+    description: "Speaking on an Entrepreneurship Panel at SAPIENCE 2025, Great Lakes Gurgaon, 30–31 July.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
+  {
+    src: "/images/gallery/sapience-2025-panel-speaking.jpg",
+    alt: "Swapnil Sahoo mid-speech on a panel at SAPIENCE 2025",
+    caption: "Mid-panel · SAPIENCE 2025",
+    description: "Making a point during the Entrepreneurship Panel discussion.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
+  {
+    src: "/images/gallery/sapience-2025-panel-group.jpg",
+    alt: "Panelists and organizers posing together after the SAPIENCE 2025 Entrepreneurship Panel",
+    caption: "After the panel · SAPIENCE 2025",
+    description: "With fellow panelists and organizers at the close of the session.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
 ];

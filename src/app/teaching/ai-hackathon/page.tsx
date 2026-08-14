@@ -810,6 +810,59 @@ export default function AiHackathonPage() {
         </Container>
       </section>
 
+      <section aria-labelledby="internal-hackathon-title" className="pb-16 sm:pb-24">
+        <Container className="max-w-6xl">
+          <div className="mb-8 max-w-3xl">
+            <span className="accent-rule" />
+            <p className="eyebrow mb-3">08 / A parallel track: the internal hackathon</p>
+            <h2 id="internal-hackathon-title" className="display text-4xl font-semibold md:text-5xl">
+              The same format, run for the institution&apos;s own departments.
+            </h2>
+            <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-relaxed">
+              Separately from the PGDM student build above, an internal AI Hackathon applied the
+              same problem-statement-to-prototype format to Great Lakes Gurgaon&apos;s own departments—
+              HR, Admissions, Marketing, Finance and others pitching GenAI-enabled fixes to real
+              institutional pain points.
+            </p>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-3">
+            <div className="glass-card p-6">
+              <p className="display text-3xl font-semibold">13</p>
+              <p className="text-ink-500 dark:text-ink-400 mt-1 text-xs">
+                registered teams, roughly nine departments
+              </p>
+            </div>
+            <div className="glass-card p-6">
+              <p className="font-serif text-lg font-semibold">Team Numero Uno</p>
+              <p className="text-ink-500 dark:text-ink-400 mt-1 text-xs">
+                Winner (Executive Education) · 90/100
+              </p>
+            </div>
+            <div className="glass-card p-6">
+              <p className="font-serif text-lg font-semibold">AI Avengers · The Neural Network</p>
+              <p className="text-ink-500 dark:text-ink-400 mt-1 text-xs">
+                Runners-up, tied at 86/100 (Admissions · Marketing)
+              </p>
+            </div>
+          </div>
+
+          <div className="border-ink-200/80 dark:border-ink-700 mt-6 rounded-[18px] border p-6 sm:p-8">
+            <p className="eyebrow mb-2">What came next</p>
+            <p className="text-ink-600 dark:text-ink-300 text-sm leading-relaxed">
+              To carry hackathon outcomes past a single event, a proposal for a Centre of Excellence
+              for AI and Innovation at Great Lakes Gurgaon was put forward—intended as a standing
+              platform for continuing the strongest ideas from student and internal hackathons alike.
+              The proposal received encouraging, informal leadership feedback (&ldquo;an idea worth
+              pursuing—sooner the better&rdquo;); it remains a proposed initiative, not yet a formally
+              established centre.
+            </p>
+          </div>
+        </Container>
+      </section>
+
+      <div className="hr-fade mx-auto max-w-6xl" />
+
       <section aria-labelledby="resources-title" className="pb-20 sm:pb-28">
         <Container className="max-w-6xl">
           <div className="glass-card relative overflow-hidden p-7 sm:p-10">
@@ -819,7 +872,7 @@ export default function AiHackathonPage() {
             />
             <div className="relative mb-8 max-w-2xl">
               <span className="accent-rule" />
-              <p className="eyebrow mb-3">08 / Source material and notes</p>
+              <p className="eyebrow mb-3">09 / Source material and notes</p>
               <h2 id="resources-title" className="display text-4xl font-semibold">
                 Read the brief and the thinking behind it.
               </h2>
