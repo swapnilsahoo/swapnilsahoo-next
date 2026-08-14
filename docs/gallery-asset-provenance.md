@@ -139,6 +139,19 @@ record), so this local image is used as the essay's link target on `/press`.
 | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------ | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | `public/images/press/education-times-b-schools-entrepreneurs-may-2026.jpg`         | `8427b1329760cdc92b5143568eb40cd91a8eaac82dd0618c58a23ee708214971` | Photographed print clipping supplied directly by Swapnil Sahoo | Print publication, Education Times, May 2026; no online edition | Publisher (Education Times); photographer of the clipping and formal licence are not documented in this repository |
 
+## Mehalchauri April 2026 return — additional confirmed photos (Aug 2026)
+
+Extracted from the same `MEHALCHAURI-ALL activities.pptx` programme deck as
+the historical-archive additions above. Swapnil Sahoo confirmed these two are
+from the documented April 2026 return (rather than an earlier, undated
+visit), so they are placed in the "April 2026 return · In pictures" set
+alongside the other confirmed photos from that trip.
+
+| Local asset                                                                    | SHA-256                                                            | Recorded source                                                                                  | Public provenance                                    | Rights and credit status                                                                                                             |
+| ---------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `public/images/teaching/karma-yoga/mehalchauri/community-shrine-visit-2026.webp`   | `359425e189019b6b20425cd625b6571f30e9cc3257354b7911aae6474da4d3bd` | Embedded photo from the MEHALCHAURI-ALL activities.pptx programme archive; confirmed by Swapnil Sahoo as April 2026 | Personal event photograph, April 2026 return visit; photographer not identified | Photographer, copyright owner, formal licence, publication permission, and consent/model-release records are not documented in this repository |
+| `public/images/teaching/karma-yoga/mehalchauri/family-visit-2026.webp`             | `a1df17a69dbcbb4a3e6c913ddf879a0e716b7642acdb663f9e3a014308953d41` | Embedded photo from the MEHALCHAURI-ALL activities.pptx programme archive; confirmed by Swapnil Sahoo as April 2026 | Personal event photograph, April 2026 return visit; photographer not identified | Photographer, copyright owner, formal licence, publication permission, and consent/model-release records are not documented in this repository |
+
 ## Generated-media audit
 
 The 30 July 2026 audit removed every previously public raster asset carrying

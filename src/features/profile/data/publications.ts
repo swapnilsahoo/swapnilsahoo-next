@@ -30,6 +30,15 @@ export const journalArticles: Publication[] = [
     category: "journal",
     badge: "Peer-reviewed",
   },
+  {
+    title:
+      "Toward a Theory of Coopetitive Energy: A Systems Model of Strategic Interactions under Institutional Influence",
+    meta: "Game theory · potential-game model of coopetition and institutional design",
+    year: "2025",
+    href: "/documents/coopetitive-energy-working-paper.pdf",
+    category: "journal",
+    badge: "Working paper",
+  },
 ];
 
 export const bookChapters: Publication[] = [

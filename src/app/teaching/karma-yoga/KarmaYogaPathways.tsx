@@ -118,6 +118,25 @@ const indiaPhotos: readonly PathwayPhoto[] = [
     cardClassName: "md:col-span-5",
     frameClassName: "aspect-[16/9]",
   },
+  {
+    src: "/images/teaching/karma-yoga/mehalchauri/community-shrine-visit-2026.webp",
+    alt: "Prof. S. K. Palhan and Dr. Swapnil Sahoo with local families and children at a village shrine",
+    caption:
+      "A village welcome · Prof. S. K. Palhan and Dr. Swapnil Sahoo with families and children at the shrine.",
+    width: 1600,
+    height: 1201,
+    cardClassName: "md:col-span-7",
+    frameClassName: "aspect-[4/3]",
+  },
+  {
+    src: "/images/teaching/karma-yoga/mehalchauri/family-visit-2026.webp",
+    alt: "Great Lakes students gathered with a Mehalchauri family outside their home",
+    caption: "With a Mehalchauri family · the team pauses for a group photo during the visit.",
+    width: 1201,
+    height: 1600,
+    cardClassName: "md:col-span-5",
+    frameClassName: "aspect-[3/4]",
+  },
 ];
 
 const historicalPhotos: readonly PathwayPhoto[] = [
