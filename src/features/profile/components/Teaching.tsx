@@ -11,7 +11,7 @@ export function Teaching() {
         <div className="mb-10 grid gap-10 md:grid-cols-12">
           <div className="md:col-span-4">
             <span className="accent-rule" />
-            <p className="eyebrow mb-3">05 / Teaching</p>
+            <p className="eyebrow mb-3">06 / Teaching</p>
             <h2 className="display text-4xl font-semibold md:text-5xl">
               Teaching strategy through decisions, trade-offs and practice.
             </h2>

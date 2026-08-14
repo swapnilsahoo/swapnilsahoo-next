@@ -29,7 +29,8 @@ export function Hero() {
           </h1>
           <p className="text-ink-700 dark:text-ink-200 mb-8 max-w-2xl text-lg leading-relaxed md:text-xl">
             Before joining academia, I spent 17 years in strategic roles at Wipro, Accenture,
-            Cognizant, Mahindra and 42Gears Mobility. That experience now shapes my research on how
+            Cognizant, Exilant, TimesofMoney, Mahindra and 42Gears Mobility. That experience now
+            shapes my research on how
             organisations act when resources are tight and the way I teach{" "}
             <strong>
               Strategy &amp; Entrepreneurship at Great Lakes Institute of Management, Gurgaon, where

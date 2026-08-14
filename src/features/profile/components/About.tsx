@@ -1,6 +1,12 @@
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
-import { aboutParagraphs, education, questionsIReturnTo } from "@/features/profile/data/profile";
+import {
+  aboutParagraphs,
+  beyondClassroom,
+  education,
+  languages,
+  questionsIReturnTo,
+} from "@/features/profile/data/profile";
 
 export function About() {
   return (
@@ -32,6 +38,18 @@ export function About() {
                   <p className="eyebrow">Questions I return to</p>
                   <ul className="mt-2 space-y-1.5 text-sm">
                     {questionsIReturnTo.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="glass-card p-5">
+                  <p className="eyebrow">Languages</p>
+                  <p className="mt-2 text-sm leading-relaxed">{languages.join(" · ")}</p>
+                </div>
+                <div className="glass-card p-5">
+                  <p className="eyebrow">Beyond the classroom</p>
+                  <ul className="mt-2 space-y-1.5 text-sm">
+                    {beyondClassroom.map((item) => (
                       <li key={item}>{item}</li>
                     ))}
                   </ul>

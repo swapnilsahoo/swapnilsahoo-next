@@ -17,7 +17,7 @@ export function Contact() {
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-5">
             <span className="accent-rule" />
-            <p className="eyebrow mb-3">09 / Get in touch</p>
+            <p className="eyebrow mb-3">10 / Get in touch</p>
             <h2 className="display mb-5 text-4xl font-semibold md:text-5xl">
               Start with a specific question.
             </h2>

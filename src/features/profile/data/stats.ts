@@ -15,6 +15,8 @@ export const affiliationMarquee: string[] = [
   "Wipro",
   "Accenture",
   "Cognizant",
+  "Exilant Technologies",
+  "TimesofMoney",
   "Mahindra",
   "42Gears Mobility",
 ];

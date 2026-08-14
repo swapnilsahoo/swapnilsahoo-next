@@ -8,7 +8,7 @@ export function Conferences() {
         <div className="mb-10 grid gap-10 md:grid-cols-12">
           <div className="md:col-span-4">
             <span className="accent-rule" />
-            <p className="eyebrow mb-3">04 / Conferences &amp; talks</p>
+            <p className="eyebrow mb-3">05 / Conferences &amp; talks</p>
             <h2 className="display text-4xl font-semibold md:text-5xl">
               Where I present the work.
             </h2>

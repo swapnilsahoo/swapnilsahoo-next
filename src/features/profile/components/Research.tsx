@@ -30,7 +30,7 @@ export function Research() {
         <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
           <div>
             <span className="accent-rule" />
-            <p className="eyebrow mb-3">02 / Research agenda</p>
+            <p className="eyebrow mb-3">03 / Research agenda</p>
             <h2 className="display text-4xl font-semibold md:text-5xl">
               {researchAgenda.title}
             </h2>

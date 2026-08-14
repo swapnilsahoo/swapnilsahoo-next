@@ -12,7 +12,7 @@ export function PhdSupervision() {
           <div className="relative grid items-start gap-10 md:grid-cols-12">
             <div className="md:col-span-5">
               <span className="accent-rule" />
-              <p className="eyebrow mb-3">06 / PhD supervision</p>
+              <p className="eyebrow mb-3">07 / PhD supervision</p>
               <h2 className="display mb-5 text-4xl font-semibold md:text-5xl">
                 A practical guide to working together.
               </h2>
