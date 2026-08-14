@@ -50,7 +50,7 @@ function ProfileEntry({ profile, visible }: { profile: ImmortalityProfile; visib
         <summary className="focus-visible:ring-brand-500 flex min-h-24 cursor-pointer list-none items-start justify-between gap-4 px-5 py-5 focus-visible:ring-2 focus-visible:outline-none sm:px-7 sm:py-6">
           <span className="flex min-w-0 gap-4 sm:gap-5">
             <span
-              className="text-brand-700 dark:text-brand-300 pt-1 font-mono text-xs"
+              className="text-brand-700 dark:text-brand-300 shrink-0 pt-1 font-mono text-xs whitespace-nowrap"
               aria-hidden="true"
             >
               {profile.index}

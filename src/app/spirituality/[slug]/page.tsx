@@ -241,7 +241,7 @@ export default async function ScripturePage({ params }: PageProps) {
                       ? "complete name-by-name edition"
                       : "line & word study edition"}
                 </span>
-                <p lang={languageCode} className={`mt-8 font-serif text-3xl ${theme.badge}`}>
+                <p lang={languageCode} className={`script-devanagari mt-8 text-3xl ${theme.badge}`}>
                   {scripture.originalTitle}
                 </p>
                 <h1 className="display mt-3 max-w-4xl text-4xl font-semibold text-balance sm:text-6xl lg:text-7xl">
@@ -271,7 +271,7 @@ export default async function ScripturePage({ params }: PageProps) {
               </div>
 
               <div className="rounded-[28px] border border-white/15 bg-black/10 p-6 text-center backdrop-blur-md">
-                <p lang={languageCode} className={`font-serif text-6xl ${theme.badge}`}>
+                <p lang={languageCode} className={`script-devanagari text-6xl ${theme.badge}`}>
                   {scripture.glyph}
                 </p>
                 <div className="my-5 h-px bg-white/15" />
@@ -514,7 +514,7 @@ export default async function ScripturePage({ params }: PageProps) {
                           ? "awa"
                           : "sa"
                       }
-                      className="font-serif text-xl"
+                      className="script-devanagari text-xl"
                     >
                       {branch.originalTitle}
                     </span>

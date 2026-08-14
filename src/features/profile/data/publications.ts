@@ -345,7 +345,7 @@ export const pressMentions: PressMention[] = [
   {
     outlet: "ET Now",
     date: "Jan 2025",
-    description: "Budget 2025: easing regulation to grow startup jobs",
+    description: "Budget 2025: education sector's expectations from this year's budget",
     href: "https://www.etnownews.com/budget/budget-2025-expectations-education-sectors-expectations-from-this-years-budget-article-117516818",
   },
   {
@@ -359,5 +359,17 @@ export const pressMentions: PressMention[] = [
     date: "Jan 2025",
     description: "Budget 2025: closing skill gaps in AI, IoT & green tech",
     href: "https://curriculum-magazine.com/union-budget-2025-expectations-for-education-and-skills/",
+  },
+  {
+    outlet: "Brainfeed Higher Education Plus",
+    date: "Jan 2025",
+    description: "Budget 2025: higher education sector's hopes for reforms, investments & incentives",
+    href: "https://highereducationplus.com/pre-budget-2025-expectations-higher-education-sector-hopes-for-reforms-investments-and-incentives/",
+  },
+  {
+    outlet: "Nagaland Post",
+    date: "Jan 2025",
+    description: "Pre-budget expectations of the higher education sector",
+    href: "https://nagalandpost.com/index.php/2025/01/21/pre-budget-expectations-of-higher-education-sector/",
   },
 ];

@@ -220,7 +220,7 @@ export default function SpiritualityPage() {
                 </div>
                 <h3
                   lang={collection.language === "Old Awadhi" ? "awa" : "sa"}
-                  className="mt-5 font-serif text-2xl font-semibold"
+                  className="script-devanagari mt-5 text-2xl font-semibold"
                 >
                   {collection.title}
                 </h3>

@@ -155,37 +155,47 @@ body {
     color 0.2s ease;
 }
 
-main,
-section,
-article,
-aside,
-nav,
-header,
-footer,
-div {
-  min-width: 0;
+/* Layered so component-level Tailwind utilities (e.g. min-w-[260px] on a flex
+   child that needs to hold its ground) can still override these resets — an
+   unlayered rule here would beat every Tailwind utility regardless of
+   specificity, which is what caused a real bug: publication-card titles were
+   crushed to ~80px wide by this min-width: 0 reset even though they carried
+   min-w-[260px], because Tailwind utilities live in @layer utilities. */
+@layer base {
+  main,
+  section,
+  article,
+  aside,
+  nav,
+  header,
+  footer,
+  div {
+    min-width: 0;
+  }
+
+  :where(h1, h2, h3, h4) {
+    text-wrap: balance;
+  }
+
+  :where(p, li, figcaption, dd) {
+    text-wrap: pretty;
+  }
+
+  :where(p, li, dd, a) {
+    overflow-wrap: anywhere;
+  }
 }
 
-:where(h1, h2, h3, h4) {
-  text-wrap: balance;
-}
+@layer base {
+  :where(img, video, canvas) {
+    max-width: 100%;
+    height: auto;
+  }
 
-:where(p, li, figcaption, dd) {
-  text-wrap: pretty;
-}
-
-:where(p, li, dd, a) {
-  overflow-wrap: anywhere;
-}
-
-:where(img, video, canvas) {
-  max-width: 100%;
-  height: auto;
-}
-
-:where(input, select, textarea) {
-  max-width: 100%;
-  font: inherit;
+  :where(input, select, textarea) {
+    max-width: 100%;
+    font: inherit;
+  }
 }
 
 .dark body {

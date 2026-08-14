@@ -53,14 +53,16 @@ export const conferenceEntries: ConferenceEntry[] = [
   {
     badge: "XLRI · 2024",
     title:
-      "Cultivating Trust: Human Capital and Organizational Citizenship Behaviour in Family Enterprises",
+      "Cultivating Trust: Exploring the Nexus of Human Capital and Organizational Citizenship Behaviour in Family Enterprises",
     subtitle:
       "International Industrial Relations Conference · with Leeds University Business School & Friedrich Ebert Stiftung",
   },
   {
     badge: "XLRI · 2024",
-    title: "Navigating the Maze: Corporate Bribery and Ethical Choices in Indian Family Firms",
-    subtitle: "International Conference on Enabling Social and Business Responsibility",
+    title:
+      "Navigating the Maze: Understanding Corporate Bribery and Ethical Choices in Indian Family Firms",
+    subtitle:
+      'International Conference on "Enabling Social and Business Responsibility in Our Globalised World"',
   },
   {
     badge: "XLRI · 2024",
@@ -82,7 +84,7 @@ export const conferenceEntries: ConferenceEntry[] = [
   {
     badge: "POMS India 2023 · XLRI",
     title:
-      "Exploring the Innovation Heritage: Family Involvement in Propelling R&D within Family Enterprises",
+      "Exploring the Innovation Heritage: Decrypting the Influence of Family Involvement in Propelling R&D within Family Enterprises",
   },
   {
     badge: "IIT Kharagpur · 9th MDC",
