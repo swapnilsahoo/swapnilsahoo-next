@@ -291,8 +291,8 @@ export function ResearchBranchPage({ branch }: { branch: ResearchBranch }) {
           <ResearchBranchNav currentSlug={branch.slug} />
         </div>
         <p className="text-ink-500 mt-5 text-xs leading-relaxed">
-          Source note: this public research summary is grounded in Swapnil Sahoo’s submitted 2024
-          doctoral thesis. It does not distribute an unpublished paper or imply that every proposed
+          Source note: this public research summary is grounded in my submitted 2024 doctoral
+          thesis. It does not distribute an unpublished paper or imply that every proposed
           extension is already an active study.
         </p>
       </Container>

@@ -62,4 +62,14 @@ export type ScriptureCatalogEntry = {
   profiles: AttributionProfile[];
   editorialPolicy: string[];
   sources: SourceLink[];
+  traditionalBenefits?: {
+    eyebrow: string;
+    title: string;
+    items: string[];
+    disclaimer: string;
+    image?: {
+      src: string;
+      alt: string;
+    };
+  };
 };

@@ -581,7 +581,7 @@ export function OneYearMbaExperience() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
                 <p className="absolute inset-x-4 bottom-4 text-xs leading-5 text-white/90">
-                  Taking notes alongside the cohort he&apos;ll teach all year.
+                  Taking notes alongside the cohort I&apos;ll teach all year.
                 </p>
               </Reveal>
             </div>

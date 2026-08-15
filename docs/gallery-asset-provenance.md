@@ -185,6 +185,22 @@ record is held for any of them.
 | `public/images/teaching/one-year/induction-among-cohort.webp`    | `c58b31e4139334a9840f74bc908cc2ca09782e2adc63106f6bfddeb69348d2ae` | Personal event photograph supplied directly by Swapnil Sahoo (DSC01364.JPG), PGPM induction, 2026–27 batch | Personal event photograph, PGPM induction, Great Lakes Gurgaon | Photographer, copyright owner, formal licence, and attendees' consent/model-release records are not documented in this repository |
 | `public/images/placements/direct-engagement.webp`                | `a9694136baf8a59e1344c2236ce78153caa35b0ec8d880c774f783e71850c9c2` | Personal event photograph supplied directly by Swapnil Sahoo (DSC01460.JPG), PGPM induction, 2026–27 batch | Personal event photograph, PGPM induction, Great Lakes Gurgaon | Photographer, copyright owner, formal licence, and attendees' consent/model-release records are not documented in this repository |
 
+## Vishnu Sahasranama temple relief (Aug 2026)
+
+Swapnil Sahoo supplied a folder of three images sourced from a Reddit thread about chanting
+the Vishnu Sahasranama (`Images/Vishnu Sahashranama`). Two of the three are clearly
+AI-generated "fantasy art" (hyper-rendered, stylised depictions with no traditional
+iconographic basis) and were **not used**, consistent with this site's existing policy of not
+publishing synthetic devotional imagery (see the Generated-media audit below). The third is a
+genuine photograph of a traditional South Indian temple relief carving of Vishnu; it carries
+no photographer credit or temple identification in the supplied file. It was cropped to remove
+an in-camera date-stamp watermark and lightly sharpened/color-corrected — same photograph,
+no content added or removed.
+
+| Local asset                                                          | SHA-256                                                            | Recorded source                                                                                  | Public provenance                                            | Rights and credit status                                                                                                 |
+| ----------------------------------------------------------------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `public/images/gallery/vishnu-sahasranama-temple-relief.webp` | `2f4e7b9bdd3b589f85f9ef14db8662f25606389f2585d6122ba7597d9ed89d82` | Photograph of unknown origin supplied by Swapnil Sahoo, sourced from a Reddit thread (`c8xybclc93gg1.jpeg`); cropped to remove an in-camera date-stamp watermark, lightly sharpened and color-corrected | Photograph of a traditional temple relief sculpture of Vishnu | Photographer and temple location are not identified in this repository; formal licence and publication-permission records are not documented |
+
 ## Generated-media audit
 
 The 30 July 2026 audit removed every previously public raster asset carrying

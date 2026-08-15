@@ -276,8 +276,8 @@ export default function PlacementsPage() {
                 </h2>
                 <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-7">
                   Photographed mid-session during a PGPM induction — unscripted, direct, no slide
-                  to hide behind. It&apos;s the same standard case debriefs, mock interviews and this
-                  studio hold you to.
+                  to hide behind. It&apos;s the same standard I hold every case debrief and mock
+                  interview to.
                 </p>
               </figcaption>
               <div className="relative order-1 min-h-[320px] lg:order-2 lg:min-h-[440px]">

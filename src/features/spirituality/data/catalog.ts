@@ -83,6 +83,17 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
         note: "A volunteer-maintained comparison text; linked for study rather than reposted.",
       },
     ],
+    traditionalBenefits: {
+      eyebrow: "What the closing dohā promises",
+      title: "The forty caupāīs end with their own promise.",
+      items: [
+        "Sat bar path kare koi—recite it a hundred times, the closing dohā says, and one is freed from bondage and reaches great bliss.",
+        "Protection carried through the whole poem: courage, strength and steadiness against fear and obstacles, in Hanuman's own character as Sankat Mochan, remover of troubles.",
+        "A settled mind—the poem is recited daily by millions precisely to steady attention before the day's first real decision, not only at moments of crisis.",
+      ],
+      disclaimer:
+        "I'm presenting this as the closing dohā's own devotional promise, already fully glossed line by line in the reader above—not as a separate, independently verified claim.",
+    },
   },
   "vishnu-sahasranama": {
     slug: "vishnu-sahasranama",
@@ -194,7 +205,32 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
         href: "https://doi.org/10.1007/s11407-025-09405-9",
         note: "Recent research explaining why the commentary’s Śaṅkara attribution should be qualified.",
       },
+      {
+        title: "Phalaśruti — Sri Vishnu Sahasranama Stotram: Sanskrit, Transliteration and English Translation",
+        institution: "The Divine Life Society · Swami Krishnananda",
+        href: "https://www.swami-krishnananda.org/vishnu/vishnu_phala.html",
+        note: "Source for the traditional phala-śruti (fruits-of-recitation) verses summarised below — presented as the text's own devotional promise, not an independent claim.",
+      },
     ],
+    traditionalBenefits: {
+      eyebrow: "What the tradition promises",
+      title: "Recitation's own phala-śruti, read for what it offers.",
+      items: [
+        "Freedom from misfortune, in this life and beyond, for anyone who hears or recites it daily.",
+        "Fulfilment matched to what is sought — dharma for those seeking it, prosperity for those seeking wealth, progeny for those wanting children.",
+        "Fame, steady prosperity, and a settled, unshakeable share of good fortune.",
+        "Freedom from fear, renewed vitality, freedom from disease, and a brighter, stronger bearing.",
+        "Release promised to the afflicted, the bound, the frightened and the crisis-struck.",
+        "A quicker crossing through difficulty, and inner happiness, patience and a lasting good name.",
+        "For anyone distressed, dejected, frightened or unwell who simply calls on Nārāyaṇa's name — the phala-śruti promises complete release from that suffering.",
+      ],
+      disclaimer:
+        "I'm presenting this as the phala-śruti's own traditional promise — the fruits of recitation as the closing verses describe them — not as a scientific or guaranteed claim. What recitation brings is between the reciter and their own experience.",
+      image: {
+        src: "/images/gallery/vishnu-sahasranama-temple-relief.webp",
+        alt: "A traditional South Indian temple relief sculpture of Vishnu holding the conch, discus, mace and lotus, flanked by two smaller attendant figures",
+      },
+    },
   },
   "lalita-sahasranama": {
     slug: "lalita-sahasranama",
@@ -305,7 +341,25 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
         href: "https://academic.oup.com/book/58948/chapter/493012563",
         note: "Academic context for Bhāskararāya’s Śrīvidyā scholarship and commentary tradition.",
       },
+      {
+        title: "Phala Śruti of the Lalitā Sahasranāma",
+        institution: "Hindupedia, the Hindu Encyclopedia",
+        href: "https://www.hindupedia.com/en/Phala_sruthi_of_Lalitha_Sahasranamam",
+        note: "Source for the traditional benefits summarised below, drawn from the Uttarakhaṇḍa's own closing phala-śruti.",
+      },
     ],
+    traditionalBenefits: {
+      eyebrow: "What the phala-śruti promises",
+      title: "The Uttarakhaṇḍa closes with its own promise.",
+      items: [
+        "Cleansing of past karma and, ultimately, mokṣa — liberation — for the devoted reciter.",
+        "Protection from negative influence, and a life described as free of disease and want.",
+        "Fulfilment of dharma, artha, kāma and mokṣa together — the four classical aims of a complete life.",
+        "The phala-śruti rates a single sincere recitation above many other traditional merits, as a mark of how highly the tradition values this hymn.",
+      ],
+      disclaimer:
+        "I'm presenting this as the Uttarakhaṇḍa's own traditional promise for reciting the thousand names — not as a scientific or guaranteed claim.",
+    },
   },
   "bhagavad-gita": {
     slug: "bhagavad-gita",
@@ -410,7 +464,24 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
         href: "https://archive.org/details/wg908",
         note: "A public-domain 19th-century scholarly translation, consulted for comparison while preparing this edition's close English rendering.",
       },
+      {
+        title: "Gītā Māhātmya",
+        institution: "Internet Archive",
+        href: "https://archive.org/stream/1537610891294/GitamahatmyaOrGreatnessOfSrimadBhagavadGita_djvu.txt",
+        note: "Source for the traditional benefits of recitation summarised below — the appendix on the Gītā's own greatness that accompanies most printed editions.",
+      },
     ],
+    traditionalBenefits: {
+      eyebrow: "What the Gītā Māhātmya promises",
+      title: "Tradition's own case for reading it daily.",
+      items: [
+        "Reciting all eighteen chapters daily, with a steady mind, is said to bring perfection in knowledge and the supreme goal itself.",
+        "Even a single verse or half-verse, sincerely read, is said to release the reader from worldly wrongdoing.",
+        "The Māhātmya rates devoted study of the Gītā above many other traditional merits — a mark of how highly the tradition values simply sitting with the text.",
+      ],
+      disclaimer:
+        "I'm presenting this as the Gītā Māhātmya's own traditional case for reading the text — not as a scientific or guaranteed claim, and not part of the eighteen chapters themselves.",
+    },
   },
   "ramcharitmanas": {
     slug: "ramcharitmanas",
