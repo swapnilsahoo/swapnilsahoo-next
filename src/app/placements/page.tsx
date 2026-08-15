@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 import {
@@ -11,6 +12,7 @@ import {
 } from "@/components/icons/LineIcons";
 import { Container } from "@/components/ui/Container";
 import { InquiryPrelude } from "@/components/ui/InquiryPrelude";
+import { Reveal } from "@/components/ui/Reveal";
 import { profile } from "@/features/profile/data/profile";
 
 import { ReadinessStudio } from "./ReadinessStudio";
@@ -259,6 +261,39 @@ export default function PlacementsPage() {
           "Strip your story down to Claim → Evidence → Insight—what's actually sitting in the middle?",
         ]}
       />
+
+      <section aria-labelledby="in-the-room-title" className="pb-16 sm:pb-24">
+        <Container className="max-w-6xl">
+          <Reveal>
+            <figure className="glass-card grid overflow-hidden lg:grid-cols-[0.82fr_1.18fr]">
+              <figcaption className="order-2 flex flex-col justify-center p-7 sm:p-10 lg:order-1 lg:p-12">
+                <p className="eyebrow">In the room</p>
+                <h2
+                  id="in-the-room-title"
+                  className="mt-4 font-serif text-3xl leading-tight font-semibold text-balance sm:text-4xl"
+                >
+                  The same directness a panel will expect.
+                </h2>
+                <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-7">
+                  Photographed mid-session during a PGPM induction — unscripted, direct, no slide
+                  to hide behind. It&apos;s the same standard case debriefs, mock interviews and this
+                  studio hold you to.
+                </p>
+              </figcaption>
+              <div className="relative order-1 min-h-[320px] lg:order-2 lg:min-h-[440px]">
+                <Image
+                  src="/images/placements/direct-engagement.webp"
+                  alt="Dr Swapnil Sahoo speaking directly to the room, microphone extended, during a PGPM induction session"
+                  fill
+                  className="object-cover"
+                  style={{ objectPosition: "center 30%" }}
+                  sizes="(min-width: 1024px) 700px, 100vw"
+                />
+              </div>
+            </figure>
+          </Reveal>
+        </Container>
+      </section>
 
       <section aria-labelledby="journey-title" className="py-16 sm:py-24">
         <Container className="max-w-6xl">
