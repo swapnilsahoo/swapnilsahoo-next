@@ -148,6 +148,12 @@ export const authoredEssays: Essay[] = [
 export const linkedInArticles: Essay[] = [
   {
     outlet: "LinkedIn",
+    date: "Aug 2026",
+    title: "A True Fanboy Moment: Meeting Prof. Saras Sarasvathy at AOM 2026",
+    href: "https://www.linkedin.com/feed/update/urn:li:activity:7494274053365522432/",
+  },
+  {
+    outlet: "LinkedIn",
     date: "Jul 2026",
     title: "Eloquence: The Gift — and the Danger — of Powerful Words",
     href: "https://www.linkedin.com/pulse/eloquence-giftand-dangerof-powerful-words-dr-swapnil-sahoo-pqwhe",

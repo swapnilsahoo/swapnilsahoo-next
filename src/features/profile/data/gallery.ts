@@ -56,6 +56,15 @@ export const galleryImages: GalleryImage[] = [
     objectPosition: "center",
   },
   {
+    src: "/images/gallery/aom-2026-sarasvathy-ratinho.webp",
+    alt: "Swapnil Sahoo with Prof. Saras Sarasvathy and Tiago Ratinho at AOM 2026 in Philadelphia",
+    caption: "Meeting Prof. Saras Sarasvathy · AOM 2026",
+    description:
+      "Much of my doctoral research has been shaped by effectuation, so meeting the scholar whose work influenced my dissertation was a first-AOM moment I'll remember. She later sat with me, discussed the papers in detail, and offered candid feedback that changed how I see parts of the work. With Tiago Ratinho, generous throughout the conversation.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
+  {
     src: "/images/gallery/great-lakes-gurgaon-tree-plantation.jpg",
     alt: "Dr. Sudhakar and Dr. Raj planting a tree on the Great Lakes Gurgaon campus",
     caption: "Tree plantation · Great Lakes Gurgaon campus",
