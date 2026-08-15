@@ -12,8 +12,8 @@ presentation photograph's session context was checked against the
 
 | Local asset                                                            | SHA-256                                                            | Recorded source                                                                                                                                                  | Public provenance                                                                                         | Rights and credit status                                                                                                |
 | ---------------------------------------------------------------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `public/images/gallery/aom-2026-entrepreneurship-under-constraint.png` | `6df55e3c5d283456ede98bf2b6bcea48592247ea0430c1804f4b1f6c0fdb083b` | Personal event photograph supplied directly by Swapnil Sahoo for this gallery                                                                                    | Personal event photograph supplied by Swapnil Sahoo                                                       | Photographer, copyright owner, formal licence, and publication-permission records are not documented in this repository |
-| `public/images/gallery/aom-2026-with-jp-eggers.png`                    | `99ccfd068b16984dbb9ece89a57c81581f27606357fd272f9bfffaa98d3f1f19` | User-supplied portrait (`163dbe4f956623d0d90e862e9371143eb9b3a10ec7615a7cf791a740fa9e4295`); identity-preserving professional retouch requested by Swapnil Sahoo | AI-assisted professional retouch of a user-supplied event photograph; embedded OpenAI provenance retained | Photographer, copyright owner, formal licence, and publication-permission records are not documented in this repository |
+| `public/images/gallery/aom-2026-entrepreneurship-under-constraint.jpg` | `902a28bcb9da997ce35dfcf90196f957e16cc8deed07fbd599887fb6f2c693be` | Personal event photograph supplied directly by Swapnil Sahoo for this gallery; re-encoded from the original PNG to JPEG on 15 Aug 2026 (resized to a 1920px max dimension) purely to fix a slow on-demand image-optimization transform — same photograph, no crop or retouch | Personal event photograph supplied by Swapnil Sahoo                                                       | Photographer, copyright owner, formal licence, and publication-permission records are not documented in this repository |
+| `public/images/gallery/aom-2026-with-jp-eggers.jpg`                    | `cbb3b07917a14e64e3eec70454988d816346bee50e5d8b8f69d120f26198b897` | User-supplied portrait (`163dbe4f956623d0d90e862e9371143eb9b3a10ec7615a7cf791a740fa9e4295`); identity-preserving professional retouch requested by Swapnil Sahoo; re-encoded from the original PNG to JPEG on 15 Aug 2026 (resized to a 1920px max dimension) purely to fix a slow on-demand image-optimization transform — this also stripped the embedded OpenAI provenance metadata the prior PNG carried (see the Generated-media audit note below) | AI-assisted professional retouch of a user-supplied event photograph; embedded OpenAI provenance no longer present after the 15 Aug 2026 re-encode | Photographer, copyright owner, formal licence, and publication-permission records are not documented in this repository |
 | `public/images/gallery/aom-2026-conference-badge.jpg`                  | `12923f9136e148dc64d2b7d2bddbbcb6a37571e116c269a83161051565598da7` | Personal conference-badge photograph supplied directly by Swapnil Sahoo                                                                                          | Personal conference credential, AOM 2026 (University of Liverpool Management School registration)         | Photographer, copyright owner, formal licence, and publication-permission records are not documented in this repository |
 | `public/images/gallery/aom-2026-proceedings-abstract.jpg`              | `37b8a59ebe7e3c56a4f70bb3cff559a64498991555bccb1502860adbf8de69d1` | Screenshot of the publicly published Academy of Management Proceedings abstract page, supplied by Swapnil Sahoo                                                  | Publicly available scholarly record (DOI: 10.5465/AMPROC.2026.12395abstract)                              | Publisher (Academy of Management); screenshot itself carries no separate licence record in this repository              |
 
@@ -170,15 +170,27 @@ not independently documented in this repository.
 ## Generated-media audit
 
 The 30 July 2026 audit removed every previously public raster asset carrying
-OpenAI Media Service provenance metadata. The sole current exception is the
-user-approved, identity-preserving retouch
-`public/images/gallery/aom-2026-with-jp-eggers.png`. Its embedded provenance is
-retained, and the media check admits it only at the registered path with the
-registered SHA-256. Every other marked raster fails the check; any byte change
-to this asset also fails until both this register and the checksum allowlist are
-deliberately updated. The other gallery and teaching images use the
-camera-original or programme-shared photographs listed above. The comics page
-uses a separately credited human photograph under CC BY-SA 2.0.
+OpenAI Media Service provenance metadata, with one documented exception: the
+user-approved, identity-preserving retouch that was then hosted at
+`public/images/gallery/aom-2026-with-jp-eggers.png`, whose embedded provenance
+was retained and admitted by the media check only at that registered path and
+SHA-256.
+
+On 15 Aug 2026, that file (and 3 other oversized gallery/comics images) was
+re-encoded to fix a real performance bug: the on-demand image-optimization
+endpoint was taking 1.5-5 seconds per cold transform on these files, which
+was traced to unnecessarily large multi-megabyte source images. Re-encoding
+strips embedded metadata as a side effect, so the retouched image (now
+`aom-2026-with-jp-eggers.jpg`) no longer carries the OpenAI marker at all —
+the media check's approved-asset allowlist was cleared accordingly since
+there is nothing left for it to admit. The photograph itself is unchanged
+(same retouch, resized/re-encoded, no new edit). Every other raster asset
+still fails the check if it carries that marker; any byte change to a
+tracked asset requires updating this register (and, only if a future asset
+genuinely needs to carry approved OpenAI provenance, the checksum allowlist)
+deliberately. The other gallery and teaching images use the camera-original
+or programme-shared photographs listed above. The comics page uses a
+separately credited human photograph under CC BY-SA 2.0.
 
 ## Handling notes
 

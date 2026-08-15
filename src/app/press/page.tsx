@@ -12,6 +12,7 @@ import {
   linkedInArticles,
   pressMentions,
   teachingCases,
+  type PressMention,
 } from "@/features/profile/data/publications";
 import type { Publication } from "@/features/profile/types";
 
@@ -100,6 +101,47 @@ function PublicationRow({ publication }: { publication: Publication }) {
       target="_blank"
       rel="noopener noreferrer"
       className="pub-item glass-card mb-3 block p-6 last:mb-0"
+    >
+      {content}
+    </a>
+  );
+}
+
+function MentionRow({ mention }: { mention: PressMention }) {
+  const content = (
+    <>
+      <span className="min-w-0">
+        <span className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <span className="font-serif text-lg font-semibold sm:text-xl">{mention.outlet}</span>
+          <span className="tag tag-ink">{mention.date}</span>
+        </span>
+        <span className="text-ink-600 dark:text-ink-300 mt-2 block text-sm leading-relaxed sm:text-base">
+          {mention.description}
+        </span>
+      </span>
+      {mention.href && (
+        <ArrowRightIcon
+          className="text-brand-700 dark:text-brand-300 h-5 w-5 shrink-0 transition group-hover:translate-x-1"
+          aria-hidden="true"
+        />
+      )}
+    </>
+  );
+
+  if (!mention.href) {
+    return (
+      <div className="pub-item glass-card flex flex-wrap items-center justify-between gap-4 p-5 sm:p-6">
+        {content}
+      </div>
+    );
+  }
+
+  return (
+    <a
+      href={mention.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="pub-item glass-card group flex flex-wrap items-center justify-between gap-4 p-5 sm:p-6"
     >
       {content}
     </a>
@@ -333,29 +375,8 @@ export default function PressPage() {
 
           <ol role="list" className="space-y-3">
             {sortedMentions.map((mention) => (
-              <li key={mention.href}>
-                <a
-                  href={mention.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="pub-item glass-card group flex flex-wrap items-center justify-between gap-4 p-5 sm:p-6"
-                >
-                  <span className="min-w-0">
-                    <span className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                      <span className="font-serif text-lg font-semibold sm:text-xl">
-                        {mention.outlet}
-                      </span>
-                      <span className="tag tag-ink">{mention.date}</span>
-                    </span>
-                    <span className="text-ink-600 dark:text-ink-300 mt-2 block text-sm leading-relaxed sm:text-base">
-                      {mention.description}
-                    </span>
-                  </span>
-                  <ArrowRightIcon
-                    className="text-brand-700 dark:text-brand-300 h-5 w-5 shrink-0 transition group-hover:translate-x-1"
-                    aria-hidden="true"
-                  />
-                </a>
+              <li key={`${mention.outlet}-${mention.date}-${mention.description}`}>
+                <MentionRow mention={mention} />
               </li>
             ))}
           </ol>

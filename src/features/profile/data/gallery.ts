@@ -20,7 +20,7 @@ export const galleryImages: GalleryImage[] = [
     objectPosition: "center",
   },
   {
-    src: "/images/gallery/aom-2026-entrepreneurship-under-constraint.png",
+    src: "/images/gallery/aom-2026-entrepreneurship-under-constraint.jpg",
     alt: "Swapnil Sahoo presenting Reconstructing Entrepreneurship Under Constraint at AOM 2026 in Philadelphia",
     caption: "Presenting entrepreneurship under constraint · AOM 2026",
     description:
@@ -29,7 +29,7 @@ export const galleryImages: GalleryImage[] = [
     objectPosition: "center",
   },
   {
-    src: "/images/gallery/aom-2026-with-jp-eggers.png",
+    src: "/images/gallery/aom-2026-with-jp-eggers.jpg",
     alt: "Swapnil Sahoo with Prof. J.P. Eggers at AOM 2026",
     caption: "With Prof. J.P. Eggers · AOM 2026",
     description:

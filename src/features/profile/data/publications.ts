@@ -214,12 +214,6 @@ export const linkedInArticles: Essay[] = [
   },
   {
     outlet: "LinkedIn",
-    date: "Aug 2018",
-    title: "Innovation in Alliances and Partnerships for Enterprise Mobility Management",
-    href: "https://www.linkedin.com/pulse/innovation-alliances-partnerships-enterprise-mobility-swapnil-sahoo",
-  },
-  {
-    outlet: "LinkedIn",
     date: "Jul 2018",
     title: "India's EdTech Industry and Future",
     href: "https://www.linkedin.com/pulse/indias-edtech-industry-future-swapnil-sahoo",
@@ -256,12 +250,6 @@ export const linkedInArticles: Essay[] = [
   },
   {
     outlet: "LinkedIn",
-    date: "Jun 2015",
-    title: "Monetizing Cloud Computing",
-    href: "https://www.linkedin.com/pulse/monetizing-cloud-computing-swapnil-sahoo-6011002933980774400",
-  },
-  {
-    outlet: "LinkedIn",
     date: "May 2015",
     title: "Data Post 1",
     href: "https://www.linkedin.com/pulse/data-post-1-swapnil-sahoo",
@@ -278,7 +266,7 @@ export interface PressMention {
   outlet: string;
   date: string;
   description: string;
-  href: string;
+  href?: string;
 }
 
 export const pressMentions: PressMention[] = [
@@ -328,7 +316,8 @@ export const pressMentions: PressMention[] = [
     outlet: "Times Now",
     date: "Jan 2025",
     description: "Economic Survey 2025 live commentary",
-    href: "https://www.timesnownews.com/business-economy/budget-2025-expectations-live-updates-finance-minister-nirmala-sitharaman-income-tax-slabs-expectations-economic-survey-liveblog-117719709",
+    // The live-blog page has since been taken down (confirmed 404 on 15 Aug
+    // 2026); no working replacement URL found. Mention kept, link dropped.
   },
   {
     outlet: "Financial Express",
@@ -370,6 +359,9 @@ export const pressMentions: PressMention[] = [
     outlet: "Nagaland Post",
     date: "Jan 2025",
     description: "Pre-budget expectations of the higher education sector",
-    href: "https://nagalandpost.com/index.php/2025/01/21/pre-budget-expectations-of-higher-education-sector/",
+    // The article page returns 404 (confirmed twice: when this entry was
+    // added and again on 15 Aug 2026); no working replacement URL found.
+    // Mention kept, since it's listed on the official Great Lakes profile
+    // page — link dropped.
   },
 ];

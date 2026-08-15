@@ -122,8 +122,8 @@ const readingLayers = [
 ] as const;
 
 const spiritualityQuestions = [
-  "When this page calls an edition \"authentic,\" does that mean more than the sources are disclosed?",
-  "If a short gloss here differs from what your teacher recites, which one should give way?",
+  "You may already know this by heart — but could you explain, word by word, what any single line means?",
+  "When a word here differs from what you learned growing up, is that a mistake to fix, or a second answer worth knowing?",
 ] as const;
 
 export default function SpiritualityPage() {
@@ -185,8 +185,8 @@ export default function SpiritualityPage() {
 
       <InquiryPrelude
         id="spirituality-inquiry"
-        eyebrow="Before recitation or study"
-        title="What kind of attention does a sacred text ask of us?"
+        eyebrow="Before you begin"
+        title="Reciting and understanding are two different skills."
         questions={spiritualityQuestions}
       />
 

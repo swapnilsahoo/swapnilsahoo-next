@@ -10,12 +10,11 @@ const openAiMarkers = [
   Buffer.from("DALL-E"),
   Buffer.from("DALL·E"),
 ];
-const approvedOpenAiAssets = new Map([
-  [
-    "public/images/gallery/aom-2026-with-jp-eggers.png",
-    "99ccfd068b16984dbb9ece89a57c81581f27606357fd272f9bfffaa98d3f1f19",
-  ],
-]);
+// aom-2026-with-jp-eggers.png (previously approved here) was re-encoded to
+// .jpg for performance — see docs/gallery-asset-provenance.md. Re-encoding
+// strips embedded metadata, so the OpenAI marker this entry was approving
+// no longer exists in the file; no replacement entry is needed.
+const approvedOpenAiAssets = new Map([]);
 
 async function listRasterAssets(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
