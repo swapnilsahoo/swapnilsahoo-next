@@ -167,6 +167,22 @@ not independently documented in this repository.
 | `public/images/gallery/sapience-2025-panel-speaking.jpg`         | `d19808c381a2439cf259afe754dce895fb55ee8b2fda0e56ef490eb6dfcb6e69` | Personal event photograph supplied directly by Swapnil Sahoo (DSC00527.jpg), SAPIENCE 2025 | Personal event photograph, SAPIENCE 2025, Great Lakes Gurgaon | Photographer, copyright owner, formal licence, and other attendees' consent/model-release records are not documented in this repository |
 | `public/images/gallery/sapience-2025-panel-group.jpg`            | `5b3e52e61bd15cf8897c12630c1e79fac1e692f212741f30e9816332dac6dd05` | Personal event photograph supplied directly by Swapnil Sahoo (IMG_1266.JPG), SAPIENCE 2025 | Personal event photograph, SAPIENCE 2025, Great Lakes Gurgaon | Photographer, copyright owner, formal licence, and other attendees' consent/model-release records are not documented in this repository |
 
+## PGPM (1-Year MBA) induction, 2026–27 batch (Aug 2026)
+
+Sourced directly from Swapnil Sahoo's own camera card (`F:\100MSDCF`, DSC01225–DSC01609,
+355 originals at ~9504×6336) of the incoming PGPM 2026–27 batch's induction programme at
+Great Lakes Gurgaon; on-screen "GREAT LAKES GURGAON" branding is visible throughout. Three
+were selected and re-encoded from the camera-original JPEGs to WebP (resized to a 1800–2400px
+max dimension) for on-site use — same photographs, no crop or retouch beyond resizing.
+Many incoming students are visible across the full set; no separate consent/model-release
+record is held for any of them.
+
+| Local asset                                                              | SHA-256                                                            | Recorded source                                                                                    | Public provenance                                                    | Rights and credit status                                                                                                             |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `public/images/teaching/one-year/induction-auditorium.webp`      | `087003741d7740623e879f9999ff850d723535ba732eb3618b46705fd415cc93` | Personal event photograph supplied directly by Swapnil Sahoo (DSC01369.JPG), PGPM induction, 2026–27 batch | Personal event photograph, PGPM induction, Great Lakes Gurgaon | Photographer, copyright owner, formal licence, and attendees' consent/model-release records are not documented in this repository |
+| `public/images/teaching/one-year/induction-facilitation.webp`    | `570e24b605d8ff2f20129411c921ab20abf0f9131e344627d62bee5471b3a353` | Personal event photograph supplied directly by Swapnil Sahoo (DSC01329.JPG), PGPM induction, 2026–27 batch | Personal event photograph, PGPM induction, Great Lakes Gurgaon | Photographer, copyright owner, formal licence, and attendees' consent/model-release records are not documented in this repository |
+| `public/images/teaching/one-year/induction-among-cohort.webp`    | `c58b31e4139334a9840f74bc908cc2ca09782e2adc63106f6bfddeb69348d2ae` | Personal event photograph supplied directly by Swapnil Sahoo (DSC01364.JPG), PGPM induction, 2026–27 batch | Personal event photograph, PGPM induction, Great Lakes Gurgaon | Photographer, copyright owner, formal licence, and attendees' consent/model-release records are not documented in this repository |
+
 ## Generated-media audit
 
 The 30 July 2026 audit removed every previously public raster asset carrying

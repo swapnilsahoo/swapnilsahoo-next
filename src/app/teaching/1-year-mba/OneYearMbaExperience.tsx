@@ -12,6 +12,7 @@ import {
 import { LinkedInIcon } from "@/components/icons/SocialIcons";
 import { Container } from "@/components/ui/Container";
 import { InquiryPrelude } from "@/components/ui/InquiryPrelude";
+import { Reveal } from "@/components/ui/Reveal";
 import { linkedInHighlights } from "@/features/profile/data/linkedin";
 
 import { oneYearMba } from "../mbaData";
@@ -519,6 +520,74 @@ export function OneYearMbaExperience() {
         title="Experience enters the room as a hypothesis."
         questions={executiveStrategyQuestions}
       />
+
+      <section aria-labelledby="induction-title" className="py-16 sm:py-24">
+        <Container className="max-w-6xl">
+          <Reveal className="mb-10 max-w-3xl">
+            <span className="accent-rule" />
+            <p className="eyebrow mb-3">Before the syllabus · Induction, PGPM 2026–27 batch</p>
+            <h2 id="induction-title" className="display text-4xl font-semibold sm:text-5xl">
+              A room fills up before a single case gets assigned.
+            </h2>
+            <p className="text-ink-600 dark:text-ink-300 mt-5 max-w-2xl text-sm leading-relaxed">
+              Every incoming PGPM cohort&apos;s first days are induction, not case discussion —
+              sessions where faculty meet the class, expectations get set out loud, and a room of
+              strangers starts becoming a cohort before the first cold call.
+            </p>
+          </Reveal>
+
+          <div className="grid gap-5 lg:grid-cols-[1.3fr_0.7fr]">
+            <Reveal className="group relative min-h-[360px] overflow-hidden rounded-[28px] sm:min-h-[480px]">
+              <Image
+                src="/images/teaching/one-year/induction-auditorium.webp"
+                alt="A packed lecture hall of incoming PGPM 2026-27 students during induction, with faculty at the front of the room"
+                fill
+                className="object-cover transition duration-700 ease-out group-hover:scale-105"
+                sizes="(min-width: 1024px) 800px, 100vw"
+              />
+              <div className="from-ink-950 via-ink-950/35 absolute inset-0 bg-gradient-to-t to-transparent" />
+              <Reveal delay={0.15} className="absolute inset-x-6 bottom-6 sm:inset-x-10 sm:bottom-10">
+                <p className="font-mono text-[10px] tracking-[0.18em] text-blue-200 uppercase">
+                  Day one
+                </p>
+                <p className="mt-3 max-w-lg font-serif text-2xl font-semibold text-white sm:text-3xl">
+                  A full hall of new voices, before anyone has read a single case together.
+                </p>
+              </Reveal>
+            </Reveal>
+
+            <div className="grid gap-5">
+              <Reveal delay={0.1} className="group relative min-h-[220px] overflow-hidden rounded-[24px]">
+                <Image
+                  src="/images/teaching/one-year/induction-facilitation.webp"
+                  alt="Dr Swapnil Sahoo facilitating an interactive induction session with a flip chart"
+                  fill
+                  className="object-cover transition duration-700 ease-out group-hover:scale-105"
+                  style={{ objectPosition: "center 30%" }}
+                  sizes="(min-width: 1024px) 420px, 100vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
+                <p className="absolute inset-x-4 bottom-4 text-xs leading-5 text-white/90">
+                  Setting the room&apos;s norms before day one&apos;s first case.
+                </p>
+              </Reveal>
+              <Reveal delay={0.2} className="group relative min-h-[220px] overflow-hidden rounded-[24px]">
+                <Image
+                  src="/images/teaching/one-year/induction-among-cohort.webp"
+                  alt="Dr Swapnil Sahoo seated among the incoming PGPM cohort during induction, taking notes"
+                  fill
+                  className="object-cover transition duration-700 ease-out group-hover:scale-105"
+                  sizes="(min-width: 1024px) 420px, 100vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
+                <p className="absolute inset-x-4 bottom-4 text-xs leading-5 text-white/90">
+                  Taking notes alongside the cohort he&apos;ll teach all year.
+                </p>
+              </Reveal>
+            </div>
+          </div>
+        </Container>
+      </section>
 
       <section id="promise" aria-labelledby="promise-title" className="py-16 sm:py-24">
         <Container className="max-w-6xl">
