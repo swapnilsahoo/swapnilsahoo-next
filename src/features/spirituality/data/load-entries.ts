@@ -2,6 +2,7 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 
 import { bhagavadGitaEntries } from "@/features/spirituality/data/bhagavad-gita";
+import { chandogyaUpanishadEntries } from "@/features/spirituality/data/chandogya-upanishad";
 import { lalitaSahasranamaEntries } from "@/features/spirituality/data/lalita-sahasranama";
 import { ramcharitmanasEntries } from "@/features/spirituality/data/ramcharitmanas";
 import { shivaTandavaStotramEntries } from "@/features/spirituality/data/shiva-tandava-stotram";
@@ -191,5 +192,7 @@ export async function loadScriptureEntries(slug: ScriptureSlug): Promise<ReaderE
       return validateEntries(slug, bhagavadGitaEntries, 701);
     case "ramcharitmanas":
       return validateEntries(slug, ramcharitmanasEntries, 369);
+    case "chandogya-upanishad":
+      return validateEntries(slug, chandogyaUpanishadEntries, 10);
   }
 }

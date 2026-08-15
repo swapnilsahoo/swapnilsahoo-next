@@ -8,7 +8,7 @@ import { InquiryPrelude } from "@/components/ui/InquiryPrelude";
 export const metadata: Metadata = {
   title: "Spirituality — Sacred Texts for Study and Reflection",
   description:
-    "Source-aware devotional study editions of the Bhagavad Gita, Ramcharitmanas, Hanuman Chalisa, Vishnu Sahasranama, Lalita Sahasranama and Shiva Tandava Stotram with original script, clearly labeled romanization, close meaning, provenance and attribution biographies.",
+    "Source-aware devotional study editions of the Bhagavad Gita, Ramcharitmanas, Hanuman Chalisa, Vishnu Sahasranama, Lalita Sahasranama, Shiva Tandava Stotram and the Chandogya Upanishad with original script, clearly labeled romanization, close meaning, provenance and attribution biographies.",
   keywords: [
     "Bhagavad Gita",
     "Ramcharitmanas",
@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     "Vishnu Sahasranama",
     "Lalita Sahasranama",
     "Shiva Tandava Stotram",
+    "Chandogya Upanishad",
     "Sanskrit transliteration",
     "word by word meaning",
     "name and line meanings",
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     title: "Sacred Texts — Read, Reflect, Return",
-    description: "A respectful multilingual reader for six beloved devotional works.",
+    description: "A respectful multilingual reader for seven beloved devotional and sacred texts.",
     url: "/spirituality",
     images: ["/images/profile_pic.jpg"],
   },
@@ -94,6 +95,16 @@ const collections = [
     description:
       "Tulsidas's Awadhi retelling of Rama's story, opened kāṇḍa by kāṇḍa. Bālakāṇḍa's opening invocation is complete with word-by-word study; the rest of its text is verified with translation under way.",
   },
+  {
+    title: "छान्दोग्योपनिषद्",
+    transliteration: "Chāndogyopaniṣad",
+    label: "Authentic Chandogya Upanishad",
+    href: "/spirituality/chandogya-upanishad",
+    language: "Sanskrit",
+    scope: "Opening section · 10 of roughly 630 verses",
+    description:
+      "One of the oldest and longest Upanishads, opened at its first teaching: how Om, the udgītha, is the essence distilled from earth, speech, and the Vedas themselves — with consistent IAST and a word-by-word grammatical split.",
+  },
 ] as const;
 
 const readingLayers = [
@@ -155,7 +166,7 @@ export default function SpiritualityPage() {
                   <span className="font-normal text-amber-200 italic">Return inward.</span>
                 </h1>
                 <p className="mt-6 max-w-3xl text-base leading-relaxed text-amber-50 sm:text-lg">
-                  Six source-aware devotional editions designed for understanding as well as
+                  Seven source-aware devotional and sacred-text editions designed for understanding as well as
                   recitation—bringing original script, clearly labeled romanization, close name-,
                   word-, or pāda-level meaning, authorship, and textual history into one calm
                   reading experience.
@@ -196,7 +207,7 @@ export default function SpiritualityPage() {
             <span className="accent-rule" />
             <p className="eyebrow mb-3">01 / The collection</p>
             <h2 id="collection-title" className="display text-4xl font-semibold md:text-5xl">
-              Six authentic branches.
+              Seven authentic branches.
             </h2>
             <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-relaxed">
               “Authentic” means source-disclosed and editorially transparent—not a claim that one
@@ -265,9 +276,10 @@ export default function SpiritualityPage() {
               The Chalisa is treated as Old Awadhi; the two Sahasranāmas use complete, name-by-name
               Sanskrit readers; the Shiva Tandava Stotram receives pāda-level compound study; the
               Bhagavad Gita receives a full verse-by-verse, word-by-word Sanskrit reading across all
-              eighteen chapters; and the Ramcharitmanas is being opened kāṇḍa by kāṇḍa, with its
-              declared coverage stated plainly rather than smoothed over. Every branch except the
-              Hanuman Chalisa uses consistent IAST.
+              eighteen chapters; the Ramcharitmanas is being opened kāṇḍa by kāṇḍa; and the
+              Chandogya Upanishad opens with its first section only, both with declared coverage
+              stated plainly rather than smoothed over. Every branch except the Hanuman Chalisa uses
+              consistent IAST.
             </p>
           </div>
           <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">

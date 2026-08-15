@@ -583,6 +583,76 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
       },
     ],
   },
+  "chandogya-upanishad": {
+    slug: "chandogya-upanishad",
+    navLabel: "Authentic Chandogya Upanishad",
+    shortTitle: "Chandogya Upanishad",
+    title: "Authentic Chandogya Upanishad",
+    originalTitle: "छान्दोग्योपनिषद्",
+    transliteratedTitle: "Chāndogyopaniṣad",
+    language: "Sanskrit · Devanagari + IAST",
+    form: "Sāmavedīya (Tāṇḍya/Talavakāra) Upaniṣad · 8 prapāṭhakas, roughly 630 verses in the full text",
+    glyph: "ॐ",
+    dek: "One of the oldest and longest Upanishads opens by asking what Om actually is — the essence distilled from earth, water, plants, the person, speech, and the Vedas themselves. Read the opening section in Sanskrit, with consistent IAST, a close English rendering, and a grammatical word-by-word split for every verse.",
+    scopeLabel: "Prapāṭhaka 1, Khaṇḍa 1 · complete",
+    scopeNote:
+      "This edition currently covers only the opening section — the ten verses that introduce Om as the udgītha, the thread the text's teaching on meditation and knowledge builds on across its remaining twelve sections of Chapter 1 and seven further chapters. Later khaṇḍas are not yet included; this is a starting section, not the complete Upanishad.",
+    entryCountLabel: "10 verses (Khaṇḍa 1 of 13 in Prapāṭhaka 1)",
+    authenticity: [
+      {
+        label: "Declared scope",
+        value: "Prapāṭhaka 1, Khaṇḍa 1 only",
+        detail:
+          "The full Chandogya Upanishad runs to 8 prapāṭhakas and roughly 630 verses. This reader currently presents its first ten — the Om-as-udgītha teaching — not the whole text.",
+      },
+      {
+        label: "Attribution",
+        value: "Śruti · no individual author",
+        detail:
+          "Like the rest of the Upaniṣadic corpus, this text is traditionally received as śruti (revealed/heard), transmitted through the Sāma Veda's Tāṇḍya (Talavakāra) school rather than composed by a named poet.",
+      },
+      {
+        label: "Textual basis",
+        value: "Gita Press Gorakhpur edition",
+        detail:
+          "Devanagari verse text is checked against the Gita Press Gorakhpur Sanskrit-Hindi edition (with Śāṅkara-bhāṣya), cross-checked against Max Müller's public-domain English translation for this section.",
+      },
+      {
+        label: "Reader standard",
+        value: "Word-by-word + IAST",
+        detail:
+          "Each verse carries the Devanagari, a consistent IAST transliteration, a close English rendering, and a phrase-level grammatical split.",
+      },
+    ],
+    profiles: [
+      {
+        role: "Textual tradition",
+        name: "Sāma Veda · Tāṇḍya (Talavakāra) Brāhmaṇa",
+        evidenceLabel: "Traditional attribution",
+        summary:
+          "The Chandogya Upanishad forms the final eight chapters of the Chāndogya Brāhmaṇa, associated with the Tāṇḍya (also called Talavakāra) school of the Sāma Veda. Like other Upaniṣads, it is not attributed to a single historical author; it took shape across generations of Vedic teachers and is traditionally received as śruti. Khaṇḍa 1 itself is philosophical exposition with no named speaker — later chapters of the full text do name specific sages and teachers (Uddālaka Āruṇi, Śāṇḍilya, Sanatkumāra and others), whose episodes are not yet part of this reader.",
+      },
+    ],
+    editorialPolicy: [
+      "This reader currently covers Prapāṭhaka 1, Khaṇḍa 1 (10 of the full text's roughly 630 verses) — the opening teaching on Om as udgītha. It does not represent the complete Chandogya Upanishad, and says so plainly rather than padding a small section to look like a finished edition.",
+      "Devanagari is checked against the Gita Press Gorakhpur Sanskrit-Hindi edition (with Śāṅkara's commentary) and cross-checked against Max Müller's Sacred Books of the East translation of this section; the phrase-level word splits and close English glosses are prepared for this site.",
+      "The meaning given for each verse is a close study gloss, not a substitute for the Śāṅkara-bhāṣya or for a qualified teacher's explanation of the Upaniṣad.",
+    ],
+    sources: [
+      {
+        title: "Chandogya Upanishad (Sanskrit-Hindi, with Śāṅkara-bhāṣya)",
+        institution: "Gita Press, Gorakhpur",
+        href: "https://archive.org/details/phAO_chandogya-upanishad-gita-press-gorakhpur",
+        note: "The primary edition used for this reader's Devanagari verse text and commentary cross-checks.",
+      },
+      {
+        title: "The Upanishads, Part I — Chāndogya Upanishad",
+        institution: "Sacred Books of the East, Vol. 1 · trans. F. Max Müller (1879)",
+        href: "https://sacred-texts.com/hin/sbe01/index.htm",
+        note: "Public-domain scholarly translation used to cross-check this section's close English rendering.",
+      },
+    ],
+  },
 };
 
 export const scriptureSlugs = Object.keys(scriptureCatalog) as ScriptureSlug[];

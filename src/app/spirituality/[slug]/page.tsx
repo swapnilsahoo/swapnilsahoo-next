@@ -56,6 +56,11 @@ const themes: Record<
     glow: "bg-orange-300/20",
     badge: "text-orange-100",
   },
+  "chandogya-upanishad": {
+    hero: "from-[#0a0f1f] via-[#1e2a4a] to-[#3a2d6e]",
+    glow: "bg-indigo-300/20",
+    badge: "text-indigo-200",
+  },
 };
 
 const scriptureInquiry: Record<
@@ -105,6 +110,13 @@ const scriptureInquiry: Record<
     questions: [
       "With Śiva telling Pārvatī, Yājñavalkya retelling it, and Tulsidas retelling that — who's actually speaking in any one verse?",
       "Would you rather have 13 verses fully translated, or 369 stretched thin to look finished?",
+    ],
+  },
+  "chandogya-upanishad": {
+    title: "What is Om actually made of, according to this opening chapter?",
+    questions: [
+      "The text traces Om back through earth, water, plants, the body and speech before it ever names the syllable — why start so far from the sound itself?",
+      "Verse three calls Om \"the eighth\" essence, without ever explaining what's being counted — translators still disagree. Does an unexplained number weaken the teaching, or is that exactly the kind of puzzle it expects a student to sit with?",
     ],
   },
 };
