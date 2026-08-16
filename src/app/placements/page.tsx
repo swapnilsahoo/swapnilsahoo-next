@@ -264,7 +264,7 @@ export default function PlacementsPage() {
 
       <section aria-labelledby="in-the-room-title" className="pb-16 sm:pb-24">
         <Container className="max-w-6xl">
-          <Reveal>
+          <Reveal variant="image">
             <figure className="glass-card grid overflow-hidden lg:grid-cols-[0.82fr_1.18fr]">
               <figcaption className="order-2 flex flex-col justify-center p-7 sm:p-10 lg:order-1 lg:p-12">
                 <p className="eyebrow">In the room</p>

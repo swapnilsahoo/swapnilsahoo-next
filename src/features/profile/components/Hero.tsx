@@ -68,7 +68,7 @@ export function Hero() {
           </div>
         </Reveal>
 
-        <Reveal className="md:col-span-4" delay={0.1}>
+        <Reveal className="md:col-span-4" delay={0.1} variant="image">
           <div className="relative">
             <div className="glass-card relative p-3">
               <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl">

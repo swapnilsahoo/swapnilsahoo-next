@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { ArrowRightIcon } from "@/components/icons/LineIcons";
 import { Container } from "@/components/ui/Container";
 import { InquiryPrelude } from "@/components/ui/InquiryPrelude";
+import { Reveal } from "@/components/ui/Reveal";
 import { ScriptureReader } from "@/features/spirituality/components/ScriptureReader";
 import {
   isScriptureSlug,
@@ -443,15 +444,19 @@ export default async function ScripturePage({ params }: PageProps) {
               className={`grid gap-9 ${scripture.traditionalBenefits.image ? "lg:grid-cols-[0.34fr_0.86fr_1fr]" : "lg:grid-cols-[0.42fr_1fr]"}`}
             >
               {scripture.traditionalBenefits.image ? (
-                <div className="relative min-h-[280px] overflow-hidden rounded-[24px] lg:min-h-full">
+                <Reveal
+                  variant="image"
+                  className="relative min-h-[460px] overflow-hidden rounded-[24px] sm:min-h-[520px] lg:min-h-full"
+                >
                   <Image
                     src={scripture.traditionalBenefits.image.src}
                     alt={scripture.traditionalBenefits.image.alt}
                     fill
                     className="object-cover"
+                    style={{ objectPosition: "center 12%" }}
                     sizes="(min-width: 1024px) 280px, 100vw"
                   />
-                </div>
+                </Reveal>
               ) : null}
               <div>
                 <span className="accent-rule" />
@@ -504,9 +509,11 @@ export default async function ScripturePage({ params }: PageProps) {
               </div>
               {scripture.practicalGuidance.images && scripture.practicalGuidance.images.length > 0 ? (
                 <div className="flex flex-col gap-4">
-                  {scripture.practicalGuidance.images.map((image) => (
-                    <div
+                  {scripture.practicalGuidance.images.map((image, index) => (
+                    <Reveal
                       key={image.src}
+                      variant="image"
+                      delay={index * 0.12}
                       className="overflow-hidden rounded-[22px] border border-black/5 shadow-lg shadow-slate-950/10 dark:border-white/10"
                     >
                       <Image
@@ -517,7 +524,7 @@ export default async function ScripturePage({ params }: PageProps) {
                         sizes="(min-width: 1024px) 360px, 90vw"
                         className="h-auto w-full object-cover"
                       />
-                    </div>
+                    </Reveal>
                   ))}
                 </div>
               ) : null}

@@ -537,7 +537,10 @@ export function OneYearMbaExperience() {
           </Reveal>
 
           <div className="grid gap-5 lg:grid-cols-[1.3fr_0.7fr]">
-            <Reveal className="group relative min-h-[360px] overflow-hidden rounded-[28px] sm:min-h-[480px]">
+            <Reveal
+              variant="image"
+              className="group relative min-h-[360px] overflow-hidden rounded-[28px] sm:min-h-[480px]"
+            >
               <Image
                 src="/images/teaching/one-year/induction-auditorium.webp"
                 alt="A packed lecture hall of incoming PGPM 2026-27 students during induction, with faculty at the front of the room"
@@ -557,7 +560,11 @@ export function OneYearMbaExperience() {
             </Reveal>
 
             <div className="grid gap-5">
-              <Reveal delay={0.1} className="group relative min-h-[220px] overflow-hidden rounded-[24px]">
+              <Reveal
+                delay={0.1}
+                variant="image"
+                className="group relative min-h-[220px] overflow-hidden rounded-[24px]"
+              >
                 <Image
                   src="/images/teaching/one-year/induction-facilitation.webp"
                   alt="Dr Swapnil Sahoo facilitating an interactive induction session with a flip chart"
@@ -571,7 +578,11 @@ export function OneYearMbaExperience() {
                   Setting the room&apos;s norms before day one&apos;s first case.
                 </p>
               </Reveal>
-              <Reveal delay={0.2} className="group relative min-h-[220px] overflow-hidden rounded-[24px]">
+              <Reveal
+                delay={0.2}
+                variant="image"
+                className="group relative min-h-[220px] overflow-hidden rounded-[24px]"
+              >
                 <Image
                   src="/images/teaching/one-year/induction-among-cohort.webp"
                   alt="Dr Swapnil Sahoo seated among the incoming PGPM cohort during induction, taking notes"

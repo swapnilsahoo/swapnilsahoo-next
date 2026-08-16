@@ -12,6 +12,7 @@ import {
 } from "@/components/icons/LineIcons";
 import { Container } from "@/components/ui/Container";
 import { InquiryPrelude } from "@/components/ui/InquiryPrelude";
+import { Reveal } from "@/components/ui/Reveal";
 
 export type SubjectReference = {
   id: number;
@@ -390,7 +391,10 @@ export function SubjectCoursePage({
         <section aria-labelledby="field-story-title" className="pb-16 sm:pb-24">
           <Container className="max-w-6xl">
             <figure className="overflow-hidden rounded-2xl border border-slate-900/10 bg-white dark:border-white/10 dark:bg-slate-950">
-              <div className="relative aspect-[3/2] overflow-hidden bg-slate-100 dark:bg-slate-900">
+              <Reveal
+                variant="image"
+                className="relative aspect-[3/2] overflow-hidden bg-slate-100 dark:bg-slate-900"
+              >
                 <Image
                   src={config.fieldStory.image.src}
                   alt={config.fieldStory.image.alt}
@@ -399,7 +403,7 @@ export function SubjectCoursePage({
                   sizes="(min-width: 1280px) 1152px, (min-width: 768px) calc(100vw - 96px), calc(100vw - 32px)"
                   className="h-full w-full object-cover"
                 />
-              </div>
+              </Reveal>
               <figcaption className="grid gap-8 border-t border-slate-900/10 px-6 py-8 sm:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:px-10 lg:py-10 dark:border-white/10">
                 <div>
                   <p className="eyebrow mb-3">{config.fieldStory.eyebrow}</p>
@@ -436,7 +440,7 @@ export function SubjectCoursePage({
         <section aria-labelledby="teaching-moment-title" className="pb-16 sm:pb-24">
           <Container className="max-w-6xl">
             <figure className="grid overflow-hidden rounded-2xl border border-slate-900/10 bg-white shadow-xl shadow-slate-950/5 lg:grid-cols-[1.15fr_0.85fr] dark:border-white/10 dark:bg-slate-950">
-              <div className="relative min-h-[340px] lg:min-h-[460px]">
+              <Reveal variant="image" className="relative min-h-[340px] lg:min-h-[460px]">
                 <Image
                   src={config.teachingMoment.image.src}
                   alt={config.teachingMoment.image.alt}
@@ -450,7 +454,7 @@ export function SubjectCoursePage({
                       : undefined
                   }
                 />
-              </div>
+              </Reveal>
               <figcaption className="flex flex-col justify-center p-7 sm:p-10 lg:p-12">
                 <p className="eyebrow">{config.teachingMoment.eyebrow}</p>
                 <h2

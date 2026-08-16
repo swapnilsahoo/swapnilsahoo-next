@@ -163,6 +163,9 @@ export default function RootLayout({
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
+        <noscript>
+          <style>{".reveal-pending { opacity: 1 !important; }"}</style>
+        </noscript>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

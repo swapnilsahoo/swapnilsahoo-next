@@ -4,6 +4,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 
+import { cn } from "@/lib/cn";
 import type { GalleryImage } from "@/features/profile/types";
 
 export function GalleryCarousel({ images }: { images: GalleryImage[] }) {
@@ -61,7 +62,13 @@ export function GalleryCarousel({ images }: { images: GalleryImage[] }) {
                   src={image.src}
                   alt={image.alt}
                   fill
-                  className={image.objectFit === "contain" ? "object-contain" : "object-cover"}
+                  className={cn(
+                    image.objectFit === "contain" ? "object-contain" : "object-cover",
+                    "transition-all duration-700 ease-out",
+                    index === selectedIndex
+                      ? "scale-100 opacity-100 blur-none"
+                      : "scale-105 opacity-90 blur-[1px]",
+                  )}
                   style={{ objectPosition: image.objectPosition }}
                   sizes="(min-width: 1024px) 1000px, 100vw"
                   quality={85}
