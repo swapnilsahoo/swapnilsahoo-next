@@ -169,6 +169,11 @@ export default async function ScripturePage({ params }: PageProps) {
   const entries = await loadScriptureEntries(slug);
   const theme = themes[slug];
   const inquiry = scriptureInquiry[slug];
+  const optionalSectionCount =
+    (scripture.traditionalBenefits ? 1 : 0) + (scripture.practicalGuidance ? 1 : 0);
+  const guidanceNumber = String(4 + (scripture.traditionalBenefits ? 1 : 0)).padStart(2, "0");
+  const methodNumber = String(4 + optionalSectionCount).padStart(2, "0");
+  const sourcesNumber = String(5 + optionalSectionCount).padStart(2, "0");
   const isSahasranama = slug === "vishnu-sahasranama" || slug === "lalita-sahasranama";
   const languageCode = slug === "hanuman-chalisa" || slug === "ramcharitmanas" ? "awa" : "sa";
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.swapnilsahoo.com";
@@ -473,14 +478,60 @@ export default async function ScripturePage({ params }: PageProps) {
         </section>
       ) : null}
 
+      {scripture.practicalGuidance ? (
+        <section aria-labelledby="guidance-title" className="py-16 sm:py-24">
+          <Container className="max-w-6xl">
+            <div className="grid gap-9 lg:grid-cols-[1fr_0.42fr]">
+              <div>
+                <span className="accent-rule" />
+                <p className="eyebrow mb-3">{guidanceNumber} / {scripture.practicalGuidance.eyebrow}</p>
+                <h2 id="guidance-title" className="display text-4xl font-semibold md:text-5xl">
+                  {scripture.practicalGuidance.title}
+                </h2>
+                <p className="text-ink-600 dark:text-ink-300 mt-5 max-w-2xl text-sm leading-relaxed">
+                  {scripture.practicalGuidance.disclaimer}
+                </p>
+                <ul role="list" className="mt-8 grid gap-4 sm:grid-cols-2">
+                  {scripture.practicalGuidance.items.map((item, index) => (
+                    <li key={item} className="glass-card flex gap-4 p-5">
+                      <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-amber-100 font-mono text-[10px] font-semibold text-amber-950 dark:bg-amber-400/15 dark:text-amber-200">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <p className="text-ink-600 dark:text-ink-300 text-sm leading-relaxed">{item}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              {scripture.practicalGuidance.images && scripture.practicalGuidance.images.length > 0 ? (
+                <div className="flex flex-col gap-4">
+                  {scripture.practicalGuidance.images.map((image) => (
+                    <div
+                      key={image.src}
+                      className="overflow-hidden rounded-[22px] border border-black/5 shadow-lg shadow-slate-950/10 dark:border-white/10"
+                    >
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        width={image.width}
+                        height={image.height}
+                        sizes="(min-width: 1024px) 360px, 90vw"
+                        className="h-auto w-full object-cover"
+                      />
+                    </div>
+                  ))}
+                </div>
+              ) : null}
+            </div>
+          </Container>
+        </section>
+      ) : null}
+
       <section id="method" aria-labelledby="method-title" className="py-16 sm:py-24">
         <Container className="max-w-6xl">
           <div className="grid gap-9 lg:grid-cols-[0.42fr_1fr]">
             <div>
               <span className="accent-rule" />
-              <p className="eyebrow mb-3">
-                {scripture.traditionalBenefits ? "05" : "04"} / Editorial method
-              </p>
+              <p className="eyebrow mb-3">{methodNumber} / Editorial method</p>
               <h2 id="method-title" className="display text-4xl font-semibold md:text-5xl">
                 Designed for honest study.
               </h2>
@@ -503,7 +554,7 @@ export default async function ScripturePage({ params }: PageProps) {
         <Container className="max-w-6xl">
           <div className="overflow-hidden rounded-[30px] border border-slate-200 bg-white shadow-xl shadow-slate-950/5 dark:border-slate-800 dark:bg-slate-950">
             <div className="border-b border-slate-200 p-7 sm:p-10 dark:border-slate-800">
-              <p className="eyebrow mb-3">{scripture.traditionalBenefits ? "06" : "05"} / Source shelf</p>
+              <p className="eyebrow mb-3">{sourcesNumber} / Source shelf</p>
               <h2 id="sources-title" className="display text-4xl font-semibold">
                 Read beyond this edition.
               </h2>

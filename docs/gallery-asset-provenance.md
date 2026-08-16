@@ -201,6 +201,19 @@ no content added or removed.
 | ----------------------------------------------------------------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | `public/images/gallery/vishnu-sahasranama-temple-relief.webp` | `2f4e7b9bdd3b589f85f9ef14db8662f25606389f2585d6122ba7597d9ed89d82` | Photograph of unknown origin supplied by Swapnil Sahoo, sourced from a Reddit thread (`c8xybclc93gg1.jpeg`); cropped to remove an in-camera date-stamp watermark, lightly sharpened and color-corrected | Photograph of a traditional temple relief sculpture of Vishnu | Photographer and temple location are not identified in this repository; formal licence and publication-permission records are not documented |
 
+## Vishnu Sahasranama practical-guidance photos (16 Aug 2026)
+
+Swapnil Sahoo added two further images to the same `Images/Vishnu Sahashranama`
+folder, both genuine photographs (no AI-generation markers, no CGI
+appearance). Both were re-encoded to webp, lightly sharpened; the second was
+also modestly brightness/saturation-corrected. No content was added, removed,
+or cropped from either.
+
+| Local asset                                                            | SHA-256                                                            | Recorded source                                                                                    | Public provenance                                                          | Rights and credit status                                                                                                 |
+| --------------------------------------------------------------------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `public/images/gallery/vishnu-sahasranama-gita-press-edition.webp` | `4bbf69af3fa3f901cc02758fe3285e08093cb50766a0cf240cc319f2d848b052` | Photograph of unknown origin supplied by Swapnil Sahoo, sourced from a Reddit thread (`how-to-read-vishnu-sahsranam-properly-v0-vi6ml0h3ykfg1.webp`); re-encoded and lightly sharpened | Photograph of a physical Gita Press Gorakhpur printed edition of the Vishnu Sahasranama Stotram | Photographer is not identified in this repository; formal licence and publication-permission records are not documented |
+| `public/images/gallery/vishnu-sahasranama-temple-murti.webp`       | `c0508b12850e18436e3366fc01f8c9984ce2a21a19def5ef824f3fd01cd1026e` | Photograph of unknown origin supplied by Swapnil Sahoo, sourced from a Reddit thread (`the-importance-of-chanting-vishnu-sahasranamam-v0-ggt5trqcfjjh1.webp`); re-encoded, lightly sharpened and modestly brightness/saturation-corrected | Photograph of a crowned, multi-faced stone temple mūrti garlanded for worship | Photographer and temple location are not identified in this repository; formal licence and publication-permission records are not documented |
+
 ## Generated-media audit
 
 The 30 July 2026 audit removed every previously public raster asset carrying

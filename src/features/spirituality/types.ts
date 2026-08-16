@@ -72,4 +72,16 @@ export type ScriptureCatalogEntry = {
       alt: string;
     };
   };
+  practicalGuidance?: {
+    eyebrow: string;
+    title: string;
+    items: string[];
+    disclaimer: string;
+    images?: Array<{
+      src: string;
+      alt: string;
+      width: number;
+      height: number;
+    }>;
+  };
 };

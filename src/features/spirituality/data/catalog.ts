@@ -142,7 +142,7 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
         name: "Bhīṣma",
         evidenceLabel: "Narrative voice",
         summary:
-          "Bhīṣma is the elder Kuru statesman and teacher of dharma who speaks from his bed of arrows. When Yudhiṣṭhira asks who is the highest divinity and what recitation leads to the highest good, Bhīṣma answers with Viṣṇu’s thousand names. This identifies the dramatic speaker, not a historically recoverable composer.",
+          "Bhīṣma is the elder Kuru statesman and teacher of dharma who speaks from his bed of arrows. Kṛṣṇa himself redirects Yudhiṣṭhira's questions on dharma to Bhīṣma, saying the dying patriarch is best placed to answer; asked who is the highest divinity and what recitation leads to the highest good, Bhīṣma answers with Viṣṇu's thousand names, with Kṛṣṇa and Vyāsa present as the scene's witnesses. This identifies the dramatic speaker, not a historically recoverable composer.",
       },
       {
         role: "Traditional epic compiler and seer",
@@ -211,6 +211,12 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
         href: "https://www.swami-krishnananda.org/vishnu/vishnu_phala.html",
         note: "Source for the traditional phala-śruti (fruits-of-recitation) verses summarised below — presented as the text's own devotional promise, not an independent claim.",
       },
+      {
+        title: "Vishnu Sahastranaam Path Chanting Rules",
+        institution: "MantraVidya",
+        href: "https://mantravidya.com/en/vishnu-sahastranaam-path-chanting-rules/",
+        note: "Source corroborating the traditional recitation practice — timing, preparation and posture — summarised in the practical-guidance section below.",
+      },
     ],
     traditionalBenefits: {
       eyebrow: "What the tradition promises",
@@ -230,6 +236,33 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
         src: "/images/gallery/vishnu-sahasranama-temple-relief.webp",
         alt: "A traditional South Indian temple relief sculpture of Vishnu holding the conch, discus, mace and lotus, flanked by two smaller attendant figures",
       },
+    },
+    practicalGuidance: {
+      eyebrow: "How devotees traditionally recite it",
+      title: "A simple, traditional way to sit with the thousand names.",
+      items: [
+        "Brahma muhūrta — roughly the last ninety minutes before sunrise — is the traditionally preferred window; the early evening or just before bed are the common alternatives when mornings aren't possible.",
+        "A short physical reset comes first: a bath if possible or at least washing the hands and feet, clean clothes, and a few rounds of slow, settling breath before opening the eyes to read.",
+        "Sitting upright — on a chair or the floor, facing east — is preferred over reciting lying down; many households light a small lamp to mark the space as set apart for the reading.",
+        "A little water, fruit or a yellow sweet is traditionally offered before the mūrti or image beforehand, then shared with the household once the recitation and a further quiet moment of meditation are done.",
+        "Listening with attention counts as much as reciting it yourself — for a text of a thousand names, tradition treats hearing it read aloud with devotion as an equally valid practice, not a lesser one.",
+      ],
+      disclaimer:
+        "I'm describing this as widely followed traditional practice, not a rule this reader needs to follow before the thousand names above mean anything on their own.",
+      images: [
+        {
+          src: "/images/gallery/vishnu-sahasranama-gita-press-edition.webp",
+          alt: "A physical Gita Press Gorakhpur edition of the Śrī Viṣṇusahasranāma Stotram, the classical illustrated booklet many households actually recite from",
+          width: 1080,
+          height: 839,
+        },
+        {
+          src: "/images/gallery/vishnu-sahasranama-temple-murti.webp",
+          alt: "A close-up of a crowned, multi-faced stone temple mūrti garlanded for worship",
+          width: 415,
+          height: 738,
+        },
+      ],
     },
   },
   "lalita-sahasranama": {
