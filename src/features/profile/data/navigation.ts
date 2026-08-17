@@ -40,6 +40,10 @@ export const teachingDropdown: NavDropdown = {
           label: "Case Study Preparation",
           href: "/placements/case-study-preparation",
         },
+        {
+          label: "Cracking Consulting Interviews",
+          href: "/teaching/consulting-interviews",
+        },
       ],
     },
     { label: "Executive MDPs", href: "/#mdp" },
