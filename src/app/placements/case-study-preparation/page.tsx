@@ -234,6 +234,12 @@ export default function CaseStudyPreparationPage() {
                     Explore the preparation path
                   </a>
                 </div>
+                <p className="mt-5 text-sm text-blue-100">
+                  Want the reasoning behind this approach, written out in full?{" "}
+                  <Link href="/teaching/consulting-interviews" className="link-underline font-semibold text-white">
+                    Read Cracking Consulting Interviews →
+                  </Link>
+                </p>
               </div>
 
               <div className="grid grid-cols-2 gap-3 lg:grid-cols-1">

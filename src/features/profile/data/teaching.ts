@@ -43,6 +43,13 @@ export const teachingLinks: TeachingLink[] = [
       "Choose roles carefully, make the CV evidential and rehearse stories until they sound like your own. Includes rigorous industry analysis and case study preparation.",
     href: "/placements",
   },
+  {
+    eyebrow: "Consulting",
+    title: "Cracking Consulting Interviews",
+    description:
+      "My in-depth, first-person guide: the process end to end, the case method, framework families, the fit round, group discussions and the mistakes I see most often.",
+    href: "/teaching/consulting-interviews",
+  },
 ];
 
 export const teachingPhilosophy = {
