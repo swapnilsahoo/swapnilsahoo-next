@@ -74,17 +74,27 @@ collection, but not to a particular source file or one of the three folders.
 
 | Local asset                                                | SHA-256                                                            | Recorded source                                                                      | Public provenance                                                                         | Rights and credit status                                                                                                                |
 | ---------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `public/images/ai-hackathon/hackathon-demo.jpg`            | `12a79fd2b98b847279a2799f3bb54009e987e6c62854831b71865222d9e75a51` | AI Mini Hackathon camera originals; exact Drive file unresolved                      | Camera-original event photograph; photographer not identified                             | Photographer, copyright owner, licence, publication permission, and consent/model-release records are not documented in this repository |
-| `public/images/ai-hackathon/hackathon-room.jpg`            | `733203f61ff385322ea3286376723fc74c6ee655406118ad940834d278ecfe79` | AI Mini Hackathon camera originals; exact Drive file unresolved                      | Camera-original event photograph; photographer not identified                             | Photographer, copyright owner, licence, publication permission, and consent/model-release records are not documented in this repository |
-| `public/images/gallery/ai-mini-hackathon-winners-2026.jpg` | `96befdd72f158a4ca36596a5185b8002f40baa9935f8cfc679850f27f36e1aeb` | Great Lakes Gurgaon event-media collection listed above; exact Drive file unresolved | Event media shared by the Great Lakes Gurgaon programme team; photographer not identified | Photographer, copyright owner, licence, publication permission, and consent/model-release records are not documented in this repository |
-| `public/images/gallery/ai-mini-hackathon-team-2026.jpg`    | `8621cfd56a789a7fc198f73868a60a79971f62e15b4ce31d009b260643467774` | Great Lakes Gurgaon event-media collection listed above; exact Drive file unresolved | Event media shared by the Great Lakes Gurgaon programme team; photographer not identified | Photographer, copyright owner, licence, publication permission, and consent/model-release records are not documented in this repository |
+| `public/images/ai-hackathon/hackathon-demo.jpg`            | `684c721b649b1e220bef09474c7373d00b385fa3e5dbf9cf67f740b0db64e34d` | AI Mini Hackathon camera originals; exact Drive file unresolved                      | Camera-original event photograph; photographer not identified                             | Photographer, copyright owner, licence, publication permission, and consent/model-release records are not documented in this repository |
+| `public/images/ai-hackathon/hackathon-room.jpg`            | `c73d166b3b1731c209608b7275ee7aae39bae12180ad9611e5b93c0e11b8918f` | AI Mini Hackathon camera originals; exact Drive file unresolved                      | Camera-original event photograph; photographer not identified                             | Photographer, copyright owner, licence, publication permission, and consent/model-release records are not documented in this repository |
+| `public/images/gallery/ai-mini-hackathon-winners-2026.jpg` | `b1afd32461fdae408166b99d0d10eee600728335e825f13f0aeaefa862f21fa7` | Great Lakes Gurgaon event-media collection listed above; exact Drive file unresolved | Event media shared by the Great Lakes Gurgaon programme team; photographer not identified | Photographer, copyright owner, licence, publication permission, and consent/model-release records are not documented in this repository |
+| `public/images/gallery/ai-mini-hackathon-team-2026.jpg`    | `3af088fe574ae9d3ea2f890e718a18b5889358a214dc1a95c409285580b8d21b` | Great Lakes Gurgaon event-media collection listed above; exact Drive file unresolved | Event media shared by the Great Lakes Gurgaon programme team; photographer not identified | Photographer, copyright owner, licence, publication permission, and consent/model-release records are not documented in this repository |
 | `public/images/gallery/ai-mini-hackathon-jury-panel-2026.jpg` | `ecc805600b532f1ec2535764226d855c842450040b7f612d22278d6241f2e586` | Personal event photograph supplied directly by Swapnil Sahoo | Personal event photograph supplied by Swapnil Sahoo | Photographer, copyright owner, formal licence, publication permission, and consent/model-release records are not documented in this repository |
 
-The two camera originals are 4608 × 3072 JPEG files. Their embedded EXIF names
-a Sony ILCE-7M4 camera and records 5 July 2026 capture times, but does not name
-a photographer. The two gallery exports are 1920 × 1080 JPEG files whose
-embedded metadata identifies Adobe Lightroom as the export software but does
-not identify a photographer.
+The two camera originals were originally 4608 × 3072 JPEG files (2.6–3.0 MB
+each); their embedded EXIF named a Sony ILCE-7M4 camera and recorded 5 July
+2026 capture times, but did not name a photographer. The two gallery exports
+were originally 1920 × 1080 JPEG files (~1.0–1.2 MB each) whose embedded
+metadata identified Adobe Lightroom as the export software but did not
+identify a photographer.
+
+On 17 Aug 2026, a site-wide audit found these four files were still shipping
+at their oversized originals — the same performance-bug class fixed for other
+assets on 15 Aug 2026 (oversized source images choking Next's on-demand image
+optimizer). All four were resized and re-encoded: the two camera originals to
+2200 px wide (down from 4608 px) and the two gallery exports to 1920 px wide
+(unchanged) at moderate JPEG quality, cutting file size by 78–96% with no
+visible loss of quality. Same photographs, no content added or removed; EXIF
+capture metadata is stripped by re-encoding, as it always is by this process.
 
 ## 2-Year Course — Strategy Sessions classroom (Jan 2026)
 

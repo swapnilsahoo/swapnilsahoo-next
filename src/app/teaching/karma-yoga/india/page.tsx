@@ -91,7 +91,7 @@ export default function KarmaYogaForIndiaPage() {
                   A community circle · participation begins with shared presence.
                 </figcaption>
               </figure>
-              <figure className="relative aspect-[16/10] w-full overflow-hidden">
+              <figure className="relative aspect-[4/5] w-full overflow-hidden sm:aspect-[16/10]">
                 <Image
                   src="/images/teaching/karma-yoga/mehalchauri/girls-football-trophy-2026.jpg"
                   alt="Prof. S. K. Palhan presenting the trophy to Mehalchauri-Salinga's first girls' football team"

@@ -29,6 +29,7 @@ const routes = [
   },
   { path: "/teaching/business-simulation", changeFrequency: "monthly", priority: 0.9 },
   { path: "/teaching/ai-hackathon", changeFrequency: "monthly", priority: 0.85 },
+  { path: "/teaching/consulting-interviews", changeFrequency: "monthly", priority: 0.85 },
   { path: "/placements", changeFrequency: "monthly", priority: 0.8 },
   { path: "/placements/industry-analysis", changeFrequency: "monthly", priority: 0.78 },
   { path: "/placements/case-study-preparation", changeFrequency: "monthly", priority: 0.8 },
@@ -71,6 +72,13 @@ const routes = [
   { path: "/comics", changeFrequency: "monthly", priority: 0.7 },
   { path: "/mythology", changeFrequency: "monthly", priority: 0.7 },
   { path: "/mythology/immortals", changeFrequency: "monthly", priority: 0.72 },
+  { path: "/press", changeFrequency: "monthly", priority: 0.75 },
+  { path: "/holistic-wellbeing", changeFrequency: "monthly", priority: 0.7 },
+  {
+    path: "/holistic-wellbeing/mental-wellbeing",
+    changeFrequency: "monthly",
+    priority: 0.7,
+  },
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {

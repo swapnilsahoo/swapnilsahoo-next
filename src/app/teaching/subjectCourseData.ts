@@ -411,11 +411,11 @@ export const karmaYogaCourse = {
     {
       id: 6,
       author: "Bureau of Indian Standards",
-      year: "2025",
+      year: "2019",
       title:
         "IS 9873 (Part 1): Safety of Toys—Safety Aspects Related to Mechanical and Physical Properties",
       publisher: "Bureau of Indian Standards",
-      href: "https://www.services.bis.gov.in/tmp/PCD43124680_08092025_1.pdf",
+      href: "https://www.services.bis.gov.in/php/BIS_2.0/bisconnect/standard_review/Standard_review/Isdetails?ID=MTczMDI%3D",
     },
   ],
   siblingHref: "/teaching/karma-yoga/india",

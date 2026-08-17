@@ -635,6 +635,7 @@ main [aria-hidden="true"][class*="blur-3xl"] {
   font-size: clamp(2.8rem, 6vw, 5.8rem) !important;
   line-height: 0.98 !important;
   letter-spacing: -0.045em !important;
+  overflow-wrap: break-word !important;
 }
 
 [data-page-hero] [class*="bg-gradient-to-r"][class*="bg-clip-text"] {

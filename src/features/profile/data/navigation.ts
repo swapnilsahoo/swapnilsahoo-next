@@ -89,6 +89,10 @@ export const moreDropdown: NavDropdown = {
           label: "Authentic Shiva Tandava Stotram",
           href: "/spirituality/shiva-tandava-stotram",
         },
+        {
+          label: "Authentic Chandogya Upanishad",
+          href: "/spirituality/chandogya-upanishad",
+        },
       ],
     },
     {
