@@ -4,6 +4,58 @@ This internal register records the evidence trail available for locally hosted
 gallery assets. It is not a copyright clearance record, a licence, or evidence
 of consent from people pictured.
 
+## The Entrepreneurship Shelf cover art and posters (18 Aug 2026)
+
+`/teaching/reading-and-watching-list` displays 42 small cover-art and poster
+thumbnails (book covers, film posters, series art, documentary posters)
+alongside original first-person commentary recommending each title. These are
+a different category from every other asset in this register: official
+promotional material published by the book's publisher or the film/show's
+studio/network, not personal photography, and not something this site claims
+any ownership or licence over.
+
+**Sourcing.** Book covers were located via the Internet Archive's Open
+Library Covers API (`covers.openlibrary.org`, a public service Open Library
+provides for exactly this kind of external reference use). Film, series and
+documentary art was located via Wikipedia's public REST summary API
+(`en.wikipedia.org/api/rest_v1/page/summary/...`), which surfaces each
+article's lead image — in practice the same poster or key art displayed on
+the film/show's own Wikipedia infobox.
+
+**Why downloaded rather than hotlinked.** The first implementation hotlinked
+directly to `covers.openlibrary.org` and `upload.wikimedia.org` through
+Next's image optimizer. Wikimedia's CDN began returning `429 Too Many
+Requests` under the optimizer's concurrent fetch pattern, causing intermittent
+broken images — a reliability problem, not a rights one. Each image was
+downloaded once, resized to a small thumbnail (max 500px on the long edge,
+matching the actual card display size — the same "never ship an oversized
+source image" discipline applied everywhere else in this repository) and
+re-encoded to WebP, then hosted locally under
+`public/images/entrepreneurship-shelf/{books,movies,series,documentaries}/`.
+No image was upscaled or cropped to alter its content; several very low
+resolution or purely textual source images (title cards, wordmarks) were used
+as-is at their native small size rather than enlarged.
+
+**Rights basis.** Thumbnail-resolution reproduction of a book cover or film
+poster specifically to identify the work being discussed, alongside
+substantial original commentary, is long-settled editorial/fair-use practice
+followed by essentially every book and film recommendation site, library
+catalogue and review outlet on the web (Goodreads, IMDb, Wikipedia itself,
+and the ThinkMBA "Think Shelf" page this feature was explicitly modelled on
+all do the same). No image here is used at a resolution or in a context that
+substitutes for the original work or its official marketing use. All cover
+art and poster images remain the property of their respective publishers and
+studios; this repository does not claim otherwise, and says so on the page
+itself.
+
+**Exclusions.** One further poster (a low-resolution "Halt and Catch Fire"
+title-card screenshot) was downloaded, judged too poor quality to represent
+the show reasonably, and deleted rather than shipped; that entry on the page
+has no cover art. One book cover (the audiobook edition of *Zero to One*,
+initially the only cover Open Library's search API surfaced) was replaced
+with the standard print hardcover jacket once a better edition-specific cover
+was found, since this is the shelf's first and most prominent entry.
+
 ## AOM 2026
 
 The event photographs below were supplied directly by Swapnil Sahoo. The
