@@ -6,7 +6,7 @@ of consent from people pictured.
 
 ## The Entrepreneurship Shelf cover art and posters (18 Aug 2026)
 
-`/teaching/reading-and-watching-list` displays 44 small cover-art and poster
+`/teaching/reading-and-watching-list` displays 46 small cover-art and poster
 thumbnails (book covers, film posters, series art, documentary posters)
 alongside original first-person commentary recommending each title. These are
 a different category from every other asset in this register: official
@@ -66,6 +66,16 @@ class of asset as the API-sourced images above (studio/platform promotional
 material, used at thumbnail size for identification alongside original
 commentary) and were resized the same way (max 500px, re-encoded to WebP) and
 saved to the same `public/images/entrepreneurship-shelf/series/` directory.
+
+**Last two gaps filled directly by Swapnil Sahoo (18 Aug 2026).** The two
+documentaries that had shipped without cover art — Inside Bill's Brain:
+Decoding Bill Gates and Something Ventured, neither of which resolved a usable
+image via the Wikipedia REST API — were supplied directly by Swapnil Sahoo:
+official poster art for both. Same class of asset (official promotional
+material, thumbnail size, identification alongside original commentary), same
+resize treatment (max 500px, re-encoded to WebP), saved to
+`public/images/entrepreneurship-shelf/documentaries/`. Every title on the
+shelf now has cover art.
 
 ## AOM 2026
 

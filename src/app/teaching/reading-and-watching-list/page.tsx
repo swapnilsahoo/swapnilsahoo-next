@@ -435,6 +435,10 @@ const documentaries: ShelfItem[] = [
     creator: "dir. Davis Guggenheim · Netflix",
     year: "2019",
     why: "Less about Microsoft than about what happens after the company-building is largely done — how a famously technical, obsessive mind reallocates itself toward philanthropy at the scale of a nation-state's public health budget. Useful for a conversation about what founders owe the world once they've won.",
+    image: {
+      src: "/images/entrepreneurship-shelf/documentaries/inside-bills-brain.webp",
+      alt: "Inside Bill's Brain: Decoding Bill Gates poster",
+    },
   },
   {
     title: "The Social Dilemma",
@@ -471,6 +475,10 @@ const documentaries: ShelfItem[] = [
     creator: "dir. Dan Geller & Dayna Goldfine",
     year: "2011",
     why: "A history of venture capital told by the people who invented the category — the investors behind Apple, Genentech, Atari and Cisco in their own words. Useful for understanding that the VC-backed model this whole shelf assumes as default is barely sixty years old and was itself once a risky experiment.",
+    image: {
+      src: "/images/entrepreneurship-shelf/documentaries/something-ventured.webp",
+      alt: "Something Ventured: Risk, Reward, and the Original Venture Capitalists poster",
+    },
   },
   {
     title: "American Factory",
@@ -517,7 +525,7 @@ function ShelfCard({ item, index }: { item: ShelfItem; index: number }) {
             src={item.image.src}
             alt={item.image.alt}
             fill
-            sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+            unoptimized
             className="object-contain"
           />
         ) : (
