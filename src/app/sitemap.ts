@@ -30,6 +30,7 @@ const routes = [
   { path: "/teaching/business-simulation", changeFrequency: "monthly", priority: 0.9 },
   { path: "/teaching/ai-hackathon", changeFrequency: "monthly", priority: 0.85 },
   { path: "/teaching/consulting-interviews", changeFrequency: "monthly", priority: 0.85 },
+  { path: "/teaching/reading-and-watching-list", changeFrequency: "monthly", priority: 0.8 },
   { path: "/placements", changeFrequency: "monthly", priority: 0.8 },
   { path: "/placements/industry-analysis", changeFrequency: "monthly", priority: 0.78 },
   { path: "/placements/case-study-preparation", changeFrequency: "monthly", priority: 0.8 },

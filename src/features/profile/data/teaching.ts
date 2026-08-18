@@ -50,6 +50,13 @@ export const teachingLinks: TeachingLink[] = [
       "My in-depth, first-person guide: the process end to end, the case method, framework families, the fit round, group discussions and the mistakes I see most often.",
     href: "/teaching/consulting-interviews",
   },
+  {
+    eyebrow: "Entrepreneurship",
+    title: "The Entrepreneurship Shelf",
+    description:
+      "A reading channel and video channel of books, films, series and documentaries I actually point students to, each with why it earns the recommendation.",
+    href: "/teaching/reading-and-watching-list",
+  },
 ];
 
 export const teachingPhilosophy = {
