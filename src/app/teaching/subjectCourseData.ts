@@ -452,7 +452,7 @@ export const businessSimulationCourse = {
     eyebrow: "How the rounds compound",
     title: "Each round removes an excuse.",
     description:
-      "The simulation is not three isolated contests. Every round inherits the last round's decisions, and every debrief raises the bar for what counts as a defensible choice.",
+      "The simulation is not a set of isolated contests. Every round inherits the last round's decisions, and every debrief raises the bar for what counts as a defensible choice.",
     rounds: [
       {
         round: "Round 1",
@@ -474,6 +474,102 @@ export const businessSimulationCourse = {
         shift:
           "Growth, margin, cash, risk and sustainability choices are now read as one connected system—winning on one axis while breaking another no longer counts as winning.",
         question: "Would this decision survive being read back to you as a single, connected story?",
+      },
+      {
+        round: "Round 4",
+        focus: "Compress to a decision rule",
+        shift:
+          "Cumulative returns across teams compress sharply by the final round. The debrief stops accepting a rank as the answer and asks for the one rule that would have prevented the round's worst reversal.",
+        question:
+          "What is the one rule that would have prevented your team's worst reversal this round?",
+      },
+    ],
+  },
+  resources: {
+    eyebrow: "From the live sections · Round-by-round materials",
+    title: "The actual decks and results, ready to study.",
+    description:
+      "These are the debrief decks and results workbooks from the sections as they actually ran—not illustrative examples. Download them, compare your own team's line against the cohort, and come to the next round with a sharper thesis.",
+    rounds: [
+      {
+        round: "Round 4",
+        headline: "Universe leadership changed hands in both sections; compression continued everywhere.",
+        groups: [
+          {
+            label: "Section C",
+            summary:
+              "Universe 1's Big Bulls climbed from fifth to first as Green staged a sharp recovery, while Harshad Mehta Gang and Grey both slid down the table. Universe 2 saw Lehman Bros. retake the lead as Blues Clues rose from sixth to second. Both universes show cumulative TSR compressing hard by the final round, with Universe 2 still holding the stronger aggregate profit and market value of the two.",
+            files: [
+              {
+                label: "Team flow map, Round 1 → Round 4",
+                format: "Slides",
+                href: "/documents/business-simulation/round-4/section-c/section-c-round4-team-flow-map.pptx",
+              },
+              {
+                label: "Universe 1 vs Universe 2 insights",
+                format: "Slides",
+                href: "/documents/business-simulation/round-4/section-c/section-c-round4-u1-vs-u2-insights-debrief.pptx",
+              },
+              {
+                label: "Universe 1 comparative debrief",
+                format: "Slides",
+                href: "/documents/business-simulation/round-4/section-c/section-c-round4-universe1-debrief.pptx",
+              },
+              {
+                label: "Universe 1 results workbook",
+                format: "Workbook",
+                href: "/documents/business-simulation/round-4/section-c/section-c-round4-universe1-results.xls",
+              },
+              {
+                label: "Universe 2 comparative debrief",
+                format: "Slides",
+                href: "/documents/business-simulation/round-4/section-c/section-c-round4-universe2-debrief.pptx",
+              },
+              {
+                label: "Universe 2 results workbook",
+                format: "Workbook",
+                href: "/documents/business-simulation/round-4/section-c/section-c-round4-universe2-results.xls",
+              },
+            ],
+          },
+          {
+            label: "Section D",
+            summary:
+              "Universe 1's Red Rangers took over the lead in the final round after three rounds sitting third, while Ochre and Orange both lost ground. Universe 2 stayed calmer: Grey held first from Round 1 through Round 4, and Ochre made the section's biggest late climb, from fourth to third. Read the flow-map deck alongside the results workbook to see exactly which decisions moved each line.",
+            files: [
+              {
+                label: "Team flow map, Round 1 → Round 4",
+                format: "Slides",
+                href: "/documents/business-simulation/round-4/section-d/section-d-round4-team-flow-map.pptx",
+              },
+              {
+                label: "Universe 1 vs Universe 2 insights",
+                format: "Slides",
+                href: "/documents/business-simulation/round-4/section-d/section-d-round4-u1-vs-u2-insights-debrief.pptx",
+              },
+              {
+                label: "Universe 1 comparative debrief",
+                format: "Slides",
+                href: "/documents/business-simulation/round-4/section-d/section-d-round4-universe1-debrief.pptx",
+              },
+              {
+                label: "Universe 1 results workbook",
+                format: "Workbook",
+                href: "/documents/business-simulation/round-4/section-d/section-d-round4-universe1-results.xls",
+              },
+              {
+                label: "Universe 2 comparative debrief",
+                format: "Slides",
+                href: "/documents/business-simulation/round-4/section-d/section-d-round4-universe2-debrief.pptx",
+              },
+              {
+                label: "Universe 2 results workbook",
+                format: "Workbook",
+                href: "/documents/business-simulation/round-4/section-d/section-d-round4-universe2-results.xls",
+              },
+            ],
+          },
+        ],
       },
     ],
   },

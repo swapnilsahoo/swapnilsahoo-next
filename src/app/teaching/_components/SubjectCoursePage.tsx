@@ -65,6 +65,31 @@ export type SubjectSafeguard = {
   citations?: readonly number[];
 };
 
+export type SubjectResourceFile = {
+  label: string;
+  format: "Slides" | "Workbook";
+  href: string;
+};
+
+export type SubjectResourceGroup = {
+  label: string;
+  summary: string;
+  files: readonly SubjectResourceFile[];
+};
+
+export type SubjectResourceRound = {
+  round: string;
+  headline: string;
+  groups: readonly SubjectResourceGroup[];
+};
+
+export type SubjectResourceHub = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  rounds: readonly SubjectResourceRound[];
+};
+
 export type SubjectCourseConfig = {
   hero: {
     eyebrow: string;
@@ -144,6 +169,7 @@ export type SubjectCourseConfig = {
     description: string;
     indicators?: readonly string[];
   };
+  resources?: SubjectResourceHub;
   references: readonly SubjectReference[];
   siblingHref: string;
   siblingLabel: string;
@@ -191,6 +217,7 @@ export function SubjectCoursePage({
   const navigationItems = [
     ...leadingNavigationItems,
     { label: "Promise", href: "#promise" },
+    ...(config.resources ? [{ label: "Round materials", href: "#resources" as `#${string}` }] : []),
     { label: "Learning loop", href: "#learning-loop" },
     { label: "Outcomes", href: "#outcomes" },
     { label: "Sessions", href: "#journey" },
@@ -352,7 +379,11 @@ export function SubjectCoursePage({
               </p>
             </div>
 
-            <ol className="grid items-start gap-4 lg:grid-cols-3">
+            <ol
+              className={`grid items-start gap-4 ${
+                config.roundArc.rounds.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"
+              }`}
+            >
               {config.roundArc.rounds.map((stage, index) => (
                 <li key={stage.round} className="relative">
                   <article className="glass-card h-full p-6">
@@ -383,6 +414,68 @@ export function SubjectCoursePage({
                 </li>
               ))}
             </ol>
+          </Container>
+        </section>
+      ) : null}
+
+      {config.resources ? (
+        <section id="resources" aria-labelledby="resources-title" className="pb-16 sm:pb-24">
+          <Container className="max-w-6xl">
+            <div className="mb-10 max-w-3xl">
+              <span className="accent-rule" />
+              <p className="eyebrow mb-3">{config.resources.eyebrow}</p>
+              <h2
+                id="resources-title"
+                className="display text-4xl leading-[1.04] font-semibold text-balance sm:text-6xl"
+              >
+                {config.resources.title}
+              </h2>
+              <p className="text-ink-600 dark:text-ink-300 mt-5 max-w-2xl text-sm leading-7">
+                {config.resources.description}
+              </p>
+            </div>
+
+            <div className="space-y-8">
+              {config.resources.rounds.map((round) => (
+                <article key={round.round} className="glass-card overflow-hidden p-0">
+                  <div className="border-b border-slate-900/10 p-6 sm:p-8 dark:border-white/10">
+                    <p className="text-brand-700 dark:text-brand-300 font-mono text-[10px] font-bold tracking-[0.16em] uppercase">
+                      {round.round}
+                    </p>
+                    <h3 className="mt-2 font-serif text-2xl font-semibold">{round.headline}</h3>
+                  </div>
+                  <div className="grid divide-y divide-slate-900/10 sm:grid-cols-2 sm:divide-x sm:divide-y-0 dark:divide-white/10">
+                    {round.groups.map((group) => (
+                      <div key={group.label} className="p-6 sm:p-8">
+                        <p className="font-serif text-lg font-semibold">{group.label}</p>
+                        <p className="text-ink-600 dark:text-ink-300 mt-2 text-sm leading-6">
+                          {group.summary}
+                        </p>
+                        <ul role="list" className="mt-5 space-y-2.5">
+                          {group.files.map((file) => (
+                            <li key={file.href}>
+                              <a
+                                href={file.href}
+                                download
+                                className="group border-ink-200 hover:border-brand-300 hover:bg-brand-50/60 dark:border-ink-700 dark:hover:border-brand-700 dark:hover:bg-brand-950/30 flex min-h-11 items-center justify-between gap-3 rounded-xl border px-4 py-3 text-sm transition"
+                              >
+                                <span className="text-ink-800 dark:text-ink-100 font-medium">
+                                  {file.label}
+                                </span>
+                                <span className="text-ink-400 dark:text-ink-500 group-hover:text-brand-700 dark:group-hover:text-brand-300 flex shrink-0 items-center gap-1.5 font-mono text-[10px] tracking-[0.1em] uppercase">
+                                  {file.format}
+                                  <span aria-hidden="true">↓</span>
+                                </span>
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
           </Container>
         </section>
       ) : null}
