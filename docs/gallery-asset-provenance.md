@@ -6,7 +6,7 @@ of consent from people pictured.
 
 ## The Entrepreneurship Shelf cover art and posters (18 Aug 2026)
 
-`/teaching/reading-and-watching-list` displays 42 small cover-art and poster
+`/teaching/reading-and-watching-list` displays 44 small cover-art and poster
 thumbnails (book covers, film posters, series art, documentary posters)
 alongside original first-person commentary recommending each title. These are
 a different category from every other asset in this register: official
@@ -51,10 +51,21 @@ itself.
 **Exclusions.** One further poster (a low-resolution "Halt and Catch Fire"
 title-card screenshot) was downloaded, judged too poor quality to represent
 the show reasonably, and deleted rather than shipped; that entry on the page
-has no cover art. One book cover (the audiobook edition of *Zero to One*,
-initially the only cover Open Library's search API surfaced) was replaced
-with the standard print hardcover jacket once a better edition-specific cover
-was found, since this is the shelf's first and most prominent entry.
+initially had no cover art. One book cover (the audiobook edition of *Zero to
+One*, initially the only cover Open Library's search API surfaced) was
+replaced with the standard print hardcover jacket once a better
+edition-specific cover was found, since this is the shelf's first and most
+prominent entry.
+
+**Two gaps filled directly by Swapnil Sahoo (18 Aug 2026).** The two titles
+without usable cover art — Halt and Catch Fire and The Playlist, which had no
+Wikipedia infobox image at all — were supplied directly by Swapnil Sahoo:
+official Amazon Prime Video key art for Halt and Catch Fire's streaming
+exclusive, and official Netflix key art for The Playlist. Both are the same
+class of asset as the API-sourced images above (studio/platform promotional
+material, used at thumbnail size for identification alongside original
+commentary) and were resized the same way (max 500px, re-encoded to WebP) and
+saved to the same `public/images/entrepreneurship-shelf/series/` directory.
 
 ## AOM 2026
 

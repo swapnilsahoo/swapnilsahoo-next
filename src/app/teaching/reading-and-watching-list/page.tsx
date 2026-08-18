@@ -392,12 +392,20 @@ const series: ShelfItem[] = [
     creator: "AMC",
     year: "2014–2017",
     why: "Under-watched when it aired and better than most of what did. Set across the 1980s and 90s PC and internet booms, it's the most emotionally honest account I know of what it costs the people around a founder when the founder is right about the technology and wrong about almost everything else.",
+    image: {
+      src: "/images/entrepreneurship-shelf/series/halt-and-catch-fire.webp",
+      alt: "Halt and Catch Fire cast poster",
+    },
   },
   {
     title: "The Playlist",
     creator: "Netflix",
     year: "2022",
     why: "Spotify's origin story told from six different vantage points — Daniel Ek, the labels, the artists, the engineers — which turns out to be a better structure than a single founder's-eye view for showing how many separate parties had to be persuaded before the product ever reached a listener.",
+    image: {
+      src: "/images/entrepreneurship-shelf/series/the-playlist.webp",
+      alt: "The Playlist Netflix series key art",
+    },
   },
   {
     title: "Start-Up",
