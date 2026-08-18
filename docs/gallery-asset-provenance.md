@@ -77,6 +77,13 @@ resize treatment (max 500px, re-encoded to WebP), saved to
 `public/images/entrepreneurship-shelf/documentaries/`. Every title on the
 shelf now has cover art.
 
+**Super Pumped poster replaced by Swapnil Sahoo (18 Aug 2026).** The
+Wikipedia-sourced "Super Pumped: The Battle for Uber" key art was swapped for
+an official Showtime cast poster (Joseph Gordon-Levitt, Kyle Chandler, Uma
+Thurman) supplied directly by Swapnil Sahoo — same class of asset, same
+resize treatment, same file path
+(`public/images/entrepreneurship-shelf/series/super-pumped.webp`).
+
 ## AOM 2026
 
 The event photographs below were supplied directly by Swapnil Sahoo. The

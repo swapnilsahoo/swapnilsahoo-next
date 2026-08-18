@@ -518,15 +518,15 @@ function ShelfCard({ item, index }: { item: ShelfItem; index: number }) {
   const isSarasvathy = item.title.startsWith("Effectuation");
 
   return (
-    <article className="glass-card flex h-full flex-col overflow-hidden p-0">
-      <div className="bg-ink-100 dark:bg-ink-900 relative aspect-[2/3] w-full">
+    <article className="glass-card group flex h-full flex-col overflow-hidden p-0 transition-shadow duration-300 hover:shadow-xl">
+      <div className="bg-ink-100 dark:bg-ink-900 relative aspect-[2/3] w-full overflow-hidden">
         {item.image ? (
           <Image
             src={item.image.src}
             alt={item.image.alt}
             fill
             unoptimized
-            className="object-contain"
+            className="object-contain transition duration-500 ease-out group-hover:scale-105 group-hover:saturate-125 group-hover:contrast-110"
           />
         ) : (
           <div className="text-ink-400 dark:text-ink-600 flex h-full items-center justify-center p-4 text-center font-mono text-[10px] tracking-[0.1em] uppercase">
