@@ -65,6 +65,13 @@ const sessionActs = [
   },
 ] as const;
 
+// Interactive session pages: a separate, richer set of standalone HTML pages
+// (public/teaching/1-year-mba/*.html) predates this syllabus and uses its own internal
+// numbering/filenames, which only partially line up with the plan below — several files are
+// mistitled relative to their actual content, and a few cover topics this condensed 13-session
+// plan doesn't include at all. Only sessions with a confident topical match get a link.
+const interactive = (file: string) => `/teaching/1-year-mba/${encodeURIComponent(file)}`;
+
 const sessionPlan = [
   {
     number: "01",
@@ -75,6 +82,7 @@ const sessionPlan = [
       "Article · Porter, M. E. (1996). What Is Strategy? Harvard Business Review.",
       "Textbook · Chapter 1",
     ],
+    interactiveHref: interactive("session1.html"),
   },
   {
     number: "02",
@@ -85,6 +93,7 @@ const sessionPlan = [
       "Article · Porter, M. E. (1996). What Is Strategy? Harvard Business Review.",
       "Textbook · Chapter 2",
     ],
+    interactiveHref: interactive("session3.html"),
   },
   {
     number: "03",
@@ -95,6 +104,7 @@ const sessionPlan = [
       "Article · Porter, M. E. (2008). The Five Competitive Forces That Shape Strategy. Harvard Business Review.",
       "Textbook · Chapter 3",
     ],
+    interactiveHref: interactive("session4.html"),
   },
   {
     number: "04",
@@ -106,6 +116,7 @@ const sessionPlan = [
       "Article · Porter, M. E. (2008). The Five Competitive Forces That Shape Strategy. Harvard Business Review.",
       "Textbook · Chapter 4",
     ],
+    interactiveHref: undefined,
   },
   {
     number: "05",
@@ -121,6 +132,7 @@ const sessionPlan = [
       "Article · Porter, M. E. (2008). The Five Competitive Forces That Shape Strategy. Harvard Business Review.",
       "Textbook · Chapter 5",
     ],
+    interactiveHref: undefined,
   },
   {
     number: "06",
@@ -135,6 +147,7 @@ const sessionPlan = [
       "Article · Ghemawat, P., & Rivkin, J. W. (1998). Creating Competitive Advantage.",
       "Textbook · Chapter 6",
     ],
+    interactiveHref: undefined,
   },
   {
     number: "07",
@@ -145,6 +158,7 @@ const sessionPlan = [
       "Article · Ghemawat, P., & Pisano, G. P. (1997). Sustaining Superior Performance: Commitments and Capabilities.",
       "Textbook · Chapter 7",
     ],
+    interactiveHref: undefined,
   },
   {
     number: "08",
@@ -155,6 +169,9 @@ const sessionPlan = [
       "Article · Porter, M. E. (1996). What Is Strategy? Harvard Business Review.",
       "Textbook · Chapter 8",
     ],
+    interactiveHref: interactive(
+      "Session6_Business Strategy_Differentiation, CostLeadership_BlueOceans_v0.8.html",
+    ),
   },
   {
     number: "09",
@@ -165,6 +182,9 @@ const sessionPlan = [
       "Article · Ghemawat, P., & Pisano, G. P. (1997). Sustaining Superior Performance: Commitments and Capabilities.",
       "Textbook · Chapter 9",
     ],
+    interactiveHref: interactive(
+      "Session_7_Business_Strategy_Innovation_Entrepreneurship_Platforms_V0.003.html",
+    ),
   },
   {
     number: "10",
@@ -178,6 +198,7 @@ const sessionPlan = [
       "Article · Porter, M. E. (1987). From Competitive Advantage to Corporate Strategy. Harvard Business Review.",
       "Textbook · Chapter 10",
     ],
+    interactiveHref: interactive("Session8_Corporate Strategy_v0.8.html"),
   },
   {
     number: "11",
@@ -191,6 +212,7 @@ const sessionPlan = [
       "Article · Osegowitsch, T., & Madhok, A. (2003). Vertical Integration Is Dead, or Is It? Business Horizons.",
       "Textbook · Chapter 11",
     ],
+    interactiveHref: interactive("Session8_Corporate Strategy_v0.8.html"),
   },
   {
     number: "12",
@@ -204,6 +226,7 @@ const sessionPlan = [
       "Article · Porter, M. E. (1987). From Competitive Advantage to Corporate Strategy. Harvard Business Review.",
       "Textbook · Chapter 12",
     ],
+    interactiveHref: interactive("Session_10_Global_Strategy_v0.84.html"),
   },
   {
     number: "13",
@@ -214,6 +237,7 @@ const sessionPlan = [
       "Article · Porter, M. E. (1987). From Competitive Advantage to Corporate Strategy. Harvard Business Review.",
       "Textbook · Chapter 13",
     ],
+    interactiveHref: interactive("Session8_Corporate Strategy_v0.8.html"),
   },
 ] as const;
 
@@ -829,6 +853,17 @@ export function OneYearMbaExperience() {
                       </ol>
                     </div>
                   </div>
+                  {session.interactiveHref ? (
+                    <a
+                      href={session.interactiveHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-brand-700 dark:text-brand-300 link-underline mt-5 inline-flex items-center gap-1 text-xs font-semibold"
+                    >
+                      Open the full interactive session
+                      <ArrowRightIcon className="h-3 w-3" aria-hidden="true" />
+                    </a>
+                  ) : null}
                 </div>
               </details>
             ))}
