@@ -439,6 +439,17 @@ export function TwoYearMbaExperience() {
                       </ol>
                     </div>
                   </div>
+                  {session.interactiveHref ? (
+                    <a
+                      href={session.interactiveHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-brand-700 dark:text-brand-300 link-underline mt-5 inline-flex items-center gap-1 text-xs font-semibold"
+                    >
+                      Open the full interactive session
+                      <ArrowRightIcon className="h-3 w-3" aria-hidden="true" />
+                    </a>
+                  ) : null}
                 </div>
               </details>
             ))}

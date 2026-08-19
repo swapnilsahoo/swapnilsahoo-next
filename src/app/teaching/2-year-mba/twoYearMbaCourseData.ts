@@ -41,6 +41,14 @@ export const coursePhases = [
   },
 ] as const;
 
+// Interactive session pages: a separate, richer set of standalone HTML pages built earlier
+// (public/teaching/2-year-mba/session-*.html) uses its own internal session numbering, which
+// only partially agrees with the syllabus below — the two were built as different course passes
+// that share a subset of topics. Only sessions with a clear, confident topical match to their
+// interactive page get a link; the rest intentionally have none rather than pointing at the
+// wrong case study. See docs/gallery-asset-provenance.md-adjacent notes in this file for context.
+const interactive = (file: string) => `/teaching/2-year-mba/${file}`;
+
 export const sessions = [
   {
     number: "01",
@@ -51,6 +59,7 @@ export const sessions = [
       "Porter, M. E. (1996). What Is Strategy? Harvard Business Review.",
       "Mintzberg, H. (1987). Crafting Strategy. Harvard Business Review.",
     ],
+    interactiveHref: interactive("session-01-what-is-strategy.html"),
   },
   {
     number: "02",
@@ -61,6 +70,7 @@ export const sessions = [
       "Kaplan, R. S., & Norton, D. P. Developing the Strategy—Vision, Value Gaps, and Analysis.",
       "Operations in an Era of Radical Uncertainty.",
     ],
+    interactiveHref: interactive("session-04-purpose-values-strategy-tesla.html"),
   },
   {
     number: "03",
@@ -71,6 +81,7 @@ export const sessions = [
       "Porter, M. E. (2008). The Five Competitive Forces That Shape Strategy. Harvard Business Review.",
       "Porter, M. E. (1983). Note on the Structural Analysis of Industries.",
     ],
+    interactiveHref: interactive("session-05-external-analysis-porter-five-forces.html"),
   },
   {
     number: "04",
@@ -81,6 +92,7 @@ export const sessions = [
       "Video · Selected videos on Steve Jobs",
       "Courtney, H., Kirkland, J., & Viguerie, P. Strategy Under Uncertainty.",
     ],
+    interactiveHref: undefined,
   },
   {
     number: "05",
@@ -96,6 +108,7 @@ export const sessions = [
       "Collis, D. J., & Montgomery, C. A. (1995). Competing on Resources. Harvard Business Review.",
       "Porter, M. E. From Competitive Advantage to Corporate Strategy.",
     ],
+    interactiveHref: interactive("session-09-internal-analysis.html"),
   },
   {
     number: "06",
@@ -110,6 +123,7 @@ export const sessions = [
       "Ghemawat, P., & Rivkin, J. W. (1998). Creating Competitive Advantage.",
       "Bennett, N., & Lemoine, G. J. What VUCA Really Means for You.",
     ],
+    interactiveHref: undefined,
   },
   {
     number: "07",
@@ -119,12 +133,14 @@ export const sessions = [
       "Case · Patagonia (HBR)",
       "Ghemawat, P., & Pisano, G. P. (1997). Sustaining Superior Performance: Commitments and Capabilities.",
     ],
+    interactiveHref: undefined,
   },
   {
     number: "08",
     title: "Differentiation & Cost Leadership",
     topics: ["Generic strategies", "Low-cost strategy", "Differentiation and focus strategies"],
     readings: ["Case · NVIDIA (HBR)", "Eisenmann et al. (2006). Strategies for Two-Sided Markets."],
+    interactiveHref: interactive("session-12-generic-strategies-and-blue-ocean-strategy.html"),
   },
   {
     number: "09",
@@ -134,6 +150,7 @@ export const sessions = [
       "Case · NVIDIA (HBR)",
       "Kim, W. C., & Mauborgne, R. A. (2004). Blue Ocean Strategy. Harvard Business Review.",
     ],
+    interactiveHref: interactive("session-13-business-strategy-innovation-entrepreneurship-platforms.html"),
   },
   {
     number: "10",
@@ -146,6 +163,7 @@ export const sessions = [
       "Case · Amazon (HBR)",
       "Porter, M. E. (1987). From Competitive Advantage to Corporate Strategy. Harvard Business Review.",
     ],
+    interactiveHref: interactive("session-14-corporate-strategy-vertical-integration-and-diversification.html"),
   },
   {
     number: "11",
@@ -158,6 +176,7 @@ export const sessions = [
       "Case · Amazon (HBR)",
       "Osegowitsch, T., & Madhok, A. (2003). Vertical Integration Is Dead, or Is It? Business Horizons.",
     ],
+    interactiveHref: interactive("session-14-corporate-strategy-vertical-integration-and-diversification.html"),
   },
   {
     number: "12",
@@ -170,6 +189,7 @@ export const sessions = [
       "Case · Creating Corporate Advantage: The Case of the Tata Group",
       "Goold, M., & Campbell, A. (1993). Why Diversify? Four Decades of Management Thinking.",
     ],
+    interactiveHref: interactive("session-16-global-strategy-competing-around-the-world.html"),
   },
   {
     number: "13",
@@ -179,6 +199,7 @@ export const sessions = [
       "Case · Creating Corporate Advantage: The Case of the Tata Group",
       "Goold, M., & Campbell, A. (1993). Why Diversify? Four Decades of Management Thinking.",
     ],
+    interactiveHref: interactive("session-14-corporate-strategy-vertical-integration-and-diversification.html"),
   },
   {
     number: "14",
@@ -188,6 +209,7 @@ export const sessions = [
       "Case · Creating Corporate Advantage: The Case of the Tata Group",
       "Ramachandran, J., Manikandan, K. S., & Pant, A. (2013). Why Conglomerates Thrive. Harvard Business Review.",
     ],
+    interactiveHref: undefined,
   },
   {
     number: "15",
@@ -201,6 +223,7 @@ export const sessions = [
       "Case · Amazon (HBR, 2025)",
       "Mankins, M. C., & Steele, R. (2005). Turning Great Strategy into Great Performance. Harvard Business Review.",
     ],
+    interactiveHref: undefined,
   },
   {
     number: "16",
@@ -214,6 +237,7 @@ export const sessions = [
       "Case · Amazon (HBR, 2025)",
       "Kaplan, S. N. Mergers and Acquisitions: A Financial Economics Perspective. University of Chicago.",
     ],
+    interactiveHref: interactive("session-15-corporate-strategy-strategic-alliances-mergers-acquisitions.html"),
   },
   {
     number: "17",
@@ -223,6 +247,7 @@ export const sessions = [
       "Case · Amazon (HBR, 2025)",
       "Dyer, J. H., Kale, P., Singh, H., & Singh, H. (2004). When to Ally and When to Acquire. Harvard Business Review.",
     ],
+    interactiveHref: interactive("session-15-corporate-strategy-strategic-alliances-mergers-acquisitions.html"),
   },
   {
     number: "18",
@@ -232,6 +257,7 @@ export const sessions = [
       "Case · Rajesh Exports: Gold Trader to International Jewellery Retailer",
       "Porter, M. E. (1990). The Competitive Advantage of Nations. Harvard Business Review.",
     ],
+    interactiveHref: undefined,
   },
   {
     number: "19",
@@ -241,12 +267,14 @@ export const sessions = [
       "Case · Rajesh Exports: Gold Trader to International Jewellery Retailer",
       "Khanna, T., & Palepu, K. (2009). Emerging Giants. Harvard Business Review.",
     ],
+    interactiveHref: undefined,
   },
   {
     number: "20",
     title: "Current Trends in Strategic Management",
     topics: ["Redesigning organizations", "The changing role of managers"],
     readings: ["The Future of Work. The Economist.", "Hamel, G. The Future of Management."],
+    interactiveHref: interactive("session-17-organizational-design-structure-culture-control.html"),
   },
 ] as const;
 

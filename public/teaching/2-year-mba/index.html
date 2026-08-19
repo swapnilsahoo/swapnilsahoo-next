@@ -76,6 +76,26 @@
         }
         .genai-link.secondary { background: #fff; color: #1d4ed8; border: 1px solid #bfdbfe; }
 
+        .syllabus-intro { max-width: 860px; margin: 0 0 26px; color: #334155; font-size: 15px; line-height: 1.7; }
+        .content-subheader { margin: 0 0 14px; color: #0a1426; font-size: 15px; font-weight: 650; }
+        .syllabus-facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; max-width: 860px; margin-bottom: 34px; }
+        .syllabus-fact { padding: 16px 18px; border-radius: 14px; background: #f8fafc; border: 1px solid #e2e8f0; }
+        .syllabus-fact-num { color: #0a1426; font-size: 21px; font-weight: 650; }
+        .syllabus-fact-label { margin-top: 4px; color: #64748b; font-size: 12px; line-height: 1.4; }
+
+        .eval-breakdown { max-width: 860px; margin-bottom: 34px; }
+        .eval-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; font-size: 13.5px; color: #1e293b; }
+        .eval-label { width: 220px; flex-shrink: 0; }
+        .eval-bar-track { flex: 1; height: 8px; border-radius: 999px; background: #eef2f7; overflow: hidden; }
+        .eval-bar-fill { display: block; height: 100%; border-radius: 999px; background: #1d4ed8; }
+        .eval-pct { width: 40px; flex-shrink: 0; text-align: right; color: #0a1426; font-size: 13px; font-weight: 650; }
+
+        .reading-list { display: flex; max-width: 860px; flex-direction: column; gap: 10px; }
+        .reading-item { display: flex; gap: 14px; align-items: center; padding: 14px 16px; border-radius: 14px; background: #fff; border: 1px solid #e6ebf3; box-shadow: 0 10px 24px -20px rgba(15, 23, 42, 0.35); }
+        .reading-badge { display: flex; width: 40px; height: 40px; flex-shrink: 0; align-items: center; justify-content: center; border-radius: 10px; background: #eef2ff; color: #1d4ed8; font-size: 12px; font-weight: 700; letter-spacing: 0.02em; }
+        .reading-title { color: #0a1426; font-size: 14.5px; font-weight: 650; line-height: 1.4; }
+        .reading-meta { margin-top: 2px; color: #64748b; font-size: 12.5px; }
+
         @media (max-width: 1200px) {
             .quant-grid-wrapper { width: 100%; padding: 0 10px; }
             .white-box-container { grid-template-columns: repeat(2, 1fr); gap: 32px; }
@@ -86,6 +106,10 @@
             .white-box-container { grid-template-columns: 1fr; }
             .genai-card { align-items: flex-start; flex-direction: column; }
             .genai-actions { width: 100%; }
+            .syllabus-facts { grid-template-columns: repeat(2, 1fr); }
+            .eval-row { flex-wrap: wrap; }
+            .eval-label { width: 100%; }
+            .reading-item { align-items: flex-start; }
         }
     </style>
     <link rel="stylesheet" href="/teaching/responsive.css">
@@ -123,12 +147,85 @@
         <div class="additional-content">
             <div class="content-block">
                 <div class="content-header">Strategic Management</div>
-                <div class="content-placeholder"></div>
+                <div class="content-placeholder">
+                    <p class="syllabus-intro">
+                        A rigorous, case-heavy course on how organisations build and sustain competitive advantage —
+                        moving across 20 sessions from internal and external analysis through competitive
+                        positioning, corporate strategy, mergers &amp; acquisitions and global strategy. Classical
+                        frameworks (Porter, Mintzberg, the resource-based view) are paired with genuinely current
+                        cases: Tesla, Nvidia, Amazon, Patagonia and the Tata Group. The course closes with a live
+                        field project — a primary interview with a real startup founder or company leader, not a
+                        secondary-data write-up.
+                    </p>
+
+                    <div class="syllabus-facts">
+                        <div class="syllabus-fact"><div class="syllabus-fact-num">20</div><div class="syllabus-fact-label">Sessions, 1.5 hrs each</div></div>
+                        <div class="syllabus-fact"><div class="syllabus-fact-num">3</div><div class="syllabus-fact-label">Credits</div></div>
+                        <div class="syllabus-fact"><div class="syllabus-fact-num">Rothaermel</div><div class="syllabus-fact-label">Core textbook</div></div>
+                        <div class="syllabus-fact"><div class="syllabus-fact-num">1</div><div class="syllabus-fact-label">Live field project with a founder</div></div>
+                    </div>
+
+                    <div class="content-subheader">How the course is evaluated</div>
+                    <div class="eval-breakdown">
+                        <div class="eval-row"><span class="eval-label">End Term Exam</span><span class="eval-bar-track"><span class="eval-bar-fill" style="width:35%"></span></span><span class="eval-pct">35%</span></div>
+                        <div class="eval-row"><span class="eval-label">Field Analysis (Group Project)</span><span class="eval-bar-track"><span class="eval-bar-fill" style="width:25%"></span></span><span class="eval-pct">25%</span></div>
+                        <div class="eval-row"><span class="eval-label">Class Quizzes</span><span class="eval-bar-track"><span class="eval-bar-fill" style="width:20%"></span></span><span class="eval-pct">20%</span></div>
+                        <div class="eval-row"><span class="eval-label">Midterm Exam</span><span class="eval-bar-track"><span class="eval-bar-fill" style="width:15%"></span></span><span class="eval-pct">15%</span></div>
+                        <div class="eval-row"><span class="eval-label">Reflection Papers</span><span class="eval-bar-track"><span class="eval-bar-fill" style="width:5%"></span></span><span class="eval-pct">5%</span></div>
+                    </div>
+
+                    <div class="content-subheader">Recommended reading</div>
+                    <div class="reading-list">
+                        <div class="reading-item">
+                            <div class="reading-badge">Core</div>
+                            <div><div class="reading-title">Strategic Management</div><div class="reading-meta">Frank T. Rothaermel · latest edition · the course textbook</div></div>
+                        </div>
+                        <div class="reading-item">
+                            <div class="reading-badge">01</div>
+                            <div><div class="reading-title">Competitive Strategy: Techniques for Analyzing Industries and Competitors</div><div class="reading-meta">Michael E. Porter</div></div>
+                        </div>
+                        <div class="reading-item">
+                            <div class="reading-badge">02</div>
+                            <div><div class="reading-title">Good Strategy, Bad Strategy</div><div class="reading-meta">Richard P. Rumelt</div></div>
+                        </div>
+                        <div class="reading-item">
+                            <div class="reading-badge">03</div>
+                            <div><div class="reading-title">Good to Great</div><div class="reading-meta">Jim Collins</div></div>
+                        </div>
+                        <div class="reading-item">
+                            <div class="reading-badge">04</div>
+                            <div><div class="reading-title">The Innovator's Dilemma</div><div class="reading-meta">Clayton M. Christensen</div></div>
+                        </div>
+                        <div class="reading-item">
+                            <div class="reading-badge">05</div>
+                            <div><div class="reading-title">Blue Ocean Strategy: From Theory to Practice</div><div class="reading-meta">W. Chan Kim &amp; Renée Mauborgne</div></div>
+                        </div>
+                        <div class="reading-item">
+                            <div class="reading-badge">06</div>
+                            <div><div class="reading-title">The Strategist's Toolkit</div><div class="reading-meta">Jared D. Harris &amp; Michael J. Lenox</div></div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="content-block">
                 <div class="content-header">Business Simulation</div>
-                <div class="content-placeholder"></div>
+                <div class="content-placeholder">
+                    <div class="genai-card">
+                        <div>
+                            <p class="genai-kicker">Round-by-round · Sections C &amp; D</p>
+                            <h3 class="genai-title">Results, decks and workflows from the Business Simulation, all in one place.</h3>
+                            <p class="genai-description">
+                                The dedicated Business Simulation page carries the full round-by-round results, PPT
+                                decks and the workflow both sections follow — a one-stop resource for the simulation
+                                itself, kept separate from the Strategic Management syllabus above.
+                            </p>
+                        </div>
+                        <div class="genai-actions">
+                            <a class="genai-link" href="/teaching/business-simulation">Open Business Simulation</a>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="content-block">
