@@ -13,7 +13,10 @@ import {
   scriptureCatalog,
   scriptureSlugs,
 } from "@/features/spirituality/data/catalog";
-import { loadScriptureEntries } from "@/features/spirituality/data/load-entries";
+import {
+  createScriptureReaderBootstrap,
+  loadScriptureEntries,
+} from "@/features/spirituality/data/load-entries";
 import type { ScriptureSlug } from "@/features/spirituality/types";
 
 type PageProps = {
@@ -168,6 +171,7 @@ export default async function ScripturePage({ params }: PageProps) {
 
   const scripture = scriptureCatalog[slug];
   const entries = await loadScriptureEntries(slug);
+  const reader = createScriptureReaderBootstrap(slug, entries);
   const theme = themes[slug];
   const inquiry = scriptureInquiry[slug];
   const optionalSectionCount =
@@ -377,7 +381,17 @@ export default async function ScripturePage({ params }: PageProps) {
               </p>
             </div>
           </div>
-          <ScriptureReader entries={entries} slug={slug} language={languageCode} />
+          <ScriptureReader
+            initialEntries={reader.initialEntries}
+            initialResultTotal={reader.initialResultTotal}
+            initialSection={reader.initialSection}
+            language={languageCode}
+            pageSize={reader.pageSize}
+            sections={reader.sections}
+            slug={slug}
+            supportsStudyLayer={reader.supportsStudyLayer}
+            totalEntries={reader.totalEntries}
+          />
         </Container>
       </section>
 

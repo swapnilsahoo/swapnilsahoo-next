@@ -4,11 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "pnpm check:media",
+    "prebuild": "node scripts/check-media-provenance.mjs && node scripts/check-teaching-lessons.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "check:media": "node scripts/check-media-provenance.mjs"
+    "typecheck": "tsc --noEmit",
+    "check:media": "node scripts/check-media-provenance.mjs",
+    "check:lessons": "node scripts/check-teaching-lessons.mjs",
+    "test:smoke": "playwright test release-smoke.spec.mjs --reporter=line --workers=1",
+    "check": "eslint && tsc --noEmit && node scripts/check-media-provenance.mjs && node scripts/check-teaching-lessons.mjs"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

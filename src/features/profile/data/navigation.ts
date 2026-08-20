@@ -67,11 +67,11 @@ export const moreDropdown: NavDropdown = {
       href: "/spirituality",
       children: [
         {
-          label: "Authentic Bhagavad Gita",
+          label: "Bhagavad Gita · Complete Text",
           href: "/spirituality/bhagavad-gita",
         },
         {
-          label: "Authentic Ramcharitmanas",
+          label: "Ramcharitmanas · Bālakāṇḍa",
           href: "/spirituality/ramcharitmanas",
         },
         {

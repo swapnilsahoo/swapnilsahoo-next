@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 
 import { ArrowRightIcon } from "@/components/icons/LineIcons";
 import { Container } from "@/components/ui/Container";
 import { InquiryPrelude } from "@/components/ui/InquiryPrelude";
-import { Reveal } from "@/components/ui/Reveal";
+import {
+  ShelfLibrary,
+  type ShelfGroup,
+  type ShelfItem,
+} from "@/app/teaching/reading-and-watching-list/ShelfLibrary";
 
 export const metadata: Metadata = {
   title: "The Entrepreneurship Shelf",
@@ -30,14 +33,6 @@ export const metadata: Metadata = {
     url: "/teaching/reading-and-watching-list",
     images: ["/images/profile_pic.jpg"],
   },
-};
-
-type ShelfItem = {
-  title: string;
-  creator: string;
-  year: string;
-  why: string;
-  image?: { src: string; alt: string };
 };
 
 const books: ShelfItem[] = [
@@ -514,48 +509,48 @@ const documentaries: ShelfItem[] = [
 
 const totalCount = books.length + movies.length + series.length + documentaries.length;
 
-function ShelfCard({ item, index }: { item: ShelfItem; index: number }) {
-  const isSarasvathy = item.title.startsWith("Effectuation");
-
-  return (
-    <article className="glass-card group flex h-full flex-col overflow-hidden p-0 transition-shadow duration-300 hover:shadow-xl">
-      <div className="bg-ink-100 dark:bg-ink-900 relative aspect-[2/3] w-full overflow-hidden">
-        {item.image ? (
-          <Image
-            src={item.image.src}
-            alt={item.image.alt}
-            fill
-            unoptimized
-            className="object-contain transition duration-500 ease-out group-hover:scale-105 group-hover:saturate-125 group-hover:contrast-110"
-          />
-        ) : (
-          <div className="text-ink-400 dark:text-ink-600 flex h-full items-center justify-center p-4 text-center font-mono text-[10px] tracking-[0.1em] uppercase">
-            No cover art available
-          </div>
-        )}
-      </div>
-      <div className="flex flex-1 flex-col p-6">
-        <span className="text-ink-400 font-mono text-xs">
-          {String(index + 1).padStart(2, "0")}
-        </span>
-        <h3 className="mt-3 font-serif text-xl font-semibold">{item.title}</h3>
-        <p className="text-ink-500 dark:text-ink-400 mt-1 text-xs font-semibold tracking-wide uppercase">
-          {item.creator} · {item.year}
-        </p>
-        <p className="text-ink-600 dark:text-ink-300 mt-4 text-sm leading-relaxed">{item.why}</p>
-        {isSarasvathy ? (
-          <Link
-            href="/press#linkedin-title"
-            className="text-brand-700 dark:text-brand-300 link-underline mt-4 inline-flex items-center gap-1 text-xs font-semibold"
-          >
-            Read the AOM 2026 post
-            <ArrowRightIcon className="h-3 w-3" aria-hidden="true" />
-          </Link>
-        ) : null}
-      </div>
-    </article>
-  );
-}
+const shelfGroups: ShelfGroup[] = [
+  {
+    id: "books",
+    label: "Books",
+    anchorId: "reading-channel",
+    eyebrow: "01 / Reading channel",
+    title: `${books.length} books worth actually finishing.`,
+    description:
+      "From the founding theory to the cautionary tale, with the operating playbooks and the counter-arguments in between.",
+    items: books,
+  },
+  {
+    id: "movies",
+    label: "Movies",
+    anchorId: "video-channel",
+    eyebrow: "02 / Video channel · Movies",
+    title: `${movies.length} films that hold up as case studies.`,
+    description:
+      "Feature films where a negotiation, operating choice, ethical failure, or market shift is worth pausing and debating.",
+    items: movies,
+  },
+  {
+    id: "series",
+    label: "Series",
+    anchorId: "series-channel",
+    eyebrow: "03 / Video channel · Series",
+    title: `${series.length} series with more than a founder myth.`,
+    description:
+      "Longer stories that leave room for cap tables, culture, pressure, pivots, and consequences to unfold.",
+    items: series,
+  },
+  {
+    id: "documentaries",
+    label: "Documentaries",
+    anchorId: "documentary-channel",
+    eyebrow: "04 / Video channel · Documentaries",
+    title: `${documentaries.length} documentaries grounded in the record.`,
+    description:
+      "Observed decisions and reported histories that can be tested against evidence rather than remembered as legend.",
+    items: documentaries,
+  },
+];
 
 export default function ReadingAndWatchingListPage() {
   return (
@@ -605,10 +600,10 @@ export default function ReadingAndWatchingListPage() {
                   The <span className="text-brand-200 font-normal italic">shelf.</span>
                 </h1>
                 <p className="mt-6 max-w-3xl text-base leading-relaxed text-blue-100 sm:text-lg">
-                  Not a syllabus — a shelf. Books, films, series and documentaries I actually
-                  point students to, each with a reason it earns the recommendation rather than
-                  just a synopsis. Starting with entrepreneurship; more topics will join as the
-                  shelf grows.
+                  Not a syllabus — a shelf. Books, films, series and documentaries I actually point
+                  students to, each with a reason it earns the recommendation rather than just a
+                  synopsis. Starting with entrepreneurship; more topics will join as the shelf
+                  grows.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <a
@@ -627,18 +622,26 @@ export default function ReadingAndWatchingListPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-3 lg:grid-cols-1">
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+                <div
+                  className="min-w-0 rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm"
+                  data-shelf-stat="topic"
+                >
                   <p className="font-mono text-[10px] tracking-[0.16em] text-blue-200 uppercase">
                     Topic
                   </p>
-                  <p className="mt-2 font-serif text-2xl font-semibold">Entrepreneurship</p>
+                  <p className="mt-2 font-serif text-xl font-semibold break-words sm:text-2xl">
+                    Entrepreneurship
+                  </p>
                 </div>
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
+                <div
+                  className="min-w-0 rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm"
+                  data-shelf-stat="count"
+                >
                   <p className="font-mono text-[10px] tracking-[0.16em] text-blue-200 uppercase">
                     On the shelf
                   </p>
-                  <p className="mt-2 font-serif text-2xl font-semibold">
+                  <p className="mt-2 font-serif text-xl font-semibold break-words sm:text-2xl">
                     {totalCount} recommendations
                   </p>
                 </div>
@@ -659,87 +662,7 @@ export default function ReadingAndWatchingListPage() {
         ]}
       />
 
-      <section id="reading-channel" aria-labelledby="reading-title" className="py-16 sm:py-24">
-        <Container className="max-w-6xl">
-          <div className="mb-10 max-w-3xl">
-            <span className="accent-rule" />
-            <p className="eyebrow mb-3">01 / Reading channel</p>
-            <h2 id="reading-title" className="display text-4xl font-semibold md:text-5xl">
-              {books.length} books worth actually finishing.
-            </h2>
-            <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-relaxed">
-              From the founding theory to the cautionary tale, with the operating playbooks and
-              the counter-arguments in between.
-            </p>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {books.map((item, index) => (
-              <Reveal key={item.title} delay={(index % 4) * 0.05}>
-                <ShelfCard item={item} index={index} />
-              </Reveal>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      <div className="hr-fade mx-auto max-w-6xl" />
-
-      <section id="video-channel" aria-labelledby="video-title" className="py-16 sm:py-24">
-        <Container className="max-w-6xl">
-          <div className="mb-10 max-w-3xl">
-            <span className="accent-rule" />
-            <p className="eyebrow mb-3">02 / Video channel</p>
-            <h2 id="video-title" className="display text-4xl font-semibold md:text-5xl">
-              Films, series and documentaries that hold up as case studies.
-            </h2>
-            <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-relaxed">
-              Entertainment first, but every title here survives being asked a serious question
-              afterward.
-            </p>
-          </div>
-
-          <div className="mb-4">
-            <p className="eyebrow mb-4">Movies</p>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {movies.map((item, index) => (
-                <Reveal key={item.title} delay={(index % 4) * 0.05}>
-                  <ShelfCard item={item} index={index} />
-                </Reveal>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-12">
-            <p className="eyebrow mb-4">Series</p>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {series.map((item, index) => (
-                <Reveal key={item.title} delay={(index % 4) * 0.05}>
-                  <ShelfCard item={item} index={index} />
-                </Reveal>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-12">
-            <p className="eyebrow mb-4">Documentaries</p>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {documentaries.map((item, index) => (
-                <Reveal key={item.title} delay={(index % 4) * 0.05}>
-                  <ShelfCard item={item} index={index} />
-                </Reveal>
-              ))}
-            </div>
-          </div>
-
-          <p className="text-ink-400 dark:text-ink-500 mt-10 text-xs leading-relaxed">
-            Cover art and posters are used here at thumbnail size to identify each title alongside
-            original commentary — book covers via the Internet Archive&apos;s Open Library, film
-            and series art via Wikipedia — and remain the property of their respective publishers
-            and studios.
-          </p>
-        </Container>
-      </section>
+      <ShelfLibrary groups={shelfGroups} totalCount={totalCount} />
 
       <section aria-labelledby="how-to-use-title" className="pb-16 sm:pb-24">
         <Container className="max-w-6xl">

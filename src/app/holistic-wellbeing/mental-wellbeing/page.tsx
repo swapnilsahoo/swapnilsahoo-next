@@ -2,19 +2,19 @@ import type { Metadata } from "next";
 
 import { MentalWellbeingExperience } from "@/features/wellbeing/components/MentalWellbeingExperience";
 
-const title = "Mental Wellbeing — An Eight-Week Anxious Attachment Recovery Program";
+const title = "Mental Wellbeing — An Eight-Week Reflection Guide";
 const description =
-  "A practical, evidence-based eight-week program for anxious attachment and relationship anxiety, integrating CBT, DBT, ACT and polyvagal theory, with an interactive self-assessment and daily tracker.";
+  "A bounded, educational reflection guide for relationship anxiety and attachment-related distress, with optional exercises, a private check-in and clear guidance on seeking licensed care.";
 
 export const metadata: Metadata = {
   title,
   description,
   keywords: [
-    "anxious attachment recovery",
-    "trauma bonding recovery",
-    "CBT self-help",
-    "DBT skills",
-    "polyvagal theory practice",
+    "relationship anxiety reflection guide",
+    "attachment-related distress",
+    "mental health self-reflection",
+    "CBT-informed exercises",
+    "when to seek mental health care",
     "mental wellbeing",
   ],
   alternates: { canonical: "/holistic-wellbeing/mental-wellbeing" },

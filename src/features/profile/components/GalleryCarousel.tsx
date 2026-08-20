@@ -25,6 +25,16 @@ export function GalleryCarousel({ images }: { images: GalleryImage[] }) {
     };
   }, [emblaApi]);
 
+  const visibleDotCount = Math.min(4, images.length);
+  const firstVisibleDot = Math.min(
+    Math.max(selectedIndex - Math.floor(visibleDotCount / 2), 0),
+    Math.max(images.length - visibleDotCount, 0)
+  );
+  const visibleDotIndexes = Array.from(
+    { length: visibleDotCount },
+    (_, index) => firstVisibleDot + index
+  );
+
   return (
     <div
       className="glass-card p-2"
@@ -119,15 +129,22 @@ export function GalleryCarousel({ images }: { images: GalleryImage[] }) {
           </svg>
         </button>
 
-        <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2">
-          {images.map((image, index) => (
+        <div className="absolute bottom-2 left-1/2 flex max-w-[calc(100%-1rem)] -translate-x-1/2 items-center rounded-full bg-black/35 px-1 backdrop-blur-sm">
+          <span
+            aria-live="polite"
+            aria-atomic="true"
+            className="min-w-12 px-1 text-center font-mono text-[10px] font-semibold text-white"
+          >
+            {selectedIndex + 1} / {images.length}
+          </span>
+          {visibleDotIndexes.map((index) => (
             <button
-              key={image.src}
+              key={images[index].src}
               type="button"
               aria-label={`Go to slide ${index + 1}`}
               aria-current={index === selectedIndex ? "true" : undefined}
               onClick={() => scrollTo(index)}
-              className="grid h-8 w-6 place-items-center rounded-full sm:w-8"
+              className="grid h-11 w-11 place-items-center rounded-full"
             >
               <span
                 className="block h-2.5 w-2.5 rounded-full bg-white shadow-sm transition-opacity"

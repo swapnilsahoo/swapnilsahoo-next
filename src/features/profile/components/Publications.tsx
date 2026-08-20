@@ -14,7 +14,7 @@ import type { Publication } from "@/features/profile/types";
 
 function PublicationRow({ publication }: { publication: Publication }) {
   const content = (
-    <div className="flex flex-wrap items-start justify-between gap-4">
+    <div className="flex min-w-0 flex-wrap items-start justify-between gap-4">
       {publication.image && (
         <Image
           src={publication.image}
@@ -24,7 +24,7 @@ function PublicationRow({ publication }: { publication: Publication }) {
           className="border-ink-200/80 dark:border-ink-700 h-18 w-14 shrink-0 rounded-md border object-cover"
         />
       )}
-      <div className="min-w-[260px] flex-1">
+      <div className="min-w-0 flex-1">
         <h3 className="font-serif text-lg leading-snug font-semibold">{publication.title}</h3>
         <p className="text-ink-600 dark:text-ink-300 mt-1 text-sm italic">{publication.meta}</p>
       </div>
@@ -36,7 +36,7 @@ function PublicationRow({ publication }: { publication: Publication }) {
   );
 
   if (!publication.href) {
-    return <div className="pub-item glass-card block p-6">{content}</div>;
+    return <div className="pub-item glass-card block min-w-0 p-6">{content}</div>;
   }
 
   return (
@@ -44,7 +44,7 @@ function PublicationRow({ publication }: { publication: Publication }) {
       href={publication.href}
       target="_blank"
       rel="noopener noreferrer"
-      className="pub-item glass-card block p-6"
+      className="pub-item glass-card block min-w-0 p-6"
     >
       {content}
     </a>
@@ -95,7 +95,7 @@ export function Publications() {
             href={latestMention.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="pub-item glass-card block p-6"
+            className="pub-item glass-card block min-w-0 p-6"
           >
             <p className="eyebrow mb-1">
               {latestMention.outlet} · {latestMention.date}
@@ -109,10 +109,13 @@ export function Publications() {
 
         <Link
           href="/press"
-          className="focus-visible:ring-brand-500 group inline-flex items-center gap-2 text-sm font-semibold text-brand-700 focus-visible:ring-2 focus-visible:outline-none dark:text-brand-300"
+          className="focus-visible:ring-brand-500 group text-brand-700 dark:text-brand-300 inline-flex items-center gap-2 text-sm font-semibold focus-visible:ring-2 focus-visible:outline-none"
         >
           See every publication, case, essay and press mention
-          <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden="true" />
+          <ArrowRightIcon
+            className="h-4 w-4 transition group-hover:translate-x-1"
+            aria-hidden="true"
+          />
         </Link>
       </section>
       <div className="hr-fade mx-auto max-w-6xl" />

@@ -1,16 +1,22 @@
 "use client";
 
 import type { FormEvent } from "react";
-import { useEffect, useId, useMemo, useState } from "react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 
 import { CopyIcon, SearchIcon } from "@/components/icons/LineIcons";
 import type { ReaderEntry, ScriptureSlug } from "@/features/spirituality/types";
 
 type ReadingLayer = "word" | "line";
+type ReaderMode = "filtered" | "exact";
 
 const ALL_SECTIONS = "All sections";
 const PAGE_SIZE = 12;
-const SAHASRANAMA_RANGE_SIZE = 50;
+
+type ReaderResponse = {
+  entries: ReaderEntry[];
+  focusId?: string;
+  total: number;
+};
 
 function hasDistinctStudyRows(entry: ReaderEntry) {
   if (entry.words.length !== 1) return entry.words.length > 0;
@@ -24,29 +30,45 @@ function hasDistinctStudyRows(entry: ReaderEntry) {
 }
 
 export function ScriptureReader({
-  entries,
-  slug,
+  initialEntries,
+  initialResultTotal,
+  initialSection,
   language,
+  pageSize,
+  sections,
+  slug,
+  supportsStudyLayer,
+  totalEntries,
 }: {
-  entries: ReaderEntry[];
-  slug: ScriptureSlug;
+  initialEntries: ReaderEntry[];
+  initialResultTotal: number;
+  initialSection: string;
   language: string;
+  pageSize: number;
+  sections: string[];
+  slug: ScriptureSlug;
+  supportsStudyLayer: boolean;
+  totalEntries: number;
 }) {
   const isSahasranama = slug === "vishnu-sahasranama" || slug === "lalita-sahasranama";
-  const initialSection = isSahasranama ? (entries[0]?.section ?? ALL_SECTIONS) : ALL_SECTIONS;
   const searchId = useId();
   const sectionId = useId();
   const jumpId = useId();
+  const [entries, setEntries] = useState(initialEntries);
+  const [resultTotal, setResultTotal] = useState(initialResultTotal);
   const [query, setQuery] = useState("");
+  const [debouncedQuery, setDebouncedQuery] = useState("");
   const [section, setSection] = useState(initialSection);
   const [readingLayer, setReadingLayer] = useState<ReadingLayer>("word");
-  const [visibleCount, setVisibleCount] = useState(
-    isSahasranama ? SAHASRANAMA_RANGE_SIZE : PAGE_SIZE
-  );
+  const [visibleCount, setVisibleCount] = useState(pageSize);
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [jumpValue, setJumpValue] = useState("1");
   const [pendingEntryId, setPendingEntryId] = useState<string | null>(null);
   const [navigationMessage, setNavigationMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [loadError, setLoadError] = useState("");
+  const [readerMode, setReaderMode] = useState<ReaderMode>("filtered");
+  const hasMounted = useRef(false);
   const romanizationLabel = slug === "hanuman-chalisa" ? "romanization" : "IAST";
   const studyLayerLabel =
     slug === "shiva-tandava-stotram" ? "Pāda study" : isSahasranama ? "Name study" : "Word study";
@@ -57,45 +79,24 @@ export function ScriptureReader({
         ? "Received name & close gloss"
         : "Word & compound study";
 
-  const sections = useMemo(
-    () => [ALL_SECTIONS, ...Array.from(new Set(entries.map((entry) => entry.section)))],
-    [entries]
+  const sectionOptions = useMemo(
+    () => [ALL_SECTIONS, ...sections],
+    [sections]
   );
-  const ranges = useMemo(() => sections.filter((option) => option !== ALL_SECTIONS), [sections]);
+  const ranges = sections;
   const activeRangeIndex = ranges.indexOf(section);
-  const supportsStudyLayer = useMemo(() => entries.some(hasDistinctStudyRows), [entries]);
-
-  const filteredEntries = useMemo(() => {
-    const normalizedQuery = query.trim().toLocaleLowerCase();
-
-    return entries.filter((entry) => {
-      const inSection = section === ALL_SECTIONS || entry.section === section;
-      if (!inSection) return false;
-      if (!normalizedQuery) return true;
-
-      return [
-        entry.original,
-        entry.transliteration,
-        entry.meaning,
-        entry.label,
-        ...entry.words.flatMap((word) => [word.original ?? "", word.transliteration, word.meaning]),
-      ].some((value) => value.toLocaleLowerCase().includes(normalizedQuery));
-    });
-  }, [entries, query, section]);
-
-  const visibleEntries = filteredEntries.slice(0, visibleCount);
-  const resultLabel = `${filteredEntries.length} ${
-    filteredEntries.length === 1 ? "entry" : "entries"
-  }`;
+  const resultLabel = `${resultTotal} ${resultTotal === 1 ? "entry" : "entries"}`;
 
   const resetVisibleCount = (nextSection = section) => {
-    setVisibleCount(
-      isSahasranama && nextSection !== ALL_SECTIONS ? SAHASRANAMA_RANGE_SIZE : PAGE_SIZE
-    );
+    setVisibleCount(isSahasranama && nextSection !== ALL_SECTIONS ? pageSize : PAGE_SIZE);
   };
 
   const chooseSection = (nextSection: string) => {
+    setIsLoading(true);
+    setLoadError("");
+    setReaderMode("filtered");
     setQuery("");
+    setDebouncedQuery("");
     setSection(nextSection);
     resetVisibleCount(nextSection);
     setNavigationMessage(
@@ -109,33 +110,102 @@ export function ScriptureReader({
     if (nextRange) chooseSection(nextRange);
   };
 
-  const showEntry = (sequence: number, updateHash = true) => {
-    const entry = entries.find((candidate) => candidate.sequence === sequence);
-    if (!entry) {
-      setNavigationMessage(`Choose a number from 1 to ${entries.length}.`);
+  useEffect(() => {
+    const timeout = window.setTimeout(() => setDebouncedQuery(query.trim()), 250);
+    return () => window.clearTimeout(timeout);
+  }, [query]);
+
+  useEffect(() => {
+    if (!hasMounted.current) {
+      hasMounted.current = true;
       return;
     }
+    if (readerMode === "exact") return;
 
-    setQuery("");
-    setSection(entry.section);
-    setVisibleCount(SAHASRANAMA_RANGE_SIZE);
-    setJumpValue(String(entry.sequence));
-    setPendingEntryId(entry.id);
-    setNavigationMessage(`${entry.label} is ready.`);
+    const controller = new AbortController();
+    const params = new URLSearchParams({
+      limit: String(visibleCount),
+      query: debouncedQuery,
+      section,
+    });
 
-    if (updateHash) {
-      window.history.pushState(null, "", `#${entry.id}`);
-    }
-  };
+    fetch(`/api/spirituality/${slug}/entries?${params.toString()}`, {
+      signal: controller.signal,
+    })
+      .then(async (response) => {
+        if (!response.ok) throw new Error("The reader could not load this selection.");
+        return (await response.json()) as ReaderResponse;
+      })
+      .then((result) => {
+        setEntries(result.entries);
+        setResultTotal(result.total);
+        setNavigationMessage(
+          result.total === 0
+            ? "No matching entry."
+            : `Showing ${result.entries.length} of ${result.total} entries.`
+        );
+      })
+      .catch((error: unknown) => {
+        if (error instanceof DOMException && error.name === "AbortError") return;
+        setLoadError(error instanceof Error ? error.message : "The reader could not load.");
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setIsLoading(false);
+      });
+
+    return () => controller.abort();
+  }, [debouncedQuery, readerMode, section, slug, visibleCount]);
+
+  const loadExactEntry = useCallback(
+    async ({ entryId, sequence }: { entryId?: string; sequence?: number }, updateHash = true) => {
+      const params = new URLSearchParams();
+      if (entryId) params.set("entryId", entryId);
+      if (sequence) params.set("sequence", String(sequence));
+
+      setIsLoading(true);
+      setLoadError("");
+      try {
+        const response = await fetch(`/api/spirituality/${slug}/entries?${params.toString()}`);
+        if (!response.ok) throw new Error("That entry could not be loaded.");
+        const result = (await response.json()) as ReaderResponse;
+        const entry = result.entries[0];
+        if (!entry) {
+          setNavigationMessage(`Choose a number from 1 to ${totalEntries}.`);
+          return;
+        }
+
+        setReaderMode("exact");
+        setQuery("");
+        setDebouncedQuery("");
+        setSection(entry.section);
+        setVisibleCount(pageSize);
+        setEntries([entry]);
+        setResultTotal(1);
+        setJumpValue(String(entry.sequence));
+        setPendingEntryId(entry.id);
+        setNavigationMessage(`${entry.label} is ready.`);
+
+        if (updateHash) window.history.pushState(null, "", `#${entry.id}`);
+      } catch (error) {
+        setLoadError(error instanceof Error ? error.message : "That entry could not be loaded.");
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [pageSize, slug, totalEntries]
+  );
 
   const submitJump = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    showEntry(Number.parseInt(jumpValue, 10));
+    const sequence = Number.parseInt(jumpValue, 10);
+    if (!Number.isInteger(sequence) || sequence < 1 || sequence > totalEntries) {
+      setNavigationMessage(`Choose a number from 1 to ${totalEntries}.`);
+      return;
+    }
+    void loadExactEntry({ sequence });
   };
 
   useEffect(() => {
-    if (!isSahasranama) return;
-
     const showHashEntry = () => {
       let entryId = "";
       try {
@@ -144,15 +214,8 @@ export function ScriptureReader({
         return;
       }
 
-      const entry = entries.find((candidate) => candidate.id === entryId);
-      if (!entry) return;
-
-      setQuery("");
-      setSection(entry.section);
-      setVisibleCount(SAHASRANAMA_RANGE_SIZE);
-      setJumpValue(String(entry.sequence));
-      setPendingEntryId(entry.id);
-      setNavigationMessage(`${entry.label} is ready.`);
+      if (!entryId) return;
+      void loadExactEntry({ entryId }, false);
     };
 
     showHashEntry();
@@ -162,7 +225,7 @@ export function ScriptureReader({
       window.removeEventListener("hashchange", showHashEntry);
       window.removeEventListener("popstate", showHashEntry);
     };
-  }, [entries, isSahasranama]);
+  }, [loadExactEntry]);
 
   useEffect(() => {
     if (!pendingEntryId) return;
@@ -188,9 +251,7 @@ export function ScriptureReader({
           )
           .join("\n")
       : "";
-    const entryUrl = isSahasranama
-      ? `${window.location.origin}${window.location.pathname}#${entry.id}`
-      : "";
+    const entryUrl = `${window.location.origin}${window.location.pathname}#${entry.id}`;
     const studyText = [
       `${entry.label} · ${entry.section}`,
       entry.original,
@@ -230,7 +291,7 @@ export function ScriptureReader({
             className="self-end rounded-lg border border-amber-900/10 bg-white px-4 py-3 font-mono text-xs text-amber-950 dark:border-amber-100/10 dark:bg-white/5 dark:text-amber-100"
             aria-live="polite"
           >
-            Showing {Math.min(visibleCount, filteredEntries.length)} of {resultLabel}
+            {isLoading ? "Loading selection…" : `Showing ${entries.length} of ${resultLabel}`}
           </p>
         </div>
 
@@ -249,6 +310,9 @@ export function ScriptureReader({
                 type="search"
                 value={query}
                 onChange={(event) => {
+                  setIsLoading(true);
+                  setLoadError("");
+                  setReaderMode("filtered");
                   setQuery(event.target.value);
                   resetVisibleCount();
                 }}
@@ -268,7 +332,7 @@ export function ScriptureReader({
               onChange={(event) => chooseSection(event.target.value)}
               className="border-ink-200 focus:border-brand-500 focus:ring-brand-500/20 dark:border-ink-700 min-h-11 w-full rounded-lg border bg-white px-4 py-3 text-sm outline-none focus:ring-4 dark:bg-slate-950"
             >
-              {sections.map((option) => (
+              {sectionOptions.map((option) => (
                 <option key={option} value={option}>
                   {isSahasranama && option === ALL_SECTIONS ? "All 1,000 names" : option}
                 </option>
@@ -312,50 +376,59 @@ export function ScriptureReader({
           )}
         </div>
 
-        {isSahasranama ? (
+        {totalEntries > pageSize ? (
           <nav
-            aria-label="Thousand-name reader navigation"
+            aria-label={`${slug.replaceAll("-", " ")} reader navigation`}
             className="border-ink-200/80 dark:border-ink-700 mt-5 grid gap-4 border-t pt-5 lg:grid-cols-[1fr_auto] lg:items-end"
           >
-            <div>
-              <p className="mb-2 text-xs font-semibold">Move by range</p>
-              <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => moveRange(-1)}
-                  disabled={activeRangeIndex <= 0}
-                  className="border-ink-200 text-ink-700 focus-visible:ring-brand-500 dark:border-ink-700 dark:text-ink-100 inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg border bg-white px-3 text-xs font-semibold transition hover:border-amber-400 focus-visible:ring-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-40 dark:bg-white/5"
-                >
-                  <span aria-hidden="true">←</span>
-                  <span className="ml-1 hidden sm:inline">Previous range</span>
-                  <span className="sr-only sm:hidden">Previous range</span>
-                </button>
-                <p className="text-ink-600 dark:text-ink-300 min-w-0 text-center text-xs font-semibold">
-                  {section === ALL_SECTIONS ? "All 1,000 names" : section}
-                </p>
-                <button
-                  type="button"
-                  onClick={() => moveRange(1)}
-                  disabled={activeRangeIndex < 0 || activeRangeIndex >= ranges.length - 1}
-                  className="border-ink-200 text-ink-700 focus-visible:ring-brand-500 dark:border-ink-700 dark:text-ink-100 inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg border bg-white px-3 text-xs font-semibold transition hover:border-amber-400 focus-visible:ring-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-40 dark:bg-white/5"
-                >
-                  <span className="mr-1 hidden sm:inline">Next range</span>
-                  <span className="sr-only sm:hidden">Next range</span>
-                  <span aria-hidden="true">→</span>
-                </button>
+            {isSahasranama ? (
+              <div>
+                <p className="mb-2 text-xs font-semibold">Move by range</p>
+                <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => moveRange(-1)}
+                    disabled={activeRangeIndex <= 0}
+                    className="border-ink-200 text-ink-700 focus-visible:ring-brand-500 dark:border-ink-700 dark:text-ink-100 inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg border bg-white px-3 text-xs font-semibold transition hover:border-amber-400 focus-visible:ring-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-40 dark:bg-white/5"
+                  >
+                    <span aria-hidden="true">←</span>
+                    <span className="ml-1 hidden sm:inline">Previous range</span>
+                    <span className="sr-only sm:hidden">Previous range</span>
+                  </button>
+                  <p className="text-ink-600 dark:text-ink-300 min-w-0 text-center text-xs font-semibold">
+                    {section === ALL_SECTIONS ? "All 1,000 names" : section}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => moveRange(1)}
+                    disabled={activeRangeIndex < 0 || activeRangeIndex >= ranges.length - 1}
+                    className="border-ink-200 text-ink-700 focus-visible:ring-brand-500 dark:border-ink-700 dark:text-ink-100 inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg border bg-white px-3 text-xs font-semibold transition hover:border-amber-400 focus-visible:ring-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-40 dark:bg-white/5"
+                  >
+                    <span className="mr-1 hidden sm:inline">Next range</span>
+                    <span className="sr-only sm:hidden">Next range</span>
+                    <span aria-hidden="true">→</span>
+                  </button>
+                </div>
               </div>
-            </div>
+            ) : (
+              <div>
+                <p className="mb-2 text-xs font-semibold">Direct navigation</p>
+                <p className="text-ink-600 dark:text-ink-300 text-xs leading-relaxed">
+                  Open any numbered entry without loading the whole work into the page.
+                </p>
+              </div>
+            )}
 
             <form onSubmit={submitJump}>
               <label htmlFor={jumpId} className="mb-2 block text-xs font-semibold">
-                Jump to name
+                {isSahasranama ? "Jump to name" : "Jump to numbered entry"}
               </label>
               <div className="flex gap-2">
                 <input
                   id={jumpId}
                   type="number"
                   min={1}
-                  max={entries.length}
+                  max={totalEntries}
                   step={1}
                   required
                   inputMode="numeric"
@@ -378,9 +451,17 @@ export function ScriptureReader({
         ) : null}
       </div>
 
-      <div className="p-4 sm:p-7">
+      <div className="p-4 sm:p-7" aria-busy={isLoading}>
+        {loadError ? (
+          <p
+            role="alert"
+            className="mb-5 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800 dark:border-red-900/60 dark:bg-red-950/30 dark:text-red-200"
+          >
+            {loadError} Please try again.
+          </p>
+        ) : null}
         <div className="grid gap-5">
-          {visibleEntries.map((entry) => (
+          {entries.map((entry) => (
             <article
               key={entry.id}
               id={entry.id}
@@ -394,19 +475,13 @@ export function ScriptureReader({
 
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="flex flex-wrap items-center gap-2">
-                  {isSahasranama ? (
-                    <a
-                      href={`#${entry.id}`}
-                      className="focus-visible:ring-brand-500 inline-flex min-h-11 items-center rounded-full bg-amber-100 px-3 font-mono text-[10px] font-semibold tracking-wider text-amber-950 uppercase focus-visible:ring-2 focus-visible:outline-none dark:bg-amber-400/15 dark:text-amber-200"
-                    >
-                      {entry.label}
-                      <span className="sr-only"> permalink</span>
-                    </a>
-                  ) : (
-                    <span className="rounded-full bg-amber-100 px-2.5 py-1 font-mono text-[10px] font-semibold tracking-wider text-amber-950 uppercase dark:bg-amber-400/15 dark:text-amber-200">
-                      {entry.label}
-                    </span>
-                  )}
+                  <a
+                    href={`#${entry.id}`}
+                    className="focus-visible:ring-brand-500 inline-flex min-h-11 items-center rounded-full bg-amber-100 px-3 font-mono text-[10px] font-semibold tracking-wider text-amber-950 uppercase focus-visible:ring-2 focus-visible:outline-none dark:bg-amber-400/15 dark:text-amber-200"
+                  >
+                    {entry.label}
+                    <span className="sr-only"> permalink</span>
+                  </a>
                   <span className="text-ink-400 font-mono text-[10px]">{entry.section}</span>
                 </div>
                 <button
@@ -476,14 +551,18 @@ export function ScriptureReader({
           ))}
         </div>
 
-        {visibleEntries.length === 0 ? (
+        {!isLoading && entries.length === 0 ? (
           <div className="py-16 text-center">
             <p className="font-serif text-2xl font-semibold">No matching entry</p>
             <p className="text-ink-500 mt-2 text-sm">Try another word or reset the filters.</p>
             <button
               type="button"
               onClick={() => {
+                setIsLoading(true);
+                setLoadError("");
                 setQuery("");
+                setDebouncedQuery("");
+                setReaderMode("filtered");
                 setSection(initialSection);
                 resetVisibleCount(initialSection);
               }}
@@ -494,14 +573,19 @@ export function ScriptureReader({
           </div>
         ) : null}
 
-        {visibleEntries.length < filteredEntries.length ? (
+        {entries.length < resultTotal ? (
           <div className="mt-8 text-center">
             <button
               type="button"
-              onClick={() => setVisibleCount((count) => count + PAGE_SIZE)}
+              disabled={isLoading}
+              onClick={() => {
+                setIsLoading(true);
+                setLoadError("");
+                setVisibleCount((count) => count + pageSize);
+              }}
               className="bg-ink-950 focus-visible:ring-brand-500 inline-flex min-h-11 items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 focus-visible:ring-2 focus-visible:outline-none dark:bg-white dark:text-slate-950"
             >
-              Load {Math.min(PAGE_SIZE, filteredEntries.length - visibleEntries.length)} more
+              Load {Math.min(pageSize, resultTotal - entries.length)} more
             </button>
           </div>
         ) : null}

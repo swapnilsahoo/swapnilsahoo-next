@@ -396,19 +396,19 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
   },
   "bhagavad-gita": {
     slug: "bhagavad-gita",
-    navLabel: "Authentic Bhagavad Gita",
+    navLabel: "Bhagavad Gita · complete Sanskrit text",
     shortTitle: "Bhagavad Gita",
-    title: "Authentic Bhagavad Gita",
+    title: "Bhagavad Gita · Complete Sanskrit Text",
     originalTitle: "श्रीमद्भगवद्गीता",
     transliteratedTitle: "Śrīmadbhagavadgītā",
     language: "Sanskrit · Devanagari + IAST",
     form: "Mahābhārata dialogue · 18 chapters, 701 verses",
     glyph: "कृ",
-    dek: "Read all eighteen chapters in their received Sanskrit, with consistent IAST, a close English rendering, and a grammatical word-by-word split for every verse, set within the Bhīṣmaparvan battlefield dialogue between Kṛṣṇa and Arjuna.",
-    scopeLabel: "Complete 701-verse reading edition",
+    dek: "Read all eighteen chapters in the selected Sanskrit base text, with consistent IAST and a close English rendering. An editorial word-by-word study layer is available for every verse, but remains a study aid under correction rather than a specialist-reviewed grammatical edition.",
+    scopeLabel: "Complete 701-verse base text · study gloss under review",
     scopeNote:
-      "Every verse across all eighteen chapters is present, including the additional Arjuna-uvāca opening verse of Chapter 13 carried by this edition's base text (see the note on 13.1). Each verse is split into its grammatical constituents with a sourced or editorially supplied meaning for every word.",
-    entryCountLabel: "All 701 verses",
+      "Every verse across all eighteen chapters is present in Devanagari and IAST, including the additional Arjuna-uvāca opening verse of Chapter 13 carried by this edition's base text (see the note on 13.1). The accompanying English rendering and word-by-word glosses are editorial learning aids. They have not received independent verse-by-verse review by a Sanskrit specialist and should not be treated as a definitive grammatical or commentarial edition.",
+    entryCountLabel: "All 701 base-text verses · gloss under review",
     authenticity: [
       {
         label: "Textual home",
@@ -430,9 +430,9 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
       },
       {
         label: "Reader standard",
-        value: "Every verse, every word",
+        value: "Complete base text; provisional study layer",
         detail:
-          "All 701 verses carry Devanagari, IAST, a close English rendering, and a word-by-word grammatical split with a meaning for each word.",
+          "All 701 verses carry Devanagari and IAST. Each also has a close English rendering and word-level editorial aid, openly labeled as source-grounded work still requiring specialist review.",
       },
     ],
     profiles: [
@@ -461,10 +461,10 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
     editorialPolicy: [
       "The Sanskrit base text follows the widely circulated recension prepared by volunteers at sanskritdocuments.org, cross-checked verse by verse against its companion word-meaning and sandhi-vigraha (compound-splitting) files from the same source.",
       "Devanagari and IAST are generated mechanically from that base text using a standard ITRANS-based transliteration library, not retyped by hand; a small number of source-specific spelling conventions (such as this edition's own notation for jña) were normalized before conversion so the two layers agree.",
-      "Word-by-word entries follow the grammatical compound-splitting (sandhi-vigraha) prepared for the cited source. Meanings are drawn from that source's companion word-meaning file where available; a minority of inflected or compound forms not covered there received a concise editorial gloss, checked against standard dictionaries.",
-      "The close English rendering for each verse is newly composed for this edition, checked against the word-by-word data verse by verse. It aims at a clear, literal reading rather than a polished literary paraphrase, and it does not replace the depth of a full commentary tradition (Śaṅkara, Rāmānuja, Madhusūdana, and others read many verses differently).",
+      "Word-by-word entries follow the grammatical compound-splitting (sandhi-vigraha) prepared for the cited source. Meanings are drawn from that source's companion word-meaning file where available; a minority of inflected or compound forms not covered there received a concise editorial gloss. This layer is undergoing correction and has not been independently reviewed verse by verse by a Sanskrit specialist.",
+      "The close English rendering for each verse is newly composed for this edition and editorially compared with the word-by-word data. It has not received independent verse-by-verse review by a Sanskrit specialist, aims at a clear, literal reading rather than a polished literary paraphrase, and does not replace the depth of a full commentary tradition (Śaṅkara, Rāmānuja, Madhusūdana, and others read many verses differently).",
       "This edition's base text carries 701 verses because it includes the Arjuna-uvāca verse opening Chapter 13, present in many popular printed editions; Śaṅkara's recension omits that verse and begins the chapter with what this reader numbers 13.2, arriving at the more commonly cited total of 700. Both countings describe the same received text; nothing is silently dropped either way.",
-      "The source word-meaning file records a single dictionary sense for each Sanskrit spelling rather than a separate sense per verse; a handful of words that are genuinely spelled identically but mean different things in different verses (for example kṛṣṇaḥ, which names Kṛṣṇa in most verses but denotes the moon's dark fortnight in one astronomical aside) were individually checked and corrected, but the word-by-word layer as a whole should be read as a close, source-grounded study aid rather than an exhaustively context-verified translation for every one of several thousand words.",
+      "The source word-meaning file records a single dictionary sense for each Sanskrit spelling rather than a separate sense per verse; a handful of words that are genuinely spelled identically but mean different things in different verses (for example kṛṣṇaḥ, which names Kṛṣṇa in most verses but denotes the moon's dark fortnight in one astronomical aside) were individually checked and corrected. The word-by-word layer as a whole remains a source-grounded editorial study aid—not an exhaustively context-verified translation, morphological analysis, or substitute for specialist teaching.",
     ],
     sources: [
       {
@@ -518,13 +518,13 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
   },
   "ramcharitmanas": {
     slug: "ramcharitmanas",
-    navLabel: "Authentic Ramcharitmanas",
-    shortTitle: "Ramcharitmanas",
-    title: "Authentic Ramcharitmanas",
+    navLabel: "Ramcharitmanas · Bālakāṇḍa in progress",
+    shortTitle: "Ramcharitmanas · Bālakāṇḍa",
+    title: "Ramcharitmanas · Bālakāṇḍa Study Edition",
     originalTitle: "श्रीरामचरितमानस",
     transliteratedTitle: "Śrī Rāmacaritamānasa",
     language: "Awadhi (with Sanskrit invocation) · Devanagari + IAST",
-    form: "Tulsidas's retelling of the Rama story · 7 kāṇḍas",
+    form: "Tulsidas's retelling of the Rama story · Bālakāṇḍa (kāṇḍa 1 of 7)",
     glyph: "राम",
     dek: "Tulsidas's sixteenth-century Awadhi retelling of Rama's story, opened kāṇḍa by kāṇḍa. This edition currently carries the complete, verified text of Bālakāṇḍa, with full word-by-word study for the maṅgalācaraṇa, close translation continuing through the poet's preface, and translation extending further section by section.",
     scopeLabel: "Bālakāṇḍa (kāṇḍa 1 of 7) · in progress",

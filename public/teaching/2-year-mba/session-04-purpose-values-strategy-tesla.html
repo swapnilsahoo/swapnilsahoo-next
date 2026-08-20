@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Session 3: The 'Why' of Strategy - Vision, Purpose, and BHAGs</title>
+        <title>Session 2: Vision, Purpose & the Value Gap - Strategic Management</title>
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,7 +12,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
         <style>
             :root {
-                --header-height-desktop: 92px; 
+                --header-height-desktop: 92px;
                 --header-height-mobile: 52px;
             }
 
@@ -24,7 +24,7 @@
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
             }
-            
+
             html {
                 scroll-behavior: smooth;
                 scroll-padding-top: var(--header-height-mobile);
@@ -42,7 +42,7 @@
                 #main-nav-container { top: 0; }
                 #top-bar { display: none; }
             }
-            
+
             /* Main content padding to offset fixed header */
             main {
                 padding-top: var(--header-height-mobile);
@@ -57,7 +57,7 @@
             .active-nav { color: #2563eb; border-bottom-color: #2563eb; font-weight: 600; }
             .nav-link { transition: all 0.2s ease-in-out; border-bottom: 2px solid transparent; padding-bottom: 4px; color: #4b5563; }
             .nav-link:hover { color: #2563eb; border-bottom-color: #2563eb; }
-            
+
             /* Card Styling */
             .content-card {
                 background-color: #fff;
@@ -72,7 +72,7 @@
                 transform: translateY(-4px);
                 box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
             }
-            
+
             /* Connector Styling */
             .narrative-connector {
                 text-align: center;
@@ -94,18 +94,32 @@
             }
             .narrative-connector::after { right: 0; background: linear-gradient(to left, #f8fafc, #cbd5e1); }
             .narrative-connector span { background-color: #f8fafc; padding: 0 1.5rem; position: relative; z-index: 1; }
-            
-            /* Framework Styling (Yin-Yang) */
-            /* This container is now just for the static image */
+
+            /* Framework Styling (Yin-Yang SVG diagram) */
             .vision-framework-container {
                 background-color: #f9fafb; /* gray-50 */
                 padding: 1.5rem;
                 border-radius: 8px;
                 border: 1px solid #e5e7eb; /* gray-200 */
             }
-            
-            @keyframes spin { 100% { transform: rotate(360deg); } }
-            @keyframes spin-reverse { 100% { transform: rotate(-360deg); } }
+
+            /* Socratic question callout */
+            .socratic-box {
+                background-color: #eff6ff;
+                border: 2px solid #bfdbfe;
+                border-left: 6px solid #2563eb;
+                border-radius: 0 12px 12px 0;
+                padding: 1.5rem;
+                margin: 1.5rem 0;
+            }
+            .socratic-box .label {
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                font-size: 0.75rem;
+                font-weight: 700;
+                color: #2563eb;
+                margin-bottom: 0.5rem;
+            }
 
             /* Simulation Styling */
             .sim-container {
@@ -116,7 +130,7 @@
             @media (min-width: 1024px) {
                 .sim-container { flex-direction: row; justify-content: space-between; }
             }
-            
+
             .sim-column {
                 flex-basis: 32%;
                 background-color: #f9fafb;
@@ -125,7 +139,7 @@
                 border: 1px dashed #e5e7eb;
             }
             .sim-column h4 { font-weight: 700; color: #111827; margin-bottom: 0.75rem; border-bottom: 2px solid #9ca3af; padding-bottom: 0.5rem; }
-            
+
             .sim-item {
                 background-color: #fff;
                 border: 1px solid #d1d5db;
@@ -142,7 +156,7 @@
             .sim-item[data-id="why-1"] { border-left: 5px solid #ef4444; } /* Purpose */
             .sim-item[data-id="why-2"] { border-left: 5px solid #f97316; } /* BHAG */
             .sim-item[data-id="why-3"] { border-left: 5px solid #eab308; } /* Value */
-            
+
             .sim-target {
                 background-color: #f3f4f6;
                 border: 2px dashed #9ca3af;
@@ -154,7 +168,7 @@
             }
             .sim-target h5 { font-weight: 600; color: #4b5563; margin-bottom: 0.5rem; }
             .sim-target.over { background-color: #dbeafe; border-color: #3b82f6; }
-            
+
             .sim-result {
                 visibility: hidden;
                 opacity: 0;
@@ -207,6 +221,17 @@
             .debate-analysis.visible {
                 display: block;
             }
+            .epilogue-box {
+                display: none;
+                background-color: #fefce8;
+                border: 2px solid #fde68a;
+                border-left: 6px solid #d97706;
+                border-radius: 0 12px 12px 0;
+                padding: 1.5rem;
+                margin-top: 1.5rem;
+            }
+            .epilogue-box.visible { display: block; }
+            .epilogue-box h5 { color: #92400e; font-weight: 700; font-size: 1.125rem; margin-bottom: 0.5rem; }
 
             /* Chart Container */
             .chart-container {
@@ -222,15 +247,15 @@
                 border-radius: 8px;
                 box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.06);
             }
-            
+
             /* EXACT ICON STYLES FROM TEMPLATE */
             .top-bar-link svg, .footer-link svg { width: 1.125rem; height: 1.125rem; fill: currentColor; transition: color 0.2s ease-in-out; }
             .hexagon-icon { position: relative; width: 28px; height: 28px; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3)); display: inline-block; vertical-align: middle; }
             .hexagon-icon svg { width: 100%; height: 100%; animation: glow 2.5s infinite ease-in-out; }
-            .hexagon-path { stroke: #B91C1C; stroke-width: 1; } 
+            .hexagon-path { stroke: #B91C1C; stroke-width: 1; }
             .hexagon-s { font-family: 'Georgia', serif; font-weight: bold; font-size: 48px; fill: #facc15; text-anchor: middle; dominant-baseline: central; }
             @keyframes glow { 0%, 100% { filter: drop-shadow(0 0 4px rgba(239, 68, 68, 0.7)); } 50% { filter: drop-shadow(0 0 10px rgba(239, 68, 68, 1)); } }
-            
+
             /* Modal Styling */
             #modal { background-color: rgba(0, 0, 0, 0.7); }
             #modal-content { max-height: calc(100vh - 4rem); }
@@ -243,7 +268,7 @@
                 padding: 0.5rem 2.5rem 0.5rem 0.75rem; border: 1px solid #d1d5db;
             }
 
-            /* --- New Workshop: 5 Whys --- */
+            /* --- Workshop: 5 Whys --- */
             .five-whys-container {
                 background-color: #f9fafb;
                 border-radius: 8px;
@@ -300,7 +325,7 @@
                 margin-bottom: 1rem;
             }
 
-            /* --- New Workshop: BHAG or Not? --- */
+            /* --- Workshop: BHAG or Not? --- */
             .bhag-card {
                 background-color: #f9fafb;
                 border: 2px solid #e5e7eb;
@@ -347,7 +372,7 @@
             .bhag-explanation-content.correct { background-color: #f0fdf4; border: 1px solid #bbf7d0; color: #15803d; }
             .bhag-explanation-content.incorrect { background-color: #fef2f2; border: 1px solid #fecaca; color: #b91c1c; }
 
-            /* --- New Workshop: Value Gap Sliders --- */
+            /* --- Value Gap Sliders / Simulator --- */
             .slider-container {
                 margin-bottom: 1.5rem;
             }
@@ -396,6 +421,23 @@
                 border-radius: 8px;
                 transition: all 0.3s;
             }
+            .vg-input-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+            }
+            @media (min-width: 768px) {
+                .vg-input-grid { grid-template-columns: 1fr 1fr; }
+            }
+            .vg-stat-card {
+                background-color: #f9fafb;
+                border: 1px solid #e5e7eb;
+                border-radius: 8px;
+                padding: 1rem;
+                text-align: center;
+            }
+            .vg-stat-card .vg-stat-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #6b7280; font-weight: 600; }
+            .vg-stat-card .vg-stat-value { font-size: 1.5rem; font-weight: 800; color: #1e3a8a; margin-top: 0.25rem; }
 
             /* --- Quiz Styles --- */
             .quiz-option {
@@ -450,7 +492,7 @@
             }
             /* --- End Quiz Styles --- */
 
-            /* --- New Examples Section Styles --- */
+            /* --- Examples Section Styles --- */
             .example-table {
                 width: 100%;
                 margin-top: 1rem;
@@ -484,8 +526,8 @@
                 vertical-align: middle;
                 stroke-width: 2;
             }
-            
-            /* [NEW] Glossary Styles */
+
+            /* Glossary Styles */
             .glossary-item {
                 margin-bottom: 1.5rem;
             }
@@ -527,17 +569,49 @@
                 color: #075985;
             }
 
+            /* --- Operating Model Sorter (Efficiency / Resilience / Optionality) --- */
+            .sorter-card {
+                background-color: #f9fafb;
+                border: 2px solid #e5e7eb;
+                border-radius: 8px;
+                padding: 1.25rem;
+                margin-bottom: 1.25rem;
+            }
+            .sorter-card p.sorter-scenario { color: #1f2937; margin-bottom: 1rem; }
+            .sorter-btn-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+            .sorter-btn {
+                padding: 0.5rem 0.9rem;
+                border-radius: 6px;
+                font-weight: 600;
+                font-size: 0.8rem;
+                cursor: pointer;
+                transition: all 0.2s;
+                border: 1px solid transparent;
+            }
+            .sorter-btn-eff { background-color: #dbeafe; color: #1e40af; border-color: #93c5fd; }
+            .sorter-btn-eff:hover { background-color: #bfdbfe; }
+            .sorter-btn-res { background-color: #dcfce7; color: #166534; border-color: #86efac; }
+            .sorter-btn-res:hover { background-color: #bbf7d0; }
+            .sorter-btn-opt { background-color: #f3e8ff; color: #6b21a8; border-color: #d8b4fe; }
+            .sorter-btn-opt:hover { background-color: #e9d5ff; }
+            .sorter-explanation {
+                max-height: 0; opacity: 0; overflow: hidden; margin-top: 0;
+                font-size: 0.875rem; border-radius: 6px; transition: all 0.4s ease-out;
+            }
+            .sorter-explanation.visible { max-height: 220px; opacity: 1; margin-top: 1rem; padding: 0.85rem; }
+            .sorter-explanation.right { background-color: #f0fdf4; border: 1px solid #bbf7d0; color: #15803d; }
+            .sorter-explanation.wrong { background-color: #fef2f2; border: 1px solid #fecaca; color: #b91c1c; }
 
         </style>
         <link rel="stylesheet" href="/teaching/responsive.css">
 </head>
     <body class="bg-slate-50 text-slate-700">
 
-        <!-- HEADER (Copied from Session 2 for consistency) -->
+        <!-- HEADER -->
         <header id="main-header" class="shadow-sm">
             <div id="top-bar" class="bg-gray-800 text-white py-1" style="height: 40px;">
                 <div class="container mx-auto px-6 flex justify-between items-center h-full">
-                    <p class="text-xs font-medium text-slate-400">© Dr. Swapnil Sahoo 2025</p>
+                    <p class="text-xs font-medium text-slate-400">© Dr. Swapnil Sahoo 2026</p>
                     <div class="flex items-center space-x-4">
                         <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white group" title="Website">
                             <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
@@ -553,21 +627,23 @@
                     </div>
                 </div>
             </div>
-            
+
             <div id="main-nav-container" class="bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200 z-50">
                 <div class="container mx-auto px-6 py-3 title-bar">
                     <div class="flex justify-between items-center">
-                        <h1 class="text-xl font-bold text-slate-900">Session 3: The "Why" of Strategy</h1>
+                        <h1 class="text-xl font-bold text-slate-900">Session 2: Vision, Purpose &amp; the Value Gap</h1>
                         <div class="sm:hidden">
                             <select id="mobile-nav" class="block w-auto rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm">
-                                <option value="#intro">Intro: The Bridge</option>
+                                <option value="#intro">Intro: The Puzzle</option>
                                 <option value="#theory">Vision Framework</option>
                                 <option value="#framework-examples">Framework Examples</option>
-                                <option value="#glossary">Glossary</option> <!-- [NEW] -->
-                                <option value="#workshop-1">Workshop 1: 5 Whys</option>
-                                <option value="#workshop-2">Workshop 2: BHAG?</option>
+                                <option value="#glossary">Glossary</option>
+                                <option value="#value-quest">Strategy as a Quest for Value</option>
+                                <option value="#workshop-1">Workshop: 5 Whys</option>
+                                <option value="#workshop-2">Workshop: BHAG?</option>
                                 <option value="#sim-1">Simulation: Why vs. What</option>
-                                <option value="#workshop-3">Workshop 3: Value Gap</option>
+                                <option value="#value-gap-simulator">Simulator: The Value Gap</option>
+                                <option value="#operations-uncertainty">Radical Uncertainty</option>
                                 <option value="#sim-3">Debate: New BHAG</option>
                                 <option value="#conclusion">Conclusion</option>
                                 <option value="#quiz">Knowledge Check</option>
@@ -575,17 +651,19 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <nav id="top-nav" class="bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200 overflow-x-auto whitespace-nowrap hidden sm:block">
                     <div class="container mx-auto px-6 py-2 flex space-x-4">
                         <a href="#intro" class="nav-link text-sm active-nav font-medium">Intro</a>
                         <a href="#theory" class="nav-link text-sm font-medium">Vision Framework</a>
                         <a href="#framework-examples" class="nav-link text-sm font-medium">Examples</a>
-                        <a href="#glossary" class="nav-link text-sm font-medium">Glossary</a> <!-- [NEW] -->
+                        <a href="#glossary" class="nav-link text-sm font-medium">Glossary</a>
+                        <a href="#value-quest" class="nav-link text-sm font-medium">Value Quest</a>
                         <a href="#workshop-1" class="nav-link text-sm font-medium">Workshop: 5 Whys</a>
                         <a href="#workshop-2" class="nav-link text-sm font-medium">Workshop: BHAG?</a>
                         <a href="#sim-1" class="nav-link text-sm font-medium">Simulation: Why vs. What</a>
-                        <a href="#workshop-3" class="nav-link text-sm font-medium">Workshop: Value Gap</a>
+                        <a href="#value-gap-simulator" class="nav-link text-sm font-medium">Value Gap Simulator</a>
+                        <a href="#operations-uncertainty" class="nav-link text-sm font-medium">Radical Uncertainty</a>
                         <a href="#sim-3" class="nav-link text-sm font-medium">Debate: New BHAG</a>
                         <a href="#conclusion" class="nav-link text-sm font-medium">Conclusion</a>
                         <a href="#quiz" class="nav-link text-sm font-medium">Quiz</a>
@@ -597,108 +675,121 @@
   width:20vw;
   height:20vh;
   background:transparent;
-"></div>        
+"></div>
 
         <main class="max-w-5xl mx-auto p-4 sm:p-6 lg:p-8">
-            
-            <!-- [0-10 min] SECTION 1: Introduction & Narrative Bridge -->
+
+            <!-- SECTION 1: Introduction -->
             <section id="intro" class="content-card">
-                <h2 class="text-3xl font-bold text-blue-700 mb-6">Introduction: Building the Bridge from "What" to "Why"</h2>
-                <p class="text-lg text-slate-700 mb-4 pt-2"> <!-- Added pt-2 for 2-point gap -->
-                    Welcome to Session 3. Let's connect the dots:
+                <h2 class="text-3xl font-bold text-blue-700 mb-6">Introduction: A Puzzle That Strategy Alone Can't Solve</h2>
+                <p class="text-lg text-slate-700 mb-4 pt-2">
+                    By the end of 2009, Tesla Motors had less than <strong class="text-slate-900">$500,000 in operating cash</strong>. Its founder-CEO, Elon Musk, had already put the remainder of his PayPal and Zip2 fortune into the company, was going through a difficult divorce, and had just watched a SpaceX rocket fail during launch. Instead of walking away, Musk raised another $40 million from his brother and other investors and kept going (Serafeim &amp; Migdal, <em>Elon Musk at Tesla</em>, Harvard Business School Case 9-123-044, rev. 2024).
                 </p>
-                <ul class="list-decimal pl-6 space-y-3 text-lg text-slate-700">
-                    <li>
-                        <strong class="text-slate-900">Session 1: "What is Strategy?"</strong> We debated the nature of strategy itself, contrasting Porter's deliberate "Blueprint" (Position, Trade-offs) with Mintzberg's emergent "Craft" (Learning, adaptation).
-                    </li>
-                    <li>
-                        <strong class="text-slate-900">Session 2: "What was Tesla's Strategy?"</strong> We applied Porter's "Blueprint" to Tesla. We saw their radical <span class="font-bold text-blue-600">Strategic Position</span> (Vertical Integration) and the painful <span class="font-bold text-blue-600">Trade-offs</span> (Production Hell, bypassing dealers) they made.
-                    </li>
-                </ul>
-                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-r-lg my-6">
-                    <p class="text-xl font-semibold text-yellow-800">
-                        This leaves us with the most important question: <span class="font-bold">WHY?</span>
-                    </p>
-                    <p class="text-lg text-yellow-700 mt-2">
-                        What force could possibly be powerful enough to justify that level of chaos, risk, and financial loss? Why not just be a "better" car company?
+                <div class="socratic-box">
+                    <p class="label">First-Principles Question</p>
+                    <p class="text-lg text-slate-800">
+                        Porter's "Blueprint" tells you how to choose a defensible competitive position. Mintzberg's "Craft" tells you how a plan adapts as an organization learns. Neither one explains why a founder keeps funding a venture that a spreadsheet says should die. <strong>What is doing that work? What decides which trade-offs are worth the pain in the first place — before any position or pattern exists to defend?</strong>
                     </p>
                 </div>
-                <p class="text-lg text-slate-700">
-                    Today, we find the answer. We move beyond the "What" (Strategy) to discover the "Why" (the Vision). Using the frameworks from our readings (Collins & Porras), we'll see how an organization's vision acts as the engine for its strategy.
+                <p class="text-lg text-slate-700 mb-4">
+                    Last session we debated <strong class="text-slate-900">"What is Strategy?"</strong> — Porter's deliberate "Blueprint" (Position, Trade-offs) against Mintzberg's emergent "Craft" (Pattern, Learning). Both are theories of <em>how organizations compete once they know what they're trying to become</em>. Today we go one level upstream, to the thing that decides what an organization is trying to become in the first place — and to the discipline that turns that aspiration into a number a board can actually manage against.
                 </p>
+                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-r-lg my-6">
+                    <p class="text-xl font-semibold text-yellow-800">
+                        Today's question: <span class="font-bold">WHY, and how much?</span>
+                    </p>
+                    <p class="text-lg text-yellow-700 mt-2">
+                        We'll use James Collins and Jerry Porras's "Building Your Company's Vision" (1996) to name the "why" — Purpose and Values. Then we'll use Robert Kaplan and David Norton's "Developing the Strategy: Vision, Value Gaps, and Analysis" to turn that "why" into a quantified target: a <em>value gap</em> that strategy exists to close. Finally, we'll ask what kind of <em>operating model</em> can survive the years it takes to close that gap, drawing on Martin Reeves and Adam Job's "Operations in an Era of Radical Uncertainty" (<em>Harvard Business Review</em>, October 2023).
+                    </p>
+                </div>
             </section>
 
             <div class="narrative-connector">
-                <span>The Core Theory (Collins & Porras)</span>
+                <span>The Core Theory (Collins &amp; Porras, 1996)</span>
             </div>
 
-            <!-- [10-30 min] SECTION 2: The "Yin & Yang" of Vision -->
+            <!-- SECTION 2: The "Yin & Yang" of Vision -->
             <section id="theory" class="content-card">
-                <h2 class="text-3xl font-bold text-blue-700 mb-6">The "Yin & Yang" of a Company's Vision</h2>
+                <h2 class="text-3xl font-bold text-blue-700 mb-6">The "Yin &amp; Yang" of a Company's Vision</h2>
                 <p class="text-lg text-slate-700 mb-6">
-                    Our reading from James Collins and Jerry Porras, "Building Your Company's Vision," gives us a powerful framework. A vision isn't just a fluffy statement; it's a disciplined framework of two distinct parts:
+                    Collins and Porras (1996) argue a vision isn't a fluffy slogan; it's a disciplined framework with two distinct, almost contradictory, parts — one meant to stay fixed forever, the other meant to keep changing.
                 </p>
 
                 <div class="text-center mb-6 vision-framework-container">
-                    <!-- Image Updated as per user request -->
-                    
-                    <img 
-                        src="https://i0.wp.com/hbr.org/resources/images/article_assets/hbr/9609/96501_A.gif?ssl=1" 
-                        alt="Diagram from Collins and Porras' HBR article showing Vision composed of Core Ideology (Yin) and Envisioned Future (Yang)" 
-                        class="mx-auto max-w-lg rounded-md border bg-white p-2 shadow-sm"
-                        onerror="this.onerror=null; this.src='https://placehold.co/600x450/f3f4f6/6b7280?text=Collins+%26+Porras+Vision+Framework'; this.alt='Placeholder diagram of the Collins and Porras Vision Framework'">
-                    <p class="text-sm text-slate-500 italic mt-2">The Collins & Porras Vision Framework: A balance of preserving the core and stimulating progress.</p>
+                    <svg viewBox="0 0 640 300" role="img" aria-labelledby="visionSvgTitle" class="mx-auto w-full max-w-xl h-auto">
+                        <title id="visionSvgTitle">Diagram: Vision equals Core Ideology (Yin) plus Envisioned Future (Yang)</title>
+                        <circle cx="220" cy="150" r="130" fill="#1e293b" opacity="0.95"></circle>
+                        <circle cx="420" cy="150" r="130" fill="#2563eb" opacity="0.9"></circle>
+                        <text x="220" y="90" text-anchor="middle" fill="#fff" font-size="16" font-weight="700">CORE IDEOLOGY</text>
+                        <text x="220" y="112" text-anchor="middle" fill="#cbd5e1" font-size="12" font-style="italic">"the Yin" — preserved</text>
+                        <text x="180" y="150" text-anchor="middle" fill="#f1f5f9" font-size="13">Core Values</text>
+                        <text x="180" y="170" text-anchor="middle" fill="#f1f5f9" font-size="13">Core Purpose</text>
+                        <text x="420" y="90" text-anchor="middle" fill="#fff" font-size="16" font-weight="700">ENVISIONED FUTURE</text>
+                        <text x="420" y="112" text-anchor="middle" fill="#dbeafe" font-size="12" font-style="italic">"the Yang" — achieved</text>
+                        <text x="460" y="150" text-anchor="middle" fill="#eff6ff" font-size="13">BHAG</text>
+                        <text x="460" y="170" text-anchor="middle" fill="#eff6ff" font-size="13">Vivid Description</text>
+                        <text x="320" y="230" text-anchor="middle" fill="#0f172a" font-size="18" font-weight="800">VISION</text>
+                        <text x="320" y="252" text-anchor="middle" fill="#475569" font-size="11">= stable identity + dynamic aspiration</text>
+                    </svg>
+                    <p class="text-sm text-slate-500 italic mt-2">The Collins &amp; Porras (1996) Vision Framework: a balance of preserving the core and stimulating progress.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- YIN: Core Ideology -->
                     <div class="bg-slate-800 text-white p-6 rounded-lg border-t-4 border-slate-500">
                         <h3 class="text-2xl font-bold mb-3">1. Core Ideology (The "Yin")</h3>
-                        <p class="text-sm text-slate-300 mb-4 italic">This defines who you are. It is stable, timeless, and to be *preserved*.</p>
+                        <p class="text-sm text-slate-300 mb-4 italic">This defines who you are. It is stable, timeless, and to be <em>preserved</em>.</p>
                         <div class="mb-4">
-                            <h4 class="text-lg font-semibold text-white">Core Values --> Who I am?</h4>
-                            <p class="text-slate-200">The 3-5 essential and enduring principles. The "how you act."</p>
-                            <!-- [EDITED] Updated with specific Musk examples -->
+                            <h4 class="text-lg font-semibold text-white">Core Values &rarr; Who am I?</h4>
+                            <p class="text-slate-200">The 3-5 essential and enduring principles. The "how you act" — non-negotiable even when they are a competitive disadvantage.</p>
                             <ul class="text-sm text-slate-400 mt-1 list-disc pl-5 space-y-1">
-                                <li><strong>Reason from "First Principles":</strong> Solving problems by breaking them down to fundamental truths, not by analogy.</li>
-                                <li><strong>Innovation and Risk-Taking:</strong> Challenging the status quo and viewing failure as an option on the path to innovation.</li>
+                                <li><strong>Reason from "first principles":</strong> break a problem down to physics and cost of materials rather than reasoning by analogy to how it's "always been done."</li>
+                                <li><strong>Bias for risk:</strong> Musk's 2012 "Ultra Hardcore" email to Tesla staff ahead of the Model S launch — "revolutionizing industries is not for the faint of heart" — is values in action, not strategy (Serafeim &amp; Migdal, 2024).</li>
                             </ul>
                         </div>
                         <div>
-                            <h4 class="text-lg font-semibold text-white">Core Purpose --> Why I exist?</h4>
-                            <p class="text-slate-200">The fundamental reason for being. The "why you exist." A guiding star you *never* reach.</p>
-                            <!-- [EDITED] Updated with specific Musk examples -->
-                            <ul class="text-sm text-slate-400 mt-1 list-disc pl-5 space-y-1">
-                                <li><strong>Ensure long-term survival of humanity.</strong></li>
-                                <li>Accelerate transition to sustainable energy (Tesla).</li>
-                                <li>Make humanity multi-planetary (SpaceX).</li>
-                            </ul>
+                            <h4 class="text-lg font-semibold text-white">Core Purpose &rarr; Why do I exist?</h4>
+                            <p class="text-slate-200">The fundamental, never-fully-reachable reason for being.</p>
+                            <blockquote class="text-sm text-slate-300 mt-2 border-l-2 border-slate-500 pl-3 italic">
+                                "The overarching purpose of Tesla Motors (and the reason I am funding the company) is to help expedite the move from a mine-and-burn hydrocarbon economy towards a solar electric economy, which I believe to be the primary, but not exclusive, sustainable solution." &mdash; Elon Musk, 2006 (quoted in Serafeim &amp; Migdal, 2024, p. 1)
+                            </blockquote>
+                            <p class="text-sm text-slate-400 mt-2">The now-famous, shorter version — "accelerate the world's transition to sustainable energy" — is a later distillation of this same 2006 purpose, not a different one.</p>
                         </div>
                     </div>
 
                     <!-- YANG: Envisioned Future -->
                     <div class="bg-white p-6 rounded-lg border-t-4 border-blue-500 shadow-inner">
                         <h3 class="text-2xl font-bold mb-3 text-slate-800">2. Envisioned Future (The "Yang")</h3>
-                        <p class="text-sm text-slate-500 mb-4 italic">This defines where you are going. It is dynamic, time-bound, and to be *achieved*.</p>
+                        <p class="text-sm text-slate-500 mb-4 italic">This defines where you are going. It is dynamic, time-bound, and to be <em>achieved</em>.</p>
                         <div class="mb-4">
                             <h4 class="text-lg font-semibold text-slate-700">BHAG (Big, Hairy, Audacious Goal)</h4>
-                            <p class="text-slate-600">A 10-30 year "mountain" to climb. It's concrete, energizing, and has a finish line.</p>
-                            <p class="text-sm text-slate-500 mt-1"><strong>Tesla Example:</strong> "The Secret Master Plan (2006)" - Use a sports car to fund a sedan to fund a mass-market car. This was a *perfect* BHAG.</p>
+                            <p class="text-slate-600">A 10-30 year "mountain" to climb, with a finish line.</p>
+                            <p class="text-sm text-slate-500 mt-1"><strong>Tesla, verbatim (August 2, 2006 blog post, "The Secret Tesla Motors Master Plan"):</strong></p>
+                            <ol class="text-sm text-slate-600 list-decimal pl-5 mt-1 space-y-0.5">
+                                <li>Build sports car</li>
+                                <li>Use that money to build an affordable car</li>
+                                <li>Use <em>that</em> money to build an even more affordable car</li>
+                                <li>While doing above, also provide zero-emission electric power generation options</li>
+                            </ol>
                         </div>
                         <div>
                             <h4 class="text-lg font-semibold text-slate-700">Vivid Description</h4>
-                            <p class="text-slate-600">Painting a picture of what success *looks* and *feels* like.</p>
-                            <p class="text-sm text-slate-500 mt-1"><strong>Tesla Example:</strong> Musk's descriptions of a future with solar roofs, Powerwalls, and EVs creating a complete, clean energy ecosystem.</p>
+                            <p class="text-slate-600">Painting a picture of what success <em>looks</em> and <em>feels</em> like.</p>
+                            <p class="text-sm text-slate-500 mt-1"><strong>Tesla example:</strong> Musk's 2016 pitch for buying SolarCity — "an electric car, a Powerwall and a solar roof... beautiful, affordable and seamlessly integrated" — a picture of a fully closed clean-energy loop (Serafeim &amp; Migdal, 2024).</p>
                         </div>
                     </div>
                 </div>
+
+                <p class="text-md text-slate-600 mt-6">
+                    Note the founding sequence, exactly as the case tells it: engineers Martin Eberhard and Marc Tarpenning founded Tesla in 2003. Musk joined in 2004, investing $6.3 million of an initial $6.5 million round, and became <em>chairman</em> — not CEO. He did not take the CEO title until late 2007, after firing Eberhard when Roadster production costs had ballooned to more than twice the original per-vehicle estimate. The vision predates Musk's operational control of the company; his contribution was to fund, and later obsessively enforce, an ideology that was already taking shape.
+                </p>
             </section>
-            
+
             <!-- SECTION 3: Framework Examples -->
             <section id="framework-examples" class="content-card border-t-4 border-gray-400">
-                <h2 class="text-3xl font-bold text-gray-700 mb-6">Framework Examples (From Reading)</h2>
+                <h2 class="text-3xl font-bold text-gray-700 mb-6">Framework Examples (From the Reading)</h2>
                 <p class="text-lg text-slate-700 mb-6">
-                    This is a summary of the classic business examples provided in the Collins & Porras reading, illustrating each component of the Vision Framework.
+                    Classic business examples from Collins &amp; Porras (1996), illustrating each component of the Vision Framework.
                 </p>
 
                 <!-- I. Core Ideology -->
@@ -707,7 +798,7 @@
                     I. Core Ideology
                 </h3>
                 <p class="text-md text-slate-600 mb-4 italic">Defines the enduring character of an organization. It remains fixed while strategies and practices adapt.</p>
-                
+
                 <h4 class="text-xl font-semibold text-slate-700 mb-3">A. Core Values (Essential and Enduring Tenets)</h4>
                 <div class="overflow-x-auto shadow-md rounded-lg">
                     <table class="example-table">
@@ -757,7 +848,7 @@
                                 <td>To make people happy.</td>
                             </tr>
                             <tr>
-                                <td class="font-medium">McKinsey & Company</td>
+                                <td class="font-medium">McKinsey &amp; Company</td>
                                 <td>To help leading corporations and governments be more successful.</td>
                             </tr>
                             <tr>
@@ -842,13 +933,12 @@
                     </table>
                 </div>
             </section>
-            <!-- [END NEW SECTION] -->
 
             <div class="narrative-connector">
                 <span>Framework Synthesis</span>
             </div>
 
-            <!-- [NEW] SECTION 4: Glossary -->
+            <!-- SECTION 4: Glossary -->
             <section id="glossary" class="content-card border-t-4 border-purple-500">
                 <h2 class="text-3xl font-bold text-purple-700 mb-6">Synthesizing the Frameworks: A Clear Glossary</h2>
                 <p class="text-lg text-slate-700 mb-6">
@@ -860,11 +950,11 @@
                         <h3 class="text-xl font-bold text-slate-800">The Foundation (The "Yin")</h3>
                         <div class="mt-4 space-y-4">
                             <div class="glossary-item">
-                                <p class="glossary-term">Core Values<span class="glossary-question">(Who I am?)</span></p>
+                                <p class="glossary-term">Core Values<span class="glossary-question">(Who am I?)</span></p>
                                 <p class="glossary-definition">The non-negotiable beliefs and principles that guide behavior and decision-making at all levels.</p>
                             </div>
                             <div class="glossary-item">
-                                <p class="glossary-term">Core Purpose<span class="glossary-question">(Why I exist?)</span></p>
+                                <p class="glossary-term">Core Purpose<span class="glossary-question">(Why do I exist?)</span></p>
                                 <p class="glossary-definition">Your organization's fundamental reason for existence, its "why" beyond just making money.</p>
                             </div>
                         </div>
@@ -874,11 +964,11 @@
                         <h3 class="text-xl font-bold text-slate-800">The Future (The "Yang")</h3>
                         <div class="mt-4 space-y-4">
                             <div class="glossary-item">
-                                <p class="glossary-term">Vision<span class="glossary-question">(Where I want to go?)</span></p>
+                                <p class="glossary-term">Vision<span class="glossary-question">(Where do I want to go?)</span></p>
                                 <p class="glossary-definition">A bold, inspirational statement describing what the organization aspires to become in the long term. It provides a clear picture of the desired future.</p>
                             </div>
                             <div class="glossary-item">
-                                <p class="glossary-term">Mission<span class="glossary-question">(How I want to go?)</span></p>
+                                <p class="glossary-term">Mission<span class="glossary-question">(How do I get there?)</span></p>
                                 <p class="glossary-definition">A more specific statement that defines what the organization does, who it serves, and how it differentiates itself. It is the "how" to achieve the vision.</p>
                             </div>
                         </div>
@@ -888,8 +978,12 @@
                         <h3 class="text-xl font-bold text-slate-800">The Goal (The "How-Much")</h3>
                         <div class="mt-4 space-y-4">
                             <div class="glossary-item">
-                                <p class="glossary-term">BHAG (Big, Hairy, Audacious Goal)<span class="glossary-question">(What I want to do?)</span></p>
-                                <p class="glossary-definition">A clear, compelling, long-term goal (10-30 years) that translates the vision into a specific, measurable, and ambitious target. It is the bridge between current execution and the long-term vision.</p>
+                                <p class="glossary-term">BHAG (Big, Hairy, Audacious Goal)<span class="glossary-question">(What do I want to achieve?)</span></p>
+                                <p class="glossary-definition">A clear, compelling, long-term goal (10-30 years) that translates the vision into a specific, measurable, and ambitious target.</p>
+                            </div>
+                            <div class="glossary-item">
+                                <p class="glossary-term">Value Gap <span class="text-sm font-normal text-slate-500">(Kaplan &amp; Norton)</span><span class="glossary-question">(How far do I have to go, in numbers?)</span></p>
+                                <p class="glossary-definition">The quantified distance between the value your BHAG implies you should be worth by some future date, and the value your current, unchanged strategy would produce if simply extended forward.</p>
                             </div>
                         </div>
                     </div>
@@ -904,28 +998,51 @@
                         <svg class="example-icon text-cyan-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                         All Elements Align for Decision-Making
                     </h4>
-                    
+
                     <p class="text-sm text-cyan-800 mb-4">Together, these elements create a framework for strategic decision-making, ensuring that daily activities and long-term goals are aligned with the company's fundamental purpose and values.</p>
                     <ul>
                         <li><strong>Purpose and values fuel the vision:</strong> Your core purpose and values are the foundation from which your vision is built.</li>
                         <li><strong>The vision provides direction for the mission:</strong> The mission is designed to support the achievement of the long-term vision.</li>
-                        <li><strong>The BHAG makes the vision actionable:</strong> The BHAG is a tangible, long-term goal that is a direct outcome of the vision. It acts as the anchor for the company's strategy.</li>
+                        <li><strong>The BHAG makes the vision actionable:</strong> The BHAG is a tangible, long-term goal that is a direct outcome of the vision.</li>
+                        <li><strong>The value gap makes the BHAG manageable:</strong> Quantifying the distance between "where we're headed anyway" and "where the BHAG says we should be" is what lets a board actually fund, track, and govern the vision.</li>
                     </ul>
                 </div>
 
             </section>
-            <!-- [END NEW SECTION] -->
 
+            <div class="narrative-connector">
+                <span>From Aspiration to Number (Kaplan &amp; Norton)</span>
+            </div>
+
+            <!-- SECTION 5: Strategy as a Quest for Value -->
+            <section id="value-quest" class="content-card border-t-4 border-indigo-500">
+                <h2 class="text-3xl font-bold text-indigo-700 mb-6">Strategy as a Quest for Value: What Kaplan &amp; Norton Add</h2>
+                <p class="text-lg text-slate-700 mb-4">
+                    A BHAG is inspirational language until someone attaches a number and a date to it. Kaplan and Norton, in "Developing the Strategy: Vision, Value Gaps, and Analysis," argue that translating vision into strategy means quantifying a <strong>value gap</strong>: the difference between (a) the value the firm will be worth if it simply continues its current trajectory — the "operating plan" — and (b) the value the vision demands it be worth by some future date — the "aspiration." <strong>The entire job of strategy, in this view, is to design the initiatives that close that gap.</strong>
+                </p>
+                <p class="text-lg text-slate-700 mb-4">
+                    Tesla's board has, in effect, run this exact exercise twice, in public, using Musk's own compensation as the instrument. In January 2018, when Tesla's market capitalization was about <strong>$52 billion</strong>, the board approved a package that could pay Musk up to <strong>$55.8 billion</strong> in stock if the company's market cap climbed, in twelve tranches of roughly $50 billion each, all the way to <strong>$650 billion</strong> — alongside sixteen operational milestones spanning revenue growth from $20 billion to $175 billion and adjusted EBITDA from $1.5 billion to $14 billion (Serafeim &amp; Migdal, 2024). That entire ladder <em>is</em> a value gap, cut into rungs a board could vote on, tranche by tranche.
+                </p>
+                <div class="socratic-box">
+                    <p class="label">Before You Continue</p>
+                    <p class="text-lg text-slate-800">
+                        If a "value gap" is just the difference between two numbers, why does it matter <em>how</em> you get from one to the other? Hold that question — Reeves &amp; Job (2023), later in this session, argue the "how" is now the harder problem than the "how much."
+                    </p>
+                </div>
+                <p class="text-lg text-slate-700">
+                    Below, you'll build your own value-gap chart for the BHAG Tesla's board is running <em>today</em> — using the Kaplan &amp; Norton logic on 2025-era numbers instead of 2018-era ones.
+                </p>
+            </section>
 
             <div class="narrative-connector">
                 <span>Hands-on Application Workshops</span>
             </div>
 
-            <!-- SECTION 5: Workshop 1: Discovering Core Purpose -->
+            <!-- SECTION 6: Workshop 1: Discovering Core Purpose -->
             <section id="workshop-1" class="content-card border-t-4 border-red-500">
                 <h2 class="text-3xl font-bold text-red-700 mb-6">Workshop 1: Discover Your Core Purpose (The 5 Whys)</h2>
                 <p class="text-lg text-slate-700 mb-6">
-                    Collins & Porras argue you don't *invent* a purpose, you *discover* it. A powerful method is the "5 Whys."
+                    Collins &amp; Porras argue you don't <em>invent</em> a purpose, you <em>discover</em> it. A powerful method is the "5 Whys."
                 </p>
                 <p class="text-md text-slate-600 mb-6">
                     <span class="font-bold">Your Task:</span> Let's discover Tesla's purpose. Start with what they do, then ask "Why is that important?" five times. Type your answer for "Why #1" to unlock the rest of the chain.
@@ -952,16 +1069,16 @@
                         <input type="text" id="why-5" class="why-input" value="To help preserve humanity." disabled>
                     </div>
                     <div id="why-final-purpose" class="why-result">
-                        <strong>Core Purpose Discovered!</strong> Notice the purpose isn't "to build cars." It's something like "To ensure humanity's future by creating a sustainable energy economy." This is what Tesla claims: "To accelerate the world's transition to sustainable energy."
+                        <strong>Core Purpose Discovered!</strong> Notice the purpose isn't "to build cars." It's the guiding star Musk named in 2006: to move the world from a "mine-and-burn hydrocarbon economy" toward a "solar electric economy."
                     </div>
                 </div>
             </section>
 
-            <!-- SECTION 6: Workshop 2: BHAG or Not? -->
+            <!-- SECTION 7: Workshop 2: BHAG or Not? -->
             <section id="workshop-2" class="content-card border-t-4 border-orange-500">
                 <h2 class="text-3xl font-bold text-orange-700 mb-6">Workshop 2: BHAG or Not?</h2>
                 <p class="text-lg text-slate-700 mb-6">
-                    A true BHAG is audacious, energizing, and has a clear finish line. Generic goals are *not* BHAGs.
+                    A true BHAG is audacious, energizing, and has a clear finish line. Generic goals are <em>not</em> BHAGs.
                 </p>
                 <p class="text-md text-slate-600 mb-6">
                     <span class="font-bold">Your Task:</span> Read each statement and decide: Is this a true BHAG or just a generic goal?
@@ -1015,21 +1132,21 @@
                         </div>
                         <div id="bhag-4-exp" class="bhag-explanation">
                             <div class="bhag-explanation-content incorrect">
-                                <strong>Correct. Not a BHAG.</strong> This is just good management. It's a *process*, not a *goal*. It has no finish line and is not audacious.
+                                <strong>Correct. Not a BHAG.</strong> This is just good management. It's a <em>process</em>, not a <em>goal</em>. It has no finish line and is not audacious.
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- SECTION 7: Simulation 1: The "Why" Behind the "Chaos" -->
+            <!-- SECTION 8: Simulation 1: The "Why" Behind the "Chaos" -->
             <section id="sim-1" class="content-card">
                 <h2 class="text-3xl font-bold text-blue-700 mb-6">Simulation: The "Why" Behind the "Chaos"</h2>
                 <p class="text-lg text-slate-700 mb-6">
-                    Now let's connect the dots. The "chaos" we saw in Session 2 (Tesla's Strategy) was not random. It was the *necessary consequence* of their Vision (Session 3).
+                    Tesla's operational chaos — production hell, bypassing dealers, building its own battery factories — was not random. It was the <em>necessary consequence</em> of its Vision.
                 </p>
                 <p class="text-md text-slate-600 mb-6">
-                    <span class="font-bold">Your Task:</span> Drag the "Why" (The Vision) from the left column to the "What" (The Strategic Choice) it *logically explains* on the right. Why did they *have* to make that move?
+                    <span class="font-bold">Your Task:</span> Drag the "Why" (The Vision) from the left column to the "What" (The Strategic Choice) it <em>logically explains</em> on the right. Why did Tesla <em>have</em> to make that move?
                 </p>
 
                 <div class="sim-container">
@@ -1045,119 +1162,223 @@
 
                     <!-- Column 2: The "What" (Strategy) -->
                     <div class="sim-column">
-                        <h4>The "What" (Our Strategy from Session 2)</h4>
-                        
+                        <h4>The "What" (Tesla's Actual Strategic Choices)</h4>
+
                         <div class="sim-target" data-id="what-1">
-                            <h5>Strategy: Vertical Integration (Gigafactories)</h5>
-                            <p class="text-sm text-slate-500">Why did we build our own battery factories instead of just buying from suppliers like every other car company?</p>
+                            <h5>Strategy: Vertical Integration (Gigafactory)</h5>
+                            <p class="text-sm text-slate-500">Why did Tesla announce, in 2013, that it would build its own battery Gigafactory in Nevada instead of just buying from suppliers like every other car company?</p>
                         </div>
                         <div id="result-1" class="sim-result">
-                            <strong>Correct!</strong> To truly *accelerate* the transition (our Purpose), we couldn't wait for suppliers. We had to build the Gigafactory to *force* the world's battery supply to exist.
+                            <strong>Correct!</strong> To truly <em>accelerate</em> the transition (our Purpose), Tesla couldn't wait for suppliers. It had to build the Gigafactory to <em>force</em> the world's battery supply to exist.
                         </div>
 
                         <div class="sim-target" data-id="what-2">
                             <h5>Trade-off: Bypassing Dealerships</h5>
-                            <p class="text-sm text-slate-500">Why did we spend billions building stores and fighting legal battles instead of using the existing 18,000+ US car dealerships?</p>
+                            <p class="text-sm text-slate-500">Why did Tesla spend heavily building its own stores and fighting legal battles instead of using existing franchised dealer networks?</p>
                         </div>
                         <div id="result-2" class="sim-result">
-                            <strong>Exactly!</strong> From *First Principles*, the dealer model (profiting from service) is misaligned with low-maintenance EVs. We had to create a new model to control the customer experience.
+                            <strong>Exactly!</strong> From <em>first principles</em>, the dealer model (which profits from service) is misaligned with low-maintenance EVs. Tesla had to create a new model to control the customer experience.
                         </div>
 
                         <div class="sim-target" data-id="what-3">
                             <h5>Execution: "Production Hell"</h5>
-                            <p class="text-sm text-slate-500">Why did we endure the chaos, risk bankruptcy, and sleep on the factory floor? Why not just grow slowly and safely?</p>
+                            <p class="text-sm text-slate-500">Why did Musk send an "Ultra Hardcore" email demanding families "reduce time off... to avoid divorce," and later push Model 3 output toward 7,000 units a week? Why not just grow slowly and safely?</p>
                         </div>
                         <div id="result-3" class="sim-result">
-                            <strong>That's right!</strong> "Production Hell" was the *only* way to meet the impossible deadline of our *BHAG*. Slow and safe would have been a *failure* to achieve the Master Plan.
+                            <strong>That's right!</strong> "Production Hell" was the <em>only</em> way to meet the impossible deadline of our <em>BHAG</em>. Slow and safe would have meant failing to reach the mass-market car step of the Master Plan.
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- SECTION 8: Workshop 3: The "Value Gap" -->
-            <section id="workshop-3" class="content-card border-t-4 border-teal-500">
-                <h2 class="text-3xl font-bold text-teal-700 mb-6">Workshop 3: Bridge the "Value Gap" (Kaplan & Norton)</h2>
-                <p class="text-lg text-slate-700 mb-6">
-                    Kaplan & Norton's "Value Gap" is the gulf between our BHAG and our "status quo" reality. In 2016, Tesla's BHAG was 500,000 cars. Their status quo projection was perhaps ~100,000.
-                </p>
-                <p class="text-lg text-slate-700 mb-6">
-                    This created a <span class="font-bold text-teal-600">Value Gap of 400,000 cars.</span>
+            <div class="narrative-connector">
+                <span>Quantifying the Gap (Kaplan &amp; Norton)</span>
+            </div>
+
+            <!-- SECTION 9: Value Gap Simulator -->
+            <section id="value-gap-simulator" class="content-card border-t-4 border-teal-500">
+                <h2 class="text-3xl font-bold text-teal-700 mb-6">Simulator: Size Tesla's Next Value Gap</h2>
+                <p class="text-lg text-slate-700 mb-4">
+                    Tesla's board has drawn a new value gap for a new BHAG. In September 2025, the board proposed — and shareholders reportedly approved that November — a decade-long compensation award for Musk potentially worth on the order of <strong>$1 trillion</strong>, contingent on Tesla's market capitalization climbing from roughly <strong>$1.3 trillion</strong> (its approximate level in mid-2025) to about <strong>$8.5 trillion</strong>, alongside operational milestones covering vehicle deliveries, a robotaxi fleet, and Optimus robot production. (Treat these figures as approximate — they were widely reported in the financial press but this case-note was not audited against Tesla's proxy filing.)
                 </p>
                 <p class="text-md text-slate-600 mb-6">
-                    <span class="font-bold">Your Task:</span> As the strategist, you must *close this gap* by funding strategic themes. Use the sliders to allocate how much of the 400k-car gap you will try to close with each initiative.
+                    <span class="font-bold">Your Task:</span> Play strategist. Set Tesla's starting value, the growth rate it would achieve just by <em>continuing as a car company</em> ("status quo"), and the BHAG's target value and horizon. The chart shows the gap your strategic initiatives — robotaxis, Optimus, energy storage — must fill.
                 </p>
 
-                <div class="slider-container">
-                    <label for="theme1" class="slider-label"><span class="theme-name">Theme 1: "Alien Dreadnought" (Radical Automation)</span> <span id="theme1-val" class="theme-value">150k</span></label>
-                    <input type="range" id="theme1" class="gap-slider" min="0" max="400000" value="150000" step="10000">
-                </div>
-                <div class="slider-container">
-                    <label for="theme2" class="slider-label"><span class="theme-name">Theme 2: Gigafactory 1 (Battery Supply)</span> <span id="theme2-val" class="theme-value">150k</span></label>
-                    <input type="range" id="theme2" class="gap-slider" min="0" max="400000" value="150000" step="10000">
-                </div>
-                <div class="slider-container">
-                    <label for="theme3" class="slider-label"><span class="theme-name">Theme 3: New Model 3 Assembly Lines (Traditional)</span> <span id="theme3-val" class="theme-value">100k</span></label>
-                    <input type="range" id="theme3" class="gap-slider" min="0" max="400000" value="100000" step="10000">
-                </div>
-
-                <div class="text-center mt-6">
-                    <div id="total-gap-fill" class="bg-slate-100 text-slate-800 border-2 border-slate-300">
-                        Gap You've Filled: 400,000 / 400,000
+                <div class="vg-input-grid mb-6">
+                    <div>
+                        <label for="vg-start" class="slider-label"><span class="theme-name">Starting Market Cap ($B)</span></label>
+                        <input type="number" id="vg-start" class="why-input" value="1300" min="1" step="10">
+                    </div>
+                    <div>
+                        <label for="vg-target" class="slider-label"><span class="theme-name">BHAG Target Market Cap ($B)</span></label>
+                        <input type="number" id="vg-target" class="why-input" value="8500" min="1" step="10">
+                    </div>
+                    <div class="slider-container mb-0">
+                        <label for="vg-rate" class="slider-label"><span class="theme-name">Status-Quo Growth Rate</span> <span id="vg-rate-val" class="theme-value">12%/yr</span></label>
+                        <input type="range" id="vg-rate" min="0" max="30" value="12" step="1">
+                    </div>
+                    <div class="slider-container mb-0">
+                        <label for="vg-years" class="slider-label"><span class="theme-name">Years to Target</span> <span id="vg-years-val" class="theme-value">10 yrs</span></label>
+                        <input type="range" id="vg-years" min="3" max="15" value="10" step="1">
                     </div>
                 </div>
-                <div id="gap-analysis" class="sim-result visible text-center">
-                    <strong>Analysis:</strong> You've allocated your resources. Notice the trade-offs. Putting so much into "Alien Dreadnought" and "Gigafactory" is a *massive*, high-risk bet on unproven tech. This is what *causes* "Production Hell" but is also the *only* strategy that has a chance of hitting the BHAG.
+
+                <div class="chart-container mb-6">
+                    <canvas id="valueGapChart"></canvas>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="vg-stat-card">
+                        <div class="vg-stat-label">Required CAGR</div>
+                        <div class="vg-stat-value" id="vg-required-cagr">--%</div>
+                    </div>
+                    <div class="vg-stat-card">
+                        <div class="vg-stat-label">Status-Quo Value at Horizon</div>
+                        <div class="vg-stat-value" id="vg-status-quo-value">$--B</div>
+                    </div>
+                    <div class="vg-stat-card">
+                        <div class="vg-stat-label">The Value Gap</div>
+                        <div class="vg-stat-value" id="vg-gap-value">$--B</div>
+                    </div>
+                </div>
+                <p id="vg-narrative" class="text-md text-slate-600 mt-6"></p>
+            </section>
+
+            <div class="narrative-connector">
+                <span>Operating Under the Vision (Reeves &amp; Job, 2023)</span>
+            </div>
+
+            <!-- SECTION 10: Operations in an Era of Radical Uncertainty -->
+            <section id="operations-uncertainty" class="content-card border-t-4 border-violet-500">
+                <h2 class="text-3xl font-bold text-violet-700 mb-6">Beyond the Vision: Operating in an Era of Radical Uncertainty</h2>
+                <p class="text-lg text-slate-700 mb-4">
+                    Vision tells you where to point the company. Kaplan &amp; Norton tell you how big a gap you must close. Neither tells you how to build an operating model that survives the years between announcing a BHAG and reaching it — years that, per Reeves and Job (2023) writing in <em>Harvard Business Review</em>, look considerably less predictable now than they did in 2006. They argue the strategic job of operations has shifted twice in a generation:
+                </p>
+                <ol class="list-decimal pl-6 space-y-3 text-lg text-slate-700 mb-4">
+                    <li><strong>Efficiency (historically):</strong> operations existed to build scale and ride the experience curve to a self-reinforcing cost advantage — even Apple's Tim Cook, they note, is fundamentally an operations specialist.</li>
+                    <li><strong>Resilience (post-platform, post-COVID):</strong> operations existed to survive shocks. BCG Henderson Institute tracked the total shareholder return of more than <strong>2,700 large public companies from January 2019 to January 2023</strong> and found only a small minority became "structural winners" who kept thriving; many "temporary winners" recovered from COVID but had since lost roughly <strong>two-thirds of their advantage</strong> over the worst performers. Separately, Reeves &amp; Job cite research showing that over a 25-year window, <strong>30% of firms' total shareholder returns were earned during crises that made up only 11% of the period</strong> — resilience isn't defensive, it's where a large share of value gets made.</li>
+                    <li><strong>Optionality (now):</strong> in an "era of radical uncertainty," operations must efficiently build <em>a portfolio of options</em> — each a candidate basis for future advantage — and reweight them as the future reveals itself. Their examples: Spotify's "Discover Weekly" monetizes customer search; Roblox hands users the tools to build content themselves rather than the company guessing what to build; Indochino's made-to-order suits avoid over-investing in unsold designs; Slack began as an internal tool inside a failed video-game studio before its creators recognized its own option value; even ChatGPT's free launch was designed to gather feedback as much as spark interest.</li>
+                </ol>
+                <p class="text-lg text-slate-700 mb-6">
+                    Tesla's own operating history tracks this shift. Announcing Gigafactory 1 in Storey County, Nevada in 2013 wasn't primarily about lowering unit cost — Musk called it "a very green factory" with "essentially zero emissions" — it was a <strong>resilience</strong> move: refusing to depend on any single external battery supplier ever again. By contrast, unveiling the Optimus humanoid robot prototype in 2022, and launching a limited robotaxi pilot in Austin, Texas in 2025, look like <strong>optionality</strong> plays: bets made precisely because the core EV business had slowed — Tesla's 2024 deliveries fell year-over-year for the first time in over a decade — and China's BYD had, by most 2024 tallies, overtaken Tesla in total global new-energy-vehicle volume (though a large share of BYD's volume is plug-in hybrids, not pure battery-electric vehicles, so the comparison isn't perfectly apples-to-apples).
+                </p>
+
+                <h3 class="text-2xl font-bold text-slate-800 mb-4">Sort It Yourself: Efficiency, Resilience, or Optionality?</h3>
+                <p class="text-md text-slate-600 mb-6"><span class="font-bold">Your Task:</span> For each real operational choice below, click the bucket from Reeves &amp; Job's (2023) framework it best fits.</p>
+
+                <div id="sorter-container">
+                    <div class="sorter-card">
+                        <p class="sorter-scenario"><strong>1.</strong> Toyota's decades-long pursuit of lean manufacturing to push unit costs down the experience curve.</p>
+                        <div class="sorter-btn-row">
+                            <button class="sorter-btn sorter-btn-eff" onclick="checkSort(this, 'eff', 'eff')">Efficiency</button>
+                            <button class="sorter-btn sorter-btn-res" onclick="checkSort(this, 'res', 'eff')">Resilience</button>
+                            <button class="sorter-btn sorter-btn-opt" onclick="checkSort(this, 'opt', 'eff')">Optionality</button>
+                        </div>
+                        <div class="sorter-explanation"></div>
+                    </div>
+                    <div class="sorter-card">
+                        <p class="sorter-scenario"><strong>2.</strong> Tesla building Gigafactory 1 so it would never again be short of battery cells, even though owning production cost more upfront than buying from a single outside supplier.</p>
+                        <div class="sorter-btn-row">
+                            <button class="sorter-btn sorter-btn-eff" onclick="checkSort(this, 'eff', 'res')">Efficiency</button>
+                            <button class="sorter-btn sorter-btn-res" onclick="checkSort(this, 'res', 'res')">Resilience</button>
+                            <button class="sorter-btn sorter-btn-opt" onclick="checkSort(this, 'opt', 'res')">Optionality</button>
+                        </div>
+                        <div class="sorter-explanation"></div>
+                    </div>
+                    <div class="sorter-card">
+                        <p class="sorter-scenario"><strong>3.</strong> Spotify's "Discover Weekly," which mines millions of users' listening and search behavior to build a personalized playlist no competitor's catalogue alone can replicate.</p>
+                        <div class="sorter-btn-row">
+                            <button class="sorter-btn sorter-btn-eff" onclick="checkSort(this, 'eff', 'opt')">Efficiency</button>
+                            <button class="sorter-btn sorter-btn-res" onclick="checkSort(this, 'res', 'opt')">Resilience</button>
+                            <button class="sorter-btn sorter-btn-opt" onclick="checkSort(this, 'opt', 'opt')">Optionality</button>
+                        </div>
+                        <div class="sorter-explanation"></div>
+                    </div>
+                    <div class="sorter-card">
+                        <p class="sorter-scenario"><strong>4.</strong> Roblox giving its users the tools to build their own games and experiences, rather than the company guessing what to build for them.</p>
+                        <div class="sorter-btn-row">
+                            <button class="sorter-btn sorter-btn-eff" onclick="checkSort(this, 'eff', 'opt')">Efficiency</button>
+                            <button class="sorter-btn sorter-btn-res" onclick="checkSort(this, 'res', 'opt')">Resilience</button>
+                            <button class="sorter-btn sorter-btn-opt" onclick="checkSort(this, 'opt', 'opt')">Optionality</button>
+                        </div>
+                        <div class="sorter-explanation"></div>
+                    </div>
+                    <div class="sorter-card">
+                        <p class="sorter-scenario"><strong>5.</strong> A manufacturer deliberately qualifying two redundant suppliers on different continents for a critical component, even though it costs more than single-sourcing.</p>
+                        <div class="sorter-btn-row">
+                            <button class="sorter-btn sorter-btn-eff" onclick="checkSort(this, 'eff', 'res')">Efficiency</button>
+                            <button class="sorter-btn sorter-btn-res" onclick="checkSort(this, 'res', 'res')">Resilience</button>
+                            <button class="sorter-btn sorter-btn-opt" onclick="checkSort(this, 'opt', 'res')">Optionality</button>
+                        </div>
+                        <div class="sorter-explanation"></div>
+                    </div>
+                    <div class="sorter-card">
+                        <p class="sorter-scenario"><strong>6.</strong> Tesla's 2025 push into a limited robotaxi pilot and mass-production plans for the Optimus robot, even as its core car business slowed and Chinese rival BYD's global NEV volumes pulled ahead.</p>
+                        <div class="sorter-btn-row">
+                            <button class="sorter-btn sorter-btn-eff" onclick="checkSort(this, 'eff', 'opt')">Efficiency</button>
+                            <button class="sorter-btn sorter-btn-res" onclick="checkSort(this, 'res', 'opt')">Resilience</button>
+                            <button class="sorter-btn sorter-btn-opt" onclick="checkSort(this, 'opt', 'opt')">Optionality</button>
+                        </div>
+                        <div class="sorter-explanation"></div>
+                    </div>
                 </div>
             </section>
 
-
-            <!-- SECTION 9: Simulation 3: The NEW BHAG -->
+            <!-- SECTION 11: Simulation 3: The NEW BHAG -->
             <section id="sim-3" class="content-card">
                 <h2 class="text-3xl font-bold text-blue-700 mb-6">Debate: What Happens When the Vision "Drifts"?</h2>
                 <p class="text-lg text-slate-700 mb-6">
-                    A visionary company *must* set a new BHAG after achieving its last one. If it doesn't, it suffers the "We've Arrived Syndrome" (like NASA post-moon landing).
+                    A visionary company <em>must</em> set a new BHAG after achieving its last one. If it doesn't, it suffers the "We've Arrived Syndrome" (like NASA post-moon landing).
                 </p>
                 <p class="text-lg text-slate-700 mb-6">
-                    Tesla largely achieved its 2006 Master Plan. Now, Elon Musk's vision has expanded to "AI & Robotics," "X (the 'everything app')," and "Neuralink."
+                    Tesla had, by the mid-2020s, largely achieved its 2006 Master Plan. Musk's attention had visibly expanded to AI, robotics, and — after acquiring the platform in 2022 for roughly $44 billion — X (formerly Twitter).
                 </p>
-                
+
                 <div class="bg-red-50 border-l-4 border-red-500 p-6 rounded-r-lg mb-6">
                     <h4 class="text-xl font-bold text-red-800">The 2024 Governance Crisis: A Real-World Debate</h4>
                     <p class="text-lg text-red-700 mt-2">
-                        In early 2024, Elon Musk publicly stated he was "uncomfortable" growing Tesla into an AI & robotics leader *unless* he had ~25% voting control. He threatened to build these new ventures *outside* of Tesla if his demands weren't met.
+                        In January 2024, Elon Musk tweeted: "I am uncomfortable growing Tesla to be a leader in AI &amp; robotics without having ~25% voting control. Enough to be influential, but not so much that I can't be overturned." At the time he held about 13% of Tesla's shares and votes (Serafeim &amp; Migdal, 2024).
                     </p>
                 </div>
 
                 <p class="text-lg text-slate-700 mb-6">
-                    <span class="font-bold">Your Task:</span> As a board member, how do you interpret this? Click your choice.
+                    <span class="font-bold">Your Task:</span> As a board member in January 2024, how do you interpret this? Click your choice.
                 </p>
-                
+
                 <div id="debate-container">
                     <div class="debate-option" data-choice="A">
                         <strong class="text-lg text-slate-800">A) This is a BETRAYAL of the Core Purpose.</strong>
                         <p class="text-slate-600">He's holding the company hostage for a new, personal BHAG ("AI") that has nothing to do with the original purpose ("Sustainable Energy").</p>
                     </div>
                     <div class="debate-option" data-choice="B">
-                        <strong class="text-lg text-slate-800">B) This is the *EXPRESSION* of the Core Purpose.</strong>
-                        <p class="text-slate-600">The *real* Core Purpose was always "Solve humanity's biggest problems." Sustainable energy was just the first. AI is the next.</p>
+                        <strong class="text-lg text-slate-800">B) This is the <em>EXPRESSION</em> of the Core Purpose.</strong>
+                        <p class="text-slate-600">The <em>real</em> Core Purpose was always "Solve humanity's biggest problems." Sustainable energy was just the first. AI is the next.</p>
                     </div>
                     <div class="debate-option" data-choice="C">
-                        <strong class_name="text-lg text-slate-800">C) This is a NEW ENVISIONED FUTURE.</strong>
-                        <p class_name="text-slate-600">This is the (messy) creation of the *next* BHAG. The Core Ideology is stable, but he's forcing the company to climb a new, bigger mountain.</p>
+                        <strong class="text-lg text-slate-800">C) This is a NEW ENVISIONED FUTURE.</strong>
+                        <p class="text-slate-600">This is the (messy) creation of the <em>next</em> BHAG. The Core Ideology is stable, but he's forcing the company to climb a new, bigger mountain.</p>
                     </div>
                 </div>
 
                 <div id="analysis-A" class="debate-analysis">
                     <h5 class="font-bold text-lg text-slate-700">Framework Analysis (Choice A):</h5>
-                    <p>This is a governance-first view. It implies the *company's* Core Ideology is fixed, and the *leader's* vision has now diverged from it. This is a classic "Founder's Dilemma" and a massive governance risk (linking back to Session 2). It suggests the leader is no longer aligned with the organization's purpose.</p>
+                    <p>This is a governance-first view. It implies the <em>company's</em> Core Ideology is fixed, and the <em>leader's</em> vision has now diverged from it — a classic "Founder's Dilemma" and governance risk.</p>
                 </div>
                 <div id="analysis-B" class="debate-analysis">
                     <h5 class="font-bold text-lg text-slate-700">Framework Analysis (Choice B):</h5>
-                    <p>This is a leader-centric view. It implies the Core Ideology is not *Tesla's* but *Musk's*. The company is merely the *vehicle* for his personal Core Purpose. This is a very different, and much riskier, organizational model that makes the leader and the purpose inseparable.</p>
+                    <p>This is a leader-centric view. It implies the Core Ideology is not <em>Tesla's</em> but <em>Musk's</em>, and the company is the <em>vehicle</em> for his personal Core Purpose — a riskier model that makes leader and purpose inseparable.</p>
                 </div>
                 <div id="analysis-C" class="debate-analysis">
                     <h5 class="font-bold text-lg text-slate-700">Framework Analysis (Choice C):</h5>
-                    <p>This perfectly fits the Collins & Porras model. The "Envisioned Future" (Yang) is *supposed* to change. This is the painful, chaotic process of stimulating new progress. The Core Ideology (Yin) of "accelerating" and "first principles" is still there, but the *target* (the BHAG) is evolving from "cars" to "intelligence."</p>
+                    <p>This fits the Collins &amp; Porras model cleanly. The "Envisioned Future" (Yang) is <em>supposed</em> to change. The Core Ideology (Yin) of "accelerating" and "first-principles thinking" persists; only the target — the BHAG — is evolving from "cars" to "intelligence."</p>
+                </div>
+
+                <div id="debate-epilogue" class="epilogue-box">
+                    <h5>Epilogue: What Actually Happened</h5>
+                    <p class="text-sm text-amber-900">
+                        In January 2024, the Delaware Court of Chancery voided Musk's original 2018 pay package entirely (<em>Tornetta v. Musk</em>). Shareholders re-ratified it in June 2024, but the Delaware court declined to restore it that December. Rather than fight further over the <em>old</em> BHAG (2018's car-and-energy-milestone ladder), Tesla's board went the Collins &amp; Porras route: in September 2025 it proposed an entirely new, decade-long compensation award explicitly tied to a new BHAG — market cap milestones running to roughly $8.5 trillion and operational milestones covering robotaxi and Optimus deployment — which shareholders reportedly approved that November. Read through the framework: the company didn't resolve the governance fight by restoring the old vision. It resolved it by writing a new Envisioned Future and putting a fresh value gap underneath it.
+                    </p>
                 </div>
             </section>
 
@@ -1165,60 +1386,60 @@
                 <span>Conclusion: The Full Strategic Picture</span>
             </div>
 
-            <!-- SECTION 10: Conclusion -->
+            <!-- SECTION 12: Conclusion -->
             <section id="conclusion" class="content-card">
                 <h2 class="text-3xl font-bold text-blue-700 mb-6">Conclusion: The Strategic Thread</h2>
                 <p class="text-lg text-slate-700 mb-4">
-                    Today, we completed our strategic picture. We've seen how all three sessions are deeply interconnected.
+                    Today we added the layer beneath — and above — strategy itself.
                 </p>
                 <ul class="list-none space-y-4">
                     <li class="flex items-start">
-                        <span class="text-2xl font-bold text-blue-600 mr-4">S1:</span>
+                        <span class="text-2xl font-bold text-blue-600 mr-4">1.</span>
                         <div>
-                            <h4 class="text-xl font-bold text-slate-800">Porter's "Blueprint" & Mintzberg's "Craft"</h4>
-                            <p class="text-slate-600">We learned the two big-picture theories of strategy.</p>
+                            <h4 class="text-xl font-bold text-slate-800">Collins &amp; Porras (1996): Vision Explains the "Why"</h4>
+                            <p class="text-slate-600">Core Ideology (Values + Purpose) stays fixed; the Envisioned Future (BHAG + Vivid Description) is the mountain a company climbs and then re-sets.</p>
                         </div>
                     </li>
                     <li class="flex items-start">
-                        <span class="text-2xl font-bold text-blue-600 mr-4">S2:</span>
+                        <span class="text-2xl font-bold text-blue-600 mr-4">2.</span>
                         <div>
-                            <h4 class="text-xl font-bold text-slate-800">Tesla's "Blueprint" (The What)</h4>
-                            <p class="text-slate-600">We saw the radical <span class="font-semibold">Position</span> and <span class="font-semibold">Trade-offs</span> of Tesla's strategy, and the "Production Hell" <span class="font-semibold">Execution</span> that resulted.</p>
+                            <h4 class="text-xl font-bold text-slate-800">Kaplan &amp; Norton: Vision Becomes a Number</h4>
+                            <p class="text-slate-600">A value gap — the distance between "where we're headed anyway" and "where the BHAG says we should be" — is what turns an inspiring sentence into something a board can fund, track, and govern.</p>
                         </div>
                     </li>
                     <li class="flex items-start">
-                        <span class="text-2xl font-bold text-blue-600 mr-4">S3:</span>
+                        <span class="text-2xl font-bold text-blue-600 mr-4">3.</span>
                         <div>
-                            <h4 class="text-xl font-bold text-slate-800">Tesla's "Vision" (The Why)</h4>
-                            <p class="text-slate-600">Today, we saw that this chaos was not random. It was *driven* by a powerful <span class="font-semibold">Core Ideology</span> and a massive, audacious <span class="font-semibold">BHAG</span>.</p>
+                            <h4 class="text-xl font-bold text-slate-800">Reeves &amp; Job (2023): The Operating Model Must Survive the Gap</h4>
+                            <p class="text-slate-600">Closing a decade-long value gap under radical uncertainty takes more than efficient execution — it takes resilience against shocks and a portfolio of options, reweighted as the future reveals itself.</p>
                         </div>
                     </li>
                 </ul>
                 <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg mt-6">
                     <h4 class="text-xl font-bold text-blue-800">The Final Synthesis</h4>
                     <p class="text-lg text-blue-700 mt-2">
-                        Tesla's strategy is the ultimate hybrid: It uses the *emergent, chaotic "craft"* (Mintzberg) of "Production Hell" to achieve a *deliberate, audacious "blueprint"* (Porter) which is itself *powered by* an uncompromising *Vision* (Collins & Porras).
+                        A strategy (Porter/Mintzberg) is a plan for winning a game. A vision (Collins &amp; Porras) is the reason the game is worth playing at all. A value gap (Kaplan &amp; Norton) is what makes the vision governable. And an operating model built for resilience and optionality (Reeves &amp; Job) is what keeps the company alive long enough to find out whether the vision was right.
                     </p>
                 </div>
 
                 <h3 class="text-2xl font-bold text-slate-800 mt-8 mb-4">Look-Ahead:</h3>
                 <p class="text-lg text-slate-700">
-                    In our next sessions, we will ask: "How do you *manage* this?" We will move from strategy formulation to execution, exploring tools like the Balanced Scorecard to translate a high-level vision into day-to-day action.
+                    Next session, we turn outward: having established <em>why</em> a firm competes and <em>how much</em> value it must create, we ask what an industry's structure allows it to capture, using Porter's Five Forces.
                 </p>
             </section>
 
-            <!-- SECTION 11: Knowledge Check -->
+            <!-- SECTION 13: Knowledge Check -->
             <section id="quiz" class="content-card border-t-4 border-yellow-400">
-                <h2 class="text-3xl font-bold text-yellow-700 mb-6">Knowledge Check: Sessions 1-3</h2>
+                <h2 class="text-3xl font-bold text-yellow-700 mb-6">Knowledge Check</h2>
                 <p class="text-lg text-slate-700 mb-6">
-                    Test your understanding of the concepts from all three sessions. Select an answer to see immediate feedback.
+                    Test your understanding of vision, purpose, values, the value gap, and operating models. Select an answer to see immediate feedback.
                 </p>
 
                 <div class="bg-slate-50 p-6 rounded-lg shadow-inner">
                     <div class="flex justify-between items-center mb-6 border-b border-slate-300 pb-4">
-                        <h3 class="text-2xl font-bold text-slate-800">15-Question Quiz</h3>
+                        <h3 class="text-2xl font-bold text-slate-800">Session 2 Quiz</h3>
                         <div class="text-lg font-bold text-slate-700 bg-slate-200 px-4 py-2 rounded-lg">
-                            Score: <span id="quiz-score">0 / 15</span>
+                            Score: <span id="quiz-score">0 / 0</span>
                         </div>
                     </div>
                     <div id="quiz-container" class="space-y-6">
@@ -1226,9 +1447,9 @@
                     </div>
                 </div>
             </section>
-            
+
         </main>
-                
+
         <!-- MODAL STRUCTURE -->
         <div id="modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-[100] opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out">
             <div id="modal-content" class="bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-[85vh] overflow-y-auto p-6 sm:p-8 relative transform scale-95 opacity-0 transition-all duration-300 ease-in-out">
@@ -1253,7 +1474,7 @@
                         </div>
                         <span class="text-xs font-semibold text-slate-300 group-hover:text-white transition-colors">Dr. Swapnil Sahoo</span>
                     </a>
-                    <p class="text-xs text-slate-400 order-last sm:order-none">© Dr. Swapnil Sahoo 2025</p>
+                    <p class="text-xs text-slate-400 order-last sm:order-none">© Dr. Swapnil Sahoo 2026</p>
                     <div class="flex space-x-5 sm:space-x-6 order-first sm:order-last">
                         <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white footer-link" title="X/Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
                         <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white footer-link" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.575 2h.093zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" clip-rule="evenodd"/></svg></a>
@@ -1287,14 +1508,12 @@
                     });
 
                     if (!activeId && entries.length > 0) {
-                        // Fallback: find the one closest to the top
                         let closest = entries.reduce((prev, curr) => {
                             return (Math.abs(curr.boundingClientRect.top) < Math.abs(prev.boundingClientRect.top) ? curr : prev);
                         });
                         activeId = closest.target.id;
                     }
-                    
-                    // If still no active ID, default to first section if it's near
+
                     if (!activeId && window.scrollY < 200 && sections.length > 0) {
                         activeId = sections[0].id;
                     }
@@ -1303,8 +1522,7 @@
                     navLinks.forEach(link => {
                         link.classList.toggle('active-nav', link.getAttribute('href') === targetHref);
                     });
-                    
-                    // Check if the option exists before setting it
+
                     if (mobileNav.querySelector(`option[value="${targetHref}"]`)) {
                         if (mobileNav.value !== targetHref) {
                             mobileNav.value = targetHref;
@@ -1324,7 +1542,6 @@
                     }
                 });
 
-                // Add smooth scroll for desktop nav links
                 navLinks.forEach(link => {
                     link.addEventListener('click', function(e) {
                         e.preventDefault();
@@ -1336,8 +1553,8 @@
                         }
                     });
                 });
-                
-                // --- [NEW] Workshop 1: 5 Whys ---
+
+                // --- Workshop 1: 5 Whys ---
                 const whyInput = document.getElementById('why-2');
                 const whyLevel3 = document.getElementById('why-level-3');
                 const whyLevel4 = document.getElementById('why-level-4');
@@ -1347,31 +1564,21 @@
                 if (whyInput) {
                     whyInput.addEventListener('input', () => {
                         if (whyInput.value.trim() !== '') {
-                            // Unlock the rest of the chain
                             whyLevel3.style.display = 'flex';
                             whyLevel4.style.display = 'flex';
                             whyLevel5.style.display = 'flex';
-                            setTimeout(() => {
-                                whyLevel3.style.opacity = '1';
-                            }, 100);
-                            setTimeout(() => {
-                                whyLevel4.style.opacity = '1';
-                            }, 300);
-                            setTimeout(() => {
-                                whyLevel5.style.opacity = '1';
-                            }, 500);
-                            setTimeout(() => {
-                                whyFinalPurpose.classList.add('visible');
-                            }, 700);
+                            setTimeout(() => { whyLevel3.style.opacity = '1'; }, 100);
+                            setTimeout(() => { whyLevel4.style.opacity = '1'; }, 300);
+                            setTimeout(() => { whyLevel5.style.opacity = '1'; }, 500);
+                            setTimeout(() => { whyFinalPurpose.classList.add('visible'); }, 700);
                         }
                     });
                 }
 
-                // --- [NEW] Workshop 2: BHAG or Not? ---
+                // --- Workshop 2: BHAG or Not? ---
                 window.checkBhag = (id, isBHAG) => {
                     const explanation = document.getElementById(`${id}-exp`);
                     const content = explanation.querySelector('.bhag-explanation-content');
-                    // Determine if the user's choice was correct
                     const correct = (id === 'bhag-1' && !isBHAG) ||
                                     (id === 'bhag-2' && isBHAG) ||
                                     (id === 'bhag-3' && isBHAG) ||
@@ -1383,16 +1590,14 @@
                     } else {
                         content.classList.add('incorrect');
                         content.classList.remove('correct');
-                        // Swap the text to show the correct rationale, even if they were wrong
                         if (id === 'bhag-1' || id === 'bhag-4') {
                             content.innerHTML = `<strong>Incorrect.</strong> This is just a generic statement / management process. A true BHAG is audacious and has a clear finish line.`;
                         } else {
-                            content.innerHTML = `<strong>Incorrect.</strong> This *is* a classic BHAG. It's audacious, energizing, and has a clear, measurable goal.`;
+                            content.innerHTML = `<strong>Incorrect.</strong> This <em>is</em> a classic BHAG. It's audacious, energizing, and has a clear, measurable goal.`;
                         }
                     }
                     explanation.classList.add('visible');
-                    
-                    // Disable buttons after choice
+
                     const buttons = explanation.parentElement.querySelectorAll('.bhag-btn');
                     buttons.forEach(btn => btn.disabled = true);
                 };
@@ -1403,9 +1608,8 @@
                 const simTargets = document.querySelectorAll('.sim-target');
                 let draggedItem = null;
 
-                // Correct data mappings
                 const correctMatches = {
-                    'what-1': 'why-1', // Gigafactories -> Purpose
+                    'what-1': 'why-1', // Gigafactory -> Purpose
                     'what-2': 'why-3', // Dealers -> First-Principles
                     'what-3': 'why-2'  // Production Hell -> BHAG
                 };
@@ -1416,7 +1620,7 @@
                         setTimeout(() => e.target.classList.add('dragging'), 0);
                     });
                     item.addEventListener('dragend', () => {
-                        if (draggedItem) { // Check if draggedItem is not null
+                        if (draggedItem) {
                             draggedItem.classList.remove('dragging');
                         }
                         draggedItem = null;
@@ -1437,29 +1641,24 @@
                         if (draggedItem) {
                             const targetId = target.dataset.id;
                             const draggedId = draggedItem.dataset.id;
-                            
-                            // Check if the match is correct
+
                             if (correctMatches[targetId] === draggedId) {
-                                // Find existing item in target, if any
                                 const existingItem = target.querySelector('.sim-item');
                                 if (existingItem) {
-                                    // Send it back to the source list
                                     document.getElementById('sim-source-why').appendChild(existingItem);
                                 }
-                                
-                                target.innerHTML = ''; // Clear the target's text content
-                                target.appendChild(draggedItem); // Append the item
+
+                                target.innerHTML = '';
+                                target.appendChild(draggedItem);
                                 draggedItem.setAttribute('draggable', 'false');
                                 draggedItem.style.cursor = 'default';
-                                
-                                // Show the corresponding result
+
                                 const resultId = `result-${targetId.split('-')[1]}`;
                                 document.getElementById(resultId).classList.add('visible');
                             } else {
-                                // Shake animation for incorrect match
                                 draggedItem.style.animation = 'shake 0.5s';
                                 setTimeout(() => {
-                                    if (draggedItem) { // Check again in case dragend fired
+                                    if (draggedItem) {
                                         draggedItem.style.animation = '';
                                     }
                                 }, 500);
@@ -1468,77 +1667,161 @@
                     });
                 });
 
-                // Add CSS for shake animation
-                const style = document.createElement('style');
-                style.innerHTML = `@keyframes shake { 0% { transform: translateX(0); } 25% { transform: translateX(-5px); } 50% { transform: translateX(5px); } 75% { transform: translateX(-5px); } 100% { transform: translateX(0); } }`;
-                document.head.appendChild(style);
+                const shakeStyle = document.createElement('style');
+                shakeStyle.innerHTML = `@keyframes shake { 0% { transform: translateX(0); } 25% { transform: translateX(-5px); } 50% { transform: translateX(5px); } 75% { transform: translateX(-5px); } 100% { transform: translateX(0); } }`;
+                document.head.appendChild(shakeStyle);
 
-                // --- [UPGRADED] Workshop 3 (Value Gap Sliders) ---
-                const sliders = document.querySelectorAll('.gap-slider');
-                const totalGapFill = document.getElementById('total-gap-fill');
-                const gapAnalysis = document.getElementById('gap-analysis');
-                const totalGap = 400000;
+                // --- NEW: Value Gap Simulator (Kaplan & Norton) ---
+                const vgStart = document.getElementById('vg-start');
+                const vgTarget = document.getElementById('vg-target');
+                const vgRate = document.getElementById('vg-rate');
+                const vgYears = document.getElementById('vg-years');
+                const vgRateVal = document.getElementById('vg-rate-val');
+                const vgYearsVal = document.getElementById('vg-years-val');
+                const vgRequiredCagrEl = document.getElementById('vg-required-cagr');
+                const vgStatusQuoValueEl = document.getElementById('vg-status-quo-value');
+                const vgGapValueEl = document.getElementById('vg-gap-value');
+                const vgNarrative = document.getElementById('vg-narrative');
+                let valueGapChart = null;
 
-                const formatK = (value) => `${Math.round(value / 1000)}k`;
+                function formatB(v) {
+                    if (v >= 1000) return `$${(v/1000).toFixed(2)}T`;
+                    return `$${Math.round(v).toLocaleString()}B`;
+                }
 
-                function updateGapTotal() {
-                    let currentTotal = 0;
-                    sliders.forEach(slider => {
-                        currentTotal += parseInt(slider.value, 10);
-                        // Update individual label
-                        const valElement = document.getElementById(`${slider.id}-val`);
-                        if (valElement) valElement.textContent = formatK(slider.value);
-                    });
+                function updateValueGap() {
+                    const start = Math.max(1, parseFloat(vgStart.value) || 1);
+                    const target = Math.max(1, parseFloat(vgTarget.value) || 1);
+                    const rate = parseFloat(vgRate.value) / 100;
+                    const years = parseInt(vgYears.value, 10);
 
-                    if (totalGapFill) {
-                        totalGapFill.textContent = `Gap You've Filled: ${formatK(currentTotal)} / ${formatK(totalGap)}`;
-                        
-                        // Remove all color classes
-                        totalGapFill.classList.remove('bg-red-100', 'text-red-700', 'border-red-300', 'bg-yellow-100', 'text-yellow-700', 'border-yellow-300', 'bg-green-100', 'text-green-700', 'border-green-300', 'bg-slate-100', 'text-slate-800', 'border-slate-300');
+                    vgRateVal.textContent = `${vgRate.value}%/yr`;
+                    vgYearsVal.textContent = `${years} yrs`;
 
-                        if (currentTotal > totalGap) {
-                            totalGapFill.classList.add('bg-red-100', 'text-red-700', 'border-red-300');
-                            if(gapAnalysis) gapAnalysis.classList.remove('visible');
-                        } else if (currentTotal < totalGap) {
-                            totalGapFill.classList.add('bg-yellow-100', 'text-yellow-700', 'border-yellow-300');
-                            if(gapAnalysis) gapAnalysis.classList.remove('visible');
-                        } else {
-                            totalGapFill.classList.add('bg-green-100', 'text-green-700', 'border-green-300');
-                            if(gapAnalysis) gapAnalysis.classList.add('visible');
-                        }
+                    const labels = [];
+                    const statusQuoData = [];
+                    const bhagData = [];
+                    const requiredCagr = Math.pow(target / start, 1 / years) - 1;
+
+                    for (let y = 0; y <= years; y++) {
+                        labels.push(`Yr ${y}`);
+                        statusQuoData.push(Math.round(start * Math.pow(1 + rate, y)));
+                        bhagData.push(Math.round(start * Math.pow(1 + requiredCagr, y)));
+                    }
+
+                    const statusQuoAtHorizon = statusQuoData[statusQuoData.length - 1];
+                    const gap = target - statusQuoAtHorizon;
+
+                    vgRequiredCagrEl.textContent = `${(requiredCagr * 100).toFixed(1)}%`;
+                    vgStatusQuoValueEl.textContent = formatB(statusQuoAtHorizon);
+                    vgGapValueEl.textContent = formatB(Math.max(0, gap));
+
+                    if (requiredCagr > rate) {
+                        vgNarrative.innerHTML = `To close this gap, Tesla needs to compound value at roughly <strong>${(requiredCagr*100).toFixed(1)}% a year</strong> for ${years} years — well above the ${vgRate.value}% "just keep doing what we're doing" trajectory. The <strong>${formatB(Math.max(0,gap))}</strong> shortfall by year ${years} is exactly what Kaplan &amp; Norton mean by a value gap: it's the space strategic initiatives (robotaxi revenue, Optimus production, energy storage) have to fill, not empty rhetoric.`;
+                    } else {
+                        vgNarrative.innerHTML = `Interesting: at this status-quo growth rate, the BHAG is <em>already</em> on pace to be met without any new initiatives. Try lowering the status-quo growth rate to see how quickly a real value gap opens up.`;
+                    }
+
+                    const chartData = {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'Status-Quo Trajectory (continue as-is)',
+                                data: statusQuoData,
+                                borderColor: '#94a3b8',
+                                backgroundColor: 'rgba(148,163,184,0.15)',
+                                borderDash: [6, 4],
+                                fill: false,
+                                tension: 0.15,
+                                pointRadius: 2
+                            },
+                            {
+                                label: 'BHAG Trajectory (required)',
+                                data: bhagData,
+                                borderColor: '#0d9488',
+                                backgroundColor: 'rgba(13,148,136,0.12)',
+                                fill: '-1',
+                                tension: 0.15,
+                                pointRadius: 2
+                            }
+                        ]
+                    };
+
+                    if (valueGapChart) {
+                        valueGapChart.data = chartData;
+                        valueGapChart.update();
+                    } else {
+                        const ctx = document.getElementById('valueGapChart').getContext('2d');
+                        valueGapChart = new Chart(ctx, {
+                            type: 'line',
+                            data: chartData,
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                interaction: { mode: 'index', intersect: false },
+                                plugins: {
+                                    legend: { position: 'bottom' },
+                                    tooltip: {
+                                        callbacks: {
+                                            label: function(ctx) { return `${ctx.dataset.label}: ${formatB(ctx.parsed.y)}`; }
+                                        }
+                                    }
+                                },
+                                scales: {
+                                    y: {
+                                        title: { display: true, text: 'Market Cap ($B)' },
+                                        ticks: { callback: function(v) { return formatB(v); } }
+                                    }
+                                }
+                            }
+                        });
                     }
                 }
 
-                sliders.forEach(slider => {
-                    slider.addEventListener('input', updateGapTotal);
-                });
-                // Initial call to set labels
-                updateGapTotal();
+                if (vgStart && vgTarget && vgRate && vgYears) {
+                    [vgStart, vgTarget, vgRate, vgYears].forEach(el => el.addEventListener('input', updateValueGap));
+                    updateValueGap();
+                }
 
+                // --- NEW: Operating Model Sorter (Efficiency / Resilience / Optionality) ---
+                const sortExplanations = {
+                    eff: 'Efficiency: this is the classic scale/experience-curve advantage — lowering unit cost by doing the same thing repeatedly and better.',
+                    res: 'Resilience: this is deliberately paying more upfront (redundancy, ownership, safety stock) so the firm can survive a shock the "efficient" option cannot.',
+                    opt: 'Optionality: this creates a new option that may or may not pay off — a bet on a future basis of advantage, made precisely because the current path looks uncertain.'
+                };
+                window.checkSort = (btnEl, chosen, correct) => {
+                    const card = btnEl.closest('.sorter-card');
+                    const explanation = card.querySelector('.sorter-explanation');
+                    const isRight = chosen === correct;
+                    explanation.innerHTML = `<strong>${isRight ? 'Correct.' : 'Not quite — the best fit is "' + (correct === 'eff' ? 'Efficiency' : correct === 'res' ? 'Resilience' : 'Optionality') + '."'}</strong> ${sortExplanations[correct]}`;
+                    explanation.classList.remove('right', 'wrong');
+                    explanation.classList.add(isRight ? 'right' : 'wrong', 'visible');
+                    card.querySelectorAll('.sorter-btn').forEach(b => b.disabled = true);
+                };
 
                 // --- Simulation 3 (Debate) ---
                 const debateOptions = document.querySelectorAll('.debate-option');
                 const debateAnalyses = document.querySelectorAll('.debate-analysis');
+                const debateEpilogue = document.getElementById('debate-epilogue');
 
                 debateOptions.forEach(option => {
                     option.addEventListener('click', () => {
                         const choice = option.dataset.choice;
-                        
-                        // Reset all
+
                         debateOptions.forEach(opt => opt.classList.remove('selected'));
                         debateAnalyses.forEach(analysis => analysis.classList.remove('visible'));
 
-                        // Set active
                         option.classList.add('selected');
                         const analysisEl = document.getElementById(`analysis-${choice}`);
                         if (analysisEl) analysisEl.classList.add('visible');
+                        if (debateEpilogue) debateEpilogue.classList.add('visible');
                     });
                 });
 
                 // --- Quiz Logic ---
                 const quizData = [
                     {
-                        q: "Session 1 contrasted Porter's 'Blueprint' with Mintzberg's 'Craft'. What is the core difference?",
+                        q: "Last session contrasted Porter's 'Blueprint' with Mintzberg's 'Craft'. What is the core difference?",
                         o: [
                             "Blueprint is for manufacturing, Craft is for service companies.",
                             "Blueprint is about deliberate planning (Position), while Craft is about emergent learning (Pattern).",
@@ -1546,21 +1829,10 @@
                             "Blueprint is about execution (OE), while Craft is about vision."
                         ],
                         a: 1,
-                        e: "This is the core of Session 1. Porter's 'Blueprint' is a deliberate, analytical process of choosing a strategic position. Mintzberg's 'Craft' argues that real strategy often emerges from a pattern of learning and adaptation, rather than being fully planned."
+                        e: "Porter's 'Blueprint' is a deliberate, analytical process of choosing a strategic position. Mintzberg's 'Craft' argues real strategy often emerges from a pattern of learning and adaptation."
                     },
                     {
-                        q: "In Session 2, we defined Tesla's 'Production Hell' as a painful trade-off. This was a consequence of which strategic choice?",
-                        o: [
-                            "Their decision to enter the Chinese market.",
-                            "Their marketing partnership with SpaceX.",
-                            "Their 'First-Principles' Core Value.",
-                            "Their strategic position of Vertical Integration and the BHAG to mass-produce the Model 3."
-                        ],
-                        a: 3,
-                        e: "Production Hell was the direct, painful cost (the trade-off) of achieving their audacious goal (BHAG) of mass-producing the Model 3, which was made even harder by their strategic choice (Position) to vertically integrate (e.g., build the Gigafactory)."
-                    },
-                    {
-                        q: "According to the Collins & Porras framework, a complete Vision consists of what two primary components?",
+                        q: "According to Collins & Porras (1996), a complete Vision consists of what two primary components?",
                         o: [
                             "Strategy and Execution",
                             "Core Ideology and Envisioned Future",
@@ -1568,7 +1840,7 @@
                             "BHAG and Core Purpose"
                         ],
                         a: 1,
-                        e: "This is the central framework of Session 3. The 'Yin' is the Core Ideology (who you are, stable), and the 'Yang' is the Envisioned Future (where you are going, dynamic)."
+                        e: "The 'Yin' is the Core Ideology (who you are, stable), and the 'Yang' is the Envisioned Future (where you are going, dynamic)."
                     },
                     {
                         q: "What is the function of the 'Core Ideology' (the Yin)?",
@@ -1579,7 +1851,7 @@
                             "To describe the company's products and services."
                         ],
                         a: 2,
-                        e: "The Core Ideology is the 'glue' that holds the company together over time. It is stable, timeless, and defines 'who we are' (our values and purpose). It is to be *preserved*."
+                        e: "The Core Ideology is stable, timeless, and defines 'who we are' (our values and purpose). It is to be preserved."
                     },
                     {
                         q: "What is the function of the 'Envisioned Future' (the Yang)?",
@@ -1590,18 +1862,18 @@
                             "To define the company's reason for being."
                         ],
                         a: 2,
-                        e: "The Envisioned Future is the dynamic part of the vision. It's the 'mountain' to be climbed—a Big, Hairy, Audacious Goal (BHAG) with a clear finish line that stimulates progress and change."
+                        e: "The Envisioned Future is the dynamic part of the vision — a Big, Hairy, Audacious Goal with a clear finish line that stimulates progress and change."
                     },
                     {
-                        q: "What is Tesla's Core Purpose?",
+                        q: "In Musk's own words from 2006, what is the 'overarching purpose of Tesla Motors'?",
                         o: [
                             "To build the world's best electric cars.",
-                            "To accelerate the world's transition to sustainable energy.",
+                            "To help expedite the move from a mine-and-burn hydrocarbon economy towards a solar electric economy.",
                             "To achieve the 'Secret Master Plan'.",
                             "To become the world's most valuable automaker."
                         ],
                         a: 1,
-                        e: "This is crucial. Their purpose is *not* 'to build cars' (which is what they do). Their purpose is 'to accelerate the world's transition to sustainable energy' (which is *why* they do it). This allows them to expand into solar, batteries, etc."
+                        e: "This is the exact 2006 quote from the case (Serafeim & Migdal, 2024). The now-famous 'accelerate the world's transition to sustainable energy' is a later, shorter distillation of this same purpose — not a different one."
                     },
                     {
                         q: "How does a 'Core Purpose' (like Tesla's) differ from a 'BHAG'?",
@@ -1612,10 +1884,10 @@
                             "They are the same thing."
                         ],
                         a: 1,
-                        e: "This is a key distinction. The Core Purpose (e.g., 'accelerate the transition') is like a guiding star on the horizon—you can chase it forever but never fully 'complete' it. The BHAG (e.g., 'The Master Plan') is a concrete, achievable goal that moves you *towards* that star."
+                        e: "The Core Purpose is a guiding star on the horizon — you can chase it forever but never fully 'complete' it. The BHAG is a concrete, achievable goal that moves you towards that star."
                     },
                     {
-                        q: "Tesla's 2006 'Secret Master Plan' (sports car -> sedan -> mass-market car) is a perfect example of what?",
+                        q: "Musk's 2006 'Secret Tesla Motors Master Plan' — verbatim, 'build sports car... use that money to build an affordable car... an even more affordable car... while doing above, also provide zero emission electric power generation options' — is a textbook example of what?",
                         o: [
                             "A Core Value",
                             "A Core Purpose",
@@ -1623,32 +1895,54 @@
                             "Operational Effectiveness (OE)"
                         ],
                         a: 2,
-                        e: "The Master Plan was a classic BHAG. It was big (remake the auto industry), hairy (seemed impossible), audacious (for a tiny startup), and had a clear finish line (build the mass-market car). It was the 'mountain' they set out to climb."
+                        e: "The Master Plan was a classic BHAG: big (remake the auto industry), hairy (seemed impossible for a startup), audacious, and with a clear step-by-step finish line."
                     },
                     {
-                        q: "According to Kaplan & Norton, the 'Value Gap' shown in our chart is the difference between...",
+                        q: "According to Kaplan & Norton's 'Developing the Strategy: Vision, Value Gaps, and Analysis,' the 'value gap' is best defined as...",
                         o: [
-                            "The company's stock price and its real value.",
-                            "The company's audacious goal (BHAG) and its 'status quo' reality.",
-                            "The company's Core Values and its actual behavior.",
-                            "The price of a Tesla and the price of a gas car."
+                            "The company's stock price minus its book value.",
+                            "The difference between the value the firm's BHAG implies it should be worth, and the value its current, unchanged strategy would produce if simply extended forward.",
+                            "The company's Core Values minus its actual behavior.",
+                            "The price of a Tesla minus the price of a comparable gas car."
                         ],
                         a: 1,
-                        e: "The Value Gap is the quantitative measure of the BHAG. It's the space between 'Here is our massive goal' (e.g., 500,000 cars) and 'Here is what we'll do if we just keep chugging along' (e.g., 100,000 cars)."
+                        e: "The value gap quantifies the BHAG: the space between 'here is our aspiration' and 'here is what happens if we just continue the current strategy' — precisely what the Value Gap Simulator in this session lets you compute."
                     },
                     {
-                        q: "In Simulation 1, we linked Tesla's strategy of *Vertical Integration* (Gigafactories) to which part of its vision?",
+                        q: "In the Value Gap Simulator, if the 'required CAGR' to hit the BHAG target is well above your 'status-quo growth rate,' what does that tell you?",
                         o: [
-                            "Its Core Purpose (To *accelerate* the transition, they couldn't wait for suppliers).",
+                            "The BHAG is already being achieved and no new strategy is needed.",
+                            "There is a real value gap that new strategic initiatives (not business-as-usual) must close.",
+                            "The status-quo growth rate should be ignored entirely.",
+                            "The BHAG's target year should always be extended indefinitely."
+                        ],
+                        a: 1,
+                        e: "A required CAGR that exceeds the status-quo rate is the numerical signature of a genuine value gap — strategy exists precisely to close it."
+                    },
+                    {
+                        q: "Tesla's board's 2018 compensation plan for Musk was structured around what kind of milestones?",
+                        o: [
+                            "A single lump-sum payment if Tesla ever became profitable.",
+                            "Twelve market-cap tranches from $100B to $650B, plus sixteen operational milestones on revenue and EBITDA.",
+                            "A fixed annual salary tied to the S&P 500 index.",
+                            "Stock options that vested immediately upon signing."
+                        ],
+                        a: 1,
+                        e: "Per the case, Tesla's market cap was about $52B when the board approved a plan potentially worth $55.8B, vesting in tranches as market cap rose from $100B to $650B, alongside 16 operational milestones."
+                    },
+                    {
+                        q: "In Simulation 1, we linked Tesla's *Vertical Integration* (Gigafactory) to which part of its vision?",
+                        o: [
+                            "Its Core Purpose (To *accelerate* the transition, it couldn't wait for suppliers).",
                             "Its Core Value of 'Move Fast'.",
                             "Its BHAG of building a sports car.",
                             "Its desire to copy other car companies."
                         ],
                         a: 0,
-                        e: "This connects the 'Why' to the 'What'. *Why* build the factory? Because their Core Purpose was to *accelerate* the energy transition. They couldn't do that if they were constrained by suppliers, so they *had* to build it themselves."
+                        e: "Why build the factory? Because Tesla's Core Purpose was to accelerate the energy transition. It couldn't do that constrained by suppliers, so it had to build its own."
                     },
                     {
-                        q: "In Simulation 1, we saw that 'Production Hell' (The What) was the logical, painful consequence of what?",
+                        q: "In Simulation 1, 'Production Hell' (The What) was the logical, painful consequence of what?",
                         o: [
                             "Musk's 'First-Principles' Core Value.",
                             "The company's Core Purpose.",
@@ -1656,18 +1950,7 @@
                             "Poor management."
                         ],
                         a: 2,
-                        e: "The 'chaos' of Production Hell was the price of the *goal*. To meet the impossible deadline of their BHAG (mass-produce the Model 3 *now*), they had to endure the chaos. Growing slowly and safely (good OE) would have meant *failing* the BHAG."
-                    },
-                    {
-                        q: "In Simulation 1, we linked Tesla's *bypassing of dealerships* (The What) to which part of its vision?",
-                        o: [
-                            "Its Core Purpose ('Sustainable Energy').",
-                            "Its BHAG (The Master Plan).",
-                            "Its Core Value ('First-Principles Thinking').",
-                            "The Kaplan & Norton 'Value Gap'."
-                        ],
-                        a: 2,
-                        e: "The *value* of 'First-Principles Thinking' (question everything) led them to ask, 'Why do dealerships exist?' They concluded the dealer model (profiting from service) was fundamentally misaligned with low-maintenance EVs, so they *had* to build a new model."
+                        e: "The chaos of Production Hell was the price of the goal. To meet the impossible deadline of the BHAG (mass-produce the Model 3 now), Tesla had to endure the chaos."
                     },
                     {
                         q: "What is the 'We've Arrived Syndrome' that visionary companies must avoid?",
@@ -1678,29 +1961,51 @@
                             "Focusing too much on the Envisioned Future."
                         ],
                         a: 1,
-                        e: "This is what happened to NASA after the moon landing. A visionary company must *always* be climbing a mountain. Once it reaches the summit (achieves its BHAG), it must set a *new* BHAG to continue stimulating progress."
+                        e: "This is what happened to NASA after the moon landing. A visionary company must keep climbing — once it reaches a summit, it sets a new BHAG."
                     },
                     {
-                        q: "The 2024 debate over Musk's 25% control demand for AI/Robotics represents what?",
+                        q: "According to Reeves & Job (2023), what is the sequence of eras in operational advantage they describe?",
                         o: [
-                            "A change in Tesla's Core Values.",
-                            "A failure of its Core Purpose.",
-                            "The chaotic, real-world process of setting a *new* Envisioned Future (a new BHAG).",
-                            "An example of Operational Effectiveness."
+                            "Optionality, then Resilience, then Efficiency.",
+                            "Efficiency, then Resilience, then Optionality.",
+                            "Resilience only — it has always been the sole source of advantage.",
+                            "Efficiency and Optionality happen simultaneously; Resilience is irrelevant."
                         ],
-                        a: 2,
-                        e: "This is the most likely interpretation using the Collins & Porras framework. Tesla achieved its first BHAG (the Master Plan). The 25% demand is part of Musk's attempt to force the company to climb a new, bigger mountain (AI/Robotics) as its *next* Envisioned Future."
+                        a: 1,
+                        e: "Reeves & Job (2023) trace a shift from scale-driven Efficiency, to shock-surviving Resilience (especially visible during COVID), to building a portfolio of Optionality in today's 'era of radical uncertainty.'"
                     },
                     {
-                        q: "What is the final synthesis that connects all three sessions?",
+                        q: "In the Operating Model Sorter, why is Tesla's 2013 Gigafactory decision classified as 'Resilience' rather than pure 'Efficiency,' in Reeves & Job's (2023) terms?",
                         o: [
-                            "Tesla's strategy proves Porter is right and Mintzberg is wrong.",
-                            "Tesla's vision proves Collins & Porras are right and Porter is wrong.",
-                            "Tesla is a hybrid: it uses Mintzberg's 'craft' (chaos) to achieve Porter's 'blueprint' (position), all driven by a powerful Collins & Porras 'vision'.",
-                            "Strategy is just about having a good leader, and all the frameworks are just academic."
+                            "Because it was the cheapest possible way to make batteries.",
+                            "Because it eliminated Tesla's dependence on any single external battery supplier, even though owning production cost more upfront.",
+                            "Because it required no upfront investment at all.",
+                            "Because it had nothing to do with Tesla's supply chain."
                         ],
-                        a: 2,
-                        e: "This is the 'Aha!' moment. The frameworks are not mutually exclusive. Tesla is a perfect hybrid: Its 'Vision' (Collins & Porras) is the *engine*. This engine powers a deliberate 'Blueprint' (Porter). And the *execution* of that blueprint is a messy, adaptive, chaotic 'Craft' (Mintzberg)."
+                        a: 1,
+                        e: "Reeves & Job (2023) define resilience investments as ones that may look inefficient in the short run — like redundant or owned capacity — but protect against future shocks and shortages."
+                    },
+                    {
+                        q: "What actually happened to Musk's original 2018 pay package, per the debate epilogue?",
+                        o: [
+                            "It was paid out in full with no legal challenge.",
+                            "The Delaware Court of Chancery voided it in January 2024; after shareholders' re-ratification was also not upheld, Tesla's board proposed an entirely new, decade-long package tied to a new AI/robotics BHAG in September 2025.",
+                            "Musk voluntarily declined all compensation from Tesla going forward.",
+                            "The SEC replaced it with a fixed cash salary."
+                        ],
+                        a: 1,
+                        e: "The Delaware court voided the original 2018 package; rather than restore the old vision, Tesla's board wrote a new Envisioned Future (AI/robotics milestones) with a fresh value gap beneath it — a real-world instance of Collins & Porras's model in action."
+                    },
+                    {
+                        q: "What is the final synthesis that connects this session's three readings?",
+                        o: [
+                            "Vision, value gaps, and operating models are unrelated topics that happen to appear in the same syllabus week.",
+                            "A vision (Collins & Porras) explains why a firm competes at all; a value gap (Kaplan & Norton) turns that vision into a governable number; an operating model built for resilience and optionality (Reeves & Job) is what keeps the firm alive long enough to find out if the vision was right.",
+                            "Strategy is just about having a good leader, and all the frameworks are purely academic.",
+                            "Only Porter's five forces matter; vision and operations are secondary concerns."
+                        ],
+                        a: 1,
+                        e: "This is the session's core synthesis: purpose and values explain the 'why,' the value gap quantifies 'how much,' and a resilient, optionality-seeking operating model is what closes the distance between the two under real-world uncertainty."
                     }
                 ];
 
@@ -1709,12 +2014,13 @@
                 const quizContainer = document.getElementById('quiz-container');
 
                 function renderQuiz() {
-                    if (!quizContainer) return; // Safety check
+                    if (!quizContainer) return;
                     quizContainer.innerHTML = '';
+                    if (quizScoreElement) quizScoreElement.textContent = `0 / ${quizData.length}`;
                     quizData.forEach((item, index) => {
                         const questionWrapper = document.createElement('div');
                         questionWrapper.className = 'quiz-question-wrapper';
-                        
+
                         const questionText = document.createElement('p');
                         questionText.className = 'text-md font-semibold text-slate-800 mb-4';
                         questionText.textContent = `${index + 1}. ${item.q}`;
@@ -1722,7 +2028,7 @@
 
                         const optionsContainer = document.createElement('div');
                         optionsContainer.className = 'quiz-options';
-                        
+
                         item.o.forEach((option, optionIndex) => {
                             const optionButton = document.createElement('button');
                             optionButton.className = 'quiz-option';
@@ -1742,7 +2048,6 @@
                 }
 
                 function checkAnswer(item, selectedIndex, optionsContainer) {
-                    // Disable all buttons in this group
                     Array.from(optionsContainer.children).forEach(button => {
                         button.disabled = true;
                     });
@@ -1760,19 +2065,15 @@
                         correctButton.classList.add('correct');
                     }
 
-                    // Show explanation
                     explanation.classList.add('visible');
                 }
 
-                // Initial render
                 renderQuiz();
-
-                // --- End Quiz Logic ---
 
                 // --- Modal Logic ---
                 const modal = document.getElementById('modal');
                 const modalContent = document.getElementById('modal-content');
-                window.openModal = (title, body) => { 
+                window.openModal = (title, body) => {
                     if(!modal || !modalContent) return;
                     document.getElementById('modal-title').innerText = title;
                     document.getElementById('modal-body').innerHTML = body;
@@ -1780,7 +2081,7 @@
                     document.body.style.overflow = 'hidden';
                     setTimeout(() => { modalContent.classList.remove('scale-95', 'opacity-0'); }, 10);
                 };
-                window.closeModal = () => { 
+                window.closeModal = () => {
                     if(!modal || !modalContent) return;
                     modal.classList.add('opacity-0');
                     modalContent.classList.add('scale-95', 'opacity-0');
@@ -1788,7 +2089,6 @@
                     setTimeout(() => modal.classList.add('pointer-events-none'), 300);
                 };
                 if(modal) modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-
 
             });
         </script>

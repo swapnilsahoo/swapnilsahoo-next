@@ -3,11 +3,10 @@ import Link from "next/link";
 
 import { ArrowRightIcon } from "@/components/icons/LineIcons";
 import { Container } from "@/components/ui/Container";
-import { InquiryPrelude } from "@/components/ui/InquiryPrelude";
 
 const title = "Holistic Wellbeing";
 const description =
-  "Practical, evidence-based resources for wellbeing — starting with an eight-week, self-guided program for anxious attachment and relationship anxiety.";
+  "Educational resources for personal reflection and wellbeing, beginning with an eight-week guide to relationship anxiety and attachment-related distress.";
 
 export const metadata: Metadata = {
   title,
@@ -15,8 +14,8 @@ export const metadata: Metadata = {
   keywords: [
     "holistic wellbeing",
     "mental wellbeing",
-    "anxious attachment recovery",
-    "evidence-based self-help",
+    "relationship anxiety reflection",
+    "mental wellbeing education",
   ],
   alternates: { canonical: "/holistic-wellbeing" },
   openGraph: {
@@ -38,7 +37,7 @@ export default function HolisticWellbeingPage() {
           />
           <div className="px-6 py-14 sm:px-10 sm:py-20 lg:px-16">
             <p className="inline-flex rounded-full border border-white/15 bg-white/8 px-3 py-1.5 font-mono text-[10px] tracking-[0.18em] text-emerald-100 uppercase backdrop-blur-sm">
-              Practical · Evidence-based · Self-guided
+              Practical · Reflective · Self-guided
             </p>
             <h1 className="mt-8 max-w-4xl font-serif text-[clamp(3rem,7vw,6.5rem)] leading-[0.92] font-semibold tracking-[-0.03em] text-balance">
               Holistic Wellbeing
@@ -50,15 +49,6 @@ export default function HolisticWellbeingPage() {
           </div>
         </div>
       </header>
-
-      <InquiryPrelude
-        id="holistic-wellbeing-inquiry"
-        title="Before you open either resource below."
-        questions={[
-          "Are you looking for something to understand, or something to actually do this week?",
-          "What would change if you treated your own wellbeing with the same rigour you'd bring to any other problem?",
-        ]}
-      />
 
       <section aria-labelledby="pathways-title" className="py-14 sm:py-20">
         <Container className="max-w-6xl">
@@ -76,15 +66,15 @@ export default function HolisticWellbeingPage() {
           >
             <p className="eyebrow mb-2">Mental Wellbeing</p>
             <h3 className="font-serif text-2xl font-semibold sm:text-3xl">
-              An eight-week, evidence-based path out of anxious attachment.
+              An eight-week guide for reflection and steadier choices.
             </h3>
             <p className="text-ink-600 dark:text-ink-300 mt-3 max-w-2xl text-sm leading-relaxed sm:text-base">
-              CBT, DBT, ACT and polyvagal-based practices for anxious attachment, relationship
-              anxiety and trauma bonding — with a self-assessment, a daily tracker, and a real
-              step-by-step protocol for every practice.
+              Optional exercises informed by established therapy traditions, with a private
+              check-in, a daily tracker, and clear boundaries around what self-guided material can
+              and cannot do.
             </p>
             <span className="text-brand-700 dark:text-brand-300 mt-5 inline-flex items-center gap-2 text-sm font-semibold">
-              Open the program
+              Open the reflection guide
               <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden="true" />
             </span>
           </Link>

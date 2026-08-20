@@ -4,16 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Session 8: External Analysis | Grand Master Edition</title>
+    <title>Session 4: Beyond the Five Forces | Grand Master Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
-        /* --- SESSION 5 BASE THEME --- */
+        /* --- BASE THEME --- */
         :root {
             --primary-bg: #ffffff;
             --secondary-bg: #f8fafc;
@@ -59,10 +59,10 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
+
         .card-panel:hover {
             transform: translateY(-4px);
-            box-shadow: 0 12px 20px -8px rgba(30, 58, 138, 0.1); 
+            box-shadow: 0 12px 20px -8px rgba(30, 58, 138, 0.1);
             border-color: var(--accent-light);
         }
 
@@ -72,7 +72,7 @@
 
         .chart-container {
             position: relative;
-            height: 400px;
+            height: 340px;
             width: 100%;
         }
 
@@ -92,7 +92,7 @@
         .nav-link { position: relative; font-weight: 500; color: #64748b; transition: color 0.2s; text-decoration: none; }
         .nav-link:hover, .nav-link.active { color: var(--accent-blue); }
         .nav-link.active::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 2px; background: var(--accent-blue); }
-        
+
         .chess-logo {
             width: 40px; height: 40px;
             background: #1e293b;
@@ -108,8 +108,8 @@
             transform: rotate(10deg);
         }
 
-        /* --- SESSION 8 SPECIFIC STYLES --- */
-        
+        /* --- SESSION 4 SPECIFIC STYLES --- */
+
         /* Timeline Components */
         .timeline-line {
             position: absolute; left: 50%; top: 0; bottom: 0; width: 2px;
@@ -124,6 +124,12 @@
             transform: translateY(-4px);
             box-shadow: 0 12px 24px -8px rgba(30, 58, 138, 0.08);
             border-color: var(--accent-blue);
+        }
+        .session-node-current {
+            background: var(--accent-blue) !important;
+            border-color: #1e3a8a !important;
+            color: #fff !important;
+            box-shadow: 0 0 0 6px rgba(30,58,138,0.12);
         }
 
         /* Discipline Tags */
@@ -153,6 +159,7 @@
             background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
             padding: 0.5rem 1rem; border-radius: 0.375rem; font-size: 0.875rem;
             transition: all 0.2s; text-align: left; width: 100%; margin-bottom: 0.5rem;
+            cursor: pointer; color: #fff;
         }
         .sim-btn:hover { background: rgba(255,255,255,0.2); border-color: #60a5fa; }
         .sim-feedback { display: none; font-size: 0.875rem; margin-top: 1rem; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 0.5rem; }
@@ -165,6 +172,27 @@
         .matrix-table th { background-color: #f1f5f9; color: #64748b; padding: 1rem; text-align: left; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; }
         .matrix-table td { padding: 1rem; border-bottom: 1px solid #e2e8f0; vertical-align: top; font-size: 0.9rem; }
         .matrix-table tr:hover { background-color: #f8fafc; }
+
+        /* 3-way / 2-way toggle buttons (Ecosystem Moat + Five Forces recap) */
+        .toggle-btn {
+            flex: 1; padding: 0.45rem 0.25rem; font-size: 0.72rem; border: 1px solid #e2e8f0;
+            font-family: 'JetBrains Mono', monospace; transition: all .2s; background: #fff; color: #475569;
+            cursor: pointer;
+        }
+        .toggle-btn:not(:last-child) { border-right: 0; }
+        .toggle-btn:first-child { border-radius: 0.375rem 0 0 0.375rem; }
+        .toggle-btn:last-child { border-radius: 0 0.375rem 0.375rem 0; }
+        .toggle-btn.is-active { background: #dbeafe; color: #1d4ed8; font-weight: 700; }
+
+        /* Posture pills (Strategy Under Uncertainty) */
+        .posture-pill { font-size: 0.65rem; padding: 0.25rem 0.6rem; border-radius: 9999px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; }
+        .posture-shape { background:#fee2e2; color:#b91c1c; }
+        .posture-adapt { background:#dbeafe; color:#1d4ed8; }
+        .posture-reserve { background:#fef3c7; color:#b45309; }
+
+        /* Payoff matrix */
+        .payoff-cell { border: 1px solid #334155; padding: 0.75rem; text-align:center; font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:#cbd5e1; transition: all .3s; }
+        .payoff-cell.realized { background: #1d4ed8; color: #fff; box-shadow: 0 0 0 3px rgba(96,165,250,0.5) inset; }
     </style>
     <link rel="stylesheet" href="/teaching/responsive.css">
 </head>
@@ -181,7 +209,7 @@
         <div class="bg-slate-50 border-b border-slate-100 py-1 text-center hidden md:block">
             <div class="flex items-center justify-center gap-4 text-[10px] uppercase font-bold tracking-widest text-slate-400">
                 <!-- Active Part -->
-                <span class="text-indigo-600 underline decoration-2 underline-offset-4">Part 1: Strategy Analysis / Session 8: External Analysis</span>
+                <span class="text-indigo-600 underline decoration-2 underline-offset-4">Part 1: Strategy Analysis / Session 4: Beyond the Five Forces</span>
                 <span class="text-slate-300">/</span>
                 <!-- Inactive Parts -->
                 <span class="text-slate-300 opacity-50">Part 2: Strategy Formulation</span>
@@ -200,16 +228,16 @@
                     <h1 class="font-bold text-slate-900 tracking-tight text-xl">The Strategist's Lens</h1>
                 </div>
             </a>
-            
+
             <!-- Center: Navigation Links -->
             <div class="hidden xl:flex space-x-6 text-sm">
                 <a href="#prologue" class="nav-link">Overview</a>
                 <a href="#the-arc" class="nav-link">The Arc</a>
-                <a href="#pestel" class="nav-link">PESTEL</a>
-                <a href="#scp" class="nav-link">Structure (SCP)</a>
-                <a href="#five-forces" class="nav-link">5 Forces</a>
-                <a href="#strategic-groups" class="nav-link">Strategic Groups</a>
-                <a href="#simulation" class="nav-link font-bold text-blue-700">Analyst's Gauntlet</a>
+                <a href="#five-forces-limits" class="nav-link">The Limit</a>
+                <a href="#ecosystems" class="nav-link">Ecosystems</a>
+                <a href="#game-theory" class="nav-link">Game Theory</a>
+                <a href="#uncertainty" class="nav-link">Uncertainty</a>
+                <a href="#simulation" class="nav-link font-bold text-blue-700">Gauntlet</a>
             </div>
 
             <!-- Right: Social & Functional Icons -->
@@ -232,14 +260,20 @@
     <header id="prologue" class="py-24 px-6 hero-bg border-b border-slate-100">
         <div class="max-w-6xl mx-auto w-full z-10 fade-up text-center">
              <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-200 bg-blue-50 text-blue-800 text-xs font-bold tracking-widest uppercase mb-6 shadow-sm">
-                <i class="fa-solid fa-layer-group"></i> Session 8
+                <i class="fa-solid fa-diagram-project"></i> Session 4
             </div>
             <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-8 text-slate-900 serif-font">
-                External Analysis: <br> <span class="italic text-teal-600">Industry Structure & Strategic Groups</span>
+                Beyond the Five Forces: <br> <span class="italic text-teal-600">Ecosystems, Game Theory & Ambiguity</span>
             </h1>
             <p class="text-xl text-slate-600 max-w-3xl mx-auto font-light leading-relaxed mb-8">
-                Before we define <em>how</em> to compete (Strategy), we must rigorously define <em>where</em> we compete (Industry). Structure dictates profit potential.
+                Porter's Five Forces answers one question: how much value can this industry keep? It says nothing about a company whose fiercest rival is also its biggest customer, or a market where nobody &mdash; including the incumbent &mdash; knows what happens next.
             </p>
+            <div class="flex flex-wrap justify-center gap-3">
+                <span class="tag tag-econ"><i class="fas fa-network-wired mr-1"></i> Ecosystems</span>
+                <span class="tag tag-praxis"><i class="fas fa-chess-knight mr-1"></i> Game Theory</span>
+                <span class="tag tag-psych"><i class="fas fa-dice mr-1"></i> Strategy Under Uncertainty</span>
+                <span class="tag tag-soc"><i class="fas fa-scale-balanced mr-1"></i> PESTEL vs. 5 Forces</span>
+            </div>
         </div>
     </header>
 
@@ -248,13 +282,13 @@
         <div class="max-w-5xl mx-auto">
             <div class="text-center mb-16 fade-up">
                  <div class="inline-flex items-center gap-2 text-blue-600 font-bold tracking-wider text-xs uppercase mb-2">
-                    <i class="fa-solid fa-timeline"></i> The Journey So Far
+                    <i class="fa-solid fa-timeline"></i> Part I: Strategy Analysis
                 </div>
                 <h2 class="text-3xl md:text-4xl font-bold serif-font text-slate-900">
                     The Strategic Arc
                 </h2>
                 <p class="text-slate-500 mt-4 max-w-2xl mx-auto text-lg">
-                    Tracing the intellectual path that leads us to Session 8.
+                    Where this session sits within the module &mdash; and what it adds to the toolkit.
                 </p>
             </div>
 
@@ -313,20 +347,21 @@
                     </div>
                 </div>
 
-                <!-- Session 4 -->
+                <!-- Session 4 (THIS SESSION) -->
                 <div class="md:flex justify-between items-center mb-12 fade-up relative z-10">
-                    <div class="md:w-5/12 pr-8 text-right md:order-1 session-card p-6 rounded-xl border-l-4 border-pink-600">
-                        <div class="text-blue-800 font-serif italic text-lg mb-2">Purpose & Values</div>
+                    <div class="md:w-5/12 pr-8 text-right md:order-1 session-card p-6 rounded-xl border-l-4 border-indigo-600 ring-2 ring-indigo-200">
+                        <div class="text-[10px] font-bold text-indigo-500 uppercase tracking-widest mb-1">You Are Here</div>
+                        <div class="text-blue-800 font-serif italic text-lg mb-2">Ecosystems, Not Just Rivals</div>
                         <p class="text-slate-600 text-sm">
-                            <strong>BHAGs.</strong> Purpose drives profit. Vision is the destination; Mission is the vehicle.
+                            Five Forces treats the industry as a fixed arena. Ecosystems and game theory treat it as a web of interdependent moves &mdash; where a supplier can become a rival overnight.
                         </p>
                     </div>
                     <div class="md:w-2/12 flex justify-center mb-4 md:mb-0 md:order-2">
-                        <div class="w-12 h-12 bg-white border-4 border-slate-200 rounded-full flex items-center justify-center text-lg shadow-md font-bold text-slate-400">4</div>
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center text-lg shadow-md font-bold session-node-current">4</div>
                     </div>
                     <div class="md:w-5/12 pl-8 hidden md:block md:order-3">
-                        <h3 class="text-xl font-bold text-slate-900">Session 4: The Core</h3>
-                        <p class="text-sm text-slate-500 mt-1">Psychology</p>
+                        <h3 class="text-xl font-bold text-slate-900">Session 4: Beyond the Five Forces</h3>
+                        <p class="text-sm text-slate-500 mt-1">Competitive Dynamics</p>
                     </div>
                 </div>
 
@@ -385,705 +420,324 @@
         </div>
     </section>
 
-    <!-- CHAPTER 3 DEEP DIVE -->
     <main class="max-w-6xl mx-auto px-6 py-12">
-        
-        <!-- PESTEL FRAMEWORK -->
-        <section id="pestel" class="mb-32 fade-up pt-16 border-t border-slate-200">
-            <!-- Fundamental Question -->
+
+        <!-- WHY FIVE FORCES BREAKS -->
+        <section id="five-forces-limits" class="mb-32 fade-up pt-16 border-t border-slate-200">
             <div class="fp-box">
-                <p class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-1">Fundamental Question</p>
-                <h3 class="text-3xl font-serif font-bold text-slate-900 leading-tight">Can you surf the wave, or will it drown you?</h3>
+                <p class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-1">First-Principles Question</p>
+                <h3 class="text-3xl font-serif font-bold text-slate-900 leading-tight">A chip that costs $3,100 to fabricate sells for $25,000&ndash;$40,000. Gross margin: 73%. Market share of AI-training GPUs: north of 90%. Porter's Five Forces says this can't last &mdash; abnormal profit should attract entrants until it's competed away. So why hasn't it?</h3>
                 <p class="text-slate-600 mt-4 leading-relaxed">
-                    This section challenges the notion that firms control their destiny. PESTEL factors are <strong>exogenous shocks</strong>—non-linear and often catastrophic events in the "General Environment" that strategic leaders cannot control, only scan, monitor, and evaluate.
+                    That is Nvidia in fiscal 2024 &mdash; TSMC's fabrication cost for an H100 GPU was roughly <strong>$900&ndash;$3,100</strong>; Nvidia sold it for <strong>$25,000&ndash;$40,000</strong>, and it captured an estimated <strong>98% of the data-center GPU market</strong> (Yoffie &amp; Von Bargen, 2024). Five Forces would flag "low threat of entry" as temporary. It has no vocabulary for <em>why</em> AMD, Intel, Google, and three well-funded startups all tried to attack this position in 2023&ndash;24 and still couldn't dislodge it. That vocabulary gap is what this session fills.
                 </p>
             </div>
 
-            <!-- NEW SECTION: PESTEL vs PORTER -->
-            <div class="mb-12 bg-blue-50 border border-blue-200 rounded-xl p-8">
-                <h3 class="text-2xl font-serif font-bold text-blue-900 mb-4">PESTEL vs. Porter's 5 Forces: The Fundamental Difference</h3>
-                <p class="text-slate-700 text-sm mb-6 leading-relaxed">
-                    While both frameworks analyze the external environment, they focus on different "layers" of reality. Think of <strong>PESTEL</strong> as the "Big Picture" (everything happening in the world) and <strong>Porter's Five Forces</strong> as the "Arena" (the specific fight you're in).
-                </p>
-                
-                <div class="grid md:grid-cols-2 gap-8 mb-8">
-                    <!-- PESTEL -->
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-blue-100">
-                        <h4 class="font-bold text-slate-900 mb-2 border-b border-slate-100 pb-2">PESTEL (The Macro-Environment)</h4>
-                        <ul class="text-sm text-slate-600 space-y-3">
-                            <li class="flex items-start gap-2"><i class="fas fa-globe text-blue-500 mt-1"></i> <span><strong>Scope:</strong> Global / National / Societal.</span></li>
-                            <li class="flex items-start gap-2"><i class="fas fa-hand-paper text-blue-500 mt-1"></i> <span><strong>Control:</strong> Zero. These are "Exogenous Shocks."</span></li>
-                            <li class="flex items-start gap-2"><i class="fas fa-clock text-blue-500 mt-1"></i> <span><strong>Action:</strong> Scan, Monitor, Adapt. You cannot stop a recession or a cultural shift; you can only prepare for it.</span></li>
-                        </ul>
-                    </div>
-                    <!-- Porter's -->
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-blue-100">
-                        <h4 class="font-bold text-slate-900 mb-2 border-b border-slate-100 pb-2">Porter's 5 Forces (The Industry Environment)</h4>
-                        <ul class="text-sm text-slate-600 space-y-3">
-                            <li class="flex items-start gap-2"><i class="fas fa-industry text-emerald-500 mt-1"></i> <span><strong>Scope:</strong> Specific Industry (e.g., Airlines).</span></li>
-                            <li class="flex items-start gap-2"><i class="fas fa-chess-knight text-emerald-500 mt-1"></i> <span><strong>Control:</strong> Some. You can influence these forces.</span></li>
-                            <li class="flex items-start gap-2"><i class="fas fa-fist-raised text-emerald-500 mt-1"></i> <span><strong>Action:</strong> Position, Defend, Attack. You can build barriers to entry or differentiate to reduce rivalry.</span></li>
-                        </ul>
-                    </div>
+            <div class="grid md:grid-cols-2 gap-6 mb-10">
+                <div class="card-panel p-6 rounded-xl">
+                    <h4 class="font-bold text-slate-900 mb-3 flex items-center gap-2"><i class="fas fa-chess-board text-blue-600"></i> What Five Forces sees</h4>
+                    <ul class="text-sm text-slate-600 space-y-2 list-disc list-outside ml-4">
+                        <li>Five separate boxes: rivals, suppliers, buyers, entrants, substitutes.</li>
+                        <li>A static photograph of bargaining power at one point in time.</li>
+                        <li>An assumption that the industry's boundary is obvious and fixed.</li>
+                    </ul>
                 </div>
-
-                <!-- Coffee Shop Example -->
-                <div class="bg-slate-100 p-6 rounded-xl border border-slate-200">
-                    <h4 class="font-bold text-slate-800 text-lg mb-4 flex items-center gap-2"><i class="fas fa-coffee text-amber-600"></i> Applied Example: Opening a Coffee Shop</h4>
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div>
-                            <h5 class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-2">1. PESTEL Analysis (Macro)</h5>
-                            <p class="text-xs text-slate-500 mb-2">Factors affecting <em>every</em> coffee shop in the region.</p>
-                            <ul class="list-disc list-outside ml-4 text-xs text-slate-700 space-y-1">
-                                <li><strong>Political:</strong> New trade tariffs on imported Brazilian beans.</li>
-                                <li><strong>Economic:</strong> High inflation reducing disposable income for luxury lattes.</li>
-                                <li><strong>Social:</strong> Growing preference for matcha/herbal tea over caffeine.</li>
-                                <li><strong>Technological:</strong> Rise of mobile ordering apps as a standard expectation.</li>
-                                <li><strong>Legal:</strong> New health and safety regulations for food handling.</li>
-                                <li><strong>Environmental:</strong> Climate change affecting crop yields and prices.</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h5 class="text-xs font-bold text-emerald-600 uppercase tracking-widest mb-2">2. Porter's Five Forces (Micro)</h5>
-                            <p class="text-xs text-slate-500 mb-2">Competitive forces within the <em>specific</em> industry arena.</p>
-                            <ul class="list-disc list-outside ml-4 text-xs text-slate-700 space-y-1">
-                                <li><strong>Rivalry:</strong> Three Starbucks and two local cafes on the same block (Price Wars).</li>
-                                <li><strong>Supplier Power:</strong> Only two local dairy wholesalers exist; they dictate milk prices.</li>
-                                <li><strong>Buyer Power:</strong> Customers have no loyalty; will switch for a 50-cent discount.</li>
-                                <li><strong>New Entrants:</strong> Low barrier to entry; easy to rent a stall and sell coffee.</li>
-                                <li><strong>Substitutes:</strong> Energy drinks or high-quality home espresso machines.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="mt-4 pt-4 border-t border-slate-200 text-xs text-slate-500 italic">
-                        <strong>Insight:</strong> A change in PESTEL (e.g., Technological invention of cheap home espresso machines) triggers a change in Five Forces (increased Threat of Substitutes).
-                    </div>
+                <div class="card-panel p-6 rounded-xl">
+                    <h4 class="font-bold text-slate-900 mb-3 flex items-center gap-2"><i class="fas fa-diagram-project text-teal-600"></i> What it misses</h4>
+                    <ul class="text-sm text-slate-600 space-y-2 list-disc list-outside ml-4">
+                        <li><strong>Ecosystems</strong>: a "supplier" (TSMC) or a "buyer" (Microsoft, Amazon) can also be a co-investor, a complementor, or a future rival &mdash; all at once.</li>
+                        <li><strong>Interdependence</strong>: a rival's best move depends on what you do, and vice versa. Five Forces has no room for a payoff matrix.</li>
+                        <li><strong>Not knowing the game</strong>: sometimes the honest answer to "how will this play out" is a probability distribution, not a forecast.</li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- Detailed Factors Grid (New Content from Text) -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                <!-- Political -->
-                <div class="card-panel p-6 rounded-xl border-t-4 border-red-500">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="bg-red-100 text-red-600 w-10 h-10 rounded-full flex items-center justify-center"><i class="fas fa-landmark"></i></div>
-                        <h4 class="font-bold text-slate-900">Political</h4>
-                    </div>
-                    <p class="text-sm text-slate-600 mb-4">Pressure from government bodies, NGOs, and social movements influencing firm behavior.</p>
-                    <div class="bg-slate-50 p-3 rounded text-xs text-slate-500">
-                        <strong>Examples:</strong> ACLU, Greenpeace, BLM, #MeToo.<br>
-                        <strong>Strategy:</strong> "Nonmarket Strategy" (Lobbying, PR).
-                    </div>
-                </div>
-
-                <!-- Economic -->
-                <div class="card-panel p-6 rounded-xl border-t-4 border-emerald-500">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="bg-emerald-100 text-emerald-600 w-10 h-10 rounded-full flex items-center justify-center"><i class="fas fa-chart-line"></i></div>
-                        <h4 class="font-bold text-slate-900">Economic</h4>
-                    </div>
-                    <p class="text-sm text-slate-600 mb-4">Macroeconomic phenomena affecting the entire economy.</p>
-                    <div class="bg-slate-50 p-3 rounded text-xs text-slate-500">
-                        <strong>Key Metrics:</strong> Growth Rates, Employment (Unemployment is low = wages rise), Interest Rates (Cost of Capital), Price Stability (Inflation/Deflation).
-                    </div>
-                </div>
-
-                <!-- Sociocultural -->
-                <div class="card-panel p-6 rounded-xl border-t-4 border-purple-500">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="bg-purple-100 text-purple-600 w-10 h-10 rounded-full flex items-center justify-center"><i class="fas fa-users"></i></div>
-                        <h4 class="font-bold text-slate-900">Sociocultural</h4>
-                    </div>
-                    <p class="text-sm text-slate-600 mb-4">Society's cultures, norms, and values, which are constantly in flux.</p>
-                    <div class="bg-slate-50 p-3 rounded text-xs text-slate-500">
-                        <strong>Trends:</strong> Health Consciousness (Chipotle vs. McDonald's), Demographics (Growth of Hispanic population in US).
-                    </div>
-                </div>
-
-                <!-- Technological -->
-                <div class="card-panel p-6 rounded-xl border-t-4 border-blue-500">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="bg-blue-100 text-blue-600 w-10 h-10 rounded-full flex items-center justify-center"><i class="fas fa-microchip"></i></div>
-                        <h4 class="font-bold text-slate-900">Technological</h4>
-                    </div>
-                    <p class="text-sm text-slate-600 mb-4">Application of knowledge to create new processes and products.</p>
-                    <div class="bg-slate-50 p-3 rounded text-xs text-slate-500">
-                        <strong>Innovations:</strong> Six Sigma (Process), Smartphones/EVs/AI (Product). The relentless "Creative Destruction".
-                    </div>
-                </div>
-
-                <!-- Ecological -->
-                <div class="card-panel p-6 rounded-xl border-t-4 border-green-600">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="bg-green-100 text-green-600 w-10 h-10 rounded-full flex items-center justify-center"><i class="fas fa-leaf"></i></div>
-                        <h4 class="font-bold text-slate-900">Ecological</h4>
-                    </div>
-                    <p class="text-sm text-slate-600 mb-4">Broad environmental issues and the relationship between organizations and the natural world.</p>
-                    <div class="bg-slate-50 p-3 rounded text-xs text-slate-500">
-                        <strong>Issues:</strong> Climate Change, BP Oil Spill, Greta Thunberg. <br>
-                        <strong>Concept:</strong> Externalities (Pollution costs not priced in).
-                    </div>
-                </div>
-
-                <!-- Legal -->
-                <div class="card-panel p-6 rounded-xl border-t-4 border-slate-600">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="bg-slate-200 text-slate-700 w-10 h-10 rounded-full flex items-center justify-center"><i class="fas fa-gavel"></i></div>
-                        <h4 class="font-bold text-slate-900">Legal</h4>
-                    </div>
-                    <p class="text-sm text-slate-600 mb-4">Official outcomes of political processes: laws, mandates, regulations, court decisions.</p>
-                    <div class="bg-slate-50 p-3 rounded text-xs text-slate-500">
-                        <strong>Examples:</strong> Deregulation (Airlines), GDPR (Data Privacy), Antitrust suits (Google/Alphabet).
-                    </div>
-                </div>
-            </div>
-
-            <!-- GROUP ACTIVITY: PESTEL WORKSHOP (NEW) -->
-            <section id="group-activity" class="mb-20 fade-up">
-                <div class="bg-slate-900 rounded-xl overflow-hidden shadow-2xl border border-slate-700">
-                    <div class="bg-slate-800 px-8 py-6 border-b border-slate-700 flex flex-col md:flex-row justify-between items-center gap-4">
-                        <div>
-                            <div class="flex items-center gap-3 mb-1">
-                                <div class="w-8 h-8 rounded-full bg-amber-500 flex items-center justify-center text-slate-900 font-bold"><i class="fas fa-users"></i></div>
-                                <h3 class="text-xl font-serif font-bold text-white">Group Activity: The PESTEL Workshop</h3>
-                            </div>
-                            <p class="text-slate-400 text-sm">Analyze the external shocks facing McDonald's and reveal their strategic response.</p>
-                        </div>
-                        <div class="text-right">
-                            <span class="text-[10px] uppercase tracking-widest text-slate-500 font-bold block">Case Subject</span>
-                            <span class="text-amber-400 font-bold font-mono">McDonald's Global Strategy</span>
-                        </div>
-                    </div>
-                    
-                    <div class="p-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- P Card -->
-                        <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-red-500 transition-all group relative">
-                            <div class="absolute top-4 right-4 text-slate-600 font-black text-4xl opacity-10 group-hover:text-red-500 group-hover:opacity-20">P</div>
-                            <h4 class="text-red-400 font-bold mb-3">Political Shock</h4>
-                            <p class="text-slate-300 text-sm mb-4 min-h-[60px]"><strong>Scenario:</strong> Brexit creates trade uncertainty and supply chain risks for importing ingredients into the UK.</p>
-                            <div id="strat-p" class="hidden bg-slate-900 p-3 rounded border-l-2 border-red-500 text-xs text-slate-300 mb-4 animate-fade-in-up">
-                                <strong>Strategy:</strong> Local Sourcing. McDonald's shifted to sourcing ingredients locally within the UK to bypass import tariffs and delays.
-                            </div>
-                            <button onclick="document.getElementById('strat-p').classList.remove('hidden'); this.style.display='none'" class="w-full py-2 bg-red-900/30 text-red-300 text-xs font-bold rounded hover:bg-red-900/50 border border-red-800 transition-all">Reveal Strategy</button>
-                        </div>
-
-                        <!-- E Card -->
-                        <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-emerald-500 transition-all group relative">
-                            <div class="absolute top-4 right-4 text-slate-600 font-black text-4xl opacity-10 group-hover:text-emerald-500 group-hover:opacity-20">E</div>
-                            <h4 class="text-emerald-400 font-bold mb-3">Economic Shock</h4>
-                            <p class="text-slate-300 text-sm mb-4 min-h-[60px]"><strong>Scenario:</strong> High Inflation / Recession hits consumer spending power. People stop dining out.</p>
-                            <div id="strat-e" class="hidden bg-slate-900 p-3 rounded border-l-2 border-emerald-500 text-xs text-slate-300 mb-4 animate-fade-in-up">
-                                <strong>Strategy:</strong> The "Saver Menu". Heavily promote low-cost items and limited-time discounts to retain price-sensitive customers.
-                            </div>
-                            <button onclick="document.getElementById('strat-e').classList.remove('hidden'); this.style.display='none'" class="w-full py-2 bg-emerald-900/30 text-emerald-300 text-xs font-bold rounded hover:bg-emerald-900/50 border border-emerald-800 transition-all">Reveal Strategy</button>
-                        </div>
-
-                        <!-- S Card -->
-                        <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-purple-500 transition-all group relative">
-                            <div class="absolute top-4 right-4 text-slate-600 font-black text-4xl opacity-10 group-hover:text-purple-500 group-hover:opacity-20">S</div>
-                            <h4 class="text-purple-400 font-bold mb-3">Social Shift</h4>
-                            <p class="text-slate-300 text-sm mb-4 min-h-[60px]"><strong>Scenario:</strong> Cultural norms in India reject beef. Health consciousness is rising globally.</p>
-                            <div id="strat-s" class="hidden bg-slate-900 p-3 rounded border-l-2 border-purple-500 text-xs text-slate-300 mb-4 animate-fade-in-up">
-                                <strong>Strategy:</strong> Localization. "Chicken Maharaja Mac" in India; Teriyaki Burgers in Japan; Salads/Wraps for health trends.
-                            </div>
-                            <button onclick="document.getElementById('strat-s').classList.remove('hidden'); this.style.display='none'" class="w-full py-2 bg-purple-900/30 text-purple-300 text-xs font-bold rounded hover:bg-purple-900/50 border border-purple-800 transition-all">Reveal Strategy</button>
-                        </div>
-
-                        <!-- T Card -->
-                        <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-blue-500 transition-all group relative">
-                            <div class="absolute top-4 right-4 text-slate-600 font-black text-4xl opacity-10 group-hover:text-blue-500 group-hover:opacity-20">T</div>
-                            <h4 class="text-blue-400 font-bold mb-3">Technological Shift</h4>
-                            <p class="text-slate-300 text-sm mb-4 min-h-[60px]"><strong>Scenario:</strong> Rise of the "Digital Native" customer who prefers apps over human interaction.</p>
-                            <div id="strat-t" class="hidden bg-slate-900 p-3 rounded border-l-2 border-blue-500 text-xs text-slate-300 mb-4 animate-fade-in-up">
-                                <strong>Strategy:</strong> Digital Transformation. Self-service kiosks to reallocate labor; App-based ordering; Delivery partnerships (UberEats).
-                            </div>
-                            <button onclick="document.getElementById('strat-t').classList.remove('hidden'); this.style.display='none'" class="w-full py-2 bg-blue-900/30 text-blue-300 text-xs font-bold rounded hover:bg-blue-900/50 border border-blue-800 transition-all">Reveal Strategy</button>
-                        </div>
-
-                        <!-- L Card -->
-                        <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-slate-400 transition-all group relative">
-                            <div class="absolute top-4 right-4 text-slate-600 font-black text-4xl opacity-10 group-hover:text-slate-400 group-hover:opacity-20">L</div>
-                            <h4 class="text-slate-400 font-bold mb-3">Legal Pressure</h4>
-                            <p class="text-slate-300 text-sm mb-4 min-h-[60px]"><strong>Scenario:</strong> New government laws mandate displaying calorie counts on all menus to fight obesity.</p>
-                            <div id="strat-l" class="hidden bg-slate-900 p-3 rounded border-l-2 border-slate-400 text-xs text-slate-300 mb-4 animate-fade-in-up">
-                                <strong>Strategy:</strong> Proactive Compliance. Updated digital boards and app interfaces to show calories clearly at the point of purchase.
-                            </div>
-                            <button onclick="document.getElementById('strat-l').classList.remove('hidden'); this.style.display='none'" class="w-full py-2 bg-slate-700/50 text-slate-300 text-xs font-bold rounded hover:bg-slate-700 border border-slate-600 transition-all">Reveal Strategy</button>
-                        </div>
-
-                        <!-- E (Env) Card -->
-                        <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-green-500 transition-all group relative">
-                            <div class="absolute top-4 right-4 text-slate-600 font-black text-4xl opacity-10 group-hover:text-green-500 group-hover:opacity-20">E</div>
-                            <h4 class="text-green-400 font-bold mb-3">Environmental Goal</h4>
-                            <p class="text-slate-300 text-sm mb-4 min-h-[60px]"><strong>Scenario:</strong> Growing public backlash against single-use plastic and waste.</p>
-                            <div id="strat-env" class="hidden bg-slate-900 p-3 rounded border-l-2 border-green-500 text-xs text-slate-300 mb-4 animate-fade-in-up">
-                                <strong>Strategy:</strong> Sustainability Targets. Goal to source 100% of packaging from renewable/recycled materials. Recycling bins in stores.
-                            </div>
-                            <button onclick="document.getElementById('strat-env').classList.remove('hidden'); this.style.display='none'" class="w-full py-2 bg-green-900/30 text-green-300 text-xs font-bold rounded hover:bg-green-900/50 border border-green-800 transition-all">Reveal Strategy</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Strategy Highlight: Blockbuster -->
-            <div class="bg-blue-50 border border-blue-200 rounded-xl p-8 mb-12 flex flex-col md:flex-row gap-8 items-start shadow-sm">
-                <div class="md:w-1/3">
-                    <div class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-2">Strategy Highlight 3.1</div>
-                    <h3 class="text-2xl font-serif font-bold text-slate-900 mb-4">Blockbuster's Bust</h3>
-                    <div class="text-6xl text-blue-200 mb-4"><i class="fas fa-film"></i></div>
-                    <p class="text-sm text-slate-600 italic">"In 2010, the once-mighty Blockbuster filed for bankruptcy. What went wrong?"</p>
-                </div>
-                <div class="md:w-2/3 text-sm text-slate-700 space-y-4">
-                    <p>Blockbuster was the undisputed leader with 9,000 stores. It ignored the <strong>Technological</strong> shift (streaming/internet speed) and <strong>Sociocultural</strong> shift (convenience of "couch viewing").</p>
-                    <p>It relied on "Late Fees" for profit—a model hated by customers. Netflix used technology to remove this pain point. Blockbuster tried to pivot too late, launching its own online service when Netflix already had the network effect.</p>
-                    <div class="bg-white p-4 rounded border border-blue-100">
-                        <strong>Key Lesson:</strong> PESTEL factors are not just "background noise"; they are existential threats. Ignoring them leads to obsolescence.
-                    </div>
-                </div>
-            </div>
-
-            <!-- Simulation: The Crisis Room (Robust) -->
-            <div class="bg-slate-900 rounded-xl overflow-hidden shadow-2xl border border-slate-700">
-                <div class="bg-slate-800 px-8 py-4 border-b border-slate-700 flex justify-between items-center">
-                    <div class="flex items-center gap-3">
-                        <div class="w-3 h-3 rounded-full bg-red-500 animate-pulse"></div>
-                        <span class="text-white font-mono font-bold tracking-widest uppercase text-sm">The Crisis Room: Macro-Shock Simulator</span>
-                    </div>
-                    <span class="text-slate-400 text-xs">CEO ACCESS GRANTED</span>
-                </div>
-                
-                <div class="p-8">
-                    <div id="sim-container">
-                        <div class="text-center py-8">
-                            <h3 class="text-2xl text-white font-serif mb-4">Incoming Intelligence Reports</h3>
-                            <p class="text-slate-400 mb-8 max-w-lg mx-auto">You are the CEO of a Global Auto Manufacturer. PESTEL forces are shifting rapidly. Your decisions will determine stock price and survival.</p>
-                            <button onclick="startMacroSim()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-full transition-all">Enter Simulation</button>
-                        </div>
-                    </div>
-                    <div id="sim-feedback-area" class="mt-6 hidden bg-slate-800/50 p-4 rounded border border-slate-700 text-sm text-slate-300"></div>
-                </div>
-            </div>
-
-            <!-- Group Activity: Velocity Mapping -->
-            <div class="mt-16 border-t border-slate-200 pt-12">
-                <div class="flex items-center gap-4 mb-6">
-                    <div class="bg-indigo-100 text-indigo-700 w-12 h-12 rounded-full flex items-center justify-center text-xl"><i class="fas fa-users"></i></div>
-                    <div>
-                        <h3 class="text-xl font-bold text-slate-900">Class Activity: The Velocity Map</h3>
-                        <p class="text-sm text-slate-500">Understanding the "Caveat" of PESTEL: It is a static snapshot of a dynamic world.</p>
-                    </div>
-                </div>
-                
-                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                    <p class="text-slate-700 mb-6"><strong>The Challenge:</strong> Your instructor will assign your group an industry (e.g., Oil & Gas, Social Media, Fast Fashion). Your task is not just to list factors, but to map their <strong>Velocity</strong> (Speed of Change).</p>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-                        <div class="p-4 bg-slate-50 rounded border border-slate-200">
-                            <h5 class="font-bold text-slate-800 mb-2">High Velocity 🚀</h5>
-                            <p class="text-xs text-slate-500">Factors changing weekly/monthly. Requires agile response.</p>
-                        </div>
-                        <div class="p-4 bg-slate-50 rounded border border-slate-200">
-                            <h5 class="font-bold text-slate-800 mb-2">Medium Velocity 🚗</h5>
-                            <p class="text-xs text-slate-500">Factors changing annually. Requires strategic planning.</p>
-                        </div>
-                        <div class="p-4 bg-slate-50 rounded border border-slate-200">
-                            <h5 class="font-bold text-slate-800 mb-2">Low Velocity 🐢</h5>
-                            <p class="text-xs text-slate-500">Factors changing over decades. Requires long-term vision.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- INDUSTRY STRUCTURE (SCP) -->
-        <section id="scp" class="mb-32 fade-up pt-16 border-t border-slate-200">
-            <div class="fp-box">
-                <p class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-1">Fundamental Question</p>
-                <h3 class="text-3xl font-serif font-bold text-slate-900 leading-tight">Why does a monopoly produce less and charge more?</h3>
-                <p class="text-slate-600 mt-4 leading-relaxed">
-                    It is not just greed; it is <strong>Structure</strong>. The SCP Paradigm posits that market structure determines firm conduct, which determines performance. <strong>Structure (Number/size of firms) determines Conduct (Pricing/Strategy) which determines Performance (Profit). Fragmented industries behave very differently from consolidated ones.</strong>
-                </p>
-            </div>
-
-            <!-- SCP Flow Chart (Conceptual) -->
-            <div class="grid md:grid-cols-3 gap-6 mb-8">
-                
-                <!-- Structure -->
-                <div class="card-panel p-6 rounded-xl border-t-4 border-blue-500 text-left">
-                    <h4 class="font-bold text-slate-900 mb-2 text-lg flex items-center gap-2">
-                        <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">1</span> Structure
-                    </h4>
-                    <p class="text-sm text-slate-500 italic mb-4">The "playing field" where companies operate.</p>
-                    
-                    <div class="space-y-3 text-sm text-slate-600">
-                        <div>
-                            <strong class="text-slate-800">Consolidated (Oligopoly):</strong>
-                            <p class="text-xs mt-1">Dominated by few massive players. e.g., <span class="font-semibold text-blue-700">Boeing & Airbus</span> (Aircraft).</p>
-                        </div>
-                        <div>
-                            <strong class="text-slate-800">Fragmented:</strong>
-                            <p class="text-xs mt-1">Thousands of small independents. e.g., <span class="font-semibold text-blue-700">Beauty Salons</span> or Cybersecurity.</p>
-                        </div>
-                        <div>
-                            <strong class="text-slate-800">Barriers to Entry:</strong>
-                            <p class="text-xs mt-1">High barriers exist in Telecom (e.g., <span class="font-semibold text-blue-700">Reliance Jio</span>) due to massive capital ($25Bn+).</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Conduct -->
-                <div class="card-panel p-6 rounded-xl border-t-4 border-amber-500 text-left">
-                    <h4 class="font-bold text-slate-900 mb-2 text-lg flex items-center gap-2">
-                        <span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded">2</span> Conduct
-                    </h4>
-                    <p class="text-sm text-slate-500 italic mb-4">How firms act based on structure.</p>
-                    
-                    <div class="space-y-3 text-sm text-slate-600">
-                        <div>
-                            <strong class="text-slate-800">Pricing Strategy:</strong>
-                            <p class="text-xs mt-1">Wheat farmers are <span class="font-semibold text-amber-700">Price Takers</span>. Apple/Samsung are <span class="font-semibold text-amber-700">Price Setters</span>.</p>
-                        </div>
-                        <div>
-                            <strong class="text-slate-800">Collusion:</strong>
-                            <p class="text-xs mt-1"><span class="font-semibold text-amber-700">OPEC</span> is explicit collusion to coordinate production and influence oil prices.</p>
-                        </div>
-                        <div>
-                            <strong class="text-slate-800">R&D & Advertising:</strong>
-                            <p class="text-xs mt-1">Pharma invests billions in R&D; Coca-Cola uses heavy ads to differentiate.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Performance -->
-                <div class="card-panel p-6 rounded-xl border-t-4 border-emerald-500 text-left">
-                    <h4 class="font-bold text-slate-900 mb-2 text-lg flex items-center gap-2">
-                        <span class="bg-emerald-100 text-emerald-800 text-xs px-2 py-1 rounded">3</span> Performance
-                    </h4>
-                    <p class="text-sm text-slate-500 italic mb-4">The scorecard of industry health.</p>
-                    
-                    <div class="space-y-3 text-sm text-slate-600">
-                        <div>
-                            <strong class="text-slate-800">Economic Profit:</strong>
-                            <p class="text-xs mt-1">Monopolies (e.g., <span class="font-semibold text-emerald-700">Microsoft</span>) often earn profit exceeding opportunity costs.</p>
-                        </div>
-                        <div>
-                            <strong class="text-slate-800">Normal Profit:</strong>
-                            <p class="text-xs mt-1">In perfect competition (e.g., <span class="font-semibold text-emerald-700">Vegetable Market</span>), sellers earn just enough to stay in business.</p>
-                        </div>
-                        <div>
-                            <strong class="text-slate-800">Social Welfare:</strong>
-                            <p class="text-xs mt-1">High competition leads to Allocative Efficiency and lower prices for consumers.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card-panel rounded-xl overflow-hidden mb-12 shadow-md">
-                <div class="bg-slate-50 p-4 border-b border-slate-200">
-                    <h4 class="font-bold text-slate-800 text-sm uppercase tracking-wide">The Spectrum of Competition</h4>
-                </div>
+            <!-- Compact PESTEL vs Five Forces recap -->
+            <div class="bg-blue-50 border border-blue-200 rounded-xl p-6 md:p-8 mb-6">
+                <h4 class="text-lg font-serif font-bold text-blue-900 mb-1">Quick Recap: PESTEL vs. Porter's Five Forces</h4>
+                <p class="text-slate-700 text-sm mb-5">You met both lenses earlier in the module. Neither one, on its own, explains Nvidia. Keep them &mdash; but treat them as the floor, not the ceiling, of external analysis.</p>
                 <div class="overflow-x-auto">
-                    <table class="w-full text-sm text-left matrix-table">
-                        <thead class="bg-white text-slate-500 border-b border-slate-200">
+                    <table class="w-full text-sm text-left matrix-table bg-white rounded-lg overflow-hidden">
+                        <thead>
                             <tr>
-                                <th class="w-1/5">Structure</th>
-                                <th class="w-2/5">Characteristics</th>
-                                <th class="w-1/5">Pricing Power</th>
-                                <th class="w-1/5">Example</th>
+                                <th>Lens</th>
+                                <th>Unit of Analysis</th>
+                                <th>Can a Firm Change It?</th>
+                                <th>Blind Spot This Session Fixes</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-slate-100">
-                            <tr class="hover:bg-blue-50/30 transition-colors">
-                                <td class="font-bold text-slate-800">Perfect Competition</td>
-                                <td class="text-slate-600">Many small firms. Commodity product. Low entry barriers.</td>
-                                <td class="text-red-500 font-bold font-mono text-xs">None (Price Taker)</td>
-                                <td><span class="bg-slate-100 px-2 py-1 rounded text-xs text-slate-600">Online Stock Trading</span></td>
+                        <tbody class="divide-y divide-slate-100 bg-white">
+                            <tr>
+                                <td class="font-bold text-slate-800">PESTEL</td>
+                                <td class="text-slate-600">The macro-environment (a nation, a society)</td>
+                                <td class="text-red-500 font-mono text-xs font-bold">No &mdash; scan & adapt</td>
+                                <td class="text-slate-600">Treats every factor as exogenous; can't model a rival's reaction to your move.</td>
                             </tr>
-                            <tr class="hover:bg-blue-50/30 transition-colors">
-                                <td class="font-bold text-slate-800">Monopolistic Competition</td>
-                                <td class="text-slate-600">Many firms. Differentiated product. Some barriers.</td>
-                                <td class="text-amber-500 font-bold font-mono text-xs">Some</td>
-                                <td><span class="bg-slate-100 px-2 py-1 rounded text-xs text-slate-600">Fashion Apparel</span></td>
+                            <tr>
+                                <td class="font-bold text-slate-800">Five Forces</td>
+                                <td class="text-slate-600">One bounded industry, one snapshot in time</td>
+                                <td class="text-amber-500 font-mono text-xs font-bold">Partially &mdash; position & defend</td>
+                                <td class="text-slate-600">Assumes clean role separation (supplier / buyer / rival) and a knowable future.</td>
                             </tr>
-                            <tr class="hover:bg-blue-50/30 transition-colors">
-                                <td class="font-bold text-slate-800">Oligopoly</td>
-                                <td class="text-slate-600">Few large firms. Interdependent. High barriers.</td>
-                                <td class="text-blue-600 font-bold font-mono text-xs">Significant</td>
-                                <td><span class="bg-slate-100 px-2 py-1 rounded text-xs text-slate-600">Credit Card Networks</span></td>
-                            </tr>
-                            <tr class="hover:bg-blue-50/30 transition-colors">
-                                <td class="font-bold text-slate-800">Monopoly</td>
-                                <td class="text-slate-600">One firm. Unique product. Very high barriers.</td>
-                                <td class="text-emerald-600 font-bold font-mono text-xs">High (Price Setter)</td>
-                                <td><span class="bg-slate-100 px-2 py-1 rounded text-xs text-slate-600">Patented Pharma</span></td>
+                            <tr>
+                                <td class="font-bold text-slate-800">Ecosystems + Game Theory + Uncertainty</td>
+                                <td class="text-slate-600">A web of interdependent players, moves, and futures</td>
+                                <td class="text-emerald-600 font-mono text-xs font-bold">Yes &mdash; shape, adapt, or hedge</td>
+                                <td class="text-slate-600">This session.</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="p-4 bg-slate-50 text-xs text-slate-500 text-center italic border-t border-slate-200">
-                    As market concentration increases (from many to one), firms move from "Price Takers" to "Price Setters".
-                </div>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-4 mt-6">
-                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                    <div class="text-xs font-bold text-red-500 uppercase mb-1">Perfect Competition</div>
-                    <h5 class="font-bold text-slate-800 text-sm mb-2">Online Stock Trading</h5>
-                    <p class="text-xs text-slate-600 leading-relaxed">Trading a stock (e.g., Apple) is identical across platforms (Robinhood, Fidelity). It is a commodity service with low barriers for digital entry. Firms have almost zero pricing power (commission-free).</p>
-                </div>
-                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                    <div class="text-xs font-bold text-amber-500 uppercase mb-1">Monopolistic Competition</div>
-                    <h5 class="font-bold text-slate-800 text-sm mb-2">Fashion Apparel</h5>
-                    <p class="text-xs text-slate-600 leading-relaxed">Thousands of competitors (Nike, Zara, Boutiques). Products are differentiated by brand and style, allowing <em>some</em> pricing power, but intense competition keeps margins in check.</p>
-                </div>
-                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                    <div class="text-xs font-bold text-blue-600 uppercase mb-1">Oligopoly</div>
-                    <h5 class="font-bold text-slate-800 text-sm mb-2">Credit Card Networks</h5>
-                    <p class="text-xs text-slate-600 leading-relaxed">Dominated by Visa, Mastercard, Amex. Massive network effect barriers. They wield <em>significant</em> pricing power via interchange fees that merchants must pay.</p>
-                </div>
-                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                    <div class="text-xs font-bold text-emerald-600 uppercase mb-1">Monopoly</div>
-                    <h5 class="font-bold text-slate-800 text-sm mb-2">Patented Pharmaceuticals</h5>
-                    <p class="text-xs text-slate-600 leading-relaxed">A patent grants a legal temporary monopoly. With a unique life-saving product and high R&D barriers, the firm is a <em>Price Setter</em> until the patent expires.</p>
-                </div>
-            </div>
-
-            <!-- SCP Robust Simulation: The Price Setter's Dilemma -->
-            <div class="bg-slate-900 rounded-xl overflow-hidden shadow-2xl border border-slate-700 mt-12">
-                <div class="bg-slate-800 px-8 py-4 border-b border-slate-700 flex justify-between items-center">
-                    <div class="flex items-center gap-3">
-                        <div class="w-3 h-3 rounded-full bg-blue-500 animate-pulse"></div>
-                        <span class="text-white font-mono font-bold tracking-widest uppercase text-sm">Simulation: The Price Setter's Dilemma</span>
-                    </div>
-                    <span class="text-slate-400 text-xs">MARKET SIMULATOR v2.0</span>
-                </div>
-                
-                <div class="p-8">
-                    <div id="scp-sim-container">
-                        <div class="text-center py-8">
-                            <h3 class="text-2xl text-white font-serif mb-4">Can you survive the Market Structure?</h3>
-                            <p class="text-slate-400 mb-8 max-w-lg mx-auto">You will be placed in 3 different industries: A Farm, a Soda Giant, and a Utility. Your goal: maximize profit by choosing the right "Conduct" for the "Structure".</p>
-                            <button onclick="startScpSim()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-full transition-all shadow-lg transform hover:scale-105">Start Market Simulation</button>
-                        </div>
-                    </div>
-                    <div id="scp-feedback-area" class="mt-6 hidden bg-slate-800/50 p-6 rounded-lg border border-slate-700 text-sm text-slate-300 transition-all"></div>
-                </div>
             </div>
         </section>
 
-        <!-- FIVE FORCES -->
-        <section id="five-forces" class="mb-32 fade-up pt-16 border-t border-slate-200">
-            <!-- First Principle Question -->
+        <!-- ECOSYSTEMS & PLATFORMS -->
+        <section id="ecosystems" class="mb-32 fade-up pt-16 border-t border-slate-200">
             <div class="fp-box">
-                <p class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-1">First Principle Question</p>
-                <h3 class="text-3xl font-serif font-bold text-slate-900 leading-tight">What is the fundamental structure of this industry that determines its long-term average profitability?</h3>
+                <p class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-1">First-Principles Question</p>
+                <h3 class="text-3xl font-serif font-bold text-slate-900 leading-tight">Why can't AMD just build a faster, cheaper chip and win?</h3>
                 <p class="text-slate-600 mt-4 leading-relaxed">
-                    While many managers view competition only as a "war" against direct rivals, Porter’s first principle shifts the focus to the <strong>underlying economic drivers</strong>—the "microenvironment"—that dictate how much value a company can capture versus how much is "leaked" to suppliers, customers, or substitutes.
+                    By 2024 AMD's MI300X was priced at <strong>$10,000&ndash;$15,000</strong> &mdash; a fraction of Nvidia's $25,000&ndash;$40,000 H100 &mdash; and was closing the raw performance gap. It still couldn't take meaningful share in AI training. The reason has almost nothing to do with the chip. It has to do with <strong>CUDA</strong>: a sixteen-year-old software platform that has quietly become Nvidia's real product.
                 </p>
             </div>
 
-            <!-- Core Questions Block -->
-            <div class="grid md:grid-cols-2 gap-6 mb-12">
-                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-                    <h4 class="font-bold text-slate-800 mb-4 border-b pb-2">The 5 Core Questions</h4>
-                    <ul class="space-y-3 text-sm text-slate-600">
-                        <li class="flex gap-3"><span class="text-blue-600 font-bold">1. Entry:</span> How easily can a new player enter and drive down prices?</li>
-                        <li class="flex gap-3"><span class="text-blue-600 font-bold">2. Suppliers:</span> How much can your suppliers raise prices or reduce quality?</li>
-                        <li class="flex gap-3"><span class="text-blue-600 font-bold">3. Buyers:</span> How easily can your customers force you to lower prices?</li>
-                        <li class="flex gap-3"><span class="text-blue-600 font-bold">4. Substitutes:</span> How likely are customers to switch to a different type of solution?</li>
-                        <li class="flex gap-3"><span class="text-blue-600 font-bold">5. Rivalry:</span> How intense is the fight for market share among existing firms?</li>
-                    </ul>
+            <div class="grid md:grid-cols-3 gap-6 mb-10">
+                <div class="card-panel p-6 rounded-xl border-t-4 border-indigo-500">
+                    <h4 class="font-bold text-slate-900 mb-2">A business ecosystem is not an "industry"</h4>
+                    <p class="text-sm text-slate-600">It is a network of firms &mdash; a platform owner plus its <strong>complementors</strong> &mdash; whose products or services only create full value <em>together</em>. Adner (2017) calls this the shift from thinking about "industry" to thinking about "ecosystem": who has to do what, in what order, for your value proposition to actually show up.</p>
                 </div>
-                <div class="bg-blue-50 rounded-xl p-6 border border-blue-100 flex flex-col justify-center">
-                    <h4 class="font-bold text-blue-800 mb-2">Strategic Outcome</h4>
-                    <p class="text-sm text-blue-900/80 leading-relaxed">
-                        By answering these, you determine if the industry has <strong>High Profit Potential</strong> (protected by high barriers and low buyer/supplier power) or is a <strong>"Commodity Trap"</strong> where profits are constantly eroded.
-                    </p>
+                <div class="card-panel p-6 rounded-xl border-t-4 border-blue-500">
+                    <h4 class="font-bold text-slate-900 mb-2">Platforms win on two-sided network effects</h4>
+                    <p class="text-sm text-slate-600">More developers writing CUDA code makes the platform more valuable to GPU buyers; more GPU buyers makes it worth more developer-hours to write CUDA code. Each side subsidizes the other's reason to join. This is precisely the dynamic Steve Jobs engineered when Apple reversed course in 2008 and opened the iPhone to third-party developers with a native SDK and the App Store &mdash; turning outside developers into complementors with every shipped app deepening the platform's lock-in.</p>
+                </div>
+                <div class="card-panel p-6 rounded-xl border-t-4 border-teal-500">
+                    <h4 class="font-bold text-slate-900 mb-2">The moat is switching cost, not performance</h4>
+                    <p class="text-sm text-slate-600">By 2024, Nvidia had shipped <strong>over 150 CUDA-based SDKs</strong> spanning gaming, robotics, life sciences, and quantum computing (Huang, quoted in the case). Every model a lab has already trained, tuned, and deployed on CUDA is a rewrite cost if it moves to AMD's ROCm or a custom chip. That rewrite cost &mdash; not the price tag on the chip &mdash; is the real barrier to entry.</p>
                 </div>
             </div>
 
-            <!-- ROBUST SIMULATION: Force Configurator -->
-            <div class="grid lg:grid-cols-12 gap-8 mb-12">
-                <!-- Controls -->
-                <div class="lg:col-span-4 bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-                    <h3 class="font-bold text-slate-800 mb-6 text-xs uppercase tracking-widest border-b pb-2">Force Configurator</h3>
-                    <div class="space-y-4">
-                        
-                        <!-- Entry -->
-                        <div class="group">
-                            <label class="text-[10px] font-bold text-slate-500 uppercase flex justify-between">Threat of Entry</label>
-                            <div class="flex rounded-md shadow-sm mt-1" role="group">
-                                <button onclick="setForce('entry', 'Low')" id="btn-entry-low" class="flex-1 py-1 text-xs border border-r-0 border-slate-200 rounded-l hover:bg-slate-50 transition-all font-mono bg-blue-100 text-blue-700 font-bold">Low</button>
-                                <button onclick="setForce('entry', 'High')" id="btn-entry-high" class="flex-1 py-1 text-xs border border-slate-200 rounded-r hover:bg-slate-50 transition-all font-mono">High</button>
-                            </div>
-                        </div>
-
-                        <!-- Supplier -->
-                        <div class="group">
-                            <label class="text-[10px] font-bold text-slate-500 uppercase flex justify-between">Supplier Power</label>
-                            <div class="flex rounded-md shadow-sm mt-1" role="group">
-                                <button onclick="setForce('suppliers', 'Low')" id="btn-suppliers-low" class="flex-1 py-1 text-xs border border-r-0 border-slate-200 rounded-l hover:bg-slate-50 transition-all font-mono bg-blue-100 text-blue-700 font-bold">Low</button>
-                                <button onclick="setForce('suppliers', 'High')" id="btn-suppliers-high" class="flex-1 py-1 text-xs border border-slate-200 rounded-r hover:bg-slate-50 transition-all font-mono">High</button>
-                            </div>
-                        </div>
-
-                        <!-- Buyer -->
-                        <div class="group">
-                            <label class="text-[10px] font-bold text-slate-500 uppercase flex justify-between">Buyer Power</label>
-                            <div class="flex rounded-md shadow-sm mt-1" role="group">
-                                <button onclick="setForce('buyers', 'Low')" id="btn-buyers-low" class="flex-1 py-1 text-xs border border-r-0 border-slate-200 rounded-l hover:bg-slate-50 transition-all font-mono bg-blue-100 text-blue-700 font-bold">Low</button>
-                                <button onclick="setForce('buyers', 'High')" id="btn-buyers-high" class="flex-1 py-1 text-xs border border-slate-200 rounded-r hover:bg-slate-50 transition-all font-mono">High</button>
-                            </div>
-                        </div>
-
-                        <!-- Substitutes -->
-                        <div class="group">
-                            <label class="text-[10px] font-bold text-slate-500 uppercase flex justify-between">Threat of Substitutes</label>
-                            <div class="flex rounded-md shadow-sm mt-1" role="group">
-                                <button onclick="setForce('substitutes', 'Low')" id="btn-substitutes-low" class="flex-1 py-1 text-xs border border-r-0 border-slate-200 rounded-l hover:bg-slate-50 transition-all font-mono bg-blue-100 text-blue-700 font-bold">Low</button>
-                                <button onclick="setForce('substitutes', 'High')" id="btn-substitutes-high" class="flex-1 py-1 text-xs border border-slate-200 rounded-r hover:bg-slate-50 transition-all font-mono">High</button>
-                            </div>
-                        </div>
-
-                        <!-- Rivalry -->
-                        <div class="group">
-                            <label class="text-[10px] font-bold text-slate-500 uppercase flex justify-between">Competitive Rivalry</label>
-                            <div class="flex rounded-md shadow-sm mt-1" role="group">
-                                <button onclick="setForce('rivalry', 'Low')" id="btn-rivalry-low" class="flex-1 py-1 text-xs border border-r-0 border-slate-200 rounded-l hover:bg-slate-50 transition-all font-mono bg-blue-100 text-blue-700 font-bold">Low</button>
-                                <button onclick="setForce('rivalry', 'High')" id="btn-rivalry-high" class="flex-1 py-1 text-xs border border-slate-200 rounded-r hover:bg-slate-50 transition-all font-mono">High</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- Visual Dashboard -->
-                <div class="lg:col-span-8 bg-slate-900 rounded-xl p-8 relative flex flex-col justify-between text-white shadow-2xl border border-slate-700">
-                    
-                    <!-- Top: Calculated Potential -->
-                    <div class="w-full text-center mb-8">
-                        <span class="text-[10px] uppercase tracking-[0.2em] text-slate-400 font-bold">Calculated Industry Potential</span>
-                        <div id="profit-text" class="text-4xl font-serif font-bold text-emerald-400 mt-2 transition-all duration-500">Golden Era (High Profit)</div>
-                        <p id="profit-subtext" class="text-slate-400 text-sm mt-2">Incumbents are protected. Value is captured.</p>
-                    </div>
-
-                    <!-- Middle: Bar Chart -->
-                    <div class="w-full max-w-lg mx-auto mb-8">
-                        <div class="flex justify-between text-[10px] uppercase text-slate-500 font-bold mb-1">
-                            <span>Profit Destroyed</span>
-                            <span>Profit Protected</span>
-                        </div>
-                        <div class="h-6 bg-slate-800 rounded-full overflow-hidden border border-slate-600 relative">
-                            <div id="profit-bar" class="h-full bg-emerald-500 transition-all duration-700 ease-out shadow-[0_0_20px_rgba(16,185,129,0.5)]" style="width: 100%"></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Bottom: Dynamic Insight -->
-                    <div id="strategy-insight" class="bg-slate-800/80 p-4 rounded border-l-4 border-emerald-500 text-sm text-slate-300">
-                        <strong class="text-white block mb-1">Strategic Insight:</strong>
-                        This structure suggests an **oligopoly** or protected niche. Incumbents can pass costs to customers. Focus on R&D and brand equity to maintain these barriers.
-                    </div>
-                </div>
-            </div>
-
-            <!-- The Sixth Force: Complements -->
-            <div class="card-panel p-6 rounded-xl border-t-4 border-indigo-500 bg-indigo-50/30">
-                <div class="flex flex-col md:flex-row gap-6 items-center">
-                    <div class="bg-white p-4 rounded-full shadow-sm text-indigo-600 text-2xl w-16 h-16 flex items-center justify-center">
-                        <i class="fas fa-puzzle-piece"></i>
+            <!-- CUDA origin story -->
+            <div class="bg-blue-50 border border-blue-200 rounded-xl p-6 md:p-8 mb-10">
+                <h4 class="text-xl font-serif font-bold text-blue-900 mb-4">The Ecosystem Bet Almost Didn't Survive</h4>
+                <div class="grid md:grid-cols-2 gap-8 text-sm text-slate-700">
+                    <div>
+                        <p class="mb-3">Jensen Huang, Chris Malachowski, and Curtis Priem founded Nvidia in 1993 &mdash; reportedly plotting the company over Grand Slam breakfasts at a Denny's. Huang introduced CUDA in 2006 as a way to let developers program GPUs in something close to C++. It was not an instant hit: <strong>downloads declined from 2010&ndash;2013</strong>, Nvidia's stock sagged, and the board began worrying about corporate raiders (Yoffie &amp; Von Bargen, 2024).</p>
+                        <p>What saved CUDA wasn't a plan &mdash; it was a bet made under genuine uncertainty. When an Nvidia researcher showed Huang why deep learning would need parallel computing, Huang committed the company overnight. VP Greg Estes recalled: <em>"He sent out an e-mail on Friday evening saying everything is going to deep learning... By Monday morning, we were an A.I. company."</em> Nvidia had almost no AI revenue at the time.</p>
                     </div>
                     <div>
-                        <h4 class="font-bold text-slate-900 text-lg mb-1">The Sixth Force: Complements</h4>
-                        <p class="text-sm text-slate-600 mb-2">A product, service, or competency that adds value to the original product offering when the two are used in tandem.</p>
-                        <div class="text-xs font-mono bg-white inline-block px-2 py-1 rounded border border-indigo-100 text-indigo-700">
-                            <strong>Example:</strong> Google Android (OS) increases the value of Samsung Smartphones (Hardware).
-                        </div>
+                        <p class="mb-3">The bet sat idle for years. Crypto mining kept Nvidia's GPUs selling through 2017&ndash;18, but deep learning adoption was slow. Then, in November 2022, ChatGPT launched. OpenAI disclosed that training GPT-4 required roughly <strong>25,000 Nvidia GPUs and $100 million</strong> in compute. Every serious AI lab needed CUDA-compatible hardware at once &mdash; and the ecosystem investment of the previous sixteen years paid off in a single fiscal year.</p>
+                        <p>Nvidia's data-center revenue tells the story better than any paragraph can (right).</p>
                     </div>
+                </div>
+                <div class="card-panel rounded-xl p-4 mt-6 bg-white">
+                    <div class="chart-container">
+                        <canvas id="nvidiaRevenueChart"></canvas>
+                    </div>
+                    <p class="text-xs text-slate-500 text-center mt-3 italic">Nvidia data-center revenue, FY2020&ndash;FY2024 ($M). A 217% jump in FY2024 alone &mdash; the CUDA ecosystem bet, plus a decade of R&amp;D no rival could compress into a single product cycle. Source: Yoffie &amp; Von Bargen (2024), Exhibit 1a.</p>
                 </div>
             </div>
 
+            <!-- 2026 update box -->
+            <div class="bg-slate-900 text-white rounded-xl p-6 md:p-8 mb-10 border border-slate-700">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <h4 class="text-lg font-bold uppercase tracking-widest text-emerald-300 text-xs">2026 Update: The Moat Under Live Fire</h4>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6 text-sm text-slate-300">
+                    <ul class="space-y-3 list-disc list-outside ml-4">
+                        <li>Nvidia reportedly crossed a <strong>$5 trillion market capitalization in October 2025</strong> &mdash; the first company ever to do so &mdash; on the strength of continued AI data-center demand.</li>
+                        <li>Nvidia announced a strategic partnership to invest up to <strong>$100 billion in OpenAI</strong> (September 2025) to deploy on the order of 10 gigawatts of Nvidia systems &mdash; a customer relationship that is now also, in part, an equity relationship.</li>
+                        <li>The U.S. government's export-control regime kept shifting: an "AI diffusion" rule, then a 2025 arrangement reportedly letting Nvidia resume some H20 chip sales to China in exchange for a revenue share to the U.S. Treasury on the order of 15%.</li>
+                    </ul>
+                    <ul class="space-y-3 list-disc list-outside ml-4">
+                        <li>OpenAI &mdash; Nvidia's own showcase customer &mdash; simultaneously signed a custom AI-accelerator deal with <strong>Broadcom</strong> in 2025, a hedge that echoes "reserving the right to play" (see the Uncertainty section below).</li>
+                        <li>Open compilers such as OpenAI's Triton and AMD's ROCm continued to mature, lowering the cost of writing code that runs on more than one vendor's chips &mdash; precisely the "multi-homing" threat modeled in the calculator below.</li>
+                        <li>The Department of Justice's 2024 antitrust inquiry into Nvidia's GPU allocation practices remained an open overhang into 2026, alongside continued EU scrutiny of AI-compute concentration.</li>
+                    </ul>
+                </div>
+                <p class="text-xs text-slate-500 mt-4 italic">Figures reported as of mid-2026 press coverage; treat exact dollar amounts as directional, not audited.</p>
+            </div>
+
+            <!-- NEW INTERACTIVE: ECOSYSTEM MOAT CALCULATOR -->
+            <div class="grid lg:grid-cols-12 gap-8">
+                <div class="lg:col-span-5 bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                    <h3 class="font-bold text-slate-800 mb-1 text-xs uppercase tracking-widest border-b pb-2">New Tool &middot; Ecosystem Moat Calculator</h3>
+                    <p class="text-xs text-slate-500 mt-2 mb-5">Rate a platform on five dimensions. Defaults reflect CUDA circa 2023&ndash;24. Try nudging dimensions toward "Medium" to model 2026's contested reality.</p>
+                    <div class="space-y-4" id="moat-controls"></div>
+                </div>
+
+                <div class="lg:col-span-7 bg-slate-900 rounded-xl p-8 flex flex-col justify-between text-white shadow-2xl border border-slate-700">
+                    <div class="w-full text-center mb-6">
+                        <span class="text-[10px] uppercase tracking-[0.2em] text-slate-400 font-bold">Ecosystem Moat Score</span>
+                        <div id="moat-text" class="text-4xl font-serif font-bold text-emerald-400 mt-2 transition-all duration-500">Fortress Ecosystem</div>
+                        <p id="moat-subtext" class="text-slate-400 text-sm mt-2">Rivals must out-invest for a decade, not a product cycle.</p>
+                    </div>
+                    <div class="w-full max-w-lg mx-auto mb-6">
+                        <div class="flex justify-between text-[10px] uppercase text-slate-500 font-bold mb-1">
+                            <span>Open Arena</span>
+                            <span>Fortress</span>
+                        </div>
+                        <div class="h-6 bg-slate-800 rounded-full overflow-hidden border border-slate-600">
+                            <div id="moat-bar" class="h-full bg-emerald-500 transition-all duration-700 ease-out shadow-[0_0_20px_rgba(16,185,129,0.5)]" style="width: 100%"></div>
+                        </div>
+                        <div class="text-right text-xs text-slate-400 mt-1 font-mono"><span id="moat-score-num">100</span> / 100</div>
+                    </div>
+                    <div id="moat-insight" class="bg-slate-800/80 p-4 rounded border-l-4 border-emerald-500 text-sm text-slate-300">
+                        <strong class="text-white block mb-1">Reading:</strong>
+                        This is Nvidia at its 2023&ndash;24 peak: high lock-in, strong network effects, wide complementor breadth, real standard-setting power, and high multi-homing cost. A near-perfect fortress.
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- STRATEGIC GROUPS -->
-        <section id="strategic-groups" class="mb-32 fade-up pt-16 border-t border-slate-200">
+        <!-- GAME THEORY & COMPETITOR ANALYSIS -->
+        <section id="game-theory" class="mb-32 fade-up pt-16 border-t border-slate-200">
             <div class="fp-box">
-                <p class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-1">Fundamental Question</p>
-                <h3 class="text-3xl font-serif font-bold text-slate-900 leading-tight">Why can't Spirit Airlines simply become Delta?</h3>
+                <p class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-1">First-Principles Question</p>
+                <h3 class="text-3xl font-serif font-bold text-slate-900 leading-tight">If you were Jensen Huang, would you auction your scarce GPUs to the highest bidder?</h3>
                 <p class="text-slate-600 mt-4 leading-relaxed">
-                    This introduces <strong>Mobility Barriers</strong>. Strategic groups are separated by structural walls (e.g., Hub systems, Brand perception) that make movement expensive or impossible. Competition is fiercest <em>within</em> the group.
+                    In 2024 Nvidia could not make enough H100 GPUs to satisfy demand. Larry Ellison, Oracle's chairman, described a dinner where he and Elon Musk were <em>"begging Jensen for GPUs... Please take our money; no, take more of it."</em> An auction would maximize short-run price. But Huang also had to keep Microsoft, Meta, and Amazon &mdash; his four largest customers, worth nearly half his revenue &mdash; from accelerating their own in-house chip programs out of frustration, all while a Department of Justice antitrust probe watched how "fairly" he allocated supply. Every option changes what his rivals and customers do next. That interdependence is exactly what <strong>game theory</strong> is built to analyze, and Five Forces is not.
                 </p>
             </div>
 
-            <!-- NEW: Mobility Barriers Details -->
-            <div class="mb-12">
-                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-                    <div class="bg-slate-50 p-6 border-b border-slate-200">
-                        <h3 class="text-xl font-bold text-slate-900">Key Mobility Barriers: The Walls Between Groups</h3>
-                        <p class="text-sm text-slate-600 mt-2 max-w-3xl">
-                            It is nearly impossible for a low-cost carrier (LCC) like Spirit to transform into a full-service legacy airline like Delta due to significant <strong>mobility barriers</strong>. These are not physical "walls" but rather interconnected operational, financial, and branding hurdles that make such a strategic pivot prohibitively expensive and risky.
-                        </p>
+            <!-- Glossary -->
+            <div class="grid md:grid-cols-3 gap-4 mb-10">
+                <div class="bg-white rounded-lg border border-slate-200 p-4">
+                    <div class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-1">Dominant Strategy</div>
+                    <p class="text-xs text-slate-600">A move that is your best response no matter what your rival does.</p>
+                </div>
+                <div class="bg-white rounded-lg border border-slate-200 p-4">
+                    <div class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-1">Nash Equilibrium</div>
+                    <p class="text-xs text-slate-600">A pair of moves where neither player can do better by unilaterally switching &mdash; even if a different pair would make both better off.</p>
+                </div>
+                <div class="bg-white rounded-lg border border-slate-200 p-4">
+                    <div class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-1">Credible Commitment</div>
+                    <p class="text-xs text-slate-600">A move that is costly to reverse, so rivals believe you'll follow through. TSMC demanding customers <strong>pre-pay billions</strong> to reserve fab capacity is exactly this &mdash; it makes capacity commitments observable and binding.</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-10">
+                <div class="card-panel p-6 rounded-xl">
+                    <h4 class="font-bold text-slate-900 mb-2 flex items-center gap-2"><i class="fas fa-handshake text-amber-600"></i> Coopetition: when your rival is your customer</h4>
+                    <p class="text-sm text-slate-600">Microsoft and Meta each bought an estimated <strong>150,000 Nvidia H100 GPUs in 2023</strong> (Exhibit 7 of the case) &mdash; while simultaneously funding in-house silicon (Microsoft's Maia, Meta's MTIA) to reduce reliance on Nvidia. Amazon's VP put the logic bluntly: custom chips could be <strong>"half as expensive as running that same model with Nvidia."</strong> Every hyperscaler is playing both sides of the board at once.</p>
+                </div>
+                <div class="card-panel p-6 rounded-xl">
+                    <h4 class="font-bold text-slate-900 mb-2 flex items-center gap-2"><i class="fas fa-industry text-red-600"></i> The capacity game is not new</h4>
+                    <p class="text-sm text-slate-600">Courtney, Kirkland &amp; Viguerie (1997) describe this exact structure in "oligopoly markets, such as those for pulp and paper, chemicals, and basic raw materials": whether to expand capacity depends entirely on whether your rival expands too. Swap "pulp mill" for "TSMC wafer allocation" and you have Nvidia, AMD, and every fabless chip designer in 2025&ndash;26.</p>
+                </div>
+            </div>
+
+            <!-- NEW INTERACTIVE: THE CAPACITY GAME -->
+            <div class="bg-slate-900 rounded-xl overflow-hidden shadow-2xl border border-slate-700">
+                <div class="bg-slate-800 px-8 py-4 border-b border-slate-700 flex flex-col md:flex-row gap-2 justify-between items-center">
+                    <div class="flex items-center gap-3">
+                        <div class="w-3 h-3 rounded-full bg-red-500 animate-pulse"></div>
+                        <span class="text-white font-mono font-bold tracking-widest uppercase text-sm">New Tool &middot; The Capacity Game</span>
                     </div>
-                    <div class="p-6 grid md:grid-cols-2 gap-6">
-                        <div class="space-y-4">
-                            <div class="flex gap-4 items-start">
-                                <div class="bg-blue-100 text-blue-700 w-8 h-8 rounded flex-shrink-0 flex items-center justify-center font-bold text-sm">1</div>
-                                <div>
-                                    <h4 class="font-bold text-slate-800 text-sm">Operational Model Differences</h4>
-                                    <p class="text-xs text-slate-600 leading-relaxed mt-1">Delta operates a complex <strong>hub-and-spoke</strong> network for global reach. Spirit uses a simpler <strong>point-to-point</strong> model for quick turnarounds. Adopting a hub model requires massive investment in infrastructure and scheduling complexity.</p>
-                                </div>
-                            </div>
-                            <div class="flex gap-4 items-start">
-                                <div class="bg-indigo-100 text-indigo-700 w-8 h-8 rounded flex-shrink-0 flex items-center justify-center font-bold text-sm">2</div>
-                                <div>
-                                    <h4 class="font-bold text-slate-800 text-sm">Fleet Specialization</h4>
-                                    <p class="text-xs text-slate-600 leading-relaxed mt-1">Spirit uses a single Airbus A320 fleet to minimize maintenance costs. Delta manages a complex, diverse fleet (Boeing, Airbus, regional jets) to serve varied routes, which adds significant operational cost.</p>
-                                </div>
-                            </div>
-                            <div class="flex gap-4 items-start">
-                                <div class="bg-purple-100 text-purple-700 w-8 h-8 rounded flex-shrink-0 flex items-center justify-center font-bold text-sm">3</div>
-                                <div>
-                                    <h4 class="font-bold text-slate-800 text-sm">Brand Perception & Loyalty</h4>
-                                    <p class="text-xs text-slate-600 leading-relaxed mt-1">Delta has decades of trust and loyalty (SkyMiles). Spirit is synonymous with "no-frills" and fees. Rebranding to win high-margin business travelers is an immense, expensive challenge.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="space-y-4">
-                            <div class="flex gap-4 items-start">
-                                <div class="bg-amber-100 text-amber-700 w-8 h-8 rounded flex-shrink-0 flex items-center justify-center font-bold text-sm">4</div>
-                                <div>
-                                    <h4 class="font-bold text-slate-800 text-sm">Cost Structure & Labor</h4>
-                                    <p class="text-xs text-slate-600 leading-relaxed mt-1">Spirit's entire operation (wages, contracts) is built for low costs. Matching a legacy carrier's premium service without eroding this foundational cost advantage is extremely difficult.</p>
-                                </div>
-                            </div>
-                            <div class="flex gap-4 items-start">
-                                <div class="bg-red-100 text-red-700 w-8 h-8 rounded flex-shrink-0 flex items-center justify-center font-bold text-sm">5</div>
-                                <div>
-                                    <h4 class="font-bold text-slate-800 text-sm">Financial Muscle & Risk</h4>
-                                    <p class="text-xs text-slate-600 leading-relaxed mt-1">Pivoting requires massive capital. Attempts to add "premium" features often dilute the low-cost model, adding complexity without guaranteeing high-margin customers, leading to financial distress.</p>
-                                </div>
+                    <span class="text-slate-400 text-xs">3-ROUND SIMULATION</span>
+                </div>
+
+                <div class="p-8">
+                    <p class="text-slate-300 text-sm mb-6 max-w-3xl">You run chip design for a fabless AI-accelerator company. Each year you and one rival must independently decide whether to <strong>Expand</strong> next year's TSMC wafer reservation or <strong>Hold</strong> it flat. Reservations must be booked (and largely pre-paid) before you see the rival's move. Payoffs are an illustrative profit index &mdash; higher is better for you.</p>
+
+                    <!-- Static payoff matrix -->
+                    <div class="grid grid-cols-3 gap-1 max-w-md mb-8 mono-font text-xs" id="payoff-matrix">
+                        <div></div>
+                        <div class="text-center text-slate-400 font-bold py-2">Rival Holds</div>
+                        <div class="text-center text-slate-400 font-bold py-2">Rival Expands</div>
+
+                        <div class="text-slate-400 font-bold flex items-center py-2">You Hold</div>
+                        <div class="payoff-cell" id="cell-hold-hold">You 70 / Rival 70</div>
+                        <div class="payoff-cell" id="cell-hold-expand">You 40 / Rival 90</div>
+
+                        <div class="text-slate-400 font-bold flex items-center py-2">You Expand</div>
+                        <div class="payoff-cell" id="cell-expand-hold">You 90 / Rival 40</div>
+                        <div class="payoff-cell" id="cell-expand-expand">You 55 / Rival 55</div>
+                    </div>
+
+                    <div id="game-container">
+                        <div class="text-center py-4">
+                            <h3 class="text-xl text-white font-serif mb-3">Round 1 of 3: The Opening Move</h3>
+                            <p class="text-slate-400 mb-6 max-w-lg mx-auto text-sm">It's 2025. Both you and your rival must commit to next year's wafer reservation, sight unseen. What do you choose?</p>
+                            <div class="flex gap-4 justify-center">
+                                <button onclick="playRound('hold')" class="bg-slate-700 hover:bg-slate-600 border border-slate-500 text-white font-bold py-3 px-8 rounded-full transition-all">Hold Capacity</button>
+                                <button onclick="playRound('expand')" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-full transition-all">Expand Capacity</button>
                             </div>
                         </div>
+                    </div>
+
+                    <div id="game-scoreboard" class="hidden mt-6 grid grid-cols-2 gap-4">
+                        <div class="bg-slate-800/60 rounded-lg p-3 text-center">
+                            <div class="text-[10px] uppercase text-slate-500 font-bold">Your Total</div>
+                            <div id="you-total" class="text-2xl font-mono font-bold text-blue-400">0</div>
+                        </div>
+                        <div class="bg-slate-800/60 rounded-lg p-3 text-center">
+                            <div class="text-[10px] uppercase text-slate-500 font-bold">Rival Total</div>
+                            <div id="rival-total" class="text-2xl font-mono font-bold text-red-400">0</div>
+                        </div>
+                    </div>
+
+                    <div id="game-history" class="mt-4 space-y-2 text-xs font-mono text-slate-400"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STRATEGY UNDER UNCERTAINTY -->
+        <section id="uncertainty" class="mb-32 fade-up pt-16 border-t border-slate-200">
+            <div class="fp-box">
+                <p class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-1">First-Principles Question</p>
+                <h3 class="text-3xl font-serif font-bold text-slate-900 leading-tight">What if the honest answer to "what will happen" is: nobody knows &mdash; not even Nvidia?</h3>
+                <p class="text-slate-600 mt-4 leading-relaxed">
+                    Courtney, Kirkland &amp; Viguerie (1997), writing in <em>Harvard Business Review</em>, argue that most strategists make a binary error: they treat every situation as either perfectly forecastable or completely random. In truth, uncertainty comes in <strong>four levels</strong>, and the right analytic tools &mdash; and the right strategic posture &mdash; change at every level.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+                <div class="card-panel p-5 rounded-xl border-t-4 border-emerald-500">
+                    <div class="text-xs font-bold text-emerald-600 uppercase tracking-widest mb-2">Level 1</div>
+                    <h4 class="font-bold text-slate-900 text-sm mb-2">A Clear-Enough Future</h4>
+                    <p class="text-xs text-slate-600">One forecast is precise enough to act on. Use the standard toolkit: market research, Five Forces, discounted cash flow.</p>
+                </div>
+                <div class="card-panel p-5 rounded-xl border-t-4 border-blue-500">
+                    <div class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-2">Level 2</div>
+                    <h4 class="font-bold text-slate-900 text-sm mb-2">Alternate Futures</h4>
+                    <p class="text-xs text-slate-600">A handful of discrete scenarios (a regulator rules one way or the other). Use decision analysis and game theory.</p>
+                </div>
+                <div class="card-panel p-5 rounded-xl border-t-4 border-amber-500">
+                    <div class="text-xs font-bold text-amber-600 uppercase tracking-widest mb-2">Level 3</div>
+                    <h4 class="font-bold text-slate-900 text-sm mb-2">A Range of Futures</h4>
+                    <p class="text-xs text-slate-600">A continuum with no natural scenarios (demand could be 10%&ndash;30% penetration). Use latent-demand research and scenario planning.</p>
+                </div>
+                <div class="card-panel p-5 rounded-xl border-t-4 border-red-500">
+                    <div class="text-xs font-bold text-red-600 uppercase tracking-widest mb-2">Level 4</div>
+                    <h4 class="font-bold text-slate-900 text-sm mb-2">True Ambiguity</h4>
+                    <p class="text-xs text-slate-600">Even the range of outcomes is unknowable. Use analogies, pattern recognition &mdash; and stay humble.</p>
+                </div>
+            </div>
+
+            <!-- Postures + portfolio mapped to Nvidia -->
+            <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-6 md:p-8 mb-10">
+                <h4 class="text-xl font-serif font-bold text-slate-900 mb-5">Three Postures, Mapped Onto the Nvidia Case</h4>
+                <div class="space-y-5">
+                    <div class="flex flex-col md:flex-row gap-4 md:items-start border-b border-slate-100 pb-5">
+                        <span class="posture-pill posture-shape shrink-0 w-32 text-center">Shape</span>
+                        <p class="text-sm text-slate-600"><strong>Huang's 2013 deep-learning bet.</strong> With almost no AI revenue on the books, Huang redirected the entire company toward deep learning on a hunch backed by one internal researcher's pitch &mdash; a level-4, "true ambiguity" decision that tried to bend the market rather than predict it. This is what Courtney et al. call <em>shaping</em>: playing a leadership role in establishing how the industry will operate.</p>
+                    </div>
+                    <div class="flex flex-col md:flex-row gap-4 md:items-start border-b border-slate-100 pb-5">
+                        <span class="posture-pill posture-adapt shrink-0 w-32 text-center">Adapt</span>
+                        <p class="text-sm text-slate-600"><strong>AMD's pricing under Lisa Su.</strong> AMD did not try to out-shape Nvidia's ecosystem. It positioned the MI300X at roughly 40&ndash;60% of Nvidia's price within the structure Nvidia already built &mdash; a classic adapter strategy: win through speed and value inside an existing market, not by rewriting its rules.</p>
+                    </div>
+                    <div class="flex flex-col md:flex-row gap-4 md:items-start">
+                        <span class="posture-pill posture-reserve shrink-0 w-32 text-center">Reserve the Right to Play</span>
+                        <p class="text-sm text-slate-600"><strong>Hyperscalers buying Nvidia GPUs while building Trainium, Maia, and TPUs.</strong> Microsoft, Amazon, and Google keep purchasing Nvidia's best chips (a no-regrets move &mdash; they need the performance today) while funding in-house silicon as a hedge (an option) against the day CUDA's moat narrows. Huang's own hedge is symmetric: <em>"In the event that we have to shift from one fab to another, we have the ability to do it,"</em> he said of Nvidia's fallback relationship with Intel's foundry business.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8 items-start">
-                <div class="card-panel p-6 rounded-xl">
-                    <div class="chart-container">
-                        <canvas id="groupsChart"></canvas>
-                    </div>
-                </div>
-                
-                <div class="sim-box mt-0 bg-slate-900">
-                    <h4 class="font-bold text-blue-400 mb-2 flex items-center gap-2"><i class="fas fa-map-signs"></i> Challenge: The Pivot Attempt</h4>
-                    <p class="text-xs text-slate-300 mb-4">As the CEO of a Low-Cost Carrier (Group B) with point-to-point routes, no lounges, and a budget brand, should you chase high-margin business travelers (Group A)?</p>
-                    <div class="bg-slate-800 p-3 rounded border border-slate-600 mb-4 font-mono text-xs text-green-400">
-                        > CONTEXT: You have point-to-point routes, no lounges, and budget brand.
-                    </div>
-                    <button class="sim-btn" onclick="checkGroup(this, 'yes')">A. Yes, we need higher margins.</button>
-                    <button class="sim-btn" onclick="checkGroup(this, 'no')">B. No, Mobility Barriers are too high.</button>
-                    <div id="group-feedback" class="sim-feedback"></div>
-                </div>
+            <!-- Mini classifier -->
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 md:p-8">
+                <h4 class="font-bold text-slate-800 mb-1">Self-Check: Which Level of Uncertainty Is This?</h4>
+                <p class="text-xs text-slate-500 mb-5">Click a scenario to reveal the level Courtney, Kirkland &amp; Viguerie's framework would assign &mdash; and why.</p>
+                <div class="grid md:grid-cols-2 gap-4" id="uncertainty-cards"></div>
             </div>
         </section>
 
@@ -1093,12 +747,12 @@
     <section id="simulation" class="mb-0 pt-24 bg-slate-900 text-white pb-24 border-t border-slate-800">
         <div class="max-w-4xl mx-auto text-center mb-12 fade-up">
             <span class="inline-block px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full mb-4 uppercase tracking-widest">Part III: Mastery</span>
-            <h2 class="text-4xl md:text-5xl font-serif font-bold mb-4 text-white">The Analyst's Gauntlet</h2>
-            <p class="text-lg text-slate-300 font-light">Navigate 10 rounds of structural analysis. Can you identify the underlying economic theory?</p>
+            <h2 class="text-4xl md:text-5xl font-serif font-bold mb-4 text-white">The Strategist's Gauntlet</h2>
+            <p class="text-lg text-slate-300 font-light">Navigate 10 rounds of ecosystems, game theory, and uncertainty. Can you out-think the game?</p>
         </div>
 
         <div id="sim-wrapper" class="max-w-3xl mx-auto bg-slate-800 rounded-2xl shadow-2xl border border-slate-700 p-8 min-h-[500px] relative fade-up">
-            
+
             <!-- Game Header -->
             <div class="flex justify-between items-center mb-8 pb-4 border-b border-slate-600">
                 <div>
@@ -1123,7 +777,7 @@
                 </div>
                 <h3 class="text-3xl font-bold mb-4 text-white font-serif">Session is in Order</h3>
                 <p class="text-slate-400 mb-10 text-sm max-w-lg mx-auto leading-relaxed">
-                    You will be presented with scenarios involving market entry, competitive rivalry, and macro-shocks. Apply concepts like <strong>Asset Specificity</strong>, <strong>Credible Threats</strong>, and <strong>Isomorphism</strong>.
+                    You will be presented with scenarios involving ecosystems, coopetition, and radical uncertainty. Apply concepts like <strong>Network Effects</strong>, <strong>Nash Equilibrium</strong>, and <strong>Reserving the Right to Play</strong>.
                 </p>
                 <button onclick="startGame()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-12 rounded-full shadow-lg transition-all transform hover:scale-105 uppercase tracking-wide text-xs">
                     Begin Analysis
@@ -1136,9 +790,9 @@
                     <span class="text-xs font-bold text-blue-300 bg-blue-900/30 px-3 py-1 rounded-full border border-blue-700/50 font-mono">LEVEL <span id="q-num">1</span>/10</span>
                     <span class="text-xs font-bold text-slate-400 uppercase tracking-widest" id="topic-tag">TOPIC</span>
                 </div>
-                
+
                 <h3 id="q-text" class="text-2xl font-serif text-white mb-10 leading-relaxed pl-6 border-l-4 border-blue-500">Question...</h3>
-                
+
                 <div id="options-container" class="space-y-4"></div>
             </div>
 
@@ -1180,7 +834,8 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             initCharts();
-            // Initial Fade Up check
+            buildMoatControls();
+            buildUncertaintyCards();
             checkFadeUp();
         });
 
@@ -1200,375 +855,339 @@
         }
 
         function initCharts() {
-            // PESTEL RADAR (Hidden but code kept for potential reuse)
-            // STRATEGIC GROUPS
-            new Chart(document.getElementById('groupsChart').getContext('2d'), {
-                type: 'bubble',
+            new Chart(document.getElementById('nvidiaRevenueChart').getContext('2d'), {
+                type: 'bar',
                 data: {
-                    datasets: [
-                        { label: 'Legacy', data: [{x: 80, y: 85, r: 15}], backgroundColor: 'rgba(147, 51, 234, 0.6)' },
-                        { label: 'Low-Cost', data: [{x: 50, y: 50, r: 12}], backgroundColor: 'rgba(59, 130, 246, 0.6)' },
-                        { label: 'Ultra-Low', data: [{x: 20, y: 20, r: 10}], backgroundColor: 'rgba(100, 116, 139, 0.6)' }
-                    ]
+                    labels: ['FY2020', 'FY2021', 'FY2022', 'FY2023', 'FY2024'],
+                    datasets: [{
+                        label: 'Data-Center Revenue ($M)',
+                        data: [2983, 6696, 10613, 15005, 47525],
+                        backgroundColor: '#1e3a8a',
+                        borderRadius: 4,
+                        maxBarThickness: 56
+                    }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
                     scales: {
-                        x: { title: { display: true, text: 'Price' }, min: 0, max: 100 },
-                        y: { title: { display: true, text: 'Routes' }, min: 0, max: 100 }
-                    },
-                    plugins: { legend: { position: 'bottom' } }
+                        y: { beginAtZero: true, title: { display: true, text: 'USD Millions' }, grid: { color: '#f1f5f9' } },
+                        x: { grid: { display: false } }
+                    }
                 }
             });
         }
 
-        // --- PESTEL MACRO-SHOCK SIMULATOR ---
-        const macroScenarios = [
-            {
-                title: "Economic Shock: Inflation Spike",
-                desc: "The Central Bank raises interest rates to 5% to combat inflation. Capital is now expensive.",
-                opts: [
-                    { t: "Aggressively expand factories", fb: "❌ High cost of capital will destroy your ROI. Wrong move.", valid: false },
-                    { t: "Defer major investments", fb: "✅ Correct. When money is expensive, you wait. Cash is king.", valid: true }
-                ]
-            },
-            {
-                title: "Sociocultural Shift: Demographic Wave",
-                desc: "Census data shows the Hispanic population has doubled. They are younger and tech-savvy.",
-                opts: [
-                    { t: "Launch Spanish-language media partnership", fb: "✅ Correct. Targeting a growing demographic builds long-term advantage.", valid: true },
-                    { t: "Maintain status quo marketing", fb: "❌ Missed opportunity. You are ignoring a major sociocultural shift.", valid: false }
-                ]
-            },
-            {
-                title: "Legal Shock: GDPR 2.0",
-                desc: "The EU passes strict new data privacy laws. 'Right to be Forgotten' is mandatory.",
-                opts: [
-                    { t: "Pull out of Europe", fb: "⚠️ Too drastic. You lose a massive market.", valid: false },
-                    { t: "Invest in compliance infrastructure", fb: "✅ Correct. Adapt to the legal environment to maintain legitimacy.", valid: true }
-                ]
-            }
+        // ================= ECOSYSTEM MOAT CALCULATOR =================
+        const moatDimensions = [
+            { id: 'lockin', label: 'Developer Lock-in', help: 'Cost to rewrite CUDA code for a rival platform' },
+            { id: 'network', label: 'Network Effects', help: 'Value rises as more developers & customers join' },
+            { id: 'breadth', label: 'Complementor Breadth', help: 'Number of industries / SDKs built on the platform' },
+            { id: 'standards', label: 'Standard-Setting Power', help: 'Can the platform owner set the technical rules?' },
+            { id: 'multihoming', label: 'Multi-Homing Cost', help: 'How costly to ALSO run a rival platform in parallel' }
         ];
-        
-        let simStep = 0;
+        const moatState = { lockin: 3, network: 3, breadth: 3, standards: 3, multihoming: 3 };
 
-        function startMacroSim() {
-            simStep = 0;
-            renderMacroStep();
-        }
-
-        function renderMacroStep() {
-            if(simStep >= macroScenarios.length) {
-                document.getElementById('sim-container').innerHTML = `<div class='text-center py-8'><h3 class='text-2xl text-emerald-400 font-bold mb-4'>Simulation Complete</h3><p class='text-slate-300'>You successfully navigated the storm.</p><button onclick='startMacroSim()' class='mt-4 text-sm underline text-slate-500'>Restart</button></div>`;
-                document.getElementById('sim-feedback-area').classList.add('hidden');
-                return;
-            }
-
-            const s = macroScenarios[simStep];
-            let html = `
-                <div class="animate-fade-in-up">
-                    <div class="flex items-center gap-2 mb-4">
-                         <span class="bg-red-900 text-red-300 text-xs px-2 py-1 rounded border border-red-700 font-mono">ALERT ${simStep+1}/${macroScenarios.length}</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">${s.title}</h3>
-                    <p class="text-slate-400 mb-6">${s.desc}</p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <button onclick="evaluateMacro(${simStep}, 0)" class="p-4 rounded border border-slate-600 hover:bg-slate-700 hover:border-blue-500 text-left transition-all bg-slate-800/50 group">
-                            <div class="font-bold text-slate-200 group-hover:text-blue-400">Option A</div>
-                            <div class="text-sm text-slate-500">${s.opts[0].t}</div>
-                        </button>
-                        <button onclick="evaluateMacro(${simStep}, 1)" class="p-4 rounded border border-slate-600 hover:bg-slate-700 hover:border-blue-500 text-left transition-all bg-slate-800/50 group">
-                            <div class="font-bold text-slate-200 group-hover:text-blue-400">Option B</div>
-                            <div class="text-sm text-slate-500">${s.opts[1].t}</div>
-                        </button>
+        function buildMoatControls() {
+            const container = document.getElementById('moat-controls');
+            container.innerHTML = moatDimensions.map(dim => `
+                <div>
+                    <label class="text-[10px] font-bold text-slate-500 uppercase flex justify-between">${dim.label}</label>
+                    <p class="text-[10px] text-slate-400 mb-1">${dim.help}</p>
+                    <div class="flex rounded-md shadow-sm" role="group">
+                        <button onclick="setMoat('${dim.id}',1)" id="moat-${dim.id}-1" class="toggle-btn">Low</button>
+                        <button onclick="setMoat('${dim.id}',2)" id="moat-${dim.id}-2" class="toggle-btn">Med</button>
+                        <button onclick="setMoat('${dim.id}',3)" id="moat-${dim.id}-3" class="toggle-btn">High</button>
                     </div>
                 </div>
-            `;
-            document.getElementById('sim-container').innerHTML = html;
+            `).join('');
+            moatDimensions.forEach(dim => refreshMoatButtons(dim.id));
+            updateMoatUI();
         }
 
-        function evaluateMacro(stepIdx, optIdx) {
-            const s = macroScenarios[stepIdx];
-            const choice = s.opts[optIdx];
-            const fbArea = document.getElementById('sim-feedback-area');
-            
-            fbArea.innerHTML = choice.fb;
-            fbArea.className = choice.valid 
-                ? "mt-6 bg-emerald-900/30 p-4 rounded border border-emerald-700 text-sm text-emerald-200 block" 
-                : "mt-6 bg-red-900/30 p-4 rounded border border-red-700 text-sm text-red-200 block";
-            
-            fbArea.classList.remove('hidden');
-
-            if(choice.valid) {
-                setTimeout(() => {
-                    simStep++;
-                    renderMacroStep();
-                    fbArea.classList.add('hidden');
-                }, 2000);
-            }
-        }
-
-        // --- SCP ROBUST SIMULATION LOGIC ---
-        const scpScenarios = [
-            {
-                role: "The Corn Farmer",
-                structure: "Perfect Competition",
-                context: "You are one of 10,000 corn farmers. Your product is identical to everyone else's. Profit margins are razor thin.",
-                dilemma: "Fuel costs just went up. You want to pass this cost to the consumer.",
-                opts: [
-                    { t: "Raise prices by 10%", fb: "❌ <strong>Disaster.</strong> Your buyers instantly switch to the other 9,999 farmers. You sell zero corn. In Perfect Competition, you are a Price Taker.", valid: false },
-                    { t: "Keep market price, accept lower margin", fb: "✅ <strong>Correct.</strong> You have no pricing power. You must focus on efficiency (cost cutting) to survive.", valid: true }
-                ]
-            },
-            {
-                role: "The Soda CEO",
-                structure: "Oligopoly",
-                context: "You are the CEO of 'Red Cola'. You and 'Blue Cola' control 90% of the market. High barriers to entry.",
-                dilemma: "Market share has stagnated. Investors want growth.",
-                opts: [
-                    { t: "Launch a massive price cut war", fb: "⚠️ <strong>Risky.</strong> This destroys industry profits. Blue Cola will retaliate immediately (Game Theory). Everyone loses.", valid: false },
-                    { t: "Raise prices slightly & focus on Brand", fb: "✅ <strong>Correct.</strong> In Oligopolies, firms avoid price wars. They compete on non-price dimensions (advertising/lifestyle) to maintain high profits.", valid: true }
-                ]
-            },
-            {
-                role: "The Utility Tycoon",
-                structure: "Monopoly",
-                context: "You own the only electric grid in the city. No substitutes exist.",
-                dilemma: "You want to maximize shareholder returns.",
-                opts: [
-                    { t: "Double the price of electricity", fb: "❌ <strong>Regulatory Trap.</strong> While you *can* do this economically, the Government will step in and regulate you. You abused your power.", valid: false },
-                    { t: "Set high but defensible prices", fb: "✅ <strong>Correct.</strong> As a Price Setter, you extract maximum surplus up to the point of regulatory intervention.", valid: true }
-                ]
-            }
-        ];
-
-        let scpStep = 0;
-
-        function startScpSim() {
-            scpStep = 0;
-            renderScpStep();
-        }
-
-        function renderScpStep() {
-            if(scpStep >= scpScenarios.length) {
-                document.getElementById('scp-sim-container').innerHTML = `<div class='text-center py-8 fade-in'><h3 class='text-2xl text-emerald-400 font-bold mb-4'>Market Mastery Achieved</h3><p class='text-slate-300'>You understand how Structure dictates Strategy.</p><button onclick='startScpSim()' class='mt-4 text-sm underline text-slate-500'>Restart</button></div>`;
-                document.getElementById('scp-feedback-area').classList.add('hidden');
-                return;
-            }
-
-            const s = scpScenarios[scpStep];
-            let html = `
-                <div class="animate-fade-in-up">
-                    <div class="flex items-center justify-between mb-6 border-b border-slate-700 pb-4">
-                         <div>
-                            <span class="text-blue-400 font-bold text-xs tracking-widest uppercase block mb-1">Current Role</span>
-                            <h3 class="text-xl font-serif text-white font-bold">${s.role}</h3>
-                         </div>
-                         <div class="text-right">
-                            <span class="text-slate-500 font-bold text-xs tracking-widest uppercase block mb-1">Structure</span>
-                            <span class="bg-slate-700 text-white px-2 py-1 rounded text-xs font-mono">${s.structure}</span>
-                         </div>
-                    </div>
-                    
-                    <p class="text-slate-300 mb-4 text-sm bg-slate-800 p-3 rounded border-l-2 border-blue-500 italic">"${s.context}"</p>
-                    <p class="text-white font-bold mb-6">Scenario: ${s.dilemma}</p>
-
-                    <div class="grid grid-cols-1 gap-3">
-                        <button onclick="evaluateScp(${scpStep}, 0)" class="p-4 rounded border border-slate-600 hover:bg-slate-700 hover:border-amber-500 text-left transition-all bg-slate-800/50 group flex items-center gap-4">
-                            <div class="w-8 h-8 rounded-full bg-slate-700 text-slate-300 flex items-center justify-center font-bold text-xs group-hover:bg-amber-500 group-hover:text-black transition-colors">A</div>
-                            <div class="text-slate-200 text-sm group-hover:text-white">${s.opts[0].t}</div>
-                        </button>
-                        <button onclick="evaluateScp(${scpStep}, 1)" class="p-4 rounded border border-slate-600 hover:bg-slate-700 hover:border-amber-500 text-left transition-all bg-slate-800/50 group flex items-center gap-4">
-                            <div class="w-8 h-8 rounded-full bg-slate-700 text-slate-300 flex items-center justify-center font-bold text-xs group-hover:bg-amber-500 group-hover:text-black transition-colors">B</div>
-                            <div class="text-slate-200 text-sm group-hover:text-white">${s.opts[1].t}</div>
-                        </button>
-                    </div>
-                </div>
-            `;
-            document.getElementById('scp-sim-container').innerHTML = html;
-        }
-
-        function evaluateScp(stepIdx, optIdx) {
-            const s = scpScenarios[stepIdx];
-            const choice = s.opts[optIdx];
-            const fbArea = document.getElementById('scp-feedback-area');
-            
-            fbArea.innerHTML = choice.fb;
-            fbArea.className = choice.valid 
-                ? "mt-6 bg-emerald-900/20 p-6 rounded-xl border border-emerald-500/50 text-emerald-100 shadow-lg block fade-in" 
-                : "mt-6 bg-red-900/20 p-6 rounded-xl border border-red-500/50 text-red-100 shadow-lg block fade-in";
-            
-            fbArea.classList.remove('hidden');
-
-            if(choice.valid) {
-                setTimeout(() => {
-                    scpStep++;
-                    renderScpStep();
-                    fbArea.classList.add('hidden');
-                }, 3000);
-            }
-        }
-
-        // Five Forces Logic (Configurator)
-        let forces = { entry: 'Low', suppliers: 'Low', buyers: 'Low', substitutes: 'Low', rivalry: 'Low' };
-        
-        window.setForce = function(type, val) {
-            forces[type] = val;
-            
-            // Toggle UI Buttons
-            document.getElementById(`btn-${type}-low`).className = val === 'Low' ? 
-                "flex-1 py-1 text-xs border border-r-0 border-slate-200 rounded-l hover:bg-slate-50 transition-all font-mono bg-blue-100 text-blue-700 font-bold" : 
-                "flex-1 py-1 text-xs border border-r-0 border-slate-200 rounded-l hover:bg-slate-50 transition-all font-mono";
-            
-            document.getElementById(`btn-${type}-high`).className = val === 'High' ? 
-                "flex-1 py-1 text-xs border border-slate-200 rounded-r hover:bg-slate-50 transition-all font-mono bg-red-100 text-red-700 font-bold" : 
-                "flex-1 py-1 text-xs border border-slate-200 rounded-r hover:bg-slate-50 transition-all font-mono";
-
-            // Calculation Logic: Count 'Low' threats (Low threat = Good for profit)
-            let score = 0;
-            Object.values(forces).forEach(v => {
-                if(v === 'Low') score++;
+        function refreshMoatButtons(dimId) {
+            [1,2,3].forEach(level => {
+                const btn = document.getElementById(`moat-${dimId}-${level}`);
+                if (btn) btn.classList.toggle('is-active', moatState[dimId] === level);
             });
+        }
 
-            // Update Visuals
-            const bar = document.getElementById('profit-bar');
-            const txt = document.getElementById('profit-text');
-            const sub = document.getElementById('profit-subtext');
-            const insight = document.getElementById('strategy-insight');
-            
-            // 0-5 scale mapped to percentage
-            let pct = (score / 5) * 100;
+        function setMoat(dimId, level) {
+            moatState[dimId] = level;
+            refreshMoatButtons(dimId);
+            updateMoatUI();
+        }
+
+        function updateMoatUI() {
+            const sum = Object.values(moatState).reduce((a,b) => a+b, 0); // range 5-15
+            const pct = Math.round(((sum - 5) / 10) * 100);
+            const bar = document.getElementById('moat-bar');
+            const txt = document.getElementById('moat-text');
+            const sub = document.getElementById('moat-subtext');
+            const insight = document.getElementById('moat-insight');
+            const num = document.getElementById('moat-score-num');
+
+            num.innerText = pct;
             bar.style.width = pct + '%';
 
-            if(score >= 4) {
-                // High Profit Potential (4-5 Lows)
-                bar.className = 'h-full bg-emerald-500 transition-all duration-500 shadow-[0_0_20px_rgba(16,185,129,0.5)]';
-                txt.innerText = "Golden Era (High Profit)";
-                txt.className = "text-4xl font-serif font-bold text-emerald-400 mt-2 transition-all duration-500";
-                sub.innerText = "Incumbents are protected. Value is captured.";
-                insight.innerHTML = `<strong class="text-white block mb-1">Strategic Insight:</strong> This structure suggests an **oligopoly** or protected niche. Incumbents can pass costs to customers. Focus on R&D and brand equity to maintain these barriers.`;
-                insight.className = "bg-slate-800/80 p-4 rounded border-l-4 border-emerald-500 text-sm text-slate-300 transition-all duration-500";
-            } else if (score >= 2) {
-                // Medium Profit (2-3 Lows)
-                bar.className = 'h-full bg-amber-500 transition-all duration-500 shadow-[0_0_20px_rgba(245,158,11,0.5)]';
-                txt.innerText = "Mixed Bag (Medium Profit)";
-                txt.className = "text-4xl font-serif font-bold text-amber-400 mt-2 transition-all duration-500";
-                sub.innerText = "Some leverage, but constant threats exist.";
-                insight.innerHTML = `<strong class="text-white block mb-1">Strategic Insight:</strong> You are in the "Squeezed Middle". You have some power but face threats. Strategy must focus on **Differentiation** to escape the trap.`;
-                insight.className = "bg-slate-800/80 p-4 rounded border-l-4 border-amber-500 text-sm text-slate-300 transition-all duration-500";
+            if (pct >= 80) {
+                bar.className = 'h-full bg-emerald-500 transition-all duration-700 ease-out shadow-[0_0_20px_rgba(16,185,129,0.5)]';
+                txt.innerText = 'Fortress Ecosystem'; txt.className = 'text-4xl font-serif font-bold text-emerald-400 mt-2 transition-all duration-500';
+                sub.innerText = 'Rivals must out-invest for a decade, not a product cycle.';
+                insight.className = 'bg-slate-800/80 p-4 rounded border-l-4 border-emerald-500 text-sm text-slate-300';
+                insight.innerHTML = '<strong class="text-white block mb-1">Reading:</strong> This looks like CUDA at its 2023&ndash;24 peak, or Apple\'s iOS App Store after 2008. Pricing power is durable because switching means rewriting, not just re-ordering.';
+            } else if (pct >= 45) {
+                bar.className = 'h-full bg-amber-500 transition-all duration-700 ease-out shadow-[0_0_20px_rgba(245,158,11,0.5)]';
+                txt.innerText = 'Contested Moat'; txt.className = 'text-4xl font-serif font-bold text-amber-400 mt-2 transition-all duration-500';
+                sub.innerText = 'Still defensible &mdash; but the trigger variables need watching.';
+                insight.className = 'bg-slate-800/80 p-4 rounded border-l-4 border-amber-500 text-sm text-slate-300';
+                insight.innerHTML = '<strong class="text-white block mb-1">Reading:</strong> This is roughly CUDA in 2026: Triton and ROCm are lowering multi-homing cost; Broadcom\'s custom-ASIC deal with OpenAI tests standard-setting power. Courtney et al. would say: this is exactly when you buy options, not make big bets.';
             } else {
-                // Low Profit (0-1 Lows)
-                bar.className = 'h-full bg-red-600 transition-all duration-500 shadow-[0_0_20px_rgba(220,38,38,0.5)]';
-                txt.innerText = "Commodity Trap (Low Profit)";
-                txt.className = "text-4xl font-serif font-bold text-red-500 mt-2 transition-all duration-500";
-                sub.innerText = "Profits are competed away. Zero-sum game.";
-                insight.innerHTML = `<strong class="text-white block mb-1">Strategic Insight:</strong> Structure is hostile. **Exit** might be the rational choice, or radical **Business Model Innovation** to change the game. Do not compete on price.`;
-                insight.className = "bg-slate-800/80 p-4 rounded border-l-4 border-red-500 text-sm text-slate-300 transition-all duration-500";
+                bar.className = 'h-full bg-red-600 transition-all duration-700 ease-out shadow-[0_0_20px_rgba(220,38,38,0.5)]';
+                txt.innerText = 'Open Arena'; txt.className = 'text-4xl font-serif font-bold text-red-500 mt-2 transition-all duration-500';
+                sub.innerText = 'This behaves like a normal Five Forces market now.';
+                insight.className = 'bg-slate-800/80 p-4 rounded border-l-4 border-red-500 text-sm text-slate-300';
+                insight.innerHTML = '<strong class="text-white block mb-1">Reading:</strong> With low lock-in and low multi-homing cost, price and raw performance decide everything &mdash; the ecosystem premium has evaporated. This is Intel\'s low-end PC graphics business, not CUDA.';
             }
         }
 
-        // Strategic Group Logic
-        function checkGroup(btn, choice) {
-            const fb = document.getElementById('group-feedback');
-            fb.style.display = 'block';
-            if(choice === 'no') {
-                fb.innerHTML = "<span class='text-green-400 font-bold'>Correct.</span> Mobility Barriers (Hubs, Loyalty Programs, Fleet mix) make it nearly impossible to move from Group C to A without bankruptcy.";
+        // ================= THE CAPACITY GAME =================
+        function payoff(you, rival) {
+            if (you === 'hold' && rival === 'hold') return [70, 70];
+            if (you === 'hold' && rival === 'expand') return [40, 90];
+            if (you === 'expand' && rival === 'hold') return [90, 40];
+            return [55, 55];
+        }
+        let gameRound = 1;
+        let playerMoves = [];
+        let youTotal = 0, rivalTotal = 0;
+
+        const roundFraming = [
+            { title: "Round 1 of 3: The Opening Move", desc: "It's 2025. Both you and your rival must commit to next year's wafer reservation, sight unseen. What do you choose?" },
+            { title: "Round 2 of 3: The Reaction", desc: "Your rival has now seen last year's move and reacted in kind. What do you choose this year?" },
+            { title: "Round 3 of 3: The Endgame", desc: "Final round. Reputations are set. What do you choose?" }
+        ];
+
+        function playRound(move) {
+            let rivalMove;
+            if (gameRound === 1) {
+                rivalMove = 'expand'; // scripted aggressive opener
             } else {
-                fb.innerHTML = "<span class='text-red-400 font-bold'>Incorrect.</span> You underestimate Mobility Barriers. Ted (United) and Song (Delta) failed trying to move down; moving up is even harder.";
+                rivalMove = playerMoves[gameRound - 2]; // tit-for-tat: mirrors your PREVIOUS move
+            }
+            playerMoves.push(move);
+            const [yPay, rPay] = payoff(move, rivalMove);
+            youTotal += yPay; rivalTotal += rPay;
+
+            highlightCell(move, rivalMove);
+            logRound(gameRound, move, rivalMove, yPay, rPay);
+
+            document.getElementById('game-scoreboard').classList.remove('hidden');
+            document.getElementById('you-total').innerText = youTotal;
+            document.getElementById('rival-total').innerText = rivalTotal;
+
+            gameRound++;
+            if (gameRound > 3) {
+                renderGameVerdict();
+            } else {
+                renderRoundPrompt();
             }
         }
 
-        // --- GAUNTLET ENGINE ---
+        function highlightCell(move, rivalMove) {
+            document.querySelectorAll('.payoff-cell').forEach(c => c.classList.remove('realized'));
+            const id = `cell-${move}-${rivalMove}`;
+            const cell = document.getElementById(id);
+            if (cell) cell.classList.add('realized');
+        }
+
+        function logRound(round, move, rivalMove, yPay, rPay) {
+            const log = document.getElementById('game-history');
+            const entry = document.createElement('div');
+            entry.className = 'flex justify-between border-b border-slate-800 pb-1';
+            entry.innerHTML = `<span>Round ${round}: You <span class="text-blue-400">${move === 'hold' ? 'Held' : 'Expanded'}</span> / Rival <span class="text-red-400">${rivalMove === 'hold' ? 'Held' : 'Expanded'}</span></span><span>You +${yPay} &middot; Rival +${rPay}</span>`;
+            log.appendChild(entry);
+        }
+
+        function renderRoundPrompt() {
+            const f = roundFraming[gameRound - 1];
+            document.getElementById('game-container').innerHTML = `
+                <div class="text-center py-4">
+                    <h3 class="text-xl text-white font-serif mb-3">${f.title}</h3>
+                    <p class="text-slate-400 mb-6 max-w-lg mx-auto text-sm">${f.desc}</p>
+                    <div class="flex gap-4 justify-center">
+                        <button onclick="playRound('hold')" class="bg-slate-700 hover:bg-slate-600 border border-slate-500 text-white font-bold py-3 px-8 rounded-full transition-all">Hold Capacity</button>
+                        <button onclick="playRound('expand')" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-full transition-all">Expand Capacity</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderGameVerdict() {
+            const expandCount = playerMoves.filter(m => m === 'expand').length;
+            let verdict;
+            if (expandCount === 3) {
+                verdict = `You chose <strong>Expand</strong> every round. In a one-shot game, Expand is the dominant strategy &mdash; it beats Hold no matter what the rival does (90&gt;70, 55&gt;40). But because your rival had the identical incentive, you both landed, three times running, on the mutually worst <em>stable</em> outcome (55, 55). This is the trap Tenstorrent CEO Jim Keller warned about: "semiconductors are cyclical... somebody builds too much capacity."`;
+            } else if (expandCount === 0) {
+                verdict = `You chose <strong>Hold</strong> every round. Your rival's aggressive opener punished you in Round 1 (40 vs. 90) &mdash; but because the rival was playing tit-for-tat, your restraint bought mutual cooperation (70, 70) in Rounds 2 and 3. Total game score: often better for you than always expanding, even though the rival stayed ahead on cumulative points.`;
+            } else {
+                verdict = `You mixed your strategy. Notice how the rival mirrored your <em>previous</em> move each round &mdash; real oligopolists (Nvidia and AMD's alternating capacity signals, or OPEC's production-quota dance) use exactly this kind of conditional, unspoken cooperation to avoid mutual destruction without ever signing an (illegal) agreement.`;
+            }
+            document.getElementById('game-container').innerHTML = `
+                <div class="text-center py-6">
+                    <h3 class="text-2xl text-white font-serif mb-2">Game Over</h3>
+                    <p class="text-slate-400 text-sm mb-6">Final score &mdash; You: <span class="text-blue-400 font-mono font-bold">${youTotal}</span> &middot; Rival: <span class="text-red-400 font-mono font-bold">${rivalTotal}</span></p>
+                    <div class="bg-slate-800/60 rounded-lg p-5 text-sm text-slate-300 text-left max-w-2xl mx-auto leading-relaxed">${verdict}</div>
+                    <button onclick="resetCapacityGame()" class="mt-6 text-sm underline text-slate-500 hover:text-slate-300">Play Again</button>
+                </div>
+            `;
+        }
+
+        function resetCapacityGame() {
+            gameRound = 1; playerMoves = []; youTotal = 0; rivalTotal = 0;
+            document.getElementById('game-history').innerHTML = '';
+            document.getElementById('game-scoreboard').classList.add('hidden');
+            document.querySelectorAll('.payoff-cell').forEach(c => c.classList.remove('realized'));
+            document.getElementById('game-container').innerHTML = `
+                <div class="text-center py-4">
+                    <h3 class="text-xl text-white font-serif mb-3">Round 1 of 3: The Opening Move</h3>
+                    <p class="text-slate-400 mb-6 max-w-lg mx-auto text-sm">It's 2025. Both you and your rival must commit to next year's wafer reservation, sight unseen. What do you choose?</p>
+                    <div class="flex gap-4 justify-center">
+                        <button onclick="playRound('hold')" class="bg-slate-700 hover:bg-slate-600 border border-slate-500 text-white font-bold py-3 px-8 rounded-full transition-all">Hold Capacity</button>
+                        <button onclick="playRound('expand')" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-full transition-all">Expand Capacity</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // ================= UNCERTAINTY SELF-CHECK =================
+        const uncertaintyScenarios = [
+            {
+                q: "A major airline must respond to a low-cost entrant at its hub. Costs, capacity, and the entrant's objectives are all knowable with focused research.",
+                level: "Level 1 &mdash; A Clear-Enough Future",
+                why: "Courtney et al.'s own example. Once you do the market research, one strategic direction becomes clear enough to act on."
+            },
+            {
+                q: "Will the DOJ's antitrust probe force Nvidia to change how it allocates scarce GPUs?",
+                level: "Level 2 &mdash; Alternate Futures",
+                why: "A small number of discrete regulatory outcomes (no action / consent decree / structural remedy), each demanding a different response &mdash; but analysis can't yet say which."
+            },
+            {
+                q: "How large will the enterprise generative-AI market be in 2030?",
+                level: "Level 3 &mdash; A Range of Futures",
+                why: "Analysts already span a wide range (from a fizzling bubble to a $1 trillion opportunity) with no natural break points in between &mdash; a continuum, not a scenario set."
+            },
+            {
+                q: "What does AI computing look like if a fundamentally new chip architecture matures unpredictably alongside shifting export-control geopolitics?",
+                level: "Level 4 &mdash; True Ambiguity",
+                why: "Multiple interacting unknowns (technology, geopolitics, demand) where even the range of outcomes can't be bounded yet. Courtney et al. note these situations are rare and transitional &mdash; they migrate toward Level 3 or 2 over time."
+            }
+        ];
+
+        function buildUncertaintyCards() {
+            const container = document.getElementById('uncertainty-cards');
+            container.innerHTML = uncertaintyScenarios.map((s, i) => `
+                <div class="bg-white p-5 rounded-xl border border-slate-200">
+                    <p class="text-sm text-slate-700 mb-3">${s.q}</p>
+                    <div id="u-reveal-${i}" class="hidden bg-slate-50 border-l-2 border-blue-500 p-3 rounded text-xs text-slate-600 mb-3">
+                        <strong class="text-blue-700 block mb-1">${s.level}</strong>${s.why}
+                    </div>
+                    <button onclick="document.getElementById('u-reveal-${i}').classList.remove('hidden'); this.style.display='none'" class="w-full py-2 bg-blue-50 text-blue-700 text-xs font-bold rounded hover:bg-blue-100 border border-blue-200 transition-all">Reveal Level</button>
+                </div>
+            `).join('');
+        }
+
+        // ================= GAUNTLET ENGINE =================
         const scenarios = [
             {
-                topic: "Five Forces: Entry Barriers",
-                q: "A new technology drastically lowers the capital requirement to enter your industry. According to Porter, what happens to industry profit potential?",
+                topic: "Ecosystems: The Real Moat",
+                q: "AMD's MI300X is priced 40-60% below Nvidia's H100 and closes much of the performance gap. Yet AMD still can't take significant AI-training share. What is the strongest explanation?",
                 opts: [
-                    { text: "It increases.", score: -20, feedback: "❌ Incorrect. Lower barriers mean more entrants, which increases supply and drives down prices." },
-                    { text: "It decreases.", score: 20, feedback: "✅ Correct. Threat of Entry is high. This erodes incumbent margins as they lower prices to deter entry (Limit Pricing)." },
-                    { text: "No change.", score: -10, feedback: "⚠️ Unlikely. Capital flows to where barriers are low." }
+                    { text: "AMD's chip is secretly much slower than reported.", score: -20, feedback: "❌ Not the core issue &mdash; the case shows AMD closing the raw performance gap while still losing on share." },
+                    { text: "Switching cost: rewriting CUDA-trained models for ROCm is expensive.", score: 20, feedback: "✅ Correct. The moat is the software ecosystem and the rewrite cost, not the chip's raw specs." },
+                    { text: "Nvidia has an exclusive contract barring customers from buying AMD.", score: -20, feedback: "❌ No such exclusivity exists in the case; customers are free to buy AMD." }
                 ]
             },
             {
-                topic: "PESTEL: Sociocultural",
-                q: "Consumers are shifting rapidly toward vegan diets. You are a traditional steakhouse chain. In the PESTEL framework, this is a:",
+                topic: "Game Theory: Dominant Strategy",
+                q: "In a one-shot capacity game where Expand beats Hold regardless of your rival's choice, Expand is called a:",
                 opts: [
-                    { text: "Legal Threat.", score: -10, feedback: "⚠️ No laws have changed yet." },
-                    { text: "Sociocultural Threat.", score: 20, feedback: "✅ Correct. Values and norms are shifting. This is an external shock to demand." },
-                    { text: "Technological Opportunity.", score: -20, feedback: "❌ This is about culture, not tech." }
+                    { text: "Dominant strategy.", score: 20, feedback: "✅ Correct. It's your best response no matter what the other player does." },
+                    { text: "Nash equilibrium.", score: -10, feedback: "⚠️ Close, but a Nash equilibrium describes a pair of moves, not a single player's best response rule." },
+                    { text: "Credible commitment.", score: -20, feedback: "❌ A credible commitment is about making a move costly to reverse, not about which move dominates." }
                 ]
             },
             {
-                topic: "SCP: Oligopoly Behavior",
-                q: "You operate in an industry with only 3 main competitors (Oligopoly). One competitor cuts prices. What should you expect?",
+                topic: "Coopetition",
+                q: "Microsoft buys huge volumes of Nvidia GPUs while funding its own Maia AI chip in-house. In game-theory terms, Microsoft is:",
                 opts: [
-                    { text: "Nothing.", score: -20, feedback: "❌ Incorrect. Oligopolies are defined by Interdependence." },
-                    { text: "Immediate retaliation.", score: 20, feedback: "✅ Correct. In Game Theory, this is a 'Tit-for-Tat' response. Price wars are likely." },
-                    { text: "New entrants.", score: -10, feedback: "⚠️ Price wars actually deter entry by destroying profitability." }
+                    { text: "A pure buyer with no strategic agenda.", score: -20, feedback: "❌ The in-house chip program shows clear strategic intent to reduce dependence." },
+                    { text: "Reserving the right to play while remaining a paying customer.", score: 20, feedback: "✅ Correct. This is a textbook 'reserve the right to play' posture: no-regrets purchases today, an option (in-house silicon) for tomorrow." },
+                    { text: "Violating antitrust law by building a competing chip.", score: -15, feedback: "❌ Vertical hedging by a customer is not, by itself, an antitrust violation." }
                 ]
             },
             {
-                topic: "Strategic Groups: Mobility Barriers",
-                q: "You are Spirit Airlines (Ultra-Low Cost). You decide to target Delta's high-end business travelers. Why will this likely fail?",
+                topic: "Strategy Under Uncertainty: Levels",
+                q: "OpenAI's revealed demand for training compute (25,000 GPUs, ~$100M for GPT-4) was already known when Nvidia priced the H100. Forecasting near-term H100 demand from existing large-lab customers is closest to which uncertainty level?",
                 opts: [
-                    { text: "Mobility Barriers.", score: 20, feedback: "✅ Correct. Your cost structure, brand perception, and lack of hub network are structural walls preventing this move." },
-                    { text: "PESTEL factors.", score: -10, feedback: "⚠️ PESTEL affects everyone. This is a specific group issue." },
-                    { text: "Nothing stops you.", score: -20, feedback: "❌ Naive. Strategic groups exist because barriers are real." }
+                    { text: "Level 1: A Clear-Enough Future.", score: 20, feedback: "✅ Correct. With observable customer plans and cost structures, one forecast is precise enough to price and allocate against." },
+                    { text: "Level 4: True Ambiguity.", score: -20, feedback: "❌ True ambiguity means even the range of outcomes is unknown &mdash; not the case here." },
+                    { text: "Level 3: A Range of Futures.", score: -10, feedback: "⚠️ Level 3 fits *long-run* enterprise AI demand better than near-term demand from known large customers." }
                 ]
             },
             {
-                topic: "Five Forces: Supplier Power",
-                q: "You manufacture PCs. Intel (your chip supplier) launches a campaign 'Intel Inside', creating brand loyalty directly with your end customers. What just happened?",
+                topic: "Postures",
+                q: "Huang's 2013 all-in bet on deep learning, made before AI generated meaningful revenue, is best described as which strategic posture?",
                 opts: [
-                    { text: "Supplier Power Increased.", score: 20, feedback: "✅ Correct. Intel differentiated itself, making it harder for you to switch suppliers. They capture the value." },
-                    { text: "Buyer Power Increased.", score: -10, feedback: "❌ The buyer now demands Intel, reducing your power." },
-                    { text: "Rivalry Decreased.", score: -10, feedback: "⚠️ Rivalry likely increases as PC makers fight for Intel allocation." }
+                    { text: "Adapt.", score: -15, feedback: "❌ Adapting takes the current industry structure as a given; this bet tried to create a new one." },
+                    { text: "Shape.", score: 20, feedback: "✅ Correct. Shapers try to establish a new industry structure of their own devising &mdash; exactly what an unproven, revenue-light bet on deep learning represents." },
+                    { text: "Reserve the right to play.", score: -10, feedback: "⚠️ Reserving the right to play is a low-cost hedge; redirecting the whole company was a big bet, not a hedge." }
                 ]
             },
             {
-                topic: "Asset Specificity",
-                q: "You build a factory that can only produce one specific part for one specific customer. What risk do you face?",
+                topic: "PESTEL vs. Five Forces",
+                q: "The U.S. export-control regime restricting advanced GPU sales to China is best classified, in the PESTEL vs. Five Forces distinction, as a:",
                 opts: [
-                    { text: "Hold-Up Problem.", score: 20, feedback: "✅ Correct. Since your asset is specific to them, they can force you to lower prices later (Opportunism)." },
-                    { text: "Economies of Scope.", score: -20, feedback: "❌ Specificity reduces scope." },
-                    { text: "Network Effects.", score: -10, feedback: "⚠️ Irrelevant here." }
+                    { text: "Five Forces factor: buyer power.", score: -15, feedback: "❌ This isn't about a buyer's bargaining leverage; it's a government policy shock." },
+                    { text: "PESTEL factor: Political / Legal.", score: 20, feedback: "✅ Correct. Export controls are a government-imposed, exogenous constraint &mdash; classic PESTEL, not an industry-specific force." },
+                    { text: "PESTEL factor: Technological.", score: -10, feedback: "⚠️ The trigger is policy, not a change in the technology itself." }
                 ]
             },
             {
-                topic: "Complements",
-                q: "You sell electric cars. The government announces a massive investment in public charging stations. The charging stations are:",
+                topic: "Network Effects",
+                q: "Steve Jobs's 2008 decision to open the iPhone to third-party developers via an SDK and App Store did what, strategically?",
                 opts: [
-                    { text: "Substitutes.", score: -20, feedback: "❌ They don't replace the car." },
-                    { text: "Complements.", score: 20, feedback: "✅ Correct. They increase the utility and value of your product." },
-                    { text: "Suppliers.", score: -5, feedback: "⚠️ You don't buy the station." }
+                    { text: "Turned developers into complementors, deepening two-sided network effects.", score: 20, feedback: "✅ Correct. More apps made the iPhone more valuable to buyers; more buyers made it worth more developer effort &mdash; the platform playbook." },
+                    { text: "Reduced Apple's bargaining power over developers.", score: -15, feedback: "❌ If anything, control over App Store distribution and review increased Apple's leverage over developers." },
+                    { text: "Had no lasting effect on switching costs.", score: -20, feedback: "❌ It's the opposite: accumulated apps and purchases became a major reason users stay on iOS." }
                 ]
             },
             {
-                topic: "Industry Lifecycle",
-                q: "The industry is consolidating. Growth is slowing. Competitors are fighting for market share. What stage is this?",
+                topic: "Credible Commitment",
+                q: "Why does TSMC require its largest customers to pre-pay billions of dollars to reserve fab capacity years in advance?",
                 opts: [
-                    { text: "Shakeout / Maturity.", score: 20, feedback: "✅ Correct. The pie is no longer growing, so rivalry becomes a zero-sum game." },
-                    { text: "Growth.", score: -20, feedback: "❌ In growth, a rising tide lifts all boats." },
-                    { text: "Embryonic.", score: -20, feedback: "❌ Too early." }
+                    { text: "It's purely a cash-flow / working-capital tactic.", score: -10, feedback: "⚠️ There's a cash-flow benefit, but that's not the main strategic logic tested here." },
+                    { text: "It turns a customer's capacity request into a credible, observable commitment.", score: 20, feedback: "✅ Correct. Pre-payment makes the commitment costly to reverse, which is exactly what 'credible commitment' means in game theory." },
+                    { text: "It is required by semiconductor industry regulation.", score: -20, feedback: "❌ No such regulation exists; this is a contractual choice by TSMC." }
                 ]
             },
             {
-                topic: "Institutional Isomorphism",
-                q: "Unsure of the best strategy, you simply copy the market leader's pricing and features. Sociologists call this:",
+                topic: "Options vs. Big Bets",
+                q: "Nvidia's abandoned $40 billion attempt to acquire ARM (blocked by antitrust regulators in 2022) is best classified in Courtney et al.'s portfolio-of-actions vocabulary as a:",
                 opts: [
-                    { text: "Mimetic Isomorphism.", score: 20, feedback: "✅ Correct. Uncertainty leads to imitation (Monkey see, Monkey do) to gain legitimacy." },
-                    { text: "Differentiation.", score: -20, feedback: "❌ It is the opposite." },
-                    { text: "Blue Ocean.", score: -20, feedback: "❌ Blue Ocean is about avoiding competition." }
+                    { text: "No-regrets move.", score: -20, feedback: "❌ No-regrets moves pay off regardless of outcome; this acquisition attempt produced a large loss when it failed." },
+                    { text: "Big bet.", score: 20, feedback: "✅ Correct. A big bet is a large, hard-to-reverse commitment with a large payoff in some scenarios and a large loss in others &mdash; which is exactly what happened." },
+                    { text: "Option.", score: -15, feedback: "❌ Options are small, modest initial investments designed to preserve flexibility; a $40B acquisition is the opposite." }
                 ]
             },
             {
-                topic: "Exit Barriers",
-                q: "Your steel mill is losing money, but you cannot close it because of strict union contracts and environmental cleanup costs. These are:",
+                topic: "The Sixth Force: Complements",
+                q: "Nvidia's 150+ CUDA SDKs spanning robotics, life sciences, and quantum computing function economically as:",
                 opts: [
-                    { text: "High Exit Barriers.", score: 20, feedback: "✅ Correct. High exit barriers force firms to stay and compete, increasing industry rivalry." },
-                    { text: "Sunk Costs.", score: 5, feedback: "⚠️ Related, but 'Exit Barriers' is the structural force." },
-                    { text: "Entry Barriers.", score: -20, feedback: "❌ Wrong direction." }
+                    { text: "Substitutes for Nvidia's own hardware.", score: -20, feedback: "❌ Substitutes replace a product; these SDKs increase demand for Nvidia's GPUs." },
+                    { text: "Complements that increase the value of Nvidia's core hardware.", score: 20, feedback: "✅ Correct. Each new domain-specific SDK makes owning an Nvidia GPU more valuable &mdash; the textbook definition of a complement." },
+                    { text: "New entrants into the GPU market.", score: -15, feedback: "❌ SDKs are software tools built ON Nvidia's platform, not competing chip makers." }
                 ]
             }
         ];
@@ -1588,10 +1207,10 @@
             document.getElementById('q-num').innerText = currentSimIndex + 1;
             document.getElementById('topic-tag').innerText = s.topic;
             document.getElementById('q-text').innerHTML = s.q;
-            
+
             const container = document.getElementById('options-container');
             container.innerHTML = '';
-            
+
             s.opts.forEach((opt, idx) => {
                 const btn = document.createElement('div');
                 btn.className = 'option-card p-5 rounded-xl bg-slate-700/50 text-slate-200 border border-slate-600 hover:border-blue-400 hover:bg-slate-700 cursor-pointer transition-all flex items-center gap-4 group';
@@ -1608,20 +1227,18 @@
             const allOpts = document.getElementById('options-container').children;
             for(let c of allOpts) c.style.pointerEvents = 'none';
 
-            // Score Logic
             if(opt.score > 0) streak++; else streak = 0;
             let finalScore = opt.score + (streak > 2 ? 5 : 0);
-            
+
             score = Math.max(0, Math.min(100, score + finalScore));
             updateScoreUI();
-            
+
             if(opt.score > 0) {
                 btn.classList.add('bg-emerald-900/30', 'border-emerald-500');
             } else {
                 btn.classList.add('bg-red-900/30', 'border-red-500');
             }
 
-            // Modal Feedback
             setTimeout(() => {
                 const modal = document.createElement('div');
                 modal.className = "fixed inset-0 bg-black/80 z-[60] flex items-center justify-center p-4 fade-in";
@@ -1651,7 +1268,7 @@
             const txt = document.getElementById('score-text');
             bar.style.width = score + "%";
             txt.innerText = score;
-            
+
             if(score >= 80) bar.className = "h-full bg-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.6)] transition-all duration-500";
             else if(score >= 40) bar.className = "h-full bg-amber-500 shadow-[0_0_15px_rgba(245,158,11,0.6)] transition-all duration-500";
             else bar.className = "h-full bg-red-600 shadow-[0_0_15px_rgba(239,68,68,0.6)] transition-all duration-500";
@@ -1661,7 +1278,7 @@
             document.getElementById('gameplay-screen').classList.add('hidden');
             const resScreen = document.getElementById('result-screen');
             resScreen.classList.remove('hidden');
-            
+
             const title = document.getElementById('res-title');
             const desc = document.getElementById('res-desc');
             const icon = document.getElementById('res-icon');
@@ -1670,17 +1287,17 @@
                 icon.innerHTML = "🏆";
                 title.innerText = "Chief Strategy Officer";
                 title.className = "text-4xl font-serif font-bold mb-3 text-emerald-400";
-                desc.innerText = "You have mastered the external environment. You understand that industry structure dictates performance.";
+                desc.innerText = "You see past the static snapshot: ecosystems, interdependent moves, and honest uncertainty are all part of your toolkit now.";
             } else if (score >= 50) {
                 icon.innerHTML = "📊";
                 title.innerText = "Mid-Level Analyst";
                 title.className = "text-4xl font-serif font-bold mb-3 text-amber-400";
-                desc.innerText = "You grasp the basics, but missed some nuances of Game Theory and Mobility Barriers.";
+                desc.innerText = "You grasp the basics, but missed some nuances of game theory and the uncertainty levels.";
             } else {
                 icon.innerHTML = "📉";
                 title.innerText = "Back to Business School";
                 title.className = "text-4xl font-serif font-bold mb-3 text-red-500";
-                desc.innerText = "The market forces crushed you. Review Porter's 5 Forces and try again.";
+                desc.innerText = "The static Five Forces habit is hard to break. Review ecosystems and game theory, then try again.";
             }
         }
 

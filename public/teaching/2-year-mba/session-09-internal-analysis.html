@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Session 9 & 10 : Internal_Firm_Analysis_Resources, Capabilities,and Core Competencies | Dr. Swapnil Sahoo</title>
+    <title>Session 05: Internal Analysis & Resource-Based View | Dr. Swapnil Sahoo</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         :root {
             --primary-bg: #ffffff;
@@ -80,7 +80,7 @@
             height: 300px;
             width: 100%;
         }
-        
+
         .animate-fade-in {
             animation: fadeIn 0.8s ease-out forwards;
         }
@@ -91,9 +91,9 @@
 
         /* Five Guys Specific Styles */
         .checker-pattern {
-            background-image: linear-gradient(45deg, #ed171f 25%, transparent 25%), 
-                              linear-gradient(-45deg, #ed171f 25%, transparent 25%), 
-                              linear-gradient(45deg, transparent 75%, #ed171f 75%), 
+            background-image: linear-gradient(45deg, #ed171f 25%, transparent 25%),
+                              linear-gradient(-45deg, #ed171f 25%, transparent 25%),
+                              linear-gradient(45deg, transparent 75%, #ed171f 75%),
                               linear-gradient(-45deg, transparent 75%, #ed171f 75%);
             background-size: 20px 20px;
             background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
@@ -124,10 +124,16 @@
         .chevron { clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%); }
         .chevron-start { clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 0% 0%); }
         .chevron-end { clip-path: polygon(100% 0%, 100% 100%, 0% 100%, 25% 50%, 0% 0%); }
-        
+
         /* Exhibit 4.2 Animations */
         @keyframes pulse-in { 0% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(0.95); opacity: 1; } 100% { transform: scale(1); opacity: 0.5; } }
         .pestel-arrow { animation: pulse-in 3s infinite ease-in-out; }
+
+        /* VRIO Calculator */
+        .vrio-btn { background: #fff; color: #64748b; cursor: pointer; transition: all 0.15s ease; }
+        .vrio-btn:hover { border-color: #7c3aed; }
+        .vrio-btn.vrio-active-yes { background: #7c3aed; border-color: #7c3aed; color: #fff; }
+        .vrio-btn.vrio-active-no { background: #1e293b; border-color: #1e293b; color: #fff; }
     </style>
     <link rel="stylesheet" href="/teaching/responsive.css">
 </head>
@@ -138,15 +144,17 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
-                    <div class="w-10 h-10 rounded bg-slate-900 flex items-center justify-center text-white font-serif font-bold text-xl">S9</div>
+                    <div class="w-10 h-10 rounded bg-slate-900 flex items-center justify-center text-white font-serif font-bold text-xl">S05</div>
                     <span class="serif text-lg font-bold text-slate-900 hidden md:block">Strategic Management</span>
                 </div>
                 <div class="hidden lg:flex items-center space-x-8 text-[10px] font-bold uppercase tracking-widest text-slate-500">
+                    <a href="#swot" class="hover:text-slate-900 transition">SWOT</a>
                     <a href="#audit" class="hover:text-slate-900 transition"> Audit</a>
                     <a href="#rbv-logic" class="hover:text-slate-900 transition"> RBV</a>
+                    <a href="#vrio-calculator" class="hover:text-slate-900 transition text-accent-blue">VRIO Calculator</a>
                     <a href="#case-study" class="hover:text-slate-900 transition">Case Study</a>
                     <a href="#value-chain" class="hover:text-slate-900 transition"> Value Chain</a>
-                    <a href="#group-activity" class="hover:text-slate-900 transition text-accent-blue">Activity</a>
+                    <a href="#group-activity" class="hover:text-slate-900 transition">Activity</a>
                 </div>
                 <div class="flex items-center gap-5">
                     <a href="https://swapnilsahoo.com" target="_blank" class="text-slate-400 hover:text-slate-900 transition text-sm font-bold serif" rel="noopener noreferrer">swapnilsahoo.com</a>
@@ -161,13 +169,14 @@
     <header class="pt-32 pb-16 px-6 border-b border-slate-200 bg-white relative overflow-hidden">
         <div class="absolute inset-0 checker-pattern pointer-events-none"></div>
         <div class="max-w-6xl mx-auto relative z-10 text-center animate-fade-in">
-            <span class="mono text-xs font-bold tracking-[0.2em] text-accent-blue uppercase mb-6 block">Session 9 & 10 : Internal_Firm_Analysis_Resources, Capabilities,and Core Competencies</span>
+            <span class="mono text-xs font-bold tracking-[0.2em] text-accent-blue uppercase mb-6 block">Session 05 &middot; Internal Analysis & Resource-Based View</span>
             <h1 class="text-5xl md:text-7xl font-bold mb-6 text-slate-900 leading-tight">
                 Inside the <br/> <span class="italic text-slate-600">Black Box</span>
             </h1>
             <p class="text-xl text-slate-600 font-light max-w-3xl mx-auto serif leading-relaxed mb-8">
                 "We reject the perfect competition model. Why do firms in the same industry differ? Because they are unique bundles of resources."
             </p>
+            <p class="text-xs text-slate-400 max-w-2xl mx-auto uppercase tracking-widest">SWOT &middot; Value Chain &middot; Resource-Based View &middot; VRIO &mdash; Collis & Montgomery (1995); Porter (1987)</p>
             <div class="text-xs text-slate-400 mt-4 serif">© Dr. Swapnil Sahoo 2026</div>
         </div>
     </header>
@@ -179,15 +188,15 @@
             <div class="glass-panel p-8 rounded-xl border-l-4 border-l-accent-blue bg-white">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
-                        <h2 class="text-2xl font-bold text-slate-900 mb-4 serif">Session 9 & 10: Learning Objectives</h2>
+                        <h2 class="text-2xl font-bold text-slate-900 mb-4 serif">Session 05: Learning Objectives</h2>
                         <ul class="space-y-3">
                             <li class="flex items-start gap-3">
                                 <span class="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-accent-blue flex items-center justify-center text-xs font-bold">1</span>
-                                <span class="text-slate-600"><strong>Distinguish</strong> between Resources, Capabilities, and Core Competencies.</span>
+                                <span class="text-slate-600"><strong>Conduct</strong> a SWOT audit and see why "Strengths" lists alone are not strategy.</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <span class="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-accent-blue flex items-center justify-center text-xs font-bold">2</span>
-                                <span class="text-slate-600"><strong>Apply</strong> the VRIO Framework to assess sustainable advantage.</span>
+                                <span class="text-slate-600"><strong>Apply</strong> Collis & Montgomery's (1995) five tests and the VRIO Framework to assess sustainable advantage.</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <span class="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-accent-blue flex items-center justify-center text-xs font-bold">3</span>
@@ -195,7 +204,7 @@
                             </li>
                             <li class="flex items-start gap-3">
                                 <span class="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-accent-blue flex items-center justify-center text-xs font-bold">4</span>
-                                <span class="text-slate-600"><strong>Analyze</strong> the Value Chain: Primary vs. Support Activities.</span>
+                                <span class="text-slate-600"><strong>Analyze</strong> the Value Chain (Porter, 1987) &mdash; Primary vs. Support Activities, and where a firm should draw its make/buy line.</span>
                             </li>
                         </ul>
                     </div>
@@ -230,10 +239,10 @@
                 <div class="h-10 w-1 bg-slate-400"></div>
                 <div>
                     <h2 class="text-3xl font-bold text-slate-900">Strategic Context</h2>
-                    <p class="text-slate-500 text-sm mt-1">Exhibit 9.0: Linking External & Internal Analysis</p>
+                    <p class="text-slate-500 text-sm mt-1">Exhibit 4.1: Linking External & Internal Analysis</p>
                 </div>
             </div>
-            
+
             <div class="glass-panel p-8 rounded-2xl relative overflow-hidden flex flex-col items-center justify-center min-h-[600px] bg-white border-2 border-slate-50">
                 <div class="absolute top-4 font-bold text-slate-400 uppercase tracking-widest text-xs">External Environment</div>
                 <div class="absolute bottom-4 font-bold text-slate-400 uppercase tracking-widest text-xs">External Environment</div>
@@ -274,15 +283,15 @@
 
                 <!-- Concentric Circles -->
                 <div class="relative z-10 w-[480px] h-[480px] rounded-full border-2 border-dashed border-slate-300 flex items-center justify-center transform scale-75 md:scale-100 transition-transform">
-                    
+
                     <!-- Middle Ring: Industry -->
                     <div class="absolute w-[380px] h-[380px] rounded-full bg-[#e6e2cf] border border-[#dcd8b6] shadow-lg flex items-center justify-center">
                         <div class="absolute top-6 font-bold text-slate-700 text-sm uppercase tracking-wide">Industry</div>
-                        
+
                         <!-- Inner Middle Ring: Strategic Group -->
                         <div class="w-[280px] h-[280px] rounded-full bg-slate-200 border border-slate-300 shadow-inner flex items-center justify-center">
                             <div class="absolute top-[70px] font-bold text-slate-600 text-sm uppercase tracking-wide">Strategic Group</div>
-                            
+
                             <!-- Center Core: Firm -->
                             <div class="w-[180px] h-[180px] rounded-full bg-[#cde4d0] border border-emerald-200 shadow-xl flex flex-col items-center justify-center text-center p-4 z-20 hover:scale-105 transition duration-500">
                                 <div class="text-[10px] font-bold text-emerald-800 uppercase mb-1">Inside the Firm</div>
@@ -291,6 +300,89 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- NEW SECTION: SWOT ANALYSIS -->
+        <section id="swot" class="animate-fade-in">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="h-10 w-1 bg-emerald-700"></div>
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900">Where Internal Analysis Starts: SWOT</h2>
+                    <p class="text-slate-500 text-sm mt-1">The Audit Every Firm Runs &mdash; and Why It Isn't Enough on Its Own</p>
+                </div>
+            </div>
+
+            <div class="mb-10 p-6 bg-slate-50 border-l-4 border-emerald-700 rounded-r-xl shadow-sm">
+                <h3 class="serif text-2xl font-bold text-slate-900 mb-3">
+                    First-Principles Question: <span class="text-slate-600 italic">If your rival's SWOT lists the same "Strength," was it ever really a strength?</span>
+                </h3>
+                <p class="text-slate-700 leading-relaxed">
+                    Almost every strategy deck opens with a SWOT grid. And almost every SWOT grid puts "strong brand," "talented people," or "proprietary technology" in the Strengths box &mdash; regardless of the company. That should worry you. A list that any firm in any industry could write about itself is not analysis; it is a wish list. SWOT tells you <em>where to look</em> (inside the firm for S/W, outside for O/T, echoing the industry vs. firm boundary from the previous session). It does not tell you whether an item you wrote down can actually survive contact with competitors. That second, harder test is what the rest of this session builds &mdash; via Collis & Montgomery's (1995) five tests and the VRIO framework.
+                </p>
+            </div>
+
+            <!-- Interactive SWOT Matrix -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-1 bg-slate-200 rounded-2xl overflow-hidden shadow-lg mb-8">
+                <!-- Strengths -->
+                <div class="bg-white p-6 md:p-8 relative">
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="font-bold text-lg text-emerald-700 uppercase tracking-wide flex items-center gap-2"><i class="fa-solid fa-plus-circle"></i> Strengths</h4>
+                        <span class="text-[10px] font-bold text-slate-400 uppercase">Internal</span>
+                    </div>
+                    <ul class="space-y-2 text-sm text-slate-700">
+                        <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-600 mt-1 text-xs"></i><span>AWS: over $90B revenue and $24B+ operating income in 2023 &mdash; a self-funding cash engine most rivals lack.</span></li>
+                        <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-600 mt-1 text-xs"></i><span>200M+ Prime members worldwide by 2023, each spending roughly 4x a non-member.</span></li>
+                        <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-600 mt-1 text-xs"></i><span>Ad network revenue of $47B in 2023 (+24% YoY) built on first-party shopping-intent data no pure ad platform has.</span></li>
+                    </ul>
+                    <p class="text-[10px] text-slate-400 mt-4 italic">Source: Gupta & Rodriguez, "Amazon in 2024," HBS 9-514-025.</p>
+                </div>
+                <!-- Weaknesses -->
+                <div class="bg-white p-6 md:p-8 relative">
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="font-bold text-lg text-red-600 uppercase tracking-wide flex items-center gap-2"><i class="fa-solid fa-minus-circle"></i> Weaknesses</h4>
+                        <span class="text-[10px] font-bold text-slate-400 uppercase">Internal</span>
+                    </div>
+                    <ul class="space-y-2 text-sm text-slate-700">
+                        <li class="flex gap-2"><i class="fa-solid fa-xmark text-red-500 mt-1 text-xs"></i><span>Grocery: after the $13.4B Whole Foods deal (2017), Amazon still holds roughly 0.2&ndash;1.2% of the ~$800B U.S. grocery market vs. Walmart's ~14.5%.</span></li>
+                        <li class="flex gap-2"><i class="fa-solid fa-xmark text-red-500 mt-1 text-xs"></i><span>Devices: the Alexa/Echo unit reportedly ran an operating loss of $5B+ a year as of 2022.</span></li>
+                        <li class="flex gap-2"><i class="fa-solid fa-xmark text-red-500 mt-1 text-xs"></i><span>Pattern of costly misfires outside the core (Fire Phone write-down of $170M in 2014; Amazon Salon, discontinued).</span></li>
+                    </ul>
+                    <p class="text-[10px] text-slate-400 mt-4 italic">Source: Gupta & Rodriguez, "Amazon in 2024," HBS 9-514-025.</p>
+                </div>
+                <!-- Opportunities -->
+                <div class="bg-white p-6 md:p-8 relative border-t-4 md:border-t-0 border-blue-100">
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="font-bold text-lg text-accent-blue uppercase tracking-wide flex items-center gap-2"><i class="fa-solid fa-lightbulb"></i> Opportunities</h4>
+                        <span class="text-[10px] font-bold text-slate-400 uppercase">External</span>
+                    </div>
+                    <ul class="space-y-2 text-sm text-slate-700">
+                        <li class="flex gap-2"><i class="fa-solid fa-arrow-trend-up text-accent-blue mt-1 text-xs"></i><span>The GenAI stack: Bedrock (managed models), custom Trainium/Inferentia silicon, and the Rufus shopping assistant &mdash; all announced/scaling in 2023&ndash;24.</span></li>
+                        <li class="flex gap-2"><i class="fa-solid fa-arrow-trend-up text-accent-blue mt-1 text-xs"></i><span>Amazon Business reached $35B in annualized sales across 6M+ business customers by 2023, inside a ~$7.2T U.S. wholesale/distribution market.</span></li>
+                        <li class="flex gap-2"><i class="fa-solid fa-arrow-trend-up text-accent-blue mt-1 text-xs"></i><span>Healthcare: One Medical ($3.9B, 2023) plus PillPack and Amazon Pharmacy extend the Prime relationship into a new spend category.</span></li>
+                    </ul>
+                    <p class="text-[10px] text-slate-400 mt-4 italic">Source: Gupta & Rodriguez, "Amazon in 2024," HBS 9-514-025.</p>
+                </div>
+                <!-- Threats -->
+                <div class="bg-white p-6 md:p-8 relative border-t-4 md:border-t-0 border-amber-100">
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="font-bold text-lg text-accent-gold uppercase tracking-wide flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation"></i> Threats</h4>
+                        <span class="text-[10px] font-bold text-slate-400 uppercase">External</span>
+                    </div>
+                    <ul class="space-y-2 text-sm text-slate-700">
+                        <li class="flex gap-2"><i class="fa-solid fa-shield-halved text-accent-gold mt-1 text-xs"></i><span>Cloud infrastructure itself has a supplier squeeze upstream: AWS depends on Nvidia GPUs, which depend on a single fab (TSMC) &mdash; a value-chain fragility, not just a rival.</span></li>
+                        <li class="flex gap-2"><i class="fa-solid fa-shield-halved text-accent-gold mt-1 text-xs"></i><span>Content-cost inflation: Amazon spent $19B+ on TV/music content and licensing in 2023 to stay competitive with Netflix.</span></li>
+                        <li class="flex gap-2"><i class="fa-solid fa-shield-halved text-accent-gold mt-1 text-xs"></i><span>Regulatory exposure to antitrust scrutiny of scale and self-preferencing across marketplace, cloud, and advertising simultaneously.</span></li>
+                    </ul>
+                    <p class="text-[10px] text-slate-400 mt-4 italic">Source: Gupta & Rodriguez, "Amazon in 2024," HBS 9-514-025.</p>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 text-white p-6 rounded-xl flex flex-col md:flex-row items-center gap-6">
+                <div class="text-4xl text-emerald-400"><i class="fa-solid fa-circle-question"></i></div>
+                <p class="text-sm text-slate-300 leading-relaxed">
+                    Notice the trap: "AWS" appears as a Strength. But AWS is really a bundle of resources and capabilities &mdash; custom chips, hyperscale data centers, a decade of operational learning &mdash; wrapped in one label. SWOT stops at the label. The rest of this session asks: which parts of that bundle are actually <strong>Valuable, Rare, Inimitable, and Organized</strong> enough to keep paying off, and which parts could a rival like Microsoft Azure or Google Cloud replicate with enough capital? That is the move from SWOT (a list) to RBV (a test).
+                </p>
             </div>
         </section>
 
@@ -437,7 +529,7 @@
                 <div class="h-10 w-1 bg-emerald-600"></div>
                 <div>
                     <h2 class="text-3xl font-bold text-slate-900">The Engine of Advantage</h2>
-                    <p class="text-slate-500 text-sm mt-1">Exhibit 9.3: Linking Resources, Capabilities, and Activities</p>
+                    <p class="text-slate-500 text-sm mt-1">Exhibit 4.4: Linking Resources, Capabilities, and Activities</p>
                 </div>
             </div>
 
@@ -449,7 +541,7 @@
                 <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-white px-4 text-[10px] font-bold text-emerald-400 uppercase tracking-widest z-10">Reinvest, Hone, and Upgrade</div>
 
                 <div class="flex flex-col lg:flex-row items-center justify-between gap-8 relative z-20 py-8 px-4">
-                    
+
                     <!-- Left Column: Inputs -->
                     <div class="flex flex-col gap-8 w-full lg:w-1/4">
                         <div class="bg-slate-100 p-6 rounded-xl text-center shadow-sm border-t-4 border-slate-400">
@@ -509,7 +601,7 @@
                         "Core competencies that are not continuously nourished will lose their ability to yield a competitive advantage."
                     </div>
                 </div>
-                
+
                 <div class="bg-slate-900 text-white p-6 rounded-xl">
                     <h4 class="text-emerald-400 font-bold uppercase tracking-widest text-xs mb-4">Case in Point: The Retail Wars</h4>
                     <div class="space-y-4 text-xs text-slate-300">
@@ -525,7 +617,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="mt-8 text-center">
                 <p class="text-sm text-slate-500 max-w-2xl mx-auto">
                     Companies need to look beyond visible manifestations (products) to the invisible roots of advantage. In the next section, we clarify these opaque aspects by distinguishing between tangible and intangible resources.
@@ -563,6 +655,128 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Collis & Montgomery Five Tests -->
+            <div class="mt-12 p-8 bg-white rounded-2xl border border-slate-200 shadow-sm">
+                <div class="mb-6">
+                    <span class="text-[10px] font-bold tracking-widest bg-amber-50 text-accent-gold px-2 py-1 rounded uppercase">Assigned Reading</span>
+                    <h3 class="serif text-2xl font-bold text-slate-900 mt-3">Collis & Montgomery (1995): "Competing on Resources"</h3>
+                    <p class="text-sm text-slate-600 mt-2 max-w-3xl leading-relaxed">
+                        Writing in <em>Harvard Business Review</em>, David Collis and Cynthia Montgomery argue that heterogeneity and immobility are necessary but not sufficient. Before you call something a "resource" worth building strategy around, they say, test it against five questions &mdash; and note that the fourth question (appropriability) is the one most SWOT-style Strengths lists skip entirely.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+                    <div class="p-4 bg-slate-50 rounded-lg border border-slate-100">
+                        <div class="text-accent-gold font-bold text-xs uppercase tracking-widest mb-2">1. Inimitability</div>
+                        <p class="text-xs text-slate-600 leading-relaxed">Is it hard to copy? Physically unique, path-dependent, causally ambiguous, or economically deterrent to replicate?</p>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-lg border border-slate-100">
+                        <div class="text-accent-gold font-bold text-xs uppercase tracking-widest mb-2">2. Durability</div>
+                        <p class="text-xs text-slate-600 leading-relaxed">How fast does it depreciate? Brands can outlast patents; a hot algorithm can decay in a single product cycle.</p>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-lg border border-slate-100">
+                        <div class="text-accent-gold font-bold text-xs uppercase tracking-widest mb-2">3. Substitutability</div>
+                        <p class="text-xs text-slate-600 leading-relaxed">Can a <em>different</em> resource deliver the same customer benefit? (Superior scale beaten by superior algorithms.)</p>
+                    </div>
+                    <div class="p-4 bg-amber-50 rounded-lg border border-amber-100">
+                        <div class="text-accent-gold font-bold text-xs uppercase tracking-widest mb-2">4. Appropriability</div>
+                        <p class="text-xs text-slate-700 leading-relaxed"><strong>Who captures the value?</strong> Star employees, powerful customers, or channel partners can bargain away a firm's returns even from a genuinely rare resource.</p>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-lg border border-slate-100">
+                        <div class="text-accent-gold font-bold text-xs uppercase tracking-widest mb-2">5. Competitive Superiority</div>
+                        <p class="text-xs text-slate-600 leading-relaxed">Is it better <em>relative to rivals</em> at the specific thing that wins in this industry &mdash; not just "good" in the abstract?</p>
+                    </div>
+                </div>
+                <div class="mt-6 p-4 bg-slate-900 text-white rounded-lg text-xs leading-relaxed">
+                    <strong class="text-amber-300">Appropriability, worked example:</strong> an investment bank can employ a star trader whose personal skill generates the profit. The resource (skill) is valuable and rare &mdash; but the <em>trader</em>, not the bank, has the bargaining power to appropriate most of the value, which is exactly why star performers command outsized bonuses. The "resource" sits on the firm's P&L, but a large share of the value it creates walks out the door at 6pm. This is the test VRIO's four letters do not ask directly &mdash; which is why Collis & Montgomery is assigned alongside VRIO, not instead of it.
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW SECTION: VRIO FRAMEWORK & CALCULATOR -->
+        <section id="vrio-calculator" class="animate-fade-in">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="h-10 w-1 bg-violet-600"></div>
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900">The VRIO Framework</h2>
+                    <p class="text-slate-500 text-sm mt-1">A Decision Tree, Not a Checklist &mdash; Build Your Own</p>
+                </div>
+            </div>
+
+            <div class="mb-8 p-6 bg-slate-50 border-l-4 border-violet-600 rounded-r-xl shadow-sm">
+                <h3 class="serif text-xl font-bold text-slate-900 mb-3">
+                    Why order matters: <span class="text-slate-600 italic">a "yes" on Inimitability means nothing if the answer to Valuable was already "no."</span>
+                </h3>
+                <p class="text-slate-700 leading-relaxed text-sm">
+                    VRIO is a <strong>sequential</strong> test, not four independent scores to average. Jay Barney's logic runs: if a resource is not <strong>V</strong>aluable, stop &mdash; it is a competitive disadvantage regardless of how rare it is. If it is valuable but not <strong>R</strong>are, every competitor has it too &mdash; competitive parity. If it is valuable and rare but not costly to <strong>I</strong>mitate, you get a head start, not a moat &mdash; temporary advantage. Only when the resource clears V, R, and I does the question shift from "is the resource good?" to "is the firm <strong>O</strong>rganized to capture the value?" &mdash; the same appropriability problem Collis & Montgomery raise above.
+                </p>
+            </div>
+
+            <div class="glass-panel p-8 rounded-2xl bg-white border border-slate-200">
+                <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-8">
+                    <h3 class="font-bold text-xl text-slate-900">Live VRIO Assessor</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="loadVrioPreset('cuda')" class="px-3 py-2 text-xs font-bold rounded-lg border border-violet-200 bg-violet-50 text-violet-700 hover:bg-violet-100 transition">Load: Nvidia's CUDA</button>
+                        <button onclick="loadVrioPreset('aws')" class="px-3 py-2 text-xs font-bold rounded-lg border border-blue-200 bg-blue-50 text-blue-700 hover:bg-blue-100 transition">Load: Amazon AWS Scale</button>
+                        <button onclick="loadVrioPreset('reset')" class="px-3 py-2 text-xs font-bold rounded-lg border border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100 transition">Clear</button>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="text-xs font-bold uppercase tracking-widest text-slate-400 block mb-2">Resource or capability under test</label>
+                    <input type="text" id="vrioResourceName" placeholder="e.g., our proprietary logistics network" class="w-full px-4 py-3 border border-slate-300 rounded-lg text-sm focus:outline-none focus:border-violet-500 transition">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8" id="vrioQuestions">
+                    <div class="p-4 bg-slate-50 rounded-lg border border-slate-200">
+                        <div class="font-bold text-sm text-slate-900 mb-1">Valuable?</div>
+                        <p class="text-[11px] text-slate-500 mb-3">Does it exploit an opportunity or neutralize a threat?</p>
+                        <div class="flex gap-2" data-vrio="V">
+                            <button class="vrio-btn flex-1 py-2 text-xs font-bold rounded border border-slate-300" data-val="yes" onclick="setVrio('V','yes',this)">Yes</button>
+                            <button class="vrio-btn flex-1 py-2 text-xs font-bold rounded border border-slate-300" data-val="no" onclick="setVrio('V','no',this)">No</button>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-lg border border-slate-200">
+                        <div class="font-bold text-sm text-slate-900 mb-1">Rare?</div>
+                        <p class="text-[11px] text-slate-500 mb-3">Do few (if any) competitors also possess it?</p>
+                        <div class="flex gap-2" data-vrio="R">
+                            <button class="vrio-btn flex-1 py-2 text-xs font-bold rounded border border-slate-300" data-val="yes" onclick="setVrio('R','yes',this)">Yes</button>
+                            <button class="vrio-btn flex-1 py-2 text-xs font-bold rounded border border-slate-300" data-val="no" onclick="setVrio('R','no',this)">No</button>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-lg border border-slate-200">
+                        <div class="font-bold text-sm text-slate-900 mb-1">Costly to Imitate?</div>
+                        <p class="text-[11px] text-slate-500 mb-3">Path dependence, causal ambiguity, or social complexity block copying?</p>
+                        <div class="flex gap-2" data-vrio="I">
+                            <button class="vrio-btn flex-1 py-2 text-xs font-bold rounded border border-slate-300" data-val="yes" onclick="setVrio('I','yes',this)">Yes</button>
+                            <button class="vrio-btn flex-1 py-2 text-xs font-bold rounded border border-slate-300" data-val="no" onclick="setVrio('I','no',this)">No</button>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-lg border border-slate-200">
+                        <div class="font-bold text-sm text-slate-900 mb-1">Organized to Capture?</div>
+                        <p class="text-[11px] text-slate-500 mb-3">Systems, incentives, and structure aligned to exploit it?</p>
+                        <div class="flex gap-2" data-vrio="O">
+                            <button class="vrio-btn flex-1 py-2 text-xs font-bold rounded border border-slate-300" data-val="yes" onclick="setVrio('O','yes',this)">Yes</button>
+                            <button class="vrio-btn flex-1 py-2 text-xs font-bold rounded border border-slate-300" data-val="no" onclick="setVrio('O','no',this)">No</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="vrioResultBox" class="p-6 rounded-xl border-2 border-dashed border-slate-200 text-center">
+                    <p class="text-sm text-slate-400">Answer Valuable, Rare, and Costly to Imitate to see the strategic implication compute live.</p>
+                </div>
+
+                <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-2 text-center text-[10px]">
+                    <div class="p-2 rounded bg-red-100 text-red-700 font-bold">Not Valuable &rarr; Disadvantage</div>
+                    <div class="p-2 rounded bg-orange-100 text-orange-700 font-bold">Valuable, Not Rare &rarr; Parity</div>
+                    <div class="p-2 rounded bg-yellow-100 text-yellow-700 font-bold">+Rare, Not Inimitable &rarr; Temporary</div>
+                    <div class="p-2 rounded bg-emerald-100 text-emerald-700 font-bold">+Inimitable +Organized &rarr; Sustained</div>
+                </div>
+            </div>
+
+            <div class="mt-6 p-6 bg-white rounded-xl border border-slate-200 text-sm text-slate-600 leading-relaxed">
+                <strong class="text-slate-900">Worked example &mdash; Nvidia's CUDA platform</strong> (Yoffie & von Bargen, "Nvidia, Inc. in 2024 and the Future of AI," HBS 9-725-360): CUDA is <strong>Valuable</strong> (it is why developers reach for an Nvidia GPU instead of a cheaper alternative), <strong>Rare</strong> (15 years of investment and 150+ proprietary SDKs are not something AMD's ROCm or Intel's software stack have matched), and <strong>Costly to Imitate</strong> (switching cost is high because code written for CUDA does not run on rival chips &mdash; a form of causal ambiguity plus deliberate lock-in). Huang's team was also <strong>Organized</strong> to capture the value: in 2013 Nvidia redirected the entire company toward deep learning virtually overnight. Result, on paper: sustained competitive advantage. But load the "Nvidia's CUDA" preset above and then ask the harder question the class discussion should end on &mdash; open-source alternatives like OpenAI's Triton are explicitly designed to "break the CUDA lock-in." Try flipping Inimitability to "No" and watch the verdict change in real time.
+            </div>
         </section>
 
         <!-- SECTION 1: FIVE GUYS CASE STUDY (PRESERVED) -->
@@ -582,7 +796,7 @@
                 <p class="text-slate-700 leading-relaxed">
                     <strong>The Context:</strong> Fast food is a marketing-heavy industry. McDonald's spends $1.6B/year on ads. <br/>
                     <strong>The Anomaly:</strong> Five Guys spends virtually zero. <br/>
-                    <strong>The Session 9 & 10 Lesson:</strong> They leverage <strong>Intangible Resources</strong> (Reputation, Culture) to replace Tangible Ad Spend.
+                    <strong>The Session 05 Lesson:</strong> They leverage <strong>Intangible Resources</strong> (Reputation, Culture) to replace Tangible Ad Spend.
                 </p>
             </div>
 
@@ -605,8 +819,8 @@
                         </div>
                     </div>
                     <div class="bg-slate-900 relative overflow-hidden h-64 lg:h-auto">
-                        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                             alt="Juicy Burger" 
+                        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                             alt="Juicy Burger"
                              class="absolute inset-0 w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700">
                     </div>
                 </div>
@@ -635,7 +849,7 @@
                     </div>
                     <div class="flex flex-col md:flex-row justify-between md:items-end mb-4 relative z-10">
                         <div>
-                            <span class="text-[10px] font-bold tracking-widest bg-slate-100 text-slate-500 px-2 py-1 rounded mb-2 inline-block">EXHIBIT 9.1</span>
+                            <span class="text-[10px] font-bold tracking-widest bg-slate-100 text-slate-500 px-2 py-1 rounded mb-2 inline-block">EXHIBIT 4.5</span>
                             <h4 class="font-bold text-slate-800 text-xl">The Scaling Trajectory (1986–2025)</h4>
                             <p class="text-xs text-slate-500 mt-1">Growth in Number of Stores. Note the inflection point at 2003 (Franchising).</p>
                         </div>
@@ -689,6 +903,13 @@
                     <p class="text-slate-500 text-sm mt-1"> Transforming Inputs into Superior Performance</p>
                 </div>
             </div>
+
+            <div class="mb-6 p-6 bg-slate-50 border-l-4 border-accent-blue rounded-r-xl shadow-sm">
+                <p class="text-slate-700 leading-relaxed text-sm">
+                    <strong>Porter (1987)</strong>, writing in "From Competitive Advantage to Corporate Strategy" (<em>HBR</em>), introduced the value chain as the unit of analysis for competitive advantage: "Every business unit is a collection of discrete activities&hellip; I call them value activities&hellip; It is at this level, not in the company as a whole, that the unit achieves competitive advantage." He groups them into nine categories &mdash; five <strong>primary</strong> activities that touch the product directly, and four <strong>support</strong> activities that make the primary ones possible. The diagnostic question for this session: which of these nine boxes is where your VRIO-tested resource actually gets deployed?
+                </p>
+            </div>
+
             <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
                 <div class="grid grid-cols-1 gap-1 mb-4">
                     <div class="p-4 bg-slate-100 border-l-4 border-slate-400 text-[10px] font-bold uppercase tracking-widest flex justify-between group hover:bg-slate-900 hover:text-white transition">Firm Infrastructure <span class="opacity-40 group-hover:opacity-100">Finance, Legal, Management</span></div>
@@ -705,6 +926,30 @@
                     <div class="w-16 bg-accent-gold text-white flex items-center justify-center text-center p-2 text-xs font-bold rounded-r-lg shadow-lg">MARGIN</div>
                 </div>
                 <p class="text-xs text-slate-400 mt-6 italic">*Primary Activities (Bottom) touch the product directly. Support Activities (Top) enable the chain.</p>
+            </div>
+
+            <!-- Nvidia Value Chain Worked Example -->
+            <div class="mt-8 glass-panel p-8 rounded-2xl bg-slate-900 text-white relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-72 h-72 bg-emerald-500 opacity-10 rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3"></div>
+                <div class="relative z-10">
+                    <span class="text-[10px] font-bold tracking-widest bg-white/10 px-2 py-1 rounded uppercase">Worked Example: Where Should Nvidia Play in the Value Chain?</span>
+                    <h3 class="serif text-2xl font-bold mt-3 mb-4">Nvidia Doesn't Own Its Own Value Chain &mdash; and That's the Point (and the Risk)</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+                        <div class="bg-white/5 p-5 rounded-lg border border-white/10">
+                            <div class="font-bold text-emerald-300 uppercase text-xs tracking-widest mb-2">Upstream: Inbound / Procurement</div>
+                            <p class="text-slate-300 leading-relaxed text-xs">Nvidia designs GPUs but outsources fabrication entirely to TSMC &mdash; a single supplier that makes over 90% of the world's leading-edge logic chips and can charge up to roughly $20,000 per advanced 3nm wafer. That is a textbook single-source procurement risk sitting inside a Fortune-favorite growth story (Yoffie & von Bargen, HBS 9-725-360).</p>
+                        </div>
+                        <div class="bg-white/5 p-5 rounded-lg border border-white/10">
+                            <div class="font-bold text-amber-300 uppercase text-xs tracking-widest mb-2">Core: Operations / Technology Development</div>
+                            <p class="text-slate-300 leading-relaxed text-xs">Nvidia's own value-adding activity is chip design plus the CUDA software layer (150+ SDKs, 15+ years of investment) &mdash; the VRIO-tested resource from the calculator above. This is where nearly all of its ~73% FY2024 gross margin is earned.</p>
+                        </div>
+                        <div class="bg-white/5 p-5 rounded-lg border border-white/10">
+                            <div class="font-bold text-sky-300 uppercase text-xs tracking-widest mb-2">Downstream: Outbound / Channel</div>
+                            <p class="text-slate-300 leading-relaxed text-xs">Nvidia sells chips to OEMs (Dell, HP) and cloud "hyperscalers" (Microsoft, Amazon, Google) &mdash; but its own DGX systems and DGX Cloud rental service now compete directly with those same customers, a forward-integration move that Porter's "better-off test" would force you to interrogate: does Nvidia's parent-level advantage actually help the new DGX unit, or does it just borrow trouble with the channel that built the business?</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-400 mt-6 leading-relaxed">This is precisely the "sharing activities vs. transferring skills vs. staying a component supplier" tension Porter (1987) describes in diversified firms &mdash; except Nvidia is running it live, in real time, up and down one value chain. Jensen Huang's own hedge: "In the event that we have to shift from one fab to another, we have the ability to do it. We won't be able to get the same level of performance or cost, but we will be able to provide supply."</p>
+                </div>
             </div>
         </section>
 
@@ -798,7 +1043,7 @@
                                 <strong>Context:</strong> Returns are 20% above market (Valuable). It is proprietary (Rare). However, the lead engineer just quit to join a rival, carrying the logic in their head (Low Causal Ambiguity).
                             </p>
                             <button onclick="toggleStrategy('strat-1')" class="w-full py-2 bg-white border border-slate-300 text-slate-700 text-xs font-bold rounded hover:bg-slate-900 hover:text-white transition">Reveal Strategic Diagnosis</button>
-                            
+
                             <div id="strat-1" class="hidden mt-4 pt-4 border-t border-slate-200 text-left">
                                 <div class="text-[10px] font-bold text-red-500 uppercase mb-1">Diagnosis: Imitation Risk</div>
                                 <p class="text-xs text-slate-600 mb-2">The resource is V and R, but not <strong>Costly to Imitate</strong> due to labor mobility.</p>
@@ -819,7 +1064,7 @@
                                 <strong>Context:</strong> Competitors cannot access it (High Cost to Imitate). However, your baristas are paid minimum wage, turnover is 150%, and customer service scores are abysmal.
                             </p>
                             <button onclick="toggleStrategy('strat-2')" class="w-full py-2 bg-white border border-slate-300 text-slate-700 text-xs font-bold rounded hover:bg-slate-900 hover:text-white transition">Reveal Strategic Diagnosis</button>
-                            
+
                             <div id="strat-2" class="hidden mt-4 pt-4 border-t border-slate-200 text-left">
                                 <div class="text-[10px] font-bold text-amber-500 uppercase mb-1">Diagnosis: Organization Failure</div>
                                 <p class="text-xs text-slate-600 mb-2">The firm is not <strong>Organized to Capture Value</strong>. The potential is wasted.</p>
@@ -840,7 +1085,7 @@
                                 <strong>Context:</strong> History cannot be bought (Path Dependence). Customers trust the quality implicitly (Social Complexity). Management is leveraging this to launch a digital metaverse line.
                             </p>
                             <button onclick="toggleStrategy('strat-3')" class="w-full py-2 bg-white border border-slate-300 text-slate-700 text-xs font-bold rounded hover:bg-slate-900 hover:text-white transition">Reveal Strategic Diagnosis</button>
-                            
+
                             <div id="strat-3" class="hidden mt-4 pt-4 border-t border-slate-200 text-left">
                                 <div class="text-[10px] font-bold text-emerald-500 uppercase mb-1">Diagnosis: Sustained Advantage</div>
                                 <p class="text-xs text-slate-600 mb-2">V=Yes, R=Yes, I=Yes (History), O=Yes. This is a <strong>Sustainable Competitive Advantage</strong>.</p>
@@ -871,7 +1116,7 @@
 
             <!-- Phase 1 & 2 Grid -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-                
+
                 <!-- Phase 1: Roles -->
                 <div class="glass-panel p-6 rounded-xl">
                     <div class="flex items-center gap-3 mb-4">
@@ -909,7 +1154,7 @@
                         <h4 class="font-bold text-slate-800">The Diagnosis (15 Mins)</h4>
                     </div>
                     <p class="text-xs text-slate-500 mb-4">Pick ONE scenario. Draw a VRIO table. Mark the "X" where the chain breaks.</p>
-                    
+
                     <div class="space-y-4">
                         <div class="p-4 border border-slate-200 rounded-lg hover:border-orange-400 transition cursor-pointer group">
                             <h5 class="font-bold text-slate-900 text-sm mb-1 group-hover:text-orange-600">Scenario A: The Generic App</h5>
@@ -1042,22 +1287,23 @@
                 <div class="h-10 w-1 bg-success"></div>
                 <div>
                     <h2 class="text-3xl font-bold text-slate-900">Quantifying the Advantage</h2>
-                    <p class="text-slate-500 text-sm mt-1">Financial Metrics: The Outcomes of Internal Excellence</p>
+                    <p class="text-slate-500 text-sm mt-1">Nvidia, FY2022&ndash;FY2024: The Same Resources, a Different Market</p>
                 </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div class="glass-panel p-8 rounded-2xl bg-white">
-                    <h4 class="font-bold text-slate-900 mb-6 uppercase tracking-widest text-xs">Strategic Financial Dashboard</h4>
+                    <h4 class="font-bold text-slate-900 mb-6 uppercase tracking-widest text-xs">Gross Margin & ROE, Nvidia 10-Ks (FY = Feb&ndash;Jan)</h4>
                     <div class="chart-wrapper h-64">
                         <canvas id="ratioChart"></canvas>
                     </div>
+                    <p class="text-[10px] text-slate-400 mt-4 italic">Source: Nvidia 10-Ks via Yoffie & von Bargen, HBS 9-725-360, Exhibit 1a.</p>
                 </div>
                 <div class="space-y-6">
                     <div class="p-6 glass-panel rounded-xl">
                         <h5 class="font-bold text-slate-900 mb-2 text-sm flex justify-between">
                             Profitability Ratios <span>ROE / ROA</span>
                         </h5>
-                        <p class="text-xs text-slate-500">How effectively are internal resources utilized to generate returns? Higher than industry average indicates a bundle of core competencies.</p>
+                        <p class="text-xs text-slate-500">Nvidia's gross margin dipped to 57% and ROE to 18% in FY2023 &mdash; then, with the <em>same</em> GPU/CUDA resource bundle, jumped to 73% gross margin and 92% ROE in FY2024 once ChatGPT (Nov 2022) revealed demand for exactly what Nvidia had already built. The VRIO test was passed years earlier; the environment simply hadn't asked the question yet.</p>
                     </div>
                     <div class="p-6 glass-panel rounded-xl">
                         <h5 class="font-bold text-slate-900 mb-2 text-sm flex justify-between">
@@ -1184,9 +1430,9 @@
                         <h4 class="font-bold text-slate-900">Nvidia</h4>
                     </div>
                     <ul class="space-y-2 text-xs text-slate-600">
-                        <li><strong class="text-slate-900">Resource:</strong> GPU IP, AI Talent</li>
-                        <li><strong class="text-slate-900">Capability:</strong> CUDA Platform Optimization</li>
-                        <li><strong class="text-slate-900 text-emerald-600">Core Comp:</strong> Accelerated AI Computing</li>
+                        <li><strong class="text-slate-900">Resource:</strong> GPU designs, ~98% share of data-center GPU shipments (2023)</li>
+                        <li><strong class="text-slate-900">Capability:</strong> CUDA software lock-in, $8.6B R&D (2023)</li>
+                        <li><strong class="text-slate-900 text-emerald-600">Core Comp:</strong> Accelerated AI Computing &mdash; built on a single-supplier (TSMC) value chain</li>
                     </ul>
                 </div>
             </div>
@@ -1196,7 +1442,7 @@
                 <div class="relative z-10">
                     <h3 class="serif text-2xl font-bold mb-4">Activity: The Strategic Flow Map</h3>
                     <p class="text-slate-300 text-sm mb-8 max-w-2xl">Instructions: Working in groups of 3-4, select a company NOT listed above (e.g., Netflix, Starbucks, Nike). Use the template below to map their path from Resources to Advantage.</p>
-                    
+
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                         <div class="p-4 border border-slate-700 rounded-lg bg-slate-800/50">
                             <div class="text-xs text-accent-blue uppercase font-bold mb-2">Step 1</div>
@@ -1235,7 +1481,7 @@
             <div class="glass-panel p-8 rounded-xl bg-white mb-8 border border-slate-200">
                 <h3 class="serif text-2xl font-bold text-slate-900 mb-6 text-center">The Path to Sustained Advantage</h3>
                 <div class="flex flex-col md:flex-row items-center justify-center gap-4 text-center">
-                    
+
                     <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg w-40">
                         <div class="text-xs font-bold text-slate-400 uppercase mb-1">Input</div>
                         <div class="font-bold text-slate-800">VR Resources</div>
@@ -1267,8 +1513,8 @@
             </div>
 
             <!-- Case Study Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
                 <!-- Five Guys: Direct Imitation -->
                 <div class="p-6 bg-slate-50 border-l-4 border-red-500 rounded-r-xl shadow-sm">
                     <div class="flex justify-between items-start mb-2">
@@ -1317,6 +1563,23 @@
                     <p class="text-xs text-slate-500 italic">Result: Apple & Microsoft captured the value instead.</p>
                 </div>
 
+                <!-- Nvidia/DeepSeek: Substitution Shock -->
+                <div class="p-6 bg-slate-50 border-l-4 border-violet-500 rounded-r-xl shadow-sm md:col-span-2 lg:col-span-1">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-bold text-lg text-slate-900">Substitution Shock (2026 Watch)</h4>
+                        <span class="text-[10px] font-bold bg-violet-100 text-violet-600 px-2 py-1 rounded">NVIDIA</span>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-2">
+                        In January 2025, Chinese lab DeepSeek claimed to have trained a competitive large language model at a small fraction of the compute cost analysts assumed CUDA-locked scale required &mdash; and Nvidia's market value reportedly dropped by roughly half a trillion dollars in a single trading day, one of the largest one-day losses ever recorded for a public company.
+                    </p>
+                    <p class="text-xs text-slate-500 italic">Result: A live test of Collis & Montgomery's substitutability question &mdash; can a cheaper algorithm substitute for expensive compute? Nvidia's stock recovered and the company reportedly went on to become the first to reach a $5 trillion market valuation by late 2025, but the episode is the cleanest classroom proof that even a VRIO "Yes/Yes/Yes/Yes" resource is a bet on an assumption, not a guarantee.</p>
+                </div>
+
+            </div>
+
+            <div class="mt-8 p-6 bg-slate-900 text-white rounded-xl text-sm leading-relaxed">
+                <strong class="text-violet-300 uppercase text-xs tracking-widest block mb-2">Bringing It Together</strong>
+                Every framework in this session is a lens on the same question: what, specifically, can a rival not simply do tomorrow? SWOT tells you where to look. Collis & Montgomery's five tests and VRIO tell you how rigorously to interrogate what you find. Porter's value chain tells you exactly which activity the resource lives in. And Nvidia's DOJ antitrust inquiry (opened 2024, ongoing scrutiny through 2025&ndash;26) is a reminder that a moat wide enough to survive competitors can still attract regulators &mdash; internal analysis does not happen in a vacuum separate from the external environment covered in the previous session.
             </div>
         </section>
 
@@ -1353,7 +1616,7 @@
             datasets: [{ label: 'Ad Spend %', data: [4.5, 3.8, 3.2, 0.1], backgroundColor: ['#94a3b8', '#94a3b8', '#94a3b8', '#ed171f'] }]
         };
 
-        // --- NEW DATA: Growth Chart (Exhibit 9.1 Digitized) ---
+        // --- NEW DATA: Growth Chart (Exhibit 4.5 Digitized) ---
         const growthData = {
             labels: ['1986', '1990', '1995', '2000', '2002', '2003', '2005', '2007', '2009', '2011', '2013', '2015', '2018', '2020', '2022', '2023', '2024', '2025'],
             datasets: [{
@@ -1377,10 +1640,10 @@
         };
 
         const ratioData = {
-            labels: ['ROE %', 'ROA %', 'P/E Ratio (x10)'],
+            labels: ['FY2022', 'FY2023', 'FY2024'],
             datasets: [
-                { label: 'Subject Firm', data: [18, 11, 25], backgroundColor: '#10b981' },
-                { label: 'Industry Avg', data: [12, 7, 15], backgroundColor: '#94a3b8' }
+                { label: 'Gross Margin %', data: [65, 57, 73], backgroundColor: '#10b981' },
+                { label: 'Return on Equity %', data: [45, 18, 92], backgroundColor: '#0ea5e9' }
             ]
         };
 
@@ -1414,7 +1677,7 @@
             new Chart(document.getElementById('adSpendChart'), { type: 'bar', data: adSpendData, options: { responsive: true, maintainAspectRatio: false }});
             // NEW CHART INITIALIZATION
             new Chart(document.getElementById('growthChart'), { type: 'line', data: growthData, options: { responsive: true, maintainAspectRatio: false, scales: { y: { display: false }, x: { grid: { display: false } } }, plugins: { legend: { display: false } } }});
-            
+
             new Chart(document.getElementById('resourceChart'), { type: 'doughnut', data: resourceChartData, options: { responsive: true, maintainAspectRatio: false }});
             new Chart(document.getElementById('ratioChart'), { type: 'bar', data: ratioData, options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true } } }});
             drawActivityMapLines();
@@ -1528,6 +1791,87 @@
             } else {
                 el.classList.add('hidden');
             }
+        }
+
+        // --- VRIO LIVE ASSESSOR ---
+        const vrioState = { V: null, R: null, I: null, O: null };
+
+        function setVrio(letter, val, btn) {
+            vrioState[letter] = val;
+            const group = document.querySelector('[data-vrio="' + letter + '"]');
+            group.querySelectorAll('.vrio-btn').forEach(b => b.classList.remove('vrio-active-yes', 'vrio-active-no'));
+            btn.classList.add(val === 'yes' ? 'vrio-active-yes' : 'vrio-active-no');
+            renderVrioResult();
+        }
+
+        function renderVrioResult() {
+            const box = document.getElementById('vrioResultBox');
+            const name = document.getElementById('vrioResourceName').value.trim() || 'This resource';
+            const { V, R, I, O } = vrioState;
+
+            if (V === null || R === null || I === null) {
+                box.className = 'p-6 rounded-xl border-2 border-dashed border-slate-200 text-center';
+                box.innerHTML = '<p class="text-sm text-slate-400">Answer Valuable, Rare, and Costly to Imitate to see the strategic implication compute live.</p>';
+                return;
+            }
+
+            let verdict, detail, colorClasses, icon;
+            if (V === 'no') {
+                verdict = 'Competitive Disadvantage';
+                detail = name + ' fails the first test. If it is not Valuable, its Rare/Inimitable/Organized status is irrelevant &mdash; fix or abandon it before it drags down performance.';
+                colorClasses = 'bg-red-50 border-2 border-red-200 text-red-900';
+                icon = 'fa-circle-xmark text-red-500';
+            } else if (R === 'no') {
+                verdict = 'Competitive Parity';
+                detail = name + ' is Valuable but common. Every capable competitor can match it &mdash; it is a cost of playing the game (a "must-have"), not a source of advantage.';
+                colorClasses = 'bg-orange-50 border-2 border-orange-200 text-orange-900';
+                icon = 'fa-scale-balanced text-orange-500';
+            } else if (I === 'no') {
+                verdict = 'Temporary Competitive Advantage';
+                detail = name + ' is Valuable and Rare, but rivals can eventually copy or substitute it. Expect above-average returns to erode as imitation catches up &mdash; the clock is running.';
+                colorClasses = 'bg-yellow-50 border-2 border-yellow-200 text-yellow-900';
+                icon = 'fa-hourglass-half text-yellow-600';
+            } else if (O === null) {
+                verdict = 'Unexploited Potential (answer Organized to find out)';
+                detail = name + ' clears Valuable, Rare, and Costly to Imitate &mdash; the hard part. Whether it becomes a Sustained Competitive Advantage now depends entirely on organization: incentives, structure, and systems built to capture the value.';
+                colorClasses = 'bg-slate-50 border-2 border-slate-200 text-slate-700';
+                icon = 'fa-circle-question text-slate-400';
+            } else if (O === 'no') {
+                verdict = 'Unexploited Competitive Advantage';
+                detail = name + ' has everything it needs (V, R, I) but the firm is not organized to capture the value &mdash; the classic Xerox PARC failure mode. The fix is organizational, not technical.';
+                colorClasses = 'bg-amber-50 border-2 border-amber-300 text-amber-900';
+                icon = 'fa-triangle-exclamation text-amber-500';
+            } else {
+                verdict = 'Sustained Competitive Advantage';
+                detail = name + ' clears all four tests: Valuable, Rare, Costly to Imitate, and Organized to capture the value. This is the rare combination that can support above-average returns for an extended period &mdash; until the environment or a substitute changes the game.';
+                colorClasses = 'bg-emerald-50 border-2 border-emerald-300 text-emerald-900';
+                icon = 'fa-trophy text-emerald-500';
+            }
+
+            box.className = 'p-6 rounded-xl text-center ' + colorClasses;
+            box.innerHTML = '<i class="fa-solid ' + icon + ' text-3xl mb-3"></i><h4 class="font-bold text-lg mb-2">' + verdict + '</h4><p class="text-sm leading-relaxed max-w-2xl mx-auto">' + detail + '</p>';
+        }
+
+        function loadVrioPreset(preset) {
+            const nameInput = document.getElementById('vrioResourceName');
+            const presets = {
+                cuda: { name: "Nvidia's CUDA software platform", V: 'yes', R: 'yes', I: 'yes', O: 'yes' },
+                aws: { name: "Amazon AWS hyperscale infrastructure & custom silicon", V: 'yes', R: 'yes', I: 'no', O: 'yes' },
+                reset: { name: '', V: null, R: null, I: null, O: null }
+            };
+            const p = presets[preset];
+            nameInput.value = p.name;
+            ['V', 'R', 'I', 'O'].forEach(letter => {
+                vrioState[letter] = p[letter];
+                const group = document.querySelector('[data-vrio="' + letter + '"]');
+                group.querySelectorAll('.vrio-btn').forEach(b => {
+                    b.classList.remove('vrio-active-yes', 'vrio-active-no');
+                    if (p[letter] !== null && b.dataset.val === p[letter]) {
+                        b.classList.add(p[letter] === 'yes' ? 'vrio-active-yes' : 'vrio-active-no');
+                    }
+                });
+            });
+            renderVrioResult();
         }
     </script>
 </body>

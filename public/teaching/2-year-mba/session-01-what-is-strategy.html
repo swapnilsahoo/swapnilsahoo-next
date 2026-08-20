@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cautionary Tales in Strategy: A Dual Lens</title>
+    <title>Session 01: Introduction to Strategy</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --sticky-offset: 100px; /* Default offset, updated by JS */
@@ -33,6 +34,7 @@
             border-bottom: 2px solid transparent;
             padding-bottom: 4px; /* Align with active state */
             color: #4b5563; /* text-gray-600 */
+            white-space: nowrap;
         }
         .nav-link:hover {
             color: #2563eb;
@@ -63,7 +65,7 @@
              margin-top: 0;
         }
         .analysis-content.visible {
-             max-height: 500px; /* Adjust as needed */
+             max-height: 900px; /* Adjust as needed */
              opacity: 1;
              margin-top: 1rem;
         }
@@ -132,6 +134,25 @@
         .tradeoff-button { background-color: #fef3c7; border-color: #fde68a; --tw-ring-color: #fbbf24; color: #78350f; } .tradeoff-button:hover { background-color: #fde68a; border-color: #fcd34d;} .tradeoff-button strong { color: #b45309; } .tradeoff-button:hover strong { color: #92400e; }
         .simulation-button { background-color: #ffe4e6; border-color: #fecdd3; --tw-ring-color: #fb7185; color: #881337; } .simulation-button:hover { background-color: #fecdd3; border-color: #fda4af;} .simulation-button strong { color: #be123c; } .simulation-button:hover strong { color: #9f1239; }
 
+        /* Spectrum Analyzer (NEW interactive) */
+        .spectrum-card { background-color: #ffffff; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05); padding: 1.5rem; margin-bottom: 1.25rem; border-left: 4px solid #6366f1; }
+        .spectrum-options { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-top: 1rem; }
+        @media (max-width: 700px) { .spectrum-options { grid-template-columns: repeat(2, 1fr); } }
+        .spectrum-btn { padding: 0.6rem 0.35rem; font-size: 0.7rem; line-height: 1.2; text-align: center; border: 1px solid #c7d2fe; background-color: #eef2ff; color: #3730a3; border-radius: 0.5rem; cursor: pointer; transition: all 0.15s ease; font-weight: 500; }
+        .spectrum-btn:hover:not(:disabled) { background-color: #e0e7ff; transform: translateY(-1px); }
+        .spectrum-btn:disabled { cursor: default; opacity: 0.55; }
+        .spectrum-btn.chosen-correct { background-color: #dcfce7; border-color: #22c55e; color: #15803d; font-weight: 700; opacity: 1; }
+        .spectrum-btn.chosen-close { background-color: #fef9c3; border-color: #eab308; color: #854d0e; font-weight: 700; opacity: 1; }
+        .spectrum-btn.chosen-wrong { background-color: #fee2e2; border-color: #ef4444; color: #b91c1c; font-weight: 700; opacity: 1; }
+        .spectrum-btn.reveal-target { outline: 2px solid #22c55e; outline-offset: 2px; opacity: 1; }
+        .spectrum-feedback { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out, margin-top 0.5s ease-in-out, opacity 0.5s ease-in-out; margin-top: 0; opacity: 0; }
+        .spectrum-feedback.visible { opacity: 1; margin-top: 0.85rem; }
+        .spectrum-scale-label { display: flex; justify-content: space-between; font-size: 0.65rem; color: #64748b; margin-top: 0.4rem; text-transform: uppercase; letter-spacing: 0.02em; }
+        .score-pill { display: inline-flex; align-items: center; gap: 0.35rem; background-color: #eef2ff; color: #3730a3; padding: 0.35rem 0.85rem; border-radius: 9999px; font-weight: 700; font-size: 0.85rem; }
+
+        .badge-session { display: inline-block; background-color: #1e293b; color: #f8fafc; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.35rem 0.9rem; border-radius: 9999px; margin-bottom: 1rem; }
+        .cite { font-size: 0.75rem; color: #6b7280; font-style: italic; }
+
     </style>
     <link rel="stylesheet" href="/teaching/responsive.css">
 </head>
@@ -140,7 +161,7 @@
     <!-- Top Bar -->
     <div id="top-bar" class="bg-gray-800 text-white py-1 hidden sm:block sticky-top">
         <div class="container mx-auto px-6 flex justify-between items-center h-10">
-            <p class="text-xs font-medium text-slate-400">© Dr. Swapnil Sahoo 2025</p>
+            <p class="text-xs font-medium text-slate-400">© Dr. Swapnil Sahoo 2026</p>
             <div class="flex items-center space-x-4">
                 <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white group" title="Website">
                     <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
@@ -174,23 +195,27 @@
                     <h1 class="text-lg font-semibold text-slate-900">What is Strategy?</h1>
                 </div>
                  <!-- Title for Desktop -->
-                <h1 class="text-xl font-bold text-slate-900 hidden sm:block">What is Strategy?</h1>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#cases" class="nav-link text-sm font-medium">Fallen Giants</a> <!-- Moved Up -->
-                    <a href="#lenses" class="nav-link text-sm font-medium">The Two Lenses</a>
-                    <a href="#positioning-examples" class="nav-link text-sm font-medium">Positioning</a>
-                    <a href="#fit-examples" class="nav-link text-sm font-medium">Fit Examples</a>
-                    <a href="#activities" class="nav-link text-sm font-medium">Activities</a>
-                    <a href="#quiz" class="nav-link text-sm font-medium">Quiz</a>
+                <h1 class="text-xl font-bold text-slate-900 hidden sm:block">Session 01: What is Strategy?</h1>
+                <div class="hidden lg:flex space-x-5">
+                    <a href="#why-strategy" class="nav-link text-xs font-medium">Why Strategy?</a>
+                    <a href="#tesla-story" class="nav-link text-xs font-medium">Tesla Story</a>
+                    <a href="#lenses" class="nav-link text-xs font-medium">Two Lenses</a>
+                    <a href="#spectrum" class="nav-link text-xs font-medium">Spectrum Tool</a>
+                    <a href="#positioning-examples" class="nav-link text-xs font-medium">Positioning</a>
+                    <a href="#fit-examples" class="nav-link text-xs font-medium">Fit</a>
+                    <a href="#workshop" class="nav-link text-xs font-medium">CSO Decisions</a>
+                    <a href="#quiz" class="nav-link text-xs font-medium">Quiz</a>
                 </div>
-                <div class="md:hidden">
+                <div class="lg:hidden">
                     <select id="mobile-nav" class="block w-auto rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-xs py-1 px-2">
                         <option value="#hero">Top</option>
-                        <option value="#cases">Cases</option> <!-- Moved Up -->
-                        <option value="#lenses">Lenses</option>
+                        <option value="#why-strategy">Why Strategy?</option>
+                        <option value="#tesla-story">Tesla Story</option>
+                        <option value="#lenses">Two Lenses</option>
+                        <option value="#spectrum">Spectrum Tool</option>
                         <option value="#positioning-examples">Positioning</option>
                         <option value="#fit-examples">Fit</option>
-                        <option value="#activities">Activities</option>
+                        <option value="#workshop">CSO Decisions</option>
                         <option value="#quiz">Quiz</option>
                     </select>
                 </div>
@@ -200,137 +225,179 @@
 
     <!-- Hero Section -->
     <main>
-        <section id="hero" class="bg-gradient-to-b from-white to-slate-100 pt-16 pb-24 sm:pt-24 sm:pb-32">
+        <section id="hero" class="bg-gradient-to-b from-white to-slate-100 pt-16 pb-20 sm:pt-24 sm:pb-28">
             <div class="container mx-auto px-6 text-center">
-                <h2 class="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl md:text-6xl">Cautionary Tales in Strategy</h2>
-                <p class="mt-6 text-lg leading-8 text-slate-600 max-w-3xl mx-auto">Why do great companies fail? Explore strategy through the competing lenses of Michael Porter's analysis and Henry Mintzberg's emergent view.</p>
+                <span class="badge-session">Official Session 01 &middot; Introduction to Strategy</span>
+                <h2 class="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl md:text-6xl">What Is Strategy?</h2>
+                <p class="mt-6 text-lg leading-8 text-slate-600 max-w-3xl mx-auto">A first-principles question before we open any framework: Elon Musk has spent 20+ years making decisions for Tesla &mdash; some brilliant, some reckless, some pure luck. Was there ever a "strategy," or is that word just a story we tell afterward to make chaos look intentional?</p>
+                <p class="mt-3 text-sm text-slate-500 max-w-2xl mx-auto">Grounded in the case <em>Elon Musk at Tesla</em> (Serafeim &amp; Migdal, HBS 9-123-044) and <em>Tesla (Act 2): Disruptor or Disrupted?</em> (Furr, Dyer &amp; Henry, INSEAD IN2014) &middot; Porter (1996) &middot; Mintzberg (1987) &middot; Rothaermel, <em>Strategic Management</em>, Ch. 1</p>
             </div>
         </section>
 
-         <!-- Case Studies Section (Moved Up) -->
-        <section id="cases" class="py-16 sm:py-24 bg-white">
+        <!-- WHY STRATEGY -->
+        <section id="why-strategy" class="py-16 sm:py-20 bg-white">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl text-center">Why Do Firms Need Strategy At All?</h2>
+                <div class="mt-8 prose-custom text-base">
+                    <p>Before we can argue about <em>how</em> strategy is made, sit with a harder question first: why does a firm need one? Every company already makes thousands of decisions a year &mdash; hiring, pricing, sourcing, marketing. Why isn't "make each decision well, using good judgment" enough? What is the extra thing that "strategy" is supposed to add?</p>
+                    <p>Harvard's <em>Introduction to Strategy</em> core reading (Casadesus-Masanell, HBP 8097) gives the tightest version of an answer: strategy is <strong>"the integrated set of choices that positions the business in its industry so as to generate superior financial returns over the long run."</strong> It is a firm's answer to exactly two questions &mdash; <strong>where should we compete, and how should we compete?</strong> Good decisions made one at a time, in isolation, do not automatically add up to a coherent answer to either question. A firm can hire brilliantly, price cleverly, and market aggressively, and still have no strategy &mdash; because none of those choices reinforce one another or defend a distinctive position against competitors trying to take it away.</p>
+                    <p>Rothaermel's <em>Strategic Management</em> (Ch. 1) frames the same idea through the AFI framework &mdash; strategy as an ongoing cycle of <strong>Analysis, Formulation, and Implementation</strong> aimed at <strong>competitive advantage</strong>: the ability to create more economic value than rivals and to keep a larger share of the value created than they do. That last clause matters. A firm can create enormous value for the world (Tesla, by most accounts, has meaningfully accelerated the shift away from internal-combustion vehicles) and still fail to <em>capture</em> enough of that value to survive as a business. Strategy is about both.</p>
+                    <p>So why do firms need it? Three reasons converge across the readings for this session:</p>
+                    <ul>
+                        <li><strong>Because good decisions can still add up to a bad position.</strong> A firm that tries to serve every customer, match every competitor's feature, and enter every attractive-looking market ends up "stuck in the middle" &mdash; Porter's term for a firm with no distinctive position and no defensible cost advantage. Every individual choice may look reasonable; the whole is incoherent.</li>
+                        <li><strong>Because success creates its own blind spots.</strong> Jan Rivkin's internal-barriers framework (cited in the Core Reading) names four ways organizations fail to respond to a threat even when smart people are inside them: <em>Perception</em> ("I don't see the threat"), <em>Motivation</em> ("I see it but don't want to respond"), <em>Inspiration</em> ("I want to respond but don't see how"), and <em>Coordination</em> ("I see how, but can't get the organization to move"). Blockbuster saw Netflix and chose not to cannibalize its own stores &mdash; a motivation failure. We will ask, in the Tesla story below, which of these four failures nearly killed Tesla in 2007&ndash;2009, and which one is the live risk for legacy automakers watching BYD today.</li>
+                        <li><strong>Because industries themselves are not equally profitable</strong> &mdash; on average, 5&ndash;15% of the variance in firm profitability is explained by which industry a firm is even in. Choosing <em>where</em> to compete (the first of the two fundamental questions) is not a detail; for many firms it explains more of the outcome than any operational excellence they layer on top.</li>
+                    </ul>
+                    <p>Keep those three reasons in mind. Tesla's 23-year history is a case study in almost losing on all three &mdash; and finding, more by learning than by grand design, a way to survive.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESLA STORY -->
+        <section id="tesla-story" class="py-16 sm:py-24 bg-slate-100">
             <div class="container mx-auto px-6">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Fallen Giants: Cautionary Tales</h2>
-                    <p class="mt-4 text-lg text-slate-600">Let's start by looking at companies that once dominated but failed to adapt. What went wrong?</p>
+                <div class="text-center max-w-3xl mx-auto mb-14">
+                    <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The Tesla Story: 2003&ndash;2026</h2>
+                    <p class="mt-4 text-lg text-slate-600">Five chapters, one company, two competing explanations for how it got here. After each chapter, click to analyze it through Porter's design lens and Mintzberg's crafting lens &mdash; then decide for yourself which one is doing more explanatory work.</p>
                 </div>
 
-                <!-- Nokia -->
-                <div id="nokia" class="mb-20 grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-12 items-start bg-slate-50 p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200">
-                    <div class="lg:col-span-2 space-y-4">
-                        <h3 class="text-2xl font-bold text-cyan-700 mb-2">1. Nokia: Connecting People... Then Disconnecting</h3>
-                         <h4 class="text-lg font-semibold text-slate-800">How did the undisputed king of mobile phones lose its crown almost overnight?</h4>
-                         
-                         <img src="https://placehold.co/600x400/0891b2/ffffff?text=Nokia+Legacy" alt="Vintage Nokia phone illustration" class="rounded-lg shadow-md w-full my-4">
-                         <div class="prose-custom text-sm">
-                            <p>Nokia's operational excellence in hardware manufacturing built a global empire. But when Apple's iPhone (2007) and Google's Android (2008) shifted the battleground to software ecosystems and user experience, Nokia faltered.</p>
-                         </div>
-                         <div class="bg-cyan-100 border-l-4 border-cyan-500 p-3 rounded">
-                            <p class="font-semibold text-cyan-800 text-xs uppercase tracking-wider mb-1">Peak:</p>
-                            <p class="text-xs text-cyan-700 leading-snug">Dominated with >40% global market share via superior hardware & operational efficiency.</p>
-                        </div>
-                        <div class="bg-red-100 border-l-4 border-red-500 p-3 rounded">
-                            <p class="font-semibold text-red-800 text-xs uppercase tracking-wider mb-1">Downfall:</p>
-                            <p class="text-xs text-red-700 leading-snug">Dismissed iPhone/Android, clung to aging Symbian OS, failed pivot with Microsoft Windows Phone.</p>
+                <!-- Market cap chart -->
+                <div class="max-w-3xl mx-auto bg-white p-6 rounded-xl shadow-lg border border-slate-200 mb-14">
+                    <h4 class="font-semibold text-sm text-slate-700 uppercase tracking-wider text-center mb-1">Tesla Market Capitalization, 2018&ndash;2026 ($ Billions)</h4>
+                    <p class="text-xs text-slate-500 text-center mb-4">A single number that swung 32x peak-to-trough-to-peak in eight years. Ask yourself: does a chart this volatile look like it was following a deliberate plan?</p>
+                    <div class="chart-container"><canvas id="teslaCapChart"></canvas></div>
+                    <p class="cite text-center mt-3">Sources: Serafeim &amp; Migdal, <em>Elon Musk at Tesla</em>, HBS 9-123-044, Exhibit 14a (2018, 2021, 2022 figures); companiesmarketcap.com / tradingeconomics.com (August 2026 figure).</p>
+                </div>
+
+                <!-- Era 1 -->
+                <div id="era-founding" class="mb-16 grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-12 items-start bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200">
+                    <div class="lg:col-span-3 space-y-4">
+                        <h3 class="text-2xl font-bold text-slate-800 mb-1">Chapter 1 (2003&ndash;2009): A Garage Bet Nobody Wanted to Fund</h3>
+                        <h4 class="text-lg font-semibold text-slate-700">If electric cars were obviously a good idea, why had every serious attempt &mdash; GM's EV1, dozens of 1970s conversions &mdash; already failed?</h4>
+                        <div class="prose-custom text-sm">
+                            <p>Tesla Motors was founded in 2003 by Martin Eberhard and Marc Tarpenning, who estimated they needed <strong>$25 million</strong> to reach break-even and initially priced their planned Roadster around $49,000 in production cost. In 2004 Elon Musk &mdash; fresh off $165 million from the PayPal sale and already funding SpaceX &mdash; put in $6.3 million of the $6.5 million first round and became chairman.<sup>1</sup> The founders had rejected retrofitting existing chassis; instead they built a purpose-designed EV from scratch and sold it <em>direct to consumers</em>, skipping the franchise-dealer network every other automaker depended on.</p>
+                            <p>It nearly ended the company. By 2007 Tesla had spent <strong>$100 million</strong> and had not shipped a single production car; per-unit costs had more than doubled from the original estimate. Musk fired Eberhard, took over as CEO himself (while still running SpaceX and chairing SolarCity), and personally wired in another $20 million. By the end of 2009 Tesla had <strong>less than $500,000</strong> in operating cash &mdash; while Musk was going through a divorce and had just watched a SpaceX rocket fail on launch. He put in the rest of his money anyway and raised $40 million more from his brother and other investors.<sup>2</sup></p>
+                            <p>In an August 2006 blog post, Musk had already published what he called <strong>"The Secret Tesla Motors Master Plan"</strong>: "(1) Build sports car; (2) Use that money to build an affordable car; (3) Use <em>that</em> money to build an even more affordable car; (4) While doing above, also provide zero emission electric power generation options."<sup>3</sup> That four-step plan &mdash; published while the company was years from proving any of it could work &mdash; is either the clearest evidence of deliberate strategy in this whole case, or a piece of aspirational marketing copy that the actual company spent the next fifteen years scrambling to catch up to. Judge for yourself once you have read the whole story.</p>
                         </div>
                     </div>
-                    <div class="lg:col-span-3 grid grid-cols-1 gap-6">
-                        <!-- Click-to-reveal Buttons -->
+                    <div class="lg:col-span-2 grid grid-cols-1 gap-6">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                             <button onclick="toggleAnalysis('nokia', 'porter')" class="analysis-button bg-blue-100 hover:bg-blue-200 border border-blue-300 text-blue-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Analyze with Porter's Lens</button>
-                             <button onclick="toggleAnalysis('nokia', 'mintzberg')" class="analysis-button bg-teal-100 hover:bg-teal-200 border border-teal-300 text-teal-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">Analyze with Mintzberg's Lens</button>
+                             <button onclick="toggleAnalysis('founding', 'porter')" class="analysis-button bg-blue-100 hover:bg-blue-200 border border-blue-300 text-blue-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Analyze with Porter's Lens</button>
+                             <button onclick="toggleAnalysis('founding', 'mintzberg')" class="analysis-button bg-teal-100 hover:bg-teal-200 border border-teal-300 text-teal-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">Analyze with Mintzberg's Lens</button>
                         </div>
-                        <!-- Hidden Analysis Content -->
-                        <div id="nokia-porter-analysis" class="analysis-content bg-blue-50 p-4 rounded-lg border border-blue-200 shadow-sm prose-custom text-xs">
+                        <div id="founding-porter-analysis" class="analysis-content bg-blue-50 p-4 rounded-lg border border-blue-200 shadow-sm prose-custom text-xs">
                              <p class="font-semibold text-blue-800 mb-1">Porter's Lens:</p>
-                             <p class="text-blue-700 leading-snug">Confused Operational Effectiveness (great hardware) with Strategy. Lacked a unique position when the game shifted to software ecosystems. Failed analysis of substitutes (smartphones replacing feature phones).</p>
+                             <p class="text-blue-700 leading-snug">The founders made two real trade-offs from day one: build the platform from scratch rather than convert an existing chassis (sacrificing speed-to-market for a coherent activity system later), and sell direct rather than through dealers (sacrificing distribution reach for control and margin). Both choices were costly and reversible-only-with-difficulty &mdash; exactly Porter's test for a genuine strategic position rather than an operational tweak.</p>
                         </div>
-                        <div id="nokia-mintzberg-analysis" class="analysis-content bg-teal-50 p-4 rounded-lg border border-teal-200 shadow-sm prose-custom text-xs">
+                        <div id="founding-mintzberg-analysis" class="analysis-content bg-teal-50 p-4 rounded-lg border border-teal-200 shadow-sm prose-custom text-xs">
                             <p class="font-semibold text-teal-800 mb-1">Mintzberg's Lens:</p>
-                            <p class="text-teal-700 leading-snug">Rigid deliberate strategy (hardware focus) stifled internal emergent ideas (touchscreens, app stores developed internally years prior). Organization forgot how to learn and adapt its 'craft', ignoring warnings from engineers.</p>
-                        </div>
-                        <!-- Chart -->
-                        <div class="mt-4">
-                             <h4 class="font-semibold text-xs text-slate-500 uppercase tracking-wider text-center mb-2">Global Smartphone Market Share (%)</h4>
-                            <div class="chart-container"><canvas id="nokiaChart"></canvas></div>
+                            <p class="text-teal-700 leading-snug">The "Master Plan" reads as an <strong>umbrella strategy</strong> in Mintzberg's sense: leadership set a broad, deliberate direction ("sports car &rarr; affordable car &rarr; mass car") and left the specifics &mdash; which battery chemistry, which factory, which body style &mdash; to be learned in the field. The 2007 crisis and CEO change were pure emergence: nobody planned to fire the founding CEO after burning $100M with zero cars shipped. The realized strategy, per Mintzberg, is always "a blend of deliberate and emergent" &mdash; this chapter is where you can see the blend most starkly.</p>
                         </div>
                     </div>
                 </div>
 
-                 <!-- Kodak -->
-                 <div id="kodak" class="mb-20 grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-12 items-start bg-slate-50 p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200">
-                     <div class="lg:col-span-2 space-y-4">
-                        <h3 class="text-2xl font-bold text-amber-600 mb-2">2. Kodak: Blinded by Success</h3>
-                         <h4 class="text-lg font-semibold text-slate-800">How could the company that invented digital photography be bankrupted by it?</h4>
-                         
-                         <img src="https://placehold.co/600x400/d97706/ffffff?text=Kodak+Legacy" alt="Vintage Kodak camera illustration" class="rounded-lg shadow-md w-full my-4">
-                           <div class="prose-custom text-sm">
-                             <p>Kodak's 'razor-and-blades' model (cheap cameras, profitable film/printing) was a masterpiece of strategic 'fit' in the 20th century. But this very success blinded them to the digital disruption they pioneered in 1975.</p>
-                          </div>
-                         <div class="bg-amber-100 border-l-4 border-amber-500 p-3 rounded">
-                            <p class="font-semibold text-amber-800 text-xs uppercase tracking-wider mb-1">Peak:</p>
-                            <p class="text-xs text-amber-700 leading-snug">Mastery of 'fit' with razor-and-blades model. Market cap $28B (1996).</p>
-                        </div>
-                        <div class="bg-red-100 border-l-4 border-red-500 p-3 rounded">
-                            <p class="font-semibold text-red-800 text-xs uppercase tracking-wider mb-1">Downfall:</p>
-                            <p class="text-xs text-red-700 leading-snug">Feared cannibalizing film, suppressed own digital invention, half-hearted pivot focused on printing, bankruptcy (2012).</p>
+                <!-- Era 2 -->
+                <div id="era-modelS" class="mb-16 grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-12 items-start bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200">
+                    <div class="lg:col-span-3 space-y-4">
+                        <h3 class="text-2xl font-bold text-slate-800 mb-1">Chapter 2 (2009&ndash;2014): The Nummi Gamble and the Model S</h3>
+                        <h4 class="text-lg font-semibold text-slate-700">In 2010, Tesla had sold 765 cars total. Nissan alone sold 6,665 EVs that same year. Why did anyone bet on the smallest player in the industry?</h4>
+                        <div class="prose-custom text-sm">
+                            <p>In 2010 Musk learned Toyota was shopping the shuttered Nummi factory (5.5 million sq ft, once producing 450,000 cars a year for Toyota and GM) at a $1 billion asking price. He toured it in disguise as an autoworker and offered <strong>$42 million</strong> &mdash; Toyota accepted a month later and also invested $50 million for 2.5% of Tesla's equity.<sup>4</sup> That same year Tesla IPO'd, raising $226 million.</p>
+                            <p>The Model S, launched in 2012, was where "different set of activities" stopped being a slogan: no exhaust system freed up cabin space for a third row of seats; a flat under-floor battery pack lowered the center of gravity; a 17-inch touchscreen and over-the-air software updates meant many repairs never required a service visit at all. Tesla sold the car through <strong>mall stores modeled on the Apple Store</strong> rather than dealerships, with commission-free staff whose job was explicitly "answering the many questions [customers] have about electric vehicles," not closing a sale.<sup>5</sup> <em>Consumer Reports</em> gave the Model S a 99/100, the highest score the magazine had ever awarded a car.</p>
+                            <p>It was also nearly a repeat of the Roadster crisis: 2012 deliveries (~3,000) missed the 5,000-unit target, and by 2015 Tesla was still losing <strong>$4,000 on every vehicle it sold</strong>, even as the Model S remained the only EV on the market that could drive more than 100 miles on a charge.</p>
                         </div>
                     </div>
-                     <div class="lg:col-span-3 grid grid-cols-1 gap-6">
+                    <div class="lg:col-span-2 grid grid-cols-1 gap-6">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <button onclick="toggleAnalysis('kodak', 'porter')" class="analysis-button bg-blue-100 hover:bg-blue-200 border border-blue-300 text-blue-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Analyze with Porter's Lens</button>
-                            <button onclick="toggleAnalysis('kodak', 'mintzberg')" class="analysis-button bg-teal-100 hover:bg-teal-200 border border-teal-300 text-teal-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">Analyze with Mintzberg's Lens</button>
+                            <button onclick="toggleAnalysis('modelS', 'porter')" class="analysis-button bg-blue-100 hover:bg-blue-200 border border-blue-300 text-blue-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Analyze with Porter's Lens</button>
+                            <button onclick="toggleAnalysis('modelS', 'mintzberg')" class="analysis-button bg-teal-100 hover:bg-teal-200 border border-teal-300 text-teal-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">Analyze with Mintzberg's Lens</button>
                         </div>
-                        <div id="kodak-porter-analysis" class="analysis-content bg-blue-50 p-4 rounded-lg border border-blue-200 shadow-sm prose-custom text-xs">
+                        <div id="modelS-porter-analysis" class="analysis-content bg-blue-50 p-4 rounded-lg border border-blue-200 shadow-sm prose-custom text-xs">
                              <p class="font-semibold text-blue-800 mb-1">Porter's Lens:</p>
-                             <p class="text-blue-700 leading-snug">Unwillingness to make the crucial trade-off: sacrifice highly profitable film for uncertain digital. Tried to straddle both (focusing digital efforts on printing photos), creating no clear position or reinforcing 'fit' in the new digital imaging world. Failed to properly assess the power of the digital substitute.</p>
+                             <p class="text-blue-700 leading-snug">This is textbook <strong>fit</strong>. No-exhaust design reinforces cabin space, which reinforces the "not just a car, a computer on wheels" positioning, which reinforces the mall-store, no-commission retail model that's built to educate rather than push a sale. Each choice makes the others more valuable &mdash; second-order fit, in Porter's language &mdash; and that combination is what a Continental-Lite-style imitator (retrofit an EV into a dealer network) could not easily replicate.</p>
                         </div>
-                        <div id="kodak-mintzberg-analysis" class="analysis-content bg-teal-50 p-4 rounded-lg border border-teal-200 shadow-sm prose-custom text-xs">
+                        <div id="modelS-mintzberg-analysis" class="analysis-content bg-teal-50 p-4 rounded-lg border border-teal-200 shadow-sm prose-custom text-xs">
                             <p class="font-semibold text-teal-800 mb-1">Mintzberg's Lens:</p>
-                            <p class="text-teal-700 leading-snug">The powerful, established deliberate strategy (protect film) actively killed the brilliant emergent strategy (the digital camera born in its own labs). The formal planning process and culture were too rigid, crushing organizational learning and the ability to 'craft' a new future.</p>
-                        </div>
-                         <div class="mt-4">
-                            <h4 class="font-semibold text-xs text-slate-500 uppercase tracking-wider text-center mb-2">Market Capitalization ($ Billions)</h4>
-                            <div class="chart-container"><canvas id="kodakChart"></canvas></div>
+                            <p class="text-teal-700 leading-snug">The Nummi purchase was opportunistic pattern-recognition, not five-year planning &mdash; Musk toured the factory undercover because the opportunity appeared and had to be seized in weeks, not because it was in anyone's roadmap. Mintzberg would call this a craftsman "sensing" an opening in the clay: the plan didn't predict Nummi would become available at a fire-sale price; leadership recognized the pattern and moved.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Yahoo -->
-                <div id="yahoo" class="mb-10 grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-12 items-start bg-slate-50 p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200">
-                     <div class="lg:col-span-2 space-y-4">
-                        <h3 class="text-2xl font-bold text-indigo-600 mb-2">3. Yahoo!: Lost in Translation</h3>
-                         <h4 class="text-lg font-semibold text-slate-800">Why did the internet's original directory fail to navigate the rise of search and social media?</h4>
-                         
-                         <img src="https://placehold.co/600x400/4f46e5/ffffff?text=Yahoo+Legacy" alt="Vintage Yahoo homepage illustration" class="rounded-lg shadow-md w-full my-4">
-                           <div class="prose-custom text-sm">
-                             <p>Yahoo was the gateway for millions in the early internet era. However, missed opportunities (failing to buy Google and Facebook), strategic indecision between being a media vs. tech company, and constant leadership changes led to its decline.</p>
-                          </div>
-                         <div class="bg-indigo-100 border-l-4 border-indigo-500 p-3 rounded">
-                            <p class="font-semibold text-indigo-800 text-xs uppercase tracking-wider mb-1">Peak:</p>
-                            <p class="text-xs text-indigo-700 leading-snug">The web's front door, human-curated directory, market cap >$125B (2000).</p>
-                        </div>
-                        <div class="bg-red-100 border-l-4 border-red-500 p-3 rounded">
-                            <p class="font-semibold text-red-800 text-xs uppercase tracking-wider mb-1">Downfall:</p>
-                            <p class="text-xs text-red-700 leading-snug">Missed Google/Facebook buys, unclear identity (media vs tech), leadership churn, acquired assets mismanaged (Flickr, Tumblr), sold core business for <$5B (2017).</p>
+                <!-- Era 3 -->
+                <div id="era-crisis" class="mb-16 grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-12 items-start bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200">
+                    <div class="lg:col-span-3 space-y-4">
+                        <h3 class="text-2xl font-bold text-slate-800 mb-1">Chapter 3 (2015&ndash;2019): Fires, Fraud Charges, and a $55.8 Billion Bet on One Man</h3>
+                        <h4 class="text-lg font-semibold text-slate-700">In January 2018, Tesla's board tied Musk's entire compensation to hitting a market cap of $650 billion &mdash; when the company was worth $52 billion. Was that visionary or reckless?</h4>
+                        <div class="prose-custom text-sm">
+                            <p>This chapter reads like a corporate-governance case, not a product one. In November 2016, Tesla acquired SolarCity &mdash; Musk's cousins' solar company, which he chaired and part-owned &mdash; for <strong>$2.6 billion</strong>, while carrying $3.4 billion in debt and spending $500 million a quarter. An investor shorting both companies called it a "shameful example of corporate governance at its worst." <sup>6</sup> In January 2018 Tesla's board approved a pay package giving Musk up to <strong>$55.8 billion</strong> across 12 tranches, each requiring a $50 billion jump in market cap plus revenue and EBITDA milestones &mdash; proxy advisors ISS and Glass Lewis both recommended shareholders vote it down.</p>
+                            <p>Then, on August 7, 2018, Musk tweeted: <strong>"Am considering taking Tesla private at $420. Funding secured."</strong> Shares spiked 11%, short-sellers lost $1.3 billion in a day &mdash; and the funding was not, in fact, secured. The SEC charged Musk with securities fraud; he and Tesla each paid $20 million in penalties, and Musk was forced to step down as chairman for at least three years.<sup>7</sup> Meanwhile Model X software and hardware problems (falcon-wing door recalls, two fatal Autopilot crashes in 2016 and 2018) piled up, and Tesla closed 2018 at nearly 250,000 deliveries &mdash; more than double 2017, but still less than half of the 500,000-unit target Musk himself had set in 2016.</p>
                         </div>
                     </div>
-                     <div class="lg:col-span-3 grid grid-cols-1 gap-6">
-                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <button onclick="toggleAnalysis('yahoo', 'porter')" class="analysis-button bg-blue-100 hover:bg-blue-200 border border-blue-300 text-blue-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Analyze with Porter's Lens</button>
-                            <button onclick="toggleAnalysis('yahoo', 'mintzberg')" class="analysis-button bg-teal-100 hover:bg-teal-200 border border-teal-300 text-teal-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">Analyze with Mintzberg's Lens</button>
+                    <div class="lg:col-span-2 grid grid-cols-1 gap-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <button onclick="toggleAnalysis('crisis', 'porter')" class="analysis-button bg-blue-100 hover:bg-blue-200 border border-blue-300 text-blue-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Analyze with Porter's Lens</button>
+                            <button onclick="toggleAnalysis('crisis', 'mintzberg')" class="analysis-button bg-teal-100 hover:bg-teal-200 border border-teal-300 text-teal-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">Analyze with Mintzberg's Lens</button>
                         </div>
-                         <div id="yahoo-porter-analysis" class="analysis-content bg-blue-50 p-4 rounded-lg border border-blue-200 shadow-sm prose-custom text-xs">
+                        <div id="crisis-porter-analysis" class="analysis-content bg-blue-50 p-4 rounded-lg border border-blue-200 shadow-sm prose-custom text-xs">
                              <p class="font-semibold text-blue-800 mb-1">Porter's Lens:</p>
-                             <p class="text-blue-700 leading-snug">'Stuck in the middle' - tried to be everything (portal, media, search, tech) with no clear, unique position. Failed to make necessary trade-offs. Acquired assets (Flickr, Tumblr) didn't create reinforcing 'fit' with the core portal strategy.</p>
+                             <p class="text-blue-700 leading-snug">SolarCity is the era's clearest "fit" failure: Porter would ask whether the acquired activities reinforce Tesla's existing system. Analysts said no &mdash; solar-roof installation shares almost nothing with EV manufacturing, retail, or software, and the deal's logic rested on Musk's personal ties to both firms rather than on economic complementarity. The 2018 pay package, by contrast, is a genuine (if extreme) trade-off: Musk receives <em>no other compensation</em> in exchange for total alignment with one long-horizon bet &mdash; a real, costly commitment, which is Porter's test for whether a choice is strategic or just cheap talk.</p>
                         </div>
-                        <div id="yahoo-mintzberg-analysis" class="analysis-content bg-teal-50 p-4 rounded-lg border border-teal-200 shadow-sm prose-custom text-xs">
+                        <div id="crisis-mintzberg-analysis" class="analysis-content bg-teal-50 p-4 rounded-lg border border-teal-200 shadow-sm prose-custom text-xs">
                             <p class="font-semibold text-teal-800 mb-1">Mintzberg's Lens:</p>
-                            <p class="text-teal-700 leading-snug">Strategy was chaotic, not crafted or emergent. Constant CEO changes imposed disjointed deliberate strategies (the 'peanut butter manifesto' era vs. Marissa Mayer's tech focus). Internal conflicts (media vs. tech) prevented any coherent pattern from emerging or organizational learning to occur.</p>
+                            <p class="text-teal-700 leading-snug">Nobody "planned" a securities-fraud charge. This is the emergent, learning side of strategy at its most costly: the realized outcome (a chastened, more governed Tesla with an independent chairman and new board oversight of Musk's tweets) was imposed by regulators and the market, not designed in advance. Mintzberg's warning that "strategies can form as well as be formulated" cuts both ways &mdash; sometimes what forms is discipline you didn't choose.</p>
                         </div>
-                        <div class="mt-4">
-                             <h4 class="font-semibold text-xs text-slate-500 uppercase tracking-wider text-center mb-2">Market Capitalization ($ Billions)</h4>
-                            <div class="chart-container"><canvas id="yahooChart"></canvas></div>
+                    </div>
+                </div>
+
+                <!-- Era 4 -->
+                <div id="era-peak" class="mb-16 grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-12 items-start bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200">
+                    <div class="lg:col-span-3 space-y-4">
+                        <h3 class="text-2xl font-bold text-slate-800 mb-1">Chapter 4 (2020&ndash;2022): Richest Man in the World, Then First to Lose $200 Billion</h3>
+                        <h4 class="text-lg font-semibold text-slate-700">Tesla's market cap went from $52B to $700B to over $1 trillion to a $1.24 trillion peak to $389B &mdash; all in five years. What kind of "strategy" produces that chart?</h4>
+                        <div class="prose-custom text-sm">
+                            <p>The 2019 Model 3 ramp finally delivered scale: Tesla hit 500,000 deliveries in 2020, and by January 2021 its market cap reached <strong>$700 billion</strong>, making Musk briefly the richest person alive. In October 2021 a 100,000-vehicle Hertz order pushed the market cap past <strong>$1 trillion</strong>; by 2022 it peaked near <strong>$1.24 trillion</strong> &mdash; more valuable than Toyota, Volkswagen, Mercedes-Benz, and GM <em>combined</em>.<sup>8</sup></p>
+                            <p>Then, in April 2022, Musk launched a bid for Twitter, closing the $44 billion acquisition that October, firing the CEO, and cutting roughly half of Twitter's 7,500 employees within weeks. As the Fed raised interest rates through 2022, high-growth stock valuations fell across the board and Tesla's own stock dropped more than 60% &mdash; while Twitter reportedly lost $4 million a day. By December 2022 Tesla's market cap had fallen to <strong>$389 billion</strong>, and Musk became, per <em>Bloomberg</em>, the first person ever to lose more than $200 billion in net worth. Tesla's third-largest individual shareholder tweeted publicly that "Tesla has no working CEO."</p>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-2 grid grid-cols-1 gap-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <button onclick="toggleAnalysis('peak', 'porter')" class="analysis-button bg-blue-100 hover:bg-blue-200 border border-blue-300 text-blue-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Analyze with Porter's Lens</button>
+                            <button onclick="toggleAnalysis('peak', 'mintzberg')" class="analysis-button bg-teal-100 hover:bg-teal-200 border border-teal-300 text-teal-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">Analyze with Mintzberg's Lens</button>
+                        </div>
+                        <div id="peak-porter-analysis" class="analysis-content bg-blue-50 p-4 rounded-lg border border-blue-200 shadow-sm prose-custom text-xs">
+                             <p class="font-semibold text-blue-800 mb-1">Porter's Lens:</p>
+                             <p class="text-blue-700 leading-snug">Porter's framework says almost nothing about a stock-market rollercoaster like this &mdash; and that's the point worth noticing. Porter analyzes a firm's <em>position and activity system</em>, which changed relatively little in these three years; the $850B swing came almost entirely from shifting investor beliefs about the future (autonomy, macro rates, Musk's attention). This is a useful boundary condition: Porter's tools explain durable competitive advantage, not short-run valuation.</p>
+                        </div>
+                        <div id="peak-mintzberg-analysis" class="analysis-content bg-teal-50 p-4 rounded-lg border border-teal-200 shadow-sm prose-custom text-xs">
+                            <p class="font-semibold text-teal-800 mb-1">Mintzberg's Lens:</p>
+                            <p class="text-teal-700 leading-snug">Buying Twitter was Musk's individual, deliberate strategy for Musk &mdash; but an emergent, unrequested strategy <em>for Tesla</em>, whose shareholders never voted on it and whose CEO's attention it visibly consumed. This is Mintzberg's point about "who is the strategist anyway?" taken to its limit: when a founder-CEO's personal ventures and the company's realized strategy become entangled, whose intentions are we even reading?</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Era 5 -->
+                <div id="era-now" class="grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-12 items-start bg-white p-6 sm:p-8 rounded-xl shadow-lg border-2 border-rose-200">
+                    <div class="lg:col-span-3 space-y-4">
+                        <h3 class="text-2xl font-bold text-rose-700 mb-1">Chapter 5 (2023&ndash;2026, right now): "If You Think We Are a Car Company, You Are Totally Wrong"</h3>
+                        <h4 class="text-lg font-semibold text-slate-700">BYD out-produced Tesla in Q4 2023. Musk's response was not to cut prices harder &mdash; it was to redefine what business Tesla is in. Is that strategy, or is it spin from a company that is losing a price war it cannot win?</h4>
+                        <div class="prose-custom text-sm">
+                            <p>By 2023, BYD had captured <strong>35% of China's domestic auto market</strong> and sold 1.58 million EVs (3 million total NEVs including plug-in hybrids) to Tesla's 1.8 million &mdash; and out-produced Tesla outright in Q4 2023. BYD's advantage is structural, not cosmetic: it owns cobalt mines, produces its own battery cathodes, and even operates its own roll-on/roll-off ships for export &mdash; a vertically integrated cost position Tesla cannot easily match. Xiaomi, a smartphone maker, launched an EV sedan priced at $30,000&ndash;$42,000 that critics compared directly to a $140,000 Porsche Taycan.<sup>9</sup> Tesla's own gross margin fell for six straight quarters, from 29.1% in Q1 2022 to roughly 17% by early 2024, and in 2024 the company cut more than 10% of its global workforce.</p>
+                            <p>Musk's answer, repeated in 2024 investor calls: <strong>"[Tesla] should be thought of as an AI or robotics company... The way to think of Tesla is almost entirely in terms of solving autonomy and being able to turn on that autonomy for a gigantic fleet."</strong><sup>10</sup> In November 2025, Tesla shareholders approved a new Musk pay package reportedly worth up to <strong>$1 trillion</strong> if the company hits extraordinary market-cap and operational milestones &mdash; passing with over 75% approval, an even larger bet on one person than the 2018 package. And the numbers backing the pivot are real: in Q2 2026 alone, Tesla delivered a record 480,126 vehicles (up 25% year-over-year), Cybercab production began at Gigafactory Texas, Robotaxi service went live (unsupervised) in seven U.S. metros including Miami, Orlando and Tampa, and capital spending on the autonomy bet more than tripled to over $25 billion for the year &mdash; pushing free cash flow to <strong>&minus;$1.1 billion</strong> in the quarter.<sup>11</sup> As of August 2026, Tesla's market cap sits around <strong>$1.33 trillion</strong> &mdash; roughly back to its 2022 peak, on a story that has almost nothing to do with how many cars it sells.</p>
+                            <p class="font-semibold text-rose-700">The INSEAD case that tracks this era ends with the question we will ask you to answer, live, in the CSO simulation below: <em>"Taken together, will Tesla remain the disruptor, or will it ultimately be disrupted?"</em></p>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-2 grid grid-cols-1 gap-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <button onclick="toggleAnalysis('now', 'porter')" class="analysis-button bg-blue-100 hover:bg-blue-200 border border-blue-300 text-blue-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Analyze with Porter's Lens</button>
+                            <button onclick="toggleAnalysis('now', 'mintzberg')" class="analysis-button bg-teal-100 hover:bg-teal-200 border border-teal-300 text-teal-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">Analyze with Mintzberg's Lens</button>
+                        </div>
+                        <div id="now-porter-analysis" class="analysis-content bg-blue-50 p-4 rounded-lg border border-blue-200 shadow-sm prose-custom text-xs">
+                             <p class="font-semibold text-blue-800 mb-1">Porter's Lens:</p>
+                             <p class="text-blue-700 leading-snug">If real, this is a repositioning &mdash; a bet that the "wedge" between willingness-to-pay and cost lives in autonomy software, not sheet metal. But Porter would immediately ask about trade-offs: can Tesla simultaneously fight a margin war on vehicles <em>and</em> fund a capital-intensive robotaxi build-out without becoming "stuck in the middle" on both? Negative free cash flow while capex triples is the visible cost of that trade-off being made in real time.</p>
+                        </div>
+                        <div id="now-mintzberg-analysis" class="analysis-content bg-teal-50 p-4 rounded-lg border border-teal-200 shadow-sm prose-custom text-xs">
+                            <p class="font-semibold text-teal-800 mb-1">Mintzberg's Lens:</p>
+                            <p class="text-teal-700 leading-snug">This looks like Miller &amp; Friesen's <strong>"quantum" strategic revolution</strong>, which Mintzberg cites directly: long periods of stability (a decade of "we are an EV company") punctuated by a short, disruptive reorientation once the old strategy falls out of sync with its environment (BYD's rise). Notice the umbrella: Musk deliberately set the destination ("solving autonomy... for a gigantic fleet"), but the city-by-city Robotaxi rollout &mdash; Austin, then Miami, Orlando, Tampa, with more metros pending permitting and first-responder training &mdash; is being learned, one regulatory environment at a time. Deliberate top, emergent underneath.</p>
                         </div>
                     </div>
                 </div>
@@ -338,58 +405,76 @@
         </section>
 
 
-        <!-- Lenses Section (Moved After Cases) -->
+        <!-- Lenses Section -->
         <section id="lenses" class="py-16 sm:py-24 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center max-w-3xl mx-auto">
-                    <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Understanding the Frameworks: The Two Lenses</h2>
-                    <p class="mt-4 text-lg text-slate-600">Now that we've seen the consequences, let's formally define the two strategic perspectives we used for analysis.</p>
+                    <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The Two Lenses, Formally</h2>
+                    <p class="mt-4 text-lg text-slate-600">Now that you have seen both lenses applied five times to one company, here is what each actually claims &mdash; in the authors' own words.</p>
                 </div>
 
                 <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-5xl mx-auto">
                     <!-- Porter Card -->
                     <div class="bg-slate-50 p-6 sm:p-8 rounded-xl shadow-lg border-t-4 border-blue-600 transform hover:scale-[1.02] transition-transform duration-300">
-                        <h3 class="text-xl sm:text-2xl font-bold text-blue-600 mb-4">1. The "Design" Lens: Michael Porter</h3>
+                        <h3 class="text-xl sm:text-2xl font-bold text-blue-600 mb-4">1. The "Design" Lens: Michael Porter (1996)</h3>
                         <div class="prose-custom text-sm">
-                            <p>Porter views strategy as a deliberate, analytical process of <strong>positioning</strong>. Analyze the industry structure (Five Forces), choose a unique, defensible position (Cost Leadership, Differentiation, Focus), and build a reinforcing system of activities ('fit'). The key is making <strong>trade-offs</strong> – choosing what <em>not</em> to do.</p>
+                            <p>Porter's <em>"What Is Strategy?"</em> (HBR, Nov&ndash;Dec 1996) opens by attacking a confusion: <strong>"The root of the problem is the failure to distinguish between operational effectiveness and strategy."</strong> Operational effectiveness (OE) means "performing similar activities <em>better</em> than rivals"; strategy means "performing <em>different</em> activities from rivals' or performing similar activities in different ways." Gigacasting that drops Tesla's battery cost to $142/kWh versus an industry average of $186 is OE &mdash; valuable, but copyable, and indeed BYD is closing that gap with its own vertically integrated cost base.</p>
+                            <p>Strategy, for Porter, requires three things in sequence: a <strong>unique position</strong> (built from needs, variety, or access &mdash; see the next section), <strong>trade-offs</strong> ("the essence of strategy is choosing what <em>not</em> to do"), and <strong>fit</strong> across a whole system of activities, so that "competitors get little benefit from imitation unless they successfully match the whole system."</p>
                             <p class="font-semibold text-slate-800 mt-4">Key Concepts:</p>
                             <ul>
                                 <li>Operational Effectiveness vs. Strategy</li>
-                                <li>Unique Value Proposition (Needs, Variety, Access)</li>
-                                <li>Trade-offs & Fit</li>
-                                <li>Five Forces Analysis</li>
+                                <li>Positioning: Needs, Variety, or Access</li>
+                                <li>Trade-offs &mdash; "choosing what not to do"</li>
+                                <li>Fit (1st, 2nd, 3rd order) across activities</li>
                             </ul>
                         </div>
                     </div>
                     <!-- Mintzberg Card -->
                     <div class="bg-slate-50 p-6 sm:p-8 rounded-xl shadow-lg border-t-4 border-teal-600 transform hover:scale-[1.02] transition-transform duration-300">
-                        <h3 class="text-xl sm:text-2xl font-bold text-teal-600 mb-4">2. The "Emergent" Lens: Henry Mintzberg</h3>
+                        <h3 class="text-xl sm:text-2xl font-bold text-teal-600 mb-4">2. The "Craft" Lens: Henry Mintzberg (1987)</h3>
                          <div class="prose-custom text-sm">
-                            <p>Mintzberg pushes back, arguing that real strategy often isn't a grand plan but <strong>emerges</strong> organically. It's 'crafted' through learning, adaptation, and patterns forming from daily actions. Formulation and implementation are intertwined, like a potter shaping clay.</p>
+                            <p>Mintzberg's <em>"Crafting Strategy"</em> (HBR, Jul&ndash;Aug 1987) opens with a potter at her wheel, not a general in a war room: <strong>"Formulation and implementation merge into a fluid process of learning through which creative strategies evolve."</strong> His central move is a distinction most managers blur: a <em>plan</em> is "intended strategy"; the consistent pattern a firm's actions actually trace over time is "realized strategy" &mdash; and "just as a plan need not produce a pattern... so too a pattern need not result from a plan."</p>
+                            <p>His most quoted line is the reconciliation, not the provocation: <strong>"[S]trategy formation walks on two feet, one deliberate, the other emergent."</strong> Honda's small-motorcycle success in the U.S. is his classic illustration &mdash; the intended strategy (sell big bikes) failed; the realized strategy (dominate with the Super Cub) emerged from salespeople's on-the-ground learning and was only later legitimized by headquarters as "the plan all along."</p>
                             <p class="font-semibold text-slate-800 mt-4">Key Concepts:</p>
                             <ul>
                                 <li>Intended vs. Realized Strategy</li>
-                                <li>Deliberate vs. Emergent Components</li>
-                                <li>Strategy as Craft (Learning by Doing)</li>
-                                <li>Grassroots Strategy Formation</li>
+                                <li>Deliberate vs. Emergent components</li>
+                                <li>Umbrella Strategy (deliberate direction, emergent detail)</li>
+                                <li>Miller &amp; Friesen's "Quantum" Strategic Revolution</li>
                             </ul>
                         </div>
                     </div>
+                </div>
+                <p class="text-center text-sm text-slate-500 max-w-2xl mx-auto mt-8">Neither author thinks the other is wrong about everything. Mintzberg himself concedes strategy needs "control just as it requires responsiveness"; Porter's own positioning examples (Ikea, Vanguard) took years of iteration to reach the "clear" position he later describes. The live debate is about <em>emphasis</em> &mdash; how much of a firm's success to attribute to foresight versus to learning.</p>
+            </div>
+        </section>
+
+        <!-- SPECTRUM ANALYZER (NEW INTERACTIVE) -->
+        <section id="spectrum" class="py-16 sm:py-24 bg-slate-100">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Diagnostic: Deliberate &harr; Emergent Spectrum Analyzer</h2>
+                    <p class="mt-4 text-lg text-slate-600">Eight real moments from Tesla's history. For each one, decide where it sits on Mintzberg's deliberate&ndash;emergent continuum &mdash; then see the case-grounded answer, with your running score.</p>
+                    <div class="mt-4"><span class="score-pill">Score: <span id="spectrum-score">0</span> / 8</span></div>
+                </div>
+                <div id="spectrum-container" class="space-y-2"></div>
+                <div class="text-center mt-6">
+                    <button onclick="restartSpectrum()" class="px-5 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-md hover:bg-indigo-700 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Restart Analyzer</button>
                 </div>
             </div>
         </section>
 
         <!-- Positioning Examples Section -->
-        <section id="positioning-examples" class="py-16 sm:py-24 bg-slate-100"> <!-- Changed BG -->
+        <section id="positioning-examples" class="py-16 sm:py-24 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center max-w-3xl mx-auto mb-16">
                     <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Porter's Strategic Positions: Examples</h2>
-                    <p class="mt-4 text-lg text-slate-600">Porter identified three distinct sources from which a strategic position can emerge: needs, variety, or access. Let's see them in action.</p>
+                    <p class="mt-4 text-lg text-slate-600">Porter identified three distinct sources from which a strategic position can emerge: needs, variety, or access. Let's see them in action &mdash; including Tesla's own.</p>
                 </div>
 
                  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <!-- Needs-Based Card -->
-                    <div class="concept-card border-needs bg-white"> <!-- Added BG -->
+                    <div class="concept-card border-needs bg-white">
                         <h4 class="text-rose-700">1. Needs-Based Positioning</h4>
                         <p class="definition">Serving most or all needs of a particular customer group.</p>
                         <div class="example">
@@ -399,10 +484,9 @@
                             <p><strong>Position:</strong> Trusted one-stop-shop.</p>
                         </div>
                          <div class="example">
-                            <h5>🌍 Netflix</h5>
-                            <p><strong>Need:</strong> On-demand, personalized, ad-free entertainment.</p>
-                            <p><strong>Solution:</strong> Subscription library + recommendations.</p>
-                            <p><strong>Position:</strong> Ultimate personalized entertainment.</p>
+                            <h5>🌍 Tesla (2012 Model S launch)</h5>
+                            <p><strong>Need:</strong> Affluent, tech-forward buyers who wanted a luxury sedan <em>and</em> a climate-conscious, software-first ownership experience &mdash; a need no incumbent luxury brand was built to serve.</p>
+                            <p><strong>Position:</strong> "It's a computer on wheels," per an early owner quoted in the case &mdash; a full ownership experience, not just a powertrain swap.</p>
                         </div>
                     </div>
 
@@ -435,16 +519,16 @@
                             <p><strong>Position:</strong> Enabler of digital inclusion.</p>
                         </div>
                          <div class="example">
-                            <h5>🌍 Allegiant Air</h5>
-                            <p><strong>Access Barrier:</strong> No direct, cheap flights from small US cities.</p>
-                            <p><strong>Solution:</strong> Low-cost model using secondary airports.</p>
-                            <p><strong>Position:</strong> Affordable flights for underserved cities.</p>
+                            <h5>🌍 Tesla Supercharger Network</h5>
+                            <p><strong>Access Barrier:</strong> Long-distance EV travel was blocked by "too few and too unreliable" public chargers, per the INSEAD case.</p>
+                            <p><strong>Solution:</strong> Tesla built and owned 6,000+ proprietary Supercharger stations before opening the network to rival brands in 2023.</p>
+                            <p><strong>Position:</strong> Made long-distance EV ownership <em>possible</em> years before any competitor could match it.</p>
                         </div>
                     </div>
                 </div>
 
                  <!-- Comparison Table -->
-                 <div class="mt-16 max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-inner border border-slate-200"> <!-- Changed BG -->
+                 <div class="mt-16 max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-inner border border-slate-200">
                     <h4 class="text-lg font-semibold text-slate-800 text-center mb-4">How to Differentiate the Positions</h4>
                      <p class="text-center text-sm text-slate-600 max-w-3xl mx-auto mb-6">The three positions differ primarily in their starting point or focus, dictating how activities are structured.</p>
                     <div class="overflow-x-auto">
@@ -461,7 +545,7 @@
                                 <tr><th scope="row">Primary Focus</th><td>Specific customer group</td><td>Subset of products/services</td><td>Unique customer accessibility</td></tr>
                                 <tr><th scope="row">Segmentation</th><td>Customer needs/profile</td><td>Product/service itself</td><td>Geography, scale, channel</td></tr>
                                 <tr><th scope="row">Target Market</th><td>Narrow segment, all needs</td><td>Wide market, specific offering</td><td>Hard-to-reach customers</td></tr>
-                                <tr><th scope="row">Starting Question</th><td class="italic">"**Who** is our target customer?"</td><td class="italic">"**What** product can we excel at?"</td><td class="italic">"**How** can we reach them uniquely?"</td></tr>
+                                <tr><th scope="row">Starting Question</th><td class="italic">"<strong>Who</strong> is our target customer?"</td><td class="italic">"<strong>What</strong> product can we excel at?"</td><td class="italic">"<strong>How</strong> can we reach them uniquely?"</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -470,7 +554,7 @@
         </section>
 
         <!-- Fit Examples Section -->
-        <section id="fit-examples" class="py-16 sm:py-24 bg-white"> <!-- Changed BG -->
+        <section id="fit-examples" class="py-16 sm:py-24 bg-slate-100">
              <div class="container mx-auto px-6">
                 <div class="text-center max-w-3xl mx-auto mb-16">
                     <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Porter's Concept of Fit: Reinforcing Activities</h2>
@@ -479,7 +563,7 @@
 
                  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                      <!-- First-Order Fit -->
-                    <div class="concept-card border-fit1">
+                    <div class="concept-card border-fit1 bg-white">
                         <h4 class="text-amber-600">1. First-Order Fit (Simple Consistency)</h4>
                         <p class="definition">Basic alignment: each activity is consistent with the overall strategy.</p>
                         <div class="example">
@@ -495,13 +579,13 @@
                     </div>
 
                     <!-- Second-Order Fit -->
-                    <div class="concept-card border-fit2">
+                    <div class="concept-card border-fit2 bg-white">
                         <h4 class="text-orange-600">2. Second-Order Fit (Reinforcing Activities)</h4>
                         <p class="definition">Activities actively reinforce one another; the whole > sum of parts.</p>
                          <div class="example">
                             <h5>🌍 Southwest Airlines</h5>
                             <p><strong>Strategy:</strong> Low-cost, convenient, point-to-point travel.</p>
-                            <p><strong>Reinforcement:</strong> Single plane type simplifies maintenance/training -> quick turnarounds -> high utilization -> low fares.</p>
+                            <p><strong>Reinforcement:</strong> Single plane type simplifies maintenance/training &rarr; quick turnarounds &rarr; high utilization &rarr; low fares.</p>
                         </div>
                          <div class="example">
                             <h5>🇮🇳 Titan Company (Early Days)</h5>
@@ -511,24 +595,24 @@
                     </div>
 
                     <!-- Third-Order Fit -->
-                     <div class="concept-card border-fit3">
+                     <div class="concept-card border-fit3 bg-white">
                         <h4 class="text-red-600">3. Third-Order Fit (Optimization of Effort)</h4>
                         <p class="definition">Coordination across activities eliminates redundancy and waste.</p>
                         <div class="example">
                             <h5>🌍 IKEA</h5>
                             <p><strong>Strategy:</strong> Stylish, affordable, self-assembly furniture.</p>
-                            <p><strong>Optimization:</strong> Modular design -> flat-packing -> efficient logistics + customer self-service/transport/assembly = optimized low-cost system.</p>
+                            <p><strong>Optimization:</strong> Modular design &rarr; flat-packing &rarr; efficient logistics + customer self-service/transport/assembly = optimized low-cost system.</p>
                         </div>
                          <div class="example">
-                            <h5>🇮🇳 Asian Paints</h5>
-                            <p><strong>Strategy:</strong> Market leadership via superior supply chain.</p>
-                            <p><strong>Optimization:</strong> Advanced demand forecasting + small-batch production + frequent dealer deliveries + in-store tinting = minimized inventory/waste.</p>
+                            <h5>🌍 Tesla Gigacasting</h5>
+                            <p><strong>Strategy:</strong> Radically simplify vehicle manufacturing.</p>
+                            <p><strong>Optimization:</strong> Single-piece die-cast front and rear underbody sections (replacing dozens of welded parts) + in-house 4680 battery cells + software-first OS eliminate entire categories of assembly steps, cutting cost per car well below the industry's own reported average.</p>
                         </div>
                     </div>
                 </div>
 
                  <!-- Fit Comparison Table -->
-                 <div class="mt-16 max-w-4xl mx-auto bg-slate-50 p-6 rounded-lg shadow-inner border border-slate-200"> <!-- Changed BG -->
+                 <div class="mt-16 max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-inner border border-slate-200">
                     <h4 class="text-lg font-semibold text-slate-800 text-center mb-4">Comparison of Fit Types</h4>
                     <div class="overflow-x-auto">
                         <table class="w-full text-xs text-left text-slate-600 comparison-table">
@@ -553,63 +637,61 @@
         </section>
 
 
-        <!-- Activities Section -->
-        <section id="activities" class="py-16 sm:py-24 bg-slate-100">
+        <!-- Workshop / Decisions Section -->
+        <section id="workshop" class="py-16 sm:py-24 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center max-w-3xl mx-auto">
-                    <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Strategy Workshop & Simulation</h2>
-                    <p class="mt-4 text-lg text-slate-600">Apply what you've learned. Make the strategic calls and see the consequences.</p>
+                    <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Decision Workshop: Real Choices, Real Stakes</h2>
+                    <p class="mt-4 text-lg text-slate-600">Two quick decisions grounded in Tesla's actual history, then a full scenario: you are Tesla's Chief Strategy Officer, in 2026, right now.</p>
                 </div>
 
-                <!-- Workshop 1: Blockbuster -->
-                <div id="workshop" class="mt-16 bg-white p-6 sm:p-8 rounded-xl shadow-lg mb-12 border-t-4 border-purple-500 transform hover:scale-[1.01] transition-transform duration-300">
-                    <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2">Workshop 1: The "Blockbuster" Dilemma</h3>
-                    <p class="text-slate-600 mb-6 text-sm leading-relaxed">Imagine you are the CEO of 'VideoBarn', the dominant video rental chain in 2005. A small startup called 'Netflix' is mailing DVDs and has started talking about "streaming." What is your strategic move?</p>
-                    <div class="grid md:grid-cols-3 gap-4">
-                        <button onclick="showWorkshopResult('A')" class="activity-button workshop-button group"><strong class="group-hover:text-purple-800">A) Double Down:</strong> Invest heavily in improving the in-store experience. More titles, better popcorn.</button>
-                        <button onclick="showWorkshopResult('B')" class="activity-button workshop-button group"><strong class="group-hover:text-purple-800">B) Acquire & Suppress:</strong> Buy the 'Netflix' startup, but slow-walk the transition to protect your profitable stores.</button>
-                        <button onclick="showWorkshopResult('C')" class="activity-button workshop-button group"><strong class="group-hover:text-purple-800">C) Launch a Skunkworks:</strong> Create a separate, independent division to build a competing streaming service.</button>
+                <!-- Workshop 1: Master Plan -->
+                <div id="workshop-masterplan" class="mt-16 bg-slate-50 p-6 sm:p-8 rounded-xl shadow-lg mb-12 border-t-4 border-purple-500 transform hover:scale-[1.01] transition-transform duration-300">
+                    <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2">Decision 1: The 2006 Master Plan</h3>
+                    <p class="text-slate-600 mb-6 text-sm leading-relaxed">It's 2006. Tesla has no factory, no revenue, and one prototype. Eberhard and Tarpenning ask Musk: should Tesla launch with a $49,000 mass-market car to reach scale fast, or an $80,000+ low-volume sports car to prove the technology first?</p>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <button onclick="showWorkshopResult('A')" class="activity-button workshop-button group"><strong class="group-hover:text-purple-800">A) Mass-market first:</strong> Skip the sports car, go straight for volume and the biggest possible impact on emissions.</button>
+                        <button onclick="showWorkshopResult('B')" class="activity-button workshop-button group"><strong class="group-hover:text-purple-800">B) Sports car first (what actually happened):</strong> Prove the technology and brand at low volume and high margin, then fund the affordable car from those profits.</button>
                     </div>
                 </div>
 
-                 <!-- Workshop 2: Digital News -->
-                <div id="workshop-news" class="bg-white p-6 sm:p-8 rounded-xl shadow-lg mb-12 border-t-4 border-blue-500 transform hover:scale-[1.01] transition-transform duration-300">
-                    <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2">Workshop 2: The Digital News Dilemma</h3>
-                    <p class="text-slate-600 mb-6 text-sm leading-relaxed">You run a successful regional newspaper with high local readership and ad revenue (circa 2008). Online news sites are gaining traction, often giving away content for free. What's your move?</p>
-                    <div class="grid md:grid-cols-3 gap-4">
-                        <button onclick="showNewsWorkshopResult('A')" class="activity-button news-button group"><strong class="group-hover:text-blue-800">A) Defend Print:</strong> Focus resources on making the print newspaper indispensable with exclusive local content.</button>
-                        <button onclick="showNewsWorkshopResult('B')" class="activity-button news-button group"><strong class="group-hover:text-blue-800">B) Cautious Online:</strong> Put some articles online free, keep best for print to protect subscriptions.</button>
-                        <button onclick="showNewsWorkshopResult('C')" class="activity-button news-button group"><strong class="group-hover:text-blue-800">C) Go All-In Digital:</strong> Aggressively build online platform, experiment with digital subscriptions/ads.</button>
+                 <!-- Workshop 2: Direct sales trade-off -->
+                <div id="workshop-directsales" class="bg-slate-50 p-6 sm:p-8 rounded-xl shadow-lg mb-12 border-t-4 border-blue-500 transform hover:scale-[1.01] transition-transform duration-300">
+                    <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2">Decision 2: Dealers or Direct?</h3>
+                    <p class="text-slate-600 mb-6 text-sm leading-relaxed">It's 2008. Every automaker on Earth sells through independently owned franchise dealers, who provide instant nationwide reach, local service, and financing relationships Tesla does not have. Tesla is nearly out of cash. Do you use dealers to scale faster?</p>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <button onclick="showNewsWorkshopResult('A')" class="activity-button news-button group"><strong class="group-hover:text-blue-800">A) Use dealers:</strong> Faster distribution, lower capital needs, proven model &mdash; survival first, positioning later.</button>
+                        <button onclick="showNewsWorkshopResult('B')" class="activity-button news-button group"><strong class="group-hover:text-blue-800">B) Sell direct (what actually happened):</strong> Slower and more capital-intensive, but keeps full control of the customer relationship, pricing, and the in-store "education" experience.</button>
                     </div>
                 </div>
 
                 <!-- Quick Decision: Trade-off -->
-                 <div id="tradeoff-challenge" class="bg-white p-6 sm:p-8 rounded-xl shadow-lg mb-12 border-t-4 border-amber-500 transform hover:scale-[1.01] transition-transform duration-300">
-                    <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2">Quick Decision: The Trade-off Challenge</h3>
-                    <p class="text-slate-600 mb-6 text-sm leading-relaxed">Your budget airline is known for rock-bottom fares. A consultant suggests adding free checked bags and snacks like major carriers to attract more customers. According to Porter, should you do it?</p>
+                 <div id="tradeoff-challenge" class="bg-slate-50 p-6 sm:p-8 rounded-xl shadow-lg mb-12 border-t-4 border-amber-500 transform hover:scale-[1.01] transition-transform duration-300">
+                    <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2">Quick Decision: The Amenity Trade-off</h3>
+                    <p class="text-slate-600 mb-6 text-sm leading-relaxed">Your budget airline is known for rock-bottom fares. A consultant suggests adding free checked bags and snacks like the major full-service carriers, to attract more customers. According to Porter, should you do it?</p>
                     <div class="grid md:grid-cols-2 gap-4">
-                        <button onclick="showTradeoffResult('A')" class="activity-button tradeoff-button group"><strong class="group-hover:text-amber-800">A) Yes:</strong> More amenities attract more customers, leading to growth. OE demands matching competitors.</button>
-                        <button onclick="showTradeoffResult('B')" class="activity-button tradeoff-button group"><strong class="group-hover:text-amber-800">B) No:</strong> Adding services blurs our low-cost position, increases complexity/cost, violates necessary trade-offs.</button>
+                        <button onclick="showTradeoffResult('A')" class="activity-button tradeoff-button group"><strong class="group-hover:text-amber-800">A) Yes:</strong> More amenities attract more customers and drive growth. Operational excellence demands matching competitors.</button>
+                        <button onclick="showTradeoffResult('B')" class="activity-button tradeoff-button group"><strong class="group-hover:text-amber-800">B) No:</strong> Adding services blurs the low-cost position, adds complexity and cost, and violates the trade-offs the whole system depends on.</button>
                     </div>
                 </div>
 
-                <!-- Simulation -->
-                <div id="simulation" class="bg-white p-6 sm:p-8 rounded-xl shadow-lg border-t-4 border-rose-500 transform hover:scale-[1.01] transition-transform duration-300">
-                    <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2">Simulation: Launching "Phoenix Motors" (Expanded)</h3>
-                    <p class="text-slate-600 mb-6 text-sm leading-relaxed">You are launching a new electric car company in a market dominated by legacy automakers. You have limited capital. Choose your path step-by-step.</p>
+                <!-- Simulation: CSO 2026 -->
+                <div id="simulation" class="bg-slate-50 p-6 sm:p-8 rounded-xl shadow-lg border-t-4 border-rose-500 transform hover:scale-[1.01] transition-transform duration-300">
+                    <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2">Scenario: You Are Tesla's Chief Strategy Officer &mdash; 2026</h3>
+                    <p class="text-slate-600 mb-6 text-sm leading-relaxed">This scenario is built directly from the discussion questions in <em>Tesla (Act 2): Disruptor or Disrupted?</em> The numbers are real. The decision is yours.</p>
                     <div id="simulation-container" class="space-y-6"></div>
                 </div>
             </div>
         </section>
 
         <!-- Quiz Section -->
-        <section id="quiz" class="py-16 sm:py-24 bg-white">
+        <section id="quiz" class="py-16 sm:py-24 bg-slate-100">
             <div class="container mx-auto px-6">
                  <div class="text-center max-w-3xl mx-auto">
                     <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Knowledge Check</h2>
-                    <p class="mt-4 text-lg text-slate-600">Test your understanding of the core strategic concepts.</p>
+                    <p class="mt-4 text-lg text-slate-600">Test your grasp of Porter, Mintzberg, and the Tesla case &mdash; grounded in the real facts you just read.</p>
                 </div>
-                <div class="mt-12 max-w-3xl mx-auto bg-slate-50 p-6 sm:p-8 rounded-xl shadow-inner border border-slate-200">
+                <div class="mt-12 max-w-3xl mx-auto bg-white p-6 sm:p-8 rounded-xl shadow-inner border border-slate-200">
                     <div class="flex justify-between items-center mb-8 pb-4 border-b border-slate-300">
                         <h3 class="text-xl sm:text-2xl font-bold text-slate-800">Final Quiz</h3>
                         <div class="text-base sm:text-lg font-bold text-slate-700 bg-slate-200 px-3 py-1 sm:px-4 sm:py-2 rounded-lg whitespace-nowrap">
@@ -646,7 +728,7 @@
                     </div>
                     <span class="text-xs font-semibold text-slate-300 group-hover:text-white transition-colors">Dr. Swapnil Sahoo</span>
                 </a>
-                <p class="text-xs text-slate-400 order-last sm:order-none">© Dr. Swapnil Sahoo 2025</p>
+                <p class="text-xs text-slate-400 order-last sm:order-none">© Dr. Swapnil Sahoo 2026</p>
                 <div class="flex space-x-5 sm:space-x-6 order-first sm:order-last">
                     <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white footer-link" title="X/Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
                     <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white footer-link" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.575 2h.093zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" clip-rule="evenodd"/></svg></a>
@@ -658,35 +740,50 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Chart Data & Functions
-            const chartData = {
-                nokia: { labels: ['2007', '2008', '2009', '2010', '2011', '2012', '2013'], data: [50.8, 43.7, 41.1, 32.8, 23.9, 4.3, 3.1], borderColor: '#0e7490' },
-                kodak: { labels: ['1996', '2000', '2004', '2008', '2012'], data: [28, 22, 10, 1.5, 0.1], borderColor: '#d97706' },
-                yahoo: { labels: ['2000', '2004', '2008', '2012', '2017'], data: [125, 40, 20, 19, 4.48], borderColor: '#4f46e5' }
-            };
-            function createChart(company) { /* ... Chart creation logic as before ... */
-                const ctx = document.getElementById(`${company}Chart`);
-                if (!ctx) return;
-                const data = chartData[company];
-                const title = company === 'nokia' ? 'Global Smartphone Market Share (%)' : 'Market Capitalization ($ Billions)';
-                new Chart(ctx.getContext('2d'), {
-                    type: 'line', data: { labels: data.labels, datasets: [{ label: title, data: data.data, borderColor: data.borderColor, backgroundColor: data.borderColor + '20', borderWidth: 2, pointBackgroundColor: data.borderColor, pointRadius: 3, fill: true, tension: 0.1 }] },
-                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { mode: 'index', intersect: false, bodySpacing: 4, titleSpacing: 6, padding: 8, boxPadding: 4 } }, scales: { y: { beginAtZero: true, grid: { color: '#e5e7eb' }, ticks: { font: { size: 10 }, callback: (value) => company === 'nokia' ? value + '%' : '$' + value + 'B' } }, x: { grid: { display: false }, ticks: { font: { size: 10 } } } } }
-                });
-             }
-             ['nokia', 'kodak', 'yahoo'].forEach(createChart);
 
-             // Modal Logic (as before)
+            // ---------- Tesla market cap chart ----------
+            function createCapChart() {
+                const ctx = document.getElementById('teslaCapChart');
+                if (!ctx) return;
+                new Chart(ctx.getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan 2018', 'Jan 2021', 'Oct 2021', '2022 Peak', 'Dec 2022', 'Aug 2026'],
+                        datasets: [{
+                            label: 'Tesla Market Cap ($B)',
+                            data: [52, 700, 1000, 1240, 389, 1330],
+                            borderColor: '#e11d48',
+                            backgroundColor: '#e11d4820',
+                            borderWidth: 2.5,
+                            pointBackgroundColor: '#e11d48',
+                            pointRadius: 4,
+                            fill: true,
+                            tension: 0.25
+                        }]
+                    },
+                    options: {
+                        responsive: true, maintainAspectRatio: false,
+                        plugins: { legend: { display: false }, tooltip: { callbacks: { label: (ctx) => '$' + ctx.parsed.y + 'B' } } },
+                        scales: {
+                            y: { beginAtZero: true, grid: { color: '#e5e7eb' }, ticks: { font: { size: 10 }, callback: (v) => '$' + v + 'B' } },
+                            x: { grid: { display: false }, ticks: { font: { size: 10 } } }
+                        }
+                    }
+                });
+            }
+            createCapChart();
+
+             // Modal Logic
              const modal = document.getElementById('modal');
              const modalContent = document.getElementById('modal-content');
-             window.openModal = (title, body) => { /* ... Modal open logic ... */
+             window.openModal = (title, body) => {
                  document.getElementById('modal-title').innerText = title;
                  document.getElementById('modal-body').innerHTML = body;
                  modal.classList.remove('pointer-events-none', 'hidden');
                  document.body.style.overflow = 'hidden';
                  setTimeout(() => { modal.classList.remove('opacity-0'); modalContent.classList.remove('scale-95', 'opacity-0'); }, 10);
              };
-             window.closeModal = () => { /* ... Modal close logic ... */
+             window.closeModal = () => {
                  modal.classList.add('opacity-0');
                  modalContent.classList.add('scale-95', 'opacity-0');
                  document.body.style.overflow = '';
@@ -694,72 +791,76 @@
              };
              modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
 
-            // Click-to-Reveal Logic for Analyses
-            window.toggleAnalysis = (company, lens) => {
-                const contentDiv = document.getElementById(`${company}-${lens}-analysis`);
-                const button = event.currentTarget; // Get the button that was clicked
+            // Click-to-Reveal Logic for Era Analyses
+            window.toggleAnalysis = (era, lens) => {
+                const contentDiv = document.getElementById(`${era}-${lens}-analysis`);
+                const button = event.currentTarget;
                 if (contentDiv) {
                     const isVisible = contentDiv.classList.contains('visible');
-                    // Hide any other visible analysis for this company
-                     const otherLens = lens === 'porter' ? 'mintzberg' : 'porter';
-                     const otherContentDiv = document.getElementById(`${company}-${otherLens}-analysis`);
-                     const otherButton = button.parentElement.querySelector(`button[onclick*="'${otherLens}'"]`); // Find the other button
+                    const otherLens = lens === 'porter' ? 'mintzberg' : 'porter';
+                    const otherContentDiv = document.getElementById(`${era}-${otherLens}-analysis`);
+                    const otherButton = button.parentElement.querySelector(`button[onclick*="'${otherLens}'"]`);
 
                      if (otherContentDiv && otherContentDiv.classList.contains('visible')) {
                          otherContentDiv.classList.remove('visible');
                          otherContentDiv.style.maxHeight = '0';
-                         if(otherButton) otherButton.classList.remove('bg-opacity-50'); // Reset other button style
+                         if(otherButton) otherButton.classList.remove('bg-opacity-50');
                      }
 
-                    // Toggle the clicked one
                     if (isVisible) {
                         contentDiv.classList.remove('visible');
                         contentDiv.style.maxHeight = '0';
-                        button.classList.remove('bg-opacity-50'); // Reset button style
+                        button.classList.remove('bg-opacity-50');
                     } else {
                         contentDiv.classList.add('visible');
                         contentDiv.style.maxHeight = contentDiv.scrollHeight + 'px';
-                        button.classList.add('bg-opacity-50'); // Indicate active button
+                        button.classList.add('bg-opacity-50');
                     }
                 }
             };
 
-
-            // Workshop Logic (Blockbuster)
-            const workshopResults = { /* ... Workshop results as before ... */
-                'A': { title: 'Outcome: The Path of Operational Excellence', body: `<p class="mb-3">Focusing on your core strengths makes you the best rental chain in the world. However, you're perfecting a business model that is becoming obsolete. This is a classic <strong>Nokia</strong> mistake.</p><p class="mb-2"><strong class="text-blue-700">Porter's Lens:</strong> You've confused Operational Effectiveness with Strategy. Being the best at renting videos isn't a defensible position when the method of delivery (streaming) fundamentally changes the game.</p><p><strong class="text-teal-700">Mintzberg's Lens:</strong> Your deliberate strategy is too rigid. You've failed to learn from the 'weak signals' in the market and allow an emergent strategy (a pivot to digital) to form.</p>` },
-                'B': { title: 'Outcome: The Cautious Hybrid', body: `<p class="mb-3">You own the disruptive technology, but your fear of cannibalizing store profits makes you slow and indecisive. This is a classic <strong>Kodak</strong> mistake.</p><p class="mb-2"><strong class="text-blue-700">Porter's Lens:</strong> You have failed to make a clear trade-off. By trying to be both a physical and digital company, you create a confusing strategy where your activities don't "fit" and work against each other. Another, more focused competitor will win.</p><p><strong class="text-teal-700">Mintzberg's Lens:</strong> You have an incredible opportunity for an emergent strategy, but the dominant logic of the old, deliberate strategy suppresses it. The organization cannot effectively "craft" a new future while clinging to its past.</p>` },
-                'C': { title: 'Outcome: The Disruptor\'s Gambit', body: `<p class="mb-3">This is a risky and costly move. Your new division will directly compete with your stores, causing internal conflict. However, it's the only choice that embraces the future. You are choosing to disrupt yourself before someone else does.</p><p class="mb-2"><strong class="text-blue-700">Porter's Lens:</strong> You are making a clear trade-off and establishing a new, unique position in the emerging streaming market. Success will depend on creating a new system of activities (content licensing, server infrastructure) that "fit" this new position.</p><p><strong class="text-teal-700">Mintzberg's Lens:</strong> This approach creates the conditions for a new strategy to emerge. By separating the new venture, you allow it to learn and adapt without being crushed by the old way of doing things. It's a deliberate choice to enable emergence.</p>` }
+            // Workshop 1 Logic (Master Plan)
+            const workshopResults = {
+                'A': { title: 'Outcome: Mass-Market First', body: `<p class="mb-3">Skipping straight to a $49,000 mass-market car in 2006 &mdash; with an unproven platform, no factory, and no brand &mdash; would have meant competing on cost and volume against companies with 80 years of manufacturing experience, using technology nobody had proven could scale.</p><p class="mb-2"><strong class="text-blue-700">Porter's Lens:</strong> This ignores Porter's warning about trade-offs at the frontier &mdash; without proven technology or brand equity, a low-price entrant has no defensible position and simply competes on operational effectiveness against much larger rivals.</p><p><strong class="text-teal-700">Mintzberg's Lens:</strong> This skips the learning phase entirely. Mintzberg's craftsman "senses" the material before committing to the final form; Tesla's actual sequence (low-volume, high-margin Roadster first) bought the company years of hands-on learning about battery packs, thermal management, and software before betting the company on scale.</p>` },
+                'B': { title: 'Outcome: Sports Car First (What Actually Happened)', body: `<p class="mb-3">This is what Tesla did &mdash; and it nearly bankrupted the company anyway. By 2007, $100 million was spent with zero cars shipped; Eberhard was fired and Musk personally funded the company through 2009.</p><p class="mb-2"><strong class="text-blue-700">Porter's Lens:</strong> The Roadster's $80,000+ price point and 4.4-second 0-60 time (rivaling a Porsche 911 Turbo) established a real, differentiated position &mdash; "high-performance EV" &mdash; before Tesla ever tried to compete on cost. That position, not the plan itself, is what let Tesla later raise capital at all.</p><p><strong class="text-teal-700">Mintzberg's Lens:</strong> Even the "deliberate" 2006 Master Plan didn't survive contact with reality unscathed &mdash; production costs doubled, the CEO changed, and the company nearly ran out of cash twice before reaching Step 2 of a four-step plan. The published plan set direction; everything that actually happened to execute it was learned the hard way.</p>` }
             };
             window.showWorkshopResult = choice => openModal(workshopResults[choice].title, workshopResults[choice].body);
 
-             // Workshop Logic (Digital News)
-             const newsWorkshopResults = { /* ... News workshop results as before ... */
-                'A': { title: 'Outcome: Print Fortress', body: `<p class="mb-3">Focusing solely on print excellence might retain loyal readers short-term, but ignores the massive shift to digital consumption. You risk becoming irrelevant like a company refusing to acknowledge the internet.</p><p class="mb-2"><strong class="text-blue-700">Porter's Lens:</strong> You're defending an existing position but failing to adapt to a fundamental change in industry structure (rise of digital substitutes, changing buyer power). Your 'fit' is becoming obsolete.</p><p><strong class="text-teal-700">Mintzberg's Lens:</strong> Your deliberate strategy is preventing learning. You're ignoring the emergent reality of online news consumption, failing to 'craft' a future-proof strategy.</p>` },
-                'B': { title: 'Outcome: The Halfway House', body: `<p class="mb-3">This cautious approach avoids major disruption but likely satisfies neither print loyalists nor potential digital subscribers fully. You risk being 'stuck in the middle,' like <strong>Yahoo</strong> trying to be both media and tech.</p><p class="mb-2"><strong class="text-blue-700">Porter's Lens:</strong> Lack of clear trade-offs. You aren't fully committed to print or digital, leading to a weak, easily imitated position with poor 'fit' between activities.</p><p><strong class="text-teal-700">Mintzberg's Lens:</strong> You're acknowledging the emergent digital trend but aren't committing resources for it to truly take shape. The old deliberate strategy still dominates, hindering real adaptation.</p>` },
-                'C': { title: 'Outcome: Digital First Leap', body: `<p class="mb-3">This is a bold, risky strategy requiring significant investment and potentially painful cannibalization of print revenue. However, it directly addresses the changing market and positions you for the future.</p><p class="mb-2"><strong class="text-blue-700">Porter's Lens:</strong> You are making a clear trade-off, choosing to compete in the new digital arena and build a new position with a corresponding set of activities (digital subscriptions, online ad sales, multimedia content).</p><p><strong class="text-teal-700">Mintzberg's Lens:</strong> You are deliberately creating space for a new strategy to emerge and be crafted. This requires organizational learning and adaptation to find a winning digital model.</p>` }
+             // Workshop 2 Logic (Direct sales)
+             const newsWorkshopResults = {
+                'A': { title: 'Outcome: Use Dealers', body: `<p class="mb-3">Dealers would have gotten cars into customers' hands faster and required far less capital &mdash; critical when Tesla had less than $500,000 in the bank at the end of 2009. But every dealer relationship comes with a built-in conflict of interest: dealers make money on service and financing, both of which EVs need far less of.</p><p class="mb-2"><strong class="text-blue-700">Porter's Lens:</strong> Using the standard dealer channel would have meant adopting the same activity system as every other automaker &mdash; the opposite of a "different set of activities." It might have saved Tesla in the short run at the cost of ever having a defensible long-run position.</p><p><strong class="text-teal-700">Mintzberg's Lens:</strong> Dealers are the "safe," deliberate, well-worn path &mdash; but Mintzberg would note that safe paths rarely produce the kind of learning that lets an organization discover something genuinely new about its customers.</p>` },
+                'B': { title: 'Outcome: Sell Direct (What Actually Happened)', body: `<p class="mb-3">Tesla's mall-based, commission-free stores &mdash; explicitly modeled on the Apple Store &mdash; let it control price, the buying experience, and the customer relationship completely. Other manufacturers eventually copied elements of this (home delivery, online configuration) that Tesla pioneered out of necessity.</p><p class="mb-2"><strong class="text-blue-700">Porter's Lens:</strong> This is a genuine trade-off: Tesla gave up dealer capital, dealer reach, and dealer speed in exchange for a controlled, reinforcing retail experience that fits with its "not just a car" positioning. It is also, not coincidentally, one of the hardest parts of Tesla's model for incumbents to imitate, since they are contractually bound to existing dealer networks.</p><p><strong class="text-teal-700">Mintzberg's Lens:</strong> Necessity (no capital for a dealer network) forced a "craft" solution that only later became a deliberate part of Tesla's brand identity &mdash; a pattern formed under duress, then recognized and legitimized as strategy.</p>` }
              };
             window.showNewsWorkshopResult = choice => openModal(newsWorkshopResults[choice].title, newsWorkshopResults[choice].body);
 
             // Quick Decision Logic (Trade-off)
-            const tradeoffResults = { /* ... Tradeoff results as before ... */
-                'A': { title: 'Outcome: Blurring the Lines', body: `<p class="mb-3">While seemingly customer-friendly, this moves away from your core low-cost position. Adding services increases complexity and costs, eroding your competitive advantage. Rivals who are better at service will still outperform you there.</p><p><strong class="text-blue-700">Porter's Lens:</strong> This violates the principle of trade-offs. Your unique position is low cost; adding 'full service' elements makes you less distinct and 'stuck in the middle'. It weakens the 'fit' of your low-cost activities.</p>` },
-                'B': { title: 'Outcome: Strategic Discipline', body: `<p class="mb-3">Correct according to Porter. Strategy requires choosing what *not* to do. Offering free bags/snacks contradicts the low-cost model, which depends on minimizing extras. Maintaining this trade-off protects your unique position and the 'fit' among your activities (e.g., quick turnarounds, simple service).</p><p><strong class="text-blue-700">Porter's Lens:</strong> This demonstrates strong strategic discipline by reinforcing necessary trade-offs to maintain a clear, defensible low-cost leadership position.</p>` }
+            const tradeoffResults = {
+                'A': { title: 'Outcome: Blurring the Lines', body: `<p class="mb-3">While seemingly customer-friendly, this moves away from the core low-cost position. Adding services increases complexity and costs, eroding the competitive advantage. Rivals who are actually built for full service will still outperform on that dimension.</p><p><strong class="text-blue-700">Porter's Lens:</strong> This violates the principle of trade-offs. The unique position is low cost; adding "full service" elements makes the airline less distinct and risks becoming "stuck in the middle." It weakens the fit of the low-cost activity system.</p>` },
+                'B': { title: 'Outcome: Strategic Discipline', body: `<p class="mb-3">Correct according to Porter. Strategy requires choosing what <em>not</em> to do. Offering free bags and snacks contradicts the low-cost model, which depends on minimizing extras. Maintaining this trade-off protects the unique position and the fit among activities (e.g., quick turnarounds, simple service).</p><p><strong class="text-blue-700">Porter's Lens:</strong> This demonstrates strong strategic discipline by reinforcing necessary trade-offs to maintain a clear, defensible low-cost leadership position.</p>` }
             };
             window.showTradeoffResult = choice => openModal(tradeoffResults[choice].title, tradeoffResults[choice].body);
 
 
-            // Simulation Logic (Expanded)
-            const simulationSteps = [ /* ... Simulation steps as before ... */
-                 { id: 1, question: "Step 1: Where do you enter the market?", options: [{ text: "A) High-End Niche: Launch a luxury, high-performance EV sports car.", next: 2 }, { text: "B) Mass Market: Aim for volume with an affordable, practical EV.", next: 3 }] },
-                 { id: 2, question: "You've established a premium brand. Now what? (Step 2)", options: [{ text: "A) Expand Downmarket: Use profits and brand cachet to develop a more affordable sedan.", next: 4 }, { text: "B) Stay High-End: Focus exclusively on the luxury market.", next: 5 }] },
-                 { id: 3, question: "Mass market entry failed due to high costs & competition. You're bleeding cash. Now what? (Step 2)", options: [{ text: "A) Pivot Upmarket: Try to launch a luxury model to generate higher margins.", next: 6 }, { text: "B) Seek a Buyout: Your only hope is acquisition by a legacy automaker.", next: 7 }] },
-                 { id: 4, question: "Your sedan is selling well, but demand outstrips supply. Production hell! How do you scale? (Step 3)", options: [{ text: "A) Rapid Automation: Build a highly automated 'alien dreadnought' factory for massive scale, quickly.", next: 8 }, { text: "B) Incremental Expansion: Gradually scale up existing lines, focusing on process improvement and quality control.", next: 9 }] },
-                 { id: 5, isEnd: true, title: "STAGNATION: The Niche Player", analysis: "<p class='mb-2'>You survive as a boutique brand but never disrupt the industry.</p><p class='mb-1'><strong class='text-blue-700'>Porter's Lens:</strong> A sustainable position, but its scope is too narrow to be a major threat.</p><p><strong class='text-teal-700'>Mintzberg's Lens:</strong> You crafted a good initial strategy but stopped learning. Your pattern became repetitive.</p>" },
-                 { id: 6, isEnd: true, title: "FAILURE: Brand Confusion", analysis: "<p class='mb-2'>Your brand is associated with 'cheap,' so a luxury pivot fails. You are 'stuck in the middle.' </p><p class='mb-1'><strong class='text-blue-700'>Porter's Lens:</strong> No clear position, contradictory activities, no sustainable advantage.</p><p><strong class='text-teal-700'>Mintzberg's Lens:</strong> A chaotic reaction, not an emergent strategy based on learning.</p>" },
-                 { id: 7, isEnd: true, title: "FAILURE: The Inevitable End", analysis: "<p class='mb-2'>Your technology is acquired, but your company disappears. You become a footnote.</p><p><strong class='text-blue-700'>Porter's Lens:</strong> Lacking a viable position, you had no competitive advantage to sustain your independence.</p><p><strong class='text-teal-700'>Mintzberg's Lens:</strong> The organization failed to learn and adapt quickly enough to form a successful pattern of action.</p>" },
-                 { id: 8, isEnd: true, title: "HIGH RISK/REWARD: Production Hell", analysis: "<p class='mb-2'>This mirrors Tesla's aggressive approach. Massive upfront investment and complexity lead to 'production hell' - delays, quality issues, and potential bankruptcy. If successful, achieves unparalleled scale, but the risk is enormous.</p><p class='mb-1'><strong class='text-blue-700'>Porter's Lens:</strong> A bold attempt to build insurmountable scale (a cost advantage component), but potentially sacrifices quality and consistency (differentiation components) short-term. High risk to 'fit'.</p><p><strong class='text-teal-700'>Mintzberg's Lens:</strong> A highly deliberate, top-down bet that prioritizes the grand vision over incremental learning. Limits emergent adaptation during the crucial scaling phase.</p>" },
-                 { id: 9, isEnd: true, title: "SLOW & STEADY: Sustainable Growth", analysis: "<p class='mb-2'>This is a more traditional, less risky approach. Growth is slower, allowing focus on quality and process refinement. You avoid 'production hell' but might cede market share to faster-moving competitors.</p><p class='mb-1'><strong class='text-blue-700'>Porter's Lens:</strong> Maintains consistency and 'fit' better during scaling. Focuses on improving Operational Effectiveness within the established position, but might lack the scale needed for long-term cost leadership.</p><p><strong class='text-teal-700'>Mintzberg's Lens:</strong> Allows for more organizational learning and adaptation during scaling ('crafting' the production process). Less likely to face catastrophic failure but might miss the window for market dominance.</p>" }
+            // ---------- CSO 2026 Simulation ----------
+            const simulationSteps = [
+                 { id: 1, question: "Step 1: It's 2026. BYD out-produced Tesla in Q4 2023 and controls 35% of China's domestic auto market through vertically integrated, low-cost manufacturing. Xiaomi just launched a $30-42K EV compared directly to a $140K Porsche. Musk says Tesla should be 'thought of as an AI or robotics company.' As CSO, where do you commit scarce capital first?", options: [
+                     { text: "A) Fight on price: Launch a true sub-$25K EV to match BYD head-on.", next: 2 },
+                     { text: "B) Fight on autonomy: Go all-in on Robotaxi/Cybercab, treat vehicle sales as a bridge business.", next: 3 },
+                     { text: "C) Hedge: Fund both moderately, commit fully to neither.", next: 4 }
+                 ]},
+                 { id: 2, question: "Committing to a sub-$25K EV means matching BYD's structural cost advantage — they own cobalt mines, produce their own cathodes, and even operate their own export ships. Tesla's gigacasting and 4680 cells got battery costs to $142/kWh vs. the industry's $186 in 2021, but that gap is closing. What do you do about margins?", options: [
+                     { text: "A) Accept much thinner margins to protect volume and market share.", next: 5 },
+                     { text: "B) Hold the line on margin, price just above BYD, accept lower volumes.", next: 6 }
+                 ]},
+                 { id: 3, question: "Betting fully on autonomy means racing Waymo (already running paid robotaxi rides) while funding a capital-intensive build-out. In Q2 2026, Tesla's own numbers show Robotaxi live in 7 U.S. metros and Cybercab ramping at Giga Texas — but capex more than tripled to over $25B for the year, and free cash flow went negative (-$1.1B). Do you keep pressing?", options: [
+                     { text: "A) Yes — commit further capital; treat car sales as the bridge that funds the real business.", next: 7 },
+                     { text: "B) Slow the Robotaxi capex now, protect cash, and restore near-term vehicle profitability.", next: 8 }
+                 ]},
+                 { id: 4, isEnd: true, title: "RISK: Stuck in the Middle", analysis: "<p class='mb-2'>Splitting capital evenly between a price war you cannot structurally win (BYD's vertical integration is a multi-year head start) and an autonomy bet that needs enormous, sustained investment to reach scale risks under-funding both.</p><p class='mb-1'><strong class='text-blue-700'>Porter's Lens:</strong> This is close to Porter's textbook failure mode — 'stuck in the middle,' with neither a defensible cost position nor a fully-funded differentiated one. Recall Continental Lite: trying to compete two ways at once produced angry stakeholders on both sides and a straddling penalty neither business could absorb.</p><p><strong class='text-teal-700'>Mintzberg's Lens:</strong> Hedging can be smart — it preserves optionality while the organization learns which bet is paying off. But Mintzberg also warns that firms which are 'always changing, flitting from one idea to another' never develop the fit or distinctive competence either path requires. The test is whether this is a deliberate, time-boxed hedge, or drift dressed up as flexibility.</p>" },
+                 { id: 5, isEnd: true, title: "OUTCOME: The Margin War", analysis: "<p class='mb-2'>Gross margin, already down from 29.1% (Q1 2022) to the high-teens by 2024, falls further. This only works if Tesla's own cost curve (gigacasting, 4680 cells, AI-driven manufacturing) improves fast enough to stay ahead of BYD's.</p><p class='mb-1'><strong class='text-blue-700'>Porter's Lens:</strong> Matching a rival on price without matching their structural cost advantage shrinks the 'wedge' between willingness-to-pay and cost that defines competitive advantage — unless Tesla's own OE gains keep outpacing BYD's, this is a race to the bottom Porter would flag as mutually destructive rather than strategic.</p><p><strong class='text-teal-700'>Mintzberg's Lens:</strong> This is, in a sense, Musk's original 2006 'Master Plan' finally reaching Step 3 — 'use that money to build an even more affordable car' — twenty years later than intended. Deliberate direction, realized on a very different, more painful timetable than planned.</p>" },
+                 { id: 6, isEnd: true, title: "OUTCOME: Premium Discipline", analysis: "<p class='mb-2'>Holding price protects margin but likely cedes unit volume and China/emerging-market share to BYD and Xiaomi, who are explicitly targeting budget-conscious buyers Tesla will no longer serve.</p><p class='mb-1'><strong class='text-blue-700'>Porter's Lens:</strong> A legitimate focus strategy — Porter would note that trying to defend every segment simultaneously is itself a trade-off failure. The risk is scale: if the volume segment BYD is capturing becomes large enough, Tesla's remaining premium position may not generate enough cash to fund the autonomy bet either.</p><p><strong class='text-teal-700'>Mintzberg's Lens:</strong> A disciplined, deliberate retreat to a defensible niche — but Mintzberg would ask whether anyone at Tesla is still 'sensing' the mass-market signal the way salespeople sensed Honda's small-motorcycle opportunity in the 1960s U.S. market. Discipline can shade into missing the next emergent opportunity.</p>" },
+                 { id: 7, isEnd: true, title: "OUTCOME: The Full Autonomy Bet", analysis: "<p class='mb-2'>This mirrors what Tesla is actually doing in 2026: negative free cash flow, tripled capex, and a $1 trillion shareholder-approved pay package tying Musk's fortune to this exact bet succeeding at enormous scale.</p><p class='mb-1'><strong class='text-blue-700'>Porter's Lens:</strong> If autonomy is genuinely where future value creation lives, this is a real repositioning — Musk's own words, 'it might be the biggest asset value appreciation in history,' describe a new wedge, not an incremental improvement. But Porter would insist the trade-off be named honestly: near-term vehicle margins and cash flow are being sacrificed on purpose, not by accident.</p><p><strong class='text-teal-700'>Mintzberg's Lens:</strong> Textbook 'umbrella strategy' — deliberate direction from the top ('solving autonomy... for a gigantic fleet'), with the actual execution (which city gets Robotaxi next, which regulatory approval comes through) entirely emergent, learned market by market exactly as Mintzberg describes IBM's 360 series rollout.</p>" },
+                 { id: 8, isEnd: true, title: "OUTCOME: Retreat to the Core", analysis: "<p class='mb-2'>Protecting cash and near-term vehicle economics is the conservative choice — but it risks ceding the autonomy race entirely to Waymo and Chinese competitors who are not slowing down, in exactly the way GM's EV1 retreat ceded the EV market Tesla itself later dominated.</p><p class='mb-1'><strong class='text-blue-700'>Porter's Lens:</strong> Protecting operational effectiveness while abandoning a potential repositioning is defensible only if you believe autonomy will not, in fact, redraw the industry's profit pool. If it does, this looks like Kodak protecting film profits while its own invented technology (digital) was commercialized by someone else.</p><p><strong class='text-teal-700'>Mintzberg's Lens:</strong> A rational pause for learning is healthy — Mintzberg warns against 'obsession with change' as much as obsession with stability. The open question the INSEAD case leaves you with: is this a disciplined pause, or the first sign of an organization no longer able to sense the discontinuity in front of it?</p>" }
             ];
             const simulationContainer = document.getElementById('simulation-container');
             const renderSimulationStep = (stepId) => {
@@ -768,37 +869,104 @@
                 if (step.isEnd) {
                     simulationContainer.innerHTML = `<div class="p-6 bg-rose-50 rounded-lg border border-rose-200"><h4 class="text-lg font-semibold text-rose-700 mb-3">${step.title}</h4><div class="prose-custom text-sm">${step.analysis}</div><button onclick="restartSimulation()" class="mt-4 px-4 py-1.5 bg-rose-600 text-white text-xs font-medium rounded-md hover:bg-rose-700 transition-colors focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">Restart Simulation</button></div>`;
                 } else {
-                    simulationContainer.innerHTML = `<div class="p-6 bg-slate-100 rounded-lg border border-slate-200"><h4 class="text-base font-semibold text-slate-800 mb-4">${step.question}</h4><div class="grid sm:grid-cols-2 gap-4">${step.options.map(opt => `<button data-next="${opt.next}" class="activity-button simulation-button p-3 border-rose-200 bg-rose-50 hover:bg-rose-100 hover:border-rose-300 group focus:ring-rose-400"><strong class="group-hover:text-rose-800">${opt.text.split(':')[0]}:</strong> ${opt.text.split(':').slice(1).join(':').trim()}</button>`).join('')}</div></div>`;
+                    simulationContainer.innerHTML = `<div class="p-6 bg-white rounded-lg border border-slate-200"><h4 class="text-base font-semibold text-slate-800 mb-4">${step.question}</h4><div class="grid gap-4">${step.options.map(opt => `<button data-next="${opt.next}" class="simulation-option activity-button simulation-button p-3 border-rose-200 bg-rose-50 hover:bg-rose-100 hover:border-rose-300 group focus:ring-rose-400"><strong class="group-hover:text-rose-800">${opt.text.split(':')[0]}:</strong> ${opt.text.split(':').slice(1).join(':').trim()}</button>`).join('')}</div></div>`;
                     document.querySelectorAll('.simulation-option').forEach(button => button.addEventListener('click', (e) => renderSimulationStep(parseInt(e.currentTarget.dataset.next))));
                 }
             };
             window.restartSimulation = () => renderSimulationStep(1);
             if (simulationContainer) renderSimulationStep(1);
 
+            // ---------- NEW: Deliberate <-> Emergent Spectrum Analyzer ----------
+            const scaleLabels = ['Fully Deliberate', 'Mostly Deliberate', 'Mixed / Umbrella', 'Mostly Emergent', 'Fully Emergent'];
+            const spectrumEpisodes = [
+                { text: "2006: Musk publishes the four-step 'Secret Tesla Motors Master Plan' (sports car &rarr; affordable car &rarr; even more affordable car &rarr; zero-emission power) on the company blog, years before any of it is proven possible.", correct: 1, explanation: "Mostly Deliberate. A written, public, top-down plan is about as deliberate as strategy gets — but Mintzberg would flag that publishing intentions is not the same as realizing them; the actual path to Step 4 took 20 years and several near-death detours." },
+                { text: "2007: After $100M spent and zero cars shipped, with per-unit costs more than double the original estimate, Musk fires founding CEO Eberhard and takes over himself, plowing in $20M of his own money.", correct: 4, explanation: "Fully Emergent. Nobody planned a CEO firing and a founder bailing out the company with personal funds. This is a pattern forming in reaction to a crisis, legitimized after the fact — Mintzberg's definition of emergent strategy almost exactly." },
+                { text: "2012: Tesla launches the Model S through commission-free mall stores explicitly modeled on the Apple Store, bypassing the dealer network every other automaker relies on.", correct: 0, explanation: "Fully Deliberate. This was a conscious, costly, and difficult-to-reverse choice made in advance — precisely Porter's test for a genuine strategic trade-off, not an operational accident." },
+                { text: "2003: Engineer J.B. Straubel pitches Musk (who had just declined to fund an electric airplane) on a side-project lithium-ion powertrain; Musk invests $10,000, which eventually becomes the technical seed of Tesla's whole battery strategy.", correct: 3, explanation: "Mostly Emergent. A grassroots technical pitch that succeeded almost by accident is exactly Mintzberg's 'salesperson finds an unmet need' pattern — an individual's initiative only later became organizational strategy." },
+                { text: "2016: Tesla acquires SolarCity for $2.6B while carrying $3.4B in debt; Musk, the largest shareholder and a director of both companies, recuses himself from the board vote, but critics call it a governance failure disconnected from Tesla's core activities.", correct: 2, explanation: "Mixed. It was a deliberate, board-approved decision — but its logic (personal ties between founder-led firms) sits oddly against Porter's fit criteria, and its long-run strategic payoff remains genuinely contested among analysts to this day." },
+                { text: "2024: Facing BYD's rise, Musk tells investors 'Tesla should be thought of as an AI or robotics company,' reframing the company's entire strategic identity in public statements and investor calls.", correct: 1, explanation: "Mostly Deliberate — but really a Mintzberg/Miller-Friesen 'quantum' reorientation: a sharp, top-down redefinition of direction, arriving only after years of a strategy (pure EV maker) that had quietly fallen out of sync with a changed environment (BYD's cost advantage)." },
+                { text: "2018 and 2025: Tesla's board ties Musk's entire compensation (up to $55.8B, then reportedly up to $1 trillion) to extraordinary, pre-specified market-cap and operational milestones, with no other pay in exchange.", correct: 0, explanation: "Fully Deliberate. A formal, negotiated, shareholder-approved contract with explicit numerical milestones is as deliberate as corporate strategy documents get — regardless of whether you think the bet is wise." },
+                { text: "2025&ndash;2026: Robotaxi service goes live city by city (Austin first, then Miami, Orlando, Tampa, with more U.S. metros pending permitting and first-responder training) rather than launching nationwide at once.", correct: 2, explanation: "Mixed / Umbrella. Leadership set the deliberate destination ('autonomy for a gigantic fleet'), but the sequencing — which city next, what local rules apply — is being learned market by market. This is Mintzberg's umbrella strategy almost exactly: deliberate at the top, emergent underneath." }
+            ];
+            let spectrumScore = 0;
+            const spectrumContainer = document.getElementById('spectrum-container');
+            const spectrumScoreEl = document.getElementById('spectrum-score');
+
+            function renderSpectrum() {
+                spectrumScore = 0;
+                spectrumScoreEl.textContent = '0';
+                spectrumContainer.innerHTML = '';
+                spectrumEpisodes.forEach((ep, idx) => {
+                    const card = document.createElement('div');
+                    card.className = 'spectrum-card';
+                    card.innerHTML = `
+                        <p class="text-sm font-semibold text-slate-800 mb-1">${idx + 1}. ${ep.text}</p>
+                        <div class="spectrum-options" id="spectrum-opts-${idx}"></div>
+                        <div class="spectrum-scale-label"><span>${scaleLabels[0]}</span><span>${scaleLabels[4]}</span></div>
+                        <div class="spectrum-feedback text-xs text-slate-600 bg-slate-100 p-3 rounded-md border border-slate-200" id="spectrum-feedback-${idx}"></div>
+                    `;
+                    spectrumContainer.appendChild(card);
+                    const optsDiv = card.querySelector(`#spectrum-opts-${idx}`);
+                    scaleLabels.forEach((label, choiceIdx) => {
+                        const btn = document.createElement('button');
+                        btn.type = 'button';
+                        btn.className = 'spectrum-btn';
+                        btn.textContent = label;
+                        btn.onclick = () => handleSpectrumChoice(idx, choiceIdx);
+                        optsDiv.appendChild(btn);
+                    });
+                });
+            }
+
+            function handleSpectrumChoice(episodeIdx, choiceIdx) {
+                const ep = spectrumEpisodes[episodeIdx];
+                const optsDiv = document.getElementById(`spectrum-opts-${episodeIdx}`);
+                const feedbackDiv = document.getElementById(`spectrum-feedback-${episodeIdx}`);
+                const buttons = Array.from(optsDiv.children);
+                const distance = Math.abs(choiceIdx - ep.correct);
+                let points = 0;
+                let verdict = '';
+                if (distance === 0) { points = 1; verdict = 'Spot on!'; buttons[choiceIdx].classList.add('chosen-correct'); }
+                else if (distance === 1) { points = 0.5; verdict = 'Close — half credit.'; buttons[choiceIdx].classList.add('chosen-close'); }
+                else { points = 0; verdict = 'Not quite.'; buttons[choiceIdx].classList.add('chosen-wrong'); }
+                if (distance !== 0) buttons[ep.correct].classList.add('reveal-target');
+
+                buttons.forEach(b => b.disabled = true);
+                spectrumScore += points;
+                spectrumScoreEl.textContent = Number.isInteger(spectrumScore) ? spectrumScore : spectrumScore.toFixed(1);
+
+                feedbackDiv.innerHTML = `<strong class="text-slate-800">${verdict}</strong> The case-grounded answer is <strong>${scaleLabels[ep.correct]}</strong>. ${ep.explanation}`;
+                feedbackDiv.classList.add('visible');
+                feedbackDiv.style.maxHeight = feedbackDiv.scrollHeight + 'px';
+            }
+
+            window.restartSpectrum = renderSpectrum;
+            renderSpectrum();
+
              // Quiz Logic
-             const quizData = [ /* ... Quiz data as before ... */
-                 { q: "What is the primary difference between Operational Effectiveness (OE) and Strategy, according to Porter?", o: ["OE is long-term, Strategy is short-term.", "OE is doing things better, Strategy is doing different things or things differently.", "Strategy is doing things better, OE is doing different things.", "They are interchangeable terms."], a: 1, e: "Porter is clear: Operational Effectiveness is about performing similar activities better than rivals. Strategy is not about being the best, but about being unique—performing different activities, or similar ones in a different way." },
-                 { q: "Why was Kodak's failure a classic example of not making a 'trade-off'?", o: ["They didn't trade old managers for new ones.", "They were unwilling to sacrifice their profitable film business for a new, uncertain digital one.", "They didn't trade their US market focus for a global one."], a: 1, e: "A true strategic trade-off means choosing what NOT to do. Kodak tried to be both a film company and a digital company, which prevented them from committing fully to a winning digital strategy and creating 'fit' around it." },
-                 { q: "According to Mintzberg, an 'emergent strategy' is one that:", o: ["Is planned meticulously from the start.", "Results from a pattern of actions that were not formally intended.", "Focuses only on emerging markets."], a: 1, e: "Mintzberg's core idea is that strategy often emerges 'from the ground up' as organizations learn and adapt. It's the realized pattern that was not explicitly intended by senior management." },
-                 { q: "Nokia's primary strategic failure, from a Porterian view, was:", o: ["Confusing operational excellence in hardware with a sustainable strategy.", "Partnering with Microsoft.", "Having unattractive phone designs."], a: 0, e: "Nokia was the best in the world at making hardware efficiently (Operational Effectiveness). But this wasn't a defensible strategy when the basis of competition shifted to software ecosystems, where they had no unique position." },
-                 { q: "Mintzberg's 'crafting' metaphor for strategy suggests the process is:", o: ["A detached, analytical process.", "A rigid, top-down planning exercise.", "A hands-on process where formulation and implementation are intertwined, like a potter shaping clay."], a: 2, e: "The 'crafting' image is central to Mintzberg's view. It emphasizes that strategy is not just about thinking; it's about a deep, involved process of learning-by-doing, where the 'crafter' adapts the design as they work with the material." },
-                 { q: "Yahoo's downfall is best described by Porter's concept of being...", o: ["Too operationally effective.", "'Stuck in the middle' without a clear position or 'fit'.", "Having too many trade-offs."], a: 1, e: "Yahoo was neither a pure tech company nor a pure media company. It had no clear, unique position. Its various assets (Flickr, Tumblr, Mail) did not reinforce each other, demonstrating a total lack of 'fit'." },
-                 { q: "The story of Honda succeeding with small motorcycles in the US, despite planning to sell large ones, is a classic example of:", o: ["A failed deliberate strategy.", "An emergent strategy.", "Poor operational effectiveness."], a: 1, e: "Honda's intended (deliberate) strategy failed, but a new, successful strategy emerged from the field as salespeople discovered an unexpected market for their small Super Cub bikes. This is a textbook Mintzberg example." },
-                 { q: "A company trying to be the cheapest, highest quality, and best service provider simultaneously is violating which of Porter's key ideas?", o: ["Fit", "Trade-offs", "Operational Effectiveness"], a: 1, e: "Strategy is about choosing. Trying to be everything to everyone means you haven't made the hard choices (trade-offs) about what you will NOT do, which is essential to creating a unique and defensible position." },
-                 { q: "In the 'Phoenix Motors' simulation, choosing 'Rapid Automation' (Step 3A) represents a strategy that prioritizes:", o: ["Incremental learning and adaptation.", "Maintaining operational consistency above all else.", "A deliberate, large-scale bet on achieving scale quickly, accepting high risk.", "Serving a niche market effectively."], a: 2, e: "Building a highly automated factory quickly is a massive, planned investment aimed at achieving scale advantages (a Porter concept), but it limits flexibility and learning (Mintzberg concerns) and carries significant execution risk, as Tesla experienced." },
-                 { q: "What does 'fit' mean in Porter's framework?", o: ["How a company's activities interact and reinforce one another.", "Ensuring employees fit the company culture.", "Finding the right market for a product."], a: 0, e: "'Fit' is about synergy. It's when all a company's activities—from marketing to manufacturing to logistics—are interconnected and mutually reinforcing, making the strategy as a whole much harder to imitate than any single part." },
-                 { q: "From a Mintzbergian perspective, Kodak's management...", o: ["Should have created a more detailed plan for digital.", "Allowed the deliberate strategy (film) to suppress the emergent strategy (digital).", "Didn't listen to their customers."], a: 1, e: "The invention of the digital camera was a potential emergent strategy from within. However, the powerful, established 'deliberate' strategy focused on protecting film sales, and the formal planning process actively killed this internal innovation." },
-                 { q: "A company's 'realized strategy' (what it actually does), according to Mintzberg, is a blend of:", o: ["Its mission and vision statements.", "Its deliberate (planned) and emergent (unplanned) strategies.", "Its marketing and financial plans."], a: 1, e: "This is a key distinction. Mintzberg argues that no strategy is purely deliberate. The final 'realized' strategy is always a mix of what was intended and what emerged along the way through learning and adaptation." },
-                 { q: "What was a common theme in the decline of all three giants (Nokia, Kodak, Yahoo)?", o: ["A lack of talented engineers.", "An inability to adapt business models to fundamental industry shifts.", "Insufficient funding for R&D."], a: 1, e: "This is the central lesson. All three were dominant in their respective eras but failed to adapt their strategies and core business models when technology and consumer behavior changed the rules of the game." },
-                 { q: "Porter's framework is most useful for analyzing a company's...", o: ["Day-to-day operational details.", "Static position and competitive advantage at a point in time.", "Internal culture and politics."], a: 1, e: "Porter's tools (Five Forces, Value Chain, Positioning) are primarily analytical frameworks for understanding the structure of an industry and a firm's defensible position within it." },
-                 { q: "If Porter provides the 'blueprint' for a strategy, Mintzberg explains the...", o: ["Importance of following the blueprint perfectly.", "Process of 'crafting' and learning that must happen during construction.", "Irrelevance of blueprints in the modern world."], a: 1, e: "This synthesizes the two views. Porter offers the analytical structure (the blueprint), while Mintzberg describes the dynamic, hands-on process of learning, adapting, and 'crafting' that brings any plan to life and allows it to evolve." }
+             const quizData = [
+                 { q: "Tesla's gigacasting and 4680 battery process reportedly cut its cost to about $142/kWh versus an industry average of $186/kWh (2021). In Porter's terms, is this alone 'strategy'?", o: ["Yes — any cost advantage is strategy by definition.", "No — this is operational effectiveness (doing similar things better); strategy requires a different, hard-to-imitate whole system of activities.", "No — because it only concerns batteries, not the whole car."], a: 1, e: "Porter is explicit: 'Operational effectiveness (OE) means performing similar activities better than rivals perform them... strategic positioning means performing different activities from rivals' or performing similar activities in different ways.' A cost improvement rivals can eventually match (as BYD is doing) is OE, not a defensible strategic position on its own." },
+                 { q: "Mintzberg's 'crafting' metaphor for strategy suggests the process is:", o: ["A detached, analytical process completed before any action is taken.", "A rigid, top-down planning exercise with no room for adjustment.", "A hands-on process where formulation and implementation merge, like a potter shaping clay."], a: 2, e: "Mintzberg writes: 'Formulation and implementation merge into a fluid process of learning through which creative strategies evolve.' The craftsman doesn't finish thinking before starting to work — she learns by doing, exactly as Tesla learned to build cars by nearly failing to build cars twice." },
+                 { q: "In 2003, which engineer pitched Musk a marketable electric-vehicle powertrain using lithium-ion cells, leading to a $10,000 investment that became technically foundational to Tesla?", o: ["Martin Eberhard", "J.B. Straubel", "Marc Tarpenning"], a: 1, e: "J.B. Straubel pitched the idea after Musk declined to fund an unrelated electric-airplane project; Straubel later became Tesla's co-founder and chief technical officer." },
+                 { q: "What was the actual four-step sequence in Musk's 2006 'Secret Tesla Motors Master Plan'?", o: ["Affordable car, sports car, SUV, truck.", "Sports car, affordable car, even more affordable car, zero-emission power generation.", "Battery factory, sports car, sedan, robotaxi."], a: 1, e: "Musk's own words: '(1) Build sports car; (2) Use that money to build an affordable car; (3) Use that money to build an even more affordable car; (4) While doing above, also provide zero emission electric power generation options.'" },
+                 { q: "Why did Musk fire founding CEO Martin Eberhard and take over Tesla himself in late 2007?", o: ["Eberhard was caught in a financial fraud.", "Roadster production had consumed $100 million with zero cars shipped, and per-unit costs had more than doubled.", "Shareholders voted him out at the annual meeting."], a: 1, e: "By 2007 Tesla had spent $100 million without beginning manufacturing, and costs per car were more than double Eberhard's original estimate — a crisis, not a planned leadership transition." },
+                 { q: "Tesla's 2012 decision to sell the Model S through commission-free mall stores, rather than franchise dealers, is best explained by Porter's concept of:", o: ["Operational effectiveness.", "Trade-offs and a unique, difficult-to-imitate position.", "The threat of new entrants."], a: 1, e: "Porter: 'The essence of strategy is choosing what not to do.' Tesla gave up dealer reach and dealer capital in exchange for full control of pricing and the customer experience — a costly, deliberate trade-off, not an easily copied tweak." },
+                 { q: "Why did many investors and governance analysts criticize Tesla's 2016 acquisition of SolarCity?", o: ["SolarCity's technology infringed Tesla's patents.", "Musk, the largest shareholder of both companies with family ties to SolarCity's leadership, was seen as directing Tesla to bail out a struggling, poorly-fitting business.", "SolarCity refused to be acquired at any price."], a: 1, e: "One short-seller called it 'a shameful example of corporate governance at its worst'; analysts faulted Tesla for overpaying for a business outside its core operations with limited activity 'fit' to its EV strategy." },
+                 { q: "Tesla's January 2018 pay package tied Musk's entire compensation (no salary otherwise) to 12 tranches, each requiring roughly $50 billion of market-cap growth. Harvard's George Serafeim argued the plan was really about:", o: ["Avoiding U.S. income tax.", "Signaling a credible, costly commitment to Tesla's stated purpose as a clean-energy company, aligning Musk's total incentives with a specific long-run bet.", "Reducing the size of the board of directors."], a: 1, e: "Serafeim wrote that the plan was 'about signaling a credible commitment to Tesla's purpose... investors [need] to buy into his radical vision for the company.' Porter would call it a genuine, costly trade-off rather than cheap talk." },
+                 { q: "What triggered the SEC's 2018 securities fraud charge against Musk?", o: ["Tesla missed a quarterly earnings target.", "Musk tweeted 'Funding secured' about taking Tesla private at $420/share, which was not, in fact, true.", "Tesla's factory violated environmental regulations."], a: 1, e: "Musk's August 2018 tweet spiked shares 11% and cost short-sellers $1.3 billion; the SEC's complaint said Musk had not, in truth, discussed deal terms with any financing partner. Musk and Tesla each paid $20 million in penalties." },
+                 { q: "Mintzberg's Honda motorcycle example — where U.S. salespeople discovered unexpected demand for small Honda Super Cub bikes despite headquarters planning to sell large ones — illustrates:", o: ["A failed deliberate strategy with no realized strategy at all.", "An emergent strategy: the realized pattern was not the one originally intended.", "Poor operational effectiveness at Honda's U.S. subsidiary."], a: 1, e: "Mintzberg: strategies 'can form as well as be formulated.' Honda's intended strategy (sell big bikes) failed; the pattern that actually emerged and succeeded (small bikes) was discovered in the field and only later legitimized as 'the plan.'" },
+                 { q: "Tesla's market cap moved from $52B (Jan 2018) to $700B (Jan 2021) to over $1 trillion (Oct 2021) to a $1.24 trillion peak (2022) to $389B (Dec 2022). What does this best illustrate about applying Porter's framework?", o: ["Porter's Five Forces predicts exactly this kind of swing.", "Porter's tools analyze durable competitive position and activity fit — they explain relatively little about short-run stock-market valuation swings driven by macro rates and investor sentiment.", "The swings prove Tesla had no strategy at all during this period."], a: 1, e: "Porter's framework is best at explaining a firm's static competitive position and system of activities — not short-term valuation, which here moved far more on Fed rate hikes, Twitter distraction, and shifting autonomy narratives than on any change in Tesla's actual activity system." },
+                 { q: "By 2023, what share of China's domestic auto market had BYD captured, and roughly how many EVs did it sell that year compared to Tesla?", o: ["10% of the market; BYD sold far fewer EVs than Tesla.", "35% of the market; BYD sold about 1.58 million EVs (3 million total NEVs) versus Tesla's 1.8 million.", "BYD does not compete with Tesla in the same market."], a: 1, e: "Per the INSEAD case, BYD held 35% of China's domestic auto market by 2023 and out-produced Tesla outright in Q4 2023, backed by a vertically integrated cost structure Tesla does not fully match." },
+                 { q: "Musk's 2024 statement that 'Tesla should be thought of as an AI or robotics company' is best described, in Mintzberg's terms, as:", o: ["A purely emergent pattern nobody at Tesla intended.", "A 'quantum' strategic reorientation — a sharp, deliberate redefinition of direction after a long period of stability had fallen out of sync with a changed environment.", "Evidence that Tesla never had a strategy in the first place."], a: 1, e: "Mintzberg cites Miller and Friesen's 'quantum theory of strategic change': long periods of stability punctuated by brief, deliberate revolutions once the old strategic orientation is out of sync with the environment (here, BYD's rise) — exactly the shape of Tesla's 2024 reframing." },
+                 { q: "According to the HBP Core Reading 'Introduction to Strategy,' strategy is a firm's answer to which two fundamental questions?", o: ["What is our mission, and what is our vision?", "Where should we compete, and how should we compete?", "Who are our competitors, and what do they charge?"], a: 1, e: "The Core Reading defines strategy as 'the integrated set of choices that positions the business in its industry... a firm's answer to two fundamental questions: Where should we compete, and how should we compete?'" },
+                 { q: "In November 2025, Tesla shareholders approved a new Musk pay package reportedly worth up to how much, and by what margin?", o: ["$10 billion; approved unanimously.", "$1 trillion; approved with more than 75% shareholder approval.", "$100 million; rejected by shareholders."], a: 1, e: "Building on the 2018 precedent ($55.8B), Tesla's 2025 package reportedly could be worth up to $1 trillion if extraordinary market-cap and operational milestones are hit — shareholders approved it with over 75% support, an even larger deliberate bet on one individual's continued leadership." }
             ];
             const quizContainer = document.getElementById('quiz-container');
             let score = 0;
             const scoreElement = document.getElementById('score');
             const totalQuestions = quizData.length;
 
-            if (quizContainer) { /* ... Quiz population logic as before ... */
+            if (quizContainer) {
                  quizData.forEach((item, index) => {
                     const questionDiv = document.createElement('div');
                     questionDiv.className = 'border-t border-slate-300 pt-5 first:border-t-0';
@@ -862,7 +1030,7 @@
              const topBar = document.getElementById('top-bar');
              let totalStickyHeight = 0;
 
-             function calculateStickyHeight() { /* ... Calculate height logic as before ... */
+             function calculateStickyHeight() {
                  const topBarHeight = topBar && window.getComputedStyle(topBar).display !== 'none' ? topBar.offsetHeight : 0;
                  const headerHeight = header ? header.offsetHeight : 0;
                  totalStickyHeight = topBarHeight + headerHeight;
@@ -878,21 +1046,18 @@
              let scrollTimeout;
              window.addEventListener('scroll', () => {
                  if (!scrollTimeout) {
-                    scrollTimeout = setTimeout(() => { /* ... Scroll listener logic as before ... */
-                        calculateStickyHeight(); // Recalculate height
+                    scrollTimeout = setTimeout(() => {
+                        calculateStickyHeight();
 
                         let currentScroll = window.scrollY;
                         let activeSectionId = '';
-                        let minDistanceToTop = Infinity; // Use this to find the section closest to the top edge
+                        let minDistanceToTop = Infinity;
 
                         sectionElements.forEach(section => {
                             const sectionTop = section.offsetTop;
-                            const distance = sectionTop - (currentScroll + totalStickyHeight); // Distance from bottom of sticky headers
+                            const distance = sectionTop - (currentScroll + totalStickyHeight);
 
-                             // If the section top is above or very near the bottom of sticky headers
-                            if (distance <= 40) { // Using a 40px buffer
-                                 // Check if it's closer than the current best candidate below the headers
-                                 // Or if it's the section currently occupying the space just below the header
+                            if (distance <= 40) {
                                 if (Math.abs(distance) < minDistanceToTop || section.id === activeSectionId) {
                                     minDistanceToTop = Math.abs(distance);
                                     activeSectionId = section.id;
@@ -900,39 +1065,22 @@
                             }
                         });
 
-
-                        // Edge cases
                         if (currentScroll < 50 && sectionElements.length > 0) activeSectionId = sectionElements[0].id;
                         else if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 50 && sectionElements.length > 0) activeSectionId = sectionElements[sectionElements.length - 1].id;
                         else if (!activeSectionId && sectionElements.length > 0) {
-                            // Find last section whose top is above current view + offset
                               for (let i = sectionElements.length - 1; i >= 0; i--) {
                                 if (sectionElements[i].offsetTop <= currentScroll + totalStickyHeight + 40) {
                                     activeSectionId = sectionElements[i].id;
                                     break;
                                 }
                              }
-                             if (!activeSectionId) activeSectionId = sectionElements[0].id; // Ultimate fallback
+                             if (!activeSectionId) activeSectionId = sectionElements[0].id;
                         }
 
-                        // Apply grouping logic for display/highlighting
                         let displayId = activeSectionId;
-                         const activeElement = document.getElementById(activeSectionId);
-                          if (activeElement) {
-                             const casesSection = activeElement.closest('section#cases');
-                             const activitiesSection = activeElement.closest('section#activities');
-                             const positioningSection = activeElement.closest('section#positioning-examples');
-                              const fitSection = activeElement.closest('section#fit-examples');
+                        // (No nested-section grouping needed: each top-level section already matches a nav id.)
 
-                             if (casesSection) displayId = 'cases';
-                             else if (activitiesSection) displayId = 'activities';
-                             else if (positioningSection) displayId = 'positioning-examples';
-                             else if (fitSection) displayId = 'fit-examples';
-                         }
-
-
-                        // Update desktop nav links
-                        navLinks.forEach(link => { /* ... Update desktop links ... */
+                        navLinks.forEach(link => {
                             link.classList.remove('active-nav');
                             const linkHrefId = link.getAttribute('href').substring(1);
                             if (linkHrefId === displayId) {
@@ -940,8 +1088,7 @@
                             }
                          });
 
-                        // Update mobile dropdown
-                        const targetOptionValue = `#${displayId}`; /* ... Update mobile dropdown ... */
+                        const targetOptionValue = `#${displayId}`;
                          if (mobileNav.value !== targetOptionValue) {
                             const optionExists = Array.from(mobileNav.options).some(option => option.value === targetOptionValue);
                             if (optionExists) {
@@ -950,12 +1097,12 @@
                          }
 
                         scrollTimeout = null;
-                    }, 50); // Throttle delay
+                    }, 50);
                  }
              }, { passive: true });
 
             // Mobile nav scroll action
-            mobileNav.addEventListener('change', () => { /* ... Mobile scroll logic as before ... */
+            mobileNav.addEventListener('change', () => {
                 const targetId = mobileNav.value;
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
@@ -968,7 +1115,7 @@
             });
 
             // Desktop nav scroll action
-            navLinks.forEach(link => { /* ... Desktop scroll logic as before ... */
+            navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     const targetId = this.getAttribute('href');
                     if (targetId.startsWith('#')) {

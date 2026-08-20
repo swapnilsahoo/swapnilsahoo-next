@@ -288,14 +288,12 @@ body {
 }
 
 .script-cjk {
-  font-family: var(--font-cjk-japanese), var(--font-cjk-traditional), "Yu Gothic",
-    "Microsoft JhengHei", sans-serif;
+  font-family: "Hiragino Sans", "Yu Gothic", Meiryo, "Noto Sans CJK JP", sans-serif;
   letter-spacing: 0;
 }
 
 :lang(zh-Hant).script-cjk {
-  font-family: var(--font-cjk-traditional), var(--font-cjk-japanese), "Microsoft JhengHei",
-    sans-serif;
+  font-family: "PingFang TC", "Noto Sans CJK TC", "Microsoft JhengHei", "Heiti TC", sans-serif;
 }
 
 .eyebrow {

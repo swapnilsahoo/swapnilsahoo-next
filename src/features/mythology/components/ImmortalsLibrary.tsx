@@ -43,10 +43,7 @@ function ProfileEntry({ profile, visible }: { profile: ImmortalityProfile; visib
 
   return (
     <li hidden={!visible} data-immortal-profile={profile.slug}>
-      <details
-        id={profile.slug}
-        className="group glass-card scroll-mt-28 overflow-hidden"
-      >
+      <details id={profile.slug} className="group glass-card scroll-mt-28 overflow-hidden">
         <summary className="focus-visible:ring-brand-500 flex min-h-24 cursor-pointer list-none items-start justify-between gap-4 px-5 py-5 focus-visible:ring-2 focus-visible:outline-none sm:px-7 sm:py-6">
           <span className="flex min-w-0 gap-4 sm:gap-5">
             <span
@@ -77,7 +74,7 @@ function ProfileEntry({ profile, visible }: { profile: ImmortalityProfile; visib
               ) : profile.originalName ? (
                 <span
                   lang={profile.originalNameLang}
-                  className={`mt-1 block text-base leading-relaxed text-balance text-ink-600 dark:text-ink-300 ${profile.originalNameClass ?? ""}`}
+                  className={`text-ink-600 dark:text-ink-300 mt-1 block text-base leading-relaxed text-balance ${profile.originalNameClass ?? ""}`}
                 >
                   {profile.originalName}
                 </span>
@@ -115,14 +112,17 @@ function ProfileEntry({ profile, visible }: { profile: ImmortalityProfile; visib
             ].map(([label, value]) => (
               <div key={label}>
                 <dt className="eyebrow">{label}</dt>
-                <dd className="mt-2 text-sm font-semibold leading-relaxed">{value}</dd>
+                <dd className="mt-2 text-sm leading-relaxed font-semibold">{value}</dd>
               </div>
             ))}
           </dl>
 
           <div className="mt-8 grid gap-4 lg:grid-cols-3">
-            <section aria-labelledby={`${profile.slug}-record`} className="bg-ink-50 dark:bg-ink-900/45 rounded-2xl p-5">
-              <p className="text-emerald-700 dark:text-emerald-300 font-mono text-xs font-semibold tracking-wide uppercase">
+            <section
+              aria-labelledby={`${profile.slug}-record`}
+              className="bg-ink-50 dark:bg-ink-900/45 rounded-2xl p-5"
+            >
+              <p className="font-mono text-xs font-semibold tracking-wide text-emerald-700 uppercase dark:text-emerald-300">
                 Sources establish
               </p>
               <h4 id={`${profile.slug}-record`} className="mt-2 font-serif text-xl font-semibold">
@@ -133,11 +133,17 @@ function ProfileEntry({ profile, visible }: { profile: ImmortalityProfile; visib
               </p>
             </section>
 
-            <section aria-labelledby={`${profile.slug}-tradition`} className="bg-ink-50 dark:bg-ink-900/45 rounded-2xl p-5">
-              <p className="text-amber-700 dark:text-amber-300 font-mono text-xs font-semibold tracking-wide uppercase">
+            <section
+              aria-labelledby={`${profile.slug}-tradition`}
+              className="bg-ink-50 dark:bg-ink-900/45 rounded-2xl p-5"
+            >
+              <p className="font-mono text-xs font-semibold tracking-wide text-amber-700 uppercase dark:text-amber-300">
                 Tradition records
               </p>
-              <h4 id={`${profile.slug}-tradition`} className="mt-2 font-serif text-xl font-semibold">
+              <h4
+                id={`${profile.slug}-tradition`}
+                className="mt-2 font-serif text-xl font-semibold"
+              >
                 Sacred account
               </h4>
               <p className="text-ink-600 dark:text-ink-300 mt-3 text-sm leading-relaxed">
@@ -145,7 +151,10 @@ function ProfileEntry({ profile, visible }: { profile: ImmortalityProfile; visib
               </p>
             </section>
 
-            <section aria-labelledby={`${profile.slug}-boundary`} className="bg-ink-900 rounded-2xl p-5 text-white dark:bg-black/35">
+            <section
+              aria-labelledby={`${profile.slug}-boundary`}
+              className="bg-ink-900 rounded-2xl p-5 text-white dark:bg-black/35"
+            >
               <p className="font-mono text-xs font-semibold tracking-wide text-rose-200 uppercase">
                 Independent evidence does not establish
               </p>
@@ -253,7 +262,7 @@ export function ImmortalsLibrary() {
 
         return matchesFamily && (!normalizedQuery || searchable.includes(normalizedQuery));
       }),
-    [family, normalizedQuery],
+    [family, normalizedQuery]
   );
 
   const visibleSlugs = new Set(visibleProfiles.map((profile) => profile.slug));
@@ -285,7 +294,9 @@ export function ImmortalsLibrary() {
   return (
     <div data-immortals-library>
       <div className="glass-card p-5 sm:p-6">
-        <div className="grid gap-5 xl:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] xl:items-end">
+        <p className="eyebrow">Atlas controls</p>
+        <h3 className="mt-2 font-serif text-2xl font-semibold">Find a profile to examine.</h3>
+        <div className="mt-5 grid gap-5 xl:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] xl:items-end">
           <div className="min-w-0">
             <label htmlFor="immortals-search" className="block text-sm font-semibold">
               Search names, places, traditions, or terms
@@ -296,7 +307,7 @@ export function ImmortalsLibrary() {
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Try Vallalar, Tibet, kāyakalpa…"
-              className="border-ink-300 bg-white text-ink-900 placeholder:text-ink-400 focus:border-brand-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white mt-2 min-h-12 w-full rounded-xl border px-4 py-3 outline-none"
+              className="border-ink-300 text-ink-900 placeholder:text-ink-400 focus:border-brand-500 dark:border-ink-700 dark:bg-ink-900 mt-2 min-h-12 w-full rounded-xl border bg-white px-4 py-3 outline-none dark:text-white"
             />
           </div>
 
@@ -317,7 +328,7 @@ export function ImmortalsLibrary() {
                   onClick={() => setFamily(option.id)}
                   className={`min-h-11 rounded-full border px-4 py-2 text-sm font-semibold transition ${
                     family === option.id
-                      ? "border-ink-900 bg-ink-900 text-white dark:border-brand-500 dark:bg-brand-600"
+                      ? "border-ink-900 bg-ink-900 dark:border-brand-500 dark:bg-brand-600 text-white"
                       : "border-ink-300 hover:border-brand-500 dark:border-ink-700 dark:hover:border-brand-400"
                   }`}
                 >
@@ -329,7 +340,8 @@ export function ImmortalsLibrary() {
         </div>
 
         <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm" role="status" aria-live="polite">
-          Showing <strong>{visibleProfiles.length}</strong> of {immortalityProfiles.length} profiles.
+          Showing <strong>{visibleProfiles.length}</strong> of {immortalityProfiles.length}{" "}
+          profiles.
         </p>
       </div>
 
@@ -351,7 +363,11 @@ export function ImmortalsLibrary() {
 
       <ol className="mt-5 space-y-3">
         {immortalityProfiles.map((profile) => (
-          <ProfileEntry key={profile.slug} profile={profile} visible={visibleSlugs.has(profile.slug)} />
+          <ProfileEntry
+            key={profile.slug}
+            profile={profile}
+            visible={visibleSlugs.has(profile.slug)}
+          />
         ))}
       </ol>
     </div>

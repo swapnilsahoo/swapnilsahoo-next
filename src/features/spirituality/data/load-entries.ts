@@ -1,3 +1,5 @@
+import "server-only";
+
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
@@ -195,4 +197,111 @@ export async function loadScriptureEntries(slug: ScriptureSlug): Promise<ReaderE
     case "chandogya-upanishad":
       return validateEntries(slug, chandogyaUpanishadEntries, 10);
   }
+}
+
+const ALL_SECTIONS = "All sections";
+const DEFAULT_PAGE_SIZE = 12;
+const SAHASRANAMA_PAGE_SIZE = 50;
+
+function hasDistinctStudyRows(entry: ReaderEntry) {
+  if (entry.words.length !== 1) return entry.words.length > 0;
+
+  const [word] = entry.words;
+  return (
+    (word.original ?? "") !== entry.original ||
+    word.transliteration.trim() !== entry.transliteration.trim() ||
+    word.meaning.trim() !== entry.meaning.trim()
+  );
+}
+
+export type ScriptureReaderBootstrap = {
+  initialEntries: ReaderEntry[];
+  initialResultTotal: number;
+  initialSection: string;
+  pageSize: number;
+  sections: string[];
+  supportsStudyLayer: boolean;
+  totalEntries: number;
+};
+
+export function createScriptureReaderBootstrap(
+  slug: ScriptureSlug,
+  entries: ReaderEntry[]
+): ScriptureReaderBootstrap {
+  const sections = Array.from(new Set(entries.map((entry) => entry.section)));
+  const isSahasranama = slug === "vishnu-sahasranama" || slug === "lalita-sahasranama";
+  const initialSection = isSahasranama ? (sections[0] ?? ALL_SECTIONS) : ALL_SECTIONS;
+  const pageSize = isSahasranama ? SAHASRANAMA_PAGE_SIZE : DEFAULT_PAGE_SIZE;
+  const initialPool =
+    initialSection === ALL_SECTIONS
+      ? entries
+      : entries.filter((entry) => entry.section === initialSection);
+
+  return {
+    initialEntries: initialPool.slice(0, pageSize),
+    initialResultTotal: initialPool.length,
+    initialSection,
+    pageSize,
+    sections,
+    supportsStudyLayer: entries.some(hasDistinctStudyRows),
+    totalEntries: entries.length,
+  };
+}
+
+export type ScriptureEntryQuery = {
+  entryId?: string;
+  limit?: number;
+  query?: string;
+  section?: string;
+  sequence?: number;
+};
+
+export type ScriptureEntryQueryResult = {
+  entries: ReaderEntry[];
+  focusId?: string;
+  total: number;
+};
+
+export async function queryScriptureEntries(
+  slug: ScriptureSlug,
+  {
+    entryId,
+    limit = DEFAULT_PAGE_SIZE,
+    query = "",
+    section = ALL_SECTIONS,
+    sequence,
+  }: ScriptureEntryQuery
+): Promise<ScriptureEntryQueryResult> {
+  const entries = await loadScriptureEntries(slug);
+  const requestedEntry = entryId
+    ? entries.find((entry) => entry.id === entryId)
+    : Number.isInteger(sequence)
+      ? entries.find((entry) => entry.sequence === sequence)
+      : undefined;
+
+  if (entryId || Number.isInteger(sequence)) {
+    return requestedEntry
+      ? { entries: [requestedEntry], focusId: requestedEntry.id, total: 1 }
+      : { entries: [], total: 0 };
+  }
+
+  const normalizedQuery = query.trim().toLocaleLowerCase().slice(0, 120);
+  const safeLimit = Math.min(Math.max(Math.trunc(limit), 1), 100);
+  const filteredEntries = entries.filter((entry) => {
+    if (section !== ALL_SECTIONS && entry.section !== section) return false;
+    if (!normalizedQuery) return true;
+
+    return [
+      entry.original,
+      entry.transliteration,
+      entry.meaning,
+      entry.label,
+      ...entry.words.flatMap((word) => [word.original ?? "", word.transliteration, word.meaning]),
+    ].some((value) => value.toLocaleLowerCase().includes(normalizedQuery));
+  });
+
+  return {
+    entries: filteredEntries.slice(0, safeLimit),
+    total: filteredEntries.length,
+  };
 }

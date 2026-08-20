@@ -105,7 +105,7 @@
 
     <div id="image-modal" class="fixed inset-0 z-[100] bg-black/90 opacity-0 flex items-center justify-center p-4" onclick="closeImageModal()">
         <button class="absolute top-4 right-4 text-white text-4xl font-bold hover:text-gray-300">&times;</button>
-        <img id="modal-image" src="" alt="Zoomed View" class="max-h-[90vh] max-w-full rounded-lg shadow-2xl object-contain cursor-zoom-out">
+        <img id="modal-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-empty-src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="" class="max-h-[90vh] max-w-full rounded-lg shadow-2xl object-contain cursor-zoom-out">
         <p id="modal-caption" class="absolute bottom-8 left-0 right-0 text-center text-white text-sm bg-black/50 py-2 px-4"></p>
     </div>
 
@@ -1704,7 +1704,8 @@
             const modalImg = document.getElementById('modal-image');
             const modalCaption = document.getElementById('modal-caption');
             
-            modalImg.src = img.src;
+            modalImg.src = img.currentSrc || img.src;
+            modalImg.alt = img.alt;
             modalCaption.innerText = img.alt;
             modal.classList.add('open');
             document.body.style.overflow = 'hidden';
@@ -1712,7 +1713,10 @@
 
         function closeImageModal() {
             const modal = document.getElementById('image-modal');
+            const modalImg = document.getElementById('modal-image');
             modal.classList.remove('open');
+            modalImg.src = modalImg.dataset.emptySrc;
+            modalImg.alt = '';
             document.body.style.overflow = '';
         }
 

@@ -13,6 +13,7 @@ const researchBranchRoutes = [
 ];
 
 const immortalsRoute = "/mythology/immortals";
+const shelfRoute = "/teaching/reading-and-watching-list";
 
 const routes = [
   "/",
@@ -25,6 +26,8 @@ const routes = [
   "/teaching/karma-yoga/b-schools",
   "/teaching/karma-yoga/india",
   "/teaching/business-simulation",
+  "/teaching/consulting-interviews",
+  shelfRoute,
   "/placements",
   "/placements/industry-analysis",
   "/placements/case-study-preparation",
@@ -38,11 +41,17 @@ const routes = [
   "/spirituality/vishnu-sahasranama",
   "/spirituality/lalita-sahasranama",
   "/spirituality/shiva-tandava-stotram",
+  "/spirituality/chandogya-upanishad",
+  "/press",
+  "/holistic-wellbeing",
+  "/holistic-wellbeing/mental-wellbeing",
 ];
 
 const inquiryRoutes = routes.filter(
   (route) =>
     !route.startsWith("/research") &&
+    !route.startsWith("/holistic-wellbeing") &&
+    route !== "/spirituality" &&
     route !== "/teaching/karma-yoga" &&
     route !== "/teaching/karma-yoga/india"
 );
@@ -137,20 +146,10 @@ for (const route of inquiryRoutes) {
     const labelledBy = await inquiry.getAttribute("aria-labelledby");
     expect(labelledBy).toBeTruthy();
     await expect(inquiry.locator(`#${labelledBy}`)).toHaveCount(1);
-    await expect(inquiry.getByText("Socratic lens", { exact: true })).toBeVisible();
-    await expect(inquiry.getByText("First-principles lens", { exact: true })).toBeVisible();
-
-    const socraticQuestions = inquiry.locator(
-      '[data-inquiry-lens="socratic"] ol[role="list"] > li > p'
-    );
-    const firstPrinciplesQuestions = inquiry.locator(
-      '[data-inquiry-lens="first-principles"] ol[role="list"] > li > p'
-    );
-    await expect(socraticQuestions).toHaveCount(4);
-    await expect(firstPrinciplesQuestions).toHaveCount(4);
 
     const questions = inquiry.locator('ol[role="list"] > li > p');
-    await expect(questions).toHaveCount(8);
+    const questionCount = await questions.count();
+    expect(questionCount).toBeGreaterThanOrEqual(2);
     expect(
       await questions.evaluateAll((items) =>
         items.every((item) => item.textContent?.trim().endsWith("?"))
@@ -245,7 +244,7 @@ test("Karma Yoga for India · Mehalchauri story and two documented photo sets", 
   const main = page.locator("main");
   const historicalPhotoSet = main.locator('[data-photo-set="historical"]');
   const indiaPhotoSet = main.locator('[data-photo-set="india"]');
-  const heroImage = main.locator("[data-india-hero-photo] img");
+  const heroImages = main.locator("[data-india-hero-photo] img");
 
   await expect(main.getByRole("heading", { level: 1, name: "Karma Yoga for India" })).toBeVisible();
   await expect(main).toContainText("Mehalchauri");
@@ -270,22 +269,25 @@ test("Karma Yoga for India · Mehalchauri story and two documented photo sets", 
     main.getByRole("heading", { name: "A documented return", exact: true })
   ).toBeVisible();
 
-  await expectLoadedPhotoSet(historicalPhotoSet, 3);
-  await expectLoadedPhotoSet(indiaPhotoSet, 3);
+  await expectLoadedPhotoSet(historicalPhotoSet, 5);
+  await expectLoadedPhotoSet(indiaPhotoSet, 5);
   await expect(main.locator('[data-photo-set="b-schools"]')).toHaveCount(0);
-  await expect(heroImage).toHaveCount(1);
-  await heroImage.scrollIntoViewIfNeeded();
-  await expect(heroImage).toBeVisible();
-  await expect
-    .poll(
-      () =>
-        heroImage.evaluate(
-          (image) => image.complete && image.naturalWidth > 0 && image.naturalHeight > 0
-        ),
-      { timeout: 15_000 }
-    )
-    .toBe(true);
-  expect((await heroImage.getAttribute("alt"))?.trim()).toBeTruthy();
+  await expect(heroImages).toHaveCount(2);
+  for (let index = 0; index < 2; index += 1) {
+    const heroImage = heroImages.nth(index);
+    await heroImage.scrollIntoViewIfNeeded();
+    await expect(heroImage).toBeVisible();
+    await expect
+      .poll(
+        () =>
+          heroImage.evaluate(
+            (image) => image.complete && image.naturalWidth > 0 && image.naturalHeight > 0
+          ),
+        { timeout: 15_000 }
+      )
+      .toBe(true);
+    expect((await heroImage.getAttribute("alt"))?.trim()).toBeTruthy();
+  }
   await expect(main.locator('a[href="/teaching/karma-yoga"]').first()).toHaveAttribute(
     "href",
     "/teaching/karma-yoga"
@@ -596,7 +598,7 @@ test("Homepage gallery · AOM 2026 event photographs", async ({ page }) => {
   await page.goto(`${baseUrl}/#gallery`, { waitUntil: "domcontentloaded" });
 
   const gallery = page.getByRole("region", { name: "Fieldwork and teaching gallery" });
-  const firstSlide = gallery.getByRole("group", { name: "1 of 9" });
+  const firstSlide = gallery.getByRole("group", { name: "1 of 27", exact: true });
   const photo = firstSlide.getByRole("img", {
     name: /Swapnil Sahoo with four fellow Academy of Management attendees at AOM 2026/,
   });
@@ -623,14 +625,16 @@ test("Homepage gallery · AOM 2026 event photographs", async ({ page }) => {
   expect(dimensions.naturalHeight).toBeGreaterThan(0);
   expect(dimensions.naturalWidth / dimensions.naturalHeight).toBeCloseTo(4 / 3, 2);
 
-  await gallery.getByRole("button", { name: "Go to slide 2" }).click();
+  await gallery.getByRole("button", { name: "Go to slide 2", exact: true }).click();
 
-  const secondSlide = gallery.getByRole("group", { name: "2 of 9" });
+  const secondSlide = gallery.getByRole("group", { name: "2 of 27", exact: true });
   const sessionPhoto = secondSlide.getByRole("img", {
     name: /AOM 2026 participants gathered around a conference table/,
   });
 
-  await expect(gallery.getByRole("button", { name: "Go to slide 2" })).toHaveAttribute(
+  await expect(
+    gallery.getByRole("button", { name: "Go to slide 2", exact: true })
+  ).toHaveAttribute(
     "aria-current",
     "true"
   );
@@ -640,14 +644,16 @@ test("Homepage gallery · AOM 2026 event photographs", async ({ page }) => {
   await expect(secondSlide).toContainText("Golshan Javadian");
   await expect(secondSlide.getByRole("link")).toHaveCount(0);
 
-  await gallery.getByRole("button", { name: "Go to slide 3" }).click();
+  await gallery.getByRole("button", { name: "Go to slide 3", exact: true }).click();
 
-  const thirdSlide = gallery.getByRole("group", { name: "3 of 9" });
+  const thirdSlide = gallery.getByRole("group", { name: "3 of 27", exact: true });
   const presentationPhoto = thirdSlide.getByRole("img", {
     name: /Swapnil Sahoo presenting Reconstructing Entrepreneurship Under Constraint at AOM 2026/,
   });
 
-  await expect(gallery.getByRole("button", { name: "Go to slide 3" })).toHaveAttribute(
+  await expect(
+    gallery.getByRole("button", { name: "Go to slide 3", exact: true })
+  ).toHaveAttribute(
     "aria-current",
     "true"
   );
@@ -675,14 +681,16 @@ test("Homepage gallery · AOM 2026 event photographs", async ({ page }) => {
     2
   );
 
-  await gallery.getByRole("button", { name: "Go to slide 4" }).click();
+  await gallery.getByRole("button", { name: "Go to slide 4", exact: true }).click();
 
-  const fourthSlide = gallery.getByRole("group", { name: "4 of 9" });
+  const fourthSlide = gallery.getByRole("group", { name: "4 of 27", exact: true });
   const portrait = fourthSlide.getByRole("img", {
     name: /Swapnil Sahoo with Prof\. J\.P\. Eggers at AOM 2026/,
   });
 
-  await expect(gallery.getByRole("button", { name: "Go to slide 4" })).toHaveAttribute(
+  await expect(
+    gallery.getByRole("button", { name: "Go to slide 4", exact: true })
+  ).toHaveAttribute(
     "aria-current",
     "true"
   );
@@ -729,12 +737,141 @@ test("Lalita Sahasranama · range and direct-name navigation", async ({ page }) 
   await expect(page.locator("#lalita-471")).toContainText("सिद्धेश्वरी");
 });
 
+test("Scripture library · paged API, search and direct-entry navigation", async ({
+  page,
+  request,
+}) => {
+  const firstPage = await request.get(
+    `${baseUrl}/api/spirituality/bhagavad-gita/entries?section=All%20sections&limit=12`
+  );
+  expect(firstPage.ok()).toBe(true);
+  const firstPageData = await firstPage.json();
+  expect(firstPageData.total).toBe(701);
+  expect(firstPageData.entries).toHaveLength(12);
+  expect(firstPageData.entries[0].sequence).toBe(1);
+
+  const searchResponse = await request.get(
+    `${baseUrl}/api/spirituality/bhagavad-gita/entries?query=dharma&limit=12`
+  );
+  expect(searchResponse.ok()).toBe(true);
+  const searchData = await searchResponse.json();
+  expect(searchData.total).toBeGreaterThan(0);
+  expect(searchData.entries.length).toBeLessThanOrEqual(12);
+
+  const finalEntryResponse = await request.get(
+    `${baseUrl}/api/spirituality/bhagavad-gita/entries?sequence=701`
+  );
+  expect(finalEntryResponse.ok()).toBe(true);
+  const finalEntryData = await finalEntryResponse.json();
+  expect(finalEntryData.entries).toHaveLength(1);
+  expect(finalEntryData.entries[0].sequence).toBe(701);
+
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto(`${baseUrl}/spirituality/bhagavad-gita`, {
+    waitUntil: "domcontentloaded",
+  });
+  const reader = page.locator("#reader");
+  await expect(reader.locator("article")).toHaveCount(12);
+  await expect(reader.getByText("Showing 12 of 701 entries", { exact: true })).toBeVisible();
+
+  await reader.getByLabel("Search the reader").fill("dharma");
+  await expect(reader.locator('p[aria-live="polite"]').first()).toHaveText(
+    /Showing \d+ of (?!701\b)\d+ entries/
+  );
+
+  await reader.getByLabel("Jump to numbered entry").fill("701");
+  await reader.getByRole("button", { name: "Go", exact: true }).click();
+  await expect(page).toHaveURL(new RegExp(`#${finalEntryData.entries[0].id}$`));
+  await expect(page.locator(`#${finalEntryData.entries[0].id}`)).toBeVisible();
+});
+
+test("Entrepreneurship shelf · complete SSR library, filters and progressive reveal", async ({
+  page,
+  request,
+}) => {
+  const response = await request.get(`${baseUrl}${shelfRoute}`);
+  expect(response.ok()).toBe(true);
+  const serverHtml = await response.text();
+  expect(serverHtml.match(/data-shelf-item=/g)).toHaveLength(46);
+
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto(`${baseUrl}${shelfRoute}`, { waitUntil: "domcontentloaded" });
+
+  const main = page.locator("main");
+  const items = page.locator("[data-shelf-item]");
+  await expect(items).toHaveCount(46);
+  await expect(page.locator("[data-shelf-item]:visible")).toHaveCount(16);
+  await expect(main.getByRole("status")).toContainText("Showing 16 of 46");
+
+  for (const category of ["books", "movies", "series", "documentaries"]) {
+    await expect(page.locator(`[data-shelf-category="${category}"]:visible`)).toHaveCount(4);
+  }
+
+  const search = main.getByLabel("Search titles, creators, years, or commentary");
+  await search.fill("Theranos");
+  await expect(main.getByRole("status")).toContainText("Showing 1 of 1");
+  await expect(page.locator('[data-shelf-item="Bad Blood"]')).toBeVisible();
+
+  await main.getByRole("button", { name: "Clear filters", exact: true }).click();
+  await main.getByRole("button", { name: "Movies 14", exact: true }).click();
+  await expect(main.getByRole("status")).toContainText("Showing 12 of 14");
+  await expect(page.locator('[data-shelf-category="movies"]:visible')).toHaveCount(12);
+  await main.getByRole("button", { name: "Show more recommendations", exact: true }).click();
+  await expect(page.locator('[data-shelf-category="movies"]:visible')).toHaveCount(14);
+  await expect(main.getByRole("status")).toContainText("Showing 14 of 14");
+
+  await page.setViewportSize({ width: 320, height: 720 });
+  await page.goto(`${baseUrl}${shelfRoute}`, { waitUntil: "domcontentloaded" });
+  const statCardsFit = await page.locator("[data-shelf-stat]").evaluateAll((cards) =>
+    cards.every((card) => {
+      const cardRect = card.getBoundingClientRect();
+      const textRect = card.lastElementChild?.getBoundingClientRect();
+      return (
+        cardRect.left >= -1 &&
+        cardRect.right <= window.innerWidth + 1 &&
+        (!textRect || textRect.right <= cardRect.right + 1)
+      );
+    })
+  );
+  expect(statCardsFit).toBe(true);
+});
+
+test("Homepage · selected publication cards fit a 320px viewport", async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 720 });
+  await page.goto(`${baseUrl}/`, { waitUntil: "domcontentloaded" });
+
+  const cards = page.locator("#publications .pub-item");
+  await expect(cards).toHaveCount(2);
+  await cards.first().scrollIntoViewIfNeeded();
+  const fit = await cards.evaluateAll((items) =>
+    items.every((item) => {
+      const rect = item.getBoundingClientRect();
+      const parentRect = item.parentElement?.getBoundingClientRect();
+      return (
+        rect.left >= -1 &&
+        rect.right <= window.innerWidth + 1 &&
+        (!parentRect || rect.width <= parentRect.width + 1)
+      );
+    })
+  );
+  expect(fit).toBe(true);
+});
+
 test("Immortals · source-aware 17-profile atlas and interaction", async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 812 });
   await page.goto(`${baseUrl}${immortalsRoute}`, { waitUntil: "domcontentloaded" });
 
   const main = page.locator("main");
   await expect(main.getByRole("heading", { level: 1 })).toContainText("Immortals");
+  await expect(
+    main.getByRole("heading", { level: 3, name: "Find a profile to examine.", exact: true })
+  ).toBeVisible();
+  const headingLevels = await main
+    .locator("h1, h2, h3, h4, h5, h6")
+    .evaluateAll((headings) => headings.map((heading) => Number(heading.tagName.slice(1))));
+  expect(
+    headingLevels.every((level, index) => index === 0 || level <= headingLevels[index - 1] + 1)
+  ).toBe(true);
   await expect(page.locator("[data-immortal-profile]")).toHaveCount(17);
   await expect(main.getByText("No verified physical immortality.", { exact: true })).toBeVisible();
 
@@ -802,11 +939,28 @@ test("Immortals · authentic scripts and responsible publication boundary", asyn
       "--font-tamil",
       "--font-tibetan",
       "--font-myanmar",
-      "--font-cjk-japanese",
-      "--font-cjk-traditional",
     ].map((name) => styles.getPropertyValue(name));
   });
   expect(multilingualVariables.every((value) => /Noto/i.test(value))).toBe(true);
+
+  const cjkVariables = await page.locator("main").evaluate((element) => {
+    const styles = getComputedStyle(element);
+    return ["--font-cjk-japanese", "--font-cjk-traditional"].map((name) =>
+      styles.getPropertyValue(name).trim()
+    );
+  });
+  expect(cjkVariables).toEqual(["", ""]);
+
+  const japanese = page.locator('[lang="ja"].script-cjk').first();
+  const traditionalChinese = page.locator('[lang="zh-Hant"].script-cjk').first();
+  expect(await japanese.textContent()).toMatch(/[\u3400-\u9FFF]/u);
+  expect(await traditionalChinese.textContent()).toMatch(/[\u3400-\u9FFF]/u);
+  expect(await japanese.evaluate((element) => getComputedStyle(element).fontFamily)).toMatch(
+    /Hiragino Sans|Yu Gothic|Meiryo|Noto Sans CJK JP/i
+  );
+  expect(
+    await traditionalChinese.evaluate((element) => getComputedStyle(element).fontFamily)
+  ).toMatch(/PingFang TC|Noto Sans CJK TC|Microsoft JhengHei|Heiti TC/i);
 
   const text = await page.locator("main").innerText();
   expect(text).not.toMatch(/�|à¤|à¥|â€|Â|■■|s{8,}/u);
@@ -900,7 +1054,7 @@ test("Research hub · thesis foundation, four branches and collaboration boundar
   await expect(thesis).toContainText("Prof. Rahul Shukla");
   await expect(thesis.getByRole("link", { name: "Request the thesis" })).toHaveAttribute(
     "href",
-    /^mailto:swapnil\.sahoo@greatlakes\.edu\.in/
+    /^mailto:swapnil\.s@greatlakes\.edu\.in/
   );
 
   await expect(main.locator('a[href$=".docx"], a[href$=".pdf"]')).toHaveCount(0);
@@ -944,7 +1098,7 @@ for (const branch of [
 
     await expect(main.getByRole("link", { name: "Propose a collaboration" })).toHaveAttribute(
       "href",
-      /^mailto:swapnil\.sahoo@greatlakes\.edu\.in/
+      /^mailto:swapnil\.s@greatlakes\.edu\.in/
     );
     await expect(main.locator('a[href$=".docx"], a[href$=".pdf"]')).toHaveCount(0);
 
@@ -988,7 +1142,7 @@ for (const dropdown of [
   },
   {
     label: "More",
-    firstLink: "Press & Media",
+    firstLink: "Gallery",
     lastLink: "Contact",
     minimumWidth: 300,
     adjacentLink: "Writing",

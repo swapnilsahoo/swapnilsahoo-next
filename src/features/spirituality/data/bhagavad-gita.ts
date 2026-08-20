@@ -1407,7 +1407,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "फलेषु", transliteration: "phaleṣu", meaning: "in the fruits" },
       { original: "कदाचन", transliteration: "kadācana", meaning: "at any time" },
       { original: "मा", transliteration: "mā", meaning: "never" },
-      { original: "कर्मफलहेतुः", transliteration: "karma-phala-hetuḥ", meaning: "activity + of the results + cause" },
+      { original: "कर्मफलहेतुः", transliteration: "karma-phala-hetuḥ", meaning: "one whose motive is the fruit of action" },
       { original: "भूः", transliteration: "bhūḥ", meaning: "become" },
       { original: "मा", transliteration: "mā", meaning: "never" },
       { original: "ते", transliteration: "te", meaning: "to you" },
@@ -2499,7 +2499,7 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "अभ्युत्थानम्", transliteration: "abhyutthānam", meaning: "predominance" },
       { original: "अधर्मस्य", transliteration: "adharmasya", meaning: "of irreligion" },
       { original: "तदा", transliteration: "tadā", meaning: "at that time" },
-      { original: "आत्मानम्", transliteration: "ātmānam", meaning: "the mind" },
+      { original: "आत्मानम्", transliteration: "ātmānam", meaning: "Myself" },
       { original: "सृजामि", transliteration: "sṛjāmi", meaning: "manifest" },
       { original: "अहम्", transliteration: "aham", meaning: "I" }
   ]),
@@ -10252,8 +10252,8 @@ export const bhagavadGitaEntries: ReaderEntry[] = [
       { original: "व्रज", transliteration: "vraja", meaning: "go" },
       { original: "अहम्", transliteration: "aham", meaning: "I" },
       { original: "त्वा", transliteration: "tvā", meaning: "unto you" },
-      { original: "सर्वपापेभ्यः", transliteration: "sarva-pāpebhyaḥ", meaning: "all respectively + of sinners" },
-      { original: "मोक्ष्ययिष्यामि", transliteration: "mokṣyayiṣyāmi", meaning: "I will liberate" },
+      { original: "सर्वपापेभ्यः", transliteration: "sarva-pāpebhyaḥ", meaning: "from all sins" },
+      { original: "मोक्षयिष्यामि", transliteration: "mokṣayiṣyāmi", meaning: "I will liberate" },
       { original: "मा", transliteration: "mā", meaning: "never" },
       { original: "शुचः", transliteration: "śucaḥ", meaning: "worry" }
   ], "This source reads tvā (you) rather than the tvāṃ found in some other printed editions."),

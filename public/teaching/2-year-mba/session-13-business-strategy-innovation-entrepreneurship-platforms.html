@@ -4,19 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Innovation Strategy Masterclass</title>
-    
+    <title>Session 09: Managing Technology & Innovation | Dr. Swapnil Sahoo</title>
+
     <!-- Libraries -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Fonts -->
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
+
     <style>
         :root {
             --primary-dark: #0f172a;
@@ -29,14 +29,14 @@
             --growth-green: #10b981;
             --chasm-amber: #f59e0b;
         }
-        
+
         body {
             font-family: 'Satoshi', sans-serif;
             background-color: #fafafa;
             color: #334155;
             -webkit-font-smoothing: antialiased;
         }
-        
+
         h1, h2, h3, h4, .serif { font-family: 'Playfair Display', serif; }
         .mono { font-family: 'JetBrains Mono', monospace; }
 
@@ -48,7 +48,7 @@
 
         /* Navigation */
         #main-header { position: sticky; top: 0; z-index: 40; transition: all 0.3s ease; }
-        .nav-link { 
+        .nav-link {
             position: relative; font-weight: 500; color: #64748b; transition: color 0.2s;
         }
         .nav-link:hover, .nav-link.active { color: var(--primary-dark); }
@@ -72,7 +72,7 @@
             border: 1px solid #f1f5f9;
         }
         .content-card:hover { transform: translateY(-5px); }
-        
+
         /* Simulation specific */
         .hidden-section { display: none; }
         .option-card { cursor: pointer; transition: all 0.2s; border: 1px solid #e2e8f0; }
@@ -80,14 +80,14 @@
         .option-card.selected { border-color: var(--accent-blue); background-color: #dbeafe; box-shadow: 0 0 0 2px var(--accent-blue); }
 
         .chart-container { position: relative; width: 100%; max-width: 600px; margin: 0 auto; height: 350px; max-height: 400px; }
-        
+
         /* Badges */
         .badge { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; padding: 0.15rem 0.5rem; border-radius: 99px; letter-spacing: 0.05em; }
         .badge-in { background-color: #fff7ed; color: #c2410c; border: 1px solid #ffedd5; }
         .badge-gl { background-color: #eff6ff; color: #1d4ed8; border: 1px solid #dbeafe; }
         .badge-dark { background-color: #1e293b; color: #fff; border: 1px solid #334155; }
         .badge-ai { background-color: #f3e8ff; color: #7e22ce; border: 1px solid #e9d5ff; }
-        
+
         /* First Principle Question Box */
         .fp-box {
             background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
@@ -140,12 +140,12 @@
             background: #2563eb;
             transform: rotate(10deg);
         }
-        
+
         /* Outline List Styling */
         .outline-list { list-style: none; padding-left: 0; counter-reset: section; }
         .outline-list > li { position: relative; padding-left: 2.5rem; margin-bottom: 1rem; }
-        .outline-list > li::before { 
-            counter-increment: section; content: counter(section); 
+        .outline-list > li::before {
+            counter-increment: section; content: counter(section);
             position: absolute; left: 0; top: 0;
             width: 1.75rem; height: 1.75rem; background: #e0e7ff; color: #4f46e5;
             border-radius: 50%; font-size: 0.75rem; font-weight: bold;
@@ -156,7 +156,7 @@
         .matrix-table th { background-color: #f1f5f9; color: #475569; padding: 1rem; text-align: left; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
         .matrix-table td { padding: 1rem; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
         .matrix-table tr:hover { background-color: #f8fafc; }
-        
+
         /* Innovation Grid */
         .innovation-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
         .innovation-cell { border: 1px solid #e2e8f0; padding: 1.5rem; border-radius: 0.75rem; transition: all 0.2s; }
@@ -184,7 +184,7 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
+
         /* Sim Bars */
         .metric-bar-bg { width: 100%; height: 6px; background-color: #334155; border-radius: 999px; margin-top: 4px; overflow: hidden; }
         .metric-bar-fill { height: 100%; transition: width 0.5s ease-in-out, background-color 0.5s ease; }
@@ -215,17 +215,20 @@
                 </div>
                 <div class="leading-tight">
                     <h1 class="font-bold text-slate-900 tracking-tight text-xl">Innovation Strategy</h1>
+                    <p class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Session 09 &middot; Managing Technology &amp; Innovation</p>
                 </div>
             </a>
-            
-            <div class="hidden xl:flex space-x-5 text-sm items-center">
+
+            <div class="hidden xl:flex space-x-4 text-sm items-center">
                 <a href="#intro" class="nav-link active">Case</a>
                 <a href="#gale" class="nav-link">Gale</a>
                 <a href="#process" class="nav-link">Process</a>
                 <a href="#lifecycle" class="nav-link">Lifecycle</a>
                 <a href="#chasm" class="nav-link">Chasm</a>
                 <a href="#types" class="nav-link">Types</a>
+                <a href="#blueocean" class="nav-link">Blue Ocean</a>
                 <a href="#platforms" class="nav-link">Platforms</a>
+                <a href="#nvidia" class="text-emerald-600 hover:text-emerald-800 font-bold flex items-center gap-1 transition-colors"><i class="fas fa-microchip"></i> NVIDIA</a>
                 <a href="#ai-mode" class="text-purple-600 hover:text-purple-800 font-bold flex items-center gap-1 transition-colors"><i class="fas fa-sparkles"></i> AI Mode</a>
                 <a href="#simulation" class="text-indigo-600 font-bold bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100 transition-colors hover:bg-indigo-100 shadow-sm hover:shadow">🚀 CEO Sim</a>
             </div>
@@ -248,7 +251,8 @@
             <div class="grid md:grid-cols-2 gap-12">
                 <!-- Outline -->
                 <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
-                    <h2 class="text-2xl font-serif font-bold text-slate-900 mb-6">Session Outline</h2>
+                    <span class="badge badge-gl mb-3 inline-block">Session 09</span>
+                    <h2 class="text-2xl font-serif font-bold text-slate-900 mb-6">Managing Technology &amp; Innovation</h2>
                     <ul class="outline-list space-y-4 text-sm text-slate-600">
                         <li>
                             <strong class="text-slate-800">Competition Driven by Innovation</strong>
@@ -267,8 +271,16 @@
                             <p class="mt-1 text-xs">Incremental, Radical, Architectural, and Disruptive.</p>
                         </li>
                         <li>
+                            <strong class="text-slate-800">Blue Ocean Strategy & Value Innovation</strong>
+                            <p class="mt-1 text-xs">Kim &amp; Mauborgne (2004): the Four Actions Framework and the strategy canvas.</p>
+                        </li>
+                        <li>
                             <strong class="text-slate-800">Platform Strategy</strong>
                             <p class="mt-1 text-xs">From Pipelines to Platforms: Network Effects.</p>
+                        </li>
+                        <li>
+                            <strong class="text-slate-800">2026 Case: NVIDIA's AI Blue Ocean</strong>
+                            <p class="mt-1 text-xs">Application of technology as the engine of strategy formulation.</p>
                         </li>
                     </ul>
                 </div>
@@ -297,6 +309,14 @@
                             <span class="font-bold text-indigo-400">5.</span>
                             <p>Explain why and how platform businesses can outperform pipeline businesses.</p>
                         </div>
+                        <div class="flex gap-3">
+                            <span class="font-bold text-indigo-400">6.</span>
+                            <p>Apply Kim &amp; Mauborgne's (2004) Four Actions Framework to build a strategy canvas and diagnose red-ocean vs. blue-ocean positioning.</p>
+                        </div>
+                        <div class="flex gap-3">
+                            <span class="font-bold text-indigo-400">7.</span>
+                            <p>Evaluate, using NVIDIA's 2022&ndash;2026 trajectory, whether a technology-led blue ocean can be defended once every rival is racing to close it.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -313,6 +333,9 @@
                     </h1>
                     <p class="text-lg text-slate-700 leading-relaxed">
                         Innovation is the "perennial gale of creative destruction." While Coca-Cola protects its trade secret to sustain advantage, tech firms like Netflix must innovate continuously—moving from DVDs to Streaming to Content—because patent disclosure would reveal their algorithms.
+                    </p>
+                    <p class="text-sm text-slate-500 mt-4 border-t border-red-100 pt-4">
+                        Notice what Netflix actually did: it did not out-Blockbuster Blockbuster. It stopped competing on Blockbuster's own value curve (store footprint, new-release walls, late fees) and built a different one entirely&mdash;this is exactly the <strong>value innovation</strong> Kim &amp; Mauborgne (2004) describe in <em>Blue Ocean Strategy</em> (see <a href="#blueocean" class="text-indigo-600 underline decoration-dotted hover:text-indigo-800">the Blue Ocean section below</a>). By the end of this session you'll use the same framework on NVIDIA's 2026 AI chip dominance.
                     </p>
                 </div>
             </div>
@@ -333,7 +356,7 @@
                         <li><i class="fas fa-check text-green-500 mr-2"></i> <strong>Pivot 3:</strong> Original Content (<em>The Crown, Queen's Gambit</em>).</li>
                     </ul>
                 </div>
-                
+
                 <!-- Indian Parallel: Jio -->
                 <div class="content-card p-8 border-t-4 border-blue-500">
                     <div class="flex justify-between mb-4">
@@ -348,7 +371,14 @@
                             <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 mt-1"><i class="fas fa-network-wired"></i></div>
                             <div>
                                 <h4 class="font-bold text-slate-900">Architectural Innovation</h4>
-                                <p class="text-sm text-slate-600">Jio made data the new oil. It acquired 100M subscribers in 170 days, forcing a massive industry shakeout.</p>
+                                <p class="text-sm text-slate-600">Jio made data the new oil. It acquired 100M subscribers in 170 days, forcing a massive industry shakeout that eventually pushed Vodafone and Idea into a defensive merger.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 mt-2 pt-3 border-t border-slate-100">
+                            <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 mt-1"><i class="fas fa-microchip"></i></div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">2024&ndash;26: Jio Meets NVIDIA</h4>
+                                <p class="text-sm text-slate-600">The same company now stands on the other side of this session's arc: Reliance Jio and NVIDIA reportedly announced a partnership to build AI computing infrastructure ("AI factories") in India using NVIDIA's GPU platform&mdash;the disruptor of Indian telecom is now racing to secure the compute layer of the AI era. See the <a href="#nvidia" class="text-blue-600 underline decoration-dotted hover:text-blue-800">NVIDIA case</a> below.</p>
                             </div>
                         </div>
                     </div>
@@ -582,7 +612,7 @@
                             <canvas id="speedChart"></canvas>
                         </div>
                     </div>
-                    
+
                     <!-- Analysis -->
                     <div class="flex flex-col justify-center space-y-6">
                         <div class="bg-indigo-50 p-6 rounded-xl border border-indigo-100">
@@ -618,7 +648,7 @@
             <!-- The 4 I's Deep Dive -->
             <div class="content-card p-8 mb-12 border-t-4 border-indigo-500">
                 <h3 class="text-xl font-bold text-slate-900 mb-6 text-center">The 4 I's of Innovation Process (Click to Explore)</h3>
-                
+
                 <!-- Interactive Grid -->
                 <div class="grid md:grid-cols-4 gap-4 text-center mb-8">
                     <!-- Idea -->
@@ -685,7 +715,7 @@
                     <div id="content-invention">
                         <h4 class="text-xl font-bold text-purple-700 mb-2">Stage 2: Invention</h4>
                         <p class="text-sm text-slate-700 mb-4">Invention transforms an idea into a new product or process, or it modifies and recombines existing ones. If an invention is useful, novel, and non-obvious, it can be patented.</p>
-                        
+
                         <div class="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-400 mb-4">
                             <h5 class="font-bold text-purple-900 text-sm mb-2">Patents vs. Trade Secrets</h5>
                             <p class="text-xs text-purple-800 mb-2"><strong>Patents:</strong> Give exclusive rights for 20 years in exchange for <em>public disclosure</em>. (Double-edged sword: reveals tech to rivals).</p>
@@ -710,7 +740,7 @@
                     <div id="content-innovation">
                         <h4 class="text-xl font-bold text-indigo-700 mb-2">Stage 3: Innovation</h4>
                         <p class="text-sm text-slate-700 mb-4">Innovation concerns the <strong>commercialization</strong> of an invention. The successful commercialization allows a firm to earn temporary monopoly profits. First movers may benefit from network effects, economies of scale, and switching costs.</p>
-                        
+
                         <div class="grid md:grid-cols-2 gap-4 text-xs">
                             <div class="bg-white p-3 rounded border border-indigo-100">
                                 <strong class="block text-indigo-600 mb-1"><i class="fas fa-globe-americas mr-1"></i> Global Example</strong>
@@ -727,7 +757,7 @@
                     <div id="content-imitation">
                         <h4 class="text-xl font-bold text-orange-700 mb-2">Stage 4: Imitation</h4>
                         <p class="text-sm text-slate-700 mb-4">If an innovation is successful, competitors will attempt to imitate it. The innovation process ends with imitation, forcing the original innovator to find the next "Gale" of destruction.</p>
-                        
+
                         <div class="grid md:grid-cols-2 gap-4 text-xs">
                             <div class="bg-white p-3 rounded border border-orange-100">
                                 <strong class="block text-orange-600 mb-1"><i class="fas fa-globe-americas mr-1"></i> Global Example</strong>
@@ -743,7 +773,7 @@
 
                 <!-- Patent vs Trade Secret Comparison Table -->
                 <div class="mt-8 mb-8">
-                    
+
                     <h3 class="text-lg font-bold text-slate-800 mb-4 border-b pb-2">Deep Dive: Patent vs. Trade Secret</h3>
                     <div class="overflow-x-auto rounded-lg border border-slate-200">
                         <table class="w-full text-sm text-left matrix-table">
@@ -840,7 +870,7 @@
                     </div>
                     <h4 class="text-lg font-bold text-slate-900 mb-2">Introduction</h4>
                     <p class="text-xs text-slate-500 mb-4">Tech Enthusiasts. Small market. High cost.</p>
-                    
+
                     <div class="space-y-3">
                         <div class="bg-slate-50 p-2 rounded border border-slate-100">
                             <p class="text-xs font-bold text-blue-700">Core Competency</p>
@@ -865,7 +895,7 @@
                     </div>
                     <h4 class="text-lg font-bold text-slate-900 mb-2">Growth</h4>
                     <p class="text-xs text-slate-500 mb-4">Early Adopters. Rapid demand. Standards emerge.</p>
-                    
+
                     <div class="space-y-3">
                         <div class="bg-slate-50 p-2 rounded border border-slate-100">
                             <p class="text-xs font-bold text-green-700">Core Competency</p>
@@ -890,7 +920,7 @@
                     </div>
                     <h4 class="text-lg font-bold text-slate-900 mb-2">Shakeout</h4>
                     <p class="text-xs text-slate-500 mb-4">Early Majority. Price wars. Consolidation.</p>
-                    
+
                     <div class="space-y-3">
                         <div class="bg-slate-50 p-2 rounded border border-slate-100">
                             <p class="text-xs font-bold text-yellow-700">Core Competency</p>
@@ -915,7 +945,7 @@
                     </div>
                     <h4 class="text-lg font-bold text-slate-900 mb-2">Maturity/Decline</h4>
                     <p class="text-xs text-slate-500 mb-4">Laggards. Saturation. Oligopoly.</p>
-                    
+
                     <div class="space-y-3">
                         <div class="bg-slate-50 p-2 rounded border border-slate-100">
                             <p class="text-xs font-bold text-red-700">Core Competency</p>
@@ -953,7 +983,7 @@
                             <canvas id="chasmChart"></canvas>
                         </div>
                     </div>
-                    
+
                     <!-- BlackBerry vs iPhone Case -->
                     <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
                         <div class="flex justify-between items-center mb-3">
@@ -1026,6 +1056,89 @@
             </div>
         </section>
 
+        <!-- SECTION 4.5: BLUE OCEAN STRATEGY (NEW) -->
+        <section id="blueocean" class="mb-32 fade-up">
+            <div class="fp-box" style="border-left-color:#0891b2;">
+                <p class="text-xs font-bold text-cyan-600 uppercase tracking-widest mb-1">First Principle Question</p>
+                <h3 class="text-2xl font-serif font-bold text-slate-800">If Pepsi fights Coke on taste, and Airbus fights Boeing on range and seats, why do so many industries look like a bloodbath?</h3>
+                <p class="text-slate-600 mt-2">Because everyone accepts the same rules and competes on the same handful of factors. Kim &amp; Mauborgne (2004), writing in <em>Harvard Business Review</em>, call that a <strong>red ocean</strong>&mdash;a known market space where rivals fight over shrinking margins. A <strong>blue ocean</strong> is uncontested market space you create by making the existing basis of competition irrelevant.</p>
+            </div>
+
+            <div class="content-card p-8 mb-10 border-t-4 border-cyan-500">
+                <div class="grid md:grid-cols-2 gap-10">
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-4">Value Innovation, Not Trade-off</h3>
+                        <p class="text-sm text-slate-600 mb-4">
+                            Conventional strategy assumes a trade-off: you either <strong>differentiate</strong> (more value, more cost&mdash;Porter's differentiation) or you cut <strong>cost</strong> (less value, less cost&mdash;Porter's cost leadership). Kim &amp; Mauborgne (2004) argue that the firms which create blue oceans refuse this trade-off. They pursue differentiation <em>and</em> low cost simultaneously&mdash;what the authors call <strong>value innovation</strong>&mdash;by asking four questions about the industry's factors of competition.
+                        </p>
+                        <div class="grid grid-cols-2 gap-3 text-xs">
+                            <div class="bg-red-50 border border-red-100 rounded-lg p-3">
+                                <p class="font-bold text-red-700 mb-1"><i class="fas fa-minus-circle mr-1"></i> Eliminate</p>
+                                <p class="text-red-800">Which factors the industry takes for granted should be removed entirely?</p>
+                            </div>
+                            <div class="bg-orange-50 border border-orange-100 rounded-lg p-3">
+                                <p class="font-bold text-orange-700 mb-1"><i class="fas fa-arrow-down mr-1"></i> Reduce</p>
+                                <p class="text-orange-800">Which factors should be reduced well below industry standard?</p>
+                            </div>
+                            <div class="bg-blue-50 border border-blue-100 rounded-lg p-3">
+                                <p class="font-bold text-blue-700 mb-1"><i class="fas fa-arrow-up mr-1"></i> Raise</p>
+                                <p class="text-blue-800">Which factors should be raised well above industry standard?</p>
+                            </div>
+                            <div class="bg-emerald-50 border border-emerald-100 rounded-lg p-3">
+                                <p class="font-bold text-emerald-700 mb-1"><i class="fas fa-plus-circle mr-1"></i> Create</p>
+                                <p class="text-emerald-800">Which factors should be created that the industry has never offered?</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-slate-900 text-white rounded-xl p-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="font-bold text-cyan-300">The Canonical Example: Cirque du Soleil</h4>
+                            <span class="badge badge-dark">Kim &amp; Mauborgne, 2004</span>
+                        </div>
+                        <p class="text-xs text-slate-300 mb-3">Circus attendance was declining for decades and animal-rights sentiment was rising&mdash;a shrinking, red-ocean industry. Cirque du Soleil didn't try to out-Ringling Ringling Bros. It applied the Four Actions Framework:</p>
+                        <ul class="text-xs text-slate-300 space-y-1.5">
+                            <li><i class="fas fa-minus-circle text-red-400 mr-1"></i> <strong>Eliminated:</strong> star performers, animal shows, aisle concession hawking.</li>
+                            <li><i class="fas fa-arrow-down text-orange-400 mr-1"></i> <strong>Reduced:</strong> fun &amp; humor, thrill &amp; danger.</li>
+                            <li><i class="fas fa-arrow-up text-blue-400 mr-1"></i> <strong>Raised:</strong> the uniqueness of the venue.</li>
+                            <li><i class="fas fa-plus-circle text-emerald-400 mr-1"></i> <strong>Created:</strong> theatrical theme, refined environment, artistic music &amp; dance, multiple productions.</li>
+                        </ul>
+                        <p class="text-xs text-slate-400 mt-3 border-t border-slate-700 pt-3">Result: it charged theater-level ticket prices while running a lower cost base than a traditional circus&mdash;value <em>and</em> low cost, together. That is the trade-off Porter's generic strategies say you cannot break.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INTERACTIVE: STRATEGY CANVAS / VALUE CURVE BUILDER -->
+            <div class="content-card p-8 border-t-4 border-cyan-500 bg-gradient-to-b from-cyan-50/40 to-white">
+                <div class="flex flex-wrap justify-between items-center gap-3 mb-2">
+                    <h3 class="text-xl font-bold text-slate-900"><i class="fas fa-chart-line text-cyan-600 mr-2"></i>Build Your Own Strategy Canvas</h3>
+                    <span class="badge badge-gl">New Interactive Tool</span>
+                </div>
+                <p class="text-sm text-slate-600 mb-6">Rename the six competition factors to fit any industry, set where <strong>Rivals</strong> sit on each one, then set where <strong>Your Strategy</strong> sits. Use the 7th row to <strong>Create</strong> a factor the industry has never offered. The tool diagnoses whether your curve is a genuine blue ocean, or something else.</p>
+
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <button onclick="loadCanvasPreset('cirque')" class="text-xs font-bold px-3 py-2 rounded-full bg-slate-800 text-white hover:bg-slate-700 transition-colors">Load: Cirque du Soleil</button>
+                    <button onclick="loadCanvasPreset('netflix')" class="text-xs font-bold px-3 py-2 rounded-full bg-red-600 text-white hover:bg-red-500 transition-colors">Load: Netflix</button>
+                    <button onclick="loadCanvasPreset('nvidia')" class="text-xs font-bold px-3 py-2 rounded-full bg-emerald-600 text-white hover:bg-emerald-500 transition-colors">Load: NVIDIA / CUDA</button>
+                    <button onclick="loadCanvasPreset('reset')" class="text-xs font-bold px-3 py-2 rounded-full bg-white border border-slate-300 text-slate-600 hover:bg-slate-50 transition-colors">Reset / Build Your Own</button>
+                </div>
+
+                <div class="grid lg:grid-cols-5 gap-8">
+                    <!-- Controls -->
+                    <div id="canvas-controls" class="lg:col-span-2 space-y-3"></div>
+
+                    <!-- Chart + Diagnosis -->
+                    <div class="lg:col-span-3">
+                        <div class="chart-container" style="max-width:100%; height:320px;">
+                            <canvas id="valueCurveChart"></canvas>
+                        </div>
+                        <div id="canvas-diagnosis" class="mt-4 p-5 rounded-xl border text-sm bg-slate-50 border-slate-200">
+                            <p class="text-slate-500">Adjust the sliders to see your diagnosis&mdash;are you creating a blue ocean, or just repainting a red one?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- SECTION 5: PLATFORMS -->
         <section id="platforms" class="mb-32 fade-up">
             <div class="fp-box">
@@ -1034,7 +1147,7 @@
                 <p class="text-slate-600 mt-2">They scale faster by leveraging <strong>Network Effects</strong> and zero marginal costs of supply.</p>
             </div>
 
-            <div class="content-card p-8 border-l-4 border-indigo-500">
+            <div class="content-card p-8 border-l-4 border-indigo-500 mb-10">
                 <div class="grid md:grid-cols-2 gap-8">
                     <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
                         <div class="flex justify-between mb-2">
@@ -1060,13 +1173,142 @@
                     </div>
                 </div>
             </div>
+
+            <!-- DEEPENED: THE HARDEST PLATFORM CASE - A HARDWARE COMPANY BUILDING A SOFTWARE MOAT -->
+            <div class="content-card p-8 border-t-4 border-emerald-500 bg-slate-900 text-white">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-bold text-white"><i class="fas fa-microchip text-emerald-400 mr-2"></i>The Hardest Platform Case: NVIDIA's CUDA</h3>
+                    <span class="badge badge-dark">Developer Network Effects</span>
+                </div>
+                <p class="text-sm text-slate-300 mb-4">A GPU is, on paper, a pipeline product&mdash;design a chip, fabricate it, sell it. NVIDIA turned it into a platform by giving away the software layer, <strong>CUDA</strong> (released 2007), that lets developers program its chips for far more than graphics. As of the assigned 2025 INSEAD case, CUDA spans more than <strong>300 code libraries</strong> and <strong>600 pre-trained AI models</strong>, supports roughly <strong>3,700 GPU-accelerated applications</strong>, and is used by over <strong>5 million developers</strong> at some <strong>40,000 companies</strong>.</p>
+                <div class="grid md:grid-cols-3 gap-4 text-xs">
+                    <div class="bg-slate-800/70 p-3 rounded-lg border border-slate-700">
+                        <p class="font-bold text-emerald-400 mb-1">The Network Effect</p>
+                        <p class="text-slate-300">More CUDA developers &rarr; more optimized libraries &rarr; more reasons for the next developer to build on NVIDIA, not AMD or Intel. Classic platform flywheel.</p>
+                    </div>
+                    <div class="bg-slate-800/70 p-3 rounded-lg border border-slate-700">
+                        <p class="font-bold text-emerald-400 mb-1">The Switching Cost</p>
+                        <p class="text-slate-300">A rival chip isn't just competing on silicon&mdash;it's competing against 15+ years of code the market has already written for CUDA. That's a moat competitors call NVIDIA's "walled garden."</p>
+                    </div>
+                    <div class="bg-slate-800/70 p-3 rounded-lg border border-slate-700">
+                        <p class="font-bold text-emerald-400 mb-1">The Margin Payoff</p>
+                        <p class="text-slate-300">NVIDIA reports roughly <strong>73% gross margins</strong> vs. Intel's ~41% and AMD's ~47%&mdash;the platform layer, not the transistor count, explains the gap. Full case in the next section.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5.5: NVIDIA - THE 2026 AI-INNOVATION CASE (NEW) -->
+        <section id="nvidia" class="mb-32 fade-up">
+            <div class="fp-box" style="border-left-color:#059669;">
+                <p class="text-xs font-bold text-emerald-600 uppercase tracking-widest mb-1">2026 Case &middot; Application of Technology</p>
+                <h3 class="text-2xl font-serif font-bold text-slate-800">NVIDIA holds roughly 98% of the AI data-center GPU market and 73% gross margins. Every one of its biggest customers is racing to build a chip that replaces it. So why hasn't its blue ocean turned red yet?</h3>
+                <p class="text-slate-600 mt-2">Grounded in <em>NVIDIA's Future Strategy: Can It Sustain Its Blue Ocean?</em> (INSEAD Case IN2027, 2025)&mdash;written under the supervision of W. Chan Kim and Renée Mauborgne, the same authors of the assigned Kim &amp; Mauborgne (2004) reading.</p>
+            </div>
+
+            <!-- Market Cap Trajectory -->
+            <div class="content-card p-8 mb-10">
+                <div class="grid md:grid-cols-2 gap-10 items-center">
+                    <div>
+                        <h4 class="font-bold text-slate-800 mb-3 text-sm uppercase tracking-wide">The Steepest Climb in Market History</h4>
+                        <div class="chart-container" style="height:280px;">
+                            <canvas id="nvidiaMcapChart"></canvas>
+                        </div>
+                        <p class="text-[11px] text-slate-400 mt-2 text-center">Market capitalization, $ trillions (year-end, except 2025-26 mid-year). Source: NVIDIA case (2025); later points reported in press coverage.</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-slate-600 mb-4">On November 30, 2022, OpenAI released ChatGPT. Within a month it had over 100 million users. Goldman Sachs estimated generative AI could raise global GDP by <strong>$7 trillion</strong> over the following decade. Every hyperscaler scrambled to buy the hardware that could train and run these models&mdash;and there was only one credible supplier.</p>
+                        <ul class="text-xs text-slate-600 space-y-2">
+                            <li><i class="fas fa-check text-emerald-500 mr-2"></i>Market cap: <strong>~$400B (2022) &rarr; $1T (2023) &rarr; over $3T (2024)</strong>, briefly the world's most valuable company, ahead of Apple and Microsoft.</li>
+                            <li><i class="fas fa-check text-emerald-500 mr-2"></i>By mid-2025, NVIDIA reportedly became the first company to cross a <strong>$4 trillion</strong> valuation.</li>
+                            <li><i class="fas fa-check text-emerald-500 mr-2"></i>FY2024 (year ended Jan 2024): revenue <strong>$60.9B</strong>, up 126%; data-center revenue <strong>$47.5B</strong>, up 217%; gross margin <strong>72.7%</strong>.</li>
+                            <li><i class="fas fa-check text-emerald-500 mr-2"></i>2023 GPU shipments for data centers: NVIDIA <strong>3.76 million</strong> units vs. AMD + Intel combined <strong>710,000</strong>&mdash;about <strong>98% share</strong>.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ERRC Applied to Nvidia -->
+            <div class="content-card p-8 mb-10 border-t-4 border-emerald-500">
+                <h4 class="font-bold text-slate-800 mb-4">Reading NVIDIA Through the Four Actions Framework</h4>
+                <div class="innovation-grid">
+                    <div class="innovation-cell border-l-4 border-red-500 bg-red-50">
+                        <h5 class="font-bold text-slate-800 mb-1"><i class="fas fa-minus-circle text-red-500 mr-1"></i> Eliminate</h5>
+                        <p class="text-sm text-slate-600">The need for AI teams to hand-write low-level parallel code from scratch&mdash;CUDA's libraries did it for them.</p>
+                    </div>
+                    <div class="innovation-cell border-l-4 border-orange-500 bg-orange-50">
+                        <h5 class="font-bold text-slate-800 mb-1"><i class="fas fa-arrow-down text-orange-500 mr-1"></i> Reduce</h5>
+                        <p class="text-sm text-slate-600">Total cost of AI compute: NVIDIA states two $500K HGX systems can replace $10M of CPU servers for the same AI workload.</p>
+                    </div>
+                    <div class="innovation-cell border-l-4 border-blue-500 bg-blue-50">
+                        <h5 class="font-bold text-slate-800 mb-1"><i class="fas fa-arrow-up text-blue-500 mr-1"></i> Raise</h5>
+                        <p class="text-sm text-slate-600">Performance-per-dollar every generation&mdash;Hopper's H100 delivers ~9x faster training and ~30x faster inference than the prior Ampere A100.</p>
+                    </div>
+                    <div class="innovation-cell border-l-4 border-emerald-500 bg-emerald-50">
+                        <h5 class="font-bold text-slate-800 mb-1"><i class="fas fa-plus-circle text-emerald-500 mr-1"></i> Create</h5>
+                        <p class="text-sm text-slate-600">An entirely new category: the "AI factory." CEO Jensen Huang: <em>"We are an AI foundry like TSMC is a chip foundry... AI supercomputers are the AI factories that produce intelligence."</em></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Red Ocean Forming -->
+            <div class="content-card overflow-hidden mb-10">
+                <div class="bg-slate-50 px-6 py-4 border-b border-slate-100 flex justify-between items-center">
+                    <h4 class="font-bold text-slate-800">Every Blue Ocean Attracts Sharks: Who Is Closing the Gap</h4>
+                    <span class="badge badge-in">Red Ocean Forming</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left matrix-table">
+                        <thead class="bg-slate-50 text-slate-500 uppercase text-xs">
+                            <tr><th class="p-4">Challenger</th><th class="p-4">Move</th><th class="p-4">The Catch</th></tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-4 font-bold">Microsoft, Amazon, Google, Meta</td>
+                                <td class="p-4 text-slate-600">In-house chips&mdash;Azure MAIA, AWS Trainium/Inferentia, Google TPU, Meta MTIA&mdash;to cut the "NVIDIA tax."</td>
+                                <td class="p-4 text-slate-600">These four buyers are ~40% of NVIDIA's revenue. Customers turning into competitors is the textbook vertical-integration threat.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-4 font-bold">AMD &amp; Intel</td>
+                                <td class="p-4 text-slate-600">AMD's MI300X and Intel's Gaudi 3 target NVIDIA's H100 directly; both open-sourced their software stacks (ROCm).</td>
+                                <td class="p-4 text-slate-600">Software, not silicon, is the real gap&mdash;ROCm still trails CUDA badly on documentation, performance, and adoption.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-4 font-bold">Meta, Google, industry consortiums</td>
+                                <td class="p-4 text-slate-600">Open-sourcing PyTorch, TensorFlow, and LLaMA; the UXL Foundation (Intel, AMD, Qualcomm, Google, ARM, Samsung) is building an open CUDA alternative.</td>
+                                <td class="p-4 text-slate-600">Attacking the software moat, not the chip&mdash;proof that rivals know where the real advantage lives.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-4 font-bold">Cerebras, Groq, SambaNova, Huawei</td>
+                                <td class="p-4 text-slate-600">Purpose-built AI chips (Cerebras' wafer-scale CS-3, Groq's LPUs) and China's Huawei Ascend 910C after US export bans.</td>
+                                <td class="p-4 text-slate-600">Well-funded, but starting the software ecosystem race 15+ years behind CUDA.</td>
+                            </tr>
+                            <tr class="bg-red-50">
+                                <td class="p-4 font-bold text-red-700">DeepSeek (Jan 2025)</td>
+                                <td class="p-4 text-red-700">Released open-source V3/R1 models reportedly trained for <strong>under $5.6M</strong> on export-restricted H800 chips&mdash;vs. an estimated $100M+ to train GPT-4.</td>
+                                <td class="p-4 text-red-700">NVIDIA lost roughly <strong>$600 billion</strong> in market value in a single trading day&mdash;the fastest a blue ocean has ever looked like it might turn red.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- The 2026 Twist -->
+            <div class="bg-slate-900 text-white rounded-2xl p-8 border-l-4 border-emerald-500">
+                <div class="flex justify-between items-start mb-3 flex-wrap gap-2">
+                    <h4 class="text-lg font-bold text-emerald-300"><i class="fas fa-bolt mr-2"></i>The 2026 Twist: Did Efficiency Kill Demand, or Multiply It?</h4>
+                    <span class="badge badge-dark">Current as of 2026</span>
+                </div>
+                <p class="text-sm text-slate-300 mb-3">The DeepSeek shock predicted that cheaper training would shrink demand for NVIDIA's most expensive chips. What many analysts instead observed through 2025&ndash;26 looked like a <strong>Jevons paradox</strong>: as AI got cheaper per unit of intelligence, usage exploded, and the industry's compute appetite shifted from one-time <em>training</em> runs to always-on <em>inference</em>&mdash;especially for "reasoning" models that spend far more compute per query thinking through a problem step by step. More efficient models didn't shrink the AI factory; they gave everyone a reason to run it harder.</p>
+                <p class="text-sm text-slate-300">NVIDIA's own roadmap reflects the bet on inference-at-scale: its data-center architecture line has moved from Hopper (2023) to Blackwell (2024) to the <strong>Rubin</strong> architecture, reportedly arriving in 2026. Whether that is a durable blue ocean or simply a faster-moving red one is exactly the discussion this framework is built to structure&mdash;bring your answer to class.</p>
+            </div>
         </section>
 
         <!-- SECTION: AI MODE -->
         <section id="ai-mode" class="mb-32 fade-up relative">
             <!-- Decorative Glow Background -->
             <div class="absolute -inset-4 bg-gradient-to-r from-purple-500/15 to-blue-500/15 rounded-3xl blur-2xl z-0 pointer-events-none"></div>
-            
+
             <div class="relative z-10 bg-white border border-purple-200/60 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] overflow-hidden">
                 <!-- AI Interface Header -->
                 <div class="bg-slate-900 px-6 py-4 flex items-center justify-between border-b border-purple-900/50">
@@ -1080,7 +1322,7 @@
                         <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-md text-[10px] text-slate-300 font-mono tracking-wider">Query: Creative Destruction Real-World India vs Global</span>
                     </div>
                 </div>
-                
+
                 <!-- AI Content Body -->
                 <div class="p-8">
                     <div class="mb-10 text-center max-w-3xl mx-auto">
@@ -1113,7 +1355,7 @@
                     </div>
 
                     <h3 class="text-xl font-bold text-slate-800 mb-6 border-b pb-2">AI Generated Case Studies: The Destruction Matrix</h3>
-                    
+
                     <!-- Comparative Cases Grid -->
                     <div class="grid md:grid-cols-3 gap-6 mb-10">
                         <!-- Case 1: Video -->
@@ -1186,10 +1428,16 @@
                                     <td class="p-4 text-indigo-600 font-medium">Zerodha / Groww</td>
                                     <td class="p-4 text-red-600 font-medium">High-commission Brokers</td>
                                 </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="p-4 font-bold text-slate-700">AI Compute (2026)</td>
+                                    <td class="p-4 text-slate-600">CUDA / GPU Parallel Processing</td>
+                                    <td class="p-4 text-indigo-600 font-medium">NVIDIA's AI Factory</td>
+                                    <td class="p-4 text-red-600 font-medium">General-Purpose CPU Data Centers</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
-                    
+
                     <div class="mt-8 bg-slate-900 p-4 rounded-lg border-l-4 border-purple-500">
                         <p class="text-sm text-slate-300">
                             <strong><i class="fas fa-lightbulb text-yellow-400 mr-2"></i>AI Key Takeaway:</strong> Creative Destruction shows that the biggest threat to a company is rarely its direct competitor, but rather a completely new way of doing things. The "S-Curve of Innovation" maps exactly when a company is most at risk of being "destroyed" by a new technology.
@@ -1203,7 +1451,7 @@
         <section id="simulation" class="mb-24 pt-8 bg-slate-900 -mx-4 sm:-mx-8 px-4 sm:px-8 py-16 text-white rounded-3xl shadow-2xl relative overflow-hidden border border-slate-700">
             <div class="absolute top-0 right-0 w-64 h-64 bg-indigo-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
             <div class="absolute bottom-0 left-0 w-64 h-64 bg-red-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style="animation-delay: 2s;"></div>
-            
+
             <div class="max-w-4xl mx-auto text-center mb-12 relative z-10">
                 <span class="inline-block px-3 py-1 bg-indigo-500/20 border border-indigo-500/50 text-indigo-300 text-xs font-bold rounded-full mb-4 font-mono tracking-widest">STRAT-SIM V2.0 ENGINE</span>
                 <h2 class="text-4xl font-bold mb-4 font-serif text-white tracking-tight">The Innovator's Dilemma Simulator</h2>
@@ -1211,7 +1459,7 @@
             </div>
 
             <div id="sim-wrapper" class="max-w-4xl mx-auto bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-slate-600 p-8 min-h-[550px] relative z-10 flex flex-col">
-                
+
                 <!-- Game Header Dashboard -->
                 <div class="mb-8 pb-6 border-b border-slate-600">
                     <div class="flex justify-between items-end mb-4">
@@ -1278,7 +1526,7 @@
                     </div>
                     <h3 id="q-text" class="text-xl md:text-2xl font-bold text-white mb-8 leading-snug font-serif">Question text goes here...</h3>
                     <div id="options-container" class="space-y-3 flex-1"></div>
-                    
+
                     <div id="feedback-area" class="hidden mt-6 p-5 rounded-lg border text-sm flex gap-4 items-start shadow-inner bg-slate-900/80 backdrop-blur-sm">
                         <div id="feedback-icon" class="text-3xl mt-1"></div>
                         <div class="flex-1">
@@ -1286,7 +1534,7 @@
                             <div id="feedback-impacts" class="flex flex-wrap gap-2 text-[10px] font-mono font-bold uppercase tracking-widest opacity-80 border-t border-slate-600 pt-3"></div>
                         </div>
                     </div>
-                    
+
                     <button id="next-btn" onclick="nextTurn()" class="hidden mt-6 w-full bg-slate-700 hover:bg-slate-600 text-white font-bold py-4 rounded-xl transition-colors tracking-widest uppercase text-sm border border-slate-500 shadow-lg">Advance to Next Stage <i class="fas fa-arrow-right ml-2"></i></button>
                 </div>
 
@@ -1318,7 +1566,7 @@
                                 <div id="final-net" class="text-2xl font-mono font-bold text-amber-400"></div>
                             </div>
                         </div>
-                        
+
                         <!-- Radar Chart -->
                         <div class="h-64 w-full flex justify-center items-center relative">
                             <canvas id="resultRadarChart"></canvas>
@@ -1356,7 +1604,7 @@
                 entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
             }, { threshold: 0.1 });
             document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-            
+
             // Progress Bar Logic
             window.addEventListener('scroll', () => {
                 const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
@@ -1365,6 +1613,7 @@
             });
 
             initCharts();
+            initValueCurveTool();
         });
 
         // 4 I's Interaction Logic
@@ -1402,11 +1651,11 @@
                         indexAxis: 'y',
                         responsive: true,
                         maintainAspectRatio: false,
-                        plugins: { 
+                        plugins: {
                             legend: { display: false },
                             tooltip: { callbacks: { label: function(context) { return context.raw + ' years to reach 50% of US households'; } } }
                         },
-                        scales: { 
+                        scales: {
                             x: { title: { display: true, text: 'Years to 50% Adoption', color: '#64748b' }, beginAtZero: true, grid: { color: '#f1f5f9' } },
                             y: { grid: { display: false } }
                         }
@@ -1427,10 +1676,10 @@
                             pointBackgroundColor: '#ffffff', pointBorderColor: '#ea580c', pointBorderWidth: 2, pointRadius: 6
                         }]
                     },
-                    options: { 
-                        responsive: true, maintainAspectRatio: false, 
-                        plugins: { legend: { display: false } }, 
-                        scales: { y: { display: false }, x: { grid: { display: false } } } 
+                    options: {
+                        responsive: true, maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: { y: { display: false }, x: { grid: { display: false } } }
                     }
                 });
             }
@@ -1452,7 +1701,7 @@
                             segment: {
                                 backgroundColor: ctx => {
                                     if (ctx.p0DataIndex === 1 && ctx.p1DataIndex === 2) return 'rgba(239, 68, 68, 0.5)'; // Chasm Red
-                                    if (ctx.p0DataIndex === 2 && ctx.p1DataIndex === 3) return 'rgba(239, 68, 68, 0.5)'; 
+                                    if (ctx.p0DataIndex === 2 && ctx.p1DataIndex === 3) return 'rgba(239, 68, 68, 0.5)';
                                     return 'rgba(245, 158, 11, 0.1)'; // Amber Normal
                                 }
                             },
@@ -1467,10 +1716,249 @@
                     }
                 });
             }
+
+            // 4. NVIDIA MARKET CAP TRAJECTORY CHART
+            const nvidiaCanvas = document.getElementById('nvidiaMcapChart');
+            if (nvidiaCanvas) {
+                new Chart(nvidiaCanvas.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['2022', '2023', '2024', '2025 (mid)'],
+                        datasets: [{
+                            label: 'Market Cap ($T)',
+                            data: [0.4, 1.0, 3.3, 4.0],
+                            backgroundColor: ['#94a3b8', '#60a5fa', '#3b82f6', '#10b981'],
+                            borderRadius: 6,
+                            barPercentage: 0.6
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: { callbacks: { label: (ctx) => `$${ctx.raw}T market cap` } }
+                        },
+                        scales: {
+                            y: { beginAtZero: true, title: { display: true, text: '$ Trillions', color: '#64748b' }, grid: { color: '#f1f5f9' } },
+                            x: { grid: { display: false } }
+                        }
+                    }
+                });
+            }
+        }
+
+        // --- BLUE OCEAN STRATEGY CANVAS / VALUE CURVE BUILDER ---
+        const canvasPresets = {
+            cirque: {
+                factors: [
+                    { label: "Star Performers", rival: 9, yours: 0 },
+                    { label: "Animal Shows", rival: 8, yours: 0 },
+                    { label: "Aisle Concession Sales", rival: 6, yours: 1 },
+                    { label: "Fun & Humor", rival: 7, yours: 4 },
+                    { label: "Thrill & Danger", rival: 8, yours: 3 },
+                    { label: "Unique Venue", rival: 3, yours: 9 }
+                ],
+                create: { label: "Artistic Theme, Music & Dance", yours: 9 }
+            },
+            netflix: {
+                factors: [
+                    { label: "Late Fees", rival: 9, yours: 0 },
+                    { label: "Physical Store Browsing", rival: 7, yours: 1 },
+                    { label: "Catalog Breadth", rival: 5, yours: 8 },
+                    { label: "Personalization", rival: 1, yours: 9 },
+                    { label: "Convenience (No Travel)", rival: 3, yours: 9 },
+                    { label: "Price per Use", rival: 6, yours: 3 }
+                ],
+                create: { label: "Original Content Studio", yours: 8 }
+            },
+            nvidia: {
+                factors: [
+                    { label: "Total Cost to Train at Scale", rival: 9, yours: 3 },
+                    { label: "General-Purpose Flexibility", rival: 8, yours: 3 },
+                    { label: "Developer Software Ecosystem", rival: 2, yours: 10 },
+                    { label: "Energy Efficiency per Task", rival: 3, yours: 8 },
+                    { label: "Raw AI Compute Performance", rival: 4, yours: 9 },
+                    { label: "Time-to-Deploy (Pretrained Tools)", rival: 2, yours: 8 }
+                ],
+                create: { label: "AI Factory-as-a-Service (DGX Cloud)", yours: 8 }
+            },
+            reset: {
+                factors: [
+                    { label: "Factor A", rival: 5, yours: 5 },
+                    { label: "Factor B", rival: 5, yours: 5 },
+                    { label: "Factor C", rival: 5, yours: 5 },
+                    { label: "Factor D", rival: 5, yours: 5 },
+                    { label: "Factor E", rival: 5, yours: 5 },
+                    { label: "Factor F", rival: 5, yours: 5 }
+                ],
+                create: { label: "New Factor (Create)", yours: 0 }
+            }
+        };
+
+        let canvasFactors = JSON.parse(JSON.stringify(canvasPresets.nvidia.factors));
+        let createFactor = JSON.parse(JSON.stringify(canvasPresets.nvidia.create));
+        let valueCurveChartInstance = null;
+
+        function initValueCurveTool() {
+            renderCanvasControls();
+            const ctx = document.getElementById('valueCurveChart');
+            if (!ctx) return;
+            valueCurveChartInstance = new Chart(ctx.getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: canvasFactors.map(f => f.label).concat([createFactor.label]),
+                    datasets: [
+                        {
+                            label: 'Rivals',
+                            data: canvasFactors.map(f => f.rival).concat([0]),
+                            borderColor: '#94a3b8',
+                            backgroundColor: 'rgba(148,163,184,0.08)',
+                            borderDash: [6, 4],
+                            borderWidth: 2,
+                            pointRadius: 4,
+                            pointBackgroundColor: '#94a3b8',
+                            tension: 0.15
+                        },
+                        {
+                            label: 'Your Strategy',
+                            data: canvasFactors.map(f => f.yours).concat([createFactor.yours]),
+                            borderColor: '#0891b2',
+                            backgroundColor: 'rgba(8,145,178,0.12)',
+                            borderWidth: 3,
+                            pointRadius: 5,
+                            pointBackgroundColor: '#0891b2',
+                            fill: true,
+                            tension: 0.15
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { min: 0, max: 10, grid: { color: '#f1f5f9' }, title: { display: true, text: 'Offering Level', color: '#64748b' } },
+                        x: { grid: { display: false }, ticks: { font: { size: 10 } } }
+                    },
+                    plugins: { legend: { position: 'bottom' } }
+                }
+            });
+            diagnoseCanvas();
+        }
+
+        function renderCanvasControls() {
+            const container = document.getElementById('canvas-controls');
+            if (!container) return;
+            let html = '';
+            canvasFactors.forEach((f, i) => {
+                html += `
+                <div class="bg-white border border-slate-200 rounded-lg p-3">
+                    <input type="text" value="${f.label}" oninput="updateFactorLabel(${i}, this.value)" aria-label="Factor ${i + 1} name" class="w-full text-xs font-bold text-slate-700 border-b border-slate-200 pb-1 mb-2 focus:outline-none focus:border-cyan-500 bg-transparent">
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="text-[10px] w-10 text-slate-400 font-mono">RIVAL</span>
+                        <input type="range" min="0" max="10" value="${f.rival}" oninput="updateFactorValue(${i},'rival',this.value)" aria-label="Rival level for ${f.label}" class="w-full accent-slate-400">
+                        <span id="factor-rival-val-${i}" class="text-[10px] w-4 font-mono text-slate-500">${f.rival}</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-[10px] w-10 text-cyan-600 font-mono font-bold">YOURS</span>
+                        <input type="range" min="0" max="10" value="${f.yours}" oninput="updateFactorValue(${i},'yours',this.value)" aria-label="Your level for ${f.label}" class="w-full accent-cyan-600">
+                        <span id="factor-yours-val-${i}" class="text-[10px] w-4 font-mono text-cyan-700 font-bold">${f.yours}</span>
+                    </div>
+                </div>`;
+            });
+            html += `
+                <div class="bg-emerald-50 border-2 border-dashed border-emerald-300 rounded-lg p-3">
+                    <input type="text" value="${createFactor.label}" oninput="updateCreateLabel(this.value)" aria-label="New factor name" class="w-full text-xs font-bold text-emerald-700 border-b border-emerald-200 pb-1 mb-2 focus:outline-none bg-transparent">
+                    <div class="flex items-center gap-2">
+                        <span class="text-[10px] w-10 text-emerald-600 font-mono font-bold">CREATE</span>
+                        <input type="range" min="0" max="10" value="${createFactor.yours}" oninput="updateCreateValue(this.value)" aria-label="Level for new factor" class="w-full accent-emerald-600">
+                        <span id="create-val-num" class="text-[10px] w-4 font-mono text-emerald-700 font-bold">${createFactor.yours}</span>
+                    </div>
+                    <p class="text-[10px] text-emerald-600 mt-1">Rivals sit at 0 here by definition&mdash;this factor doesn't exist for them.</p>
+                </div>`;
+            container.innerHTML = html;
+        }
+
+        function updateFactorLabel(i, value) {
+            canvasFactors[i].label = value || `Factor ${i + 1}`;
+            refreshValueCurveChart();
+        }
+        function updateFactorValue(i, which, value) {
+            value = parseInt(value, 10);
+            canvasFactors[i][which] = value;
+            const el = document.getElementById(`factor-${which}-val-${i}`);
+            if (el) el.innerText = value;
+            refreshValueCurveChart();
+            diagnoseCanvas();
+        }
+        function updateCreateLabel(value) {
+            createFactor.label = value || "New Factor (Create)";
+            refreshValueCurveChart();
+        }
+        function updateCreateValue(value) {
+            createFactor.yours = parseInt(value, 10);
+            const el = document.getElementById('create-val-num');
+            if (el) el.innerText = value;
+            refreshValueCurveChart();
+            diagnoseCanvas();
+        }
+
+        function refreshValueCurveChart() {
+            if (!valueCurveChartInstance) return;
+            valueCurveChartInstance.data.labels = canvasFactors.map(f => f.label).concat([createFactor.label]);
+            valueCurveChartInstance.data.datasets[0].data = canvasFactors.map(f => f.rival).concat([0]);
+            valueCurveChartInstance.data.datasets[1].data = canvasFactors.map(f => f.yours).concat([createFactor.yours]);
+            valueCurveChartInstance.update();
+        }
+
+        function loadCanvasPreset(name) {
+            const preset = canvasPresets[name];
+            if (!preset) return;
+            canvasFactors = JSON.parse(JSON.stringify(preset.factors));
+            createFactor = JSON.parse(JSON.stringify(preset.create));
+            renderCanvasControls();
+            refreshValueCurveChart();
+            diagnoseCanvas();
+        }
+
+        function diagnoseCanvas() {
+            const box = document.getElementById('canvas-diagnosis');
+            if (!box) return;
+            let reduced = 0, raised = 0;
+            canvasFactors.forEach(f => {
+                if (f.yours <= f.rival - 2) reduced++;
+                else if (f.yours >= f.rival + 2) raised++;
+            });
+            const created = createFactor.yours >= 4;
+
+            let cls, title, body;
+            if (created && reduced >= 1 && raised >= 1) {
+                cls = 'bg-emerald-50 border-emerald-300 text-emerald-900';
+                title = '🌊 Blue Ocean &mdash; Value Innovation';
+                body = `You eliminated/reduced ${reduced} factor(s), raised ${raised} above the industry, and created a factor rivals don't offer. Per Kim &amp; Mauborgne (2004), this is exactly what breaks the value&ndash;cost trade-off: differentiation and low cost, pursued together.`;
+            } else if (raised >= 4 && reduced === 0 && !created) {
+                cls = 'bg-blue-50 border-blue-300 text-blue-900';
+                title = '📈 Differentiation, Not Blue Ocean';
+                body = `You raised almost everything and cut nothing. That's Porter's differentiation strategy&mdash;likely effective, but it keeps the value&ndash;cost trade-off intact (more value, more cost). Try eliminating or reducing a factor rivals assume is essential.`;
+            } else if (reduced >= 4 && raised === 0 && !created) {
+                cls = 'bg-orange-50 border-orange-300 text-orange-900';
+                title = '✂️ Cost Leadership Trap';
+                body = `You cut almost everything and raised nothing. That's cost leadership, not value innovation&mdash;you risk becoming merely cheaper, not more valuable. Blue oceans need at least one factor raised or created.`;
+            } else if (reduced === 0 && raised === 0 && !created) {
+                cls = 'bg-red-50 border-red-300 text-red-900';
+                title = '🌊 Red Ocean &mdash; Me-Too Competition';
+                body = `Your curve tracks the rivals' curve almost exactly. Kim &amp; Mauborgne (2004) would say you're competing head-on for the same buyers on the same factors&mdash;a shrinking-margin fight, not a strategy.`;
+            } else {
+                cls = 'bg-slate-50 border-slate-300 text-slate-700';
+                title = '🔧 Partial Value Innovation';
+                body = `You're moving in the right direction but haven't fully committed. Push at least one factor to zero (Eliminate), push the Create row above 4, and make sure something is genuinely Raised&mdash;not just tweaked.`;
+            }
+            box.className = `mt-4 p-5 rounded-xl border text-sm ${cls}`;
+            box.innerHTML = `<p class="font-bold mb-1">${title}</p><p>${body}</p>`;
         }
 
         // --- THE STRAT-SIM V2.0 ENGINE ---
-        
+
         let state = { cash: 100, marketShare: 15, techEdge: 20, network: 0, currentStage: 0 };
 
         // Complex Scenarios with 3-4 options each
@@ -1573,11 +2061,11 @@
             document.getElementById('tech-val').innerText = state.techEdge;
             document.getElementById('net-val').innerText = state.network;
             document.getElementById('stage-text').innerText = `${state.currentStage}/10`;
-            
+
             document.getElementById('progress-visual').style.width = `${(state.currentStage / 10) * 100}%`;
-            
+
             // Limit cash visual bar to 200M max for pure aesthetic bounding
-            const maxCash = 200; 
+            const maxCash = 200;
             document.getElementById('cash-bar').style.width = `${Math.min(100, Math.max(0, (state.cash / maxCash) * 100))}%`;
             document.getElementById('share-bar').style.width = `${state.marketShare}%`;
             document.getElementById('tech-bar').style.width = `${state.techEdge}%`;
@@ -1600,7 +2088,7 @@
             const s = scenarios[state.currentStage];
             document.getElementById('scenario-type').innerText = s.type;
             document.getElementById('q-text').innerText = s.question;
-            
+
             const container = document.getElementById('options-container');
             container.innerHTML = '';
             document.getElementById('feedback-area').classList.add('hidden');
@@ -1609,9 +2097,9 @@
             s.options.forEach((opt) => {
                 const btn = document.createElement('div');
                 btn.className = 'option-card p-4 rounded-xl bg-slate-800/80 text-slate-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:bg-slate-700 transition-all border border-slate-600';
-                
+
                 const costFmt = opt.c < 0 ? `<span class="text-red-400"><i class="fas fa-arrow-down mr-1 text-[8px]"></i>$${Math.abs(opt.c)}M</span>` : `<span class="text-emerald-400"><i class="fas fa-arrow-up mr-1 text-[8px]"></i>$${opt.c}M</span>`;
-                
+
                 btn.innerHTML = `
                     <span class="font-medium text-[15px] leading-snug flex-1">${opt.text}</span>
                     <span class="text-[11px] font-mono bg-slate-900/80 px-3 py-2 rounded-lg border border-slate-700 shrink-0 uppercase tracking-wider shadow-inner">${costFmt}</span>
@@ -1648,11 +2136,11 @@
 
             // Show feedback
             const fb = document.getElementById('feedback-area');
-            const isGood = (opt.s > 0 || opt.n > 10 || opt.t > 15) && state.cash > 0; 
-            
+            const isGood = (opt.s > 0 || opt.n > 10 || opt.t > 15) && state.cash > 0;
+
             fb.classList.remove('hidden');
             fb.className = `mt-6 p-5 rounded-xl border text-sm flex gap-4 items-start shadow-lg ${isGood ? 'bg-indigo-900/40 border-indigo-500/50' : 'bg-red-900/40 border-red-500/50'}`;
-            
+
             document.getElementById('feedback-icon').innerHTML = isGood ? '<i class="fas fa-check-circle text-indigo-400"></i>' : '<i class="fas fa-exclamation-triangle text-red-400"></i>';
             document.getElementById('feedback-text').innerHTML = opt.fb;
             document.getElementById('feedback-impacts').innerHTML = impacts.join('<span class="text-slate-600">|</span>');
@@ -1675,12 +2163,12 @@
 
         function drawResultRadar() {
             const ctx = document.getElementById('resultRadarChart').getContext('2d');
-            
+
             // Hard reset the canvas to prevent Chart.js reuse errors
-            if (radarChartInstance) { 
-                radarChartInstance.destroy(); 
+            if (radarChartInstance) {
+                radarChartInstance.destroy();
             }
-            
+
             const normCash = Math.min(100, Math.max(0, (state.cash / 200) * 100));
 
             radarChartInstance = new Chart(ctx, {
@@ -1728,13 +2216,13 @@
         function endGame(reason) {
             document.getElementById('gameplay-screen').classList.add('hidden');
             document.getElementById('result-screen').classList.remove('hidden');
-            
+
             let title, desc, icon, badgeClass, badgeText, titleColor;
 
             // STRATEGIC ARCHETYPE LOGIC
             if (reason === "BANKRUPTCY" || state.cash <= 0) {
                 badgeText = "LOSER"; badgeClass = "bg-red-900 text-red-300 border-red-700";
-                
+
                 if (state.techEdge > 60) {
                     title = "The Bleeding-Edge Martyr";
                     icon = "🔬💀"; titleColor = "text-purple-400";
@@ -1771,7 +2259,7 @@
             }
 
             document.getElementById('res-icon').innerText = icon;
-            
+
             const badgeEl = document.getElementById('res-badge');
             badgeEl.innerText = badgeText;
             badgeEl.className = `inline-block px-4 py-1 text-xs font-bold uppercase tracking-widest rounded-full mb-3 border ${badgeClass}`;
@@ -1779,13 +2267,13 @@
             document.getElementById('res-title').className = `text-4xl font-bold font-serif mb-2 shadow-sm ${titleColor}`;
             document.getElementById('res-title').innerText = title;
             document.getElementById('res-desc').innerText = desc;
-            
+
             document.getElementById('final-cash').innerText = `$${state.cash}M`;
             document.getElementById('final-cash').className = state.cash <= 0 ? "text-2xl font-mono font-bold text-red-500" : "text-2xl font-mono font-bold text-emerald-400";
             document.getElementById('final-share').innerText = `${state.marketShare}%`;
             document.getElementById('final-tech').innerText = state.techEdge;
             document.getElementById('final-net').innerText = state.network;
-            
+
             document.getElementById('progress-visual').style.width = "100%";
 
             // Render Radar
@@ -1796,11 +2284,11 @@
             state = { cash: 100, marketShare: 15, techEdge: 20, network: 0, currentStage: 0 };
             document.getElementById('result-screen').classList.add('hidden');
             document.getElementById('start-screen').classList.remove('hidden');
-            
+
             document.getElementById('next-btn').innerHTML = "Advance to Next Stage <i class='fas fa-arrow-right ml-2'></i>";
             document.getElementById('next-btn').className = "hidden mt-6 w-full bg-slate-700 hover:bg-slate-600 text-white font-bold py-4 rounded-xl transition-colors tracking-widest uppercase text-sm border border-slate-500 shadow-lg";
             document.getElementById('next-btn').onclick = nextTurn;
-            
+
             updateUI();
         }
     </script>

@@ -1,5 +1,4 @@
 import { Container } from "@/components/ui/Container";
-import { InquiryPrelude } from "@/components/ui/InquiryPrelude";
 import { DailyTrackerClient, SelfAssessmentClient } from "@/features/wellbeing/components/ClientOnlyWidgets";
 import { DeepDiveBlockView } from "@/features/wellbeing/components/DeepDiveBlockView";
 import { PracticeCard } from "@/features/wellbeing/components/PracticeCard";
@@ -27,13 +26,13 @@ export function MentalWellbeingExperience() {
             Holistic Wellbeing · Mental Wellbeing
           </p>
           <h1 className="display mt-5 max-w-4xl text-5xl font-semibold text-balance sm:text-7xl">
-            An eight-week, evidence-based path out of anxious attachment.
+            An eight-week guide for reflection and steadier choices.
           </h1>
           <p className="text-ink-600 dark:text-ink-300 mt-6 max-w-3xl text-base leading-relaxed sm:text-lg">
-            A practical, self-guided program for the specific pain of anxious attachment and
-            relationship loss — built on cognitive behavioural therapy, dialectical behaviour
-            therapy, acceptance and commitment therapy, and polyvagal theory. Nothing here needs
-            an app, a login, or a purchase. Just a notebook and eight weeks.
+            This educational resource gathers optional exercises inspired by cognitive behavioural
+            therapy, dialectical behaviour therapy, acceptance and commitment therapy, mindfulness,
+            and reflective writing. Use what feels safe and useful, change the pace, and bring the
+            material to a licensed professional if you want help applying it to your circumstances.
           </p>
 
           <div
@@ -42,9 +41,11 @@ export function MentalWellbeingExperience() {
           >
             <p className="eyebrow mb-2">Before anything else</p>
             <p className="text-ink-700 dark:text-ink-200 text-sm leading-relaxed sm:text-base">
-              This is an evidence-based self-help resource. It is not a substitute for
-              professional mental health treatment. If you have thoughts of harming yourself or
-              someone else, please reach out right now — not after finishing this page.
+              This page offers general education and self-reflection, not diagnosis, treatment, or
+              a promise of recovery. Self-care can complement professional care; it does not replace
+              it. If distress is severe, persistent, worsening, or affecting daily life, contact a
+              licensed mental health professional or primary-care clinician. If you may harm yourself
+              or someone else, use an emergency or crisis service now.
             </p>
             <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold">
               {crisisResources.map((resource) => (
@@ -56,15 +57,6 @@ export function MentalWellbeingExperience() {
           </div>
         </Container>
       </header>
-
-      <InquiryPrelude
-        id="mental-wellbeing-inquiry"
-        title="Two questions worth sitting with before you start."
-        questions={[
-          "If the anxiety you feel right now had a job to do, what would it be trying to protect you from?",
-          "What would this week look like if you trusted that the feeling will pass, even without acting on it?",
-        ]}
-      />
 
       <section aria-labelledby="assessment-title" className="py-14 sm:py-20">
         <Container className="max-w-4xl">
@@ -86,16 +78,16 @@ export function MentalWellbeingExperience() {
           <div className="mb-10 grid gap-6 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <span className="accent-rule" />
-              <p className="eyebrow mb-3">02 / The eight-week program</p>
+              <p className="eyebrow mb-3">02 / A suggested eight-week sequence</p>
               <h2 id="program-title" className="display text-4xl font-semibold sm:text-5xl">
                 Four phases, ten practices.
               </h2>
             </div>
             <p className="text-ink-600 dark:text-ink-300 self-end text-sm leading-relaxed sm:text-base lg:col-span-7">
-              Each phase builds on the one before it — the sequence matters as much as any single
-              practice. Skip ahead and the later work is harder than it needs to be. Every
-              practice below is a real, step-by-step protocol, not a suggestion to “try
-              mindfulness.”
+              The phases provide structure, not a clinical protocol or required timetable. Start
+              where the material is relevant, shorten or skip an exercise that feels unhelpful, and
+              stop if it increases distress. A licensed professional can help you choose or adapt
+              practices safely.
             </p>
           </div>
 
@@ -130,9 +122,9 @@ export function MentalWellbeingExperience() {
         <Container className="max-w-6xl">
           <div className="mb-8">
             <span className="accent-rule" />
-            <p className="eyebrow mb-3">03 / Three critical rules</p>
+            <p className="eyebrow mb-3">03 / Three options to adapt</p>
             <h2 id="rules-title" className="display text-4xl font-semibold sm:text-5xl">
-              These aren&apos;t optional, and the program doesn&apos;t work without them.
+              Context matters more than a universal rule.
             </h2>
           </div>
           <div className="grid gap-5 md:grid-cols-3">
@@ -170,12 +162,13 @@ export function MentalWellbeingExperience() {
               <span className="accent-rule" />
               <p className="eyebrow mb-3">04 / Daily rhythm</p>
               <h2 id="schedule-title" className="display text-4xl font-semibold sm:text-5xl">
-                What an actual day looks like.
+                One flexible way to arrange the exercises.
               </h2>
             </div>
             <p className="text-ink-600 dark:text-ink-300 self-end text-sm leading-relaxed sm:text-base">
-              Minimum effective dose: about 30 minutes a day — the morning routine plus one
-              evening entry. This is the fuller version.
+              There is no established “minimum effective dose” for this collection. The table is a
+              sample menu: choose a manageable amount, notice its effect, and adjust rather than
+              treating completion as a test.
             </p>
           </div>
           <div className="overflow-x-auto">
@@ -219,9 +212,9 @@ export function MentalWellbeingExperience() {
         <Container className="max-w-6xl">
           <div className="mb-8">
             <span className="accent-rule" />
-            <p className="eyebrow mb-3">05 / What to expect</p>
+            <p className="eyebrow mb-3">05 / Reflection points</p>
             <h2 id="milestones-title" className="display text-4xl font-semibold sm:text-5xl">
-              Progress isn&apos;t a straight line, but it is real.
+              Observe what changes; do not force a timetable.
             </h2>
           </div>
           <ol role="list" className="grid gap-4 lg:grid-cols-5">
@@ -236,7 +229,7 @@ export function MentalWellbeingExperience() {
                   {milestone.focus}
                 </p>
                 <p className="text-ink-500 dark:text-ink-400 mt-2 text-xs leading-relaxed">
-                  <strong>Sign you&apos;re on track: </strong>
+                  <strong>A question to revisit: </strong>
                   {milestone.marker}
                 </p>
                 <p className="mt-2 text-xs leading-relaxed text-amber-700 dark:text-amber-300">
@@ -263,11 +256,12 @@ export function MentalWellbeingExperience() {
           >
             <p className="eyebrow mb-3">06 / When to seek professional help</p>
             <h2 id="help-title" className="font-serif text-3xl font-semibold sm:text-4xl">
-              Asking for help is not a failure of this program.
+              You do not have to wait for self-help to fail.
             </h2>
             <p className="text-ink-600 dark:text-ink-300 mt-4 max-w-3xl text-sm leading-relaxed sm:text-base">
-              This program is rigorous and it helps most people who do it consistently. It is not
-              a substitute for a professional when any of the following is true:
+              Contact a licensed mental health professional, primary-care clinician, or appropriate
+              support service whenever you want individualized help—especially when any of the
+              following is true:
             </p>
             <ul role="list" className="mt-5 grid gap-3 sm:grid-cols-2">
               {seekHelpCriteria.map((criterion) => (
@@ -288,6 +282,11 @@ export function MentalWellbeingExperience() {
                 </div>
               ))}
             </div>
+
+            <p className="text-ink-500 dark:text-ink-400 mt-4 text-xs leading-relaxed">
+              These are examples of approaches a licensed professional may discuss after an
+              assessment, not recommendations or a way to choose treatment from this page.
+            </p>
 
             <div className="mt-7 rounded-xl border p-4" style={{ borderColor: "rgb(244 63 94 / 0.35)" }}>
               <p className="text-sm font-semibold">If you need immediate support</p>
@@ -312,11 +311,11 @@ export function MentalWellbeingExperience() {
             <span className="accent-rule" />
             <p className="eyebrow mb-3">07 / Going deeper</p>
             <h2 id="deep-dives-title" className="display text-4xl font-semibold sm:text-5xl">
-              Beyond the eight weeks.
+              Context that may need more support.
             </h2>
             <p className="text-ink-600 dark:text-ink-300 mt-3 max-w-3xl text-sm leading-relaxed sm:text-base">
-              Three extended modules, for anyone whose situation goes further than ordinary
-              heartbreak, or who wants the fuller science underneath the practices above.
+              These notes distinguish reflection from safety planning and clinical care. They are
+              starting points for informed questions, not explanations of any individual&apos;s symptoms.
             </p>
           </div>
 
@@ -365,14 +364,14 @@ export function MentalWellbeingExperience() {
         <Container className="max-w-6xl">
           <div className="mb-8">
             <span className="accent-rule" />
-            <p className="eyebrow mb-3">08 / Daily affirmations</p>
+            <p className="eyebrow mb-3">08 / Optional grounding phrases</p>
             <h2 id="affirmations-title" className="display text-4xl font-semibold sm:text-5xl">
-              Not wishful thinking — targeted cognitive practice.
+              Keep only the words that feel credible to you.
             </h2>
             <p className="text-ink-600 dark:text-ink-300 mt-3 max-w-3xl text-sm leading-relaxed sm:text-base">
-              Spoken during the calm of the morning breathing practice, these are most effective —
-              your brain is measurably more receptive to new patterns in that state. Pick 3–5 that
-              land, rather than reciting the full list.
+              A phrase can serve as a prompt to pause or remember a value; it is not a treatment and
+              does not need to feel positive. Pick one or two that sound believable, rewrite them in
+              your own language, or leave this section aside.
             </p>
           </div>
 
@@ -437,7 +436,7 @@ export function MentalWellbeingExperience() {
             <span className="accent-rule" />
             <p className="eyebrow mb-3">09 / Sources</p>
             <h2 id="references-title" className="display text-3xl font-semibold sm:text-4xl">
-              Where this comes from.
+              Sources, limits, and further reading.
             </h2>
           </div>
           <details className="group glass-card overflow-hidden">
@@ -466,8 +465,8 @@ export function MentalWellbeingExperience() {
             </div>
           </details>
           <p className="text-ink-500 dark:text-ink-400 mt-6 text-sm leading-relaxed italic">
-            You are not broken. You are healing. Begin tomorrow morning — one breath, one day, one
-            step.
+            Treat this as a notebook of possibilities, not a verdict about you. Keep what helps,
+            stop what does not, and ask for qualified support whenever you need it.
           </p>
         </Container>
       </section>

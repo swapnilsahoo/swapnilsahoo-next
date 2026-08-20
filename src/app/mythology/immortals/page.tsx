@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 import {
   Noto_Sans_Bengali,
   Noto_Sans_Gurmukhi,
-  Noto_Sans_JP,
   Noto_Sans_Myanmar,
-  Noto_Sans_TC,
   Noto_Sans_Tamil,
   Noto_Serif_Tibetan,
 } from "next/font/google";
@@ -62,28 +60,12 @@ const notoSansMyanmar = Noto_Sans_Myanmar({
   fallback: ["Myanmar Text", "sans-serif"],
 });
 
-const notoSansJapanese = Noto_Sans_JP({
-  variable: "--font-cjk-japanese",
-  display: "swap",
-  preload: false,
-  fallback: ["Yu Gothic", "sans-serif"],
-});
-
-const notoSansTraditionalChinese = Noto_Sans_TC({
-  variable: "--font-cjk-traditional",
-  display: "swap",
-  preload: false,
-  fallback: ["Microsoft JhengHei", "sans-serif"],
-});
-
 const multilingualFontVariables = [
   notoSansBengali.variable,
   notoSansGurmukhi.variable,
   notoSansTamil.variable,
   notoSerifTibetan.variable,
   notoSansMyanmar.variable,
-  notoSansJapanese.variable,
-  notoSansTraditionalChinese.variable,
 ].join(" ");
 
 export const metadata: Metadata = {
@@ -225,7 +207,8 @@ export default function ImmortalsPage() {
                   17 figures · across Asia and Europe · one evidence standard
                 </span>
                 <h1 className="display mt-7 max-w-4xl text-5xl font-semibold text-balance sm:text-7xl">
-                  Immortals. <span className="font-normal text-amber-200 italic">Read in layers.</span>
+                  Immortals.{" "}
+                  <span className="font-normal text-amber-200 italic">Read in layers.</span>
                 </h1>
                 <p className="mt-6 max-w-3xl text-base leading-relaxed text-indigo-50 sm:text-lg">
                   A comparative atlas of extraordinary longevity, continuing presence, light body,
@@ -250,7 +233,10 @@ export default function ImmortalsPage() {
               </div>
 
               <div className="rounded-3xl border border-indigo-100/15 bg-white/5 p-6 text-center">
-                <p lang="sa-Deva" className="script-devanagari text-5xl leading-relaxed font-semibold text-amber-200">
+                <p
+                  lang="sa-Deva"
+                  className="script-devanagari text-5xl leading-relaxed font-semibold text-amber-200"
+                >
                   अमृतत्व
                 </p>
                 <p lang="sa-Latn" className="mt-2 text-xl font-semibold">
@@ -289,8 +275,9 @@ export default function ImmortalsPage() {
               </h2>
               <p className="text-ink-600 dark:text-ink-300 mt-5 text-base leading-relaxed">
                 Each profile uses the same three sentences: <strong>sources establish</strong>,
-                <strong> tradition records</strong>, and <strong>independent evidence does not establish</strong>.
-                The badge tells you what kind of source situation you are entering before you read.
+                <strong> tradition records</strong>, and{" "}
+                <strong>independent evidence does not establish</strong>. The badge tells you what
+                kind of source situation you are entering before you read.
               </p>
             </div>
 
@@ -309,24 +296,27 @@ export default function ImmortalsPage() {
             </div>
           </div>
 
-          <aside className="mt-8 rounded-2xl bg-ink-900 p-6 text-white sm:p-8 dark:bg-black/35">
+          <aside className="bg-ink-900 mt-8 rounded-2xl p-6 text-white sm:p-8 dark:bg-black/35">
             <div className="grid gap-6 lg:grid-cols-[0.35fr_1fr]">
               <div>
                 <p className="font-mono text-xs font-semibold tracking-[0.12em] text-rose-200 uppercase">
                   Scientific boundary
                 </p>
-                <p className="mt-2 font-serif text-3xl font-semibold">No verified physical immortality.</p>
+                <p className="mt-2 font-serif text-3xl font-semibold">
+                  No verified physical immortality.
+                </p>
               </div>
               <div className="space-y-3 text-sm leading-relaxed text-slate-200">
                 <p>
                   No accepted biomedical evidence shows that a human has achieved literal physical
-                  immortality, survived for several centuries, or dissolved into light under independently
-                  observed conditions. The authenticated longevity benchmark is 122 years and 164 days.
+                  immortality, survived for several centuries, or dissolved into light under
+                  independently observed conditions. The authenticated longevity benchmark is 122
+                  years and 164 days.
                 </p>
                 <p>
-                  Studies of meditation, metabolism, healthy ageing, or light emitted by biological tissue do
-                  not verify the extraordinary claims in an individual sacred biography. Analogy is not
-                  evidence of mechanism.
+                  Studies of meditation, metabolism, healthy ageing, or light emitted by biological
+                  tissue do not verify the extraordinary claims in an individual sacred biography.
+                  Analogy is not evidence of mechanism.
                 </p>
                 <a
                   href="https://www.guinnessworldrecords.com/world-records/oldest-person"
@@ -348,7 +338,10 @@ export default function ImmortalsPage() {
         <Container className="max-w-6xl">
           <div className="mb-8 max-w-3xl">
             <p className="eyebrow">Comparative map</p>
-            <h2 id="claim-families-title" className="display mt-3 text-4xl font-semibold md:text-5xl">
+            <h2
+              id="claim-families-title"
+              className="display mt-3 text-4xl font-semibold md:text-5xl"
+            >
               Four claims often hidden inside one word.
             </h2>
           </div>
@@ -387,22 +380,32 @@ export default function ImmortalsPage() {
               <p className="mt-5 font-mono text-xs tracking-[0.14em] text-indigo-200 uppercase">
                 Repaired from the broken PDF text layer
               </p>
-              <h2 id="invocation-title" className="mt-3 font-serif text-4xl font-semibold sm:text-5xl">
+              <h2
+                id="invocation-title"
+                className="mt-3 font-serif text-4xl font-semibold sm:text-5xl"
+              >
                 {shivaInvocation.title}
               </h2>
               <p className="mt-5 text-sm leading-relaxed text-slate-300">
-                Selectable Unicode replaces the PDF’s missing-glyph boxes. Devanagari, scholarly IAST,
-                recitation segmentation, grammar, translation, and provenance are shown as separate layers.
+                Selectable Unicode replaces the PDF’s missing-glyph boxes. Devanagari, scholarly
+                IAST, recitation segmentation, grammar, translation, and provenance are shown as
+                separate layers.
               </p>
             </div>
 
             <div className="rounded-2xl border border-white/15 bg-white/5 p-6 sm:p-8">
-              <div lang="sa-Deva" className="script-devanagari text-3xl leading-[1.8] font-semibold text-amber-100 sm:text-4xl">
+              <div
+                lang="sa-Deva"
+                className="script-devanagari text-3xl leading-[1.8] font-semibold text-amber-100 sm:text-4xl"
+              >
                 {shivaInvocation.devanagari.map((line) => (
                   <p key={line}>{line}</p>
                 ))}
               </div>
-              <div lang="sa-Latn" className="mt-6 border-t border-white/15 pt-6 font-serif text-xl leading-relaxed text-indigo-100 italic sm:text-2xl">
+              <div
+                lang="sa-Latn"
+                className="mt-6 border-t border-white/15 pt-6 font-serif text-xl leading-relaxed text-indigo-100 italic sm:text-2xl"
+              >
                 {shivaInvocation.iast.map((line) => (
                   <p key={line}>{line}</p>
                 ))}
@@ -436,7 +439,10 @@ export default function ImmortalsPage() {
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {shivaInvocation.words.map((word) => (
               <article key={word.original} className="rounded-2xl border border-white/12 p-5">
-                <p lang="sa-Deva" className="script-devanagari text-2xl leading-relaxed font-semibold text-amber-100">
+                <p
+                  lang="sa-Deva"
+                  className="script-devanagari text-2xl leading-relaxed font-semibold text-amber-100"
+                >
                   {word.original}
                 </p>
                 <p lang="sa-Latn" className="mt-1 font-semibold text-indigo-200">
@@ -491,17 +497,20 @@ export default function ImmortalsPage() {
                 One structure. Unequal evidence.
               </h2>
               <p className="text-ink-600 dark:text-ink-300 mt-5 max-w-3xl text-base leading-relaxed">
-                Search across names, places, traditions, and original-language terms. Open any profile to
-                compare historical record, sacred account, evidence boundary, language ledger, and the exact
-                sources used.
+                Search across names, places, traditions, and original-language terms. Open any
+                profile to compare historical record, sacred account, evidence boundary, language
+                ledger, and the exact sources used.
               </p>
             </div>
             <div className="border-ink-200 dark:border-ink-700 rounded-2xl border p-5">
-              <CompassIcon className="text-brand-600 dark:text-brand-300 h-6 w-6" aria-hidden="true" />
+              <CompassIcon
+                className="text-brand-600 dark:text-brand-300 h-6 w-6"
+                aria-hidden="true"
+              />
               <p className="mt-3 text-sm font-semibold">Reading rule</p>
               <p className="text-ink-600 dark:text-ink-300 mt-2 text-sm leading-relaxed">
-                A more detailed story is not automatically a better documented story. Follow the source type,
-                not the vividness of the claim.
+                A more detailed story is not automatically a better documented story. Follow the
+                source type, not the vividness of the claim.
               </p>
             </div>
           </div>
@@ -523,16 +532,16 @@ export default function ImmortalsPage() {
             </div>
             <div className="text-ink-600 dark:text-ink-300 space-y-4 text-sm leading-relaxed sm:text-base">
               <p>
-                The two supplied PDFs were used as coverage inventories, not uploaded as authoritative books.
-                Their Sanskrit text layer is broken, many direct quotations lack traceable editions or page
-                references, and several biographies rely on blogs or devotional retellings while using words
-                such as “verified” or “confirmed.”
+                The two supplied PDFs were used as coverage inventories, not uploaded as
+                authoritative books. Their Sanskrit text layer is broken, many direct quotations
+                lack traceable editions or page references, and several biographies rely on blogs or
+                devotional retellings while using words such as “verified” or “confirmed.”
               </p>
               <p>
-                A six-stage longevity protocol was omitted in full. This site does not prescribe fasting,
-                prolonged breath retention, home dark retreats, herb dosages, cold exposure, commercial
-                biomarker targets, or mercury-based alchemy. Historical description is not medical advice;
-                mercury exposure can cause serious harm.
+                A six-stage longevity protocol was omitted in full. This site does not prescribe
+                fasting, prolonged breath retention, home dark retreats, herb dosages, cold
+                exposure, commercial biomarker targets, or mercury-based alchemy. Historical
+                description is not medical advice; mercury exposure can cause serious harm.
               </p>
               <a
                 href="https://www.who.int/news-room/fact-sheets/detail/mercury-and-health"
@@ -557,9 +566,9 @@ export default function ImmortalsPage() {
               Read beyond the atlas.
             </h2>
             <p className="text-ink-600 dark:text-ink-300 mt-4 text-base leading-relaxed">
-              Primary texts, scholarship, institutional records, archives, and tradition sources are labelled
-              rather than flattened into one bibliography. A tradition source documents what a community says;
-              it does not independently prove the claim it preserves.
+              Primary texts, scholarship, institutional records, archives, and tradition sources are
+              labelled rather than flattened into one bibliography. A tradition source documents
+              what a community says; it does not independently prove the claim it preserves.
             </p>
           </div>
 

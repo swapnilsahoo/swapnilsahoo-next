@@ -22,13 +22,14 @@ function loadInitialRatings(): Ratings {
 }
 
 function readingFor(average: number): string {
-  if (average >= 7) {
-    return "This reads as significant distress right now. The eight-week program below is built for exactly this — and if any of the “when to seek help” criteria further down describe you, please read that section too.";
-  }
-  if (average >= 4) {
-    return "A real but workable level of distress. Weeks 1–2 below — regulating your nervous system first — is the right place to start.";
-  }
-  return "Lower than the range this program is built for most intensely, which is good news. The practices still hold up as general tools for stress and attachment anxiety.";
+  const snapshot =
+    average >= 7
+      ? "You marked several concerns as frequent or intense today."
+      : average >= 4
+        ? "Your answers show a mix of lower and higher concerns today."
+        : "You marked these concerns as less frequent or intense today.";
+
+  return `${snapshot} This average is not a validated screening score and cannot diagnose a condition or select treatment. Use it only as a private reflection prompt. If distress is severe, persistent, worsening, or interfering with daily life, consider speaking with a licensed mental health professional or primary-care clinician.`;
 }
 
 export function SelfAssessment() {
@@ -65,9 +66,9 @@ export function SelfAssessment() {
       <p className="eyebrow mb-2">Start here</p>
       <h3 className="font-serif text-2xl font-semibold sm:text-3xl">Where are you right now?</h3>
       <p className="text-ink-600 dark:text-ink-300 mt-3 max-w-2xl text-sm leading-relaxed">
-        Rate each one from 0 (not at all) to 10 (constant, overwhelming). This isn&apos;t a
-        diagnosis — it&apos;s a baseline, so you can see real movement by week four and week
-        eight. Nothing you enter leaves this browser.
+        Rate each one from 0 (not at all) to 10 (constant, overwhelming). This is not a
+        diagnostic or clinically validated assessment; it is a private snapshot you can revisit if
+        that feels useful. Nothing you enter leaves this browser.
       </p>
 
       <div className="mt-8 space-y-6">
@@ -116,7 +117,7 @@ export function SelfAssessment() {
         </button>
         {saved ? (
           <span className="text-ink-500 dark:text-ink-400 text-xs">
-            Saved on this device. Come back at week 4 and week 8 to compare.
+            Saved on this device. Revisit it whenever a comparison would be useful.
           </span>
         ) : null}
       </div>

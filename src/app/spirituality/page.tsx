@@ -3,7 +3,6 @@ import Link from "next/link";
 
 import { ArrowRightIcon, CompassIcon, SparkIcon } from "@/components/icons/LineIcons";
 import { Container } from "@/components/ui/Container";
-import { InquiryPrelude } from "@/components/ui/InquiryPrelude";
 
 export const metadata: Metadata = {
   title: "Spirituality — Sacred Texts for Study and Reflection",
@@ -78,17 +77,17 @@ const collections = [
   {
     title: "श्रीमद्भगवद्गीता",
     transliteration: "Śrīmadbhagavadgītā",
-    label: "Authentic Bhagavad Gita",
+    label: "Bhagavad Gita · complete Sanskrit text",
     href: "/spirituality/bhagavad-gita",
     language: "Sanskrit",
-    scope: "Complete · all 701 verses",
+    scope: "Complete base text · 701 verses · study gloss under review",
     description:
-      "All eighteen chapters of Krishna's counsel to Arjuna, with consistent IAST, a close English rendering, and a grammatical word-by-word split for every verse.",
+      "All eighteen chapters of Krishna's counsel to Arjuna in the selected Sanskrit base text, with IAST and a close English rendering. The word-by-word study layer is available throughout but still requires specialist review.",
   },
   {
     title: "श्रीरामचरितमानस",
     transliteration: "Śrī Rāmacaritamānasa",
-    label: "Authentic Ramcharitmanas",
+    label: "Ramcharitmanas · Bālakāṇḍa in progress",
     href: "/spirituality/ramcharitmanas",
     language: "Old Awadhi",
     scope: "Bālakāṇḍa in progress · 42 of 369 units translated",
@@ -130,11 +129,6 @@ const readingLayers = [
     title: "Attribution & sources",
     detail: "Poet, narrative speaker, traditional compiler, and commentator are named separately.",
   },
-] as const;
-
-const spiritualityQuestions = [
-  "You may already know this by heart — but could you explain, word by word, what any single line means?",
-  "When a word here differs from what you learned growing up, is that a mistake to fix, or a second answer worth knowing?",
 ] as const;
 
 export default function SpiritualityPage() {
@@ -194,20 +188,13 @@ export default function SpiritualityPage() {
         </Container>
       </header>
 
-      <InquiryPrelude
-        id="spirituality-inquiry"
-        eyebrow="Before you begin"
-        title="Reciting and understanding are two different skills."
-        questions={spiritualityQuestions}
-      />
-
       <section id="collections" aria-labelledby="collection-title" className="py-16 sm:py-24">
         <Container className="max-w-6xl">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">01 / The collection</p>
             <h2 id="collection-title" className="display text-4xl font-semibold md:text-5xl">
-              Seven authentic branches.
+              Seven source-disclosed branches.
             </h2>
             <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-relaxed">
               “Authentic” means source-disclosed and editorially transparent—not a claim that one
@@ -275,8 +262,9 @@ export default function SpiritualityPage() {
               Every branch uses the same reading logic, but its provenance is specific to that text.
               The Chalisa is treated as Old Awadhi; the two Sahasranāmas use complete, name-by-name
               Sanskrit readers; the Shiva Tandava Stotram receives pāda-level compound study; the
-              Bhagavad Gita receives a full verse-by-verse, word-by-word Sanskrit reading across all
-              eighteen chapters; the Ramcharitmanas is being opened kāṇḍa by kāṇḍa; and the
+              Bhagavad Gita carries a complete Sanskrit base text across all eighteen chapters,
+              alongside an editorial word-study layer that remains under specialist review; the
+              Ramcharitmanas is being opened kāṇḍa by kāṇḍa; and the
               Chandogya Upanishad opens with its first section only, both with declared coverage
               stated plainly rather than smoothed over. Every branch except the Hanuman Chalisa uses
               consistent IAST.
