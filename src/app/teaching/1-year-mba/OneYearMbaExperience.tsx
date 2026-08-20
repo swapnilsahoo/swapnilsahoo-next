@@ -116,7 +116,7 @@ const sessionPlan = [
       "Article · Porter, M. E. (2008). The Five Competitive Forces That Shape Strategy. Harvard Business Review.",
       "Textbook · Chapter 4",
     ],
-    interactiveHref: undefined,
+    interactiveHref: interactive("Session_5_Internal_Firm_Analysis_v0.91.html"),
   },
   {
     number: "05",
@@ -132,7 +132,7 @@ const sessionPlan = [
       "Article · Porter, M. E. (2008). The Five Competitive Forces That Shape Strategy. Harvard Business Review.",
       "Textbook · Chapter 5",
     ],
-    interactiveHref: undefined,
+    interactiveHref: interactive("session2.html"),
   },
   {
     number: "06",
@@ -147,7 +147,7 @@ const sessionPlan = [
       "Article · Ghemawat, P., & Rivkin, J. W. (1998). Creating Competitive Advantage.",
       "Textbook · Chapter 6",
     ],
-    interactiveHref: undefined,
+    interactiveHref: interactive("Session_11_Organizational_Design_Structure_Culture_Control_v0.297.html"),
   },
   {
     number: "07",
@@ -158,7 +158,9 @@ const sessionPlan = [
       "Article · Ghemawat, P., & Pisano, G. P. (1997). Sustaining Superior Performance: Commitments and Capabilities.",
       "Textbook · Chapter 7",
     ],
-    interactiveHref: undefined,
+    interactiveHref: interactive(
+      "Session_9_Corporate_Strategy_Alliances_Mergers_Acquisitions_v0.91.html",
+    ),
   },
   {
     number: "08",

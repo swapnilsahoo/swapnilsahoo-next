@@ -123,7 +123,7 @@ export const sessions = [
       "Ghemawat, P., & Rivkin, J. W. (1998). Creating Competitive Advantage.",
       "Bennett, N., & Lemoine, G. J. What VUCA Really Means for You.",
     ],
-    interactiveHref: undefined,
+    interactiveHref: interactive("session-11-firm-performance-and-business-models.html"),
   },
   {
     number: "07",
@@ -133,7 +133,7 @@ export const sessions = [
       "Case · Patagonia (HBR)",
       "Ghemawat, P., & Pisano, G. P. (1997). Sustaining Superior Performance: Commitments and Capabilities.",
     ],
-    interactiveHref: undefined,
+    interactiveHref: interactive("session-10-resources-capabilities-and-core-competencies.html"),
   },
   {
     number: "08",
@@ -209,7 +209,7 @@ export const sessions = [
       "Case · Creating Corporate Advantage: The Case of the Tata Group",
       "Ramachandran, J., Manikandan, K. S., & Pant, A. (2013). Why Conglomerates Thrive. Harvard Business Review.",
     ],
-    interactiveHref: undefined,
+    interactiveHref: interactive("session-06-group-projects-discussion.html"),
   },
   {
     number: "15",
@@ -223,7 +223,7 @@ export const sessions = [
       "Case · Amazon (HBR, 2025)",
       "Mankins, M. C., & Steele, R. (2005). Turning Great Strategy into Great Performance. Harvard Business Review.",
     ],
-    interactiveHref: undefined,
+    interactiveHref: interactive("session-18-final-group-project-evaluations.html"),
   },
   {
     number: "16",
@@ -257,7 +257,7 @@ export const sessions = [
       "Case · Rajesh Exports: Gold Trader to International Jewellery Retailer",
       "Porter, M. E. (1990). The Competitive Advantage of Nations. Harvard Business Review.",
     ],
-    interactiveHref: undefined,
+    interactiveHref: interactive("session-19-managing-technology-and-innovation-nvidia.html"),
   },
   {
     number: "19",

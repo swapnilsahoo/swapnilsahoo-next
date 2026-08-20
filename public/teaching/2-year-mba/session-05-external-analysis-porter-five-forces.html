@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Session 5: Industry Structure | Grand Master Edition</title>
+    <title>Official Session 03: Industry Analysis Fundamentals | Grand Master Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
@@ -156,6 +156,7 @@
                 <a href="#recap" class="nav-link">The Journey</a>
                 <a href="#paradox" class="nav-link">Profit Paradox</a>
                 <a href="#framework" class="nav-link">5 Forces</a>
+                <a href="#calculator" class="nav-link">Calculator</a>
                 <a href="#implications" class="nav-link">Implications</a>
                 <a href="#activity" class="nav-link">Activity</a>
                 <a href="#quiz" class="nav-link font-bold text-blue-700">Challenge</a>
@@ -282,6 +283,9 @@
     <!-- SESSION 5 HERO: THE HOOK -->
     <header id="paradox" class="py-24 px-6 bg-white border-t border-slate-100">
         <div class="max-w-6xl mx-auto w-full z-10 fade-up text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-200 bg-blue-50 text-blue-900 text-[11px] font-bold tracking-widest uppercase mb-4 shadow-sm mono-font">
+                Official Session 03 · Industry Analysis: The Fundamentals
+            </div>
              <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-red-200 bg-red-50 text-red-800 text-xs font-bold tracking-widest uppercase mb-6 shadow-sm">
                 <i class="fa-solid fa-bolt"></i> Fundamental Question
             </div>
@@ -398,6 +402,49 @@
                 <div class="text-center h-full flex flex-col justify-center items-center py-8">
                     <div class="animate-pulse text-slate-300 text-6xl mb-4"><i class="fa-solid fa-hand-pointer"></i></div>
                     <h3 class="text-xl font-semibold text-slate-400">Select a force above to analyze the battlefield.</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- READING BRIDGE: PORTER 2008 -->
+    <section id="reading" class="py-16 px-6 bg-white border-t border-slate-200">
+        <div class="max-w-4xl mx-auto fade-up">
+            <div class="bg-blue-50 border border-blue-100 rounded-2xl p-8 md:p-10">
+                <p class="text-xs font-bold uppercase tracking-widest text-blue-700 mb-3 mono-font">The Assigned Reading, In One Idea</p>
+                <p class="text-lg text-slate-800 leading-relaxed serif-font italic">
+                    Porter's argument, in one line: awareness of the five forces is the starting discipline for strategy — not a checklist to complete once, but the lens a strategist keeps returning to as an industry evolves. — paraphrased from Michael E. Porter, <em>"The Five Competitive Forces That Shape Strategy,"</em> Harvard Business Review (2008)
+                </p>
+                <p class="text-sm text-slate-600 leading-relaxed mt-5">
+                    Porter's core claim, easy to lose under the five icons, is this: <strong>industry profitability is not primarily determined by whether a product is new, high-tech, or exciting.</strong> A "boring," capital-light distribution business can be quietly very profitable, while a glamorous, fast-growing one (airlines are Porter's own recurring example; several AI application-layer startups are the 2026 equivalent — huge usage, thin margins) can structurally struggle no matter how well it's run. The five forces are a diagnostic for the <em>structural</em> reasons an industry captures or gives away value, independent of how clever any single competitor is — which is why the same framework applies to auto manufacturing in 1985 and to AI infrastructure in 2026.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: INDUSTRY ATTRACTIVENESS CALCULATOR -->
+    <section id="calculator" class="py-24 px-6 bg-secondary-bg border-t border-slate-200">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12 fade-up">
+                <div class="inline-flex items-center gap-2 text-indigo-600 font-bold tracking-wider text-xs uppercase mb-2">
+                    <i class="fa-solid fa-sliders"></i> New Tool
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold serif-font text-slate-900">Build Your Own Industry Score</h2>
+                <p class="text-slate-500 mt-4 max-w-2xl mx-auto">
+                    Rate each force from 1 (weak — good for incumbent profit) to 5 (strong — bad for incumbent profit) for any industry you choose. This mirrors the judgment call every strategist has to make before a single dollar is invested.
+                </p>
+            </div>
+
+            <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-lg fade-up">
+                <div class="mb-6">
+                    <label class="block text-xs font-bold uppercase tracking-wide text-slate-500 mb-2" for="industry-name">Industry or company you're analyzing</label>
+                    <input id="industry-name" type="text" placeholder="e.g. Indian quick commerce, Nvidia's AI chips, D2C skincare..." class="w-full border border-slate-300 rounded-lg px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <div id="force-sliders" class="space-y-5"></div>
+
+                <div class="mt-8 p-6 rounded-xl border-2 border-dashed border-slate-300 text-center" id="score-result">
+                    <p class="text-sm text-slate-500">Set all five sliders to see the verdict.</p>
                 </div>
             </div>
         </div>
@@ -870,6 +917,59 @@
         
         // Auto-select rivalry on load
         selectForce('rivalry');
+
+        // --- NEW: Industry Attractiveness Calculator ---
+        const sliderForces = [
+            { key: 'entrants', label: 'Threat of New Entrants', icon: '🏰' },
+            { key: 'suppliers', label: 'Power of Suppliers', icon: '💎' },
+            { key: 'buyers', label: 'Power of Buyers', icon: '🛒' },
+            { key: 'substitutes', label: 'Threat of Substitutes', icon: '🎭' },
+            { key: 'rivalry', label: 'Rivalry Among Competitors', icon: '⚔️' },
+        ];
+        const sliderScores = { entrants: 3, suppliers: 3, buyers: 3, substitutes: 3, rivalry: 3 };
+
+        function renderSliders() {
+            const container = document.getElementById('force-sliders');
+            container.innerHTML = sliderForces.map(f => `
+                <div class="flex items-center gap-4">
+                    <span class="text-2xl w-8 text-center">${f.icon}</span>
+                    <span class="w-56 text-sm font-semibold text-slate-700 shrink-0">${f.label}</span>
+                    <input type="range" min="1" max="5" value="${sliderScores[f.key]}" class="flex-1 accent-blue-700"
+                        oninput="updateForceScore('${f.key}', this.value)">
+                    <span id="score-${f.key}" class="w-6 text-center font-mono font-bold text-blue-800">${sliderScores[f.key]}</span>
+                </div>
+            `).join('');
+            computeAttractiveness();
+        }
+
+        function updateForceScore(key, value) {
+            sliderScores[key] = Number(value);
+            document.getElementById('score-' + key).textContent = value;
+            computeAttractiveness();
+        }
+
+        function computeAttractiveness() {
+            const total = Object.values(sliderScores).reduce((a, b) => a + b, 0);
+            const avg = total / 5;
+            const resultBox = document.getElementById('score-result');
+            const name = document.getElementById('industry-name').value.trim() || 'this industry';
+            let verdict, colorClasses;
+            if (avg <= 2) {
+                verdict = `<strong>${name}</strong> looks structurally attractive (avg ${avg.toFixed(1)}/5). Weak forces mean incumbents have real pricing power — the strategic question shifts from "how do we survive?" to "how do we defend this position before it attracts entrants?"`;
+                colorClasses = 'border-teal-400 bg-teal-50 text-teal-900';
+            } else if (avg <= 3.4) {
+                verdict = `<strong>${name}</strong> is a mixed structure (avg ${avg.toFixed(1)}/5). Some forces favor incumbents, others don't — the strategist's job is to identify which single force is doing the most damage to profitability and target it directly, rather than treating all five as equally urgent.`;
+                colorClasses = 'border-amber-400 bg-amber-50 text-amber-900';
+            } else {
+                verdict = `<strong>${name}</strong> looks structurally brutal (avg ${avg.toFixed(1)}/5). This is a Porter "value-destroying" configuration — per the reading, the honest strategic options are usually: find an unexploited niche where the forces are locally weaker, avoid the industry, or plan to reshape the structure itself (rare, and usually expensive).`;
+                colorClasses = 'border-red-400 bg-red-50 text-red-900';
+            }
+            resultBox.className = 'mt-8 p-6 rounded-xl border-2 text-left ' + colorClasses;
+            resultBox.innerHTML = `<p class="text-sm leading-relaxed">${verdict}</p>`;
+        }
+
+        document.getElementById('industry-name').addEventListener('input', computeAttractiveness);
+        renderSliders();
 
         // --- 3. Quiz Logic ---
         const questions = [

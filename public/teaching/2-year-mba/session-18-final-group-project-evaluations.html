@@ -1,1031 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official Session 15: Strategy Implementation | Governing the Multi-Business Firm</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; color: #0f172a; line-height: 1.65; }
+        h1, h2, h3, .serif-font { font-family: 'Playfair Display', serif; }
+        .mono-font { font-family: 'JetBrains Mono', monospace; }
+        .fp-box { background: #eff6ff; border-left: 6px solid #1e3a8a; border-radius: 0 16px 16px 0; padding: 2rem; }
+        .card { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,.05); }
+        .nav-link { color: #64748b; font-size: .875rem; font-weight: 500; text-decoration: none; }
+        .nav-link:hover { color: #1e3a8a; }
+        input[type=range] { accent-color: #1e3a8a; }
+    </style>
+    <link rel="stylesheet" href="/teaching/responsive.css">
+</head>
+<body class="antialiased bg-white">
+    <div class="fixed top-0 left-0 w-full h-1 bg-slate-100 z-50"><div id="progress-bar" class="h-full bg-blue-800 w-0 transition-all"></div></div>
 
-<!DOCTYPE html><html lang="en" class="scroll-smooth"><head>  <meta charset="UTF-8" />  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  <title>Artificial Intelligence in Strategic Management</title>  
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>  
-  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">  
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">  
-  <style>    
-    :root {
-        --primary-bg: #fdfbf7;      /* Warm paper white */
-        --primary-text: #1a1a1a;    /* Soft black */
-        --accent-color: #15803d;    /* Patagonia Green */
-        --accent-secondary: #0f172a; /* Slate */
-        --glass: rgba(255, 255, 255, 0.95);
-        --border-light: #e2e8f0;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }    
-    html { scroll-behavior: smooth; }    
-    body { background-color: var(--primary-bg); color: var(--primary-text); font-family: 'Satoshi', sans-serif; overflow-x: hidden; }
-    h1, h2, h3, h4, .serif-font { font-family: 'Playfair Display', serif; }
-    .mono-font { font-family: 'JetBrains Mono', monospace; }
-    ::-webkit-scrollbar { width: 6px; }    
-    ::-webkit-scrollbar-track { background: var(--primary-bg); }    
-    ::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 3px; }    
-    a { transition: color 0.2s; }  
-    input[type=range] { -webkit-appearance: none; background: rgba(21,128,61,0.2); height: 4px; border-radius: 2px; outline: none; }    
-    input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--accent-color); cursor: pointer; }  
-    .chess-logo {
-        width: 40px; height: 40px;
-        background: #15803d;
-        color: #fff;
-        display: flex; align-items: center; justify-content: center;
-        border-radius: 8px;
-        font-size: 1.25rem;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-    }
-    .group:hover .chess-logo { transform: rotate(10deg); background: #166534; }
-  </style>    <link rel="stylesheet" href="/teaching/responsive.css">
-</head><body class="antialiased selection:bg-green-100 selection:text-green-900">  <div id="root"></div>
-  <script type="text/babel">    const { useState, useEffect } = React;
-    const sections = [      { id: "intro", label: "Introduction" },      { id: "what", label: "What is AI?" },      { id: "landscape", label: "AI Landscape" },      { id: "business", label: "Business Impact" },      { id: "teaching", label: "Teaching with AI" },      { id: "tools", label: "Tools" },      { id: "ethics", label: "Ethics" },      { id: "future", label: "The Road Ahead" },    ];
-    const bodyStyle = {      fontSize: "1rem", lineHeight: 1.85, color: "#475569",      fontFamily: "'Satoshi', sans-serif", marginBottom: "1.5rem",    };
-    function ChapterHeader({ number, title, subtitle }) {      return (        <div style={{ marginBottom: "3rem" }}>          <div style={{ color: "rgba(21,128,61,0.8)", fontSize: "0.7rem", fontFamily: "sans-serif", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: "0.8rem", fontWeight: "bold" }}>            Chapter {number}          </div>          <h2 style={{ fontSize: "clamp(2rem, 3.5vw, 2.8rem)", fontWeight: "normal", color: "#1a1a1a", marginBottom: "0.5rem", lineHeight: 1.2, fontFamily: "'Playfair Display', serif" }}>{title}</h2>          <p style={{ color: "#64748b", fontSize: "1rem", fontFamily: "sans-serif", fontStyle: "italic", margin: 0 }}>{subtitle}</p>          <div style={{ width: "60px", height: "2px", background: "#15803d", marginTop: "1.5rem" }} />        </div>      );    }
-    function ConceptCard({ title, items }) {      return (        <div style={{ border: "1px solid #e2e8f0", backgroundColor: "#ffffff", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.05)", borderRadius: "1rem", overflow: "hidden" }}>          <div style={{ background: "rgba(21,128,61,0.05)", padding: "1rem 1.5rem", borderBottom: "1px solid #e2e8f0" }}>            <div style={{ color: "#15803d", fontSize: "0.78rem", fontFamily: "sans-serif", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: "bold" }}>{title}</div>          </div>          {items.map(({ label, desc, color }, i) => (            <div key={label} style={{ padding: "1rem 1.5rem", borderBottom: i < items.length - 1 ? "1px solid #e2e8f0" : "none", display: "flex", alignItems: "center", gap: "1rem" }}>              <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: color, flexShrink: 0 }} />              <div>                <div style={{ color: "#1a1a1a", fontSize: "0.85rem", fontFamily: "sans-serif", fontWeight: "600" }}>{label}</div>                <div style={{ color: "#475569", fontSize: "0.75rem", fontFamily: "sans-serif", marginTop: "0.2rem" }}>{desc}</div>              </div>            </div>          ))}        </div>      );    }
-
-    /* ── COMPONENT: 4-WEEK SYLLABUS MODULE ── */
-    function AISyllabusModule() {
-      return (
-        <div style={{ marginTop: "6rem", borderTop: "1px solid #e2e8f0", paddingTop: "4rem" }}>
-          <div style={{ color: "rgba(21,128,61,0.8)", fontSize: "0.7rem", fontFamily: "sans-serif", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: "0.8rem", fontWeight: "bold" }}>Teaching sequence</div>
-          <h3 style={{ fontSize: "2.2rem", color: "#1a1a1a", marginBottom: "1.5rem", fontWeight: "bold", lineHeight: 1.2, fontFamily: "'Playfair Display', serif" }}>A four-week foundation</h3>
-          <p style={{ ...bodyStyle, maxWidth: "900px" }}>The course begins with the mechanics of data and machine learning, then moves into project choices, organisational adoption and social consequences. Each week gives managers enough technical grounding to ask better strategic questions without pretending that every learner must become an engineer.</p>
-
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem", marginTop: "3rem", marginBottom: "4rem" }}>
-            
-            {/* Week 1 */}
-            <div style={{ background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "12px", padding: "2rem", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.05)", position: "relative", overflow: "hidden" }}>
-              <div style={{ position: "absolute", top: 0, left: 0, width: "4px", height: "100%", background: "#15803d" }}></div>
-              <h4 style={{ color: "#15803d", fontSize: "1.3rem", fontWeight: "bold", marginBottom: "1rem", fontFamily: "'Playfair Display', serif" }}>Week 1: What is AI</h4>
-              <ul style={{ listStyleType: "none", padding: 0, color: "#475569", fontSize: "0.85rem", lineHeight: 1.8, fontFamily: "sans-serif", margin: 0 }}>
-                <li><strong style={{color:"#15803d", marginRight: "8px"}}>›</strong>Introduction</li>
-                <li><strong style={{color:"#15803d", marginRight: "8px"}}>›</strong>Machine Learning</li>
-                <li><strong style={{color:"#15803d", marginRight: "8px"}}>›</strong>What is data</li>
-                <li><strong style={{color:"#15803d", marginRight: "8px"}}>›</strong>The terminology of AI</li>
-                <li><strong style={{color:"#15803d", marginRight: "8px"}}>›</strong>What makes an AI company?</li>
-                <li><strong style={{color:"#15803d", marginRight: "8px"}}>›</strong>What Machine Learning can and cannot do</li>
-                <li><strong style={{color:"#15803d", marginRight: "8px"}}>›</strong>Intuitive explanation of deep learning</li>
-              </ul>
+    <nav class="sticky top-0 bg-white/95 backdrop-blur-md border-b border-slate-200 z-40">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <span class="font-bold text-slate-900">Strategy Implementation</span>
+            <div class="hidden md:flex gap-6">
+                <a href="#question" class="nav-link">Fundamental Question</a>
+                <a href="#reading" class="nav-link">The Reading</a>
+                <a href="#amazon" class="nav-link">Amazon Case</a>
+                <a href="#simulator" class="nav-link">Simulator</a>
+                <a href="#quiz" class="nav-link font-bold text-blue-800">Quiz</a>
             </div>
-
-            {/* Week 2 */}
-            <div style={{ background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "12px", padding: "2rem", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.05)", position: "relative", overflow: "hidden" }}>
-              <div style={{ position: "absolute", top: 0, left: 0, width: "4px", height: "100%", background: "#3b82f6" }}></div>
-              <h4 style={{ color: "#1d4ed8", fontSize: "1.3rem", fontWeight: "bold", marginBottom: "1rem", fontFamily: "'Playfair Display', serif" }}>Week 2: Building AI Projects</h4>
-              <ul style={{ listStyleType: "none", padding: 0, color: "#475569", fontSize: "0.85rem", lineHeight: 1.8, fontFamily: "sans-serif", margin: 0 }}>
-                <li><strong style={{color:"#3b82f6", marginRight: "8px"}}>›</strong>Workflow of a Machine Learning project</li>
-                <li><strong style={{color:"#3b82f6", marginRight: "8px"}}>›</strong>Workflow of a Data Science project</li>
-                <li><strong style={{color:"#3b82f6", marginRight: "8px"}}>›</strong>Every job function needs to learn to use data</li>
-                <li><strong style={{color:"#3b82f6", marginRight: "8px"}}>›</strong>How to choose an AI project</li>
-                <li><strong style={{color:"#3b82f6", marginRight: "8px"}}>›</strong>Working with an AI team</li>
-                <li><strong style={{color:"#3b82f6", marginRight: "8px"}}>›</strong>Technical tools for AI teams</li>
-              </ul>
-            </div>
-
-            {/* Week 3 */}
-            <div style={{ background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "12px", padding: "2rem", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.05)", position: "relative", overflow: "hidden" }}>
-              <div style={{ position: "absolute", top: 0, left: 0, width: "4px", height: "100%", background: "#f59e0b" }}></div>
-              <h4 style={{ color: "#b45309", fontSize: "1.3rem", fontWeight: "bold", marginBottom: "1rem", fontFamily: "'Playfair Display', serif" }}>Week 3: AI in Your Company</h4>
-              <ul style={{ listStyleType: "none", padding: 0, color: "#475569", fontSize: "0.85rem", lineHeight: 1.8, fontFamily: "sans-serif", margin: 0 }}>
-                <li><strong style={{color:"#f59e0b", marginRight: "8px"}}>›</strong>Case study: Smart speaker</li>
-                <li><strong style={{color:"#f59e0b", marginRight: "8px"}}>›</strong>Case study: Self-driving car</li>
-                <li><strong style={{color:"#f59e0b", marginRight: "8px"}}>›</strong>Example roles of an AI team</li>
-                <li><strong style={{color:"#f59e0b", marginRight: "8px"}}>›</strong>AI Transformation Playbook</li>
-                <li><strong style={{color:"#f59e0b", marginRight: "8px"}}>›</strong>AI pitfalls to avoid</li>
-                <li><strong style={{color:"#f59e0b", marginRight: "8px"}}>›</strong>Taking your first step in AI</li>
-                <li><strong style={{color:"#f59e0b", marginRight: "8px"}}>›</strong>Survey of major AI applications</li>
-                <li><strong style={{color:"#f59e0b", marginRight: "8px"}}>›</strong>Survey of major AI techniques</li>
-              </ul>
-            </div>
-
-            {/* Week 4 */}
-            <div style={{ background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "12px", padding: "2rem", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.05)", position: "relative", overflow: "hidden" }}>
-              <div style={{ position: "absolute", top: 0, left: 0, width: "4px", height: "100%", background: "#8b5cf6" }}></div>
-              <h4 style={{ color: "#6d28d9", fontSize: "1.3rem", fontWeight: "bold", marginBottom: "1rem", fontFamily: "'Playfair Display', serif" }}>Week 4: AI and Society</h4>
-              <ul style={{ listStyleType: "none", padding: 0, color: "#475569", fontSize: "0.85rem", lineHeight: 1.8, fontFamily: "sans-serif", margin: 0 }}>
-                <li><strong style={{color:"#8b5cf6", marginRight: "8px"}}>›</strong>A realistic view of AI</li>
-                <li><strong style={{color:"#8b5cf6", marginRight: "8px"}}>›</strong>Discrimination / Bias</li>
-                <li><strong style={{color:"#8b5cf6", marginRight: "8px"}}>›</strong>Adversarial attacks</li>
-                <li><strong style={{color:"#8b5cf6", marginRight: "8px"}}>›</strong>Adverse uses</li>
-                <li><strong style={{color:"#8b5cf6", marginRight: "8px"}}>›</strong>AI and developing nations</li>
-                <li><strong style={{color:"#8b5cf6", marginRight: "8px"}}>›</strong>AI and jobs</li>
-                <li><strong style={{color:"#8b5cf6", marginRight: "8px"}}>›</strong>Conclusion</li>
-              </ul>
-            </div>
-
-          </div>
         </div>
-      );
-    }
+    </nav>
 
-    /* ── COMPONENT: MCKINSEY REPORT SIMULATION ── */
-    function McKinseySim() {
-      return (
-        <div style={{ marginTop: "6rem", borderTop: "1px solid #e2e8f0", paddingTop: "4rem" }}>
-          <div style={{ color: "rgba(21,128,61,0.8)", fontSize: "0.7rem", fontFamily: "sans-serif", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: "0.8rem", fontWeight: "bold" }}>Empirical Baseline</div>
-          <h3 style={{ fontSize: "2.2rem", color: "#1a1a1a", marginBottom: "1.5rem", fontWeight: "bold", lineHeight: 1.2, fontFamily: "'Playfair Display', serif" }}>The Economic Potential of AI</h3>
-          <p style={{ ...bodyStyle, maxWidth: "900px" }}>I submit to you the fundamental economic reality. McKinsey projects <strong>$13-22 Trillion</strong> in annual value creation by 2033 (incorporating $3-4 Trillion specifically from Generative AI). Crucially, notice the distribution. The vast majority of this value lies <em>outside</em> the software industry. It resides in the physical and service economies.</p>
-
-          <div style={{ padding: "1.5rem", background: "rgba(21,128,61,0.05)", borderLeft: "4px solid #15803d", marginBottom: "3rem", fontFamily: "sans-serif", fontSize: "0.75rem", color: "#475569", lineHeight: 1.6, borderRadius: "0 8px 8px 0" }}>
-            <strong>Reference:</strong><br />
-            Chui, M., Hazan, E., Roberts, R., Singla, A., Smaje, K., Sukharevsky, A., Yee, L., & Zemmel, R. (2023, June). <em>The economic potential of generative AI: The next productivity frontier</em>. McKinsey & Company. <a href="https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/the-economic-potential-of-generative-ai-the-next-productivity-frontier" target="_blank" style={{ color: "#15803d", textDecoration: "underline", fontWeight: "bold" }} rel="noopener noreferrer">Link</a>
-          </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1.2rem", maxWidth: "800px", background: "#ffffff", padding: "2rem", border: "1px solid #e2e8f0", borderRadius: "12px", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.05)", marginBottom: "4rem" }}>
-            {[
-              { label: "Retail", val: "$0.8T ($800B)", pct: "100%", color: "#1e3a8a" },
-              { label: "Travel", val: "$480B", pct: "60%", color: "#1d4ed8" },
-              { label: "Transport & Logistics", val: "$475B", pct: "59%", color: "#2563eb" },
-              { label: "Automotive & Assembly", val: "$405B", pct: "50%", color: "#3b82f6" },
-              { label: "Basic Materials", val: "$300B", pct: "37%", color: "#60a5fa" }
-            ].map(item => (
-              <div key={item.label}>
-                <div style={{ display: "flex", justifyContent: "space-between", fontFamily: "sans-serif", fontSize: "0.85rem", color: "#1a1a1a", marginBottom: "0.4rem", fontWeight: "600" }}>
-                  <span>{item.label}</span>
-                  <span style={{ color: item.color, fontWeight: "bold" }}>{item.val}</span>
-                </div>
-                <div style={{ width: "100%", background: "#f1f5f9", height: "10px", borderRadius: "5px" }}>
-                  <div style={{ width: item.pct, background: item.color, height: "10px", borderRadius: "5px" }}></div>
-                </div>
-              </div>
-            ))}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "1rem", marginTop: "1.5rem", paddingTop: "1.5rem", borderTop: "1px solid #e2e8f0", fontFamily: "sans-serif", fontSize: "0.8rem", color: "#64748b" }}>
-              <div>Adv. Electronics: <strong style={{ color: "#1a1a1a" }}>$291B</strong></div>
-              <div>Healthcare: <strong style={{ color: "#1a1a1a" }}>$267B</strong></div>
-              <div>High Tech: <strong style={{ color: "#1a1a1a" }}>$267B</strong></div>
-              <div>Telecom: <strong style={{ color: "#1a1a1a" }}>$174B</strong></div>
-              <div>Oil & Gas: <strong style={{ color: "#1a1a1a" }}>$173B</strong></div>
-              <div>Agriculture: <strong style={{ color: "#1a1a1a" }}>$164B</strong></div>
-            </div>
-          </div>
-
-          <div style={{ color: "rgba(21,128,61,0.8)", fontSize: "0.7rem", fontFamily: "sans-serif", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: "0.8rem", fontWeight: "bold" }}>Reading the evidence</div>
-          <h3 style={{ fontSize: "2.2rem", color: "#1a1a1a", marginBottom: "1.5rem", fontWeight: "bold", lineHeight: 1.2, fontFamily: "'Playfair Display', serif" }}>Where projected value is concentrated</h3>
-          <p style={{ ...bodyStyle, maxWidth: "900px" }}>This exercise turns estimates from the cited McKinsey report into questions a management team can debate. The figures are projections, not promises. Use them to compare where generative AI may change tasks, costs and decisions—and where the assumptions deserve scrutiny.</p>
-
-          {/* 75% Concentration */}
-          <div style={{ marginBottom: "4rem", marginTop: "3rem" }}>
-            <h4 style={{ color: "#15803d", fontSize: "1.1rem", marginBottom: "1rem", fontFamily: "'Playfair Display', serif", fontWeight: "bold" }}>I. Four functions in the foreground</h4>
-            <p style={{ ...bodyStyle, fontSize: "0.95rem", marginBottom: "1.5rem" }}>The report places roughly three-quarters of its projected $2.6–$4.4 trillion range in four functions. That concentration is a useful starting point for inquiry, but an investment decision still depends on the organisation’s data, workflow and risk.</p>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1rem" }}>
-              {[
-                { title: "Customer Operations", icon: "🎧", desc: "Answer routine questions, help agents find information and draft responses." },
-                { title: "Marketing & Sales", icon: "📈", desc: "Draft and adapt content, summarise customer signals and support lead research." },
-                { title: "Software Engineering", icon: "💻", desc: "Suggest code, explain unfamiliar systems and help diagnose faults." },
-                { title: "Product R&D", icon: "🔬", desc: "Compare design options, search technical knowledge and speed early experiments." }
-              ].map(card => (
-                <div key={card.title} style={{ background: "#ffffff", padding: "1.5rem", borderRadius: "8px", border: "1px solid #e2e8f0", boxShadow: "0 2px 4px rgba(0,0,0,0.02)" }}>
-                  <div style={{ fontSize: "2rem", marginBottom: "1rem" }}>{card.icon}</div>
-                  <h5 style={{ fontWeight: "bold", fontSize: "0.9rem", color: "#1a1a1a", marginBottom: "0.5rem", fontFamily: "sans-serif" }}>{card.title}</h5>
-                  <p style={{ fontSize: "0.75rem", color: "#64748b", fontFamily: "sans-serif", lineHeight: 1.5 }}>{card.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Timeline Acceleration */}
-          <div style={{ marginBottom: "4rem" }}>
-            <h4 style={{ color: "#15803d", fontSize: "1.1rem", marginBottom: "1rem", fontFamily: "'Playfair Display', serif", fontWeight: "bold" }}>II. The Timeline Acceleration</h4>
-            <p style={{ ...bodyStyle, fontSize: "0.95rem", marginBottom: "1.5rem" }}>McKinsey’s earlier midpoint estimate placed automation of half of current work activities around 2053. Its generative-AI scenario moved that midpoint roughly a decade earlier. Treat the dates as modelled scenarios rather than a timetable.</p>
-            <div style={{ background: "#f8fafc", padding: "2rem", borderRadius: "12px", border: "1px solid #e2e8f0" }}>
-              <div style={{ marginBottom: "2rem" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", fontFamily: "sans-serif", fontSize: "0.85rem", fontWeight: "bold", color: "#64748b", marginBottom: "0.5rem" }}>
-                  <span>Pre-Generative AI Estimate (50% Automation)</span>
-                  <span>Midpoint: 2053</span>
-                </div>
-                <div style={{ width: "100%", background: "#e2e8f0", height: "12px", borderRadius: "6px", position: "relative" }}>
-                  <div style={{ width: "75%", background: "#94a3b8", height: "12px", borderRadius: "6px" }}></div>
-                  <div style={{ position: "absolute", left: "75%", top: "-4px", height: "20px", width: "2px", background: "#1a1a1a" }}></div>
-                </div>
-              </div>
-              <div>
-                <div style={{ display: "flex", justifyContent: "space-between", fontFamily: "sans-serif", fontSize: "0.85rem", fontWeight: "bold", color: "#15803d", marginBottom: "0.5rem" }}>
-                  <span>Post-Generative AI Estimate (50% Automation)</span>
-                  <span style={{ background: "#15803d", color: "#fff", padding: "2px 8px", borderRadius: "4px" }}>Midpoint: 2045</span>
-                </div>
-                <div style={{ width: "100%", background: "#e2e8f0", height: "12px", borderRadius: "6px", position: "relative" }}>
-                  <div style={{ width: "50%", background: "#22c55e", height: "12px", borderRadius: "6px" }}></div>
-                  <div style={{ position: "absolute", left: "50%", top: "-4px", height: "20px", width: "2px", background: "#15803d" }}></div>
-                  <div style={{ position: "absolute", left: "55%", top: "-25px", fontSize: "0.75rem", color: "#dc2626", fontWeight: "bold", fontStyle: "italic" }}>← Accelerated by a decade</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Educational Inversion */}
-          <div>
-            <h4 style={{ color: "#15803d", fontSize: "1.1rem", marginBottom: "1rem", fontFamily: "'Playfair Display', serif", fontWeight: "bold" }}>III. The Educational Inversion (Skill-Bias Shift)</h4>
-            <p style={{ ...bodyStyle, fontSize: "0.95rem", marginBottom: "1.5rem" }}>Previous technological revolutions hollowed out middle-income, physical labor. Generative AI does the exact opposite. It targets cognitive labor. Notice how the highest academic degrees now face the highest incremental exposure to automation.</p>
-            <div style={{ background: "#ffffff", padding: "2rem", borderRadius: "12px", border: "1px solid #e2e8f0", boxShadow: "0 2px 4px rgba(0,0,0,0.02)" }}>
-              {[
-                { level: "High School Diploma", base: 51, genai: 13, total: 64 },
-                { level: "Bachelor's Degree", base: 36, genai: 24, total: 60 },
-                { level: "Master's / PhD", base: 28, genai: 29, total: 57 }
-              ].map(edu => (
-                <div key={edu.level} style={{ marginBottom: "1.5rem", display: "flex", alignItems: "center", gap: "1rem" }}>
-                  <span style={{ width: "160px", fontSize: "0.85rem", fontFamily: "sans-serif", fontWeight: "bold", color: "#1a1a1a" }}>{edu.level}</span>
-                  <div style={{ flex: 1, display: "flex", height: "24px", borderRadius: "4px", overflow: "hidden", background: "#f1f5f9" }}>
-                    <div style={{ width: `${edu.base}%`, background: "#94a3b8", display: "flex", alignItems: "center", paddingLeft: "8px", fontSize: "0.7rem", color: "#fff", fontWeight: "bold" }}>{edu.base}% (Base)</div>
-                    <div style={{ width: `${edu.genai}%`, background: "#3b82f6", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.7rem", color: "#fff", fontWeight: "bold" }}>+{edu.genai}% {edu.level.includes("PhD") ? "GenAI Shock" : "GenAI"}</div>
-                  </div>
-                  <span style={{ width: "60px", textAlign: "right", fontSize: "0.85rem", fontFamily: "monospace", fontWeight: "bold", color: "#1e3a8a" }}>{edu.total}% Total</span>
-                </div>
-              ))}
-              <div style={{ marginTop: "1rem", fontSize: "0.7rem", color: "#64748b", fontStyle: "italic" }}>Data mapped directly from McKinsey Global Institute occupation database, representing the acceleration in technical automation potential by education level.</div>
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    /* ── COMPONENT: DATA ARCHITECTURE (ANDREW NG) ── */
-    function DataArchitectureSim() {
-      const [isDataClean, setIsDataClean] = useState(false);
-      return (
-        <div style={{ marginTop: "6rem", borderTop: "1px solid #e2e8f0", paddingTop: "4rem" }}>
-          <div style={{ color: "rgba(21,128,61,0.8)", fontSize: "0.7rem", fontFamily: "sans-serif", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: "0.8rem", fontWeight: "bold" }}>Foundation of Intelligence</div>
-          <h3 style={{ fontSize: "2.2rem", color: "#1a1a1a", marginBottom: "1.5rem", fontWeight: "normal", lineHeight: 1.2, fontFamily: "'Playfair Display', serif" }}>Data Architecture & Reality: The Fuel of AI</h3>
-          <p style={{ ...bodyStyle, maxWidth: "900px" }}>You have heard that data is critical, but what is it functionally? As Andrew Ng emphasizes, data is unique to your business. It is up to the strategist to define the Input (A) and Output (B) that generate value. However, executives consistently fall into the "IT Fallacy" and underestimate the messy reality of data.</p>
-          
-          {/* Defining A and B Mappings */}
-          <div style={{ marginBottom: "3rem", background: "#ffffff", padding: "2rem", borderRadius: "12px", border: "1px solid #e2e8f0", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.05)" }}>
-            <h4 style={{ color: "#15803d", fontSize: "1.1rem", marginBottom: "1rem", fontFamily: "'Playfair Display', serif", fontWeight: "bold" }}>The A → B Business Mapping</h4>
-            <p style={{ fontSize: "0.9rem", color: "#475569", lineHeight: 1.6, marginBottom: "1.5rem", fontFamily: "sans-serif" }}>Defining A and B is a strategic choice. For a real estate firm, <strong>Size of House (A)</strong> to <strong>Price (B)</strong> values the asset. But if you change the mapping to <strong>Budget (A)</strong> to <strong>House Size (B)</strong>, you've built a totally different tool for a homebuyer.</p>
-          </div>
-
-          {/* Structured vs Unstructured */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem", marginBottom: "3rem" }}>
-            <div style={{ background: "#ffffff", border: "1px solid #e2e8f0", padding: "1.5rem", borderRadius: "8px", boxShadow: "0 2px 4px rgba(0,0,0,0.02)" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "1rem" }}>
-                <i className="fas fa-table text-blue-600 text-xl"></i>
-                <strong style={{ color: "#1e293b", fontSize: "1.1rem" }}>Structured Data</strong>
-              </div>
-              <p style={{ fontSize: "0.85rem", color: "#475569", lineHeight: 1.6 }}>Data that lives in giant spreadsheets. Predictable and categorical (e.g., housing size, number of bedrooms, price). Traditional Supervised Learning works very well here.</p>
-            </div>
-            <div style={{ background: "#ffffff", border: "1px solid #e2e8f0", padding: "1.5rem", borderRadius: "8px", boxShadow: "0 2px 4px rgba(0,0,0,0.02)" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "1rem" }}>
-                <i className="fas fa-image text-purple-600 text-xl"></i>
-                <strong style={{ color: "#1e293b", fontSize: "1.1rem" }}>Unstructured Data</strong>
-              </div>
-              <p style={{ fontSize: "0.85rem", color: "#475569", lineHeight: 1.6 }}>Images, audio, and text. Interpreting pixels (e.g., "Is this a Cat in a picture?") or waveforms. The domain where Deep Learning and Generative AI truly dominate.</p>
-            </div>
-          </div>
-
-          {/* Data Acquisition Strategies */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem", marginBottom: "3rem" }}>
-            <div style={{ background: "#ffffff", padding: "1.5rem", border: "1px solid #e2e8f0", borderRadius: "8px" }}>
-              <strong style={{ color: "#15803d", display: "block", marginBottom: "0.5rem" }}>1. Manual Labeling</strong>
-              <p style={{ fontSize: "0.8rem", color: "#475569", lineHeight: 1.5 }}>Humans categorizing data points directly (e.g., tagging thousands of pictures as "Cat" or "Not Cat"). Labor-intensive but creates highly accurate training sets.</p>
-            </div>
-            <div style={{ background: "#ffffff", padding: "1.5rem", border: "1px solid #e2e8f0", borderRadius: "8px" }}>
-              <strong style={{ color: "#15803d", display: "block", marginBottom: "0.5rem" }}>2. Observing Behaviors</strong>
-              <p style={{ fontSize: "0.8rem", color: "#475569", lineHeight: 1.5 }}>Collecting data through user interactions (e.g., e-commerce purchase history based on price) or observing machines (e.g., pressure/temperature before factory failure).</p>
-            </div>
-            <div style={{ background: "#ffffff", padding: "1.5rem", border: "1px solid #e2e8f0", borderRadius: "8px" }}>
-              <strong style={{ color: "#15803d", display: "block", marginBottom: "0.5rem" }}>3. Open Internet & Partners</strong>
-              <p style={{ fontSize: "0.8rem", color: "#475569", lineHeight: 1.5 }}>Downloading existing datasets from websites or utilizing a partner's established data streams (respecting copyright). Accelerates project timelines significantly.</p>
-            </div>
-          </div>
-
-          {/* IT Infrastructure Fallacy */}
-          <div style={{ marginBottom: "3rem", background: "#fffbeb", border: "1px solid #fcd34d", padding: "2rem", borderRadius: "8px" }}>
-            <h4 style={{ color: "#b45309", fontWeight: "bold", marginBottom: "0.5rem", fontSize: "1.1rem" }}>The IT Infrastructure Fallacy</h4>
-            <p style={{ color: "#78350f", fontSize: "0.9rem", lineHeight: 1.6, margin: 0 }}>Many CEOs state: <em>"Give me 3 years to build my IT infrastructure and clean data, then we will do AI."</em> This is a catastrophic strategic error. Start feeding data to an AI team immediately. The AI team's feedback is required to guide the IT team on <strong>what</strong> data to collect (e.g., sampling a machine every 1 minute instead of 10 minutes for preventative maintenance).</p>
-          </div>
-
-          {/* Garbage In, Garbage Out Simulation */}
-          <div style={{ background: "#ffffff", border: "1px solid #e2e8f0", padding: "2rem", borderRadius: "12px", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.05)" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem" }}>
-              <h4 style={{ color: "#1a1a1a", fontSize: "1.2rem", fontFamily: "sans-serif", fontWeight: "bold" }}>Simulation: Garbage In, Garbage Out (GIGO)</h4>
-              <button
-                onClick={() => setIsDataClean(!isDataClean)}
-                style={{ background: isDataClean ? "#64748b" : "#15803d", color: "#fff", padding: "0.5rem 1rem", borderRadius: "6px", border: "none", fontWeight: "bold", cursor: "pointer", transition: "background 0.2s" }}
-              >
-                {isDataClean ? "Revert to Raw Data" : "Run Data Cleaning Pipeline"}
-              </button>
-            </div>
-            
-            <div style={{ overflowX: "auto" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse", fontFamily: "sans-serif", fontSize: "0.85rem", textAlign: "left" }}>
-                <thead style={{ background: "rgba(0,0,0,0.03)", color: "#475569" }}>
-                  <tr>
-                    <th style={{ padding: "0.75rem", borderBottom: "1px solid #e2e8f0" }}>House Size (sqft)</th>
-                    <th style={{ padding: "0.75rem", borderBottom: "1px solid #e2e8f0" }}># of Bedrooms</th>
-                    <th style={{ padding: "0.75rem", borderBottom: "1px solid #e2e8f0" }}>Price (Output B)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr style={{ borderBottom: "1px solid #f1f5f9", color: "#64748b" }}>
-                    <td style={{ padding: "0.75rem" }}>523</td>
-                    <td style={{ padding: "0.75rem" }}>1</td>
-                    <td style={{ padding: "0.75rem" }}>$100,000</td>
-                  </tr>
-                  <tr style={{ borderBottom: "1px solid #f1f5f9", background: isDataClean ? "transparent" : "#fef2f2", color: isDataClean ? "#64748b" : "#b91c1c", transition: "all 0.3s" }}>
-                    <td style={{ padding: "0.75rem" }}>645</td>
-                    <td style={{ padding: "0.75rem" }}>1</td>
-                    <td style={{ padding: "0.75rem", fontWeight: isDataClean ? "normal" : "bold" }}>{isDataClean ? '$150,000' : '$0.001 (Incorrect Label)'}</td>
-                  </tr>
-                  <tr style={{ borderBottom: "1px solid #f1f5f9", background: isDataClean ? "transparent" : "#fef2f2", color: isDataClean ? "#64748b" : "#b91c1c", transition: "all 0.3s" }}>
-                    <td style={{ padding: "0.75rem" }}>708</td>
-                    <td style={{ padding: "0.75rem", fontWeight: isDataClean ? "normal" : "bold" }}>{isDataClean ? '2 (Imputed)' : 'unknown (Missing Value)'}</td>
-                    <td style={{ padding: "0.75rem" }}>$200,000</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div style={{ marginTop: "1.5rem", padding: "1rem", background: isDataClean ? "#f0fdf4" : "#fef2f2", borderLeft: `4px solid ${isDataClean ? '#16a34a' : '#dc2626'}`, borderRadius: "0 8px 8px 0", transition: "all 0.3s" }}>
-              <strong style={{ color: isDataClean ? "#166534" : "#991b1b" }}>Model Accuracy: {isDataClean ? "94.2% (Ready for Production)" : "12.4% (Failed due to Anomalies & Nulls)"}</strong>
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    /* ── COMPONENT: AI COMPANY TRANSFORMATION (ANDREW NG) ── */
-    function AICompanyTransformation() {
-      return (
-        <div style={{ marginTop: "6rem", borderTop: "1px solid #e2e8f0", paddingTop: "4rem" }}>
-          <div style={{ color: "rgba(21,128,61,0.8)", fontSize: "0.7rem", fontFamily: "sans-serif", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: "0.8rem", fontWeight: "bold" }}>Organizational Sociology</div>
-          <h3 style={{ fontSize: "2.2rem", color: "#1a1a1a", marginBottom: "1.5rem", fontWeight: "normal", lineHeight: 1.2, fontFamily: "'Playfair Display', serif" }}>What Makes an AI Company?</h3>
-          <p style={{ ...bodyStyle, maxWidth: "900px" }}>Adding a model to an old workflow does not, by itself, change how a company learns. Andrew Ng makes the comparison with the early internet: putting a catalogue online was different from building short feedback cycles, experiments and decision rights around digital behaviour. The same distinction helps us examine claims that a company has become “AI-driven.”</p>
-          
-          {/* Legacy vs True AI Comparison */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem", marginBottom: "4rem", marginTop: "2rem" }}>
-            <div style={{ background: "#fef2f2", padding: "2rem", borderRadius: "12px", border: "1px solid #fca5a5" }}>
-              <h4 style={{ color: "#b91c1c", fontSize: "1.1rem", fontWeight: "bold", fontFamily: "sans-serif", marginBottom: "1rem" }}>The Legacy Illusion</h4>
-              <p style={{ color: "#7f1d1d", fontSize: "0.9rem", lineHeight: 1.6, marginBottom: "1.5rem" }}><strong>Any Company + Deep Learning $\neq$ AI Company</strong></p>
-              <ul style={{ color: "#7f1d1d", fontSize: "0.85rem", lineHeight: 1.6, paddingLeft: "1rem", margin: 0 }}>
-                <li style={{ marginBottom: "0.5rem" }}>Data strictly siloed across disparate regional databases and departmental VPs.</li>
-                <li style={{ marginBottom: "0.5rem" }}>Decision-making bottlenecked entirely at the CEO/Executive level.</li>
-                <li>AI treated simply as an IT patch or software upgrade rather than a core strategic asset.</li>
-              </ul>
-            </div>
-            <div style={{ background: "#f0fdf4", padding: "2rem", borderRadius: "12px", border: "1px solid #86efac" }}>
-              <h4 style={{ color: "#15803d", fontSize: "1.1rem", fontWeight: "bold", fontFamily: "sans-serif", marginBottom: "1rem" }}>The True AI Enterprise</h4>
-              <p style={{ color: "#166534", fontSize: "0.9rem", lineHeight: 1.6, marginBottom: "1.5rem" }}>Executing what AI makes uniquely possible.</p>
-              <ul style={{ color: "#166534", fontSize: "0.85rem", lineHeight: 1.6, paddingLeft: "1rem", margin: 0 }}>
-                <li style={{ marginBottom: "0.5rem" }}><strong>Strategic Data Acquisition:</strong> Launching free products solely to harvest and monetize proprietary data moats.</li>
-                <li style={{ marginBottom: "0.5rem" }}><strong>Unified Data Warehouses:</strong> Breaking sociological silos to connect latent patterns system-wide.</li>
-                <li style={{ marginBottom: "0.5rem" }}><strong>Pervasive Automation:</strong> Relentlessly mapping new A $\rightarrow$ B prediction opportunities.</li>
-                <li><strong>New Division of Labor:</strong> Empowering highly specialized Machine Learning Engineers (MLEs).</li>
-              </ul>
-            </div>
-          </div>
-
-          {/* The 5-Step Playbook */}
-          <div>
-            <h4 style={{ color: "#15803d", fontSize: "1.1rem", marginBottom: "1rem", fontFamily: "'Playfair Display', serif", fontWeight: "bold" }}>The 5-Step AI Transformation Playbook</h4>
-            <p style={{ ...bodyStyle, fontSize: "0.95rem", marginBottom: "2rem" }}>Organizational change is a systematic, predictable process. Andrew Ng details a specific strategic roadmap for legacy transition:</p>
-            
-            <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1rem" }}>
-              {[
-                { step: "01", title: "Execute Pilot Projects to Gain Momentum", desc: "Start small. Do not aim for the most complex transformation first. Focus on building momentum, understanding what AI can and cannot do, and feeling the cadence of an AI workflow (often with an outsourced team)." },
-                { step: "02", title: "Build an In-House AI Team", desc: "Transition from external reliance to internal capability. Centralize talent to support multiple business units before eventually decentralizing them as maturity grows." },
-                { step: "03", title: "Provide Broad AI Training", desc: "Literacy cannot be isolated to engineers. Executives, division leaders, and managers must understand the sociological and economic capabilities of AI to identify relevant A $\rightarrow$ B mappings in their departments." },
-                { step: "04", title: "Develop an AI Strategy", desc: "Only after foundational literacy and early wins should you codify a long-term AI strategy. Map out sustainable data acquisition and proprietary technical moats." },
-                { step: "05", title: "Internal and External Communications", desc: "Tell employees, investors and customers what is changing, what remains under human oversight and how concerns will be handled." }
-              ].map((phase, i) => (
-                <div key={phase.step} style={{ display: "flex", alignItems: "flex-start", gap: "1.5rem", background: "#ffffff", border: "1px solid #e2e8f0", padding: "1.5rem", borderRadius: "8px", boxShadow: "0 2px 4px rgba(0,0,0,0.02)" }}>
-                  <div style={{ color: "#15803d", fontSize: "1.8rem", fontWeight: "bold", fontFamily: "'Playfair Display', serif", lineHeight: 1 }}>{phase.step}</div>
-                  <div>
-                    <h5 style={{ color: "#1a1a1a", fontSize: "1rem", fontWeight: "bold", fontFamily: "sans-serif", margin: "0 0 0.5rem 0" }}>{phase.title}</h5>
-                    <p style={{ color: "#475569", fontSize: "0.85rem", lineHeight: 1.6, fontFamily: "sans-serif", margin: 0 }}>{phase.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    /* ── COMPONENT: MACHINE LEARNING SIMULATION (ANDREW NG / 3BLUE1BROWN) ── */
-    function MachineLearningSim() {
-      const [dataScale, setDataScale] = useState(15);
-
-      // Calculations for the "Why Now?" chart simulation
-      const tradPerf = Math.min(50, 20 + dataScale * 0.6);
-      const smallNnPerf = Math.min(65, 20 + dataScale * 1.0);
-      const medNnPerf = Math.min(85, 20 + dataScale * 1.4);
-      const largeNnPerf = Math.min(100, 20 + dataScale * 2.0);
-
-      return (
-        <div style={{ marginTop: "6rem", borderTop: "1px solid #e2e8f0", paddingTop: "4rem" }}>
-          <div style={{ color: "rgba(21,128,61,0.8)", fontSize: "0.7rem", fontFamily: "sans-serif", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: "0.8rem", fontWeight: "bold" }}>Technical Architecture</div>
-          <h3 style={{ fontSize: "2.2rem", color: "#1a1a1a", marginBottom: "1.5rem", fontWeight: "normal", lineHeight: 1.2, fontFamily: "'Playfair Display', serif" }}>The Mechanics of Machine Learning</h3>
-          <p style={{ ...bodyStyle, maxWidth: "900px" }}>I submit to you the foundational economic engine driving modern AI: <strong>Supervised Learning</strong>. It is not magic; it is the rigorous mathematical mapping of Input (A) to Output (B). As an academic researcher, I observe executives consistently mischaracterize this mechanism. Observe the empirical reality.</p>
-
-          {/* A to B Matrix */}
-          <div style={{ marginTop: "3rem", background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "1rem", overflow: "hidden", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.05)" }}>
-            <div style={{ background: "rgba(21,128,61,0.08)", padding: "1rem 1.5rem", borderBottom: "1px solid #e2e8f0", display: "flex", justifyContent: "space-between", fontFamily: "sans-serif", fontSize: "0.8rem", color: "#15803d", fontWeight: "bold", textTransform: "uppercase", letterSpacing: "0.1em" }}>
-              <span style={{flex: 1}}>Input (A)</span>
-              <span style={{flex: 1}}>Output (B)</span>
-              <span style={{flex: 1.5}}>Enterprise Application</span>
-            </div>
-            {[
-              { a: "Email", b: "Spam? (0/1)", app: "Spam Filtering" },
-              { a: "Audio Clip", b: "Text Transcript", app: "Speech Recognition" },
-              { a: "English Text", b: "Spanish Text", app: "Machine Translation" },
-              { a: "Ad + User Info", b: "Click Probability", app: "Online Advertising (Highly Lucrative)" },
-              { a: "Image of Phone", b: "Defect Presence", app: "Visual Inspection (Manufacturing)" }
-            ].map((row, i) => (
-              <div key={i} style={{ display: "flex", padding: "1rem 1.5rem", borderBottom: i < 4 ? "1px solid #e2e8f0" : "none", fontFamily: "sans-serif", fontSize: "0.85rem", color: "#475569" }}>
-                <span style={{flex: 1, fontFamily: "'JetBrains Mono', monospace", color: "#64748b"}}>{row.a}</span>
-                <span style={{flex: 1, fontFamily: "'JetBrains Mono', monospace", color: "#15803d", fontWeight: "bold"}}>➔ {row.b}</span>
-                <span style={{flex: 1.5, fontWeight: "700", color: "#1a1a1a"}}>{row.app}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* Generative AI LLM Concept */}
-          <div style={{ marginTop: "4rem", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "center" }}>
-            <div>
-              <h4 style={{ color: "#15803d", fontSize: "1.1rem", marginBottom: "1rem", fontFamily: "'Playfair Display', serif", fontWeight: "bold" }}>The Generative Illusion</h4>
-              <p style={{ ...bodyStyle, fontSize: "0.95rem" }}>Large language models can produce remarkably fluent responses without being sentient. During pre-training, a central objective is to predict the next token from patterns learned across large text collections.</p>
-            </div>
-            <div style={{ background: "#ffffff", border: "1px solid #e2e8f0", padding: "2rem", fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#64748b", borderRadius: "1rem", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.05)" }}>
-              <div style={{ marginBottom: "0.8rem" }}>[A] "My favorite drink" <br/><span style={{color:"#15803d", fontWeight: "bold"}}>➔ [B] "is"</span></div>
-              <div style={{ marginBottom: "0.8rem" }}>[A] "My favorite drink is" <br/><span style={{color:"#15803d", fontWeight: "bold"}}>➔ [B] "lychee"</span></div>
-              <div style={{ marginBottom: "0.8rem" }}>[A] "My favorite drink is lychee" <br/><span style={{color:"#15803d", fontWeight: "bold"}}>➔ [B] "bubble"</span></div>
-              <div>[A] "My favorite drink is lychee bubble" <br/><span style={{color:"#15803d", fontWeight: "bold"}}>➔ [B] "tea"</span></div>
-            </div>
-          </div>
-
-          {/* Transformer & Emergence (3Blue1Brown) */}
-          <div style={{ background: "#0f172a", padding: "3rem", borderRadius: "12px", marginTop: "4rem", color: "#fff", position: "relative", overflow: "hidden" }}>
-            <div style={{ position: "absolute", top: 0, right: 0, width: "300px", height: "300px", background: "#3b82f6", borderRadius: "50%", filter: "blur(80px)", opacity: 0.2, transform: "translate(30%, -30%)" }}></div>
-            <h4 style={{ color: "#38bdf8", fontSize: "1.3rem", marginBottom: "1rem", fontFamily: "'Playfair Display', serif", fontWeight: "bold", position: "relative", zIndex: 10 }}>The Mathematical Substrate: Attention & Emergence</h4>
-            <p style={{ fontSize: "0.95rem", color: "#cbd5e1", lineHeight: 1.6, marginBottom: "2rem", position: "relative", zIndex: 10 }}>Before 2017, widely used language models processed text in sequence. The transformer architecture changed that design by letting a model weigh relationships across a passage in parallel.</p>
-            
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem", position: "relative", zIndex: 10 }}>
-              <div>
-                <strong style={{ color: "#60a5fa", display: "block", marginBottom: "0.5rem" }}>The Sociology of Meaning</strong>
-                <p style={{ fontSize: "0.85rem", color: "#94a3b8", lineHeight: 1.5 }}>Transformers do not read left-to-right. They soak the entire text in at once, in parallel. Words are stripped into vectors (lists of numbers). The <strong>Attention Mechanism</strong> allows these isolated lists to "talk" to one another to negotiate context. Is "bank" a river, or JPMorgan? The numbers socialize to decide.</p>
-              </div>
-              <div>
-                <strong style={{ color: "#60a5fa", display: "block", marginBottom: "0.5rem" }}>The Black Box of Emergence</strong>
-                <p style={{ fontSize: "0.85rem", color: "#94a3b8", lineHeight: 1.5 }}>If you performed one billion calculations per second, training an LLM would take 100 million years. We do not explicitly program reasoning; we tune hundreds of billions of parameters using backpropagation. Fluency is an <strong>emergent phenomenon</strong>. We grow the intelligence; therefore, it remains inscrutable.</p>
-              </div>
-            </div>
-          </div>
-
-          {/* The Scale Simulation */}
-          <div style={{ marginTop: "5rem" }}>
-            <h4 style={{ color: "#15803d", fontSize: "1.1rem", marginBottom: "1rem", fontFamily: "'Playfair Display', serif", fontWeight: "bold" }}>Why Now? The Economic Scale of Deep Learning</h4>
-            <p style={{ ...bodyStyle, maxWidth: "800px", fontSize: "0.95rem" }}>Traditional AI algorithms plateau. They cannot extract additional performance from massive data. Deep learning neural networks, conversely, scale almost indefinitely. This is why computational hardware (GPUs) and Big Data constitute the ultimate economic moats.</p>
-            
-            <div style={{ background: "#ffffff", border: "1px solid #e2e8f0", padding: "3rem", borderRadius: "1rem", marginTop: "2rem", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.05)" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "3rem" }}>
-                <span style={{ color: "#64748b", fontFamily: "sans-serif", fontSize: "0.8rem", textTransform: "uppercase", letterSpacing: "0.1em", fontWeight: "bold" }}>Interactive Performance Simulation</span>
-                <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-                  <span style={{ color: "#1a1a1a", fontFamily: "sans-serif", fontSize: "0.85rem", fontWeight: "bold" }}>Volume of Data Fed to Model:</span>
-                  <input 
-                    type="range" min="0" max="40" value={dataScale} 
-                    onChange={(e) => setDataScale(Number(e.target.value))}
-                    style={{ width: "180px" }}
-                  />
-                </div>
-              </div>
-
-              {/* Chart area */}
-              <div style={{ display: "flex", flexDirection: "column", gap: "1.8rem", position: "relative", paddingLeft: "140px" }}>
-                <div style={{ position: "absolute", left: "120px", top: "-10px", bottom: "-10px", width: "1px", background: "#e2e8f0" }} />
-                
-                {[
-                  { label: "Traditional AI", val: tradPerf, color: "#94a3b8" },
-                  { label: "Small Neural Net", val: smallNnPerf, color: "#4ade80" },
-                  { label: "Medium Neural Net", val: medNnPerf, color: "#22c55e" },
-                  { label: "Large Neural Net", val: largeNnPerf, color: "#15803d" }
-                ].map(bar => (
-                  <div key={bar.label} style={{ position: "relative", height: "24px", display: "flex", alignItems: "center" }}>
-                    <span style={{ position: "absolute", left: "-140px", width: "120px", textAlign: "right", color: "#64748b", fontFamily: "sans-serif", fontSize: "0.8rem", fontWeight: "bold" }}>{bar.label}</span>
-                    <div style={{ height: "100%", width: `${bar.val}%`, background: bar.color, borderRadius: "0 4px 4px 0", transition: "width 0.4s cubic-bezier(0.22, 1, 0.36, 1)" }} />
-                    <span style={{ marginLeft: "1rem", color: bar.color, fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", fontWeight: "bold" }}>Perf: {bar.val.toFixed(0)}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-          
-          {/* VI. Deep Learning Neuron Simulation */}
-          <div style={{ marginTop: "4rem" }}>
-            <h3 style={{ color: "#15803d", fontSize: "0.9rem", fontFamily: "sans-serif", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "1rem", fontWeight: "bold" }}>VI. The Architecture of a Neural Network</h3>
-            <p style={{ ...bodyStyle, maxWidth: "800px" }}>We do not explicitly program logic. We feed inputs (A) into interconnected layers of "neurons"—which are simply massive mathematical equations. Through backpropagation, the network adjusts its own weights to accurately predict the output (B). Consider a demand prediction model.</p>
-            
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "2rem", padding: "4rem 1rem", background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "12px", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.05)" }}>
-              <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-                {["Price", "Shipping Cost", "Marketing", "Material"].map(txt => (
-                  <div key={txt} style={{ background: "#f8fafc", border: "1px solid #cbd5e1", padding: "0.6rem 1.2rem", fontSize: "0.85rem", fontFamily: "sans-serif", color: "#334155", textAlign: "right", borderRadius: "6px", fontWeight: "600", boxShadow: "0 1px 2px rgba(0,0,0,0.05)" }}>{txt}</div>
-                ))}
-              </div>
-              <div style={{ display: "flex", gap: "1rem", position: "relative" }}>
-                {/* SVG lines connecting nodes */}
-                <svg style={{ position: "absolute", top: 0, left: "-30px", width: "160px", height: "100%", zIndex: 0 }}>
-                  <line x1="0" y1="20" x2="160" y2="60" stroke="#cbd5e1" strokeWidth="2" />
-                  <line x1="0" y1="65" x2="160" y2="60" stroke="#cbd5e1" strokeWidth="2" />
-                  <line x1="0" y1="110" x2="160" y2="120" stroke="#cbd5e1" strokeWidth="2" />
-                  <line x1="0" y1="155" x2="160" y2="120" stroke="#cbd5e1" strokeWidth="2" />
-                </svg>
-                <div style={{ display: "flex", flexDirection: "column", gap: "1.2rem", zIndex: 1, padding: "1.5rem", border: "2px dashed #93c5fd", borderRadius: "12px", background: "rgba(239, 246, 255, 0.5)" }}>
-                  <div style={{ position: "absolute", top: "-1rem", left: "50%", transform: "translateX(-50%)", fontSize: "0.7rem", color: "#2563eb", textTransform: "uppercase", letterSpacing: "0.1em", whiteSpace: "nowrap", fontWeight: "bold", background: "#fdfbf7", padding: "0 8px" }}>Hidden Layer</div>
-                  <div style={{ width: "48px", height: "48px", borderRadius: "50%", background: "#3b82f6", border: "3px solid #bfdbfe", boxShadow: "0 4px 6px rgba(59,130,246,0.3)" }}></div>
-                  <div style={{ width: "48px", height: "48px", borderRadius: "50%", background: "#3b82f6", border: "3px solid #bfdbfe", boxShadow: "0 4px 6px rgba(59,130,246,0.3)" }}></div>
-                  <div style={{ width: "48px", height: "48px", borderRadius: "50%", background: "#3b82f6", border: "3px solid #bfdbfe", boxShadow: "0 4px 6px rgba(59,130,246,0.3)" }}></div>
-                </div>
-              </div>
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.8rem" }}>
-                <div style={{ width: "60px", height: "60px", borderRadius: "50%", background: "#f59e0b", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: "bold", fontFamily: "sans-serif", fontSize: "1.5rem", border: "4px solid #fef3c7", boxShadow: "0 4px 10px rgba(245,158,11,0.4)" }}>B</div>
-                <div style={{ fontSize: "0.85rem", fontFamily: "sans-serif", color: "#b45309", fontWeight: "bold", background: "#fef3c7", padding: "4px 10px", borderRadius: "4px" }}>Output: Demand</div>
-              </div>
-            </div>
-          </div>
-          
-        </div>
-      );
-    }
-
-    /* ── COMPONENT: LLM ARCHITECTURE (Cognitive/Linguistic Simulation) ── */
-    function LLMModule() {
-      return (
-        <div style={{ marginTop: "4rem", borderTop: "1px solid #e2e8f0", paddingTop: "4rem" }}>
-          <div style={{ color: "rgba(21,128,61,0.8)", fontSize: "0.7rem", fontFamily: "sans-serif", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: "0.8rem", fontWeight: "bold" }}>Cognitive Infrastructure</div>
-          <h3 style={{ fontSize: "2.2rem", color: "#1a1a1a", marginBottom: "1.5rem", fontWeight: "bold", lineHeight: 1.2, fontFamily: "'Playfair Display', serif" }}>LLM Probabilistic Token Routing</h3>
-          <p style={{ ...bodyStyle, maxWidth: "900px" }}>
-            From a cognitive psychology perspective, Large Language Models (LLMs) operate as sophisticated semantic associative networks. They don't "think"—they calculate the latent statistical relationships between conceptual tokens. 
-          </p>
-          
-          <div style={{ padding: "2rem", background: "#ffffff", borderRadius: "1rem", border: "1px solid #e2e8f0", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.05)" }}>
-            <h3 style={{ fontSize: "1.2rem", fontWeight: "bold", marginBottom: "1.5rem", display: "flex", alignItems: "center", color: "#1e293b", fontFamily: "'Playfair Display', serif" }}>
-              <i className="fas fa-network-wired text-blue-600 mr-3 text-xl"></i>
-              Real-time Token Traversal
-            </h3>
-            
-            <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem", alignItems: "stretch" }}>
-              <div style={{ flex: 1, background: "#f8fafc", padding: "1.5rem", borderRadius: "0.75rem", border: "1px solid #f1f5f9", width: "100%" }}>
-                <p style={{ fontSize: "0.85rem", color: "#64748b", marginBottom: "0.5rem", fontFamily: "'JetBrains Mono', monospace" }}>Input Context</p>
-                <p style={{ fontSize: "1.1rem", fontWeight: "500", color: "#1e293b", margin: 0 }}>"The global economy is facing unprecedented..."</p>
-              </div>
-              
-              <div style={{ display: "flex", justifyContent: "center", color: "#cbd5e1" }}>
-                <i className="fas fa-arrow-down text-2xl"></i>
-              </div>
-              
-              <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "0.75rem", width: "100%" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "#f0fdf4", padding: "1rem", borderRadius: "0.5rem", border: "1px solid #bbf7d0" }}>
-                  <span style={{ fontFamily: "'JetBrains Mono', monospace", color: "#166534", fontWeight: "bold" }}>challenges</span>
-                  <span style={{ fontSize: "0.85rem", color: "#15803d", fontWeight: "bold" }}>84.2%</span>
-                </div>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "#eff6ff", padding: "1rem", borderRadius: "0.5rem", border: "1px solid #bfdbfe" }}>
-                  <span style={{ fontFamily: "'JetBrains Mono', monospace", color: "#1e40af" }}>growth</span>
-                  <span style={{ fontSize: "0.85rem", color: "#2563eb", fontWeight: "bold" }}>11.5%</span>
-                </div>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "#f8fafc", padding: "1rem", borderRadius: "0.5rem", border: "1px solid #e2e8f0" }}>
-                  <span style={{ fontFamily: "'JetBrains Mono', monospace", color: "#475569" }}>inflation</span>
-                  <span style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: "bold" }}>3.1%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    /* ── COMPONENT: SOCIOLOGICAL AGENTS ── */
-    function AgentModule() {
-      return (
-        <div style={{ marginTop: "4rem", borderTop: "1px solid #e2e8f0", paddingTop: "4rem" }}>
-          <div style={{ color: "rgba(21,128,61,0.8)", fontSize: "0.7rem", fontFamily: "sans-serif", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: "0.8rem", fontWeight: "bold" }}>Multi-Agent Dynamics</div>
-          <h3 style={{ fontSize: "2.2rem", color: "#1a1a1a", marginBottom: "1.5rem", fontWeight: "bold", lineHeight: 1.2, fontFamily: "'Playfair Display', serif" }}>Sociological Emergence in AI Systems</h3>
-          <p style={{ ...bodyStyle, maxWidth: "900px" }}>
-            When autonomous models interact, we observe emergent sociological phenomena. Multi-agent systems reflect human social dynamics—collaboration, deception, and the rapid formation of echo chambers.
-          </p>
-
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
-            <div style={{ padding: "1.5rem", background: "#f8fafc", borderRadius: "1rem", border: "1px solid #e2e8f0", boxShadow: "0 2px 4px rgba(0,0,0,0.02)" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
-                <div style={{ padding: "0.75rem", background: "#dbeafe", color: "#2563eb", borderRadius: "0.5rem" }}>
-                  <i className="fas fa-users text-lg"></i>
-                </div>
-                <h4 style={{ fontWeight: "bold", color: "#1e293b", margin: 0, fontFamily: "sans-serif" }}>Echo Chamber Formation</h4>
-              </div>
-              <p style={{ fontSize: "0.85rem", color: "#475569", lineHeight: 1.6, margin: 0 }}>
-                Agents optimizing for positive reinforcement tend to collapse into homogenous belief structures, mirroring human sociological polarization.
-              </p>
-            </div>
-
-            <div style={{ padding: "1.5rem", background: "#f8fafc", borderRadius: "1rem", border: "1px solid #e2e8f0", boxShadow: "0 2px 4px rgba(0,0,0,0.02)" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
-                <div style={{ padding: "0.75rem", background: "#ffe4e6", color: "#e11d48", borderRadius: "0.5rem" }}>
-                  <i className="fas fa-database text-lg"></i>
-                </div>
-                <h4 style={{ fontWeight: "bold", color: "#1e293b", margin: 0, fontFamily: "sans-serif" }}>Information Cascades</h4>
-              </div>
-              <p style={{ fontSize: "0.85rem", color: "#475569", lineHeight: 1.6, margin: 0 }}>
-                One unchecked error can pass from one agent to the next and distort the shared record on which later actions depend.
-              </p>
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    /* ── COMPONENT: VIBE ECONOMY SIMULATION ── */
-    function VibeEconomySim() {
-      const [vibes, setVibes] = useState(0);
-      const [hype, setHype] = useState(1);
-      const [marketSaturation, setMarketSaturation] = useState(0);
-
-      const generateVibes = () => {
-        // Diminishing returns based on market saturation (Economic principle)
-        const yield_amount = Math.max(0.1, 1 * hype * (1 - marketSaturation / 100));
-        setVibes(prev => prev + yield_amount);
-        setMarketSaturation(prev => Math.min(99, prev + 2));
-      };
-
-      const boostHype = () => {
-        setHype(prev => prev + 0.5);
-        setMarketSaturation(prev => Math.max(0, prev - 10)); // Hype momentarily clears saturation
-      };
-
-      // Natural decay of market saturation (attention economy)
-      useEffect(() => {
-        const timer = setInterval(() => {
-          setMarketSaturation(prev => Math.max(0, prev - 5));
-        }, 2000);
-        return () => clearInterval(timer);
-      }, []);
-
-      return (
-        <div style={{ marginTop: "4rem", borderTop: "1px solid #e2e8f0", paddingTop: "4rem" }}>
-          <div style={{ color: "rgba(21,128,61,0.8)", fontSize: "0.7rem", fontFamily: "sans-serif", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: "0.8rem", fontWeight: "bold" }}>Work and society</div>
-          <h3 style={{ fontSize: "2.2rem", color: "#1a1a1a", marginBottom: "1.5rem", fontWeight: "bold", lineHeight: 1.2, fontFamily: "'Playfair Display', serif" }}>The Vibe Economy: Syntactic Death</h3>
-          <p style={{ ...bodyStyle, maxWidth: "900px" }}>A sociological shockwave is rupturing the labor market. Syntactic coding is dead. Business acumen—your deep logic—is the new compiler. Coined by Andrej Karpathy in early 2025, <strong>"Vibe Coding"</strong> represents the shift from knowing <em>how</em> to write syntax to knowing <em>what</em> to build. We have reached "Code AGI."</p>
-
-          {/* INTERACTIVE SIMULATOR */}
-          <div className="p-8 bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-900 rounded-2xl text-white shadow-2xl border border-indigo-500/30 my-8">
-            <h3 className="text-2xl font-bold mb-2 flex items-center text-indigo-100" style={{ fontFamily: "'Playfair Display', serif" }}>
-              <i className="fas fa-sparkles text-yellow-400 mr-3"></i>
-              Vibe Economy Simulator
-            </h3>
-            <p className="text-indigo-200/70 mb-6 text-sm font-sans">
-              Analyzing semantic inflation and aesthetic scarcity in generative models.
+    <header id="question" class="py-20 px-6 text-center bg-gradient-to-b from-blue-50 to-white">
+        <div class="max-w-4xl mx-auto">
+            <p class="text-xs font-bold uppercase tracking-widest text-blue-800 mb-4 mono-font">Official Session 15 · Strategy Implementation</p>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">You've built a great strategy.<br><span class="italic text-blue-800">Why does it die in the hallway?</span></h1>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                A famous 2005 study found that on average, companies deliver only <strong>63% of the financial performance their strategies promised</strong> — and the gap wasn't bad strategy. It was execution. Today's question isn't "what should the firm do," it's "how does a firm with a dozen different businesses actually make sure the plan happens."
             </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-              <div className="bg-black/30 backdrop-blur-md p-5 rounded-xl border border-white/10">
-                <p className="text-xs uppercase tracking-widest font-semibold text-purple-300 mb-1 font-sans">Total Vibes</p>
-                <p className="text-4xl font-black text-white font-sans">{vibes.toFixed(1)}</p>
-              </div>
-              <div className="bg-black/30 backdrop-blur-md p-5 rounded-xl border border-white/10">
-                <p className="text-xs uppercase tracking-widest font-semibold text-purple-300 mb-1 font-sans">Hype Multiplier</p>
-                <p className="text-4xl font-black text-white font-sans">x{hype.toFixed(1)}</p>
-              </div>
-              <div className="bg-black/30 backdrop-blur-md p-5 rounded-xl border border-white/10 relative overflow-hidden">
-                <div 
-                  className="absolute bottom-0 left-0 h-1 bg-red-500 transition-all duration-500" 
-                  style={{ width: `${marketSaturation}%` }}
-                />
-                <p className="text-xs uppercase tracking-widest font-semibold text-purple-300 mb-1 font-sans">Saturation</p>
-                <p className="text-4xl font-black text-white font-sans">{marketSaturation.toFixed(0)}%</p>
-              </div>
-            </div>
-            
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button 
-                onClick={generateVibes} 
-                className="flex-1 bg-indigo-500 hover:bg-indigo-400 text-white px-6 py-4 rounded-xl font-bold active:scale-95 transition-all flex justify-center items-center shadow-lg shadow-indigo-500/20 font-sans border-none cursor-pointer"
-              >
-                <i className="fas fa-bolt mr-2 text-lg"></i>
-                Emit Aesthetic
-              </button>
-              <button 
-                onClick={boostHype} 
-                className="flex-1 bg-fuchsia-600 hover:bg-fuchsia-500 text-white px-6 py-4 rounded-xl font-bold active:scale-95 transition-all flex justify-center items-center shadow-lg shadow-fuchsia-500/20 font-sans border-none cursor-pointer"
-              >
-                <i className="fas fa-chart-line mr-2 text-lg"></i>
-                Manufacture Hype
-              </button>
-            </div>
-          </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem", marginBottom: "3rem" }}>
-            <div style={{ background: "#fef2f2", padding: "2rem", borderRadius: "12px", border: "1px solid #fca5a5" }}>
-              <h4 style={{ color: "#b91c1c", fontSize: "1.1rem", fontWeight: "bold", fontFamily: "sans-serif", marginBottom: "1rem" }}>The Old Paradigm: Syntax</h4>
-              <p style={{ color: "#7f1d1d", fontSize: "0.9rem", lineHeight: 1.6, marginBottom: "1rem" }}>Idea → Translation to PM → Translation to UI/UX → Translation to Developer (C++, Python) → MVP.</p>
-              <div style={{ background: "#fff", padding: "0.5rem 1rem", borderRadius: "4px", fontSize: "0.8rem", color: "#b91c1c", fontWeight: "bold", border: "1px solid #fecaca" }}>High friction. Lost context. Months to prototype.</div>
-            </div>
-            <div style={{ background: "#f0fdf4", padding: "2rem", borderRadius: "12px", border: "1px solid #86efac" }}>
-              <h4 style={{ color: "#15803d", fontSize: "1.1rem", fontWeight: "bold", fontFamily: "sans-serif", marginBottom: "1rem" }}>The New Paradigm: Vibe Coding</h4>
-              <p style={{ color: "#166534", fontSize: "0.9rem", lineHeight: 1.6, marginBottom: "1rem" }}>Idea + Deep Domain Expertise → Prompt to AI IDE (Cursor, Bolt, Replit) → Instant MVP.</p>
-              <div style={{ background: "#fff", padding: "0.5rem 1rem", borderRadius: "4px", fontSize: "0.8rem", color: "#15803d", fontWeight: "bold", border: "1px solid #bbf7d0" }}>Zero friction. The 'vibe' (architecture/logic) is the only constraint.</div>
-            </div>
-          </div>
-
-          <div style={{ background: "#ffffff", padding: "3rem", borderRadius: "12px", border: "1px solid #e2e8f0", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.05)" }}>
-            <h3 style={{ fontSize: "1.8rem", color: "#1a1a1a", marginBottom: "1rem", fontWeight: "bold", fontFamily: "'Playfair Display', serif", textAlign: "center" }}>The "Mexican Standoff" of Tech Labor</h3>
-            <p style={{ color: "#475569", fontSize: "0.95rem", lineHeight: 1.6, textAlign: "center", maxWidth: "700px", margin: "0 auto 3rem auto" }}>Venture capitalist Marc Andreessen noted that AI levels the playing field between Product Managers, Designers, and Developers. They are in a standoff. <strong>Who survives?</strong> The one with deep, undeniable domain competency. The generalist perishes.</p>
-
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }}>
-              <div style={{ background: "#f8fafc", padding: "2rem", borderRadius: "8px", border: "1px solid #e2e8f0", textAlign: "center" }}>
-                <div style={{ fontSize: "3rem", marginBottom: "1rem", opacity: 0.5 }}>👨‍💻</div>
-                <h4 style={{ color: "#1a1a1a", fontWeight: "bold", fontSize: "1.1rem", marginBottom: "0.5rem", fontFamily: "sans-serif" }}>The Pure Developer</h4>
-                <p style={{ color: "#64748b", fontSize: "0.85rem", lineHeight: 1.5, marginBottom: "1rem" }}>AI writes the boilerplate flawlessly.</p>
-                <div style={{ color: "#dc2626", fontSize: "0.75rem", fontWeight: "bold", textTransform: "uppercase", letterSpacing: "0.05em" }}>Risk: Syntactic Obsolescence</div>
-              </div>
-              <div style={{ background: "#15803d", padding: "2rem", borderRadius: "8px", border: "2px solid #22c55e", textAlign: "center", transform: "scale(1.05)", boxShadow: "0 10px 15px -3px rgba(21,128,61,0.3)" }}>
-                <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>🧠</div>
-                <h4 style={{ color: "#ffffff", fontWeight: "bold", fontSize: "1.1rem", marginBottom: "0.5rem", fontFamily: "sans-serif" }}>The Domain Expert</h4>
-                <p style={{ color: "#dcfce7", fontSize: "0.85rem", lineHeight: 1.5, marginBottom: "1rem" }}>Possesses the deep business logic to dictate the entire system architecture to the LLM.</p>
-                <div style={{ color: "#86efac", fontSize: "0.75rem", fontWeight: "bold", textTransform: "uppercase", letterSpacing: "0.05em" }}>Status: Apex Coordinator</div>
-              </div>
-              <div style={{ background: "#f8fafc", padding: "2rem", borderRadius: "8px", border: "1px solid #e2e8f0", textAlign: "center" }}>
-                <div style={{ fontSize: "3rem", marginBottom: "1rem", opacity: 0.5 }}>📊</div>
-                <h4 style={{ color: "#1a1a1a", fontWeight: "bold", fontSize: "1.1rem", marginBottom: "0.5rem", fontFamily: "sans-serif" }}>The Generalist PM</h4>
-                <p style={{ color: "#64748b", fontSize: "0.85rem", lineHeight: 1.5, marginBottom: "1rem" }}>AI structures the backlog and writes user stories instantly.</p>
-                <div style={{ color: "#dc2626", fontSize: "0.75rem", fontWeight: "bold", textTransform: "uppercase", letterSpacing: "0.05em" }}>Risk: Administrative Collapse</div>
-              </div>
-            </div>
-          </div>
         </div>
-      );
-    }
+    </header>
 
-    /* ── COMPONENT: EDUREKA INTERACTIVE MASTERCLASS SIMULATION ── */
-    function EdurekaMasterclassSim() {
-      const [tab, setTab] = useState('fundamentals');
-
-      function PerceptronSim() {
-        const [weather, setWeather] = useState(1);
-        const [weatherWeight, setWeatherWeight] = useState(6);
-        const [wife, setWife] = useState(0);
-        const [wifeWeight, setWifeWeight] = useState(2);
-        const [transport, setTransport] = useState(0);
-        const [transportWeight, setTransportWeight] = useState(2);
-        const threshold = 5;
-
-        const total = (weather * weatherWeight) + (wife * wifeWeight) + (transport * transportWeight);
-        const fires = total >= threshold;
-
-        return (
-          <div style={{ background: "#ffffff", padding: "2rem", borderRadius: "1rem", border: "1px solid #e2e8f0", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.05)" }}>
-            <h4 style={{ color: "#15803d", fontSize: "1.2rem", marginBottom: "1rem", fontWeight: "bold", fontFamily: "'Playfair Display', serif" }}>3. Artificial Neuron (Perceptron) Simulator</h4>
-            <p style={{ fontSize: "0.9rem", color: "#475569", lineHeight: 1.6, marginBottom: "1.5rem", fontFamily: "sans-serif" }}>Based on the Edureka paradigm: You want to attend a beer festival. Your decision depends on 3 inputs: Weather (X1), Partner joining (X2), and Public Transport (X3). You assign weights to prioritize inputs. If the weighted sum exceeds the threshold, the neuron fires (Decision = GO).</p>
-
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem" }}>
-              <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-                <div style={{ padding: "1rem", background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "8px" }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.5rem" }}>
-                    <strong style={{ fontSize: "0.85rem", color: "#1e293b" }}>Input 1: Weather is Good? (1/0)</strong>
-                    <select value={weather} onChange={e=>setWeather(Number(e.target.value))} style={{ padding: "2px", borderRadius: "4px", border: "1px solid #cbd5e1" }}><option value={1}>Yes (1)</option><option value={0}>No (0)</option></select>
-                  </div>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <span style={{ fontSize: "0.75rem", color: "#64748b" }}>Weight (W1): {weatherWeight}</span>
-                    <input type="range" min="1" max="10" value={weatherWeight} onChange={e=>setWeatherWeight(Number(e.target.value))} />
-                  </div>
-                </div>
-
-                <div style={{ padding: "1rem", background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "8px" }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.5rem" }}>
-                    <strong style={{ fontSize: "0.85rem", color: "#1e293b" }}>Input 2: Partner Joining? (1/0)</strong>
-                    <select value={wife} onChange={e=>setWife(Number(e.target.value))} style={{ padding: "2px", borderRadius: "4px", border: "1px solid #cbd5e1" }}><option value={1}>Yes (1)</option><option value={0}>No (0)</option></select>
-                  </div>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <span style={{ fontSize: "0.75rem", color: "#64748b" }}>Weight (W2): {wifeWeight}</span>
-                    <input type="range" min="1" max="10" value={wifeWeight} onChange={e=>setWifeWeight(Number(e.target.value))} />
-                  </div>
-                </div>
-
-                <div style={{ padding: "1rem", background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "8px" }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.5rem" }}>
-                    <strong style={{ fontSize: "0.85rem", color: "#1e293b" }}>Input 3: Transport Avail? (1/0)</strong>
-                    <select value={transport} onChange={e=>setTransport(Number(e.target.value))} style={{ padding: "2px", borderRadius: "4px", border: "1px solid #cbd5e1" }}><option value={1}>Yes (1)</option><option value={0}>No (0)</option></select>
-                  </div>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <span style={{ fontSize: "0.75rem", color: "#64748b" }}>Weight (W3): {transportWeight}</span>
-                    <input type="range" min="1" max="10" value={transportWeight} onChange={e=>setTransportWeight(Number(e.target.value))} />
-                  </div>
-                </div>
-              </div>
-
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", background: "#0f172a", borderRadius: "8px", padding: "2rem", color: "#fff" }}>
-                <div style={{ fontSize: "0.8rem", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "1rem" }}>Neuron Activation</div>
-                <div style={{ fontSize: "1.2rem", fontFamily: "'JetBrains Mono', monospace", marginBottom: "0.5rem" }}>Σ (Xi * Wi) = {total}</div>
-                <div style={{ fontSize: "0.9rem", color: "#cbd5e1", marginBottom: "2rem" }}>Threshold: {threshold}</div>
-
-                <div style={{ width: "120px", height: "120px", borderRadius: "50%", background: fires ? "#22c55e" : "#ef4444", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.5rem", fontWeight: "bold", boxShadow: fires ? "0 0 20px #22c55e" : "none", transition: "all 0.3s" }}>
-                  {fires ? "GO!" : "STAY"}
-                </div>
-                <div style={{ marginTop: "1rem", fontSize: "0.85rem", color: "#cbd5e1" }}>
-                  {fires ? "Neuron Fires! Output = 1" : "Neuron Inactive. Output = 0"}
-                </div>
-              </div>
-            </div>
-          </div>
-        )
-      }
-
-      function NLPSim() {
-        const [text, setText] = useState("Detecting multiple detections detected by the detector.");
-        const stem = (word) => word.toLowerCase().replace(/ing$|ed$|ions$|ion$|ors$|or$|s$/g, '');
-        const stopWords = ['the', 'by', 'a', 'an', 'is', 'are'];
-        const tokens = text.split(/\s+/).filter(w => w.length > 0);
-        const noStopWords = tokens.filter(w => !stopWords.includes(w.toLowerCase()));
-        const stemmed = noStopWords.map(stem);
-
-        return (
-          <div style={{ background: "#ffffff", padding: "2rem", borderRadius: "1rem", border: "1px solid #e2e8f0", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.05)" }}>
-            <h4 style={{ color: "#15803d", fontSize: "1.2rem", marginBottom: "1rem", fontWeight: "bold", fontFamily: "'Playfair Display', serif" }}>4. Natural Language Processing Pipeline</h4>
-            <p style={{ fontSize: "0.9rem", color: "#475569", lineHeight: 1.6, marginBottom: "1.5rem", fontFamily: "sans-serif" }}>Text mining and NLP extract useful insights from unstructured text. Observe how raw text is broken down (Tokenization), filtered (Stop-word Removal), and reduced to its root morphological form (Stemming).</p>
-
-            <input 
-              type="text" 
-              value={text} 
-              onChange={e=>setText(e.target.value)} 
-              style={{ width: "100%", padding: "1rem", fontSize: "1rem", border: "1px solid #cbd5e1", borderRadius: "8px", marginBottom: "2rem", fontFamily: "sans-serif", outline: "none" }}
-            />
-
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "1rem" }}>
-              <div style={{ background: "#f8fafc", padding: "1rem", border: "1px solid #e2e8f0", borderRadius: "8px" }}>
-                <strong style={{ display: "block", color: "#1e293b", marginBottom: "0.5rem", fontSize: "0.9rem" }}>1. Tokenization</strong>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
-                  {tokens.map((t, i) => <span key={i} style={{ background: "#e2e8f0", padding: "2px 6px", borderRadius: "4px", fontSize: "0.8rem", color: "#334155" }}>{t}</span>)}
-                </div>
-              </div>
-
-              <div style={{ background: "#f8fafc", padding: "1rem", border: "1px solid #e2e8f0", borderRadius: "8px" }}>
-                <strong style={{ display: "block", color: "#1e293b", marginBottom: "0.5rem", fontSize: "0.9rem" }}>2. Stop-word Removal</strong>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
-                  {noStopWords.map((t, i) => <span key={i} style={{ background: "#e0e7ff", padding: "2px 6px", borderRadius: "4px", fontSize: "0.8rem", color: "#1e40af" }}>{t}</span>)}
-                </div>
-              </div>
-
-              <div style={{ background: "#f8fafc", padding: "1rem", border: "1px solid #e2e8f0", borderRadius: "8px" }}>
-                <strong style={{ display: "block", color: "#1e293b", marginBottom: "0.5rem", fontSize: "0.9rem" }}>3. Stemming (Root Words)</strong>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
-                  {stemmed.map((t, i) => <span key={i} style={{ background: "#dcfce7", padding: "2px 6px", borderRadius: "4px", fontSize: "0.8rem", color: "#166534" }}>{t}</span>)}
-                </div>
-              </div>
-            </div>
-          </div>
-        )
-      }
-
-      return (
-        <div style={{ marginTop: "4rem", borderTop: "1px solid #e2e8f0", paddingTop: "4rem" }}>
-          <div style={{ color: "rgba(21,128,61,0.8)", fontSize: "0.7rem", fontFamily: "sans-serif", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: "0.8rem", fontWeight: "bold" }}>Edureka Interactive Module</div>
-          <h3 style={{ fontSize: "2.2rem", color: "#1a1a1a", marginBottom: "1.5rem", fontWeight: "normal", lineHeight: 1.2, fontFamily: "'Playfair Display', serif" }}>Fundamental AI Questions & Simulations</h3>
-          <p style={{ ...bodyStyle, maxWidth: "900px" }}>To further ground our understanding, we will explore the foundational questions of AI, the 7-step Machine Learning pipeline, the mechanics of a Perceptron, and Natural Language Processing. Select a module below to begin the simulation.</p>
-
-          <div style={{ display: "flex", gap: "1rem", marginBottom: "2rem", borderBottom: "1px solid #e2e8f0", paddingBottom: "1rem" }}>
-            {['Fundamentals', 'ML Pipeline', 'Perceptron Lab', 'NLP Engine'].map(t => (
-              <button
-                key={t}
-                onClick={() => setTab(t.toLowerCase())}
-                style={{
-                  padding: "0.5rem 1rem",
-                  background: tab === t.toLowerCase() ? "#15803d" : "transparent",
-                  color: tab === t.toLowerCase() ? "#fff" : "#475569",
-                  border: "none",
-                  borderRadius: "4px",
-                  fontWeight: "bold",
-                  cursor: "pointer",
-                  fontFamily: "sans-serif",
-                  transition: "all 0.2s"
-                }}
-              >
-                {t}
-              </button>
-            ))}
-          </div>
-
-          {/* Render Tabs */}
-          {tab === 'fundamentals' && (
-            <div style={{ background: "#ffffff", padding: "2rem", borderRadius: "1rem", border: "1px solid #e2e8f0", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.05)" }}>
-              <h4 style={{ color: "#15803d", fontSize: "1.2rem", marginBottom: "1rem", fontWeight: "bold", fontFamily: "'Playfair Display', serif" }}>1. The Turing Test & AI Types</h4>
-              <p style={{ fontSize: "0.9rem", color: "#475569", lineHeight: 1.6, marginBottom: "1.5rem", fontFamily: "sans-serif" }}>Proposed by Alan Turing in 1950, the Turing Test evaluates if a machine can exhibit human-like intelligence. Below are the 4 theoretical stages of AI evolution.</p>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
-                <div style={{ padding: "1rem", border: "1px solid #e2e8f0", borderRadius: "8px", background: "#f8fafc" }}>
-                  <strong style={{ color: "#1e293b", display: "block", marginBottom: "0.5rem" }}>1. Reactive Machines</strong>
-                  <span style={{ fontSize: "0.8rem", color: "#64748b" }}>Operates solely on present data without relying on past memories. Example: IBM Deep Blue (Chess).</span>
-                </div>
-                <div style={{ padding: "1rem", border: "1px solid #e2e8f0", borderRadius: "8px", background: "#f8fafc" }}>
-                  <strong style={{ color: "#1e293b", display: "block", marginBottom: "0.5rem" }}>2. Limited Memory</strong>
-                  <span style={{ fontSize: "0.8rem", color: "#64748b" }}>Uses recent past experiences to make immediate decisions. Example: Self-driving cars reading live traffic patterns.</span>
-                </div>
-                <div style={{ padding: "1rem", border: "1px solid #e2e8f0", borderRadius: "8px", background: "#f8fafc" }}>
-                  <strong style={{ color: "#1e293b", display: "block", marginBottom: "0.5rem" }}>3. Theory of Mind</strong>
-                  <span style={{ fontSize: "0.8rem", color: "#64748b" }}>Understands human emotions, beliefs, and complex social interactions. (Currently purely in the research phase).</span>
-                </div>
-                <div style={{ padding: "1rem", border: "1px solid #e2e8f0", borderRadius: "8px", background: "#f8fafc" }}>
-                  <strong style={{ color: "#1e293b", display: "block", marginBottom: "0.5rem" }}>4. Self-Aware AI</strong>
-                  <span style={{ fontSize: "0.8rem", color: "#64748b" }}>Machines with human-level consciousness and self-awareness. (Hypothetical/Sci-Fi).</span>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {tab === 'ml pipeline' && (
-            <div style={{ background: "#ffffff", padding: "2rem", borderRadius: "1rem", border: "1px solid #e2e8f0", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.05)" }}>
-              <h4 style={{ color: "#15803d", fontSize: "1.2rem", marginBottom: "1rem", fontWeight: "bold", fontFamily: "'Playfair Display', serif" }}>2. The 7-Step Machine Learning Process</h4>
-              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                {[
-                  { s: "1. Define Objective", d: "What are we trying to predict? (e.g., Rain tomorrow?)" },
-                  { s: "2. Data Gathering", d: "Collect historical data (humidity, temperature, pressure)." },
-                  { s: "3. Data Preparation", d: "Clean data, remove nulls, drop irrelevant features to prevent noise." },
-                  { s: "4. Exploratory Data Analysis (EDA)", d: "Brainstorming phase: Find hidden patterns and correlations in the data." },
-                  { s: "5. Build ML Model", d: "Split data (Train/Test) and apply algorithms (e.g., Logistic Regression or SVM)." },
-                  { s: "6. Model Evaluation", d: "Check efficiency using the testing dataset to prevent overfitting." },
-                  { s: "7. Predictions", d: "Deploy the model to make future predictions on unseen continuous or categorical data." }
-                ].map((step, i) => (
-                  <div key={i} style={{ display: "flex", alignItems: "center", gap: "1rem", padding: "0.8rem", background: "#f0fdf4", border: "1px solid #bbf7d0", borderRadius: "8px" }}>
-                    <div style={{ background: "#15803d", color: "#fff", width: "24px", height: "24px", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "50%", fontSize: "0.8rem", fontWeight: "bold" }}>{i+1}</div>
-                    <div>
-                      <strong style={{ color: "#166534", fontSize: "0.9rem" }}>{step.s}</strong>
-                      <div style={{ color: "#14532d", fontSize: "0.8rem", marginTop: "0.2rem" }}>{step.d}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {tab === 'perceptron lab' && <PerceptronSim />}
-          {tab === 'nlp engine' && <NLPSim />}
+    <section id="reading" class="py-16 px-6 border-t border-slate-100">
+        <div class="max-w-3xl mx-auto fp-box">
+            <p class="text-xs font-bold uppercase tracking-widest text-blue-800 mb-3 mono-font">The Assigned Reading</p>
+            <p class="text-slate-700 leading-relaxed">
+                Mankins, M. C., &amp; Steele, R. (2005). <em>"Turning Great Strategy into Great Performance,"</em> Harvard Business Review. Their finding, based on a study of 197 companies: the average firm captures only 63% of its strategy's potential value, and the biggest single cause isn't bad execution at the front line — it's a broken link between corporate-level resource allocation and business-unit-level plans. Strategy implementation, at the corporate level, is fundamentally a <strong>governance problem</strong>: who gets the capital, who gets the talent, and who gets cut, across a portfolio of businesses that don't all deserve the same answer.
+            </p>
         </div>
-      );
-    }
+    </section>
 
-    function AIPrimer() {      const [active, setActive] = useState("intro");
-      useEffect(() => {        const observer = new IntersectionObserver(          (entries) => entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id); }),          { rootMargin: "-40% 0px -55% 0px" }        );        sections.forEach(({ id }) => { const el = document.getElementById(id); if (el) observer.observe(el); });        return () => observer.disconnect();      }, []);
-      return (        <div style={{ fontFamily: "'Satoshi', sans-serif", background: "var(--primary-bg)", color: "var(--primary-text)", minHeight: "100vh" }}>
-          
-          {/* ── NEW HEADER (APPROVED TEMPLATE) ── */}
-          <nav id="main-header" className="bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm fixed top-0 left-0 right-0 z-50">
-            <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-                <a href="#" className="flex items-center gap-3 group no-underline">
-                    <div className="chess-logo"><i className="fas fa-mountain"></i></div>
-                    <div className="leading-tight">
-                        <h1 className="font-bold text-slate-900 tracking-tight text-xl" style={{fontFamily: "'Playfair Display', serif"}}>The Strategist's Lens</h1>
-                        <p className="text-[10px] text-green-700 font-bold uppercase tracking-widest">Artificial Intelligence in Strategic Management</p>
+    <section id="amazon" class="py-16 px-6 bg-slate-900 text-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <p class="text-xs font-bold uppercase tracking-widest text-blue-300 mb-2 mono-font">Case · Amazon (HBR, 2025)</p>
+                <h2 class="text-3xl md:text-4xl font-bold serif-font">One Company, Four Very Different Businesses</h2>
+                <p class="text-slate-400 mt-4 max-w-2xl mx-auto">Amazon's 2024 numbers make the governance problem concrete: each business unit has a different growth rate, margin profile, and capital appetite — and corporate has to referee between them.</p>
+            </div>
+            <div class="grid md:grid-cols-4 gap-4">
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                    <p class="text-xs uppercase tracking-wide text-slate-400 mb-2">AWS (Cloud)</p>
+                    <p class="text-2xl font-bold text-teal-400 mb-1">~62% of operating income</p>
+                    <p class="text-xs text-slate-400">from ~17% of revenue — the profit engine funding everything else.</p>
+                </div>
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                    <p class="text-xs uppercase tracking-wide text-slate-400 mb-2">Advertising</p>
+                    <p class="text-2xl font-bold text-teal-400 mb-1">Fast-growing, high-margin</p>
+                    <p class="text-xs text-slate-400">quietly rivaling major ad platforms — reinvested aggressively rather than harvested.</p>
+                </div>
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                    <p class="text-xs uppercase tracking-wide text-slate-400 mb-2">Grocery / Whole Foods</p>
+                    <p class="text-2xl font-bold text-amber-400 mb-1">Low-margin, capital-heavy</p>
+                    <p class="text-xs text-slate-400">years after acquisition, still a share-of-wallet bet more than a profit center.</p>
+                </div>
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                    <p class="text-xs uppercase tracking-wide text-slate-400 mb-2">Devices (Fire Phone legacy)</p>
+                    <p class="text-2xl font-bold text-red-400 mb-1">The write-off precedent</p>
+                    <p class="text-xs text-slate-400">the 2014 Fire Phone's ~$170M write-down is corporate governance's cautionary tale: know when to kill a business unit.</p>
+                </div>
+            </div>
+            <p class="text-slate-400 text-sm mt-8 max-w-3xl mx-auto text-center">
+                The strategic-implementation question this raises for a corporate parent: should AWS's cash cross-subsidize grocery indefinitely, or does that just protect a business that would fail its own governance test? There's no framework that answers this for you — that's the judgment call a portfolio governance system exists to force, on a schedule, rather than let happen by inertia.
+            </p>
+        </div>
+    </section>
+
+    <section id="simulator" class="py-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-10">
+                <p class="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-2 mono-font">New Tool</p>
+                <h2 class="text-3xl font-bold serif-font">Portfolio Capital Allocator</h2>
+                <p class="text-slate-500 mt-3">You have ₹100 of discretionary capital to allocate across four business units this year. Move the sliders — the tool won't stop you from over-funding a loser, because in real companies, nothing does either.</p>
+            </div>
+            <div class="card p-8">
+                <div id="alloc-sliders" class="space-y-5 mb-8"></div>
+                <div id="alloc-result" class="p-6 rounded-xl border-2 border-dashed border-slate-300 text-sm text-slate-600">Adjust the sliders to see the verdict.</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="quiz" class="py-20 px-6 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-2xl mx-auto text-center">
+            <h2 class="text-3xl font-bold serif-font mb-8">Check Your Understanding</h2>
+            <div id="quiz-box" class="card p-8 text-left"></div>
+            <button onclick="nextQ()" class="mt-6 px-8 py-3 bg-slate-900 text-white rounded-full font-semibold hover:bg-blue-800 transition">Next</button>
+            <div id="quiz-fb" class="mt-6 hidden text-left"></div>
+        </div>
+    </section>
+
+    <footer class="py-8 text-center text-sm text-slate-400 border-t border-slate-200">© Dr. Swapnil Sahoo 2026</footer>
+
+    <script>
+        window.onscroll = () => {
+            const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            document.getElementById('progress-bar').style.width = (window.scrollY / h) * 100 + '%';
+        };
+
+        // Portfolio allocator
+        const units = [
+            { key: 'aws', label: 'AWS (Cloud)', growth: 'High margin, moderate growth', color: '#0f766e' },
+            { key: 'ads', label: 'Advertising', growth: 'High growth, high margin', color: '#0ea5e9' },
+            { key: 'grocery', label: 'Grocery / Whole Foods', growth: 'Low margin, capital-heavy', color: '#f59e0b' },
+            { key: 'devices', label: 'Devices', growth: 'Flat growth, thin margin', color: '#ef4444' },
+        ];
+        const alloc = { aws: 25, ads: 25, grocery: 25, devices: 25 };
+
+        function renderAlloc() {
+            document.getElementById('alloc-sliders').innerHTML = units.map(u => `
+                <div>
+                    <div class="flex justify-between text-sm mb-1">
+                        <span class="font-semibold">${u.label}</span>
+                        <span class="mono-font font-bold" id="val-${u.key}">₹${alloc[u.key]}</span>
                     </div>
-                </a>
-                <div className="hidden xl:flex space-x-6 text-sm font-medium">
-                    {sections.map(({ id, label }) => (
-                        <a key={id} href={`#${id}`} className={`nav-link ${active === id ? 'text-green-700 font-bold border-b-2 border-green-700' : 'text-slate-600'}`} style={{ textDecoration: 'none', paddingBottom: '4px' }}>{label}</a>
-                    ))}
+                    <input type="range" min="0" max="100" value="${alloc[u.key]}" class="w-full" oninput="setAlloc('${u.key}', this.value)">
+                    <p class="text-xs text-slate-400">${u.growth}</p>
                 </div>
-                <div className="flex items-center gap-5">
-                    <a href="https://swapnilsahoo.com" target="_blank" className="text-slate-400 hover:text-teal-600 transition-colors" title="Dr. Swapnil Sahoo Website" rel="noopener noreferrer"><i className="fas fa-globe text-lg"></i></a>
-                    <a href="https://twitter.com" target="_blank" className="text-slate-400 hover:text-blue-400 transition-colors" rel="noopener noreferrer"><i className="fab fa-twitter text-lg"></i></a>
-                    <a href="https://instagram.com" target="_blank" className="text-slate-400 hover:text-pink-600 transition-colors" rel="noopener noreferrer"><i className="fab fa-instagram text-lg"></i></a>
-                    <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-blue-600 transition-colors"><i className="fab fa-linkedin text-lg"></i></a>
-                    <a href="https://www.chess.com/member/theswapnilsahoo" target="_blank" className="text-slate-400 hover:text-green-600 transition-colors text-lg" title="Play Chess" rel="noopener noreferrer"><i className="fas fa-chess-king text-lg"></i></a>
-                </div>
-            </div>
-          </nav>
+            `).join('');
+            evalAlloc();
+        }
+        function setAlloc(key, val) {
+            alloc[key] = Number(val);
+            document.getElementById('val-' + key).textContent = '₹' + val;
+            evalAlloc();
+        }
+        function evalAlloc() {
+            const total = Object.values(alloc).reduce((a, b) => a + b, 0);
+            const box = document.getElementById('alloc-result');
+            const overfundedLoser = alloc.devices > 30 || alloc.grocery > 40;
+            const underfundedWinner = alloc.aws < 20 && alloc.ads < 20;
+            let msg = `Total allocated: ₹${total} of ₹100. `;
+            if (overfundedLoser) {
+                msg += `You're pouring capital into Devices and/or Grocery well beyond what their margin profile justifies — exactly the pattern Mankins &amp; Steele call "resource allocation inertia": funding a business because it got funded last year, not because it earns it this year.`;
+                box.className = 'p-6 rounded-xl border-2 border-red-300 bg-red-50 text-sm text-red-900';
+            } else if (underfundedWinner) {
+                msg += `You're starving AWS and Advertising — your two highest-return units — of the capital that would let them compound faster. A portfolio governance system should protect winners from being taxed to prop up laggards.`;
+                box.className = 'p-6 rounded-xl border-2 border-amber-300 bg-amber-50 text-sm text-amber-900';
+            } else {
+                msg += `This is a defensible allocation: capital broadly follows return profile. The harder real-world test — which this slider can't simulate — is whether you'd actually pull funding from Grocery next year if it still isn't earning its capital cost.`;
+                box.className = 'p-6 rounded-xl border-2 border-teal-300 bg-teal-50 text-sm text-teal-900';
+            }
+            box.innerHTML = `<p>${msg}</p>`;
+        }
+        renderAlloc();
 
-          {/* ── HERO ── */}          <section id="intro" style={{ minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", padding: "8rem 8rem 6rem", background: "radial-gradient(circle at 50% 0%, #f0fdf4 0%, #fdfbf7 70%)", position: "relative", overflow: "hidden" }}>            <div style={{ position: "absolute", top: 0, right: 0, width: "50%", height: "100%", background: "rgba(21,128,61,0.03)", borderRadius: "100% 0 0 100%", filter: "blur(60px)", zIndex: 0 }} />            <div style={{ position: "relative", maxWidth: "680px", zIndex: 10 }}>              <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.5rem 1rem", borderRadius: "9999px", border: "1px solid #bbf7d0", backgroundColor: "#f0fdf4", color: "#166534", fontSize: "0.75rem", fontWeight: "bold", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "2rem", boxShadow: "0 1px 2px rgba(0,0,0,0.05)" }}>                <i className="fas fa-layer-group"></i> Faculty teaching guide              </div>              <h1 style={{ fontSize: "clamp(3rem, 5.5vw, 5rem)", lineHeight: 1.05, fontWeight: "bold", marginBottom: "2rem", color: "#1a1a1a", fontFamily: "'Playfair Display', serif" }}>                Artificial<br />                <span style={{ color: "#15803d", fontStyle: "italic" }}>Intelligence</span><br />                in Strategic<br />Management              </h1>              <p style={{ fontSize: "1.05rem", lineHeight: 1.85, color: "#475569", maxWidth: "500px", marginBottom: "3rem" }}>                A practical route from AI basics to project choices, classroom use and responsible leadership.              </p>            </div>            <div style={{ position: "absolute", bottom: "3rem", left: "8rem", right: "8rem", display: "flex", gap: "3rem", borderTop: "1px solid #e2e8f0", paddingTop: "2rem", zIndex: 10 }}>              {[{ num: "01", label: "How learning systems use data" }, { num: "02", label: "How teams choose and build projects" }, { num: "03", label: "How adoption changes organisations" }, { num: "04", label: "How managers govern risks and trade-offs" }].map(({ num, label }) => (                <div key={num}>                  <div style={{ fontSize: "1.7rem", color: "#15803d", fontStyle: "italic", fontFamily: "'Playfair Display', serif", fontWeight: "bold" }}>{num}</div>                  <div style={{ fontSize: "0.72rem", color: "#64748b", fontFamily: "sans-serif", maxWidth: "130px", lineHeight: 1.4, marginTop: "0.3rem", fontWeight: "500" }}>{label}</div>                </div>              ))}            </div>          </section>
-          {/* ── CH1: WHAT IS AI ── */}          <section id="what" style={{ padding: "7rem 8rem", maxWidth: "1400px", margin: "0 auto" }}>            <ChapterHeader number="01" title="What Is Artificial Intelligence?" subtitle="Foundational concepts every educator must know" />            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "start" }}>              <div>                <p style={bodyStyle}>Artificial Intelligence refers to computational systems designed to perform tasks that typically require human cognition — perceiving, reasoning, learning, and acting. Unlike traditional software that executes explicit instructions, AI systems <em>learn patterns</em> from data to make decisions or generate outputs.</p>                <p style={bodyStyle}>For business faculty, the critical distinction is between <strong style={{ color: "#15803d" }}>Narrow AI</strong> (systems optimized for specific tasks like credit scoring or fraud detection) and the more distant concept of <strong style={{ color: "#15803d" }}>General AI</strong> (hypothetical systems with human-level versatility). Every commercial AI tool in use today is narrow AI.</p>                <p style={bodyStyle}>The modern AI revolution is driven by three converging forces: <em>massive datasets</em>, <em>powerful computing hardware</em> (particularly GPUs), and <em>architectural breakthroughs</em> in neural network design — specifically the Transformer architecture introduced in 2017. Understanding this triangle helps explain why AI capabilities have accelerated so dramatically.</p>                <div style={{ background: "rgba(21,128,61,0.05)", border: "1px solid rgba(21,128,61,0.15)", padding: "1.5rem", marginTop: "1rem", borderRadius: "8px" }}>                  <div style={{ color: "#15803d", fontSize: "0.72rem", fontFamily: "sans-serif", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "0.8rem", fontWeight: "bold" }}>Key Insight for Faculty</div>                  <p style={{ color: "#475569", fontSize: "0.85rem", fontFamily: "sans-serif", lineHeight: 1.7, margin: 0 }}>Students will encounter AI through its outputs. Your role is to help them understand the mechanisms well enough to evaluate claims, spot limitations, and make strategic decisions — not to train them as AI engineers.</p>                </div>              </div>              <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>                <ConceptCard title="The AI Hierarchy" items={[                  { label: "Artificial Intelligence", desc: "Broad field of making machines perform intelligent tasks", color: "#15803d" },                  { label: "Machine Learning", desc: "Systems that learn from data without explicit programming", color: "#16a34a" },                  { label: "Deep Learning", desc: "Multi-layered neural networks that mimic brain structure", color: "#22c55e" },                  { label: "Foundation Models", desc: "Massive pre-trained models (GPT, Claude, Gemini, Llama)", color: "#4ade80" },                  { label: "Generative AI", desc: "AI that creates new content: text, images, code, audio", color: "#86efac" },                ]} />                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "1rem" }}>                  {[{ icon: "🧠", title: "Machine Learning", body: "Models identify statistical patterns in training data and encode them as billions of numerical weights — tuned iteratively to minimise prediction error." }, { icon: "💬", title: "Large Language Models", body: "Trained on vast text to predict the next token. This simple objective, massively scaled, produces emergent capabilities: reasoning, coding, creative synthesis." }, { icon: "🎨", title: "Multimodal AI", body: "Modern systems process and generate across text, images, audio, video, and code — enabling entirely new classes of business application." }].map(({ icon, title, body }) => (                    <div key={title} style={{ background: "#ffffff", border: "1px solid #e2e8f0", padding: "1.2rem", borderRadius: "8px", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.05)" }}>                      <div style={{ fontSize: "1.5rem", marginBottom: "0.6rem" }}>{icon}</div>                      <h3 style={{ color: "#15803d", fontSize: "0.78rem", margin: "0 0 0.5rem 0", fontFamily: "sans-serif", fontWeight: "700", letterSpacing: "0.05em" }}>{title}</h3>                      <p style={{ color: "#475569", fontSize: "0.75rem", lineHeight: 1.6, fontFamily: "sans-serif", margin: 0 }}>{body}</p>                    </div>                  ))}                </div>              </div>            </div>
-
-            {/* INJECTING ALL THE EMPIRICAL MODULES HERE IN ORDER */}
-            <AISyllabusModule />
-            <McKinseySim />
-            <DataArchitectureSim />
-            <AICompanyTransformation />
-            <MachineLearningSim />
-            <LLMModule />
-            <AgentModule />
-            <VibeEconomySim />
-            <EdurekaMasterclassSim />
-            {/* ── END OF MODULE INJECTIONS ── */}
-
-          </section>
-          {/* ── CH2: LANDSCAPE ── */}          <section id="landscape" style={{ background: "rgba(21,128,61,0.02)", borderTop: "1px solid #e2e8f0", borderBottom: "1px solid #e2e8f0", padding: "7rem 8rem" }}>            <div style={{ maxWidth: "1400px", margin: "0 auto" }}>              <ChapterHeader number="02" title="The Current AI Landscape" subtitle="Key players, technologies, and capabilities" />              <div style={{ display: "grid", gridTemplateColumns: "3fr 2fr", gap: "4rem" }}>                <div>                  <p style={bodyStyle}>The AI landscape has consolidated around a handful of foundation model providers while fragmenting into thousands of application-layer companies. Faculty should understand both layers: the infrastructure providers who train massive models, and the business applications built on top of them.</p>                  <h3 style={{ color: "#15803d", fontSize: "0.82rem", fontFamily: "sans-serif", letterSpacing: "0.12em", textTransform: "uppercase", marginTop: "2rem", marginBottom: "1.2rem", fontWeight: "bold" }}>Major Foundation Model Providers</h3>                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>                    {[{ co: "OpenAI", model: "GPT-4o, o1, o3", focus: "General-purpose, coding, advanced reasoning" }, { co: "Anthropic", model: "Claude 3.5 Sonnet", focus: "Safety-focused, long context, document analysis" }, { co: "Google DeepMind", model: "Gemini 1.5 Pro", focus: "Multimodal, real-time search, Google Workspace" }, { co: "Meta AI", model: "Llama 3 (open-source)", focus: "Open weights, customisable, self-hostable" }, { co: "Mistral", model: "Mistral Large", focus: "European provider, efficient, multilingual" }, { co: "xAI", model: "Grok", focus: "Real-time data via X/Twitter, less restricted" }].map(({ co, model, focus }) => (                      <div key={co} style={{ background: "#ffffff", border: "1px solid #e2e8f0", padding: "1rem 1.2rem", borderRadius: "8px", boxShadow: "0 2px 4px rgba(0,0,0,0.02)" }}>                        <div style={{ color: "#1a1a1a", fontFamily: "sans-serif", fontWeight: "700", fontSize: "0.85rem" }}>{co}</div>                        <div style={{ color: "#15803d", fontSize: "0.75rem", fontFamily: "sans-serif", marginTop: "0.2rem", fontWeight: "600" }}>{model}</div>                        <div style={{ color: "#475569", fontSize: "0.72rem", fontFamily: "sans-serif", marginTop: "0.3rem", lineHeight: 1.4 }}>{focus}</div>                      </div>                    ))}                  </div>                </div>                <div>                  <h3 style={{ color: "#15803d", fontSize: "0.82rem", fontFamily: "sans-serif", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "1.5rem", fontWeight: "bold" }}>AI Capability Maturity</h3>                  {[{ cap: "Text Generation & Analysis", pct: 95 }, { cap: "Code Generation & Review", pct: 88 }, { cap: "Data Analysis & Reasoning", pct: 82 }, { cap: "Image & Visual Generation", pct: 78 }, { cap: "Audio, Voice & Transcription", pct: 72 }, { cap: "Video Generation", pct: 52 }, { cap: "Autonomous Multi-Step Agents", pct: 38 }].map(({ cap, pct }) => (                    <div key={cap} style={{ marginBottom: "1.2rem" }}>                      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.4rem" }}>                        <span style={{ fontSize: "0.8rem", fontFamily: "sans-serif", color: "#1a1a1a", fontWeight: "500" }}>{cap}</span>                        <span style={{ fontSize: "0.72rem", color: "#15803d", fontFamily: "sans-serif", fontWeight: "bold" }}>{pct}%</span>                      </div>                      <div style={{ background: "#e2e8f0", height: "4px", borderRadius: "2px" }}>                        <div style={{ background: "linear-gradient(90deg, #15803d, #22c55e)", height: "4px", width: `${pct}%`, borderRadius: "2px" }} />                      </div>                    </div>                  ))}                  <p style={{ color: "#94a3b8", fontSize: "0.7rem", fontFamily: "sans-serif", marginTop: "1rem", lineHeight: 1.5 }}>*Relative maturity scores based on commercial deployment readiness and reliability, 2025.</p>                </div>              </div>            </div>          </section>
-          {/* ── CH3: BUSINESS ── */}          <section id="business" style={{ padding: "7rem 8rem", maxWidth: "1400px", margin: "0 auto" }}>            <ChapterHeader number="03" title="AI's Impact on Business" subtitle="What MBA students will navigate in their careers" />            <p style={{ ...bodyStyle, maxWidth: "640px" }}>Business schools prepare students for a world AI is reshaping at every layer — from operational efficiency to strategic positioning to industry disruption. Faculty must understand these dynamics to contextualise AI within functional and strategic frameworks.</p>            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem", marginTop: "2.5rem" }}>              {[                { domain: "Strategy", icon: "♟️", points: ["AI as a new factor of production alongside labour and capital", "Platform vs. product strategies in AI-native markets", "Sustainable moats: proprietary data, distribution, talent density", "When to build, buy, or partner on AI capabilities"] },                { domain: "Operations", icon: "⚙️", points: ["Predictive demand forecasting and inventory optimisation", "Autonomous quality control and defect detection", "AI-powered logistics routing and supply chain resilience", "Workforce augmentation vs. automation trade-offs"] },                { domain: "Finance & Risk", icon: "📊", points: ["Algorithmic trading and quantitative portfolio management", "AI-driven credit underwriting and fraud detection", "Automated financial reporting and audit assistance", "Model risk management and algorithmic accountability"] },                { domain: "Marketing", icon: "🎯", points: ["Hyper-personalisation at scale across all touchpoints", "AI-generated content and creative production efficiency", "Predictive customer lifetime value and churn modelling", "Conversational commerce and AI-powered sales assistance"] },                { domain: "Human Resources", icon: "👥", points: ["AI-augmented recruiting, screening, and candidate matching", "Personalised learning and performance development paths", "Workforce planning under automation uncertainty", "Managing human-AI teaming and change resistance"] },                { domain: "Entrepreneurship", icon: "🚀", points: ["Lower barriers to product development (AI as co-founder)", "Identifying market gaps through AI-powered research", "Unit economics shifts in AI-native business models", "Speed of iteration and product-market fit discovery"] },              ].map(({ domain, icon, points }) => (                <div key={domain} style={{ border: "1px solid #e2e8f0", padding: "1.8rem", background: "#ffffff", borderRadius: "8px", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.05)" }}>                  <div style={{ display: "flex", alignItems: "center", gap: "0.7rem", marginBottom: "1.2rem" }}>                    <span style={{ fontSize: "1.3rem" }}>{icon}</span>                    <h3 style={{ color: "#1a1a1a", fontSize: "0.95rem", fontFamily: "sans-serif", fontWeight: "700", letterSpacing: "0.05em", margin: 0 }}>{domain}</h3>                  </div>                  <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>                    {points.map((p) => (                      <li key={p} style={{ color: "#475569", fontSize: "0.82rem", fontFamily: "sans-serif", lineHeight: 1.6, paddingLeft: "1rem", position: "relative", marginBottom: "0.45rem" }}>                        <span style={{ position: "absolute", left: 0, color: "#15803d", fontWeight: "bold" }}>›</span>{p}                      </li>                    ))}                  </ul>                </div>              ))}            </div>            <div style={{ marginTop: "2.5rem", background: "rgba(21,128,61,0.05)", border: "1px solid rgba(21,128,61,0.2)", padding: "2.5rem", borderRadius: "8px", display: "grid", gridTemplateColumns: "auto 1fr", gap: "2.5rem" }}>              <div style={{ borderRight: "2px solid #15803d", paddingRight: "2.5rem" }}>                <div style={{ color: "#15803d", fontSize: "0.65rem", fontFamily: "sans-serif", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "0.5rem", fontWeight: "bold" }}>Disruption Alert</div>                <div style={{ color: "#1a1a1a", fontSize: "1.5rem", fontStyle: "italic", lineHeight: 1.3, fontFamily: "'Playfair Display', serif" }}>Most<br />Disrupted<br />Sectors</div>              </div>              <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: "1.5rem" }}>                {[{ sector: "Financial Services", disruption: "Very High", detail: "Underwriting, trading, advice, compliance" }, { sector: "Legal Services", disruption: "Very High", detail: "Research, contracts, discovery, drafting" }, { sector: "Media & Advertising", disruption: "Very High", detail: "Content creation, targeting, measurement" }, { sector: "Healthcare", disruption: "High", detail: "Diagnostics, drug discovery, admin" }, { sector: "Management Consulting", disruption: "High", detail: "Analysis, research, report synthesis" }].map(({ sector, disruption, detail }) => (                  <div key={sector}>                    <div style={{ color: "#15803d", fontSize: "0.72rem", fontFamily: "sans-serif", fontWeight: "700", textTransform: "uppercase", letterSpacing: "0.05em" }}>{disruption}</div>                    <div style={{ color: "#1a1a1a", fontSize: "0.85rem", fontFamily: "sans-serif", marginTop: "0.3rem", fontWeight: "700" }}>{sector}</div>                    <div style={{ color: "#475569", fontSize: "0.75rem", fontFamily: "sans-serif", marginTop: "0.2rem", lineHeight: 1.4 }}>{detail}</div>                  </div>                ))}              </div>            </div>          </section>
-          {/* ── CH4: TEACHING ── */}          <section id="teaching" style={{ background: "rgba(21,128,61,0.02)", borderTop: "1px solid #e2e8f0", borderBottom: "1px solid #e2e8f0", padding: "7rem 8rem" }}>            <div style={{ maxWidth: "1400px", margin: "0 auto" }}>              <ChapterHeader number="04" title="Teaching AI in the MBA Classroom" subtitle="Pedagogical strategies, frameworks, and course design" />              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem" }}>                <div>                  <p style={bodyStyle}>The goal is not to produce AI engineers — it's to develop <em>AI-fluent leaders</em> who can ask the right questions, oversee AI implementations, and make sound strategic decisions in AI-augmented organisations.</p>                  <p style={bodyStyle}>Effective AI pedagogy blends conceptual frameworks with hands-on experimentation. Students should leave able to critically evaluate AI claims, structure AI projects, and lead cross-functional teams through AI adoption.</p>                  <h3 style={{ color: "#15803d", fontSize: "0.82rem", fontFamily: "sans-serif", letterSpacing: "0.12em", textTransform: "uppercase", margin: "2.5rem 0 1.5rem 0", fontWeight: "bold" }}>The 4-Layer AI Fluency Model</h3>                  {[{ layer: "Layer 1: Literacy", desc: "Understanding what AI is, how it works conceptually, and its fundamental limitations and failure modes" }, { layer: "Layer 2: Application", desc: "Identifying where AI creates value in specific business contexts, functions, and competitive situations" }, { layer: "Layer 3: Evaluation", desc: "Critically assessing AI outputs, vendor claims, model risks, and implementation challenges" }, { layer: "Layer 4: Leadership", desc: "Governing AI strategy, managing AI teams, driving organisational change, and ensuring accountability" }].map(({ layer, desc }, i) => (                    <div key={layer} style={{ display: "flex", gap: "1rem", marginBottom: "1.2rem", alignItems: "start" }}>                      <div style={{ width: "26px", height: "26px", borderRadius: "50%", border: "1px solid #15803d", display: "flex", alignItems: "center", justifyContent: "center", color: "#15803d", fontSize: "0.68rem", fontFamily: "sans-serif", flexShrink: 0, marginTop: "2px", fontWeight: "bold" }}>{i + 1}</div>                      <div>                        <div style={{ color: "#1a1a1a", fontSize: "0.85rem", fontFamily: "sans-serif", fontWeight: "700" }}>{layer}</div>                        <div style={{ color: "#475569", fontSize: "0.8rem", fontFamily: "sans-serif", marginTop: "0.2rem", lineHeight: 1.5 }}>{desc}</div>                      </div>                    </div>                  ))}                </div>                <div>                  <h3 style={{ color: "#15803d", fontSize: "0.82rem", fontFamily: "sans-serif", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "1.5rem", fontWeight: "bold" }}>Classroom Activities That Work</h3>                  {[{ activity: "Prompt Engineering Workshop", type: "Hands-On", desc: "Students craft, test, and iterate prompts for a real business problem. Teaches precision in communication and reveals model limitations in real time." }, { activity: "AI Audit Case Study", type: "Critical Thinking", desc: "Analyse real AI failures (Amazon hiring tool, COMPAS recidivism, Zillow pricing algorithm). Develop evaluation frameworks students can apply throughout their careers." }, { activity: "AI Business Plan Challenge", type: "Capstone", desc: "Teams design an AI-native product or AI-augmented process. Covers strategy, unit economics, ethics, and implementation planning." }, { activity: "Live Model Debate", type: "Discussion", desc: "Students argue for/against AI adoption in a specific context, then run the same scenario through an LLM to compare quality of reasoning and spot AI blind spots." }, { activity: "AI Tool Benchmark", type: "Research", desc: "Compare multiple AI tools on the same task (e.g., M&A memo drafting). Students evaluate accuracy, bias, hallucination risk, and business fit." }].map(({ activity, type, desc }) => (                    <div key={activity} style={{ marginBottom: "1rem", padding: "1.2rem", background: "#ffffff", borderLeft: "3px solid #15803d", borderTop: "1px solid #e2e8f0", borderRight: "1px solid #e2e8f0", borderBottom: "1px solid #e2e8f0", borderRadius: "0 8px 8px 0", boxShadow: "0 2px 4px rgba(0,0,0,0.02)" }}>                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>                        <div style={{ color: "#1a1a1a", fontSize: "0.85rem", fontFamily: "sans-serif", fontWeight: "700" }}>{activity}</div>                        <div style={{ color: "#15803d", fontSize: "0.62rem", fontFamily: "sans-serif", letterSpacing: "0.1em", textTransform: "uppercase", border: "1px solid rgba(21,128,61,0.3)", padding: "3px 8px", borderRadius: "4px", background: "rgba(21,128,61,0.05)", whiteSpace: "nowrap", fontWeight: "bold" }}>{type}</div>                      </div>                      <div style={{ color: "#475569", fontSize: "0.8rem", fontFamily: "sans-serif", lineHeight: 1.6 }}>{desc}</div>                    </div>                  ))}                </div>              </div>              <div style={{ marginTop: "3.5rem", borderTop: "1px solid #e2e8f0", paddingTop: "3rem" }}>                <h3 style={{ color: "#15803d", fontSize: "0.82rem", fontFamily: "sans-serif", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "1.8rem", fontWeight: "bold" }}>Rethinking Assessment in the AI Era</h3>                <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }}>                  {[{ title: "Process-Based Assessment", body: "Evaluate reasoning process, not just output. Require documentation of AI use, prompt iterations, and critical evaluation of responses. The thinking matters more than the result." }, { title: "Oral Examinations", body: "Supplement written work with verbal defence. A student who truly understands AI-assisted work can explain it, extend it, and critique it in real time." }, { title: "AI-Integrated Tasks", body: "Design assignments where AI is expected and the student's value-add is explicitly in synthesis, judgment, and creativity — skills AI cannot reliably replicate." }].map(({ title, body }) => (                    <div key={title} style={{ background: "rgba(21,128,61,0.02)", border: "1px solid rgba(21,128,61,0.15)", padding: "1.5rem", borderRadius: "8px" }}>                      <div style={{ color: "#15803d", fontSize: "0.65rem", fontFamily: "sans-serif", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "0.8rem", fontWeight: "bold" }}>Recommended</div>                      <h4 style={{ color: "#1a1a1a", fontSize: "0.95rem", fontFamily: "sans-serif", fontWeight: "700", margin: "0 0 0.7rem 0" }}>{title}</h4>                      <p style={{ color: "#475569", fontSize: "0.8rem", fontFamily: "sans-serif", lineHeight: 1.65, margin: 0 }}>{body}</p>                    </div>                  ))}                </div>              </div>            </div>          </section>
-          {/* ── CH5: TOOLS ── */}          <section id="tools" style={{ padding: "7rem 8rem", maxWidth: "1400px", margin: "0 auto" }}>            <ChapterHeader number="05" title="Essential AI Tools for Faculty" subtitle="Your practical toolkit for research, teaching, and administration" />            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }}>              {[                { category: "General AI Assistants", color: "#15803d", tools: [{ name: "Claude (Anthropic)", use: "Long-form analysis, document review, research synthesis, nuanced reasoning" }, { name: "ChatGPT (OpenAI)", use: "General tasks, code generation, creative work, broad knowledge" }, { name: "Gemini (Google)", use: "Web-connected research, multimodal tasks, Google Workspace integration" }] },                { category: "Research & Literature", color: "#0f172a", tools: [{ name: "Elicit", use: "AI-powered literature review and research paper synthesis" }, { name: "Consensus", use: "Evidence-based answers drawn from peer-reviewed research" }, { name: "Perplexity AI", use: "Real-time search with source citations for current topics" }] },                { category: "Data & Analysis", color: "#3b82f6", tools: [{ name: "Julius AI", use: "Natural language data analysis and chart generation" }, { name: "Code Interpreter (GPT)", use: "Run Python/R analyses conversationally; great for teaching" }, { name: "NotebookLM", use: "AI assistant trained on your own research documents" }] },                { category: "Presentations & Content", color: "#6366f1", tools: [{ name: "Gamma", use: "AI-generated slide decks from outlines or topic prompts" }, { name: "Canva AI", use: "Image generation and graphic design for course materials" }, { name: "Beautiful.ai", use: "Smart presentation templates with AI layout suggestions" }] },                { category: "Audio, Video & Transcription", color: "#059669", tools: [{ name: "Otter.ai", use: "Automatic transcription of lectures, meetings, interviews" }, { name: "Descript", use: "Edit video by editing text transcript — ideal for lecture clips" }, { name: "ElevenLabs", use: "Realistic text-to-speech narration for course content" }] },                { category: "Productivity & Admin", color: "#dc2626", tools: [{ name: "Microsoft Copilot", use: "AI integrated into Word, Excel, PowerPoint, and Outlook" }, { name: "Notion AI", use: "AI writing, summarising, and organising within Notion" }, { name: "Grammarly Enterprise", use: "AI writing assistance, clarity, and tone improvement" }] },              ].map(({ category, color, tools }) => (                <div key={category} style={{ border: "1px solid #e2e8f0", padding: "1.8rem", background: "#ffffff", borderRadius: "8px", boxShadow: "0 2px 4px rgba(0,0,0,0.02)" }}>                  <div style={{ width: "30px", height: "4px", background: color, marginBottom: "1rem", borderRadius: "2px" }} />                  <h3 style={{ color: "#1a1a1a", fontSize: "0.95rem", fontFamily: "sans-serif", fontWeight: "700", margin: "0 0 1.2rem 0", letterSpacing: "0.02em" }}>{category}</h3>                  {tools.map(({ name, use }, i) => (                    <div key={name} style={{ marginBottom: "1rem", paddingBottom: "1rem", borderBottom: i < tools.length - 1 ? "1px solid #e2e8f0" : "none" }}>                      <div style={{ color, fontSize: "0.85rem", fontFamily: "sans-serif", fontWeight: "700" }}>{name}</div>                      <div style={{ color: "#475569", fontSize: "0.8rem", fontFamily: "sans-serif", marginTop: "0.3rem", lineHeight: 1.5 }}>{use}</div>                    </div>                  ))}                </div>              ))}            </div>            <div style={{ marginTop: "2rem", background: "rgba(21,128,61,0.05)", border: "1px solid rgba(21,128,61,0.2)", padding: "1.8rem", borderRadius: "8px" }}>              <p style={{ color: "#15803d", fontSize: "0.75rem", fontFamily: "sans-serif", letterSpacing: "0.12em", textTransform: "uppercase", margin: "0 0 0.6rem 0", fontWeight: "bold" }}>⚠ Data Privacy Note for Faculty</p>              <p style={{ color: "#475569", fontSize: "0.85rem", fontFamily: "sans-serif", lineHeight: 1.7, margin: 0 }}>Always verify your institution's data policies before uploading student records, proprietary research, or confidential materials to AI tools. Many tools use inputs for future training unless you opt out. Enterprise tiers typically offer stronger privacy guarantees. Model responsible AI governance for students by publishing a clear AI use policy for your courses.</p>            </div>          </section>
-          {/* ── CH6: ETHICS ── */}          <section id="ethics" style={{ background: "rgba(21,128,61,0.02)", borderTop: "1px solid #e2e8f0", borderBottom: "1px solid #e2e8f0", padding: "7rem 8rem" }}>            <div style={{ maxWidth: "1400px", margin: "0 auto" }}>              <ChapterHeader number="06" title="AI Ethics & Responsible Use" subtitle="The governance framework every business leader needs" />              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem" }}>                <div>                  <p style={bodyStyle}>AI ethics is not a peripheral compliance exercise — it is a core strategic and leadership competency. Business leaders who cannot identify, evaluate, and mitigate AI risks will expose their organisations to regulatory, reputational, and operational failures.</p>                  <h3 style={{ color: "#15803d", fontSize: "0.82rem", fontFamily: "sans-serif", letterSpacing: "0.12em", textTransform: "uppercase", margin: "2rem 0 1.5rem 0", fontWeight: "bold" }}>Core Ethical Dimensions</h3>                  {[{ dim: "Fairness & Bias", desc: "AI systems reflect and amplify historical biases in training data. Facial recognition errors, biased hiring algorithms, discriminatory credit scoring — all are live business and legal risks." }, { dim: "Transparency & Explainability", desc: "Regulated industries demand explainable decisions. The 'black box' problem is both an ethical issue and a compliance challenge in finance, healthcare, and legal services." }, { dim: "Privacy & Data Rights", desc: "AI enables unprecedented behavioural prediction. GDPR, CCPA, and emerging AI-specific regulations are reshaping data strategy and creating new C-suite roles." }, { dim: "Accountability & Liability", desc: "When AI systems cause harm, who is responsible? Organisations must establish clear chains of accountability for algorithmic decisions that affect people's lives." }, { dim: "Environmental Impact", desc: "Training large AI models consumes significant energy and water. The carbon footprint of AI is becoming a material ESG consideration for boards, investors, and regulators." }].map(({ dim, desc }) => (                    <div key={dim} style={{ marginBottom: "1.4rem", paddingLeft: "1.2rem", borderLeft: "3px solid rgba(21,128,61,0.3)" }}>                      <div style={{ color: "#1a1a1a", fontSize: "0.85rem", fontFamily: "sans-serif", fontWeight: "700", marginBottom: "0.35rem" }}>{dim}</div>                      <div style={{ color: "#475569", fontSize: "0.8rem", fontFamily: "sans-serif", lineHeight: 1.6 }}>{desc}</div>                    </div>                  ))}                </div>                <div>                  <h3 style={{ color: "#15803d", fontSize: "0.82rem", fontFamily: "sans-serif", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "1.5rem", fontWeight: "bold" }}>AI Governance Framework</h3>                  {[{ phase: "01. Assess", items: ["Identify AI use cases and associated risk levels", "Map data sources and potential biases", "Evaluate applicable regulatory requirements"] }, { phase: "02. Design", items: ["Build fairness constraints into model specifications", "Establish human oversight checkpoints", "Define explainability and documentation requirements"] }, { phase: "03. Test", items: ["Stress-test for edge cases and failure modes", "Conduct bias audits and disparate impact analyses", "Red-team adversarial scenarios and misuse cases"] }, { phase: "04. Deploy", items: ["Monitor model performance continuously post-launch", "Establish feedback loops and correction mechanisms", "Publish model cards documenting capabilities and limits"] }, { phase: "05. Govern", items: ["Assign AI risk ownership at board and executive level", "Conduct regular ethics reviews as models and context evolve", "Track regulatory developments globally and adapt policies"] }].map(({ phase, items }) => (                    <div key={phase} style={{ marginBottom: "1rem", background: "#ffffff", border: "1px solid #e2e8f0", padding: "1.2rem", borderRadius: "8px", boxShadow: "0 2px 4px rgba(0,0,0,0.02)" }}>                      <div style={{ color: "#15803d", fontSize: "0.75rem", fontFamily: "sans-serif", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "0.7rem", fontWeight: "bold" }}>{phase}</div>                      <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>                        {items.map((item) => (                          <li key={item} style={{ color: "#475569", fontSize: "0.8rem", fontFamily: "sans-serif", lineHeight: 1.6, paddingLeft: "0.8rem", position: "relative" }}>                            <span style={{ position: "absolute", left: 0, color: "#15803d", fontWeight: "bold" }}>·</span>{item}                          </li>                        ))}                      </ul>                    </div>                  ))}                </div>              </div>              <div style={{ marginTop: "3rem", background: "#fef2f2", border: "1px solid #fca5a5", padding: "2.5rem", borderRadius: "8px" }}>                <h3 style={{ color: "#dc2626", fontSize: "0.85rem", fontFamily: "sans-serif", letterSpacing: "0.12em", textTransform: "uppercase", margin: "0 0 1.2rem 0", fontWeight: "bold" }}>⚡ Academic Integrity in the AI Era</h3>                <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "2rem" }}>                  {[{ title: "Detection is Unreliable", body: "AI detection tools carry high false-positive rates and are easily circumvented. Over-reliance creates adversarial dynamics and unfairly penalises honest students." }, { title: "Policy Clarity is Essential", body: "Publish explicit AI use policies per assessment. Distinguish between acceptable tool use, active assistance, and ghostwriting. Ambiguity breeds dishonesty." }, { title: "Design for Understanding", body: "The most effective approach: design assessments that reward genuine higher-order thinking — novel analysis, personal experience, oral defence — that AI cannot replicate." }].map(({ title, body }) => (                    <div key={title}>                      <div style={{ color: "#b91c1c", fontSize: "0.85rem", fontFamily: "sans-serif", fontWeight: "700", marginBottom: "0.5rem" }}>{title}</div>                      <div style={{ color: "#475569", fontSize: "0.8rem", fontFamily: "sans-serif", lineHeight: 1.65 }}>{body}</div>                    </div>                  ))}                </div>              </div>            </div>          </section>
-          {/* ── CH7: FUTURE ── */}          <section id="future" style={{ padding: "7rem 8rem", maxWidth: "1400px", margin: "0 auto" }}>            <ChapterHeader number="07" title="The Road Ahead" subtitle="Preparing students for a future we can't fully predict" />            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem" }}>              <div>                <p style={bodyStyle}>The pace of AI progress makes long-range prediction unreliable. Rather than forecasting specific outcomes, the most valuable thing faculty can offer students is a <em>durable framework for navigating change</em> — intellectual humility, rapid learning capacity, and the ability to ask penetrating questions about technology and its organisational consequences.</p>                <p style={bodyStyle}>The skills that remain distinctly human — ethical judgment, creative synthesis, political navigation, empathetic leadership, and deep relationship-building — become <em>more</em> valuable as AI handles more cognitive labour. MBA programmes that develop these alongside AI fluency will produce the most resilient graduates.</p>                <h3 style={{ color: "#15803d", fontSize: "0.82rem", fontFamily: "sans-serif", letterSpacing: "0.12em", textTransform: "uppercase", margin: "2.5rem 0 1.5rem 0", fontWeight: "bold" }}>Emerging Developments to Watch</h3>                {[{ trend: "Agentic AI Systems", timeline: "2025–2027", desc: "AI that plans and executes multi-step tasks autonomously. Will profoundly transform professional services, knowledge work, and software development." }, { trend: "AI Regulation", timeline: "2025–2030", desc: "EU AI Act enforcement, US executive orders, and global regulatory fragmentation will create major new compliance and governance functions in every major organisation." }, { trend: "AI-Native Organisations", timeline: "2026–2030", desc: "Companies designed from inception around AI capabilities rather than retrofitting AI onto legacy human-designed processes and structures." }, { trend: "Reasoning & Scientific AI", timeline: "2025–2028", desc: "Systems with dramatically improved causal reasoning, mathematical ability, and scientific discovery capabilities — beginning to assist real R&D." }].map(({ trend, timeline, desc }) => (                  <div key={trend} style={{ marginBottom: "1.5rem", display: "grid", gridTemplateColumns: "90px 1fr", gap: "1rem" }}>                    <div style={{ color: "#15803d", fontSize: "0.7rem", fontFamily: "sans-serif", letterSpacing: "0.08em", textTransform: "uppercase", lineHeight: 1.4, paddingTop: "3px", fontWeight: "bold" }}>{timeline}</div>                    <div>                      <div style={{ color: "#1a1a1a", fontSize: "0.85rem", fontFamily: "sans-serif", fontWeight: "700", marginBottom: "0.3rem" }}>{trend}</div>                      <div style={{ color: "#475569", fontSize: "0.8rem", fontFamily: "sans-serif", lineHeight: 1.6 }}>{desc}</div>                    </div>                  </div>                ))}              </div>              <div>                <h3 style={{ color: "#15803d", fontSize: "0.82rem", fontFamily: "sans-serif", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.8rem", fontWeight: "bold" }}>Durable Human Competencies</h3>                <p style={{ color: "#475569", fontSize: "0.85rem", fontFamily: "sans-serif", lineHeight: 1.6, marginBottom: "1.5rem" }}>What MBA programmes should double down on — AI will augment but not replace these:</p>                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem", marginBottom: "2.5rem" }}>                  {[{ skill: "Strategic Judgment", desc: "Knowing which problems are worth solving and why" }, { skill: "Ethical Reasoning", desc: "Making defensible decisions under genuine uncertainty" }, { skill: "Stakeholder Navigation", desc: "Aligning diverse humans behind shared strategic goals" }, { skill: "Creative Problem-Framing", desc: "Asking better questions than AI is ever given" }, { skill: "Systems Thinking", desc: "Seeing second-order effects and feedback loops AI misses" }, { skill: "Cross-Cultural Intelligence", desc: "Navigating global contexts with genuine nuance" }, { skill: "Resilience & Adaptability", desc: "Leading organisations through discontinuous change" }, { skill: "Inspiration & Persuasion", desc: "Moving people to act, not just informing them" }].map(({ skill, desc }) => (                    <div key={skill} style={{ background: "#ffffff", border: "1px solid #e2e8f0", padding: "1.2rem", borderRadius: "8px", boxShadow: "0 2px 4px rgba(0,0,0,0.02)" }}>                      <div style={{ color: "#15803d", fontSize: "0.85rem", fontFamily: "sans-serif", fontWeight: "700", marginBottom: "0.4rem" }}>{skill}</div>                      <div style={{ color: "#475569", fontSize: "0.75rem", fontFamily: "sans-serif", lineHeight: 1.5 }}>{desc}</div>                    </div>                  ))}                </div>                <div style={{ background: "rgba(21,128,61,0.02)", border: "1px solid rgba(21,128,61,0.15)", padding: "2rem", position: "relative", borderRadius: "8px" }}>                  <div style={{ position: "absolute", top: "0.5rem", left: "1.2rem", color: "rgba(21,128,61,0.1)", fontSize: "5rem", fontFamily: "'Playfair Display', serif", lineHeight: 1 }}>"</div>                  <p style={{ color: "#1a1a1a", fontSize: "1.1rem", fontStyle: "italic", lineHeight: 1.9, paddingTop: "1.5rem", margin: 0, fontFamily: "'Playfair Display', serif" }}>                    The business leaders of tomorrow will not be those who can do what AI does — they will be those who know what only humans should do, and who have the courage and judgment to act on that knowledge.                  </p>                  <div style={{ color: "#475569", fontSize: "0.75rem", fontFamily: "sans-serif", marginTop: "1.2rem", fontWeight: "bold", textTransform: "uppercase", letterSpacing: "0.05em" }}>A guiding principle for MBA curricula</div>                </div>              </div>            </div>          </section>
-
-          {/* ── NEW FOOTER (APPROVED TEMPLATE) ── */}
-          <footer className="bg-white border-t border-slate-200 py-12 text-center text-sm text-slate-400 mt-20">
-            <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-                <div className="flex items-center justify-center gap-2 font-mono text-xs text-slate-500">
-                    <span>© Dr. Swapnil Sahoo 2026 | All Rights Reserved</span>
-                    <i className="fas fa-chess-knight text-slate-400"></i>
-                </div>
-                <div className="flex space-x-8 items-center">
-                    <a href="https://swapnilsahoo.com" target="_blank" className="text-slate-400 hover:text-teal-600 transition-colors transform hover:-translate-y-1" title="Website" rel="noopener noreferrer"><i className="fas fa-globe text-lg"></i></a>
-                    <a href="https://twitter.com" target="_blank" className="text-slate-400 hover:text-blue-400 transition-colors" rel="noopener noreferrer"><i className="fab fa-twitter text-lg"></i></a>
-                    <a href="https://instagram.com" target="_blank" className="text-slate-400 hover:text-pink-600 transition-colors" rel="noopener noreferrer"><i className="fab fa-instagram text-lg"></i></a>
-                    <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-blue-600 transition-colors"><i className="fab fa-linkedin text-lg"></i></a>
-                    <a href="https://www.chess.com/member/theswapnilsahoo" target="_blank" className="text-slate-400 hover:text-green-600 transition-colors transform hover:-translate-y-1" title="Play Chess" rel="noopener noreferrer">
-                        <i className="fas fa-chess-king text-lg"></i>
-                    </a>
-                </div>
-            </div>
-          </footer>
-
-        </div>      );    }
-    const root = ReactDOM.createRoot(document.getElementById("root"));    root.render(<AIPrimer />);  </script></body></html>
+        // Quiz
+        const qs = [
+            { q: "Per Mankins & Steele (2005), the average firm captures roughly what share of its strategy's potential financial value?", opts: ["95%", "80%", "63%", "40%"], correct: 2, fb: "63% — a gap large enough that closing it is worth more than most strategic pivots." },
+            { q: "Amazon's Fire Phone write-down illustrates which governance discipline?", opts: ["Aggressive diversification", "Knowing when to kill a business unit", "Vertical integration", "First-mover advantage"], correct: 1, fb: "Correct. Portfolio governance isn't just about funding winners — it's about having a real mechanism to exit losers before sunk cost bias takes over." },
+            { q: "Why might a corporate parent keep funding a structurally low-margin unit like Grocery?", opts: ["It's a strategic bet on ecosystem/share-of-wallet, not standalone profit", "Grocery is actually Amazon's most profitable unit", "Regulators require it", "There is no good reason"], correct: 0, fb: "Right — the honest governance question is whether that ecosystem bet is still credible years later, or has become inertia dressed up as strategy." },
+        ];
+        let qi = 0;
+        function loadQ() {
+            const q = qs[qi];
+            document.getElementById('quiz-fb').classList.add('hidden');
+            document.getElementById('quiz-box').innerHTML = `<p class="font-semibold mb-4">${qi + 1}. ${q.q}</p>` +
+                q.opts.map((o, i) => `<button onclick="checkQ(${i})" class="block w-full text-left p-3 mb-2 rounded-lg border border-slate-200 hover:bg-blue-50 hover:border-blue-500">${o}</button>`).join('');
+        }
+        function checkQ(i) {
+            const q = qs[qi];
+            const fb = document.getElementById('quiz-fb');
+            fb.classList.remove('hidden');
+            fb.innerHTML = i === q.correct
+                ? `<div class="p-4 bg-green-50 border border-green-200 rounded-lg text-green-900 text-sm">✅ ${q.fb}</div>`
+                : `<div class="p-4 bg-red-50 border border-red-200 rounded-lg text-red-900 text-sm">❌ Not quite — review and try the next one.</div>`;
+        }
+        function nextQ() { qi = (qi + 1) % qs.length; loadQ(); }
+        loadQ();
+    </script>
+</body>
+</html>
