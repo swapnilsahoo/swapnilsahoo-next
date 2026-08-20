@@ -63,7 +63,7 @@ const latestMention = pressMentions[0];
 export function Publications() {
   return (
     <Reveal>
-      <section id="publications" className="mx-auto max-w-6xl px-6 py-24">
+      <section id="publications" className="mx-auto max-w-6xl px-6 py-16">
         <div className="mb-10 grid gap-10 md:grid-cols-12">
           <div className="md:col-span-4">
             <span className="accent-rule" />

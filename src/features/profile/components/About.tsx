@@ -11,7 +11,7 @@ import {
 export function About() {
   return (
     <Reveal>
-      <section id="about" className="mb-24">
+      <section id="about" className="mb-16">
         <Container className="max-w-6xl">
           <div className="grid gap-10 md:grid-cols-12">
             <div className="md:col-span-4">

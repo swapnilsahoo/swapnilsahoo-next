@@ -26,7 +26,7 @@ const streamIcons: Record<ResearchIcon, typeof BricolageIcon> = {
 export function Research() {
   return (
     <Reveal>
-      <section id="research" className="mx-auto max-w-6xl px-6 py-24">
+      <section id="research" className="mx-auto max-w-6xl px-6 py-16">
         <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
           <div>
             <span className="accent-rule" />

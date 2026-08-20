@@ -4,7 +4,7 @@ import { bamCluster, conferenceEntries } from "@/features/profile/data/conferenc
 export function Conferences() {
   return (
     <Reveal>
-      <section id="conferences" className="mx-auto max-w-6xl px-6 py-24">
+      <section id="conferences" className="mx-auto max-w-6xl px-6 py-16">
         <div className="mb-10 grid gap-10 md:grid-cols-12">
           <div className="md:col-span-4">
             <span className="accent-rule" />

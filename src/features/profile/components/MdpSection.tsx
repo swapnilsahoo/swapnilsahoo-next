@@ -5,7 +5,7 @@ import { mdpModules, mdpProgramsConducted } from "@/features/profile/data/mdp";
 export function MdpSection() {
   return (
     <Reveal>
-      <section id="mdp" className="mx-auto max-w-6xl px-6 py-24">
+      <section id="mdp" className="mx-auto max-w-6xl px-6 py-16">
         <div className="mb-10 grid gap-10 md:grid-cols-12">
           <div className="md:col-span-4">
             <span className="accent-rule" />

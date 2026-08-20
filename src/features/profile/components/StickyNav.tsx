@@ -30,13 +30,11 @@ export function StickyNav() {
           </span>
         </Link>
         <div className="hidden items-center gap-1 text-[13px] font-medium lg:flex">
-          {primaryNavLinks.map((link, index) => (
+          {primaryNavLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className={`link-underline inline-flex min-h-11 items-center rounded-lg px-3 py-1.5 ${
-                index === 1 ? "hidden md:inline-block" : ""
-              }`}
+              className="link-underline inline-flex min-h-11 items-center rounded-lg px-3 py-1.5"
             >
               {link.label}
             </Link>
@@ -47,9 +45,7 @@ export function StickyNav() {
               <Link
                 key={link.label}
                 href={link.href}
-                className={`link-underline inline-flex min-h-11 items-center rounded-lg px-3 py-1.5 ${
-                  link.label === "PhD" ? "hidden md:inline-block" : ""
-                }`}
+                className="link-underline inline-flex min-h-11 items-center rounded-lg px-3 py-1.5"
               >
                 {link.label}
               </Link>
@@ -59,9 +55,7 @@ export function StickyNav() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`link-underline inline-flex min-h-11 items-center rounded-lg px-3 py-1.5 ${
-                  link.label === "PhD" ? "hidden md:inline-block" : ""
-                }`}
+                className="link-underline inline-flex min-h-11 items-center rounded-lg px-3 py-1.5"
               >
                 {link.label}
               </a>
