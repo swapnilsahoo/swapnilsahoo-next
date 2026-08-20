@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 1,
+  "corpusVersion": "1.0.0",
+  "work": {
+    "titleDevanagari": "रामचरितमानस",
+    "titleLatin": "Rāmacaritamānasa",
+    "traditionalAuthor": "Gosvāmī Tulasīdāsa",
+    "representation": "Devanagari source text as transcribed in the pinned dataset"
+  },
+  "scope": {
+    "sourceTextOnly": true,
+    "completePinnedDataset": true,
+    "completeWork": false,
+    "kandaCount": 7,
+    "expectedTotalUnits": 1074,
+    "actualTotalUnits": 1074,
+    "unitDefinition": "One JSON array element in the upstream dataset, preserved without splitting or interpreting its internal headings and verse groupings.",
+    "knownOmissions": {
+      "count": 39,
+      "location": "Opening invocations before numbered unit 1 in all seven kāṇḍas",
+      "byKanda": {
+        "bala-kanda": 12,
+        "ayodhya-kanda": 4,
+        "aranya-kanda": 3,
+        "kishkindha-kanda": 4,
+        "sundara-kanda": 3,
+        "lanka-kanda": 6,
+        "uttara-kanda": 7
+      },
+      "description": "The numbered dataset omits 23 Sanskrit and 16 Awadhi opening invocations. They are not reconstructed inside these shards; the website supplies them as separately sourced records in opening-invocations.v1.json."
+    }
+  },
+  "source": {
+    "dataset": "WirelessAlien/Ramcharitmanas",
+    "repository": "https://github.com/WirelessAlien/Ramcharitmanas",
+    "commit": "a8734282b3f95648032a53447f08ad77acb2ecd4",
+    "commitUrl": "https://github.com/WirelessAlien/Ramcharitmanas/tree/a8734282b3f95648032a53447f08ad77acb2ecd4",
+    "attribution": "WirelessAlien/Ramcharitmanas provides the Ramcharitmanas in Devanagari JSON and attributes its data source to the IIT Kanpur Ramcharitmanas site.",
+    "upstreamAcknowledgedSource": {
+      "name": "IIT Kanpur Ramcharitmanas",
+      "url": "https://www.ramcharitmanas.iitk.ac.in/"
+    },
+    "license": {
+      "name": "The Unlicense",
+      "spdx": "Unlicense",
+      "upstreamPath": "LICENSE",
+      "upstreamUrl": "https://raw.githubusercontent.com/WirelessAlien/Ramcharitmanas/a8734282b3f95648032a53447f08ad77acb2ecd4/LICENSE",
+      "rawBytes": 1211,
+      "rawSha256": "6b0382b16279f26ff69014300541967a356a666eb0b91b422f6862f6b7dad17e",
+      "localCopy": "UPSTREAM-LICENSE.txt",
+      "notice": "The upstream dataset is dedicated to the public domain under The Unlicense and is provided without warranty. See the bundled verbatim license copy."
+    }
+  },
+  "normalization": {
+    "encoding": "UTF-8",
+    "lineEndings": "CRLF and lone CR converted to LF inside source-text strings",
+    "unicode": "Unicode NFC applied to each source-text string",
+    "otherTextTransformations": "none",
+    "sourceOrderPreserved": true
+  },
+  "identifiers": {
+    "stableId": "ramcharitmanas-<kanda-slug>-<one-based upstream array position padded to four digits>",
+    "globalSequence": "One-based and contiguous across the seven kāṇḍas in canonical source-file order",
+    "sourceIndex": "One-based position inside the pinned upstream JSON array",
+    "sourceVerseNumber": "The exact JSON numeric token lexeme captured before JSON.parse; it is retained only as an upstream locator."
+  },
+  "validation": {
+    "hashAlgorithm": "SHA-256",
+    "expectedTotalUnits": 1074,
+    "expectedCountsByKanda": {
+      "bala-kanda": 361,
+      "ayodhya-kanda": 326,
+      "aranya-kanda": 46,
+      "kishkindha-kanda": 30,
+      "sundara-kanda": 60,
+      "lanka-kanda": 121,
+      "uttara-kanda": 130
+    },
+    "sourceFiles": [
+      {
+        "order": 1,
+        "kanda": "bala-kanda",
+        "sourcePath": "main/data/verses/balkanda.json",
+        "rawBytes": 545898,
+        "rawSha256": "0e1253afa6816501bc5f0433b9d6ccad68513d27a84c7462fdf8974a250ec768",
+        "expectedUnits": 361,
+        "sourceLocatorDistinctValues": 325,
+        "sourceLocatorCollisionValues": 33
+      },
+      {
+        "order": 2,
+        "kanda": "ayodhya-kanda",
+        "sourcePath": "main/data/verses/ayodhyakanda.json",
+        "rawBytes": 478009,
+        "rawSha256": "67bddebb204ab0e7039634e8f517f9fec7bb8da3076a0404400f63c7968c28f8",
+        "expectedUnits": 326,
+        "sourceLocatorDistinctValues": 294,
+        "sourceLocatorCollisionValues": 29
+      },
+      {
+        "order": 3,
+        "kanda": "aranya-kanda",
+        "sourcePath": "main/data/verses/aranyakanda.json",
+        "rawBytes": 94808,
+        "rawSha256": "ece69b631cea2d842285156f144c8e1b545df2fc494f70c92dafc8ce0686d702",
+        "expectedUnits": 46,
+        "sourceLocatorDistinctValues": 42,
+        "sourceLocatorCollisionValues": 4
+      },
+      {
+        "order": 4,
+        "kanda": "kishkindha-kanda",
+        "sourcePath": "main/data/verses/kishkindhakanda.json",
+        "rawBytes": 53280,
+        "rawSha256": "f407d99b6d621f68abb5a6d7677793ffeede4fcb5a0dd06cf021057ec9ad77c9",
+        "expectedUnits": 30,
+        "sourceLocatorDistinctValues": 27,
+        "sourceLocatorCollisionValues": 3
+      },
+      {
+        "order": 5,
+        "kanda": "sundara-kanda",
+        "sourcePath": "main/data/verses/sundarkanda.json",
+        "rawBytes": 98311,
+        "rawSha256": "ec64dd5359fd1e070c0d203398db30916e12af7821d5c04957dfda61c0320cdb",
+        "expectedUnits": 60,
+        "sourceLocatorDistinctValues": 54,
+        "sourceLocatorCollisionValues": 6
+      },
+      {
+        "order": 6,
+        "kanda": "lanka-kanda",
+        "sourcePath": "main/data/verses/lankakanda.json",
+        "rawBytes": 202491,
+        "rawSha256": "ba38b97a7d036d120f8272fc9885c5e6de79019cacbbc0299d61b6547a61de65",
+        "expectedUnits": 121,
+        "sourceLocatorDistinctValues": 109,
+        "sourceLocatorCollisionValues": 11
+      },
+      {
+        "order": 7,
+        "kanda": "uttara-kanda",
+        "sourcePath": "main/data/verses/uttarakanda.json",
+        "rawBytes": 198969,
+        "rawSha256": "454baae0153780ba735f2a2291dfe71962ed092ce7b6aabd31e561dc6d044fa7",
+        "expectedUnits": 130,
+        "sourceLocatorDistinctValues": 117,
+        "sourceLocatorCollisionValues": 12
+      }
+    ],
+    "generatedShards": [
+      {
+        "order": 1,
+        "kanda": "bala-kanda",
+        "file": "01-bala-kanda.v1.json",
+        "units": 361,
+        "firstSequence": 1,
+        "lastSequence": 361,
+        "generatedBytes": 626165,
+        "generatedSha256": "265776e42ed38fe1e6bd1cd66aa5eb2472fefd48e9a59b0ec67ba536462a7270"
+      },
+      {
+        "order": 2,
+        "kanda": "ayodhya-kanda",
+        "file": "02-ayodhya-kanda.v1.json",
+        "units": 326,
+        "firstSequence": 362,
+        "lastSequence": 687,
+        "generatedBytes": 554771,
+        "generatedSha256": "28adc51139167a2f5302e712ad85ce8c67a6ddb7add8a92ce5a793ab988105b2"
+      },
+      {
+        "order": 3,
+        "kanda": "aranya-kanda",
+        "file": "03-aranya-kanda.v1.json",
+        "units": 46,
+        "firstSequence": 688,
+        "lastSequence": 733,
+        "generatedBytes": 105922,
+        "generatedSha256": "e6c1d08009b32f65aca847ca31f1d21f7dc974f422479773d4ce6bd7dc31c109"
+      },
+      {
+        "order": 4,
+        "kanda": "kishkindha-kanda",
+        "file": "04-kishkindha-kanda.v1.json",
+        "units": 30,
+        "firstSequence": 734,
+        "lastSequence": 763,
+        "generatedBytes": 61506,
+        "generatedSha256": "e9ef5fac228695b7bbfe4d5f642438b1b758d64387d9327018357b14d9b544ff"
+      },
+      {
+        "order": 5,
+        "kanda": "sundara-kanda",
+        "file": "05-sundara-kanda.v1.json",
+        "units": 60,
+        "firstSequence": 764,
+        "lastSequence": 823,
+        "generatedBytes": 112837,
+        "generatedSha256": "967ac3c73b545ad1be3556af0a0bb8c1674cf5c2a4dfdce0397ed4c1ac5b7481"
+      },
+      {
+        "order": 6,
+        "kanda": "lanka-kanda",
+        "file": "06-lanka-kanda.v1.json",
+        "units": 121,
+        "firstSequence": 824,
+        "lastSequence": 944,
+        "generatedBytes": 230713,
+        "generatedSha256": "8fff4921902008c3c4ab64637c670032ce679f91a3f298dc9787b290c3f7dc6d"
+      },
+      {
+        "order": 7,
+        "kanda": "uttara-kanda",
+        "file": "07-uttara-kanda.v1.json",
+        "units": 130,
+        "firstSequence": 945,
+        "lastSequence": 1074,
+        "generatedBytes": 229655,
+        "generatedSha256": "eb7f404e6137557c402a0b1dcbb05b914f9ad117c155361b4801f1e47f7f894e"
+      }
+    ]
+  },
+  "limitations": [
+    "Completeness means all 1,074 array units from all seven JSON files at the pinned dataset commit; it is not a claim that this is a critical or diplomatic edition.",
+    "The pinned dataset omits 39 opening invocations across the seven kāṇḍas: 23 Sanskrit and 16 Awadhi records. This 1,074-unit numbered corpus is therefore not, by itself, the complete selected work; the reader interleaves a separately sourced opening-invocations.v1.json supplement.",
+    "The upstream verse-number field is a JSON number. Trailing zeroes were lost before ingestion, so values such as 1.1 can represent both source units 1 and 10 and are not unique.",
+    "Stable IDs, labels, and global sequences therefore use source array position, while sourceVerseNumber is preserved only as a non-unique locator.",
+    "The source dataset contains Devanagari text only. These files do not add translations, transliteration, pronunciation guidance, word study, grammar, or commentary.",
+    "Internal headings such as चौपाई and दोहा/सोरठा remain embedded exactly within each normalized source-text string; the importer does not split or classify them."
+  ]
+}

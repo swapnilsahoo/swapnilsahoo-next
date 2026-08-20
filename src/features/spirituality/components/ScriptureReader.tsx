@@ -10,11 +10,11 @@ type ReadingLayer = "word" | "line";
 type ReaderMode = "filtered" | "exact";
 
 const ALL_SECTIONS = "All sections";
-const PAGE_SIZE = 12;
 
 type ReaderResponse = {
   entries: ReaderEntry[];
   focusId?: string;
+  nextOffset?: number;
   total: number;
 };
 
@@ -25,7 +25,7 @@ function hasDistinctStudyRows(entry: ReaderEntry) {
   return (
     (word.original ?? "") !== entry.original ||
     word.transliteration.trim() !== entry.transliteration.trim() ||
-    word.meaning.trim() !== entry.meaning.trim()
+    word.meaning.trim() !== (entry.meaning?.trim() ?? "")
   );
 }
 
@@ -60,7 +60,9 @@ export function ScriptureReader({
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [section, setSection] = useState(initialSection);
   const [readingLayer, setReadingLayer] = useState<ReadingLayer>("word");
-  const [visibleCount, setVisibleCount] = useState(pageSize);
+  const [nextOffset, setNextOffset] = useState<number | undefined>(
+    initialEntries.length < initialResultTotal ? initialEntries.length : undefined
+  );
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [jumpValue, setJumpValue] = useState("1");
   const [pendingEntryId, setPendingEntryId] = useState<string | null>(null);
@@ -69,7 +71,8 @@ export function ScriptureReader({
   const [loadError, setLoadError] = useState("");
   const [readerMode, setReaderMode] = useState<ReaderMode>("filtered");
   const hasMounted = useRef(false);
-  const romanizationLabel = slug === "hanuman-chalisa" ? "romanization" : "IAST";
+  const romanizationLabel =
+    slug === "hanuman-chalisa" || slug === "ramcharitmanas" ? "orthographic romanization" : "IAST";
   const studyLayerLabel =
     slug === "shiva-tandava-stotram" ? "Pāda study" : isSahasranama ? "Name study" : "Word study";
   const studyGuideLabel =
@@ -79,16 +82,13 @@ export function ScriptureReader({
         ? "Received name & close gloss"
         : "Word & compound study";
 
-  const sectionOptions = useMemo(
-    () => [ALL_SECTIONS, ...sections],
-    [sections]
-  );
+  const sectionOptions = useMemo(() => [ALL_SECTIONS, ...sections], [sections]);
   const ranges = sections;
   const activeRangeIndex = ranges.indexOf(section);
   const resultLabel = `${resultTotal} ${resultTotal === 1 ? "entry" : "entries"}`;
 
-  const resetVisibleCount = (nextSection = section) => {
-    setVisibleCount(isSahasranama && nextSection !== ALL_SECTIONS ? pageSize : PAGE_SIZE);
+  const resetPagination = () => {
+    setNextOffset(undefined);
   };
 
   const chooseSection = (nextSection: string) => {
@@ -98,7 +98,7 @@ export function ScriptureReader({
     setQuery("");
     setDebouncedQuery("");
     setSection(nextSection);
-    resetVisibleCount(nextSection);
+    resetPagination();
     setNavigationMessage(
       nextSection === ALL_SECTIONS ? "Showing all sections." : `Showing ${nextSection}.`
     );
@@ -124,7 +124,8 @@ export function ScriptureReader({
 
     const controller = new AbortController();
     const params = new URLSearchParams({
-      limit: String(visibleCount),
+      limit: String(pageSize),
+      offset: "0",
       query: debouncedQuery,
       section,
     });
@@ -138,6 +139,7 @@ export function ScriptureReader({
       })
       .then((result) => {
         setEntries(result.entries);
+        setNextOffset(result.nextOffset);
         setResultTotal(result.total);
         setNavigationMessage(
           result.total === 0
@@ -154,7 +156,7 @@ export function ScriptureReader({
       });
 
     return () => controller.abort();
-  }, [debouncedQuery, readerMode, section, slug, visibleCount]);
+  }, [debouncedQuery, pageSize, readerMode, section, slug]);
 
   const loadExactEntry = useCallback(
     async ({ entryId, sequence }: { entryId?: string; sequence?: number }, updateHash = true) => {
@@ -178,7 +180,7 @@ export function ScriptureReader({
         setQuery("");
         setDebouncedQuery("");
         setSection(entry.section);
-        setVisibleCount(pageSize);
+        setNextOffset(undefined);
         setEntries([entry]);
         setResultTotal(1);
         setJumpValue(String(entry.sequence));
@@ -192,8 +194,37 @@ export function ScriptureReader({
         setIsLoading(false);
       }
     },
-    [pageSize, slug, totalEntries]
+    [slug, totalEntries]
   );
+
+  const loadMore = async () => {
+    if (nextOffset === undefined) return;
+
+    const params = new URLSearchParams({
+      limit: String(pageSize),
+      offset: String(nextOffset),
+      query: debouncedQuery,
+      section,
+    });
+    setIsLoading(true);
+    setLoadError("");
+
+    try {
+      const response = await fetch(`/api/spirituality/${slug}/entries?${params.toString()}`);
+      if (!response.ok) throw new Error("The reader could not load more entries.");
+      const result = (await response.json()) as ReaderResponse;
+      setEntries((currentEntries) => [...currentEntries, ...result.entries]);
+      setNextOffset(result.nextOffset);
+      setResultTotal(result.total);
+      setNavigationMessage(
+        `Showing ${Math.min(nextOffset + result.entries.length, result.total)} of ${result.total} entries.`
+      );
+    } catch (error) {
+      setLoadError(error instanceof Error ? error.message : "The reader could not load more.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const submitJump = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -256,7 +287,7 @@ export function ScriptureReader({
       `${entry.label} · ${entry.section}`,
       entry.original,
       entry.transliteration,
-      entry.meaning,
+      entry.meaning ?? "",
       distinctStudyRows,
       entryUrl,
     ]
@@ -314,9 +345,13 @@ export function ScriptureReader({
                   setLoadError("");
                   setReaderMode("filtered");
                   setQuery(event.target.value);
-                  resetVisibleCount();
+                  resetPagination();
                 }}
-                placeholder={`Devanagari, ${romanizationLabel}, or meaning`}
+                placeholder={
+                  slug === "ramcharitmanas"
+                    ? `Devanagari, ${romanizationLabel}, or source label`
+                    : `Devanagari, ${romanizationLabel}, or meaning`
+                }
                 className="border-ink-200 focus:border-brand-500 focus:ring-brand-500/20 dark:border-ink-700 min-h-11 w-full rounded-lg border bg-white py-3 pr-4 pl-11 text-sm outline-none focus:ring-4 dark:bg-white/5"
               />
             </div>
@@ -370,7 +405,11 @@ export function ScriptureReader({
             <div>
               <p className="mb-2 text-xs font-semibold">Study unit</p>
               <p className="border-ink-200 text-ink-600 dark:border-ink-700 dark:text-ink-300 flex min-h-11 items-center rounded-lg border bg-white px-3 text-xs dark:bg-white/5">
-                Numbered name with close gloss
+                {slug === "ramcharitmanas"
+                  ? "Source text with deterministic romanization"
+                  : slug === "bhagavad-gita"
+                    ? "Source text with deterministic IAST"
+                    : "Numbered name with close gloss"}
               </p>
             </div>
           )}
@@ -496,23 +535,42 @@ export function ScriptureReader({
 
               <div className="mt-5 grid gap-5 lg:grid-cols-[0.9fr_1.1fr] lg:gap-8">
                 <div>
+                  {entry.speaker ? (
+                    <p
+                      lang={entry.language ?? language}
+                      className="mb-3 font-mono text-[10px] font-semibold tracking-wider text-amber-800 uppercase dark:text-amber-300"
+                    >
+                      {entry.speaker}
+                    </p>
+                  ) : null}
                   <p
-                    lang={language}
+                    lang={entry.language ?? language}
                     className="font-serif text-2xl leading-relaxed font-semibold [overflow-wrap:anywhere] whitespace-pre-line sm:text-3xl"
                   >
                     {entry.original}
                   </p>
-                  <p className="mt-3 text-sm leading-relaxed font-medium [overflow-wrap:anywhere] whitespace-pre-line text-amber-800 italic dark:text-amber-300">
+                  <p
+                    lang={(entry.language ?? language) === "awa" ? "awa-Latn" : "sa-Latn"}
+                    className="mt-3 text-sm leading-relaxed font-medium [overflow-wrap:anywhere] whitespace-pre-line text-amber-800 italic dark:text-amber-300"
+                  >
                     {entry.transliteration}
                   </p>
                 </div>
                 <div className="rounded-lg bg-slate-50 p-4 dark:bg-white/[0.045]">
-                  <p className="eyebrow mb-2">Close meaning</p>
+                  <p className="eyebrow mb-2">
+                    {entry.meaning ? "Close meaning" : "Translation status"}
+                  </p>
                   <p className="text-ink-700 dark:text-ink-100 text-sm leading-relaxed sm:text-base">
-                    {entry.meaning}
+                    {entry.meaning ??
+                      "No English or Hindi translation is published for this unit yet. The source text is shown without an invented or unreviewed substitute."}
                   </p>
                   {entry.note ? (
                     <p className="text-ink-500 mt-3 text-xs leading-relaxed">{entry.note}</p>
+                  ) : null}
+                  {entry.sourceRef ? (
+                    <p className="text-ink-400 mt-3 font-mono text-[10px] leading-relaxed">
+                      Source reference: {entry.sourceRef}
+                    </p>
                   ) : null}
                 </div>
               </div>
@@ -529,7 +587,7 @@ export function ScriptureReader({
                         <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
                           {word.original ? (
                             <span
-                              lang={language}
+                              lang={entry.language ?? language}
                               className="font-serif text-lg font-semibold [overflow-wrap:anywhere]"
                             >
                               {word.original}
@@ -564,7 +622,7 @@ export function ScriptureReader({
                 setDebouncedQuery("");
                 setReaderMode("filtered");
                 setSection(initialSection);
-                resetVisibleCount(initialSection);
+                resetPagination();
               }}
               className="btn-ghost mt-5 min-h-11"
             >
@@ -573,16 +631,12 @@ export function ScriptureReader({
           </div>
         ) : null}
 
-        {entries.length < resultTotal ? (
+        {readerMode === "filtered" && nextOffset !== undefined ? (
           <div className="mt-8 text-center">
             <button
               type="button"
               disabled={isLoading}
-              onClick={() => {
-                setIsLoading(true);
-                setLoadError("");
-                setVisibleCount((count) => count + pageSize);
-              }}
+              onClick={() => void loadMore()}
               className="bg-ink-950 focus-visible:ring-brand-500 inline-flex min-h-11 items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 focus-visible:ring-2 focus-visible:outline-none dark:bg-white dark:text-slate-950"
             >
               Load {Math.min(pageSize, resultTotal - entries.length)} more
@@ -591,7 +645,8 @@ export function ScriptureReader({
         ) : null}
 
         <p className="text-ink-400 mt-7 text-center font-mono text-[10px] tracking-wider uppercase">
-          {slug.replaceAll("-", " ")} · editorial study edition
+          {slug.replaceAll("-", " ")} ·{" "}
+          {slug === "ramcharitmanas" ? "source-text reading edition" : "editorial study edition"}
         </p>
       </div>
     </div>

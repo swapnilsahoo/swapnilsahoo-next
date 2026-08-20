@@ -206,7 +206,8 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
         note: "Recent research explaining why the commentary’s Śaṅkara attribution should be qualified.",
       },
       {
-        title: "Phalaśruti — Sri Vishnu Sahasranama Stotram: Sanskrit, Transliteration and English Translation",
+        title:
+          "Phalaśruti — Sri Vishnu Sahasranama Stotram: Sanskrit, Transliteration and English Translation",
         institution: "The Divine Life Society · Swami Krishnananda",
         href: "https://www.swami-krishnananda.org/vishnu/vishnu_phala.html",
         note: "Source for the traditional phala-śruti (fruits-of-recitation) verses summarised below — presented as the text's own devotional promise, not an independent claim.",
@@ -396,19 +397,19 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
   },
   "bhagavad-gita": {
     slug: "bhagavad-gita",
-    navLabel: "Bhagavad Gita · complete Sanskrit text",
+    navLabel: "Bhagavad Gita · complete 701-verse source text",
     shortTitle: "Bhagavad Gita",
-    title: "Bhagavad Gita · Complete Sanskrit Text",
+    title: "Bhagavad Gita · Complete 701-Verse Source Text",
     originalTitle: "श्रीमद्भगवद्गीता",
     transliteratedTitle: "Śrīmadbhagavadgītā",
     language: "Sanskrit · Devanagari + IAST",
     form: "Mahābhārata dialogue · 18 chapters, 701 verses",
     glyph: "कृ",
-    dek: "Read all eighteen chapters in the selected Sanskrit base text, with consistent IAST and a close English rendering. An editorial word-by-word study layer is available for every verse, but remains a study aid under correction rather than a specialist-reviewed grammatical edition.",
-    scopeLabel: "Complete 701-verse base text · study gloss under review",
+    dek: "Read all eighteen chapters in a reproducible 701-verse Sanskrit presentation, sourced from exact Sanskrit Wikisource revisions and accompanied by deterministic IAST. The additional Chapter 13 opening is declared as a textual variant; translation and grammar are not published until qualified human review.",
+    scopeLabel: "Complete selected Sanskrit source layer · 701 verses",
     scopeNote:
-      "Every verse across all eighteen chapters is present in Devanagari and IAST, including the additional Arjuna-uvāca opening verse of Chapter 13 carried by this edition's base text (see the note on 13.1). The accompanying English rendering and word-by-word glosses are editorial learning aids. They have not received independent verse-by-verse review by a Sanskrit specialist and should not be treated as a definitive grammatical or commentarial edition.",
-    entryCountLabel: "All 701 base-text verses · gloss under review",
+      "Every verse across all eighteen chapters is present in Devanagari with mechanically generated IAST. The pinned Wikisource witness supplies a 700-verse Śaṅkara-aligned sequence; this reader explicitly adds the attested Arjuna-uvāca question as 13.1 to form its declared 701-verse presentation. Completeness applies to this Sanskrit source layer, not to translation, grammatical analysis, pronunciation, commentary, or a critical edition.",
+    entryCountLabel: "18 chapters · all 701 declared Sanskrit verses",
     authenticity: [
       {
         label: "Textual home",
@@ -430,9 +431,9 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
       },
       {
         label: "Reader standard",
-        value: "Complete base text; provisional study layer",
+        value: "Complete source text; study layers withheld",
         detail:
-          "All 701 verses carry Devanagari and IAST. Each also has a close English rendering and word-level editorial aid, openly labeled as source-grounded work still requiring specialist review.",
+          "All 701 verses carry Devanagari and deterministic IAST. English, Hindi, word-by-word grammar, pronunciation, and commentary are not filled with provisional content; each awaits separate human specialist review.",
       },
     ],
     profiles: [
@@ -459,31 +460,37 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
       },
     ],
     editorialPolicy: [
-      "The Sanskrit base text follows the widely circulated recension prepared by volunteers at sanskritdocuments.org, cross-checked verse by verse against its companion word-meaning and sandhi-vigraha (compound-splitting) files from the same source.",
-      "Devanagari and IAST are generated mechanically from that base text using a standard ITRANS-based transliteration library, not retyped by hand; a small number of source-specific spelling conventions (such as this edition's own notation for jña) were normalized before conversion so the two layers agree.",
-      "Word-by-word entries follow the grammatical compound-splitting (sandhi-vigraha) prepared for the cited source. Meanings are drawn from that source's companion word-meaning file where available; a minority of inflected or compound forms not covered there received a concise editorial gloss. This layer is undergoing correction and has not been independently reviewed verse by verse by a Sanskrit specialist.",
-      "The close English rendering for each verse is newly composed for this edition and editorially compared with the word-by-word data. It has not received independent verse-by-verse review by a Sanskrit specialist, aims at a clear, literal reading rather than a polished literary paraphrase, and does not replace the depth of a full commentary tradition (Śaṅkara, Rāmānuja, Madhusūdana, and others read many verses differently).",
-      "This edition's base text carries 701 verses because it includes the Arjuna-uvāca verse opening Chapter 13, present in many popular printed editions; Śaṅkara's recension omits that verse and begins the chapter with what this reader numbers 13.2, arriving at the more commonly cited total of 700. Both countings describe the same received text; nothing is silently dropped either way.",
-      "The source word-meaning file records a single dictionary sense for each Sanskrit spelling rather than a separate sense per verse; a handful of words that are genuinely spelled identically but mean different things in different verses (for example kṛṣṇaḥ, which names Kṛṣṇa in most verses but denotes the moon's dark fortnight in one astronomical aside) were individually checked and corrected. The word-by-word layer as a whole remains a source-grounded editorial study aid—not an exhaustively context-verified translation, morphological analysis, or substitute for specialist teaching.",
+      "The eighteen Sanskrit chapters are imported reproducibly from Sanskrit Wikisource under CC BY-SA 4.0. Every chapter is pinned to an exact revision ID, timestamp, source SHA-1, raw SHA-256, and generated-shard SHA-256 in the public manifest.",
+      "The pinned Wikisource chapters follow a 700-verse Śaṅkara-aligned sequence. This reader adds the attested Arjuna question before its Chapter 13 as 13.1, yielding the explicitly declared 701-verse presentation and shifting the source chapter's 34 verses to 13.2–13.35.",
+      "Speaker rubrics are stored separately from the metrical Sanskrit instead of being inconsistently counted as part of a verse. Invocation boilerplate, chapter headings, wiki markup, and printed verse numbers are excluded from the verse text by a deterministic importer.",
+      "IAST is generated mechanically from the displayed Devanagari with a pinned open-source transliterator. It is a reversible reading aid, not pronunciation coaching or proof of verse-by-verse phonetic review.",
+      "No inherited modern translation, web glossary, or machine-written explanation is used to simulate completeness. English, Hindi, grammatical word analysis, pronunciation, and commentary will appear only as separately licensed, human-reviewed layers.",
+      "This is a transparent reading edition, not a critical edition. It preserves a named witness and one declared variant without pretending that manuscript and commentarial traditions collapse into a single uncontested text.",
     ],
     sources: [
       {
-        title: "Śrīmadbhagavadgītā — mūla text",
-        institution: "Sanskrit Documents · sanskritdocuments.org",
-        href: "https://sanskritdocuments.org/doc_giitaa/bhagvadnew.itx",
-        note: "Base Devanagari/ITRANS verse text for all eighteen chapters, checked while preparing this reader.",
+        title: "Bhagavadgītā · Sanskrit chapter index",
+        institution: "Sanskrit Wikisource · CC BY-SA 4.0",
+        href: "https://sa.wikisource.org/wiki/भगवद्गीता",
+        note: "Licensed source for the eighteen chapter transcriptions. The site importer fetches and verifies the exact historical revisions recorded in its manifest rather than silently following later edits.",
       },
       {
-        title: "Bhagavad Gītā śabdārtha (word meanings)",
-        institution: "Sanskrit Documents · sanskritdocuments.org",
-        href: "https://sanskritdocuments.org/doc_giitaa/bgwords.itx",
-        note: "Volunteer-prepared word-by-word meanings used as the primary source for this reader's word-study layer; the file itself notes these glosses are not exhaustively scholar-verified.",
+        title: "Bhagavad Gita corpus provenance manifest",
+        institution: "swapnilsahoo-next · exact revisions and hashes",
+        href: "https://github.com/swapnilsahoo/swapnilsahoo-next/blob/main/content/scriptures/bhagavad-gita/manifest.v1.json",
+        note: "Machine-readable record of the 18 pinned source revisions, licence, parsing transformations, chapter counts, 13.1 variant, limitations, and generated-file hashes.",
       },
       {
-        title: "Gītā anvaya and sandhi-vigraha",
-        institution: "Sanskrit Documents · sanskritdocuments.org (prepared by Sunder Hattangadi)",
-        href: "https://sanskritdocuments.org/doc_giitaa/gitAanvayasandhivigraha.itx",
-        note: "Grammatical compound-splitting and prose word-order for every verse, used to build this reader's word-by-word division.",
+        title: "Bhagavad Gita 13.1 · recension comparison",
+        institution: "Gita Supersite · IIT Kanpur",
+        href: "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&ecsiva=1&etassa=1&etgb=1&etsiva=1&field_chapter_value=13&field_nsutra_value=1&language=dv&setgb=1",
+        note: "Comparison record for the additional Arjuna-uvāca question used by the selected 701-verse presentation and omitted by the Śaṅkara-aligned 700-verse witness.",
+      },
+      {
+        title: "Śrīmad Bhagavadgītā (Ānandāśrama Sanskrit Series, 1901 scan)",
+        institution: "Sanskrit Wikisource · public-domain scan",
+        href: "https://sa.wikisource.org/wiki/सञ्चिका:श्रीमद्भगवद्गीता.pdf",
+        note: "Public-domain printed witness for page-level comparison with the Śaṅkara-aligned 700-verse sequence.",
       },
       {
         title: "Mahābhārata, Book 6 (Bhīṣmaparvan) critical-edition text",
@@ -495,7 +502,7 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
         title: "The Bhagavad Gītā (Sacred Books of the East, vol. 8)",
         institution: "Internet Archive · trans. Kāshināth Trimbak Telang, 1882",
         href: "https://archive.org/details/wg908",
-        note: "A public-domain 19th-century scholarly translation, consulted for comparison while preparing this edition's close English rendering.",
+        note: "A public-domain historical English translation linked for comparison; it is not silently remapped into the reader as a new literal translation.",
       },
       {
         title: "Gītā Māhātmya",
@@ -516,21 +523,21 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
         "I'm presenting this as the Gītā Māhātmya's own traditional case for reading the text — not as a scientific or guaranteed claim, and not part of the eighteen chapters themselves.",
     },
   },
-  "ramcharitmanas": {
+  ramcharitmanas: {
     slug: "ramcharitmanas",
-    navLabel: "Ramcharitmanas · Bālakāṇḍa in progress",
-    shortTitle: "Ramcharitmanas · Bālakāṇḍa",
-    title: "Ramcharitmanas · Bālakāṇḍa Study Edition",
+    navLabel: "Ramcharitmanas · complete seven-kāṇḍa source text",
+    shortTitle: "Ramcharitmanas",
+    title: "Ramcharitmanas · Complete Seven-Kāṇḍa Source Text",
     originalTitle: "श्रीरामचरितमानस",
     transliteratedTitle: "Śrī Rāmacaritamānasa",
-    language: "Awadhi (with Sanskrit invocation) · Devanagari + IAST",
-    form: "Tulsidas's retelling of the Rama story · Bālakāṇḍa (kāṇḍa 1 of 7)",
+    language: "Awadhi, with Sanskrit invocations · Devanagari + romanization",
+    form: "Seven kāṇḍas · 1,074 numbered units + 39 opening invocations",
     glyph: "राम",
-    dek: "Tulsidas's sixteenth-century Awadhi retelling of Rama's story, opened kāṇḍa by kāṇḍa. This edition currently carries the complete, verified text of Bālakāṇḍa, with full word-by-word study for the maṅgalācaraṇa, close translation continuing through the poet's preface, and translation extending further section by section.",
-    scopeLabel: "Bālakāṇḍa (kāṇḍa 1 of 7) · in progress",
+    dek: "Read the selected source text from Bālakāṇḍa through Uttarakāṇḍa: all 1,074 numbered units in the pinned seven-kāṇḍa dataset, together with the 39 opening Sanskrit and Awadhi invocations checked against a public-domain 1925 edition. A deterministic romanization supports reading; translations and grammar are published only after human review.",
+    scopeLabel: "Complete selected source-text topology · 1,113 records",
     scopeNote:
-      "All 369 declared units of Bālakāṇḍa — 7 opening Sanskrit ślokas plus 362 Awadhi dohā, sorathā and chhand units — carry verified Devanagari and IAST. The first 13 units (the maṅgalācaraṇa) additionally carry full word-by-word study; a further 29 units carry a close English translation, running through the poet's preface, the glory of Rāma's name, and the celebrated extended image of the Mānasa itself as a sacred lake. The remaining units of Bālakāṇḍa are marked as verified text with translation still to come, and the six kāṇḍas after Bālakāṇḍa are not yet begun. Nothing here is invented to look complete before it is.",
-    entryCountLabel: "369 of Bālakāṇḍa's units · 42 translated (13 with word-by-word)",
+      "This reader contains 1,074 numbered units in the selected edition's topology plus 39 separately identified opening invocations across all seven kāṇḍas. Unit totals differ between editions, so 1,074 is not presented as a universal verse count. The complete claim applies to this declared original-language source layer—not to English or Hindi translation, pronunciation, grammar, commentary, or a critical edition.",
+    entryCountLabel: "1,113 source records · all seven kāṇḍas",
     authenticity: [
       {
         label: "Textual home",
@@ -546,9 +553,9 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
       },
       {
         label: "Declared coverage",
-        value: "Bālakāṇḍa, 369 of 369 units verified",
+        value: "Seven kāṇḍas · declared source layer complete",
         detail:
-          "Every unit of the first kāṇḍa has checked Devanagari and IAST. Full word-by-word study covers the 13-unit opening invocation; close translation extends a further 29 units through the poet's preface and the Mānasa-as-a-lake metaphor; the rest of Bālakāṇḍa is disclosed as text-verified, translation pending.",
+          "The reader preserves the full 1,074-unit sequence of the pinned dataset and restores 39 opening invocations from the public-domain edition. Stable IDs follow source order rather than the dataset's lossy decimal locator field.",
       },
       {
         label: "Traditional attribution",
@@ -575,31 +582,37 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
       },
     ],
     editorialPolicy: [
-      "The Awadhi and Sanskrit base text for Bālakāṇḍa follows the volunteer-prepared edition at sanskritdocuments.org (transliterated by Balram J. Rathore), the same toolchain and site used for this reader's Bhagavad Gita edition.",
-      "Devanagari and IAST are generated mechanically from that base text using a standard ITRANS-based transliteration library, not retyped by hand. This source's own hiatus marker (keeping adjacent vowels from merging into a diphthong, as in karau rather than karau read as one syllable) is rendered as a hyphen in the IAST layer so the distinction stays visible.",
-      "One isolated typo in the source file — a missing closing parenthesis in the sub-verse label at doha 120(gha) — was corrected against the same label's consistently closed form elsewhere in the identical document, and is disclosed here rather than silently fixed.",
-      "Word-by-word study and close English translation are prepared unit by unit and currently cover the maṅgalācaraṇa (the seven opening ślokas and the six-unit invocation to the gurus and gods that follows). No comparable word-meaning source exists for Awadhi the way sanskritdocuments.org's companion files support the Gita; each translated unit here reflects direct editorial preparation, not a lookup from an existing dictionary.",
-      "Units without a prepared translation carry their own honest label rather than an invented English rendering or an empty field: the Devanagari and IAST are verified, and translation is stated as pending.",
-      "This reader is being built kāṇḍa by kāṇḍa. Coverage will expand within Bālakāṇḍa and then into the remaining six kāṇḍas over time, at the same standard of verification applied here — nothing is back-filled with placeholder or approximate text to appear more complete than it is.",
+      "The numbered source layer is imported reproducibly from WirelessAlien/Ramcharitmanas at the pinned commit shown below. The repository is dedicated under The Unlicense and records IIT Kanpur's Ramcharitmanas site as its upstream source.",
+      "The 39 opening records omitted from that dataset are transcribed diplomatically from the public-domain 1925 Belvedere Press, Prayag edition. Its lexical spellings and edition-specific readings are preserved rather than silently harmonized with IITK or common modern printings; scan-page references stay attached to every record.",
+      "Array order—not the upstream decimal verse-number field—defines the 1,074 numbered units. JSON turns locators such as 1.10 into 1.1, so using that field as a unique identifier would silently corrupt the sequence.",
+      "Romanization is generated deterministically from the displayed Devanagari. For Awadhi it is an orthographic reading aid, not Sanskrit grammatical analysis, a phonetic transcription, or a substitute for listening to a knowledgeable reciter.",
+      "No machine-written or approximate translation is inserted to make the edition look finished. English, Hindi, pronunciation, word-by-word grammar, and commentary remain explicitly unpublished until separately sourced and signed off by qualified human reviewers.",
+      "This is a transparent composite reading corpus: the numbered sequence follows the pinned seven-file dataset, while the omitted openings follow the named Belvedere witness. Completeness means the full declared topology; it does not erase variant readings, the disputed Ayodhyākāṇḍa interpolation, or the need for a future critical apparatus.",
     ],
     sources: [
       {
-        title: "Shri Ram Charit Manas — Bālakāṇḍa",
-        institution: "Sanskrit Documents · sanskritdocuments.org (transliterated by Balram J. Rathore)",
-        href: "https://sanskritdocuments.org/doc_z_otherlang_hindi/manas1_i.itx",
-        note: "Base Awadhi/Sanskrit Devanagari-via-ITRANS text for Bālakāṇḍa, checked while preparing this reader.",
+        title: "Rāmacaritamānasa · 1925 Belvedere Press edition",
+        institution: "Wikimedia Commons · public-domain scan",
+        href: "https://commons.wikimedia.org/wiki/File:%E0%A4%B0%E0%A4%BE%E0%A4%AE%E0%A4%9A%E0%A4%B0%E0%A4%BF%E0%A4%A4%E0%A4%AE%E0%A4%BE%E0%A4%A8%E0%A4%B8.pdf",
+        note: "Edition-grade legal and visual anchor for the opening invocations and source-text comparison: Prayag, 1925, edited by Mahaveer Prasad Malviya Vaidya ‘Veer’.",
+      },
+      {
+        title: "Ramcharitmanas · pinned seven-kāṇḍa dataset",
+        institution: "WirelessAlien on GitHub · The Unlicense",
+        href: "https://github.com/WirelessAlien/Ramcharitmanas/tree/a8734282b3f95648032a53447f08ad77acb2ecd4",
+        note: "Machine-readable source for all 1,074 numbered records. The exact commit, raw file hashes, generated shard hashes, and verbatim licence are preserved with this site.",
+      },
+      {
+        title: "Ramcharitmanas",
+        institution: "IIT Kanpur",
+        href: "https://www.ramcharitmanas.iitk.ac.in/",
+        note: "Scholarly comparison and navigation source acknowledged by the dataset; linked for comparison, not treated as a licensed republication source.",
       },
       {
         title: "The Rámáyana of Tulsi Dás",
-        institution: "Internet Archive · trans. F. S. Growse, 1883",
-        href: "https://archive.org/details/in.ernet.dli.2015.283665",
-        note: "A public-domain 19th-century English translation of the complete Mānasa, consulted for comparison while preparing this edition's close translations.",
-      },
-      {
-        title: "Rāmacaritamānasa — full text",
-        institution: "Hindi Wikisource",
-        href: "https://hi.wikisource.org/wiki/रामचरितमानस",
-        note: "A comparison reading for the complete seven-kāṇḍa text, linked for study rather than reposted.",
+        institution: "F. S. Growse, 1883 · public-domain translation",
+        href: "https://en.wikisource.org/wiki/The_R%C3%A1m%C3%A1yana_of_Tulsi_D%C3%A1s",
+        note: "A complete historical English translation for comparison. It is not silently mapped onto this reader's units or presented as a new literal translation.",
       },
     ],
   },
@@ -762,5 +775,5 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
 export const scriptureSlugs = Object.keys(scriptureCatalog) as ScriptureSlug[];
 
 export function isScriptureSlug(value: string): value is ScriptureSlug {
-  return value in scriptureCatalog;
+  return Object.hasOwn(scriptureCatalog, value);
 }

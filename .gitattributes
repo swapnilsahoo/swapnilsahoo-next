@@ -1,0 +1,9 @@
+# Deterministic scripture corpora are byte-checked by their importers.
+/content/scriptures/ramcharitmanas/*.json text eol=lf
+/content/scriptures/ramcharitmanas/*.md text eol=lf
+/content/scriptures/ramcharitmanas/*.txt text eol=lf
+/scripts/import-ramcharitmanas.mjs text eol=lf
+/content/scriptures/bhagavad-gita/*.json text eol=lf
+/content/scriptures/bhagavad-gita/*.md text eol=lf
+/scripts/import-bhagavad-gita.mjs text eol=lf
+/scripts/check-scripture-corpora.mjs text eol=lf

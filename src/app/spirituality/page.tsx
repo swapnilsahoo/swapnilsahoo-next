@@ -77,22 +77,22 @@ const collections = [
   {
     title: "श्रीमद्भगवद्गीता",
     transliteration: "Śrīmadbhagavadgītā",
-    label: "Bhagavad Gita · complete Sanskrit text",
+    label: "Bhagavad Gita · complete 701-verse source text",
     href: "/spirituality/bhagavad-gita",
     language: "Sanskrit",
-    scope: "Complete base text · 701 verses · study gloss under review",
+    scope: "Complete selected source layer · 18 chapters · 701 verses",
     description:
-      "All eighteen chapters of Krishna's counsel to Arjuna in the selected Sanskrit base text, with IAST and a close English rendering. The word-by-word study layer is available throughout but still requires specialist review.",
+      "All eighteen chapters of Krishna's counsel to Arjuna in a reproducible Sanskrit edition with pinned Wikisource revisions, a declared Chapter 13 variant, and deterministic IAST. Translation and grammar await qualified human review.",
   },
   {
     title: "श्रीरामचरितमानस",
     transliteration: "Śrī Rāmacaritamānasa",
-    label: "Ramcharitmanas · Bālakāṇḍa in progress",
+    label: "Ramcharitmanas · complete seven-kāṇḍa source text",
     href: "/spirituality/ramcharitmanas",
     language: "Old Awadhi",
-    scope: "Bālakāṇḍa in progress · 42 of 369 units translated",
+    scope: "All seven kāṇḍas · 1,074 numbered units + 39 openings",
     description:
-      "Tulsidas's Awadhi retelling of Rama's story, opened kāṇḍa by kāṇḍa. Bālakāṇḍa's opening invocation is complete with word-by-word study; the rest of its text is verified with translation under way.",
+      "Tulsidas's Awadhi retelling of Rama's story in the complete declared source topology: every numbered unit plus the Sanskrit and Awadhi openings, with deterministic romanization and no invented translation filler.",
   },
   {
     title: "छान्दोग्योपनिषद्",
@@ -114,16 +114,17 @@ const readingLayers = [
   {
     title: "Declared romanization",
     detail:
-      "The Sanskrit branches, and Ramcharitmanas, use IAST; the Hanuman Chalisa labels its pronunciation-friendly reading rather than presenting it as strict IAST.",
+      "Sanskrit uses IAST; Awadhi uses a clearly labelled orthographic romanization rather than being passed off as Sanskrit grammar or phonetic coaching.",
   },
   {
-    title: "Name, word, or pāda study",
+    title: "Available study layer",
     detail:
-      "Each branch labels its actual study unit—whole name, word, or pāda—without hiding the received form.",
+      "Name, word, or pāda analysis appears only where that layer is actually present and source-qualified.",
   },
   {
-    title: "Close meaning",
-    detail: "Original concise glosses orient the reader without claiming to replace commentary.",
+    title: "Translation status",
+    detail:
+      "A close meaning is shown only where it is licensed and reviewed; otherwise the gap stays visible.",
   },
   {
     title: "Attribution & sources",
@@ -160,10 +161,10 @@ export default function SpiritualityPage() {
                   <span className="font-normal text-amber-200 italic">Return inward.</span>
                 </h1>
                 <p className="mt-6 max-w-3xl text-base leading-relaxed text-amber-50 sm:text-lg">
-                  Seven source-aware devotional and sacred-text editions designed for understanding as well as
-                  recitation—bringing original script, clearly labeled romanization, close name-,
-                  word-, or pāda-level meaning, authorship, and textual history into one calm
-                  reading experience.
+                  Seven source-aware devotional and sacred-text editions designed for understanding
+                  as well as recitation—bringing original script, clearly labeled romanization,
+                  close name-, word-, or pāda-level meaning, authorship, and textual history into
+                  one calm reading experience.
                 </p>
                 <a
                   href="#collections"
@@ -262,12 +263,11 @@ export default function SpiritualityPage() {
               Every branch uses the same reading logic, but its provenance is specific to that text.
               The Chalisa is treated as Old Awadhi; the two Sahasranāmas use complete, name-by-name
               Sanskrit readers; the Shiva Tandava Stotram receives pāda-level compound study; the
-              Bhagavad Gita carries a complete Sanskrit base text across all eighteen chapters,
-              alongside an editorial word-study layer that remains under specialist review; the
-              Ramcharitmanas is being opened kāṇḍa by kāṇḍa; and the
-              Chandogya Upanishad opens with its first section only, both with declared coverage
-              stated plainly rather than smoothed over. Every branch except the Hanuman Chalisa uses
-              consistent IAST.
+              Bhagavad Gita carries a complete, pinned Sanskrit source layer across all eighteen
+              chapters; the Ramcharitmanas carries the declared source topology of all seven kāṇḍas;
+              and the Chandogya Upanishad opens with its first section only. Coverage and review
+              status stay visible rather than being smoothed over. Sanskrit receives IAST; Awadhi
+              receives a clearly labelled orthographic romanization.
             </p>
           </div>
           <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">

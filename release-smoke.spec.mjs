@@ -632,9 +632,7 @@ test("Homepage gallery · AOM 2026 event photographs", async ({ page }) => {
     name: /AOM 2026 participants gathered around a conference table/,
   });
 
-  await expect(
-    gallery.getByRole("button", { name: "Go to slide 2", exact: true })
-  ).toHaveAttribute(
+  await expect(gallery.getByRole("button", { name: "Go to slide 2", exact: true })).toHaveAttribute(
     "aria-current",
     "true"
   );
@@ -651,9 +649,7 @@ test("Homepage gallery · AOM 2026 event photographs", async ({ page }) => {
     name: /Swapnil Sahoo presenting Reconstructing Entrepreneurship Under Constraint at AOM 2026/,
   });
 
-  await expect(
-    gallery.getByRole("button", { name: "Go to slide 3", exact: true })
-  ).toHaveAttribute(
+  await expect(gallery.getByRole("button", { name: "Go to slide 3", exact: true })).toHaveAttribute(
     "aria-current",
     "true"
   );
@@ -688,9 +684,7 @@ test("Homepage gallery · AOM 2026 event photographs", async ({ page }) => {
     name: /Swapnil Sahoo with Prof\. J\.P\. Eggers at AOM 2026/,
   });
 
-  await expect(
-    gallery.getByRole("button", { name: "Go to slide 4", exact: true })
-  ).toHaveAttribute(
+  await expect(gallery.getByRole("button", { name: "Go to slide 4", exact: true })).toHaveAttribute(
     "aria-current",
     "true"
   );
@@ -749,6 +743,15 @@ test("Scripture library · paged API, search and direct-entry navigation", async
   expect(firstPageData.total).toBe(701);
   expect(firstPageData.entries).toHaveLength(12);
   expect(firstPageData.entries[0].sequence).toBe(1);
+  expect(firstPageData.nextOffset).toBe(12);
+
+  const secondPage = await request.get(
+    `${baseUrl}/api/spirituality/bhagavad-gita/entries?section=All%20sections&limit=12&offset=12`
+  );
+  expect(secondPage.ok()).toBe(true);
+  const secondPageData = await secondPage.json();
+  expect(secondPageData.entries).toHaveLength(12);
+  expect(secondPageData.entries[0].sequence).toBe(13);
 
   const searchResponse = await request.get(
     `${baseUrl}/api/spirituality/bhagavad-gita/entries?query=dharma&limit=12`
@@ -765,6 +768,22 @@ test("Scripture library · paged API, search and direct-entry navigation", async
   const finalEntryData = await finalEntryResponse.json();
   expect(finalEntryData.entries).toHaveLength(1);
   expect(finalEntryData.entries[0].sequence).toBe(701);
+
+  const manasResponse = await request.get(
+    `${baseUrl}/api/spirituality/ramcharitmanas/entries?section=All%20sections&limit=12`
+  );
+  expect(manasResponse.ok()).toBe(true);
+  const manasData = await manasResponse.json();
+  expect(manasData.total).toBe(1113);
+  expect(manasData.entries).toHaveLength(12);
+  expect(manasData.entries[0].section).toBe("Bālakāṇḍa");
+
+  const manasFinalResponse = await request.get(
+    `${baseUrl}/api/spirituality/ramcharitmanas/entries?sequence=1113`
+  );
+  expect(manasFinalResponse.ok()).toBe(true);
+  const manasFinalData = await manasFinalResponse.json();
+  expect(manasFinalData.entries[0].section).toBe("Uttarakāṇḍa");
 
   await page.setViewportSize({ width: 375, height: 812 });
   await page.goto(`${baseUrl}/spirituality/bhagavad-gita`, {

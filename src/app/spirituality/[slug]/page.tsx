@@ -13,10 +13,7 @@ import {
   scriptureCatalog,
   scriptureSlugs,
 } from "@/features/spirituality/data/catalog";
-import {
-  createScriptureReaderBootstrap,
-  loadScriptureEntries,
-} from "@/features/spirituality/data/load-entries";
+import { loadScriptureReaderBootstrap } from "@/features/spirituality/data/load-entries";
 import type { ScriptureSlug } from "@/features/spirituality/types";
 
 type PageProps = {
@@ -86,13 +83,13 @@ const scriptureInquiry: Record<
     title: "What changes when one thousand names are heard as an answer?",
     questions: [
       "Does a name read differently once you know Bhīṣma is answering Yudhiṣṭhira, not reciting a list?",
-      "If editions split compounds differently, is \"exactly one thousand names\" really fixed?",
+      'If editions split compounds differently, is "exactly one thousand names" really fixed?',
     ],
   },
   "lalita-sahasranama": {
     title: "How should a thousand names remain more than a thousand labels?",
     questions: [
-      "If the hymn's place in the Brahmāṇḍa Purāṇa shifts across manuscripts, what exactly is \"the text\"?",
+      'If the hymn\'s place in the Brahmāṇḍa Purāṇa shifts across manuscripts, what exactly is "the text"?',
       "Does a name mean something different read through Bhāskararāya's commentary than read alone?",
     ],
   },
@@ -104,24 +101,25 @@ const scriptureInquiry: Record<
     ],
   },
   "bhagavad-gita": {
-    title: "What changes when Krishna's counsel is read verse by verse, word by word?",
+    title: "What changes when Krishna's counsel is read through a named and reproducible witness?",
     questions: [
       "Does it change anything that you're hearing Sañjaya's report, not a direct transcript of the battlefield?",
-      "This edition counts 701 verses against the usual 700 — does one extra verse change what \"complete\" means?",
+      'This edition counts 701 verses against the usual 700 — does one extra verse change what "complete" means?',
     ],
   },
   ramcharitmanas: {
-    title: "What does it mean for a reading edition to say, plainly, how much of it is done?",
+    title:
+      "What becomes visible when all seven kāṇḍas can be read without pretending every layer is finished?",
     questions: [
       "With Śiva telling Pārvatī, Yājñavalkya retelling it, and Tulsidas retelling that — who's actually speaking in any one verse?",
-      "Would you rather have 13 verses fully translated, or 369 stretched thin to look finished?",
+      "Can a source-text edition be complete while its translation and grammar remain honestly unpublished?",
     ],
   },
   "chandogya-upanishad": {
     title: "What is Om actually made of, according to this opening chapter?",
     questions: [
       "The text traces Om back through earth, water, plants, the body and speech before it ever names the syllable — why start so far from the sound itself?",
-      "Verse three calls Om \"the eighth\" essence, without ever explaining what's being counted — translators still disagree. Does an unexplained number weaken the teaching, or is that exactly the kind of puzzle it expects a student to sit with?",
+      'Verse three calls Om "the eighth" essence, without ever explaining what\'s being counted — translators still disagree. Does an unexplained number weaken the teaching, or is that exactly the kind of puzzle it expects a student to sit with?',
     ],
   },
 };
@@ -145,9 +143,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       scripture.transliteratedTitle,
       slug === "shiva-tandava-stotram"
         ? "pada by pada meaning"
-        : slug === "vishnu-sahasranama" || slug === "lalita-sahasranama"
-          ? "name by name meaning"
-          : "line and word study",
+        : slug === "bhagavad-gita" || slug === "ramcharitmanas"
+          ? "complete source-text reading edition"
+          : slug === "vishnu-sahasranama" || slug === "lalita-sahasranama"
+            ? "name by name meaning"
+            : "line and word study",
       slug === "hanuman-chalisa" || slug === "ramcharitmanas"
         ? "Awadhi romanization"
         : "IAST transliteration",
@@ -170,8 +170,7 @@ export default async function ScripturePage({ params }: PageProps) {
   if (!isScriptureSlug(slug)) notFound();
 
   const scripture = scriptureCatalog[slug];
-  const entries = await loadScriptureEntries(slug);
-  const reader = createScriptureReaderBootstrap(slug, entries);
+  const reader = await loadScriptureReaderBootstrap(slug);
   const theme = themes[slug];
   const inquiry = scriptureInquiry[slug];
   const optionalSectionCount =
@@ -191,16 +190,20 @@ export default async function ScripturePage({ params }: PageProps) {
     url: `${siteUrl}/spirituality/${slug}`,
     inLanguage:
       slug === "ramcharitmanas"
-        ? ["awa-Deva", "sa-Deva", "en"]
-        : slug === "hanuman-chalisa"
-          ? ["awa-Deva", "en"]
-          : ["sa-Deva", "en"],
+        ? ["awa-Deva", "sa-Deva", "awa-Latn", "sa-Latn"]
+        : slug === "bhagavad-gita"
+          ? ["sa-Deva", "sa-Latn"]
+          : slug === "hanuman-chalisa"
+            ? ["awa-Deva", "en"]
+            : ["sa-Deva", "en"],
     learningResourceType:
-      slug === "shiva-tandava-stotram"
-        ? "Pada-and-compound sacred-text study edition"
-        : isSahasranama
-          ? "Complete name-by-name sacred-text study edition"
-          : "Word-and-compound sacred-text study edition",
+      slug === "ramcharitmanas" || slug === "bhagavad-gita"
+        ? "Complete selected source-text reading edition"
+        : slug === "shiva-tandava-stotram"
+          ? "Pada-and-compound sacred-text study edition"
+          : isSahasranama
+            ? "Complete name-by-name sacred-text study edition"
+            : "Word-and-compound sacred-text study edition",
     isBasedOn: scripture.sources.map((source) => source.href),
     publisher: {
       "@type": "Person",
@@ -260,9 +263,13 @@ export default async function ScripturePage({ params }: PageProps) {
                   Source-aware ·{" "}
                   {slug === "shiva-tandava-stotram"
                     ? "pāda & compound edition"
-                    : isSahasranama
-                      ? "complete name-by-name edition"
-                      : "line & word study edition"}
+                    : slug === "ramcharitmanas"
+                      ? "complete seven-kāṇḍa source edition"
+                      : slug === "bhagavad-gita"
+                        ? "complete 701-verse source edition"
+                        : isSahasranama
+                          ? "complete name-by-name edition"
+                          : "line & word study edition"}
                 </span>
                 <p lang={languageCode} className={`script-devanagari mt-8 text-3xl ${theme.badge}`}>
                   {scripture.originalTitle}
@@ -363,9 +370,11 @@ export default async function ScripturePage({ params }: PageProps) {
                 02 /{" "}
                 {slug === "shiva-tandava-stotram"
                   ? "Pāda & compound"
-                  : isSahasranama
-                    ? "Name-by-name"
-                    : "Word & compound"}{" "}
+                  : slug === "ramcharitmanas" || slug === "bhagavad-gita"
+                    ? "Source text"
+                    : isSahasranama
+                      ? "Name-by-name"
+                      : "Word & compound"}{" "}
                 reader
               </p>
               <h2 id="reader-title" className="display text-4xl font-semibold md:text-5xl">
@@ -503,7 +512,9 @@ export default async function ScripturePage({ params }: PageProps) {
             <div className="grid gap-9 lg:grid-cols-[1fr_0.42fr]">
               <div>
                 <span className="accent-rule" />
-                <p className="eyebrow mb-3">{guidanceNumber} / {scripture.practicalGuidance.eyebrow}</p>
+                <p className="eyebrow mb-3">
+                  {guidanceNumber} / {scripture.practicalGuidance.eyebrow}
+                </p>
                 <h2 id="guidance-title" className="display text-4xl font-semibold md:text-5xl">
                   {scripture.practicalGuidance.title}
                 </h2>
@@ -516,12 +527,15 @@ export default async function ScripturePage({ params }: PageProps) {
                       <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-amber-100 font-mono text-[10px] font-semibold text-amber-950 dark:bg-amber-400/15 dark:text-amber-200">
                         {String(index + 1).padStart(2, "0")}
                       </span>
-                      <p className="text-ink-600 dark:text-ink-300 text-sm leading-relaxed">{item}</p>
+                      <p className="text-ink-600 dark:text-ink-300 text-sm leading-relaxed">
+                        {item}
+                      </p>
                     </li>
                   ))}
                 </ul>
               </div>
-              {scripture.practicalGuidance.images && scripture.practicalGuidance.images.length > 0 ? (
+              {scripture.practicalGuidance.images &&
+              scripture.practicalGuidance.images.length > 0 ? (
                 <div className="flex flex-col gap-4">
                   {scripture.practicalGuidance.images.map((image, index) => (
                     <Reveal

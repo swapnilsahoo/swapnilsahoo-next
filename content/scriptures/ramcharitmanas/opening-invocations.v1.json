@@ -1,0 +1,822 @@
+{
+  "schemaVersion": 1,
+  "corpusVersion": "1.0.0",
+  "work": "रामचरितमानस",
+  "contentType": "opening-invocations-source-text-only",
+  "entryCount": 39,
+  "editorialPolicy": {
+    "baseWitness": "Ramcharitmanas, edited by Mahaveer Prasad Malviya Vaidya (Veer), Belvedere Press, Prayag, 1925",
+    "transcriptionMode": "diplomatic-source-text",
+    "scope": "The 39 opening invocations omitted from the numbered narrative corpus: original Devanagari only; no translation, gloss, or commentary.",
+    "normalizations": ["Unicode NFC", "logical verse lineation", "interword whitespace"],
+    "preserved": [
+      "lexical readings",
+      "inflectional endings",
+      "printed hyphenation",
+      "danda punctuation",
+      "local verse numbers"
+    ],
+    "omitted": [
+      "editorial Hindi commentary",
+      "metre headings",
+      "running headers",
+      "page furniture"
+    ],
+    "comparisonPolicy": "IIT Kanpur's online Ramcharitmanas was consulted only to identify received-text divergences. The 1925 public-domain Belvedere witness remains the transcription base; comparison readings are not silently substituted."
+  },
+  "sourceWitness": {
+    "scanLandingPage": "https://archive.org/details/in.ernet.dli.2015.342236",
+    "publicDomainRecord": "https://commons.wikimedia.org/wiki/File:रामचरितमानस.pdf",
+    "comparisonLandingPages": {
+      "bala-kanda": "https://www.ramcharitmanas.iitk.ac.in/content/11",
+      "ayodhya-kanda": "https://www.ramcharitmanas.iitk.ac.in/content/12",
+      "aranya-kanda": "https://www.ramcharitmanas.iitk.ac.in/content/13",
+      "kishkindha-kanda": "https://www.ramcharitmanas.iitk.ac.in/content/14",
+      "sundara-kanda": "https://www.ramcharitmanas.iitk.ac.in/content/15",
+      "lanka-kanda": "https://www.ramcharitmanas.iitk.ac.in/content/16",
+      "uttara-kanda": "https://www.ramcharitmanas.iitk.ac.in/content/17"
+    }
+  },
+  "entries": [
+    {
+      "id": "ramcharitmanas-opening-bala-kanda-001",
+      "sequenceWithinSupplement": 1,
+      "kanda": "bala-kanda",
+      "kandaOrder": 1,
+      "sourceIndex": 1,
+      "label": "Bālakāṇḍa · opening Sanskrit śloka 1",
+      "original": "वर्णानामर्थसंघानां रसानां छन्दसामपि ।\nमङ्गलानां च कर्त्तारौ वन्दे वाणीविनायकौ ॥१॥",
+      "language": "Sanskrit",
+      "scanPage": 52,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n51/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-bala-kanda-002",
+      "sequenceWithinSupplement": 2,
+      "kanda": "bala-kanda",
+      "kandaOrder": 1,
+      "sourceIndex": 2,
+      "label": "Bālakāṇḍa · opening Sanskrit śloka 2",
+      "original": "भवानीशङ्करौ वन्दे श्रद्धाविश्वासरूपिणौ ।\nयाभ्यां विना न पश्यन्ति सिद्धाः स्वान्तःस्थमीश्वरम् ॥२॥",
+      "language": "Sanskrit",
+      "scanPage": 52,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n51/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-bala-kanda-003",
+      "sequenceWithinSupplement": 3,
+      "kanda": "bala-kanda",
+      "kandaOrder": 1,
+      "sourceIndex": 3,
+      "label": "Bālakāṇḍa · opening Sanskrit śloka 3",
+      "original": "वन्दे बोधमयं नित्यं गुरुं शङ्कररूपिणम् ।\nयमाश्रितो हि वक्रोऽपि चन्द्रः सर्वत्र वन्द्यते ॥३॥",
+      "language": "Sanskrit",
+      "scanPage": 52,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n51/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-bala-kanda-004",
+      "sequenceWithinSupplement": 4,
+      "kanda": "bala-kanda",
+      "kandaOrder": 1,
+      "sourceIndex": 4,
+      "label": "Bālakāṇḍa · opening Sanskrit śloka 4",
+      "original": "सीतारामगुणग्रामपुण्यारण्यविहारिणौ ।\nवन्दे विशुद्धविज्ञानौ कवीश्वरकपीश्वरौ ॥४॥",
+      "language": "Sanskrit",
+      "scanPage": 53,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n52/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-bala-kanda-005",
+      "sequenceWithinSupplement": 5,
+      "kanda": "bala-kanda",
+      "kandaOrder": 1,
+      "sourceIndex": 5,
+      "label": "Bālakāṇḍa · opening Sanskrit śloka 5",
+      "original": "उद्भवस्थितिसंहारकारिणीं क्लेशहारिणीम् ।\nसर्वश्रेयस्करीं सीतां नतोऽहं रामवल्लभाम् ॥५॥",
+      "language": "Sanskrit",
+      "scanPage": 53,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n52/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-bala-kanda-006",
+      "sequenceWithinSupplement": 6,
+      "kanda": "bala-kanda",
+      "kandaOrder": 1,
+      "sourceIndex": 6,
+      "label": "Bālakāṇḍa · opening Sanskrit śloka 6",
+      "original": "यन्मायावशवर्त्ति विश्वमखिलं ब्रह्मादिदेवासुराः ।\nयत्सत्त्वादमृषैव भाति सकलं रज्जौ यथाऽहेर्भ्रमः ।\nयत्पादप्लव एक एव हि भवाम्भोधेस्तितीर्षावताम् ।\nवन्देऽहं तमशेषकारणपरं रामाख्यमीशं हरिम् ॥६॥",
+      "language": "Sanskrit",
+      "scanPage": 53,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n52/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete-edition-specific-reading",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-bala-kanda-007",
+      "sequenceWithinSupplement": 7,
+      "kanda": "bala-kanda",
+      "kandaOrder": 1,
+      "sourceIndex": 7,
+      "label": "Bālakāṇḍa · opening Sanskrit śloka 7",
+      "original": "नानापुराणनिगमागमसम्मतं यद्रामायणे निगदितं क्वचिदन्यतोऽपि ।\nस्वान्तःसुखाय तुलसी रघुनाथगाथाभाषानिबन्धमतिमञ्जुलमातनोति ॥७॥",
+      "language": "Sanskrit",
+      "scanPage": 54,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n53/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-bala-kanda-008",
+      "sequenceWithinSupplement": 8,
+      "kanda": "bala-kanda",
+      "kandaOrder": 1,
+      "sourceIndex": 8,
+      "label": "Bālakāṇḍa · opening soraṭhā 1",
+      "original": "जेहि सुमिरत सिधि होइ, गन-नायक करि-बर-बदन ।\nकरउ अनुग्रह सोइ, बुद्धि-रासि सुभ-गुन-सदन ॥",
+      "language": "Awadhi",
+      "scanPage": 54,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n53/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete-edition-specific-reading",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-bala-kanda-009",
+      "sequenceWithinSupplement": 9,
+      "kanda": "bala-kanda",
+      "kandaOrder": 1,
+      "sourceIndex": 9,
+      "label": "Bālakāṇḍa · opening soraṭhā 2",
+      "original": "मूक होइ बाचाल, पङ्गु चढ़इ गिरिवर गहन ।\nजासु कृपा सो दयाल, द्रवउ सकल-कलिमल-दहन ॥",
+      "language": "Awadhi",
+      "scanPage": 54,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n53/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete-edition-specific-reading",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-bala-kanda-010",
+      "sequenceWithinSupplement": 10,
+      "kanda": "bala-kanda",
+      "kandaOrder": 1,
+      "sourceIndex": 10,
+      "label": "Bālakāṇḍa · opening soraṭhā 3",
+      "original": "नील-सरोरुह-स्याम, तरुन-अरुन-बारिज नयन ।\nकरउ सो मम उर धाम, सदा छीर-सागर-सयन ॥",
+      "language": "Awadhi",
+      "scanPage": 55,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n54/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-bala-kanda-011",
+      "sequenceWithinSupplement": 11,
+      "kanda": "bala-kanda",
+      "kandaOrder": 1,
+      "sourceIndex": 11,
+      "label": "Bālakāṇḍa · opening soraṭhā 4",
+      "original": "कुन्द-इन्दु-सम देह, उमा-रमन करुना-अयन ।\nजाहि दीन पर नेह, करउ कृपा मर्दन-मयन ॥",
+      "language": "Awadhi",
+      "scanPage": 55,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n54/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-bala-kanda-012",
+      "sequenceWithinSupplement": 12,
+      "kanda": "bala-kanda",
+      "kandaOrder": 1,
+      "sourceIndex": 12,
+      "label": "Bālakāṇḍa · opening soraṭhā 5",
+      "original": "बन्दउँ गुरु-पद-कञ्ज, कृपा-सिन्धु नर-रूप-हरि ।\nमहामोह-तम-पुञ्ज, जासु बचन-रवि-कर-निकर ॥",
+      "language": "Awadhi",
+      "scanPage": 55,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n54/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-ayodhya-kanda-001",
+      "sequenceWithinSupplement": 13,
+      "kanda": "ayodhya-kanda",
+      "kandaOrder": 2,
+      "sourceIndex": 1,
+      "label": "Ayodhyākāṇḍa · opening Sanskrit śloka 1",
+      "original": "वामाङ्के च विभाति भूधरसुता देवापगा मस्तके ।\nभाले बाल-विधुर्गले च गरलं यस्योरसि व्यालराट् ॥\nसोऽयं भूतिविभूषणः सुरवरः सर्वाधिपः सर्वदा ।\nशर्वः सर्वगतः शिवः शशिनिभः श्रीशङ्करः पातु माम् ॥१॥",
+      "language": "Sanskrit",
+      "scanPage": 425,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n424/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-ayodhya-kanda-002",
+      "sequenceWithinSupplement": 14,
+      "kanda": "ayodhya-kanda",
+      "kandaOrder": 2,
+      "sourceIndex": 2,
+      "label": "Ayodhyākāṇḍa · opening Sanskrit śloka 2",
+      "original": "प्रसन्नतां या न गताभिषेकतस्तथा न मम्ले वनवास दुःखतः ।\nमुखाम्बुजश्री रघुनन्दनस्य मे सदास्तु सा मञ्जुलमङ्गल प्रदा ॥२॥",
+      "language": "Sanskrit",
+      "scanPage": 426,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n425/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-ayodhya-kanda-003",
+      "sequenceWithinSupplement": 15,
+      "kanda": "ayodhya-kanda",
+      "kandaOrder": 2,
+      "sourceIndex": 3,
+      "label": "Ayodhyākāṇḍa · opening Sanskrit śloka 3",
+      "original": "नीलाम्बुजश्यामलकोमलाङ्गं सीतासमारोपितवामभागम् ।\nपाणौ महासायकचारुचापं नमामि रामं रघुवंश नाथम् ॥३॥",
+      "language": "Sanskrit",
+      "scanPage": 426,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n425/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-ayodhya-kanda-004",
+      "sequenceWithinSupplement": 16,
+      "kanda": "ayodhya-kanda",
+      "kandaOrder": 2,
+      "sourceIndex": 4,
+      "label": "Ayodhyākāṇḍa · opening dohā",
+      "original": "श्रीगुरु-चरन-सरोज-रज, निज-मन-मुकुर सुधारि ।\nबरनउँ रघुबर-बिमल-जस, जो दायक फल-चारि ॥१॥",
+      "language": "Awadhi",
+      "scanPage": 426,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n425/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-aranya-kanda-001",
+      "sequenceWithinSupplement": 17,
+      "kanda": "aranya-kanda",
+      "kandaOrder": 3,
+      "sourceIndex": 1,
+      "label": "Araṇyakāṇḍa · opening Sanskrit śloka 1",
+      "original": "मूलं धर्मतरोर्विवेकजलधेः पूर्णेन्दुमानन्ददं ।\nवैराग्याम्बुजभास्करं ह्यघघनध्वान्तापहं तापहम् ॥\nमोहाम्भोधरपूगपाटनविधौ स्वःसम्भवं शङ्करं ।\nवन्दे ब्रह्मकुलं कलङ्कशमनं श्रीरामभूपप्रियम् ॥१॥",
+      "language": "Sanskrit",
+      "scanPage": 739,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n738/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-aranya-kanda-002",
+      "sequenceWithinSupplement": 18,
+      "kanda": "aranya-kanda",
+      "kandaOrder": 3,
+      "sourceIndex": 2,
+      "label": "Araṇyakāṇḍa · opening Sanskrit śloka 2",
+      "original": "सान्द्रानन्दपयोदसौभगतनुं पीताम्बरं सुन्दरं ।\nपाणौ बाणशरासनं कटिलसत्तूणीरभारं वरम् ॥\nराजीवायतलोचनं धृतजटाजूटेन संशोभितं ।\nसीतालक्ष्मणसंयुतं पथिगतं रामाभिरामं भजे ॥२॥",
+      "language": "Sanskrit",
+      "scanPage": 739,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n738/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-aranya-kanda-003",
+      "sequenceWithinSupplement": 19,
+      "kanda": "aranya-kanda",
+      "kandaOrder": 3,
+      "sourceIndex": 3,
+      "label": "Araṇyakāṇḍa · opening soraṭhā",
+      "original": "उमा राम-गुन-गूढ़, पंडित मुनि पावहिं बिरति।\nपावहिं मोह बिमूढ़, जे हरि-बिमुख न धरम-रति॥",
+      "language": "Awadhi",
+      "scanPage": 740,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n739/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-kishkindha-kanda-001",
+      "sequenceWithinSupplement": 20,
+      "kanda": "kishkindha-kanda",
+      "kandaOrder": 4,
+      "sourceIndex": 1,
+      "label": "Kiṣkindhākāṇḍa · opening Sanskrit śloka 1",
+      "original": "कुन्देन्दीवरसुन्दरावतिबलौ विज्ञानधामावुभौ ।\nशोभाढ्यौ वरधन्विनौ श्रुतिनुतौ गोविप्रवृन्दप्रियौ ॥\nमायामानुषरूपिणौ रघुवरौ सद्धर्मवर्मौ हितौ ।\nसीतान्वेषणतत्परौ पथिगतौ भक्तिप्रदौ तौ हि नः ॥१॥",
+      "language": "Sanskrit",
+      "scanPage": 808,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n807/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-kishkindha-kanda-002",
+      "sequenceWithinSupplement": 21,
+      "kanda": "kishkindha-kanda",
+      "kandaOrder": 4,
+      "sourceIndex": 2,
+      "label": "Kiṣkindhākāṇḍa · opening Sanskrit śloka 2",
+      "original": "ब्रह्माम्भोधिसमुद्भवं कलिमलप्रध्वंसनं चाव्ययम् ।\nश्रीमच्छम्भुमुखेन्दुसुन्दरवरे संशोभितं सर्वदा ॥\nसंसारामयभेषजं सुखकरं श्रीजानकीजीवनम् ।\nधन्यास्ते कृतिनः पिबन्ति सततं श्रीरामनामामृतम् ॥२॥",
+      "language": "Sanskrit",
+      "scanPage": 808,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n807/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-kishkindha-kanda-003",
+      "sequenceWithinSupplement": 22,
+      "kanda": "kishkindha-kanda",
+      "kandaOrder": 4,
+      "sourceIndex": 3,
+      "label": "Kiṣkindhākāṇḍa · opening soraṭhā 1",
+      "original": "मुक्ति जन्म-महि जानि, ज्ञान खानि अघ-हानि कर।\nजहँ बस सम्भु भवानि, सो कासी सेइअ कस न॥",
+      "language": "Awadhi",
+      "scanPage": 809,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n808/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-kishkindha-kanda-004",
+      "sequenceWithinSupplement": 23,
+      "kanda": "kishkindha-kanda",
+      "kandaOrder": 4,
+      "sourceIndex": 4,
+      "label": "Kiṣkindhākāṇḍa · opening soraṭhā 2",
+      "original": "जरत सकल सुर-वृन्द, विषम गरल जेहि पान किय।\nतेहि न भजसि मन मन्द, को कृपाल संकर सरिस॥",
+      "language": "Awadhi",
+      "scanPage": 809,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n808/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-sundara-kanda-001",
+      "sequenceWithinSupplement": 24,
+      "kanda": "sundara-kanda",
+      "kandaOrder": 5,
+      "sourceIndex": 1,
+      "label": "Sundarakāṇḍa · opening Sanskrit śloka 1",
+      "original": "शान्तं शाश्वतमप्रमेयमनघं निर्वाणशान्तिप्रदं ।\nब्रह्माशम्भुफणीन्द्रसेव्यमनिशं वेदान्तवेद्यं विभुम् ॥\nरामाख्यं जगदीश्वरं सुरगुरुं मायामनुष्यं हरिं ।\nवन्देऽहं करुणाकरं रघुवरं भूपालचूडामणिम् ॥१॥",
+      "language": "Sanskrit",
+      "scanPage": 850,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n849/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-sundara-kanda-002",
+      "sequenceWithinSupplement": 25,
+      "kanda": "sundara-kanda",
+      "kandaOrder": 5,
+      "sourceIndex": 2,
+      "label": "Sundarakāṇḍa · opening Sanskrit śloka 2",
+      "original": "नान्या स्पृहा रघुपते हृदयेऽस्मदीये सत्यं वदामि च भवानखिलान्तरात्मा।\nभक्तिं प्रयच्छ रघुपुङ्गव निर्भरां मे कामादिदोषरहितं कुरु मानसं च ॥२॥",
+      "language": "Sanskrit",
+      "scanPage": 850,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n849/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-sundara-kanda-003",
+      "sequenceWithinSupplement": 26,
+      "kanda": "sundara-kanda",
+      "kandaOrder": 5,
+      "sourceIndex": 3,
+      "label": "Sundarakāṇḍa · opening Sanskrit śloka 3",
+      "original": "अतुलितबलधामं स्वर्णशैलाभदेहं दनुजवनकृशानुं ज्ञानिनामग्रगण्यम्।\nसकलगुणनिधानं वानराणामधीशं रघुपतिवरदूतं वातजातं नमामि ॥३॥",
+      "language": "Sanskrit",
+      "scanPage": 851,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n850/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete-edition-specific-reading",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-lanka-kanda-001",
+      "sequenceWithinSupplement": 27,
+      "kanda": "lanka-kanda",
+      "kandaOrder": 6,
+      "sourceIndex": 1,
+      "label": "Laṅkākāṇḍa · opening Sanskrit śloka 1",
+      "original": "रामं कामारिसेव्यं भवभयहरणं कालमत्तेभसिंहं ।\nयोगीन्द्रं ज्ञानगम्यं गुणनिधिमजितं निर्गुणं निर्विकारम् ॥\nमायातीतं सुरेशं खलवधनिरतं ब्रह्मवृन्दैकदेवं ।\nवन्दे कन्दावदातं सरसिजनयनं देवमुर्वीशरूपम् ॥१॥",
+      "language": "Sanskrit",
+      "scanPage": 922,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n921/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-lanka-kanda-002",
+      "sequenceWithinSupplement": 28,
+      "kanda": "lanka-kanda",
+      "kandaOrder": 6,
+      "sourceIndex": 2,
+      "label": "Laṅkākāṇḍa · opening Sanskrit śloka 2",
+      "original": "शङ्खेन्द्वाभमतीवसुन्दरतनुं शार्दूलचर्माम्बरं ।\nकालव्यालकरालभूषणधरं गङ्गाशशाङ्कप्रियम् ॥\nकाशीशं कलिकल्मषौघशमनं कल्याणकल्पद्रुमं ।\nनौमीड्यं गिरिजापतिं गुणनिधिं कन्दर्पहं शङ्करम् ॥२॥",
+      "language": "Sanskrit",
+      "scanPage": 922,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n921/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-lanka-kanda-003",
+      "sequenceWithinSupplement": 29,
+      "kanda": "lanka-kanda",
+      "kandaOrder": 6,
+      "sourceIndex": 3,
+      "label": "Laṅkākāṇḍa · opening Sanskrit śloka 3",
+      "original": "यो ददाति सतां शम्भुः कैवल्यमपि दुर्लभम्।\nखलानां दण्डकृद्योऽसौ शङ्करः शं तनोतु माम् ॥३॥",
+      "language": "Sanskrit",
+      "scanPage": 923,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n922/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-lanka-kanda-004",
+      "sequenceWithinSupplement": 30,
+      "kanda": "lanka-kanda",
+      "kandaOrder": 6,
+      "sourceIndex": 4,
+      "label": "Laṅkākāṇḍa · opening dohā 1",
+      "original": "लव निमेष परमानु जुग, बरष कलप सर चंड।\nभजसि न मन तेहि राम कहँ, काल जासु कोदंड॥",
+      "language": "Awadhi",
+      "scanPage": 923,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n922/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-lanka-kanda-005",
+      "sequenceWithinSupplement": 31,
+      "kanda": "lanka-kanda",
+      "kandaOrder": 6,
+      "sourceIndex": 5,
+      "label": "Laṅkākāṇḍa · opening dohā 2",
+      "original": "सिन्धु बचन सुनि राम, सचिव बोलि प्रभु अस कहेउ।\nअब बिलम्बु केहि काम, करहु सेतु उतरै कटक॥",
+      "language": "Awadhi",
+      "scanPage": 923,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n922/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-lanka-kanda-006",
+      "sequenceWithinSupplement": 32,
+      "kanda": "lanka-kanda",
+      "kandaOrder": 6,
+      "sourceIndex": 6,
+      "label": "Laṅkākāṇḍa · opening dohā 3",
+      "original": "सुनहु भानुकुल-केतु, जामवन्त कर जोरि कह।\nनाथ नाम तव सेतु, नर चढ़ि भवसागर तरिहिं॥",
+      "language": "Awadhi",
+      "scanPage": 923,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n922/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-uttara-kanda-001",
+      "sequenceWithinSupplement": 33,
+      "kanda": "uttara-kanda",
+      "kandaOrder": 7,
+      "sourceIndex": 1,
+      "label": "Uttarakāṇḍa · opening Sanskrit śloka 1",
+      "original": "केकीकण्ठाभनीलं सुरवरविलसद्विप्रपादाब्जचिह्नं ।\nशोभाढ्यं पीतवस्त्रं सरसिजनयनं सर्वदा सुप्रसन्नम् ॥\nपाणौ नाराचचापं कपिनिकरयुतं बन्धुना सेव्यमानं ।\nनौमीड्यं जानकीशं रघुवरमनिशं पुष्पकारूढरामम् ॥१॥",
+      "language": "Sanskrit",
+      "scanPage": 1071,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n1070/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-uttara-kanda-002",
+      "sequenceWithinSupplement": 34,
+      "kanda": "uttara-kanda",
+      "kandaOrder": 7,
+      "sourceIndex": 2,
+      "label": "Uttarakāṇḍa · opening Sanskrit śloka 2",
+      "original": "कोसलेन्द्रपदकञ्जमञ्जुलौ कोमलावजमहेशवन्दितौ।\nजानकीकरसरोजलालितौ चिन्तकस्य मनभृङ्गसङ्गिनौ ॥२॥",
+      "language": "Sanskrit",
+      "scanPage": 1071,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n1070/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-uttara-kanda-003",
+      "sequenceWithinSupplement": 35,
+      "kanda": "uttara-kanda",
+      "kandaOrder": 7,
+      "sourceIndex": 3,
+      "label": "Uttarakāṇḍa · opening Sanskrit śloka 3",
+      "original": "कुन्दइन्दुदरगौरसुन्दरं अम्बिकापतिमभीष्टसिद्धिदम्।\nकारुणीककलकञ्जलोचनं नौमि शङ्करमनङ्गमोचनम् ॥३॥",
+      "language": "Sanskrit",
+      "scanPage": 1072,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n1071/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-uttara-kanda-004",
+      "sequenceWithinSupplement": 36,
+      "kanda": "uttara-kanda",
+      "kandaOrder": 7,
+      "sourceIndex": 4,
+      "label": "Uttarakāṇḍa · opening dohā 1",
+      "original": "रहा एक दिन अवधि कर, अति आरत पुरलोग।\nजहँ तहँ सोचहिं नारि नर, कृश-तन राम बियोग॥",
+      "language": "Awadhi",
+      "scanPage": 1072,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n1071/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-uttara-kanda-005",
+      "sequenceWithinSupplement": 37,
+      "kanda": "uttara-kanda",
+      "kandaOrder": 7,
+      "sourceIndex": 5,
+      "label": "Uttarakāṇḍa · opening dohā 2",
+      "original": "सगुन होहिं सुन्दर सकल, मन प्रसन्न सब केर।\nप्रभु आगमन जनाव जनु, नगर रम्य चहुँ फेर॥",
+      "language": "Awadhi",
+      "scanPage": 1072,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n1071/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-uttara-kanda-006",
+      "sequenceWithinSupplement": 38,
+      "kanda": "uttara-kanda",
+      "kandaOrder": 7,
+      "sourceIndex": 6,
+      "label": "Uttarakāṇḍa · opening dohā 3",
+      "original": "कौसल्यादि मातु सब, मन आनन्द अस होइ।\nआयउ प्रभु सिय अनुज जुत, कहन चहत अब कोइ॥",
+      "language": "Awadhi",
+      "scanPage": 1072,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n1071/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    },
+    {
+      "id": "ramcharitmanas-opening-uttara-kanda-007",
+      "sequenceWithinSupplement": 39,
+      "kanda": "uttara-kanda",
+      "kandaOrder": 7,
+      "sourceIndex": 7,
+      "label": "Uttarakāṇḍa · opening dohā 4",
+      "original": "भरत नयन भुज दच्छिन, फरकत बारहिं बार।\nजानि सगुन मन हरष अति, लागे करन बिचार॥",
+      "language": "Awadhi",
+      "scanPage": 1072,
+      "scanUrl": "https://archive.org/details/in.ernet.dli.2015.342236/page/n1071/mode/1up",
+      "transcriptionStatus": "verified-against-1925-facsimile",
+      "reviewStatus": "single-facsimile-pass-complete",
+      "transformationFlags": [
+        "commentary-omitted",
+        "metre-heading-omitted",
+        "logical-lineation",
+        "whitespace-normalized"
+      ]
+    }
+  ]
+}

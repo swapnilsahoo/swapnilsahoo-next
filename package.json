@@ -4,17 +4,19 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/check-media-provenance.mjs && node scripts/check-teaching-lessons.mjs",
+    "prebuild": "node scripts/check-media-provenance.mjs && node scripts/check-teaching-lessons.mjs && node scripts/check-scripture-corpora.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "check:media": "node scripts/check-media-provenance.mjs",
     "check:lessons": "node scripts/check-teaching-lessons.mjs",
+    "check:scriptures": "node scripts/check-scripture-corpora.mjs",
     "test:smoke": "playwright test release-smoke.spec.mjs --reporter=line --workers=1",
-    "check": "eslint && tsc --noEmit && node scripts/check-media-provenance.mjs && node scripts/check-teaching-lessons.mjs"
+    "check": "eslint && tsc --noEmit && node scripts/check-media-provenance.mjs && node scripts/check-teaching-lessons.mjs && node scripts/check-scripture-corpora.mjs"
   },
   "dependencies": {
+    "@indic-transliteration/sanscript": "1.3.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.6.0",

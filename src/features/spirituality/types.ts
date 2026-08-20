@@ -20,9 +20,14 @@ export type ReaderEntry = {
   label: string;
   original: string;
   transliteration: string;
-  meaning: string;
+  meaning?: string;
   words: WordGloss[];
+  language?: "awa" | "sa";
   note?: string;
+  speaker?: string;
+  sourceRef?: string;
+  textStatus?: "source-verified" | "scan-check-pending";
+  translationStatus?: "editorial-under-review" | "not-published";
 };
 
 export type SourceLink = {
