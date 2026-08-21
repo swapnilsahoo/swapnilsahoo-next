@@ -3,163 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Official Session 05: Internal Analysis & Resource-Based View</title>
+    <title>Session 2: Strategy of Disruption — Tesla</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; color: #0f172a; line-height: 1.65; }
-        h1, h2, h3, .serif-font { font-family: 'Playfair Display', serif; }
-        .mono-font { font-family: 'JetBrains Mono', monospace; }
-        .fp-box { background: #eef2ff; border-left: 6px solid #4338ca; border-radius: 0 16px 16px 0; padding: 2rem; }
-        .card { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,.05); }
-        .nav-link { color: #64748b; font-size: .875rem; font-weight: 500; text-decoration: none; }
-        .nav-link:hover { color: #4338ca; }
+        :root {
+            --ink-900:#0a1426;--ink-700:#27354b;--ink-600:#3e4c63;--ink-500:#5b6b82;--ink-300:#b6bfcc;--ink-100:#eef1f5;
+            --brand-700:#1d4ed8;--brand-600:#2563eb;--brand-500:#3b82f6;--brand-50:#eff6ff;
+            --accent-500:#de911d;--page-bg:#f7f7f5;
+        }
+        * { box-sizing: border-box; }
+        body { font-family:'Inter',sans-serif; color:var(--ink-900); background:var(--page-bg); line-height:1.65; margin:0; }
+        h1,h2,h3,.serif { font-family:'Fraunces',serif; }
+        .mono { font-family:'JetBrains Mono',monospace; }
+        .glass-card { background:#fff; border:1px solid rgba(15,23,42,0.1); border-radius:16px; box-shadow:0 1px 2px rgba(15,23,42,0.05); }
+        .fp-box { background:var(--brand-50); border-left:6px solid var(--brand-700); border-radius:0 16px 16px 0; padding:1.75rem 2rem; }
+        .fp-eyebrow { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--brand-700); margin-bottom:.6rem; }
+        .eyebrow { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--brand-700); }
+        .nav-link { color:var(--ink-500); font-size:.875rem; font-weight:500; text-decoration:none; }
     </style>
     <link rel="stylesheet" href="/teaching/responsive.css">
 </head>
-<body class="antialiased bg-white">
-    <div class="fixed top-0 left-0 w-full h-1 bg-slate-100 z-50"><div id="progress-bar" class="h-full bg-indigo-700 w-0 transition-all"></div></div>
-    <nav class="sticky top-0 bg-white/95 backdrop-blur-md border-b border-slate-200 z-40">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <span class="font-bold text-slate-900">Internal Analysis & RBV</span>
+<body class="antialiased">
+    <div class="fixed top-0 left-0 w-full h-1 z-50" style="background:var(--ink-100)"><div id="progress-bar" class="h-full transition-all" style="background:var(--brand-700);width:0%"></div></div>
+    <nav class="sticky top-0 z-40" style="background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(15,23,42,.08)">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+            <span class="font-bold">Session 2 · Strategy of Disruption</span>
             <div class="hidden md:flex gap-6">
                 <a href="#question" class="nav-link">Question</a>
-                <a href="#reading" class="nav-link">Reading</a>
-                <a href="#tesla" class="nav-link">Tesla's Resources</a>
-                <a href="#vrio" class="nav-link">VRIO Tool</a>
-                <a href="#quiz" class="nav-link font-bold text-indigo-700">Quiz</a>
+                <a href="#reading" class="nav-link">The Case</a>
+                <a href="#timeline" class="nav-link">Near-Death, Twice</a>
+                <a href="#quiz" class="nav-link" style="color:var(--brand-700);font-weight:700">Quiz</a>
             </div>
         </div>
     </nav>
 
-    <header id="question" class="py-20 px-6 text-center bg-gradient-to-b from-indigo-50 to-white">
+    <header id="question" class="py-20 px-6 text-center" style="background:linear-gradient(to bottom,var(--brand-50),var(--page-bg))">
         <div class="max-w-4xl mx-auto">
-            <p class="text-xs font-bold uppercase tracking-widest text-indigo-700 mb-4 mono-font">Official Session 05 · Internal Analysis & Resource-Based View</p>
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">Two firms face the same industry.<br><span class="italic text-indigo-700">One wins for a decade. Why?</span></h1>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto">
-                Sessions 03–04 looked outward, at the industry. This session flips the lens inward: the resource-based view's core claim is that firms in the same industry differ systematically because they are unique, non-tradeable bundles of resources and capabilities — and that difference, not the industry structure, is often what explains who wins.
+            <p class="eyebrow mb-4">Session 2 · Strategy of Disruption: Tesla</p>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Tesla nearly died in 2008.<br><span class="italic" style="color:var(--brand-700)">It nearly died again in 2018.</span></h1>
+            <p class="text-lg max-w-2xl mx-auto" style="color:var(--ink-600)">
+                A company that survives one near-bankruptcy might be lucky. One that survives two, a decade apart, on the same founder's watch, is running a different kind of experiment entirely. Was Tesla's chaos a necessary cost of disruption, or a preventable failure of execution that got lucky twice?
             </p>
         </div>
     </header>
 
-    <section id="reading" class="py-16 px-6 border-t border-slate-100">
+    <section id="reading" class="py-16 px-6" style="border-top:1px solid rgba(15,23,42,.06)">
         <div class="max-w-3xl mx-auto fp-box">
-            <p class="text-xs font-bold uppercase tracking-widest text-indigo-700 mb-3 mono-font">The Assigned Reading</p>
-            <p class="text-slate-700 leading-relaxed">
-                Collis, D. J., &amp; Montgomery, C. A. (1995). <em>"Competing on Resources,"</em> Harvard Business Review. Their five market tests for whether a resource is genuinely valuable: is it hard to <strong>copy</strong>, does it <strong>depreciate</strong> slowly, who really <strong>captures</strong> the value it creates, can it be <strong>substituted</strong>, and is it truly <strong>superior</strong> to a rival's version — not just different. Most resources fail at least one test; the ones that pass all five are rare enough to be worth building a strategy around.
+            <p class="fp-eyebrow">The Case</p>
+            <p class="mb-4" style="color:var(--ink-700)">
+                Tesla's 2008–2012 entry into the U.S. auto industry: the Roadster shipped in 2008 with the company weeks from bankruptcy; the Model S launch in 2012 required a last-minute $465M DOE loan and a Daimler equity investment just to survive production ramp-up. The pattern repeated in 2017–2018's "production hell" for the Model 3, where Elon Musk slept on the factory floor and the company burned through cash at a rate that had short-sellers openly betting on collapse.
             </p>
+            <p class="fp-eyebrow">First Principle Question</p>
+            <p style="color:var(--ink-700)">If Tesla had been run by a professional, risk-averse CEO instead of a founder willing to bet the company twice, would Tesla exist today — or would it have quietly failed, the "safe" way, before ever reaching Model 3 volume?</p>
         </div>
     </section>
 
-    <section id="tesla" class="py-16 px-6 bg-slate-900 text-white">
+    <section id="timeline" class="py-16 px-6 text-white" style="background:var(--ink-900)">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-12">
-                <p class="text-xs font-bold uppercase tracking-widest text-indigo-300 mb-2 mono-font">Case · Elon Musk at Tesla (2024)</p>
-                <h2 class="text-3xl md:text-4xl font-bold serif-font">The VRIO Test, Applied</h2>
+                <p class="fp-eyebrow" style="color:#93c5fd">Two Decades, Two Near-Death Experiences</p>
+                <h2 class="text-3xl md:text-4xl font-bold serif">The Master Plan, Under Fire</h2>
+                <div class="mt-6 max-w-2xl mx-auto p-5 rounded-xl" style="background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.3)">
+                    <p class="fp-eyebrow" style="color:#bfdbfe">First Principle Question</p>
+                    <p class="text-sm" style="color:#dbeafe">Musk's 2006 "Secret Master Plan" (sports car → funds an affordable car → funds an even more affordable car → solar) took 16 years to execute. Would you have kept funding it in year 10, with no proof it worked yet?</p>
+                </div>
             </div>
             <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
-                    <p class="text-indigo-400 font-bold mb-2">Vertical manufacturing integration</p>
-                    <p class="text-sm text-slate-300"><strong>Valuable:</strong> yes — controls quality and cost. <strong>Rare:</strong> yes — legacy automakers outsource heavily. <strong>Inimitable:</strong> partially — requires years of capital and learning to replicate. <strong>Organized:</strong> yes — Tesla built management systems around it from day one. Verdict: a genuine, if eroding, sustained advantage.</p>
+                <div class="p-6 rounded-xl" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)">
+                    <p class="font-bold mb-2" style="color:#f87171">2008: The Roadster Crisis</p>
+                    <p class="text-sm" style="color:#cbd5e1">The 2008 financial crisis hit exactly as Tesla needed a fresh funding round to finish Roadster deliveries. Musk personally put in his last liquid capital; the round closed on Christmas Eve 2008 — Tesla later confirmed it had days of cash left. This wasn't a hypothetical near-miss; it was reported as literally days from payroll failure.</p>
                 </div>
-                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
-                    <p class="text-indigo-400 font-bold mb-2">Supercharger network</p>
-                    <p class="text-sm text-slate-300"><strong>Valuable:</strong> yes — range anxiety reduction. <strong>Rare:</strong> was, until Tesla opened it to rivals in 2023–24. <strong>Inimitable:</strong> no longer exclusive by design choice, not competitive failure. <strong>Organized:</strong> yes. Verdict: this resource's competitive value was deliberately traded away for ecosystem scale — a reminder that VRIO status is a choice, not just a fact.</p>
+                <div class="p-6 rounded-xl" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)">
+                    <p class="font-bold mb-2" style="color:#f87171">2017–18: Production Hell</p>
+                    <p class="text-sm" style="color:#cbd5e1">The Model 3 ramp fell dramatically short of targets (Musk had promised 5,000/week; actual output stalled in the hundreds for months). Musk moved onto the factory floor. Short interest in Tesla stock hit historic highs on public bets the company would run out of cash before the Model 3 became profitable.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="vrio" class="py-20 px-6">
+    <section class="py-20 px-6">
         <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-10">
-                <p class="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-2 mono-font">New Tool</p>
-                <h2 class="text-3xl font-bold serif-font">The VRIO Assessor</h2>
-                <p class="text-slate-500 mt-3">Name a resource your firm has. Answer Valuable → Rare → Inimitable → Organized in sequence; the framework short-circuits the moment you hit a "No."</p>
+            <div class="fp-box mb-8">
+                <p class="fp-eyebrow">First Principle Question</p>
+                <p style="color:var(--ink-700)">Operational effectiveness (doing things well) is not strategy (doing things differently) — Porter's core distinction from Session 1. Which of Tesla's near-death moments was actually a strategy failure, and which was just poor operational execution of a sound strategy? Does the distinction even matter to an investor who lost money either way?</p>
             </div>
-            <div class="card p-8">
-                <input id="res-name" type="text" placeholder="e.g. our proprietary customer data" class="w-full border border-slate-300 rounded-lg px-4 py-3 mb-6">
-                <div id="vrio-steps" class="space-y-4 mb-6"></div>
-                <div id="vrio-result" class="p-6 rounded-xl border-2 border-dashed border-slate-300 text-sm text-slate-600">Answer the questions above to see the verdict.</div>
+            <div class="glass-card p-8">
+                <h3 class="text-2xl font-bold serif mb-4">Classroom Debate: The Founder Premium</h3>
+                <p class="text-sm mb-4" style="color:var(--ink-600)">Divide into two groups. Group A argues Musk's willingness to bet the company twice was the source of Tesla's advantage — a professional CEO would have played it safe and lost to incumbents with more capital. Group B argues Tesla survived <em>despite</em> Musk's risk-taking, not because of it, and got lucky on financing timing both times.</p>
+                <p class="text-sm" style="color:var(--ink-600)">Bring evidence: Tesla's stock performance, the fate of other EV startups from the same era (Fisker, Coda) that also bet big and failed, and what "founder mode" governance research (Hambrick & Mason's Upper Echelons Theory) predicts about high-risk-tolerance leaders.</p>
             </div>
         </div>
     </section>
 
-    <section id="quiz" class="py-20 px-6 bg-slate-50 border-t border-slate-200">
+    <section id="quiz" class="py-20 px-6" style="background:var(--ink-100);border-top:1px solid rgba(15,23,42,.06)">
         <div class="max-w-2xl mx-auto text-center">
-            <h2 class="text-3xl font-bold serif-font mb-8">Check Your Understanding</h2>
-            <div id="quiz-box" class="card p-8 text-left"></div>
-            <button onclick="nextQ()" class="mt-6 px-8 py-3 bg-slate-900 text-white rounded-full font-semibold hover:bg-indigo-700 transition">Next</button>
+            <p class="fp-eyebrow mb-3">First Principle Question</p>
+            <h2 class="text-3xl font-bold serif mb-8">Check Your Understanding</h2>
+            <div id="quiz-box" class="glass-card p-8 text-left"></div>
+            <button onclick="nextQ()" class="mt-6 px-8 py-3 text-white rounded-full font-semibold" style="background:var(--ink-900)">Next</button>
             <div id="quiz-fb" class="mt-6 hidden text-left"></div>
         </div>
     </section>
-    <footer class="py-8 text-center text-sm text-slate-400 border-t border-slate-200">© Dr. Swapnil Sahoo 2026</footer>
+    <footer class="py-8 text-center text-sm" style="color:var(--ink-500);border-top:1px solid rgba(15,23,42,.06)">© Dr. Swapnil Sahoo 2026</footer>
 
     <script>
         window.onscroll = () => {
             const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             document.getElementById('progress-bar').style.width = (window.scrollY / h) * 100 + '%';
         };
-
-        const steps = ['Valuable', 'Rare', 'Inimitable', 'Organized'];
-        const vrioAns = {};
-        function renderVrio() {
-            document.getElementById('vrio-steps').innerHTML = steps.map((s, i) => {
-                if (i > 0 && vrioAns[steps[i - 1]] !== true) return '';
-                return `<div class="flex items-center justify-between p-4 rounded-lg border border-slate-200">
-                    <span class="font-semibold">${s}?</span>
-                    <div class="flex gap-2">
-                        <button onclick="setVrio('${s}', true)" class="px-4 py-1 rounded border ${vrioAns[s] === true ? 'border-indigo-600 bg-indigo-100' : 'border-slate-300'}">Yes</button>
-                        <button onclick="setVrio('${s}', false)" class="px-4 py-1 rounded border ${vrioAns[s] === false ? 'border-indigo-600 bg-indigo-100' : 'border-slate-300'}">No</button>
-                    </div>
-                </div>`;
-            }).join('');
-            evalVrio();
-        }
-        function setVrio(key, val) {
-            vrioAns[key] = val;
-            renderVrio();
-        }
-        function evalVrio() {
-            const name = document.getElementById('res-name').value.trim() || 'This resource';
-            const box = document.getElementById('vrio-result');
-            const answered = steps.filter(s => vrioAns[s] !== undefined);
-            if (answered.length === 0) return;
-            const failedAt = steps.find(s => vrioAns[s] === false);
-            let msg, cls;
-            if (failedAt === 'Valuable') { msg = `${name} fails at "Valuable" — it doesn't help exploit an opportunity or neutralize a threat. Competitive disadvantage or, at best, irrelevance.`; cls = 'border-red-300 bg-red-50 text-red-900'; }
-            else if (failedAt === 'Rare') { msg = `${name} is valuable but not rare — every competitor has it. This buys competitive parity, not advantage.`; cls = 'border-amber-300 bg-amber-50 text-amber-900'; }
-            else if (failedAt === 'Inimitable') { msg = `${name} is valuable and rare, but rivals can copy it. Expect a temporary competitive advantage — enjoy the lead while it lasts.`; cls = 'border-amber-300 bg-amber-50 text-amber-900'; }
-            else if (failedAt === 'Organized') { msg = `${name} passes V, R, and I — but your organization isn't set up to exploit it. This is unexploited competitive advantage: the resource is there, the systems to use it aren't.`; cls = 'border-blue-300 bg-blue-50 text-blue-900'; }
-            else if (Object.keys(vrioAns).length === 4 && steps.every(s => vrioAns[s] === true)) { msg = `${name} passes all four tests. Per Barney's VRIO logic, this is a sustained competitive advantage — the rare case worth building strategy around.`; cls = 'border-teal-300 bg-teal-50 text-teal-900'; }
-            else { msg = 'Keep answering to see the full verdict.'; cls = 'border-slate-300 bg-slate-50 text-slate-600'; }
-            box.className = 'p-6 rounded-xl border-2 text-sm ' + cls;
-            box.innerHTML = `<p>${msg}</p>`;
-        }
-        document.getElementById('res-name').addEventListener('input', evalVrio);
-        renderVrio();
-
         const qs = [
-            { q: "Per Collis & Montgomery, a resource that is valuable and rare but easy for rivals to copy provides:", opts: ["No advantage at all", "A temporary competitive advantage", "A sustained competitive advantage", "Competitive disadvantage"], correct: 1, fb: "Correct — imitability is the missing test; the lead exists but has an expiration date." },
-            { q: "Tesla opening its Supercharger network to rivals deliberately sacrificed which VRIO property?", opts: ["Valuable", "Rare / Inimitable", "Organized", "None — it kept all four"], correct: 1, fb: "Right — a strategic choice to trade exclusivity for ecosystem scale." },
-            { q: "A resource that passes Valuable, Rare, and Inimitable but the firm can't actually exploit is an example of:", opts: ["Sustained advantage", "Unexploited competitive advantage", "Competitive parity", "Competitive disadvantage"], correct: 1, fb: "Yes — the 'Organized' test exists precisely to catch this gap between having a resource and being able to use it." },
+            { q: "What forced Tesla's near-collapse in late 2008?", opts: ["A product recall", "The global financial crisis hitting exactly when a fresh funding round was needed", "A labor strike", "A patent lawsuit"], correct: 1, fb: "Correct — Tesla's funding round closed on Christmas Eve 2008 with reportedly days of cash left." },
+            { q: "The 2017-18 'production hell' refers to Tesla's struggle to:", opts: ["Design the Model 3", "Ramp Model 3 manufacturing to promised volumes", "Get regulatory approval", "Hire engineers"], correct: 1, fb: "Right — Musk had promised 5,000/week; actual output stalled far below that for months." },
+            { q: "Porter's distinction between operational effectiveness and strategy is relevant here because:", opts: ["It explains Tesla's marketing", "It helps separate genuine strategic risk-taking from poor execution of a sound strategy", "It has nothing to do with this case", "It only applies to software companies"], correct: 1, fb: "Yes — the debate over whether Tesla's near-deaths reflect strategy or execution failures hinges on exactly this distinction." },
         ];
         let qi = 0;
         function loadQ() {
             const q = qs[qi];
             document.getElementById('quiz-fb').classList.add('hidden');
-            document.getElementById('quiz-box').innerHTML = `<p class="font-semibold mb-4">${qi + 1}. ${q.q}</p>` +
-                q.opts.map((o, i) => `<button onclick="checkQ(${i})" class="block w-full text-left p-3 mb-2 rounded-lg border border-slate-200 hover:bg-indigo-50 hover:border-indigo-600">${o}</button>`).join('');
+            document.getElementById('quiz-box').innerHTML = '<p class="font-semibold mb-4">' + (qi+1) + '. ' + q.q + '</p>' +
+                q.opts.map((o,i) => '<button onclick="checkQ('+i+')" class="block w-full text-left p-3 mb-2 rounded-lg" style="border:1px solid var(--ink-300)">'+o+'</button>').join('');
         }
         function checkQ(i) {
-            const q = qs[qi];
-            const fb = document.getElementById('quiz-fb');
+            const q = qs[qi]; const fb = document.getElementById('quiz-fb');
             fb.classList.remove('hidden');
             fb.innerHTML = i === q.correct
-                ? `<div class="p-4 bg-green-50 border border-green-200 rounded-lg text-green-900 text-sm">✅ ${q.fb}</div>`
-                : `<div class="p-4 bg-red-50 border border-red-200 rounded-lg text-red-900 text-sm">❌ Not quite — review and try the next one.</div>`;
+                ? '<div class="p-4 rounded-lg text-sm" style="background:#f0fdf4;border:1px solid #bbf7d0;color:#166534">✅ '+q.fb+'</div>'
+                : '<div class="p-4 rounded-lg text-sm" style="background:#fef2f2;border:1px solid #fecaca;color:#991b1b">❌ Not quite — review and try the next one.</div>';
         }
-        function nextQ() { qi = (qi + 1) % qs.length; loadQ(); }
+        function nextQ() { qi = (qi+1) % qs.length; loadQ(); }
         loadQ();
     </script>
 </body>

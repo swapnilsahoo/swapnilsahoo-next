@@ -3,157 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Official Session 06: Creating Competitive Advantage</title>
+    <title>Session 11: Organizational Design — Structure, Culture & Control</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; color: #0f172a; line-height: 1.65; }
-        h1, h2, h3, .serif-font { font-family: 'Playfair Display', serif; }
-        .mono-font { font-family: 'JetBrains Mono', monospace; }
-        .fp-box { background: #f0fdf4; border-left: 6px solid #15803d; border-radius: 0 16px 16px 0; padding: 2rem; }
-        .card { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,.05); }
-        .nav-link { color: #64748b; font-size: .875rem; font-weight: 500; text-decoration: none; }
-        .nav-link:hover { color: #15803d; }
+        :root { --ink-900:#0a1426;--ink-700:#27354b;--ink-600:#3e4c63;--ink-500:#5b6b82;--ink-300:#b6bfcc;--ink-100:#eef1f5;
+        --brand-700:#1d4ed8;--brand-500:#3b82f6;--brand-50:#eff6ff;--page-bg:#f7f7f5; }
+        * { box-sizing: border-box; }
+        body { font-family:'Inter',sans-serif; color:var(--ink-900); background:var(--page-bg); line-height:1.65; margin:0; }
+        h1,h2,h3,.serif { font-family:'Fraunces',serif; }
+        .mono { font-family:'JetBrains Mono',monospace; }
+        .glass-card { background:#fff; border:1px solid rgba(15,23,42,0.1); border-radius:16px; box-shadow:0 1px 2px rgba(15,23,42,0.05); }
+        .fp-box { background:var(--brand-50); border-left:6px solid var(--brand-700); border-radius:0 16px 16px 0; padding:1.75rem 2rem; }
+        .fp-eyebrow { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--brand-700); margin-bottom:.6rem; }
+        .eyebrow { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--brand-700); }
+        .nav-link { color:var(--ink-500); font-size:.875rem; font-weight:500; text-decoration:none; }
     </style>
     <link rel="stylesheet" href="/teaching/responsive.css">
 </head>
-<body class="antialiased bg-white">
-    <div class="fixed top-0 left-0 w-full h-1 bg-slate-100 z-50"><div id="progress-bar" class="h-full bg-green-700 w-0 transition-all"></div></div>
-    <nav class="sticky top-0 bg-white/95 backdrop-blur-md border-b border-slate-200 z-40">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <span class="font-bold text-slate-900">Creating Advantage</span>
+<body class="antialiased">
+    <div class="fixed top-0 left-0 w-full h-1 z-50" style="background:var(--ink-100)"><div id="progress-bar" class="h-full transition-all" style="background:var(--brand-700);width:0%"></div></div>
+    <nav class="sticky top-0 z-40" style="background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(15,23,42,.08)">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+            <span class="font-bold">Session 11 · Organizational Design</span>
             <div class="hidden md:flex gap-6">
                 <a href="#question" class="nav-link">Question</a>
-                <a href="#reading" class="nav-link">Reading</a>
-                <a href="#patagonia" class="nav-link">Patagonia</a>
-                <a href="#wedge" class="nav-link">Value Wedge Tool</a>
-                <a href="#quiz" class="nav-link font-bold text-green-700">Quiz</a>
+                <a href="#reading" class="nav-link">The Reading</a>
+                <a href="#structures" class="nav-link">Structure Types</a>
+                <a href="#tool" class="nav-link">Structure Picker</a>
+                <a href="#quiz" class="nav-link" style="color:var(--brand-700);font-weight:700">Quiz</a>
             </div>
         </div>
     </nav>
 
-    <header id="question" class="py-20 px-6 text-center bg-gradient-to-b from-green-50 to-white">
+    <header id="question" class="py-20 px-6 text-center" style="background:linear-gradient(to bottom,var(--brand-50),var(--page-bg))">
         <div class="max-w-4xl mx-auto">
-            <p class="text-xs font-bold uppercase tracking-widest text-green-700 mb-4 mono-font">Official Session 06 · Creating Competitive Advantage</p>
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">Two companies sell bottled water.<br><span class="italic text-green-700">One charges $1, one charges $4. Both are profitable.</span></h1>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto">
-                Competitive advantage is created two ways, and only two: raise the value a customer perceives (V), or lower what it costs you to deliver it (C). The gap between the two — the "economic wedge" — is what advantage actually is, once you strip away the buzzwords.
+            <p class="eyebrow mb-4">Session 11 · Organizational Design: Structure, Culture &amp; Control</p>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">The strategy that made you successful<br><span class="italic" style="color:var(--brand-700)">is the structure that makes you fail next.</span></h1>
+            <p class="text-lg max-w-2xl mx-auto" style="color:var(--ink-600)">
+                Organizational inertia: a structure optimized for yesterday's environment becomes a cage the moment the market shifts. If your structure made you successful, why would you ever change it — and how would you even notice it was time to?
             </p>
         </div>
     </header>
 
-    <section id="reading" class="py-16 px-6 border-t border-slate-100">
+    <section id="reading" class="py-16 px-6" style="border-top:1px solid rgba(15,23,42,.06)">
         <div class="max-w-3xl mx-auto fp-box">
-            <p class="text-xs font-bold uppercase tracking-widest text-green-700 mb-3 mono-font">The Assigned Reading</p>
-            <p class="text-slate-700 leading-relaxed">
-                Ghemawat, P., &amp; Rivkin, J. W. (1998). <em>"Creating Competitive Advantage,"</em> Harvard Business School Note. Their framing: a firm has an advantage when the gap between the value it creates (V − C) exceeds a rival's — and that gap can come from external sources (an industry-wide shift the firm exploited first) or internal sources (superior activities the firm alone can execute). Most strategy narratives overclaim brilliance and underclaim the boring, activity-level execution that actually produces the wedge.
-            </p>
+            <p class="fp-eyebrow">First Principle Question</p>
+            <p style="color:var(--ink-700)">Strategy is the brain of the firm; structure is the body. A brilliant strategic decision, routed through the wrong structure, arrives at the front line distorted or too late to matter. Before you evaluate any company's strategy, ask: does its structure let that strategy actually reach a customer — or does it die in a committee three layers down?</p>
         </div>
     </section>
 
-    <section id="patagonia" class="py-16 px-6 bg-slate-900 text-white">
+    <section id="structures" class="py-16 px-6 text-white" style="background:var(--ink-900)">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-12">
-                <p class="text-xs font-bold uppercase tracking-widest text-green-300 mb-2 mono-font">Case · Patagonia: "Earth Is Now Our Only Shareholder"</p>
-                <h2 class="text-3xl md:text-4xl font-bold serif-font">Advantage From an Unlikely Source</h2>
+                <p class="fp-eyebrow" style="color:#93c5fd">Four Structures, Four Trade-offs</p>
+                <h2 class="text-3xl md:text-4xl font-bold serif">Matching Structure to Strategy</h2>
+                <div class="mt-6 max-w-2xl mx-auto p-5 rounded-xl" style="background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.3)">
+                    <p class="fp-eyebrow" style="color:#bfdbfe">First Principle Question</p>
+                    <p class="text-sm" style="color:#dbeafe">A matrix structure gives every employee two bosses on paper, to balance two priorities the firm cares about equally. Why does this "balanced" design so often produce paralysis instead of balance in practice?</p>
+                </div>
             </div>
-            <p class="text-slate-300 max-w-3xl mx-auto text-center mb-8">
-                Patagonia's 2022 ownership transfer to the Holdfast Collective looks like a values statement. Read through the V−C lens, it's also a competitive-advantage move: it raises perceived value for a specific, high-willingness-to-pay customer segment (environmentally-committed outdoor consumers) in a way a shareholder-owned rival structurally cannot credibly copy — the "internal source" here is an ownership structure, not a factory process.
-            </p>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="p-6 rounded-xl" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)">
+                    <p class="font-bold mb-2" style="color:#93c5fd">Functional structure</p>
+                    <p class="text-sm" style="color:#cbd5e1">Grouped by discipline (marketing, engineering, finance). Efficient for a single-product, single-market firm — deep specialization, clear career ladders. Breaks down fast once you have multiple product lines competing for the same functional resources.</p>
+                </div>
+                <div class="p-6 rounded-xl" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)">
+                    <p class="font-bold mb-2" style="color:#93c5fd">Multidivisional (M-form)</p>
+                    <p class="text-sm" style="color:#cbd5e1">Self-contained divisions (by product or geography), each with its own functions, evaluated on P&amp;L. Scales well for diversified firms; risk is duplicated overhead and divisions optimizing locally at the expense of the whole company.</p>
+                </div>
+                <div class="p-6 rounded-xl" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)">
+                    <p class="font-bold mb-2" style="color:#93c5fd">Matrix structure</p>
+                    <p class="text-sm" style="color:#cbd5e1">Dual reporting lines (e.g., by function AND by product). In theory, balances competing priorities. In practice, ambiguous authority slows decisions exactly when speed matters most — the classic failure mode this session's debate should surface.</p>
+                </div>
+                <div class="p-6 rounded-xl" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)">
+                    <p class="font-bold mb-2" style="color:#93c5fd">Simple/flat structure</p>
+                    <p class="text-sm" style="color:#cbd5e1">Founder-centric, minimal hierarchy. Fast decisions, high adaptability — the default at most startups. Doesn't scale past a certain headcount without someone deliberately re-designing it, which many founders resist doing.</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="wedge" class="py-20 px-6">
+    <section id="tool" class="py-20 px-6">
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-10">
-                <p class="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-2 mono-font">New Tool</p>
-                <h2 class="text-3xl font-bold serif-font">The Economic Wedge Calculator</h2>
-                <p class="text-slate-500 mt-3">Set your firm's Value created (V) and Cost (C), plus a rival's, and see who has the bigger wedge.</p>
+                <p class="fp-eyebrow" style="color:var(--brand-700)">New Tool</p>
+                <h2 class="text-3xl font-bold serif">Which Structure Fits Your Strategy?</h2>
+                <p class="mt-3" style="color:var(--ink-500)">Answer three questions about the organization you're designing for.</p>
             </div>
-            <div class="card p-8">
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div>
-                        <p class="font-bold mb-3">Your firm</p>
-                        <label class="block text-sm mb-1">Value (V): <span id="v1-val">70</span></label>
-                        <input type="range" min="0" max="100" value="70" class="w-full mb-4" oninput="setWedge('v1', this.value)">
-                        <label class="block text-sm mb-1">Cost (C): <span id="c1-val">40</span></label>
-                        <input type="range" min="0" max="100" value="40" class="w-full" oninput="setWedge('c1', this.value)">
-                    </div>
-                    <div>
-                        <p class="font-bold mb-3">Rival</p>
-                        <label class="block text-sm mb-1">Value (V): <span id="v2-val">60</span></label>
-                        <input type="range" min="0" max="100" value="60" class="w-full mb-4" oninput="setWedge('v2', this.value)">
-                        <label class="block text-sm mb-1">Cost (C): <span id="c2-val">35</span></label>
-                        <input type="range" min="0" max="100" value="35" class="w-full" oninput="setWedge('c2', this.value)">
-                    </div>
+            <div class="glass-card p-8">
+                <div class="mb-5">
+                    <label class="block text-sm font-semibold mb-2">How many distinct product lines or markets do you serve?</label>
+                    <select id="q1" class="w-full border rounded-lg px-4 py-3" style="border-color:var(--ink-300)" onchange="updateStructure()">
+                        <option value="1">Just one</option>
+                        <option value="2">A few, related</option>
+                        <option value="3">Many, diverse</option>
+                    </select>
                 </div>
-                <div id="wedge-result" class="mt-8 p-6 rounded-xl border-2 border-dashed border-slate-300 text-sm text-slate-600"></div>
+                <div class="mb-5">
+                    <label class="block text-sm font-semibold mb-2">How fast does your market change?</label>
+                    <select id="q2" class="w-full border rounded-lg px-4 py-3" style="border-color:var(--ink-300)" onchange="updateStructure()">
+                        <option value="1">Slowly, stable</option>
+                        <option value="2">Moderately</option>
+                        <option value="3">Very fast</option>
+                    </select>
+                </div>
+                <div class="mb-5">
+                    <label class="block text-sm font-semibold mb-2">Company size?</label>
+                    <select id="q3" class="w-full border rounded-lg px-4 py-3" style="border-color:var(--ink-300)" onchange="updateStructure()">
+                        <option value="1">Startup (&lt;50 people)</option>
+                        <option value="2">Mid-size</option>
+                        <option value="3">Large enterprise</option>
+                    </select>
+                </div>
+                <div id="structure-result" class="p-6 rounded-xl border-2 border-dashed text-sm" style="border-color:var(--ink-300);color:var(--ink-600)"></div>
             </div>
         </div>
     </section>
 
-    <section id="quiz" class="py-20 px-6 bg-slate-50 border-t border-slate-200">
+    <section id="quiz" class="py-20 px-6" style="background:var(--ink-100);border-top:1px solid rgba(15,23,42,.06)">
         <div class="max-w-2xl mx-auto text-center">
-            <h2 class="text-3xl font-bold serif-font mb-8">Check Your Understanding</h2>
-            <div id="quiz-box" class="card p-8 text-left"></div>
-            <button onclick="nextQ()" class="mt-6 px-8 py-3 bg-slate-900 text-white rounded-full font-semibold hover:bg-green-700 transition">Next</button>
+            <p class="fp-eyebrow mb-3">First Principle Question</p>
+            <h2 class="text-3xl font-bold serif mb-8">Check Your Understanding</h2>
+            <div id="quiz-box" class="glass-card p-8 text-left"></div>
+            <button onclick="nextQ()" class="mt-6 px-8 py-3 text-white rounded-full font-semibold" style="background:var(--ink-900)">Next</button>
             <div id="quiz-fb" class="mt-6 hidden text-left"></div>
         </div>
     </section>
-    <footer class="py-8 text-center text-sm text-slate-400 border-t border-slate-200">© Dr. Swapnil Sahoo 2026</footer>
+    <footer class="py-8 text-center text-sm" style="color:var(--ink-500);border-top:1px solid rgba(15,23,42,.06)">© Dr. Swapnil Sahoo 2026</footer>
 
     <script>
         window.onscroll = () => {
             const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             document.getElementById('progress-bar').style.width = (window.scrollY / h) * 100 + '%';
         };
-        const w = { v1: 70, c1: 40, v2: 60, c2: 35 };
-        function setWedge(key, val) {
-            w[key] = Number(val);
-            document.getElementById(key + '-val').textContent = val;
-            evalWedge();
+        function updateStructure() {
+            const products = Number(document.getElementById('q1').value);
+            const speed = Number(document.getElementById('q2').value);
+            const size = Number(document.getElementById('q3').value);
+            const box = document.getElementById('structure-result');
+            let msg;
+            if (size === 1) { msg = "SIMPLE/FLAT STRUCTURE. At your size, formal structure mostly adds overhead. Keep decision-making close to the founder(s) until headcount or product complexity forces a change."; }
+            else if (products >= 3) { msg = "MULTIDIVISIONAL (M-FORM). Diverse product lines need dedicated, accountable divisions with their own P&L. Watch for duplicated overhead and divisions optimizing locally."; }
+            else if (speed === 3 && products >= 2) { msg = "MATRIX STRUCTURE — with caution. Fast markets and multiple priorities tempt a matrix design, but be deliberate about which dimension (function or product) has final authority on contested decisions, or you'll get paralysis instead of balance."; }
+            else { msg = "FUNCTIONAL STRUCTURE. A single or closely-related product line is efficiently served by grouping around specialized functions. Revisit this the moment you add a genuinely different product line."; }
+            box.innerHTML = '<p>'+msg+'</p>';
         }
-        function evalWedge() {
-            const yourWedge = w.v1 - w.c1;
-            const rivalWedge = w.v2 - w.c2;
-            const box = document.getElementById('wedge-result');
-            let msg, cls;
-            if (yourWedge > rivalWedge) {
-                msg = `Your wedge (${yourWedge}) beats the rival's (${rivalWedge}). You have a genuine competitive advantage — the question now is whether it's defensible (Session 07) or just a temporary lead.`;
-                cls = 'border-teal-300 bg-teal-50 text-teal-900';
-            } else if (yourWedge < rivalWedge) {
-                msg = `Your wedge (${yourWedge}) is smaller than the rival's (${rivalWedge}). You're at a disadvantage — raise V, cut C, or find a segment where the comparison flips.`;
-                cls = 'border-red-300 bg-red-50 text-red-900';
-            } else {
-                msg = `Wedges are tied (${yourWedge} each) — competitive parity. Neither firm has an advantage worth defending yet.`;
-                cls = 'border-amber-300 bg-amber-50 text-amber-900';
-            }
-            box.className = 'p-6 rounded-xl border-2 text-sm ' + cls;
-            box.innerHTML = `<p>${msg}</p>`;
-        }
-        evalWedge();
+        updateStructure();
 
         const qs = [
-            { q: "The 'economic wedge' in Ghemawat & Rivkin's framework is:", opts: ["Revenue minus taxes", "Value created minus cost (V − C)", "Market share minus rival's share", "Profit minus overhead"], correct: 1, fb: "Correct — advantage is comparative wedge size, not absolute price or cost." },
-            { q: "Patagonia's ownership transfer to the Holdfast Collective is best classified as which source of advantage?", opts: ["External — an industry-wide shift", "Internal — a hard-to-copy structural choice", "Neither — it destroys value", "Government subsidy"], correct: 1, fb: "Right — an internal source rivals can't cheaply replicate, since it requires giving up conventional ownership." },
-            { q: "If two firms have identical V and C, they are said to be in:", opts: ["Sustained competitive advantage", "Competitive parity", "Competitive disadvantage", "A monopoly"], correct: 1, fb: "Yes — parity means neither wedge is bigger, so no advantage exists yet." },
+            { q: "Organizational inertia refers to:", opts: ["A company growing too fast", "A structure optimized for a past environment becoming a cage when the market shifts", "Low employee morale", "A hiring freeze"], correct: 1, fb: "Correct — success in one era can breed the very rigidity that causes failure in the next." },
+            { q: "A matrix structure's main practical risk is:", opts: ["Too much specialization", "Ambiguous dual authority causing decision paralysis", "Being too cheap to run", "Lack of any hierarchy"], correct: 1, fb: "Right — two bosses in theory balances priorities; in practice it often just slows decisions." },
+            { q: "A multidivisional (M-form) structure is best suited for firms that are:", opts: ["Single-product startups", "Diversified across multiple distinct product lines or markets", "About to shut down", "Purely functional in design"], correct: 1, fb: "Yes — M-form gives each diverse business its own accountable, self-contained structure." },
         ];
         let qi = 0;
         function loadQ() {
             const q = qs[qi];
             document.getElementById('quiz-fb').classList.add('hidden');
-            document.getElementById('quiz-box').innerHTML = `<p class="font-semibold mb-4">${qi + 1}. ${q.q}</p>` +
-                q.opts.map((o, i) => `<button onclick="checkQ(${i})" class="block w-full text-left p-3 mb-2 rounded-lg border border-slate-200 hover:bg-green-50 hover:border-green-600">${o}</button>`).join('');
+            document.getElementById('quiz-box').innerHTML = '<p class="font-semibold mb-4">'+(qi+1)+'. '+q.q+'</p>' +
+                q.opts.map((o,i) => '<button onclick="checkQ('+i+')" class="block w-full text-left p-3 mb-2 rounded-lg" style="border:1px solid var(--ink-300)">'+o+'</button>').join('');
         }
         function checkQ(i) {
-            const q = qs[qi];
-            const fb = document.getElementById('quiz-fb');
+            const q = qs[qi]; const fb = document.getElementById('quiz-fb');
             fb.classList.remove('hidden');
             fb.innerHTML = i === q.correct
-                ? `<div class="p-4 bg-green-50 border border-green-200 rounded-lg text-green-900 text-sm">✅ ${q.fb}</div>`
-                : `<div class="p-4 bg-red-50 border border-red-200 rounded-lg text-red-900 text-sm">❌ Not quite — review and try the next one.</div>`;
+                ? '<div class="p-4 rounded-lg text-sm" style="background:#f0fdf4;border:1px solid #bbf7d0;color:#166534">✅ '+q.fb+'</div>'
+                : '<div class="p-4 rounded-lg text-sm" style="background:#fef2f2;border:1px solid #fecaca;color:#991b1b">❌ Not quite — review and try the next one.</div>';
         }
-        function nextQ() { qi = (qi + 1) % qs.length; loadQ(); }
+        function nextQ() { qi = (qi+1) % qs.length; loadQ(); }
         loadQ();
     </script>
 </body>

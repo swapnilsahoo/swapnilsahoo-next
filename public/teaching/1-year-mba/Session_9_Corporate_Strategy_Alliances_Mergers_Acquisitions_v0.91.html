@@ -3,138 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Official Session 07: Sustaining Competitive Advantage</title>
+    <title>Session 9: Corporate Strategy — Alliances, Mergers & Acquisitions</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; color: #0f172a; line-height: 1.65; }
-        h1, h2, h3, .serif-font { font-family: 'Playfair Display', serif; }
-        .mono-font { font-family: 'JetBrains Mono', monospace; }
-        .fp-box { background: #fef2f2; border-left: 6px solid #b91c1c; border-radius: 0 16px 16px 0; padding: 2rem; }
-        .card { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,.05); }
-        .nav-link { color: #64748b; font-size: .875rem; font-weight: 500; text-decoration: none; }
-        .nav-link:hover { color: #b91c1c; }
+        :root { --ink-900:#0a1426;--ink-700:#27354b;--ink-600:#3e4c63;--ink-500:#5b6b82;--ink-300:#b6bfcc;--ink-100:#eef1f5;
+        --brand-700:#1d4ed8;--brand-500:#3b82f6;--brand-50:#eff6ff;--page-bg:#f7f7f5; }
+        * { box-sizing: border-box; }
+        body { font-family:'Inter',sans-serif; color:var(--ink-900); background:var(--page-bg); line-height:1.65; margin:0; }
+        h1,h2,h3,.serif { font-family:'Fraunces',serif; }
+        .mono { font-family:'JetBrains Mono',monospace; }
+        .glass-card { background:#fff; border:1px solid rgba(15,23,42,0.1); border-radius:16px; box-shadow:0 1px 2px rgba(15,23,42,0.05); }
+        .fp-box { background:var(--brand-50); border-left:6px solid var(--brand-700); border-radius:0 16px 16px 0; padding:1.75rem 2rem; }
+        .fp-eyebrow { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--brand-700); margin-bottom:.6rem; }
+        .eyebrow { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--brand-700); }
+        .nav-link { color:var(--ink-500); font-size:.875rem; font-weight:500; text-decoration:none; }
     </style>
     <link rel="stylesheet" href="/teaching/responsive.css">
 </head>
-<body class="antialiased bg-white">
-    <div class="fixed top-0 left-0 w-full h-1 bg-slate-100 z-50"><div id="progress-bar" class="h-full bg-red-700 w-0 transition-all"></div></div>
-    <nav class="sticky top-0 bg-white/95 backdrop-blur-md border-b border-slate-200 z-40">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <span class="font-bold text-slate-900">Sustaining Advantage</span>
+<body class="antialiased">
+    <div class="fixed top-0 left-0 w-full h-1 z-50" style="background:var(--ink-100)"><div id="progress-bar" class="h-full transition-all" style="background:var(--brand-700);width:0%"></div></div>
+    <nav class="sticky top-0 z-40" style="background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(15,23,42,.08)">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+            <span class="font-bold">Session 9 · Alliances, M&amp;A</span>
             <div class="hidden md:flex gap-6">
                 <a href="#question" class="nav-link">Question</a>
-                <a href="#reading" class="nav-link">Reading</a>
-                <a href="#patagonia" class="nav-link">Patagonia</a>
-                <a href="#moat" class="nav-link">Moat Tester</a>
-                <a href="#quiz" class="nav-link font-bold text-red-700">Quiz</a>
+                <a href="#reading" class="nav-link">The Framework</a>
+                <a href="#twitter" class="nav-link">The Twitter Case</a>
+                <a href="#tool" class="nav-link">Path Selector</a>
+                <a href="#quiz" class="nav-link" style="color:var(--brand-700);font-weight:700">Quiz</a>
             </div>
         </div>
     </nav>
 
-    <header id="question" class="py-20 px-6 text-center bg-gradient-to-b from-red-50 to-white">
+    <header id="question" class="py-20 px-6 text-center" style="background:linear-gradient(to bottom,var(--brand-50),var(--page-bg))">
         <div class="max-w-4xl mx-auto">
-            <p class="text-xs font-bold uppercase tracking-widest text-red-700 mb-4 mono-font">Official Session 07 · Sustaining Competitive Advantage</p>
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">You found an edge.<br><span class="italic text-red-700">What stops the next competitor from finding it too?</span></h1>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto">
-                Building advantage (Session 06) is only half the problem. Sustaining it requires either <strong>deterrence</strong> — a commitment so costly to reverse that rivals never bother trying to match it — or <strong>capabilities</strong> that compound faster than any rival can build from scratch.
+            <p class="eyebrow mb-4">Session 9 · Corporate Strategy: Alliances, Mergers &amp; Acquisitions</p>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Elon Musk paid $44 billion<br><span class="italic" style="color:var(--brand-700)">for a company he could have built for a fraction of the price.</span></h1>
+            <p class="text-lg max-w-2xl mx-auto" style="color:var(--ink-600)">
+                Before you ask "should we acquire, partner, or build this ourselves," you need a framework for the decision — not just a gut call. That's what this session gives you, tested against the most expensive, most public corporate acquisition decision of the decade.
             </p>
         </div>
     </header>
 
-    <section id="reading" class="py-16 px-6 border-t border-slate-100">
+    <section id="reading" class="py-16 px-6" style="border-top:1px solid rgba(15,23,42,.06)">
         <div class="max-w-3xl mx-auto fp-box">
-            <p class="text-xs font-bold uppercase tracking-widest text-red-700 mb-3 mono-font">The Assigned Reading</p>
-            <p class="text-slate-700 leading-relaxed">
-                Ghemawat, P., &amp; Pisano, G. P. (1997). <em>"Sustaining Superior Performance: Commitments and Capabilities,"</em> Harvard Business School Note. Their point: a credible commitment deters imitation precisely because it would be expensive for the firm itself to reverse — that expense is the signal a rival reads before deciding whether to compete head-on at all.
+            <p class="fp-eyebrow">The Assigned Framework</p>
+            <p class="mb-4" style="color:var(--ink-700)">
+                Capron, L., &amp; Mitchell, W., <em>"Finding the Right Path"</em> and <em>"The Resource Pathways Framework: Build, Borrow, or Buy,"</em> Harvard Business Review. Their core diagnostic: ask two questions about the resource you need. First, <strong>how well does your existing organization fit the new resource</strong> — can you absorb it without a culture clash? Second, <strong>how relevant is the resource to your core business</strong> — is it something you'll need repeatedly, or once? High fit + high relevance → <strong>build</strong>. High relevance + low fit → <strong>buy</strong> (acquire). Low relevance, needed short-term → <strong>borrow</strong> (alliance, license, joint venture).
             </p>
+            <p class="fp-eyebrow">First Principle Question</p>
+            <p style="color:var(--ink-700)">If a resource is genuinely critical to your strategy and you can't build it fast enough yourself, is buying the company that has it actually cheaper than it looks on the term sheet — once you count the integration risk?</p>
         </div>
     </section>
 
-    <section id="patagonia" class="py-16 px-6 bg-slate-900 text-white">
+    <section id="twitter" class="py-16 px-6 text-white" style="background:var(--ink-900)">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-12">
-                <p class="text-xs font-bold uppercase tracking-widest text-red-300 mb-2 mono-font">Case · Patagonia: "Earth Is Now Our Only Shareholder"</p>
-                <h2 class="text-3xl md:text-4xl font-bold serif-font">A Commitment No Public Rival Can Match</h2>
+                <p class="fp-eyebrow" style="color:#93c5fd">Case · The Twitter Acquisition, 2022</p>
+                <h2 class="text-3xl md:text-4xl font-bold serif">A $44B "Buy" With No Integration Plan</h2>
+                <div class="mt-6 max-w-2xl mx-auto p-5 rounded-xl" style="background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.3)">
+                    <p class="fp-eyebrow" style="color:#bfdbfe">First Principle Question</p>
+                    <p class="text-sm" style="color:#dbeafe">Musk tried to walk away from the deal mid-process over bot-account concerns, then was legally forced to close it under a "specific performance" court order. Does a buyer who tries to exit before closing still owe the seller good-faith integration effort afterward — or does the coercion change what "success" should even mean here?</p>
+                </div>
             </div>
-            <p class="text-slate-300 max-w-3xl mx-auto text-center">
-                A publicly listed competitor attempting to copy Patagonia's ownership transfer would trigger shareholder lawsuits and a stock-price penalty. That's deterrence working as designed: the imitation isn't just hard, it's structurally unavailable to firms with a different ownership form — which is exactly why it protects the advantage longer than a marketing campaign ever could.
-            </p>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="p-6 rounded-xl" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)">
+                    <p class="font-bold mb-2" style="color:#93c5fd">Why "Buy," per Capron &amp; Mitchell's own logic</p>
+                    <p class="text-sm" style="color:#cbd5e1">Musk wanted an established, global real-time-conversation platform with an existing user base and advertiser relationships — high relevance to his stated goal of building "X, the everything app." Building that from scratch (as he'd have to for the network effects alone) would take years he didn't have. Borrowing (a partnership) wasn't available — Twitter's board wasn't going to license its user graph to an outsider. That left buy as the only path matching the resource's relevance.</p>
+                </div>
+                <div class="p-6 rounded-xl" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)">
+                    <p class="font-bold mb-2" style="color:#93c5fd">Where the "fit" question got skipped</p>
+                    <p class="text-sm" style="color:#cbd5e1">Capron &amp; Mitchell's framework also demands an honest fit assessment — and by most public accounts, this is exactly what didn't happen. Roughly 80% of staff left or were laid off within months, the content-moderation and trust-and-safety teams were gutted, and major advertisers (including several Fortune 500 brands) paused spending over brand-safety concerns. The "buy" decision may have been sound; the fit assessment and post-close integration plan were, by most measures, not.</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="moat" class="py-20 px-6">
+    <section id="tool" class="py-20 px-6">
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-10">
-                <p class="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-2 mono-font">New Tool</p>
-                <h2 class="text-3xl font-bold serif-font">Is It a Moat, or Just an Advantage?</h2>
-                <p class="text-slate-500 mt-3">Name an advantage. Answer honestly — most "moats" fail at least one test.</p>
+                <p class="fp-eyebrow" style="color:var(--brand-700)">New Tool</p>
+                <h2 class="text-3xl font-bold serif">Build, Borrow, or Buy?</h2>
+                <p class="mt-3" style="color:var(--ink-500)">Rate the resource you need on Capron &amp; Mitchell's two dimensions.</p>
             </div>
-            <div class="card p-8">
-                <input id="moat-name" type="text" placeholder="e.g. Our first-mover pricing" class="w-full border border-slate-300 rounded-lg px-4 py-3 mb-6">
-                <div class="space-y-4 mb-6">
-                    <label class="flex items-center gap-3"><input type="checkbox" id="q1" class="w-5 h-5"> Would a well-funded rival need 18+ months to replicate this?</label>
-                    <label class="flex items-center gap-3"><input type="checkbox" id="q2" class="w-5 h-5"> Is there a structural or capital reason a rival can't just copy it tomorrow?</label>
-                    <label class="flex items-center gap-3"><input type="checkbox" id="q3" class="w-5 h-5"> Does it get stronger with scale or time?</label>
+            <div class="glass-card p-8">
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold mb-2">How relevant is this resource to your core, ongoing strategy? (1 = one-off need, 5 = central and recurring)</label>
+                    <input type="range" min="1" max="5" value="3" class="w-full" id="rel-slider" oninput="updatePath()" style="accent-color:var(--brand-700)">
                 </div>
-                <button onclick="evalMoat()" class="px-6 py-3 bg-red-700 text-white rounded-lg font-semibold hover:bg-red-800">Test It</button>
-                <div id="moat-result" class="mt-6 p-6 rounded-xl border-2 border-dashed border-slate-300 text-sm text-slate-600 hidden"></div>
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold mb-2">How well does it fit your existing organization/culture? (1 = poor fit, 5 = strong fit)</label>
+                    <input type="range" min="1" max="5" value="3" class="w-full" id="fit-slider" oninput="updatePath()" style="accent-color:var(--brand-700)">
+                </div>
+                <div id="path-result" class="p-6 rounded-xl border-2 border-dashed text-sm" style="border-color:var(--ink-300);color:var(--ink-600)">Adjust both sliders to see the recommended path.</div>
             </div>
         </div>
     </section>
 
-    <section id="quiz" class="py-20 px-6 bg-slate-50 border-t border-slate-200">
+    <section id="quiz" class="py-20 px-6" style="background:var(--ink-100);border-top:1px solid rgba(15,23,42,.06)">
         <div class="max-w-2xl mx-auto text-center">
-            <h2 class="text-3xl font-bold serif-font mb-8">Check Your Understanding</h2>
-            <div id="quiz-box" class="card p-8 text-left"></div>
-            <button onclick="nextQ()" class="mt-6 px-8 py-3 bg-slate-900 text-white rounded-full font-semibold hover:bg-red-700 transition">Next</button>
+            <p class="fp-eyebrow mb-3">First Principle Question</p>
+            <h2 class="text-3xl font-bold serif mb-8">Check Your Understanding</h2>
+            <div id="quiz-box" class="glass-card p-8 text-left"></div>
+            <button onclick="nextQ()" class="mt-6 px-8 py-3 text-white rounded-full font-semibold" style="background:var(--ink-900)">Next</button>
             <div id="quiz-fb" class="mt-6 hidden text-left"></div>
         </div>
     </section>
-    <footer class="py-8 text-center text-sm text-slate-400 border-t border-slate-200">© Dr. Swapnil Sahoo 2026</footer>
+    <footer class="py-8 text-center text-sm" style="color:var(--ink-500);border-top:1px solid rgba(15,23,42,.06)">© Dr. Swapnil Sahoo 2026</footer>
 
     <script>
         window.onscroll = () => {
             const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             document.getElementById('progress-bar').style.width = (window.scrollY / h) * 100 + '%';
         };
-        function evalMoat() {
-            const name = document.getElementById('moat-name').value.trim() || 'This advantage';
-            const score = ['q1', 'q2', 'q3'].filter(id => document.getElementById(id).checked).length;
-            const box = document.getElementById('moat-result');
-            box.classList.remove('hidden');
-            if (score === 3) {
-                box.className = 'mt-6 p-6 rounded-xl border-2 border-green-300 bg-green-50 text-sm text-green-900';
-                box.innerHTML = `<p><strong>${name}</strong> passes all three tests — a genuine, deterrence-grade advantage.</p>`;
-            } else if (score === 0) {
-                box.className = 'mt-6 p-6 rounded-xl border-2 border-red-300 bg-red-50 text-sm text-red-900';
-                box.innerHTML = `<p><strong>${name}</strong> fails all three — likely a feature, not a moat. A well-resourced rival could copy it fast and cheaply.</p>`;
-            } else {
-                box.className = 'mt-6 p-6 rounded-xl border-2 border-amber-300 bg-amber-50 text-sm text-amber-900';
-                box.innerHTML = `<p><strong>${name}</strong> passes ${score} of 3. The failing test(s) show exactly where a rival will attack first.</p>`;
-            }
+        function updatePath() {
+            const rel = Number(document.getElementById('rel-slider').value);
+            const fit = Number(document.getElementById('fit-slider').value);
+            const box = document.getElementById('path-result');
+            let msg, color;
+            if (rel >= 4 && fit >= 4) { msg = "BUILD. High relevance and high fit — you have the time, the need is recurring, and your organization can absorb the capability. Building preserves full control and avoids integration risk entirely."; color = '#16a34a'; }
+            else if (rel >= 4 && fit < 4) { msg = "BUY. The resource is central to your strategy but doesn't fit your existing organization well — acquiring the capability (with its own team and culture) is usually faster than building from a poor starting point. This is exactly Musk's Twitter calculus. Budget seriously for integration risk."; color = '#dc2626'; }
+            else if (rel < 4 && fit >= 4) { msg = "BUILD (small-scale) or BORROW. Low relevance but good fit suggests this isn't worth a major commitment — a modest internal effort or a light alliance should suffice without disrupting your core business."; color = '#2563eb'; }
+            else { msg = "BORROW. Low relevance and poor fit — this is a short-term, tactical need. An alliance, licensing deal, or joint venture gets you the capability without the long-term commitment or integration risk of a full acquisition."; color = '#d97706'; }
+            box.style.borderColor = color; box.style.color = color;
+            box.innerHTML = '<p>'+msg+'</p>';
         }
+        updatePath();
+
         const qs = [
-            { q: "What makes a commitment credible as a deterrent?", opts: ["It's cheap and easy to reverse", "It's large and costly to reverse", "It's kept secret", "It requires no capital"], correct: 1, fb: "Correct — reversal cost is the signal that deters a rival from even trying." },
-            { q: "Patagonia's Holdfast Collective ownership transfer works as a moat because:", opts: ["It's a marketing slogan, easily copied", "Publicly-owned rivals face shareholder/legal barriers to copying it", "It's required by law", "It reduces product quality"], correct: 1, fb: "Right — the barrier is structural, not just operational difficulty." },
-            { q: "A capability-based (vs. commitment-based) defense typically works by:", opts: ["Being announced loudly to rivals", "Compounding faster than rivals can build the same skill", "Requiring a patent", "Avoiding all investment"], correct: 1, fb: "Yes — capabilities widen the gap the longer they're practiced." },
+            { q: "Per Capron & Mitchell, a resource with HIGH relevance but LOW fit to your organization suggests:", opts: ["Build it yourself", "Buy (acquire) it", "Ignore it entirely", "Always borrow it"], correct: 1, fb: "Correct — acquiring gets you the capability fast when your own organization isn't set up to build it." },
+            { q: "What percentage of Twitter/X staff left or were laid off within months of the Musk acquisition, per most public reporting?", opts: ["About 10%", "About 80%", "Nobody left", "About 25%"], correct: 1, fb: "Right — roughly 80%, a scale of workforce reduction almost unprecedented in a major acquisition." },
+            { q: "The 'fit' question in the Build-Borrow-Buy framework asks specifically about:", opts: ["The price of the deal", "Whether the target's culture/organization can be absorbed without disruption", "The target's stock price history", "Government regulatory approval"], correct: 1, fb: "Yes — fit is an organizational/cultural compatibility question, separate from whether the resource itself is valuable." },
         ];
         let qi = 0;
         function loadQ() {
             const q = qs[qi];
             document.getElementById('quiz-fb').classList.add('hidden');
-            document.getElementById('quiz-box').innerHTML = `<p class="font-semibold mb-4">${qi + 1}. ${q.q}</p>` +
-                q.opts.map((o, i) => `<button onclick="checkQ(${i})" class="block w-full text-left p-3 mb-2 rounded-lg border border-slate-200 hover:bg-red-50 hover:border-red-600">${o}</button>`).join('');
+            document.getElementById('quiz-box').innerHTML = '<p class="font-semibold mb-4">'+(qi+1)+'. '+q.q+'</p>' +
+                q.opts.map((o,i) => '<button onclick="checkQ('+i+')" class="block w-full text-left p-3 mb-2 rounded-lg" style="border:1px solid var(--ink-300)">'+o+'</button>').join('');
         }
         function checkQ(i) {
-            const q = qs[qi];
-            const fb = document.getElementById('quiz-fb');
+            const q = qs[qi]; const fb = document.getElementById('quiz-fb');
             fb.classList.remove('hidden');
             fb.innerHTML = i === q.correct
-                ? `<div class="p-4 bg-green-50 border border-green-200 rounded-lg text-green-900 text-sm">✅ ${q.fb}</div>`
-                : `<div class="p-4 bg-red-50 border border-red-200 rounded-lg text-red-900 text-sm">❌ Not quite — review and try the next one.</div>`;
+                ? '<div class="p-4 rounded-lg text-sm" style="background:#f0fdf4;border:1px solid #bbf7d0;color:#166534">✅ '+q.fb+'</div>'
+                : '<div class="p-4 rounded-lg text-sm" style="background:#fef2f2;border:1px solid #fecaca;color:#991b1b">❌ Not quite — review and try the next one.</div>';
         }
-        function nextQ() { qi = (qi + 1) % qs.length; loadQ(); }
+        function nextQ() { qi = (qi+1) % qs.length; loadQ(); }
         loadQ();
     </script>
 </body>
