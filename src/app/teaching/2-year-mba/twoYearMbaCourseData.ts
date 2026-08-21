@@ -223,7 +223,7 @@ export const sessions = [
       "Case · Amazon (HBR, 2025)",
       "Mankins, M. C., & Steele, R. (2005). Turning Great Strategy into Great Performance. Harvard Business Review.",
     ],
-    interactiveHref: interactive("session-18-final-group-project-evaluations.html"),
+    interactiveHref: undefined,
   },
   {
     number: "16",
@@ -257,7 +257,7 @@ export const sessions = [
       "Case · Rajesh Exports: Gold Trader to International Jewellery Retailer",
       "Porter, M. E. (1990). The Competitive Advantage of Nations. Harvard Business Review.",
     ],
-    interactiveHref: interactive("session-19-managing-technology-and-innovation-nvidia.html"),
+    interactiveHref: undefined,
   },
   {
     number: "19",

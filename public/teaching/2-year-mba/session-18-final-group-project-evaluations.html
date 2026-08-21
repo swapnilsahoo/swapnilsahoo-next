@@ -3,191 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Official Session 15: Strategy Implementation | Governing the Multi-Business Firm</title>
+    <title>Session 18: AI in Strategic Management</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; color: #0f172a; line-height: 1.65; }
-        h1, h2, h3, .serif-font { font-family: 'Playfair Display', serif; }
-        .mono-font { font-family: 'JetBrains Mono', monospace; }
-        .fp-box { background: #eff6ff; border-left: 6px solid #1e3a8a; border-radius: 0 16px 16px 0; padding: 2rem; }
-        .card { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,.05); }
-        .nav-link { color: #64748b; font-size: .875rem; font-weight: 500; text-decoration: none; }
-        .nav-link:hover { color: #1e3a8a; }
-        input[type=range] { accent-color: #1e3a8a; }
+        :root {
+            --ink-900: #0a1426; --ink-700: #27354b; --ink-600: #3e4c63; --ink-500: #5b6b82;
+            --ink-300: #b6bfcc; --ink-100: #eef1f5; --ink-50: #f7f8fa;
+            --brand-700: #1d4ed8; --brand-600: #2563eb; --brand-500: #3b82f6; --brand-100: #dbeafe; --brand-50: #eff6ff;
+            --accent-500: #de911d; --accent-400: #f0b429;
+            --page-bg: #f7f7f5;
+        }
+        * { box-sizing: border-box; }
+        body { font-family: 'Inter', ui-sans-serif, sans-serif; color: var(--ink-900); background: var(--page-bg); line-height: 1.65; margin: 0; }
+        h1, h2, h3, .serif { font-family: 'Fraunces', ui-serif, Georgia, serif; }
+        .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+        .glass-card { background: #fff; border: 1px solid rgba(15,23,42,0.1); border-radius: 16px; box-shadow: 0 1px 2px rgba(15,23,42,0.05); }
+        .fp-box { background: var(--brand-50); border-left: 6px solid var(--brand-700); border-radius: 0 16px 16px 0; padding: 1.75rem 2rem; }
+        .fp-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brand-700); margin-bottom: 0.6rem; }
+        .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brand-700); }
+        .nav-link { color: var(--ink-500); font-size: 0.875rem; font-weight: 500; text-decoration: none; }
+        .nav-link:hover { color: var(--brand-700); }
+        input[type=range] { accent-color: var(--brand-700); }
     </style>
     <link rel="stylesheet" href="/teaching/responsive.css">
 </head>
-<body class="antialiased bg-white">
-    <div class="fixed top-0 left-0 w-full h-1 bg-slate-100 z-50"><div id="progress-bar" class="h-full bg-blue-800 w-0 transition-all"></div></div>
+<body class="antialiased">
+    <div class="fixed top-0 left-0 w-full h-1 z-50" style="background: var(--ink-100)"><div id="progress-bar" class="h-full transition-all" style="background: var(--brand-700); width:0%"></div></div>
 
-    <nav class="sticky top-0 bg-white/95 backdrop-blur-md border-b border-slate-200 z-40">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <span class="font-bold text-slate-900">Strategy Implementation</span>
+    <nav class="sticky top-0 z-40" style="background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(15,23,42,0.08);">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+            <span class="font-bold" style="color: var(--ink-900)">Session 18 · AI in Strategic Management</span>
             <div class="hidden md:flex gap-6">
-                <a href="#question" class="nav-link">Fundamental Question</a>
+                <a href="#question" class="nav-link">Question</a>
                 <a href="#reading" class="nav-link">The Reading</a>
-                <a href="#amazon" class="nav-link">Amazon Case</a>
-                <a href="#simulator" class="nav-link">Simulator</a>
-                <a href="#quiz" class="nav-link font-bold text-blue-800">Quiz</a>
+                <a href="#scenarios" class="nav-link">Two Scenarios</a>
+                <a href="#simulator" class="nav-link">Scenario Simulator</a>
+                <a href="#quiz" class="nav-link" style="color: var(--brand-700); font-weight: 700;">Quiz</a>
             </div>
         </div>
     </nav>
 
-    <header id="question" class="py-20 px-6 text-center bg-gradient-to-b from-blue-50 to-white">
+    <header id="question" class="py-20 px-6 text-center" style="background: linear-gradient(to bottom, var(--brand-50), var(--page-bg));">
         <div class="max-w-4xl mx-auto">
-            <p class="text-xs font-bold uppercase tracking-widest text-blue-800 mb-4 mono-font">Official Session 15 · Strategy Implementation</p>
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">You've built a great strategy.<br><span class="italic text-blue-800">Why does it die in the hallway?</span></h1>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto">
-                A famous 2005 study found that on average, companies deliver only <strong>63% of the financial performance their strategies promised</strong> — and the gap wasn't bad strategy. It was execution. Today's question isn't "what should the firm do," it's "how does a firm with a dozen different businesses actually make sure the plan happens."
+            <p class="eyebrow mb-4">Session 18 · AI in Strategic Management</p>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6" style="color: var(--ink-900)">The last human telephone operator<br><span class="italic" style="color: var(--brand-700)">wasn't replaced until the 1980s.</span></h1>
+            <p class="text-lg max-w-2xl mx-auto" style="color: var(--ink-600)">
+                Automated telephone exchanges were technically possible in the <strong>1920s</strong>. It took roughly <strong>sixty years</strong> for the technology to fully displace the job. So: is generative AI different this time — and if so, is that a reason for more optimism, or less?
             </p>
         </div>
     </header>
 
-    <section id="reading" class="py-16 px-6 border-t border-slate-100">
+    <section id="reading" class="py-16 px-6" style="border-top: 1px solid rgba(15,23,42,0.06);">
         <div class="max-w-3xl mx-auto fp-box">
-            <p class="text-xs font-bold uppercase tracking-widest text-blue-800 mb-3 mono-font">The Assigned Reading</p>
-            <p class="text-slate-700 leading-relaxed">
-                Mankins, M. C., &amp; Steele, R. (2005). <em>"Turning Great Strategy into Great Performance,"</em> Harvard Business Review. Their finding, based on a study of 197 companies: the average firm captures only 63% of its strategy's potential value, and the biggest single cause isn't bad execution at the front line — it's a broken link between corporate-level resource allocation and business-unit-level plans. Strategy implementation, at the corporate level, is fundamentally a <strong>governance problem</strong>: who gets the capital, who gets the talent, and who gets cut, across a portfolio of businesses that don't all deserve the same answer.
+            <p class="fp-eyebrow">The Assigned Reading</p>
+            <p class="mb-4" style="color: var(--ink-700)">
+                Rajan, R. (2025). <em>"Are We Facing an AI Nightmare?"</em> Project Syndicate. Rajan's response to a widely-circulated equity-research forecast (from the shop Citrini) that AI ends most white-collar employment by 2028: the forecast is <strong>probably too pessimistic in speed</strong> (adoption always lags capability — telephone exchanges are his own example) <strong>but not pessimistic enough about concentration</strong> — the real risk isn't AI itself, it's whether a handful of platforms end up capturing nearly all the value it creates.
             </p>
+            <p class="fp-eyebrow">First Principle Question</p>
+            <p style="color: var(--ink-700)">If two firms have access to the exact same AI capability, what determines which one wins — and is that source of advantage actually new, or just Porter's five forces wearing a different coat?</p>
         </div>
     </section>
 
-    <section id="amazon" class="py-16 px-6 bg-slate-900 text-white">
+    <section id="scenarios" class="py-16 px-6 text-white" style="background: var(--ink-900);">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-12">
-                <p class="text-xs font-bold uppercase tracking-widest text-blue-300 mb-2 mono-font">Case · Amazon (HBR, 2025)</p>
-                <h2 class="text-3xl md:text-4xl font-bold serif-font">One Company, Four Very Different Businesses</h2>
-                <p class="text-slate-400 mt-4 max-w-2xl mx-auto">Amazon's 2024 numbers make the governance problem concrete: each business unit has a different growth rate, margin profile, and capital appetite — and corporate has to referee between them.</p>
-            </div>
-            <div class="grid md:grid-cols-4 gap-4">
-                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
-                    <p class="text-xs uppercase tracking-wide text-slate-400 mb-2">AWS (Cloud)</p>
-                    <p class="text-2xl font-bold text-teal-400 mb-1">~62% of operating income</p>
-                    <p class="text-xs text-slate-400">from ~17% of revenue — the profit engine funding everything else.</p>
-                </div>
-                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
-                    <p class="text-xs uppercase tracking-wide text-slate-400 mb-2">Advertising</p>
-                    <p class="text-2xl font-bold text-teal-400 mb-1">Fast-growing, high-margin</p>
-                    <p class="text-xs text-slate-400">quietly rivaling major ad platforms — reinvested aggressively rather than harvested.</p>
-                </div>
-                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
-                    <p class="text-xs uppercase tracking-wide text-slate-400 mb-2">Grocery / Whole Foods</p>
-                    <p class="text-2xl font-bold text-amber-400 mb-1">Low-margin, capital-heavy</p>
-                    <p class="text-xs text-slate-400">years after acquisition, still a share-of-wallet bet more than a profit center.</p>
-                </div>
-                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
-                    <p class="text-xs uppercase tracking-wide text-slate-400 mb-2">Devices (Fire Phone legacy)</p>
-                    <p class="text-2xl font-bold text-red-400 mb-1">The write-off precedent</p>
-                    <p class="text-xs text-slate-400">the 2014 Fire Phone's ~$170M write-down is corporate governance's cautionary tale: know when to kill a business unit.</p>
+                <p class="fp-eyebrow" style="color: #93c5fd;">Rajan's Fork in the Road</p>
+                <h2 class="text-3xl md:text-4xl font-bold serif">Two Futures, One Technology</h2>
+                <div class="mt-6 max-w-2xl mx-auto p-5 rounded-xl" style="background: rgba(59,130,246,0.12); border: 1px solid rgba(59,130,246,0.3);">
+                    <p class="fp-eyebrow" style="color: #bfdbfe;">First Principle Question</p>
+                    <p class="text-sm" style="color: #dbeafe;">Which of these two futures does your own industry look more like today — and what evidence would change your mind?</p>
                 </div>
             </div>
-            <p class="text-slate-400 text-sm mt-8 max-w-3xl mx-auto text-center">
-                The strategic-implementation question this raises for a corporate parent: should AWS's cash cross-subsidize grocery indefinitely, or does that just protect a business that would fail its own governance test? There's no framework that answers this for you — that's the judgment call a portfolio governance system exists to force, on a schedule, rather than let happen by inertia.
-            </p>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="p-6 rounded-xl" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);">
+                    <p class="font-bold mb-2" style="color: #f87171;">Scenario A · The Oligopoly</p>
+                    <p class="text-sm" style="color: #cbd5e1;">A few differentiated platforms (Rajan names Anthropic and Meta as examples) reach generalized AI that lets them outpace everyone else and steadily raise prices. Their few remaining employees and shareholders capture enormous profit; the many firms paying for their services are still willing to, because the productivity gain lets those firms shed white-collar workers. Displaced workers compete down wages in adjacent, harder-to-automate jobs.</p>
+                </div>
+                <div class="p-6 rounded-xl" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);">
+                    <p class="font-bold mb-2" style="color: #4ade80;">Scenario B · The Commodity</p>
+                    <p class="text-sm" style="color: #cbd5e1;">No platform wins outright — little differentiation between the leading models. Still disruptive for white-collar jobs, but AI prices stay low and productivity gains flow through to the broader economy: firms cut prices, expand output, and create jobs elsewhere. Rajan argues current trends favor this scenario more than the oligopoly — and that policy (price regulation, refusing to protect model-builders from being copied) can help tip the balance toward it.</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="simulator" class="py-20 px-6">
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-10">
-                <p class="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-2 mono-font">New Tool</p>
-                <h2 class="text-3xl font-bold serif-font">Portfolio Capital Allocator</h2>
-                <p class="text-slate-500 mt-3">You have ₹100 of discretionary capital to allocate across four business units this year. Move the sliders — the tool won't stop you from over-funding a loser, because in real companies, nothing does either.</p>
+                <p class="fp-eyebrow" style="color: var(--brand-700);">New Tool</p>
+                <h2 class="text-3xl font-bold serif">The Concentration Scenario Simulator</h2>
+                <p class="mt-3" style="color: var(--ink-500)">Rate your industry on two dimensions Rajan identifies as decisive, and see which future it points toward.</p>
             </div>
-            <div class="card p-8">
-                <div id="alloc-sliders" class="space-y-5 mb-8"></div>
-                <div id="alloc-result" class="p-6 rounded-xl border-2 border-dashed border-slate-300 text-sm text-slate-600">Adjust the sliders to see the verdict.</div>
+            <div class="glass-card p-8">
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold mb-2">How differentiated is the leading AI capability in your industry? (1 = commodity, 5 = one clear winner)</label>
+                    <input type="range" min="1" max="5" value="3" class="w-full" id="diff-slider" oninput="updateSim()">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold mb-2">How strong are switching costs once a firm adopts a platform? (1 = low, 5 = high lock-in)</label>
+                    <input type="range" min="1" max="5" value="3" class="w-full" id="lock-slider" oninput="updateSim()">
+                </div>
+                <div id="sim-result" class="p-6 rounded-xl border-2 border-dashed text-sm" style="border-color: var(--ink-300); color: var(--ink-600)">Adjust both sliders to see the projected scenario.</div>
             </div>
         </div>
     </section>
 
-    <section id="quiz" class="py-20 px-6 bg-slate-50 border-t border-slate-200">
+    <section id="quiz" class="py-20 px-6" style="background: var(--ink-100); border-top: 1px solid rgba(15,23,42,0.06);">
         <div class="max-w-2xl mx-auto text-center">
-            <h2 class="text-3xl font-bold serif-font mb-8">Check Your Understanding</h2>
-            <div id="quiz-box" class="card p-8 text-left"></div>
-            <button onclick="nextQ()" class="mt-6 px-8 py-3 bg-slate-900 text-white rounded-full font-semibold hover:bg-blue-800 transition">Next</button>
+            <p class="fp-eyebrow mb-3">First Principle Question</p>
+            <h2 class="text-3xl font-bold serif mb-8">Check Your Understanding</h2>
+            <div id="quiz-box" class="glass-card p-8 text-left"></div>
+            <button onclick="nextQ()" class="mt-6 px-8 py-3 text-white rounded-full font-semibold" style="background: var(--ink-900)">Next</button>
             <div id="quiz-fb" class="mt-6 hidden text-left"></div>
         </div>
     </section>
-
-    <footer class="py-8 text-center text-sm text-slate-400 border-t border-slate-200">© Dr. Swapnil Sahoo 2026</footer>
+    <footer class="py-8 text-center text-sm" style="color: var(--ink-500); border-top: 1px solid rgba(15,23,42,0.06);">© Dr. Swapnil Sahoo 2026</footer>
 
     <script>
         window.onscroll = () => {
             const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             document.getElementById('progress-bar').style.width = (window.scrollY / h) * 100 + '%';
         };
-
-        // Portfolio allocator
-        const units = [
-            { key: 'aws', label: 'AWS (Cloud)', growth: 'High margin, moderate growth', color: '#0f766e' },
-            { key: 'ads', label: 'Advertising', growth: 'High growth, high margin', color: '#0ea5e9' },
-            { key: 'grocery', label: 'Grocery / Whole Foods', growth: 'Low margin, capital-heavy', color: '#f59e0b' },
-            { key: 'devices', label: 'Devices', growth: 'Flat growth, thin margin', color: '#ef4444' },
-        ];
-        const alloc = { aws: 25, ads: 25, grocery: 25, devices: 25 };
-
-        function renderAlloc() {
-            document.getElementById('alloc-sliders').innerHTML = units.map(u => `
-                <div>
-                    <div class="flex justify-between text-sm mb-1">
-                        <span class="font-semibold">${u.label}</span>
-                        <span class="mono-font font-bold" id="val-${u.key}">₹${alloc[u.key]}</span>
-                    </div>
-                    <input type="range" min="0" max="100" value="${alloc[u.key]}" class="w-full" oninput="setAlloc('${u.key}', this.value)">
-                    <p class="text-xs text-slate-400">${u.growth}</p>
-                </div>
-            `).join('');
-            evalAlloc();
-        }
-        function setAlloc(key, val) {
-            alloc[key] = Number(val);
-            document.getElementById('val-' + key).textContent = '₹' + val;
-            evalAlloc();
-        }
-        function evalAlloc() {
-            const total = Object.values(alloc).reduce((a, b) => a + b, 0);
-            const box = document.getElementById('alloc-result');
-            const overfundedLoser = alloc.devices > 30 || alloc.grocery > 40;
-            const underfundedWinner = alloc.aws < 20 && alloc.ads < 20;
-            let msg = `Total allocated: ₹${total} of ₹100. `;
-            if (overfundedLoser) {
-                msg += `You're pouring capital into Devices and/or Grocery well beyond what their margin profile justifies — exactly the pattern Mankins &amp; Steele call "resource allocation inertia": funding a business because it got funded last year, not because it earns it this year.`;
-                box.className = 'p-6 rounded-xl border-2 border-red-300 bg-red-50 text-sm text-red-900';
-            } else if (underfundedWinner) {
-                msg += `You're starving AWS and Advertising — your two highest-return units — of the capital that would let them compound faster. A portfolio governance system should protect winners from being taxed to prop up laggards.`;
-                box.className = 'p-6 rounded-xl border-2 border-amber-300 bg-amber-50 text-sm text-amber-900';
+        function updateSim() {
+            const diff = Number(document.getElementById('diff-slider').value);
+            const lock = Number(document.getElementById('lock-slider').value);
+            const box = document.getElementById('sim-result');
+            const total = diff + lock;
+            let msg, color;
+            if (total >= 8) {
+                msg = "Your inputs point toward Rajan's Scenario A (Oligopoly): high differentiation plus high lock-in is exactly the combination that lets a platform raise prices without losing customers. Worth asking who in your value chain is positioned to capture that rent -- and whether it's you.";
+                color = '#dc2626';
+            } else if (total <= 4) {
+                msg = "Your inputs point toward Rajan's Scenario B (Commodity): low differentiation and low lock-in mean no single platform can extract much rent. Competitive AI prices, productivity gains pass through -- the strategic question shifts from 'which platform do we bet on' to 'how fast can we adopt and redeploy the savings.'";
+                color = '#16a34a';
             } else {
-                msg += `This is a defensible allocation: capital broadly follows return profile. The harder real-world test — which this slider can't simulate — is whether you'd actually pull funding from Grocery next year if it still isn't earning its capital cost.`;
-                box.className = 'p-6 rounded-xl border-2 border-teal-300 bg-teal-50 text-sm text-teal-900';
+                msg = "Your industry sits in the middle -- genuinely uncertain territory. This is exactly where Rajan says policy choices (price regulation, IP protection rules) can tip the outcome. Worth tracking which way regulation in your sector is actually moving.";
+                color = '#d97706';
             }
-            box.innerHTML = `<p>${msg}</p>`;
+            box.style.borderColor = color;
+            box.style.color = color;
+            box.innerHTML = '<p>' + msg + '</p>';
         }
-        renderAlloc();
+        updateSim();
 
-        // Quiz
         const qs = [
-            { q: "Per Mankins & Steele (2005), the average firm captures roughly what share of its strategy's potential financial value?", opts: ["95%", "80%", "63%", "40%"], correct: 2, fb: "63% — a gap large enough that closing it is worth more than most strategic pivots." },
-            { q: "Amazon's Fire Phone write-down illustrates which governance discipline?", opts: ["Aggressive diversification", "Knowing when to kill a business unit", "Vertical integration", "First-mover advantage"], correct: 1, fb: "Correct. Portfolio governance isn't just about funding winners — it's about having a real mechanism to exit losers before sunk cost bias takes over." },
-            { q: "Why might a corporate parent keep funding a structurally low-margin unit like Grocery?", opts: ["It's a strategic bet on ecosystem/share-of-wallet, not standalone profit", "Grocery is actually Amazon's most profitable unit", "Regulators require it", "There is no good reason"], correct: 0, fb: "Right — the honest governance question is whether that ecosystem bet is still credible years later, or has become inertia dressed up as strategy." },
+            { q: "Rajan's historical example of slow technology adoption involves:", opts: ["The printing press", "Automated telephone exchanges (possible in the 1920s, complete by the 1980s)", "The steam engine", "Electric cars"], correct: 1, fb: "Correct — a ~60-year gap between technical feasibility and full displacement." },
+            { q: "In Rajan's 'Oligopoly' scenario, who benefits most?", opts: ["All workers equally", "A few dominant AI platforms and their shareholders/remaining employees", "Only governments", "Nobody -- it's zero-sum"], correct: 1, fb: "Right -- concentration is the risk Rajan is most worried about, more than AI itself." },
+            { q: "Which policy lever does Rajan mention that could push toward the more competitive (Scenario B) outcome?", opts: ["Banning AI research", "AI price regulation or refusing to protect model-builders from being copied", "Subsidizing only the largest AI labs", "Mandatory AI adoption"], correct: 1, fb: "Yes -- reducing platforms' ability to extract monopoly rents keeps the market closer to commodity pricing." },
         ];
         let qi = 0;
         function loadQ() {
             const q = qs[qi];
             document.getElementById('quiz-fb').classList.add('hidden');
-            document.getElementById('quiz-box').innerHTML = `<p class="font-semibold mb-4">${qi + 1}. ${q.q}</p>` +
-                q.opts.map((o, i) => `<button onclick="checkQ(${i})" class="block w-full text-left p-3 mb-2 rounded-lg border border-slate-200 hover:bg-blue-50 hover:border-blue-500">${o}</button>`).join('');
+            document.getElementById('quiz-box').innerHTML = '<p class="font-semibold mb-4">' + (qi + 1) + '. ' + q.q + '</p>' +
+                q.opts.map((o, i) => '<button onclick="checkQ(' + i + ')" class="block w-full text-left p-3 mb-2 rounded-lg" style="border:1px solid var(--ink-300)" onmouseover="this.style.background=\'var(--brand-50)\'" onmouseout="this.style.background=\'transparent\'">' + o + '</button>').join('');
         }
         function checkQ(i) {
             const q = qs[qi];
             const fb = document.getElementById('quiz-fb');
             fb.classList.remove('hidden');
             fb.innerHTML = i === q.correct
-                ? `<div class="p-4 bg-green-50 border border-green-200 rounded-lg text-green-900 text-sm">✅ ${q.fb}</div>`
-                : `<div class="p-4 bg-red-50 border border-red-200 rounded-lg text-red-900 text-sm">❌ Not quite — review and try the next one.</div>`;
+                ? '<div class="p-4 rounded-lg text-sm" style="background:#f0fdf4;border:1px solid #bbf7d0;color:#166534">✅ ' + q.fb + '</div>'
+                : '<div class="p-4 rounded-lg text-sm" style="background:#fef2f2;border:1px solid #fecaca;color:#991b1b">❌ Not quite — review and try the next one.</div>';
         }
         function nextQ() { qi = (qi + 1) % qs.length; loadQ(); }
         loadQ();

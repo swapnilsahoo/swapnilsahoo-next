@@ -3,184 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Official Session 18: Internationalization & Globalization Strategy</title>
+    <title>Session 19: Managing Technology & Innovation — Nvidia</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; color: #0f172a; line-height: 1.65; }
-        h1, h2, h3, .serif-font { font-family: 'Playfair Display', serif; }
-        .mono-font { font-family: 'JetBrains Mono', monospace; }
-        .fp-box { background: #fff7ed; border-left: 6px solid #c2410c; border-radius: 0 16px 16px 0; padding: 2rem; }
-        .card { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,.05); }
-        .nav-link { color: #64748b; font-size: .875rem; font-weight: 500; text-decoration: none; }
-        .nav-link:hover { color: #c2410c; }
+        :root {
+            --ink-900: #0a1426; --ink-700: #27354b; --ink-600: #3e4c63; --ink-500: #5b6b82;
+            --ink-300: #b6bfcc; --ink-100: #eef1f5;
+            --brand-700: #1d4ed8; --brand-600: #2563eb; --brand-500: #3b82f6; --brand-50: #eff6ff;
+            --accent-500: #de911d; --page-bg: #f7f7f5;
+        }
+        * { box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; color: var(--ink-900); background: var(--page-bg); line-height: 1.65; margin: 0; }
+        h1, h2, h3, .serif { font-family: 'Fraunces', serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .glass-card { background: #fff; border: 1px solid rgba(15,23,42,0.1); border-radius: 16px; box-shadow: 0 1px 2px rgba(15,23,42,0.05); }
+        .fp-box { background: var(--brand-50); border-left: 6px solid var(--brand-700); border-radius: 0 16px 16px 0; padding: 1.75rem 2rem; }
+        .fp-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brand-700); margin-bottom: 0.6rem; }
+        .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brand-700); }
+        .nav-link { color: var(--ink-500); font-size: 0.875rem; font-weight: 500; text-decoration: none; }
     </style>
     <link rel="stylesheet" href="/teaching/responsive.css">
 </head>
-<body class="antialiased bg-white">
-    <div class="fixed top-0 left-0 w-full h-1 bg-slate-100 z-50"><div id="progress-bar" class="h-full bg-orange-700 w-0 transition-all"></div></div>
-
-    <nav class="sticky top-0 bg-white/95 backdrop-blur-md border-b border-slate-200 z-40">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <span class="font-bold text-slate-900">Globalization Strategy</span>
+<body class="antialiased">
+    <div class="fixed top-0 left-0 w-full h-1 z-50" style="background: var(--ink-100)"><div id="progress-bar" class="h-full transition-all" style="background: var(--brand-700); width:0%"></div></div>
+    <nav class="sticky top-0 z-40" style="background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(15,23,42,0.08);">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+            <span class="font-bold">Session 19 · Managing Technology &amp; Innovation</span>
             <div class="hidden md:flex gap-6">
-                <a href="#question" class="nav-link">Fundamental Question</a>
-                <a href="#reading" class="nav-link">The Reading</a>
-                <a href="#case" class="nav-link">Rajesh Exports</a>
-                <a href="#cage" class="nav-link">CAGE Tool</a>
-                <a href="#quiz" class="nav-link font-bold text-orange-700">Quiz</a>
+                <a href="#question" class="nav-link">Question</a>
+                <a href="#reading" class="nav-link">The Case</a>
+                <a href="#moat" class="nav-link">CUDA Moat</a>
+                <a href="#chart" class="nav-link">Concentration</a>
+                <a href="#quiz" class="nav-link" style="color: var(--brand-700); font-weight: 700;">Quiz</a>
             </div>
         </div>
     </nav>
 
-    <header id="question" class="py-20 px-6 text-center bg-gradient-to-b from-orange-50 to-white">
+    <header id="question" class="py-20 px-6 text-center" style="background: linear-gradient(to bottom, var(--brand-50), var(--page-bg));">
         <div class="max-w-4xl mx-auto">
-            <p class="text-xs font-bold uppercase tracking-widest text-orange-700 mb-4 mono-font">Official Session 18 · Internationalization & Globalization Strategy</p>
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">A Bangalore gold-trading firm became the world's largest gold refiner.<br><span class="italic text-orange-700">Nobody planned that on day one.</span></h1>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto">
-                Rajesh Exports started as a small Karnataka jewellery exporter. It now controls a meaningful share of the world's gold refining capacity, spanning Switzerland (Valcambi) to India to the UAE. The question this session asks: what forces actually pull — or push — a domestic firm across a border, and why do so many international expansions fail anyway?
+            <p class="eyebrow mb-4">Session 19 · Nvidia: Managing Technology &amp; Innovation</p>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">One company controls ~98% of a market<br><span class="italic" style="color: var(--brand-700)">everyone agrees is about to get crowded.</span></h1>
+            <p class="text-lg max-w-2xl mx-auto" style="color: var(--ink-600)">
+                Nvidia's data-center GPUs power almost every serious AI model built since 2023. Google, Amazon and Microsoft are each racing to build their own chips. So: is Nvidia's dominance a durable technology advantage, or a temporary lead about to be commoditized?
             </p>
         </div>
     </header>
 
-    <section id="reading" class="py-16 px-6 border-t border-slate-100">
+    <section id="reading" class="py-16 px-6" style="border-top: 1px solid rgba(15,23,42,0.06);">
         <div class="max-w-3xl mx-auto fp-box">
-            <p class="text-xs font-bold uppercase tracking-widest text-orange-700 mb-3 mono-font">The Assigned Reading</p>
-            <p class="text-slate-700 leading-relaxed">
-                Porter, M. E. (1990). <em>"The Competitive Advantage of Nations,"</em> Harvard Business Review. Porter's core, still-contested claim: a nation's competitiveness in a specific industry isn't inherited (cheap labor, natural resources) — it's <strong>created</strong>, through the interaction of demanding local customers, related and supporting industries, firm rivalry, and factor conditions (his "Diamond" model). For Rajesh Exports, India's demand-side factor (the world's largest per-capita gold jewellery consumption, driven by cultural and investment demand) created exactly the kind of sophisticated, high-volume domestic buyer that forced the firm to build refining capability good enough to later compete globally.
+            <p class="fp-eyebrow">The Case</p>
+            <p class="mb-4" style="color: var(--ink-700)">
+                Yoffie, D., &amp; von Bargen, N., <em>"Nvidia, Inc. in 2024 and the Future of AI,"</em> Harvard Business School Case 9-725-360. FY2024: revenue of <strong>$60.9B</strong>, data-center revenue of <strong>$47.5B</strong>, gross margins near <strong>72.7%</strong> — extraordinary numbers for a hardware company, which is exactly the puzzle. Hardware businesses are supposed to be capital-intensive and thin-margin. Nvidia's numbers look like a software monopoly's.
             </p>
+            <p class="fp-eyebrow">First Principle Question</p>
+            <p style="color: var(--ink-700)">If a rival built a chip with identical raw performance to Nvidia's tomorrow, would that alone be enough to take Nvidia's customers? What would still be missing?</p>
         </div>
     </section>
 
-    <section id="case" class="py-16 px-6 bg-slate-900 text-white">
+    <section id="moat" class="py-16 px-6 text-white" style="background: var(--ink-900);">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-12">
-                <p class="text-xs font-bold uppercase tracking-widest text-orange-300 mb-2 mono-font">Case · Rajesh Exports: Gold Trader to International Jewellery Retailer</p>
-                <h2 class="text-3xl md:text-4xl font-bold serif-font">Three Border-Crossing Decisions</h2>
+                <p class="fp-eyebrow" style="color: #93c5fd;">The Real Product Isn't the Chip</p>
+                <h2 class="text-3xl md:text-4xl font-bold serif">CUDA: The Moat Nobody Can See in a Spec Sheet</h2>
+                <div class="mt-6 max-w-2xl mx-auto p-5 rounded-xl" style="background: rgba(59,130,246,0.12); border: 1px solid rgba(59,130,246,0.3);">
+                    <p class="fp-eyebrow" style="color: #bfdbfe;">First Principle Question</p>
+                    <p class="text-sm" style="color: #dbeafe;">Every serious rival chip is now "good enough" on raw compute. Why hasn't that ended Nvidia's pricing power?</p>
+                </div>
             </div>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
-                    <p class="text-orange-400 font-bold mb-2">1. Backward integration into refining</p>
-                    <p class="text-sm text-slate-300">Rather than stay a jewellery exporter dependent on imported gold, the firm moved upstream into refining — the classic Indian "diamond" pattern of sophisticated domestic demand pulling capability upstream (per Porter's model).</p>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="p-6 rounded-xl" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);">
+                    <p class="font-bold mb-2" style="color: #93c5fd;">CUDA's developer ecosystem</p>
+                    <p class="text-sm" style="color: #cbd5e1;">Over 5 million developers have been trained on Nvidia's CUDA software platform since its 2006 launch. Every AI framework (PyTorch, TensorFlow) is optimized for CUDA first. A rival chip with better silicon still forces every engineering team to rewrite and re-validate its entire software stack — a switching cost that has nothing to do with the chip itself.</p>
                 </div>
-                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
-                    <p class="text-orange-400 font-bold mb-2">2. Acquiring Valcambi (Switzerland)</p>
-                    <p class="text-sm text-slate-300">Buying one of the world's largest gold refiners gave instant scale, LBMA-accredited legitimacy, and access to European/Middle Eastern gold flows — an acquisition-led entry mode rather than organic greenfield expansion.</p>
-                </div>
-                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
-                    <p class="text-orange-400 font-bold mb-2">3. Staying anchored to Indian demand</p>
-                    <p class="text-sm text-slate-300">Despite global refining scale, the firm's retail jewellery brand (Shubh Jewellers) stays deeply calibrated to Indian consumer behaviour — a reminder that "going global" rarely means abandoning the home-market insight that created the advantage.</p>
+                <div class="p-6 rounded-xl" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);">
+                    <p class="font-bold mb-2" style="color: #93c5fd;">The DeepSeek shock, January 2025</p>
+                    <p class="text-sm" style="color: #cbd5e1;">Chinese lab DeepSeek reportedly trained a GPT-4-class model for under $6M, versus $100M+ for Western labs — briefly wiping out roughly $600B of Nvidia's market cap in a single day on fears that AI would need far less compute than assumed. The moat didn't disappear; the market re-priced the *size* of the opportunity, not Nvidia's share of it. Worth separating those two questions whenever a "disruption" headline hits a dominant firm's stock.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="cage" class="py-20 px-6">
+    <section id="chart" class="py-20 px-6">
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-10">
-                <p class="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-2 mono-font">New Tool</p>
-                <h2 class="text-3xl font-bold serif-font">CAGE Distance Scorer</h2>
-                <p class="text-slate-500 mt-3">Ghemawat's CAGE framework (Cultural, Administrative, Geographic, Economic distance) predicts how hard a specific cross-border move will be. Pick two countries and rate the four distances.</p>
+                <p class="fp-eyebrow" style="color: var(--brand-700);">First Principle Question</p>
+                <h2 class="text-3xl font-bold serif">Is Nvidia's Position Sustainable?</h2>
+                <p class="mt-3" style="color: var(--ink-500)">Weigh the two forces working against each other: Nvidia's ecosystem lock-in versus its biggest customers' incentive to build their own silicon.</p>
             </div>
-            <div class="card p-8">
-                <div class="grid md:grid-cols-2 gap-4 mb-6">
-                    <input id="home-country" type="text" placeholder="Home market (e.g. India)" class="border border-slate-300 rounded-lg px-4 py-3">
-                    <input id="target-country" type="text" placeholder="Target market (e.g. Switzerland)" class="border border-slate-300 rounded-lg px-4 py-3">
+            <div class="glass-card p-8">
+                <div class="chart-container" style="position: relative; height: 320px;">
+                    <canvas id="forceChart"></canvas>
                 </div>
-                <div id="cage-sliders" class="space-y-5 mb-8"></div>
-                <div id="cage-result" class="p-6 rounded-xl border-2 border-dashed border-slate-300 text-sm text-slate-600">Rate all four distances to see the entry-mode implication.</div>
+                <p class="text-sm mt-6" style="color: var(--ink-600)">Google (TPU), Amazon (Trainium/Inferentia) and Microsoft (Maia) are all Nvidia's biggest customers <em>and</em> its most credible long-term threats — the textbook definition of a buyer with enough scale to threaten backward integration. The question for class discussion: does CUDA's switching cost outlast their patience?</p>
             </div>
         </div>
     </section>
 
-    <section id="quiz" class="py-20 px-6 bg-slate-50 border-t border-slate-200">
+    <section id="quiz" class="py-20 px-6" style="background: var(--ink-100); border-top: 1px solid rgba(15,23,42,0.06);">
         <div class="max-w-2xl mx-auto text-center">
-            <h2 class="text-3xl font-bold serif-font mb-8">Check Your Understanding</h2>
-            <div id="quiz-box" class="card p-8 text-left"></div>
-            <button onclick="nextQ()" class="mt-6 px-8 py-3 bg-slate-900 text-white rounded-full font-semibold hover:bg-orange-700 transition">Next</button>
+            <p class="fp-eyebrow mb-3">First Principle Question</p>
+            <h2 class="text-3xl font-bold serif mb-8">Check Your Understanding</h2>
+            <div id="quiz-box" class="glass-card p-8 text-left"></div>
+            <button onclick="nextQ()" class="mt-6 px-8 py-3 text-white rounded-full font-semibold" style="background: var(--ink-900)">Next</button>
             <div id="quiz-fb" class="mt-6 hidden text-left"></div>
         </div>
     </section>
-
-    <footer class="py-8 text-center text-sm text-slate-400 border-t border-slate-200">© Dr. Swapnil Sahoo 2026</footer>
+    <footer class="py-8 text-center text-sm" style="color: var(--ink-500); border-top: 1px solid rgba(15,23,42,0.06);">© Dr. Swapnil Sahoo 2026</footer>
 
     <script>
         window.onscroll = () => {
             const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             document.getElementById('progress-bar').style.width = (window.scrollY / h) * 100 + '%';
         };
-
-        const dims = [
-            { key: 'cultural', label: 'Cultural distance', hint: 'language, religion, social norms, taste' },
-            { key: 'admin', label: 'Administrative distance', hint: 'colonial ties, trade agreements, currency, regulation' },
-            { key: 'geo', label: 'Geographic distance', hint: 'physical distance, time zones, climate, infrastructure' },
-            { key: 'econ', label: 'Economic distance', hint: 'income levels, cost structures, access to credit' },
-        ];
-        const cageScore = { cultural: 3, admin: 3, geo: 3, econ: 3 };
-
-        function renderCage() {
-            document.getElementById('cage-sliders').innerHTML = dims.map(d => `
-                <div>
-                    <div class="flex justify-between text-sm mb-1">
-                        <span class="font-semibold">${d.label}</span>
-                        <span class="mono-font font-bold" id="cval-${d.key}">${cageScore[d.key]}/5</span>
-                    </div>
-                    <input type="range" min="1" max="5" value="${cageScore[d.key]}" class="w-full accent-orange-600" oninput="setCage('${d.key}', this.value)">
-                    <p class="text-xs text-slate-400">${d.hint}</p>
-                </div>
-            `).join('');
-            evalCage();
-        }
-        function setCage(key, val) {
-            cageScore[key] = Number(val);
-            document.getElementById('cval-' + key).textContent = val + '/5';
-            evalCage();
-        }
-        function evalCage() {
-            const total = Object.values(cageScore).reduce((a, b) => a + b, 0);
-            const avg = total / 4;
-            const home = document.getElementById('home-country').value.trim() || 'Home';
-            const target = document.getElementById('target-country').value.trim() || 'Target';
-            const box = document.getElementById('cage-result');
-            let msg, cls;
-            if (avg <= 2) {
-                msg = `${home} → ${target} is a short CAGE distance (avg ${avg.toFixed(1)}/5). Organic, wholly-owned entry (greenfield or a small acquisition) is usually viable — the market is "close enough" to manage directly.`;
-                cls = 'border-teal-300 bg-teal-50 text-teal-900';
-            } else if (avg <= 3.5) {
-                msg = `${home} → ${target} is a moderate CAGE distance (avg ${avg.toFixed(1)}/5). This is Rajesh Exports' territory: an acquisition of an established local player (their Valcambi move) transfers legitimacy and local knowledge you can't build fast enough organically.`;
-                cls = 'border-amber-300 bg-amber-50 text-amber-900';
-            } else {
-                msg = `${home} → ${target} is a long CAGE distance (avg ${avg.toFixed(1)}/5). Direct entry is high-risk. A joint venture or licensing arrangement with a local partner who absorbs the distance is usually the safer entry mode — full ownership can wait until you've learned the market.`;
-                cls = 'border-red-300 bg-red-50 text-red-900';
-            }
-            box.className = 'p-6 rounded-xl border-2 text-sm ' + cls;
-            box.innerHTML = `<p>${msg}</p>`;
-        }
-        document.getElementById('home-country').addEventListener('input', evalCage);
-        document.getElementById('target-country').addEventListener('input', evalCage);
-        renderCage();
-
+        document.addEventListener('DOMContentLoaded', function () {
+            new Chart(document.getElementById('forceChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['CUDA developer lock-in', 'Software re-validation cost', 'Customer backward-integration threat', 'In-house chip performance gap'],
+                    datasets: [{ label: 'Strength (1-10, editorial estimate)', data: [9, 8, 7, 5], backgroundColor: ['#1d4ed8', '#3b82f6', '#dc2626', '#f59e0b'], borderRadius: 6 }]
+                },
+                options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { beginAtZero: true, max: 10 } } }
+            });
+        });
         const qs = [
-            { q: "Per Porter's Diamond model, what made India's domestic gold market strategically valuable to Rajesh Exports?", opts: ["Cheap labor", "Sophisticated, high-volume domestic demand", "Government subsidies", "Low regulation"], correct: 1, fb: "Correct — demanding home-market buyers force capability-building that later travels internationally." },
-            { q: "Acquiring Valcambi in Switzerland is best described as which entry mode?", opts: ["Greenfield investment", "Licensing", "Acquisition", "Franchising"], correct: 2, fb: "Right — acquisition, which buys instant scale and legitimacy at the cost of integration risk." },
-            { q: "A HIGH CAGE distance between two countries generally favors which entry strategy?", opts: ["Full ownership, no partner", "A local joint-venture partner", "Ignoring the market entirely", "Identical strategy to the home market"], correct: 1, fb: "Yes — a local partner absorbs cultural, administrative, and market-knowledge distance you can't close quickly alone." },
+            { q: "What is Nvidia's FY2024 data-center revenue, per the assigned case?", opts: ["$6B", "$47.5B", "$120B", "$1B"], correct: 1, fb: "Correct — $47.5B of the $60.9B total revenue." },
+            { q: "CUDA's competitive advantage is best described as:", opts: ["Patent protection", "A software ecosystem creating high switching costs", "Government subsidy", "Lower raw chip cost"], correct: 1, fb: "Right — the moat is the 5M+ trained developers and optimized software stack, not the silicon alone." },
+            { q: "The January 2025 DeepSeek shock is best understood as:", opts: ["Proof CUDA's moat had disappeared", "A re-pricing of the AI compute market's total size, not Nvidia's share of it", "Nvidia losing a lawsuit", "A change in Nvidia's gross margin"], correct: 1, fb: "Yes — worth distinguishing 'the market got smaller' from 'the moat got weaker.'" },
         ];
         let qi = 0;
         function loadQ() {
             const q = qs[qi];
             document.getElementById('quiz-fb').classList.add('hidden');
-            document.getElementById('quiz-box').innerHTML = `<p class="font-semibold mb-4">${qi + 1}. ${q.q}</p>` +
-                q.opts.map((o, i) => `<button onclick="checkQ(${i})" class="block w-full text-left p-3 mb-2 rounded-lg border border-slate-200 hover:bg-orange-50 hover:border-orange-500">${o}</button>`).join('');
+            document.getElementById('quiz-box').innerHTML = '<p class="font-semibold mb-4">' + (qi + 1) + '. ' + q.q + '</p>' +
+                q.opts.map((o, i) => '<button onclick="checkQ(' + i + ')" class="block w-full text-left p-3 mb-2 rounded-lg" style="border:1px solid var(--ink-300)">' + o + '</button>').join('');
         }
         function checkQ(i) {
             const q = qs[qi];
             const fb = document.getElementById('quiz-fb');
             fb.classList.remove('hidden');
             fb.innerHTML = i === q.correct
-                ? `<div class="p-4 bg-green-50 border border-green-200 rounded-lg text-green-900 text-sm">✅ ${q.fb}</div>`
-                : `<div class="p-4 bg-red-50 border border-red-200 rounded-lg text-red-900 text-sm">❌ Not quite — review and try the next one.</div>`;
+                ? '<div class="p-4 rounded-lg text-sm" style="background:#f0fdf4;border:1px solid #bbf7d0;color:#166534">✅ ' + q.fb + '</div>'
+                : '<div class="p-4 rounded-lg text-sm" style="background:#fef2f2;border:1px solid #fecaca;color:#991b1b">❌ Not quite — review and try the next one.</div>';
         }
         function nextQ() { qi = (qi + 1) % qs.length; loadQ(); }
         loadQ();
