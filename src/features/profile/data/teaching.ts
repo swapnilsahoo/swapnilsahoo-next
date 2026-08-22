@@ -37,6 +37,14 @@ export const teachingLinks: TeachingLink[] = [
     href: "/teaching/ai-hackathon",
   },
   {
+    eyebrow: "AI build · Hackathon outcome",
+    title: "AI Viva Bot",
+    description:
+      "A Socratic oral-exam simulator built at an AI hackathon: students submit their work and answer AI-generated questions anchored to their own claims, with faculty-configurable personas, rubrics and A/V proctoring.",
+    href: "https://aivivabotv90.netlify.app/",
+    external: true,
+  },
+  {
     eyebrow: "Career",
     title: "Placement Assistance",
     description:

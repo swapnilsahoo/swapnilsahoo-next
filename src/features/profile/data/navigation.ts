@@ -28,6 +28,7 @@ export const teachingDropdown: NavDropdown = {
     },
     { label: "Business Simulation", href: "/teaching/business-simulation" },
     { label: "AI Mini Hackathon", href: "/teaching/ai-hackathon" },
+    { label: "AI Viva Bot", href: "https://aivivabotv90.netlify.app/", external: true },
     { label: "The Entrepreneurship Shelf", href: "/teaching/reading-and-watching-list" },
     {
       label: "Placement Assistance",
