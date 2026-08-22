@@ -33,16 +33,8 @@ export const teachingLinks: TeachingLink[] = [
     eyebrow: "PGDM event · Proposed PhD lens",
     title: "AI Mini Hackathon",
     description:
-      "The July 2026 PGDM build programme, followed by a clearly labelled proposed research extension for doctoral readers.",
+      "The July 2026 PGDM build programme, followed by a clearly labelled proposed research extension for doctoral readers — plus a Side Quests section on my own beta builds, open for testing.",
     href: "/teaching/ai-hackathon",
-  },
-  {
-    eyebrow: "AI build · Hackathon outcome",
-    title: "AI Viva Bot",
-    description:
-      "A Socratic oral-exam simulator built at an AI hackathon: students submit their work and answer AI-generated questions anchored to their own claims, with faculty-configurable personas, rubrics and A/V proctoring.",
-    href: "https://aivivabotv90.netlify.app/",
-    external: true,
   },
   {
     eyebrow: "Career",

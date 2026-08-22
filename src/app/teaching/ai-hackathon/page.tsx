@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 
 import {
   ArrowRightIcon,
@@ -17,6 +18,7 @@ import { linkedInHighlights, linkedInProfileUrl } from "@/features/profile/data/
 const briefingDeckUrl =
   "https://pub-fe4ef7996d794eafbcca10e6093e62af.r2.dev/ai-hackathon/AI_in_45_Minutes_v7.pdf";
 const responsibleAiPost = linkedInHighlights[0];
+const vivaBotUrl = "https://aivivabotv90.netlify.app/";
 
 const hackathonInquiry = {
   questions: [
@@ -202,6 +204,31 @@ const proposedResearchQuestions = [
   "How does work divided across build, user-and-business, and story-and-demo roles affect integration, shared learning and prototype coherence?",
   "When do responsible-AI checks change a feature, narrow a claim or alter a team’s view of adoption readiness?",
   "How do live user and jury questions influence managerial judgment after the demonstration, not only the quality of the final pitch?",
+] as const;
+
+const vivaBotFeatures = [
+  "Faculty pick the examiner persona, difficulty and grading rubric before the room opens.",
+  "Every question is generated from a specific claim in the student's own submission, not a static bank.",
+  "Students can answer by text, audio or video; light in-browser proctoring (gaze and window-focus checks) keeps the session honest.",
+  "Runs on the Gemini API with session data kept in the browser, not a server database.",
+] as const;
+
+const vivaBotTestAsks = [
+  {
+    title: "Run a full mock exam",
+    description:
+      "As faculty or student, go end to end: set up or receive an oral exam, answer the follow-up questions, see how the grading reads.",
+  },
+  {
+    title: "Try to break it",
+    description:
+      "Upload a messy file, give a deliberately weak or evasive answer, switch tabs mid-question — tell me what the bot does with the edge case.",
+  },
+  {
+    title: "Judge the questions",
+    description:
+      "Were they actually anchored to what you wrote, or did they feel generic? That gap is the thing most worth fixing next.",
+  },
 ] as const;
 
 const proposedResearchDesign = [
@@ -863,6 +890,113 @@ export default function AiHackathonPage() {
 
       <div className="hr-fade mx-auto max-w-6xl" />
 
+      <section id="side-quests" aria-labelledby="side-quests-title" className="py-16 sm:py-24">
+        <Container className="max-w-6xl">
+          <div className="mb-10 grid gap-10 lg:grid-cols-12">
+            <div className="lg:col-span-4">
+              <span className="accent-rule" />
+              <p className="eyebrow mb-3">09 / Side Quests</p>
+              <h2 id="side-quests-title" className="display text-4xl font-semibold md:text-5xl">
+                My own build, made for the same reason I ask students to build.
+              </h2>
+            </div>
+            <p className="text-ink-600 dark:text-ink-300 self-end text-sm leading-relaxed lg:col-span-8">
+              Running this hackathon left me with the same itch I hand to students every term:
+              stop talking about what GenAI could do, and ship something that has to work when a
+              real person opens it.{" "}
+              <strong className="text-ink-800 dark:text-ink-100 font-semibold">
+                AI Viva Bot
+              </strong>{" "}
+              is that build — a live beta, not a finished product, and it needs people willing to
+              try to break it.
+            </p>
+          </div>
+
+          <article className="from-brand-50 to-accent-400/10 dark:from-brand-900/30 dark:to-accent-400/5 border-brand-200/60 dark:border-brand-700/40 relative overflow-hidden rounded-[24px] border bg-gradient-to-br p-7 sm:p-10">
+            <div
+              className="bg-brand-500/10 absolute -top-24 -right-16 h-72 w-72 rounded-full blur-3xl"
+              aria-hidden="true"
+            />
+            <div className="relative">
+              <div className="mb-6 flex flex-wrap items-center gap-3">
+                <div className="bg-brand-600 flex h-11 w-11 items-center justify-center rounded-xl text-white">
+                  <SparkIcon className="h-5 w-5" aria-hidden="true" />
+                </div>
+                <span className="tag tag-amber">Live beta · open for testing</span>
+              </div>
+
+              <p className="eyebrow">AI build · grew out of this hackathon</p>
+              <h3 className="mt-3 font-serif text-3xl font-semibold sm:text-4xl">AI Viva Bot</h3>
+              <p className="text-ink-700 dark:text-ink-200 mt-4 max-w-3xl text-sm leading-relaxed sm:text-base">
+                Most oral exams reward confident delivery, not understanding. AI Viva Bot pushes
+                past that: a student uploads the actual assignment or report, and the bot
+                questions them the way a sharp examiner would — grounding each question in a claim
+                they specifically made, not a generic bank. Faculty set the examiner&apos;s
+                persona, the difficulty and the grading rubric before the room opens.
+              </p>
+
+              <ul className="text-ink-700 dark:text-ink-200 mt-6 grid gap-3 text-sm sm:grid-cols-2">
+                {vivaBotFeatures.map((feature) => (
+                  <li
+                    key={feature}
+                    className="border-brand-200/50 dark:border-brand-700/40 flex items-start gap-3 rounded-xl border bg-white/50 p-3 dark:bg-white/[0.03]"
+                  >
+                    <span
+                      className="bg-accent-500 mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full"
+                      aria-hidden="true"
+                    />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-8">
+                <p className="eyebrow mb-4">How to actually help</p>
+                <div className="grid gap-4 sm:grid-cols-3">
+                  {vivaBotTestAsks.map((ask, index) => (
+                    <div key={ask.title} className="glass-card p-5">
+                      <p className="text-brand-600 dark:text-brand-300 font-mono text-sm">
+                        {String(index + 1).padStart(2, "0")}
+                      </p>
+                      <p className="mt-3 font-serif text-base font-semibold">{ask.title}</p>
+                      <p className="text-ink-600 dark:text-ink-300 mt-2 text-xs leading-relaxed">
+                        {ask.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <a
+                  href={vivaBotUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-brand-600 hover:bg-brand-700 focus-visible:ring-brand-500 inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-950/20 transition hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+                >
+                  Try the beta
+                  <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
+                  <span className="sr-only"> (opens in a new tab)</span>
+                </a>
+                <Link
+                  href="/#contact"
+                  className="text-brand-700 dark:text-brand-400 link-underline inline-flex items-center gap-1 text-sm font-medium"
+                >
+                  Send feedback my way
+                  <ArrowRightIcon className="h-3.5 w-3.5" aria-hidden="true" />
+                </Link>
+              </div>
+              <p className="text-ink-500 dark:text-ink-400 mt-4 text-xs leading-relaxed">
+                Beta software: expect rough edges, and please don&apos;t submit anything sensitive
+                or confidential while it&apos;s at this stage.
+              </p>
+            </div>
+          </article>
+        </Container>
+      </section>
+
+      <div className="hr-fade mx-auto max-w-6xl" />
+
       <section aria-labelledby="resources-title" className="pb-20 sm:pb-28">
         <Container className="max-w-6xl">
           <div className="glass-card relative overflow-hidden p-7 sm:p-10">
@@ -872,7 +1006,7 @@ export default function AiHackathonPage() {
             />
             <div className="relative mb-8 max-w-2xl">
               <span className="accent-rule" />
-              <p className="eyebrow mb-3">09 / Source material and notes</p>
+              <p className="eyebrow mb-3">10 / Source material and notes</p>
               <h2 id="resources-title" className="display text-4xl font-semibold">
                 Read the brief and the thinking behind it.
               </h2>
