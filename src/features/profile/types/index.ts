@@ -56,6 +56,24 @@ export interface TeachingLink {
   external?: boolean;
 }
 
+export interface SideQuestTestAsk {
+  title: string;
+  description: string;
+}
+
+export interface SideQuest {
+  slug: string;
+  status: string;
+  eyebrow: string;
+  title: string;
+  tagline: string;
+  description: string;
+  features: readonly string[];
+  testAsks: readonly SideQuestTestAsk[];
+  href: string;
+  external?: boolean;
+}
+
 export interface MdpModule {
   index: string;
   title: string;

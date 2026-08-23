@@ -27,7 +27,13 @@ export const teachingDropdown: NavDropdown = {
       ],
     },
     { label: "Business Simulation", href: "/teaching/business-simulation" },
-    { label: "AI Mini Hackathon", href: "/teaching/ai-hackathon" },
+    {
+      label: "AI Mini Hackathon",
+      href: "/teaching/ai-hackathon",
+      children: [
+        { label: "Side Quests · AI Viva Bot", href: "/teaching/ai-hackathon/side-quests" },
+      ],
+    },
     { label: "The Entrepreneurship Shelf", href: "/teaching/reading-and-watching-list" },
     {
       label: "Placement Assistance",
