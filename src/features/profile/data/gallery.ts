@@ -231,4 +231,57 @@ export const galleryImages: GalleryImage[] = [
     objectFit: "contain",
     objectPosition: "center",
   },
+  {
+    src: "/images/gallery/eureka-2026-official-poster.jpg",
+    alt: "Official poster for EUREKA 2026, a Startup Launchpad hosted by the Entrepreneurship Cell of Great Lakes Institute of Management Gurgaon with IIT Bombay's E-Cell",
+    caption: "EUREKA 2026 · Startup Launchpad",
+    description:
+      "The official poster for EUREKA 2026 — a Startup Launchpad hosted by the Entrepreneurship Cell at Great Lakes Gurgaon together with the E-Cell of IIT Bombay's National Entrepreneurship Challenge, 23 August. I coordinated the event on behalf of Great Lakes, sat on the jury panel and mentored the organizing team.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
+  {
+    src: "/images/gallery/eureka-2026-team-jury-screens-1.jpg",
+    alt: "The EUREKA 2026 organizing team posing in the Great Lakes Gurgaon lobby, with jury panel introductions displayed on screens behind them",
+    caption: "Before the pitches · EUREKA 2026",
+    description:
+      "The Great Lakes Gurgaon organizing team ahead of the pitches, with the jury panel introduced on the screens behind them.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
+  {
+    src: "/images/gallery/eureka-2026-team-jury-screens-2.jpg",
+    alt: "A second group photo of the EUREKA 2026 organizing team with the jury panel displayed on screens",
+    caption: "The organizing team · EUREKA 2026",
+    description:
+      "Another moment with the organizing team, moments before EUREKA 2026's pitching round began.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
+  {
+    src: "/images/gallery/eureka-2026-organizing-team-group.jpg",
+    alt: "A larger group photo of students and faculty who organized EUREKA 2026 at Great Lakes Gurgaon",
+    caption: "The full team · EUREKA 2026",
+    description:
+      "Students, faculty and the visiting E-Cell IIT Bombay team who together made EUREKA 2026 happen.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
+  {
+    src: "/images/gallery/eureka-2026-gift-exchange.jpg",
+    alt: "Dr Swapnil Sahoo presenting a Great Lakes Gurgaon memento to a guest in front of the EUREKA 2026 title screen",
+    caption: "A token of thanks · EUREKA 2026",
+    description:
+      "Presenting a Great Lakes memento to a partner-institution guest at the close of EUREKA 2026.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
+  {
+    src: "/images/gallery/eureka-2026-swapnil-with-organizer.jpg",
+    alt: "Dr Swapnil Sahoo with a fellow organizer, both holding a Great Lakes Gurgaon gift bag, in front of the EUREKA 2026 screen",
+    caption: "With the organizing team · EUREKA 2026",
+    description: "With a fellow organizer after EUREKA 2026 wrapped for the day.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
 ];
