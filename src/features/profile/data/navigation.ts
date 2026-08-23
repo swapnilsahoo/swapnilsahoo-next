@@ -48,6 +48,30 @@ export const teachingDropdown: NavDropdown = {
           href: "/placements/case-study-preparation",
         },
         {
+          label: "Case Frameworks",
+          href: "/placements/case-frameworks",
+        },
+        {
+          label: "Case Examples",
+          href: "/placements/case-examples",
+        },
+        {
+          label: "Guesstimates",
+          href: "/placements/guesstimates",
+        },
+        {
+          label: "General Management Interviews",
+          href: "/placements/general-management-interviews",
+        },
+        {
+          label: "Product Management Interview Prep",
+          href: "/placements/product-management-interview-prep",
+        },
+        {
+          label: "Strategy & Entrepreneurship Interview Prep",
+          href: "/placements/strategy-entrepreneurship-interview-prep",
+        },
+        {
           label: "Cracking Consulting Interviews",
           href: "/teaching/consulting-interviews",
         },

@@ -563,7 +563,7 @@ export default function PlacementsPage() {
                   A six-question, evidence-first framework for decision-grade industry analysis.
                 </p>
               </Link>
-              <a
+              <Link
                 href="/placements/case-study-preparation"
                 className="border-ink-200 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 rounded-2xl border p-6 transition focus-visible:ring-2 focus-visible:outline-none"
               >
@@ -572,7 +572,67 @@ export default function PlacementsPage() {
                 <p className="text-ink-600 dark:text-ink-300 mt-2 text-sm leading-relaxed">
                   Practise structuring, quantitative reasoning and executive synthesis.
                 </p>
-              </a>
+              </Link>
+              <Link
+                href="/placements/case-frameworks"
+                className="border-ink-200 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 rounded-2xl border p-6 transition focus-visible:ring-2 focus-visible:outline-none"
+              >
+                <p className="eyebrow mb-2">Framework library</p>
+                <h3 className="font-serif text-2xl font-semibold">Case Frameworks</h3>
+                <p className="text-ink-600 dark:text-ink-300 mt-2 text-sm leading-relaxed">
+                  Six case families, each with a diagram, questions and a worked example.
+                </p>
+              </Link>
+              <Link
+                href="/placements/case-examples"
+                className="border-ink-200 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 rounded-2xl border p-6 transition focus-visible:ring-2 focus-visible:outline-none"
+              >
+                <p className="eyebrow mb-2">Worked examples</p>
+                <h3 className="font-serif text-2xl font-semibold">Case Examples</h3>
+                <p className="text-ink-600 dark:text-ink-300 mt-2 text-sm leading-relaxed">
+                  Three short original cases across entry, growth and pricing.
+                </p>
+              </Link>
+              <Link
+                href="/placements/guesstimates"
+                className="border-ink-200 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 rounded-2xl border p-6 transition focus-visible:ring-2 focus-visible:outline-none"
+              >
+                <p className="eyebrow mb-2">Estimation</p>
+                <h3 className="font-serif text-2xl font-semibold">Guesstimates</h3>
+                <p className="text-ink-600 dark:text-ink-300 mt-2 text-sm leading-relaxed">
+                  A repeatable method, with three fully worked estimates.
+                </p>
+              </Link>
+              <Link
+                href="/placements/general-management-interviews"
+                className="border-ink-200 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 rounded-2xl border p-6 transition focus-visible:ring-2 focus-visible:outline-none"
+              >
+                <p className="eyebrow mb-2">Beyond consulting</p>
+                <h3 className="font-serif text-2xl font-semibold">General Management</h3>
+                <p className="text-ink-600 dark:text-ink-300 mt-2 text-sm leading-relaxed">
+                  A manager&apos;s lens for sales, marketing, ops, finance and HR interviews.
+                </p>
+              </Link>
+              <Link
+                href="/placements/product-management-interview-prep"
+                className="border-ink-200 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 rounded-2xl border p-6 transition focus-visible:ring-2 focus-visible:outline-none"
+              >
+                <p className="eyebrow mb-2">Self-test</p>
+                <h3 className="font-serif text-2xl font-semibold">Product Management</h3>
+                <p className="text-ink-600 dark:text-ink-300 mt-2 text-sm leading-relaxed">
+                  Ten questions across product sense, metrics, execution and strategy.
+                </p>
+              </Link>
+              <Link
+                href="/placements/strategy-entrepreneurship-interview-prep"
+                className="border-ink-200 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 rounded-2xl border p-6 transition focus-visible:ring-2 focus-visible:outline-none"
+              >
+                <p className="eyebrow mb-2">Self-test</p>
+                <h3 className="font-serif text-2xl font-semibold">Strategy &amp; Entrepreneurship</h3>
+                <p className="text-ink-600 dark:text-ink-300 mt-2 text-sm leading-relaxed">
+                  Ten questions across competitive strategy, corporate strategy and growth.
+                </p>
+              </Link>
               <a
                 href={`mailto:${profile.email}?subject=Placement%20Preparation%20Mentoring`}
                 className="border-ink-200 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 rounded-2xl border p-6 transition focus-visible:ring-2 focus-visible:outline-none"

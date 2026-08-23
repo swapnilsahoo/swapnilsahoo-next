@@ -114,29 +114,34 @@ const casebookPath = [
     title: "Consulting prep 101",
     description:
       "Know the interview process, evaluation criteria and how to use a case group well.",
+    href: undefined,
   },
   {
     number: "02",
     title: "Case frameworks",
     description:
       "Build adaptable starting structures for common case families and unusual prompts.",
+    href: "/placements/case-frameworks",
   },
   {
     number: "03",
     title: "Case examples",
     description:
       "Move from candidate brief to analysis, exhibits, synthesis and interviewer feedback.",
+    href: "/placements/case-examples",
   },
   {
     number: "04",
     title: "Guesstimates",
     description: "Define, decompose, estimate and sanity-check with visible assumptions and units.",
+    href: "/placements/guesstimates",
   },
   {
     number: "05",
     title: "Industry primers",
     description:
       "Learn business models, value chains, economics, KPIs, competition and emerging trends.",
+    href: "/placements/industry-analysis",
   },
 ] as const;
 
@@ -699,20 +704,42 @@ export default function CaseStudyPreparationPage() {
               the industry context needed to make commercially grounded recommendations.
             </p>
             <ol className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-              {casebookPath.map((item) => (
-                <li
-                  key={item.number}
-                  className="border-brand-200/70 dark:border-brand-700/40 rounded-2xl border bg-white/60 p-5 dark:bg-white/5"
-                >
-                  <span className="text-brand-700 dark:text-brand-300 font-mono text-[11px] font-semibold">
-                    {item.number}
-                  </span>
-                  <h3 className="mt-2 font-serif text-lg font-semibold">{item.title}</h3>
-                  <p className="text-ink-600 dark:text-ink-300 mt-2 text-xs leading-relaxed">
-                    {item.description}
-                  </p>
-                </li>
-              ))}
+              {casebookPath.map((item) => {
+                const cardContent = (
+                  <>
+                    <span className="text-brand-700 dark:text-brand-300 font-mono text-[11px] font-semibold">
+                      {item.number}
+                    </span>
+                    <h3 className="mt-2 font-serif text-lg font-semibold">{item.title}</h3>
+                    <p className="text-ink-600 dark:text-ink-300 mt-2 text-xs leading-relaxed">
+                      {item.description}
+                    </p>
+                    {item.href ? (
+                      <span className="text-brand-700 dark:text-brand-400 mt-3 inline-flex items-center gap-1 text-xs font-semibold">
+                        Open
+                        <ArrowRightIcon className="h-3 w-3" aria-hidden="true" />
+                      </span>
+                    ) : null}
+                  </>
+                );
+
+                return (
+                  <li key={item.number}>
+                    {item.href ? (
+                      <Link
+                        href={item.href}
+                        className="border-brand-200/70 dark:border-brand-700/40 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 block h-full rounded-2xl border bg-white/60 p-5 transition focus-visible:ring-2 focus-visible:outline-none dark:bg-white/5"
+                      >
+                        {cardContent}
+                      </Link>
+                    ) : (
+                      <div className="border-brand-200/70 dark:border-brand-700/40 h-full rounded-2xl border bg-white/60 p-5 dark:bg-white/5">
+                        {cardContent}
+                      </div>
+                    )}
+                  </li>
+                );
+              })}
             </ol>
             <p className="text-ink-600 dark:text-ink-300 mt-7 max-w-4xl text-sm leading-relaxed">
               A practical cadence is to form a diverse group of four to six people 45–60 days before
