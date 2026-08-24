@@ -50,6 +50,10 @@ export const teachingDropdown: NavDropdown = {
           label: "Finding Product-Market Fit",
           href: "/teaching/product-market-fit",
         },
+        {
+          label: "Hiring Your First Five People",
+          href: "/teaching/hiring-first-team",
+        },
       ],
     },
     { label: "The Entrepreneurship Shelf", href: "/teaching/reading-and-watching-list" },

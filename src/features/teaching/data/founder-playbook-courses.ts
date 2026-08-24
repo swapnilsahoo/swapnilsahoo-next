@@ -41,4 +41,13 @@ export const founderPlaybookCourses: readonly FounderPlaybookCourse[] = [
     href: "/teaching/product-market-fit",
     deckHref: "/downloads/finding-product-market-fit.pptx",
   },
+  {
+    slug: "hiring-first-team",
+    title: "Hiring Your First Five People",
+    tagline: "Your first hires define what the company can do before there's a process to lean on.",
+    description:
+      "Four traits that matter more than a strong resume, four rules for early equity that prevent most future disputes, and the co-founder mistakes that quietly break companies later.",
+    href: "/teaching/hiring-first-team",
+    deckHref: "/downloads/hiring-your-first-five-people.pptx",
+  },
 ];
