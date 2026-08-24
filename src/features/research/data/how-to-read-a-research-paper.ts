@@ -1,3 +1,28 @@
+export const newFieldTip = {
+  title: "New to this field? Don't start with the paper that made you curious.",
+  description:
+    "The paper that first caught your interest usually assumes a field's worth of shared vocabulary you don't have yet. Find a recent review or survey article in the area first — its whole job is to map the live debates, the settled questions and the standard jargon before you ever touch a primary study. Read one or two of those before you go back to the paper you actually wanted to read; it will take a fraction of the time it would have taken cold.",
+} as const;
+
+export const triageQuestions: readonly string[] = [
+  "What's the actual research question — can you state it in one sentence without using any word from the title?",
+  "Why does this paper claim to be novel — is it a new question, a new method on an old question, or a new setting for an established finding?",
+  "Does this bear on what you're actually trying to figure out, or only on the same general topic?",
+  "If the answer turns out to be exactly what the abstract says, does that change anything you currently believe or plan to do?",
+] as const;
+
+export const legitimateAccessMethods: readonly string[] = [
+  "Check your institution's library access first — most journal subscriptions cover far more than students realise, and a librarian can usually find a route to almost anything.",
+  "Search for a preprint version on an open server for your field (arXiv, SSRN, bioRxiv and similar) — many published papers have a free, nearly identical preprint sitting in public view.",
+  "Email the corresponding author directly and ask for a copy. This is completely normal academic practice — most researchers are glad someone wants to read their work, and a short, specific request gets answered far more often than you'd expect.",
+] as const;
+
+export const practiceNote = {
+  title: "This is a skill, not a talent — it gets faster with repetition.",
+  description:
+    "The first few papers in a new area will genuinely take hours and still feel incomplete; that's normal, not a sign you're doing it wrong. Expect to reread anything that matters to your own work more than once — a dense paper rarely gives up its weakest assumption on the first pass. AI summarisers can speed up the triage in pass one, but treat a summary as a rough map, not the territory: the errors a summary tool tends to make — flattening a hedge into a certainty, missing a caveat buried in a footnote — are exactly the kind of thing this whole guide is trying to teach you to catch yourself. Do your own second and third pass on anything you intend to cite, extend or argue against.",
+} as const;
+
 export interface ReadingPass {
   pass: string;
   time: string;

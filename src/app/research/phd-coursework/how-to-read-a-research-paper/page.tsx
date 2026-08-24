@@ -7,22 +7,27 @@ import { Container } from "@/components/ui/Container";
 import { InquiryPrelude } from "@/components/ui/InquiryPrelude";
 import {
   interrogationQuestions,
+  legitimateAccessMethods,
+  newFieldTip,
   paperLogFields,
+  practiceNote,
   readingMistakes,
   readingOrder,
   readingPasses,
+  triageQuestions,
 } from "@/features/research/data/how-to-read-a-research-paper";
 
 export const metadata: Metadata = {
   title: "How to Read a Research Paper | PhD Mandatory Coursework",
   description:
-    "A three-pass method for reading research papers efficiently, a reading order that isn't the printed order, five questions to interrogate every claim with, and the habit that turns scattered reading into an actual literature review.",
+    "A practical, elaborated guide: what to check before you commit to a full read, the three-pass method, a reading order that isn't the printed order, five questions to interrogate every claim with, how to get a paper legitimately, and the habit that turns scattered reading into an actual literature review.",
   keywords: [
     "how to read a research paper",
     "three pass method",
     "literature review method",
     "PhD reading strategy",
     "reading academic papers efficiently",
+    "how to find research papers",
   ],
   alternates: { canonical: "/research/phd-coursework/how-to-read-a-research-paper" },
   openGraph: {
@@ -147,12 +152,54 @@ export default function HowToReadAResearchPaperPage() {
         ]}
       />
 
+      <section id="before-you-open" aria-labelledby="before-you-open-title" className="py-16 sm:py-24">
+        <Container className="max-w-[87.5rem]">
+          <div className="mb-10 max-w-3xl">
+            <span className="accent-rule" />
+            <p className="eyebrow mb-3">01 / Before you open the PDF</p>
+            <h2 id="before-you-open-title" className="display text-4xl font-semibold md:text-5xl">
+              Most papers you sample shouldn&apos;t get a full read at all.
+            </h2>
+          </div>
+
+          <div className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
+            <article className="glass-card p-6 sm:p-7">
+              <h3 className="font-serif text-xl font-semibold">{newFieldTip.title}</h3>
+              <p className="text-ink-600 dark:text-ink-300 mt-3 text-sm leading-relaxed">
+                {newFieldTip.description}
+              </p>
+            </article>
+
+            <div>
+              <p className="text-ink-500 dark:text-ink-400 mb-3 text-xs leading-relaxed">
+                Once you&apos;re oriented, ask these before spending a first pass on any specific paper:
+              </p>
+              <ol className="grid gap-3 sm:grid-cols-2">
+                {triageQuestions.map((item, index) => (
+                  <li
+                    key={item}
+                    className="border-ink-200/80 dark:border-ink-700 grid grid-cols-[auto_1fr] gap-3 rounded-2xl border p-4"
+                  >
+                    <span className="bg-brand-600 flex h-6 w-6 shrink-0 items-center justify-center rounded-full font-mono text-[10px] font-semibold text-white">
+                      {index + 1}
+                    </span>
+                    <p className="text-ink-600 dark:text-ink-300 text-sm leading-relaxed">{item}</p>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
+
       <section id="three-pass" aria-labelledby="three-pass-title" className="py-16 sm:py-24">
         <Container className="max-w-[87.5rem]">
           <div className="mb-10 grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <span className="accent-rule" />
-              <p className="eyebrow mb-3">01 / Read in passes, not once</p>
+              <p className="eyebrow mb-3">02 / Read in passes, not once</p>
               <h2 id="three-pass-title" className="display text-4xl font-semibold md:text-5xl">
                 Three passes, each with a different job.
               </h2>
@@ -200,7 +247,7 @@ export default function HowToReadAResearchPaperPage() {
         <Container className="max-w-[87.5rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
-            <p className="eyebrow mb-3">02 / A reading order that isn&apos;t the printed order</p>
+            <p className="eyebrow mb-3">03 / A reading order that isn&apos;t the printed order</p>
             <h2 id="order-title" className="display text-4xl font-semibold md:text-5xl">
               Read the conclusion before the introduction.
             </h2>
@@ -234,7 +281,7 @@ export default function HowToReadAResearchPaperPage() {
         <Container className="max-w-[87.5rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
-            <p className="eyebrow mb-3">03 / Interrogate the paper, don&apos;t just absorb it</p>
+            <p className="eyebrow mb-3">04 / Interrogate the paper, don&apos;t just absorb it</p>
             <h2 id="questions-title" className="display text-4xl font-semibold md:text-5xl">
               Five questions for every claim that matters to you.
             </h2>
@@ -266,7 +313,7 @@ export default function HowToReadAResearchPaperPage() {
             />
             <div className="relative">
               <p className="font-mono text-[11px] tracking-[0.16em] text-blue-200 uppercase">
-                04 / The habit that makes it compound
+                05 / The habit that makes it compound
               </p>
               <h2 id="log-title" className="mt-3 font-serif text-4xl font-semibold">
                 Log every paper the moment you open it.
@@ -293,7 +340,7 @@ export default function HowToReadAResearchPaperPage() {
         <Container className="max-w-[87.5rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
-            <p className="eyebrow mb-3">05 / What slows most doctoral readers down</p>
+            <p className="eyebrow mb-3">06 / What slows most doctoral readers down</p>
             <h2 id="mistakes-title" className="display text-4xl font-semibold md:text-5xl">
               Four habits worth dropping early.
             </h2>
@@ -309,6 +356,46 @@ export default function HowToReadAResearchPaperPage() {
                 </p>
               </article>
             ))}
+          </div>
+        </Container>
+      </section>
+
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
+
+      <section aria-labelledby="access-title" className="py-16 sm:py-24">
+        <Container className="max-w-[87.5rem]">
+          <div className="mb-10 max-w-3xl">
+            <span className="accent-rule" />
+            <p className="eyebrow mb-3">07 / Getting the paper, and getting better at this</p>
+            <h2 id="access-title" className="display text-4xl font-semibold md:text-5xl">
+              A paywall is a speed bump, not a wall.
+            </h2>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-3">
+            {legitimateAccessMethods.map((item, index) => (
+              <article key={item} className="glass-card p-6">
+                <span className="text-brand-600/15 dark:text-brand-300/10 font-serif text-5xl font-semibold">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <p className="text-ink-600 dark:text-ink-300 mt-3 text-sm leading-relaxed">
+                  {item}
+                </p>
+              </article>
+            ))}
+          </div>
+
+          <div className="from-ink-950 to-brand-900 relative mt-6 overflow-hidden rounded-[24px] bg-gradient-to-br p-7 text-white shadow-xl shadow-blue-950/15 sm:p-10">
+            <div
+              className="bg-accent-400/15 absolute -top-24 -right-20 h-72 w-72 rounded-full blur-3xl"
+              aria-hidden="true"
+            />
+            <div className="relative">
+              <h3 className="font-serif text-2xl font-semibold">{practiceNote.title}</h3>
+              <p className="mt-4 max-w-3xl text-sm leading-relaxed text-blue-100">
+                {practiceNote.description}
+              </p>
+            </div>
           </div>
         </Container>
       </section>
