@@ -8,7 +8,7 @@ export const primaryNavLinks: NavLink[] = [
 
 export const teachingDropdown: NavDropdown = {
   label: "Teaching",
-  href: "/#teaching",
+  href: "/teaching",
   items: [
     { label: "1-Year MBA", href: "/teaching/1-year-mba" },
     { label: "2-Year MBA", href: "/teaching/2-year-mba" },
