@@ -2,12 +2,12 @@ import { researchBranches } from "@/features/research/data/researchAgenda";
 import type { NavDropdown, NavLink } from "@/features/profile/types";
 
 export const aboutNavLink: NavLink = { label: "About", href: "/#about" };
-export const publicationsNavLink: NavLink = { label: "Publications", href: "/#publications" };
 
 export const researchDropdown: NavDropdown = {
   label: "Research",
   href: "/research",
   items: [
+    { label: "Publications", href: "/#publications" },
     ...researchBranches.map((branch) => ({
       label: branch.shortTitle,
       href: `/research/${branch.slug}`,

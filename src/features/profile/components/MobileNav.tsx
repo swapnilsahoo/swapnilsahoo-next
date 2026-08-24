@@ -8,7 +8,6 @@ import {
   entrepreneurshipDropdown,
   moreDropdown,
   placementsDropdown,
-  publicationsNavLink,
   researchDropdown,
   secondaryNavLinks,
   teachingDropdown,
@@ -18,7 +17,6 @@ import { cn } from "@/lib/cn";
 
 const mobileLinks: Array<NavLink & { group: string }> = [
   { ...aboutNavLink, group: "Profile" },
-  { ...publicationsNavLink, group: "Profile" },
   ...secondaryNavLinks.map((link) => ({ ...link, group: "Profile" })),
   ...researchDropdown.items.map((link) => ({ ...link, group: "Research" })),
   ...teachingDropdown.items.map((link) => ({ ...link, group: "Teaching" })),

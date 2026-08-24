@@ -5,7 +5,6 @@ import {
   entrepreneurshipDropdown,
   moreDropdown,
   placementsDropdown,
-  publicationsNavLink,
   researchDropdown,
   secondaryNavLinks,
   teachingDropdown,
@@ -41,12 +40,6 @@ export function StickyNav() {
             {aboutNavLink.label}
           </Link>
           <NavDropdownMenu dropdown={researchDropdown} />
-          <Link
-            href={publicationsNavLink.href}
-            className="link-underline inline-flex min-h-11 items-center rounded-lg px-3 py-1.5"
-          >
-            {publicationsNavLink.label}
-          </Link>
           <NavDropdownMenu dropdown={teachingDropdown} />
           <NavDropdownMenu dropdown={placementsDropdown} />
           <NavDropdownMenu dropdown={entrepreneurshipDropdown} />
