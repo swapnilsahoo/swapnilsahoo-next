@@ -62,6 +62,16 @@ export const teachingDropdown: NavDropdown = {
     },
     { label: "The Entrepreneurship Shelf", href: "/teaching/reading-and-watching-list" },
     {
+      label: "PhD Mandatory Coursework",
+      href: "/teaching/phd-coursework",
+      children: [
+        {
+          label: "How to Read a Research Paper",
+          href: "/teaching/phd-coursework/how-to-read-a-research-paper",
+        },
+      ],
+    },
+    {
       label: "Placement Assistance",
       href: "/placements",
       children: [

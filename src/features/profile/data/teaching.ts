@@ -64,6 +64,13 @@ export const teachingLinks: TeachingLink[] = [
       "A reading channel and video channel of books, films, series and documentaries I actually point students to, each with why it earns the recommendation.",
     href: "/teaching/reading-and-watching-list",
   },
+  {
+    eyebrow: "PhD Supervision",
+    title: "PhD Mandatory Coursework",
+    description:
+      "What each mandatory coursework component is actually for, plus a dedicated guide on how to read a research paper — the three-pass method, a reading order that isn't the printed order, and a habit that makes it compound.",
+    href: "/teaching/phd-coursework",
+  },
 ];
 
 export const teachingPhilosophy = {
