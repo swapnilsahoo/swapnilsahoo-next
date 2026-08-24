@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import {
   aboutNavLink,
   moreDropdown,
+  placementsDropdown,
   publicationsNavLink,
   researchDropdown,
   secondaryNavLinks,
@@ -20,6 +21,7 @@ const mobileLinks: Array<NavLink & { group: string }> = [
   ...secondaryNavLinks.map((link) => ({ ...link, group: "Profile" })),
   ...researchDropdown.items.map((link) => ({ ...link, group: "Research" })),
   ...teachingDropdown.items.map((link) => ({ ...link, group: "Teaching" })),
+  ...placementsDropdown.items.map((link) => ({ ...link, group: "Placements" })),
   ...moreDropdown.items.map((link) => ({ ...link, group: "More" })),
 ];
 
@@ -93,11 +95,12 @@ export function MobileNav() {
     };
   }, [open]);
 
-  const groups = ["Profile", "Research", "Teaching", "More"] as const;
+  const groups = ["Profile", "Research", "Teaching", "Placements", "More"] as const;
   const groupHref: Record<(typeof groups)[number], string | null> = {
     Profile: null,
     Research: researchDropdown.href,
     Teaching: teachingDropdown.href,
+    Placements: placementsDropdown.href,
     More: moreDropdown.href,
   };
 

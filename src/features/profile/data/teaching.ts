@@ -44,13 +44,6 @@ export const teachingLinks: TeachingLink[] = [
     href: "/teaching/how-to-build-a-startup",
   },
   {
-    eyebrow: "Career",
-    title: "Placement Assistance",
-    description:
-      "Choose roles carefully, make the CV evidential and rehearse stories until they sound like your own. Includes rigorous industry analysis and case study preparation.",
-    href: "/placements",
-  },
-  {
     eyebrow: "Consulting",
     title: "Cracking Consulting Interviews",
     description:

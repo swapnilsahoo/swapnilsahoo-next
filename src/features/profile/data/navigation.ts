@@ -80,49 +80,50 @@ export const teachingDropdown: NavDropdown = {
       ],
     },
     { label: "The Entrepreneurship Shelf", href: "/teaching/reading-and-watching-list" },
-    {
-      label: "Placement Assistance",
-      href: "/placements",
-      children: [
-        {
-          label: "Rigorous Industry Analysis",
-          href: "/placements/industry-analysis",
-        },
-        {
-          label: "Case Study Preparation",
-          href: "/placements/case-study-preparation",
-        },
-        {
-          label: "Case Frameworks",
-          href: "/placements/case-frameworks",
-        },
-        {
-          label: "Case Examples",
-          href: "/placements/case-examples",
-        },
-        {
-          label: "Guesstimates",
-          href: "/placements/guesstimates",
-        },
-        {
-          label: "General Management Interviews",
-          href: "/placements/general-management-interviews",
-        },
-        {
-          label: "Product Management Interview Prep",
-          href: "/placements/product-management-interview-prep",
-        },
-        {
-          label: "Strategy & Entrepreneurship Interview Prep",
-          href: "/placements/strategy-entrepreneurship-interview-prep",
-        },
-        {
-          label: "Cracking Consulting Interviews",
-          href: "/teaching/consulting-interviews",
-        },
-      ],
-    },
     { label: "Executive MDPs", href: "/#mdp" },
+  ],
+};
+
+export const placementsDropdown: NavDropdown = {
+  label: "Placement Assistance",
+  href: "/placements",
+  items: [
+    {
+      label: "Rigorous Industry Analysis",
+      href: "/placements/industry-analysis",
+    },
+    {
+      label: "Case Study Preparation",
+      href: "/placements/case-study-preparation",
+    },
+    {
+      label: "Case Frameworks",
+      href: "/placements/case-frameworks",
+    },
+    {
+      label: "Case Examples",
+      href: "/placements/case-examples",
+    },
+    {
+      label: "Guesstimates",
+      href: "/placements/guesstimates",
+    },
+    {
+      label: "General Management Interviews",
+      href: "/placements/general-management-interviews",
+    },
+    {
+      label: "Product Management Interview Prep",
+      href: "/placements/product-management-interview-prep",
+    },
+    {
+      label: "Strategy & Entrepreneurship Interview Prep",
+      href: "/placements/strategy-entrepreneurship-interview-prep",
+    },
+    {
+      label: "Cracking Consulting Interviews",
+      href: "/teaching/consulting-interviews",
+    },
   ],
 };
 
