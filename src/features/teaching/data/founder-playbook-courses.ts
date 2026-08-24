@@ -50,4 +50,13 @@ export const founderPlaybookCourses: readonly FounderPlaybookCourse[] = [
     href: "/teaching/hiring-first-team",
     deckHref: "/downloads/hiring-your-first-five-people.pptx",
   },
+  {
+    slug: "pitching-storytelling",
+    title: "Pitching and Storytelling",
+    tagline: "One idea. Three genuinely different two-minute pitches.",
+    description:
+      "What an investor, a customer and a prospective hire are each actually listening for, a six-step structure that works for any two-minute pitch, and the four mistakes that make pitches forgettable.",
+    href: "/teaching/pitching-storytelling",
+    deckHref: "/downloads/pitching-and-storytelling.pptx",
+  },
 ];

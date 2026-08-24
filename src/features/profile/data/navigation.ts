@@ -54,6 +54,10 @@ export const teachingDropdown: NavDropdown = {
           label: "Hiring Your First Five People",
           href: "/teaching/hiring-first-team",
         },
+        {
+          label: "Pitching and Storytelling",
+          href: "/teaching/pitching-storytelling",
+        },
       ],
     },
     { label: "The Entrepreneurship Shelf", href: "/teaching/reading-and-watching-list" },
