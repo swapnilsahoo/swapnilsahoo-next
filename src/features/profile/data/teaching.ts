@@ -37,25 +37,11 @@ export const teachingLinks: TeachingLink[] = [
     href: "/teaching/ai-hackathon",
   },
   {
-    eyebrow: "The Founder's Playbook",
-    title: "How to Build a Startup?",
-    description:
-      "A plain-language guide for students grounded in effectuation research: five ways of thinking for early founders, how to talk to customers, what an MVP really is and a first-two-weeks checklist.",
-    href: "/teaching/how-to-build-a-startup",
-  },
-  {
     eyebrow: "Consulting",
     title: "Cracking Consulting Interviews",
     description:
       "My in-depth, first-person guide: the process end to end, the case method, framework families, the fit round, group discussions and the mistakes I see most often.",
     href: "/teaching/consulting-interviews",
-  },
-  {
-    eyebrow: "Entrepreneurship",
-    title: "The Entrepreneurship Shelf",
-    description:
-      "A reading channel and video channel of books, films, series and documentaries I actually point students to, each with why it earns the recommendation.",
-    href: "/teaching/reading-and-watching-list",
   },
 ];
 

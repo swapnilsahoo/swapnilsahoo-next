@@ -568,10 +568,10 @@ export default function ReadingAndWatchingListPage() {
             </Link>
             <span aria-hidden="true">/</span>
             <Link
-              href="/#teaching"
+              href="/teaching/how-to-build-a-startup"
               className="transition hover:text-blue-700 dark:hover:text-blue-300"
             >
-              Teaching
+              Entrepreneurship
             </Link>
             <span aria-hidden="true">/</span>
             <span aria-current="page" className="text-ink-800 dark:text-ink-100">
@@ -611,7 +611,7 @@ export default function ReadingAndWatchingListPage() {
             <div className="grid items-end gap-12 lg:grid-cols-[1fr_0.42fr]">
               <div>
                 <span className="inline-flex rounded-full border border-white/15 bg-white/10 px-3 py-1.5 font-mono text-[11px] tracking-[0.14em] text-blue-100 uppercase backdrop-blur-sm">
-                  Teaching · Entrepreneurship · Reading channel · Video channel
+                  Entrepreneurship · Reading channel · Video channel
                 </span>
                 <h1 className="display mt-7 max-w-4xl text-5xl font-semibold text-balance sm:text-7xl">
                   The <span className="text-brand-200 font-normal italic">shelf.</span>

@@ -104,7 +104,7 @@ export default function HowToBuildAStartupPage() {
               aria-hidden="true"
             />
             <span className="inline-flex rounded-full border border-white/15 bg-white/10 px-3 py-1.5 font-mono text-[11px] tracking-[0.14em] text-blue-100 uppercase backdrop-blur-sm">
-              Teaching · The Founder&apos;s Playbook
+              Entrepreneurship · The Founder&apos;s Playbook
             </span>
             <h1 className="display mt-7 max-w-4xl text-5xl font-semibold text-balance sm:text-7xl">
               How to build{" "}

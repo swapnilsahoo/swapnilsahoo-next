@@ -53,33 +53,6 @@ export const teachingDropdown: NavDropdown = {
         { label: "Side Quests · AI Viva Bot", href: "/teaching/ai-hackathon/side-quests" },
       ],
     },
-    {
-      label: "How to Build a Startup?",
-      href: "/teaching/how-to-build-a-startup",
-      children: [
-        {
-          label: "Building a Durable Advantage",
-          href: "/teaching/building-a-durable-advantage",
-        },
-        {
-          label: "Raising Money Without Losing the Company",
-          href: "/teaching/raising-money",
-        },
-        {
-          label: "Finding Product-Market Fit",
-          href: "/teaching/product-market-fit",
-        },
-        {
-          label: "Hiring Your First Five People",
-          href: "/teaching/hiring-first-team",
-        },
-        {
-          label: "Pitching and Storytelling",
-          href: "/teaching/pitching-storytelling",
-        },
-      ],
-    },
-    { label: "The Entrepreneurship Shelf", href: "/teaching/reading-and-watching-list" },
     { label: "Executive MDPs", href: "/#mdp" },
   ],
 };
@@ -124,6 +97,40 @@ export const placementsDropdown: NavDropdown = {
       label: "Cracking Consulting Interviews",
       href: "/teaching/consulting-interviews",
     },
+  ],
+};
+
+export const entrepreneurshipDropdown: NavDropdown = {
+  label: "Entrepreneurship",
+  href: "/teaching/how-to-build-a-startup",
+  items: [
+    {
+      label: "How to Build a Startup?",
+      href: "/teaching/how-to-build-a-startup",
+      children: [
+        {
+          label: "Building a Durable Advantage",
+          href: "/teaching/building-a-durable-advantage",
+        },
+        {
+          label: "Raising Money Without Losing the Company",
+          href: "/teaching/raising-money",
+        },
+        {
+          label: "Finding Product-Market Fit",
+          href: "/teaching/product-market-fit",
+        },
+        {
+          label: "Hiring Your First Five People",
+          href: "/teaching/hiring-first-team",
+        },
+        {
+          label: "Pitching and Storytelling",
+          href: "/teaching/pitching-storytelling",
+        },
+      ],
+    },
+    { label: "The Entrepreneurship Shelf", href: "/teaching/reading-and-watching-list" },
   ],
 };
 
