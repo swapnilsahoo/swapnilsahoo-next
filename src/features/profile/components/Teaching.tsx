@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { Reveal } from "@/components/ui/Reveal";
 import { ArrowRightIcon } from "@/components/icons/LineIcons";
 import { LinkedInIcon } from "@/components/icons/SocialIcons";
@@ -13,19 +15,43 @@ export function Teaching() {
   return (
     <Reveal>
       <section id="teaching" className="mx-auto max-w-6xl px-6 py-16">
-        <div className="mb-10 grid gap-10 md:grid-cols-12">
-          <div className="md:col-span-4">
-            <span className="accent-rule" />
-            <p className="eyebrow mb-3">06 / Teaching</p>
-            <h2 className="display text-4xl font-semibold md:text-5xl">
-              Teaching strategy through decisions, trade-offs and practice.
-            </h2>
+        <div className="relative isolate mb-10 overflow-hidden rounded-[28px] border border-white/10 bg-ink-950 px-6 py-10 text-white shadow-xl shadow-blue-950/15 sm:px-10 sm:py-12">
+          <Image
+            src="/images/gallery/sapience-2025-panel-speaking.jpg"
+            alt="Dr Swapnil Sahoo mid-speech on a panel at SAPIENCE 2025, Great Lakes Gurgaon"
+            fill
+            className="-z-20 object-cover"
+            style={{ objectPosition: "center 30%" }}
+            sizes="(min-width: 1024px) 1152px, 100vw"
+          />
+          <div
+            className="absolute inset-0 -z-10"
+            style={{
+              backgroundImage:
+                "linear-gradient(to bottom right, rgba(5,10,24,0.92), rgba(30,58,138,0.85), rgba(22,32,51,0.82))",
+            }}
+          />
+          <div
+            className="bg-accent-400/20 absolute -top-24 -right-20 -z-10 h-72 w-72 rounded-full blur-3xl"
+            aria-hidden="true"
+          />
+          <div className="grid gap-10 md:grid-cols-12">
+            <div className="md:col-span-4">
+              <span className="accent-rule" />
+              <p className="mb-3 font-mono text-[11px] tracking-[0.14em] text-blue-200 uppercase">
+                06 / Teaching
+              </p>
+              <h2 className="display text-4xl font-semibold md:text-5xl">
+                Teaching strategy through decisions, trade-offs and practice.
+              </h2>
+            </div>
+            <p className="self-end text-sm leading-relaxed text-blue-100 md:col-span-8">
+              Across PGPM and PGDM classrooms, I use cases, simulations, fieldwork and build
+              exercises to move from a framework to a defensible decision. AI appears where it
+              genuinely improves the work; fluent output still needs verification and human
+              judgment.
+            </p>
           </div>
-          <p className="text-ink-600 dark:text-ink-300 self-end text-sm leading-relaxed md:col-span-8">
-            Across PGPM and PGDM classrooms, I use cases, simulations, fieldwork and build exercises
-            to move from a framework to a defensible decision. AI appears where it genuinely
-            improves the work; fluent output still needs verification and human judgment.
-          </p>
         </div>
 
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

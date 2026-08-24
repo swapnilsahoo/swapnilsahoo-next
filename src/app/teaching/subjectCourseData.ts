@@ -7,6 +7,11 @@ export const karmaYogaCourse = {
     accent: "service becomes a rigorous management laboratory.",
     description:
       "A field-learning architecture for management education, where student teams listen, frame, co-design, deliver, measure, hand over and reflect with community partners.",
+    image: {
+      src: "/images/teaching/karma-yoga/b-schools/student-connection.webp",
+      alt: "Management students learning with schoolchildren in the field",
+      objectPosition: "center 40%",
+    },
     actions: [
       { label: "See field practice", href: "#karma-yoga-b-schools" },
       { label: "Explore the learning loop", href: "#learning-loop" },
@@ -429,6 +434,11 @@ export const businessSimulationCourse = {
     accent: "strategy under pressure, with consequences.",
     description:
       "A 20-session executive decision laboratory in which teams run a global technology company across Asia, Europe and the United States—integrating strategy, marketing, R&D, production, people, finance, tax and ESG while rivals move at the same time.",
+    image: {
+      src: "/images/gallery/winter-conference-2025-classroom.jpg",
+      alt: "Students at laptops during a workshop at Great Lakes Gurgaon",
+      objectPosition: "center 40%",
+    },
   },
   metadata: [
     { label: "Course", value: "MBA & eMBA · Term 4" },

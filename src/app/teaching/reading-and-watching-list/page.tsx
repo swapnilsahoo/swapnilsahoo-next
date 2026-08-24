@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 import { ArrowRightIcon } from "@/components/icons/LineIcons";
@@ -580,8 +581,24 @@ export default function ReadingAndWatchingListPage() {
 
           <div
             data-page-hero="academic"
-            className="from-ink-950 via-brand-900 to-ink-800 relative isolate overflow-hidden rounded-[30px] border border-white/10 bg-gradient-to-br px-6 py-12 text-white shadow-2xl shadow-blue-950/20 sm:px-10 sm:py-16 lg:px-14"
+            className="relative isolate overflow-hidden rounded-[30px] border border-white/10 bg-ink-950 px-6 py-12 text-white shadow-2xl shadow-blue-950/20 sm:px-10 sm:py-16 lg:px-14"
           >
+            <Image
+              src="/images/gallery/strategy-cohort-sept-2025.jpg"
+              alt="A Strategy cohort gathered for a group photo at Great Lakes Gurgaon"
+              fill
+              priority
+              className="-z-20 object-cover"
+              style={{ objectPosition: "center 38%" }}
+              sizes="100vw"
+            />
+            <div
+              className="absolute inset-0 -z-10"
+              style={{
+                backgroundImage:
+                  "linear-gradient(to bottom right, rgba(5,10,24,0.92), rgba(30,58,138,0.85), rgba(22,32,51,0.82))",
+              }}
+            />
             <div
               className="bg-accent-400/20 absolute -top-28 -right-24 -z-10 h-80 w-80 rounded-full blur-3xl"
               aria-hidden="true"

@@ -30,7 +30,23 @@ export function KarmaYogaHub() {
   return (
     <main id="main-content" tabIndex={-1} className="overflow-clip">
       <header className="px-4 pt-10 pb-8 sm:px-6 sm:pt-16 lg:px-8">
-        <div className="from-ink-950 via-brand-950 to-ink-900 relative isolate mx-auto max-w-[92rem] overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br text-white shadow-[0_40px_120px_-48px_rgba(3,7,18,0.9)] sm:rounded-[2.5rem]">
+        <div className="relative isolate mx-auto max-w-[92rem] overflow-hidden rounded-[2rem] border border-white/10 bg-ink-950 text-white shadow-[0_40px_120px_-48px_rgba(3,7,18,0.9)] sm:rounded-[2.5rem]">
+          <Image
+            src="/images/teaching/karma-yoga/mehalchauri/community-circle.webp"
+            alt="Women and girls forming a community circle in a Mehalchauri courtyard"
+            fill
+            priority
+            className="-z-20 object-cover"
+            style={{ objectPosition: "center 40%" }}
+            sizes="100vw"
+          />
+          <div
+            className="absolute inset-0 -z-10"
+            style={{
+              backgroundImage:
+                "linear-gradient(to bottom right, rgba(5,10,24,0.92), rgba(30,58,138,0.85), rgba(10,20,38,0.82))",
+            }}
+          />
           <div
             className="bg-brand-500/20 absolute -top-40 -left-28 -z-10 h-[30rem] w-[30rem] rounded-full blur-3xl"
             aria-hidden="true"
