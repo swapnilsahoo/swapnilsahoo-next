@@ -22,6 +22,7 @@ export const researchDropdown: NavDropdown = {
         },
       ],
     },
+    { label: "PhD Reach Out", href: "/#phd" },
   ],
 };
 
@@ -134,17 +135,14 @@ export const entrepreneurshipDropdown: NavDropdown = {
   ],
 };
 
-export const secondaryNavLinks: NavLink[] = [
-  { label: "PhD", href: "/#phd" },
-  { label: "Writing", href: "https://swapnilsahoo.substack.com/", external: true },
-  { label: "Press & Media", href: "/press" },
-];
+export const secondaryNavLinks: NavLink[] = [{ label: "Press & Media", href: "/press" }];
 
 export const moreDropdown: NavDropdown = {
   label: "More",
   href: "/#gallery",
   items: [
     { label: "Gallery", href: "/#gallery" },
+    { label: "Writing", href: "https://swapnilsahoo.substack.com/", external: true },
     {
       label: "Spirituality",
       href: "/spirituality",
