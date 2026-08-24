@@ -139,7 +139,7 @@ export function ShelfLibrary({ groups, totalCount }: { groups: ShelfGroup[]; tot
 
   return (
     <section aria-labelledby="shelf-library-title" className="py-16 sm:py-24">
-      <Container className="max-w-6xl">
+      <Container className="max-w-[87.5rem]">
         <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
           <div className="max-w-3xl">
             <span className="accent-rule" />

@@ -320,7 +320,7 @@ export function SubjectCoursePage({
 
       {contextNavigation}
 
-      <Container className="max-w-6xl">
+      <Container className="max-w-[87.5rem]">
         <nav
           aria-label="On this subject page"
           className="nav-glass my-6 flex items-center gap-4 overflow-x-auto rounded-xl px-4 py-2 lg:my-8 lg:justify-between"
@@ -351,7 +351,7 @@ export function SubjectCoursePage({
       {featuredContent}
 
       <section id="promise" aria-labelledby="promise-title" className="py-16 sm:py-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
             <div>
               <span className="accent-rule" />
@@ -387,7 +387,7 @@ export function SubjectCoursePage({
 
       {config.roundArc ? (
         <section aria-labelledby="round-arc-title" className="pb-16 sm:pb-24">
-          <Container className="max-w-6xl">
+          <Container className="max-w-[87.5rem]">
             <div className="mb-10 max-w-3xl">
               <span className="accent-rule" />
               <p className="eyebrow mb-3">{config.roundArc.eyebrow}</p>
@@ -443,7 +443,7 @@ export function SubjectCoursePage({
 
       {config.resources ? (
         <section id="resources" aria-labelledby="resources-title" className="pb-16 sm:pb-24">
-          <Container className="max-w-6xl">
+          <Container className="max-w-[87.5rem]">
             <div className="mb-10 max-w-3xl">
               <span className="accent-rule" />
               <p className="eyebrow mb-3">{config.resources.eyebrow}</p>
@@ -505,7 +505,7 @@ export function SubjectCoursePage({
 
       {config.fieldStory ? (
         <section aria-labelledby="field-story-title" className="pb-16 sm:pb-24">
-          <Container className="max-w-6xl">
+          <Container className="max-w-[87.5rem]">
             <figure className="overflow-hidden rounded-2xl border border-slate-900/10 bg-white dark:border-white/10 dark:bg-slate-950">
               <Reveal
                 variant="image"
@@ -554,7 +554,7 @@ export function SubjectCoursePage({
 
       {config.teachingMoment ? (
         <section aria-labelledby="teaching-moment-title" className="pb-16 sm:pb-24">
-          <Container className="max-w-6xl">
+          <Container className="max-w-[87.5rem]">
             <figure className="grid overflow-hidden rounded-2xl border border-slate-900/10 bg-white shadow-xl shadow-slate-950/5 lg:grid-cols-[1.15fr_0.85fr] dark:border-white/10 dark:bg-slate-950">
               <Reveal variant="image" className="relative min-h-[340px] lg:min-h-[460px]">
                 <Image
@@ -591,10 +591,10 @@ export function SubjectCoursePage({
         </section>
       ) : null}
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section id="learning-loop" aria-labelledby="learning-loop-title" className="py-16 sm:py-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="mb-12 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">02 / {config.learningLoop.name}</p>
@@ -630,7 +630,7 @@ export function SubjectCoursePage({
       </section>
 
       <section id="outcomes" aria-labelledby="outcomes-title" className="pb-16 sm:pb-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="from-ink-950 to-brand-950 relative overflow-hidden rounded-[2rem] bg-gradient-to-br px-6 py-10 text-white shadow-xl shadow-blue-950/15 sm:px-10 sm:py-14">
             <div
               className="bg-accent-400/12 absolute -right-24 -bottom-28 h-72 w-72 rounded-full blur-3xl"
@@ -665,7 +665,7 @@ export function SubjectCoursePage({
       </section>
 
       <section id="journey" aria-labelledby="journey-title" className="py-16 sm:py-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
               <span className="accent-rule" />
@@ -772,7 +772,7 @@ export function SubjectCoursePage({
       </section>
 
       <section id="practice" aria-labelledby="practice-title" className="pb-16 sm:pb-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">05 / Practice studios</p>
@@ -814,7 +814,7 @@ export function SubjectCoursePage({
         aria-labelledby="assessment-title"
         className="bg-slate-950 py-16 text-white sm:py-24"
       >
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="grid gap-12 lg:grid-cols-[0.68fr_1.32fr]">
             <div>
               <p className="font-mono text-[10px] tracking-[0.16em] text-blue-200 uppercase">
@@ -856,7 +856,7 @@ export function SubjectCoursePage({
       </section>
 
       <section id="integrity" aria-labelledby="integrity-title" className="py-16 sm:py-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr]">
             <div>
               <span className="accent-rule" />
@@ -918,7 +918,7 @@ export function SubjectCoursePage({
       </section>
 
       <section id="references" aria-labelledby="references-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="glass-card p-7 sm:p-10">
             <div className="grid gap-9 lg:grid-cols-[0.35fr_0.65fr]">
               <div>

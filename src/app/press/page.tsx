@@ -153,7 +153,7 @@ export default function PressPage() {
     <main id="main-content" tabIndex={-1}>
       <header className="relative overflow-hidden pt-14 pb-16 sm:pt-20 sm:pb-24">
         <div className="aurora" aria-hidden="true" />
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <nav
             aria-label="Breadcrumb"
             className="text-ink-500 mb-5 flex flex-wrap items-center gap-2 text-xs"
@@ -234,7 +234,7 @@ export default function PressPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section aria-labelledby="chapters-title" className="py-14 sm:py-20">
         <Container className="max-w-4xl">
@@ -251,7 +251,7 @@ export default function PressPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section aria-labelledby="cases-title" className="py-14 sm:py-20">
         <Container className="max-w-4xl">
@@ -281,7 +281,7 @@ export default function PressPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section aria-labelledby="essays-title" className="py-14 sm:py-20">
         <Container className="max-w-4xl">
@@ -311,7 +311,7 @@ export default function PressPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section aria-labelledby="linkedin-title" className="py-14 sm:py-20">
         <Container className="max-w-4xl">
@@ -355,7 +355,7 @@ export default function PressPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section aria-labelledby="mentions-title" className="py-14 sm:py-20">
         <Container className="max-w-4xl">
@@ -383,7 +383,7 @@ export default function PressPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section aria-labelledby="inquiries-title" className="py-14 sm:py-20">
         <Container className="max-w-4xl">

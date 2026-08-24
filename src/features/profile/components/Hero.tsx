@@ -10,7 +10,7 @@ export function Hero() {
   return (
     <header id="top" className="relative overflow-x-clip pt-14 pb-16 md:pt-20 md:pb-24">
       <div className="aurora" />
-      <Container className="grid max-w-6xl items-center gap-10 md:grid-cols-12">
+      <Container className="grid max-w-[87.5rem] items-center gap-10 md:grid-cols-12">
         <Reveal className="md:col-span-8">
           <div className="mb-5 flex flex-wrap items-center gap-3">
             <span className="eyebrow">{profile.title}</span>

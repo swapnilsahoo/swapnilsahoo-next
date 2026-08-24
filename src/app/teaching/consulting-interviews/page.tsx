@@ -282,7 +282,7 @@ export default function ConsultingInterviewsPage() {
     <main id="main-content" tabIndex={-1}>
       <header className="relative overflow-hidden pt-14 pb-16 sm:pt-20 sm:pb-24">
         <div className="aurora" aria-hidden="true" />
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <nav
             aria-label="Breadcrumb"
             className="text-ink-500 mb-5 flex flex-wrap items-center gap-2 text-xs"
@@ -398,7 +398,7 @@ export default function ConsultingInterviewsPage() {
       />
 
       <section aria-labelledby="process-title" className="py-16 sm:py-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="mb-10 grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <span className="accent-rule" />
@@ -433,10 +433,10 @@ export default function ConsultingInterviewsPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section aria-labelledby="evaluation-title" className="py-16 sm:py-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">02 / Evaluation criteria</p>
@@ -478,10 +478,10 @@ export default function ConsultingInterviewsPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section id="case-method" aria-labelledby="case-method-title" className="py-16 sm:py-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="mb-10 grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <span className="accent-rule" />
@@ -514,10 +514,10 @@ export default function ConsultingInterviewsPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section aria-labelledby="frameworks-title" className="py-16 sm:py-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">04 / Framework families</p>
@@ -555,10 +555,10 @@ export default function ConsultingInterviewsPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section id="fit-round" aria-labelledby="fit-title" className="py-16 sm:py-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">05 / The personal interview</p>
@@ -591,14 +591,14 @@ export default function ConsultingInterviewsPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section
         id="group-discussion"
         aria-labelledby="gd-title"
         className="py-16 sm:py-24"
       >
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">06 / Group discussions</p>
@@ -627,14 +627,14 @@ export default function ConsultingInterviewsPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section
         id="mistakes"
         aria-labelledby="mistakes-title"
         className="relative overflow-hidden bg-slate-950 py-16 text-white sm:py-24"
       >
-        <Container className="relative max-w-6xl">
+        <Container className="relative max-w-[87.5rem]">
           <div className="max-w-3xl">
             <p className="font-mono text-[10px] tracking-[0.16em] text-amber-300 uppercase">
               07 / What actually goes wrong
@@ -664,10 +664,10 @@ export default function ConsultingInterviewsPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section aria-labelledby="plan-title" className="py-16 sm:py-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">08 / How I&rsquo;d plan the weeks before</p>
@@ -696,10 +696,10 @@ export default function ConsultingInterviewsPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section aria-labelledby="landscape-title" className="py-16 sm:py-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">09 / The landscape, briefly</p>
@@ -722,7 +722,7 @@ export default function ConsultingInterviewsPage() {
       </section>
 
       <section aria-labelledby="next-title" className="pb-16 sm:pb-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="from-ink-950 to-brand-900 rounded-[28px] bg-gradient-to-br p-8 text-white shadow-xl shadow-blue-950/15 sm:p-12">
             <p className="font-mono text-[11px] tracking-[0.16em] text-blue-200 uppercase">
               None of this replaces practice

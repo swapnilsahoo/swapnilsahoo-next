@@ -58,7 +58,7 @@ export default function RaisingMoneyPage() {
 
       <header className="relative overflow-hidden pt-10 pb-12 sm:pt-16 sm:pb-20">
         <div className="aurora" aria-hidden="true" />
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <nav
             aria-label="Breadcrumb"
             className="text-ink-500 mb-5 flex flex-wrap items-center gap-2 text-xs"
@@ -151,7 +151,7 @@ export default function RaisingMoneyPage() {
       />
 
       <section aria-labelledby="module1-title" className="py-16 sm:py-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="mb-10 grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <span className="accent-rule" />
@@ -179,7 +179,7 @@ export default function RaisingMoneyPage() {
       </section>
 
       <section aria-labelledby="room-title" className="pb-16 sm:pb-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <Reveal variant="image">
             <figure className="glass-card grid overflow-hidden lg:grid-cols-[0.82fr_1.18fr]">
               <figcaption className="order-2 flex flex-col justify-center p-7 sm:p-10 lg:order-1 lg:p-12">
@@ -210,10 +210,10 @@ export default function RaisingMoneyPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section id="routes" aria-labelledby="routes-title" className="py-16 sm:py-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">Module 02 / Three ways to fund a business</p>
@@ -250,10 +250,10 @@ export default function RaisingMoneyPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section aria-labelledby="lens-title" className="py-16 sm:py-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">Module 03 / What investors actually evaluate</p>
@@ -284,10 +284,10 @@ export default function RaisingMoneyPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section aria-labelledby="dilution-title" className="py-16 sm:py-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">Module 04 / The dilution maths</p>
@@ -334,10 +334,10 @@ export default function RaisingMoneyPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section aria-labelledby="skip-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="from-ink-950 to-brand-900 relative overflow-hidden rounded-[24px] bg-gradient-to-br p-7 text-white shadow-xl shadow-blue-950/15 sm:p-10">
             <div
               className="bg-accent-400/15 absolute -top-24 -right-20 h-72 w-72 rounded-full blur-3xl"
@@ -363,7 +363,7 @@ export default function RaisingMoneyPage() {
       </section>
 
       <section aria-labelledby="continue-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="glass-card grid gap-8 p-7 sm:p-10 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
               <p className="eyebrow mb-3">Continue the playbook</p>

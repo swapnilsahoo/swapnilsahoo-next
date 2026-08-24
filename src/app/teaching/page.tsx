@@ -122,7 +122,7 @@ export default function TeachingPage() {
 
       <header className="relative overflow-hidden pt-14 pb-16 sm:pt-20 sm:pb-20">
         <div className="aurora" aria-hidden="true" />
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div
             data-page-hero="academic"
             className="relative isolate overflow-hidden rounded-[30px] border border-white/10 bg-ink-950 px-6 py-12 text-white shadow-2xl shadow-blue-950/20 sm:px-10 sm:py-16 lg:px-14"
@@ -197,7 +197,7 @@ export default function TeachingPage() {
       />
 
       <section aria-labelledby="approach-title" className="py-16 sm:py-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="mb-10 grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <span className="accent-rule" />
@@ -231,10 +231,10 @@ export default function TeachingPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section id="socratic-method" aria-labelledby="socratic-title" className="py-16 sm:py-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">02 / The Socratic method, in practice</p>
@@ -266,10 +266,10 @@ export default function TeachingPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section aria-labelledby="principles-title" className="py-16 sm:py-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">03 / First principles over frameworks</p>
@@ -309,10 +309,10 @@ export default function TeachingPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section aria-labelledby="evidence-title" className="py-16 sm:py-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">04 / What &ldquo;world-class&rdquo; has to mean here</p>
@@ -369,7 +369,7 @@ export default function TeachingPage() {
       </section>
 
       <section id="programmes" aria-labelledby="programmes-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">05 / Every course, one directory</p>

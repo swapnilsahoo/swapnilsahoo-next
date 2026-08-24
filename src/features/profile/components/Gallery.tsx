@@ -5,7 +5,7 @@ import { GalleryCarousel } from "./GalleryCarousel";
 export function Gallery() {
   return (
     <Reveal>
-      <section id="gallery" className="mx-auto max-w-6xl px-6 py-16">
+      <section id="gallery" className="mx-auto max-w-[87.5rem] px-6 py-16">
         <div className="mb-10 grid gap-10 md:grid-cols-12">
           <div className="md:col-span-4">
             <span className="accent-rule" />
@@ -22,7 +22,7 @@ export function Gallery() {
 
         <GalleryCarousel images={galleryImages} />
       </section>
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
     </Reveal>
   );
 }

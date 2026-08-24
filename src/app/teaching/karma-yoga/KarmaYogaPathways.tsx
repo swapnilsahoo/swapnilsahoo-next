@@ -318,7 +318,7 @@ function PhotoSet({
 
 export function KarmaYogaBranchNav({ current }: { current: "b-schools" | "india" }) {
   return (
-    <Container className="max-w-6xl">
+    <Container className="max-w-[87.5rem]">
       <nav
         aria-label="Karma Yoga pathways"
         className="nav-glass my-6 flex flex-wrap items-center gap-2 rounded-xl px-4 py-3 text-xs font-semibold lg:my-8"
@@ -358,7 +358,7 @@ export function KarmaYogaBschoolsStory() {
       aria-labelledby="karma-yoga-b-schools-title"
       className="scroll-mt-24 py-16 sm:py-24"
     >
-      <Container className="max-w-6xl">
+      <Container className="max-w-[87.5rem]">
         <div className="grid gap-10 lg:grid-cols-[1.12fr_0.88fr] lg:items-end">
           <div>
             <span className="accent-rule" />
@@ -436,7 +436,7 @@ export function KarmaYogaIndiaStory() {
       aria-labelledby="mehalchauri-story-title"
       className="scroll-mt-24 bg-slate-950 py-16 text-white sm:py-24"
     >
-      <Container className="max-w-6xl">
+      <Container className="max-w-[87.5rem]">
         <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
           <div>
             <span className="block h-1 w-14 rounded-full bg-emerald-300" />

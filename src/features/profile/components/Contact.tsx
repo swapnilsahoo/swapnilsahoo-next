@@ -13,7 +13,7 @@ const contactIcons: Record<ContactCard["icon"], typeof MailIcon> = {
 export function Contact() {
   return (
     <Reveal>
-      <section id="contact" className="mx-auto max-w-6xl px-6 py-16">
+      <section id="contact" className="mx-auto max-w-[87.5rem] px-6 py-16">
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-5">
             <span className="accent-rule" />

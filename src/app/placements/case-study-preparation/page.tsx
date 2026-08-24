@@ -176,7 +176,7 @@ export default function CaseStudyPreparationPage() {
     <main id="main-content" tabIndex={-1}>
       <header className="relative overflow-hidden pt-14 pb-16 sm:pt-20 sm:pb-24">
         <div className="aurora" aria-hidden="true" />
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <nav
             aria-label="Breadcrumb"
             className="text-ink-500 mb-5 flex flex-wrap items-center gap-2 text-xs"
@@ -279,7 +279,7 @@ export default function CaseStudyPreparationPage() {
       />
 
       <section aria-labelledby="system-title" className="py-16 sm:py-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="mb-10 grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <span className="accent-rule" />
@@ -312,10 +312,10 @@ export default function CaseStudyPreparationPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section id="practice-lab" aria-labelledby="lab-title" className="py-16 sm:py-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">02 / Interactive practice lab</p>
@@ -332,10 +332,10 @@ export default function CaseStudyPreparationPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section aria-labelledby="worked-case-title" className="py-16 sm:py-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="mb-10 grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <span className="accent-rule" />
@@ -557,10 +557,10 @@ export default function CaseStudyPreparationPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section aria-labelledby="cases-title" className="py-16 sm:py-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="grid gap-10 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <span className="accent-rule" />
@@ -586,7 +586,7 @@ export default function CaseStudyPreparationPage() {
       </section>
 
       <section className="pb-16 sm:pb-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="from-ink-950 to-brand-900 relative overflow-hidden rounded-[26px] bg-gradient-to-br p-7 text-white shadow-xl shadow-blue-950/15 sm:p-10">
             <div
               className="bg-accent-400/15 absolute -top-24 -right-20 h-72 w-72 rounded-full blur-3xl"
@@ -620,10 +620,10 @@ export default function CaseStudyPreparationPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section aria-labelledby="fluency-title" className="py-16 sm:py-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">05 / Interview fluency</p>
@@ -664,7 +664,7 @@ export default function CaseStudyPreparationPage() {
       </section>
 
       <section className="pb-16 sm:pb-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="glass-card grid gap-8 p-7 sm:p-10 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
               <div className="bg-accent-400/10 text-accent-600 dark:text-accent-400 mb-5 flex h-11 w-11 items-center justify-center rounded-xl">
@@ -692,7 +692,7 @@ export default function CaseStudyPreparationPage() {
       </section>
 
       <section id="casebook-path" aria-labelledby="source-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="from-brand-50 to-accent-400/10 dark:from-brand-900/30 dark:to-accent-400/5 border-brand-200/70 dark:border-brand-700/40 rounded-[24px] border bg-gradient-to-br p-7 sm:p-10">
             <p className="eyebrow mb-3">Great Lakes Consulting Club learning path</p>
             <h2 id="source-title" className="display text-4xl font-semibold">

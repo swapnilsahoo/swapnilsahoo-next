@@ -200,7 +200,7 @@ export function TwoYearMbaExperience() {
         </div>
       </header>
 
-      <Container className="max-w-6xl">
+      <Container className="max-w-[87.5rem]">
         <nav
           aria-label="On this course page"
           className="nav-glass my-6 flex items-center gap-4 overflow-x-auto rounded-xl px-4 py-2 lg:my-8 lg:justify-between"
@@ -240,7 +240,7 @@ export function TwoYearMbaExperience() {
         aria-labelledby="course-profile-title"
         className="py-16 sm:py-24"
       >
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
             <div>
               <p className="eyebrow">01 / Course profile</p>
@@ -307,7 +307,7 @@ export function TwoYearMbaExperience() {
         aria-labelledby="pathway-title"
         className="bg-slate-950 py-20 text-white sm:py-28"
       >
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
               <p className="font-mono text-[10px] tracking-[0.18em] text-emerald-300 uppercase">
@@ -359,7 +359,7 @@ export function TwoYearMbaExperience() {
       </section>
 
       <section id="sessions" aria-labelledby="sessions-title" className="py-20 sm:py-28">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
               <p className="eyebrow">03 / Complete session plan</p>
@@ -458,7 +458,7 @@ export function TwoYearMbaExperience() {
       </section>
 
       <section aria-labelledby="practice-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
             <article className="glass-card p-7 sm:p-9">
               <p className="eyebrow">04 / Learning methodology</p>
@@ -523,7 +523,7 @@ export function TwoYearMbaExperience() {
       </section>
 
       <section aria-labelledby="cohort-story-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <figure className="grid overflow-hidden rounded-[2rem] border border-slate-900/10 bg-white shadow-xl shadow-slate-950/5 lg:grid-cols-[1.18fr_0.82fr] dark:border-white/10 dark:bg-slate-950">
             <div className="relative min-h-[360px] lg:min-h-[470px]">
               <Image
@@ -553,7 +553,7 @@ export function TwoYearMbaExperience() {
       </section>
 
       <section id="field-lab" aria-labelledby="field-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-slate-950 via-emerald-950 to-slate-900 px-6 py-12 text-white sm:px-10 lg:px-14 lg:py-16">
             <div
               className="absolute -top-36 -right-24 h-80 w-80 rounded-full bg-amber-300/10 blur-3xl"
@@ -639,7 +639,7 @@ export function TwoYearMbaExperience() {
       </section>
 
       <section aria-labelledby="question-bank-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="glass-card overflow-hidden border-emerald-900/10 dark:border-emerald-200/10">
             <div className="grid gap-8 p-7 sm:p-10 lg:grid-cols-[0.38fr_0.62fr]">
               <div>
@@ -706,7 +706,7 @@ export function TwoYearMbaExperience() {
         aria-labelledby="assessment-title"
         className="border-y border-slate-900/8 bg-white/35 py-20 backdrop-blur-sm sm:py-28 dark:border-white/8 dark:bg-slate-950/20"
       >
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
             <div className="flex flex-col items-center lg:items-start">
               <p className="eyebrow self-start">07 / Evidence of learning</p>
@@ -833,7 +833,7 @@ export function TwoYearMbaExperience() {
       </section>
 
       <section aria-labelledby="outcomes-title" className="py-20 sm:py-28">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="grid gap-12 lg:grid-cols-[0.68fr_1.32fr]">
             <div>
               <p className="eyebrow">08 / Capability outcomes</p>
@@ -880,7 +880,7 @@ export function TwoYearMbaExperience() {
       </section>
 
       <aside aria-labelledby="connected-practice-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="glass-card grid gap-8 p-7 sm:p-10 lg:grid-cols-[0.7fr_1.3fr] lg:items-center">
             <div>
               <p className="eyebrow">Connected practice</p>
@@ -943,7 +943,7 @@ export function TwoYearMbaExperience() {
       </aside>
 
       <section id="references" aria-labelledby="references-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="glass-card overflow-hidden">
             <div className="grid gap-8 p-7 sm:p-10 lg:grid-cols-[0.36fr_0.64fr]">
               <div>

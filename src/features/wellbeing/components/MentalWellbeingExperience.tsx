@@ -21,7 +21,7 @@ export function MentalWellbeingExperience() {
     <main id="main-content" tabIndex={-1}>
       <header className="relative overflow-hidden pt-14 pb-12 sm:pt-20 sm:pb-16">
         <div className="aurora" aria-hidden="true" />
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <p className="font-mono text-[10px] font-bold tracking-[0.18em] text-emerald-700 uppercase dark:text-emerald-300">
             Holistic Wellbeing · Mental Wellbeing
           </p>
@@ -71,10 +71,10 @@ export function MentalWellbeingExperience() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section aria-labelledby="program-title" className="py-14 sm:py-20">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="mb-10 grid gap-6 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <span className="accent-rule" />
@@ -116,10 +116,10 @@ export function MentalWellbeingExperience() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section aria-labelledby="rules-title" className="py-14 sm:py-20">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="mb-8">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">03 / Three options to adapt</p>
@@ -153,10 +153,10 @@ export function MentalWellbeingExperience() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section aria-labelledby="schedule-title" className="py-14 sm:py-20">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="mb-8 grid gap-6 lg:grid-cols-2">
             <div>
               <span className="accent-rule" />
@@ -206,10 +206,10 @@ export function MentalWellbeingExperience() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section aria-labelledby="milestones-title" className="py-14 sm:py-20">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="mb-8">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">05 / Reflection points</p>
@@ -242,14 +242,14 @@ export function MentalWellbeingExperience() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section
         aria-labelledby="help-title"
         className="py-14 sm:py-20"
         style={{ background: "var(--surface, transparent)" }}
       >
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div
             className="rounded-3xl border-2 p-6 sm:p-9"
             style={{ borderColor: "rgb(244 63 94 / 0.35)" }}
@@ -303,10 +303,10 @@ export function MentalWellbeingExperience() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section aria-labelledby="deep-dives-title" className="py-14 sm:py-20">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="mb-8">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">07 / Going deeper</p>
@@ -358,10 +358,10 @@ export function MentalWellbeingExperience() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section aria-labelledby="affirmations-title" className="py-14 sm:py-20">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="mb-8">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">08 / Optional grounding phrases</p>
@@ -428,10 +428,10 @@ export function MentalWellbeingExperience() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-6xl" />
+      <div className="hr-fade mx-auto max-w-[87.5rem]" />
 
       <section aria-labelledby="references-title" className="py-14 sm:py-24">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="mb-6">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">09 / Sources</p>

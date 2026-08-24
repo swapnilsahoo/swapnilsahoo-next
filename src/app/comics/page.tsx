@@ -112,7 +112,7 @@ export default function ComicsPage() {
         data-page-hero="full"
         className={`${styles.hero} relative isolate overflow-hidden text-white`}
       >
-        <Container className="relative z-10 flex min-h-[620px] max-w-7xl flex-col justify-between py-8 sm:min-h-[700px] sm:py-16 lg:py-20">
+        <Container className="relative z-10 flex min-h-[620px] max-w-[96rem] flex-col justify-between py-8 sm:min-h-[700px] sm:py-16 lg:py-20">
           <div className="flex items-center gap-3 text-xs font-semibold tracking-[0.14em] uppercase">
             <span className="h-px w-10 bg-yellow-300" aria-hidden="true" />
             Comics &amp; Fiction · Three ways to keep going
@@ -167,7 +167,7 @@ export default function ComicsPage() {
         aria-labelledby="branches-title"
         className="border-b border-slate-200 bg-white py-16 sm:py-20 dark:border-white/10 dark:bg-[#07101f]"
       >
-        <Container className="max-w-7xl">
+        <Container className="max-w-[96rem]">
           <div className="max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow">Choose a branch</p>
@@ -213,7 +213,7 @@ export default function ComicsPage() {
         aria-labelledby="spider-man-title"
         className="scroll-mt-28 py-20 sm:py-28"
       >
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
             <div className="lg:sticky lg:top-32 lg:self-start">
               <p className="text-sm font-bold text-red-700 uppercase dark:text-red-400">
@@ -300,7 +300,7 @@ export default function ComicsPage() {
         aria-labelledby="superman-title"
         className={`${styles.supermanBand} scroll-mt-28 py-20 text-white sm:py-28`}
       >
-        <Container className="max-w-7xl">
+        <Container className="max-w-[96rem]">
           <div className="grid gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:gap-20">
             <figure>
               <div className="relative aspect-[4/5] overflow-hidden border border-white/20 bg-slate-900">
@@ -409,7 +409,7 @@ export default function ComicsPage() {
         aria-labelledby="he-man-title"
         className={`${styles.heManBand} scroll-mt-28 py-20 sm:py-28`}
       >
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
             <div className="lg:sticky lg:top-32 lg:self-start">
               <p className="text-sm font-bold text-purple-900 uppercase">03 / He-Man</p>
@@ -483,7 +483,7 @@ export default function ComicsPage() {
       </section>
 
       <section aria-labelledby="shared-map-title" className="py-20 sm:py-28">
-        <Container className="max-w-7xl">
+        <Container className="max-w-[96rem]">
           <div className="grid gap-10 lg:grid-cols-[0.74fr_1.26fr] lg:items-end">
             <div>
               <span className="accent-rule" />
@@ -553,7 +553,7 @@ export default function ComicsPage() {
       </section>
 
       <section aria-labelledby="sources-title" className="py-16 sm:py-20">
-        <Container className="max-w-6xl">
+        <Container className="max-w-[87.5rem]">
           <div className="grid gap-10 border-t border-slate-300 pt-10 lg:grid-cols-[0.7fr_1.3fr] dark:border-white/15">
             <div>
               <span className="accent-rule" />
