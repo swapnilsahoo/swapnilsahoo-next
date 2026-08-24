@@ -120,37 +120,42 @@ export function NavDropdownMenu({ dropdown }: { dropdown: NavDropdown }) {
         if (!event.currentTarget.contains(event.relatedTarget)) closeMenu();
       }}
     >
-      <button
-        type="button"
-        aria-expanded={open}
-        aria-controls={menuId}
-        className="link-underline inline-flex min-h-11 items-center gap-1 rounded-lg px-3 py-1.5"
-        onClick={(event) => {
-          clearCloseTimeout();
-          if (event.detail === 0) {
-            hoverOpened.current = false;
-            setOpen((value) => !value);
-          } else if (hoverOpened.current) {
-            hoverOpened.current = false;
-            setOpen(true);
-          } else {
-            setOpen((value) => !value);
-          }
-        }}
-      >
-        {dropdown.label}
-        <svg
-          aria-hidden="true"
-          focusable="false"
-          className={`h-3 w-3 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.5"
+      <span className="link-underline inline-flex min-h-11 items-center rounded-lg pl-3 text-[13px] font-medium">
+        <Link href={dropdown.href} className="py-1.5" onClick={closeMenu}>
+          {dropdown.label}
+        </Link>
+        <button
+          type="button"
+          aria-expanded={open}
+          aria-controls={menuId}
+          aria-label={`${dropdown.label} submenu`}
+          className="flex min-h-11 items-center rounded-lg py-1.5 pr-3 pl-1.5"
+          onClick={(event) => {
+            clearCloseTimeout();
+            if (event.detail === 0) {
+              hoverOpened.current = false;
+              setOpen((value) => !value);
+            } else if (hoverOpened.current) {
+              hoverOpened.current = false;
+              setOpen(true);
+            } else {
+              setOpen((value) => !value);
+            }
+          }}
         >
-          <polyline points="6 9 12 15 18 9" />
-        </svg>
-      </button>
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            className={`h-3 w-3 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+      </span>
       {open ? (
         <span
           aria-hidden="true"

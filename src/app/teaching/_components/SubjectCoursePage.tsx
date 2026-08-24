@@ -252,7 +252,7 @@ export function SubjectCoursePage({
                 className="absolute inset-0 -z-10"
                 style={{
                   backgroundImage:
-                    "linear-gradient(to bottom right, rgba(5,10,24,0.92), rgba(30,58,138,0.85), rgba(10,20,38,0.82))",
+                    "linear-gradient(to bottom right, rgba(5,10,24,0.82), rgba(30,58,138,0.74), rgba(10,20,38,0.70))",
                 }}
               />
             </>

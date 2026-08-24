@@ -90,6 +90,11 @@ export function MobileNav() {
   }, [open]);
 
   const groups = ["Profile", "Teaching", "More"] as const;
+  const groupHref: Record<(typeof groups)[number], string | null> = {
+    Profile: null,
+    Teaching: teachingDropdown.href,
+    More: moreDropdown.href,
+  };
 
   return (
     <div
@@ -141,7 +146,17 @@ export function MobileNav() {
               key={group}
               className="border-ink-200 dark:border-ink-700 border-b py-2 last:border-b-0"
             >
-              <p className="eyebrow px-3 py-2">{group}</p>
+              {groupHref[group] ? (
+                <Link
+                  href={groupHref[group]}
+                  onClick={() => setOpen(false)}
+                  className="eyebrow hover:text-brand-700 dark:hover:text-brand-300 block px-3 py-2"
+                >
+                  {group}
+                </Link>
+              ) : (
+                <p className="eyebrow px-3 py-2">{group}</p>
+              )}
               <ul>
                 {mobileLinks
                   .filter((link) => link.group === group)
