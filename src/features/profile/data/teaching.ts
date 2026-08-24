@@ -37,6 +37,13 @@ export const teachingLinks: TeachingLink[] = [
     href: "/teaching/ai-hackathon",
   },
   {
+    eyebrow: "The Founder's Playbook",
+    title: "How to Build a Startup?",
+    description:
+      "A plain-language guide for students grounded in effectuation research: five ways of thinking for early founders, how to talk to customers, what an MVP really is and a first-two-weeks checklist.",
+    href: "/teaching/how-to-build-a-startup",
+  },
+  {
     eyebrow: "Career",
     title: "Placement Assistance",
     description:
