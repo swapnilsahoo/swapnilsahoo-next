@@ -46,6 +46,10 @@ export const teachingDropdown: NavDropdown = {
           label: "Raising Money Without Losing the Company",
           href: "/teaching/raising-money",
         },
+        {
+          label: "Finding Product-Market Fit",
+          href: "/teaching/product-market-fit",
+        },
       ],
     },
     { label: "The Entrepreneurship Shelf", href: "/teaching/reading-and-watching-list" },

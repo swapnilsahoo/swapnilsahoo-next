@@ -32,4 +32,13 @@ export const founderPlaybookCourses: readonly FounderPlaybookCourse[] = [
     href: "/teaching/raising-money",
     deckHref: "/downloads/raising-money-without-losing-the-company.pptx",
   },
+  {
+    slug: "product-market-fit",
+    title: "Finding Product-Market Fit",
+    tagline: "\"People seem to like it\" is a feeling. This is a fact you can chart.",
+    description:
+      "Three retention-curve shapes and what each one actually means, three honest signals to check before trusting a dashboard, and exactly what to do while the curve still looks weak.",
+    href: "/teaching/product-market-fit",
+    deckHref: "/downloads/finding-product-market-fit.pptx",
+  },
 ];
