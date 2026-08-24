@@ -1,10 +1,29 @@
+import { researchBranches } from "@/features/research/data/researchAgenda";
 import type { NavDropdown, NavLink } from "@/features/profile/types";
 
-export const primaryNavLinks: NavLink[] = [
-  { label: "About", href: "/#about" },
-  { label: "Research", href: "/research" },
-  { label: "Publications", href: "/#publications" },
-];
+export const aboutNavLink: NavLink = { label: "About", href: "/#about" };
+export const publicationsNavLink: NavLink = { label: "Publications", href: "/#publications" };
+
+export const researchDropdown: NavDropdown = {
+  label: "Research",
+  href: "/research",
+  items: [
+    ...researchBranches.map((branch) => ({
+      label: branch.shortTitle,
+      href: `/research/${branch.slug}`,
+    })),
+    {
+      label: "PhD Mandatory Coursework",
+      href: "/research/phd-coursework",
+      children: [
+        {
+          label: "How to Read a Research Paper",
+          href: "/research/phd-coursework/how-to-read-a-research-paper",
+        },
+      ],
+    },
+  ],
+};
 
 export const teachingDropdown: NavDropdown = {
   label: "Teaching",

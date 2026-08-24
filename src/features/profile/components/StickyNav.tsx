@@ -1,8 +1,10 @@
 import Link from "next/link";
 
 import {
+  aboutNavLink,
   moreDropdown,
-  primaryNavLinks,
+  publicationsNavLink,
+  researchDropdown,
   secondaryNavLinks,
   teachingDropdown,
 } from "@/features/profile/data/navigation";
@@ -30,15 +32,19 @@ export function StickyNav() {
           </span>
         </Link>
         <div className="hidden items-center gap-1 text-[13px] font-medium lg:flex">
-          {primaryNavLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className="link-underline inline-flex min-h-11 items-center rounded-lg px-3 py-1.5"
-            >
-              {link.label}
-            </Link>
-          ))}
+          <Link
+            href={aboutNavLink.href}
+            className="link-underline inline-flex min-h-11 items-center rounded-lg px-3 py-1.5"
+          >
+            {aboutNavLink.label}
+          </Link>
+          <NavDropdownMenu dropdown={researchDropdown} />
+          <Link
+            href={publicationsNavLink.href}
+            className="link-underline inline-flex min-h-11 items-center rounded-lg px-3 py-1.5"
+          >
+            {publicationsNavLink.label}
+          </Link>
           <NavDropdownMenu dropdown={teachingDropdown} />
           {secondaryNavLinks.map((link) =>
             link.href.startsWith("/") ? (
