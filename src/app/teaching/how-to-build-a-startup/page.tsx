@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRightIcon } from "@/components/icons/LineIcons";
 import { Container } from "@/components/ui/Container";
 import { InquiryPrelude } from "@/components/ui/InquiryPrelude";
+import { founderPlaybookCourses } from "@/features/teaching/data/founder-playbook-courses";
 import {
   commonFailureModes,
   founderMetrics,
@@ -400,6 +401,52 @@ export default function HowToBuildAStartupPage() {
                 ))}
               </ol>
             </div>
+          </div>
+        </Container>
+      </section>
+
+      <section aria-labelledby="courses-title" className="pb-16 sm:pb-24">
+        <Container className="max-w-6xl">
+          <div className="mb-10 max-w-3xl">
+            <span className="accent-rule" />
+            <p className="eyebrow mb-3">09 / More in the playbook</p>
+            <h2 id="courses-title" className="display text-4xl font-semibold md:text-5xl">
+              Short courses, each with a slide deck.
+            </h2>
+            <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-relaxed">
+              The Founder&apos;s Playbook is a growing set of short, original courses — each one
+              readable here and downloadable as a slide deck for your own use.
+            </p>
+          </div>
+          <div className="grid gap-5 sm:grid-cols-2">
+            {founderPlaybookCourses.map((course) => (
+              <article
+                key={course.slug}
+                className="from-brand-50 to-accent-400/10 dark:from-brand-900/30 dark:to-accent-400/5 border-brand-200/60 dark:border-brand-700/40 rounded-2xl border bg-gradient-to-br p-6"
+              >
+                <p className="eyebrow mb-2">{course.tagline}</p>
+                <h3 className="font-serif text-2xl font-semibold">{course.title}</h3>
+                <p className="text-ink-600 dark:text-ink-300 mt-3 text-sm leading-relaxed">
+                  {course.description}
+                </p>
+                <div className="mt-5 flex flex-wrap items-center gap-4">
+                  <Link
+                    href={course.href}
+                    className="text-brand-700 dark:text-brand-400 link-underline inline-flex items-center gap-1 text-sm font-semibold"
+                  >
+                    Start the course
+                    <ArrowRightIcon className="h-3.5 w-3.5" aria-hidden="true" />
+                  </Link>
+                  <a
+                    href={course.deckHref}
+                    className="text-ink-600 dark:text-ink-300 link-underline inline-flex items-center gap-1 text-sm font-medium"
+                  >
+                    Download the deck
+                    <ArrowRightIcon className="h-3.5 w-3.5" aria-hidden="true" />
+                  </a>
+                </div>
+              </article>
+            ))}
           </div>
         </Container>
       </section>

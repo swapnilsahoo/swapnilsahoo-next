@@ -34,7 +34,16 @@ export const teachingDropdown: NavDropdown = {
         { label: "Side Quests · AI Viva Bot", href: "/teaching/ai-hackathon/side-quests" },
       ],
     },
-    { label: "How to Build a Startup?", href: "/teaching/how-to-build-a-startup" },
+    {
+      label: "How to Build a Startup?",
+      href: "/teaching/how-to-build-a-startup",
+      children: [
+        {
+          label: "Building a Durable Advantage",
+          href: "/teaching/building-a-durable-advantage",
+        },
+      ],
+    },
     { label: "The Entrepreneurship Shelf", href: "/teaching/reading-and-watching-list" },
     {
       label: "Placement Assistance",
