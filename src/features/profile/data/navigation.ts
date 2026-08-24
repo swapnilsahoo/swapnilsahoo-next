@@ -42,6 +42,10 @@ export const teachingDropdown: NavDropdown = {
           label: "Building a Durable Advantage",
           href: "/teaching/building-a-durable-advantage",
         },
+        {
+          label: "Raising Money Without Losing the Company",
+          href: "/teaching/raising-money",
+        },
       ],
     },
     { label: "The Entrepreneurship Shelf", href: "/teaching/reading-and-watching-list" },

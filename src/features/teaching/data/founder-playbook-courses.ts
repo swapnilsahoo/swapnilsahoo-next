@@ -23,4 +23,13 @@ export const founderPlaybookCourses: readonly FounderPlaybookCourse[] = [
     href: "/teaching/building-a-durable-advantage",
     deckHref: "/downloads/building-a-durable-competitive-advantage.pptx",
   },
+  {
+    slug: "raising-money",
+    title: "Raising Money Without Losing the Company",
+    tagline: "Every rupee of outside money changes who you answer to.",
+    description:
+      "Bootstrapping vs. debt vs. equity, the four questions behind every investor's yes or no, a fully worked dilution example across two funding rounds, and four honest reasons not to raise yet.",
+    href: "/teaching/raising-money",
+    deckHref: "/downloads/raising-money-without-losing-the-company.pptx",
+  },
 ];
