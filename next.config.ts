@@ -59,6 +59,16 @@ const nextConfig: NextConfig = {
         destination: "/placements/case-study-preparation",
         permanent: true,
       },
+      {
+        source: "/teaching/phd-coursework",
+        destination: "/research/phd-coursework",
+        permanent: true,
+      },
+      {
+        source: "/teaching/phd-coursework/how-to-read-a-research-paper",
+        destination: "/research/phd-coursework/how-to-read-a-research-paper",
+        permanent: true,
+      },
     ];
   },
 };

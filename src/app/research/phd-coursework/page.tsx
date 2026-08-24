@@ -10,7 +10,7 @@ import {
   beforeCourseworkChecklist,
   courseworkComponents,
   courseworkToSupervisionBridge,
-} from "@/features/teaching/data/phd-coursework";
+} from "@/features/research/data/phd-coursework";
 
 export const metadata: Metadata = {
   title: "PhD Mandatory Coursework | What It's Actually For",
@@ -23,13 +23,13 @@ export const metadata: Metadata = {
     "research methodology course",
     "PhD supervision",
   ],
-  alternates: { canonical: "/teaching/phd-coursework" },
+  alternates: { canonical: "/research/phd-coursework" },
   openGraph: {
     type: "article",
     title: "PhD Mandatory Coursework | What It's Actually For",
     description:
       "Coursework is not a formality before the dissertation — it's where the dissertation gets easier or harder.",
-    url: "/teaching/phd-coursework",
+    url: "/research/phd-coursework",
     images: ["/images/gallery/aom-2026-philadelphia-convention-center.webp"],
   },
 };
@@ -65,10 +65,10 @@ export default function PhdCourseworkPage() {
             </Link>
             <span aria-hidden="true">/</span>
             <Link
-              href="/teaching"
+              href="/research"
               className="transition hover:text-blue-700 dark:hover:text-blue-300"
             >
-              Teaching
+              Research
             </Link>
             <span aria-hidden="true">/</span>
             <span aria-current="page" className="text-ink-800 dark:text-ink-100">
@@ -126,7 +126,7 @@ export default function PhdCourseworkPage() {
                 <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
               </a>
               <Link
-                href="/teaching/phd-coursework/how-to-read-a-research-paper"
+                href="/research/phd-coursework/how-to-read-a-research-paper"
                 className="focus-visible:ring-brand-300 inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:outline-none"
               >
                 How to read a research paper
@@ -237,7 +237,7 @@ export default function PhdCourseworkPage() {
           <p className="text-ink-500 dark:text-ink-400 mt-6 text-xs leading-relaxed">
             The single highest-leverage habit on this list is the reference manager — see{" "}
             <Link
-              href="/teaching/phd-coursework/how-to-read-a-research-paper"
+              href="/research/phd-coursework/how-to-read-a-research-paper"
               className="link-underline font-semibold"
             >
               How to Read a Research Paper
@@ -305,7 +305,7 @@ export default function PhdCourseworkPage() {
               </h2>
             </div>
             <Link
-              href="/teaching/phd-coursework/how-to-read-a-research-paper"
+              href="/research/phd-coursework/how-to-read-a-research-paper"
               className="border-ink-200 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 group flex flex-col justify-center rounded-2xl border p-6 transition focus-visible:ring-2 focus-visible:outline-none"
             >
               <p className="eyebrow mb-2">Guide</p>

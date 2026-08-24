@@ -11,7 +11,7 @@ import {
   readingMistakes,
   readingOrder,
   readingPasses,
-} from "@/features/teaching/data/how-to-read-a-research-paper";
+} from "@/features/research/data/how-to-read-a-research-paper";
 
 export const metadata: Metadata = {
   title: "How to Read a Research Paper | PhD Mandatory Coursework",
@@ -24,13 +24,13 @@ export const metadata: Metadata = {
     "PhD reading strategy",
     "reading academic papers efficiently",
   ],
-  alternates: { canonical: "/teaching/phd-coursework/how-to-read-a-research-paper" },
+  alternates: { canonical: "/research/phd-coursework/how-to-read-a-research-paper" },
   openGraph: {
     type: "article",
     title: "How to Read a Research Paper",
     description:
       "Read in passes, in an order that isn't the printed order — and log it or you'll re-read it in six months.",
-    url: "/teaching/phd-coursework/how-to-read-a-research-paper",
+    url: "/research/phd-coursework/how-to-read-a-research-paper",
     images: ["/images/gallery/aom-2026-entrepreneurship-under-constraint.jpg"],
   },
 };
@@ -66,7 +66,7 @@ export default function HowToReadAResearchPaperPage() {
             </Link>
             <span aria-hidden="true">/</span>
             <Link
-              href="/teaching/phd-coursework"
+              href="/research/phd-coursework"
               className="transition hover:text-blue-700 dark:hover:text-blue-300"
             >
               PhD Mandatory Coursework
@@ -127,7 +127,7 @@ export default function HowToReadAResearchPaperPage() {
                 <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
               </a>
               <Link
-                href="/teaching/phd-coursework"
+                href="/research/phd-coursework"
                 className="focus-visible:ring-brand-300 inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:outline-none"
               >
                 Back to PhD coursework
@@ -323,7 +323,7 @@ export default function HowToReadAResearchPaperPage() {
               </h2>
             </div>
             <Link
-              href="/teaching/phd-coursework"
+              href="/research/phd-coursework"
               className="border-ink-200 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 group flex flex-col justify-center rounded-2xl border p-6 transition focus-visible:ring-2 focus-visible:outline-none"
             >
               <p className="eyebrow mb-2">Guide</p>

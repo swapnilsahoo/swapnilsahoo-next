@@ -10,6 +10,7 @@ import {
 } from "@/components/icons/LineIcons";
 import { Container } from "@/components/ui/Container";
 import { InquiryPrelude } from "@/components/ui/InquiryPrelude";
+import { phdSupervision } from "@/features/profile/data/phd";
 import {
   researchAgenda,
   researchBranches,
@@ -340,6 +341,63 @@ export function ResearchHub() {
               {thesisFoundation.citation}
             </p>
           </details>
+        </Container>
+      </section>
+
+      <section id="phd-coursework" aria-labelledby="phd-coursework-title" className="py-14 sm:py-20">
+        <Container className="max-w-[87.5rem]">
+          <div className="glass-card grid gap-8 p-7 sm:p-10 lg:grid-cols-[0.8fr_1.2fr]">
+            <div>
+              <span className="accent-rule" />
+              <p className="eyebrow mb-3">For prospective doctoral researchers</p>
+              <h2 id="phd-coursework-title" className="display text-4xl font-semibold">
+                Supervision starts before the dissertation.
+              </h2>
+              <p className="text-ink-600 dark:text-ink-300 mt-4 text-sm leading-relaxed">
+                {phdSupervision.description}
+              </p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Link
+                href="/research/phd-coursework"
+                className="border-ink-200 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 group flex flex-col justify-center rounded-2xl border p-6 transition focus-visible:ring-2 focus-visible:outline-none"
+              >
+                <p className="eyebrow mb-2">Guide</p>
+                <h3 className="font-serif text-2xl font-semibold">PhD Mandatory Coursework</h3>
+                <p className="text-ink-600 dark:text-ink-300 mt-2 text-sm leading-relaxed">
+                  What each mandatory component is actually for, a before-term-one checklist, and
+                  how coursework connects to how I supervise.
+                </p>
+                <span className="text-brand-700 dark:text-brand-400 mt-4 inline-flex items-center gap-1 text-sm font-semibold">
+                  Read the guide
+                  <ArrowRightIcon
+                    className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </span>
+              </Link>
+              <Link
+                href="/research/phd-coursework/how-to-read-a-research-paper"
+                className="border-ink-200 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 group flex flex-col justify-center rounded-2xl border p-6 transition focus-visible:ring-2 focus-visible:outline-none"
+              >
+                <p className="eyebrow mb-2">Guide</p>
+                <h3 className="font-serif text-2xl font-semibold">
+                  How to Read a Research Paper
+                </h3>
+                <p className="text-ink-600 dark:text-ink-300 mt-2 text-sm leading-relaxed">
+                  The three-pass method, a reading order that isn&apos;t the printed order, and the
+                  habit that turns scattered reading into an actual literature review.
+                </p>
+                <span className="text-brand-700 dark:text-brand-400 mt-4 inline-flex items-center gap-1 text-sm font-semibold">
+                  Read the guide
+                  <ArrowRightIcon
+                    className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </span>
+              </Link>
+            </div>
+          </div>
         </Container>
       </section>
 
