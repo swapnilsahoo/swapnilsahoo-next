@@ -4,6 +4,7 @@ import Link from "next/link";
 import {
   aboutNavLink,
   aiDropdown,
+  compactMoreDropdown,
   entrepreneurshipDropdown,
   moreDropdown,
   placementsDropdown,
@@ -11,9 +12,29 @@ import {
   secondaryNavLinks,
   teachingDropdown,
 } from "@/features/profile/data/navigation";
+import type { NavLink } from "@/features/profile/types";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { NavDropdownMenu } from "./NavDropdownMenu";
 import { MobileNav } from "./MobileNav";
+
+const navItemClassName =
+  "link-underline inline-flex min-h-11 items-center rounded-lg px-3 py-1.5";
+
+function NavTextLink({ link }: { link: NavLink }) {
+  if (!link.href.startsWith("/")) {
+    return (
+      <a href={link.href} target="_blank" rel="noopener noreferrer" className={navItemClassName}>
+        {link.label}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={link.href} className={navItemClassName}>
+      {link.label}
+    </Link>
+  );
+}
 
 export function StickyNav() {
   return (
@@ -40,41 +61,35 @@ export function StickyNav() {
             Swapnil Sahoo
           </span>
         </Link>
+
+        {/* Compact tier (roughly 1024–1279px): the handful of items most
+            visitors actually need, directly in the bar, with everything
+            else — Entrepreneurship, Press & Media, and the regular More
+            items — folded into one wider "More". The full row below
+            takes over at xl and this one disappears. */}
+        <div className="hidden items-center gap-1 text-[13px] font-medium whitespace-nowrap lg:flex xl:hidden">
+          <NavTextLink link={aboutNavLink} />
+          <NavDropdownMenu dropdown={researchDropdown} />
+          <NavDropdownMenu dropdown={teachingDropdown} />
+          <NavDropdownMenu dropdown={placementsDropdown} />
+          <NavDropdownMenu dropdown={aiDropdown} />
+          <NavDropdownMenu dropdown={compactMoreDropdown} />
+        </div>
+
+        {/* Full row (1280px+): every top-level section on its own. */}
         <div className="hidden items-center gap-1 text-[13px] font-medium whitespace-nowrap xl:flex">
-          <Link
-            href={aboutNavLink.href}
-            className="link-underline inline-flex min-h-11 items-center rounded-lg px-3 py-1.5"
-          >
-            {aboutNavLink.label}
-          </Link>
+          <NavTextLink link={aboutNavLink} />
           <NavDropdownMenu dropdown={researchDropdown} />
           <NavDropdownMenu dropdown={teachingDropdown} />
           <NavDropdownMenu dropdown={placementsDropdown} />
           <NavDropdownMenu dropdown={entrepreneurshipDropdown} />
           <NavDropdownMenu dropdown={aiDropdown} />
-          {secondaryNavLinks.map((link) =>
-            link.href.startsWith("/") ? (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="link-underline inline-flex min-h-11 items-center rounded-lg px-3 py-1.5"
-              >
-                {link.label}
-              </Link>
-            ) : (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="link-underline inline-flex min-h-11 items-center rounded-lg px-3 py-1.5"
-              >
-                {link.label}
-              </a>
-            )
-          )}
+          {secondaryNavLinks.map((link) => (
+            <NavTextLink key={link.label} link={link} />
+          ))}
           <NavDropdownMenu dropdown={moreDropdown} />
         </div>
+
         <div className="flex items-center gap-1">
           <ThemeToggle />
           <MobileNav />

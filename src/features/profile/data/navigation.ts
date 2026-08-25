@@ -226,3 +226,21 @@ export const moreDropdown: NavDropdown = {
     { label: "Contact", href: "/#contact" },
   ],
 };
+
+/**
+ * A wider catch-all "More" used only at the compact nav tier (roughly
+ * 1024–1279px, between the phone hamburger and the full desktop row).
+ * At that width, About / Research / Teaching / Placement Assistance /
+ * AI Initiatives show directly in the bar, so this folds in everything
+ * else that the full nav shows separately — Entrepreneurship, Press &
+ * Media, and the regular More items — under one trigger.
+ */
+export const compactMoreDropdown: NavDropdown = {
+  label: "More",
+  href: moreDropdown.href,
+  items: [
+    ...entrepreneurshipDropdown.items,
+    ...secondaryNavLinks,
+    ...moreDropdown.items,
+  ],
+};
