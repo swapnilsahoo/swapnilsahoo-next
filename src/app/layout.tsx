@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Inter, JetBrains_Mono, Noto_Serif_Devanagari } from "next/font/google";
+import { Fraunces, JetBrains_Mono, Noto_Serif_Devanagari, Poppins } from "next/font/google";
 
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
@@ -9,9 +9,10 @@ import { profile } from "@/features/profile/data/profile";
 
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
 });
 
 const fraunces = Fraunces({
@@ -156,7 +157,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${fraunces.variable} ${jetbrainsMono.variable} ${notoSerifDevanagari.variable} scroll-smooth antialiased`}
+      className={`${poppins.variable} ${fraunces.variable} ${jetbrainsMono.variable} ${notoSerifDevanagari.variable} scroll-smooth antialiased`}
       suppressHydrationWarning
     >
       <body>
