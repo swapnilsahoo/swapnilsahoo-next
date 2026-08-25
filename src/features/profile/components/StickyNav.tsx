@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import {
@@ -26,9 +27,15 @@ export function StickyNav() {
           aria-label="Dr. Swapnil Sahoo — home"
           className="flex min-h-11 items-center gap-2"
         >
-          <span className="bg-ink-900 dark:bg-brand-500 flex h-8 w-8 items-center justify-center rounded-lg font-serif text-sm font-bold text-white">
-            S
-          </span>
+          <Image
+            src="/icon.svg"
+            alt=""
+            aria-hidden="true"
+            width={32}
+            height={32}
+            unoptimized
+            className="h-8 w-8 shrink-0"
+          />
           <span className="hidden font-serif text-sm font-semibold tracking-tight sm:block">
             Swapnil Sahoo
           </span>
