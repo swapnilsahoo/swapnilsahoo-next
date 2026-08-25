@@ -30,13 +30,6 @@ export const teachingLinks: TeachingLink[] = [
     href: "/teaching/business-simulation",
   },
   {
-    eyebrow: "PGDM event · Proposed PhD lens",
-    title: "AI Mini Hackathon",
-    description:
-      "The July 2026 PGDM build programme, followed by a clearly labelled proposed research extension for doctoral readers — plus Side Quests, a page of my own beta builds, open for testing.",
-    href: "/teaching/ai-hackathon",
-  },
-  {
     eyebrow: "Consulting",
     title: "Cracking Consulting Interviews",
     description:

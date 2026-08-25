@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import {
   aboutNavLink,
+  aiDropdown,
   entrepreneurshipDropdown,
   moreDropdown,
   placementsDropdown,
@@ -43,6 +44,7 @@ export function StickyNav() {
           <NavDropdownMenu dropdown={teachingDropdown} />
           <NavDropdownMenu dropdown={placementsDropdown} />
           <NavDropdownMenu dropdown={entrepreneurshipDropdown} />
+          <NavDropdownMenu dropdown={aiDropdown} />
           {secondaryNavLinks.map((link) =>
             link.href.startsWith("/") ? (
               <Link

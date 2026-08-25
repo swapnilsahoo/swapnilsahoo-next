@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 
 import {
   aboutNavLink,
+  aiDropdown,
   entrepreneurshipDropdown,
   moreDropdown,
   placementsDropdown,
@@ -22,6 +23,7 @@ const mobileLinks: Array<NavLink & { group: string }> = [
   ...teachingDropdown.items.map((link) => ({ ...link, group: "Teaching" })),
   ...placementsDropdown.items.map((link) => ({ ...link, group: "Placements" })),
   ...entrepreneurshipDropdown.items.map((link) => ({ ...link, group: "Entrepreneurship" })),
+  ...aiDropdown.items.map((link) => ({ ...link, group: "AI Initiatives" })),
   ...moreDropdown.items.map((link) => ({ ...link, group: "More" })),
 ];
 
@@ -101,6 +103,7 @@ export function MobileNav() {
     "Teaching",
     "Placements",
     "Entrepreneurship",
+    "AI Initiatives",
     "More",
   ] as const;
   const groupHref: Record<(typeof groups)[number], string | null> = {
@@ -109,6 +112,7 @@ export function MobileNav() {
     Teaching: teachingDropdown.href,
     Placements: placementsDropdown.href,
     Entrepreneurship: entrepreneurshipDropdown.href,
+    "AI Initiatives": aiDropdown.href,
     More: moreDropdown.href,
   };
 
