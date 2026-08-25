@@ -150,6 +150,22 @@ export const galleryImages: GalleryImage[] = [
     objectPosition: "center",
   },
   {
+    src: "/images/gallery/ai-mini-hackathon-final-speaker.jpg",
+    alt: "A student presenting at the podium during the AI Mini Hackathon final at Great Lakes Gurgaon",
+    caption: "Making the case, live · AI Mini Hackathon 2026 final",
+    description:
+      "A team presenter mid-pitch at the 5 July 2026 final, with teammates standing by for questions.",
+    objectPosition: "center 30%",
+  },
+  {
+    src: "/images/gallery/ai-mini-hackathon-final-team.jpg",
+    alt: "A student team presenting together at the podium during the AI Mini Hackathon final",
+    caption: "At the podium · AI Mini Hackathon 2026 final",
+    description:
+      "A full team at the podium during the final — one presenter speaking, the rest ready to field questions.",
+    objectPosition: "center 30%",
+  },
+  {
     src: "/images/gallery/2-year-mba-strategic-management-closure-1.jpg",
     alt: "The 2-Year MBA Strategic Management cohort gathered for a group photo at the close of the course",
     caption: "Strategic Management · Course closure",

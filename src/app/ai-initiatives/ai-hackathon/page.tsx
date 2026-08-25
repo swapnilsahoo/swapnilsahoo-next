@@ -763,6 +763,33 @@ export default function AiHackathonPage() {
               </figcaption>
             </figure>
           </div>
+
+          <div className="mt-5 grid gap-5 sm:grid-cols-2">
+            <figure className="glass-card overflow-hidden p-2">
+              <Image
+                src="/images/gallery/ai-mini-hackathon-final-speaker.jpg"
+                alt="A student presenting at the podium during the AI Mini Hackathon final at Great Lakes Gurgaon"
+                width={1920}
+                height={1280}
+                className="aspect-[16/9] w-full rounded-[14px] object-cover object-top"
+              />
+              <figcaption className="text-ink-500 dark:text-ink-400 px-3 py-3 text-xs">
+                Making the case, live: the final gave every team a real jury and a real clock.
+              </figcaption>
+            </figure>
+            <figure className="glass-card overflow-hidden p-2">
+              <Image
+                src="/images/gallery/ai-mini-hackathon-final-team.jpg"
+                alt="A student team presenting together at the podium during the AI Mini Hackathon final"
+                width={1920}
+                height={1280}
+                className="aspect-[16/9] w-full rounded-[14px] object-cover object-top"
+              />
+              <figcaption className="text-ink-500 dark:text-ink-400 px-3 py-3 text-xs">
+                A team at the podium: the presenter speaks while the rest stay ready for questions.
+              </figcaption>
+            </figure>
+          </div>
         </Container>
       </section>
 
