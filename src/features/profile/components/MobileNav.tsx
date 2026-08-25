@@ -119,7 +119,7 @@ export function MobileNav() {
   return (
     <div
       ref={wrapperRef}
-      className="relative lg:hidden"
+      className="relative xl:hidden"
       onBlur={(event) => {
         if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false);
       }}

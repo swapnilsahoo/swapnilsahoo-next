@@ -40,7 +40,7 @@ export function StickyNav() {
             Swapnil Sahoo
           </span>
         </Link>
-        <div className="hidden items-center gap-1 text-[13px] font-medium lg:flex">
+        <div className="hidden items-center gap-1 text-[13px] font-medium whitespace-nowrap xl:flex">
           <Link
             href={aboutNavLink.href}
             className="link-underline inline-flex min-h-11 items-center rounded-lg px-3 py-1.5"
