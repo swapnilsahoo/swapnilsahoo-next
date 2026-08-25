@@ -6,43 +6,43 @@ import { ArrowRightIcon } from "@/components/icons/LineIcons";
 import { Container } from "@/components/ui/Container";
 import { InquiryPrelude } from "@/components/ui/InquiryPrelude";
 import {
-  aiGoldenRule,
-  aiModules,
-  responsiblePrinciples,
-} from "@/features/ai-initiatives/data/ai-for-educators";
+  studentAiModules,
+  studentGoldenRule,
+  studentResponsiblePrinciples,
+} from "@/features/ai-initiatives/data/ai-for-students";
 
 export const metadata: Metadata = {
-  title: "AI for Educators | AI Initiatives",
+  title: "AI for Students | AI Initiatives",
   description:
-    "A hands-on AI-literacy workshop for teachers and academic staff: building lesson materials, drafting and summarising, prompting properly, cutting admin time, and grading with AI — plus building your own custom teaching assistant, responsibly.",
+    "Practical AI guidance for PGDM and MBA students: using AI well for case prep and class participation, placement prep, research and assignments, and building — plus one rule that doesn't move: AI accelerates the draft, the judgment stays yours.",
   keywords: [
-    "AI for educators",
-    "AI literacy for teachers",
-    "AI in the classroom",
-    "custom GPT for teaching",
-    "responsible AI in education",
+    "AI for students",
+    "AI in case prep",
+    "AI for placement prep",
+    "responsible AI use for students",
+    "AI academic integrity",
   ],
-  alternates: { canonical: "/ai-initiatives/ai-for-educators" },
+  alternates: { canonical: "/ai-initiatives/ai-for-students" },
   openGraph: {
     type: "article",
-    title: "AI for Educators",
+    title: "AI for Students",
     description:
-      "Five modules, real tools, one rule that doesn't move: AI drafts, the teacher reviews, edits and owns it.",
-    url: "/ai-initiatives/ai-for-educators",
-    images: ["/images/profile_pic.jpg"],
+      "Four modules on using AI well as a student — case prep, placements, assignments, and building. AI accelerates the draft; the judgment stays yours.",
+    url: "/ai-initiatives/ai-for-students",
+    images: ["/images/gallery/2-year-mba-strategic-management-closure-2.jpg"],
   },
 };
 
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "Course",
-  name: "AI for Educators",
+  name: "AI for Students",
   description:
-    "A hands-on AI-literacy workshop for teachers and academic staff, covering materials creation, drafting, prompting, admin and grading with AI.",
+    "Practical AI guidance for PGDM and MBA students, covering case prep, placement prep, research and assignments, and building with AI.",
   provider: { "@type": "Person", name: "Dr. Swapnil Sahoo" },
 };
 
-export default function AiForEducatorsPage() {
+export default function AiForStudentsPage() {
   return (
     <main id="main-content" tabIndex={-1}>
       <script
@@ -71,21 +71,21 @@ export default function AiForEducatorsPage() {
             </Link>
             <span aria-hidden="true">/</span>
             <span aria-current="page" className="text-ink-800 dark:text-ink-100">
-              AI for Educators
+              AI for Students
             </span>
           </nav>
 
           <div
             data-page-hero="academic"
-            className="relative isolate overflow-hidden rounded-[28px] border border-white/10 bg-ink-950 px-6 py-10 text-white shadow-2xl shadow-blue-950/20 sm:px-10 sm:py-14 lg:px-14 lg:py-16"
+            className="relative isolate overflow-hidden rounded-[30px] border border-white/10 bg-ink-950 px-6 py-12 text-white shadow-2xl shadow-blue-950/20 sm:px-10 sm:py-16 lg:px-14"
           >
             <Image
-              src="/images/gallery/2-year-mba-strategic-management-closure-1.jpg"
+              src="/images/gallery/2-year-mba-strategic-management-closure-2.jpg"
               alt="A PGDM classroom group at Great Lakes Institute of Management, Gurgaon"
               fill
               priority
               className="-z-20 object-cover"
-              style={{ objectPosition: "center 42%" }}
+              style={{ objectPosition: "center 40%" }}
               sizes="100vw"
             />
             <div
@@ -107,21 +107,21 @@ export default function AiForEducatorsPage() {
               AI Initiatives
             </span>
             <h1 className="display mt-7 max-w-4xl text-5xl font-semibold text-balance sm:text-7xl">
-              AI for the <span className="text-brand-200 font-normal italic">classroom.</span>
+              AI for{" "}
+              <span className="text-brand-200 font-normal italic">students.</span>
             </h1>
             <p className="mt-6 max-w-3xl text-base leading-relaxed text-blue-100 sm:text-lg">
-              I run a hands-on AI-literacy workshop for teachers and academic staff — not a
-              lecture on what AI is, but a working session on what to actually do with it: build a
-              lesson deck in minutes, turn a stack of scripts into rubric-aligned feedback, or
-              train a custom assistant that answers doubts in your own voice. Five modules, real
-              tools, one rule that doesn&apos;t move.
+              Not a rule against using AI — a guide to using it well. Four places it actually
+              shows up in your PGDM life: case prep, placements, assignments and building. In each
+              one, there&apos;s a real time-saving use and an easy way to quietly hollow out the point
+              of the exercise. This page is about telling those apart.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
                 href="#modules"
                 className="focus-visible:ring-brand-300 inline-flex items-center justify-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-slate-950/20 transition hover:-translate-y-0.5 hover:bg-blue-50 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:outline-none"
               >
-                See the five modules
+                See the four modules
                 <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
               </a>
               <Link
@@ -136,12 +136,12 @@ export default function AiForEducatorsPage() {
       </header>
 
       <InquiryPrelude
-        id="ai-educators-inquiry"
-        eyebrow="Before the first prompt"
-        title="If an assistant drafted it in ten seconds, what exactly are you now responsible for?"
+        id="ai-students-inquiry"
+        eyebrow="Before you open the assistant"
+        title="If you couldn't use AI for the next hour, would your answer actually change?"
         questions={[
-          "Would you be comfortable defending this output in front of a parent, a colleague or a student who disagreed with it?",
-          "What's the one check you'd never skip, no matter how good the first draft looks?",
+          "Are you using it to save time on the part that was never the point, or to skip the part that was?",
+          "Could you defend this out loud, right now, without looking at what the assistant gave you?",
         ]}
       />
 
@@ -149,43 +149,54 @@ export default function AiForEducatorsPage() {
         <Container className="max-w-[87.5rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
-            <p className="eyebrow mb-3">01 / What the workshop covers</p>
+            <p className="eyebrow mb-3">01 / Where this actually comes up</p>
             <h2 id="modules-title" className="display text-4xl font-semibold md:text-5xl">
-              Five modules, named tools, real workflows.
+              Four situations, one question each time.
             </h2>
             <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-relaxed">
-              Every session is hands-on: bring a real deck, quiz, rubric or spreadsheet from your
-              own teaching, and leave with it done.
+              In each situation: what&apos;s the real, defensible use — and what&apos;s the version that
+              quietly hollows out the exercise?
             </p>
           </div>
 
-          <div className="grid gap-6">
-            {aiModules.map((module, moduleIndex) => (
+          <div className="grid gap-5">
+            {studentAiModules.map((module, index) => (
               <article key={module.id} className="glass-card p-6 sm:p-8">
                 <div className="flex items-center gap-4">
                   <span className="bg-brand-600 flex h-9 w-9 shrink-0 items-center justify-center rounded-full font-mono text-[11px] font-semibold text-white">
-                    {String(moduleIndex + 1).padStart(2, "0")}
+                    {String(index + 1).padStart(2, "0")}
                   </span>
                   <h3 className="font-serif text-2xl font-semibold">{module.title}</h3>
                 </div>
-                <div className="mt-6 grid gap-4 lg:grid-cols-3">
-                  {module.items.map((item) => (
-                    <div
-                      key={item.tools}
-                      className="border-ink-200/80 dark:border-ink-700 rounded-2xl border p-5"
-                    >
-                      <p className="text-ink-600 dark:text-ink-300 text-sm leading-relaxed">
-                        {item.whatItCovers}
-                      </p>
-                      <p className="text-brand-700 dark:text-brand-400 mt-4 font-mono text-[11px] tracking-[0.06em] uppercase">
-                        {item.tools}
-                      </p>
-                    </div>
-                  ))}
+                <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                  <div className="border-ink-200/80 dark:border-ink-700 rounded-2xl border p-5">
+                    <p className="text-emerald-700 dark:text-emerald-400 mb-2 font-mono text-[11px] font-semibold tracking-[0.08em] uppercase">
+                      Do this
+                    </p>
+                    <p className="text-ink-600 dark:text-ink-300 text-sm leading-relaxed">
+                      {module.doThis}
+                    </p>
+                  </div>
+                  <div className="border-ink-200/80 dark:border-ink-700 rounded-2xl border p-5">
+                    <p className="mb-2 font-mono text-[11px] font-semibold tracking-[0.08em] text-red-600 uppercase dark:text-red-400">
+                      Not this
+                    </p>
+                    <p className="text-ink-600 dark:text-ink-300 text-sm leading-relaxed">
+                      {module.notThis}
+                    </p>
+                  </div>
                 </div>
               </article>
             ))}
           </div>
+
+          <p className="text-ink-500 dark:text-ink-400 mt-6 text-xs leading-relaxed">
+            For the fuller placement process beyond the AI-specific piece above, see{" "}
+            <Link href="/placements" className="link-underline font-semibold">
+              Placement Assistance
+            </Link>
+            .
+          </p>
         </Container>
       </section>
 
@@ -203,10 +214,10 @@ export default function AiForEducatorsPage() {
                 02 / The rule that doesn&apos;t move
               </p>
               <h2 id="rule-title" className="mt-3 font-serif text-4xl font-semibold">
-                {aiGoldenRule.title}
+                {studentGoldenRule.title}
               </h2>
               <p className="mt-4 max-w-3xl text-sm leading-relaxed text-blue-100">
-                {aiGoldenRule.description}
+                {studentGoldenRule.description}
               </p>
             </div>
           </div>
@@ -217,13 +228,13 @@ export default function AiForEducatorsPage() {
         <Container className="max-w-[87.5rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
-            <p className="eyebrow mb-3">03 / Responsible use, made concrete</p>
+            <p className="eyebrow mb-3">03 / Before you submit anything</p>
             <h2 id="responsible-title" className="display text-4xl font-semibold md:text-5xl">
-              Three checks, every session.
+              Three checks, every time.
             </h2>
           </div>
           <ol className="grid gap-4 sm:grid-cols-3">
-            {responsiblePrinciples.map((item, index) => (
+            {studentResponsiblePrinciples.map((item, index) => (
               <li
                 key={item}
                 className="border-ink-200/80 dark:border-ink-700 grid grid-cols-[auto_1fr] gap-4 rounded-2xl border p-5"
@@ -240,50 +251,31 @@ export default function AiForEducatorsPage() {
 
       <section aria-labelledby="continue-title" className="pb-20 sm:pb-28">
         <Container className="max-w-[87.5rem]">
-          <div className="glass-card p-7 sm:p-10">
-            <p className="eyebrow mb-3">More AI initiatives</p>
-            <h2 id="continue-title" className="display mb-8 text-4xl font-semibold">
-              Faculty literacy, student practice, and student build-first learning.
-            </h2>
-            <div className="grid gap-5 sm:grid-cols-2">
-              <Link
-                href="/ai-initiatives/ai-for-students"
-                className="border-ink-200 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 group flex flex-col justify-center rounded-2xl border p-6 transition focus-visible:ring-2 focus-visible:outline-none"
-              >
-                <p className="eyebrow mb-2">Student toolkit</p>
-                <h3 className="font-serif text-2xl font-semibold">AI for Students</h3>
-                <p className="text-ink-600 dark:text-ink-300 mt-2 text-sm leading-relaxed">
-                  The same rule from a student&apos;s side of the desk: case prep, placements,
-                  assignments and building — where AI genuinely helps, and where it quietly
-                  hollows out the exercise.
-                </p>
-                <span className="text-brand-700 dark:text-brand-400 mt-4 inline-flex items-center gap-1 text-sm font-semibold">
-                  See the guide
-                  <ArrowRightIcon
-                    className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1"
-                    aria-hidden="true"
-                  />
-                </span>
-              </Link>
-              <Link
-                href="/ai-initiatives/ai-hackathon"
-                className="border-ink-200 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 group flex flex-col justify-center rounded-2xl border p-6 transition focus-visible:ring-2 focus-visible:outline-none"
-              >
-                <p className="eyebrow mb-2">Event record</p>
-                <h3 className="font-serif text-2xl font-semibold">AI Mini Hackathon</h3>
-                <p className="text-ink-600 dark:text-ink-300 mt-2 text-sm leading-relaxed">
-                  How an incoming PGDM cohort turned student problems into testable GenAI
-                  prototypes — plus Side Quests, a page of my own beta builds, open for testing.
-                </p>
-                <span className="text-brand-700 dark:text-brand-400 mt-4 inline-flex items-center gap-1 text-sm font-semibold">
-                  See the hackathon
-                  <ArrowRightIcon
-                    className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1"
-                    aria-hidden="true"
-                  />
-                </span>
-              </Link>
+          <div className="glass-card grid gap-8 p-7 sm:p-10 lg:grid-cols-[0.8fr_1.2fr]">
+            <div>
+              <p className="eyebrow mb-3">More AI initiatives</p>
+              <h2 id="continue-title" className="display text-4xl font-semibold">
+                Reading about it is step one. Building is step two.
+              </h2>
             </div>
+            <Link
+              href="/ai-initiatives/ai-hackathon"
+              className="border-ink-200 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 group flex flex-col justify-center rounded-2xl border p-6 transition focus-visible:ring-2 focus-visible:outline-none"
+            >
+              <p className="eyebrow mb-2">Student build programme</p>
+              <h3 className="font-serif text-2xl font-semibold">AI Mini Hackathon</h3>
+              <p className="text-ink-600 dark:text-ink-300 mt-2 text-sm leading-relaxed">
+                How an incoming PGDM cohort turned student problems into testable GenAI
+                prototypes — plus Side Quests, a page of my own beta builds, open for testing.
+              </p>
+              <span className="text-brand-700 dark:text-brand-400 mt-4 inline-flex items-center gap-1 text-sm font-semibold">
+                See the hackathon
+                <ArrowRightIcon
+                  className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1"
+                  aria-hidden="true"
+                />
+              </span>
+            </Link>
           </div>
         </Container>
       </section>

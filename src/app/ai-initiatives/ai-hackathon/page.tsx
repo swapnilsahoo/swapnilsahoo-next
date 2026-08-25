@@ -735,6 +735,34 @@ export default function AiHackathonPage() {
               </figcaption>
             </figure>
           </div>
+
+          <div className="mt-5 grid gap-5 sm:grid-cols-2">
+            <figure className="glass-card overflow-hidden p-2">
+              <Image
+                src="/images/gallery/ai-mini-hackathon-winners-2026.jpg"
+                alt="Students and faculty gathered around a trophy during the AI Mini Hackathon awards ceremony"
+                width={1920}
+                height={1080}
+                className="aspect-[16/9] w-full rounded-[14px] object-cover object-top"
+              />
+              <figcaption className="text-ink-500 dark:text-ink-400 px-3 py-3 text-xs">
+                Awards, announced in order — including Best AI Innovation and Most Practical
+                Student Solution.
+              </figcaption>
+            </figure>
+            <figure className="glass-card overflow-hidden p-2">
+              <Image
+                src="/images/gallery/ai-mini-hackathon-team-2026.jpg"
+                alt="Student hackathon team celebrating with its trophy outside Great Lakes Gurgaon"
+                width={1920}
+                height={1080}
+                className="aspect-[16/9] w-full rounded-[14px] object-cover object-top"
+              />
+              <figcaption className="text-ink-500 dark:text-ink-400 px-3 py-3 text-xs">
+                From prototype to podium: a winning team marks the moment together on campus.
+              </figcaption>
+            </figure>
+          </div>
         </Container>
       </section>
 
@@ -879,6 +907,15 @@ export default function AiHackathonPage() {
               established centre.
             </p>
           </div>
+
+          <p className="text-ink-500 dark:text-ink-400 mt-6 text-xs leading-relaxed">
+            Building a prototype is one thing; using AI well the rest of the term is another —
+            see{" "}
+            <Link href="/ai-initiatives/ai-for-students" className="link-underline font-semibold">
+              AI for Students
+            </Link>{" "}
+            for the everyday version of the same judgment this event asked for.
+          </p>
         </Container>
       </section>
 

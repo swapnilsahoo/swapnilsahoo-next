@@ -133,6 +133,7 @@ export const aiDropdown: NavDropdown = {
   href: "/ai-initiatives",
   items: [
     { label: "AI for Educators", href: "/ai-initiatives/ai-for-educators" },
+    { label: "AI for Students", href: "/ai-initiatives/ai-for-students" },
     {
       label: "AI Mini Hackathon",
       href: "/ai-initiatives/ai-hackathon",
