@@ -120,17 +120,17 @@ export function Teaching() {
           </div>
         </aside>
 
-        <aside className="glass-card mx-auto mt-14 max-w-3xl p-7 md:p-9">
-          <p className="eyebrow mb-3">Teaching approach</p>
-          <h3 className="display text-ink-900 dark:text-ink-50 text-2xl font-semibold md:text-3xl">
-            {teachingPhilosophy.title}
-          </h3>
-          <p className="text-ink-700 dark:text-ink-200 mt-4 leading-relaxed">
-            {teachingPhilosophy.description}
-          </p>
-        </aside>
+        <div className="mt-14 grid gap-5 lg:grid-cols-3">
+          <aside className="glass-card p-7 md:p-8">
+            <p className="eyebrow mb-3">Teaching approach</p>
+            <h3 className="display text-ink-900 dark:text-ink-50 text-2xl font-semibold">
+              {teachingPhilosophy.title}
+            </h3>
+            <p className="text-ink-700 dark:text-ink-200 mt-4 text-sm leading-relaxed">
+              {teachingPhilosophy.description}
+            </p>
+          </aside>
 
-        <div className="mx-auto mt-6 grid max-w-3xl gap-5 sm:grid-cols-2">
           <div className="glass-card p-6">
             <p className="eyebrow mb-2">Student mentoring</p>
             <h4 className="font-serif text-lg font-semibold">{strategyShowdownHighlight.title}</h4>

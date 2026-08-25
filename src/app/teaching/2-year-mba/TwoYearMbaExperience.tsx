@@ -663,9 +663,15 @@ export function TwoYearMbaExperience() {
                 const offset = interviewQuestionThemes
                   .slice(0, themeIndex)
                   .reduce((sum, item) => sum + item.questions.length, 0);
+                const isLastOdd =
+                  interviewQuestionThemes.length % 2 !== 0 &&
+                  themeIndex === interviewQuestionThemes.length - 1;
 
                 return (
-                  <details key={theme.title} className="group bg-white/90 dark:bg-[#081426]/95">
+                  <details
+                    key={theme.title}
+                    className={`group bg-white/90 dark:bg-[#081426]/95 ${isLastOdd ? "md:col-span-2" : ""}`}
+                  >
                     <summary className="grid cursor-pointer list-none grid-cols-[1fr_auto] items-center gap-4 p-5 marker:hidden sm:p-6">
                       <div>
                         <p className="font-mono text-[10px] font-bold tracking-[0.14em] text-emerald-700 uppercase dark:text-emerald-300">

@@ -1243,7 +1243,11 @@ export function OneYearMbaExperience() {
               {classroomStandards.map((standard, index) => (
                 <li
                   key={standard}
-                  className="grid grid-cols-[auto_1fr] gap-4 bg-slate-950/85 p-5 sm:p-6"
+                  className={`grid grid-cols-[auto_1fr] gap-4 bg-slate-950/85 p-5 sm:p-6 ${
+                    classroomStandards.length % 2 !== 0 && index === classroomStandards.length - 1
+                      ? "sm:col-span-2"
+                      : ""
+                  }`}
                 >
                   <span className="font-mono text-[10px] font-bold text-blue-200">
                     {String(index + 1).padStart(2, "0")}
