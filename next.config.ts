@@ -69,6 +69,21 @@ const nextConfig: NextConfig = {
         destination: "/research/phd-coursework/how-to-read-a-research-paper",
         permanent: true,
       },
+      {
+        source: "/teaching/ai-for-educators",
+        destination: "/ai-initiatives/ai-for-educators",
+        permanent: true,
+      },
+      {
+        source: "/teaching/ai-hackathon",
+        destination: "/ai-initiatives/ai-hackathon",
+        permanent: true,
+      },
+      {
+        source: "/teaching/ai-hackathon/side-quests",
+        destination: "/ai-initiatives/ai-hackathon/side-quests",
+        permanent: true,
+      },
     ];
   },
 };

@@ -18,14 +18,14 @@ export const metadata: Metadata = {
     "AI Mini Hackathon",
   ],
   alternates: {
-    canonical: "/teaching/ai-hackathon/side-quests",
+    canonical: "/ai-initiatives/ai-hackathon/side-quests",
   },
   openGraph: {
     type: "article",
     title: "Side Quests: Prototypes Outside the Classroom",
     description:
       "Personal AI prototypes built outside the syllabus, starting with a live beta open for public testing.",
-    url: "/teaching/ai-hackathon/side-quests",
+    url: "/ai-initiatives/ai-hackathon/side-quests",
   },
 };
 
@@ -36,7 +36,7 @@ export default function SideQuestsPage() {
         <div className="aurora" aria-hidden="true" />
         <Container className="max-w-[87.5rem]">
           <Link
-            href="/teaching/ai-hackathon"
+            href="/ai-initiatives/ai-hackathon"
             className="text-ink-500 dark:text-ink-400 hover:text-brand-700 dark:hover:text-brand-400 mb-6 inline-flex items-center gap-2 text-xs font-medium"
           >
             <ArrowRightIcon className="h-3 w-3 rotate-180" aria-hidden="true" />

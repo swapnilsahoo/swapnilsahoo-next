@@ -1274,7 +1274,7 @@ export function OneYearMbaExperience() {
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
               <Link
-                href="/teaching/ai-hackathon"
+                href="/ai-initiatives/ai-hackathon"
                 className="border-ink-200/80 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 group rounded-2xl border p-5 transition"
               >
                 <p className="eyebrow">Build-first learning</p>

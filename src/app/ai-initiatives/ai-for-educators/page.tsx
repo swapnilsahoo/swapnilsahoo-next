@@ -8,7 +8,7 @@ import {
   aiGoldenRule,
   aiModules,
   responsiblePrinciples,
-} from "@/features/teaching/data/ai-for-educators";
+} from "@/features/ai-initiatives/data/ai-for-educators";
 
 export const metadata: Metadata = {
   title: "AI for Educators | AI Initiatives",
@@ -21,13 +21,13 @@ export const metadata: Metadata = {
     "custom GPT for teaching",
     "responsible AI in education",
   ],
-  alternates: { canonical: "/teaching/ai-for-educators" },
+  alternates: { canonical: "/ai-initiatives/ai-for-educators" },
   openGraph: {
     type: "article",
     title: "AI for Educators",
     description:
       "Five modules, real tools, one rule that doesn't move: AI drafts, the teacher reviews, edits and owns it.",
-    url: "/teaching/ai-for-educators",
+    url: "/ai-initiatives/ai-for-educators",
     images: ["/images/profile_pic.jpg"],
   },
 };
@@ -60,6 +60,13 @@ export default function AiForEducatorsPage() {
           >
             <Link href="/" className="transition hover:text-blue-700 dark:hover:text-blue-300">
               Home
+            </Link>
+            <span aria-hidden="true">/</span>
+            <Link
+              href="/ai-initiatives"
+              className="transition hover:text-blue-700 dark:hover:text-blue-300"
+            >
+              AI Initiatives
             </Link>
             <span aria-hidden="true">/</span>
             <span aria-current="page" className="text-ink-800 dark:text-ink-100">
@@ -101,7 +108,7 @@ export default function AiForEducatorsPage() {
                 <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
               </a>
               <Link
-                href="/teaching/ai-hackathon"
+                href="/ai-initiatives/ai-hackathon"
                 className="focus-visible:ring-brand-300 inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:outline-none"
               >
                 See the AI Mini Hackathon
@@ -224,7 +231,7 @@ export default function AiForEducatorsPage() {
               </h2>
             </div>
             <Link
-              href="/teaching/ai-hackathon"
+              href="/ai-initiatives/ai-hackathon"
               className="border-ink-200 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 group flex flex-col justify-center rounded-2xl border p-6 transition focus-visible:ring-2 focus-visible:outline-none"
             >
               <p className="eyebrow mb-2">Event record</p>

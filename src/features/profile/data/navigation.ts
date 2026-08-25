@@ -130,14 +130,14 @@ export const entrepreneurshipDropdown: NavDropdown = {
 
 export const aiDropdown: NavDropdown = {
   label: "AI Initiatives",
-  href: "/teaching/ai-for-educators",
+  href: "/ai-initiatives",
   items: [
-    { label: "AI for Educators", href: "/teaching/ai-for-educators" },
+    { label: "AI for Educators", href: "/ai-initiatives/ai-for-educators" },
     {
       label: "AI Mini Hackathon",
-      href: "/teaching/ai-hackathon",
+      href: "/ai-initiatives/ai-hackathon",
       children: [
-        { label: "Side Quests · AI Viva Bot", href: "/teaching/ai-hackathon/side-quests" },
+        { label: "Side Quests · AI Viva Bot", href: "/ai-initiatives/ai-hackathon/side-quests" },
       ],
     },
   ],

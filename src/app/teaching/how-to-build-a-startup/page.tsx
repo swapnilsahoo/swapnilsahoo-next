@@ -484,7 +484,7 @@ export default function HowToBuildAStartupPage() {
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
               <Link
-                href="/teaching/ai-hackathon/side-quests"
+                href="/ai-initiatives/ai-hackathon/side-quests"
                 className="border-ink-200 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 rounded-2xl border p-6 transition focus-visible:ring-2 focus-visible:outline-none"
               >
                 <p className="eyebrow mb-2">Built, not just taught</p>

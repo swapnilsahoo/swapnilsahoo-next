@@ -39,14 +39,14 @@ export const metadata: Metadata = {
     "rapid prototyping",
   ],
   alternates: {
-    canonical: "/teaching/ai-hackathon",
+    canonical: "/ai-initiatives/ai-hackathon",
   },
   openGraph: {
     type: "article",
     title: "AI Mini Hackathon for PGDM Students — With a Proposed PhD Research Lens",
     description:
       "How the incoming PGDM 2026–28 cohort built responsibly framed GenAI prototypes, followed by a clearly labelled proposed PhD research extension.",
-    url: "/teaching/ai-hackathon",
+    url: "/ai-initiatives/ai-hackathon",
     images: ["/images/ai-hackathon/hackathon-demo.jpg"],
   },
 };
@@ -244,6 +244,26 @@ export default function AiHackathonPage() {
       <header className="relative overflow-hidden pt-14 pb-16 sm:pt-20 sm:pb-20">
         <div className="aurora" aria-hidden="true" />
         <Container className="max-w-[87.5rem]">
+          <nav
+            aria-label="Breadcrumb"
+            className="text-ink-500 mb-5 flex flex-wrap items-center gap-2 text-xs"
+          >
+            <Link href="/" className="transition hover:text-blue-700 dark:hover:text-blue-300">
+              Home
+            </Link>
+            <span aria-hidden="true">/</span>
+            <Link
+              href="/ai-initiatives"
+              className="transition hover:text-blue-700 dark:hover:text-blue-300"
+            >
+              AI Initiatives
+            </Link>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page" className="text-ink-800 dark:text-ink-100">
+              AI Mini Hackathon
+            </span>
+          </nav>
+
           <div
             data-page-hero="academic"
             className="from-ink-950 via-brand-900 to-ink-800 relative isolate overflow-hidden rounded-[28px] border border-white/10 bg-gradient-to-br px-6 py-10 text-white shadow-2xl shadow-blue-950/20 sm:px-10 sm:py-14 lg:px-14 lg:py-16"
@@ -894,7 +914,7 @@ export default function AiHackathonPage() {
                 </p>
               </div>
               <Link
-                href="/teaching/ai-hackathon/side-quests"
+                href="/ai-initiatives/ai-hackathon/side-quests"
                 className="bg-brand-600 hover:bg-brand-700 focus-visible:ring-brand-500 inline-flex shrink-0 items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-950/20 transition hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
               >
                 Visit Side Quests
