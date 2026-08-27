@@ -128,15 +128,7 @@ function MentionRow({ mention }: { mention: PressMention }) {
     </>
   );
 
-  if (!mention.href) {
-    return (
-      <div className="pub-item glass-card flex flex-wrap items-center justify-between gap-4 p-5 sm:p-6">
-        {content}
-      </div>
-    );
-  }
-
-  return (
+  const card = mention.href ? (
     <a
       href={mention.href}
       target="_blank"
@@ -145,6 +137,29 @@ function MentionRow({ mention }: { mention: PressMention }) {
     >
       {content}
     </a>
+  ) : (
+    <div className="pub-item glass-card flex flex-wrap items-center justify-between gap-4 p-5 sm:p-6">
+      {content}
+    </div>
+  );
+
+  // The print clipping is a second, independent link — kept as a sibling
+  // rather than nested inside the card's own <a>, since a browser can't
+  // resolve one anchor click-target inside another.
+  if (!mention.printHref) return card;
+
+  return (
+    <div className="relative">
+      {card}
+      <a
+        href={mention.printHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-ink-500 dark:text-ink-400 hover:text-brand-700 dark:hover:text-brand-300 absolute right-5 bottom-4 text-xs font-semibold underline decoration-dotted underline-offset-4 sm:right-6"
+      >
+        Print clipping
+      </a>
+    </div>
   );
 }
 

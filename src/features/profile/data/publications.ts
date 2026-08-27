@@ -273,6 +273,8 @@ export interface PressMention {
   date: string;
   description: string;
   href?: string;
+  /** Scanned print edition, for mentions that also ran in the paper. */
+  printHref?: string;
 }
 
 export const pressMentions: PressMention[] = [
@@ -281,6 +283,7 @@ export const pressMentions: PressMention[] = [
     date: "Aug 2026",
     description: "Is AI closing the door on entry-level jobs?",
     href: "https://www.millenniumpost.in/k-reers/is-ai-closing-the-door-on-entry-level-jobs-673675",
+    printHref: "/documents/millennium-post-ai-entry-level-jobs-print.pdf",
   },
   {
     outlet: "Open Magazine",
