@@ -277,6 +277,12 @@ export interface PressMention {
 
 export const pressMentions: PressMention[] = [
   {
+    outlet: "Millennium Post",
+    date: "Aug 2026",
+    description: "Is AI closing the door on entry-level jobs?",
+    href: "https://www.millenniumpost.in/k-reers/is-ai-closing-the-door-on-entry-level-jobs-673675",
+  },
+  {
     outlet: "Open Magazine",
     date: "Jun 2026",
     description: "OpenAI's $2.4B ad bet before its IPO, and the shift to point-of-intent advertising",
