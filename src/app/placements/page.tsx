@@ -564,6 +564,17 @@ export default function PlacementsPage() {
                 </p>
               </Link>
               <Link
+                href="/placements/behavioral-interview-questions"
+                className="border-ink-200 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 rounded-2xl border p-6 transition focus-visible:ring-2 focus-visible:outline-none"
+              >
+                <p className="eyebrow mb-2">Behavioral &amp; leadership</p>
+                <h3 className="font-serif text-2xl font-semibold">Behavioral Questions</h3>
+                <p className="text-ink-600 dark:text-ink-300 mt-2 text-sm leading-relaxed">
+                  Five categories of &ldquo;tell me about a time,&rdquo; plus an eight-step
+                  evidence ladder for any resume claim.
+                </p>
+              </Link>
+              <Link
                 href="/placements/industry-analysis"
                 className="border-ink-200 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 rounded-2xl border p-6 transition focus-visible:ring-2 focus-visible:outline-none"
               >
@@ -604,6 +615,16 @@ export default function PlacementsPage() {
                 </p>
               </Link>
               <Link
+                href="/placements/case-interview-bank"
+                className="border-ink-200 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 rounded-2xl border p-6 transition focus-visible:ring-2 focus-visible:outline-none"
+              >
+                <p className="eyebrow mb-2">More practice</p>
+                <h3 className="font-serif text-2xl font-semibold">Case Interview Bank</h3>
+                <p className="text-ink-600 dark:text-ink-300 mt-2 text-sm leading-relaxed">
+                  Ten shorter cases across product, growth, pricing and PE/VC diligence.
+                </p>
+              </Link>
+              <Link
                 href="/placements/guesstimates"
                 className="border-ink-200 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 rounded-2xl border p-6 transition focus-visible:ring-2 focus-visible:outline-none"
               >
@@ -611,6 +632,16 @@ export default function PlacementsPage() {
                 <h3 className="font-serif text-2xl font-semibold">Guesstimates</h3>
                 <p className="text-ink-600 dark:text-ink-300 mt-2 text-sm leading-relaxed">
                   A repeatable method, with three fully worked estimates.
+                </p>
+              </Link>
+              <Link
+                href="/placements/logic-and-puzzles"
+                className="border-ink-200 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 rounded-2xl border p-6 transition focus-visible:ring-2 focus-visible:outline-none"
+              >
+                <p className="eyebrow mb-2">Logical reasoning</p>
+                <h3 className="font-serif text-2xl font-semibold">Logic &amp; Puzzles</h3>
+                <p className="text-ink-600 dark:text-ink-300 mt-2 text-sm leading-relaxed">
+                  Ten classic puzzles, with what each is actually scoring.
                 </p>
               </Link>
               <Link

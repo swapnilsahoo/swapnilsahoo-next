@@ -60,6 +60,10 @@ export const placementsDropdown: NavDropdown = {
       href: "/placements/personal-interview-preparation",
     },
     {
+      label: "Behavioral & Leadership Interview Questions",
+      href: "/placements/behavioral-interview-questions",
+    },
+    {
       label: "Rigorous Industry Analysis",
       href: "/placements/industry-analysis",
     },
@@ -76,8 +80,16 @@ export const placementsDropdown: NavDropdown = {
       href: "/placements/case-examples",
     },
     {
+      label: "Case Interview Bank",
+      href: "/placements/case-interview-bank",
+    },
+    {
       label: "Guesstimates",
       href: "/placements/guesstimates",
+    },
+    {
+      label: "Logic & Puzzles",
+      href: "/placements/logic-and-puzzles",
     },
     {
       label: "General Management Interviews",
