@@ -56,6 +56,10 @@ export const placementsDropdown: NavDropdown = {
   href: "/placements",
   items: [
     {
+      label: "Personal Interview Preparation",
+      href: "/placements/personal-interview-preparation",
+    },
+    {
       label: "Rigorous Industry Analysis",
       href: "/placements/industry-analysis",
     },

@@ -554,6 +554,16 @@ export default function PlacementsPage() {
             </div>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               <Link
+                href="/placements/personal-interview-preparation"
+                className="border-ink-200 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 rounded-2xl border p-6 transition focus-visible:ring-2 focus-visible:outline-none"
+              >
+                <p className="eyebrow mb-2">The full rubric</p>
+                <h3 className="font-serif text-2xl font-semibold">Personal Interview Prep</h3>
+                <p className="text-ink-600 dark:text-ink-300 mt-2 text-sm leading-relaxed">
+                  Ten things the panel scores, with sample questions for each.
+                </p>
+              </Link>
+              <Link
                 href="/placements/industry-analysis"
                 className="border-ink-200 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 rounded-2xl border p-6 transition focus-visible:ring-2 focus-visible:outline-none"
               >
