@@ -2,6 +2,8 @@
 
 # dependencies
 /node_modules
+# this project uses pnpm (pnpm-lock.yaml) — never commit an npm lockfile
+/package-lock.json
 /.pnp
 .pnp.*
 .yarn/*
