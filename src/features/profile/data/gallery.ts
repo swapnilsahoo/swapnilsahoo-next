@@ -300,4 +300,46 @@ export const galleryImages: GalleryImage[] = [
     objectFit: "contain",
     objectPosition: "center",
   },
+  {
+    src: "/images/gallery/doctoral-au-revoir-2025-award.jpg",
+    alt: "Dr Swapnil Sahoo receiving a Fellow in Management memento from a senior faculty member at XLRI's Doctoral Au Revoir 2025",
+    caption: "Fellow in Management · XLRI Doctoral Au Revoir 2025",
+    description:
+      "Receiving the memento marking completion of the Fellow Programme in Management, at XLRI Jamshedpur's 2025 doctoral farewell.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
+  {
+    src: "/images/gallery/doctoral-au-revoir-2025-group.jpg",
+    alt: "A group photo of FPM and EFPM scholars and faculty on stage at XLRI's Doctoral Au Revoir 2025, with the event title on screen behind them",
+    caption: "The 2025 cohort · XLRI Doctoral Au Revoir",
+    description: "The FPM and EFPM farewell cohort of 2025, together on stage at XLRI Jamshedpur.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
+  {
+    src: "/images/gallery/great-lakes-faculty-workshop-2025.jpg",
+    alt: "Dr Swapnil Sahoo speaking mid-gesture alongside a colleague during a faculty workshop at Great Lakes Gurgaon",
+    caption: "In a faculty workshop · Great Lakes Gurgaon",
+    description: "Working through a session with a colleague during a faculty workshop on campus.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
+  {
+    src: "/images/gallery/sapience-2025-banner-lineup.jpg",
+    alt: "Dr Swapnil Sahoo and fellow panellists beside the SAPIENCE 2025 'Global Shocks, Local Strategies' banner at Great Lakes Gurgaon",
+    caption: "Before the session · SAPIENCE 2025",
+    description:
+      "With fellow speakers ahead of SAPIENCE 2025, Great Lakes Gurgaon's conference on entrepreneurship under global shocks and local strategies.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
+  {
+    src: "/images/gallery/sapience-2025-panel-certificates.jpg",
+    alt: "Dr Swapnil Sahoo and fellow panellists holding SAPIENCE 2025 certificates of appreciation on stage",
+    caption: "Certificates of appreciation · SAPIENCE 2025",
+    description: "The panel together after SAPIENCE 2025, each holding a certificate of appreciation for the session.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
 ];
