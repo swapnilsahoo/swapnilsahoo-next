@@ -621,6 +621,21 @@ export const businessSimulationCourse = {
                 format: "Workbook",
                 href: "/documents/business-simulation/round-5/section-c/section-c-round5-universe2-results.xls",
               },
+              {
+                label: "Integrated final workshop deck",
+                format: "Slides",
+                href: "/documents/business-simulation/round-5/section-c/section-c-round5-integrated-final-workshop.pptx",
+              },
+              {
+                label: "Final reflection & participation toolkit",
+                format: "Slides",
+                href: "/documents/business-simulation/round-5/section-c/section-c-round5-final-reflection-toolkit.pptx",
+              },
+              {
+                label: "Team reflection questions",
+                format: "Slides",
+                href: "/documents/business-simulation/round-5/section-c/section-c-round5-team-reflection-questions.pptx",
+              },
             ],
           },
           {
@@ -657,6 +672,21 @@ export const businessSimulationCourse = {
                 label: "Universe 2 results workbook",
                 format: "Workbook",
                 href: "/documents/business-simulation/round-5/section-d/section-d-round5-universe2-results.xls",
+              },
+              {
+                label: "Integrated final workshop deck",
+                format: "Slides",
+                href: "/documents/business-simulation/round-5/section-d/section-d-round5-integrated-final-workshop.pptx",
+              },
+              {
+                label: "Final reflection & participation toolkit",
+                format: "Slides",
+                href: "/documents/business-simulation/round-5/section-d/section-d-round5-final-reflection-toolkit.pptx",
+              },
+              {
+                label: "Team reflection questions",
+                format: "Slides",
+                href: "/documents/business-simulation/round-5/section-d/section-d-round5-team-reflection-questions.pptx",
               },
             ],
           },
