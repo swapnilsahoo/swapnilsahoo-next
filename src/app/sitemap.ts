@@ -14,6 +14,17 @@ const routes = [
   { path: "", changeFrequency: "monthly", priority: 1 },
   { path: "/research", changeFrequency: "monthly", priority: 0.9 },
   ...researchBranchRoutes,
+  { path: "/research/phd-coursework", changeFrequency: "monthly", priority: 0.82 },
+  {
+    path: "/research/phd-coursework/research-design-primer",
+    changeFrequency: "monthly",
+    priority: 0.78,
+  },
+  {
+    path: "/research/phd-coursework/how-to-read-a-research-paper",
+    changeFrequency: "monthly",
+    priority: 0.78,
+  },
   { path: "/teaching/1-year-mba", changeFrequency: "monthly", priority: 0.9 },
   { path: "/teaching/2-year-mba", changeFrequency: "monthly", priority: 0.9 },
   { path: "/teaching/karma-yoga", changeFrequency: "monthly", priority: 0.9 },

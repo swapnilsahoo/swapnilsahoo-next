@@ -502,6 +502,189 @@ export const businessSimulationCourse = {
       "These are the debrief decks and results workbooks from the sections as they actually ran—not illustrative examples. Download them, compare your own team's line against the cohort, and come to the next round with a sharper thesis.",
     rounds: [
       {
+        round: "Round 1",
+        headline:
+          "The opening round already separated the field sharply, with one team in nearly every group posting a deep loss while the leaders were decided by only a few points of TSR.",
+        groups: [
+          {
+            label: "Section C",
+            summary:
+              "Section C ran only Universe 1 in the opening round. Grey took the early lead on cumulative TSR (35.5%), narrowly ahead of Pink and Akatsuki, even though Pink actually closed the round with the strongest cumulative earnings of the seven teams. Green's aggressive early spend produced the round's only loss and the field's weakest return, at -49.5% TSR. Universe 2 had not yet joined Section C, so there is no cross-universe comparison for Round 1.",
+            files: [
+              {
+                label: "Universe 1 debrief",
+                format: "Slides",
+                href: "/documents/business-simulation/round-1/section-c/section-c-round1-universe1-debrief.pptx",
+              },
+              {
+                label: "Universe 1 results workbook",
+                format: "Workbook",
+                href: "/documents/business-simulation/round-1/section-c/section-c-round1-universe1-results.xls",
+              },
+            ],
+          },
+          {
+            label: "Section D",
+            summary:
+              "Section D ran both universes from the very first round. Universe 1's Ochre took the early lead by combining market-share strength with credible future value, narrowly ahead of Orange and Red Rangers—Red Rangers actually posted the round's highest profit without topping TSR—while Green fell to the weakest market capitalisation of the six teams despite issuing fresh equity. Universe 2 was calmer at the top, with Grey leading on cumulative TSR (32.1%) ahead of Blue and Green, while Orange brought up the rear.",
+            files: [
+              {
+                label: "Universe 1 debrief",
+                format: "Slides",
+                href: "/documents/business-simulation/round-1/section-d/section-d-round1-universe1-debrief.pptx",
+              },
+              {
+                label: "Universe 1 results workbook",
+                format: "Workbook",
+                href: "/documents/business-simulation/round-1/section-d/section-d-round1-universe1-results.xls",
+              },
+              {
+                label: "Universe 2 results workbook",
+                format: "Workbook",
+                href: "/documents/business-simulation/round-1/section-d/section-d-round1-universe2-results.xls",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        round: "Round 2",
+        headline:
+          "Leadership changed hands in three of the four groups, and both sections' Universe 2 closed the round with the stronger economics.",
+        groups: [
+          {
+            label: "Section C",
+            summary:
+              "Universe 1 changed hands at the top as Harshad Mehta Gang (Round 1's Red, renamed) surged to the Round 2 lead on TSR (39.8%) and became the universe's global market-share leader, while Green clawed back roughly $833m from Round 1's loss without yet reaching the leaders and Lakshmi Chit Fund posted the steepest profit decline of the round. Universe 2 stayed with Lehman Bros. in front (48.2%), but SEBI's Watchlist emerged as the profit leader on sales up 68% and profit up over 220%, Vijay Mallya captured the universe's biggest market-share gain, and Blues Clues' position collapsed to a CCC+ credit rating. Universe 2 closed Round 2 with both the higher TSR leader and the stronger average return of the two universes.",
+            files: [
+              {
+                label: "Universe 1 vs Universe 2 insights",
+                format: "Slides",
+                href: "/documents/business-simulation/round-2/section-c/section-c-round2-u1-vs-u2-insights-debrief.pptx",
+              },
+              {
+                label: "Universe 1 comparative debrief",
+                format: "Slides",
+                href: "/documents/business-simulation/round-2/section-c/section-c-round2-universe1-debrief.pptx",
+              },
+              {
+                label: "Universe 1 results workbook",
+                format: "Workbook",
+                href: "/documents/business-simulation/round-2/section-c/section-c-round2-universe1-results.xls",
+              },
+              {
+                label: "Universe 2 comparative debrief",
+                format: "Slides",
+                href: "/documents/business-simulation/round-2/section-c/section-c-round2-universe2-debrief.pptx",
+              },
+              {
+                label: "Universe 2 results workbook",
+                format: "Workbook",
+                href: "/documents/business-simulation/round-2/section-c/section-c-round2-universe2-results.xls",
+              },
+            ],
+          },
+          {
+            label: "Section D",
+            summary:
+              "Universe 1 saw its first change at the top: Orange overtook Ochre for the Round 2 lead even though Red Rangers held the higher current profit and Ochre the better ROCE, and no team outside the leading three broke into contention. Green's operating picture improved sharply, moving from deeply negative returns to positive ROS and ROCE and becoming the universe's volume leader, though it remained well behind the leaders on value. Universe 2 stayed with Grey in front (28.6%) ahead of Green and Blue, while Ochre's cumulative TSR turned negative (-2.9%) for the round.",
+            files: [
+              {
+                label: "Universe 1 comparative debrief",
+                format: "Slides",
+                href: "/documents/business-simulation/round-2/section-d/section-d-round2-universe1-debrief.pptx",
+              },
+              {
+                label: "Universe 1 results workbook",
+                format: "Workbook",
+                href: "/documents/business-simulation/round-2/section-d/section-d-round2-universe1-results.xls",
+              },
+              {
+                label: "Universe 2 results workbook",
+                format: "Workbook",
+                href: "/documents/business-simulation/round-2/section-d/section-d-round2-universe2-results.xls",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        round: "Round 3",
+        headline:
+          "Two of the four groups saw their Round 1 leader retake the top spot, while Section D's Universe 1 produced the biggest single rank jump of the series so far.",
+        groups: [
+          {
+            label: "Section C",
+            summary:
+              "Universe 1's leadership changed hands again as Grey reclaimed the top spot it held in Round 1, becoming what the debrief calls the round's \"coherent leader\" on the strength of the highest profit and an AA credit rating, even as Harshad Mehta Gang kept the higher market capitalisation. The universe's profit pool turned negative overall, swinging from +$1.00bn in Round 2 to -$0.61bn in Round 3, with Lakshmi Chit Fund posting the steepest loss. Universe 2 changed leaders too: Satyam 2.0 (Round 3's successor to Vijay Mallya) took over as TSR and profit leader from Round 2's Lehman Bros., which slipped to third, while SEBI's Watchlist held second. Universe-wide, sales grew from $11.1bn to $13.9bn even as aggregate profit fell from $3.38bn to $2.08bn.",
+            files: [
+              {
+                label: "Universe 1 vs Universe 2 insights",
+                format: "Slides",
+                href: "/documents/business-simulation/round-3/section-c/section-c-round3-u1-vs-u2-insights-debrief.pptx",
+              },
+              {
+                label: "Universe 1 comparative debrief",
+                format: "Slides",
+                href: "/documents/business-simulation/round-3/section-c/section-c-round3-universe1-debrief.pptx",
+              },
+              {
+                label: "Universe 1 results workbook",
+                format: "Workbook",
+                href: "/documents/business-simulation/round-3/section-c/section-c-round3-universe1-results.xls",
+              },
+              {
+                label: "Universe 2 comparative debrief",
+                format: "Slides",
+                href: "/documents/business-simulation/round-3/section-c/section-c-round3-universe2-debrief.pptx",
+              },
+              {
+                label: "Universe 2 results workbook",
+                format: "Workbook",
+                href: "/documents/business-simulation/round-3/section-c/section-c-round3-universe2-results.xls",
+              },
+            ],
+          },
+          {
+            label: "Section D",
+            summary:
+              "Universe 1 saw Ochre regain the lead it held in Round 1 and lost in Round 2, while Grey produced the section's largest rank climb of the series, rising from fifth in each of the first two rounds to second on the back of strong profit, ROS, ROCE and an AAA credit rating. Universe 2 stayed settled at the top: Grey held first across all three rounds even as its TSR level declined, while The Godfathers recovered to second place and Red fell from a middle rank to last.",
+            files: [
+              {
+                label: "Team flow map, Round 1 → Round 3",
+                format: "Slides",
+                href: "/documents/business-simulation/round-3/section-d/section-d-round3-team-flow-map.pptx",
+              },
+              {
+                label: "Universe 1 vs Universe 2 insights",
+                format: "Slides",
+                href: "/documents/business-simulation/round-3/section-d/section-d-round3-u1-vs-u2-insights-debrief.pptx",
+              },
+              {
+                label: "Universe 1 comparative debrief",
+                format: "Slides",
+                href: "/documents/business-simulation/round-3/section-d/section-d-round3-universe1-debrief.pptx",
+              },
+              {
+                label: "Universe 1 results workbook",
+                format: "Workbook",
+                href: "/documents/business-simulation/round-3/section-d/section-d-round3-universe1-results.xls",
+              },
+              {
+                label: "Universe 2 debrief",
+                format: "Slides",
+                href: "/documents/business-simulation/round-3/section-d/section-d-round3-universe2-debrief.pptx",
+              },
+              {
+                label: "Universe 2 results workbook",
+                format: "Workbook",
+                href: "/documents/business-simulation/round-3/section-d/section-d-round3-universe2-results.xls",
+              },
+            ],
+          },
+        ],
+      },
+      {
         round: "Round 4",
         headline: "Universe leadership changed hands in both sections; compression continued everywhere.",
         groups: [

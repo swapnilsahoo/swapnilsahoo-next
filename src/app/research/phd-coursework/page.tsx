@@ -126,6 +126,12 @@ export default function PhdCourseworkPage() {
                 <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
               </a>
               <Link
+                href="/research/phd-coursework/research-design-primer"
+                className="focus-visible:ring-brand-300 inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:outline-none"
+              >
+                Research design primer
+              </Link>
+              <Link
                 href="/research/phd-coursework/how-to-read-a-research-paper"
                 className="focus-visible:ring-brand-300 inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:outline-none"
               >
@@ -297,16 +303,34 @@ export default function PhdCourseworkPage() {
 
       <section aria-labelledby="continue-title" className="pb-20 sm:pb-28">
         <Container className="max-w-[87.5rem]">
-          <div className="glass-card grid gap-8 p-7 sm:p-10 lg:grid-cols-[0.8fr_1.2fr]">
-            <div>
-              <p className="eyebrow mb-3">Continue reading</p>
-              <h2 id="continue-title" className="display text-4xl font-semibold">
-                The one skill coursework assumes you already have.
-              </h2>
-            </div>
+          <div className="mb-8 max-w-3xl">
+            <p className="eyebrow mb-3">Continue reading</p>
+            <h2 id="continue-title" className="display text-4xl font-semibold">
+              Two skills coursework assumes you already have.
+            </h2>
+          </div>
+          <div className="grid gap-5 lg:grid-cols-2">
+            <Link
+              href="/research/phd-coursework/research-design-primer"
+              className="glass-card group flex flex-col justify-center p-6 transition hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:outline-none sm:p-7"
+            >
+              <p className="eyebrow mb-2">Guide</p>
+              <h3 className="font-serif text-2xl font-semibold">Research Design Primer</h3>
+              <p className="text-ink-600 dark:text-ink-300 mt-2 text-sm leading-relaxed">
+                The four kinds of validity in plain language, the construct-measurement gap, four
+                threats to any causal claim, and how to match a design to a question.
+              </p>
+              <span className="text-brand-700 dark:text-brand-400 mt-4 inline-flex items-center gap-1 text-sm font-semibold">
+                Read the guide
+                <ArrowRightIcon
+                  className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1"
+                  aria-hidden="true"
+                />
+              </span>
+            </Link>
             <Link
               href="/research/phd-coursework/how-to-read-a-research-paper"
-              className="border-ink-200 dark:border-ink-700 hover:border-brand-400 dark:hover:border-brand-500 focus-visible:ring-brand-500 group flex flex-col justify-center rounded-2xl border p-6 transition focus-visible:ring-2 focus-visible:outline-none"
+              className="glass-card group flex flex-col justify-center p-6 transition hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:outline-none sm:p-7"
             >
               <p className="eyebrow mb-2">Guide</p>
               <h3 className="font-serif text-2xl font-semibold">
