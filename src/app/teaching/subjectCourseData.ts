@@ -581,6 +581,87 @@ export const businessSimulationCourse = {
           },
         ],
       },
+      {
+        round: "Round 5",
+        headline:
+          "Leadership turned over in one universe of each section while the other stayed settled at the top.",
+        groups: [
+          {
+            label: "Section C",
+            summary:
+              "Universe 1's Lakshmi Chit Fund made the round's biggest jump, climbing from seventh to fourth, while Green took over the lead from Big Bulls, which slipped to second. Universe 2 stayed calmer at the top—Lehman Bros. and Blues Clues held first and second—with SEBI's Watchlist climbing one place to fourth as T5S fell to fifth. Universe 2 closed Round 5 with the stronger economics of the two: a positive aggregate profit and average TSR against Universe 1's negative figures on both counts.",
+            files: [
+              {
+                label: "Team flow map, Round 1 → Round 5",
+                format: "Slides",
+                href: "/documents/business-simulation/round-5/section-c/section-c-round5-team-flow-map.pptx",
+              },
+              {
+                label: "Universe 1 vs Universe 2 insights",
+                format: "Slides",
+                href: "/documents/business-simulation/round-5/section-c/section-c-round5-u1-vs-u2-insights-debrief.pptx",
+              },
+              {
+                label: "Universe 1 comparative debrief",
+                format: "Slides",
+                href: "/documents/business-simulation/round-5/section-c/section-c-round5-universe1-debrief.pptx",
+              },
+              {
+                label: "Universe 1 results workbook",
+                format: "Workbook",
+                href: "/documents/business-simulation/round-5/section-c/section-c-round5-universe1-results.xls",
+              },
+              {
+                label: "Universe 2 comparative debrief",
+                format: "Slides",
+                href: "/documents/business-simulation/round-5/section-c/section-c-round5-universe2-debrief.pptx",
+              },
+              {
+                label: "Universe 2 results workbook",
+                format: "Workbook",
+                href: "/documents/business-simulation/round-5/section-c/section-c-round5-universe2-results.xls",
+              },
+            ],
+          },
+          {
+            label: "Section D",
+            summary:
+              "Universe 1 changed hands at the top: Orange climbed from third to first as Red Rangers, the Round 4 leader, slipped to second and Ochre fell to third. Universe 2 was calmer at the summit—Grey held first from Round 4 into Round 5—but HallaBol produced the round's largest swing anywhere in Section D, climbing from last place to second, while The Godfathers and Ochre both lost ground. The two universes split on quality this round: Universe 1 closed with the stronger total profit and a positive average TSR, while Universe 2's leader posted the higher individual TSR even as the universe's average TSR stayed negative.",
+            files: [
+              {
+                label: "Team flow map, Round 1 → Round 5",
+                format: "Slides",
+                href: "/documents/business-simulation/round-5/section-d/section-d-round5-team-flow-map.pptx",
+              },
+              {
+                label: "Universe 1 vs Universe 2 insights",
+                format: "Slides",
+                href: "/documents/business-simulation/round-5/section-d/section-d-round5-u1-vs-u2-insights-debrief.pptx",
+              },
+              {
+                label: "Universe 1 comparative debrief",
+                format: "Slides",
+                href: "/documents/business-simulation/round-5/section-d/section-d-round5-universe1-debrief.pptx",
+              },
+              {
+                label: "Universe 1 results workbook",
+                format: "Workbook",
+                href: "/documents/business-simulation/round-5/section-d/section-d-round5-universe1-results.xls",
+              },
+              {
+                label: "Universe 2 comparative debrief",
+                format: "Slides",
+                href: "/documents/business-simulation/round-5/section-d/section-d-round5-universe2-debrief.pptx",
+              },
+              {
+                label: "Universe 2 results workbook",
+                format: "Workbook",
+                href: "/documents/business-simulation/round-5/section-d/section-d-round5-universe2-results.xls",
+              },
+            ],
+          },
+        ],
+      },
     ],
   },
   teachingMoment: {
