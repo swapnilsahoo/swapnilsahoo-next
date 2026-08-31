@@ -510,7 +510,7 @@ export function OneYearMbaExperience() {
         </div>
       </header>
 
-      <Container className="max-w-[100rem]">
+      <Container className="max-w-[min(100%,120rem)]">
         <nav
           aria-label="On this course page"
           className="nav-glass my-6 flex items-center gap-4 overflow-x-auto rounded-xl px-4 py-2 lg:my-8 lg:justify-between"
@@ -546,7 +546,7 @@ export function OneYearMbaExperience() {
       />
 
       <section aria-labelledby="induction-title" className="py-16 sm:py-24">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <Reveal className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">Before the syllabus · Induction, PGPM 2026–27 batch</p>
@@ -625,7 +625,7 @@ export function OneYearMbaExperience() {
       </section>
 
       <section id="promise" aria-labelledby="promise-title" className="py-16 sm:py-24">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="grid gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
             <div>
               <p className="eyebrow">01 / Learning promise</p>
@@ -673,7 +673,7 @@ export function OneYearMbaExperience() {
         aria-labelledby="course-profile-title"
         className="pb-16 sm:pb-24"
       >
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="glass-card overflow-hidden">
             <div className="grid gap-10 p-7 sm:p-10 lg:grid-cols-[0.84fr_1.16fr]">
               <div>
@@ -718,7 +718,7 @@ export function OneYearMbaExperience() {
         aria-labelledby="course-map-title"
         className="bg-slate-950 py-20 text-white sm:py-28"
       >
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
               <p className="font-mono text-[10px] tracking-[0.18em] text-blue-300 uppercase">
@@ -773,7 +773,7 @@ export function OneYearMbaExperience() {
       </section>
 
       <section id="sessions" aria-labelledby="sessions-title" className="py-20 sm:py-28">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
               <p className="eyebrow">03 / Complete session plan</p>
@@ -877,7 +877,7 @@ export function OneYearMbaExperience() {
       </section>
 
       <section id="practice" aria-labelledby="practice-title" className="py-20 sm:py-28">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="grid gap-5 lg:grid-cols-[1.18fr_0.82fr]">
             <article className="glass-card relative min-h-[620px] overflow-hidden p-7 sm:p-10">
               <div className="relative z-10 max-w-xl">
@@ -995,7 +995,7 @@ export function OneYearMbaExperience() {
       </section>
 
       <section aria-labelledby="field-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="from-ink-950 via-brand-900 to-ink-900 relative overflow-hidden rounded-[2rem] bg-gradient-to-br px-6 py-12 text-white sm:px-10 lg:px-14 lg:py-16">
             <div
               className="absolute -top-36 -right-24 h-80 w-80 rounded-full bg-amber-300/10 blur-3xl"
@@ -1082,7 +1082,7 @@ export function OneYearMbaExperience() {
         aria-labelledby="assessment-title"
         className="border-y border-slate-900/8 bg-white/35 py-20 backdrop-blur-sm sm:py-28 dark:border-white/8 dark:bg-slate-950/20"
       >
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
             <div className="flex flex-col items-center lg:items-start">
               <p className="eyebrow self-start">06 / Evidence of learning</p>
@@ -1144,7 +1144,7 @@ export function OneYearMbaExperience() {
       </section>
 
       <section aria-labelledby="outcomes-title" className="py-20 sm:py-28">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr]">
             <div>
               <p className="eyebrow">07 / Capability outcomes</p>
@@ -1214,7 +1214,7 @@ export function OneYearMbaExperience() {
       </section>
 
       <section aria-labelledby="standards-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <details className="from-ink-950 to-brand-900 group overflow-hidden rounded-[2rem] bg-gradient-to-br text-white shadow-xl shadow-blue-950/15">
             <summary className="grid cursor-pointer list-none grid-cols-[1fr_auto] items-end gap-6 p-7 marker:hidden sm:p-10 lg:p-12">
               <div>
@@ -1261,7 +1261,7 @@ export function OneYearMbaExperience() {
       </section>
 
       <aside aria-labelledby="connected-practice-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="glass-card grid gap-8 p-7 sm:p-10 lg:grid-cols-[0.7fr_1.3fr] lg:items-center">
             <div>
               <p className="eyebrow">Connected practice</p>
@@ -1323,7 +1323,7 @@ export function OneYearMbaExperience() {
       </aside>
 
       <section id="references" aria-labelledby="references-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="glass-card overflow-hidden">
             <div className="grid gap-8 p-7 sm:p-10 lg:grid-cols-[0.36fr_0.64fr]">
               <div>

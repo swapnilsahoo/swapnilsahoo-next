@@ -14,7 +14,7 @@ import {
 export function Teaching() {
   return (
     <Reveal>
-      <section id="teaching" className="mx-auto max-w-[100rem] px-6 py-16">
+      <section id="teaching" className="mx-auto max-w-[min(100%,120rem)] px-6 py-16">
         <div className="relative isolate mb-10 overflow-hidden rounded-[28px] border border-white/10 bg-ink-950 px-6 py-10 text-white shadow-xl shadow-blue-950/15 sm:px-10 sm:py-12">
           <Image
             src="/images/gallery/sapience-2025-panel-speaking.jpg"
@@ -159,7 +159,7 @@ export function Teaching() {
           </div>
         </div>
       </section>
-      <div className="hr-fade mx-auto max-w-[100rem]" />
+      <div className="hr-fade mx-auto max-w-[min(100%,120rem)]" />
     </Reveal>
   );
 }

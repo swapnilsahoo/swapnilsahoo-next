@@ -182,7 +182,7 @@ export default function ImmortalsPage() {
 
       <header className="relative overflow-hidden pt-14 pb-12 sm:pt-20 sm:pb-16">
         <div className="aurora" aria-hidden="true" />
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div
             data-page-hero="mythology"
             className="relative isolate overflow-hidden rounded-[30px] border border-indigo-200/20 bg-gradient-to-br from-[#15113d] via-[#312e81] to-[#713f12] px-6 py-12 text-white sm:px-10 sm:py-16 lg:px-14"
@@ -252,7 +252,7 @@ export default function ImmortalsPage() {
       </header>
 
       <section aria-label="Mythology library navigation" className="pb-12 sm:pb-16">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <MythologyBranchNav current="immortals" />
         </Container>
       </section>
@@ -265,7 +265,7 @@ export default function ImmortalsPage() {
       />
 
       <section id="evidence" aria-labelledby="evidence-title" className="py-16 sm:py-24">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="grid gap-10 lg:grid-cols-[0.68fr_1.32fr]">
             <div>
               <span className="accent-rule" />
@@ -335,7 +335,7 @@ export default function ImmortalsPage() {
       </section>
 
       <section aria-labelledby="claim-families-title" className="pb-16 sm:pb-24">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="mb-8 max-w-3xl">
             <p className="eyebrow">Comparative map</p>
             <h2
@@ -373,7 +373,7 @@ export default function ImmortalsPage() {
         aria-labelledby="invocation-title"
         className="bg-ink-900 py-16 text-white sm:py-24 dark:bg-black/35"
       >
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-14">
             <div>
               <SparkIcon className="h-7 w-7 text-amber-300" aria-hidden="true" />
@@ -488,7 +488,7 @@ export default function ImmortalsPage() {
       </section>
 
       <section id="atlas" aria-labelledby="atlas-title" className="py-16 sm:py-24">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="grid items-end gap-8 lg:grid-cols-[1fr_0.48fr]">
             <div>
               <span className="accent-rule" />
@@ -522,7 +522,7 @@ export default function ImmortalsPage() {
       </section>
 
       <section aria-labelledby="editorial-method-title" className="pb-16 sm:pb-24">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="glass-card grid gap-8 p-7 sm:p-9 lg:grid-cols-[0.62fr_1.38fr]">
             <div>
               <p className="eyebrow">Editorial source note</p>
@@ -559,7 +559,7 @@ export default function ImmortalsPage() {
       </section>
 
       <section id="sources" aria-labelledby="sources-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="mb-8 max-w-3xl">
             <p className="eyebrow">Source shelf</p>
             <h2 id="sources-title" className="display mt-3 text-4xl font-semibold md:text-5xl">

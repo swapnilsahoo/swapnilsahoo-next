@@ -74,7 +74,7 @@ export default function IndustryAnalysisPage() {
 
       <header className="relative overflow-hidden pt-10 pb-12 sm:pt-16 sm:pb-20">
         <div className="aurora" aria-hidden="true" />
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <nav
             aria-label="Breadcrumb"
             className="text-ink-500 mb-5 flex flex-wrap items-center gap-2 text-xs"
@@ -169,7 +169,7 @@ export default function IndustryAnalysisPage() {
       />
 
       <section id="framework" aria-labelledby="framework-title" className="py-16 sm:py-24">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="mb-10 grid gap-6 lg:grid-cols-[1fr_0.7fr] lg:items-end">
             <div>
               <span className="accent-rule" />
@@ -189,10 +189,10 @@ export default function IndustryAnalysisPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-[100rem]" />
+      <div className="hr-fade mx-auto max-w-[min(100%,120rem)]" />
 
       <section aria-labelledby="evidence-title" className="py-16 sm:py-24">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="mb-10 grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <span className="accent-rule" />
@@ -260,14 +260,14 @@ export default function IndustryAnalysisPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-[100rem]" />
+      <div className="hr-fade mx-auto max-w-[min(100%,120rem)]" />
 
       <section
         id="worked-example"
         aria-labelledby="worked-example-title"
         className="py-16 sm:py-24"
       >
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">03 / Worked example</p>
@@ -317,10 +317,10 @@ export default function IndustryAnalysisPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-[100rem]" />
+      <div className="hr-fade mx-auto max-w-[min(100%,120rem)]" />
 
       <section aria-labelledby="workflow-title" className="py-16 sm:py-24">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="mb-10 grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <span className="accent-rule" />
@@ -370,10 +370,10 @@ export default function IndustryAnalysisPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-[100rem]" />
+      <div className="hr-fade mx-auto max-w-[min(100%,120rem)]" />
 
       <section aria-labelledby="rubric-title" className="py-16 sm:py-24">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="mb-10 grid gap-6 lg:grid-cols-[1fr_0.7fr] lg:items-end">
             <div>
               <span className="accent-rule" />
@@ -445,10 +445,10 @@ export default function IndustryAnalysisPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-[100rem]" />
+      <div className="hr-fade mx-auto max-w-[min(100%,120rem)]" />
 
       <section aria-labelledby="formula-title" className="pb-16 sm:pb-24">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">06 / Formula sheet</p>
@@ -473,7 +473,7 @@ export default function IndustryAnalysisPage() {
       </section>
 
       <section className="pb-16 sm:pb-24">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="from-ink-950 to-brand-900 relative overflow-hidden rounded-[26px] bg-gradient-to-br p-7 text-white shadow-xl shadow-blue-950/15 sm:p-10">
             <div
               className="bg-accent-400/15 absolute -top-24 -right-20 h-72 w-72 rounded-full blur-3xl"
@@ -504,7 +504,7 @@ export default function IndustryAnalysisPage() {
       </section>
 
       <section aria-labelledby="sources-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="glass-card grid gap-8 p-7 sm:p-10 lg:grid-cols-[0.75fr_1.25fr]">
             <div>
               <p className="eyebrow mb-3">07 / Foundations &amp; continue practising</p>

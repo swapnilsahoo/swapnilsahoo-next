@@ -137,7 +137,7 @@ export default function SpiritualityPage() {
     <main id="main-content" tabIndex={-1}>
       <header className="relative overflow-hidden pt-14 pb-16 sm:pt-20 sm:pb-24">
         <div className="aurora" aria-hidden="true" />
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div
             data-page-hero="spirituality"
             className="relative isolate overflow-hidden rounded-[30px] border border-amber-200/20 bg-gradient-to-br from-[#220b09] via-[#70230f] to-[#b45309] px-6 py-12 text-white shadow-2xl shadow-amber-950/25 sm:px-10 sm:py-16 lg:px-14"
@@ -190,7 +190,7 @@ export default function SpiritualityPage() {
       </header>
 
       <section id="collections" aria-labelledby="collection-title" className="py-16 sm:py-24">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">01 / The collection</p>
@@ -247,10 +247,10 @@ export default function SpiritualityPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-[100rem]" />
+      <div className="hr-fade mx-auto max-w-[min(100%,120rem)]" />
 
       <section id="reading-method" aria-labelledby="reader-title" className="py-16 sm:py-24">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="mb-10 grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <span className="accent-rule" />
@@ -287,7 +287,7 @@ export default function SpiritualityPage() {
       </section>
 
       <section aria-labelledby="companion-title" className="pb-16 sm:pb-24">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="relative overflow-hidden rounded-[26px] bg-gradient-to-br from-[#220b09] to-[#7c2d12] p-7 text-white shadow-xl shadow-amber-950/15 sm:p-10">
             <div className="grid gap-8 lg:grid-cols-2">
               <div>
@@ -315,7 +315,7 @@ export default function SpiritualityPage() {
       </section>
 
       <section aria-labelledby="sources-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="glass-card grid gap-8 p-7 sm:p-10 lg:grid-cols-[0.75fr_1.25fr]">
             <div>
               <SparkIcon

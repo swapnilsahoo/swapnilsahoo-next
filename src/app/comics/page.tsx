@@ -213,7 +213,7 @@ export default function ComicsPage() {
         aria-labelledby="spider-man-title"
         className="scroll-mt-28 py-20 sm:py-28"
       >
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
             <div className="lg:sticky lg:top-32 lg:self-start">
               <p className="text-sm font-bold text-red-700 uppercase dark:text-red-400">
@@ -409,7 +409,7 @@ export default function ComicsPage() {
         aria-labelledby="he-man-title"
         className={`${styles.heManBand} scroll-mt-28 py-20 sm:py-28`}
       >
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
             <div className="lg:sticky lg:top-32 lg:self-start">
               <p className="text-sm font-bold text-purple-900 uppercase">03 / He-Man</p>
@@ -553,7 +553,7 @@ export default function ComicsPage() {
       </section>
 
       <section aria-labelledby="sources-title" className="py-16 sm:py-20">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="grid gap-10 border-t border-slate-300 pt-10 lg:grid-cols-[0.7fr_1.3fr] dark:border-white/15">
             <div>
               <span className="accent-rule" />

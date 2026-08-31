@@ -51,5 +51,5 @@ export function InquiryPrelude({
     </section>
   );
 
-  return contained ? <Container className="max-w-[100rem]">{content}</Container> : content;
+  return contained ? <Container className="max-w-[min(100%,120rem)]">{content}</Container> : content;
 }

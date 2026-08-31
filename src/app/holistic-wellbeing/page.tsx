@@ -51,7 +51,7 @@ export default function HolisticWellbeingPage() {
       </header>
 
       <section aria-labelledby="pathways-title" className="py-14 sm:py-20">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="mb-10">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">Start here</p>

@@ -55,7 +55,7 @@ export function ResearchBranchPage({ branch }: { branch: ResearchBranch }) {
     <main id="main-content" tabIndex={-1}>
       <header className="relative overflow-hidden pt-10 pb-12 sm:pt-16 sm:pb-16">
         <div className="aurora" aria-hidden="true" />
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <nav aria-label="Breadcrumb" className="text-ink-500 mb-5 flex flex-wrap gap-2 text-xs">
             <Link href="/" className="hover:text-brand-700 dark:hover:text-brand-300 transition">
               Home
@@ -120,12 +120,12 @@ export function ResearchBranchPage({ branch }: { branch: ResearchBranch }) {
         questions={inquiryQuestions}
       />
 
-      <Container className="max-w-[100rem] pb-10">
+      <Container className="max-w-[min(100%,120rem)] pb-10">
         <ResearchBranchNav currentSlug={branch.slug} />
       </Container>
 
       <section aria-labelledby="framing-title" className="py-14 sm:py-20">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="grid gap-6 lg:grid-cols-[0.7fr_1.3fr]">
             <div>
               <span className="accent-rule" />
@@ -153,7 +153,7 @@ export function ResearchBranchPage({ branch }: { branch: ResearchBranch }) {
       </section>
 
       <section aria-labelledby="mechanism-title" className="py-14 sm:py-20">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">02 / Proposed mechanism</p>
@@ -181,7 +181,7 @@ export function ResearchBranchPage({ branch }: { branch: ResearchBranch }) {
       </section>
 
       <section aria-labelledby="contribution-title" className="py-14 sm:py-20">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
             <article className="glass-card p-6 sm:p-9">
               <p className="eyebrow">03 / What the thesis contributes</p>
@@ -232,7 +232,7 @@ export function ResearchBranchPage({ branch }: { branch: ResearchBranch }) {
       </section>
 
       <section id="open-questions" aria-labelledby="questions-title" className="py-14 sm:py-20">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="grid gap-9 lg:grid-cols-[0.72fr_1fr]">
             <div>
               <span className="accent-rule" />
@@ -260,7 +260,7 @@ export function ResearchBranchPage({ branch }: { branch: ResearchBranch }) {
       </section>
 
       <section aria-labelledby="fit-title" className="py-14 sm:py-20">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="glass-card grid gap-7 p-6 sm:p-9 lg:grid-cols-[0.55fr_1fr]">
             <div>
               <p className="eyebrow">05 / Collaboration fit</p>
@@ -282,7 +282,7 @@ export function ResearchBranchPage({ branch }: { branch: ResearchBranch }) {
         </Container>
       </section>
 
-      <Container className="max-w-[100rem] py-14 sm:py-20">
+      <Container className="max-w-[min(100%,120rem)] py-14 sm:py-20">
         <CollaborationInvite
           subject={branch.shortTitle}
           description={`If your question, context, dataset or method intersects with ${branch.title.toLowerCase()}, I would be glad to compare ideas. A useful first note names the question, what evidence may be available and what a credible contribution could be.`}

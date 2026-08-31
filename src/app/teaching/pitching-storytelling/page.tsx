@@ -56,7 +56,7 @@ export default function PitchingStorytellingPage() {
 
       <header className="relative overflow-hidden pt-10 pb-12 sm:pt-16 sm:pb-20">
         <div className="aurora" aria-hidden="true" />
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <nav
             aria-label="Breadcrumb"
             className="text-ink-500 mb-5 flex flex-wrap items-center gap-2 text-xs"
@@ -148,7 +148,7 @@ export default function PitchingStorytellingPage() {
       />
 
       <section id="audiences" aria-labelledby="audiences-title" className="py-16 sm:py-24">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">Module 01 / Three audiences, three pitches</p>
@@ -178,7 +178,7 @@ export default function PitchingStorytellingPage() {
       </section>
 
       <section aria-labelledby="room-title" className="pb-16 sm:pb-24">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <Reveal variant="image">
             <figure className="glass-card grid overflow-hidden lg:grid-cols-[0.82fr_1.18fr]">
               <figcaption className="order-2 flex flex-col justify-center p-7 sm:p-10 lg:order-1 lg:p-12">
@@ -210,10 +210,10 @@ export default function PitchingStorytellingPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-[100rem]" />
+      <div className="hr-fade mx-auto max-w-[min(100%,120rem)]" />
 
       <section aria-labelledby="structure-title" className="py-16 sm:py-24">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">Module 02 / A six-step structure</p>
@@ -238,10 +238,10 @@ export default function PitchingStorytellingPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-[100rem]" />
+      <div className="hr-fade mx-auto max-w-[min(100%,120rem)]" />
 
       <section aria-labelledby="mistakes-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="from-ink-950 to-brand-900 relative overflow-hidden rounded-[24px] bg-gradient-to-br p-7 text-white shadow-xl shadow-blue-950/15 sm:p-10">
             <div
               className="bg-accent-400/15 absolute -top-24 -right-20 h-72 w-72 rounded-full blur-3xl"
@@ -267,7 +267,7 @@ export default function PitchingStorytellingPage() {
       </section>
 
       <section aria-labelledby="continue-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="glass-card grid gap-8 p-7 sm:p-10 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
               <p className="eyebrow mb-3">Continue the playbook</p>

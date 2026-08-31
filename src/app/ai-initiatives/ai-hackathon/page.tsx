@@ -243,7 +243,7 @@ export default function AiHackathonPage() {
     <main id="main-content" tabIndex={-1}>
       <header className="relative overflow-hidden pt-14 pb-16 sm:pt-20 sm:pb-20">
         <div className="aurora" aria-hidden="true" />
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <nav
             aria-label="Breadcrumb"
             className="text-ink-500 mb-5 flex flex-wrap items-center gap-2 text-xs"
@@ -390,7 +390,7 @@ export default function AiHackathonPage() {
       />
 
       <section id="experience" aria-labelledby="experience-title" className="py-16 sm:py-24">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="grid gap-10 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <span className="accent-rule" />
@@ -423,10 +423,10 @@ export default function AiHackathonPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-[100rem]" />
+      <div className="hr-fade mx-auto max-w-[min(100%,120rem)]" />
 
       <section aria-labelledby="schedule-title" className="py-16 sm:py-24">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">02 / Programme schedule</p>
@@ -454,10 +454,10 @@ export default function AiHackathonPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-[100rem]" />
+      <div className="hr-fade mx-auto max-w-[min(100%,120rem)]" />
 
       <section aria-labelledby="lenses-title" className="py-16 sm:py-24">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">03 / Audience lenses</p>
@@ -641,10 +641,10 @@ export default function AiHackathonPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-[100rem]" />
+      <div className="hr-fade mx-auto max-w-[min(100%,120rem)]" />
 
       <section aria-labelledby="challenge-title" className="py-16 sm:py-24">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="mb-10 grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <span className="accent-rule" />
@@ -705,10 +705,10 @@ export default function AiHackathonPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-[100rem]" />
+      <div className="hr-fade mx-auto max-w-[min(100%,120rem)]" />
 
       <section aria-labelledby="gallery-title" className="py-16 sm:py-24">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="grid items-center gap-8 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <span className="accent-rule" />
@@ -793,10 +793,10 @@ export default function AiHackathonPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-[100rem]" />
+      <div className="hr-fade mx-auto max-w-[min(100%,120rem)]" />
 
       <section aria-labelledby="evaluation-title" className="py-16 sm:py-24">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">06 / What the jury considered</p>
@@ -840,7 +840,7 @@ export default function AiHackathonPage() {
       </section>
 
       <section aria-labelledby="outputs-title" className="pb-16 sm:pb-24">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="from-ink-950 to-brand-900 rounded-[24px] bg-gradient-to-br p-7 text-white sm:p-10">
             <p className="font-mono text-[11px] tracking-[0.16em] text-blue-200 uppercase">
               07 / What each team brought
@@ -887,7 +887,7 @@ export default function AiHackathonPage() {
       </section>
 
       <section aria-labelledby="internal-hackathon-title" className="pb-16 sm:pb-24">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="mb-8 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">08 / A parallel track: the internal hackathon</p>
@@ -946,10 +946,10 @@ export default function AiHackathonPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-[100rem]" />
+      <div className="hr-fade mx-auto max-w-[min(100%,120rem)]" />
 
       <section id="side-quests" aria-labelledby="side-quests-title" className="py-16 sm:py-24">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="from-brand-50 to-accent-400/10 dark:from-brand-900/30 dark:to-accent-400/5 border-brand-200/60 dark:border-brand-700/40 relative overflow-hidden rounded-[24px] border bg-gradient-to-br p-7 sm:p-10">
             <div
               className="bg-brand-500/10 absolute -top-24 -right-16 h-72 w-72 rounded-full blur-3xl"
@@ -989,10 +989,10 @@ export default function AiHackathonPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-[100rem]" />
+      <div className="hr-fade mx-auto max-w-[min(100%,120rem)]" />
 
       <section aria-labelledby="resources-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="glass-card relative overflow-hidden p-7 sm:p-10">
             <div
               className="bg-brand-500/10 absolute -top-24 -right-20 h-72 w-72 rounded-full blur-3xl"

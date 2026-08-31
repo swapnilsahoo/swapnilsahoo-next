@@ -25,7 +25,7 @@ export default function Home() {
           "If a classroom exercise looks impressive, how would you know it actually changed judgment?",
         ]}
       />
-      <div className="hr-fade mx-auto max-w-[100rem]" />
+      <div className="hr-fade mx-auto max-w-[min(100%,120rem)]" />
       <Stats />
       <About />
       <Testimonials />

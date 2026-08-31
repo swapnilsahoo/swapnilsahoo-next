@@ -61,7 +61,7 @@ export default function StrategyEntrepreneurshipInterviewPrepPage() {
 
       <header className="relative overflow-hidden pt-10 pb-12 sm:pt-16 sm:pb-20">
         <div className="aurora" aria-hidden="true" />
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <nav
             aria-label="Breadcrumb"
             className="text-ink-500 mb-5 flex flex-wrap items-center gap-2 text-xs"
@@ -121,7 +121,7 @@ export default function StrategyEntrepreneurshipInterviewPrepPage() {
       />
 
       <section aria-labelledby="frameworks-title" className="py-16 sm:py-24">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">01 / Frameworks worth knowing</p>
@@ -142,10 +142,10 @@ export default function StrategyEntrepreneurshipInterviewPrepPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-[100rem]" />
+      <div className="hr-fade mx-auto max-w-[min(100%,120rem)]" />
 
       <section aria-labelledby="quiz-title" className="py-16 sm:py-24">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">02 / Self-test</p>
@@ -161,7 +161,7 @@ export default function StrategyEntrepreneurshipInterviewPrepPage() {
       </section>
 
       <section aria-labelledby="continue-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-[100rem]">
+        <Container className="max-w-[min(100%,120rem)]">
           <div className="glass-card grid gap-8 p-7 sm:p-10 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
               <p className="eyebrow mb-3">Continue practising</p>

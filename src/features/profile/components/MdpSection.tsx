@@ -5,7 +5,7 @@ import { mdpModules, mdpProgramsConducted } from "@/features/profile/data/mdp";
 export function MdpSection() {
   return (
     <Reveal>
-      <section id="mdp" className="mx-auto max-w-[100rem] px-6 py-16">
+      <section id="mdp" className="mx-auto max-w-[min(100%,120rem)] px-6 py-16">
         <div className="mb-10 grid gap-10 md:grid-cols-12">
           <div className="md:col-span-4">
             <span className="accent-rule" />
@@ -83,7 +83,7 @@ export function MdpSection() {
           </div>
         </div>
       </section>
-      <div className="hr-fade mx-auto max-w-[100rem]" />
+      <div className="hr-fade mx-auto max-w-[min(100%,120rem)]" />
     </Reveal>
   );
 }
