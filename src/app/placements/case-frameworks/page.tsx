@@ -54,7 +54,7 @@ export default function CaseFrameworksPage() {
 
       <header className="relative overflow-hidden pt-10 pb-12 sm:pt-16 sm:pb-20">
         <div className="aurora" aria-hidden="true" />
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <nav
             aria-label="Breadcrumb"
             className="text-ink-500 mb-5 flex flex-wrap items-center gap-2 text-xs"
@@ -149,7 +149,7 @@ export default function CaseFrameworksPage() {
       />
 
       <section id="approach" aria-labelledby="approach-title" className="py-16 sm:py-24">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="mb-10 grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <span className="accent-rule" />
@@ -199,10 +199,10 @@ export default function CaseFrameworksPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-[87.5rem]" />
+      <div className="hr-fade mx-auto max-w-[100rem]" />
 
       <section id="explorer" aria-labelledby="explorer-title" className="py-16 sm:py-24">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">02 / The framework explorer</p>
@@ -219,7 +219,7 @@ export default function CaseFrameworksPage() {
       </section>
 
       <section aria-labelledby="continue-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="glass-card grid gap-8 p-7 sm:p-10 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
               <p className="eyebrow mb-3">03 / Continue practising</p>

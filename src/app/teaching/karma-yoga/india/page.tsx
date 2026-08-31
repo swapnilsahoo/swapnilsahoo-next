@@ -124,7 +124,7 @@ export default function KarmaYogaForIndiaPage() {
       <KarmaYogaIndiaStory />
 
       <section aria-label="Continue exploring Karma Yoga" className="py-14 sm:py-20">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="glass-card flex flex-col gap-6 p-7 sm:flex-row sm:items-center sm:justify-between sm:p-9">
             <div>
               <p className="eyebrow mb-2">The other pathway</p>

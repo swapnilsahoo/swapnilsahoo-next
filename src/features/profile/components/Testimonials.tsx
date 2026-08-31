@@ -34,7 +34,7 @@ export function Testimonials() {
   return (
     <Reveal>
       <section id="testimonials" className="mb-16">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="mb-8 grid gap-10 md:grid-cols-12">
             <div className="md:col-span-4">
               <span className="accent-rule" />
@@ -74,7 +74,7 @@ export function Testimonials() {
           )}
         </Container>
       </section>
-      <div className="hr-fade mx-auto max-w-[87.5rem]" />
+      <div className="hr-fade mx-auto max-w-[100rem]" />
     </Reveal>
   );
 }

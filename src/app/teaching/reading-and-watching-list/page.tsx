@@ -558,7 +558,7 @@ export default function ReadingAndWatchingListPage() {
     <main id="main-content" tabIndex={-1}>
       <header className="relative overflow-hidden pt-14 pb-16 sm:pt-20 sm:pb-24">
         <div className="aurora" aria-hidden="true" />
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <nav
             aria-label="Breadcrumb"
             className="text-ink-500 mb-5 flex flex-wrap items-center gap-2 text-xs"
@@ -682,7 +682,7 @@ export default function ReadingAndWatchingListPage() {
       <ShelfLibrary groups={shelfGroups} totalCount={totalCount} />
 
       <section aria-labelledby="how-to-use-title" className="pb-16 sm:pb-24">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="from-ink-950 to-brand-900 rounded-[28px] bg-gradient-to-br p-8 text-white shadow-xl shadow-blue-950/15 sm:p-12">
             <p className="font-mono text-[11px] tracking-[0.16em] text-blue-200 uppercase">
               How I&apos;d actually use this

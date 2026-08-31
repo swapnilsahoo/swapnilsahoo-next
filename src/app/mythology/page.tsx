@@ -169,7 +169,7 @@ export default function MythologyPage() {
     <main id="main-content" tabIndex={-1}>
       <header className="relative overflow-hidden pt-14 pb-16 sm:pt-20 sm:pb-24">
         <div className="aurora" aria-hidden="true" />
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div
             data-page-hero="mythology"
             className="relative isolate overflow-hidden rounded-[30px] border border-indigo-200/20 bg-gradient-to-br from-[#15113d] via-[#312e81] to-[#9a3412] px-6 py-12 text-white shadow-2xl shadow-indigo-950/25 sm:px-10 sm:py-16 lg:px-14"
@@ -230,7 +230,7 @@ export default function MythologyPage() {
       </header>
 
       <section aria-label="Mythology library navigation" className="pb-12 sm:pb-16">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <MythologyBranchNav current="overview" />
         </Container>
       </section>
@@ -243,7 +243,7 @@ export default function MythologyPage() {
       />
 
       <section aria-labelledby="original-note-title" className="pb-16 sm:pb-24">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="glass-card grid gap-7 p-7 sm:p-9 lg:grid-cols-[0.42fr_1fr]">
             <div>
               <SparkIcon
@@ -276,7 +276,7 @@ export default function MythologyPage() {
         aria-labelledby="mahabharata-title"
         className="py-16 sm:py-24"
       >
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
             <article>
               <span className="accent-rule" />
@@ -331,10 +331,10 @@ export default function MythologyPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-[87.5rem]" />
+      <div className="hr-fade mx-auto max-w-[100rem]" />
 
       <section id="ramayana-original" aria-labelledby="ramayana-title" className="py-16 sm:py-24">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
             <aside
               aria-labelledby="ramayana-lenses"
@@ -393,10 +393,10 @@ export default function MythologyPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-[87.5rem]" />
+      <div className="hr-fade mx-auto max-w-[100rem]" />
 
       <section id="immortals" aria-labelledby="immortals-title" className="py-16 sm:py-24">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
             <article>
               <span className="accent-rule" />
@@ -448,7 +448,7 @@ export default function MythologyPage() {
       </section>
 
       <section aria-labelledby="reading-method-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="relative overflow-hidden rounded-[26px] bg-gradient-to-br from-[#15113d] via-[#312e81] to-[#7c2d12] p-7 text-white shadow-xl shadow-indigo-950/15 sm:p-10">
             <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
               <div>

@@ -34,7 +34,7 @@ export default function SideQuestsPage() {
     <main id="main-content" tabIndex={-1}>
       <header className="relative overflow-hidden pt-14 pb-16 sm:pt-20 sm:pb-20">
         <div className="aurora" aria-hidden="true" />
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <Link
             href="/ai-initiatives/ai-hackathon"
             className="text-ink-500 dark:text-ink-400 hover:text-brand-700 dark:hover:text-brand-400 mb-6 inline-flex items-center gap-2 text-xs font-medium"
@@ -59,7 +59,7 @@ export default function SideQuestsPage() {
       </header>
 
       <section aria-label="Side quests" className="pb-20 sm:pb-28">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="grid gap-8">
             {sideQuests.map((quest) => (
               <article

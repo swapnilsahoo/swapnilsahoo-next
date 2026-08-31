@@ -108,7 +108,7 @@ export function KarmaYogaHub() {
       />
 
       <section aria-label="Choose a Karma Yoga pathway" className="py-14 sm:py-20">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">Choose a pathway</p>
@@ -201,7 +201,7 @@ export function KarmaYogaHub() {
       </section>
 
       <section aria-labelledby="recognition-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
             <blockquote className="border-brand-200 bg-brand-50/65 dark:border-brand-800 dark:bg-brand-950/35 rounded-3xl border p-7 sm:p-9">
               <p className="font-serif text-2xl leading-snug font-semibold text-balance sm:text-3xl">
@@ -233,7 +233,7 @@ export function KarmaYogaHub() {
       </section>
 
       <section aria-labelledby="shared-ethic-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="rounded-[2rem] border border-slate-900/10 bg-white/65 p-6 shadow-xl shadow-slate-950/5 sm:p-10 dark:border-white/10 dark:bg-slate-950/55">
             <div className="max-w-3xl">
               <p className="eyebrow mb-3">The shared ethic</p>

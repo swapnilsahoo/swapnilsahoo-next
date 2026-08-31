@@ -5,7 +5,7 @@ import { phdColumns, phdSupervision } from "@/features/profile/data/phd";
 export function PhdSupervision() {
   return (
     <Reveal>
-      <section id="phd" className="mx-auto max-w-[87.5rem] px-6 py-16">
+      <section id="phd" className="mx-auto max-w-[100rem] px-6 py-16">
         <div className="glass-card relative overflow-hidden p-8 md:p-12">
           <div className="bg-brand-500/10 absolute -top-20 -right-20 h-80 w-80 rounded-full blur-3xl" />
           <div className="bg-accent-500/10 absolute -bottom-20 -left-10 h-72 w-72 rounded-full blur-3xl" />
@@ -45,7 +45,7 @@ export function PhdSupervision() {
           </div>
         </div>
       </section>
-      <div className="hr-fade mx-auto max-w-[87.5rem]" />
+      <div className="hr-fade mx-auto max-w-[100rem]" />
     </Reveal>
   );
 }

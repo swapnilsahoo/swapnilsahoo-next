@@ -61,7 +61,7 @@ export default function HowToReadAResearchPaperPage() {
 
       <header className="relative overflow-hidden pt-10 pb-12 sm:pt-16 sm:pb-20">
         <div className="aurora" aria-hidden="true" />
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <nav
             aria-label="Breadcrumb"
             className="text-ink-500 mb-5 flex flex-wrap items-center gap-2 text-xs"
@@ -153,7 +153,7 @@ export default function HowToReadAResearchPaperPage() {
       />
 
       <section id="before-you-open" aria-labelledby="before-you-open-title" className="py-16 sm:py-24">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">01 / Before you open the PDF</p>
@@ -192,10 +192,10 @@ export default function HowToReadAResearchPaperPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-[87.5rem]" />
+      <div className="hr-fade mx-auto max-w-[100rem]" />
 
       <section id="three-pass" aria-labelledby="three-pass-title" className="py-16 sm:py-24">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="mb-10 grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <span className="accent-rule" />
@@ -241,10 +241,10 @@ export default function HowToReadAResearchPaperPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-[87.5rem]" />
+      <div className="hr-fade mx-auto max-w-[100rem]" />
 
       <section aria-labelledby="order-title" className="py-16 sm:py-24">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">03 / A reading order that isn&apos;t the printed order</p>
@@ -275,10 +275,10 @@ export default function HowToReadAResearchPaperPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-[87.5rem]" />
+      <div className="hr-fade mx-auto max-w-[100rem]" />
 
       <section aria-labelledby="questions-title" className="py-16 sm:py-24">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">04 / Interrogate the paper, don&apos;t just absorb it</p>
@@ -302,10 +302,10 @@ export default function HowToReadAResearchPaperPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-[87.5rem]" />
+      <div className="hr-fade mx-auto max-w-[100rem]" />
 
       <section aria-labelledby="log-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="from-ink-950 to-brand-900 relative overflow-hidden rounded-[24px] bg-gradient-to-br p-7 text-white shadow-xl shadow-blue-950/15 sm:p-10">
             <div
               className="bg-accent-400/15 absolute -top-24 -right-20 h-72 w-72 rounded-full blur-3xl"
@@ -337,7 +337,7 @@ export default function HowToReadAResearchPaperPage() {
       </section>
 
       <section aria-labelledby="mistakes-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">06 / What slows most doctoral readers down</p>
@@ -360,10 +360,10 @@ export default function HowToReadAResearchPaperPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-[87.5rem]" />
+      <div className="hr-fade mx-auto max-w-[100rem]" />
 
       <section aria-labelledby="access-title" className="py-16 sm:py-24">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">07 / Getting the paper, and getting better at this</p>
@@ -401,7 +401,7 @@ export default function HowToReadAResearchPaperPage() {
       </section>
 
       <section aria-labelledby="continue-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="glass-card grid gap-8 p-7 sm:p-10 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
               <p className="eyebrow mb-3">Back to coursework</p>

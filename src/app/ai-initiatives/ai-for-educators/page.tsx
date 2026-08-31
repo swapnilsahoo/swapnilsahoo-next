@@ -54,7 +54,7 @@ export default function AiForEducatorsPage() {
 
       <header className="relative overflow-hidden pt-10 pb-12 sm:pt-16 sm:pb-20">
         <div className="aurora" aria-hidden="true" />
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <nav
             aria-label="Breadcrumb"
             className="text-ink-500 mb-5 flex flex-wrap items-center gap-2 text-xs"
@@ -146,7 +146,7 @@ export default function AiForEducatorsPage() {
       />
 
       <section id="modules" aria-labelledby="modules-title" className="py-16 sm:py-24">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">01 / What the workshop covers</p>
@@ -189,10 +189,10 @@ export default function AiForEducatorsPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-[87.5rem]" />
+      <div className="hr-fade mx-auto max-w-[100rem]" />
 
       <section aria-labelledby="rule-title" className="py-16 sm:py-24">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="from-ink-950 to-brand-900 relative overflow-hidden rounded-[24px] bg-gradient-to-br p-7 text-white shadow-xl shadow-blue-950/15 sm:p-10">
             <div
               className="bg-accent-400/15 absolute -top-24 -right-20 h-72 w-72 rounded-full blur-3xl"
@@ -214,7 +214,7 @@ export default function AiForEducatorsPage() {
       </section>
 
       <section aria-labelledby="responsible-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">03 / Responsible use, made concrete</p>
@@ -239,7 +239,7 @@ export default function AiForEducatorsPage() {
       </section>
 
       <section aria-labelledby="continue-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="glass-card p-7 sm:p-10">
             <p className="eyebrow mb-3">More AI initiatives</p>
             <h2 id="continue-title" className="display mb-8 text-4xl font-semibold">

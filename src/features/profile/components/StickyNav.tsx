@@ -40,7 +40,7 @@ export function StickyNav() {
   return (
     <nav
       aria-label="Primary navigation"
-      className="sticky top-3 z-40 mx-auto max-w-[87.5rem] px-3 sm:px-6 lg:px-8"
+      className="sticky top-3 z-40 mx-auto max-w-[100rem] px-3 sm:px-6 lg:px-8"
     >
       <div className="nav-glass flex items-center justify-between rounded-2xl px-3 py-1.5 sm:px-4">
         <Link

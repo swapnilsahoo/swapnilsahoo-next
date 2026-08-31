@@ -179,7 +179,7 @@ export default function PlacementsPage() {
     <main id="main-content" tabIndex={-1}>
       <header className="relative overflow-hidden pt-14 pb-16 sm:pt-20 sm:pb-24">
         <div className="aurora" aria-hidden="true" />
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div
             data-page-hero="academic"
             className="from-ink-950 via-brand-900 to-ink-800 relative isolate overflow-hidden rounded-[30px] border border-white/10 bg-gradient-to-br px-6 py-12 text-white shadow-2xl shadow-blue-950/20 sm:px-10 sm:py-16 lg:px-14"
@@ -263,7 +263,7 @@ export default function PlacementsPage() {
       />
 
       <section aria-labelledby="in-the-room-title" className="pb-16 sm:pb-24">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <Reveal variant="image">
             <figure className="glass-card grid overflow-hidden lg:grid-cols-[0.82fr_1.18fr]">
               <figcaption className="order-2 flex flex-col justify-center p-7 sm:p-10 lg:order-1 lg:p-12">
@@ -296,7 +296,7 @@ export default function PlacementsPage() {
       </section>
 
       <section aria-labelledby="journey-title" className="py-16 sm:py-24">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="mb-10 grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <span className="accent-rule" />
@@ -329,10 +329,10 @@ export default function PlacementsPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-[87.5rem]" />
+      <div className="hr-fade mx-auto max-w-[100rem]" />
 
       <section aria-labelledby="plan-title" className="py-16 sm:py-24">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="mb-10 grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <span className="accent-rule" />
@@ -382,10 +382,10 @@ export default function PlacementsPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-[87.5rem]" />
+      <div className="hr-fade mx-auto max-w-[100rem]" />
 
       <section id="readiness-studio" aria-labelledby="studio-title" className="py-16 sm:py-24">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">03 / Interactive readiness studio</p>
@@ -401,10 +401,10 @@ export default function PlacementsPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-[87.5rem]" />
+      <div className="hr-fade mx-auto max-w-[100rem]" />
 
       <section aria-labelledby="stories-title" className="py-16 sm:py-24">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="grid gap-10 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <span className="accent-rule" />
@@ -439,7 +439,7 @@ export default function PlacementsPage() {
       </section>
 
       <section aria-labelledby="evidence-bank-title" className="pb-16 sm:pb-24">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="glass-card overflow-hidden p-7 sm:p-10">
             <div className="mb-8 grid gap-7 lg:grid-cols-[0.7fr_1.3fr]">
               <div>
@@ -479,7 +479,7 @@ export default function PlacementsPage() {
       </section>
 
       <section className="pb-16 sm:pb-24">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="from-ink-950 to-brand-900 relative overflow-hidden rounded-[26px] bg-gradient-to-br p-7 text-white shadow-xl shadow-blue-950/15 sm:p-10">
             <div
               className="bg-accent-400/15 absolute -top-24 -right-20 h-72 w-72 rounded-full blur-3xl"
@@ -513,10 +513,10 @@ export default function PlacementsPage() {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-[87.5rem]" />
+      <div className="hr-fade mx-auto max-w-[100rem]" />
 
       <section aria-labelledby="signals-title" className="py-16 sm:py-24">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">06 / Interview signals</p>
@@ -541,7 +541,7 @@ export default function PlacementsPage() {
       </section>
 
       <section aria-labelledby="resources-title" className="pb-20 sm:pb-28">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="glass-card grid gap-8 p-7 sm:p-10 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
               <div className="bg-accent-400/10 text-accent-600 dark:text-accent-400 mb-5 flex h-11 w-11 items-center justify-center rounded-xl">

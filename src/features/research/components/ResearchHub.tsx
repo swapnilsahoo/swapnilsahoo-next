@@ -55,7 +55,7 @@ export function ResearchHub() {
     <main id="main-content" tabIndex={-1}>
       <header className="relative overflow-hidden pt-10 pb-14 sm:pt-16 sm:pb-20">
         <div className="aurora" aria-hidden="true" />
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <nav aria-label="Breadcrumb" className="text-ink-500 mb-5 flex gap-2 text-xs">
             <Link href="/" className="hover:text-brand-700 dark:hover:text-brand-300 transition">
               Home
@@ -133,12 +133,12 @@ export function ResearchHub() {
         ]}
       />
 
-      <Container className="max-w-[87.5rem] pb-10">
+      <Container className="max-w-[100rem] pb-10">
         <ResearchBranchNav />
       </Container>
 
       <section aria-labelledby="logic-title" className="py-14 sm:py-20">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="mb-10 grid gap-5 lg:grid-cols-[0.72fr_1fr] lg:items-end">
             <div>
               <span className="accent-rule" />
@@ -190,7 +190,7 @@ export function ResearchHub() {
       </section>
 
       <section id="branches" aria-labelledby="branches-title" className="py-14 sm:py-20">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
             <p className="eyebrow mb-3">02 / Research branches</p>
@@ -241,7 +241,7 @@ export function ResearchHub() {
       </section>
 
       <section id="doctoral-foundation" aria-labelledby="thesis-title" className="py-14 sm:py-20">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
             <article className="overflow-hidden rounded-2xl bg-[#111827] p-6 text-white sm:p-9">
               <div className="flex items-start gap-4">
@@ -345,7 +345,7 @@ export function ResearchHub() {
       </section>
 
       <section id="phd-coursework" aria-labelledby="phd-coursework-title" className="py-14 sm:py-20">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="glass-card grid gap-8 p-7 sm:p-10 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
               <span className="accent-rule" />
@@ -401,7 +401,7 @@ export function ResearchHub() {
         </Container>
       </section>
 
-      <Container className="max-w-[87.5rem] py-14 sm:py-20">
+      <Container className="max-w-[100rem] py-14 sm:py-20">
         <CollaborationInvite
           subject="entrepreneurial resourcefulness"
           description={researchAgenda.collaboration}

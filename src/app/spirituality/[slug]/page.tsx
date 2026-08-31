@@ -223,7 +223,7 @@ export default async function ScripturePage({ params }: PageProps) {
 
       <header className="relative overflow-hidden pt-10 pb-12 sm:pt-16 sm:pb-20">
         <div className="aurora" aria-hidden="true" />
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <nav
             aria-label="Breadcrumb"
             className="text-ink-500 mb-5 flex flex-wrap items-center gap-2 text-xs"
@@ -325,7 +325,7 @@ export default async function ScripturePage({ params }: PageProps) {
       />
 
       <section aria-labelledby="authentic-title" className="py-14 sm:py-20">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="grid gap-8 lg:grid-cols-[0.42fr_1fr]">
             <div>
               <span className="accent-rule" />
@@ -359,10 +359,10 @@ export default async function ScripturePage({ params }: PageProps) {
         </Container>
       </section>
 
-      <div className="hr-fade mx-auto max-w-[87.5rem]" />
+      <div className="hr-fade mx-auto max-w-[100rem]" />
 
       <section id="reader" aria-labelledby="reader-title" className="py-16 sm:py-24">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="mb-10 grid gap-6 lg:grid-cols-[1fr_0.7fr] lg:items-end">
             <div>
               <span className="accent-rule" />
@@ -409,7 +409,7 @@ export default async function ScripturePage({ params }: PageProps) {
         aria-labelledby="attribution-title"
         className="relative overflow-hidden bg-slate-950 py-16 text-white sm:py-24"
       >
-        <Container className="relative max-w-[87.5rem]">
+        <Container className="relative max-w-[100rem]">
           <div className="max-w-3xl">
             <p className="font-mono text-[10px] tracking-[0.16em] text-amber-300 uppercase">
               03 / Attribution &amp; biography
@@ -462,7 +462,7 @@ export default async function ScripturePage({ params }: PageProps) {
 
       {scripture.traditionalBenefits ? (
         <section aria-labelledby="benefits-title" className="py-16 sm:py-24">
-          <Container className="max-w-[87.5rem]">
+          <Container className="max-w-[100rem]">
             <div
               className={`grid gap-9 ${scripture.traditionalBenefits.image ? "lg:grid-cols-[0.34fr_0.86fr_1fr]" : "lg:grid-cols-[0.42fr_1fr]"}`}
             >
@@ -508,7 +508,7 @@ export default async function ScripturePage({ params }: PageProps) {
 
       {scripture.practicalGuidance ? (
         <section aria-labelledby="guidance-title" className="py-16 sm:py-24">
-          <Container className="max-w-[87.5rem]">
+          <Container className="max-w-[100rem]">
             <div className="grid gap-9 lg:grid-cols-[1fr_0.42fr]">
               <div>
                 <span className="accent-rule" />
@@ -562,7 +562,7 @@ export default async function ScripturePage({ params }: PageProps) {
       ) : null}
 
       <section id="method" aria-labelledby="method-title" className="py-16 sm:py-24">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="grid gap-9 lg:grid-cols-[0.42fr_1fr]">
             <div>
               <span className="accent-rule" />
@@ -586,7 +586,7 @@ export default async function ScripturePage({ params }: PageProps) {
       </section>
 
       <section aria-labelledby="sources-title" className="pb-16 sm:pb-24">
-        <Container className="max-w-[87.5rem]">
+        <Container className="max-w-[100rem]">
           <div className="overflow-hidden rounded-[30px] border border-slate-200 bg-white shadow-xl shadow-slate-950/5 dark:border-slate-800 dark:bg-slate-950">
             <div className="border-b border-slate-200 p-7 sm:p-10 dark:border-slate-800">
               <p className="eyebrow mb-3">{sourcesNumber} / Source shelf</p>
