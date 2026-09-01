@@ -886,9 +886,24 @@ export const businessSimulationCourse = {
               "Universe 1's leadership changed hands again: Lakshmi Chit Fund, fourth after Round 5, took over the Round 6 lead as Green slipped to second and Big Bulls fell from second all the way to fifth; Grey closed the round in last place. Universe 2 saw Blues Clues overtake Lehman Bros. for the lead, with SEBI's Watchlist climbing two places to second and Lehman Bros. dropping to third, while T5S's TSR collapsed to -24.1%, the round's sharpest reversal. On aggregate economics, Universe 1 closed Round 6 with a positive average TSR (+2.6%) against Universe 2's negative average (-2.1%), even though Universe 2's aggregate profit pool—over $11bn—dwarfed Universe 1's $3.4bn.",
             files: [
               {
+                label: "Universe 1 vs Universe 2 insights",
+                format: "Slides",
+                href: "/documents/business-simulation/round-6/section-c/section-c-round6-u1-vs-u2-insights-debrief.pptx",
+              },
+              {
+                label: "Universe 1 comparative debrief",
+                format: "Slides",
+                href: "/documents/business-simulation/round-6/section-c/section-c-round6-universe1-debrief.pptx",
+              },
+              {
                 label: "Universe 1 results workbook",
                 format: "Workbook",
                 href: "/documents/business-simulation/round-6/section-c/section-c-round6-universe1-results.xlsx",
+              },
+              {
+                label: "Universe 2 comparative debrief",
+                format: "Slides",
+                href: "/documents/business-simulation/round-6/section-c/section-c-round6-universe2-debrief.pptx",
               },
               {
                 label: "Universe 2 results workbook",
@@ -903,9 +918,24 @@ export const businessSimulationCourse = {
               "Universe 1 was the calmest group anywhere in the course this round: Orange, Red Rangers and Ochre held exactly the same 1-2-3 order they closed Round 5 in, with Orange's and Red Rangers' TSRs separated by just 0.03 points. Universe 2 stayed with Grey in the lead for a third straight round, while Red posted the group's weakest score, closing at -15.7% TSR. Universe 1 closed with the stronger economics of the two universes this round: a higher aggregate profit ($7.4bn vs $4.7bn) and a higher average TSR (+4.1% vs +2.5%).",
             files: [
               {
+                label: "Universe 1 vs Universe 2 insights",
+                format: "Slides",
+                href: "/documents/business-simulation/round-6/section-d/section-d-round6-u1-vs-u2-insights-debrief.pptx",
+              },
+              {
+                label: "Universe 1 comparative debrief",
+                format: "Slides",
+                href: "/documents/business-simulation/round-6/section-d/section-d-round6-universe1-debrief.pptx",
+              },
+              {
                 label: "Universe 1 results workbook",
                 format: "Workbook",
                 href: "/documents/business-simulation/round-6/section-d/section-d-round6-universe1-results.xlsx",
+              },
+              {
+                label: "Universe 2 comparative debrief",
+                format: "Slides",
+                href: "/documents/business-simulation/round-6/section-d/section-d-round6-universe2-debrief.pptx",
               },
               {
                 label: "Universe 2 results workbook",
