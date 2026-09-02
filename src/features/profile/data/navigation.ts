@@ -12,17 +12,28 @@ export const researchDropdown: NavDropdown = {
       label: branch.shortTitle,
       href: `/research/${branch.slug}`,
     })),
+  ],
+};
+
+export const phdDropdown: NavDropdown = {
+  label: "PhD",
+  href: "/#phd",
+  items: [
+    { label: "PhD Supervision", href: "/#phd" },
     {
-      label: "PhD Mandatory Coursework",
+      label: "Mandatory Coursework",
       href: "/research/phd-coursework",
       children: [
+        {
+          label: "Research Design Primer",
+          href: "/research/phd-coursework/research-design-primer",
+        },
         {
           label: "How to Read a Research Paper",
           href: "/research/phd-coursework/how-to-read-a-research-paper",
         },
       ],
     },
-    { label: "PhD Reach Out", href: "/#phd" },
   ],
 };
 
@@ -199,6 +210,10 @@ export const moreDropdown: NavDropdown = {
         {
           label: "Authentic Chandogya Upanishad",
           href: "/spirituality/chandogya-upanishad",
+        },
+        {
+          label: "Srimad Bhagavatam · Skandha 1",
+          href: "/spirituality/srimad-bhagavatam",
         },
       ],
     },

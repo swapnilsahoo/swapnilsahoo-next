@@ -63,6 +63,11 @@ const themes: Record<
     glow: "bg-indigo-300/20",
     badge: "text-indigo-200",
   },
+  "srimad-bhagavatam": {
+    hero: "from-[#140b02] via-[#5c2a0f] to-[#1a3a4a]",
+    glow: "bg-teal-300/20",
+    badge: "text-teal-200",
+  },
 };
 
 const scriptureInquiry: Record<
@@ -122,6 +127,13 @@ const scriptureInquiry: Record<
       'Verse three calls Om "the eighth" essence, without ever explaining what\'s being counted — translators still disagree. Does an unexplained number weaken the teaching, or is that exactly the kind of puzzle it expects a student to sit with?',
     ],
   },
+  "srimad-bhagavatam": {
+    title: "What does it mean that a whole Purāṇa opens by defining itself before telling a single story?",
+    questions: [
+      "The very first verse describes the Supreme as the source from which all things arise, are sustained, and into which they dissolve — before Kṛṣṇa, before Parīkṣit, before any story begins. Why start with a definition instead of a scene?",
+      "This is one skandha out of twelve — does reading a genuinely complete first skandha teach you anything a curated set of \"greatest hits\" verses from all twelve couldn't?",
+    ],
+  },
 };
 
 export const dynamicParams = false;
@@ -143,7 +155,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       scripture.transliteratedTitle,
       slug === "shiva-tandava-stotram"
         ? "pada by pada meaning"
-        : slug === "bhagavad-gita" || slug === "ramcharitmanas"
+        : slug === "bhagavad-gita" || slug === "ramcharitmanas" || slug === "srimad-bhagavatam"
           ? "complete source-text reading edition"
           : slug === "vishnu-sahasranama" || slug === "lalita-sahasranama"
             ? "name by name meaning"
@@ -191,13 +203,13 @@ export default async function ScripturePage({ params }: PageProps) {
     inLanguage:
       slug === "ramcharitmanas"
         ? ["awa-Deva", "sa-Deva", "awa-Latn", "sa-Latn"]
-        : slug === "bhagavad-gita"
+        : slug === "bhagavad-gita" || slug === "srimad-bhagavatam"
           ? ["sa-Deva", "sa-Latn"]
           : slug === "hanuman-chalisa"
             ? ["awa-Deva", "en"]
             : ["sa-Deva", "en"],
     learningResourceType:
-      slug === "ramcharitmanas" || slug === "bhagavad-gita"
+      slug === "ramcharitmanas" || slug === "bhagavad-gita" || slug === "srimad-bhagavatam"
         ? "Complete selected source-text reading edition"
         : slug === "shiva-tandava-stotram"
           ? "Pada-and-compound sacred-text study edition"
@@ -267,9 +279,11 @@ export default async function ScripturePage({ params }: PageProps) {
                       ? "complete seven-kāṇḍa source edition"
                       : slug === "bhagavad-gita"
                         ? "complete 701-verse source edition"
-                        : isSahasranama
-                          ? "complete name-by-name edition"
-                          : "line & word study edition"}
+                        : slug === "srimad-bhagavatam"
+                          ? "complete Skandha 1 source edition"
+                          : isSahasranama
+                            ? "complete name-by-name edition"
+                            : "line & word study edition"}
                 </span>
                 <p lang={languageCode} className={`script-devanagari mt-8 text-3xl ${theme.badge}`}>
                   {scripture.originalTitle}
@@ -370,7 +384,7 @@ export default async function ScripturePage({ params }: PageProps) {
                 02 /{" "}
                 {slug === "shiva-tandava-stotram"
                   ? "Pāda & compound"
-                  : slug === "ramcharitmanas" || slug === "bhagavad-gita"
+                  : slug === "ramcharitmanas" || slug === "bhagavad-gita" || slug === "srimad-bhagavatam"
                     ? "Source text"
                     : isSahasranama
                       ? "Name-by-name"

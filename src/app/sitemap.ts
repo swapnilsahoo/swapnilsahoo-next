@@ -81,6 +81,11 @@ const routes = [
     changeFrequency: "weekly",
     priority: 0.72,
   },
+  {
+    path: "/spirituality/srimad-bhagavatam",
+    changeFrequency: "monthly",
+    priority: 0.72,
+  },
   { path: "/comics", changeFrequency: "monthly", priority: 0.7 },
   { path: "/mythology", changeFrequency: "monthly", priority: 0.7 },
   { path: "/mythology/immortals", changeFrequency: "monthly", priority: 0.72 },

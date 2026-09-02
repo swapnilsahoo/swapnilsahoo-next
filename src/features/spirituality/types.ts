@@ -5,7 +5,8 @@ export type ScriptureSlug =
   | "shiva-tandava-stotram"
   | "bhagavad-gita"
   | "ramcharitmanas"
-  | "chandogya-upanishad";
+  | "chandogya-upanishad"
+  | "srimad-bhagavatam";
 
 export type WordGloss = {
   original?: string;

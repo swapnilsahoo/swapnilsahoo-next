@@ -104,6 +104,16 @@ const collections = [
     description:
       "One of the oldest and longest Upanishads, opened at its first teaching: how Om, the udgītha, is the essence distilled from earth, speech, and the Vedas themselves — with consistent IAST and a word-by-word grammatical split.",
   },
+  {
+    title: "श्रीमद्भागवतपुराणम्",
+    transliteration: "Śrīmadbhāgavatapurāṇam",
+    label: "Authentic Srimad Bhagavatam",
+    href: "/spirituality/srimad-bhagavatam",
+    language: "Sanskrit",
+    scope: "Skandha 1 of 12 · complete · 807 verses",
+    description:
+      "The complete first skandha — the Naimiṣāraṇya frame story and Sūta's answer to the sages, opening with the Purāṇa's own famous self-definition — with consistent IAST across all nineteen chapters.",
+  },
 ] as const;
 
 const readingLayers = [

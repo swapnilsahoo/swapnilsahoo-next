@@ -770,6 +770,117 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
       },
     ],
   },
+  "srimad-bhagavatam": {
+    slug: "srimad-bhagavatam",
+    navLabel: "Śrīmad Bhāgavatam · Skandha 1 complete source text",
+    shortTitle: "Śrīmad Bhāgavatam",
+    title: "Śrīmad Bhāgavatam · Skandha 1 Complete Source Text",
+    originalTitle: "श्रीमद्भागवतपुराणम्",
+    transliteratedTitle: "Śrīmadbhāgavatapurāṇam",
+    language: "Sanskrit · Devanagari + IAST",
+    form: "Mahāpurāṇa · Skandha 1 of 12, 19 chapters, 807 verses",
+    glyph: "भा",
+    dek: "Read the complete first skandha — Sūta's answer to the sages at Naimiṣāraṇya, opening with the Purāṇa's own famous definition of itself, janmādyasya — sourced from exact Sanskrit Wikisource revisions and accompanied by deterministic IAST. This is one of twelve skandhas; translation and grammar are not published until qualified human review.",
+    scopeLabel: "Complete Skandha 1 Sanskrit source layer · 807 verses",
+    scopeNote:
+      "All nineteen chapters of the first skandha are present in Devanagari with mechanically generated IAST. The Bhāgavata Purāṇa runs to roughly 18,000 verses across twelve skandhas in total; this reader currently covers Skandha 1 only, as a complete and reproducible unit in its own right, not as a stand-in for the whole Purāṇa. Two verse-numbering quirks in the pinned edition — Chapter 3 has no verses numbered 11 or 32, and Chapter 13 prints two distinct verses both numbered 40 — are preserved rather than silently corrected; every verse still has a unique, stable position.",
+    entryCountLabel: "19 chapters · 807 verses · Skandha 1 of 12",
+    authenticity: [
+      {
+        label: "Textual home",
+        value: "Mahāpurāṇa · Prathama Skandha",
+        detail:
+          "The Bhāgavata Purāṇa devotes its first skandha to the frame story: the sages of Naimiṣāraṇya ask Sūta Gosvāmī to relate what is most worth hearing in this age, and Sūta answers by recounting how the Purāṇa itself came to be told.",
+      },
+      {
+        label: "Narrative frame",
+        value: "Sūta narrates · Śuka to Parīkṣit, within it",
+        detail:
+          "Sūta Gosvāmī speaks to the Naimiṣāraṇya sages; within his account, the skandha also sets up the frame of Śuka reciting the Bhāgavata to King Parīkṣit in his final seven days — a narration nested inside a narration.",
+      },
+      {
+        label: "Traditional attribution",
+        value: "Vyāsa as compiler-seer",
+        detail:
+          "Hindu tradition remembers Vyāsa as the Bhāgavata Purāṇa's compiler, composing it at Nārada's urging after the Mahābhārata left him unsatisfied. This is a sacred textual attribution, not a modern authorship claim.",
+      },
+      {
+        label: "Reader standard",
+        value: "Complete Skandha 1 source text; study layers withheld",
+        detail:
+          "All 807 verses of Skandha 1 carry Devanagari and deterministic IAST. English, Hindi, word-by-word grammar, pronunciation, and commentary are not filled with provisional content; each awaits separate human specialist review, as do Skandhas 2 through 12.",
+      },
+    ],
+    profiles: [
+      {
+        role: "Narrator to the Naimiṣāraṇya sages",
+        name: "Sūta Gosvāmī (Ugraśravas)",
+        evidenceLabel: "Narrative voice",
+        summary:
+          "Sūta, a professional reciter of sacred narrative, is asked by Śaunaka and the other sages performing a long sacrifice at Naimiṣāraṇya to relate the essence of all scripture. His answer to that question is the entire Bhāgavata Purāṇa, beginning in this skandha.",
+      },
+      {
+        role: "Reciter within the nested frame",
+        name: "Śuka (Śukadeva)",
+        evidenceLabel: "Narrative voice",
+        summary:
+          "Skandha 1 introduces Śuka, the son of Vyāsa, as the one who will recite the Bhāgavata to King Parīkṣit during the king's last seven days, cursed to die of snakebite. Most of the Purāṇa's remaining eleven skandhas are framed as this recitation.",
+      },
+      {
+        role: "Traditional compiler-seer",
+        name: "Kṛṣṇa Dvaipāyana Vyāsa",
+        evidenceLabel: "Traditional attribution",
+        summary:
+          "Hindu tradition holds that Vyāsa, despite having compiled the Vedas and the Mahābhārata, remained inexplicably dissatisfied until the sage Nārada advised him to describe the Supreme directly — producing the Bhāgavata Purāṇa. He is presented here as a traditional compiler-seer, not as a modern author with independently verifiable dates.",
+      },
+    ],
+    editorialPolicy: [
+      "The nineteen Skandha-1 chapters are imported reproducibly from Sanskrit Wikisource under CC BY-SA 4.0. Every chapter is pinned to an exact revision ID, timestamp, source SHA-1, raw SHA-256, and generated-shard SHA-256 in the public manifest.",
+      "Only Skandha 1 of the Purāṇa's twelve skandhas is covered. This is declared as a complete reading of that skandha, never described as covering the whole Bhāgavata Purāṇa.",
+      "Verse-number quirks already present in the pinned edition — two missing numbers in Chapter 3, one repeated number in Chapter 13 — are preserved exactly as printed rather than silently renumbered. Each verse's stable identity comes from its position in the chapter, not its printed number, so nothing collides or goes missing.",
+      "A verse's closing chapter colophon (\"iti śrīmadbhāgavate ... adhyāyaḥ\") is excluded from the verse text by a deterministic importer, since it restates the chapter number rather than supplying a verse. Bracketed meter labels are captured as separate metadata instead of being left inline.",
+      "IAST is generated mechanically from the displayed Devanagari with a pinned open-source transliterator. It is a reversible reading aid, not pronunciation coaching or proof of verse-by-verse phonetic review.",
+      "No inherited modern translation, web glossary, or machine-written explanation is used to simulate completeness. English, Hindi, grammatical word analysis, pronunciation, and commentary will appear only as separately licensed, human-reviewed layers.",
+      "This is a transparent reading edition, not a critical edition. It preserves a named witness without pretending that manuscript and commentarial traditions collapse into a single uncontested text.",
+    ],
+    sources: [
+      {
+        title: "Śrīmadbhāgavatapurāṇam · Sanskrit skandha index",
+        institution: "Sanskrit Wikisource · CC BY-SA 4.0",
+        href: "https://sa.wikisource.org/wiki/श्रीमद्भागवतपुराणम्",
+        note: "Licensed source for the Skandha 1 chapter transcriptions. The site importer fetches and verifies the exact historical revisions recorded in its manifest rather than silently following later edits.",
+      },
+      {
+        title: "Śrīmad Bhāgavatam corpus provenance manifest",
+        institution: "swapnilsahoo-next · exact revisions and hashes",
+        href: "https://github.com/swapnilsahoo/swapnilsahoo-next/blob/main/content/scriptures/srimad-bhagavatam/manifest.v1.json",
+        note: "Machine-readable record of the 19 pinned source revisions, licence, parsing transformations, chapter counts, preserved numbering quirks, limitations, and generated-file hashes.",
+      },
+      {
+        title: "Bhagavata Purana (Sanskrit text with English translation)",
+        institution: "Internet Archive · trans. J. M. Sanyal / various",
+        href: "https://archive.org/details/bhagavatapurana",
+        note: "Public-domain historical English translations linked for comparison; not silently remapped into this reader as a new literal translation.",
+      },
+      {
+        title: "Bhāgavata Purāṇa — overview and manuscript tradition",
+        institution: "Encyclopaedia Britannica",
+        href: "https://www.britannica.com/topic/Bhagavata-purana",
+        note: "General scholarly context on the Purāṇa's dating, structure, and place in the wider Purāṇic corpus.",
+      },
+    ],
+    traditionalBenefits: {
+      eyebrow: "What the text says about hearing it",
+      title: "Tradition's own case for hearing the Bhāgavata.",
+      items: [
+        "The Purāṇa opens by calling itself the ripened fruit of the wish-fulfilling tree of the Vedas, made sweeter for having passed through Śuka's mouth (1.1.3) — tradition's own image for why it should be sipped repeatedly, not read once.",
+        "Sūta tells the sages that hearing of Kṛṣṇa's deeds, even in a degraded age, is said to shrink the effect of that age's own faults.",
+        "The text presents itself as meant for the sincere and unenvious (nirmatsarāṇāṁ satām) — a qualification tradition treats as a condition of the promise, not the whole population.",
+      ],
+      disclaimer:
+        "I'm presenting this as the text's own traditional case for hearing and reading it — not as a scientific or guaranteed claim, and not part of an independent claim I am making myself.",
+    },
+  },
 };
 
 export const scriptureSlugs = Object.keys(scriptureCatalog) as ScriptureSlug[];

@@ -109,8 +109,60 @@ async function checkRamcharitmanas() {
   }
 }
 
+async function checkSrimadBhagavatam() {
+  const dir = path.join(ROOT, "srimad-bhagavatam");
+  const { value: manifest } = await readJson(path.join(dir, "manifest.v1.json"));
+  const entries = [];
+
+  assert(manifest.scope.skandha === 1, "Bhagavatam manifest does not declare Skandha 1.");
+  assert(manifest.scope.skandhaCount === 12, "Bhagavatam manifest does not declare 12 skandhas.");
+
+  for (const chapter of manifest.source.chapters) {
+    const { text, value: shard } = await readJson(path.join(dir, chapter.file));
+    assert(sha256(text) === chapter.generatedSha256, `${chapter.file} hash mismatch.`);
+    assert(shard.chapter.number === chapter.chapter, `${chapter.file} chapter mismatch.`);
+    assert(
+      shard.entries.length === manifest.scope.chapterCounts[chapter.chapter - 1],
+      `${chapter.file} verse-count mismatch.`
+    );
+    entries.push(...shard.entries);
+  }
+
+  const expectedTotal = manifest.scope.chapterCounts.reduce((sum, count) => sum + count, 0);
+  assert(
+    entries.length === expectedTotal,
+    `Bhagavatam Skandha 1 has ${entries.length} entries instead of ${expectedTotal}.`
+  );
+  assert(
+    new Set(entries.map((entry) => entry.id)).size === entries.length,
+    "Bhagavatam Skandha 1 IDs are not unique."
+  );
+  for (const [index, entry] of entries.entries()) {
+    assert(entry.sequence === index + 1, `Bhagavatam sequence breaks at ${entry.id}.`);
+    assertText(entry.original, entry.id);
+    assert(!entry.original.startsWith("इति श्री"), `${entry.id} embeds a chapter colophon.`);
+  }
+
+  // The pinned edition's own two documented numbering quirks must survive intact.
+  const byId = new Map(entries.map((entry) => [entry.id, entry]));
+  const chapter3 = entries.filter((entry) => entry.chapter === 3);
+  assert(
+    !chapter3.some((entry) => entry.verse === 11 || entry.verse === 32),
+    "Chapter 3 unexpectedly has a verse numbered 11 or 32."
+  );
+  const chapter13Fortieths = entries.filter((entry) => entry.chapter === 13 && entry.verse === 40);
+  assert(
+    chapter13Fortieths.length === 2,
+    "Chapter 13's documented duplicate verse 40 pair is missing."
+  );
+  assert(byId.get("bhagavatam-1-13-39")?.verse === 40, "Bhagavatam 13, sourceIndex 39 mapping is wrong.");
+  assert(byId.get("bhagavatam-1-13-40")?.verse === 40, "Bhagavatam 13, sourceIndex 40 mapping is wrong.");
+  assert(byId.get("bhagavatam-1-1-1")?.original.startsWith("जन्माद्यस्य"), "Bhagavatam 1.1.1 is not the janmādyasya verse.");
+}
+
 await checkBhagavadGita();
 await checkRamcharitmanas();
+await checkSrimadBhagavatam();
 console.log(
-  "Verified the Gita and Ramcharitmanas source corpora, topology, hashes, and sentinels."
+  "Verified the Gita, Ramcharitmanas, and Bhagavatam Skandha-1 source corpora, topology, hashes, and sentinels."
 );

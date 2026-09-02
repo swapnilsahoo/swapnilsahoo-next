@@ -281,6 +281,86 @@ async function loadBhagavadGitaEntries(): Promise<ReaderEntry[]> {
   return bhagavadGitaEntriesPromise;
 }
 
+const SRIMAD_BHAGAVATAM_DIR = path.join(process.cwd(), "content", "scriptures", "srimad-bhagavatam");
+const SRIMAD_BHAGAVATAM_SHARDS = Array.from(
+  { length: 19 },
+  (_, index) => `${String(index + 1).padStart(2, "0")}-chapter.v1.json`
+);
+const SRIMAD_BHAGAVATAM_CHAPTER_COUNTS = [
+  23, 34, 43, 33, 40, 39, 57, 52, 49, 36, 39, 36, 59, 44, 50, 38, 45, 50, 40,
+];
+
+type SrimadBhagavatamShard = {
+  chapter: { number: number };
+  source: { url: string };
+  entries: Array<{
+    id: string;
+    sequence: number;
+    section: string;
+    label: string;
+    original: string;
+    verse: number;
+    sourceIndex: number;
+    meter?: string;
+  }>;
+};
+
+let srimadBhagavatamEntriesPromise: Promise<ReaderEntry[]> | undefined;
+
+async function loadSrimadBhagavatamEntries(): Promise<ReaderEntry[]> {
+  srimadBhagavatamEntriesPromise ??= (async () => {
+    const shards = (await Promise.all(
+      SRIMAD_BHAGAVATAM_SHARDS.map(async (file) =>
+        JSON.parse(await readFile(path.join(SRIMAD_BHAGAVATAM_DIR, file), "utf8"))
+      )
+    )) as SrimadBhagavatamShard[];
+    const entries = shards.flatMap((shard) =>
+      shard.entries.map<ReaderEntry>((entry) => ({
+        id: entry.id,
+        sequence: entry.sequence,
+        section: entry.section,
+        label: entry.label,
+        original: entry.original,
+        transliteration: romanizeDevanagari(entry.original),
+        meaning: undefined,
+        words: [],
+        language: "sa",
+        note: entry.meter
+          ? `Meter: ${entry.meter}. Sanskrit source text from the pinned Wikisource witness (Skandha 1 only). Translation and grammatical annotation are not published without independent human review.`
+          : "Sanskrit source text from the pinned Wikisource witness (Skandha 1 only). Translation and grammatical annotation are not published without independent human review.",
+        sourceRef: `${shard.source.url} · source verse ${entry.verse}`,
+        textStatus: "source-verified",
+        translationStatus: "not-published",
+      }))
+    );
+    const validChapterCounts = shards.every(
+      (shard, index) =>
+        shard.chapter.number === index + 1 &&
+        shard.entries.length === SRIMAD_BHAGAVATAM_CHAPTER_COUNTS[index]
+    );
+    const ids = new Set(entries.map((entry) => entry.id));
+    const validEntries = entries.every(
+      (entry, index) =>
+        entry.sequence === index + 1 &&
+        entry.original.normalize("NFC") === entry.original &&
+        entry.transliteration.length > 0
+    );
+    const expectedTotal = SRIMAD_BHAGAVATAM_CHAPTER_COUNTS.reduce((sum, count) => sum + count, 0);
+
+    if (
+      entries.length !== expectedTotal ||
+      ids.size !== entries.length ||
+      !validChapterCounts ||
+      !validEntries
+    ) {
+      throw new Error("The Śrīmad Bhāgavatam source corpus failed its completeness checks.");
+    }
+    return entries;
+  })();
+
+  return srimadBhagavatamEntriesPromise;
+}
+
 let ramcharitmanasEntriesPromise: Promise<ReaderEntry[]> | undefined;
 
 async function loadRamcharitmanasEntries(): Promise<ReaderEntry[]> {
@@ -415,6 +495,8 @@ export async function loadScriptureEntries(slug: ScriptureSlug): Promise<ReaderE
       return loadRamcharitmanasEntries();
     case "chandogya-upanishad":
       return validateEntries(slug, chandogyaUpanishadEntries, 10);
+    case "srimad-bhagavatam":
+      return loadSrimadBhagavatamEntries();
   }
 }
 
