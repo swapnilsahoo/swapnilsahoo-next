@@ -925,6 +925,64 @@ export const businessSimulationCourse = {
             ],
           },
         ],
+        teamQuestions: {
+          eyebrow: "Before the Round 6 debrief",
+          title: "Ten questions every team must answer with their own workbook open.",
+          description:
+            "No team may answer from memory or narrative alone. Every answer must cite a specific number from that team's own Round 6 results workbook and name the decision that produced it.",
+          items: [
+            {
+              area: "Finance",
+              question:
+                "Your DCF-implied enterprise value and your multiple-based enterprise value (EV/EBITDA, EV/Sales) will not match exactly. Compute the percentage gap between the two for your team this round, and identify which single WACC input — beta, cost of debt, or gearing — explains most of that gap.",
+            },
+            {
+              area: "Finance",
+              question:
+                "Decompose your Round 6 ROCE into operating margin (EBIT ÷ Sales) and capital turnover (Sales ÷ Capital Employed). Which of the two actually moved this round, and which specific decision of yours moved it?",
+            },
+            {
+              area: "Marketing",
+              question:
+                "Rank your four technology segments by global market share against global average selling price. Where you hold high share at a premium price, defend why that isn't luck. Where you hold low share at a premium price, what does the gap reveal about a positioning error?",
+            },
+            {
+              area: "Marketing",
+              question:
+                "Calculate unmet demand as a percentage of total demand in each region this round. Is it a capacity constraint, a pricing constraint, or a feature/marketing-mix constraint — and what number in your own workbook rules out the other two explanations?",
+            },
+            {
+              area: "Operations",
+              question:
+                "Compare your in-house manufacturing cost per unit against your contract manufacturing cost per unit, by technology and region. At what cost gap does contract manufacturing stop being a capacity release valve and start being a margin leak — and were you past that line this round?",
+            },
+            {
+              area: "Operations",
+              question:
+                "Your inventory management costs and your unplanned short-term debt both absorb the same forecasting error. Show which one absorbed more of it this round, and trace the causal chain from your demand forecast to that outcome.",
+            },
+            {
+              area: "Strategy",
+              question:
+                "Every team in your universe faced the same market this round. Identify the one decision variable — price, R&D, capacity, feature count, or marketing spend — where your value diverged furthest from the universe average, and state whether that divergence was a deliberate bet or a forecasting miss you only recognized after the results came in.",
+            },
+            {
+              area: "Strategy",
+              question:
+                "If your cumulative-TSR rank and your single-round profit rank disagree this round, name the exact income-statement or balance-sheet line item that explains the gap between the two rankings.",
+            },
+            {
+              area: "Risk & Credit",
+              question:
+                "Your credit rating is a function of gearing, unplanned debt, and cash coverage — not profit alone. Identify the single line item that most influenced your Round 6 rating change, and estimate what your rating would plausibly be if that one line item had stayed at its Round 5 level.",
+            },
+            {
+              area: "People & R&D",
+              question:
+                "Look at your R&D personnel turnover alongside your R&D spending this round. If both rose together, does your own data show that spend converting into retained capability, or mostly covering the cost of replacing people who left?",
+            },
+          ],
+        },
       },
     ],
   },

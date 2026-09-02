@@ -77,10 +77,21 @@ export type SubjectResourceGroup = {
   files: readonly SubjectResourceFile[];
 };
 
+export type SubjectResourceQuestion = {
+  area: string;
+  question: string;
+};
+
 export type SubjectResourceRound = {
   round: string;
   headline: string;
   groups: readonly SubjectResourceGroup[];
+  teamQuestions?: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    items: readonly SubjectResourceQuestion[];
+  };
 };
 
 export type SubjectResourceHub = {
@@ -496,6 +507,41 @@ export function SubjectCoursePage({
                       </div>
                     ))}
                   </div>
+                  {round.teamQuestions ? (
+                    <div className="border-t border-slate-900/10 p-6 sm:p-8 dark:border-white/10">
+                      <p className="text-brand-700 dark:text-brand-300 font-mono text-[10px] font-bold tracking-[0.16em] uppercase">
+                        {round.teamQuestions.eyebrow}
+                      </p>
+                      <h4 className="mt-2 font-serif text-xl font-semibold">
+                        {round.teamQuestions.title}
+                      </h4>
+                      <p className="text-ink-600 dark:text-ink-300 mt-2 max-w-3xl text-sm leading-6">
+                        {round.teamQuestions.description}
+                      </p>
+                      <ol className="mt-6 grid gap-4 sm:grid-cols-2">
+                        {round.teamQuestions.items.map((item, index) => (
+                          <li
+                            key={item.question}
+                            className="border-ink-200 dark:border-ink-700 rounded-xl border p-5"
+                          >
+                            <div className="flex items-start gap-3">
+                              <span className="bg-brand-600 flex h-6 w-6 shrink-0 items-center justify-center rounded-full font-mono text-[10px] font-semibold text-white">
+                                {index + 1}
+                              </span>
+                              <div>
+                                <p className="text-brand-700 dark:text-brand-300 font-mono text-[10px] font-bold tracking-[0.14em] uppercase">
+                                  {item.area}
+                                </p>
+                                <p className="text-ink-800 dark:text-ink-100 mt-1.5 text-sm leading-6">
+                                  {item.question}
+                                </p>
+                              </div>
+                            </div>
+                          </li>
+                        ))}
+                      </ol>
+                    </div>
+                  ) : null}
                 </article>
               ))}
             </div>
