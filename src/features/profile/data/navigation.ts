@@ -41,8 +41,20 @@ export const teachingDropdown: NavDropdown = {
   label: "Teaching",
   href: "/teaching",
   items: [
-    { label: "1-Year MBA", href: "/teaching/1-year-mba" },
-    { label: "2-Year MBA", href: "/teaching/2-year-mba" },
+    {
+      label: "Strategic Management",
+      href: "/teaching",
+      children: [
+        {
+          label: "STRAMGT 221: Strategy and Disruption",
+          href: "/teaching/1-year-mba",
+        },
+        {
+          label: "STRAMGT 206: Strategic Management",
+          href: "/teaching/2-year-mba",
+        },
+      ],
+    },
     {
       label: "Karma Yoga",
       href: "/teaching/karma-yoga",
