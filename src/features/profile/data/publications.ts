@@ -280,6 +280,13 @@ export interface PressMention {
 export const pressMentions: PressMention[] = [
   {
     outlet: "Millennium Post",
+    date: "Sep 2026",
+    description: "AI is changing jobs, skills become the differentiator",
+    href: "https://www.millenniumpost.in/k-reers/ai-is-changing-jobs-skills-become-the-differentiator-674537",
+    printHref: "/documents/millennium-post-ai-changing-jobs-skills-differentiator-print.pdf",
+  },
+  {
+    outlet: "Millennium Post",
     date: "Aug 2026",
     description: "Is AI closing the door on entry-level jobs?",
     href: "https://www.millenniumpost.in/k-reers/is-ai-closing-the-door-on-entry-level-jobs-673675",
