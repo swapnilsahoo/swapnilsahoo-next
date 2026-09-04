@@ -342,4 +342,13 @@ export const galleryImages: GalleryImage[] = [
     objectFit: "contain",
     objectPosition: "center",
   },
+  {
+    src: "/images/gallery/merc-2023-best-paper-award.jpg",
+    alt: "Dr Swapnil Sahoo and co-author Anjana Dharmani receiving the Best Paper in Track award at MERC 2023, IIM Kashipur",
+    caption: "Best Paper in Track · MERC 2023, IIM Kashipur",
+    description:
+      "With co-author Anjana Dharmani, receiving the Best Paper award in the Entrepreneurship Track for “A Study of How Family Involvement Impacts Sustainable Innovation in Family Firms,” at the Management Education and Research Colloquium, IIM Kashipur.",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
 ];
