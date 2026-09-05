@@ -15,7 +15,16 @@ export const galleryImages: GalleryImage[] = [
     alt: "AOM 2026 participants gathered around a conference table after the Global Scholar Development session",
     caption: "Meeting the Global Scholar Development panel · AOM 2026",
     description:
-      "With panelists Dean Shepherd, Madeline Toubiana and Raj Shankar; coordinator Trenton Williams; and organizer Golshan Javadian for “Entrepreneurship Research in Non-WEIRD Contexts.”",
+      "With panelists and discussants Dean Shepherd, Madeline Toubiana, Raj Krishnan Shankar, Banu Goktan Bilhan, Magdalena Markowska and Ipek Koparan; coordinator Trenton Williams; and organizer Golshan Javadian, for the AOM Entrepreneurship Division's panel discussion and paper development workshop on “Entrepreneurship Research in Non-WEIRD Contexts.”",
+    objectFit: "contain",
+    objectPosition: "center",
+  },
+  {
+    src: "/images/gallery/aom-2026-non-weird-contexts-workshop.jpg",
+    alt: "Dr Swapnil Sahoo in discussion with Prof. Dean Shepherd and fellow scholars during the AOM 2026 Global Scholar Development paper development workshop",
+    caption: "Paper development workshop in progress · AOM 2026",
+    description:
+      "Working through a paper draft with Dean Shepherd and fellow scholars at the Global Scholar Development Committee's interactive workshop on entrepreneurship research in non-WEIRD contexts.",
     objectFit: "contain",
     objectPosition: "center",
   },

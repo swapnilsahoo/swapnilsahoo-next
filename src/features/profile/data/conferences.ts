@@ -44,6 +44,14 @@ export const conferenceEntries: ConferenceEntry[] = [
     subtitle: "AOM Paper Development Workshop · roundtable led by Prof. Robert Seamans, NYU Stern",
   },
   {
+    badge: "AOM 2026 · PDW",
+    location: "Philadelphia, PA, USA",
+    title: "Entrepreneurship Research in Non-WEIRD Contexts",
+    subtitle:
+      "AOM Entrepreneurship Division's Global Scholar Development Committee · panel discussion and interactive paper development workshop",
+    note: "With panelists and discussants Dean Shepherd, Madeline Toubiana, Raj Krishnan Shankar, Banu Goktan Bilhan, Magdalena Markowska and Ipek Koparan. Session record: https://events.aom.org/events/aom-2026/session/UFVyz8CpQb3JGVqoouUNt",
+  },
+  {
     badge: "AOM 2025",
     location: "Copenhagen, Denmark · Jul 25–29",
     title:
