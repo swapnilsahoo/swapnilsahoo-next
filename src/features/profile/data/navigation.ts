@@ -190,7 +190,7 @@ export const moreDropdown: NavDropdown = {
   href: "/#gallery",
   items: [
     { label: "Gallery", href: "/#gallery" },
-    { label: "Writing", href: "https://swapnilsahoo.substack.com/", external: true },
+    { label: "Writing", href: "/writing" },
     {
       label: "Spirituality",
       href: "/spirituality",

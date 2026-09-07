@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { researchBranches } from "@/features/research/data/researchAgenda";
+import { blogPosts } from "@/features/writing/data/catalog";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.swapnilsahoo.com";
 
@@ -8,6 +9,12 @@ const researchBranchRoutes = researchBranches.map((branch) => ({
   path: `/research/${branch.slug}`,
   changeFrequency: "monthly" as const,
   priority: 0.82,
+}));
+
+const writingPostRoutes = blogPosts.map((post) => ({
+  path: `/writing/${post.slug}`,
+  changeFrequency: "monthly" as const,
+  priority: 0.7,
 }));
 
 const routes = [
@@ -86,6 +93,8 @@ const routes = [
     changeFrequency: "monthly",
     priority: 0.72,
   },
+  { path: "/writing", changeFrequency: "weekly", priority: 0.75 },
+  ...writingPostRoutes,
   { path: "/comics", changeFrequency: "monthly", priority: 0.7 },
   { path: "/mythology", changeFrequency: "monthly", priority: 0.7 },
   { path: "/mythology/immortals", changeFrequency: "monthly", priority: 0.72 },
