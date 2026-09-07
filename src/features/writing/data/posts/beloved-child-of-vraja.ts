@@ -12,7 +12,7 @@ export const belovedChildOfVraja: BlogPost = {
   blocks: [
     {
       type: "paragraph",
-      text: "I spent part of this Janmashtami in a study session on the tenth skandha of the Śrīmad Bhāgavatam — the book where Kṛṣṇa is born, grows up, and does almost nothing that looks like the work of God. I came away with one idea I haven't been able to put down since, and it isn't the one I expected. It has to do with who was allowed to know who he was.",
+      text: "I spent part of this Janmashtami teaching the tenth skandha of the Śrīmad Bhāgavatam — the book where Kṛṣṇa is born, grows up, and does almost nothing that looks like the work of God. Of everything in it, there is one idea I keep bringing people back to, and it is not the one they arrive expecting. It has to do with who was allowed to know who he was.",
     },
     {
       type: "paragraph",
@@ -30,7 +30,7 @@ export const belovedChildOfVraja: BlogPost = {
     { type: "heading", text: "Why it had to be Vraja" },
     {
       type: "paragraph",
-      text: "Here is the thing I had never properly registered, and it reorganises the whole festival for me. The people of Vraja — Gokula, Vṛndāvana, the cowherd settlements he grew up in — did not know he was God. Yaśodā believed she was raising a boy. Nanda worried about him the way any father worries. The gopas played with him as an equal, wrestled him, complained about him, sent him home when it got dark. Everyone he met there loved him without a single piece of information that would have made loving him complicated.",
+      text: "Here is the thing that reorganises the whole festival, and it is where I always begin. The people of Vraja — Gokula, Vṛndāvana, the cowherd settlements he grew up in — did not know he was God. Yaśodā believed she was raising a boy. Nanda worried about him the way any father worries. The gopas played with him as an equal, wrestled him, complained about him, sent him home when it got dark. Everyone he met there loved him without a single piece of information that would have made loving him complicated.",
     },
     {
       type: "paragraph",
@@ -93,17 +93,17 @@ export const belovedChildOfVraja: BlogPost = {
     { type: "heading", text: "Kāliya, and what contact does" },
     {
       type: "paragraph",
-      text: "The episode we spent the longest on was Kāliya (Bhāgavatam 10.16), and it is the one I keep turning over. A serpent has taken up residence in a bend of the Yamunā and poisoned it — birds die crossing the water, the herds cannot drink, the river itself is unusable. Kṛṣṇa, still a boy, climbs a tree on the bank and jumps in. The serpent coils him. The village watches from the shore, certain it is watching a death. Then he expands, slips the grip, and dances on the serpent's hoods until it is broken.",
+      text: "The episode I spend the longest on is Kāliya (Bhāgavatam 10.16), and it is the one I keep turning over. A serpent has taken up residence in a bend of the Yamunā and poisoned it — birds die crossing the water, the herds cannot drink, the river itself is unusable. Kṛṣṇa, still a boy, climbs a tree on the bank and jumps in. The serpent coils him. The village watches from the shore, certain it is watching a death. Then he expands, slips the grip, and dances on the serpent's hoods until it is broken.",
     },
     {
       type: "paragraph",
-      text: "What struck me is what the story refuses to do with its villain. Kāliya is not killed. He is exhausted, humbled, vomiting poison, and finally purified by the contact itself — the being he came to destroy is the being whose touch cleans him. His wives approach not with a bargain but with surrender, asking nothing on condition, admitting plainly what they are and what they cannot do. And the outcome is not execution but relocation: Kāliya is sent away from the river he was ruining, alive, changed.",
+      text: "What I want people to notice is what the story refuses to do with its villain. Kāliya is not killed. He is exhausted, humbled, vomiting poison, and finally purified by the contact itself — the being he came to destroy is the being whose touch cleans him. His wives approach not with a bargain but with surrender, asking nothing on condition, admitting plainly what they are and what they cannot do. And the outcome is not execution but relocation: Kāliya is sent away from the river he was ruining, alive, changed.",
     },
     {
       type: "paragraph",
       text: "Two things fall out of that. The first is about approach: the model the text approves is humility with an honest inventory of one's own limits, not a negotiated request. The second is about purity being contagious in the direction we don't expect — the poison does not infect the boy; the boy decontaminates the poison.",
     },
-    { type: "heading", text: "The leadership reading, which I did not expect to be good" },
+    { type: "heading", text: "The leadership reading, and why it holds up" },
     {
       type: "paragraph",
       text: "I teach strategy, so I am professionally suspicious of scripture being mined for management lessons. It is usually done badly: a verse gets flattened into a slide, and the slide says something the verse would not recognise. But the Kāliya episode holds up under that pressure better than most material I use in a classroom, and it holds up because of the details, not despite them.",
@@ -119,7 +119,7 @@ export const belovedChildOfVraja: BlogPost = {
     { type: "heading", text: "The verse about trees" },
     {
       type: "paragraph",
-      text: "The session ended somewhere I did not see coming: with trees. There is a passage in the tenth skandha (Bhāgavatam 10.22) where Kṛṣṇa points out the trees to his companions and reads them as a moral argument. They stand in the heat so that others are in shade. They take the rain, the wind and the sun directly, and everything they produce — leaf, flower, fruit, bark, shade, wood — is available to whoever needs it. Nothing they make is for themselves. He compares them to genuinely good people, who function the same way and are similarly easy to walk past.",
+      text: "I end where the text does, somewhere nobody sees coming: with trees. There is a passage in the tenth skandha (Bhāgavatam 10.22) where Kṛṣṇa points out the trees to his companions and reads them as a moral argument. They stand in the heat so that others are in shade. They take the rain, the wind and the sun directly, and everything they produce — leaf, flower, fruit, bark, shade, wood — is available to whoever needs it. Nothing they make is for themselves. He compares them to genuinely good people, who function the same way and are similarly easy to walk past.",
     },
     {
       type: "verse",
@@ -139,11 +139,11 @@ export const belovedChildOfVraja: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "The frame we were given for this was two words: sevā-bhāva, the disposition oriented toward others' benefit, against svārtha-bhāva, the one oriented toward one's own. Not an argument against wanting things — the tradition is not squeamish about desire as such — but an argument about which direction a want is pointed in. And read against the trees, it stops being abstract: the test is not what you intend, it is who is standing in your shade.",
+      text: "The frame I teach this in is two words: sevā-bhāva, the disposition oriented toward others' benefit, against svārtha-bhāva, the one oriented toward one's own. Not an argument against wanting things — the tradition is not squeamish about desire as such — but an argument about which direction a want is pointed in. And read against the trees, it stops being abstract: the test is not what you intend, it is who is standing in your shade.",
     },
     {
       type: "paragraph",
-      text: "This also, finally, made sense of a Gītā verse I had always found disarming.",
+      text: "This is also what makes sense of a Gītā verse people often find disarming.",
     },
     {
       type: "verse",
@@ -162,7 +162,7 @@ export const belovedChildOfVraja: BlogPost = {
     { type: "heading", text: "The same word, twice" },
     {
       type: "paragraph",
-      text: "One last thing, and it is the one I sat up for. The place — Vraja — takes its name from the Sanskrit root vraj, to go or to wander, used originally of cattle moving out to graze and back; a vraja is a settlement organised around that daily going. Eighteen chapters and seven hundred verses later, in the Gītā's closing instruction, the same word returns — not as a place this time but as a verb in the imperative. Vraja. Go.",
+      text: "One last thing, and it is the one I always save for the end. The place — Vraja — takes its name from the Sanskrit root vraj, to go or to wander, used originally of cattle moving out to graze and back; a vraja is a settlement organised around that daily going. Eighteen chapters and seven hundred verses later, in the Gītā's closing instruction, the same word returns — not as a place this time but as a verb in the imperative. Vraja. Go.",
     },
     {
       type: "verse",
