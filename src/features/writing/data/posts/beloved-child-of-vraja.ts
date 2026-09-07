@@ -9,6 +9,7 @@ export const belovedChildOfVraja: BlogPost = {
   displayDate: "5 September 2026",
   readingMinutes: 11,
   heroGlyph: "व्रज",
+  sourceSessionId: "ZETy5Wk5GiI",
   blocks: [
     {
       type: "paragraph",

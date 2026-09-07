@@ -34,6 +34,10 @@ export interface BlogPost {
   displayDate: string;
   readingMinutes: number;
   heroGlyph: string;
+  /** Internal bookkeeping only — never rendered. Records which recorded
+   * teaching session a post was drawn from, so the daily authoring job can
+   * tell what it has already covered and never writes the same session twice. */
+  sourceSessionId?: string;
   /** Only set when a post is explicitly framed as a response to a named
    * external source. Omitted entirely for original essays. */
   inspiration?: {
