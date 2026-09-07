@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 
 import { ArrowRightIcon, CalendarIcon } from "@/components/icons/LineIcons";
 import { Container } from "@/components/ui/Container";
-import { Reveal } from "@/components/ui/Reveal";
 import { blogPostBySlug, blogPosts, blogSlugs, isBlogSlug } from "@/features/writing/data/catalog";
 import type { BlogBlock } from "@/features/writing/types";
 
@@ -231,13 +230,16 @@ export default async function WritingPostPage({ params }: PageProps) {
               </div>
             ) : null}
 
-            <Reveal>
-              <article>
-                {post.blocks.map((block, index) => (
-                  <Block block={block} index={index} key={index} />
-                ))}
-              </article>
-            </Reveal>
+            {/* Deliberately NOT wrapped in <Reveal>: the essay body is several
+                thousand pixels tall, and Reveal's IntersectionObserver needs 15%
+                of the observed element visible before it fires. A tall article can
+                never reach that ratio on a normal viewport, so the reveal would
+                never trigger and the whole essay would stay at opacity 0. */}
+            <article>
+              {post.blocks.map((block, index) => (
+                <Block block={block} index={index} key={index} />
+              ))}
+            </article>
 
             <div className="mt-14 rounded-[24px] border border-slate-200 bg-white p-6 shadow-lg shadow-slate-950/5 sm:p-8 dark:border-slate-800 dark:bg-slate-950">
               <p className="eyebrow mb-4">What I&apos;m quoting from</p>
