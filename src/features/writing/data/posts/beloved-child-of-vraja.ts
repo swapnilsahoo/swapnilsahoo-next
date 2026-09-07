@@ -9,16 +9,10 @@ export const belovedChildOfVraja: BlogPost = {
   displayDate: "5 September 2026",
   readingMinutes: 7,
   heroGlyph: "व्रज",
-  inspiration: {
-    videoTitle: "The Beloved Child of Vraja",
-    channelName: "Bhagavad-gita: Systematic Study (gitamadhu)",
-    channelHref: "https://www.youtube.com/@gitamadhu",
-    videoHref: "https://www.youtube.com/watch?v=ZETy5Wk5GiI&t=1958s",
-  },
   blocks: [
     {
       type: "paragraph",
-      text: "A few days after this year's Janmashtami, I sat down properly with an episode from a channel I've been slowly working through for a while now — Bhagavad-gita: Systematic Study, run under the handle gitamadhu. The episode is called “The Beloved Child of Vraja,” and there's a passage a little past the half-hour mark that I haven't stopped thinking about since. I want to write it down while it's still close, in my own words, checked only against the actual texts — not against what the festival has turned into on a WhatsApp forward by the time it reaches most of us.",
+      text: "A few days after this year's Janmashtami, I sat down to write out something that's been on my mind since the festival — a passage of thought I haven't stopped returning to since. I want to write it down while it's still close, in my own words, checked only against the actual texts — not against what the festival has turned into on a WhatsApp forward by the time it reaches most of us.",
     },
     {
       type: "paragraph",
@@ -31,12 +25,12 @@ export const belovedChildOfVraja: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "I've heard this story since I was old enough to sit still for it, and it still works as pure narrative — tension, a ticking clock, a king outwitted by a single night. But “The Beloved Child of Vraja” isn't really interested in that half of the story. It's interested in what happens after the escape succeeds.",
+      text: "I've heard this story since I was old enough to sit still for it, and it still works as pure narrative — tension, a ticking clock, a king outwitted by a single night. But that isn't really the half of the story I want to sit with here. What interests me is what happens after the escape succeeds.",
     },
     { type: "heading", text: "The years that made him beloved, and not just feared" },
     {
       type: "paragraph",
-      text: "Here's the part I think the title is actually pointing at. Kṛṣṇa does eventually return to Mathurā and kill Kaṃsa — years later, as little more than a teenager. But he doesn't stay to rule. The years that made him someone people loved, rather than a threat someone needed removed, are the years in between: an ordinary cowherd's son in Vraja, Nanda and Yaśodā's child, stealing butter he was going to be fed anyway, tied by his mother to a grinding mortar with a rope that — famously — was never quite long enough, no matter how much more of it she added. Kaṃsa spent Kṛṣṇa's entire childhood afraid of him from a distance. Yaśodā spent it scolding him, feeding him, worrying whether he'd wandered too far past the courtyard. Both of them were oriented toward the same child. Only one of them actually got to know him.",
+      text: "Here's the part I think is worth naming this essay after. Kṛṣṇa does eventually return to Mathurā and kill Kaṃsa — years later, as little more than a teenager. But he doesn't stay to rule. The years that made him someone people loved, rather than a threat someone needed removed, are the years in between: an ordinary cowherd's son in Vraja, Nanda and Yaśodā's child, stealing butter he was going to be fed anyway, tied by his mother to a grinding mortar with a rope that — famously — was never quite long enough, no matter how much more of it she added. Kaṃsa spent Kṛṣṇa's entire childhood afraid of him from a distance. Yaśodā spent it scolding him, feeding him, worrying whether he'd wandered too far past the courtyard. Both of them were oriented toward the same child. Only one of them actually got to know him.",
     },
     {
       type: "verse",
@@ -107,7 +101,7 @@ export const belovedChildOfVraja: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "That's as far as the episode took me, and as far as I've taken it since. I don't know that it resolves into anything tidier than this: the eighth child survived a night built entirely around not being found, so that he could spend the years after it being fully known, by exactly two people, for nothing more impressive than being theirs. Thank you, gitamadhu, for the framing — and to whoever's still reading this a few days after Janmashtami: however late, śaraṇaṁ vraja.",
+      text: "That's as far as I've taken this. I don't know that it resolves into anything tidier than this: the eighth child survived a night built entirely around not being found, so that he could spend the years after it being fully known, by exactly two people, for nothing more impressive than being theirs. And to whoever's still reading this a few days after Janmashtami: however late, śaraṇaṁ vraja.",
     },
   ],
   scriptureReferences: [

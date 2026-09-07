@@ -34,7 +34,9 @@ export interface BlogPost {
   displayDate: string;
   readingMinutes: number;
   heroGlyph: string;
-  inspiration: {
+  /** Only set when a post is explicitly framed as a response to a named
+   * external source. Omitted entirely for original essays. */
+  inspiration?: {
     videoTitle: string;
     channelName: string;
     channelHref: string;

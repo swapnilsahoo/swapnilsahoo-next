@@ -206,28 +206,30 @@ export default async function WritingPostPage({ params }: PageProps) {
             Essay
           </p>
           <div className="mx-auto max-w-3xl">
-            <div className="glass-card mb-10 flex flex-wrap items-center gap-3 p-5 text-sm">
-              <span className="text-ink-500 dark:text-ink-400">Prompted by</span>
-              <a
-                href={post.inspiration.videoHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-brand-700 dark:text-brand-400 font-semibold underline decoration-dotted underline-offset-4"
-              >
-                “{post.inspiration.videoTitle}”
-              </a>
-              <span className="text-ink-500 dark:text-ink-400">
-                on{" "}
+            {post.inspiration ? (
+              <div className="glass-card mb-10 flex flex-wrap items-center gap-3 p-5 text-sm">
+                <span className="text-ink-500 dark:text-ink-400">Prompted by</span>
                 <a
-                  href={post.inspiration.channelHref}
+                  href={post.inspiration.videoHref}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-brand-700 dark:text-brand-400 font-semibold underline decoration-dotted underline-offset-4"
                 >
-                  {post.inspiration.channelName}
+                  “{post.inspiration.videoTitle}”
                 </a>
-              </span>
-            </div>
+                <span className="text-ink-500 dark:text-ink-400">
+                  on{" "}
+                  <a
+                    href={post.inspiration.channelHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-brand-700 dark:text-brand-400 font-semibold underline decoration-dotted underline-offset-4"
+                  >
+                    {post.inspiration.channelName}
+                  </a>
+                </span>
+              </div>
+            ) : null}
 
             <Reveal>
               <article>
