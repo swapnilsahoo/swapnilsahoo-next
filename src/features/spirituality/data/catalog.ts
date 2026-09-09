@@ -537,7 +537,7 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
     scopeLabel: "Complete selected source + close English word study · 1,113 records",
     scopeNote:
       "This reader contains 1,074 numbered units in the selected edition's topology plus 39 separately identified opening invocations across all seven kāṇḍas. Unit totals differ between editions, so 1,074 is not presented as a universal verse count. Completeness applies to this declared source topology and its source-token English study coverage; it does not claim a critical edition, Hindi translation, recitation audio, phonetic transcription, or completed grammatical parsing.",
-    entryCountLabel: "1,113 records · 107,785 contextual token glosses",
+    entryCountLabel: "1,113 records · 107,651 contextual token glosses",
     authenticity: [
       {
         label: "Textual home",

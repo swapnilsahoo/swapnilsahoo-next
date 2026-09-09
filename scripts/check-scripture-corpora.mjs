@@ -165,6 +165,7 @@ async function checkRamcharitmanas() {
   );
 
   const annotatedIds = new Set();
+  let annotatedTokenCount = 0;
   let previousLastSequence = 0;
   for (const shardInfo of studyManifest.shards) {
     assert(
@@ -229,6 +230,7 @@ async function checkRamcharitmanas() {
         );
         for (const [wordIndex, rawWord] of studyLine.words.entries()) {
           const word = manasStudyWord(rawWord);
+          annotatedTokenCount += 1;
           assertText(
             word.original,
             `${studyEntry.entryId} line ${studyLine.line} token ${wordIndex + 1}`
@@ -280,6 +282,10 @@ async function checkRamcharitmanas() {
     studyManifest.coverage.complete === (annotatedIds.size === readerById.size),
     "Manas word-study completeness declaration is inaccurate."
   );
+  assert(
+    annotatedTokenCount === 107_651,
+    `Manas word-study token coverage is ${annotatedTokenCount}, not 107651.`
+  );
   if (!process.argv.includes("--allow-partial-manas")) {
     assert(
       studyManifest.coverage.complete && annotatedIds.size === readerById.size,
@@ -287,7 +293,7 @@ async function checkRamcharitmanas() {
     );
   }
 
-  return annotatedIds.size;
+  return { entries: annotatedIds.size, tokens: annotatedTokenCount };
 }
 
 async function checkSrimadBhagavatam() {
@@ -354,5 +360,5 @@ await checkBhagavadGita();
 const manasStudyCount = await checkRamcharitmanas();
 await checkSrimadBhagavatam();
 console.log(
-  `Verified the Gita, Ramcharitmanas, and Bhagavatam Skandha-1 source corpora, topology, hashes, sentinels, and ${manasStudyCount} Manas word-study annotations.`
+  `Verified the Gita, Ramcharitmanas, and Bhagavatam Skandha-1 source corpora, topology, hashes, sentinels, and ${manasStudyCount.entries} Manas word-study entries covering ${manasStudyCount.tokens} exact source tokens.`
 );
