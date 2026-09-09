@@ -4,7 +4,7 @@ import type { FormEvent } from "react";
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 
 import { CopyIcon, SearchIcon } from "@/components/icons/LineIcons";
-import type { ReaderEntry, ScriptureSlug } from "@/features/spirituality/types";
+import type { ReaderEntry, ScriptureSlug, WordGloss } from "@/features/spirituality/types";
 
 type ReadingLayer = "word" | "line";
 type ReaderMode = "filtered" | "exact";
@@ -27,6 +27,15 @@ function hasDistinctStudyRows(entry: ReaderEntry) {
     word.transliteration.trim() !== entry.transliteration.trim() ||
     word.meaning.trim() !== (entry.meaning?.trim() ?? "")
   );
+}
+
+function groupStudyWords(words: WordGloss[]) {
+  const groups = new Map<number, WordGloss[]>();
+  for (const word of words) {
+    const line = word.line ?? 0;
+    groups.set(line, [...(groups.get(line) ?? []), word]);
+  }
+  return Array.from(groups, ([line, lineWords]) => ({ line, words: lineWords }));
 }
 
 export function ScriptureReader({
@@ -572,34 +581,91 @@ export function ScriptureReader({
                       Source reference: {entry.sourceRef}
                     </p>
                   ) : null}
+                  {entry.studyAttribution ? (
+                    <details className="border-ink-200 dark:border-ink-700 mt-4 border-t pt-3">
+                      <summary className="text-brand-700 dark:text-brand-300 min-h-11 cursor-pointer py-2 text-xs font-semibold">
+                        {entry.studyAttribution.label} · editorial review status
+                      </summary>
+                      <div className="text-ink-500 dark:text-ink-400 space-y-2 pb-1 text-xs leading-relaxed">
+                        <p>
+                          This close rendering and contextual word study are independently prepared
+                          working annotations. They are not marked as human-reviewed.
+                        </p>
+                        <p>{entry.studyAttribution.sourceRef}</p>
+                        {entry.studyAttribution.note ? <p>{entry.studyAttribution.note}</p> : null}
+                        {entry.studyAttribution.sourceUrl ? (
+                          <a
+                            href={entry.studyAttribution.sourceUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="link-underline text-brand-700 dark:text-brand-300 inline-flex min-h-11 items-center"
+                          >
+                            Open the comparison witness
+                            <span className="sr-only"> (opens in a new tab)</span>
+                          </a>
+                        ) : null}
+                      </div>
+                    </details>
+                  ) : null}
                 </div>
               </div>
 
               {readingLayer === "word" && hasDistinctStudyRows(entry) ? (
                 <div className="mt-6 border-t border-dashed border-amber-900/15 pt-5 dark:border-amber-100/15">
                   <p className="eyebrow mb-3">{studyGuideLabel}</p>
-                  <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
-                    {entry.words.map((word, wordIndex) => (
-                      <div
-                        key={`${entry.id}-${word.transliteration}-${wordIndex}`}
-                        className="rounded-lg border border-amber-900/10 bg-amber-50/65 p-3 dark:border-amber-100/10 dark:bg-amber-400/[0.045]"
-                      >
-                        <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-                          {word.original ? (
-                            <span
-                              lang={entry.language ?? language}
-                              className="font-serif text-lg font-semibold [overflow-wrap:anywhere]"
+                  <div className="space-y-4">
+                    {groupStudyWords(entry.words).map((lineGroup) => (
+                      <div key={`${entry.id}-line-${lineGroup.line}`}>
+                        {lineGroup.line > 0 ? (
+                          <p className="text-ink-400 mb-2 font-mono text-[10px] tracking-wider uppercase">
+                            Source line {String(lineGroup.line).padStart(2, "0")}
+                          </p>
+                        ) : null}
+                        <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
+                          {lineGroup.words.map((word, wordIndex) => (
+                            <div
+                              key={`${entry.id}-${lineGroup.line}-${word.transliteration}-${wordIndex}`}
+                              className="rounded-lg border border-amber-900/10 bg-amber-50/65 p-3 dark:border-amber-100/10 dark:bg-amber-400/[0.045]"
                             >
-                              {word.original}
-                            </span>
-                          ) : null}
-                          <span className="text-xs font-semibold [overflow-wrap:anywhere] text-amber-800 italic dark:text-amber-300">
-                            {word.transliteration}
-                          </span>
+                              <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                                {word.original ? (
+                                  <span
+                                    lang={word.language ?? entry.language ?? language}
+                                    className="font-serif text-lg font-semibold [overflow-wrap:anywhere]"
+                                  >
+                                    {word.original}
+                                  </span>
+                                ) : null}
+                                <span
+                                  lang={
+                                    (word.language ?? entry.language ?? language) === "awa"
+                                      ? "awa-Latn"
+                                      : "sa-Latn"
+                                  }
+                                  className="text-xs font-semibold [overflow-wrap:anywhere] text-amber-800 italic dark:text-amber-300"
+                                >
+                                  {word.transliteration}
+                                </span>
+                              </div>
+                              <p className="text-ink-600 dark:text-ink-300 mt-1 text-xs leading-relaxed">
+                                {word.meaning}
+                              </p>
+                              {word.grammar || word.lemma ? (
+                                <p className="text-ink-500 dark:text-ink-400 mt-2 text-[11px] leading-relaxed">
+                                  {[word.lemma ? `Lemma: ${word.lemma}` : "", word.grammar ?? ""]
+                                    .filter(Boolean)
+                                    .join(" · ")}
+                                </p>
+                              ) : null}
+                              {word.alternatives?.length ? (
+                                <p className="text-ink-500 dark:text-ink-400 mt-2 text-[11px] leading-relaxed">
+                                  Alternatives: {word.alternatives.join("; ")}
+                                  {word.confidence ? ` · ${word.confidence} confidence` : ""}
+                                </p>
+                              ) : null}
+                            </div>
+                          ))}
                         </div>
-                        <p className="text-ink-600 dark:text-ink-300 mt-1 text-xs leading-relaxed">
-                          {word.meaning}
-                        </p>
                       </div>
                     ))}
                   </div>
@@ -646,7 +712,11 @@ export function ScriptureReader({
 
         <p className="text-ink-400 mt-7 text-center font-mono text-[10px] tracking-wider uppercase">
           {slug.replaceAll("-", " ")} ·{" "}
-          {slug === "ramcharitmanas" ? "source-text reading edition" : "editorial study edition"}
+          {slug === "ramcharitmanas" && supportsStudyLayer
+            ? "source text + independent word-study edition"
+            : slug === "ramcharitmanas"
+              ? "source-text reading edition"
+              : "editorial study edition"}
         </p>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import "server-only";
 
+import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
@@ -9,7 +10,12 @@ import { chandogyaUpanishadEntries } from "@/features/spirituality/data/chandogy
 import { lalitaSahasranamaEntries } from "@/features/spirituality/data/lalita-sahasranama";
 import { shivaTandavaStotramEntries } from "@/features/spirituality/data/shiva-tandava-stotram";
 import { vishnuSahasranamaEntries } from "@/features/spirituality/data/vishnu-sahasranama";
-import type { ReaderEntry, ScriptureSlug, WordGloss } from "@/features/spirituality/types";
+import type {
+  ReaderEntry,
+  ScriptureSlug,
+  StudyAttribution,
+  WordGloss,
+} from "@/features/spirituality/types";
 
 function decodeHtml(value: string) {
   return value
@@ -166,6 +172,8 @@ const RAMCHARITMANAS_SHARDS = [
 const RAMCHARITMANAS_NUMBERED_UNITS = 1_074;
 const RAMCHARITMANAS_OPENING_UNITS = 39;
 const RAMCHARITMANAS_TOTAL_UNITS = RAMCHARITMANAS_NUMBERED_UNITS + RAMCHARITMANAS_OPENING_UNITS;
+const RAMCHARITMANAS_WORD_STUDY_DIR = path.join(RAMCHARITMANAS_DIR, "word-study");
+const RAMCHARITMANAS_METER_HEADINGS = new Set(["चौपाई", "दोहा/सोरठा", "छंद", "श्लोक"]);
 
 type RamcharitmanasShard = {
   kanda: {
@@ -194,6 +202,80 @@ type RamcharitmanasOpening = {
   sourceIndex: number;
   transcriptionStatus: string;
 };
+
+type RamcharitmanasStudyWord =
+  | [original: string, meaning: string]
+  | {
+      original: string;
+      meaning: string;
+      language?: "awa" | "sa";
+      lemma?: string;
+      grammar?: string;
+      confidence?: "high" | "medium" | "low";
+      alternatives?: string[];
+      sourceRef?: string;
+      reviewStatus?: "editorial-under-review" | "source-compared";
+    };
+
+type RamcharitmanasStudyEntry = {
+  entryId: string;
+  sequence: number;
+  meaning: string;
+  sourceRef?: string;
+  sourceUrl?: string;
+  note?: string;
+  lines: Array<{
+    line: number;
+    words: RamcharitmanasStudyWord[];
+  }>;
+};
+
+type RamcharitmanasStudyShard = {
+  schemaVersion: "ramcharitmanas-word-study-shard-v1";
+  kanda: { order: number; slug: string };
+  entries: RamcharitmanasStudyEntry[];
+};
+
+type RamcharitmanasStudyManifest = {
+  schemaVersion: "ramcharitmanas-word-study-manifest-v1";
+  work: "Ramcharitmanas";
+  language: "en";
+  editorialStatus: "editorial-under-review";
+  label: string;
+  sourceRef: string;
+  sourceUrl?: string;
+  note?: string;
+  coverage: {
+    totalEntries: number;
+    annotatedEntries: number;
+    complete: boolean;
+  };
+  shards: Array<{
+    file: string;
+    kandaOrder: number;
+    firstSequence: number;
+    lastSequence: number;
+    entryCount: number;
+    sourceTextSha256: string;
+    generatedSha256: string;
+  }>;
+};
+
+function sha256(value: string) {
+  return createHash("sha256").update(value).digest("hex");
+}
+
+function ramcharitmanasSourceLines(original: string) {
+  return original
+    .split(/\r?\n/u)
+    .map((line) => line.replaceAll("\u00a0", " ").trim())
+    .filter((line) => line && !RAMCHARITMANAS_METER_HEADINGS.has(line));
+}
+
+function ramcharitmanasSourceTokens(line: string) {
+  const withoutVerseNumber = line.replace(/\p{N}+(?:\s*\([^)]*\))?/gu, "");
+  return withoutVerseNumber.match(/[\p{L}\p{M}\p{Cf}]+/gu) ?? [];
+}
 
 function romanizeDevanagari(original: string) {
   return Sanscript.t(original, "devanagari", "iast").normalize("NFC");
@@ -281,7 +363,12 @@ async function loadBhagavadGitaEntries(): Promise<ReaderEntry[]> {
   return bhagavadGitaEntriesPromise;
 }
 
-const SRIMAD_BHAGAVATAM_DIR = path.join(process.cwd(), "content", "scriptures", "srimad-bhagavatam");
+const SRIMAD_BHAGAVATAM_DIR = path.join(
+  process.cwd(),
+  "content",
+  "scriptures",
+  "srimad-bhagavatam"
+);
 const SRIMAD_BHAGAVATAM_SHARDS = Array.from(
   { length: 19 },
   (_, index) => `${String(index + 1).padStart(2, "0")}-chapter.v1.json`
@@ -361,6 +448,180 @@ async function loadSrimadBhagavatamEntries(): Promise<ReaderEntry[]> {
   return srimadBhagavatamEntriesPromise;
 }
 
+function studyWordParts(word: RamcharitmanasStudyWord) {
+  return Array.isArray(word) ? { original: word[0], meaning: word[1] } : { ...word };
+}
+
+function assertStudyText(value: unknown, label: string): asserts value is string {
+  if (typeof value !== "string" || value.trim().length === 0 || value !== value.normalize("NFC")) {
+    throw new Error(`Invalid Ramcharitmanas word-study text: ${label}.`);
+  }
+}
+
+async function applyRamcharitmanasWordStudy(entries: ReaderEntry[]) {
+  const manifestSource = await readFile(
+    path.join(RAMCHARITMANAS_WORD_STUDY_DIR, "manifest.v1.json"),
+    "utf8"
+  );
+  const manifest = JSON.parse(manifestSource) as RamcharitmanasStudyManifest;
+
+  if (
+    manifest.schemaVersion !== "ramcharitmanas-word-study-manifest-v1" ||
+    manifest.work !== "Ramcharitmanas" ||
+    manifest.language !== "en" ||
+    manifest.editorialStatus !== "editorial-under-review" ||
+    manifest.coverage.totalEntries !== entries.length ||
+    !Array.isArray(manifest.shards)
+  ) {
+    throw new Error("The Ramcharitmanas word-study manifest is invalid.");
+  }
+
+  assertStudyText(manifest.label, "manifest label");
+  assertStudyText(manifest.sourceRef, "manifest source reference");
+  if (manifest.note) assertStudyText(manifest.note, "manifest note");
+
+  const entriesById = new Map(entries.map((entry, index) => [entry.id, { entry, index }] as const));
+  const annotatedIds = new Set<string>();
+  const wordStudyRoot = path.resolve(RAMCHARITMANAS_WORD_STUDY_DIR);
+  let previousLastSequence = 0;
+
+  for (const shardInfo of manifest.shards) {
+    if (
+      shardInfo.firstSequence <= previousLastSequence ||
+      shardInfo.lastSequence < shardInfo.firstSequence ||
+      shardInfo.entryCount !== shardInfo.lastSequence - shardInfo.firstSequence + 1
+    ) {
+      throw new Error(`Invalid Ramcharitmanas word-study range: ${shardInfo.file}.`);
+    }
+    previousLastSequence = shardInfo.lastSequence;
+
+    const shardPath = path.resolve(wordStudyRoot, shardInfo.file);
+    if (!shardPath.startsWith(`${wordStudyRoot}${path.sep}`)) {
+      throw new Error(`Unsafe Ramcharitmanas word-study path: ${shardInfo.file}.`);
+    }
+    const shardSource = await readFile(shardPath, "utf8");
+    if (sha256(shardSource) !== shardInfo.generatedSha256) {
+      throw new Error(`Ramcharitmanas word-study hash mismatch: ${shardInfo.file}.`);
+    }
+    const shard = JSON.parse(shardSource) as RamcharitmanasStudyShard;
+    if (
+      shard.schemaVersion !== "ramcharitmanas-word-study-shard-v1" ||
+      shard.kanda.order !== shardInfo.kandaOrder ||
+      shard.entries.length !== shardInfo.entryCount ||
+      shard.entries[0]?.sequence !== shardInfo.firstSequence ||
+      shard.entries.at(-1)?.sequence !== shardInfo.lastSequence
+    ) {
+      throw new Error(`Ramcharitmanas word-study metadata mismatch: ${shardInfo.file}.`);
+    }
+
+    const sourceStrings: string[] = [];
+    for (const [entryIndex, studyEntry] of shard.entries.entries()) {
+      const sourceRecord = entriesById.get(studyEntry.entryId);
+      if (
+        !sourceRecord ||
+        annotatedIds.has(studyEntry.entryId) ||
+        studyEntry.sequence !== shardInfo.firstSequence + entryIndex ||
+        studyEntry.sequence !== sourceRecord.entry.sequence ||
+        ![
+          `ramcharitmanas-${shard.kanda.slug}-`,
+          `ramcharitmanas-opening-${shard.kanda.slug}-`,
+        ].some((prefix) => studyEntry.entryId.startsWith(prefix))
+      ) {
+        throw new Error(
+          `Unknown, duplicate, or misordered Ramcharitmanas study entry: ${studyEntry.entryId}.`
+        );
+      }
+
+      assertStudyText(studyEntry.meaning, `${studyEntry.entryId} close rendering`);
+      if (studyEntry.note) assertStudyText(studyEntry.note, `${studyEntry.entryId} note`);
+      if (studyEntry.sourceRef) {
+        assertStudyText(studyEntry.sourceRef, `${studyEntry.entryId} source reference`);
+      }
+
+      const expectedLines = ramcharitmanasSourceLines(sourceRecord.entry.original);
+      if (studyEntry.lines.length !== expectedLines.length) {
+        throw new Error(`Ramcharitmanas study line mismatch: ${studyEntry.entryId}.`);
+      }
+
+      const words: WordGloss[] = [];
+      for (const [lineIndex, studyLine] of studyEntry.lines.entries()) {
+        const expectedTokens = ramcharitmanasSourceTokens(expectedLines[lineIndex]);
+        if (studyLine.line !== lineIndex + 1 || studyLine.words.length !== expectedTokens.length) {
+          throw new Error(`Ramcharitmanas study token count mismatch: ${studyEntry.entryId}.`);
+        }
+
+        for (const [wordIndex, rawWord] of studyLine.words.entries()) {
+          const word = studyWordParts(rawWord);
+          assertStudyText(
+            word.original,
+            `${studyEntry.entryId} line ${studyLine.line} token ${wordIndex + 1}`
+          );
+          assertStudyText(
+            word.meaning,
+            `${studyEntry.entryId} line ${studyLine.line} gloss ${wordIndex + 1}`
+          );
+          if (word.original !== expectedTokens[wordIndex]) {
+            throw new Error(
+              `Ramcharitmanas study token boundary mismatch: ${studyEntry.entryId}, line ${studyLine.line}, token ${wordIndex + 1}.`
+            );
+          }
+
+          words.push({
+            original: word.original,
+            transliteration: romanizeDevanagari(word.original),
+            meaning: word.meaning,
+            line: studyLine.line,
+            ...(Array.isArray(rawWord)
+              ? {}
+              : {
+                  language: rawWord.language,
+                  lemma: rawWord.lemma,
+                  grammar: rawWord.grammar,
+                  confidence: rawWord.confidence,
+                  alternatives: rawWord.alternatives,
+                  sourceRef: rawWord.sourceRef,
+                  reviewStatus: rawWord.reviewStatus,
+                }),
+          });
+        }
+      }
+
+      sourceStrings.push(sourceRecord.entry.original);
+      annotatedIds.add(studyEntry.entryId);
+      const attribution: StudyAttribution = {
+        label: manifest.label,
+        sourceRef: studyEntry.sourceRef
+          ? `${manifest.sourceRef} · ${studyEntry.sourceRef}`
+          : manifest.sourceRef,
+        sourceUrl: studyEntry.sourceUrl ?? manifest.sourceUrl,
+        note: [manifest.note, studyEntry.note].filter(Boolean).join(" ") || undefined,
+        status: manifest.editorialStatus,
+      };
+      entries[sourceRecord.index] = {
+        ...sourceRecord.entry,
+        meaning: studyEntry.meaning,
+        words,
+        translationStatus: "editorial-under-review",
+        studyAttribution: attribution,
+      };
+    }
+
+    if (sha256(sourceStrings.join("\n␞\n")) !== shardInfo.sourceTextSha256) {
+      throw new Error(`Ramcharitmanas source binding mismatch: ${shardInfo.file}.`);
+    }
+  }
+
+  if (
+    annotatedIds.size !== manifest.coverage.annotatedEntries ||
+    manifest.coverage.complete !== (annotatedIds.size === entries.length) ||
+    (manifest.coverage.complete && annotatedIds.size !== entriesById.size)
+  ) {
+    throw new Error("The Ramcharitmanas word-study coverage declaration is inaccurate.");
+  }
+
+  return entries;
+}
+
 let ramcharitmanasEntriesPromise: Promise<ReaderEntry[]> | undefined;
 
 async function loadRamcharitmanasEntries(): Promise<ReaderEntry[]> {
@@ -390,7 +651,7 @@ async function loadRamcharitmanasEntries(): Promise<ReaderEntry[]> {
           meaning: undefined,
           words: [],
           language: opening.language === "Sanskrit" ? "sa" : "awa",
-          note: "Opening invocation transcribed diplomatically from the public-domain 1925 Belvedere Press edition. Edition-specific readings are preserved rather than silently harmonized; translation and grammatical annotation are withheld until independent human review.",
+          note: "Opening invocation transcribed diplomatically from the public-domain 1925 Belvedere Press edition. Edition-specific readings are preserved rather than silently harmonized. The close English rendering and token glosses are an independently prepared editorial layer whose review status is disclosed separately.",
           sourceRef: `${opening.scanUrl} · scan page ${opening.scanPage}`,
           textStatus: opening.transcriptionStatus.startsWith("verified")
             ? "source-verified"
@@ -410,7 +671,7 @@ async function loadRamcharitmanasEntries(): Promise<ReaderEntry[]> {
           meaning: undefined,
           words: [],
           language: "awa",
-          note: "Numbered source unit from the commit-pinned seven-kāṇḍa transcription. Translation and grammatical annotation are withheld until independent human review.",
+          note: "Numbered source unit from the commit-pinned seven-kāṇḍa transcription. The close English rendering and token glosses are an independently prepared editorial layer whose review status is disclosed separately.",
           sourceRef: sourceEntry.sourceLocatorLabel,
           textStatus: "source-verified",
           translationStatus: "not-published",
@@ -446,7 +707,7 @@ async function loadRamcharitmanasEntries(): Promise<ReaderEntry[]> {
       throw new Error("The Ramcharitmanas source corpus failed its completeness checks.");
     }
 
-    return entries;
+    return applyRamcharitmanasWordStudy(entries);
   })();
 
   return ramcharitmanasEntriesPromise;

@@ -1,6 +1,6 @@
 import type { ReaderEntry, WordGloss } from "@/features/spirituality/types";
 
-type Pada = Required<WordGloss>;
+type Pada = Required<Pick<WordGloss, "original" | "transliteration" | "meaning">>;
 
 function stanza(sequence: number, padas: Pada[], meaning: string, note?: string): ReaderEntry {
   const section =

@@ -12,6 +12,22 @@ export type WordGloss = {
   original?: string;
   transliteration: string;
   meaning: string;
+  line?: number;
+  language?: "awa" | "sa";
+  lemma?: string;
+  grammar?: string;
+  confidence?: "high" | "medium" | "low";
+  alternatives?: string[];
+  sourceRef?: string;
+  reviewStatus?: "editorial-under-review" | "source-compared";
+};
+
+export type StudyAttribution = {
+  label: string;
+  sourceRef: string;
+  sourceUrl?: string;
+  note?: string;
+  status: "editorial-under-review";
 };
 
 export type ReaderEntry = {
@@ -29,6 +45,7 @@ export type ReaderEntry = {
   sourceRef?: string;
   textStatus?: "source-verified" | "scan-check-pending";
   translationStatus?: "editorial-under-review" | "not-published";
+  studyAttribution?: StudyAttribution;
 };
 
 export type SourceLink = {

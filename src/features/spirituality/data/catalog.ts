@@ -525,19 +525,19 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
   },
   ramcharitmanas: {
     slug: "ramcharitmanas",
-    navLabel: "Ramcharitmanas · complete seven-kāṇḍa source text",
+    navLabel: "Ramcharitmanas · complete word study",
     shortTitle: "Ramcharitmanas",
-    title: "Ramcharitmanas · Complete Seven-Kāṇḍa Source Text",
+    title: "Ramcharitmanas · Complete Seven-Kāṇḍa Reading Edition",
     originalTitle: "श्रीरामचरितमानस",
     transliteratedTitle: "Śrī Rāmacaritamānasa",
     language: "Awadhi, with Sanskrit invocations · Devanagari + romanization",
     form: "Seven kāṇḍas · 1,074 numbered units + 39 opening invocations",
     glyph: "राम",
-    dek: "Read the selected source text from Bālakāṇḍa through Uttarakāṇḍa: all 1,074 numbered units in the pinned seven-kāṇḍa dataset, together with the 39 opening Sanskrit and Awadhi invocations checked against a public-domain 1925 edition. A deterministic romanization supports reading; translations and grammar are published only after human review.",
-    scopeLabel: "Complete selected source-text topology · 1,113 records",
+    dek: "Read from Bālakāṇḍa through Uttarakāṇḍa: all 1,074 numbered units in the pinned seven-kāṇḍa dataset and all 39 opening Sanskrit and Awadhi invocations, each paired with deterministic romanization, an independently prepared close English rendering, and a contextual gloss for every exact source token.",
+    scopeLabel: "Complete selected source + close English word study · 1,113 records",
     scopeNote:
-      "This reader contains 1,074 numbered units in the selected edition's topology plus 39 separately identified opening invocations across all seven kāṇḍas. Unit totals differ between editions, so 1,074 is not presented as a universal verse count. The complete claim applies to this declared original-language source layer—not to English or Hindi translation, pronunciation, grammar, commentary, or a critical edition.",
-    entryCountLabel: "1,113 source records · all seven kāṇḍas",
+      "This reader contains 1,074 numbered units in the selected edition's topology plus 39 separately identified opening invocations across all seven kāṇḍas. Unit totals differ between editions, so 1,074 is not presented as a universal verse count. Completeness applies to this declared source topology and its source-token English study coverage; it does not claim a critical edition, Hindi translation, recitation audio, phonetic transcription, or completed grammatical parsing.",
+    entryCountLabel: "1,113 records · 107,785 contextual token glosses",
     authenticity: [
       {
         label: "Textual home",
@@ -553,9 +553,9 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
       },
       {
         label: "Declared coverage",
-        value: "Seven kāṇḍas · declared source layer complete",
+        value: "Seven kāṇḍas · source and word-study coverage complete",
         detail:
-          "The reader preserves the full 1,074-unit sequence of the pinned dataset and restores 39 opening invocations from the public-domain edition. Stable IDs follow source order rather than the dataset's lossy decimal locator field.",
+          "The reader preserves the full 1,074-unit sequence of the pinned dataset, restores 39 opening invocations from the public-domain edition, and binds every English study row to the exact source token it explains. Stable IDs follow source order rather than the dataset's lossy decimal locator field.",
       },
       {
         label: "Traditional attribution",
@@ -586,7 +586,7 @@ export const scriptureCatalog: Record<ScriptureSlug, ScriptureCatalogEntry> = {
       "The 39 opening records omitted from that dataset are transcribed diplomatically from the public-domain 1925 Belvedere Press, Prayag edition. Its lexical spellings and edition-specific readings are preserved rather than silently harmonized with IITK or common modern printings; scan-page references stay attached to every record.",
       "Array order—not the upstream decimal verse-number field—defines the 1,074 numbered units. JSON turns locators such as 1.10 into 1.1, so using that field as a unique identifier would silently corrupt the sequence.",
       "Romanization is generated deterministically from the displayed Devanagari. For Awadhi it is an orthographic reading aid, not Sanskrit grammatical analysis, a phonetic transcription, or a substitute for listening to a knowledgeable reciter.",
-      "No machine-written or approximate translation is inserted to make the edition look finished. English, Hindi, pronunciation, word-by-word grammar, and commentary remain explicitly unpublished until separately sourced and signed off by qualified human reviewers.",
+      "Every record has an independently prepared close English rendering and every exact lexical span has a contextual English gloss. These annotations were authored for this reader rather than copied from IITK or a modern published translation; they remain visibly marked editorial-under-review and are not represented as human-reviewed scholarship.",
       "This is a transparent composite reading corpus: the numbered sequence follows the pinned seven-file dataset, while the omitted openings follow the named Belvedere witness. Completeness means the full declared topology; it does not erase variant readings, the disputed Ayodhyākāṇḍa interpolation, or the need for a future critical apparatus.",
     ],
     sources: [

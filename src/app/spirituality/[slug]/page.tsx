@@ -155,7 +155,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       scripture.transliteratedTitle,
       slug === "shiva-tandava-stotram"
         ? "pada by pada meaning"
-        : slug === "bhagavad-gita" || slug === "ramcharitmanas" || slug === "srimad-bhagavatam"
+        : slug === "ramcharitmanas"
+          ? "complete contextual word study"
+          : slug === "bhagavad-gita" || slug === "srimad-bhagavatam"
           ? "complete source-text reading edition"
           : slug === "vishnu-sahasranama" || slug === "lalita-sahasranama"
             ? "name by name meaning"
@@ -209,8 +211,10 @@ export default async function ScripturePage({ params }: PageProps) {
             ? ["awa-Deva", "en"]
             : ["sa-Deva", "en"],
     learningResourceType:
-      slug === "ramcharitmanas" || slug === "bhagavad-gita" || slug === "srimad-bhagavatam"
-        ? "Complete selected source-text reading edition"
+      slug === "ramcharitmanas"
+        ? "Complete seven-kāṇḍa contextual word-study edition"
+        : slug === "bhagavad-gita" || slug === "srimad-bhagavatam"
+          ? "Complete selected source-text reading edition"
         : slug === "shiva-tandava-stotram"
           ? "Pada-and-compound sacred-text study edition"
           : isSahasranama
@@ -276,7 +280,7 @@ export default async function ScripturePage({ params }: PageProps) {
                   {slug === "shiva-tandava-stotram"
                     ? "pāda & compound edition"
                     : slug === "ramcharitmanas"
-                      ? "complete seven-kāṇḍa source edition"
+                      ? "complete seven-kāṇḍa word study"
                       : slug === "bhagavad-gita"
                         ? "complete 701-verse source edition"
                         : slug === "srimad-bhagavatam"
@@ -384,8 +388,10 @@ export default async function ScripturePage({ params }: PageProps) {
                 02 /{" "}
                 {slug === "shiva-tandava-stotram"
                   ? "Pāda & compound"
-                  : slug === "ramcharitmanas" || slug === "bhagavad-gita" || slug === "srimad-bhagavatam"
-                    ? "Source text"
+                  : slug === "ramcharitmanas"
+                    ? "Word-by-word"
+                    : slug === "bhagavad-gita" || slug === "srimad-bhagavatam"
+                      ? "Source text"
                     : isSahasranama
                       ? "Name-by-name"
                       : "Word & compound"}{" "}

@@ -200,7 +200,7 @@ export const moreDropdown: NavDropdown = {
           href: "/spirituality/bhagavad-gita",
         },
         {
-          label: "Ramcharitmanas · Bālakāṇḍa",
+          label: "Ramcharitmanas · Complete Word Study",
           href: "/spirituality/ramcharitmanas",
         },
         {

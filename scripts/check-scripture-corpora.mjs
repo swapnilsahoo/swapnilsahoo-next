@@ -4,6 +4,7 @@ import path from "node:path";
 
 const ROOT = path.join(process.cwd(), "content", "scriptures");
 const BROKEN_TEXT = /\uFFFD|à¤|à¥|â€|Â|■■|ssssssss/u;
+const MANAS_METER_HEADINGS = new Set(["चौपाई", "दोहा/सोरठा", "छंद", "श्लोक"]);
 
 function sha256(value) {
   return createHash("sha256").update(value).digest("hex");
@@ -22,6 +23,21 @@ function assertText(value, label) {
   assert(typeof value === "string" && value.length > 0, `${label} is empty.`);
   assert(value === value.normalize("NFC"), `${label} is not Unicode NFC.`);
   assert(!BROKEN_TEXT.test(value), `${label} contains broken encoding text.`);
+}
+
+function manasSourceLines(original) {
+  return original
+    .split(/\r?\n/u)
+    .map((line) => line.replaceAll("\u00a0", " ").trim())
+    .filter((line) => line && !MANAS_METER_HEADINGS.has(line));
+}
+
+function manasSourceTokens(line) {
+  return line.replace(/\p{N}+(?:\s*\([^)]*\))?/gu, "").match(/[\p{L}\p{M}\p{Cf}]+/gu) ?? [];
+}
+
+function manasStudyWord(word) {
+  return Array.isArray(word) ? { original: word[0], meaning: word[1] } : word;
 }
 
 async function checkBhagavadGita() {
@@ -61,11 +77,13 @@ async function checkRamcharitmanas() {
   const dir = path.join(ROOT, "ramcharitmanas");
   const { value: manifest } = await readJson(path.join(dir, "manifest.v1.json"));
   const entries = [];
+  const sourceShards = [];
 
   for (const shardInfo of manifest.validation.generatedShards) {
     const { text, value: shard } = await readJson(path.join(dir, shardInfo.file));
     assert(sha256(text) === shardInfo.generatedSha256, `${shardInfo.file} hash mismatch.`);
     assert(shard.entries.length === shardInfo.units, `${shardInfo.file} unit-count mismatch.`);
+    sourceShards.push(shard);
     entries.push(...shard.entries);
   }
 
@@ -107,6 +125,169 @@ async function checkRamcharitmanas() {
       `${entry.id} has not passed the declared facsimile check.`
     );
   }
+
+  const readerById = new Map();
+  let readerSequence = 0;
+  for (const sourceShard of sourceShards) {
+    const kandaOpenings = openings.entries
+      .filter((entry) => entry.kandaOrder === sourceShard.kanda.order)
+      .sort((left, right) => left.sourceIndex - right.sourceIndex);
+    for (const entry of [...kandaOpenings, ...sourceShard.entries]) {
+      readerSequence += 1;
+      readerById.set(entry.id, {
+        original: entry.original,
+        sequence: readerSequence,
+        kandaOrder: sourceShard.kanda.order,
+        kandaSlug: sourceShard.kanda.slug,
+      });
+    }
+  }
+  assert(readerById.size === 1_113, `Manas reader topology has ${readerById.size} entries.`);
+
+  const wordStudyDir = path.join(dir, "word-study");
+  const { value: studyManifest } = await readJson(path.join(wordStudyDir, "manifest.v1.json"));
+  assert(
+    studyManifest.schemaVersion === "ramcharitmanas-word-study-manifest-v1",
+    "Manas word-study manifest schema is invalid."
+  );
+  assert(studyManifest.work === "Ramcharitmanas", "Manas word-study work label is invalid.");
+  assert(studyManifest.language === "en", "Manas word-study language is invalid.");
+  assert(
+    studyManifest.editorialStatus === "editorial-under-review",
+    "Manas word-study review status is inaccurate."
+  );
+  assertText(studyManifest.label, "Manas word-study label");
+  assertText(studyManifest.sourceRef, "Manas word-study source reference");
+  if (studyManifest.note) assertText(studyManifest.note, "Manas word-study note");
+  assert(
+    studyManifest.coverage.totalEntries === readerById.size,
+    "Manas word-study total-entry declaration is inaccurate."
+  );
+
+  const annotatedIds = new Set();
+  let previousLastSequence = 0;
+  for (const shardInfo of studyManifest.shards) {
+    assert(
+      shardInfo.firstSequence > previousLastSequence &&
+        shardInfo.lastSequence >= shardInfo.firstSequence &&
+        shardInfo.entryCount === shardInfo.lastSequence - shardInfo.firstSequence + 1,
+      `${shardInfo.file} has an invalid or overlapping range.`
+    );
+    previousLastSequence = shardInfo.lastSequence;
+
+    const shardPath = path.resolve(wordStudyDir, shardInfo.file);
+    const relativePath = path.relative(path.resolve(wordStudyDir), shardPath);
+    assert(
+      relativePath && !relativePath.startsWith("..") && !path.isAbsolute(relativePath),
+      `${shardInfo.file} resolves outside the word-study directory.`
+    );
+    const { text: shardText, value: shard } = await readJson(shardPath);
+    assert(sha256(shardText) === shardInfo.generatedSha256, `${shardInfo.file} hash mismatch.`);
+    assert(
+      shard.schemaVersion === "ramcharitmanas-word-study-shard-v1",
+      `${shardInfo.file} has an invalid schema version.`
+    );
+    assert(shard.kanda.order === shardInfo.kandaOrder, `${shardInfo.file} kāṇḍa mismatch.`);
+    assert(shard.entries.length === shardInfo.entryCount, `${shardInfo.file} count mismatch.`);
+    assert(
+      shard.entries[0]?.sequence === shardInfo.firstSequence &&
+        shard.entries.at(-1)?.sequence === shardInfo.lastSequence,
+      `${shardInfo.file} boundary mismatch.`
+    );
+
+    const sourceStrings = [];
+    for (const [entryIndex, studyEntry] of shard.entries.entries()) {
+      const sourceEntry = readerById.get(studyEntry.entryId);
+      assert(sourceEntry, `${shardInfo.file} references unknown entry ${studyEntry.entryId}.`);
+      assert(!annotatedIds.has(studyEntry.entryId), `${studyEntry.entryId} is annotated twice.`);
+      assert(
+        studyEntry.sequence === shardInfo.firstSequence + entryIndex &&
+          studyEntry.sequence === sourceEntry.sequence,
+        `${studyEntry.entryId} has a wrong reader sequence.`
+      );
+      assert(
+        shard.kanda.order === sourceEntry.kandaOrder && shard.kanda.slug === sourceEntry.kandaSlug,
+        `${studyEntry.entryId} is stored under the wrong kāṇḍa.`
+      );
+      assertText(studyEntry.meaning, `${studyEntry.entryId} close rendering`);
+      assert(
+        !/^(?:todo|tbd|placeholder|translation pending)$/iu.test(studyEntry.meaning.trim()),
+        `${studyEntry.entryId} has a placeholder rendering.`
+      );
+
+      const expectedLines = manasSourceLines(sourceEntry.original);
+      assert(
+        Array.isArray(studyEntry.lines) && studyEntry.lines.length === expectedLines.length,
+        `${studyEntry.entryId} source-line coverage mismatch.`
+      );
+      for (const [lineIndex, studyLine] of studyEntry.lines.entries()) {
+        const expectedTokens = manasSourceTokens(expectedLines[lineIndex]);
+        assert(studyLine.line === lineIndex + 1, `${studyEntry.entryId} line order mismatch.`);
+        assert(
+          Array.isArray(studyLine.words) && studyLine.words.length === expectedTokens.length,
+          `${studyEntry.entryId} line ${studyLine.line} token-count mismatch.`
+        );
+        for (const [wordIndex, rawWord] of studyLine.words.entries()) {
+          const word = manasStudyWord(rawWord);
+          assertText(
+            word.original,
+            `${studyEntry.entryId} line ${studyLine.line} token ${wordIndex + 1}`
+          );
+          assertText(
+            word.meaning,
+            `${studyEntry.entryId} line ${studyLine.line} gloss ${wordIndex + 1}`
+          );
+          assert(
+            word.original === expectedTokens[wordIndex],
+            `${studyEntry.entryId} line ${studyLine.line} token ${wordIndex + 1} does not reconstruct the source.`
+          );
+          assert(
+            !/^(?:todo|tbd|placeholder|translation pending)$/iu.test(word.meaning.trim()),
+            `${studyEntry.entryId} line ${studyLine.line} token ${wordIndex + 1} has a placeholder gloss.`
+          );
+          if (!Array.isArray(rawWord)) {
+            if (rawWord.alternatives) {
+              assert(
+                Array.isArray(rawWord.alternatives) && rawWord.alternatives.length > 0,
+                `${studyEntry.entryId} has an empty alternatives list.`
+              );
+              for (const alternative of rawWord.alternatives) {
+                assertText(alternative, `${studyEntry.entryId} alternative gloss`);
+              }
+            }
+            if (rawWord.sourceRef) {
+              assertText(rawWord.sourceRef, `${studyEntry.entryId} token source reference`);
+            }
+          }
+        }
+      }
+
+      sourceStrings.push(sourceEntry.original);
+      annotatedIds.add(studyEntry.entryId);
+    }
+
+    assert(
+      sha256(sourceStrings.join("\n␞\n")) === shardInfo.sourceTextSha256,
+      `${shardInfo.file} source-text binding mismatch.`
+    );
+  }
+
+  assert(
+    annotatedIds.size === studyManifest.coverage.annotatedEntries,
+    "Manas word-study annotated-entry count is inaccurate."
+  );
+  assert(
+    studyManifest.coverage.complete === (annotatedIds.size === readerById.size),
+    "Manas word-study completeness declaration is inaccurate."
+  );
+  if (!process.argv.includes("--allow-partial-manas")) {
+    assert(
+      studyManifest.coverage.complete && annotatedIds.size === readerById.size,
+      `Manas word study is incomplete: ${annotatedIds.size}/${readerById.size} entries.`
+    );
+  }
+
+  return annotatedIds.size;
 }
 
 async function checkSrimadBhagavatam() {
@@ -155,14 +336,23 @@ async function checkSrimadBhagavatam() {
     chapter13Fortieths.length === 2,
     "Chapter 13's documented duplicate verse 40 pair is missing."
   );
-  assert(byId.get("bhagavatam-1-13-39")?.verse === 40, "Bhagavatam 13, sourceIndex 39 mapping is wrong.");
-  assert(byId.get("bhagavatam-1-13-40")?.verse === 40, "Bhagavatam 13, sourceIndex 40 mapping is wrong.");
-  assert(byId.get("bhagavatam-1-1-1")?.original.startsWith("जन्माद्यस्य"), "Bhagavatam 1.1.1 is not the janmādyasya verse.");
+  assert(
+    byId.get("bhagavatam-1-13-39")?.verse === 40,
+    "Bhagavatam 13, sourceIndex 39 mapping is wrong."
+  );
+  assert(
+    byId.get("bhagavatam-1-13-40")?.verse === 40,
+    "Bhagavatam 13, sourceIndex 40 mapping is wrong."
+  );
+  assert(
+    byId.get("bhagavatam-1-1-1")?.original.startsWith("जन्माद्यस्य"),
+    "Bhagavatam 1.1.1 is not the janmādyasya verse."
+  );
 }
 
 await checkBhagavadGita();
-await checkRamcharitmanas();
+const manasStudyCount = await checkRamcharitmanas();
 await checkSrimadBhagavatam();
 console.log(
-  "Verified the Gita, Ramcharitmanas, and Bhagavatam Skandha-1 source corpora, topology, hashes, and sentinels."
+  `Verified the Gita, Ramcharitmanas, and Bhagavatam Skandha-1 source corpora, topology, hashes, sentinels, and ${manasStudyCount} Manas word-study annotations.`
 );

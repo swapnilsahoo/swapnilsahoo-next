@@ -777,6 +777,14 @@ test("Scripture library · paged API, search and direct-entry navigation", async
   expect(manasData.total).toBe(1113);
   expect(manasData.entries).toHaveLength(12);
   expect(manasData.entries[0].section).toBe("Bālakāṇḍa");
+  expect(manasData.entries[0].meaning?.trim()).toBeTruthy();
+  expect(manasData.entries[0].words.length).toBeGreaterThan(0);
+  expect(
+    manasData.entries[0].words.every(
+      (word) => word.original?.trim() && word.transliteration?.trim() && word.meaning?.trim()
+    )
+  ).toBe(true);
+  expect(manasData.entries[0].studyAttribution?.status).toBe("editorial-under-review");
 
   const manasFinalResponse = await request.get(
     `${baseUrl}/api/spirituality/ramcharitmanas/entries?sequence=1113`
@@ -784,6 +792,8 @@ test("Scripture library · paged API, search and direct-entry navigation", async
   expect(manasFinalResponse.ok()).toBe(true);
   const manasFinalData = await manasFinalResponse.json();
   expect(manasFinalData.entries[0].section).toBe("Uttarakāṇḍa");
+  expect(manasFinalData.entries[0].meaning?.trim()).toBeTruthy();
+  expect(manasFinalData.entries[0].words.length).toBeGreaterThan(0);
 
   await page.setViewportSize({ width: 375, height: 812 });
   await page.goto(`${baseUrl}/spirituality/bhagavad-gita`, {

@@ -1,6 +1,6 @@
 import type { ReaderEntry, WordGloss } from "@/features/spirituality/types";
 
-type Word = Required<WordGloss>;
+type Word = Required<Pick<WordGloss, "original" | "transliteration" | "meaning">>;
 
 function entry(
   id: string,

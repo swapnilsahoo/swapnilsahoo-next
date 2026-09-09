@@ -87,12 +87,12 @@ const collections = [
   {
     title: "श्रीरामचरितमानस",
     transliteration: "Śrī Rāmacaritamānasa",
-    label: "Ramcharitmanas · complete seven-kāṇḍa source text",
+    label: "Ramcharitmanas · complete seven-kāṇḍa word study",
     href: "/spirituality/ramcharitmanas",
     language: "Old Awadhi",
-    scope: "All seven kāṇḍas · 1,074 numbered units + 39 openings",
+    scope: "All seven kāṇḍas · 1,113 records · every source token glossed",
     description:
-      "Tulsidas's Awadhi retelling of Rama's story in the complete declared source topology: every numbered unit plus the Sanskrit and Awadhi openings, with deterministic romanization and no invented translation filler.",
+      "Tulsidas's Awadhi retelling of Rama's story across every numbered unit and opening invocation, with deterministic romanization, a close English rendering, and an independently prepared contextual gloss for every exact source token.",
   },
   {
     title: "छान्दोग्योपनिषद्",
@@ -274,10 +274,10 @@ export default function SpiritualityPage() {
               The Chalisa is treated as Old Awadhi; the two Sahasranāmas use complete, name-by-name
               Sanskrit readers; the Shiva Tandava Stotram receives pāda-level compound study; the
               Bhagavad Gita carries a complete, pinned Sanskrit source layer across all eighteen
-              chapters; the Ramcharitmanas carries the declared source topology of all seven kāṇḍas;
-              and the Chandogya Upanishad opens with its first section only. Coverage and review
-              status stay visible rather than being smoothed over. Sanskrit receives IAST; Awadhi
-              receives a clearly labelled orthographic romanization.
+              chapters; the Ramcharitmanas carries all seven kāṇḍas with a close English rendering
+              and exact-token contextual glosses; and the Chandogya Upanishad opens with its first
+              section only. Coverage and review status stay visible rather than being smoothed over.
+              Sanskrit receives IAST; Awadhi receives a clearly labelled orthographic romanization.
             </p>
           </div>
           <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">

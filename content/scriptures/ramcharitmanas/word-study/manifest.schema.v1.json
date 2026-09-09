@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.swapnilsahoo.com/schemas/ramcharitmanas-word-study-manifest.v1.json",
+  "title": "Ramcharitmanas word-study manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "work",
+    "language",
+    "editorialStatus",
+    "label",
+    "sourceRef",
+    "coverage",
+    "shards"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "ramcharitmanas-word-study-manifest-v1"
+    },
+    "work": {
+      "const": "Ramcharitmanas"
+    },
+    "language": {
+      "const": "en"
+    },
+    "editorialStatus": {
+      "const": "editorial-under-review"
+    },
+    "label": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sourceRef": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sourceUrl": {
+      "type": "string",
+      "format": "uri"
+    },
+    "note": {
+      "type": "string",
+      "minLength": 1
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["totalEntries", "annotatedEntries", "complete"],
+      "properties": {
+        "totalEntries": {
+          "const": 1113
+        },
+        "annotatedEntries": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1113
+        },
+        "complete": {
+          "type": "boolean"
+        }
+      }
+    },
+    "shards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "file",
+          "kandaOrder",
+          "firstSequence",
+          "lastSequence",
+          "entryCount",
+          "sourceTextSha256"
+        ],
+        "properties": {
+          "file": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9._/-]+\\.json$"
+          },
+          "kandaOrder": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 7
+          },
+          "firstSequence": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1113
+          },
+          "lastSequence": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1113
+          },
+          "entryCount": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1113
+          },
+          "sourceTextSha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "generatedSha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        }
+      }
+    }
+  }
+}

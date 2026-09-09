@@ -1,0 +1,1358 @@
+{
+  "schemaVersion": "ramcharitmanas-word-study-manifest-v1",
+  "work": "Ramcharitmanas",
+  "language": "en",
+  "editorialStatus": "editorial-under-review",
+  "label": "Independent close English word study",
+  "sourceRef": "Pinned open source text and the public-domain 1925 Belvedere Press opening invocations; IITK Manas Supersite used only as a comparison witness",
+  "sourceUrl": "https://manas.gitasupersite.in/",
+  "note": "These contextual glosses and close renderings were prepared specifically for this edition. They are working editorial translations awaiting independent Awadhi and Sanskrit review, not quotations from IITK or a modern published translation.",
+  "coverage": {
+    "totalEntries": 1113,
+    "annotatedEntries": 1113,
+    "complete": true
+  },
+  "shards": [
+    {
+      "file": "bala-kanda/openings.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 1,
+      "lastSequence": 12,
+      "entryCount": 12,
+      "sourceTextSha256": "476aae25d0e188884e875d667c8688e91ca8ed499572471cdf0d50d65b6de185",
+      "generatedSha256": "20ebb41069f8b1846bd7aa039f8cca069e480f9f0bdaccb4fe2af2b828a69ebe"
+    },
+    {
+      "file": "bala-kanda/0001-0008.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 13,
+      "lastSequence": 20,
+      "entryCount": 8,
+      "sourceTextSha256": "20a9a2c85ff529a1d375d2ac54b92edac34288240c731e90ba0442f0d33215c7",
+      "generatedSha256": "b504cfe62f62bdedb5d64e55add43bfbc9bfe3d759be3686e8170dd14c87dccf"
+    },
+    {
+      "file": "bala-kanda/0009-0016.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 21,
+      "lastSequence": 28,
+      "entryCount": 8,
+      "sourceTextSha256": "a1440f8e297eb23498161532acf40d12c9331160b623de085ba7446e8c39e839",
+      "generatedSha256": "167f956f1d3cf84d83a0382eabaf0c21bd52044f7eb1acbb17f8a1fccaffe67f"
+    },
+    {
+      "file": "bala-kanda/0017-0025.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 29,
+      "lastSequence": 37,
+      "entryCount": 9,
+      "sourceTextSha256": "c8d3e1edcab6dca5fc63a729cf28203b05a1819ab88457bfc17dad962fd86a41",
+      "generatedSha256": "0755b7eecd45a4491e82d0b93d793a97e779ca74da19e10708f1b0a555c5b65b"
+    },
+    {
+      "file": "bala-kanda/0026-0030.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 38,
+      "lastSequence": 42,
+      "entryCount": 5,
+      "sourceTextSha256": "7ae9ab2edbe34b4e62a6de500e7494089f5a288d60f37bf3eb85a64f6c35b455",
+      "generatedSha256": "8dde1273f2021682a606dcc221c45e52e3b9925ebf465bb41e9b0469c7de8fa0"
+    },
+    {
+      "file": "bala-kanda/0031-0035.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 43,
+      "lastSequence": 47,
+      "entryCount": 5,
+      "sourceTextSha256": "c5eb03f17858267ed83402d1a6599e74990111a2f6e3896afc3b641cbc1a7982",
+      "generatedSha256": "f7cc5329581fdef9a6bb6d5f0f03e6d269ee4941449d57c069e5b2f02b115d08"
+    },
+    {
+      "file": "bala-kanda/0036-0040.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 48,
+      "lastSequence": 52,
+      "entryCount": 5,
+      "sourceTextSha256": "8fea4938adac93e794dadff8c166850d414dd158fe82b08c74a0933efeec8b70",
+      "generatedSha256": "de4c05c0b8139b0cfb49e5aae977769be370ed99cd627ab09bccfd0ab5ba0e80"
+    },
+    {
+      "file": "bala-kanda/0041-0045.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 53,
+      "lastSequence": 57,
+      "entryCount": 5,
+      "sourceTextSha256": "e0064b3edc683e201388f05d98449fe7773b8690a4a95187f590484591b0db67",
+      "generatedSha256": "f05906b4169c0badc0d502c9c82298824080d75725725aa41e8b53de146cc231"
+    },
+    {
+      "file": "bala-kanda/0046-0050.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 58,
+      "lastSequence": 62,
+      "entryCount": 5,
+      "sourceTextSha256": "5dd064dfa7be086a5065f78814ae96211850f9d5a4f49e889367a6e372878234",
+      "generatedSha256": "7b2b7c6970dd6f4122cf549da84d4df41e49f14255dd4aea4de20adf2a0892e0"
+    },
+    {
+      "file": "bala-kanda/0051-0055.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 63,
+      "lastSequence": 67,
+      "entryCount": 5,
+      "sourceTextSha256": "cbc99e0de6746dfcb97196bb7e79fafdc39a4f9542ed3439d9163602aa7fd5c9",
+      "generatedSha256": "c21506604dcf9a9257f8a3900c84f46861bb6524544730a90df1b539363572c1"
+    },
+    {
+      "file": "bala-kanda/0056-0060.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 68,
+      "lastSequence": 72,
+      "entryCount": 5,
+      "sourceTextSha256": "c73fc035395d2d5f604f0c83a37be87e4a1959dfa79a565bd5b026e49f8b0c88",
+      "generatedSha256": "f74d72963be2446fc39ad27663e179aac70388274e5f8283294a270a2c39f4e8"
+    },
+    {
+      "file": "bala-kanda/0061-0065.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 73,
+      "lastSequence": 77,
+      "entryCount": 5,
+      "sourceTextSha256": "360d009677dfaa03f8148c87640f5c0da8cb71220dff0addb4fef0239d7af912",
+      "generatedSha256": "ea539f73fa9b27b55fce0dcb33f5dc69ac842532e0ab3a1bc21df98c6ccf1e24"
+    },
+    {
+      "file": "bala-kanda/0066-0070.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 78,
+      "lastSequence": 82,
+      "entryCount": 5,
+      "sourceTextSha256": "f79f3562d550d8868105456b3e88fb1ee7fef0a431845b307bf62870e486a79a",
+      "generatedSha256": "74912631753e4f8fb179bbf9680f70eec9085b48fbf9e4629aa79410f1c94d65"
+    },
+    {
+      "file": "bala-kanda/0071-0075.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 83,
+      "lastSequence": 87,
+      "entryCount": 5,
+      "sourceTextSha256": "cf9dc6ea161db1e29a5112bb32ce01fa8c9b432f2fb09138afa36cb277f965ee",
+      "generatedSha256": "862df21c60f85202162a672f8d02814a817bd19e6f1a34e56f0a369ab78b1a6d"
+    },
+    {
+      "file": "bala-kanda/0076-0080.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 88,
+      "lastSequence": 92,
+      "entryCount": 5,
+      "sourceTextSha256": "81db54d847272d4defa9bad2e9f2867b757b47e7bc8a634fdd0f3ec8772fe188",
+      "generatedSha256": "968ec05275955bef0fc058dd4b30c3c09fde0335f0deaafd0cad840960459f9a"
+    },
+    {
+      "file": "bala-kanda/0081-0085.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 93,
+      "lastSequence": 97,
+      "entryCount": 5,
+      "sourceTextSha256": "4e4841e7863eb762d766bc0a2a32d3cbeb7edf6228187c6b74d24c5225221e13",
+      "generatedSha256": "fbec27c61f60279dcecc0605de3ed8d82b7cd74caab0de9cf61acde897688791"
+    },
+    {
+      "file": "bala-kanda/0086-0090.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 98,
+      "lastSequence": 102,
+      "entryCount": 5,
+      "sourceTextSha256": "8420a74d254c723e411433e80877e9bd54f29d3c6ba06f0e7e20aa91d0f13fde",
+      "generatedSha256": "f27e7e1f02c87d8e888e3ca186a8bd12d791ca50dc2338cdc8dd519f378dda0b"
+    },
+    {
+      "file": "bala-kanda/0091-0095.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 103,
+      "lastSequence": 107,
+      "entryCount": 5,
+      "sourceTextSha256": "11a6ba1799f600d45112f21c1ac20ea8b2dba1fe02f2b42013b06bdfcad56e59",
+      "generatedSha256": "2476075a20ffffeea9a1326f5e2cbaa5775c4ab03a726407d480a209867b3cdd"
+    },
+    {
+      "file": "bala-kanda/0096-0100.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 108,
+      "lastSequence": 112,
+      "entryCount": 5,
+      "sourceTextSha256": "cd6fa70cab4fa17709b0bb69f627c9a275cfae98ac172c065edafdf9dedfcdd5",
+      "generatedSha256": "f02720f4e8d86982f81c0459a8efd0b2447199d1eba11d3084936b55e5b2cf3d"
+    },
+    {
+      "file": "bala-kanda/0101-0105.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 113,
+      "lastSequence": 117,
+      "entryCount": 5,
+      "sourceTextSha256": "8022f12c9ce558acc6c4c2e5a656929b1435d68f1039bb3c351feab6e695d44f",
+      "generatedSha256": "19be0aae791df82d54ebcdbe75a0e62c264232bf7bbd4c41295434b4af6e2af9"
+    },
+    {
+      "file": "bala-kanda/0106-0110.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 118,
+      "lastSequence": 122,
+      "entryCount": 5,
+      "sourceTextSha256": "dc400364096e94bbcb392812f7460c9e2229590f16e52e81a002e29181f570a9",
+      "generatedSha256": "aa08862f22495e7e821065608d7f9b306dd4c80026032522e965415d649cd7d1"
+    },
+    {
+      "file": "bala-kanda/0111-0115.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 123,
+      "lastSequence": 127,
+      "entryCount": 5,
+      "sourceTextSha256": "9a612ed5b5369e6bb371dc342dd837ab6e7037de4975b5b91c3f36b1816c1540",
+      "generatedSha256": "e731a558424c280531172125d4da4c272d5ffd9c29282d51d0fc9c21a47a8b24"
+    },
+    {
+      "file": "bala-kanda/0116-0120.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 128,
+      "lastSequence": 132,
+      "entryCount": 5,
+      "sourceTextSha256": "181ae728794fbb3b1d455c51e515e96afc503d537feb10c89a404999ed3ce3bb",
+      "generatedSha256": "02a1219367145a6487caa06a3b1301bd01519406d1b4d8e784c95676273cc458"
+    },
+    {
+      "file": "bala-kanda/0121-0125.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 133,
+      "lastSequence": 137,
+      "entryCount": 5,
+      "sourceTextSha256": "8fd726817f40199c9ae2c0123def2c2cab2bc9f86a1913e3a064a9a857b8b4d2",
+      "generatedSha256": "0c09ccc314c397205c1f26d87c059010ee8c4a421d1257b032b83af6c7f377ff"
+    },
+    {
+      "file": "bala-kanda/0126-0130.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 138,
+      "lastSequence": 142,
+      "entryCount": 5,
+      "sourceTextSha256": "5147365b91f8713341bb2310af260c378a05a079eff45d8d05db0a37eea0dc75",
+      "generatedSha256": "2ab2fe8d06bf1a78319649f3bf887d38ccd50492ebd5beccf2ca052146d1cd54"
+    },
+    {
+      "file": "bala-kanda/0131-0135.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 143,
+      "lastSequence": 147,
+      "entryCount": 5,
+      "sourceTextSha256": "a385aa0a8d55547bfdaab87574bfd24b906bb1747b6accf35b583ad2124914e7",
+      "generatedSha256": "af7f033b2fbc995f5ff31684858d392a611849363a6f75310c1cc189e065b0f1"
+    },
+    {
+      "file": "bala-kanda/0136-0140.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 148,
+      "lastSequence": 152,
+      "entryCount": 5,
+      "sourceTextSha256": "64c411790708e9ea53c5f42904acb077e19ee1b3079007ac1486e676d07c44e7",
+      "generatedSha256": "d12db53122864090aaf37966dd84f0a5d732fa66e6df056a79ba9e037b77cd82"
+    },
+    {
+      "file": "bala-kanda/0141-0145.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 153,
+      "lastSequence": 157,
+      "entryCount": 5,
+      "sourceTextSha256": "7e269ea3337faee9e6649a5c1a89cf4d0fa9b44fa3bff55aa0d686cfd6617634",
+      "generatedSha256": "541ea7b2520b4c52ad9aae01fa0fb2dfd8b2ffed3c0b1c7088fbf9c5e99deeb3"
+    },
+    {
+      "file": "bala-kanda/0146-0150.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 158,
+      "lastSequence": 162,
+      "entryCount": 5,
+      "sourceTextSha256": "5ebb23f935379afde120c2d4d6ce59fb5fc74f14f64e14dcf6f5919f3c8adcc1",
+      "generatedSha256": "c3eef5f61fc105b6a86f79b540d2e9edf33665cdf16ffc520e09da64892642f0"
+    },
+    {
+      "file": "bala-kanda/0151-0155.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 163,
+      "lastSequence": 167,
+      "entryCount": 5,
+      "sourceTextSha256": "aea3d84a4185ee320f64b0bddcf03588e8bac9ed05edc734f36fc1689c090030",
+      "generatedSha256": "191f3a367ab85ce6ab61090eca3776bcbce3e057a8395f4b9c798dc7e52c89d6"
+    },
+    {
+      "file": "bala-kanda/0156-0160.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 168,
+      "lastSequence": 172,
+      "entryCount": 5,
+      "sourceTextSha256": "edc8be8b87f02a24aee47e99ca3c23c2466a937d1f93eb4755502142fbeef0a9",
+      "generatedSha256": "98c85f1c7261d5f0ef0cea0dc776701674629dceb25447b9ed74cd66119ccefd"
+    },
+    {
+      "file": "bala-kanda/0161-0165.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 173,
+      "lastSequence": 177,
+      "entryCount": 5,
+      "sourceTextSha256": "1e11f3339610f4fec5c3187f9b86a53edddb3d782d9a146002625d16fd841be1",
+      "generatedSha256": "a8458eacb3a504fa098d1fb1354f15947d73d4539b5f7cb2de468f800db35561"
+    },
+    {
+      "file": "bala-kanda/0166-0170.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 178,
+      "lastSequence": 182,
+      "entryCount": 5,
+      "sourceTextSha256": "11e1675628382da85e4dde2c0916e880a908067b999da8eeb39ff0d20a936697",
+      "generatedSha256": "082deb96e09d3ecc6bc99712cee7e51a3989f75dfe7516cca4e2ff56d6bdb443"
+    },
+    {
+      "file": "bala-kanda/0171-0175.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 183,
+      "lastSequence": 187,
+      "entryCount": 5,
+      "sourceTextSha256": "fdd64c56b4be543397400ecd64c2ab81451daf337cda9a98cd043022045fc2de",
+      "generatedSha256": "771da725e5ebb41f05ae5e3a780556e69e0e730d4f3e36ef67014059ce25674d"
+    },
+    {
+      "file": "bala-kanda/0176-0180.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 188,
+      "lastSequence": 192,
+      "entryCount": 5,
+      "sourceTextSha256": "72cec70cdeef660fee1d880a2c9f292837be0e730755a4e94e0ca2ab38f6521c",
+      "generatedSha256": "f2b6555e393893b6ba89656e801056221443f97b4d9d79df6aab86a4957ac0db"
+    },
+    {
+      "file": "bala-kanda/0181-0185.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 193,
+      "lastSequence": 197,
+      "entryCount": 5,
+      "sourceTextSha256": "69173ad1173887b5fb1386573382c9b58f08e107b0f1a50dd6cbfc575f6b264a",
+      "generatedSha256": "4cbe27b6e548bccaf0cc34f47904b554a5e06a31f03c9ab94555d79ce3528ff2"
+    },
+    {
+      "file": "bala-kanda/0186-0190.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 198,
+      "lastSequence": 202,
+      "entryCount": 5,
+      "sourceTextSha256": "c410036416f5a6a635b62f2ba5da3f42f9ad45fc8b6634eec9c88b1ea2254aa2",
+      "generatedSha256": "174cb2ec2ba03718510b568a642c5c547a2f200154178bb350d1a473bf12fd8c"
+    },
+    {
+      "file": "bala-kanda/0191-0195.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 203,
+      "lastSequence": 207,
+      "entryCount": 5,
+      "sourceTextSha256": "d8e22367e9a450de01da7f590866f1cfb9ff4cf4fd4198addb3368c03f54cbdb",
+      "generatedSha256": "86caf8556cb2436df2b7713bb342ee82bb169399eba889d68bf663117c612b07"
+    },
+    {
+      "file": "bala-kanda/0196-0200.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 208,
+      "lastSequence": 212,
+      "entryCount": 5,
+      "sourceTextSha256": "20ade941eb0322fe279998b353af035844f6d2c8a10aaf72cff40e763c6ad107",
+      "generatedSha256": "3af459bea5853cc2df6614946f9b6d8dfb83fc98ed8f94ed5a1a9acdb40eb362"
+    },
+    {
+      "file": "bala-kanda/0201-0205.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 213,
+      "lastSequence": 217,
+      "entryCount": 5,
+      "sourceTextSha256": "b80828ee35e8ed45b78dd10548039aad915c7a84e41558b8156af99d29f91811",
+      "generatedSha256": "6bcb9772a610988db2253045d1291f1444c387363f92a6eba887db2abd155e43"
+    },
+    {
+      "file": "bala-kanda/0206-0210.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 218,
+      "lastSequence": 222,
+      "entryCount": 5,
+      "sourceTextSha256": "365af7061fd287bf4cbfe1e9a90e4500ae7d48f082ce3291c5c0d5885fc32e0e",
+      "generatedSha256": "1a358abeedc0c2d75d57f28eb5c10fc38af40c61717609fed0f79630f2f048ef"
+    },
+    {
+      "file": "bala-kanda/0211-0215.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 223,
+      "lastSequence": 227,
+      "entryCount": 5,
+      "sourceTextSha256": "2285f0bc2538e845ada4678733faa223d08891090307b01a1d54cc2b27f32b9f",
+      "generatedSha256": "6ca52cd065f06a446150a96bfed1c38bc001e924bd18e6da584d285557333f8f"
+    },
+    {
+      "file": "bala-kanda/0216-0220.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 228,
+      "lastSequence": 232,
+      "entryCount": 5,
+      "sourceTextSha256": "57d7117626f76362632802ce9f3dec5f5dcc441cca230299a7fbcd07756c7f16",
+      "generatedSha256": "2e58da672d7c2ab61717ccfe17356ee5f682c8ed78ff1d1cf58ebaff26dc72b7"
+    },
+    {
+      "file": "bala-kanda/0221-0225.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 233,
+      "lastSequence": 237,
+      "entryCount": 5,
+      "sourceTextSha256": "72f5bafa4c40f9109e84cdab6bc0d7e91dfbe491e053e82646a9db4bb5001181",
+      "generatedSha256": "345ea1af2540c9e506a8c35b754baf193eedfab2d461badca338dd5cad59c626"
+    },
+    {
+      "file": "bala-kanda/0226-0230.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 238,
+      "lastSequence": 242,
+      "entryCount": 5,
+      "sourceTextSha256": "679b0d1d4a517d7e17e8da4bc62f1dc86a8f8408e777a6cfe440460774189851",
+      "generatedSha256": "2a4be6cf82146da9abdf89ac38f374f382d7134897ae73f1592d0951790cfcce"
+    },
+    {
+      "file": "bala-kanda/0231-0235.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 243,
+      "lastSequence": 247,
+      "entryCount": 5,
+      "sourceTextSha256": "5dd116ddc60e1f16c6ef36d6fd28326b648841ce0b4c57b2378d0b727eff23b1",
+      "generatedSha256": "626ee06cca5c5c8ccba545283cfafe67c9e8d682273f6c3fad6ea9f35ab6d839"
+    },
+    {
+      "file": "bala-kanda/0236-0240.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 248,
+      "lastSequence": 252,
+      "entryCount": 5,
+      "sourceTextSha256": "823550f89385a8b8bca905101f85765a3986280dbef3c249431410047b73a43a",
+      "generatedSha256": "6fa81a7ef425f3632914ca02ad4f80aea9dc3ac6939faeeeb96d93e3c1d55da0"
+    },
+    {
+      "file": "bala-kanda/0241-0245.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 253,
+      "lastSequence": 257,
+      "entryCount": 5,
+      "sourceTextSha256": "4578bcfbac220a881444eea8459392d5c136484b53f0d83ad1468f836eeb973a",
+      "generatedSha256": "1046c4fb3f3ac8b60684469a4cec24cebfbb33b3922ef7d7070ff157526221b7"
+    },
+    {
+      "file": "bala-kanda/0246-0250.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 258,
+      "lastSequence": 262,
+      "entryCount": 5,
+      "sourceTextSha256": "e48c12c144794f9b009c5ce9e1c4f3407bcb1807b4b86585fe9294ab0e82694d",
+      "generatedSha256": "24fd1b7dd44a528b37c98592ac15ecc40ec4777de81b37af57d0ed8d7dda69aa"
+    },
+    {
+      "file": "bala-kanda/0251-0255.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 263,
+      "lastSequence": 267,
+      "entryCount": 5,
+      "sourceTextSha256": "a7770f5b3b7c47886c37308e5c3092683b6be27a3b8b31b7703097fb4466849c",
+      "generatedSha256": "f9932e075b907f7ee58f8c1c544de7e9d1fdb91eadc7ddfb9537f5faf6f75b21"
+    },
+    {
+      "file": "bala-kanda/0256-0260.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 268,
+      "lastSequence": 272,
+      "entryCount": 5,
+      "sourceTextSha256": "2fa61a11bbd294f57721d34ff7231bef8e92320b65709b844219e82776ae3900",
+      "generatedSha256": "82694dd4b32d2b2076ef9041177e6f76cc2449d7fc8e53c11633fe0017af1dc7"
+    },
+    {
+      "file": "bala-kanda/0261-0265.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 273,
+      "lastSequence": 277,
+      "entryCount": 5,
+      "sourceTextSha256": "2bb1b635b7c55cdfe5feb25c33274382e324ea69f20beaf75e73a2b3966625a6",
+      "generatedSha256": "173c06fda51f97442eaf2533c802dccd83c3d55a846d0743a261c8de54d91589"
+    },
+    {
+      "file": "bala-kanda/0266-0270.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 278,
+      "lastSequence": 282,
+      "entryCount": 5,
+      "sourceTextSha256": "9bfc82767ce6a76be15a0eac04697cdf079bc3d422bfa75b3570e5f5fa1f4d40",
+      "generatedSha256": "5db611ee2e3212558868413c99f05aba8feb1e5279466dd4d0dd0d2d439dd7cf"
+    },
+    {
+      "file": "bala-kanda/0271-0275.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 283,
+      "lastSequence": 287,
+      "entryCount": 5,
+      "sourceTextSha256": "14bb8d53ca3fe01ffbb191c2a860eb7f4d11881f19dafb479b3bd5c33d43505e",
+      "generatedSha256": "d48760dc004ecab62cd9ce5736d6a201aa2baa12aafe777e020ca989fb6ae247"
+    },
+    {
+      "file": "bala-kanda/0276-0280.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 288,
+      "lastSequence": 292,
+      "entryCount": 5,
+      "sourceTextSha256": "2fc7d5b53b36e628880cdae39c93cffdd7346b42deaa5af5e0ffa7b408938824",
+      "generatedSha256": "a00121e449144538495197f3451b945b294c834c911516eb54162c77ffcae120"
+    },
+    {
+      "file": "bala-kanda/0281-0290.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 293,
+      "lastSequence": 302,
+      "entryCount": 10,
+      "sourceTextSha256": "985f7936517995e9bec69efdc30172b9506e2cdbbb18aca0d38c1384f7c86b6d",
+      "generatedSha256": "e07c8e47440479cf37a1dc81f4b75f4a7968da0fcdd00947516c4d70a6899b8a"
+    },
+    {
+      "file": "bala-kanda/0291-0300.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 303,
+      "lastSequence": 312,
+      "entryCount": 10,
+      "sourceTextSha256": "c04c5b312a1b2a1f31dc0745df620e7c7112801314278e136c26ddad28e3d29c",
+      "generatedSha256": "ed37994dd6fe94f09e6182bd36a6d6e9f484b21433a2e6670181f45d5d6ccc05"
+    },
+    {
+      "file": "bala-kanda/0301-0310.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 313,
+      "lastSequence": 322,
+      "entryCount": 10,
+      "sourceTextSha256": "81f282173adcf8cedb39f15e301bdd5b5e7c94405a6cf72ef0f8192832d82976",
+      "generatedSha256": "1c814ba542b9e761f83ad9f7f62fb6c818d6100665a44a4ad1e9c95f09046b0f"
+    },
+    {
+      "file": "bala-kanda/0311-0320.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 323,
+      "lastSequence": 332,
+      "entryCount": 10,
+      "sourceTextSha256": "8d889cc722e84b4464c75aceca53ac60c7c966e3621624c676d97d901cb2aae1",
+      "generatedSha256": "6beea05c93ac288aead4696809ad5c36a7672e827c7cbf933f79c263f39de662"
+    },
+    {
+      "file": "bala-kanda/0321-0330.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 333,
+      "lastSequence": 342,
+      "entryCount": 10,
+      "sourceTextSha256": "ab5b06e3e4bf22631cfd4659baae3ad6968c410e3a93748c0b97ede6fde7d176",
+      "generatedSha256": "10f6cb64dc4d41a41677247fbdbd83d3d27d161286474d5d039a5a62c0c57904"
+    },
+    {
+      "file": "bala-kanda/0331-0340.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 343,
+      "lastSequence": 352,
+      "entryCount": 10,
+      "sourceTextSha256": "71e99264f3a862bb24c8446831fba77e17478bf3cbd315198d3fa9cd54be6db4",
+      "generatedSha256": "22515033c9c54a9881ec8ed74a34ec6f16744b527a59d8be51a29fc458a54fc0"
+    },
+    {
+      "file": "bala-kanda/0341-0350.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 353,
+      "lastSequence": 362,
+      "entryCount": 10,
+      "sourceTextSha256": "4d8a62e878233a4f42549cda60a0c80066336355c0382050dea92ea1e0447b5e",
+      "generatedSha256": "c83a72e6b9bd7adc6728fa63ed366474f9994afe7c0ce2ce0ff9b1538d663e2e"
+    },
+    {
+      "file": "bala-kanda/0351-0360.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 363,
+      "lastSequence": 372,
+      "entryCount": 10,
+      "sourceTextSha256": "63a8f129ffdb1b82a60148b14103d66d899b6fa1e92295e2f75266ff028c532d",
+      "generatedSha256": "a1b43af3d24f601f0f66465150664c2b89fc909ac41c7c02e53927133a4b072f"
+    },
+    {
+      "file": "bala-kanda/0361-0361.v1.json",
+      "kandaOrder": 1,
+      "firstSequence": 373,
+      "lastSequence": 373,
+      "entryCount": 1,
+      "sourceTextSha256": "c911ca9f018229b3f06b0ee9a19092aee351459e914e0db82171225a712f0ad9",
+      "generatedSha256": "60bf2fb2fe9221448c4feb42ac9b9d387d242b9365b92ea3b7a2f7296e2a73bf"
+    },
+    {
+      "file": "ayodhya-kanda/openings.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 374,
+      "lastSequence": 377,
+      "entryCount": 4,
+      "sourceTextSha256": "e0ae76266b940d01c435fd83c56792533f76a5cb26dc89baa0532ef9e6499a3c",
+      "generatedSha256": "126dc81c510b4bbd88459c571e9761dee814ce4951539c34da2ccbbe70a338fa"
+    },
+    {
+      "file": "ayodhya-kanda/0001-0010.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 378,
+      "lastSequence": 387,
+      "entryCount": 10,
+      "sourceTextSha256": "d13c237b48a896584ff7f17258795879b6e9f4dc544a9402e5a0ba91da2aa324",
+      "generatedSha256": "3678e9c4193743485ef92594db112f5bec710c273c4bc3cc681a1ccef1e76736"
+    },
+    {
+      "file": "ayodhya-kanda/0011-0020.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 388,
+      "lastSequence": 397,
+      "entryCount": 10,
+      "sourceTextSha256": "bfc798cf96dced48309c5917df3bdeb6ec0a59575c50ac96371f51a9339ba68b",
+      "generatedSha256": "85c1212d0331d76263a2b28b70f4b5558a958f87d424e6d19e5f0f4185a62e39"
+    },
+    {
+      "file": "ayodhya-kanda/0021-0030.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 398,
+      "lastSequence": 407,
+      "entryCount": 10,
+      "sourceTextSha256": "99356c91c879402291ab46a08866a51d3d2f7759c7edee2e789bea7c830c8935",
+      "generatedSha256": "64222952504990bd9c2ab1f0d30ad4e202a0b55fa59a4a7553084b41fae4fc2a"
+    },
+    {
+      "file": "ayodhya-kanda/0031-0040.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 408,
+      "lastSequence": 417,
+      "entryCount": 10,
+      "sourceTextSha256": "3b1964ce2d3fefc443a105ed96d47b76e3ea6ab420949092a5bad7032a1662f4",
+      "generatedSha256": "b62a2d3377e7f0013147aa32ebaf0a7f5d7d1991a4990bfd0da75aac02b65e3e"
+    },
+    {
+      "file": "ayodhya-kanda/0041-0050.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 418,
+      "lastSequence": 427,
+      "entryCount": 10,
+      "sourceTextSha256": "4f0139fd364963b1fe02834f84757eaba648cc3ca0b4244a05b8c674466fcdae",
+      "generatedSha256": "18e48a177d7d5214d3a7541a2aad5df9f14704e4e7106fd56bf391090f80702c"
+    },
+    {
+      "file": "ayodhya-kanda/0051-0060.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 428,
+      "lastSequence": 437,
+      "entryCount": 10,
+      "sourceTextSha256": "a9fbd6d6bdd83f1f82100203037717121d84a2d742910d66e873365b8b3270fb",
+      "generatedSha256": "25ccfa000064aac87c17cef3e0d430efb9d9920fffbe5e79f6f765aa845ef8c6"
+    },
+    {
+      "file": "ayodhya-kanda/0061-0070.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 438,
+      "lastSequence": 447,
+      "entryCount": 10,
+      "sourceTextSha256": "8935645333c360a70af1055f30e8f17a7f9882e8e7bc94fd8aa4f89585e280d2",
+      "generatedSha256": "85c37b90f2f8e1a2051e1369e1acea18d0cbe06ebe929d8235163fe64c964b29"
+    },
+    {
+      "file": "ayodhya-kanda/0071-0080.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 448,
+      "lastSequence": 457,
+      "entryCount": 10,
+      "sourceTextSha256": "ff55959c9f2bfc458c7781eeb149f616e5dad3a1bd87d65d9b0cad6afd535320",
+      "generatedSha256": "d57f67fec56ed882ac4d6dce4eb0be032c19d66c1424603360515363f4a6384a"
+    },
+    {
+      "file": "ayodhya-kanda/0081-0090.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 458,
+      "lastSequence": 467,
+      "entryCount": 10,
+      "sourceTextSha256": "fd686d5fa5130ff584c9e9c0a3b9e96ed31706162e94283c07b9ad0f82fa0204",
+      "generatedSha256": "007666ea75b013ed58caf5df40a235170872695ed9478339240f52e94d565036"
+    },
+    {
+      "file": "ayodhya-kanda/0091-0100.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 468,
+      "lastSequence": 477,
+      "entryCount": 10,
+      "sourceTextSha256": "814a7445b96a3bc3300b9e3421efa896c79c46ca26f160f77808af812e54755b",
+      "generatedSha256": "2b83484552d576129760e2ce025d13fe9c1df317e51441ab3d29be6e003984de"
+    },
+    {
+      "file": "ayodhya-kanda/0101-0110.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 478,
+      "lastSequence": 487,
+      "entryCount": 10,
+      "sourceTextSha256": "ec2f5bf69e0889fd995f5411983a77e801053ecb09795ab926562e3d44e889e9",
+      "generatedSha256": "dd52a989bce4f429c06ced4fa5f31a57b22390ad9433ef7f43aefdff35967013"
+    },
+    {
+      "file": "ayodhya-kanda/0111-0120.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 488,
+      "lastSequence": 497,
+      "entryCount": 10,
+      "sourceTextSha256": "d022d1be7a717300c82c091b13601345c444c6f248f84ebc17eb91ce018b9656",
+      "generatedSha256": "661177dbc61ba5d1c67c66cb8103efd9146e611da5418879c0fbd137a1746cf1"
+    },
+    {
+      "file": "ayodhya-kanda/0121-0125.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 498,
+      "lastSequence": 502,
+      "entryCount": 5,
+      "sourceTextSha256": "f0b7f97f2d816a473b0d40bb850957da7d40c26e6a306f0b58e4c0649ee8cf9c",
+      "generatedSha256": "b9f76ca75396386880e5846b999528bd29767e0e7bc31f960230250821507279"
+    },
+    {
+      "file": "ayodhya-kanda/0126-0135.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 503,
+      "lastSequence": 512,
+      "entryCount": 10,
+      "sourceTextSha256": "d950d716ba37ca76f80df5edd42c38db1710da0f3e76937286a6b48f701f8e81",
+      "generatedSha256": "d782ec3c16defd5d3b85bcfcecec7929b3984a57ed80afdb152a97a6e862d49d"
+    },
+    {
+      "file": "ayodhya-kanda/0136-0145.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 513,
+      "lastSequence": 522,
+      "entryCount": 10,
+      "sourceTextSha256": "3786fb9b8b1a8941298ace30c59b720011fcce44477457ef4bdd2024e613ea2f",
+      "generatedSha256": "0443474ae8dd079c23f774f47c9f1d6df92372263e8502c4e74b4e9841c45b29"
+    },
+    {
+      "file": "ayodhya-kanda/0146-0155.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 523,
+      "lastSequence": 532,
+      "entryCount": 10,
+      "sourceTextSha256": "6433bd751657759e0ac89d99c89c362a642cfb9b4490a50a9914bd5cc86c02ed",
+      "generatedSha256": "4b5154d279902c48c7324d4d109976f5129985ecd57fb42ae2f3294d31631f91"
+    },
+    {
+      "file": "ayodhya-kanda/0156-0165.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 533,
+      "lastSequence": 542,
+      "entryCount": 10,
+      "sourceTextSha256": "e73f8db3640c8c6ff1d505353e4d063fb1f3314f9916dea6392c522d44d8faeb",
+      "generatedSha256": "e44381d4307b893156549fa89180a6f78e39c53f8d458598c7526d157c02b22e"
+    },
+    {
+      "file": "ayodhya-kanda/0166-0175.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 543,
+      "lastSequence": 552,
+      "entryCount": 10,
+      "sourceTextSha256": "84fd4d8b7fa8c18227758c35f09db23d3bdc58a7251b19e6e925eb2e3e0b2759",
+      "generatedSha256": "89317dd46d0063a1acde407d484f330825fb40e2d732a94c31222bf96b373ce4"
+    },
+    {
+      "file": "ayodhya-kanda/0176-0185.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 553,
+      "lastSequence": 562,
+      "entryCount": 10,
+      "sourceTextSha256": "8c62b71d6496b25e348917ce8d92558e3c180e11dcd1ca514c85b8ece575c7f4",
+      "generatedSha256": "1e253808fa35436df504dc8ff541a22532e4c33d3585c415d76f549b5557c623"
+    },
+    {
+      "file": "ayodhya-kanda/0186-0195.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 563,
+      "lastSequence": 572,
+      "entryCount": 10,
+      "sourceTextSha256": "67047d80b5bd418da7b4b598936631901ceeabcec7c4f4f526f4a8f9666b994f",
+      "generatedSha256": "379f82e696e60ded2a08ad7141466a21fca235ac309cc2e491f14e05d8ca36e6"
+    },
+    {
+      "file": "ayodhya-kanda/0196-0205.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 573,
+      "lastSequence": 582,
+      "entryCount": 10,
+      "sourceTextSha256": "8db047e280079c913f2cc6c3a40134b75ef2184f5eb1ad7d4e8c2cb41a96ca0f",
+      "generatedSha256": "30cc7262f412b989a6c1a2d52fef906d9b9a1576b1fcd4ff3c138101df0575ef"
+    },
+    {
+      "file": "ayodhya-kanda/0206-0215.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 583,
+      "lastSequence": 592,
+      "entryCount": 10,
+      "sourceTextSha256": "3c0534622518a4a8af719b79647c80a3f2a06904d8c753614b4a9b16166fc353",
+      "generatedSha256": "66f0a7e867ad3b294a10a0f8195ed50ad71a90d986cf096c5f421b5205b49e49"
+    },
+    {
+      "file": "ayodhya-kanda/0216-0225.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 593,
+      "lastSequence": 602,
+      "entryCount": 10,
+      "sourceTextSha256": "bdc7c0a5ba558292f4b821baa2dad450e9d55a4571f3b1fa1deed1d7595d0c5e",
+      "generatedSha256": "c41259c49f426401d1a8f42024678c319139e3d29221285fa41ba83a256ec5cc"
+    },
+    {
+      "file": "ayodhya-kanda/0226-0235.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 603,
+      "lastSequence": 612,
+      "entryCount": 10,
+      "sourceTextSha256": "83026016c4a9df6697324ddd34d9962cc10ad6400a0ebf92ffd0aea01d2dbd68",
+      "generatedSha256": "29ab7637042612e6f00e89b1427ca664929f712f5b4f8e8da2f4dfdad6ea270b"
+    },
+    {
+      "file": "ayodhya-kanda/0236-0245.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 613,
+      "lastSequence": 622,
+      "entryCount": 10,
+      "sourceTextSha256": "63f7c81b05c0bb917fa22d5e4bd31939041442841a958f9ef6e578e3b43c5f71",
+      "generatedSha256": "09ff1309c502381d0a87a76e3297762d137e983bf47e7b86457c2be09c3df346"
+    },
+    {
+      "file": "ayodhya-kanda/0246-0255.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 623,
+      "lastSequence": 632,
+      "entryCount": 10,
+      "sourceTextSha256": "de32188ca3fee50aceb726e2d361ae909c608bd8e2f41f46348b4eb9c9b7d9e9",
+      "generatedSha256": "02d2f28f97058f7af2df5c663cfab26c4490cf68b4594a156b7cc22e50cebc36"
+    },
+    {
+      "file": "ayodhya-kanda/0256-0265.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 633,
+      "lastSequence": 642,
+      "entryCount": 10,
+      "sourceTextSha256": "5d88e0d8a369ad9ca40d75b7b0e2c772fab6f129f1181433a56584a82aa85a21",
+      "generatedSha256": "ba6df333233cc82146566815bbc85775a787d53151d1f69f248926c5815caab6"
+    },
+    {
+      "file": "ayodhya-kanda/0266-0275.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 643,
+      "lastSequence": 652,
+      "entryCount": 10,
+      "sourceTextSha256": "770af4d05390ea6fd9a7cf239d588d7056265d10d461dca0028141a129c5fc3a",
+      "generatedSha256": "8bc988e49bf1368cbf87b9e266bd375878b144bd3b82e3eca582e2984f8b7df6"
+    },
+    {
+      "file": "ayodhya-kanda/0276-0285.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 653,
+      "lastSequence": 662,
+      "entryCount": 10,
+      "sourceTextSha256": "e92052ba12840bfda3b12ca62985d07bcd901d35b79b9107a540d75704f3c064",
+      "generatedSha256": "2ed233b0e560ec171127d202c66df6cd6f2f6d5119e9493b5d80b02ef6b37993"
+    },
+    {
+      "file": "ayodhya-kanda/0286-0295.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 663,
+      "lastSequence": 672,
+      "entryCount": 10,
+      "sourceTextSha256": "559db84676288e00e8a972b1273bd96aba990ee853428e4e416fc4f0f51b8a1b",
+      "generatedSha256": "5c834a2a7b7fcd7dc2cebd8af28f1666886137d4462c5d591d4a9507f4e3c6e4"
+    },
+    {
+      "file": "ayodhya-kanda/0296-0305.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 673,
+      "lastSequence": 682,
+      "entryCount": 10,
+      "sourceTextSha256": "382c9fd8811794c81c7e767dbf21b5ef4443f0b4f2bb5a04f887379ee4b2cc09",
+      "generatedSha256": "4472ec441702711b0cd0c9754aa716269b274139f7ea13c8423972846be9caa3"
+    },
+    {
+      "file": "ayodhya-kanda/0306-0315.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 683,
+      "lastSequence": 692,
+      "entryCount": 10,
+      "sourceTextSha256": "8ad735f952256739d0ffe80938a2b73617ca345d059ce0bb1f6b4c85ca9a4345",
+      "generatedSha256": "5fa42b8173b5611c4e36217c7f6d0529a7026019cedef5ec461b3b444f4daf29"
+    },
+    {
+      "file": "ayodhya-kanda/0316-0325.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 693,
+      "lastSequence": 702,
+      "entryCount": 10,
+      "sourceTextSha256": "087f727e6de579d2efe2ec24d342bd941d6d10a93a2a780650c7cc1b9ce863d5",
+      "generatedSha256": "13520230a0cf14e53c0c8039fe54285fa3a8aed63a11940728add14404f2fa15"
+    },
+    {
+      "file": "ayodhya-kanda/0326-0326.v1.json",
+      "kandaOrder": 2,
+      "firstSequence": 703,
+      "lastSequence": 703,
+      "entryCount": 1,
+      "sourceTextSha256": "192faf62a71113e67f482ebac63ecf2a6895f12f1db6dc3315380f43bc98c895",
+      "generatedSha256": "1c6dcc5540ac5b6a4ff860c91ea3b853c4786ea2f33bb67e3b11fb35073c1e37"
+    },
+    {
+      "file": "aranya-kanda/openings.v1.json",
+      "kandaOrder": 3,
+      "firstSequence": 704,
+      "lastSequence": 706,
+      "entryCount": 3,
+      "sourceTextSha256": "6b88f65d497ae8b7efa41e18d58b0ac9a83532b1ac4cb4be5eda3d85946cb38e",
+      "generatedSha256": "fa3936e2ab7af57ab8b50c3c7f42e7d4612bc781d09c284e034eaf44a12a1028"
+    },
+    {
+      "file": "aranya-kanda/0001-0006.v1.json",
+      "kandaOrder": 3,
+      "firstSequence": 707,
+      "lastSequence": 712,
+      "entryCount": 6,
+      "sourceTextSha256": "8367beb73b737846b270f3a623df530b1b98f8bb3ac43b08f1fa8208d6e33b2b",
+      "generatedSha256": "66e8c9498b8a7046d691edce851f775eadcf2b3906122a793b68dab17dfc3a79"
+    },
+    {
+      "file": "aranya-kanda/0007-0012.v1.json",
+      "kandaOrder": 3,
+      "firstSequence": 713,
+      "lastSequence": 718,
+      "entryCount": 6,
+      "sourceTextSha256": "fb4330390ebd1f2a8fbc6845253ee72c9607d237f7cff58092683aad42845199",
+      "generatedSha256": "a5a15d4ae95b5601c4aed1b1fd38add49f9b2288c2a67b1af21bc5c380e8df13"
+    },
+    {
+      "file": "aranya-kanda/0013-0018.v1.json",
+      "kandaOrder": 3,
+      "firstSequence": 719,
+      "lastSequence": 724,
+      "entryCount": 6,
+      "sourceTextSha256": "2581ab95227e5284819e94a747611d4712de9b90e4e0bd26ecf79235c16c1958",
+      "generatedSha256": "ff6d27e2101a34d33e79d3fdd78ca21690419c5c4655ef712011c4b52dcb8fa9"
+    },
+    {
+      "file": "aranya-kanda/0019-0024.v1.json",
+      "kandaOrder": 3,
+      "firstSequence": 725,
+      "lastSequence": 730,
+      "entryCount": 6,
+      "sourceTextSha256": "c9e74b55b1b9696ec39ce2644c25ed062408de136c43df216302850c00796fa6",
+      "generatedSha256": "84e2e2c7328c88e454ef7272ecedef67ac5ad2169699be6c027ec2ca3cd91da2"
+    },
+    {
+      "file": "aranya-kanda/0025-0030.v1.json",
+      "kandaOrder": 3,
+      "firstSequence": 731,
+      "lastSequence": 736,
+      "entryCount": 6,
+      "sourceTextSha256": "3dd1864f048dcbcced1b6ee39404cf3b97836ae47c0431d4922f0a24299772b6",
+      "generatedSha256": "a764681e0f3ffa8552af89bb532875ff646a3dcc3f447a25aa84c9ec975fd3fa"
+    },
+    {
+      "file": "aranya-kanda/0031-0036.v1.json",
+      "kandaOrder": 3,
+      "firstSequence": 737,
+      "lastSequence": 742,
+      "entryCount": 6,
+      "sourceTextSha256": "879fb981812b60d652ca2229a85cebabef7eb7d436dc448807215a722834a1ac",
+      "generatedSha256": "e8e62a8d32c5dd24502ea475c7fedf598eac307663b898dd05e2339ec9eadfcd"
+    },
+    {
+      "file": "aranya-kanda/0037-0042.v1.json",
+      "kandaOrder": 3,
+      "firstSequence": 743,
+      "lastSequence": 748,
+      "entryCount": 6,
+      "sourceTextSha256": "9244330e49fb40c034e9e880b43e4773ca6b87b84e2b4750e68020d6fa5f67e7",
+      "generatedSha256": "605d9e3d4590660712ed469b62b13e4d6f6b8b0541657f7e596f59e8636de90e"
+    },
+    {
+      "file": "aranya-kanda/0043-0046.v1.json",
+      "kandaOrder": 3,
+      "firstSequence": 749,
+      "lastSequence": 752,
+      "entryCount": 4,
+      "sourceTextSha256": "aa3040daaa55b04f5ab00baa0fb5757f9f4aeaacca1ac37d0eaa44660e305614",
+      "generatedSha256": "33d30d52e6641ec2a11da66a49a1c8a230b4c68ed28bc6459a4ef5fbd743bed0"
+    },
+    {
+      "file": "kishkindha-kanda/openings.v1.json",
+      "kandaOrder": 4,
+      "firstSequence": 753,
+      "lastSequence": 756,
+      "entryCount": 4,
+      "sourceTextSha256": "f89ce209578d450efc949b9a21a47ba8368d3850898ab19aa07201f94fc30838",
+      "generatedSha256": "67875374c26816020f1fb1df95372cce4ddd2933c3818130052ecebf49a7daa9"
+    },
+    {
+      "file": "kishkindha-kanda/0001-0006.v1.json",
+      "kandaOrder": 4,
+      "firstSequence": 757,
+      "lastSequence": 762,
+      "entryCount": 6,
+      "sourceTextSha256": "ac7b603e622fee9aeb7414c69d7fa897869af95f14b0ac8ccbea4f6623ceea9e",
+      "generatedSha256": "4567e07258a463598dd6c8bc04b3b7f361ddd2758e3907ec563055c0df38fc9c"
+    },
+    {
+      "file": "kishkindha-kanda/0007-0012.v1.json",
+      "kandaOrder": 4,
+      "firstSequence": 763,
+      "lastSequence": 768,
+      "entryCount": 6,
+      "sourceTextSha256": "735013ed098bff7a40fa0d07eaadcdd0e18ec62d2580dee76c604029ac5dcc11",
+      "generatedSha256": "bb9905f49baaf0cc89c7b16d8f407092dcb7dab61d97864bc5fbefc36f47e4e2"
+    },
+    {
+      "file": "kishkindha-kanda/0013-0018.v1.json",
+      "kandaOrder": 4,
+      "firstSequence": 769,
+      "lastSequence": 774,
+      "entryCount": 6,
+      "sourceTextSha256": "eea682ae3296728ab2267f9f647255735f017abdc7c35f0a8da2956ab62bdb7d",
+      "generatedSha256": "2e6d50daf1ec10fa68d5b6e3d32f6ee2d5e5fccb3df4aa96e1ffe780d4fb51b9"
+    },
+    {
+      "file": "kishkindha-kanda/0019-0024.v1.json",
+      "kandaOrder": 4,
+      "firstSequence": 775,
+      "lastSequence": 780,
+      "entryCount": 6,
+      "sourceTextSha256": "de900e1ffcc7b57c1bf6ef434af039a2ef7062d7013929e59c966c5e59c48e52",
+      "generatedSha256": "aa4221edc35c7b7ed3636ca05fead86c22561a307be701c8a2781d0af535196c"
+    },
+    {
+      "file": "kishkindha-kanda/0025-0030.v1.json",
+      "kandaOrder": 4,
+      "firstSequence": 781,
+      "lastSequence": 786,
+      "entryCount": 6,
+      "sourceTextSha256": "55db71d416f0967f26eb5415a04144bb093503f3c6a2673639a8d62eaa2d97bd",
+      "generatedSha256": "e4aa41a7172b84053157064b6d640d69ddf869d23bcb4966f1573715db2c0392"
+    },
+    {
+      "file": "sundara-kanda/openings.v1.json",
+      "kandaOrder": 5,
+      "firstSequence": 787,
+      "lastSequence": 789,
+      "entryCount": 3,
+      "sourceTextSha256": "8e71f8868df05dba3ec5c385293989aeec8fc887f8c04bd30d37f80c537c2133",
+      "generatedSha256": "6f84432855ce95ab43eb5b033ab050dfa2018d77d6740ef80e8538072a228036"
+    },
+    {
+      "file": "sundara-kanda/0001-0010.v1.json",
+      "kandaOrder": 5,
+      "firstSequence": 790,
+      "lastSequence": 799,
+      "entryCount": 10,
+      "sourceTextSha256": "1c9d72f15b463bf2b766254fdf62ccf2593079db255e302c98535f7a3fbbac7e",
+      "generatedSha256": "b4f19ff3dc8ebb92fbfc8392047b731a1913fae32c54cae6cca16c1879b667a9"
+    },
+    {
+      "file": "sundara-kanda/0011-0020.v1.json",
+      "kandaOrder": 5,
+      "firstSequence": 800,
+      "lastSequence": 809,
+      "entryCount": 10,
+      "sourceTextSha256": "fe50d2051c732516f5457e0c7efc7316aafb7d26b58fb40bf62db04dfc08115b",
+      "generatedSha256": "8f4fd32d0ad79dbbff89ccf26fd32da45d2e5a817bd62aad40f38137a457894e"
+    },
+    {
+      "file": "sundara-kanda/0021-0030.v1.json",
+      "kandaOrder": 5,
+      "firstSequence": 810,
+      "lastSequence": 819,
+      "entryCount": 10,
+      "sourceTextSha256": "4a2fd7fb82f7c47001f2533e338abea5a08791b9f4bcf03fe041aaf3faa7a248",
+      "generatedSha256": "449ea0ce1e0da092f2c8ee34f83a6e5d465f91320664c9dbe2455c671d2dad95"
+    },
+    {
+      "file": "sundara-kanda/0031-0040.v1.json",
+      "kandaOrder": 5,
+      "firstSequence": 820,
+      "lastSequence": 829,
+      "entryCount": 10,
+      "sourceTextSha256": "f4ba3ef285bd7be98af743f4130ebef0f97ca7df37976fa3f4b4c6600f7b8cef",
+      "generatedSha256": "bfe9896abc640ffaacde76e58cb1a604cc86994316393581f8f43b4f04051bff"
+    },
+    {
+      "file": "sundara-kanda/0041-0050.v1.json",
+      "kandaOrder": 5,
+      "firstSequence": 830,
+      "lastSequence": 839,
+      "entryCount": 10,
+      "sourceTextSha256": "a5d5bf7192d7d283a018318ff40c9cd5ee8cdf08d27cba0c15dbba129688cdf7",
+      "generatedSha256": "35eef9d236637d9e35a27d8884b8dcd63025eb3fa335eeebf0e44a1ffbd68595"
+    },
+    {
+      "file": "sundara-kanda/0051-0060.v1.json",
+      "kandaOrder": 5,
+      "firstSequence": 840,
+      "lastSequence": 849,
+      "entryCount": 10,
+      "sourceTextSha256": "3f83adceeeb8c2d48a5359c438bd193fe4695bd4c5e901908f00c677dc3cf8f8",
+      "generatedSha256": "578652be253a09ad0e7894964441d2c0c229c41506ecb48627bf1d86abd99287"
+    },
+    {
+      "file": "lanka-kanda/openings.v1.json",
+      "kandaOrder": 6,
+      "firstSequence": 850,
+      "lastSequence": 855,
+      "entryCount": 6,
+      "sourceTextSha256": "a94cf8f51d44d500b1d707579c22e18e5e3ca1cfab2dbd25746c0303ef4fa655",
+      "generatedSha256": "13d346a44c1e44595214bd05a210edd9ccf8008836c27822b91bdd78d9d330c8"
+    },
+    {
+      "file": "lanka-kanda/0001-0010.v1.json",
+      "kandaOrder": 6,
+      "firstSequence": 856,
+      "lastSequence": 865,
+      "entryCount": 10,
+      "sourceTextSha256": "1034166b794b1d00c0e68d4cf1793b521e8c160f543ca6691e5ab4ac49ec3d8f",
+      "generatedSha256": "31969bc8e48139f5fedbcfdbf566fe9e1a80ad3cfae4fbd901325d9d2ad79263"
+    },
+    {
+      "file": "lanka-kanda/0011-0020.v1.json",
+      "kandaOrder": 6,
+      "firstSequence": 866,
+      "lastSequence": 875,
+      "entryCount": 10,
+      "sourceTextSha256": "3d7cdf70158358502e930452ea5f4836e9cef28a7f406743e6af692ef256eeff",
+      "generatedSha256": "01900f91ab12b079a6b8498cc167bcbd71f39caea0a2ef22cc4121b7d3284a26"
+    },
+    {
+      "file": "lanka-kanda/0021-0030.v1.json",
+      "kandaOrder": 6,
+      "firstSequence": 876,
+      "lastSequence": 885,
+      "entryCount": 10,
+      "sourceTextSha256": "7d2ad41e2f557655acf45b5f0fbd9f0bf50d1b8ad325ba0bce4460c401e71192",
+      "generatedSha256": "c71dea85ed5215e0afadbbb0b6675091b5b9c8408cff6ae37b2a15542cdf423a"
+    },
+    {
+      "file": "lanka-kanda/0031-0040.v1.json",
+      "kandaOrder": 6,
+      "firstSequence": 886,
+      "lastSequence": 895,
+      "entryCount": 10,
+      "sourceTextSha256": "f32be5669fcb9cfcbe74d213bda25b7d3029bf893f9336c48f42b5fbfce347c7",
+      "generatedSha256": "9d3857b9ad3ef6a4c25d17a883e96d0046b5889debd3e0bc5cc119dc06aa25a3"
+    },
+    {
+      "file": "lanka-kanda/0041-0050.v1.json",
+      "kandaOrder": 6,
+      "firstSequence": 896,
+      "lastSequence": 905,
+      "entryCount": 10,
+      "sourceTextSha256": "dc4eb8d159851b492f729889fadc007c3a929694e254c630970e75412e619462",
+      "generatedSha256": "cb2f7fe7f687661277b90bc40f989b2f840f53030e64177ed6fbc5431a8644d5"
+    },
+    {
+      "file": "lanka-kanda/0051-0060.v1.json",
+      "kandaOrder": 6,
+      "firstSequence": 906,
+      "lastSequence": 915,
+      "entryCount": 10,
+      "sourceTextSha256": "afd9258bcd993675db9f2bbf4a8df7f24e684206258dca6f6823833e672031b7",
+      "generatedSha256": "4fa36a4d55f0a079f832925e25bb4999e03b5b46aff9e5039a44243a9450a61b"
+    },
+    {
+      "file": "lanka-kanda/0061-0070.v1.json",
+      "kandaOrder": 6,
+      "firstSequence": 916,
+      "lastSequence": 925,
+      "entryCount": 10,
+      "sourceTextSha256": "d303dbf8732db7af2adfd4edc2c596d94436d9bc5fa89c76f1a561fad99865c8",
+      "generatedSha256": "6e70aa24cf64a954caf6d579607a0a504bc82ef320636fd6b35d7d9762753d55"
+    },
+    {
+      "file": "lanka-kanda/0071-0080.v1.json",
+      "kandaOrder": 6,
+      "firstSequence": 926,
+      "lastSequence": 935,
+      "entryCount": 10,
+      "sourceTextSha256": "fb04f66094c8dd72726bc35e40c7ab5a9f98944b2367aa652bf5ed4a9dc44545",
+      "generatedSha256": "0871b286d8692e7d8b666a51c86098c5f8d6d5d0fe612180eaa6ffcc91c8d13d"
+    },
+    {
+      "file": "lanka-kanda/0081-0090.v1.json",
+      "kandaOrder": 6,
+      "firstSequence": 936,
+      "lastSequence": 945,
+      "entryCount": 10,
+      "sourceTextSha256": "5dbce7dc7b4517f66505b5cdce9e1acbb9151730e4a04a9e244cb3bdbf8c602a",
+      "generatedSha256": "440d6f7481586d1c84f2116b6cfe65d5122881d0d7f82dcd72a6554255acffd2"
+    },
+    {
+      "file": "lanka-kanda/0091-0100.v1.json",
+      "kandaOrder": 6,
+      "firstSequence": 946,
+      "lastSequence": 955,
+      "entryCount": 10,
+      "sourceTextSha256": "f078e49fe78aa1e0882e2c056e28ca7b6c5c733a3f577956c6a43520480cdc8c",
+      "generatedSha256": "65f49cab9a9d25d235a6c780ea352ebc5bff81f4af54b7bbf4ab9bc41afee29b"
+    },
+    {
+      "file": "lanka-kanda/0101-0110.v1.json",
+      "kandaOrder": 6,
+      "firstSequence": 956,
+      "lastSequence": 965,
+      "entryCount": 10,
+      "sourceTextSha256": "4aeb72400926b78d3a1603a1b8be4806f250041cb49770369c32a7c5a99b6b34",
+      "generatedSha256": "acdb702e7aa4fcbba77d5e834d50dd4d835e34780b533b0aa33de3b3e47a3bc0"
+    },
+    {
+      "file": "lanka-kanda/0111-0120.v1.json",
+      "kandaOrder": 6,
+      "firstSequence": 966,
+      "lastSequence": 975,
+      "entryCount": 10,
+      "sourceTextSha256": "457ac96d63c88490a3193d025c0cd18f7fb4259eed09e5bbf4e7c5f4bc0b492f",
+      "generatedSha256": "7767236afdb70f4b004698e406967afb382d39333f99e6033d2c99fdef42de33"
+    },
+    {
+      "file": "lanka-kanda/0121-0121.v1.json",
+      "kandaOrder": 6,
+      "firstSequence": 976,
+      "lastSequence": 976,
+      "entryCount": 1,
+      "sourceTextSha256": "67d7199a5193fd5123ae0157ac5a08d07495f466cc39fa50b3529e3357b3b5bc",
+      "generatedSha256": "069685f156f5eeab2bd5a24f22a3244a861efda9663b3a2ac4c618145abfcdbc"
+    },
+    {
+      "file": "uttara-kanda/openings.v1.json",
+      "kandaOrder": 7,
+      "firstSequence": 977,
+      "lastSequence": 983,
+      "entryCount": 7,
+      "sourceTextSha256": "72175adca0c51bcc098768d88c0b9083a1a0dcc8952d35f6f3ca4182aba98a93",
+      "generatedSha256": "e8e7551905ad130fa3612e7473ad15afddc72894bdd879cbacd478383fade2e7"
+    },
+    {
+      "file": "uttara-kanda/0001-0010.v1.json",
+      "kandaOrder": 7,
+      "firstSequence": 984,
+      "lastSequence": 993,
+      "entryCount": 10,
+      "sourceTextSha256": "980e8982a91dd5f31b879883e79c3dfb0579d9c97ed4cb4b5101623e7cc02148",
+      "generatedSha256": "d92301b024d9303837b89ea61c296adca522524e065dbb25b98d081fccc3621c"
+    },
+    {
+      "file": "uttara-kanda/0011-0020.v1.json",
+      "kandaOrder": 7,
+      "firstSequence": 994,
+      "lastSequence": 1003,
+      "entryCount": 10,
+      "sourceTextSha256": "e5f8b84e74ef8680f40f9fee1f71b3ae0ff9413f359c39d2f16f48247dcee2ee",
+      "generatedSha256": "7b9c4352916d747a31fc4219389646407d368cf8ec8fe7e3cb5924127b768d32"
+    },
+    {
+      "file": "uttara-kanda/0021-0030.v1.json",
+      "kandaOrder": 7,
+      "firstSequence": 1004,
+      "lastSequence": 1013,
+      "entryCount": 10,
+      "sourceTextSha256": "197e4189dbff0d5c2bd56cf5100a76e314aa815b62fb26f307b3f343062c23d3",
+      "generatedSha256": "1128b72f9ea49b4b8403eb2f0a51263041d5330e175d63c1553156508e17c0ec"
+    },
+    {
+      "file": "uttara-kanda/0031-0040.v1.json",
+      "kandaOrder": 7,
+      "firstSequence": 1014,
+      "lastSequence": 1023,
+      "entryCount": 10,
+      "sourceTextSha256": "36ea1985b2afeb6d69ec539a7635e32e588c875c425c8e5b0335b498bea3aa13",
+      "generatedSha256": "06ef4b6bee19954cd5577bd79cc6bdfd9d927cb340c488ed512d102f79c6fba5"
+    },
+    {
+      "file": "uttara-kanda/0041-0050.v1.json",
+      "kandaOrder": 7,
+      "firstSequence": 1024,
+      "lastSequence": 1033,
+      "entryCount": 10,
+      "sourceTextSha256": "584af97fb5bd231b7088527cf8b6c9de9f94894e65cdfebf1136b1b61c913c6b",
+      "generatedSha256": "a6c30a048073bf441c53e424e364040db6416d1d1745dcd95485ea7c6cbfafc5"
+    },
+    {
+      "file": "uttara-kanda/0051-0060.v1.json",
+      "kandaOrder": 7,
+      "firstSequence": 1034,
+      "lastSequence": 1043,
+      "entryCount": 10,
+      "sourceTextSha256": "33cda3b08c0323b3da0f5f97d2dd2c60ee320267fd1df1abc61ecc8d146bd0d8",
+      "generatedSha256": "755b4ce02c50b00d8edd1789f1d4e54d5baea37ed6a0fac47d9537521dcd0371"
+    },
+    {
+      "file": "uttara-kanda/0061-0070.v1.json",
+      "kandaOrder": 7,
+      "firstSequence": 1044,
+      "lastSequence": 1053,
+      "entryCount": 10,
+      "sourceTextSha256": "7154b48afd46fcccce976f1693435f3f93de686d0daa5bac6745a5e242b63564",
+      "generatedSha256": "3e65ce15a94e529fe0b9f5578c1dad2c9ac15d61117203bd82372203a480df21"
+    },
+    {
+      "file": "uttara-kanda/0071-0080.v1.json",
+      "kandaOrder": 7,
+      "firstSequence": 1054,
+      "lastSequence": 1063,
+      "entryCount": 10,
+      "sourceTextSha256": "1e2787cc4ec064c492639d1080768471d48008ef72bed9d8ad17f125f29b5471",
+      "generatedSha256": "7f8ada48b97a1a8ce5f962ec48d538670b84de0f94076cd95641a4ec26f72b91"
+    },
+    {
+      "file": "uttara-kanda/0081-0090.v1.json",
+      "kandaOrder": 7,
+      "firstSequence": 1064,
+      "lastSequence": 1073,
+      "entryCount": 10,
+      "sourceTextSha256": "f87ffa50d71cc9111064bf01135f3bb05d6193fec23e90dd634e98992d0a508b",
+      "generatedSha256": "0ac8f84e73b66431be21297c59f4a3fe880be0edf49d15e82471ebcef37fab47"
+    },
+    {
+      "file": "uttara-kanda/0091-0100.v1.json",
+      "kandaOrder": 7,
+      "firstSequence": 1074,
+      "lastSequence": 1083,
+      "entryCount": 10,
+      "sourceTextSha256": "a898b1331eae5590a60350c9ee4584dafe7c963c72bec8dca0b47185ffa0ae0f",
+      "generatedSha256": "4a2efd06d81f876ddfb2d49812e26d7b1982cf4561037c47d0e068c66d754965"
+    },
+    {
+      "file": "uttara-kanda/0101-0110.v1.json",
+      "kandaOrder": 7,
+      "firstSequence": 1084,
+      "lastSequence": 1093,
+      "entryCount": 10,
+      "sourceTextSha256": "d420a678406068cb087f34047161cc29b1381b5f6184eaa148234aae1f40d84b",
+      "generatedSha256": "1a99a50fb1b3bd874cd0eea20dc176e29069b09d9fba0e40e14319ba7c23a8df"
+    },
+    {
+      "file": "uttara-kanda/0111-0120.v1.json",
+      "kandaOrder": 7,
+      "firstSequence": 1094,
+      "lastSequence": 1103,
+      "entryCount": 10,
+      "sourceTextSha256": "0cff6a80e458317929fa19c2fbbf1852f13669dea32ab07f3d8d365ceb789368",
+      "generatedSha256": "4914f171a731890e0128eb1edf93289600921d1e8da0568380471dbfd8582431"
+    },
+    {
+      "file": "uttara-kanda/0121-0130.v1.json",
+      "kandaOrder": 7,
+      "firstSequence": 1104,
+      "lastSequence": 1113,
+      "entryCount": 10,
+      "sourceTextSha256": "640042e675da4636c3ff198ad96f65f23353a853e7193f9ceb57a8cabea12637",
+      "generatedSha256": "9f2186883c883e10271939d784bf83acabef99424996c518e8f8f40ef9770e01"
+    }
+  ]
+}
