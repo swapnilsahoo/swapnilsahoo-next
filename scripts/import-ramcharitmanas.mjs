@@ -94,6 +94,39 @@ const LICENSE_SOURCE = {
   outputFile: "UPSTREAM-LICENSE.txt",
 };
 
+const DECLARED_SOURCE_TEXT_CORRECTIONS = new Map([
+  [
+    "ramcharitmanas-uttara-kanda-0130",
+    {
+      scope: "Final two Sanskrit verses and the seventh-sopāna colophon",
+      expectedUpstreamEntrySha256:
+        "5dce1b5b18b74104333940e3bc6d3ccbdc709758771cd5e156076fecb8ee8388",
+      replacement: [
+        "श्लोक",
+        "यत्पूर्वं प्रभुणा कृतं सुकविना श्रीशम्भुना दुर्गमं",
+        "श्रीमद्रामपदाब्जभक्तिमनिशं प्राप्तुं तु रामायणम्॥",
+        "मत्वा तद्रघुनाथनामनिरतं स्वान्तस्तमःशान्तये",
+        "भाषाबद्धमिदं चकार तुलसीदासस्तथा मानसम्॥१॥",
+        "पुण्यं पापहरं सदा शिवकरं विज्ञानभक्तिप्रदं",
+        "मायामोहमलापहं सुविमलं प्रेमाम्बुपूरं शुभम्।",
+        "श्रीमद्रामचरित्रमानसमिदं भक्त्यावगाहन्ति ये",
+        "ते संसारपतङ्गघोरकिरणैर्दह्यन्ति नो मानवाः॥२॥",
+        "इति श्रीरामचरितमानसे सकलकलिकलुषविध्वंसने अविरलहरिभक्तिसम्पादनो नाम सप्तमः सोपानः समाप्तः।",
+      ].join("\n"),
+      witness: {
+        edition: "Ramcharitmanas, Belvedere Press, Allahabad (1925)",
+        printedPages: [1143, 1144],
+        scanUrls: [
+          "https://archive.org/details/in.ernet.dli.2015.342236/page/n1221/mode/1up",
+          "https://archive.org/details/in.ernet.dli.2015.342236/page/n1222/mode/1up",
+        ],
+      },
+      variantNote:
+        "The printed note records the Sabhā-manuscript variants प्राप्नोतु रामायणम् and भाषाबन्धमिदं चकार; this reading follows the Belvedere main text प्राप्तुं तु रामायणम् and भाषाबद्धमिदं चकार.",
+    },
+  ],
+]);
+
 function sha256(bytes) {
   return createHash("sha256").update(bytes).digest("hex");
 }
@@ -155,8 +188,40 @@ function extractVerseNumberLexemes(sourceText) {
 }
 
 function normalizeSacredText(value) {
-  // These are the only transformations applied to the source wording.
+  // General normalization is limited to line endings and NFC. A separately declared,
+  // hash-guarded facsimile correction is applied below where the upstream transcription is corrupt.
   return value.replace(/\r\n?/g, "\n").normalize("NFC");
+}
+
+function applyDeclaredSourceTextCorrection(entryId, upstreamOriginal) {
+  const correction = DECLARED_SOURCE_TEXT_CORRECTIONS.get(entryId);
+  if (!correction) return { original: upstreamOriginal };
+
+  const actualUpstreamHash = sha256(Buffer.from(upstreamOriginal, "utf8"));
+  if (actualUpstreamHash !== correction.expectedUpstreamEntrySha256) {
+    throw new Error(
+      `${entryId}: upstream entry changed before its declared facsimile correction could be applied`
+    );
+  }
+
+  const marker = "\nश्लोक\n";
+  const markerIndex = upstreamOriginal.lastIndexOf(marker);
+  if (markerIndex < 0) {
+    throw new Error(`${entryId}: could not find the final Sanskrit-section marker`);
+  }
+
+  const original = `${upstreamOriginal.slice(0, markerIndex + 1)}${correction.replacement}`;
+  return {
+    original,
+    sourceTextCorrection: {
+      status: "verified-against-1925-facsimile",
+      scope: correction.scope,
+      upstreamEntryTextSha256: actualUpstreamHash,
+      correctedEntryTextSha256: sha256(Buffer.from(original, "utf8")),
+      witness: correction.witness,
+      variantNote: correction.variantNote,
+    },
+  };
 }
 
 function countLocatorCollisions(locators) {
@@ -201,6 +266,7 @@ function parseKanda(kanda, sourceText, globalSequenceStart) {
   const entries = parsed.map((unit, zeroBasedIndex) => {
     const sourceIndex = zeroBasedIndex + 1;
     const sourceVerseNumber = locatorLexemes[zeroBasedIndex];
+    const id = `ramcharitmanas-${kanda.slug}-${String(sourceIndex).padStart(4, "0")}`;
     const keys = unit && typeof unit === "object" ? Object.keys(unit).sort() : [];
 
     if (
@@ -234,15 +300,17 @@ function parseKanda(kanda, sourceText, globalSequenceStart) {
       throw new Error(`${path} unit ${sourceIndex}: content must be a non-empty string`);
     }
 
+    const correctedText = applyDeclaredSourceTextCorrection(id, normalizeSacredText(unit.content));
+
     return {
-      id: `ramcharitmanas-${kanda.slug}-${String(sourceIndex).padStart(4, "0")}`,
+      id,
       sequence: globalSequenceStart + zeroBasedIndex,
       kanda: kanda.slug,
       label: `${kanda.nameLatin} · unit ${sourceIndex}`,
       sourceLocatorLabel: `${kanda.nameLatin} · source locator ${sourceVerseNumber}`,
       sourceIndex,
       sourceVerseNumber,
-      original: normalizeSacredText(unit.content),
+      ...correctedText,
     };
   });
 
@@ -350,7 +418,8 @@ async function buildOutputs() {
       titleDevanagari: "रामचरितमानस",
       titleLatin: "Rāmacaritamānasa",
       traditionalAuthor: "Gosvāmī Tulasīdāsa",
-      representation: "Devanagari source text as transcribed in the pinned dataset",
+      representation:
+        "Devanagari source text as transcribed in the pinned dataset, with one declared and hash-guarded correction checked against the public-domain 1925 Belvedere Press facsimile",
     },
     scope: {
       sourceTextOnly: true,
@@ -404,8 +473,19 @@ async function buildOutputs() {
       encoding: "UTF-8",
       lineEndings: "CRLF and lone CR converted to LF inside source-text strings",
       unicode: "Unicode NFC applied to each source-text string",
-      otherTextTransformations: "none",
+      otherTextTransformations:
+        "The corrupt final Sanskrit section in Uttarakāṇḍa unit 130 is replaced by the declared Belvedere-facsimile reading and closing colophon; all other source wording is unchanged.",
       sourceOrderPreserved: true,
+    },
+    editorialInterventions: {
+      policy:
+        "An intervention is permitted only when the exact upstream entry hash matches and a named public-domain facsimile witness is recorded. The generated corpus retains the upstream file hash and publishes both upstream-entry and corrected-entry hashes.",
+      entries: allEntries
+        .filter((entry) => entry.sourceTextCorrection)
+        .map((entry) => ({
+          entryId: entry.id,
+          ...entry.sourceTextCorrection,
+        })),
     },
     identifiers: {
       stableId:
@@ -444,12 +524,13 @@ async function buildOutputs() {
       })),
     },
     limitations: [
-      "Completeness means all 1,074 array units from all seven JSON files at the pinned dataset commit; it is not a claim that this is a critical or diplomatic edition.",
+      "Completeness means all 1,074 array units from all seven JSON files at the pinned dataset commit; it is not a claim that the full work is a critical or diplomatic edition.",
       "The pinned dataset omits 39 opening invocations across the seven kāṇḍas: 23 Sanskrit and 16 Awadhi records. This 1,074-unit numbered corpus is therefore not, by itself, the complete selected work; the reader interleaves a separately sourced opening-invocations.v1.json supplement.",
       "The upstream verse-number field is a JSON number. Trailing zeroes were lost before ingestion, so values such as 1.1 can represent both source units 1 and 10 and are not unique.",
       "Stable IDs, labels, and global sequences therefore use source array position, while sourceVerseNumber is preserved only as a non-unique locator.",
       "The source dataset contains Devanagari text only. These files do not add translations, transliteration, pronunciation guidance, word study, grammar, or commentary.",
       "Internal headings such as चौपाई and दोहा/सोरठा remain embedded exactly within each normalized source-text string; the importer does not split or classify them.",
+      "Uttarakāṇḍa unit 130 contains one explicitly declared exception: its corrupted upstream Sanskrit ending is replaced with the main-text reading and closing colophon verified on printed pages 1143–1144 of the public-domain 1925 Belvedere Press facsimile; the printed Sabhā-manuscript variants remain disclosed in the correction record.",
     ],
   };
 

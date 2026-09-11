@@ -14,7 +14,28 @@ const openAiMarkers = [
 // .jpg for performance — see docs/gallery-asset-provenance.md. Re-encoding
 // strips embedded metadata, so the OpenAI marker this entry was approving
 // no longer exists in the file; no replacement entry is needed.
-const approvedOpenAiAssets = new Map([]);
+const approvedOpenAiAssets = new Map([
+  [
+    "public/images/spirituality/ramcharitmanas/comics/bala-kanda-opening-004-comic-v1.png",
+    "990751f2261208cb15b97762f294e8aa0853208ae601715937ac539eb67f444b",
+  ],
+  [
+    "public/images/spirituality/ramcharitmanas/comics/bala-kanda-opening-003-comic-v1.png",
+    "8d766b5964a7a0400830574f15638912c3338db61520dfcd363c8f31a044359b",
+  ],
+  [
+    "public/images/spirituality/ramcharitmanas/comics/bala-kanda-opening-002-comic-v1.png",
+    "7ed7a45c84167c369290b8b3d79e806f1bd6c46f86d7c1d5d2582cdbe2c62eaa",
+  ],
+  [
+    "public/images/spirituality/ramcharitmanas/comics/bala-kanda-opening-001-comic-v1.png",
+    "7ef48310ea46f40d37306f38d5caf4fa29c7c9827f6095aab3960b7f8d76e6ec",
+  ],
+  [
+    "public/images/spirituality/ramcharitmanas/comics/bala-kanda-unit-0001-comic-v1.png",
+    "19ae98f6ae51a449843206804f069ef9b81fe7b9e5c058e91ca9a5f863f2b58a",
+  ],
+]);
 
 async function listRasterAssets(directory) {
   const entries = await readdir(directory, { withFileTypes: true });

@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "ramcharitmanas-visual-retelling-manifest-v1",
+  "work": "Ramcharitmanas",
+  "declaredGranularity": "reader-unit",
+  "editorialPolicy": "Artwork is an explicitly labelled interpretive reading companion. It is never source text, translation evidence, or a claim about historical appearance.",
+  "coverage": {
+    "totalReaderEntries": 1113,
+    "illustratedEntries": 5,
+    "complete": false
+  },
+  "entries": [
+    {
+      "entryId": "ramcharitmanas-opening-bala-kanda-001",
+      "src": "/images/spirituality/ramcharitmanas/comics/bala-kanda-opening-001-comic-v1.png",
+      "width": 2172,
+      "height": 724,
+      "alt": "Four painted panels show Sarasvati and Ganesha, points of sound gathering into meaning, a many-hued lotus suggesting poetic sentiment and metre, and the two deities blessing a blank manuscript.",
+      "caption": "A symbolic visual reading of the opening invocation to Vani and Vinayaka as makers of sounds, gathered meanings, poetic sentiments, metres, and auspicious beginnings.",
+      "sourceTextSha256": "b5f1b12ff99c2083588ea90fc95e1228c36cc2395dacadbb5b7e481d04771ecc",
+      "assetSha256": "7ef48310ea46f40d37306f38d5caf4fa29c7c9827f6095aab3960b7f8d76e6ec",
+      "provenance": "ai-assisted",
+      "reviewStatus": "editorial-under-review",
+      "artVersion": "ramcharitmanas-miniature-comic-v1"
+    },
+    {
+      "entryId": "ramcharitmanas-opening-bala-kanda-002",
+      "src": "/images/spirituality/ramcharitmanas/comics/bala-kanda-opening-002-comic-v1.png",
+      "width": 2172,
+      "height": 724,
+      "alt": "Four painted panels show Bhavani and Shankara at Kailasa, accomplished sages whose heart-lotuses remain veiled, complementary streams of light opening those lotuses, and an inward flame becoming visible.",
+      "caption": "A symbolic visual reading of Bhavani and Shankara as faith and trust, through whom even accomplished contemplatives perceive the indwelling Lord.",
+      "sourceTextSha256": "ccccc12bc05f0aca224441fbaee8218d5ebfc8231cb2f3044bd713e69c5108bc",
+      "assetSha256": "7ed7a45c84167c369290b8b3d79e806f1bd6c46f86d7c1d5d2582cdbe2c62eaa",
+      "provenance": "ai-assisted",
+      "reviewStatus": "editorial-under-review",
+      "artVersion": "ramcharitmanas-miniature-comic-v1"
+    },
+    {
+      "entryId": "ramcharitmanas-opening-bala-kanda-003",
+      "src": "/images/spirituality/ramcharitmanas/comics/bala-kanda-opening-003-comic-v1.png",
+      "width": 2172,
+      "height": 724,
+      "alt": "Four painted panels show a seeker revering a guru through the turning phases of the moon, the guru illumined by Shiva's presence, the crescent moon sheltered in Shiva's matted locks, and a gathered community receiving the guru's blessing.",
+      "caption": "A symbolic visual reading of the guru as Shiva's compassionate presence and of the crescent moon—though naturally crooked—receiving universal reverence because it rests upon Shiva's head.",
+      "sourceTextSha256": "f75618efbe7aa951273277468ee9462694b89aa799bc90468b64a68876da7e5e",
+      "assetSha256": "8d766b5964a7a0400830574f15638912c3338db61520dfcd363c8f31a044359b",
+      "provenance": "ai-assisted",
+      "reviewStatus": "editorial-under-review",
+      "artVersion": "ramcharitmanas-miniature-comic-v1"
+    },
+    {
+      "entryId": "ramcharitmanas-opening-bala-kanda-004",
+      "src": "/images/spirituality/ramcharitmanas/comics/bala-kanda-opening-004-comic-v1.png",
+      "width": 2172,
+      "height": 724,
+      "alt": "Four painted panels show Sita and Rama walking through a sacred forest, Valmiki contemplating their reflection beside a blank manuscript, Hanuman praying among the vanaras, and both devotees bowing before Sita and Rama.",
+      "caption": "A symbolic visual reading of Valmiki and Hanuman—lords of poets and vanara hosts—moving with purified insight through the sacred forest formed by the abundant virtues of Sita and Rama.",
+      "sourceTextSha256": "4819755cea43ccf5941ef6385cf65609409ebcc48654a820286bdaee269004b6",
+      "assetSha256": "990751f2261208cb15b97762f294e8aa0853208ae601715937ac539eb67f444b",
+      "provenance": "ai-assisted",
+      "reviewStatus": "editorial-under-review",
+      "artVersion": "ramcharitmanas-miniature-comic-v1"
+    },
+    {
+      "entryId": "ramcharitmanas-bala-kanda-0001",
+      "src": "/images/spirituality/ramcharitmanas/comics/bala-kanda-unit-0001-comic-v1.png",
+      "width": 2172,
+      "height": 724,
+      "alt": "Four painted panels show a devotee receiving the luminous dust of a guru's lotus feet, its healing radiance, Shiva's sacred presence, and jewel-like visions of Rama's story.",
+      "caption": "A symbolic visual reading of the opening praise of the guru's foot-dust: fragrance, healing, auspicious radiance, and the inner light by which Rama's story becomes visible.",
+      "sourceTextSha256": "858c2663857754bd92cc80b7f0221039057c3e1b4125086f973970a2d2b6fad2",
+      "assetSha256": "19ae98f6ae51a449843206804f069ef9b81fe7b9e5c058e91ca9a5f863f2b58a",
+      "provenance": "ai-assisted",
+      "reviewStatus": "editorial-under-review",
+      "artVersion": "ramcharitmanas-miniature-comic-v1"
+    }
+  ]
+}

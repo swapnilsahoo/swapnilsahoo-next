@@ -30,6 +30,16 @@ export type StudyAttribution = {
   status: "editorial-under-review";
 };
 
+export type VisualRetelling = {
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+  caption: string;
+  provenance: "ai-assisted";
+  reviewStatus: "editorial-under-review" | "human-reviewed";
+};
+
 export type ReaderEntry = {
   id: string;
   sequence: number;
@@ -46,6 +56,7 @@ export type ReaderEntry = {
   textStatus?: "source-verified" | "scan-check-pending";
   translationStatus?: "editorial-under-review" | "not-published";
   studyAttribution?: StudyAttribution;
+  visualRetelling?: VisualRetelling;
 };
 
 export type SourceLink = {

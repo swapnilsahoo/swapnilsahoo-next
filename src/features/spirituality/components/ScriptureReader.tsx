@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import type { FormEvent } from "react";
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 
@@ -609,6 +610,35 @@ export function ScriptureReader({
                   ) : null}
                 </div>
               </div>
+
+              {entry.visualRetelling ? (
+                <details className="border-ink-200/80 dark:border-ink-700 mt-6 overflow-hidden rounded-xl border bg-amber-50/40 dark:bg-amber-300/[0.035]">
+                  <summary className="text-brand-800 dark:text-brand-200 flex min-h-12 cursor-pointer items-center justify-between gap-3 px-4 py-3 text-sm font-semibold sm:px-5">
+                    <span>Visual retelling · interpretive artwork</span>
+                    <span className="font-mono text-[10px] tracking-wider text-amber-800 uppercase dark:text-amber-300">
+                      View strip
+                    </span>
+                  </summary>
+                  <figure className="border-ink-200/70 dark:border-ink-700 border-t p-3 sm:p-5">
+                    <Image
+                      src={entry.visualRetelling.src}
+                      width={entry.visualRetelling.width}
+                      height={entry.visualRetelling.height}
+                      sizes="(max-width: 768px) 100vw, 1100px"
+                      alt={entry.visualRetelling.alt}
+                      className="h-auto w-full rounded-lg border border-amber-900/15"
+                    />
+                    <figcaption className="text-ink-600 dark:text-ink-300 mt-3 space-y-2 text-xs leading-relaxed sm:text-sm">
+                      <p>{entry.visualRetelling.caption}</p>
+                      <p className="text-ink-500 dark:text-ink-400">
+                        AI-assisted interpretive artwork · {entry.visualRetelling.reviewStatus}. It
+                        is a reading companion, not part of Tulsidas&apos;s text or evidence for a
+                        particular historical appearance.
+                      </p>
+                    </figcaption>
+                  </figure>
+                </details>
+              ) : null}
 
               {readingLayer === "word" && hasDistinctStudyRows(entry) ? (
                 <div className="mt-6 border-t border-dashed border-amber-900/15 pt-5 dark:border-amber-100/15">

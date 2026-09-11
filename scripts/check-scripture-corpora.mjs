@@ -97,6 +97,44 @@ async function checkRamcharitmanas() {
     assertText(entry.original, entry.id);
   }
 
+  const interventionRecords = manifest.editorialInterventions?.entries;
+  assert(
+    manifest.editorialInterventions?.policy &&
+      Array.isArray(interventionRecords) &&
+      interventionRecords.length === 1,
+    "Manas source-text intervention register is missing or unexpected."
+  );
+  const finalSourceEntry = entries.find((entry) => entry.id === "ramcharitmanas-uttara-kanda-0130");
+  const finalCorrection = finalSourceEntry?.sourceTextCorrection;
+  const registeredCorrection = interventionRecords[0];
+  assert(finalSourceEntry?.sourceIndex === 130, "Manas final source index is wrong.");
+  assert(
+    finalSourceEntry?.sourceVerseNumber === "7.13",
+    "Manas final upstream locator lexeme was not preserved."
+  );
+  assert(
+    registeredCorrection.entryId === finalSourceEntry.id &&
+      finalCorrection?.status === "verified-against-1925-facsimile" &&
+      finalCorrection.upstreamEntryTextSha256 ===
+        "5dce1b5b18b74104333940e3bc6d3ccbdc709758771cd5e156076fecb8ee8388" &&
+      finalCorrection.correctedEntryTextSha256 === sha256(finalSourceEntry.original) &&
+      registeredCorrection.correctedEntryTextSha256 === finalCorrection.correctedEntryTextSha256 &&
+      finalCorrection.witness?.edition.includes("Belvedere Press") &&
+      finalCorrection.witness?.printedPages?.join(",") === "1143,1144" &&
+      finalCorrection.witness?.scanUrls?.length === 2,
+    "Manas final Sanskrit correction provenance is invalid."
+  );
+  assert(
+    finalSourceEntry.original.includes("श्रीमद्रामपदाब्जभक्तिमनिशं प्राप्तुं तु रामायणम्॥") &&
+      finalSourceEntry.original.includes("श्रीमद्रामचरित्रमानसमिदं भक्त्यावगाहन्ति ये") &&
+      finalSourceEntry.original.endsWith(
+        "इति श्रीरामचरितमानसे सकलकलिकलुषविध्वंसने अविरलहरिभक्तिसम्पादनो नाम सप्तमः सोपानः समाप्तः।"
+      ) &&
+      !finalSourceEntry.original.includes("श्रॆमद्राम") &&
+      !finalSourceEntry.original.includes("सन्सारपतनगघोरकिरनैर्दह्यन्ति"),
+    "Manas final Sanskrit text does not match the declared facsimile correction."
+  );
+
   const { value: openings } = await readJson(path.join(dir, "opening-invocations.v1.json"));
   const expectedByKanda = [12, 4, 3, 4, 3, 6, 7];
   assert(openings.entries.length === 39, `Manas has ${openings.entries.length} opening units.`);
@@ -165,6 +203,7 @@ async function checkRamcharitmanas() {
   );
 
   const annotatedIds = new Set();
+  const studyEntriesById = new Map();
   let annotatedTokenCount = 0;
   let previousLastSequence = 0;
   for (const shardInfo of studyManifest.shards) {
@@ -266,6 +305,7 @@ async function checkRamcharitmanas() {
 
       sourceStrings.push(sourceEntry.original);
       annotatedIds.add(studyEntry.entryId);
+      studyEntriesById.set(studyEntry.entryId, studyEntry);
     }
 
     assert(
@@ -283,8 +323,42 @@ async function checkRamcharitmanas() {
     "Manas word-study completeness declaration is inaccurate."
   );
   assert(
-    annotatedTokenCount === 107_651,
-    `Manas word-study token coverage is ${annotatedTokenCount}, not 107651.`
+    annotatedTokenCount === 107_658,
+    `Manas word-study token coverage is ${annotatedTokenCount}, not 107658.`
+  );
+
+  const assertGloss = (entryId, original, meaning) => {
+    const studyEntry = studyEntriesById.get(entryId);
+    const found = studyEntry?.lines
+      .flatMap((line) => line.words.map(manasStudyWord))
+      .some((word) => word.original === original && word.meaning === meaning);
+    assert(found, `${entryId} is missing the checked gloss ${original} → ${meaning}.`);
+  };
+  for (const [entryId, original, meaning] of [
+    ["ramcharitmanas-bala-kanda-0175", "दूषन", "blame"],
+    ["ramcharitmanas-bala-kanda-0175", "दाम", "rope"],
+    ["ramcharitmanas-bala-kanda-0341", "जाए", "born"],
+    ["ramcharitmanas-ayodhya-kanda-0157", "बर", "excellent"],
+    ["ramcharitmanas-ayodhya-kanda-0162", "बर", "boons"],
+    ["ramcharitmanas-ayodhya-kanda-0162", "हरि", "stole"],
+    ["ramcharitmanas-aranya-kanda-0037", "संबादा", "dialogues"],
+    ["ramcharitmanas-kishkindha-kanda-0009", "करसि", "you heeded"],
+    ["ramcharitmanas-kishkindha-kanda-0011", "लगि", "for"],
+    ["ramcharitmanas-sundara-kanda-0051", "तिन्ह", "they"],
+    ["ramcharitmanas-lanka-kanda-0058", "मुनिबर", "great sage"],
+    ["ramcharitmanas-lanka-kanda-0121", "बटु", "young Brahmin"],
+    ["ramcharitmanas-lanka-kanda-0121", "गुहा", "Guha"],
+    ["ramcharitmanas-uttara-kanda-0056", "रसाला", "mango tree"],
+    ["ramcharitmanas-uttara-kanda-0058", "बँधायो", "allowed himself to be bound"],
+    ["ramcharitmanas-uttara-kanda-0130", "बाना", "great vow"],
+    ["ramcharitmanas-uttara-kanda-0130", "नो", "not"],
+    ["ramcharitmanas-uttara-kanda-0130", "मानसम्", "the Mānas"],
+  ]) {
+    assertGloss(entryId, original, meaning);
+  }
+  assert(
+    studyEntriesById.get("ramcharitmanas-uttara-kanda-0130")?.lines.length === 33,
+    "Manas final colophon is absent from the word study."
   );
   if (!process.argv.includes("--allow-partial-manas")) {
     assert(
@@ -293,7 +367,70 @@ async function checkRamcharitmanas() {
     );
   }
 
-  return { entries: annotatedIds.size, tokens: annotatedTokenCount };
+  const { value: visualManifest } = await readJson(path.join(dir, "comics", "manifest.v1.json"));
+  assert(
+    visualManifest.schemaVersion === "ramcharitmanas-visual-retelling-manifest-v1" &&
+      visualManifest.work === "Ramcharitmanas" &&
+      visualManifest.declaredGranularity === "reader-unit",
+    "Manas visual-retelling manifest metadata is invalid."
+  );
+  assert(
+    visualManifest.coverage.totalReaderEntries === readerById.size &&
+      visualManifest.coverage.illustratedEntries === visualManifest.entries.length &&
+      visualManifest.coverage.complete === (visualManifest.entries.length === readerById.size),
+    "Manas visual-retelling coverage declaration is inaccurate."
+  );
+
+  const visualIds = new Set();
+  const visualHashes = new Set();
+  for (const artwork of visualManifest.entries) {
+    const sourceEntry = readerById.get(artwork.entryId);
+    assert(sourceEntry, `Manas artwork references unknown entry ${artwork.entryId}.`);
+    assert(!visualIds.has(artwork.entryId), `Manas artwork repeats ${artwork.entryId}.`);
+    assertText(artwork.alt, `${artwork.entryId} artwork alt text`);
+    assertText(artwork.caption, `${artwork.entryId} artwork caption`);
+    assert(
+      artwork.provenance === "ai-assisted" &&
+        ["editorial-under-review", "human-reviewed"].includes(artwork.reviewStatus),
+      `${artwork.entryId} artwork provenance or review status is invalid.`
+    );
+    assert(
+      Number.isInteger(artwork.width) &&
+        artwork.width > 0 &&
+        Number.isInteger(artwork.height) &&
+        artwork.height > 0,
+      `${artwork.entryId} artwork dimensions are invalid.`
+    );
+    assert(
+      sha256(sourceEntry.original) === artwork.sourceTextSha256,
+      `${artwork.entryId} artwork source binding is stale.`
+    );
+    assert(
+      typeof artwork.src === "string" &&
+        artwork.src.startsWith("/images/spirituality/ramcharitmanas/comics/"),
+      `${artwork.entryId} artwork path is outside the Manas comic directory.`
+    );
+    const assetPath = path.resolve(process.cwd(), "public", artwork.src.slice(1));
+    const publicRoot = path.resolve(process.cwd(), "public");
+    assert(assetPath.startsWith(`${publicRoot}${path.sep}`), `${artwork.entryId} path is unsafe.`);
+    const assetBytes = await readFile(assetPath);
+    assert(assetBytes.length > 0, `${artwork.entryId} artwork is empty.`);
+    assert(
+      assetBytes.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10])),
+      `${artwork.entryId} artwork is not a valid PNG asset.`
+    );
+    const assetHash = sha256(assetBytes);
+    assert(assetHash === artwork.assetSha256, `${artwork.entryId} artwork hash mismatch.`);
+    assert(!visualHashes.has(assetHash), `${artwork.entryId} duplicates another artwork asset.`);
+    visualIds.add(artwork.entryId);
+    visualHashes.add(assetHash);
+  }
+
+  return {
+    entries: annotatedIds.size,
+    tokens: annotatedTokenCount,
+    visualRetellings: visualIds.size,
+  };
 }
 
 async function checkSrimadBhagavatam() {
@@ -360,5 +497,5 @@ await checkBhagavadGita();
 const manasStudyCount = await checkRamcharitmanas();
 await checkSrimadBhagavatam();
 console.log(
-  `Verified the Gita, Ramcharitmanas, and Bhagavatam Skandha-1 source corpora, topology, hashes, sentinels, and ${manasStudyCount.entries} Manas word-study entries covering ${manasStudyCount.tokens} exact source tokens.`
+  `Verified the Gita, Ramcharitmanas, and Bhagavatam Skandha-1 source corpora, topology, hashes, sentinels, ${manasStudyCount.entries} Manas word-study entries covering ${manasStudyCount.tokens} exact source tokens, and ${manasStudyCount.visualRetellings} source-bound visual retelling${manasStudyCount.visualRetellings === 1 ? "" : "s"}.`
 );

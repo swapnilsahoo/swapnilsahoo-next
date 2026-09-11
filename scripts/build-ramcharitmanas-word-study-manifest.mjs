@@ -148,10 +148,9 @@ const manifest = {
   editorialStatus: "editorial-under-review",
   label: "Independent close English word study",
   sourceRef:
-    "Pinned open source text and the public-domain 1925 Belvedere Press opening invocations; IITK Manas Supersite used only as a comparison witness",
+    "Pinned open source text with the declared scan-verified final Sanskrit correction, plus the public-domain 1925 Belvedere Press opening invocations; IITK Manas Supersite used only as a comparison witness",
   sourceUrl: "https://manas.gitasupersite.in/",
-  note:
-    "These contextual glosses and close renderings were prepared specifically for this edition. They are working editorial translations awaiting independent Awadhi and Sanskrit review, not quotations from IITK or a modern published translation.",
+  note: "These contextual glosses and close renderings were prepared specifically for this edition. They are working editorial translations awaiting independent Awadhi and Sanskrit review, not quotations from IITK or a modern published translation.",
   coverage: {
     totalEntries: sourceById.size,
     annotatedEntries: annotatedIds.size,

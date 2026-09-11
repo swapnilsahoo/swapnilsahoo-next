@@ -173,6 +173,11 @@ const RAMCHARITMANAS_NUMBERED_UNITS = 1_074;
 const RAMCHARITMANAS_OPENING_UNITS = 39;
 const RAMCHARITMANAS_TOTAL_UNITS = RAMCHARITMANAS_NUMBERED_UNITS + RAMCHARITMANAS_OPENING_UNITS;
 const RAMCHARITMANAS_WORD_STUDY_DIR = path.join(RAMCHARITMANAS_DIR, "word-study");
+const RAMCHARITMANAS_VISUAL_RETELLING_MANIFEST = path.join(
+  RAMCHARITMANAS_DIR,
+  "comics",
+  "manifest.v1.json"
+);
 const RAMCHARITMANAS_METER_HEADINGS = new Set(["चौपाई", "दोहा/सोरठा", "छंद", "श्लोक"]);
 
 type RamcharitmanasShard = {
@@ -187,6 +192,18 @@ type RamcharitmanasShard = {
     original: string;
     sourceIndex: number;
     sourceLocatorLabel: string;
+    sourceTextCorrection?: {
+      status: "verified-against-1925-facsimile";
+      scope: string;
+      upstreamEntryTextSha256: string;
+      correctedEntryTextSha256: string;
+      witness: {
+        edition: string;
+        printedPages: number[];
+        scanUrls: string[];
+      };
+      variantNote: string;
+    };
   }>;
 };
 
@@ -258,6 +275,29 @@ type RamcharitmanasStudyManifest = {
     entryCount: number;
     sourceTextSha256: string;
     generatedSha256: string;
+  }>;
+};
+
+type RamcharitmanasVisualRetellingManifest = {
+  schemaVersion: "ramcharitmanas-visual-retelling-manifest-v1";
+  work: "Ramcharitmanas";
+  declaredGranularity: "reader-unit";
+  coverage: {
+    totalReaderEntries: number;
+    illustratedEntries: number;
+    complete: boolean;
+  };
+  entries: Array<{
+    entryId: string;
+    src: string;
+    width: number;
+    height: number;
+    alt: string;
+    caption: string;
+    sourceTextSha256: string;
+    assetSha256: string;
+    provenance: "ai-assisted";
+    reviewStatus: "editorial-under-review" | "human-reviewed";
   }>;
 };
 
@@ -622,6 +662,60 @@ async function applyRamcharitmanasWordStudy(entries: ReaderEntry[]) {
   return entries;
 }
 
+async function applyRamcharitmanasVisualRetellings(entries: ReaderEntry[]) {
+  const manifest = JSON.parse(
+    await readFile(RAMCHARITMANAS_VISUAL_RETELLING_MANIFEST, "utf8")
+  ) as RamcharitmanasVisualRetellingManifest;
+
+  if (
+    manifest.schemaVersion !== "ramcharitmanas-visual-retelling-manifest-v1" ||
+    manifest.work !== "Ramcharitmanas" ||
+    manifest.declaredGranularity !== "reader-unit" ||
+    manifest.coverage.totalReaderEntries !== entries.length ||
+    manifest.coverage.illustratedEntries !== manifest.entries.length ||
+    manifest.coverage.complete !== (manifest.entries.length === entries.length)
+  ) {
+    throw new Error("The Ramcharitmanas visual-retelling manifest is invalid.");
+  }
+
+  const entriesById = new Map(entries.map((entry, index) => [entry.id, { entry, index }] as const));
+  const illustratedIds = new Set<string>();
+
+  for (const artwork of manifest.entries) {
+    const sourceRecord = entriesById.get(artwork.entryId);
+    if (
+      !sourceRecord ||
+      illustratedIds.has(artwork.entryId) ||
+      !artwork.src.startsWith("/images/spirituality/ramcharitmanas/comics/") ||
+      artwork.width <= 0 ||
+      artwork.height <= 0 ||
+      !artwork.alt.trim() ||
+      !artwork.caption.trim() ||
+      artwork.provenance !== "ai-assisted" ||
+      !["editorial-under-review", "human-reviewed"].includes(artwork.reviewStatus) ||
+      sha256(sourceRecord.entry.original) !== artwork.sourceTextSha256
+    ) {
+      throw new Error(`Invalid Ramcharitmanas visual retelling: ${artwork.entryId}.`);
+    }
+
+    illustratedIds.add(artwork.entryId);
+    entries[sourceRecord.index] = {
+      ...sourceRecord.entry,
+      visualRetelling: {
+        src: artwork.src,
+        width: artwork.width,
+        height: artwork.height,
+        alt: artwork.alt,
+        caption: artwork.caption,
+        provenance: artwork.provenance,
+        reviewStatus: artwork.reviewStatus,
+      },
+    };
+  }
+
+  return entries;
+}
+
 let ramcharitmanasEntriesPromise: Promise<ReaderEntry[]> | undefined;
 
 async function loadRamcharitmanasEntries(): Promise<ReaderEntry[]> {
@@ -661,6 +755,7 @@ async function loadRamcharitmanasEntries(): Promise<ReaderEntry[]> {
       }
 
       for (const sourceEntry of shard.entries) {
+        const correction = sourceEntry.sourceTextCorrection;
         entries.push({
           id: sourceEntry.id,
           sequence: entries.length + 1,
@@ -671,8 +766,12 @@ async function loadRamcharitmanasEntries(): Promise<ReaderEntry[]> {
           meaning: undefined,
           words: [],
           language: "awa",
-          note: "Numbered source unit from the commit-pinned seven-kāṇḍa transcription. The close English rendering and token glosses are an independently prepared editorial layer whose review status is disclosed separately.",
-          sourceRef: sourceEntry.sourceLocatorLabel,
+          note: correction
+            ? `Numbered source unit from the commit-pinned seven-kāṇḍa transcription. Its ${correction.scope.toLowerCase()} were corrected against ${correction.witness.edition}, printed pages ${correction.witness.printedPages.join("–")}; the upstream and corrected entry hashes remain recorded. ${correction.variantNote} The close English rendering and token glosses are an independently prepared editorial layer whose review status is disclosed separately.`
+            : "Numbered source unit from the commit-pinned seven-kāṇḍa transcription. The close English rendering and token glosses are an independently prepared editorial layer whose review status is disclosed separately.",
+          sourceRef: correction
+            ? `${sourceEntry.sourceLocatorLabel} · ${correction.witness.edition}, printed pages ${correction.witness.printedPages.join("–")}`
+            : sourceEntry.sourceLocatorLabel,
           textStatus: "source-verified",
           translationStatus: "not-published",
         });
@@ -707,7 +806,8 @@ async function loadRamcharitmanasEntries(): Promise<ReaderEntry[]> {
       throw new Error("The Ramcharitmanas source corpus failed its completeness checks.");
     }
 
-    return applyRamcharitmanasWordStudy(entries);
+    const studiedEntries = await applyRamcharitmanasWordStudy(entries);
+    return applyRamcharitmanasVisualRetellings(studiedEntries);
   })();
 
   return ramcharitmanasEntriesPromise;
