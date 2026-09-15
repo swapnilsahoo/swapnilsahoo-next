@@ -1,0 +1,1409 @@
+{
+ "sessionId": "2yr-13",
+ "course": "2-year-mba",
+ "sessionNumber": 13,
+ "title": "Business Strategy Innovation Entrepreneurship Platforms",
+ "questionCount": 100,
+ "questions": [
+  {
+   "set": "A",
+   "stem": "A GenAI firm goes from lab demo to priced API with SLAs and support. In the Four I’s, the priced launch is:",
+   "options": {
+    "A": "Innovation because commercialization creates adoption and value capture",
+    "B": "Idea because the concept matters more than a working product",
+    "C": "Imitation because releasing models necessarily copies prior research",
+    "D": "Invention because the artifact exists but markets are not relevant"
+   },
+   "answer": "A",
+   "explanation": "Innovation is commercialization of an invention—market launch with adoption/capture.",
+   "lo": null,
+   "n": 1
+  },
+  {
+   "set": "A",
+   "stem": "A company publishes research but never ships products. Under the Four I’s, it is strongest at:",
+   "options": {
+    "A": "Invention because journals issue patents",
+    "B": "Imitation because papers force adoption",
+    "C": "Innovation because publications are market launches",
+    "D": "Ideas rather than innovation via commercialization"
+   },
+   "answer": "D",
+   "explanation": "Publication fits idea/basic research; innovation requires commercialization and adoption.",
+   "lo": null,
+   "n": 2
+  },
+  {
+   "set": "A",
+   "stem": "A demo-ready prototype fails to convert into repeat sales. Best diagnosis is:",
+   "options": {
+    "A": "Imitation without invention (no novelty possible)",
+    "B": "Imitation without ideas (adoption precedes discovery)",
+    "C": "Invention without innovation (commercialization/adoption missing)",
+    "D": "Innovation without invention (markets create artifacts)"
+   },
+   "answer": "C",
+   "explanation": "Market adoption and commercialization are required for invention to become innovation.",
+   "lo": null,
+   "n": 3
+  },
+  {
+   "set": "A",
+   "stem": "A fast follower launches after a rival’s success with minor tweaks. In the Four I’s, this is mainly:",
+   "options": {
+    "A": "Idea because it is conceptual repositioning",
+    "B": "Imitation of a proven commercialization template",
+    "C": "Innovation because followers are always “new to world”",
+    "D": "Invention because entry transforms copies into novelty"
+   },
+   "answer": "B",
+   "explanation": "Fast following typically copies the successful pattern; that is imitation.",
+   "lo": null,
+   "n": 4
+  },
+  {
+   "set": "A",
+   "stem": "A firm expects imitation after success. The best sustaining response is:",
+   "options": {
+    "A": "Outsource learning to raise inimitability",
+    "B": "Build complements and continuously innovate beyond the visible feature",
+    "C": "Switch to pipeline because platforms are always copied",
+    "D": "Publish details because disclosure slows competitors"
+   },
+   "answer": "B",
+   "explanation": "Sustaining advantage often requires complements and ongoing innovation cycles.",
+   "lo": null,
+   "n": 5
+  },
+  {
+   "set": "A",
+   "stem": "A firm increases R&D but reduces market experimentation. Under speed-of-innovation logic, this likely:",
+   "options": {
+    "A": "Speeds learning because labs replace customers",
+    "B": "Eliminates imitation because customers see less",
+    "C": "Guarantees radical innovation by spending more",
+    "D": "Slows learning because feedback cycles lengthen"
+   },
+   "answer": "D",
+   "explanation": "Market learning slows when feedback loops weaken, reducing innovation speed.",
+   "lo": null,
+   "n": 6
+  },
+  {
+   "set": "A",
+   "stem": "A firm invents first, but a rival wins by scaling distribution and service. This most directly shows:",
+   "options": {
+    "A": "Basic research alone ensures adoption at scale",
+    "B": "Commercialization and diffusion often beat first invention",
+    "C": "Invention is irrelevant once patents exist",
+    "D": "First invention always guarantees capture and dominance"
+   },
+   "answer": "B",
+   "explanation": "Diffusion and commercialization capabilities determine who captures value.",
+   "lo": null,
+   "n": 7
+  },
+  {
+   "set": "A",
+   "stem": "A firm patents a recommendation model. The Chapter 7–consistent risk is:",
+   "options": {
+    "A": "Disclosure helps rivals learn, eroding advantage",
+    "B": "Disclosure prevents rivals learning, preserving secrecy",
+    "C": "Patents force adoption by lowering buyer risk",
+    "D": "Patents remove substitutes from the category"
+   },
+   "answer": "A",
+   "explanation": "Algorithms are often kept secret because patent disclosure can nullify advantage.",
+   "lo": null,
+   "n": 8
+  },
+  {
+   "set": "A",
+   "stem": "A firm ships weekly updates and runs tight A/B tests. The strongest Chapter 7 explanation is:",
+   "options": {
+    "A": "Weekly shipping lowers buyer power without affecting learning",
+    "B": "Short feedback loops accelerate learning and innovation speed",
+    "C": "Weekly shipping eliminates substitutes by changing too fast",
+    "D": "Weekly shipping blocks imitation via automatic exclusive rights"
+   },
+   "answer": "B",
+   "explanation": "Faster iteration compresses learning cycles, increasing innovation speed versus rivals.",
+   "lo": null,
+   "n": 9
+  },
+  {
+   "set": "A",
+   "stem": "A firm stalls because rivals iterate faster after initial adoption. Best diagnosis is:",
+   "options": {
+    "A": "Patents are too broad, reducing customer adoption",
+    "B": "Radical innovation must never be improved incrementally",
+    "C": "Network effects prevent improvement incentives",
+    "D": "Cadence too slow for accelerating change; learning falls behind"
+   },
+   "answer": "D",
+   "explanation": "When change accelerates, slow iteration loses to fast-learning competitors.",
+   "lo": null,
+   "n": 10
+  },
+  {
+   "set": "A",
+   "stem": "A food brand restricts a new recipe process to three executives and never patents it. This is best classified as:",
+   "options": {
+    "A": "Chasm strategy because secrecy convinces pragmatists",
+    "B": "Radical innovation because secrecy defines novelty",
+    "C": "Trade secret protection with operational access control",
+    "D": "Platform governance because secrecy solves chicken-or-egg"
+   },
+   "answer": "C",
+   "explanation": "Trade secrets are valuable proprietary information kept out of the public domain.",
+   "lo": null,
+   "n": 11
+  },
+  {
+   "set": "A",
+   "stem": "A patent-holder loses advantage because disclosure lets rivals learn quickly. This best reflects:",
+   "options": {
+    "A": "The platform chicken-or-egg problem",
+    "B": "The patent disclosure trade-off",
+    "C": "The inevitability of chasm collapse",
+    "D": "The dominance of late-majority adoption"
+   },
+   "answer": "B",
+   "explanation": "Disclosure enables learning; rights protect use, but knowledge spreads.",
+   "lo": null,
+   "n": 12
+  },
+  {
+   "set": "A",
+   "stem": "A pharma startup patents a molecule, then incumbents quickly “design around” it. The best interpretation is:",
+   "options": {
+    "A": "Patents guarantee adoption because legal rights replace market fit",
+    "B": "Patents eliminate rivalry because substitutes become illegal forever",
+    "C": "Patents grant rights but disclosure can accelerate rival learning",
+    "D": "Patents prevent learning because rivals cannot read patents legally"
+   },
+   "answer": "C",
+   "explanation": "Patents can be double-edged: monopoly rights plus disclosure-driven learning.",
+   "lo": null,
+   "n": 13
+  },
+  {
+   "set": "A",
+   "stem": "A press release announces a “revolutionary” concept without a working artifact. The correct label is:",
+   "options": {
+    "A": "Innovation because communication equals commercialization",
+    "B": "Imitation because all concepts copy prior work",
+    "C": "Idea, not invention or innovation yet",
+    "D": "Invention because announcing makes it real"
+   },
+   "answer": "C",
+   "explanation": "Idea is conceptual; invention needs a working artifact; innovation needs market launch.",
+   "lo": null,
+   "n": 14
+  },
+  {
+   "set": "A",
+   "stem": "A rival copies Netflix’s ad-tier interface but lacks targeting data and experimentation routines. Best inference is:",
+   "options": {
+    "A": "Feature imitation always wins because followers avoid early mistakes",
+    "B": "Feature imitation is blocked because ad tiers are patent-protected",
+    "C": "Feature imitation is sufficient because customers see the same tier",
+    "D": "Feature imitation is incomplete without replicating capability systems"
+   },
+   "answer": "D",
+   "explanation": "Outcomes depend on underlying learning routines and data assets, not surface features.",
+   "lo": null,
+   "n": 15
+  },
+  {
+   "set": "A",
+   "stem": "A startup says “imitation proves we are losing.” Chapter 7 implies instead:",
+   "options": {
+    "A": "Imitation often follows success; the issue becomes renewal",
+    "B": "Imitation is impossible in software markets",
+    "C": "Imitation occurs only after failure, not success",
+    "D": "Imitation occurs only in maturity, not early stages"
+   },
+   "answer": "A",
+   "explanation": "Copying can signal success; strategic focus shifts to sustaining advantage.",
+   "lo": null,
+   "n": 16
+  },
+  {
+   "set": "A",
+   "stem": "A startup says “we innovated” because we filed a patent, yet have zero customers. The sharp correction is:",
+   "options": {
+    "A": "Innovation requires commercialization and adoption, not filings",
+    "B": "Innovation is identical to invention, so filing is enough",
+    "C": "Patents are innovation because courts validate market demand",
+    "D": "Innovation equals imitation because followers define standards"
+   },
+   "answer": "A",
+   "explanation": "Innovation is commercialization; patents alone do not create adoption.",
+   "lo": null,
+   "n": 17
+  },
+  {
+   "set": "A",
+   "stem": "A startup’s edge is a short-lived ranking algorithm in a fast-cycle market. Best appropriability stance is:",
+   "options": {
+    "A": "Wait for maturity because early markets punish secrecy",
+    "B": "Broad patents because disclosure prevents competitor learning",
+    "C": "Secrecy and process embedding when enforcement lags market tempo",
+    "D": "No protection because appropriability never matters in tech"
+   },
+   "answer": "C",
+   "explanation": "When markets move faster than legal enforcement, secrecy and execution can dominate.",
+   "lo": null,
+   "n": 18
+  },
+  {
+   "set": "A",
+   "stem": "A successful feature is copied within weeks. The most Chapter 7–consistent inference is:",
+   "options": {
+    "A": "Imitation follows success; sustain advantage via continuous innovation",
+    "B": "Copying is illegal by default in digital markets",
+    "C": "Copying proves failure; exit because advantage is impossible",
+    "D": "Copying implies radical innovation and permanent monopoly"
+   },
+   "answer": "A",
+   "explanation": "In the Four I’s, imitation follows innovation; advantage depends on renewal and complements.",
+   "lo": null,
+   "n": 19
+  },
+  {
+   "set": "A",
+   "stem": "Netflix keeps its recommendation logic unpatented and tightly confidential. This choice best illustrates:",
+   "options": {
+    "A": "Patents maximize secrecy and prevent rivals from reading disclosures",
+    "B": "Trade secrets avoid disclosure and preserve algorithmic know-how advantage",
+    "C": "Ideas become innovations once they are published in academic venues",
+    "D": "Imitation reduces risk because followers gain legitimacy through copying"
+   },
+   "answer": "B",
+   "explanation": "Patents require disclosure; trade secrets preserve secrecy when disclosure would erase advantage.",
+   "lo": null,
+   "n": 20
+  },
+  {
+   "set": "A",
+   "stem": "Patent expiry followed by entry fits which story best?",
+   "options": {
+    "A": "Platform rents replacing patent rents automatically",
+    "B": "Temporary monopoly until imitation/entry accelerates",
+    "C": "Consumer surplus replacing producer capture by definition",
+    "D": "Permanent monopoly because patents never end"
+   },
+   "answer": "B",
+   "explanation": "Patents are time-limited; expiry enables easier entry and imitation.",
+   "lo": null,
+   "n": 21
+  },
+  {
+   "set": "A",
+   "stem": "The Four I’s sequence is best captured as:",
+   "options": {
+    "A": "Innovation → Imitation → Invention → Idea",
+    "B": "Idea → Innovation → Invention → Imitation",
+    "C": "Idea → Invention → Innovation → Imitation",
+    "D": "Invention → Idea → Imitation → Innovation"
+   },
+   "answer": "C",
+   "explanation": "Chapter 7 defines innovation as commercialization after invention, with imitation following success.",
+   "lo": null,
+   "n": 22
+  },
+  {
+   "set": "A",
+   "stem": "The most discriminating test between “invention” and “innovation” is whether:",
+   "options": {
+    "A": "Scientists agree it is publishable",
+    "B": "It has a patent number assigned",
+    "C": "Customers adopt it through commercialization at scale",
+    "D": "It uses new technology internally"
+   },
+   "answer": "C",
+   "explanation": "Commercialization and adoption are the defining boundary between invention and innovation.",
+   "lo": null,
+   "n": 23
+  },
+  {
+   "set": "A",
+   "stem": "“AI automation may displace routine jobs and shift education returns.” This is tied most to:",
+   "options": {
+    "A": "First industrial revolution implications",
+    "B": "Fourth industrial revolution implications",
+    "C": "Third industrial revolution implications",
+    "D": "Second industrial revolution implications"
+   },
+   "answer": "B",
+   "explanation": "The fourth industrial revolution emphasizes AI/automation/cyber-physical systems and social impacts.",
+   "lo": null,
+   "n": 24
+  },
+  {
+   "set": "A",
+   "stem": "“Innovation equals invention.” The cleanest rebuttal is:",
+   "options": {
+    "A": "Invention is decline; innovation is maturity efficiency",
+    "B": "Invention is imitation; innovation is branding redesign",
+    "C": "Invention is commercialization; innovation is abstract ideation",
+    "D": "Invention is creation; innovation is commercialization and adoption"
+   },
+   "answer": "D",
+   "explanation": "Chapter 7 separates invention (artifact) from innovation (commercialization).",
+   "lo": null,
+   "n": 25
+  },
+  {
+   "set": "B",
+   "stem": "A SaaS startup wants to cross the chasm in one vertical before expanding broadly. This is aligned with:",
+   "options": {
+    "A": "Decline-stage strategy because chasm crossing is easiest once an industry begins shrinking structurally",
+    "B": "Horizontal strategy to enter all verticals first so early majority can pick any configuration needed",
+    "C": "Laggard-first strategy because laggards are the biggest market and adopt reliably without support",
+    "D": "Beachhead strategy to win one niche with references and whole-product completeness, then expand adjacently"
+   },
+   "answer": "D",
+   "explanation": "Chasm crossing favors a focused beachhead to build references and whole product.",
+   "lo": null,
+   "n": 26
+  },
+  {
+   "set": "B",
+   "stem": "A chasm-crossing “beachhead” is mainly used to:",
+   "options": {
+    "A": "Target laggards for predictable first adoption",
+    "B": "Create credible references and reduce risk for pragmatists",
+    "C": "Avoid learning and delay commercialization",
+    "D": "Eliminate substitutes through patents"
+   },
+   "answer": "B",
+   "explanation": "Beachheads create references and whole-product completeness to reduce pragmatist risk.",
+   "lo": null,
+   "n": 27
+  },
+  {
+   "set": "B",
+   "stem": "A company markets heavily to late majority before fixing early majority concerns. Most likely result:",
+   "options": {
+    "A": "Strong adoption, because late majority buys without references, standards, or support",
+    "B": "Weak adoption only if patents exist, because patents make late-majority buyers suspicious",
+    "C": "Weak adoption, because late majority waits for entrenched standards and strong brands built via early majority momentum",
+    "D": "Strong adoption, because late majority values beta testing and tolerates imperfections most"
+   },
+   "answer": "C",
+   "explanation": "Late majority generally follows early majority adoption and wants established standards and brands.",
+   "lo": null,
+   "n": 28
+  },
+  {
+   "set": "B",
+   "stem": "A fintech category sees rapid adoption, strong new user growth, and many entrants adding capacity. Stage inference is:",
+   "options": {
+    "A": "Decline stage, where demand falls structurally and new entrants avoid the market entirely",
+    "B": "Maturity stage, where replacement dominates and firms compete mainly on incremental efficiency",
+    "C": "Growth stage, where adoption accelerates and entry intensifies as firms pursue scale and position",
+    "D": "Shakeout stage, where exits dominate because consolidation has already reduced competitors"
+   },
+   "answer": "C",
+   "explanation": "Growth is rapid adoption plus entry; shakeout is consolidation and exits.",
+   "lo": null,
+   "n": 29
+  },
+  {
+   "set": "B",
+   "stem": "A firm in growth should typically prioritize:",
+   "options": {
+    "A": "Harvesting cash immediately",
+    "B": "Eliminating variety to enforce standards",
+    "C": "Scaling while learning and positioning before consolidation arrives",
+    "D": "Exiting early to avoid rivalry"
+   },
+   "answer": "C",
+   "explanation": "Growth rewards scaling and positioning; harvest strategies fit later stages.",
+   "lo": null,
+   "n": 30
+  },
+  {
+   "set": "B",
+   "stem": "A firm in introduction stage should typically prioritize:",
+   "options": {
+    "A": "Learning fast and finding product–market fit under uncertainty",
+    "B": "Locking standards through scale manufacturing",
+    "C": "Harvesting stable cash flows",
+    "D": "Consolidating competitors"
+   },
+   "answer": "A",
+   "explanation": "Introduction is uncertain; learning and early adoption dominate.",
+   "lo": null,
+   "n": 31
+  },
+  {
+   "set": "B",
+   "stem": "A firm tries to cross the chasm by adding features while reliability and support remain weak. The most likely outcome is:",
+   "options": {
+    "A": "It succeeds because pragmatists adopt first and prefer novelty even when service is unreliable",
+    "B": "It fails only if patents expire because chasm crossing is mainly a legal exclusivity problem",
+    "C": "It succeeds because features substitute fully for standards, references, and after-sales support",
+    "D": "It still fails because early majority values risk reduction and whole-product support over feature novelty"
+   },
+   "answer": "D",
+   "explanation": "Pragmatists value risk reduction and whole-product completeness.",
+   "lo": null,
+   "n": 32
+  },
+  {
+   "set": "B",
+   "stem": "A market shows dominant design, intense rivalry, and exits. Best stage label:",
+   "options": {
+    "A": "Growth",
+    "B": "Decline",
+    "C": "Introduction",
+    "D": "Shakeout"
+   },
+   "answer": "D",
+   "explanation": "Shakeout features consolidation and exits around a dominant design.",
+   "lo": null,
+   "n": 33
+  },
+  {
+   "set": "B",
+   "stem": "A market shows intense consolidation, exits, and a few surviving leaders around a dominant design. Stage inference is:",
+   "options": {
+    "A": "Shakeout stage, where rivalry rises and weaker firms exit as the industry consolidates",
+    "B": "Decline stage, where demand is near zero and firms cannot profitably sell any units",
+    "C": "Introduction stage, where uncertainty falls and designs become more diverse with stable entry",
+    "D": "Growth stage, where entry is high and exits are low because demand is exploding everywhere"
+   },
+   "answer": "A",
+   "explanation": "Shakeout is defined by consolidation: rivalry, exits, fewer survivors.",
+   "lo": null,
+   "n": 34
+  },
+  {
+   "set": "B",
+   "stem": "A market shows saturation, slower growth, and competition shifting to incremental improvements and efficiency. Stage inference is:",
+   "options": {
+    "A": "Maturity stage, where growth slows and firms compete through efficiency and incremental innovation",
+    "B": "Growth stage, where adoption accelerates and variety expands faster than efficiency pressures",
+    "C": "Shakeout stage, where exits dominate and only a few firms remain after consolidation",
+    "D": "Introduction stage, where uncertainty is highest and designs compete before standards emerge"
+   },
+   "answer": "A",
+   "explanation": "Maturity: slower growth, saturation, incremental improvement, efficiency focus.",
+   "lo": null,
+   "n": 35
+  },
+  {
+   "set": "B",
+   "stem": "A micro-mobility industry saw rapid entry and then many exits in several cities. This pattern most closely signals:",
+   "options": {
+    "A": "Decline stage completion, where demand collapses to near zero and no replacement cycles remain",
+    "B": "Shakeout stage dynamics, where rivalry intensifies, weaker firms exit, and consolidation accelerates",
+    "C": "Introduction stage stability, where uncertainty drops and competitors converge without exits",
+    "D": "Maturity stage expansion, where entrants proliferate and product variety grows without consolidation"
+   },
+   "answer": "B",
+   "explanation": "Shakeout is the consolidation phase after growth, with rising rivalry and exits.",
+   "lo": null,
+   "n": 36
+  },
+  {
+   "set": "B",
+   "stem": "A new consumer device market shows explosive demand growth and many entrants, but standards begin to stabilize. This best fits:",
+   "options": {
+    "A": "Shakeout stage, where exits dominate because growth has ended and consolidation is underway",
+    "B": "Decline stage, where demand falls structurally and firms should harvest rather than invest",
+    "C": "Growth stage, where adoption accelerates and entry intensifies while standards start to clarify",
+    "D": "Maturity stage, where replacement dominates and innovation becomes mostly incremental efficiency"
+   },
+   "answer": "C",
+   "explanation": "Growth features rapid adoption and entry; standards begin stabilizing.",
+   "lo": null,
+   "n": 37
+  },
+  {
+   "set": "B",
+   "stem": "A product is adopted only when necessary and buyers avoid new technology for personal or economic reasons. This describes:",
+   "options": {
+    "A": "Technology enthusiasts, who wait for entrenched standards and strong brands before buying",
+    "B": "Laggards, who enter late and adopt only when adoption becomes unavoidable in practice",
+    "C": "Early adopters, who pay premiums for beta products to signal status and experiment",
+    "D": "Early majority, who adopt early and tolerate uncertainty because novelty is intrinsically valued"
+   },
+   "answer": "B",
+   "explanation": "Laggards adopt last and reluctantly; they are rarely the main growth engine.",
+   "lo": null,
+   "n": 38
+  },
+  {
+   "set": "B",
+   "stem": "A smartphone market is replacement-driven with slower growth and intense price competition. The best stage label is:",
+   "options": {
+    "A": "Decline stage, where adoption becomes unnecessary and firms should exit immediately and harvest cash",
+    "B": "Maturity stage, where replacement demand rises and rivalry focuses on efficiency and pricing",
+    "C": "Introduction stage, where uncertainty is highest and standards have not emerged across producers",
+    "D": "Growth stage, where first-time adoption dominates and differentiation expands variety without pressure"
+   },
+   "answer": "B",
+   "explanation": "Maturity features replacement demand, slower growth, and stronger price rivalry.",
+   "lo": null,
+   "n": 39
+  },
+  {
+   "set": "B",
+   "stem": "A wearable category is still searching for a dominant design and has uncertain standards. The most consistent life-cycle stage is:",
+   "options": {
+    "A": "Maturity stage, where standards are entrenched and incremental efficiency becomes the main driver",
+    "B": "Decline stage, where the market contracts and firms harvest rather than invest in new designs",
+    "C": "Introduction stage, where uncertainty is high and designs compete before a dominant design emerges",
+    "D": "Shakeout stage, where dominant design is fully settled and entry accelerates without exits"
+   },
+   "answer": "C",
+   "explanation": "Introduction features high uncertainty and competing designs; dominant design tends to emerge later.",
+   "lo": null,
+   "n": 40
+  },
+  {
+   "set": "B",
+   "stem": "A “whole product” emphasis means:",
+   "options": {
+    "A": "Price cuts alone with no service investment",
+    "B": "Core product alone with maximum features",
+    "C": "Patent portfolio plus PR campaigns",
+    "D": "Core product plus complements, support, reliability, and standards"
+   },
+   "answer": "D",
+   "explanation": "Whole product includes ecosystem elements needed to reduce adoption risk for pragmatists.",
+   "lo": null,
+   "n": 41
+  },
+  {
+   "set": "B",
+   "stem": "An EV startup wins early adopters but loses early majority because repairs take months and service is inconsistent. The best diagnosis is:",
+   "options": {
+    "A": "It failed the novelty test, where pragmatists demand unproven experimental features more than reliability",
+    "B": "It failed the ‘whole product’ test, where pragmatists need dependable after-sales support and reliability",
+    "C": "It failed the patent test, where pragmatists refuse products lacking legal exclusivity protections",
+    "D": "It failed the price test, where pragmatists adopt only when prices rise and signal premium quality"
+   },
+   "answer": "B",
+   "explanation": "Early majority adoption requires risk reduction: support, standards, and reliability.",
+   "lo": null,
+   "n": 42
+  },
+  {
+   "set": "B",
+   "stem": "Apple Vision Pro’s early buyers were largely enthusiasts and early adopters. In chasm terms, the next major hurdle is convincing the:",
+   "options": {
+    "A": "Laggards, who pay premium prices for beta products and tolerate high uncertainty in use",
+    "B": "Technology enthusiasts, who adopt after standards are entrenched and brands are well established",
+    "C": "Early majority, who demand reliability, clear use cases, standards, and strong support before adoption",
+    "D": "Late majority, who purchase first and then create reference cases for other segments to follow"
+   },
+   "answer": "C",
+   "explanation": "The key chasm is early adopters → early majority; pragmatists demand whole-product completeness and risk reduction.",
+   "lo": null,
+   "n": 43
+  },
+  {
+   "set": "B",
+   "stem": "Generative AI copilots spread rapidly across teams, then adoption slows as firms demand governance and safety. This slowdown most resembles movement toward:",
+   "options": {
+    "A": "Decline stage, where market contraction is dominant and new adoption is structurally impossible",
+    "B": "Technology enthusiast dominance, where beta instability is rewarded because experimentation is the main objective",
+    "C": "Laggard entry, where adoption happens only in decline stage and therefore requires forced compliance",
+    "D": "Early majority concerns, where standards, integration, and risk controls become prerequisites for broad adoption"
+   },
+   "answer": "D",
+   "explanation": "Mainstream diffusion slows until standards, integration, reliability, and support are in place.",
+   "lo": null,
+   "n": 44
+  },
+  {
+   "set": "B",
+   "stem": "In decline, the most coherent general move is often:",
+   "options": {
+    "A": "Build capacity aggressively for scale",
+    "B": "Harvest or niche-focus rather than broad expansion",
+    "C": "Ignore cash flows and reinvest heavily",
+    "D": "Maximize variety and experimentation"
+   },
+   "answer": "B",
+   "explanation": "Decline often calls for harvest/consolidation/niche focus, not broad growth investment.",
+   "lo": null,
+   "n": 45
+  },
+  {
+   "set": "B",
+   "stem": "In maturity, competitive advantage often shifts toward:",
+   "options": {
+    "A": "Ignoring customer support and complements",
+    "B": "Incremental innovation and efficiency improvements",
+    "C": "Pure monopoly pricing without value improvements",
+    "D": "Radical category creation only"
+   },
+   "answer": "B",
+   "explanation": "Maturity competition often centers on incremental improvements and efficiency.",
+   "lo": null,
+   "n": 46
+  },
+  {
+   "set": "B",
+   "stem": "Late majority is similar to early majority but more risk-averse. The most correct statement is:",
+   "options": {
+    "A": "Late majority is similar to early majority but more risk-averse and more brand-dependent in adoption",
+    "B": "Late majority is less risk-averse than early adopters and therefore buys unfinished beta designs first",
+    "C": "Late majority is identical to laggards, so both segments should be pursued aggressively for growth",
+    "D": "Late majority buys mainly for novelty, making standards and support far less important than features"
+   },
+   "answer": "A",
+   "explanation": "Late majority prefers established standards and brands, and needs strong support.",
+   "lo": null,
+   "n": 47
+  },
+  {
+   "set": "B",
+   "stem": "Smartphones are in growth in many emerging economies and in maturity in developed economies. The clearest implication is:",
+   "options": {
+    "A": "The industry life cycle is invalid because a product cannot be in two stages at the same time",
+    "B": "The shakeout stage is irrelevant because digital goods do not experience consolidation dynamics",
+    "C": "The same firm may need different strategies across geographies because life-cycle stage differs by market",
+    "D": "The decline stage must be next everywhere because maturity in one market forces global contraction"
+   },
+   "answer": "C",
+   "explanation": "Life-cycle stages can differ by geography; strategy should adapt accordingly.",
+   "lo": null,
+   "n": 48
+  },
+  {
+   "set": "B",
+   "stem": "Tesla’s Model 3/Model Y are discussed as helping it cross the big chasm. The strategic logic is most directly:",
+   "options": {
+    "A": "New patents prevent imitation, pushing adoption from laggards toward early enthusiasts immediately",
+    "B": "Higher-priced models create exclusivity, pushing adoption from late majority toward early adopters",
+    "C": "Network effects guarantee adoption, pushing adoption from early majority toward early adopters over time",
+    "D": "Lower-priced models broaden adoption from early adopters toward the early majority segment"
+   },
+   "answer": "D",
+   "explanation": "Lower-priced models expand reachable segments and support mainstream diffusion.",
+   "lo": null,
+   "n": 49
+  },
+  {
+   "set": "B",
+   "stem": "The largest “chasm” is typically between:",
+   "options": {
+    "A": "Early majority and laggards",
+    "B": "Technology enthusiasts and laggards",
+    "C": "Late majority and laggards",
+    "D": "Early adopters and early majority"
+   },
+   "answer": "D",
+   "explanation": "The major chasm is early adopters → early majority (visionaries → pragmatists).",
+   "lo": null,
+   "n": 50
+  },
+  {
+   "set": "C",
+   "stem": "A cheaper, initially inferior product starts in a fringe segment and later improves to threaten incumbents. The closest label is:",
+   "options": {
+    "A": "Disruptive innovation, entering from fringe markets and moving upmarket over time to challenge leaders",
+    "B": "Architectural innovation, applying new technology in existing markets without changing market trajectories",
+    "C": "Incremental innovation, improving existing offerings but never threatening incumbent business models",
+    "D": "Radical innovation, beginning as premium performance and targeting mainstream customers from day one"
+   },
+   "answer": "A",
+   "explanation": "Disruptive innovations often begin in fringe/new markets and later move upmarket.",
+   "lo": null,
+   "n": 51
+  },
+  {
+   "set": "C",
+   "stem": "A company builds a new chip architecture but sells it to existing data-center customers. Exhibit 7.12 implies:",
+   "options": {
+    "A": "Disruptive innovation, because new chips must start low-end and then move up to mainstream buyers",
+    "B": "Architectural innovation, applying a new technology configuration to an existing market space",
+    "C": "Incremental innovation, because semiconductors only improve steadily without discontinuity by definition",
+    "D": "Radical innovation, because any new technology implies a new market regardless of customer base"
+   },
+   "answer": "B",
+   "explanation": "New tech applied to existing markets is architectural innovation.",
+   "lo": null,
+   "n": 52
+  },
+  {
+   "set": "C",
+   "stem": "A firm recombines existing modules for a better experience without new science in the same market. Best label is:",
+   "options": {
+    "A": "Disruptive innovation",
+    "B": "Radical innovation",
+    "C": "Architectural innovation",
+    "D": "Incremental innovation"
+   },
+   "answer": "D",
+   "explanation": "Same market + same tech base recombination typically remains incremental.",
+   "lo": null,
+   "n": 53
+  },
+  {
+   "set": "C",
+   "stem": "A firm reconfigures existing components into a new system architecture for its current customer base without new science. The closest label is:",
+   "options": {
+    "A": "Architectural innovation, because any internal redesign necessarily creates a new market by definition",
+    "B": "Disruptive innovation, because system redesigns always begin low-end and then displace premium incumbents",
+    "C": "Radical innovation, because recombination always implies a new market and a new technology knowledge base",
+    "D": "Incremental innovation, because it recombines existing knowledge for existing markets without new technology bases"
+   },
+   "answer": "D",
+   "explanation": "Recombination within existing markets/tech base is typically incremental.",
+   "lo": null,
+   "n": 54
+  },
+  {
+   "set": "C",
+   "stem": "A firm sells a premium product that improves mainstream performance and calls it disruptive. Best critique is:",
+   "options": {
+    "A": "Definitely disruptive because premium implies new market",
+    "B": "Likely sustaining improvement, not classic disruption trajectory",
+    "C": "Not classifiable because disruption depends only on patents",
+    "D": "Definitely disruptive because better performance defines disruption"
+   },
+   "answer": "B",
+   "explanation": "Premium sustaining improvements are not the classic disruptive trajectory.",
+   "lo": null,
+   "n": 55
+  },
+  {
+   "set": "C",
+   "stem": "A firm uses existing tech to reach customers previously outside the category. That is most consistent with:",
+   "options": {
+    "A": "Architectural innovation",
+    "B": "Incremental innovation",
+    "C": "Disruptive innovation",
+    "D": "Radical innovation"
+   },
+   "answer": "A",
+   "explanation": "New market served with existing technology aligns with architectural innovation.",
+   "lo": null,
+   "n": 56
+  },
+  {
+   "set": "C",
+   "stem": "A firm uses new tech to sell to existing customers. That is most consistent with:",
+   "options": {
+    "A": "Architectural innovation",
+    "B": "Disruptive innovation",
+    "C": "Incremental innovation",
+    "D": "Radical innovation"
+   },
+   "answer": "A",
+   "explanation": "New technology applied to an existing market is architectural innovation.",
+   "lo": null,
+   "n": 57
+  },
+  {
+   "set": "C",
+   "stem": "A firm’s radical breakthrough is followed by many small upgrades. The best interpretation is:",
+   "options": {
+    "A": "Radical creates lead; incremental sustains advantage over time",
+    "B": "Radical makes incremental illegal",
+    "C": "Disruption requires only one upgrade cycle",
+    "D": "Incremental makes radical impossible"
+   },
+   "answer": "A",
+   "explanation": "Common pattern: radical innovation creates a lead; incremental sustains it.",
+   "lo": null,
+   "n": 58
+  },
+  {
+   "set": "C",
+   "stem": "A new gene-editing therapy creates a new category and new market applications. In Exhibit 7.12, it best fits:",
+   "options": {
+    "A": "Disruptive innovation, starting low-end in existing markets and then improving to match incumbents",
+    "B": "Architectural innovation, targeting new markets using existing technologies without new science",
+    "C": "Incremental innovation, improving existing offerings for existing markets using existing technologies",
+    "D": "Radical innovation, targeting new markets by using new technologies from novel knowledge bases"
+   },
+   "answer": "D",
+   "explanation": "Radical innovation is new tech plus new market, often creating new industries.",
+   "lo": null,
+   "n": 59
+  },
+  {
+   "set": "C",
+   "stem": "A premium, higher-performance product is called “disruptive.” The best critique is:",
+   "options": {
+    "A": "That pattern resembles sustaining improvement; disruption typically enters fringe or new markets first",
+    "B": "That pattern is disruptive by definition, because disruption equals superior performance at launch",
+    "C": "That pattern is architectural by definition, because premium products always target existing markets",
+    "D": "That pattern is radical by definition, because premium implies new market creation automatically"
+   },
+   "answer": "A",
+   "explanation": "Disruption is a trajectory and entry pattern, not simply “better and pricier.”",
+   "lo": null,
+   "n": 60
+  },
+  {
+   "set": "C",
+   "stem": "A product based on new materials and methods targets a new application market. Exhibit 7.12 label is:",
+   "options": {
+    "A": "Architectural innovation, using existing technologies to create a new market without new knowledge",
+    "B": "Radical innovation, combining new technologies with new markets and sometimes creating new industries",
+    "C": "Incremental innovation, improving existing products for existing markets with existing technologies",
+    "D": "Disruptive innovation, entering existing markets at premium tiers and then moving downmarket"
+   },
+   "answer": "B",
+   "explanation": "New tech + new market is radical innovation.",
+   "lo": null,
+   "n": 61
+  },
+  {
+   "set": "C",
+   "stem": "A smartphone maker upgrades camera software and battery management using the same chip platform for current users. Exhibit 7.12 label is:",
+   "options": {
+    "A": "Disruptive innovation, starting low-end and then moving upmarket as incumbents overshoot demand",
+    "B": "Incremental innovation, improving existing products in existing markets using existing technologies",
+    "C": "Architectural innovation, creating new markets using existing technologies without altering the product",
+    "D": "Radical innovation, creating new markets because any improvement creates a new category of buyers"
+   },
+   "answer": "B",
+   "explanation": "Existing tech + existing market improvements are incremental.",
+   "lo": null,
+   "n": 62
+  },
+  {
+   "set": "C",
+   "stem": "A startup uses existing payment rails but targets newly served segments in a new market. Exhibit 7.12 suggests:",
+   "options": {
+    "A": "Disruptive innovation, requiring inferior quality and low price as a necessary condition always",
+    "B": "Radical innovation, requiring new technologies whenever a new segment is targeted at all",
+    "C": "Architectural innovation, using existing technologies to create or serve a new market space",
+    "D": "Incremental innovation, improving existing offerings for existing markets using the same technology"
+   },
+   "answer": "C",
+   "explanation": "New market + existing tech aligns with architectural innovation in Exhibit 7.12.",
+   "lo": null,
+   "n": 63
+  },
+  {
+   "set": "C",
+   "stem": "Amazon improves Alexa with better speech recognition using existing ML methods for existing customers. In Exhibit 7.12 terms, this is:",
+   "options": {
+    "A": "Incremental innovation, improving an existing offering for existing markets using existing technologies",
+    "B": "Disruptive innovation, entering a new fringe market and later moving upmarket to displace incumbents",
+    "C": "Architectural innovation, creating a new market using existing technologies with no change in use",
+    "D": "Radical innovation, creating a new market using new technologies that replace prior knowledge bases"
+   },
+   "answer": "A",
+   "explanation": "Incremental innovation improves existing offerings for existing markets using existing technologies.",
+   "lo": null,
+   "n": 64
+  },
+  {
+   "set": "C",
+   "stem": "An IoT cyber-physical system linking devices and analytics is most associated with:",
+   "options": {
+    "A": "The fourth industrial revolution with AI, automation, robotics, and IoT cyber-physical systems",
+    "B": "The second industrial revolution driven by electrification and mass production",
+    "C": "The first industrial revolution driven by steam power and mechanization",
+    "D": "The third industrial revolution driven by computers but not connected cyber-physical systems"
+   },
+   "answer": "A",
+   "explanation": "Chapter 7 associates IoT and cyber-physical systems with the fourth industrial revolution.",
+   "lo": null,
+   "n": 65
+  },
+  {
+   "set": "C",
+   "stem": "Disruptive innovation is best described as:",
+   "options": {
+    "A": "Entry via fringe/new markets with different attributes, then upmarket movement",
+    "B": "New technology plus new market always",
+    "C": "Immediate domination of mainstream markets through superior premium performance",
+    "D": "Existing technology plus existing market always"
+   },
+   "answer": "A",
+   "explanation": "Disruption is about entry footholds and trajectory, not immediate premium superiority.",
+   "lo": null,
+   "n": 66
+  },
+  {
+   "set": "C",
+   "stem": "Existing tech + existing market improvements generally classify as:",
+   "options": {
+    "A": "Architectural",
+    "B": "Incremental",
+    "C": "Disruptive",
+    "D": "Radical"
+   },
+   "answer": "B",
+   "explanation": "That is the incremental quadrant in the markets–technology framework.",
+   "lo": null,
+   "n": 67
+  },
+  {
+   "set": "C",
+   "stem": "Existing tech + new market generally classify as:",
+   "options": {
+    "A": "Incremental",
+    "B": "Radical",
+    "C": "Architectural",
+    "D": "Disruptive"
+   },
+   "answer": "C",
+   "explanation": "Existing technologies serving a new market is architectural innovation.",
+   "lo": null,
+   "n": 68
+  },
+  {
+   "set": "C",
+   "stem": "Fourth industrial revolution dynamics are most likely to increase returns to:",
+   "options": {
+    "A": "Education and adaptable human capital, because routine tasks are more automatable",
+    "B": "Corporate secrecy, because diffusion becomes impossible once automation expands",
+    "C": "Inventory stockpiles, because scarcity becomes the main source of advantage",
+    "D": "Retail floor space, because foot traffic is the central moat in cyber-physical markets"
+   },
+   "answer": "A",
+   "explanation": "As automation rises, the value of adaptable skills and education increases.",
+   "lo": null,
+   "n": 69
+  },
+  {
+   "set": "C",
+   "stem": "New tech + existing market generally classify as:",
+   "options": {
+    "A": "Disruptive",
+    "B": "Radical",
+    "C": "Incremental",
+    "D": "Architectural"
+   },
+   "answer": "D",
+   "explanation": "New tech applied to an existing market is architectural innovation.",
+   "lo": null,
+   "n": 70
+  },
+  {
+   "set": "C",
+   "stem": "New tech + new market creation generally classify as:",
+   "options": {
+    "A": "Radical",
+    "B": "Architectural",
+    "C": "Incremental",
+    "D": "Disruptive"
+   },
+   "answer": "A",
+   "explanation": "New technologies aimed at new markets map to radical innovation.",
+   "lo": null,
+   "n": 71
+  },
+  {
+   "set": "C",
+   "stem": "The diagonal pairing in the framework highlights:",
+   "options": {
+    "A": "Incremental vs radical, and architectural vs disruptive",
+    "B": "Incremental vs architectural only",
+    "C": "Disruptive vs incremental only",
+    "D": "Radical vs disruptive only"
+   },
+   "answer": "A",
+   "explanation": "Two diagonal contrasts: incremental–radical and architectural–disruptive.",
+   "lo": null,
+   "n": 72
+  },
+  {
+   "set": "C",
+   "stem": "The most diagnostic question for classification is:",
+   "options": {
+    "A": "Profit margin changes in the first quarter",
+    "B": "Legal disputes and patent filings",
+    "C": "Influencer engagement and brand mentions",
+    "D": "Existing vs new markets, and existing vs new technologies"
+   },
+   "answer": "D",
+   "explanation": "The framework is defined by market newness and technology newness.",
+   "lo": null,
+   "n": 73
+  },
+  {
+   "set": "C",
+   "stem": "“Most innovations are radical.” The best correction is:",
+   "options": {
+    "A": "Most innovations are incremental, despite attention to breakthroughs",
+    "B": "Most innovations are architectural only",
+    "C": "Most innovations are disruptive, not incremental",
+    "D": "Most innovations are radical because markets demand novelty"
+   },
+   "answer": "A",
+   "explanation": "Chapter 7 stresses that incremental innovations dominate in practice.",
+   "lo": null,
+   "n": 74
+  },
+  {
+   "set": "C",
+   "stem": "“New to our firm” does not necessarily mean “radical.” The correct diagnostic is:",
+   "options": {
+    "A": "Newness to market and technology axes, not internal novelty",
+    "B": "Patent status and court enforceability",
+    "C": "Marketing excitement and press coverage intensity",
+    "D": "Founder charisma and early funding size"
+   },
+   "answer": "A",
+   "explanation": "Classification depends on market newness and technology newness, not internal unfamiliarity.",
+   "lo": null,
+   "n": 75
+  },
+  {
+   "set": "D",
+   "stem": "A creator platform solves chicken-or-egg by guaranteeing buyers for first creators. This is:",
+   "options": {
+    "A": "Decline-stage repositioning",
+    "B": "Architectural innovation classification",
+    "C": "Harvesting demand in maturity stage",
+    "D": "Seeding one side to create early proof and transactions"
+   },
+   "answer": "D",
+   "explanation": "Seeding generates liquidity and proof that attracts the other side.",
+   "lo": null,
+   "n": 76
+  },
+  {
+   "set": "D",
+   "stem": "A platform adds complements through third parties. Most accurate implication is:",
+   "options": {
+    "A": "Less value potential because complements always cannibalize",
+    "B": "Governance becomes unnecessary because complements self-police",
+    "C": "Network effects become irrelevant once complements exist",
+    "D": "More value potential, but governance complexity rises sharply"
+   },
+   "answer": "D",
+   "explanation": "Complements expand value but increase rule-setting and enforcement needs.",
+   "lo": null,
+   "n": 77
+  },
+  {
+   "set": "D",
+   "stem": "A platform becomes valuable because more users join, not because unit costs fall. This is:",
+   "options": {
+    "A": "Economies of scale, not network effects",
+    "B": "Life-cycle maturity, not platform dynamics",
+    "C": "Network effects, not just economies of scale",
+    "D": "Radical innovation, not platform dynamics"
+   },
+   "answer": "C",
+   "explanation": "Network effects are demand-side; scale economies are supply-side.",
+   "lo": null,
+   "n": 78
+  },
+  {
+   "set": "D",
+   "stem": "A platform competitor copies the interface but lacks users. Why does it matter?",
+   "options": {
+    "A": "Inventory ownership is the key; users are secondary",
+    "B": "Advertising alone creates value; user counts are irrelevant",
+    "C": "Without critical mass, network effects are weak and value is lower",
+    "D": "Interface copying is illegal so users automatically migrate"
+   },
+   "answer": "C",
+   "explanation": "The network is the product; without participation on both sides, value collapses.",
+   "lo": null,
+   "n": 79
+  },
+  {
+   "set": "D",
+   "stem": "A platform lowers take rate to attract more producers, expecting later growth. This is:",
+   "options": {
+    "A": "Crossing the chasm by targeting laggards first",
+    "B": "Eliminating substitutes by predatory pricing",
+    "C": "Converting invention into innovation automatically",
+    "D": "Subsidizing one side to ignite participation and network effects"
+   },
+   "answer": "D",
+   "explanation": "Subsidies can build critical mass and ignite network effects.",
+   "lo": null,
+   "n": 80
+  },
+  {
+   "set": "D",
+   "stem": "A platform opens APIs for complements but fails to enforce quality rules. Primary risk is:",
+   "options": {
+    "A": "Trust collapses; participation falls; network effects weaken",
+    "B": "Patents prevent low-quality participants from joining",
+    "C": "Trust increases automatically through openness",
+    "D": "Complements matter only in late majority stage"
+   },
+   "answer": "A",
+   "explanation": "Openness without governance invites adverse selection and erodes trust.",
+   "lo": null,
+   "n": 81
+  },
+  {
+   "set": "D",
+   "stem": "A platform raises take rates aggressively before stabilizing network effects. Risk is:",
+   "options": {
+    "A": "Substitutes vanish because users lock in",
+    "B": "Chasm becomes irrelevant because fees imply reliability",
+    "C": "Rivals exit because fees signal quality",
+    "D": "Participation drops and network effects weaken"
+   },
+   "answer": "D",
+   "explanation": "Premature monetization can reduce participation before critical mass, weakening network effects.",
+   "lo": null,
+   "n": 82
+  },
+  {
+   "set": "D",
+   "stem": "A platform restricts third-party producers “to stay in control.” Core risk is:",
+   "options": {
+    "A": "Chicken-or-egg disappears because restriction forces joining",
+    "B": "Network effects strengthen because fewer producers increases value",
+    "C": "Ecosystem growth slows; network effects fail to scale",
+    "D": "Chasm crossing becomes automatic because closure signals reliability"
+   },
+   "answer": "C",
+   "explanation": "Restriction can throttle variety and participation, weakening network effects.",
+   "lo": null,
+   "n": 83
+  },
+  {
+   "set": "D",
+   "stem": "A platform stagnates after trust scandals. Best explanation is:",
+   "options": {
+    "A": "Trust scandals push adoption to late majority faster",
+    "B": "Trust scandals prove radical innovation is occurring",
+    "C": "Reduced participation weakens network effects and value for remaining users",
+    "D": "Trust scandals reduce costs and improve margins"
+   },
+   "answer": "C",
+   "explanation": "Participation shocks can trigger negative spirals in network-effect markets.",
+   "lo": null,
+   "n": 84
+  },
+  {
+   "set": "D",
+   "stem": "A platform’s feedback loops create advantage mainly by:",
+   "options": {
+    "A": "Eliminating the need for governance and moderation",
+    "B": "Making patents unnecessary for all industries",
+    "C": "Replacing the need for supply-side growth",
+    "D": "Improving match quality and reducing friction through data learning"
+   },
+   "answer": "D",
+   "explanation": "Platforms learn from interactions; better matching improves value creation.",
+   "lo": null,
+   "n": 85
+  },
+  {
+   "set": "D",
+   "stem": "A platform’s governance is best seen as:",
+   "options": {
+    "A": "A substitute for product design and customer experience",
+    "B": "A late-stage activity only after maturity arrives",
+    "C": "A compliance detail unrelated to platform economics",
+    "D": "A strategic lever shaping value creation and participation quality"
+   },
+   "answer": "D",
+   "explanation": "Governance shapes trust and participation—core to platform advantage.",
+   "lo": null,
+   "n": 86
+  },
+  {
+   "set": "D",
+   "stem": "A platform’s “product” includes:",
+   "options": {
+    "A": "Only the HR hiring system",
+    "B": "Rules, trust mechanisms, incentives, and matching infrastructure",
+    "C": "Only the user interface and brand slogan",
+    "D": "Only the financing structure and capital policy"
+   },
+   "answer": "B",
+   "explanation": "Platform strategy is ecosystem design: roles, incentives, governance, and matching.",
+   "lo": null,
+   "n": 87
+  },
+  {
+   "set": "D",
+   "stem": "A rider becomes a driver within the same platform. This is:",
+   "options": {
+    "A": "Architectural innovation",
+    "B": "Multi-homing",
+    "C": "Side switching",
+    "D": "Chasm crossing"
+   },
+   "answer": "C",
+   "explanation": "Side switching is movement across roles within the same platform ecosystem.",
+   "lo": null,
+   "n": 88
+  },
+  {
+   "set": "D",
+   "stem": "A social enterprise earns revenue and also measures social outcomes. That fits best with:",
+   "options": {
+    "A": "Social entrepreneurship definition used in this chapter",
+    "B": "Decline-stage harvest strategy",
+    "C": "Strategic entrepreneurship only",
+    "D": "Pure imitation strategy"
+   },
+   "answer": "A",
+   "explanation": "Social entrepreneurship integrates mission with viable venture logic.",
+   "lo": null,
+   "n": 89
+  },
+  {
+   "set": "D",
+   "stem": "Airbnb scales supply without owning hotels mainly because it:",
+   "options": {
+    "A": "Vertically integrates real estate to lower costs",
+    "B": "Unlocks external supply through hosts in an asset-light manner",
+    "C": "Eliminates the need for governance because trust is automatic",
+    "D": "Crosses the chasm by targeting laggards first"
+   },
+   "answer": "B",
+   "explanation": "Platforms scale by enrolling ecosystem participants rather than owning assets.",
+   "lo": null,
+   "n": 90
+  },
+  {
+   "set": "D",
+   "stem": "Chicken-or-egg problem at launch is best solved by:",
+   "options": {
+    "A": "Removing all rules to maximize entry",
+    "B": "Waiting until both sides are naturally large",
+    "C": "Seeding/subsidizing one side to create early transactions",
+    "D": "Raising fees early to signal quality"
+   },
+   "answer": "C",
+   "explanation": "Platforms seed one side to create proof that attracts the other side.",
+   "lo": null,
+   "n": 91
+  },
+  {
+   "set": "D",
+   "stem": "Fraud/spam drives users away on a marketplace. The key platform lesson is:",
+   "options": {
+    "A": "Governance matters only for pipelines with inventory",
+    "B": "Governance always hurts adoption; remove rules immediately",
+    "C": "Governance is irrelevant; network effects are mechanical",
+    "D": "Governance sustains trust; weak rules can collapse network effects"
+   },
+   "answer": "D",
+   "explanation": "Platforms must govern participation quality; trust failures reduce participation and value.",
+   "lo": null,
+   "n": 92
+  },
+  {
+   "set": "D",
+   "stem": "More merchants accept a card network → more consumers carry it → more merchants join. This is:",
+   "options": {
+    "A": "Decline-stage replacement demand",
+    "B": "Cross-side network effects",
+    "C": "Economies of scale only",
+    "D": "Radical innovation automatically"
+   },
+   "answer": "B",
+   "explanation": "Two-sided platforms benefit when each side’s participation increases value for the other.",
+   "lo": null,
+   "n": 93
+  },
+  {
+   "set": "D",
+   "stem": "Multi-homing best describes:",
+   "options": {
+    "A": "A participant using multiple platforms at the same time",
+    "B": "A participant switching from consumer to producer",
+    "C": "A firm shifting from incremental to radical innovation",
+    "D": "A firm moving from introduction to maturity stage"
+   },
+   "answer": "A",
+   "explanation": "Multi-homing is simultaneous participation across platforms.",
+   "lo": null,
+   "n": 94
+  },
+  {
+   "set": "D",
+   "stem": "Platform vs pipeline is best distinguished by whether the firm:",
+   "options": {
+    "A": "Orchestrates interactions among external parties or owns production linearly",
+    "B": "Operates globally or locally",
+    "C": "Uses technology or not",
+    "D": "Is venture-funded or not"
+   },
+   "answer": "A",
+   "explanation": "Core distinction: matching/orchestration vs linear production/ownership.",
+   "lo": null,
+   "n": 95
+  },
+  {
+   "set": "D",
+   "stem": "Social entrepreneurship (as used here) is best described as:",
+   "options": {
+    "A": "Pursuing social goals via ventures using triple-bottom-line performance",
+    "B": "Platform-only strategy because networks create all social value",
+    "C": "Maximizing profit only and treating impact as externality",
+    "D": "Radical-only innovation because incremental cannot help society"
+   },
+   "answer": "A",
+   "explanation": "Social entrepreneurship integrates mission with venture logic and triple-bottom-line metrics.",
+   "lo": null,
+   "n": 96
+  },
+  {
+   "set": "D",
+   "stem": "Strategic entrepreneurship is best described as:",
+   "options": {
+    "A": "Copying incumbents only to reduce novelty risk",
+    "B": "Using strategy tools to build ventures that create and capture value",
+    "C": "Harvesting declining markets as a startup default",
+    "D": "Doing philanthropy first and revenue later"
+   },
+   "answer": "B",
+   "explanation": "Strategic entrepreneurship applies strategic-management concepts to venture building.",
+   "lo": null,
+   "n": 97
+  },
+  {
+   "set": "D",
+   "stem": "Uber’s ride-hailing model is best classified as:",
+   "options": {
+    "A": "Radical: new tech plus new market by definition",
+    "B": "Pipeline: owns production and sells linearly",
+    "C": "Incremental: cannot change industry economics",
+    "D": "Platform: matches external producers and consumers"
+   },
+   "answer": "D",
+   "explanation": "Platforms orchestrate interactions between external sides; pipelines own and push outputs.",
+   "lo": null,
+   "n": 98
+  },
+  {
+   "set": "D",
+   "stem": "“Platforms always outperform pipelines.” Best caveat is:",
+   "options": {
+    "A": "Only if positive network effects and governance are achieved",
+    "B": "True only with radical technology, not business design",
+    "C": "Always true by definition, regardless of execution",
+    "D": "True only in decline stage, not in growth stage"
+   },
+   "answer": "A",
+   "explanation": "Platform outperformance depends on achieving positive network effects with governance.",
+   "lo": null,
+   "n": 99
+  },
+  {
+   "set": "D",
+   "stem": "“We are a platform” but the firm owns inventory, sets prices, and sells directly. Best diagnosis:",
+   "options": {
+    "A": "Radical innovation because inventory implies novelty",
+    "B": "Mostly pipeline with digital distribution",
+    "C": "True platform because any app is multi-sided",
+    "D": "Social entrepreneurship because intermediation helps society"
+   },
+   "answer": "B",
+   "explanation": "Owning inventory and selling outputs is pipeline logic; platforms match external producers/consumers.",
+   "lo": null,
+   "n": 100
+  }
+ ]
+}

@@ -49,7 +49,18 @@ export const coursePhases = [
 // wrong case study. See docs/gallery-asset-provenance.md-adjacent notes in this file for context.
 const interactive = (file: string) => `/teaching/2-year-mba/${file}`;
 
-export const sessions = [
+export type TwoYearSession = {
+  number: string;
+  title: string;
+  topics: readonly string[];
+  readings: readonly string[];
+  /** Standalone interactive deck for the session, where one exists. */
+  interactiveHref?: string;
+  /** Practice bank id under content/quizzes, where the session has one. */
+  quizId?: string;
+};
+
+export const sessions: readonly TwoYearSession[] = [
   {
     number: "01",
     title: "Introduction to Strategy",
@@ -82,6 +93,7 @@ export const sessions = [
       "Porter, M. E. (1983). Note on the Structural Analysis of Industries.",
     ],
     interactiveHref: interactive("session-05-external-analysis-porter-five-forces.html"),
+    quizId: "2yr-05",
   },
   {
     number: "04",
@@ -124,6 +136,7 @@ export const sessions = [
       "Bennett, N., & Lemoine, G. J. What VUCA Really Means for You.",
     ],
     interactiveHref: interactive("session-11-firm-performance-and-business-models.html"),
+    quizId: "2yr-11",
   },
   {
     number: "07",
@@ -141,6 +154,7 @@ export const sessions = [
     topics: ["Generic strategies", "Low-cost strategy", "Differentiation and focus strategies"],
     readings: ["Case · NVIDIA (HBR)", "Eisenmann et al. (2006). Strategies for Two-Sided Markets."],
     interactiveHref: interactive("session-12-generic-strategies-and-blue-ocean-strategy.html"),
+    quizId: "2yr-12",
   },
   {
     number: "09",
@@ -151,6 +165,7 @@ export const sessions = [
       "Kim, W. C., & Mauborgne, R. A. (2004). Blue Ocean Strategy. Harvard Business Review.",
     ],
     interactiveHref: interactive("session-13-business-strategy-innovation-entrepreneurship-platforms.html"),
+    quizId: "2yr-13",
   },
   {
     number: "10",
@@ -164,6 +179,7 @@ export const sessions = [
       "Porter, M. E. (1987). From Competitive Advantage to Corporate Strategy. Harvard Business Review.",
     ],
     interactiveHref: interactive("session-14-corporate-strategy-vertical-integration-and-diversification.html"),
+    quizId: "2yr-14",
   },
   {
     number: "11",
@@ -177,6 +193,7 @@ export const sessions = [
       "Osegowitsch, T., & Madhok, A. (2003). Vertical Integration Is Dead, or Is It? Business Horizons.",
     ],
     interactiveHref: interactive("session-14-corporate-strategy-vertical-integration-and-diversification.html"),
+    quizId: "2yr-14",
   },
   {
     number: "12",
@@ -190,6 +207,7 @@ export const sessions = [
       "Goold, M., & Campbell, A. (1993). Why Diversify? Four Decades of Management Thinking.",
     ],
     interactiveHref: interactive("session-16-global-strategy-competing-around-the-world.html"),
+    quizId: "2yr-16",
   },
   {
     number: "13",
@@ -200,6 +218,7 @@ export const sessions = [
       "Goold, M., & Campbell, A. (1993). Why Diversify? Four Decades of Management Thinking.",
     ],
     interactiveHref: interactive("session-14-corporate-strategy-vertical-integration-and-diversification.html"),
+    quizId: "2yr-14",
   },
   {
     number: "14",
@@ -238,6 +257,7 @@ export const sessions = [
       "Kaplan, S. N. Mergers and Acquisitions: A Financial Economics Perspective. University of Chicago.",
     ],
     interactiveHref: interactive("session-15-corporate-strategy-strategic-alliances-mergers-acquisitions.html"),
+    quizId: "2yr-15",
   },
   {
     number: "17",
@@ -248,6 +268,7 @@ export const sessions = [
       "Dyer, J. H., Kale, P., Singh, H., & Singh, H. (2004). When to Ally and When to Acquire. Harvard Business Review.",
     ],
     interactiveHref: interactive("session-15-corporate-strategy-strategic-alliances-mergers-acquisitions.html"),
+    quizId: "2yr-15",
   },
   {
     number: "18",
@@ -275,6 +296,7 @@ export const sessions = [
     topics: ["Redesigning organizations", "The changing role of managers"],
     readings: ["The Future of Work. The Economist.", "Hamel, G. The Future of Management."],
     interactiveHref: interactive("session-17-organizational-design-structure-culture-control.html"),
+    quizId: "2yr-17",
   },
 ] as const;
 

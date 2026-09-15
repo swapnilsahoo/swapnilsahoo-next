@@ -439,17 +439,28 @@ export function TwoYearMbaExperience() {
                       </ol>
                     </div>
                   </div>
-                  {session.interactiveHref ? (
-                    <a
-                      href={session.interactiveHref}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-brand-700 dark:text-brand-300 link-underline mt-5 inline-flex items-center gap-1 text-xs font-semibold"
-                    >
-                      Open the full interactive session
-                      <ArrowRightIcon className="h-3 w-3" aria-hidden="true" />
-                    </a>
-                  ) : null}
+                  <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2">
+                    {session.interactiveHref ? (
+                      <a
+                        href={session.interactiveHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-brand-700 dark:text-brand-300 link-underline inline-flex items-center gap-1 text-xs font-semibold"
+                      >
+                        Open the full interactive session
+                        <ArrowRightIcon className="h-3 w-3" aria-hidden="true" />
+                      </a>
+                    ) : null}
+                    {session.quizId ? (
+                      <Link
+                        href={`/teaching/quiz/${session.quizId}`}
+                        className="text-brand-700 dark:text-brand-300 link-underline inline-flex items-center gap-1 text-xs font-semibold"
+                      >
+                        Practise this session
+                        <ArrowRightIcon className="h-3 w-3" aria-hidden="true" />
+                      </Link>
+                    ) : null}
+                  </div>
                 </div>
               </details>
             ))}

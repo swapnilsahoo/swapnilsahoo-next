@@ -1,0 +1,429 @@
+{
+ "sessionId": "1yr-08",
+ "course": "1-year-mba",
+ "sessionNumber": 8,
+ "title": "Corporate Strategy Vertical Integration and Diversification",
+ "questionCount": 30,
+ "questions": [
+  {
+   "set": null,
+   "stem": "A company like Disney utilizes \"Economies of Scope\" effectively. Which example best illustrates this?",
+   "options": {
+    "A": "Disney sells millions of tickets to its theme parks, lowering the cost per visitor (Scale).",
+    "B": "Disney hires actors on long-term contracts.",
+    "C": "Disney uses the \"Frozen\" characters for a movie, a theme park ride, merchandise, and a Broadway show, monetizing the same IP asset across multiple revenue streams.",
+    "D": "Disney acquires Fox to reduce the number of competitors in the industry (Market Power)."
+   },
+   "answer": "C",
+   "explanation": "Economies of Scale is doing more of the same thing to lower cost. Economies of Scope is using one resource (Mickey Mouse/Frozen IP) across different products or services. The cost of creating the character is incurred once, but revenue is generated across four different business lines.",
+   "lo": null,
+   "n": 1
+  },
+  {
+   "set": null,
+   "stem": "A firm is facing a \"Make or Buy\" decision for a new AI component. The component requires highly proprietary code (High Asset Specificity). However, the firm is currently cash-poor and cannot afford to hire a full team of AI engineers. Which intermediate governance form is the optimal solution?",
+   "options": {
+    "A": "Short-term contracting (Arm's length).",
+    "B": "Strategic Outsourcing to a generic vendor.",
+    "C": "Equity Alliance or Joint Venture.",
+    "D": "Full Vertical Integration."
+   },
+   "answer": "C",
+   "explanation": "Short-term contracts (A) and Outsourcing (D) expose the firm to IP theft and holdup risks due to the high specificity. Full Integration (C) is financially impossible given the cash constraint. An Equity Alliance or JV allows the firm to align incentives and protect IP (via the \"hostage\" of equity) without bearing the full cost of full employment/ownership immediately.",
+   "lo": null,
+   "n": 2
+  },
+  {
+   "set": null,
+   "stem": "A firm is utilizing the Core Competence-Market Matrix. It possesses strong, specialized engine-manufacturing capabilities (Existing Competence) and decides to enter the light-jet aircraft industry (New Market). Which strategic trajectory is this firm pursuing?",
+   "options": {
+    "A": "Building",
+    "B": "Redeploying",
+    "C": "Mega-Opportunity",
+    "D": "Leveraging"
+   },
+   "answer": "B",
+   "explanation": "This is the \"Redeploying\" quadrant (Existing Competence / New Market). The firm is taking what it is already good at (engines) and re-combining it to enter a new market space. \"Leveraging\" would be improving the position in the existing market. \"Building\" would be learning new skills for the existing market.",
+   "lo": null,
+   "n": 3
+  },
+  {
+   "set": null,
+   "stem": "A firm pursues a \"Dominant Business\" diversification strategy. Which of the following financial profiles fits this classification according to Rumelt’s framework?",
+   "options": {
+    "A": "50% of revenue comes from Business A, 50% from Business B, and they share technology.",
+    "B": "98% of revenue comes from one business unit; 2% from a subsidiary.",
+    "C": "80% of revenue comes from the primary business; the remaining 20% comes from businesses that share competencies with the primary.",
+    "D": "60% of revenue comes from the primary business; 40% comes from unrelated holdings."
+   },
+   "answer": "C",
+   "explanation": "A Single Business is >95%. A Dominant Business is between 70% and 95%. If it drops below 70% (Options B and D), it becomes either Related or Unrelated Diversification. Option A is a Single Business. Therefore, C (80%) is the only Dominant Business profile.",
+   "lo": null,
+   "n": 4
+  },
+  {
+   "set": null,
+   "stem": "A mid-sized technology firm is considering \"Taper Integration\" rather than full vertical integration. What is the primary strategic advantage of this hybrid approach over full integration?",
+   "options": {
+    "A": "It allows the firm to retain internal competencies while using market competition to prevent internal inefficiency (incentive alignment).",
+    "B": "It reduces the complexity of coordination by outsourcing all non-core activities.",
+    "C": "It increases the firm’s market power by monopolizing the supply of raw materials.",
+    "D": "It completely eliminates the Principal-Agent problem by removing internal managers."
+   },
+   "answer": "A",
+   "explanation": "Taper Integration involves making some inputs in-house and buying the rest from the market. Its primary strategic benefit is exposing in-house suppliers to market competition, preventing the complacency and inefficiency that often plague fully integrated divisions (where internal suppliers have a guaranteed buyer). Option A is incorrect; it does not eliminate agents. Option D describes Strategic Outsourcing, not Taper Integration.",
+   "lo": null,
+   "n": 5
+  },
+  {
+   "set": null,
+   "stem": "A pharmaceutical company acquires a biotech startup to access a specific patent. This is an example of:",
+   "options": {
+    "A": "Building new competencies to protect current market position.",
+    "B": "Forward vertical integration.",
+    "C": "Leveraging existing competencies in existing markets.",
+    "D": "Unrelated diversification."
+   },
+   "answer": "A",
+   "explanation": "Using the Core Competence-Market Matrix: The market (pharma/health) is \"Existing\" (the firm is already there). The technology (the new patent) is a \"New Competence\" the firm does not have. Therefore, they are acquiring/building a new competence to bolster their position in an existing market.",
+   "lo": null,
+   "n": 6
+  },
+  {
+   "set": null,
+   "stem": "According to the Core Competence-Market Matrix, the \"Mega-Opportunity\" (New Market / New Competence) is:",
+   "options": {
+    "A": "The most common strategy for dominant businesses.",
+    "B": "A strategy of stagnation.",
+    "C": "The safest strategy.",
+    "D": "The most difficult and risky, as it requires building new skills while simultaneously learning a new market."
+   },
+   "answer": "D",
+   "explanation": "This quadrant represents the \"blank check\" problem. The firm has no experience in the market and no skills in the technology (e.g., Salesforce trying to build physical cars). The failure rate is extremely high because there are no existing",
+   "lo": null,
+   "n": 7
+  },
+  {
+   "set": null,
+   "stem": "Amazon’s move into \"Amazon Basics\" (manufacturing simple consumer goods) and \"Amazon Studios\" (producing movies) represents which direction of vertical integration, and what is the primary theoretical driver?",
+   "options": {
+    "A": "Backward Integration; to increase the complexity of the value chain.",
+    "B": "Forward Integration; to utilize excess capacity in logistics.",
+    "C": "Backward Integration; to secure critical supplies and control product quality/cost (input control).",
+    "D": "Forward Integration; to capture the customer interface."
+   },
+   "answer": "C",
+   "explanation": "Manufacturing products and producing content are upstream activities relative to Amazon's core retail platform. This is Backward Integration. The driver is not just \"complexity,\" but the ability to capture margins previously paid to suppliers and control the \"inputs\" (goods to sell).",
+   "lo": null,
+   "n": 8
+  },
+  {
+   "set": null,
+   "stem": "Google (Alphabet) is technically a \"Related-Linked\" diversifier rather than a \"Conglomerate,\" despite having businesses ranging from Search to Self-Driving Cars (Waymo). What is the \"Link\"?",
+   "options": {
+    "A": "They all rely on the core competence of data processing, AI algorithms, and software engineering.",
+    "B": "There is no link; Google is actually a Conglomerate.",
+    "C": "They share the same physical headquarters.",
+    "D": "They all sell advertising."
+   },
+   "answer": "A",
+   "explanation": "While the products look different (cars vs. search results), the underlying Core Competency is the same: massive data ingestion, machine learning, and proprietary algorithms. This shared technological capability makes it a Related-Linked strategy rather than Unrelated.",
+   "lo": null,
+   "n": 9
+  },
+  {
+   "set": null,
+   "stem": "In the context of Transaction Cost Economics (TCE), a firm faces a \"Holdup Problem\" when it has made significant investments in specialized assets. Under which condition is the threat of opportunism highest, necessitating Vertical Integration (Make)?",
+   "options": {
+    "A": "When the firm utilizes short-term contracting with multiple competitive suppliers.",
+    "B": "When the asset specificity is high, but the frequency of the transaction is rare.",
+    "C": "When the asset specificity is high, the transaction frequency is high, and uncertainty is high.",
+    "D": "When external transaction costs are low and information asymmetry is minimal."
+   },
+   "answer": "C",
+   "explanation": "The \"Holdup Problem\" arises when one party can exploit the other’s vulnerability due to asset specificity (investments that have little value outside the specific relationship). Vertical integration is the most efficient solution when three conditions meet: High Asset Specificity, High Uncertainty, and High Frequency. If the transaction were rare (Option B), a long-term contract might suffice. If external costs were low (Option A), the market would be efficient. Option D describes a market relationship, which creates the risk of holdup, rather than solving it.",
+   "lo": null,
+   "n": 10
+  },
+  {
+   "set": null,
+   "stem": "In the context of the BCG Growth-Share Matrix (often used in diversification analysis), why might a firm use funds from a \"Cash Cow\" to support a \"Star\"?",
+   "options": {
+    "A": "Because the Cash Cow has high internal transaction costs.",
+    "B": "Because the Star operates in a declining industry.",
+    "C": "Because the Star has high growth potential but creates a cash deficit (burns cash), while the Cow has low growth but generates excess cash.",
+    "D": "Because the Cash Cow is losing money and needs to be divested."
+   },
+   "answer": "C",
+   "explanation": "This is the classic portfolio management logic. Cash Cows (High Share, Low Growth) generate cash they cannot profitably reinvest in their own stagnant market. Stars (High Share, High Growth) are profitable but capital hungry. Corporate strategy dictates reallocating resources from the Cow to the Star to fuel growth.",
+   "lo": null,
+   "n": 11
+  },
+  {
+   "set": null,
+   "stem": "Information Asymmetry in the market can lead to a \"Lemons Problem,\" where bad products crowd out good ones. How does Vertical Integration solve this specific market failure?",
+   "options": {
+    "A": "By increasing the number of suppliers in the market to dilute bad products.",
+    "B": "By reducing the asset specificity of the product.",
+    "C": "By allowing the firm to internalize the quality control process, removing the uncertainty of hidden information that exists in market transactions.",
+    "D": "By leveraging short-term contracts to switch suppliers quickly."
+   },
+   "answer": "C",
+   "explanation": "The Lemons Problem exists because the buyer cannot verify the quality of the seller's goods (Asymmetry). By Vertically Integrating (e.g., Tesla owning its service centers or E&J Gallo owning the vineyards), the firm removes the \"seller\" boundary. It effectively \"sells to itself,\" eliminating the incentive to hide quality defects, thus solving the information asymmetry.",
+   "lo": null,
+   "n": 12
+  },
+  {
+   "set": null,
+   "stem": "Regarding the \"Diversification-Performance\" inverted U-shaped curve, why do \"Related-Constrained\" firms typically outperform \"Unrelated\" conglomerates in developed economies?",
+   "options": {
+    "A": "Related-Constrained firms benefit from financial economies, whereas Conglomerates rely solely on economies of scope.",
+    "B": "Conglomerates are illegal in most developed economies due to antitrust regulations.",
+    "C": "Conglomerates suffer from the \"diversification discount\" because capital markets in developed economies are efficient enough to allocate resources without an internal capital market.",
+    "D": "Related-Constrained firms have lower coordination costs than Single Business firms."
+   },
+   "answer": "C",
+   "explanation": "In developed economies with efficient capital markets, investors can diversify their own portfolios cheaply. They do not need a CEO to do it for them (which adds bureaucratic costs). Conglomerates often trade at a discount because the complexity outweighs the benefits. \"Related\" firms outperform because they create value through operational synergies (Economies of Scope) that outside investors cannot replicate.",
+   "lo": null,
+   "n": 13
+  },
+  {
+   "set": null,
+   "stem": "Scenario: A luxury watchmaker currently buys gold from the open market. The price of gold is volatile. The CEO suggests buying a gold mine to \"stabilize costs.\" As a strategist using TCE, why might you advise AGAINST this?",
+   "options": {
+    "A": "Because forward integration is always riskier than backward integration.",
+    "B": "Because buying a mine is a form of unrelated diversification.",
+    "C": "Because the firm needs to increase its market power.",
+    "D": "Because gold is a standardized commodity with low asset specificity; the bureaucracy costs of running a mine likely outweigh the risk of market price fluctuations."
+   },
+   "answer": "D",
+   "explanation": "Vertical integration makes sense when there is a risk of holdup due to specialized assets. Gold is a commodity; you can buy it from anyone. Buying a mine doesn't stop the global price of gold from fluctuating; it just forces the watchmaker to manage a mining business (high internal transaction costs) where they have no core competence. Hedging via financial instruments is cheaper than vertical integration here.",
+   "lo": null,
+   "n": 14
+  },
+  {
+   "set": null,
+   "stem": "Scenario: Company X derives 60% of its revenue from Grocery Retailing and 40% from Cloud Computing. The two divisions share no supply chain, no customers, and no technology. However, the CEO claims they are \"linked\" because they both use the same HR payroll system. How would Rumelt classify this?",
+   "options": {
+    "A": "Dominant Business.",
+    "B": "Single Business.",
+    "C": "Related-Linked.",
+    "D": "Unrelated Diversification (Conglomerate)."
+   },
+   "answer": "D",
+   "explanation": "Sharing a generic support function like \"HR payroll\" does not constitute a strategic \"relatedness\" in terms of core competencies (products, services, technology, or distribution). Since the primary business is <70% and there are no strategic linkages, this is Unrelated Diversification.",
+   "lo": null,
+   "n": 15
+  },
+  {
+   "set": null,
+   "stem": "Tesla uses a \"Direct Sales\" model (owning its showrooms), whereas Ford uses franchised dealerships. In the context of industry lifecycles and Crossing the Chasm, why is Tesla’s Forward Integration critical for its specific product?",
+   "options": {
+    "A": "Because Tesla makes higher margins on repairs than Ford.",
+    "B": "Because Ford is a Conglomerate and Tesla is a Single Business.",
+    "C": "Because EVs require educating the customer (Early Adopters) on a new technology, a task franchised dealers (incentivized to sell gas cars) would fail to do effectively.",
+    "D": "Because Tesla wants to avoid transaction costs associated with shipping cars."
+   },
+   "answer": "C",
+   "explanation": "Forward integration allows control over the customer experience. When a product is novel and complex (EVs in the early days), the sales channel needs to educate, not just transact. Franchised dealers often view EVs as a threat to their service revenue (no oil changes). Tesla integrated forward to prevent this conflict of interest and ensure the technology was explained correctly.",
+   "lo": null,
+   "n": 16
+  },
+  {
+   "set": null,
+   "stem": "Under what specific condition does \"Strategic Outsourcing\" become a risky strategic error?",
+   "options": {
+    "A": "When the firm outsources a non-core activity like payroll processing.",
+    "B": "When the firm outsources an activity that creates the potential for a \"Holdup\" because the number of suppliers is small and the asset specificity is high.",
+    "C": "When the outsourced provider is located in a different time zone (Offshoring).",
+    "D": "When the activity outsourced is a commodity with low asset specificity."
+   },
+   "answer": "B",
+   "explanation": "Outsourcing is risky when it violates TCE logic. If you outsource an activity that requires specialized assets and there are few suppliers (e.g., a unique microchip), the supplier gains immense bargaining power and can \"hold up\" the firm. Strategic outsourcing should only be used for non-core, generic activities where market mechanisms function efficiently.",
+   "lo": null,
+   "n": 17
+  },
+  {
+   "set": null,
+   "stem": "What is the \"Diversification Discount\"?",
+   "options": {
+    "A": "The cost savings achieved through economies of scope.",
+    "B": "The tendency for stock markets to value a diversified conglomerate at less than the sum of its individual parts.",
+    "C": "The strategy of lowering prices when entering a new market.",
+    "D": "The reduction in risk achieved by holding a portfolio of businesses."
+   },
+   "answer": "B",
+   "explanation": "Empirical data shows that in developed markets, conglomerates often trade at a discount. Investors believe they can diversify their own portfolios more efficiently than a corporate manager can; they view the corporate overhead of a conglomerate as value-destroying rather than value-creating.",
+   "lo": null,
+   "n": 18
+  },
+  {
+   "set": null,
+   "stem": "When a firm engages in \"Strategic Outsourcing,\" it is essentially:",
+   "options": {
+    "A": "Creating a dominant business model.",
+    "B": "Expanding its vertical boundaries.",
+    "C": "Engaging in unrelated diversification.",
+    "D": "Reducing its vertical boundaries to focus on core competencies."
+   },
+   "answer": "D",
+   "explanation": "Strategic Outsourcing is the opposite of Vertical Integration. The firm decides that an activity (e.g., HR, Manufacturing) is not a core competence and creates no strategic differentiation. Therefore, it shrinks its boundaries by buying that function from the market (e.g., Nike outsourcing manufacturing) to focus resources on Design/Marketing.",
+   "lo": null,
+   "n": 19
+  },
+  {
+   "set": null,
+   "stem": "When does a \"Credible Commitment\" (e.g., Coca-Cola’s equity stake in Monster) serve as a superior alternative to full acquisition?",
+   "options": {
+    "A": "When the firms operate in completely unrelated industries.",
+    "B": "When transaction costs in the market are zero.",
+    "C": "When there is high uncertainty about the partner's value (valuation risk) or specific legal liabilities, allowing for a \"try before you buy\" approach.",
+    "D": "When the firm wants to fully control the partner immediately."
+   },
+   "answer": "C",
+   "explanation": "As seen in the Coca-Cola/Monster case, equity alliances are a \"hybrid\" form. They align incentives (reducing transaction costs compared to simple contracts) but avoid the massive risk and cost of full acquisition. This is optimal when there are \"lemons\" risks (e.g., health lawsuits against energy drinks) that need to be monitored before full integration.",
+   "lo": null,
+   "n": 20
+  },
+  {
+   "set": null,
+   "stem": "Which of the following best describes the distinction between \"Related-Constrained\" and \"Related-Linked\" diversification?",
+   "options": {
+    "A": "Constrained firms share resources only in marketing; Linked firms share only in manufacturing.",
+    "B": "Constrained firms are essentially dominant businesses; Linked firms are conglomerates.",
+    "C": "Constrained firms derive <70% revenue from the primary business, while Linked firms derive >70%.",
+    "D": "In Constrained firms, all businesses share competencies with the core; in Linked firms, some businesses share with each other, but not necessarily with the core."
+   },
+   "answer": "D",
+   "explanation": "The distinction lies in the density of the linkages. In Related-Constrained (e.g., ExxonMobil), virtually all business units share a common resource (upstream/downstream linkages). In Related-Linked (e.g., Amazon), business A connects to B, and B connects to C, but A and C might not be directly linked (e.g., selling groceries vs. cloud server space).",
+   "lo": null,
+   "n": 21
+  },
+  {
+   "set": null,
+   "stem": "Which of the following best explains the \"Bureaucracy Costs\" (Internal Transaction Costs) that limit how large a firm can grow?",
+   "options": {
+    "A": "As firms grow, incentive distortion occurs; employees feel less connection between their effort and the firm's profit, leading to \"shirking\" and the need for expensive middle-management monitoring.",
+    "B": "As firms grow, they automatically suffer from the \"Lemons Problem.\"",
+    "C": "As firms grow, they gain economies of scale which reduce costs indefinitely.",
+    "D": "As firms grow, they lose market power."
+   },
+   "answer": "A",
+   "explanation": "This describes the \"Low-Powered Incentives\" disadvantage of firms. In the market, an entrepreneur works hard because they keep the profit (High-Powered). In a massive firm, a salaried employee gets paid regardless. To prevent them from slacking (shirking), the firm must hire supervisors, and supervisors for the supervisors, creating bureaucratic drag that eventually outweighs the benefits of size.",
+   "lo": null,
+   "n": 22
+  },
+  {
+   "set": null,
+   "stem": "Which of the following is a \"Principal\" in a public corporation?",
+   "options": {
+    "A": "The CEO.",
+    "B": "The Shareholder.",
+    "C": "The Board of Directors.",
+    "D": "The Division Manager."
+   },
+   "answer": "B",
+   "explanation": "In Agency Theory, the Shareholder is the Principal (the owner of the asset). The CEO/Managers are the Agents (hired to run the asset). The Board of Directors acts as an intermediary monitor, but the ultimate Principal is the shareholder.",
+   "lo": null,
+   "n": 23
+  },
+  {
+   "set": null,
+   "stem": "Which of the following scenarios best illustrates \"Forward Vertical Integration\"?",
+   "options": {
+    "A": "A coffee chain buying a coffee bean plantation.",
+    "B": "A clothing retailer launching a house-brand line of jeans.",
+    "C": "A movie studio launching a streaming service to reach viewers directly.",
+    "D": "A car manufacturer buying a steel mill."
+   },
+   "answer": "C",
+   "explanation": "Forward integration means moving downstream toward the end consumer. A studio (content creator) moving into streaming (distribution to consumer) is moving forward. Options A, C, and D represent Backward integration (moving upstream toward inputs/raw materials). Note: C is backward because the retailer (downstream) is moving into manufacturing (upstream).",
+   "lo": null,
+   "n": 24
+  },
+  {
+   "set": null,
+   "stem": "Which strategic move represents \"Backward Vertical Integration\" for Netflix?",
+   "options": {
+    "A": "Partnering with ISPs to speed up streaming.",
+    "B": "increasing subscription prices.",
+    "C": "Creating \"Netflix Originals\" (House of Cards, Stranger Things).",
+    "D": "Expanding into the video game market."
+   },
+   "answer": "C",
+   "explanation": "Netflix is primarily a distributor (downstream). The \"input\" for a streaming service is content. By producing its own shows, Netflix moved upstream to own the production of the input. Option D is diversification. Option A is an alliance.",
+   "lo": null,
+   "n": 25
+  },
+  {
+   "set": null,
+   "stem": "Why do institutional voids in emerging economies often make \"Unrelated Diversification\" (Conglomerates) a viable strategy there, despite it being inefficient in developed markets?",
+   "options": {
+    "A": "Emerging economies have stricter antitrust laws.",
+    "B": "Transaction costs are generally lower in emerging economies.",
+    "C": "Conglomerates can act as their own internal capital and labor market, compensating for the lack of efficient external banking and labor systems.",
+    "D": "Emerging economies prefer foreign brands over local ones."
+   },
+   "answer": "C",
+   "explanation": "In developed markets, you don't need a conglomerate to allocate capital; banks and stock markets do it efficiently. In emerging markets (e.g., Tata in India), these external institutions may be weak or missing (\"voids\"). The conglomerate adds value by creating an internal ecosystem of trust, capital allocation, and talent training that the external market cannot provide. SET B: Strategic Application & Scenario Analysis Instructions: These questions present complex scenarios. You must act as the strategist to determine the correct course of action based on Chapter 8 concepts.",
+   "lo": null,
+   "n": 26
+  },
+  {
+   "set": null,
+   "stem": "Why does \"Asset Specificity\" typically lead to market failure (requiring vertical integration)?",
+   "options": {
+    "A": "It creates a situation of \"bilateral monopoly\" where both buyer and seller are locked in, allowing the supplier to threaten \"holdup\" to extract profits.",
+    "B": "It reduces the complexity of the contract.",
+    "C": "It increases the number of available suppliers.",
+    "D": "It ensures that information is perfectly symmetrical."
+   },
+   "answer": "A",
+   "explanation": "If a supplier buys a machine that only makes parts for YOU (Asset Specificity), they are trapped. If YOU need a part that only that supplier can make, you are trapped. This mutual dependency (bilateral monopoly) creates immense risk. If the market conditions change, one party can exploit the other's inability to switch partners (\"Holdup\"). Integration eliminates this adversarial dynamic.",
+   "lo": null,
+   "n": 27
+  },
+  {
+   "set": null,
+   "stem": "Why does the \"Smiley Curve\" suggest that companies like Apple outsource Stage 2 (Manufacturing) and Stage 3 (Assembly) while keeping Stage 1 (Design) and Stage 4 (Sales) in-house?",
+   "options": {
+    "A": "Manufacturing has the highest barriers to entry.",
+    "B": "Apple lacks the financial capital to build factories.",
+    "C": "Manufacturing and Assembly have become commoditized with thin profit margins, whereas Design and Branding capture the vast majority of value added.",
+    "D": "Transaction costs for Design are lower in the market than in-house."
+   },
+   "answer": "C",
+   "explanation": "The Smiley Curve illustrates that the highest value-add occurs at the beginning (R&D/Design) and end (Marketing/Service) of the value chain. The middle stages (Manufacturing) are often commoditized, labor-intensive, and low-margin. Apple outsources the low-margin work to Foxconn to focus capital on the high-margin intellectual property and brand equity.",
+   "lo": null,
+   "n": 28
+  },
+  {
+   "set": null,
+   "stem": "Why is \"Taper Integration\" often considered less risky than \"Full Integration\"?",
+   "options": {
+    "A": "It allows the firm to rely solely on external markets.",
+    "B": "It maintains flexibility; if demand drops, the firm can cut orders to external suppliers while keeping internal factories running, or vice versa.",
+    "C": "It prevents the firm from learning new technologies.",
+    "D": "It requires zero capital investment."
+   },
+   "answer": "B",
+   "explanation": "Taper integration provides a volume buffer. In a downturn, the firm protects its internal assets (keeping them at full capacity) and cuts external buy orders. In an upturn, it can use external vendors to handle the surge without committing to building a new factory. It also keeps internal teams competitive by forcing them to benchmark against outside vendors.",
+   "lo": null,
+   "n": 29
+  },
+  {
+   "set": null,
+   "stem": "Why might a Principal-Agent problem specifically drive a firm toward Unrelated Diversification (Conglomerate) even when it destroys shareholder value?",
+   "options": {
+    "A": "Transaction Cost Economics dictates that unrelated diversification minimizes search costs.",
+    "B": "Managers (Agents) may pursue diversification to increase firm size, which correlates with executive compensation and prestige (Empire Building), and to reduce their own employment risk, even if it reduces efficiency.",
+    "C": "Unrelated diversification creates the highest economies of scale, benefitting shareholders.",
+    "D": "Shareholders (Principals) prefer unrelated diversification because it concentrates risk in a single industry."
+   },
+   "answer": "B",
+   "explanation": "This links corporate strategy to behavioral economics. Managers often pursue growth for personal utility (pay, prestige, job security) rather than shareholder value. Diversifying makes the firm harder to kill (reducing manager risk) and larger (increasing manager pay), even if the \"Conglomerate Discount\" hurts the stock price.",
+   "lo": null,
+   "n": 30
+  }
+ ]
+}

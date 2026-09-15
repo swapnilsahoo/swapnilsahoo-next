@@ -1,0 +1,2809 @@
+{
+ "sessionId": "2yr-20",
+ "course": "2-year-mba",
+ "sessionNumber": 20,
+ "title": "Corporate Governance Business Ethics Business Models",
+ "questionCount": 200,
+ "questions": [
+  {
+   "set": "A",
+   "stem": "A CEO cuts next‑gen R&D in Q4 to hit earnings and trigger a personal bonus, harming long‑term viability. This is best read as:",
+   "options": {
+    "A": "An agency cost driven by misaligned incentives, where short‑term payoffs induce decisions that reduce long‑term value, as stated here.",
+    "B": "A long‑tail strategy, where small sales across many niche products replace blockbuster returns in innovation spending, as stated here.",
+    "C": "An adverse selection problem, where investors cannot observe capability and therefore hire an unqualified CEO initially, as stated here.",
+    "D": "A thin market problem, where too few buyers exist for R&D outputs to justify continued investment and talent hiring."
+   },
+   "answer": "A",
+   "explanation": "This matches the classic agency-cost logic highlighted in the course simulation: incentive contracts tied to short-term results can induce managerial short‑termism. It is not adverse selection (pre‑hire screening), nor a demand-side niche strategy for product variety.",
+   "lo": null,
+   "n": 1
+  },
+  {
+   "set": "A",
+   "stem": "A bank officer issues unauthorized guarantees for kickbacks after the loan relationship is in place. Which agency label fits best?",
+   "options": {
+    "A": "Winner’s curse, because overpaying in a takeover leads to value destruction after the acquisition closes, as stated here.",
+    "B": "Adverse selection, because hidden information before contracting causes the principal to select a low-quality agent, as stated here.",
+    "C": "Bundling, because combining products increases willingness to pay when preferences are negatively correlated, for this case, in practice.",
+    "D": "Moral hazard, because hidden action after contracting increases risk borne by the principal while the agent benefits, overall."
+   },
+   "answer": "D",
+   "explanation": "The course page treats the PNB/Nirav Modi episode as moral hazard: hidden action after contracting, where the agent takes risks or commits misconduct while the principal bears losses. Adverse selection is pre-contract. The other options belong to M&A or business models.",
+   "lo": null,
+   "n": 2
+  },
+  {
+   "set": "A",
+   "stem": "A board wants to reduce information asymmetry without becoming an operating committee. Which action best fits that goal?",
+   "options": {
+    "A": "Eliminate all variable pay so managers have no incentive to manipulate targets, relying solely on fixed salaries for alignment.",
+    "B": "Outsource governance to rating agencies and analysts, because external scrutiny can fully substitute for internal oversight, as stated here.",
+    "C": "Replace senior managers with directors as interim operators until all operational processes are fully stabilized and standardized, in practice.",
+    "D": "Require standardized reporting dashboards and independent internal audits while keeping day‑to‑day decisions with management, in practice, as stated here."
+   },
+   "answer": "D",
+   "explanation": "The governance challenge is to monitor without micromanaging: standardized reporting and independent assurance can reduce asymmetry while preserving managerial responsibility. The other options either overreach into operations or assume incentives/externals alone solve agency issues.",
+   "lo": null,
+   "n": 3
+  },
+  {
+   "set": "A",
+   "stem": "A candidate oversells expertise in AI safety tooling during recruitment and is hired. Which agency problem is most directly illustrated?",
+   "options": {
+    "A": "Winner’s curse: the firm overpays in a takeover because it misestimates post-deal synergies.",
+    "B": "Moral hazard: the hired agent can do the work but chooses to shirk effort once employed.",
+    "C": "Thin markets: too few buyers and sellers exist to match supply and demand in time and space.",
+    "D": "Adverse selection: information asymmetry raises the chance of selecting an inferior alternative."
+   },
+   "answer": "D",
+   "explanation": "",
+   "lo": null,
+   "n": 4
+  },
+  {
+   "set": "A",
+   "stem": "A company creates a ‘values poster’ but keeps incentive metrics that reward rule-bending. Which diagnosis is most consistent with the chapter?",
+   "options": {
+    "A": "Governance and ethics are intertwined; without aligned incentives and controls, stated values become cosmetic rather than internalized, as described, in practice.",
+    "B": "Values posters substitute for monitoring, because norms automatically prevent misconduct when written clearly and displayed prominently, on balance, as stated here.",
+    "C": "Compliance is identical to ethics, so as long as rules are technically followed the incentive structure is irrelevant in practice, overall.",
+    "D": "Ethics depends only on individual virtue, so incentives and controls do not affect behavior and cannot be part of the diagnosis."
+   },
+   "answer": "A",
+   "explanation": "The chapter argues that ethical culture and governance controls must reinforce each other; misaligned incentives can create a ‘bad barrel’ even with lofty slogans.",
+   "lo": null,
+   "n": 5
+  },
+  {
+   "set": "A",
+   "stem": "A company sells a device near cost but earns margins on proprietary replacement consumables. Which model is most accurate?",
+   "options": {
+    "A": "Razor–razor blades, because the initial product stimulates demand for profitable complementary replacements.",
+    "B": "Agency, because an intermediary sells on commission while the producer sets a controlled retail price.",
+    "C": "Wholesale, because the producer sells to retailers at a fixed discount from recommended price.",
+    "D": "Bundling, because multiple products with negatively correlated demand are sold together at discount."
+   },
+   "answer": "A",
+   "explanation": "",
+   "lo": null,
+   "n": 6
+  },
+  {
+   "set": "A",
+   "stem": "A firm’s board approves the annual budget and evaluates the CEO’s performance. This is best understood as:",
+   "options": {
+    "A": "A substitute for external regulation, because once budgets are approved regulators no longer oversee listed firms in practice.",
+    "B": "A central internal governance mechanism that directs and controls the enterprise while leaving daily operations to management, overall.",
+    "C": "A business model choice, because budgeting is primarily about pricing tactics and customer segmentation rather than oversight, overall.",
+    "D": "A market-for-control function, because budget approval is the same as initiating hostile takeovers to discipline managers, in practice."
+   },
+   "answer": "B",
+   "explanation": "The textbook describes the board as a key internal governance mechanism: it oversees the company broadly, approves major plans such as budgets, and monitors the CEO, while managers run operations.",
+   "lo": null,
+   "n": 7
+  },
+  {
+   "set": "A",
+   "stem": "A founder hides that a flagship demo is nonfunctional until after investors commit funds. Which agency problem label fits best?",
+   "options": {
+    "A": "Moral hazard, because hidden action after contracting shifts risk to principals while agents enjoy upside, as stated here.",
+    "B": "Adverse selection, because hidden information before contracting causes principals to buy a ‘lemon’ asset, in practice, in practice.",
+    "C": "Perquisite consumption, because managers misuse resources on private benefits rather than firm objectives, for this case, in practice.",
+    "D": "Thin markets, because too few buyers and sellers exist to match supply and demand at scale, in practice."
+   },
+   "answer": "B",
+   "explanation": "Adverse selection is the hidden-information problem that occurs before the transaction. The Nikola example on the course page illustrates investors buying a ‘lemon’ due to concealed facts. Moral hazard is post-contract hidden action, not pre-contract concealment.",
+   "lo": null,
+   "n": 8
+  },
+  {
+   "set": "A",
+   "stem": "A founder insists on secrecy and restricts internal data access to a tiny group, claiming it protects IP. Which governance concern is primary?",
+   "options": {
+    "A": "Information asymmetry rises, weakening monitoring and increasing the chance that bad news is delayed, distorted, or suppressed, overall.",
+    "B": "Threat of substitutes rises, because secrecy signals weak differentiation and invites entry with alternative technologies, as stated here.",
+    "C": "Rivalry rises, because secrecy always triggers price wars as competitors respond to uncertainty with aggressive discounting, in practice.",
+    "D": "Supplier power rises, because secrecy reduces the firm’s bargaining position and automatically increases input prices, as stated here."
+   },
+   "answer": "A",
+   "explanation": "Restricting information access can heighten information asymmetry between agents and principals, degrading monitoring—central to agency theory. The other answers shift into five forces rather than governance.",
+   "lo": null,
+   "n": 9
+  },
+  {
+   "set": "A",
+   "stem": "A founder recruits a board mostly for prestige and fundraising access, not for oversight capacity. Which agency risk rises most?",
+   "options": {
+    "A": "Lower transaction costs in takeovers, because prestige boards attract acquirers and remove the need for premiums entirely, overall.",
+    "B": "Underinvestment in marketing, because prestige directors typically demand higher advertising spend that crowds out brand building, in practice.",
+    "C": "Managerial entrenchment and weak monitoring, because symbolic directors may lack time, expertise, or independence to challenge claims, overall.",
+    "D": "Improved disclosure quality, because prestige directors increase transparency incentives to protect their reputations automatically, in practice, in practice."
+   },
+   "answer": "C",
+   "explanation": "A prestige-heavy board can become ineffective at oversight, increasing agency costs under information asymmetry—an issue highlighted by the Theranos-style pattern of high-profile boards without relevant monitoring depth.",
+   "lo": null,
+   "n": 10
+  },
+  {
+   "set": "A",
+   "stem": "A listed firm adopts a provision allowing existing shareholders to buy extra shares cheaply once an acquirer crosses a threshold. What is it?",
+   "options": {
+    "A": "A poison pill, because dilution makes a hostile takeover materially more expensive for the bidder.",
+    "B": "A thin-market fix, because search frictions fall when transaction costs approach near zero.",
+    "C": "A subscription model, because access is sold for a time period irrespective of usage volume.",
+    "D": "A leveraged buyout, because debt financing enables taking the firm private through share purchase."
+   },
+   "answer": "A",
+   "explanation": "",
+   "lo": null,
+   "n": 11
+  },
+  {
+   "set": "A",
+   "stem": "A manager argues: “If data collection is legal, it is ethical.” Which reply best reflects the ethics discussion?",
+   "options": {
+    "A": "Legality is a minimum; actions can be lawful yet ethically questionable under societal norms.",
+    "B": "Legality is irrelevant; any profitable tactic is ethical if it increases shareholder returns quickly.",
+    "C": "Legality is identical to fairness; therefore legal compliance guarantees reciprocity and honesty.",
+    "D": "Legality is sufficient; ethics is only a personal preference and not a business-relevant standard."
+   },
+   "answer": "A",
+   "explanation": "",
+   "lo": null,
+   "n": 12
+  },
+  {
+   "set": "A",
+   "stem": "A platform sells countless niche digital items; each sells rarely, but collectively they generate substantial revenue. Which concept fits best?",
+   "options": {
+    "A": "Short head, because most revenue comes from a few blockbuster hits supported by heavy marketing budgets.",
+    "B": "Long tail, because near-zero marginal cost and good search aggregate many low-volume items into large sales.",
+    "C": "Adverse selection, because agents misrepresent capabilities during recruitment and screening processes.",
+    "D": "Winner’s curse, because paying a premium for an acquisition destroys value after deal completion."
+   },
+   "answer": "B",
+   "explanation": "",
+   "lo": null,
+   "n": 13
+  },
+  {
+   "set": "A",
+   "stem": "A private-equity sponsor buys all outstanding shares using borrowed money secured by the target’s assets and delists the company. This is:",
+   "options": {
+    "A": "An agency model, because a retailer sells at commission while the producer controls retail pricing.",
+    "B": "A poison pill, because shareholders can buy discounted shares once ownership crosses a threshold.",
+    "C": "A leveraged buyout, because leverage is used to purchase shares and shift ownership from public to private.",
+    "D": "A long-tail strategy, because niche products with low unit sales accumulate into large revenue."
+   },
+   "answer": "C",
+   "explanation": "",
+   "lo": null,
+   "n": 14
+  },
+  {
+   "set": "A",
+   "stem": "A product offers a basic tier free and charges for advanced features and support. Which business model is the closest match?",
+   "options": {
+    "A": "Subscription, because all users pay regardless of usage during the access period by default.",
+    "B": "Wholesale, because retailers set their own prices and profit from the publisher’s fixed discount.",
+    "C": "Agency, because a retailer sells at a commission while the producer controls price strictly.",
+    "D": "Freemium, because a zero-price base expands adoption while premium features monetize power users."
+   },
+   "answer": "D",
+   "explanation": "",
+   "lo": null,
+   "n": 15
+  },
+  {
+   "set": "A",
+   "stem": "A research scientist uses company compute for a personal side venture while meeting minimal assigned outputs. Which pairing is best?",
+   "options": {
+    "A": "Thin markets plus better search, because the scientist cannot find collaborators without a platform.",
+    "B": "Winner’s curse plus takeover defenses, because the firm is at risk of being acquired at a premium.",
+    "C": "Moral hazard plus stronger monitoring of effort and resource use, because actions are hidden after contracting.",
+    "D": "Adverse selection plus stricter background checks, because the true capability was hidden before contracting."
+   },
+   "answer": "C",
+   "explanation": "",
+   "lo": null,
+   "n": 16
+  },
+  {
+   "set": "A",
+   "stem": "A startup claims ‘everyone exaggerates early metrics’ to justify selective reporting that misleads investors. Which distinction is most central?",
+   "options": {
+    "A": "Ethics is only personal morality, so corporate disclosures are outside ethics and belong only to finance and regulation fields, as framed, in practice.",
+    "B": "Fraud requires direct physical harm, so misleading financial or product claims cannot be fraud without patient injuries, as described, in this context, overall.",
+    "C": "Legal compliance is a minimum standard; conduct can be legal yet unethical, and deception can cross into fraud when material facts are hidden.",
+    "D": "Ethics and law are identical standards, so if the startup avoids prosecution the practice is necessarily ethically acceptable, in the scenario, in practice."
+   },
+   "answer": "C",
+   "explanation": "Both the textbook and course page emphasize that ethics is broader than law, and that misrepresentation of material information can become criminal fraud even when actors rationalize it as ‘startup storytelling.’",
+   "lo": null,
+   "n": 17
+  },
+  {
+   "set": "A",
+   "stem": "Agency theory describes the firm primarily as which type of entity?",
+   "options": {
+    "A": "A social community in which values alone eliminate opportunism, making formal monitoring mechanisms unnecessary, in practice, in practice.",
+    "B": "A production function in which scale efficiencies guarantee alignment because profits automatically discipline agents, in practice, in practice.",
+    "C": "A nexus of legal contracts that must manage conflicts of interest through monitoring and incentive alignment, in practice.",
+    "D": "A political arena in which regulators set strategy, leaving boards to execute rules rather than oversee managers, overall."
+   },
+   "answer": "C",
+   "explanation": "The textbook explicitly frames agency theory as viewing the firm as a nexus of legal contracts, with governance mechanisms needed to align principals and agents. Culture matters, but agency theory does not claim culture alone eliminates opportunism.",
+   "lo": null,
+   "n": 18
+  },
+  {
+   "set": "A",
+   "stem": "An executive argues: ‘Because our incentive plan uses stock options, agency problems disappear.’ Which correction is most accurate?",
+   "options": {
+    "A": "Stock-based pay can align interests, but it can also intensify short-termism or risk-taking if metrics and vesting horizons are poorly designed.",
+    "B": "Stock-based pay guarantees honesty, because market prices instantly reflect true performance and punish misreporting quickly, overall, as described, as stated here.",
+    "C": "Stock-based pay is irrelevant, because agency problems exist only between employees and customers rather than owners and managers, as stated here.",
+    "D": "Stock-based pay causes adverse selection, because investors cannot observe effort and therefore must overpay for equity compensation, as described, in practice."
+   },
+   "answer": "A",
+   "explanation": "The course page flags CEO compensation divergence and the textbook treats incentives as helpful but imperfect: design matters, and stock-based pay can still create distortions, especially with short horizons.",
+   "lo": null,
+   "n": 19
+  },
+  {
+   "set": "A",
+   "stem": "If a board wants to reduce opportunistic ‘asset grabbing’ by key employees, which control is most directly relevant?",
+   "options": {
+    "A": "A shift to hostile takeover defenses, because poison pills deter acquirers and therefore deter employee misappropriation of IP.",
+    "B": "Stronger access controls and monitoring over critical proprietary assets, paired with clear sanctions and enforcement mechanisms, in practice.",
+    "C": "A shift to bundling unrelated services, because bundling increases customer switching costs and therefore deters employee theft, overall.",
+    "D": "A shift to long-tail assortment, because selling niche products reduces competition and therefore eliminates opportunistic behavior, in practice."
+   },
+   "answer": "B",
+   "explanation": "Asset misappropriation is a governance and control issue: access controls, monitoring, and credible enforcement reduce opportunity. The other options confuse governance controls with customer pricing or takeover defenses.",
+   "lo": null,
+   "n": 20
+  },
+  {
+   "set": "A",
+   "stem": "In Caselet A, which statement most precisely frames the core principal–agent tension?",
+   "options": {
+    "A": "Customers delegate model auditing to vendors who may privilege speed over evaluative accuracy.",
+    "B": "Investors delegate scientific oversight to regulators who may privilege disclosure over safety duties.",
+    "C": "A nonprofit board delegates operating control to executives who may privilege scale over mission.",
+    "D": "Executives delegate legal ownership to employees who may privilege mission over revenue targets."
+   },
+   "answer": "C",
+   "explanation": "",
+   "lo": null,
+   "n": 21
+  },
+  {
+   "set": "A",
+   "stem": "In a hierarchy, the principal–agent problem ‘cascades’ most accurately because:",
+   "options": {
+    "A": "Only CEOs are agents, while all other employees are principals because they control day‑to‑day decisions and information flows, overall.",
+    "B": "Each manager is both an agent to superiors and a principal to subordinates, creating layered incentive and monitoring challenges.",
+    "C": "Shareholders directly manage employees through stock markets, so the cascade is mainly an illusion in modern corporations, in practice.",
+    "D": "Regulators act as principals to boards, so the cascade runs from government to directors to shareholders to employees, overall."
+   },
+   "answer": "B",
+   "explanation": "The textbook notes that principal–agent issues extend beyond shareholders and CEOs: managers at each level delegate and monitor, creating cascading agency problems through the hierarchy.",
+   "lo": null,
+   "n": 22
+  },
+  {
+   "set": "A",
+   "stem": "In a high-pressure product culture, leaders quietly reward those who bypass safety reviews. Which diagnosis best fits the chapter’s logic?",
+   "options": {
+    "A": "A bad barrel: organizational context and leadership cues normalize unethical choices beyond a few individuals.",
+    "B": "A thin market: safety reviewers and product teams cannot find each other, so corners are cut structurally.",
+    "C": "A bad apple: a few rogue engineers are sufficient explanation if the mission statement mentions integrity.",
+    "D": "A long tail: many small ethical violations accumulate, so the system becomes profitable but less popular."
+   },
+   "answer": "A",
+   "explanation": "",
+   "lo": null,
+   "n": 23
+  },
+  {
+   "set": "A",
+   "stem": "In a public stock company, which ‘first-principles’ contract best explains why a board exists at all?",
+   "options": {
+    "A": "A state charter grants limited liability; shareholders elect a board that then hires and monitors executives, in practice.",
+    "B": "A supplier contract grants financing; suppliers elect the board to secure repayment and set executive pay, in practice.",
+    "C": "A CEO contract mandates quarterly growth; analysts enforce it, and employees elect a board to meet targets, overall.",
+    "D": "A consumer contract guarantees refunds; customers elect the board to oversee product and marketing claims, as stated here."
+   },
+   "answer": "A",
+   "explanation": "The course page frames the corporation around a state charter and limited liability, after which shareholders elect a board to hire and monitor top management. The other options misplace who elects the board and confuse governance with contracts for performance, suppliers, or refunds.",
+   "lo": null,
+   "n": 24
+  },
+  {
+   "set": "A",
+   "stem": "In the Waymo–Uber episode, which governance failure is most directly illustrated?",
+   "options": {
+    "A": "Market for corporate control failure because hostile takeover defenses blocked a merger that would have prevented theft, overall.",
+    "B": "Adverse selection by principals choosing a bad technology platform because network effects hid quality differences pre‑deal, in practice.",
+    "C": "Moral hazard by a rogue agent exploiting access to proprietary assets once trusted, absent sufficient monitoring and controls.",
+    "D": "Bad‑barrel culture because every employee was forced to cheat, making individual choice largely irrelevant throughout, as stated here."
+   },
+   "answer": "C",
+   "explanation": "The course page frames the case as moral hazard: hidden action after trust is granted, where an agent exploits assets for personal gain. It is not adverse selection, takeover defenses, or a ‘everyone cheats’ systemic-pressure story.",
+   "lo": null,
+   "n": 25
+  },
+  {
+   "set": "A",
+   "stem": "In the business-model framework, which prompt corresponds most directly to revenue and cost logic?",
+   "options": {
+    "A": "What activities must be performed to create and deliver offerings to customers reliably?",
+    "B": "How are activities linked and sequenced so the offering is created and delivered consistently?",
+    "C": "Who are the key stakeholders performing the activities that deliver the offerings end to end?",
+    "D": "Why does the model create value, in terms of revenue streams and cost structure?"
+   },
+   "answer": "D",
+   "explanation": "",
+   "lo": null,
+   "n": 26
+  },
+  {
+   "set": "A",
+   "stem": "In the business-model framework, which prompt is most about assigning roles across partners, suppliers, and internal teams?",
+   "options": {
+    "A": "Who are the main stakeholders performing the activities that enable the offering?",
+    "B": "Why does the offering create value, given pricing, volume, and unit economics constraints?",
+    "C": "How are activities linked to create the offering across time, geography, and interfaces?",
+    "D": "What activities are required to produce the offering and ensure customer experience quality?"
+   },
+   "answer": "A",
+   "explanation": "",
+   "lo": null,
+   "n": 27
+  },
+  {
+   "set": "A",
+   "stem": "In the business-model framework, which prompt is most about the architecture that connects activities into a system?",
+   "options": {
+    "A": "What activities must be performed to create and deliver the offering with reliable service levels?",
+    "B": "Who are the core stakeholders performing activities, from suppliers through customers and partners?",
+    "C": "Why does the model create value through its combined revenue design and cost structure choices?",
+    "D": "How are the offerings created by linking activities across teams, partners, and technologies?"
+   },
+   "answer": "D",
+   "explanation": "",
+   "lo": null,
+   "n": 28
+  },
+  {
+   "set": "A",
+   "stem": "In the same framework, which prompt targets the concrete work that must happen to deliver the offering?",
+   "options": {
+    "A": "What activities need to be performed to create and deliver the offering to customers?",
+    "B": "How are the activities linked so that delivery quality remains consistent at scale?",
+    "C": "Who are the stakeholders that execute and govern the activities across the value system?",
+    "D": "Why does the business model create value, considering its revenue and cost architecture?"
+   },
+   "answer": "A",
+   "explanation": "",
+   "lo": null,
+   "n": 29
+  },
+  {
+   "set": "A",
+   "stem": "Microsoft’s nonvoting observer seat on the board is best interpreted as which governance move?",
+   "options": {
+    "A": "A leveraged-buyout mechanism that shifts ownership from dispersed shareholders to a private sponsor.",
+    "B": "A hybrid monitoring device that increases oversight without transferring formal board voting authority.",
+    "C": "A poison-pill provision that automatically dilutes a hostile acquirer once ownership crosses a threshold.",
+    "D": "A GAAP-based disclosure requirement that standardizes reporting and reduces accounting discretion."
+   },
+   "answer": "B",
+   "explanation": "",
+   "lo": null,
+   "n": 30
+  },
+  {
+   "set": "A",
+   "stem": "Suppose executives’ bonuses are tied only to short-term user growth. Which risk is most consistent with the CEO-pay discussion?",
+   "options": {
+    "A": "Incentives resolve adverse selection because candidates self-sort perfectly into high-fit roles.",
+    "B": "Incentives can reinforce short-termism at the expense of long-term viability and ethical risk control.",
+    "C": "Incentives eliminate moral hazard because agents internalize all costs of risky strategic decisions.",
+    "D": "Incentives prevent information asymmetry because principals can observe effort through outcomes."
+   },
+   "answer": "B",
+   "explanation": "",
+   "lo": null,
+   "n": 31
+  },
+  {
+   "set": "A",
+   "stem": "Users pay only for compute consumed, billed per unit of usage. Which business model is the best fit?",
+   "options": {
+    "A": "Ultra-low cost, because the firm minimizes service and sells upgrades at premium add-ons.",
+    "B": "Bundling, because negatively correlated demands are combined and sold at a discount price.",
+    "C": "Pay-as-you-go, because charges scale with actual consumption rather than fixed access terms.",
+    "D": "Subscription, because users buy access for a period regardless of whether they consume much."
+   },
+   "answer": "C",
+   "explanation": "",
+   "lo": null,
+   "n": 32
+  },
+  {
+   "set": "A",
+   "stem": "When a CEO also serves as chair of the board, the most precise governance concern is:",
+   "options": {
+    "A": "Reduced board independence because agenda-setting and evaluation power concentrates, weakening oversight of the top agent, as stated here.",
+    "B": "Reduced managerial initiative because separation of roles is required for speedy decision making and market responsiveness, in practice.",
+    "C": "Reduced audit quality because CEO-chair duality legally blocks independent auditors from issuing unqualified opinions, in practice, in practice.",
+    "D": "Reduced market competition because duality automatically triggers antitrust concerns in concentrated industries, as stated here, as stated here."
+   },
+   "answer": "A",
+   "explanation": "CEO-chair duality can weaken oversight by consolidating leadership and monitoring roles in one individual. The other options incorrectly link duality to legal audit prohibitions or market structure effects.",
+   "lo": null,
+   "n": 33
+  },
+  {
+   "set": "A",
+   "stem": "When a board is ‘captured’ by a powerful founder, which remedy most directly increases independent oversight without removing expertise?",
+   "options": {
+    "A": "Stop using audits to avoid creating fear, because psychological safety is enough to prevent manipulation and misreporting, overall.",
+    "B": "Replace all outside directors with insiders to increase coordination and reduce dissent that slows rapid market entry, overall.",
+    "C": "Shift to a pure freemium model so customer growth substitutes for governance credibility in capital markets and regulation.",
+    "D": "Add independent outside directors with relevant expertise and empower them through committee leadership and agenda rights, in practice."
+   },
+   "answer": "D",
+   "explanation": "Capture reduces oversight; adding independent expertise and real authority strengthens monitoring while preserving domain knowledge. The other options either worsen capture, remove assurance, or confuse governance with business models.",
+   "lo": null,
+   "n": 34
+  },
+  {
+   "set": "A",
+   "stem": "Which board and leadership action most directly supports an ethical climate consistent with the chapter’s recommendations?",
+   "options": {
+    "A": "Outsource ethics to external auditors and remove internal codes to avoid conflicting standards.",
+    "B": "Publish a values poster while keeping performance targets unrealistic to maintain competitive pressure.",
+    "C": "Focus only on legal compliance and avoid discussing broader norms to reduce employee ambiguity.",
+    "D": "Align formal values with informal rewards and set achievable goals that can be met with legal means."
+   },
+   "answer": "D",
+   "explanation": "",
+   "lo": null,
+   "n": 35
+  },
+  {
+   "set": "A",
+   "stem": "Which board composition is most likely to strengthen monitoring in a high‑uncertainty startup with charismatic leadership?",
+   "options": {
+    "A": "A board composed mainly of major suppliers, because suppliers face the highest risk and therefore monitor best, as stated here.",
+    "B": "A majority of inside directors drawn from top management to maximize information flow and ensure unified decision making, in practice.",
+    "C": "A majority of independent outside directors with relevant domain expertise and the authority to challenge management claims, as stated here.",
+    "D": "A board dominated by celebrity outsiders who expand access to capital even if they lack time to study operating details."
+   },
+   "answer": "C",
+   "explanation": "The chapter treats the board as the central internal governance mechanism for public firms and emphasizes monitoring and oversight. Independent outside directors can challenge management and reduce capture, particularly when information asymmetry and charisma are high.",
+   "lo": null,
+   "n": 36
+  },
+  {
+   "set": "A",
+   "stem": "Which concern is most specific to CEO-chairperson duality as discussed in the governance section?",
+   "options": {
+    "A": "The chair can shape agendas and director selection, weakening the board’s ability to evaluate the CEO.",
+    "B": "The chair’s role is to negotiate supplier contracts, creating operational micromanagement by directors.",
+    "C": "The chair must be an outside director, which eliminates internal information flows to the board.",
+    "D": "The chair’s role is primarily to file SEC documents, creating disclosure overload and slow decisions."
+   },
+   "answer": "A",
+   "explanation": "",
+   "lo": null,
+   "n": 37
+  },
+  {
+   "set": "A",
+   "stem": "Which condition in Caselet A most amplifies the risk of managerial opportunism in agency theory terms?",
+   "options": {
+    "A": "Analysts and auditors can scrutinize SEC filings and reduce misreporting through disclosure pressure.",
+    "B": "Activist investors can buy shares cheaply after price drops and threaten takeover discipline quickly.",
+    "C": "Managers hold time-sensitive private partnership information before boards and outsiders can verify it.",
+    "D": "Shareholders differ in horizons, causing heterogeneous goals that boards must aggregate imperfectly."
+   },
+   "answer": "C",
+   "explanation": "",
+   "lo": null,
+   "n": 38
+  },
+  {
+   "set": "A",
+   "stem": "Which decision most clearly belongs to directors (as directors) rather than to managers (as managers) under this chapter’s description?",
+   "options": {
+    "A": "Negotiating individual supplier delivery schedules and optimizing warehouse picking routes to reduce unit costs and spoilage, in practice.",
+    "B": "Designing product features and sprint priorities for the next release to maximize user engagement and retention in practice.",
+    "C": "Evaluating and, if necessary, replacing the CEO when performance or integrity failures threaten strategic goals and legality, overall.",
+    "D": "Choosing daily discount levels for each city to match competitor pricing and stabilize conversion rates in short windows."
+   },
+   "answer": "C",
+   "explanation": "The chapter assigns the board oversight responsibilities: monitoring the CEO and ensuring strategic goals are pursued legally. Operational and product decisions belong to management.",
+   "lo": null,
+   "n": 39
+  },
+  {
+   "set": "A",
+   "stem": "Which example best reflects ‘on‑the‑job consumption’ as an agency cost rather than adverse selection or moral hazard?",
+   "options": {
+    "A": "A platform fails because few users exist on each side, preventing efficient matching between buyers and sellers, overall.",
+    "B": "A founder misrepresents product functionality before fundraising, causing investors to buy a low-quality asset, in practice, in practice.",
+    "C": "Senior managers charge lavish personal travel and entertainment to the firm, reducing shareholder value without improving strategy, overall.",
+    "D": "Traders increase leverage after receiving guarantees that losses will be socialized, while bonus upside stays private, in practice."
+   },
+   "answer": "C",
+   "explanation": "On-the-job consumption refers to perquisites and private benefits extracted by agents. The other options are adverse selection, moral hazard, or thin-market dynamics.",
+   "lo": null,
+   "n": 40
+  },
+  {
+   "set": "A",
+   "stem": "Which governance lever most directly represents the external ‘market for corporate control’ as described?",
+   "options": {
+    "A": "Stock options align incentives by letting executives buy shares at a predetermined strike price later.",
+    "B": "Inside directors provide operational information and help the board understand internal performance limits.",
+    "C": "Activist investors accumulate shares to gain control and replace management in an underperforming firm.",
+    "D": "Boards approve budgets and oversee stakeholder relations while CEOs manage day-to-day operations."
+   },
+   "answer": "C",
+   "explanation": "",
+   "lo": null,
+   "n": 41
+  },
+  {
+   "set": "A",
+   "stem": "Which governance response is most directly aimed at reducing adverse selection in hiring rather than moral hazard in performance?",
+   "options": {
+    "A": "Installing continuous monitoring systems, such as audits and dashboards, to detect hidden actions and misreporting after hiring, as stated here.",
+    "B": "Strengthening screening and verification before contracting, such as reference checks, skill tests, and independent credential validation, on balance, in practice.",
+    "C": "Linking compensation to long-term outcomes, such as deferred equity vesting, so managers internalize future downside risks, on balance, in practice.",
+    "D": "Designing a poison pill, such as share dilution triggers, to deter hostile bidders from acquiring the firm at a premium."
+   },
+   "answer": "B",
+   "explanation": "Adverse selection is pre-contract hidden information; screening before hiring targets it. The other actions address moral hazard or takeovers, not pre-hire selection.",
+   "lo": null,
+   "n": 42
+  },
+  {
+   "set": "A",
+   "stem": "Which pairing is correctly matched to the timing of the underlying agency problem?",
+   "options": {
+    "A": "Adverse selection: after the transaction; moral hazard: before the transaction, when screening is incomplete, in practice, in practice.",
+    "B": "Adverse selection: before the transaction; moral hazard: after the transaction, when behavior is hard to observe, in practice.",
+    "C": "Adverse selection: only in takeovers; moral hazard: only in retail pricing and bundling decisions for customers, in practice.",
+    "D": "Adverse selection: only in ethics scandals; moral hazard: only in accounting rules such as GAAP and audit standards."
+   },
+   "answer": "B",
+   "explanation": "The course page defines adverse selection as hidden information before contracting and moral hazard as hidden action after contracting. The other pairings scramble timing or misplace the concepts into unrelated domains.",
+   "lo": null,
+   "n": 43
+  },
+  {
+   "set": "A",
+   "stem": "Which platform feature most directly helps overcome ‘thin markets’ as defined in the chapter?",
+   "options": {
+    "A": "Bundling of negatively correlated products so each customer buys a discounted multi-product suite.",
+    "B": "Digitization plus strong search and inventory tools that match buyers and sellers across time and geography.",
+    "C": "A poison pill that deters hostile acquirers by making takeover attempts more expensive to execute.",
+    "D": "CEO-chair duality that accelerates board decisions by concentrating authority in one senior leader."
+   },
+   "answer": "B",
+   "explanation": "",
+   "lo": null,
+   "n": 44
+  },
+  {
+   "set": "A",
+   "stem": "Which post-crisis change is best classified as an internal corporate governance mechanism (not an external one)?",
+   "options": {
+    "A": "Using public analysts’ consensus forecasts to discipline management through valuation sensitivity.",
+    "B": "Threatening a hostile takeover by stock accumulation to replace management and restructure assets.",
+    "C": "Mandating an independent compliance monitor appointed through a government settlement process.",
+    "D": "Reconstituting the board’s membership and chair role to improve monitoring of top management."
+   },
+   "answer": "D",
+   "explanation": "",
+   "lo": null,
+   "n": 45
+  },
+  {
+   "set": "A",
+   "stem": "Which reform best targets ‘agent–principal’ misalignment while preserving entrepreneurial risk-taking in a startup?",
+   "options": {
+    "A": "Replace the board with advisers only, because advisers can provide expertise while removing oversight that slows decisions in practice.",
+    "B": "Eliminate all monitoring to preserve founder autonomy, because surveillance always reduces creativity and therefore destroys innovation, as stated here.",
+    "C": "Use multi-metric incentives with longer horizons and credible monitoring, so speed and innovation are rewarded without rewarding deception, overall.",
+    "D": "Remove outside investors entirely, because agency problems occur only with shareholders and never with employees or customers, in practice."
+   },
+   "answer": "C",
+   "explanation": "Balanced incentives and monitoring can preserve entrepreneurial drive while reducing incentives for deception and short-termism. Removing monitoring or oversight invites agency costs; removing investors does not remove agency problems within the hierarchy.",
+   "lo": null,
+   "n": 46
+  },
+  {
+   "set": "A",
+   "stem": "Which statement best captures why governance mechanisms must include both monitoring and incentives?",
+   "options": {
+    "A": "Monitoring eliminates all information asymmetry, while incentives are irrelevant once agents face constant scrutiny in practice, as stated here.",
+    "B": "Monitoring is only for fraud detection, while incentives only matter for innovation and never for ethics or compliance choices.",
+    "C": "Monitoring reduces hidden action and misreporting, while incentives align payoffs so agents prefer principal-valuing choices over time, in practice.",
+    "D": "Monitoring is external by definition, while incentives are internal by definition, so they cannot be designed coherently together, overall."
+   },
+   "answer": "C",
+   "explanation": "Governance is about directing and controlling: monitoring limits opportunism and information distortion, while incentives shape choices where monitoring is imperfect. The other options either overclaim perfect monitoring or artificially separate governance tools.",
+   "lo": null,
+   "n": 47
+  },
+  {
+   "set": "A",
+   "stem": "Which statement best distinguishes governance from strategy in this chapter’s framing?",
+   "options": {
+    "A": "Governance is the same as strategy, because boards choose products and pricing and managers simply execute without judgment.",
+    "B": "Governance concerns customers and suppliers, while strategy concerns shareholders and boards, so they rarely overlap in practice, overall.",
+    "C": "Governance sets mechanisms to direct and control, while strategy specifies goal-directed actions; business models translate strategy into action.",
+    "D": "Strategy is only ethics and compliance, while governance is only marketing and product design, so they operate independently."
+   },
+   "answer": "C",
+   "explanation": "The chapter positions governance as mechanisms to direct and control; strategy as goal-directed competitive actions; and business models as the translation of strategy into action. The other options invert or separate these concepts incorrectly.",
+   "lo": null,
+   "n": 48
+  },
+  {
+   "set": "A",
+   "stem": "Which statement best distinguishes strategy from a business model as used in the chapter?",
+   "options": {
+    "A": "Strategy is a cost model; the business model is a takeover defense that deters hostile bidders.",
+    "B": "Strategy sets goal-directed choices; the business model translates those choices into actionable tactics to make money.",
+    "C": "Strategy is the pricing plan; the business model is the mission statement and value poster for employees.",
+    "D": "Strategy is the org chart; the business model is the board structure and SEC reporting cadence."
+   },
+   "answer": "B",
+   "explanation": "",
+   "lo": null,
+   "n": 49
+  },
+  {
+   "set": "A",
+   "stem": "Why can industry analyst recommendations be systematically biased, even when they use public filings?",
+   "options": {
+    "A": "Bias is irrelevant because ethical conduct is fully captured by legal compliance in disclosure forms.",
+    "B": "Conflicts of interest can arise because analysts’ firms may have lucrative relationships with rated companies.",
+    "C": "Bias is eliminated when boards appoint more inside directors who can explain the firm’s internal logic.",
+    "D": "Conflicts of interest vanish because EDGAR filings are standardized under GAAP and publicly searchable."
+   },
+   "answer": "B",
+   "explanation": "",
+   "lo": null,
+   "n": 50
+  },
+  {
+   "set": "B",
+   "stem": "A CEO uses corporate funds for extravagant personal perks that shareholders ultimately pay for. This is best described as:",
+   "options": {
+    "A": "Adverse selection, because the CEO misrepresented capabilities during recruitment for the role.",
+    "B": "Long tail, because many small purchases aggregate into a large overall revenue distribution.",
+    "C": "On-the-job consumption, a form of agency cost enabled by information asymmetry and weak monitoring.",
+    "D": "Thin markets, because only a few suppliers can provide luxury services to executives in time."
+   },
+   "answer": "C",
+   "explanation": "",
+   "lo": null,
+   "n": 51
+  },
+  {
+   "set": "B",
+   "stem": "A board adopts a poison pill during a takeover attempt (Item 16). Which risk is most plausible from an agency perspective?",
+   "options": {
+    "A": "Managerial entrenchment, because defenses can protect underperforming managers and reduce the disciplining effect of corporate control markets, in practice.",
+    "B": "Reduced ethical culture, because takeover defenses automatically cause pressure systems that force employees to create fake accounts in practice.",
+    "C": "Reduced disclosure integrity, because poison pills replace the need for GAAP audits and therefore weaken financial statement reliability, overall.",
+    "D": "Reduced long‑tail potential, because hostile bidders cannot acquire niche assets and therefore must focus on blockbuster products only, overall."
+   },
+   "answer": "A",
+   "explanation": "A takeover defense can be value-preserving, but it can also entrench management by blocking an external discipline mechanism. The other claims misstate relationships to audits, ethics culture, or product assortment strategies.",
+   "lo": null,
+   "n": 52
+  },
+  {
+   "set": "B",
+   "stem": "A board adopts a poison pill during a takeover attempt (Item 17). Which risk is most plausible from an agency perspective?",
+   "options": {
+    "A": "Reduced disclosure integrity, because poison pills replace the need for GAAP audits and therefore weaken financial statement reliability, overall.",
+    "B": "Managerial entrenchment, because defenses can protect underperforming managers and reduce the disciplining effect of corporate control markets, in practice.",
+    "C": "Reduced long‑tail potential, because hostile bidders cannot acquire niche assets and therefore must focus on blockbuster products only, overall.",
+    "D": "Reduced ethical culture, because takeover defenses automatically cause pressure systems that force employees to create fake accounts in practice."
+   },
+   "answer": "B",
+   "explanation": "A takeover defense can be value-preserving, but it can also entrench management by blocking an external discipline mechanism. The other claims misstate relationships to audits, ethics culture, or product assortment strategies.",
+   "lo": null,
+   "n": 53
+  },
+  {
+   "set": "B",
+   "stem": "A board adopts a poison pill during a takeover attempt (Item 18). Which risk is most plausible from an agency perspective?",
+   "options": {
+    "A": "Reduced long‑tail potential, because hostile bidders cannot acquire niche assets and therefore must focus on blockbuster products only, overall.",
+    "B": "Managerial entrenchment, because defenses can protect underperforming managers and reduce the disciplining effect of corporate control markets, in practice.",
+    "C": "Reduced disclosure integrity, because poison pills replace the need for GAAP audits and therefore weaken financial statement reliability, overall.",
+    "D": "Reduced ethical culture, because takeover defenses automatically cause pressure systems that force employees to create fake accounts in practice."
+   },
+   "answer": "B",
+   "explanation": "A takeover defense can be value-preserving, but it can also entrench management by blocking an external discipline mechanism. The other claims misstate relationships to audits, ethics culture, or product assortment strategies.",
+   "lo": null,
+   "n": 54
+  },
+  {
+   "set": "B",
+   "stem": "A board adopts a poison pill during a takeover attempt (Item 19). Which risk is most plausible from an agency perspective?",
+   "options": {
+    "A": "Reduced long‑tail potential, because hostile bidders cannot acquire niche assets and therefore must focus on blockbuster products only, overall.",
+    "B": "Managerial entrenchment, because defenses can protect underperforming managers and reduce the disciplining effect of corporate control markets, in practice.",
+    "C": "Reduced disclosure integrity, because poison pills replace the need for GAAP audits and therefore weaken financial statement reliability, overall.",
+    "D": "Reduced ethical culture, because takeover defenses automatically cause pressure systems that force employees to create fake accounts in practice."
+   },
+   "answer": "B",
+   "explanation": "A takeover defense can be value-preserving, but it can also entrench management by blocking an external discipline mechanism. The other claims misstate relationships to audits, ethics culture, or product assortment strategies.",
+   "lo": null,
+   "n": 55
+  },
+  {
+   "set": "B",
+   "stem": "A board adopts a poison pill during a takeover attempt (Item 20). Which risk is most plausible from an agency perspective?",
+   "options": {
+    "A": "Reduced long‑tail potential, because hostile bidders cannot acquire niche assets and therefore must focus on blockbuster products only, overall.",
+    "B": "Reduced ethical culture, because takeover defenses automatically cause pressure systems that force employees to create fake accounts in practice.",
+    "C": "Managerial entrenchment, because defenses can protect underperforming managers and reduce the disciplining effect of corporate control markets, in practice.",
+    "D": "Reduced disclosure integrity, because poison pills replace the need for GAAP audits and therefore weaken financial statement reliability, overall."
+   },
+   "answer": "C",
+   "explanation": "A takeover defense can be value-preserving, but it can also entrench management by blocking an external discipline mechanism. The other claims misstate relationships to audits, ethics culture, or product assortment strategies.",
+   "lo": null,
+   "n": 56
+  },
+  {
+   "set": "B",
+   "stem": "A board adopts a poison pill during a takeover attempt (Item 21). Which risk is most plausible from an agency perspective?",
+   "options": {
+    "A": "Reduced long‑tail potential, because hostile bidders cannot acquire niche assets and therefore must focus on blockbuster products only, overall.",
+    "B": "Managerial entrenchment, because defenses can protect underperforming managers and reduce the disciplining effect of corporate control markets, in practice.",
+    "C": "Reduced disclosure integrity, because poison pills replace the need for GAAP audits and therefore weaken financial statement reliability, overall.",
+    "D": "Reduced ethical culture, because takeover defenses automatically cause pressure systems that force employees to create fake accounts in practice."
+   },
+   "answer": "B",
+   "explanation": "A takeover defense can be value-preserving, but it can also entrench management by blocking an external discipline mechanism. The other claims misstate relationships to audits, ethics culture, or product assortment strategies.",
+   "lo": null,
+   "n": 57
+  },
+  {
+   "set": "B",
+   "stem": "A board adopts a poison pill during a takeover attempt (Item 22). Which risk is most plausible from an agency perspective?",
+   "options": {
+    "A": "Reduced long‑tail potential, because hostile bidders cannot acquire niche assets and therefore must focus on blockbuster products only, overall.",
+    "B": "Reduced ethical culture, because takeover defenses automatically cause pressure systems that force employees to create fake accounts in practice.",
+    "C": "Reduced disclosure integrity, because poison pills replace the need for GAAP audits and therefore weaken financial statement reliability, overall.",
+    "D": "Managerial entrenchment, because defenses can protect underperforming managers and reduce the disciplining effect of corporate control markets, in practice."
+   },
+   "answer": "D",
+   "explanation": "A takeover defense can be value-preserving, but it can also entrench management by blocking an external discipline mechanism. The other claims misstate relationships to audits, ethics culture, or product assortment strategies.",
+   "lo": null,
+   "n": 58
+  },
+  {
+   "set": "B",
+   "stem": "A board adopts a poison pill during a takeover attempt (Item 23). Which risk is most plausible from an agency perspective?",
+   "options": {
+    "A": "Managerial entrenchment, because defenses can protect underperforming managers and reduce the disciplining effect of corporate control markets, in practice.",
+    "B": "Reduced disclosure integrity, because poison pills replace the need for GAAP audits and therefore weaken financial statement reliability, overall.",
+    "C": "Reduced long‑tail potential, because hostile bidders cannot acquire niche assets and therefore must focus on blockbuster products only, overall.",
+    "D": "Reduced ethical culture, because takeover defenses automatically cause pressure systems that force employees to create fake accounts in practice."
+   },
+   "answer": "A",
+   "explanation": "A takeover defense can be value-preserving, but it can also entrench management by blocking an external discipline mechanism. The other claims misstate relationships to audits, ethics culture, or product assortment strategies.",
+   "lo": null,
+   "n": 59
+  },
+  {
+   "set": "B",
+   "stem": "A board adopts a poison pill during a takeover attempt (Item 24). Which risk is most plausible from an agency perspective?",
+   "options": {
+    "A": "Reduced ethical culture, because takeover defenses automatically cause pressure systems that force employees to create fake accounts in practice.",
+    "B": "Reduced disclosure integrity, because poison pills replace the need for GAAP audits and therefore weaken financial statement reliability, overall.",
+    "C": "Reduced long‑tail potential, because hostile bidders cannot acquire niche assets and therefore must focus on blockbuster products only, overall.",
+    "D": "Managerial entrenchment, because defenses can protect underperforming managers and reduce the disciplining effect of corporate control markets, in practice."
+   },
+   "answer": "D",
+   "explanation": "A takeover defense can be value-preserving, but it can also entrench management by blocking an external discipline mechanism. The other claims misstate relationships to audits, ethics culture, or product assortment strategies.",
+   "lo": null,
+   "n": 60
+  },
+  {
+   "set": "B",
+   "stem": "A board adopts a poison pill during a takeover attempt (Item 25). Which risk is most plausible from an agency perspective?",
+   "options": {
+    "A": "Reduced long‑tail potential, because hostile bidders cannot acquire niche assets and therefore must focus on blockbuster products only, overall.",
+    "B": "Reduced disclosure integrity, because poison pills replace the need for GAAP audits and therefore weaken financial statement reliability, overall.",
+    "C": "Managerial entrenchment, because defenses can protect underperforming managers and reduce the disciplining effect of corporate control markets, in practice.",
+    "D": "Reduced ethical culture, because takeover defenses automatically cause pressure systems that force employees to create fake accounts in practice."
+   },
+   "answer": "C",
+   "explanation": "A takeover defense can be value-preserving, but it can also entrench management by blocking an external discipline mechanism. The other claims misstate relationships to audits, ethics culture, or product assortment strategies.",
+   "lo": null,
+   "n": 61
+  },
+  {
+   "set": "B",
+   "stem": "A board grants stock options with a strike price set at the grant date. Under agency theory, the primary intent is to:",
+   "options": {
+    "A": "Align managers with owners by tying upside to share-price appreciation above a predetermined threshold.",
+    "B": "Replace the need for outside directors because managers now have identical preferences to investors.",
+    "C": "Eliminate takeover threats because higher pay makes hostile bidders less interested in acquisitions.",
+    "D": "Guarantee dividends by reallocating profits from reinvestment into fixed quarterly shareholder payouts."
+   },
+   "answer": "A",
+   "explanation": "",
+   "lo": null,
+   "n": 62
+  },
+  {
+   "set": "B",
+   "stem": "A carmaker sells the vehicle and then sells recurring software upgrades and service subscriptions. Which model best captures the upgrade logic?",
+   "options": {
+    "A": "Agency, because independent agents sell and take commissions while the producer controls the retail price.",
+    "B": "Wholesale, because dealers buy at discount and set retail prices independently to earn resale margins.",
+    "C": "Bundling, because negatively correlated product demands are combined and sold at a discount.",
+    "D": "Razor–razor blades, because the initial sale can stimulate ongoing purchases of complementary high-margin add-ons."
+   },
+   "answer": "D",
+   "explanation": "",
+   "lo": null,
+   "n": 63
+  },
+  {
+   "set": "B",
+   "stem": "A company charges a monthly fee for access regardless of how much the service is used. Which business model is this?",
+   "options": {
+    "A": "Subscription, because users pay for access during a term whether or not usage is high.",
+    "B": "Freemium, because the basic tier is free while premium tiers monetize advanced capabilities.",
+    "C": "Ultra-low cost, because a stripped service is cheap and upgrades are sold at premium prices.",
+    "D": "Pay-as-you-go, because billing scales strictly with measured consumption volume in each period."
+   },
+   "answer": "A",
+   "explanation": "",
+   "lo": null,
+   "n": 64
+  },
+  {
+   "set": "B",
+   "stem": "A company shifts from selling boxed software to cloud access that reduces piracy by monitoring logins. Which model shift is most accurate?",
+   "options": {
+    "A": "A move toward long-tail selling that earns most revenue from niche items rather than popular hits.",
+    "B": "A move toward a poison-pill defense that deters hostile acquirers by diluting their ownership stake.",
+    "C": "A move toward subscription and cloud delivery that alters revenue timing and reduces piracy through monitoring.",
+    "D": "A move toward wholesale distribution that lets retailers set price and profit from resale margins."
+   },
+   "answer": "C",
+   "explanation": "",
+   "lo": null,
+   "n": 65
+  },
+  {
+   "set": "B",
+   "stem": "A company threatens litigation against investigative journalists and refuses to share verifiable evidence with auditors. Which external mechanism is being undermined first?",
+   "options": {
+    "A": "The poison pill, because litigation threats automatically trigger dilution provisions that prevent hostile bids from closing, in practice.",
+    "B": "The freemium funnel, because journalists influence top-of-funnel signups and therefore determine conversion rates in practice, as stated here.",
+    "C": "The long tail, because investigative scrutiny reduces niche discovery and therefore shrinks demand for low-volume items, in practice.",
+    "D": "Independent information intermediation, because reporting and auditing are channels that surface hidden facts to outsiders, as stated here."
+   },
+   "answer": "D",
+   "explanation": "By blocking journalists and resisting auditors, the firm undermines external channels that reveal information to principals and the public. Poison pills, long-tail economics, and freemium conversion are unrelated.",
+   "lo": null,
+   "n": 66
+  },
+  {
+   "set": "B",
+   "stem": "A distressed firm receives a hostile bid. Which board action best matches the chapter’s governance logic?",
+   "options": {
+    "A": "Automatically reject the bid because boards exist to protect management, not shareholders, from external interference in practice, overall.",
+    "B": "Delay any decision until the next quarterly filing, because EDGAR disclosure timing determines legal authority to respond, overall.",
+    "C": "Evaluate whether internal mechanisms failed and whether the bid creates or destroys value, considering premiums and transaction costs.",
+    "D": "Automatically accept the bid because takeovers always improve governance and therefore must raise shareholder value over time, overall."
+   },
+   "answer": "C",
+   "explanation": "Takeovers can discipline underperformance but can also destroy value through overpayment and costs. The board’s role is to evaluate and decide in shareholders’ interests, not to accept or reject automatically.",
+   "lo": null,
+   "n": 67
+  },
+  {
+   "set": "B",
+   "stem": "A firm bills only per kWh consumed at charging stations. Which model fits best?",
+   "options": {
+    "A": "Pay-as-you-go, because the user pays only for the measured consumption of the service.",
+    "B": "Agency, because commissions are paid to intermediaries who sell at controlled retail prices.",
+    "C": "Wholesale, because retailers earn a margin over fixed discounts from recommended retail prices.",
+    "D": "Subscription, because the user buys access for a time period regardless of actual consumption."
+   },
+   "answer": "A",
+   "explanation": "",
+   "lo": null,
+   "n": 68
+  },
+  {
+   "set": "B",
+   "stem": "A firm discovers a senior hire cannot do key tasks, but effort is high. Which agency problem is most plausible?",
+   "options": {
+    "A": "Poison pill, because a defense provision triggered once an acquirer crossed ownership threshold.",
+    "B": "Winner’s curse, because the firm overpaid for an acquisition due to bidding competition.",
+    "C": "Moral hazard, because the agent can do the work but chooses to shirk effort after hiring.",
+    "D": "Adverse selection, because the agent’s ability was misrepresented or misjudged before hiring."
+   },
+   "answer": "D",
+   "explanation": "",
+   "lo": null,
+   "n": 69
+  },
+  {
+   "set": "B",
+   "stem": "A firm shifts from public to private ownership and reduces standardized disclosure. Which monitoring channel weakens most directly?",
+   "options": {
+    "A": "Ethical culture, because private ownership automatically removes values and therefore forces misconduct in practice, in practice, in practice.",
+    "B": "Internal monitoring by inside directors, because private firms cannot legally appoint managers to boards at all, in practice.",
+    "C": "Analyst scrutiny based on standardized filings, because less disclosure reduces outsiders’ ability to benchmark performance, as stated here.",
+    "D": "Business model innovation, because private firms cannot change pricing without quarterly SEC reporting requirements, in practice, in practice."
+   },
+   "answer": "C",
+   "explanation": "Less disclosure weakens analyst-based external monitoring. Private status does not legally prevent inside directors, and ownership status does not determine ethics or business model innovation.",
+   "lo": null,
+   "n": 70
+  },
+  {
+   "set": "B",
+   "stem": "A hedge fund accumulates shares and demands a spin-out to boost near-term valuation. Which shareholder-horizon fact is most relevant?",
+   "options": {
+    "A": "Shareholders’ goals are irrelevant because boards must legally optimize only employee welfare in all cases.",
+    "B": "Shareholders do not vote for directors because directors are appointed by auditors under SEC authority.",
+    "C": "Shareholders differ: some seek long-term viability while activist funds may target short-term price movement.",
+    "D": "Shareholders are homogeneous because each share confers identical goals and identical time preferences."
+   },
+   "answer": "C",
+   "explanation": "",
+   "lo": null,
+   "n": 71
+  },
+  {
+   "set": "B",
+   "stem": "A manager says: “Our new charging-fee policy is legal, so ethics is irrelevant.” Which correction is closest to the text?",
+   "options": {
+    "A": "Ethics is only for nonprofits; for-profit firms optimize shareholder returns regardless of moral norms.",
+    "B": "Ethics equals compliance; therefore ethics analysis can be outsourced entirely to the legal department.",
+    "C": "Legal actions can still be ethically questionable; ethics involves societal norms like fairness and reciprocity.",
+    "D": "If legal, the action is necessarily fair; markets enforce fairness automatically through customer choice."
+   },
+   "answer": "C",
+   "explanation": "",
+   "lo": null,
+   "n": 72
+  },
+  {
+   "set": "B",
+   "stem": "A platform sells millions of niche accessories that individually sell rarely, but collectively matter. This is best described as:",
+   "options": {
+    "A": "Short head, where most revenue comes from a few blockbuster hits supported by large marketing budgets.",
+    "B": "Long tail, where many low-volume items add up when shelf space and distribution costs approach zero.",
+    "C": "Winner’s curse, where takeover premiums cause acquirers to destroy value after integration challenges.",
+    "D": "Moral hazard, where agents shirk effort because principals cannot observe effort after contracting."
+   },
+   "answer": "B",
+   "explanation": "",
+   "lo": null,
+   "n": 73
+  },
+  {
+   "set": "B",
+   "stem": "A public company’s stock price collapses; a bidder believes it can fix internal problems and launches a hostile bid. This illustrates:",
+   "options": {
+    "A": "Bundling economics because negatively correlated products are sold together at discounted prices.",
+    "B": "Adverse selection in hiring because candidates misrepresent capabilities during the recruitment process.",
+    "C": "The market for corporate control disciplining management when internal governance mechanisms have failed.",
+    "D": "Long-tail dynamics because niche products accumulate into large revenues when marginal costs are low."
+   },
+   "answer": "C",
+   "explanation": "",
+   "lo": null,
+   "n": 74
+  },
+  {
+   "set": "B",
+   "stem": "A scientist can complete assigned work but instead reallocates effort to a private project. Which is the best diagnosis?",
+   "options": {
+    "A": "Wholesale, because the firm sells through retailers at a fixed discount to recommended prices.",
+    "B": "Short head, because the firm depends on a few blockbuster innovations rather than many small ones.",
+    "C": "Moral hazard, because the principal cannot easily verify best effort despite the agent’s capability.",
+    "D": "Adverse selection, because the scientist’s skills were exaggerated during recruiting and screening."
+   },
+   "answer": "C",
+   "explanation": "",
+   "lo": null,
+   "n": 75
+  },
+  {
+   "set": "B",
+   "stem": "A ‘poison pill’ is best defined in the chapter as:",
+   "options": {
+    "A": "A defensive provision designed to deter hostile takeovers by making the target firm less attractive to the acquirer, as stated here.",
+    "B": "A regulatory penalty designed to deter misreporting by forcing executives to repay bonuses after accounting restatements, on balance, as stated here.",
+    "C": "A whistleblower policy designed to deter internal fraud by granting anonymity and legal support to employees reporting issues, as stated here.",
+    "D": "A pricing tactic designed to deter entry by setting an introductory price below cost and then raising it after rivals exit."
+   },
+   "answer": "A",
+   "explanation": "The chapter defines a poison pill as a takeover defense that makes acquisition less attractive. It is not a whistleblowing policy, a predatory pricing tactic, or a regulatory clawback rule.",
+   "lo": null,
+   "n": 76
+  },
+  {
+   "set": "B",
+   "stem": "An investment bank rates a client’s stock unusually positively while also seeking underwriting business. Which conflict does the chapter highlight?",
+   "options": {
+    "A": "The client’s industry rivalry rises, forcing predatory pricing that makes all analyst ratings automatically optimistic in practice, in practice.",
+    "B": "The client’s cost structure is compromised by fixed assets, forcing a shift to ultra‑low cost and reducing analyst independence.",
+    "C": "The evaluator’s incentives are compromised by commercial relationships, biasing recommendations and weakening external governance, in practice, as stated here.",
+    "D": "The evaluator’s legal charter is compromised, forcing shareholders to elect a new board for the bank’s clients immediately, overall."
+   },
+   "answer": "C",
+   "explanation": "The chapter cites evidence that investment bankers rate their own clients more favorably, illustrating conflicts of interest that weaken the monitoring role of analysts. The other options are unrelated.",
+   "lo": null,
+   "n": 77
+  },
+  {
+   "set": "B",
+   "stem": "An investment bank’s analysts rate their own client firms more favorably. The best interpretation is:",
+   "options": {
+    "A": "A conflict of interest that can bias external monitoring even when the information is publicly available.",
+    "B": "A proof that GAAP is ineffective because accounting standards allow any narrative to pass audits.",
+    "C": "A reason to increase inside directors because external monitors cannot ever be objective.",
+    "D": "A demonstration that ethics is culture-specific and therefore cannot be evaluated across firms."
+   },
+   "answer": "A",
+   "explanation": "",
+   "lo": null,
+   "n": 78
+  },
+  {
+   "set": "B",
+   "stem": "Behavioral evidence cautions that very high-powered incentives can sometimes reduce performance mainly because they:",
+   "options": {
+    "A": "Remove adverse selection by ensuring only the most capable candidates accept performance pay.",
+    "B": "Prevent moral hazard by forcing agents to internalize all downside losses of risky projects.",
+    "C": "Eliminate information asymmetry by making effort perfectly observable through measurable outcomes.",
+    "D": "Distract attention toward the outsized near-term bonus and increase stress, reinforcing short-termism."
+   },
+   "answer": "D",
+   "explanation": "",
+   "lo": null,
+   "n": 79
+  },
+  {
+   "set": "B",
+   "stem": "GAAP and independent audits matter as governance mechanisms primarily because they:",
+   "options": {
+    "A": "Prevent hostile takeovers by reducing volatility, so acquirers cannot justify takeover premiums in capital markets, as stated here.",
+    "B": "Eliminate agency problems by making all managerial actions observable, so incentives and boards become unnecessary, as stated here.",
+    "C": "Reduce misrepresentation risk by standardizing reporting and requiring verification by certified public accountants, for this case, in practice.",
+    "D": "Increase product differentiation by ensuring firms can advertise audited financials as a premium feature to customers, in practice."
+   },
+   "answer": "C",
+   "explanation": "The chapter links GAAP and audits to the integrity of financial statements, reducing misrepresentation and supporting external monitoring. They do not eliminate agency problems nor block takeovers mechanically.",
+   "lo": null,
+   "n": 80
+  },
+  {
+   "set": "B",
+   "stem": "In Caselet B, the contested practice is best categorized as which governance mechanism?",
+   "options": {
+    "A": "Long-tail innovation, because niche offerings collectively generate substantial revenue streams.",
+    "B": "Financial statement auditing, because GAAP compliance is verified by certified public accountants.",
+    "C": "Market for corporate control, because hostile bids discipline managers through takeover threats.",
+    "D": "Executive compensation, because boards design pay packages to align managers with shareholder interests."
+   },
+   "answer": "D",
+   "explanation": "",
+   "lo": null,
+   "n": 81
+  },
+  {
+   "set": "B",
+   "stem": "In hostile takeovers, the ‘winner’s curse’ refers most precisely to:",
+   "options": {
+    "A": "Winning market share via bundling and then losing margins because customers overconsume low-priced bundle components, as stated here.",
+    "B": "Winning a price war via ultra-low cost and then losing because rivals imitate fixed-asset ownership and scale advantages.",
+    "C": "Winning trust via transparency and then losing because disclosure reduces competitive advantage by revealing trade secrets, in practice.",
+    "D": "Paying a large premium to win control and then destroying value because the acquisition price exceeds realizable gains."
+   },
+   "answer": "D",
+   "explanation": "The textbook defines winner’s curse in corporate control as overpaying—often due to takeover premiums—leading to value destruction. The other options describe unrelated business model or competition dynamics.",
+   "lo": null,
+   "n": 82
+  },
+  {
+   "set": "B",
+   "stem": "In takeover contexts, ‘winner’s curse’ most accurately refers to situations where the acquirer:",
+   "options": {
+    "A": "Pays a premium that results in overpayment and subsequent shareholder value destruction.",
+    "B": "Adopts a poison pill that dilutes ownership once an acquirer crosses a threshold percentage.",
+    "C": "Uses leverage to buy shares and take the company private, avoiding public disclosure obligations.",
+    "D": "Bundles two products with negatively correlated demand and sells them together at discount."
+   },
+   "answer": "A",
+   "explanation": "",
+   "lo": null,
+   "n": 83
+  },
+  {
+   "set": "B",
+   "stem": "The textbook cautions that industry analysts and credit-rating agencies may face conflicts of interest because:",
+   "options": {
+    "A": "They are legally prohibited from reading EDGAR filings, so they rely on rumors and therefore cannot be independent, as stated here.",
+    "B": "They can have lucrative relationships with firms they evaluate, biasing ratings and recommendations in subtle ways, on balance, as stated here.",
+    "C": "They are paid only by regulators, so they must please regulators rather than investors, creating systematic pessimism, as described, in practice.",
+    "D": "They are required to own shares of the firms they cover, so their personal wealth always moves with the stock price."
+   },
+   "answer": "B",
+   "explanation": "The chapter notes that analysts and rating agencies can have business relationships with the companies they evaluate, creating conflicts of interest and potential bias.",
+   "lo": null,
+   "n": 84
+  },
+  {
+   "set": "B",
+   "stem": "Which act is illegal in the insider-information discussion, even though possessing insider information is part of an executive’s job?",
+   "options": {
+    "A": "Trading on material nonpublic information or tipping others who trade before public release.",
+    "B": "Holding private internal data about production and demand trends as part of normal management work.",
+    "C": "Learning time-sensitive performance data before analysts see it in quarterly public filings.",
+    "D": "Briefing the board about nonpublic operational setbacks during a confidential governance meeting."
+   },
+   "answer": "A",
+   "explanation": "",
+   "lo": null,
+   "n": 85
+  },
+  {
+   "set": "B",
+   "stem": "Which action best illustrates ‘ethical pursuit of competitive advantage’ as a foundation for long-run performance?",
+   "options": {
+    "A": "Driving short-term stock spikes through aggressive goal pressure even when legal ambiguity is exploited.",
+    "B": "Designing growth targets that can be met legally while rewarding transparent reporting and safe problem solving.",
+    "C": "Hiding risks in complex disclosures as long as GAAP is followed and penalties remain unlikely.",
+    "D": "Replacing codes of conduct with performance bonuses to signal that results matter more than process."
+   },
+   "answer": "B",
+   "explanation": "",
+   "lo": null,
+   "n": 86
+  },
+  {
+   "set": "B",
+   "stem": "Which bundling condition is most essential in the chapter’s example of the Office suite?",
+   "options": {
+    "A": "Demand is negatively correlated so different users value different components more, enabling discount bundles.",
+    "B": "Demand is random so bundling makes price discrimination impossible and therefore increases piracy.",
+    "C": "Demand is perfectly correlated so every user values every component equally, maximizing willingness to pay.",
+    "D": "Supply is scarce so bundling reduces inventory costs through physical shelf space optimization only."
+   },
+   "answer": "A",
+   "explanation": "",
+   "lo": null,
+   "n": 87
+  },
+  {
+   "set": "B",
+   "stem": "Which external governance mechanism is most directly enabled by SEC disclosure and the EDGAR database?",
+   "options": {
+    "A": "Customer monitoring of product roadmaps, which can enforce faster innovation cycles and eliminate switching costs over time, overall.",
+    "B": "Industry analyst scrutiny of standardized filings, which can reveal irregularities and shape buy-hold-sell recommendations, in practice, in practice.",
+    "C": "Employee monitoring of executive behavior, which can enforce ethics because internal audiences always deter misconduct in practice, overall.",
+    "D": "Supplier monitoring of inventory levels, which can enforce shorter payment cycles and raise bargaining power automatically, in practice."
+   },
+   "answer": "B",
+   "explanation": "The textbook explains that SEC filings are made available via EDGAR, enabling analyst scrutiny and external monitoring. This is not primarily a supplier/customer/employee monitoring mechanism.",
+   "lo": null,
+   "n": 88
+  },
+  {
+   "set": "B",
+   "stem": "Which external mechanism most directly strengthens governance by standardizing disclosure and enabling outsider scrutiny?",
+   "options": {
+    "A": "SEC filing requirements plus audits under GAAP, which enable analysts to examine standardized statements.",
+    "B": "Freemium, which lowers adoption barriers by giving away basic features to attract users.",
+    "C": "CEO-chair duality, which accelerates decision-making by unifying oversight and operational authority.",
+    "D": "Bundling, which increases customer willingness to pay by packaging negatively correlated products."
+   },
+   "answer": "A",
+   "explanation": "",
+   "lo": null,
+   "n": 89
+  },
+  {
+   "set": "B",
+   "stem": "Which governance mechanism is most ‘internal’ according to the chapter’s phrasing about ethics and control?",
+   "options": {
+    "A": "Analyst coverage that reacts to quarterly filings and publishes buy/hold/sell recommendations.",
+    "B": "A poison pill that dilutes hostile bidders once they cross an ownership percentage threshold.",
+    "C": "An LBO that shifts ownership from public shareholders to private equity sponsors via leverage.",
+    "D": "Business ethics embedded in culture and leadership cues that guide behavior beyond formal monitoring."
+   },
+   "answer": "D",
+   "explanation": "",
+   "lo": null,
+   "n": 90
+  },
+  {
+   "set": "B",
+   "stem": "Which mechanism is most directly ‘external’ in the chapter’s governance taxonomy?",
+   "options": {
+    "A": "Industry analyst scrutiny and watchdog ratings that inform stakeholders using public information and independent assessment, overall, as described, in practice.",
+    "B": "Corporate culture shaping norms and values so employees feel safe to speak up and leaders ‘walk the talk’ in practice.",
+    "C": "The board of directors choosing a CEO and approving the annual budget while monitoring management within the firm, in practice.",
+    "D": "Incentive pay contracts that link bonuses to metrics to align interests between principals and agents over time, as stated here."
+   },
+   "answer": "A",
+   "explanation": "Analysts and governance ratings operate outside the firm, using disclosure and assessment to monitor. Boards, culture, and incentives are internal mechanisms.",
+   "lo": null,
+   "n": 91
+  },
+  {
+   "set": "B",
+   "stem": "Which pair matches the two CEO-pay issues singled out in the governance section?",
+   "options": {
+    "A": "CEO pay volatility relative to stock volatility, and the use of bundling to sell compensation packages.",
+    "B": "Absolute CEO pay relative to average employee pay, and the pay–performance relationship’s strength.",
+    "C": "CEO tenure relative to board tenure, and the percentage of inside directors on compensation committees.",
+    "D": "CEO pay secrecy relative to competitors, and the frequency of SEC filings for compensation disclosure."
+   },
+   "answer": "B",
+   "explanation": "",
+   "lo": null,
+   "n": 92
+  },
+  {
+   "set": "B",
+   "stem": "Which pairing correctly matches an external governance actor with its core function in the chapter?",
+   "options": {
+    "A": "Auditors: verify financial reporting; regulators: enforce securities laws; analysts: interpret filings and business news, in practice, in practice.",
+    "B": "Auditors: deter entry; regulators: lower supplier power; analysts: reduce substitutes by strengthening differentiation, for this case, in practice.",
+    "C": "Auditors: design compensation; regulators: write business models; analysts: implement operational controls in departments, for this case, in practice.",
+    "D": "Auditors: set strategy; regulators: select CEOs; analysts: approve annual budgets and hire senior managers directly, as stated here."
+   },
+   "answer": "A",
+   "explanation": "The chapter describes auditors, regulators, and analysts as external governance mechanisms supporting disclosure integrity and monitoring. The other options misassign roles or substitute industry-structure logic for governance.",
+   "lo": null,
+   "n": 93
+  },
+  {
+   "set": "B",
+   "stem": "Which statement best captures why CEO-chair duality can weaken governance, even when decision speed improves?",
+   "options": {
+    "A": "Agenda control and friendly appointments can reduce the board’s independence in evaluating CEO performance.",
+    "B": "Hostile takeovers become impossible, so the market for corporate control no longer functions at all.",
+    "C": "Inside directors become illegal under SEC rules, so the board loses information needed for oversight.",
+    "D": "GAAP standards no longer apply, so auditors cannot compare performance across firms consistently."
+   },
+   "answer": "A",
+   "explanation": "",
+   "lo": null,
+   "n": 94
+  },
+  {
+   "set": "B",
+   "stem": "Which statement best captures why audit standards and accounting rules are governance mechanisms rather than mere technicalities?",
+   "options": {
+    "A": "They are competitive tactics to deter entry by making rivals’ reporting look worse, thereby lowering threat of entry over time.",
+    "B": "They create switching costs by forcing customers to use one firm’s format, increasing lock‑in and pricing power in practice, overall.",
+    "C": "They structure credible disclosure so principals can monitor agents, reducing misrepresentation and enabling outside scrutiny, overall, as described, in practice.",
+    "D": "They are ethical codes that replace the need for boards, because compliance automatically creates trust and virtue in practice, overall."
+   },
+   "answer": "C",
+   "explanation": "The chapter ties GAAP and audits to credible disclosure and monitoring—governance essentials. They are not customer lock-in tactics, entry deterrence, or substitutes for boards and ethics.",
+   "lo": null,
+   "n": 95
+  },
+  {
+   "set": "B",
+   "stem": "Which statement best matches the board–CEO relationship described in the governance section for public companies?",
+   "options": {
+    "A": "The CEO reports to the board; the board approves budgets and oversees stakeholder issues and CEO performance.",
+    "B": "The board replaces the CEO in daily operations; directors run units directly to reduce information asymmetry.",
+    "C": "The board reports to the CEO; the CEO approves budgets and appoints directors to monitor stakeholder issues.",
+    "D": "The CEO reports only to auditors; boards exist mainly to file SEC statements and manage disclosure timing."
+   },
+   "answer": "A",
+   "explanation": "",
+   "lo": null,
+   "n": 96
+  },
+  {
+   "set": "B",
+   "stem": "Which statement most accurately describes the role of corporate governance ratings (e.g., external watchdog ratings) in the chapter?",
+   "options": {
+    "A": "They replace the board of directors by taking over voting rights and appointing executives in underperforming firms, overall.",
+    "B": "They are business models that monetize attention through subscription fees and therefore directly create competitive advantage, in practice.",
+    "C": "They provide independent assessments that inform stakeholders such as investors, insurers, auditors, and regulators, in practice, in practice.",
+    "D": "They function as takeover defenses by raising acquisition costs through mandatory disclosure of bidder intentions, as stated here."
+   },
+   "answer": "C",
+   "explanation": "The chapter describes an industry of governance assessment that informs stakeholders; it does not claim these ratings replace boards or serve as takeover defenses.",
+   "lo": null,
+   "n": 97
+  },
+  {
+   "set": "B",
+   "stem": "Why can takeover premiums increase the probability of post‑deal value destruction even when governance improves?",
+   "options": {
+    "A": "High premiums reduce agency costs, because acquiring firms can perfectly monitor targets once ownership changes hands, in practice.",
+    "B": "High premiums reduce integration difficulty, because paying more guarantees cultural alignment and operational fit over time, in practice.",
+    "C": "High premiums raise the break‑even synergy threshold; if gains are smaller or slower, shareholders experience a winner’s curse.",
+    "D": "High premiums reduce regulator scrutiny, because authorities assume expensive deals are carefully vetted in practice, as stated here."
+   },
+   "answer": "C",
+   "explanation": "A premium raises the price paid for control; if realizable gains do not cover it, value is destroyed despite any governance discipline. Paying more does not guarantee fit, perfect monitoring, or reduced scrutiny.",
+   "lo": null,
+   "n": 98
+  },
+  {
+   "set": "B",
+   "stem": "Why have poison pills become rarer according to the chapter’s discussion?",
+   "options": {
+    "A": "SEC rules have fully banned poison pills for all listed companies since the global financial crisis.",
+    "B": "Poison pills are now replaced by freemium pricing because digital services need user acquisition.",
+    "C": "Actively involved institutional investors often oppose pills because they hinder efficient equity-market discipline.",
+    "D": "Poison pills eliminate hostile bids perfectly, so acquirers stopped attempting takeovers altogether."
+   },
+   "answer": "C",
+   "explanation": "",
+   "lo": null,
+   "n": 99
+  },
+  {
+   "set": "B",
+   "stem": "Why is the market for corporate control described as a ‘last resort’ governance mechanism in the textbook?",
+   "options": {
+    "A": "Hostile takeovers are legally banned for public companies, so boards must rely solely on internal monitoring mechanisms, overall.",
+    "B": "Hostile takeovers replace auditing and regulation, so they are the default mechanism for ensuring GAAP compliance, in practice.",
+    "C": "Hostile takeovers always improve governance, so they are used only when firms are already performing exceptionally well, overall.",
+    "D": "Hostile takeovers carry high transaction costs and often require premiums that can trigger overpayment and value destruction, overall."
+   },
+   "answer": "D",
+   "explanation": "The textbook notes that corporate control markets are costly and often involve takeover premiums, creating winner’s-curse risk. They are useful when internal governance fails, but they are not costless or universally beneficial.",
+   "lo": null,
+   "n": 100
+  },
+  {
+   "set": "C",
+   "stem": "A CEO approves large loans to a group while a close family member benefits financially from that group. This is best classified as:",
+   "options": {
+    "A": "A poison pill that deters hostile takeovers, because related-party transactions make the firm less attractive to acquirers in practice.",
+    "B": "A freemium strategy that increases adoption, because loans act as free trials that later convert into profitable relationships, overall.",
+    "C": "A long-tail strategy that increases variety and therefore reduces dependence on any single borrower or industry sector over time.",
+    "D": "A conflict of interest that undermines governance credibility and ethical integrity, even if formal procedures appear to be followed."
+   },
+   "answer": "D",
+   "explanation": "The ICICI-style pattern is a classic conflict of interest: private benefit linked to corporate decisions, which undermines fiduciary norms and governance. It is not a business model or takeover defense.",
+   "lo": null,
+   "n": 101
+  },
+  {
+   "set": "C",
+   "stem": "A CEO’s lavish personal spending using company funds is best framed as which agency cost?",
+   "options": {
+    "A": "Winner’s curse because a takeover premium caused overpayment and post-deal value destruction.",
+    "B": "On-the-job consumption enabled by information asymmetry and weak monitoring controls.",
+    "C": "Adverse selection because capability was unknown before appointment and screening was imperfect.",
+    "D": "Thin markets because few luxury suppliers exist, raising transaction costs and scarcity pricing."
+   },
+   "answer": "B",
+   "explanation": "",
+   "lo": null,
+   "n": 102
+  },
+  {
+   "set": "C",
+   "stem": "A business model is described as ‘strategy in action.’ Which statement is closest to the chapter’s meaning?",
+   "options": {
+    "A": "It translates how to compete into a blueprint of tactics, target market, and monetization logic.",
+    "B": "It replaces strategy because tactics and goals are identical once the firm selects a target segment.",
+    "C": "It is a takeover defense because it prevents hostile bidders from acquiring the firm cheaply.",
+    "D": "It is the same as corporate governance because boards and auditors implement strategy directly."
+   },
+   "answer": "A",
+   "explanation": "",
+   "lo": null,
+   "n": 103
+  },
+  {
+   "set": "C",
+   "stem": "A compliance function is under-resourced because growth bonuses dominate. Which concept best diagnoses the systemic problem?",
+   "options": {
+    "A": "Thin markets: compliance staff and leadership cannot find each other to coordinate in time and space.",
+    "B": "Bad apple: a few employees broke rules, so replacing them is sufficient regardless of incentive design.",
+    "C": "Long tail: many small compliance failures add up to a large revenue stream from niche customers.",
+    "D": "Bad barrel: the organizational climate and incentives normalize corner cutting beyond individual bad actors."
+   },
+   "answer": "D",
+   "explanation": "",
+   "lo": null,
+   "n": 104
+  },
+  {
+   "set": "C",
+   "stem": "A compliance officer can do the work but chooses to underinvest effort because penalties will fall on the firm, not the individual. This is:",
+   "options": {
+    "A": "Winner’s curse, because overpayment for an acquisition destroys value after integration.",
+    "B": "Moral hazard, because hidden effort and shifted costs increase incentives to shirk responsibility.",
+    "C": "Short head, because revenue depends primarily on a few blockbuster products, not niche variety.",
+    "D": "Adverse selection, because the officer misrepresented capability during hiring and screening."
+   },
+   "answer": "B",
+   "explanation": "",
+   "lo": null,
+   "n": 105
+  },
+  {
+   "set": "C",
+   "stem": "A crypto wallet app is free, but the firm earns margins on proprietary swaps and withdrawals. Which model is most precise?",
+   "options": {
+    "A": "Wholesale, because retailers buy at a discount and set their own final prices for consumers.",
+    "B": "Razor–razor blades, because the free core stimulates recurring purchases of profitable complements.",
+    "C": "Poison pill, because discounted share purchases deter takeover attempts by diluting bidders.",
+    "D": "Bundling, because multiple products with negatively correlated demand are sold together at discount."
+   },
+   "answer": "B",
+   "explanation": "",
+   "lo": null,
+   "n": 106
+  },
+  {
+   "set": "C",
+   "stem": "A firm adopts a poison pill. Which trade-off noted in the chapter helps explain why such defenses are controversial?",
+   "options": {
+    "A": "They deter bids and also eliminate winner’s curse, so acquisitions become value-creating by default.",
+    "B": "They deter hostile bids but can hinder equity-market discipline, so institutional investors often oppose them.",
+    "C": "They deter bids and also reduce SEC disclosure, so analysts cannot evaluate firms accurately anymore.",
+    "D": "They deter bids and also create long tails, so niche products become the main revenue source."
+   },
+   "answer": "B",
+   "explanation": "",
+   "lo": null,
+   "n": 107
+  },
+  {
+   "set": "C",
+   "stem": "A firm issues a code of conduct but rewards rule-bending quietly. The chapter suggests employees will most likely:",
+   "options": {
+    "A": "Follow observed executive actions because informal culture and incentives outweigh slogans and duplicity is visible.",
+    "B": "Ignore both because ethics is solely personal and cannot be shaped by organizational context.",
+    "C": "Follow the written code because formal statements override daily rewards and punishments automatically.",
+    "D": "Act ethically if and only if auditors explicitly test ethics adherence in annual financial statements."
+   },
+   "answer": "A",
+   "explanation": "",
+   "lo": null,
+   "n": 108
+  },
+  {
+   "set": "C",
+   "stem": "A firm modifies products specifically for crash tests while selling different configurations to customers. This is best understood as:",
+   "options": {
+    "A": "A bundling tactic that increases perceived value by combining safety and performance into one offer, raising willingness to pay in practice, overall.",
+    "B": "Deceptive compliance that may be legalistic but violates honesty norms, fitting ‘legal vs ethical’ and ‘bad barrel’ concerns, in the scenario, overall.",
+    "C": "A wholesale tactic in which retailers buy at a discount and therefore must manage test results to protect resale margins in practice.",
+    "D": "A subscription tactic that stabilizes demand forecasting and therefore reduces incentive to manipulate testing and reporting over time, in the scenario, overall."
+   },
+   "answer": "B",
+   "explanation": "Rigging tests is deceptive compliance: it exploits the gap between formal testing and real-world performance, violating honesty and fairness norms. The other options describe pricing/contracting models unrelated to deception.",
+   "lo": null,
+   "n": 109
+  },
+  {
+   "set": "C",
+   "stem": "A firm rewards ‘hockey stick’ growth and punishes dissent; employees then normalize small reporting manipulations (Item 14). Which lens fits best?",
+   "options": {
+    "A": "Bad apple dynamics, because systemic pressure is irrelevant and only a few individuals’ greed determines misconduct in practice.",
+    "B": "Bad barrel dynamics, because systemic pressure and leadership tone create predictable misconduct even among otherwise decent employees, overall.",
+    "C": "Winner’s curse dynamics, because paying a premium for growth leads to overpayment and therefore causes manipulation over time.",
+    "D": "Long-tail dynamics, because selling less of more requires experimentation and therefore explains misreporting as innovation in practice, overall."
+   },
+   "answer": "B",
+   "explanation": "Systemic pressure, incentive design, and tone at the top are classic ‘bad barrel’ ingredients. Misconduct can become normalized when the system punishes honesty and rewards distortion.",
+   "lo": null,
+   "n": 110
+  },
+  {
+   "set": "C",
+   "stem": "A firm rewards ‘hockey stick’ growth and punishes dissent; employees then normalize small reporting manipulations (Item 15). Which lens fits best?",
+   "options": {
+    "A": "Bad apple dynamics, because systemic pressure is irrelevant and only a few individuals’ greed determines misconduct in practice.",
+    "B": "Long-tail dynamics, because selling less of more requires experimentation and therefore explains misreporting as innovation in practice, overall.",
+    "C": "Winner’s curse dynamics, because paying a premium for growth leads to overpayment and therefore causes manipulation over time.",
+    "D": "Bad barrel dynamics, because systemic pressure and leadership tone create predictable misconduct even among otherwise decent employees, overall."
+   },
+   "answer": "D",
+   "explanation": "Systemic pressure, incentive design, and tone at the top are classic ‘bad barrel’ ingredients. Misconduct can become normalized when the system punishes honesty and rewards distortion.",
+   "lo": null,
+   "n": 111
+  },
+  {
+   "set": "C",
+   "stem": "A firm rewards ‘hockey stick’ growth and punishes dissent; employees then normalize small reporting manipulations (Item 16). Which lens fits best?",
+   "options": {
+    "A": "Bad apple dynamics, because systemic pressure is irrelevant and only a few individuals’ greed determines misconduct in practice.",
+    "B": "Long-tail dynamics, because selling less of more requires experimentation and therefore explains misreporting as innovation in practice, overall.",
+    "C": "Winner’s curse dynamics, because paying a premium for growth leads to overpayment and therefore causes manipulation over time.",
+    "D": "Bad barrel dynamics, because systemic pressure and leadership tone create predictable misconduct even among otherwise decent employees, overall."
+   },
+   "answer": "D",
+   "explanation": "Systemic pressure, incentive design, and tone at the top are classic ‘bad barrel’ ingredients. Misconduct can become normalized when the system punishes honesty and rewards distortion.",
+   "lo": null,
+   "n": 112
+  },
+  {
+   "set": "C",
+   "stem": "A firm rewards ‘hockey stick’ growth and punishes dissent; employees then normalize small reporting manipulations (Item 17). Which lens fits best?",
+   "options": {
+    "A": "Bad apple dynamics, because systemic pressure is irrelevant and only a few individuals’ greed determines misconduct in practice.",
+    "B": "Winner’s curse dynamics, because paying a premium for growth leads to overpayment and therefore causes manipulation over time.",
+    "C": "Bad barrel dynamics, because systemic pressure and leadership tone create predictable misconduct even among otherwise decent employees, overall.",
+    "D": "Long-tail dynamics, because selling less of more requires experimentation and therefore explains misreporting as innovation in practice, overall."
+   },
+   "answer": "C",
+   "explanation": "Systemic pressure, incentive design, and tone at the top are classic ‘bad barrel’ ingredients. Misconduct can become normalized when the system punishes honesty and rewards distortion.",
+   "lo": null,
+   "n": 113
+  },
+  {
+   "set": "C",
+   "stem": "A firm rewards ‘hockey stick’ growth and punishes dissent; employees then normalize small reporting manipulations (Item 18). Which lens fits best?",
+   "options": {
+    "A": "Winner’s curse dynamics, because paying a premium for growth leads to overpayment and therefore causes manipulation over time.",
+    "B": "Bad apple dynamics, because systemic pressure is irrelevant and only a few individuals’ greed determines misconduct in practice.",
+    "C": "Bad barrel dynamics, because systemic pressure and leadership tone create predictable misconduct even among otherwise decent employees, overall.",
+    "D": "Long-tail dynamics, because selling less of more requires experimentation and therefore explains misreporting as innovation in practice, overall."
+   },
+   "answer": "C",
+   "explanation": "Systemic pressure, incentive design, and tone at the top are classic ‘bad barrel’ ingredients. Misconduct can become normalized when the system punishes honesty and rewards distortion.",
+   "lo": null,
+   "n": 114
+  },
+  {
+   "set": "C",
+   "stem": "A firm rewards ‘hockey stick’ growth and punishes dissent; employees then normalize small reporting manipulations (Item 19). Which lens fits best?",
+   "options": {
+    "A": "Bad apple dynamics, because systemic pressure is irrelevant and only a few individuals’ greed determines misconduct in practice.",
+    "B": "Long-tail dynamics, because selling less of more requires experimentation and therefore explains misreporting as innovation in practice, overall.",
+    "C": "Bad barrel dynamics, because systemic pressure and leadership tone create predictable misconduct even among otherwise decent employees, overall.",
+    "D": "Winner’s curse dynamics, because paying a premium for growth leads to overpayment and therefore causes manipulation over time."
+   },
+   "answer": "C",
+   "explanation": "Systemic pressure, incentive design, and tone at the top are classic ‘bad barrel’ ingredients. Misconduct can become normalized when the system punishes honesty and rewards distortion.",
+   "lo": null,
+   "n": 115
+  },
+  {
+   "set": "C",
+   "stem": "A firm rewards ‘hockey stick’ growth and punishes dissent; employees then normalize small reporting manipulations (Item 20). Which lens fits best?",
+   "options": {
+    "A": "Long-tail dynamics, because selling less of more requires experimentation and therefore explains misreporting as innovation in practice, overall.",
+    "B": "Bad apple dynamics, because systemic pressure is irrelevant and only a few individuals’ greed determines misconduct in practice.",
+    "C": "Winner’s curse dynamics, because paying a premium for growth leads to overpayment and therefore causes manipulation over time.",
+    "D": "Bad barrel dynamics, because systemic pressure and leadership tone create predictable misconduct even among otherwise decent employees, overall."
+   },
+   "answer": "D",
+   "explanation": "Systemic pressure, incentive design, and tone at the top are classic ‘bad barrel’ ingredients. Misconduct can become normalized when the system punishes honesty and rewards distortion.",
+   "lo": null,
+   "n": 116
+  },
+  {
+   "set": "C",
+   "stem": "A firm rewards ‘hockey stick’ growth and punishes dissent; employees then normalize small reporting manipulations (Item 21). Which lens fits best?",
+   "options": {
+    "A": "Bad barrel dynamics, because systemic pressure and leadership tone create predictable misconduct even among otherwise decent employees, overall.",
+    "B": "Winner’s curse dynamics, because paying a premium for growth leads to overpayment and therefore causes manipulation over time.",
+    "C": "Long-tail dynamics, because selling less of more requires experimentation and therefore explains misreporting as innovation in practice, overall.",
+    "D": "Bad apple dynamics, because systemic pressure is irrelevant and only a few individuals’ greed determines misconduct in practice."
+   },
+   "answer": "A",
+   "explanation": "Systemic pressure, incentive design, and tone at the top are classic ‘bad barrel’ ingredients. Misconduct can become normalized when the system punishes honesty and rewards distortion.",
+   "lo": null,
+   "n": 117
+  },
+  {
+   "set": "C",
+   "stem": "A firm rewards ‘hockey stick’ growth and punishes dissent; employees then normalize small reporting manipulations (Item 22). Which lens fits best?",
+   "options": {
+    "A": "Winner’s curse dynamics, because paying a premium for growth leads to overpayment and therefore causes manipulation over time.",
+    "B": "Long-tail dynamics, because selling less of more requires experimentation and therefore explains misreporting as innovation in practice, overall.",
+    "C": "Bad apple dynamics, because systemic pressure is irrelevant and only a few individuals’ greed determines misconduct in practice.",
+    "D": "Bad barrel dynamics, because systemic pressure and leadership tone create predictable misconduct even among otherwise decent employees, overall."
+   },
+   "answer": "D",
+   "explanation": "Systemic pressure, incentive design, and tone at the top are classic ‘bad barrel’ ingredients. Misconduct can become normalized when the system punishes honesty and rewards distortion.",
+   "lo": null,
+   "n": 118
+  },
+  {
+   "set": "C",
+   "stem": "A firm rewards ‘hockey stick’ growth and punishes dissent; employees then normalize small reporting manipulations (Item 23). Which lens fits best?",
+   "options": {
+    "A": "Bad barrel dynamics, because systemic pressure and leadership tone create predictable misconduct even among otherwise decent employees, overall.",
+    "B": "Bad apple dynamics, because systemic pressure is irrelevant and only a few individuals’ greed determines misconduct in practice.",
+    "C": "Winner’s curse dynamics, because paying a premium for growth leads to overpayment and therefore causes manipulation over time.",
+    "D": "Long-tail dynamics, because selling less of more requires experimentation and therefore explains misreporting as innovation in practice, overall."
+   },
+   "answer": "A",
+   "explanation": "Systemic pressure, incentive design, and tone at the top are classic ‘bad barrel’ ingredients. Misconduct can become normalized when the system punishes honesty and rewards distortion.",
+   "lo": null,
+   "n": 119
+  },
+  {
+   "set": "C",
+   "stem": "A firm rewards ‘hockey stick’ growth and punishes dissent; employees then normalize small reporting manipulations (Item 24). Which lens fits best?",
+   "options": {
+    "A": "Winner’s curse dynamics, because paying a premium for growth leads to overpayment and therefore causes manipulation over time.",
+    "B": "Long-tail dynamics, because selling less of more requires experimentation and therefore explains misreporting as innovation in practice, overall.",
+    "C": "Bad apple dynamics, because systemic pressure is irrelevant and only a few individuals’ greed determines misconduct in practice.",
+    "D": "Bad barrel dynamics, because systemic pressure and leadership tone create predictable misconduct even among otherwise decent employees, overall."
+   },
+   "answer": "D",
+   "explanation": "Systemic pressure, incentive design, and tone at the top are classic ‘bad barrel’ ingredients. Misconduct can become normalized when the system punishes honesty and rewards distortion.",
+   "lo": null,
+   "n": 120
+  },
+  {
+   "set": "C",
+   "stem": "A firm rewards ‘hockey stick’ growth and punishes dissent; employees then normalize small reporting manipulations (Item 25). Which lens fits best?",
+   "options": {
+    "A": "Bad apple dynamics, because systemic pressure is irrelevant and only a few individuals’ greed determines misconduct in practice.",
+    "B": "Winner’s curse dynamics, because paying a premium for growth leads to overpayment and therefore causes manipulation over time.",
+    "C": "Bad barrel dynamics, because systemic pressure and leadership tone create predictable misconduct even among otherwise decent employees, overall.",
+    "D": "Long-tail dynamics, because selling less of more requires experimentation and therefore explains misreporting as innovation in practice, overall."
+   },
+   "answer": "C",
+   "explanation": "Systemic pressure, incentive design, and tone at the top are classic ‘bad barrel’ ingredients. Misconduct can become normalized when the system punishes honesty and rewards distortion.",
+   "lo": null,
+   "n": 121
+  },
+  {
+   "set": "C",
+   "stem": "A firm’s leadership sets revenue targets that can only be met by evading controls. The chapter suggests the most likely outcome is:",
+   "options": {
+    "A": "Increased corner cutting and potential illegal behavior because top-down pressure and high stakes distort choices.",
+    "B": "Lower information asymmetry because ambitious goals increase transparency through frequent reporting.",
+    "C": "Higher ethical performance because intense goals always induce discipline and eliminate moral hazard.",
+    "D": "Lower short-termism because hard goals force leaders to focus on long horizons rather than quick wins."
+   },
+   "answer": "A",
+   "explanation": "",
+   "lo": null,
+   "n": 122
+  },
+  {
+   "set": "C",
+   "stem": "A manager argues: ‘We complied with emissions testing, so our actions are ethical.’ Which rebuttal best matches the chapter?",
+   "options": {
+    "A": "Ethics is only personal, so corporate intent is irrelevant and only individual beliefs should be evaluated in practice, overall.",
+    "B": "Ethics is only about profitability, so if cheating protects jobs and market share it is ethically justified over time.",
+    "C": "Ethics is not synonymous with compliance; designing around tests to mislead violates societal norms even if legal loopholes exist.",
+    "D": "Ethics equals compliance, so passing tests proves ethical conduct regardless of intent or real-world consequences in practice, in practice."
+   },
+   "answer": "C",
+   "explanation": "The chapter warns that legality is a minimum; exploiting loopholes or deception can remain unethical. Intent and real-world impacts matter in evaluating conduct.",
+   "lo": null,
+   "n": 123
+  },
+  {
+   "set": "C",
+   "stem": "A manager says: “We complied with the letter of the law, so ethics is satisfied.” Which response best matches the chapter?",
+   "options": {
+    "A": "Ethics is an external audit function; therefore internal codes of conduct are unnecessary.",
+    "B": "Ethics is culture-relative only; therefore universal norms like honesty cannot guide business conduct.",
+    "C": "Ethics equals legal compliance; therefore ethical analysis is redundant once counsel signs off.",
+    "D": "Law is a minimum standard; ethical evaluation can still judge actions questionable under societal norms."
+   },
+   "answer": "D",
+   "explanation": "",
+   "lo": null,
+   "n": 124
+  },
+  {
+   "set": "C",
+   "stem": "A platform charges fees per transaction; heavy users pay more, light users pay little. Which model is the best fit?",
+   "options": {
+    "A": "Subscription, because payment is tied to access over time regardless of usage intensity.",
+    "B": "Wholesale, because intermediaries set final prices and profit from resale margins.",
+    "C": "Bundling, because negatively correlated preferences allow discounting across multiple products.",
+    "D": "Pay-as-you-go, because pricing scales with actual consumption of the service (transactions)."
+   },
+   "answer": "D",
+   "explanation": "",
+   "lo": null,
+   "n": 125
+  },
+  {
+   "set": "C",
+   "stem": "A platform offers basic trading tools free, but charges for advanced analytics and priority support. Which model is closest?",
+   "options": {
+    "A": "Freemium, because a free base expands adoption while premium add-ons monetize power users.",
+    "B": "Wholesale, because retailers set price and profit from a fixed discount to recommended price.",
+    "C": "Agency, because an intermediary sells at commission while the producer controls retail pricing.",
+    "D": "Ultra-low cost, because minimal service is cheap and upgrades are sold at premium a la carte."
+   },
+   "answer": "A",
+   "explanation": "",
+   "lo": null,
+   "n": 126
+  },
+  {
+   "set": "C",
+   "stem": "A platform sells a few megahits and also many niche items using recommendation systems. The chapter implies it can:",
+   "options": {
+    "A": "Earn from short head plus long tail, because technology expands selection while still selling blockbusters.",
+    "B": "Earn only from the long tail, because blockbusters disappear when recommendation engines are used.",
+    "C": "Earn only from the short head, because niche items cannot aggregate unless physical inventory exists.",
+    "D": "Avoid thin markets only with poison pills, because takeover defenses create buyer-seller matching."
+   },
+   "answer": "A",
+   "explanation": "",
+   "lo": null,
+   "n": 127
+  },
+  {
+   "set": "C",
+   "stem": "A private sponsor uses leverage to buy a listed exchange and take it private, aiming to restructure and later re-list. This is:",
+   "options": {
+    "A": "An agency model, where a retailer sells on commission while the producer controls retail pricing.",
+    "B": "A bundling model, where negatively correlated products are discounted when sold together.",
+    "C": "A leveraged buyout, which changes ownership from public to private using borrowed money.",
+    "D": "A freemium model, where the basic service is free but premium features are paid add-ons."
+   },
+   "answer": "C",
+   "explanation": "",
+   "lo": null,
+   "n": 128
+  },
+  {
+   "set": "C",
+   "stem": "A public crypto firm’s shares fall sharply; activists accumulate stock and push for leadership change. Which mechanism is operating?",
+   "options": {
+    "A": "Business ethics, where values statements guide behavior beyond legal compliance requirements.",
+    "B": "Executive compensation, where stock options align incentives by tying pay to future share prices.",
+    "C": "Market for corporate control, where control contests discipline underperforming management.",
+    "D": "Board composition, where inside directors provide operational detail to help monitor management."
+   },
+   "answer": "C",
+   "explanation": "",
+   "lo": null,
+   "n": 129
+  },
+  {
+   "set": "C",
+   "stem": "A salesforce opens unauthorized accounts to hit aggressive daily quotas. Under the chapter’s ‘bad barrels’ logic, the best diagnosis is:",
+   "options": {
+    "A": "Systemic pressure and incentive design created conditions where misconduct became predictable, even if individuals remain accountable, on balance, in practice.",
+    "B": "Regulators caused the problem, so reducing compliance requirements would eliminate the incentive to fabricate accounts in practice, as stated here.",
+    "C": "Customers caused the problem, so increasing switching costs through bundling would prevent internal misconduct altogether, overall, as described, in practice.",
+    "D": "A few immoral individuals caused the problem, so firing them solves the issue without changing systems or targets over time."
+   },
+   "answer": "A",
+   "explanation": "The ‘bad barrel’ perspective emphasizes systemic drivers—targets, pressure, leadership tone—that can push many people into unethical acts. Firing individuals may be necessary but is insufficient without system redesign.",
+   "lo": null,
+   "n": 130
+  },
+  {
+   "set": "C",
+   "stem": "Agency theory views the firm as a ‘nexus of legal contracts.’ Which implication is most consistent with that view?",
+   "options": {
+    "A": "Conflicts are addressed through incentives and monitoring embedded in contracts, with disputes often resolved legally.",
+    "B": "Conflicts are irrelevant in for-profit firms, because shareholder value automatically aligns every stakeholder’s goals.",
+    "C": "Conflicts vanish once disclosures are public, because information asymmetry disappears under standardized reporting.",
+    "D": "Conflicts are eliminated by culture alone, because shared values substitute fully for formal monitoring mechanisms."
+   },
+   "answer": "A",
+   "explanation": "",
+   "lo": null,
+   "n": 131
+  },
+  {
+   "set": "C",
+   "stem": "An auditor notices a large discrepancy in bank statements (Satyam-style). Which response best reflects ethical reasoning beyond mere role compliance?",
+   "options": {
+    "A": "Leak the issue anonymously to competitors; competitive pressure is a legitimate substitute for ethical reporting in practice, in practice.",
+    "B": "Wait until quarterly results are released; public disclosure alone will force correction without internal escalation steps, as stated here.",
+    "C": "Escalate through governance channels and, if internal response fails, consider external whistleblowing to protect stakeholders from harm, in practice.",
+    "D": "Ignore it because it is the partner’s job; role boundaries remove personal responsibility as long as tasks were completed."
+   },
+   "answer": "C",
+   "explanation": "Ethical conduct requires proactive escalation when material harm is at stake; role boundaries do not eliminate moral responsibility. Waiting for markets or leaking to rivals is not a principled governance path.",
+   "lo": null,
+   "n": 132
+  },
+  {
+   "set": "C",
+   "stem": "An exchange operator knows far more than customers about custody risk but markets itself as ‘risk-free.’ This most directly reflects:",
+   "options": {
+    "A": "Leveraged-buyout incentives that shift ownership to private equity through debt-financed share purchases.",
+    "B": "Bundling benefits that arise when products have negatively correlated demand across customer segments.",
+    "C": "Poison-pill protection that deters hostile takeovers through share dilution at ownership thresholds.",
+    "D": "Information asymmetry that can enable opportunism unless governance and ethics constrain claims."
+   },
+   "answer": "D",
+   "explanation": "",
+   "lo": null,
+   "n": 133
+  },
+  {
+   "set": "C",
+   "stem": "Boeing 737 MAX ‘concealment of MCAS’ (as presented in the course page) illustrates which ethical risk mechanism?",
+   "options": {
+    "A": "Ultra-low cost strategy forces concealment, because only fixed-asset ownership can reduce training costs and therefore requires secrecy, as described, in practice.",
+    "B": "Freemium strategy forces concealment, because free users must be kept ignorant so premium conversion can occur without resistance in practice, overall.",
+    "C": "Cost and timeline pressure can incentivize concealment that shifts risk to users, making ethics a systemic design issue not a slogan.",
+    "D": "Network effects force concealment, because platforms must hide features to avoid negative externalities and reduce multi-homing in practice, as stated here."
+   },
+   "answer": "C",
+   "explanation": "The course page treats Boeing as a culture/pressure case: avoiding training costs and meeting timelines can push concealment that endangers stakeholders—an ethics and governance failure.",
+   "lo": null,
+   "n": 134
+  },
+  {
+   "set": "C",
+   "stem": "In Caselet C, which external governance mechanism is most directly at work?",
+   "options": {
+    "A": "Inside directors increasing information flow to the board, reducing managerial opportunism directly.",
+    "B": "Government regulators enforcing compliance obligations and penalties for violations of financial laws.",
+    "C": "Bundling products with negatively correlated demand to increase willingness to pay across segments.",
+    "D": "Stock options aligning manager incentives with shareholders through predetermined strike prices."
+   },
+   "answer": "B",
+   "explanation": "",
+   "lo": null,
+   "n": 135
+  },
+  {
+   "set": "C",
+   "stem": "In VW Dieselgate, the most conceptually precise reason the ‘bad barrel’ framing fits is that:",
+   "options": {
+    "A": "A single engineer acted alone without leadership knowledge, so system design and incentives were largely irrelevant in practice, as stated here.",
+    "B": "The act was legal but unpopular, so it is an ethics issue only because the public disliked the technology over time.",
+    "C": "The firm lacked a business model, so cheating substituted for strategy because pricing and positioning were unclear in practice, in practice.",
+    "D": "Engineers faced an impossible constraint set under performance pressure, making a workaround socially reinforced rather than purely individual deviance, in practice."
+   },
+   "answer": "D",
+   "explanation": "The course page describes the ‘iron triangle’ pressure and systemic conditions that can normalize cheating. That fits the bad-barrel logic more than a lone-actor story.",
+   "lo": null,
+   "n": 136
+  },
+  {
+   "set": "C",
+   "stem": "In the FAME‑II ‘subsidy arbitrage’ example on the course page, the most precise ethical issue is:",
+   "options": {
+    "A": "Moral hazard by consumers, because riders drive recklessly once insured, increasing accident risk borne by insurers in practice.",
+    "B": "A long-tail strategy, because firms import many niche parts and therefore sell small volumes across diverse product variants.",
+    "C": "Misrepresentation of local value addition to capture public subsidies, exploiting information gaps between firms and the state, overall.",
+    "D": "Adverse selection by customers, because buyers choose low-quality scooters due to hidden defects in battery technology over time."
+   },
+   "answer": "C",
+   "explanation": "The case is framed as misrepresentation to capture subsidies—an ethics and compliance issue involving deception toward public principals. The other options mislabel the mechanism as customer selection, insurance risk shifting, or assortment economics.",
+   "lo": null,
+   "n": 137
+  },
+  {
+   "set": "C",
+   "stem": "Johnson & Johnson’s Tylenol recall is used as an example of ‘good barrel’ behavior mainly because:",
+   "options": {
+    "A": "Leaders prioritized public safety and acted consistently with stated values despite high short-term cost, reinforcing trust norms, as described, in practice.",
+    "B": "Leaders shifted to a long-tail business model to replace lost sales, demonstrating that assortment is the primary ethical mechanism, in practice.",
+    "C": "Leaders used a poison pill to prevent activists from demanding a recall, showing that takeover defenses create ethical autonomy in practice.",
+    "D": "Leaders reduced disclosure and delayed action to avoid panic, demonstrating that secrecy is ethically superior during crises in practice, in practice."
+   },
+   "answer": "A",
+   "explanation": "The point is values in action: prioritizing safety and trust over short-term profit aligns with ethical norms and strengthens stakeholder commitment. The other options contradict that logic or confuse ethics with takeover defenses or assortment.",
+   "lo": null,
+   "n": 138
+  },
+  {
+   "set": "C",
+   "stem": "Offering thousands of low-volume tokens while relying on search and recommendation to match niche demand is closest to:",
+   "options": {
+    "A": "Short head, where a few blockbuster tokens drive almost all revenues through mass marketing budgets.",
+    "B": "Moral hazard, where agents shirk effort because principals cannot observe post-contract behavior.",
+    "C": "Long tail, where many niche offerings aggregate into substantial revenue when marginal costs are low.",
+    "D": "Adverse selection, where candidates misrepresent ability during recruitment and screening."
+   },
+   "answer": "C",
+   "explanation": "",
+   "lo": null,
+   "n": 139
+  },
+  {
+   "set": "C",
+   "stem": "The MBA oath described in the textbook is best characterized as:",
+   "options": {
+    "A": "A marketing initiative designed to increase customer demand, with no connection to governance mechanisms or leadership conduct, in practice.",
+    "B": "A firm-level code written by boards that automatically replaces the need for compliance programs and internal controls in practice.",
+    "C": "A legally binding document required for all managers, enforced by regulators through disbarment-like professional penalties, overall, as stated here.",
+    "D": "A voluntary pledge intended to professionalize management ethics, but with uncertain behavioral impact and no formal sanctions, in practice."
+   },
+   "answer": "D",
+   "explanation": "The textbook notes the MBA oath is voluntary, seeks high ethical standards, but its effect is unknown and it imposes no consequences for misconduct.",
+   "lo": null,
+   "n": 140
+  },
+  {
+   "set": "C",
+   "stem": "The chapter defines business ethics most accurately as:",
+   "options": {
+    "A": "A set of government regulations enforced by courts that fully specify acceptable behavior in every market and transaction.",
+    "B": "A public-relations strategy used to protect brand equity during crises, independent of governance mechanisms and incentives, in practice.",
+    "C": "An agreed-upon code of conduct in business based on societal norms that guide behavior beyond mere legal compliance.",
+    "D": "A personal belief system that varies entirely by manager and therefore cannot be taught or institutionalized in organizations."
+   },
+   "answer": "C",
+   "explanation": "The textbook defines business ethics as agreed-upon conduct based on societal norms. Law is a minimum, but ethics extends beyond compliance; ethics is also not reducible to PR or purely personal belief.",
+   "lo": null,
+   "n": 141
+  },
+  {
+   "set": "C",
+   "stem": "Which action is most clearly illegal under the insider-trading discussion in the governance section?",
+   "options": {
+    "A": "Learning internal transaction volume trends before they appear in the firm’s quarterly public reporting.",
+    "B": "Collecting operational data faster than competitors through legitimate analytics and data infrastructure.",
+    "C": "Trading securities based on material nonpublic information or tipping another trader before disclosure.",
+    "D": "Discussing nonpublic risk controls with the board during confidential governance oversight meetings."
+   },
+   "answer": "C",
+   "explanation": "",
+   "lo": null,
+   "n": 142
+  },
+  {
+   "set": "C",
+   "stem": "Which claim best captures the chapter’s warning about ‘legal but unethical’ behavior?",
+   "options": {
+    "A": "If conduct is ethical, it must also be legal, because ethical principles are always codified into enforceable statutes in practice, overall.",
+    "B": "If conduct is legal, it is automatically ethical, because laws fully encode fairness and honesty across all cultures and contexts, overall.",
+    "C": "If conduct is illegal, it is always unethical, but if it is legal it is ethically neutral and therefore beyond evaluation.",
+    "D": "Staying within the law is a minimum standard; managers can act legally while exploiting information asymmetries in ways society finds unethical."
+   },
+   "answer": "D",
+   "explanation": "The textbook explicitly distinguishes law and ethics: legal conduct can still be ethically questionable, especially when incentives and information asymmetries enable exploitation.",
+   "lo": null,
+   "n": 143
+  },
+  {
+   "set": "C",
+   "stem": "Which governance response most directly reduces information asymmetry between insiders and outsiders in a regulated financial platform?",
+   "options": {
+    "A": "Increasing CEO-chair duality to unify command and speed decisions in volatile markets.",
+    "B": "Adding more inside directors only, to ensure the board receives richer internal operational updates.",
+    "C": "Standardized public reporting plus independent auditing and regulator oversight of disclosures and controls.",
+    "D": "Switching from pay-as-you-go fees to subscription pricing to stabilize revenue predictability."
+   },
+   "answer": "C",
+   "explanation": "",
+   "lo": null,
+   "n": 144
+  },
+  {
+   "set": "C",
+   "stem": "Which intervention is most consistent with building a ‘good barrel’ rather than merely punishing ‘bad apples’?",
+   "options": {
+    "A": "Issue a one-time memo on values while keeping the same sales quotas and punishment culture for those who miss targets in practice.",
+    "B": "Redesign goals, incentives, and reporting so employees can meet expectations without deception, supported by leaders modeling conduct, as described, as stated here.",
+    "C": "Centralize decision rights in one charismatic leader to ‘set the tone,’ reducing debate and making compliance faster in practice, as stated here.",
+    "D": "Increase secrecy and NDA enforcement so fewer people see problems, thereby reducing the likelihood of public scandals over time, as stated here."
+   },
+   "answer": "B",
+   "explanation": "A ‘good barrel’ is created through system design, incentives, and leadership behavior that make ethical actions feasible and safe. Memos without redesign, secrecy, and centralization tend to worsen systemic risk.",
+   "lo": null,
+   "n": 145
+  },
+  {
+   "set": "C",
+   "stem": "Which neglected business-model framework question most directly explains a compliance breakdown when KYC is outsourced to partners?",
+   "options": {
+    "A": "What, because listing activities is sufficient even if no party is accountable for performing them.",
+    "B": "How, because process linkage is irrelevant if partner roles and accountability are not specified.",
+    "C": "Why, because revenue and cost logic alone determines whether compliance controls are implemented effectively.",
+    "D": "Who, because unclear stakeholder responsibility for core activities creates gaps in execution and accountability."
+   },
+   "answer": "D",
+   "explanation": "",
+   "lo": null,
+   "n": 146
+  },
+  {
+   "set": "C",
+   "stem": "Which principle is most consistent with the MBA oath excerpt discussed in the ethics section?",
+   "options": {
+    "A": "Managers should avoid reporting risks to prevent panic and maintain market confidence.",
+    "B": "Managers should treat law and ethics as identical because only codified rules matter.",
+    "C": "Managers should not advance personal interests at the expense of the enterprise or society.",
+    "D": "Managers should maximize personal compensation as a proxy for shareholder value creation."
+   },
+   "answer": "C",
+   "explanation": "",
+   "lo": null,
+   "n": 147
+  },
+  {
+   "set": "C",
+   "stem": "Which prompt in the business model framework most directly asks about value creation in economic terms?",
+   "options": {
+    "A": "What activities must be performed to create and deliver the offering reliably to customers?",
+    "B": "Who are the stakeholders performing activities from suppliers through partners to customers?",
+    "C": "Why does the model create value through its revenue streams and cost structure choices?",
+    "D": "How are activities linked and sequenced to create and deliver the offering at scale and quality?"
+   },
+   "answer": "C",
+   "explanation": "",
+   "lo": null,
+   "n": 148
+  },
+  {
+   "set": "C",
+   "stem": "Which statement best explains how digital platforms can overcome thin markets in niche assets?",
+   "options": {
+    "A": "They centralize decision rights in a CEO-chair to speed governance and reduce dissent in oversight.",
+    "B": "They deter hostile takeovers through poison pills that dilute acquirers beyond ownership thresholds.",
+    "C": "They reduce transaction costs and search frictions so dispersed buyers and sellers can find each other.",
+    "D": "They bundle negatively correlated products so each user buys more even if they want only one."
+   },
+   "answer": "C",
+   "explanation": "",
+   "lo": null,
+   "n": 149
+  },
+  {
+   "set": "C",
+   "stem": "Which statement best represents business ethics as defined in the chapter?",
+   "options": {
+    "A": "A personal belief system that cannot be shared across cultures and therefore cannot guide firms.",
+    "B": "An agreed-upon code of conduct in business grounded in societal norms, beyond legal minimums.",
+    "C": "A set of SEC regulations specifying how firms must format disclosures under GAAP principles.",
+    "D": "A pricing policy that maximizes profit given customer willingness to pay in competitive markets."
+   },
+   "answer": "B",
+   "explanation": "",
+   "lo": null,
+   "n": 150
+  },
+  {
+   "set": "D",
+   "stem": "A CEO uses company funds for personal luxury items while asking employees to cut costs. This is best labeled:",
+   "options": {
+    "A": "Bundling, because multiple consumption items are packaged together under one corporate account.",
+    "B": "Long tail, because many small purchases aggregate into large overall revenue for suppliers.",
+    "C": "Thin markets, because luxury suppliers are rare and cannot be found easily in time and space.",
+    "D": "On-the-job consumption, a manifestation of agency costs under information asymmetry."
+   },
+   "answer": "D",
+   "explanation": "",
+   "lo": null,
+   "n": 151
+  },
+  {
+   "set": "D",
+   "stem": "A bank’s analysts rate their own clients too favorably. Which governance risk is highlighted by the chapter?",
+   "options": {
+    "A": "Bias is solved by increasing inside directors, because internal knowledge makes external judgment unnecessary.",
+    "B": "Bias proves ethics is irrelevant, because markets only reward performance and ignore monitoring quality.",
+    "C": "Conflicts of interest can bias external monitors even when information is public and standardized.",
+    "D": "Conflicts of interest are impossible because all firms file EDGAR reports and thus are perfectly comparable."
+   },
+   "answer": "C",
+   "explanation": "",
+   "lo": null,
+   "n": 152
+  },
+  {
+   "set": "D",
+   "stem": "A bidder pays a large premium for a distressed coworking chain and later destroys value. The chapter’s term for this is:",
+   "options": {
+    "A": "Poison pill, because shareholders dilute the bidder once it crosses an ownership threshold.",
+    "B": "Freemium, because basic access is free while premium add-ons monetize advanced features.",
+    "C": "Winner’s curse, because takeover premiums can cause overpayment and subsequent value destruction.",
+    "D": "Thin markets, because few buyers and sellers exist and cannot find each other in time and space."
+   },
+   "answer": "C",
+   "explanation": "",
+   "lo": null,
+   "n": 153
+  },
+  {
+   "set": "D",
+   "stem": "A board removes a CEO after ethical controversy even without proof of illegal behavior. The chapter’s logic suggests this is because:",
+   "options": {
+    "A": "Ethical leadership sets the tone; CEOs under scrutiny must meet high standards to sustain trust and culture.",
+    "B": "Ethics is purely cultural; therefore boards cannot judge CEO conduct using any shared standards.",
+    "C": "Only illegal behavior matters; therefore board actions without illegality are irrational and unethical.",
+    "D": "Ethics is solved by market for corporate control; boards should wait for activists to intervene."
+   },
+   "answer": "A",
+   "explanation": "",
+   "lo": null,
+   "n": 154
+  },
+  {
+   "set": "D",
+   "stem": "A coworking chain offers ultra-cheap basic space but charges high prices for meeting rooms and amenities. This is closest to:",
+   "options": {
+    "A": "Wholesale, because retailers buy at a discount and set final prices to earn resale margins.",
+    "B": "Poison pill, because takeover deterrence is created through share dilution triggers.",
+    "C": "Freemium, because basic service is free while premium tiers monetize advanced capabilities.",
+    "D": "Ultra-low cost, because stripped basic service is cheap and extras are sold at premium a la carte."
+   },
+   "answer": "D",
+   "explanation": "",
+   "lo": null,
+   "n": 155
+  },
+  {
+   "set": "D",
+   "stem": "A coworking firm charges members a fixed monthly fee for access to spaces, regardless of how many hours they use. This is:",
+   "options": {
+    "A": "Subscription, because payment is for access during a term rather than strictly for measured usage.",
+    "B": "Pay-as-you-go, because charges scale precisely with hours used and metered consumption.",
+    "C": "Freemium, because the base access is free while premium features are paid add-ons.",
+    "D": "Wholesale, because the firm sells access to retailers at discounts who set their own prices."
+   },
+   "answer": "A",
+   "explanation": "",
+   "lo": null,
+   "n": 156
+  },
+  {
+   "set": "D",
+   "stem": "A firm bundles workspace, mail handling, and coffee into one package at a discount because different customers value different components. This is:",
+   "options": {
+    "A": "Razor–razor blades, because the initial product is sold cheaply to drive recurring replacement purchases.",
+    "B": "Bundling, because negatively correlated demand across components allows discounting that expands willingness to pay.",
+    "C": "Long tail, because many niche products aggregate into large revenue when shelf space is unlimited.",
+    "D": "Agency, because an intermediary sells on commission while the producer controls the retail price."
+   },
+   "answer": "B",
+   "explanation": "",
+   "lo": null,
+   "n": 157
+  },
+  {
+   "set": "D",
+   "stem": "A firm combines subscription with an ecosystem bundle. Which risk is most consistent with the chapter’s emphasis on ‘strategy in action’?",
+   "options": {
+    "A": "Guaranteed takeover immunity, because bundled customers prevent hostile bidders from paying premiums and therefore stop corporate control markets in practice.",
+    "B": "Guaranteed lock-in, because adding tactics always increases switching costs regardless of customer perception in practice, overall, as described, in practice.",
+    "C": "Guaranteed ethics, because bundling and subscription reduce incentives to misreport and therefore eliminate bad-barrel risks over time, as stated here.",
+    "D": "Complexity without value creation, if added tactics increase costs and confusion without improving customer value or unit economics, in practice."
+   },
+   "answer": "D",
+   "explanation": "The chapter treats business models as translating strategy into actionable economics; adding tactics can backfire if it adds complexity without improving value or margins. Lock-in, ethics, and takeover immunity are not automatic.",
+   "lo": null,
+   "n": 158
+  },
+  {
+   "set": "D",
+   "stem": "A firm offers a free tier with ads and a paid tier with premium features (Item 15). Which label fits best?",
+   "options": {
+    "A": "Subscription only, because all recurring payments are subscriptions regardless of free tiers, ads, and conversion funnels in practice, in practice.",
+    "B": "Wholesale only, because free tiers are equivalent to bulk discounts given to retailers who then set resale prices in practice.",
+    "C": "Freemium, because a free version acquires users while a paid version monetizes a subset through feature gating and convenience, overall.",
+    "D": "Razor-and-blade only, because all recurring revenue must come from consumables rather than from upgrades and service bundles in practice, overall."
+   },
+   "answer": "C",
+   "explanation": "A free tier plus paid upgrade is the canonical freemium structure. Subscription can be part of the paid tier, but the defining feature is the free-to-paid conversion funnel; wholesale and razor-and-blade are different logics.",
+   "lo": null,
+   "n": 159
+  },
+  {
+   "set": "D",
+   "stem": "A firm offers a free tier with ads and a paid tier with premium features (Item 16). Which label fits best?",
+   "options": {
+    "A": "Razor-and-blade only, because all recurring revenue must come from consumables rather than from upgrades and service bundles in practice, overall.",
+    "B": "Wholesale only, because free tiers are equivalent to bulk discounts given to retailers who then set resale prices in practice.",
+    "C": "Subscription only, because all recurring payments are subscriptions regardless of free tiers, ads, and conversion funnels in practice, in practice.",
+    "D": "Freemium, because a free version acquires users while a paid version monetizes a subset through feature gating and convenience, overall."
+   },
+   "answer": "D",
+   "explanation": "A free tier plus paid upgrade is the canonical freemium structure. Subscription can be part of the paid tier, but the defining feature is the free-to-paid conversion funnel; wholesale and razor-and-blade are different logics.",
+   "lo": null,
+   "n": 160
+  },
+  {
+   "set": "D",
+   "stem": "A firm offers a free tier with ads and a paid tier with premium features (Item 17). Which label fits best?",
+   "options": {
+    "A": "Subscription only, because all recurring payments are subscriptions regardless of free tiers, ads, and conversion funnels in practice, in practice.",
+    "B": "Razor-and-blade only, because all recurring revenue must come from consumables rather than from upgrades and service bundles in practice, overall.",
+    "C": "Wholesale only, because free tiers are equivalent to bulk discounts given to retailers who then set resale prices in practice.",
+    "D": "Freemium, because a free version acquires users while a paid version monetizes a subset through feature gating and convenience, overall."
+   },
+   "answer": "D",
+   "explanation": "A free tier plus paid upgrade is the canonical freemium structure. Subscription can be part of the paid tier, but the defining feature is the free-to-paid conversion funnel; wholesale and razor-and-blade are different logics.",
+   "lo": null,
+   "n": 161
+  },
+  {
+   "set": "D",
+   "stem": "A firm offers a free tier with ads and a paid tier with premium features (Item 18). Which label fits best?",
+   "options": {
+    "A": "Freemium, because a free version acquires users while a paid version monetizes a subset through feature gating and convenience, overall.",
+    "B": "Subscription only, because all recurring payments are subscriptions regardless of free tiers, ads, and conversion funnels in practice, in practice.",
+    "C": "Wholesale only, because free tiers are equivalent to bulk discounts given to retailers who then set resale prices in practice.",
+    "D": "Razor-and-blade only, because all recurring revenue must come from consumables rather than from upgrades and service bundles in practice, overall."
+   },
+   "answer": "A",
+   "explanation": "A free tier plus paid upgrade is the canonical freemium structure. Subscription can be part of the paid tier, but the defining feature is the free-to-paid conversion funnel; wholesale and razor-and-blade are different logics.",
+   "lo": null,
+   "n": 162
+  },
+  {
+   "set": "D",
+   "stem": "A firm offers a free tier with ads and a paid tier with premium features (Item 19). Which label fits best?",
+   "options": {
+    "A": "Wholesale only, because free tiers are equivalent to bulk discounts given to retailers who then set resale prices in practice.",
+    "B": "Freemium, because a free version acquires users while a paid version monetizes a subset through feature gating and convenience, overall.",
+    "C": "Subscription only, because all recurring payments are subscriptions regardless of free tiers, ads, and conversion funnels in practice, in practice.",
+    "D": "Razor-and-blade only, because all recurring revenue must come from consumables rather than from upgrades and service bundles in practice, overall."
+   },
+   "answer": "B",
+   "explanation": "A free tier plus paid upgrade is the canonical freemium structure. Subscription can be part of the paid tier, but the defining feature is the free-to-paid conversion funnel; wholesale and razor-and-blade are different logics.",
+   "lo": null,
+   "n": 163
+  },
+  {
+   "set": "D",
+   "stem": "A firm offers a free tier with ads and a paid tier with premium features (Item 20). Which label fits best?",
+   "options": {
+    "A": "Subscription only, because all recurring payments are subscriptions regardless of free tiers, ads, and conversion funnels in practice, in practice.",
+    "B": "Razor-and-blade only, because all recurring revenue must come from consumables rather than from upgrades and service bundles in practice, overall.",
+    "C": "Wholesale only, because free tiers are equivalent to bulk discounts given to retailers who then set resale prices in practice.",
+    "D": "Freemium, because a free version acquires users while a paid version monetizes a subset through feature gating and convenience, overall."
+   },
+   "answer": "D",
+   "explanation": "A free tier plus paid upgrade is the canonical freemium structure. Subscription can be part of the paid tier, but the defining feature is the free-to-paid conversion funnel; wholesale and razor-and-blade are different logics.",
+   "lo": null,
+   "n": 164
+  },
+  {
+   "set": "D",
+   "stem": "A firm offers a free tier with ads and a paid tier with premium features (Item 21). Which label fits best?",
+   "options": {
+    "A": "Wholesale only, because free tiers are equivalent to bulk discounts given to retailers who then set resale prices in practice.",
+    "B": "Freemium, because a free version acquires users while a paid version monetizes a subset through feature gating and convenience, overall.",
+    "C": "Razor-and-blade only, because all recurring revenue must come from consumables rather than from upgrades and service bundles in practice, overall.",
+    "D": "Subscription only, because all recurring payments are subscriptions regardless of free tiers, ads, and conversion funnels in practice, in practice."
+   },
+   "answer": "B",
+   "explanation": "A free tier plus paid upgrade is the canonical freemium structure. Subscription can be part of the paid tier, but the defining feature is the free-to-paid conversion funnel; wholesale and razor-and-blade are different logics.",
+   "lo": null,
+   "n": 165
+  },
+  {
+   "set": "D",
+   "stem": "A firm offers a free tier with ads and a paid tier with premium features (Item 22). Which label fits best?",
+   "options": {
+    "A": "Razor-and-blade only, because all recurring revenue must come from consumables rather than from upgrades and service bundles in practice, overall.",
+    "B": "Subscription only, because all recurring payments are subscriptions regardless of free tiers, ads, and conversion funnels in practice, in practice.",
+    "C": "Wholesale only, because free tiers are equivalent to bulk discounts given to retailers who then set resale prices in practice.",
+    "D": "Freemium, because a free version acquires users while a paid version monetizes a subset through feature gating and convenience, overall."
+   },
+   "answer": "D",
+   "explanation": "A free tier plus paid upgrade is the canonical freemium structure. Subscription can be part of the paid tier, but the defining feature is the free-to-paid conversion funnel; wholesale and razor-and-blade are different logics.",
+   "lo": null,
+   "n": 166
+  },
+  {
+   "set": "D",
+   "stem": "A firm offers a free tier with ads and a paid tier with premium features (Item 23). Which label fits best?",
+   "options": {
+    "A": "Razor-and-blade only, because all recurring revenue must come from consumables rather than from upgrades and service bundles in practice, overall.",
+    "B": "Wholesale only, because free tiers are equivalent to bulk discounts given to retailers who then set resale prices in practice.",
+    "C": "Subscription only, because all recurring payments are subscriptions regardless of free tiers, ads, and conversion funnels in practice, in practice.",
+    "D": "Freemium, because a free version acquires users while a paid version monetizes a subset through feature gating and convenience, overall."
+   },
+   "answer": "D",
+   "explanation": "A free tier plus paid upgrade is the canonical freemium structure. Subscription can be part of the paid tier, but the defining feature is the free-to-paid conversion funnel; wholesale and razor-and-blade are different logics.",
+   "lo": null,
+   "n": 167
+  },
+  {
+   "set": "D",
+   "stem": "A firm offers a free tier with ads and a paid tier with premium features (Item 24). Which label fits best?",
+   "options": {
+    "A": "Razor-and-blade only, because all recurring revenue must come from consumables rather than from upgrades and service bundles in practice, overall.",
+    "B": "Wholesale only, because free tiers are equivalent to bulk discounts given to retailers who then set resale prices in practice.",
+    "C": "Subscription only, because all recurring payments are subscriptions regardless of free tiers, ads, and conversion funnels in practice, in practice.",
+    "D": "Freemium, because a free version acquires users while a paid version monetizes a subset through feature gating and convenience, overall."
+   },
+   "answer": "D",
+   "explanation": "A free tier plus paid upgrade is the canonical freemium structure. Subscription can be part of the paid tier, but the defining feature is the free-to-paid conversion funnel; wholesale and razor-and-blade are different logics.",
+   "lo": null,
+   "n": 168
+  },
+  {
+   "set": "D",
+   "stem": "A firm offers a free tier with ads and a paid tier with premium features (Item 25). Which label fits best?",
+   "options": {
+    "A": "Freemium, because a free version acquires users while a paid version monetizes a subset through feature gating and convenience, overall.",
+    "B": "Razor-and-blade only, because all recurring revenue must come from consumables rather than from upgrades and service bundles in practice, overall.",
+    "C": "Wholesale only, because free tiers are equivalent to bulk discounts given to retailers who then set resale prices in practice.",
+    "D": "Subscription only, because all recurring payments are subscriptions regardless of free tiers, ads, and conversion funnels in practice, in practice."
+   },
+   "answer": "A",
+   "explanation": "A free tier plus paid upgrade is the canonical freemium structure. Subscription can be part of the paid tier, but the defining feature is the free-to-paid conversion funnel; wholesale and razor-and-blade are different logics.",
+   "lo": null,
+   "n": 169
+  },
+  {
+   "set": "D",
+   "stem": "A founder markets an IPO narrative that is technically legal but arguably misleading about unit economics. Which statement aligns with the chapter?",
+   "options": {
+    "A": "Ethics cannot be applied to business models, because business models are purely technical blueprints.",
+    "B": "Actions can be legal yet ethically questionable, because ethics extends beyond minimum legal standards.",
+    "C": "Ethics is solved by stock options, because equity incentives guarantee honesty in communication.",
+    "D": "If legal, the narrative is necessarily ethical, because disclosure law defines societal norms completely."
+   },
+   "answer": "B",
+   "explanation": "",
+   "lo": null,
+   "n": 170
+  },
+  {
+   "set": "D",
+   "stem": "A new policy requires pre-approval for entertainment expenses and audits travel and vendor bills. Which agency cost is this policy most directly designed to curb?",
+   "options": {
+    "A": "Winner’s curse, which occurs when acquirers overpay due to takeover premiums and later destroy value.",
+    "B": "On-the-job consumption and perquisites, which shareholders ultimately finance when monitoring is weak.",
+    "C": "Thin markets, which occur when too few buyers and sellers exist to match supply and demand efficiently.",
+    "D": "Adverse selection, which occurs when candidates misrepresent capability during recruitment and screening."
+   },
+   "answer": "B",
+   "explanation": "",
+   "lo": null,
+   "n": 171
+  },
+  {
+   "set": "D",
+   "stem": "A platform aggregator earns from ads and discovery, while a logistics-focused competitor earns from delivery fees and membership. This contrast best illustrates:",
+   "options": {
+    "A": "Different ethics codes, where one has values and the other lacks them, so economics follow automatically from moral superiority in practice, overall.",
+    "B": "Different profit drivers within similar markets, where the ‘how’ of the business model differs even when the ‘what’ looks similar, in practice.",
+    "C": "Different governance mechanisms, where one firm uses a poison pill and the other uses GAAP audits to create competitive advantage in practice.",
+    "D": "Different industry structures, where one operates in monopoly and the other in perfect competition, so business models do not matter over time."
+   },
+   "answer": "B",
+   "explanation": "The course page contrasts aggregator vs logistics models (e.g., Zomato vs Swiggy) in profit drivers—how value is captured. That is a business model difference, not a governance or ethics label by itself.",
+   "lo": null,
+   "n": 172
+  },
+  {
+   "set": "D",
+   "stem": "A private-equity firm buys a listed coworking company using debt secured by assets, takes it private, then plans an IPO later. This is:",
+   "options": {
+    "A": "A wholesale model, because retailers set prices and earn margins over discounted publisher prices.",
+    "B": "A poison pill, because dilution triggers deter hostile bidders once ownership crosses a threshold.",
+    "C": "A freemium model, because base service is free while premium add-ons monetize advanced features.",
+    "D": "A leveraged buyout, because leverage is used to purchase shares and change ownership from public to private."
+   },
+   "answer": "D",
+   "explanation": "",
+   "lo": null,
+   "n": 173
+  },
+  {
+   "set": "D",
+   "stem": "A restructuring plan links executive bonuses to occupancy but reduces payouts if safety, churn, or complaint indicators worsen. Which principle is being applied?",
+   "options": {
+    "A": "A poison pill that deters hostile bidders by diluting their ownership once a threshold is crossed.",
+    "B": "A long-tail strategy that shifts bonuses toward niche segments because blockbusters distort incentives.",
+    "C": "A pure pay-as-you-go model that charges executives only for the hours they work on strategic initiatives.",
+    "D": "Incentive alignment that discourages short-termism by balancing growth metrics with risk and quality constraints."
+   },
+   "answer": "D",
+   "explanation": "",
+   "lo": null,
+   "n": 174
+  },
+  {
+   "set": "D",
+   "stem": "A turnaround board appoints an independent chair and adds outside directors with no prior ties to the CEO. Which agency concern is targeted most directly?",
+   "options": {
+    "A": "Solving thin markets by increasing the number of buyers and sellers through recommendation algorithms.",
+    "B": "Eliminating adverse selection in hiring by screening candidates after employment begins through close oversight.",
+    "C": "Preventing winner’s curse by lowering takeover premiums paid in acquisitions of distressed competitors.",
+    "D": "Reducing CEO influence over agendas and evaluation, strengthening monitoring where information asymmetry is high."
+   },
+   "answer": "D",
+   "explanation": "",
+   "lo": null,
+   "n": 175
+  },
+  {
+   "set": "D",
+   "stem": "After Chapter 11, a firm is taken private and stops filing quarterly SEC reports. Which external governance lever weakens most directly?",
+   "options": {
+    "A": "CEO-chair duality, because private ownership legally requires separating the chair and CEO roles.",
+    "B": "Industry analysts’ scrutiny based on standardized public filings, because less disclosure reduces outsider monitoring.",
+    "C": "Bundling’s pricing advantage, because private firms cannot sell bundles without public reporting duties.",
+    "D": "Inside directors’ access to operational details, because private status prohibits managers from joining boards."
+   },
+   "answer": "B",
+   "explanation": "",
+   "lo": null,
+   "n": 176
+  },
+  {
+   "set": "D",
+   "stem": "Bundling is described on the course page as especially powerful when:",
+   "options": {
+    "A": "Products are perishable, so bundling ensures forecasting accuracy and therefore eliminates spoilage without subscription commitments, overall, as described, in practice.",
+    "B": "Products are commodities, so bundling creates lock-in solely by raising the list price without changing willingness to pay over time.",
+    "C": "Products are negatively correlated in demand, so the bundle’s perceived value can exceed the sum of parts for many customers.",
+    "D": "Products are perfect substitutes, so bundling reduces competition by eliminating choice and forcing single-product adoption in practice, as stated here."
+   },
+   "answer": "C",
+   "explanation": "The course page emphasizes bundling negatively correlated products to create a ‘walled garden’ where value exceeds parts. Substitutes, list-price inflation, or perishability are not the core mechanism described.",
+   "lo": null,
+   "n": 177
+  },
+  {
+   "set": "D",
+   "stem": "Country Delight is used on the course page to illustrate which primary business model advantage of subscription?",
+   "options": {
+    "A": "Better demand forecasting that reduces spoilage and middlemen costs, improving unit economics in a perishable supply chain, overall.",
+    "B": "Lower buyer power, because subscription customers cannot cancel without regulatory approval and therefore become captive in practice, overall.",
+    "C": "Lower threat of entry, because subscriptions legally prevent competitors from offering similar products in the same market, overall.",
+    "D": "Higher supplier power, because subscriptions force farms to accept lower prices and therefore raise margins automatically over time."
+   },
+   "answer": "A",
+   "explanation": "The course page highlights subscription enabling forecasting and reduced spoilage, especially in perishables. Subscriptions do not legally block entry, nor do they make cancellation impossible; supplier power effects are not automatic.",
+   "lo": null,
+   "n": 178
+  },
+  {
+   "set": "D",
+   "stem": "Dollar Shave Club is used in the chapter as evidence that disruptive advantage can come mainly from:",
+   "options": {
+    "A": "Radical product technology that makes competitors obsolete, even when distribution and pricing remain unchanged in practice, as stated here.",
+    "B": "GAAP reporting differences that hide true costs, making disruption an accounting artifact rather than real value creation in practice.",
+    "C": "Takeover defenses that prevent incumbents from acquiring entrants, making disruption legally protected over time, in practice, as stated here.",
+    "D": "Business model innovation that changes economics and distribution, even when underlying product technology is not radically new, in practice."
+   },
+   "answer": "D",
+   "explanation": "The chapter highlights Dollar Shave Club as business model innovation disrupting an incumbent—changing how value is delivered and captured rather than relying on breakthrough blade technology.",
+   "lo": null,
+   "n": 179
+  },
+  {
+   "set": "D",
+   "stem": "D‑Mart’s EDLC–EDLP model is described on the course page as relying most directly on:",
+   "options": {
+    "A": "Asset ownership and working-capital discipline that enable low costs and low prices, reinforced by limited SKUs and cash discounts, overall.",
+    "B": "Poison pills and takeover defenses that enable low costs by stabilizing control, reinforced by premium pricing and exclusivity in practice.",
+    "C": "Freemium sampling and viral loops that enable low customer acquisition costs, reinforced by network effects and referral incentives, in practice.",
+    "D": "Long-tail assortment and infinite shelf space that enable low prices, reinforced by niche variety and algorithmic discovery over time, overall."
+   },
+   "answer": "A",
+   "explanation": "The course page notes ownership choices, limited SKUs, and fast supplier payments to secure discounts—classic EDLC/EDLP mechanics. The other options are software platform or takeover tools or long-tail logic, not D‑Mart’s described model.",
+   "lo": null,
+   "n": 180
+  },
+  {
+   "set": "D",
+   "stem": "If a listed coworking firm’s stock collapses and activists seek control to ‘fix’ mismanagement, the chapter would label this as:",
+   "options": {
+    "A": "Executive compensation, an internal mechanism that aligns incentives through stock option grants.",
+    "B": "Bundling, a business model that sells negatively correlated products together at a discount.",
+    "C": "Inside directorship, an internal mechanism that improves information flow from management to board.",
+    "D": "Market for corporate control, an external governance mechanism that disciplines underperformance."
+   },
+   "answer": "D",
+   "explanation": "",
+   "lo": null,
+   "n": 181
+  },
+  {
+   "set": "D",
+   "stem": "If the firm instead bills per desk-hour used, the closest business model label is:",
+   "options": {
+    "A": "Bundling, because services with negatively correlated demand are packaged at discount prices.",
+    "B": "Pay-as-you-go, because charges track actual consumption rather than time-based access rights.",
+    "C": "Agency, because third-party agents sell the desk-hours at commission while firm sets prices.",
+    "D": "Subscription, because users pay for a period regardless of how much they consume."
+   },
+   "answer": "B",
+   "explanation": "",
+   "lo": null,
+   "n": 182
+  },
+  {
+   "set": "D",
+   "stem": "In Caselet D, which business-model weakness most directly undermines the ‘Why’ question in the framework?",
+   "options": {
+    "A": "Activities are unlinked, so services cannot be delivered at all even when demand is strong.",
+    "B": "Stakeholder roles are unclear, so the firm cannot identify who performs key activities reliably.",
+    "C": "Legal compliance is unclear, so ethics becomes impossible to evaluate across cultural contexts.",
+    "D": "Revenue timing and cost commitments are mismatched, so unit economics fail when occupancy drops."
+   },
+   "answer": "D",
+   "explanation": "",
+   "lo": null,
+   "n": 183
+  },
+  {
+   "set": "D",
+   "stem": "In Caselet D, which ‘bad barrels’ mechanism is most plausible when employees feel pressured to misstate occupancy metrics?",
+   "options": {
+    "A": "Thin markets prevent accurate occupancy tracking because buyers and sellers cannot find each other.",
+    "B": "A few employees are bad apples; replacing them fixes ethics without changing targets or incentives.",
+    "C": "Leadership cues and unrealistic targets normalize misreporting, so context drives unethical behavior widely.",
+    "D": "Long tail explains misreporting because many small errors aggregate into a large revenue distribution."
+   },
+   "answer": "C",
+   "explanation": "",
+   "lo": null,
+   "n": 184
+  },
+  {
+   "set": "D",
+   "stem": "In the business model framework (why–what–who–how), which pairing is most accurate?",
+   "options": {
+    "A": "Why: value proposition and rationale; Who: target customers and stakeholders; What: offerings; How: revenue and delivery logic, in practice.",
+    "B": "Why: product features; Who: regulators only; What: board committees; How: hostile takeover defenses such as poison pills in practice.",
+    "C": "Why: cost structure; Who: suppliers only; What: audit standards; How: analysts’ buy-hold-sell recommendations over time, overall, as stated here.",
+    "D": "Why: legal compliance; Who: courts; What: penalties; How: prosecutions that substitute for business model design in practice, in practice."
+   },
+   "answer": "A",
+   "explanation": "The framework guides leaders to define rationale/value, offerings, customers, and execution/revenue logic. The other options misplace governance and compliance items into the business model framework.",
+   "lo": null,
+   "n": 185
+  },
+  {
+   "set": "D",
+   "stem": "In the chapter, a business model is defined most precisely as:",
+   "options": {
+    "A": "A five-forces map that identifies entry, rivalry, substitutes, and bargaining power, while leaving revenue capture unspecified in practice, in practice.",
+    "B": "A governance charter that specifies director duties and audit requirements, while leaving customer value and pricing to markets, in practice.",
+    "C": "A mission statement that describes values and purpose, while leaving tactics, target market, and revenue logic to emerge later, overall.",
+    "D": "A blueprint that translates strategy into action by specifying tactics, target market, customer needs, and how the firm makes money."
+   },
+   "answer": "D",
+   "explanation": "The textbook defines business models as translating strategy into action: tactics and initiatives, target market and customer needs, and the revenue logic for making money. Mission, governance charters, and five forces are related but not the business model definition.",
+   "lo": null,
+   "n": 186
+  },
+  {
+   "set": "D",
+   "stem": "Nespresso is presented as an example of which business model logic on the course page?",
+   "options": {
+    "A": "Razor-and-blade (bait-and-hook), where a durable platform is sold near cost while high-margin consumables generate profits, overall, as stated here.",
+    "B": "Wholesale, where retailers buy at a discount and set resale prices, earning margin mainly through inventory turnover in practice.",
+    "C": "Pay-as-you-go, where usage is metered and customers pay only for consumption without lock-in or proprietary complements, as stated here.",
+    "D": "Freemium, where a free version attracts users and a premium tier monetizes power users through feature gating over time."
+   },
+   "answer": "A",
+   "explanation": "The course page explicitly frames Nespresso as bait-and-hook: machines (bait) and proprietary pods (hook), reinforced by lock-in. That differs from freemium, wholesale, or usage-metered pay-as-you-go models.",
+   "lo": null,
+   "n": 187
+  },
+  {
+   "set": "D",
+   "stem": "The chapter suggests CEOs are held to high ethical standards partly because:",
+   "options": {
+    "A": "CEO reputation is a critical asset, and unethical behavior can quickly destroy legitimacy and trust.",
+    "B": "CEO reputation is irrelevant once auditors verify GAAP compliance in financial statements.",
+    "C": "CEO reputation is controlled only by activists, so boards have little role in ethical expectations.",
+    "D": "CEO reputation can be replaced by aggressive growth targets, which signal competence to markets."
+   },
+   "answer": "A",
+   "explanation": "",
+   "lo": null,
+   "n": 188
+  },
+  {
+   "set": "D",
+   "stem": "The long tail concept is best summarized (as in the course page and textbook) as:",
+   "options": {
+    "A": "Selling niche items depends mainly on takeover defenses, because acquisition threats force firms to focus on blockbusters in practice, in practice.",
+    "B": "Selling large volumes of a few blockbuster items is feasible when technology lowers distribution costs, shrinking selection in practice, in practice.",
+    "C": "Selling small volumes of many niche items becomes feasible when technology lowers distribution and search costs, expanding selection, as stated here.",
+    "D": "Selling niche items requires physical shelf space expansion, so long-tail success depends mainly on owning more retail real estate over time."
+   },
+   "answer": "C",
+   "explanation": "Long tail is ‘selling less of more’: digitization and search lower distribution frictions and enable niche demand to be served. It is not primarily about blockbusters, physical shelf space, or takeover defenses.",
+   "lo": null,
+   "n": 189
+  },
+  {
+   "set": "D",
+   "stem": "Threadless (textbook) best illustrates which business model innovation mechanism?",
+   "options": {
+    "A": "Wholesale distribution that shifts inventory risk to retailers, reducing downside by requiring retailers to prepay for all designs in practice.",
+    "B": "Crowdsourcing and wisdom of crowds across the value chain, reducing downside by producing only designs validated by the community, overall.",
+    "C": "Poison-pill governance that prevents hostile takeovers, reducing downside by avoiding acquisition premiums and winner’s curse in practice, as stated here.",
+    "D": "Freemium pricing that converts users into paying customers by locking premium designs behind a paywall and limiting access over time."
+   },
+   "answer": "B",
+   "explanation": "The textbook describes Threadless as crowdsourcing design, forecasting, and demand validation (‘I’d buy it’), producing only community-approved designs to reduce downside. The other options confuse business model innovation mechanisms.",
+   "lo": null,
+   "n": 190
+  },
+  {
+   "set": "D",
+   "stem": "Which diagnosis best distinguishes ‘strategy’ from ‘business model’ in the chapter’s framing?",
+   "options": {
+    "A": "Strategy is ethics; the business model is legality; governance is marketing; so each operates in separate silos over time, overall.",
+    "B": "Strategy is pricing tactics; the business model is industry structure; governance then sets customer value and product positioning in practice.",
+    "C": "Strategy sets the goal-directed competitive approach; the business model specifies the tactics and revenue logic that operationalize it, in practice.",
+    "D": "Strategy is the board’s job; the business model is the regulator’s job; managers only execute without discretion in practice, overall."
+   },
+   "answer": "C",
+   "explanation": "The chapter explicitly positions business models as ‘strategy in action’: translating strategic intent into concrete initiatives and revenue logic. The other options scramble the relationships.",
+   "lo": null,
+   "n": 191
+  },
+  {
+   "set": "D",
+   "stem": "Which diagnosis best separates a compelling narrative strategy from a fragile business model in Caselet D’s setting?",
+   "options": {
+    "A": "A business model is only a mission statement, so narrative and economics are effectively the same thing.",
+    "B": "A business model is a takeover defense, so narrative matters only if it deters hostile acquirers.",
+    "C": "A strong story guarantees profits, because customer enthusiasm always offsets fixed cost commitments.",
+    "D": "A strong story can attract demand, but if revenue logic cannot cover fixed commitments, the business model fails."
+   },
+   "answer": "D",
+   "explanation": "",
+   "lo": null,
+   "n": 192
+  },
+  {
+   "set": "D",
+   "stem": "Which governance mechanism is most relevant when management wants to avoid takeover threats after poor performance?",
+   "options": {
+    "A": "Freemium adoption, because free tiers deter acquirers by raising customer switching costs.",
+    "B": "Poison pill adoption, though it can impede equity-market discipline and thus face investor opposition.",
+    "C": "GAAP elimination, because weaker standards reduce transparency and thus deter bidders.",
+    "D": "Long-tail adoption, because niche assortment makes acquisition integration too complex to attempt."
+   },
+   "answer": "B",
+   "explanation": "",
+   "lo": null,
+   "n": 193
+  },
+  {
+   "set": "D",
+   "stem": "Which pair of statements best captures how auditors and the SEC contribute to governance in public firms?",
+   "options": {
+    "A": "They enforce standardized disclosures and audits, enabling outsider scrutiny for irregularities and strategy signals.",
+    "B": "They appoint directors and chairs directly, ensuring boards are independent from managers by regulation alone.",
+    "C": "They eliminate information asymmetry entirely, making agency problems disappear in publicly traded companies.",
+    "D": "They set product prices and bundles, enabling firms to match negatively correlated preferences at discount rates."
+   },
+   "answer": "A",
+   "explanation": "",
+   "lo": null,
+   "n": 194
+  },
+  {
+   "set": "D",
+   "stem": "Which scenario best illustrates moral hazard rather than adverse selection?",
+   "options": {
+    "A": "A retailer sells only short-head hits because carrying long-tail inventory is too costly physically.",
+    "B": "A capable manager chooses to underinvest effort in tenant retention because performance is hard to observe.",
+    "C": "A job candidate misstates experience in commercial real estate during recruitment and is hired.",
+    "D": "A bidder pays an acquisition premium and later realizes synergies were overestimated during bidding."
+   },
+   "answer": "B",
+   "explanation": "",
+   "lo": null,
+   "n": 195
+  },
+  {
+   "set": "D",
+   "stem": "Which scenario is the cleanest illustration of adverse selection within an employment relationship?",
+   "options": {
+    "A": "A hired manager reallocates effort to a personal venture because monitoring is weak after hiring.",
+    "B": "A bidder overpays for an acquisition due to a premium and later destroys shareholder value.",
+    "C": "A platform struggles to match rare buyers and sellers because search costs are high offline.",
+    "D": "A candidate exaggerates their ability to manage leases and later cannot execute core tasks."
+   },
+   "answer": "D",
+   "explanation": "",
+   "lo": null,
+   "n": 196
+  },
+  {
+   "set": "D",
+   "stem": "Which situation best illustrates ‘thin markets’ as a barrier to long-tail success?",
+   "options": {
+    "A": "Too many buyers exist in each niche, so matching is easy and technology therefore cannot add value in practice, in practice.",
+    "B": "Too few regulators exist, so markets cannot function and business models must be replaced by legal enforcement in practice, in practice.",
+    "C": "Too many suppliers exist, so supplier power collapses and firms must rely on takeover defenses rather than matching over time, overall.",
+    "D": "Too few buyers and sellers exist in each niche, so matching is hard unless technology aggregates demand and supply across boundaries."
+   },
+   "answer": "D",
+   "explanation": "Thin markets arise when there are too few participants for efficient matching. Aggregation and search technology can help—central to long-tail viability.",
+   "lo": null,
+   "n": 197
+  },
+  {
+   "set": "D",
+   "stem": "Which statement best captures why business models are ‘dynamic’ in the chapter?",
+   "options": {
+    "A": "Business models never change once chosen, because stability guarantees competitive advantage and adaptation signals strategic weakness in practice, in the scenario, overall.",
+    "B": "Managers must adapt tactics, partners, and revenue logic as environments shift; a once-effective model can become obsolete over time, as stated here.",
+    "C": "Business models change only when regulators rewrite accounting rules, because revenue logic is determined by GAAP rather than by design choices, overall.",
+    "D": "Business models change only through hostile takeovers, because acquisitions are the only mechanism that can alter how firms make money in practice."
+   },
+   "answer": "B",
+   "explanation": "The chapter treats business models as evolving: changes in technology, competition, or customer behavior can require adaptation. They are not fixed, not determined solely by accounting, and not changed only via takeovers.",
+   "lo": null,
+   "n": 198
+  },
+  {
+   "set": "D",
+   "stem": "Which statement best fits the principal–agent concern often present in high-growth real estate startups like in Caselet D?",
+   "options": {
+    "A": "Auditors may pursue long-tail revenue even when it increases risk borne by activist investors.",
+    "B": "Owners may pursue personal perks even when it increases risk borne by managers and employees.",
+    "C": "Managers may pursue growth, prestige, and personal benefits even when it increases risk borne by owners.",
+    "D": "Customers may pursue insider trading profits even when it increases risk borne by suppliers and partners."
+   },
+   "answer": "C",
+   "explanation": "",
+   "lo": null,
+   "n": 199
+  },
+  {
+   "set": "D",
+   "stem": "Why is a ‘long tail’ business model structurally harder to replicate in physical coworking than in digital media platforms?",
+   "options": {
+    "A": "Bundling cannot work in services, so negatively correlated preferences cannot be aggregated into a single offer.",
+    "B": "Physical capacity and location costs remain high, so marginal distribution is not near zero and selection is constrained.",
+    "C": "Agency theory does not apply to services, so principals cannot contract with agents to deliver offerings.",
+    "D": "Recommendation engines cannot be used in services, so demand cannot be matched across segments at all."
+   },
+   "answer": "B",
+   "explanation": "",
+   "lo": null,
+   "n": 200
+  }
+ ]
+}

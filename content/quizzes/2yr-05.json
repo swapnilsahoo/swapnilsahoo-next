@@ -1,0 +1,457 @@
+{
+ "sessionId": "2yr-05",
+ "course": "2-year-mba",
+ "sessionNumber": 5,
+ "title": "External Analysis Porter's Five Forces",
+ "questionCount": 32,
+ "questions": [
+  {
+   "set": null,
+   "stem": "A buyer group's power is highest when:",
+   "options": {
+    "A": "They are concentrated, face low switching costs, and the product is standardized.",
+    "B": "The product they are buying is a \"complement\" to their main business.",
+    "C": "The industry they are buying from is growing rapidly.",
+    "D": "They are fragmented, face high switching costs, and the product is highly differentiated."
+   },
+   "answer": "A",
+   "explanation": "This is the \"nightmare\" scenario for a seller, combining all the key drivers of buyer power from the article. Concentrated buyers (e.g., 3-4 powerful automakers) buying from standardized suppliers (e.g., commodity seat-belts) with low switching costs (they can swap suppliers easily) means the buyers have all the leverage to force prices down to the bare minimum.",
+   "lo": null,
+   "n": 1
+  },
+  {
+   "set": null,
+   "stem": "A company in a \"terrible\" industry (e.g., airlines) decides to exclusively serve a small, fragmented customer niche (e.g., high-net-worth executives) that is far less price-sensitive and demands hyper-customized service. According to Porter, this is a classic example of:",
+   "options": {
+    "A": "Shaping industry structure by expanding the profit pool.",
+    "B": "Positioning the company where the competitive forces are weakest.",
+    "C": "Neutralizing supplier power through vertical integration.",
+    "D": "Exploiting industry change by creating a new substitute."
+   },
+   "answer": "B",
+   "explanation": "This is the exact Paccar strategy from the HBR article and your teaching script. The company is not trying to change the \"terrible\" structure of the entire airline industry. Instead, it is engaging in Positioning. It has identified a \"foxhole\" or niche segment (owner-operators in Paccar's case, executives here) where the force of Buyer Power is weak, allowing it to escape the intense, price-based rivalry of the main industry.",
+   "lo": null,
+   "n": 2
+  },
+  {
+   "set": null,
+   "stem": "A company in a structurally \"terrible\" industry (e.g., airlines) invests heavily to exclusively serve a small, fragmented customer niche (e.g., high-net-worth executives) that is far less price-sensitive and demands hyper-customized service. According to Porter, this is a classic example of:",
+   "options": {
+    "A": "Exploiting industry change by creating a new substitute.",
+    "B": "Neutralizing supplier power through vertical integration.",
+    "C": "Positioning the company where the competitive forces are weakest.",
+    "D": "Shaping industry structure by expanding the profit pool."
+   },
+   "answer": "C",
+   "explanation": "This is the exact Paccar strategy from the HBR article and teaching script. The company is not trying to change the \"terrible\" structure of the entire airline industry. Instead, it is engaging in Positioning. It has identified a \"foxhole\" or niche segment (owner-operators in Paccar's case, executives here) where the force of Buyer Power is weak, allowing it to escape the intense, price-based rivalry of the main industry.",
+   "lo": null,
+   "n": 3
+  },
+  {
+   "set": null,
+   "stem": "A company's strategic action successfully increases its market share and harms its rivals, but in the long run, it also lowers entry barriers and increases supplier power for the entire industry. This situation is best described as:",
+   "options": {
+    "A": "A successful \"positioning\" strategy.",
+    "B": "A \"zero-sum\" rivalry outcome.",
+    "C": "A successful \"exploitation\" of change.",
+    "D": "A \"dark side\" of \"shaping\" industry structure."
+   },
+   "answer": "D",
+   "explanation": "This is the IBM lesson. The company \"won\" the short-term battle for market share but \"lost\" the long-term war for industry profitability. By \"shaping\" the industry in a way that ceded power to other forces (suppliers, in this case), it destroyed its own long-term profit potential. This is a common and fatal strategic error.",
+   "lo": null,
+   "n": 4
+  },
+  {
+   "set": null,
+   "stem": "A company's strategic shift to a Direct-to-Consumer (D2C) model (like Tesla's) is a direct attempt to neutralize which force?",
+   "options": {
+    "A": "The threat of new entrants.",
+    "B": "The bargaining power of suppliers.",
+    "C": "The bargaining power of intermediate buyers (i.e., dealership channels).",
+    "D": "The threat of substitutes."
+   },
+   "answer": "C",
+   "explanation": "This tests the \"intermediate customers\" concept. In the traditional auto industry, the dealerships are a powerful intermediate buyer channel. They control customer access and capture a significant margin. By \"shaping\" the industry with a D2C model, a company neutralizes this powerful buyer force, allowing it to control the customer experience and retain 100% of the profit margin.",
+   "lo": null,
+   "n": 5
+  },
+  {
+   "set": null,
+   "stem": "A firm's \"demand-side benefits of scale\" (network effects) are a powerful barrier to entry because they:",
+   "options": {
+    "A": "Guarantee government support as a \"utility.\"",
+    "B": "Limit the willingness of customers to buy from a newcomer, reducing the price the entrant can command.",
+    "C": "Reduce the firm's per-unit cost as production increases.",
+    "D": "Allow the firm to get better terms from its suppliers."
+   },
+   "answer": "B",
+   "explanation": "This question forces a distinction between the two types of scale economies from the article. (a) is supply-side economies of scale (getting cheaper with size). Demand-side benefits (network effects, like Facebook's) mean the value of the product increases with the number of users. This is a barrier because a new entrant with zero users (a new social network) offers zero value to a new customer, making it incredibly difficult to get the first 1,000, let alone 1 million, users.",
+   "lo": null,
+   "n": 6
+  },
+  {
+   "set": null,
+   "stem": "A free-to-play mobile game like Candy Crush derives its revenue from a small fraction of users. For a traditional movie theater chain, Candy Crush is best categorized as:",
+   "options": {
+    "A": "A substitute.",
+    "B": "A complementor.",
+    "C": "A new entrant.",
+    "D": "A rival."
+   },
+   "answer": "A",
+   "explanation": "This tests the \"job-to-be-done\" concept from your teaching script (e.g., Twitter vs. TikTok). The \"job\" a movie theater sells is \"leisure time\" or \"filling 90 minutes of downtime.\" A mobile game performs the exact same job through a different means. It is not a rival (it's not a theater) or a new entrant (it's not entering the theater industry). It is a powerful substitute that competes for the customer's time and leisure budget.",
+   "lo": null,
+   "n": 7
+  },
+  {
+   "set": null,
+   "stem": "A key criticism of the Five Forces model, often associated with the \"Resource-Based View\" (RBV) of the firm, is that the model:",
+   "options": {
+    "A": "Is too complex to be used by most managers.",
+    "B": "Over-emphasizes industry structure and ignores the importance of firm-specific resources and capabilities as drivers of profit.",
+    "C": "Fails to account for the role of government.",
+    "D": "Under-emphasizes the threat of substitutes."
+   },
+   "answer": "B",
+   "explanation": "This is the most famous academic criticism of Porter. Porter's model (and the SCP paradigm it's built on) implies that industry is the primary determinant of profit (\"the game you play\"). The RBV argues that firm-specific assets (e.g., Toyota's production system, Tesla's battery tech, a \"Core Competency\") are the real drivers of profit, allowing superior firms to win even in \"terrible\" industries. MCQ Sec B: (Inter-Force Dynamics & Criticisms) This set focuses on second-order effects (how forces interact), the nuances of industry definition, and the academic critiques of the framework.",
+   "lo": null,
+   "n": 8
+  },
+  {
+   "set": null,
+   "stem": "A new entrant in a high-growth, \"sexy\" industry (e.g., AI-driven drug discovery) attracts massive venture capital funding. However, the industry's profitability remains near zero. According to Porter, what is the most likely structural explanation?",
+   "options": {
+    "A": "The high growth rate itself is a \"factor\" that has attracted a flood of new entrants, and powerful, concentrated suppliers (like AI platform providers) are capturing all the value.",
+    "B": "Rivalry has not yet become intense enough to drive consolidation.",
+    "C": "Buyer power is low because the technology is complex, which should lead to high profitability.",
+    "D": "The threat of substitutes is unexpectedly high, as traditional R&D methods are still more effective."
+   },
+   "answer": "A",
+   "explanation": "This question directly targets the \"Factors, not Forces\" pitfall. High growth is a \"factor,\" not a guarantee of profit. As the HBR article warns, \"a narrow focus on growth is one of the major causes of bad strategy decisions.\" High growth often (1) attracts a flood of new entrants, which intensifies rivalry, and (2) can create immensely powerful suppliers (like Nvidia, as per the teaching script) who provide the critical \"picks and shovels\" and capture all the value, leaving none for the firms competing in the \"sexy\" industry itself.",
+   "lo": null,
+   "n": 9
+  },
+  {
+   "set": null,
+   "stem": "A new entrant's decision to enter an industry is not just based on the height of the existing barriers but also on:",
+   "options": {
+    "A": "The number of complementors available.",
+    "B": "The power of suppliers in their home market.",
+    "C": "The expected retaliation from incumbents.",
+    "D": "The availability of substitutes."
+   },
+   "answer": "C",
+   "explanation": "This is a key insight from the article. An industry might look attractive with low barriers, but if the existing incumbents (like Starbucks, as per the article) have a history of \"vigorous and protracted\" retaliation, it will deter entry. The expectation of a brutal fight is itself a barrier.",
+   "lo": null,
+   "n": 10
+  },
+  {
+   "set": null,
+   "stem": "A powerful B2B buyer (e.g., an automaker) purchases a component that represents only 1% of its total cost, but that component is absolutely critical to the performance and quality of its final product. How does this specifically affect the buyer's power?",
+   "options": {
+    "A": "The buyer has high bargaining leverage and high price sensitivity.",
+    "B": "The buyer has high bargaining leverage but low price sensitivity.",
+    "C": "The buyer has low bargaining leverage but high price sensitivity.",
+    "D": "The buyer has low bargaining leverage and low price sensitivity."
+   },
+   "answer": "B",
+   "explanation": "This is a very nuanced distinction from the article. The buyer is powerful (high leverage) because they are large. However, they are not price-sensitive. Because the component is critical to their quality but a tiny fraction of their cost, they will not risk a lower-quality component to save a tiny amount of money. They will use their leverage to demand quality and reliability, not a lower price, which is less destructive to industry profits.",
+   "lo": null,
+   "n": 11
+  },
+  {
+   "set": null,
+   "stem": "A reduction in capital-requirement entry barriers (e.g., the rise of AWS/cloud computing for the software industry) will most likely have what immediate knock-on effect?",
+   "options": {
+    "A": "It will intensify rivalry by dramatically increasing the number of new entrants.",
+    "B": "It will increase supplier power for hardware makers.",
+    "C": "It will decrease the threat of substitutes.",
+    "D": "It will decrease buyer power as customers have more choice."
+   },
+   "answer": "A",
+   "explanation": "This is another second-order effect. The primary effect is lowering the Threat of New Entrants. The immediate knock-on effect of that is a massive increase in the number of new entrants, which directly and intensely increases rivalry. The software industry is now flooded with new competitors because the cloud (a complement) removed the massive capital barrier of needing to build one's own data centers.",
+   "lo": null,
+   "n": 12
+  },
+  {
+   "set": null,
+   "stem": "According to Porter, when are two products (e.g., automotive motor oil vs. heavy-truck motor oil) considered part of different industries, even if they appear similar?",
+   "options": {
+    "A": "When one is a \"product\" and the other is a \"service.\"",
+    "B": "When their core technology is more than 10% different.",
+    "C": "When they are sold to customers in different geographic regions.",
+    "D": "When the underlying structure of the Five Forces is markedly different for each."
+   },
+   "answer": "D",
+   "explanation": "This is a key, and often missed, point from the article's \"Defining the Relevant Industry\" sidebar. The definition of an industry is not based on the product itself, but on its competitive structure. Automotive oil (sold to fragmented, price-sensitive consumers) and truck oil (sold to powerful, sophisticated fleet buyers) have completely different buyer power, supplier power, and rivalry structures. Therefore, they are different industries requiring different strategies.",
+   "lo": null,
+   "n": 13
+  },
+  {
+   "set": null,
+   "stem": "An industry has extremely high exit barriers (e.g., highly specialized, non-recoverable assets like a steel mill). What is the primary effect of this on the industry's structure?",
+   "options": {
+    "A": "It increases the bargaining power of suppliers, who know the firms cannot leave.",
+    "B": "It intensifies rivalry, especially during economic downturns.",
+    "C": "It decreases the threat of new entrants, as they fear getting stuck.",
+    "D": "It decreases the bargaining power of buyers, who have fewer options."
+   },
+   "answer": "B",
+   "explanation": "This is a key driver of rivalry. High exit barriers mean that even when firms are earning low or negative returns, they cannot easily leave the market. This \"stuck\" capacity leads to desperate, profit-destroying behavior (i.e., price wars) as firms fight for the remaining market share, especially during downturns. This is a key driver of the \"zero-sum\" rivalry in your teaching script (e.g., the EV \"shakeout\").",
+   "lo": null,
+   "n": 14
+  },
+  {
+   "set": null,
+   "stem": "An industry is experiencing 50% annual growth and rapid technological innovation. According to Porter, why might this industry be profoundly unattractive?",
+   "options": {
+    "A": "Because high growth attracts a flood of new entrants, and rapid tech change can empower suppliers (like Nvidia).",
+    "B": "Both (a) and (b).",
+    "C": "Because high growth eliminates rivalry, which is necessary for a healthy industry.",
+    "D": "Because high growth and technology are \"factors,\" not \"forces,\" and do not guarantee profitability."
+   },
+   "answer": "B",
+   "explanation": "This question directly targets the \"Factors, not Forces\" pitfall. (a) is the correct concept, and (b) provides the correct mechanism. Fast-growing, \"sexy\" industries (like the early PC industry or the current EV \"shakeout\") are often traps. High growth mutes rivalry but also acts as a beacon, attracting a flood of new entrants. Simultaneously, rapid tech change can create new, powerful suppliers (like Nvidia) who provide the critical \"picks and shovels\" and capture all the value.",
+   "lo": null,
+   "n": 15
+  },
+  {
+   "set": null,
+   "stem": "An industry is experiencing both slowing growth (after an initial boom) and high exit barriers (massive, specialized factories). This combination is a \"perfect storm\" for:",
+   "options": {
+    "A": "An increase in supplier power.",
+    "B": "A shift from zero-sum to positive-sum rivalry.",
+    "C": "A rapid increase in the threat of substitutes.",
+    "D": "Intense, destructive, price-based rivalry."
+   },
+   "answer": "D",
+   "explanation": "This combines two key drivers of Rivalry from the HBR article. Slowing growth means firms must steal share from each other to grow. High exit barriers mean no one can leave the \"game.\" The result is a \"perfect storm\": a large number of \"stuck\" competitors fighting for a shrinking pie, which inevitably leads to destructive, margin-eroding price wars.",
+   "lo": null,
+   "n": 16
+  },
+  {
+   "set": null,
+   "stem": "An industry's primary \"suppliers\" are a highly skilled, specialized, and heavily unionized workforce. This structural feature primarily:",
+   "options": {
+    "A": "Increases the \"Bargaining Power of Suppliers\" by giving labor the ability to capture value through higher wages.",
+    "B": "Decreases \"Barriers to Entry\" as new firms can hire the same workers.",
+    "C": "Increases \"Threat of Substitutes\" as firms will seek to automate.",
+    "D": "Increases \"Rivalry\" as firms must compete for the best workers."
+   },
+   "answer": "A",
+   "explanation": "This tests the definition of a supplier. A \"supplier\" is any input provider. As the article states, \"powerful suppliers, including suppliers of labor,\" can squeeze profitability. A strong union acts as a concentrated supplier, giving it immense Bargaining Power of Suppliers to negotiate for (capture) a large portion of the industry's value in the form of wages and benefits, thus depressing industry profits.",
+   "lo": null,
+   "n": 17
+  },
+  {
+   "set": null,
+   "stem": "For the home lawn-care industry, the societal trend of building high-density urban apartments instead of suburban single-family homes represents what?",
+   "options": {
+    "A": "A shift in the power of complementors.",
+    "B": "A downstream or indirect substitute.",
+    "C": "An increase in the threat of new entrants.",
+    "D": "A decrease in buyer power."
+   },
+   "answer": "B",
+   "explanation": "This is one of the most difficult concepts in the article (\"downstream or indirect substitution\"). The apartments are not a direct substitute (you can't \"use\" an apartment to fertilize a lawn). They are a downstream substitute because they replace the buyer industry's product (the single-family home with a lawn). If there are no lawns, there is no lawn-care industry.",
+   "lo": null,
+   "n": 18
+  },
+  {
+   "set": null,
+   "stem": "In the 1980s, IBM standardized its PC components (\"open architecture\") to grow the market, which accidentally ceded all long-term profit to two suppliers, Microsoft and Intel. This is a \"dark side\" example of:",
+   "options": {
+    "A": "An ill-advised \"shaping industry structure\" strategy.",
+    "B": "A failed attempt to exploit change.",
+    "C": "An inability to overcome the threat of substitutes.",
+    "D": "A failed positioning strategy."
+   },
+   "answer": "A",
+   "explanation": "This is the \"dark side\" example from your teaching script and the HBR article. IBM did shape industry structure, but it did so badly. By opening its architecture, it \"encouraged price-based rivalry\" and \"shifted power to suppliers.\" This move, designed to grow the market, ultimately destroyed the industry's profitability for all PC makers (including itself) by creating two monstrously powerful suppliers.",
+   "lo": null,
+   "n": 19
+  },
+  {
+   "set": null,
+   "stem": "In the relationship between the 1.9 million 3rd-party sellers and the Amazon Marketplace platform, Amazon's power is best described as:",
+   "options": {
+    "A": "Bargaining power of buyers, as Amazon is the dominant, price-setting channel.",
+    "B": "Intense rivalry, as AmazonBasics competes with them.",
+    "C": "Bargaining power of suppliers, as Amazon supplies the customers.",
+    "D": "Threat of substitutes, as Amazon can replace them."
+   },
+   "answer": "A",
+   "explanation": "This is the \"Amazon\" case from your teaching script. In the \"industry\" of e-commerce sellers, Amazon is not the supplier; the sellers are. Amazon is the intermediate customer or channel. Because Amazon is highly concentrated (one platform) and the sellers are fragmented (1.9M), Amazon has immense buyer power to \"force down prices\" (via fees) and \"demand better service\" (via FBA), capturing all the profit.",
+   "lo": null,
+   "n": 20
+  },
+  {
+   "set": null,
+   "stem": "Porter's analysis suggests that \"global banking\" is the incorrect industry definition to use for strategy-making if:",
+   "options": {
+    "A": "Buyer power, supplier power, and regulatory barriers are radically different across countries.",
+    "B": "All banks are equally vulnerable to the substitute of cryptocurrency.",
+    "C": "The industry's profit pool is expanding in emerging markets.",
+    "D": "All banks use the same \"SWIFT\" technology standard."
+   },
+   "answer": "A",
+   "explanation": "This tests the \"Defining the Relevant Industry\" concept. An industry is only \"global\" if its structure is global. Retail banking is a classic multi-domestic industry. The power of buyers, the nature of regulation (a barrier), and the competitive landscape are not the same in India as they are in the United States. Therefore, a \"global\" strategy would fail; a firm needs a separate strategy for each distinct industry (country).",
+   "lo": null,
+   "n": 21
+  },
+  {
+   "set": null,
+   "stem": "Porter's framework is rooted in the \"Structure-Conduct-Performance\" (SCP) paradigm of industrial organization economics. What is the central argument of this paradigm?",
+   "options": {
+    "A": "A firm's performance (profits) determines its conduct (strategy) and the industry's structure.",
+    "B": "A firm's conduct (strategy) determines its performance, which in turn shapes the industry structure.",
+    "C": "These three elements are unrelated and should be analyzed separately.",
+    "D": "The structure of an industry (the Five Forces) determines the conduct (strategies) of firms, which in turn determines their performance (profitability)."
+   },
+   "answer": "D",
+   "explanation": "This is the deep, academic theory underlying the entire framework. The SCP paradigm is a one-way street: The industry's Structure (the \"game,\" i.e., the Five Forces) is the independent variable. This structure dictates the range of possible strategic Conduct (the \"moves,\" i.e., positioning, shaping). That conduct, in turn, leads to Performance (the \"outcome,\" i.e., profits). This is why Porter's first step is always to analyze the industry structure.",
+   "lo": null,
+   "n": 22
+  },
+  {
+   "set": null,
+   "stem": "Tesla's decision to build its own \"Dojo\" AI supercomputer instead of just buying from Nvidia is a direct strategic attempt to:",
+   "options": {
+    "A": "Create a new substitute product.",
+    "B": "Neutralize the bargaining power of suppliers.",
+    "C": "Exploit a shift in government policy.",
+    "D": "Increase barriers to entry for other car makers."
+   },
+   "answer": "B",
+   "explanation": "As your teaching script highlights, Nvidia is the \"King of Suppliers\" in the AI gold rush. Tesla recognizes that being dependent on a single, powerful supplier for its most critical future technology (AI) is a fatal strategic flaw. Building \"Dojo\" is a multi-billion-dollar \"shaping\" strategy to neutralize supplier power by vertically integrating, giving Tesla control over its own destiny.",
+   "lo": null,
+   "n": 23
+  },
+  {
+   "set": null,
+   "stem": "The \"6th Force\" (Complementors) argument, often associated with Adam Brandenburger and Barry Nalebuff, critiques Porter's model primarily for:",
+   "options": {
+    "A": "Focusing too much on \"dividing the pie\" (competition) and ignoring \"growing the pie\" (co-opetition).",
+    "B": "Being too complex for modern managers.",
+    "C": "Ignoring the power of government and technology.",
+    "D": "Underestimating the \"zero-sum\" nature of all business."
+   },
+   "answer": "A",
+   "explanation": "This is the core of the \"Game Theory\" critique mentioned in the HBR article's footnotes. Porter's model is fundamentally about competition—how the pie of value is divided. The Complementors argument states that business is also about cooperation (or \"co-opetition\"). Firms like Intel and Microsoft cooperate to create and grow the pie (the PC market), which the Five Forces model doesn't fully capture.",
+   "lo": null,
+   "n": 24
+  },
+  {
+   "set": null,
+   "stem": "The HBR article argues that \"Complementors\" (e.g., apps for an iPhone) are not a sixth force. Why?",
+   "options": {
+    "A": "Because their impact is best understood through how they affect the existing five forces.",
+    "B": "Because they are a \"factor\" (like technology) and not a \"force.\"",
+    "C": "Both (b) and (c).",
+    "D": "Because they are only relevant in high-tech industries."
+   },
+   "answer": "C",
+   "explanation": "This is a fine-grained distinction. (c) is true, but (b) is the reason why. Porter argues \"Complementors\" are not a separate force, but a factor whose impact is already captured by the model. For example, a strong app ecosystem (a complement) raises barriers to entry for a new phone OS and reduces the threat of substitutes, thus making the industry more attractive.",
+   "lo": null,
+   "n": 25
+  },
+  {
+   "set": null,
+   "stem": "The HBR article states that an industry leader (like Sysco) should invest in improving industry structure, even if it's a \"public good\" that helps rivals. Why is this often the leader's most profitable strategic opportunity?",
+   "options": {
+    "A": "Because it allows the leader to create a \"zero-sum\" game.",
+    "B": "Because it is a form of \"expected retaliation\" that deters new entrants.",
+    "C": "Because it is a form of corporate social responsibility that improves brand image.",
+    "D": "Because the leader, by virtue of its size, will capture the largest share of the benefits from a better industry structure."
+   },
+   "answer": "D",
+   "explanation": "This is a key insight on \"shaping\" strategy from the article. If an industry's structure is \"bad\" (e.g., fragmented, low-tech), it's a \"public good\" to fix it. The leader (Sysco) is the only one with the resources to do so (e.g., invest in IT, create private labels). While this helps all firms, the leader, with its dominant market share, will disproportionately benefit, making it a high-ROI strategic investment.",
+   "lo": null,
+   "n": 26
+  },
+  {
+   "set": null,
+   "stem": "The airline industry and the paper manufacturing industry both suffer from intense, price-based rivalry. What underlying structural characteristic do they share?",
+   "options": {
+    "A": "High supplier power from unionized labor.",
+    "B": "High fixed costs and low marginal costs.",
+    "C": "High demand-side benefits of scale (network effects).",
+    "D": "A high threat of powerful substitutes."
+   },
+   "answer": "B",
+   "explanation": "This is a deep structural similarity identified in the HBR article. Both industries have massive fixed costs (planes, paper mills) and low marginal costs (one more passenger, one more ream of paper). This creates intense pressure to \"fill capacity,\" which inevitably leads to price-cutting to steal incremental customers, driving down profits for everyone.",
+   "lo": null,
+   "n": 27
+  },
+  {
+   "set": null,
+   "stem": "The emergence of a powerful, low-cost substitute (e.g., digital streaming for video rentals) will most likely have what immediate effect on the nature of rivalry within the original video rental industry?",
+   "options": {
+    "A": "It will increase supplier power for movie studios.",
+    "B": "It will decrease rivalry as firms band together to fight the substitute.",
+    "C": "It will intensify rivalry and shift it to a price-based, \"zero-sum\" game.",
+    "D": "It will shift rivalry from price-based to feature-based."
+   },
+   "answer": "C",
+   "explanation": "This tests second-order effects. The substitute (streaming) puts a hard ceiling on what rental stores can charge. As customers leave, the industry pie shrinks, and growth becomes negative. This intensifies rivalry among the remaining players (e.g., Blockbuster) who are now fighting for scraps. This rivalry will gravitate to price in a desperate, zero-sum battle for the remaining customers.",
+   "lo": null,
+   "n": 28
+  },
+  {
+   "set": null,
+   "stem": "When Rapido entered the Indian ride-hailing market with 2-wheel bike-taxis, it initially represented a(n) ________. When it used its user base to launch its own 4-wheel cab service, it became a(n) ________.",
+   "options": {
+    "A": "New Entrant; Rival",
+    "B": "Substitute; New Entrant",
+    "C": "Rival; Substitute",
+    "D": "Supplier; Buyer"
+   },
+   "answer": "B",
+   "explanation": "This case from the teaching script tests the evolution of a threat. Initially, Rapido was not a rival to Uber/Ola's 4-wheel business; it was a substitute, performing the \"job\" of urban transport by a different means (2-wheel). Once it had 50 million users, it used that strength to \"jump\" industries and become a new entrant into the 4-wheel cab industry, where it is now a direct rival.",
+   "lo": null,
+   "n": 29
+  },
+  {
+   "set": null,
+   "stem": "Which of the following \"factors\" has the potential to simultaneously lower barriers to entry, increase buyer power, and increase the threat of substitutes?",
+   "options": {
+    "A": "A new, powerful government regulation.",
+    "B": "A major economic recession.",
+    "C": "The rise of the internet.",
+    "D": "A trend toward vertical integration."
+   },
+   "answer": "C",
+   "explanation": "This tests the systemic impact of a major factor. The internet (a \"technology factor\") is famous for its \"dark side\" effects on industry structure, as noted in Porter's 2001 HBR article \"Strategy and the Internet\": It lowered entry barriers (e.g., e-commerce vs. brick-and-mortar). It increased buyer power (e.g., price comparison websites). It increased the threat of substitutes (e.g., streaming vs. CDs, Zoom vs. travel).",
+   "lo": null,
+   "n": 30
+  },
+  {
+   "set": null,
+   "stem": "Which of the following is the least likely outcome of an industry structure with both high barriers to entry and intense, price-based rivalry?",
+   "options": {
+    "A": "A \"shakeout\" will occur where weaker firms are acquired or go bankrupt.",
+    "B": "Industry-wide profitability will be stable and consistently high.",
+    "C": "Incumbents will invest heavily in advertising and R&D to differentiate.",
+    "D": "Firms will attempt to create \"positive-sum\" competition by finding niches."
+   },
+   "answer": "B",
+   "explanation": "This is a tricky \"least likely\" question. High barriers to entry (which is \"good\") do not guarantee high profits if Rivalry is intense (which is \"bad\"). The U.S. auto industry is a perfect example: barriers are high, but rivalry is so intense that profits are low. Therefore, \"stable and consistently high\" profits are the least likely outcome. (a), (b), and (d) are all common outcomes of this structure.",
+   "lo": null,
+   "n": 31
+  },
+  {
+   "set": null,
+   "stem": "Why is \"Technology\" not a force?",
+   "options": {
+    "A": "Because it is a \"macro\" factor, unlike the \"micro\" forces.",
+    "B": "Because its impact on profitability is ambiguous and is determined by how it affects the five forces.",
+    "C": "Because it is a \"complementor,\" which is a separate force.",
+    "D": "Because it is only relevant as a barrier to entry."
+   },
+   "answer": "B",
+   "explanation": "This is the core of the \"Factors vs. Forces\" argument. Technology is not inherently good or bad for profitability. Its impact is ambiguous. The internet destroyed profitability in some industries (e.g., travel agents, by lowering barriers and increasing buyer power) while increasing it in others (e.g., creating platform network effects). You must analyze technology through the lens of the five forces.",
+   "lo": null,
+   "n": 32
+  }
+ ]
+}

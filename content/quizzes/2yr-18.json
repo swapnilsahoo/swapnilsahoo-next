@@ -1,0 +1,1409 @@
+{
+ "sessionId": "2yr-18",
+ "course": "2-year-mba",
+ "sessionNumber": 18,
+ "title": "AI in Strategic Management",
+ "questionCount": 100,
+ "questions": [
+  {
+   "set": "A",
+   "stem": "A slide claims privacy is solved because “users are asked before any request is sent.” The best critique is:",
+   "options": {
+    "A": "They under-emphasize user autonomy, because consent removes governance needs in practice.",
+    "B": "They misuse market sizing, because privacy is unrelated to adoption outcomes.",
+    "C": "They over-emphasize implementation detail, while high-level strategy is enough here in practice.",
+    "D": "They treat consent as full risk control, ignoring data flows, incentives, and enforcement."
+   },
+   "answer": "D",
+   "explanation": "Consent reduces one risk but does not eliminate governance questions: data boundaries, retention, auditing, abuse, and misaligned incentives still matter.",
+   "lo": null,
+   "n": 1
+  },
+  {
+   "set": "A",
+   "stem": "A slide shows a customer journey but omits where data leaves the device and what is logged. Best critique is:",
+   "options": {
+    "A": "Operational detail is unnecessary because journey maps are qualitative artifacts only.",
+    "B": "Operational detail is missing at a boundary where risk and trust are created.",
+    "C": "Operational detail is irrelevant because pricing strategy drives adoption outcomes in practice.",
+    "D": "Operational detail is implied because user consent covers all downstream issues."
+   },
+   "answer": "B",
+   "explanation": "Trust-sensitive systems require explicit boundary depiction. Evaluators reward clarity on data flows, logging, retention, and escalation policies.",
+   "lo": null,
+   "n": 2
+  },
+  {
+   "set": "A",
+   "stem": "A team argues the partnership is defensible because “competitors can’t copy it.” They offer no reason why. Best critique?",
+   "options": {
+    "A": "Imitation barrier is proven because first-mover advantage always prevents copying in practice.",
+    "B": "Imitation barrier is certain if Apple has a large installed base of users.",
+    "C": "Imitation barrier is asserted, not established; they need isolating mechanisms explained.",
+    "D": "Imitation barrier is irrelevant because advantage comes only from industry structure."
+   },
+   "answer": "C",
+   "explanation": "Evaluators should demand isolating mechanisms: unique data, integration depth, distribution, switching costs, proprietary infrastructure, or contracts.",
+   "lo": null,
+   "n": 3
+  },
+  {
+   "set": "A",
+   "stem": "A team cites official sources but misquotes a key detail (scope of a feature). Best evaluation is:",
+   "options": {
+    "A": "Evidence handling is flawed because source credibility cannot save misinterpretation.",
+    "B": "Evidence handling is acceptable if misquotes do not change the recommendation.",
+    "C": "Evidence handling is strong because official sources are always accurate in detail.",
+    "D": "Evidence handling is weak only if the citation format is inconsistent."
+   },
+   "answer": "A",
+   "explanation": "Using strong sources is not enough; accurate interpretation matters. Misquoting reduces credibility and can invalidate conclusions.",
+   "lo": null,
+   "n": 4
+  },
+  {
+   "set": "A",
+   "stem": "A team lists many risks but does not rank them by likelihood × impact. Best critique is:",
+   "options": {
+    "A": "Risk treatment is strong because uncertainty makes ranking misleading in practice.",
+    "B": "Risk treatment is complete because comprehensiveness is more important than ranking.",
+    "C": "Risk treatment is superficial because prioritization and mitigation focus are missing.",
+    "D": "Risk treatment is weak only if risks are not grouped by PESTEL categories."
+   },
+   "answer": "C",
+   "explanation": "A risk list without prioritization does not guide action. Strong evaluation expects ranking, ownership, and mitigation per top risks.",
+   "lo": null,
+   "n": 5
+  },
+  {
+   "set": "A",
+   "stem": "A team presents a long list of features but no explicit decision criteria for why each matters. The best diagnosis is:",
+   "options": {
+    "A": "They lack an org chart, so execution is impossible regardless of the feature set.",
+    "B": "They lack a CEO endorsement, so cultural alignment and buy-in cannot occur.",
+    "C": "They lack a clear evaluative framework linking features to value creation or switching costs.",
+    "D": "They lack a market definition, so competitive advantage cannot exist in principle."
+   },
+   "answer": "C",
+   "explanation": "Feature lists are not strategy. Evaluate whether features map to value drivers, complementarity, differentiation, costs, or lock-in—and which are decisive.",
+   "lo": null,
+   "n": 6
+  },
+  {
+   "set": "A",
+   "stem": "A team proposes KPIs, but all are lagging metrics (e.g., annual revenue) with no leading indicators. The best critique is:",
+   "options": {
+    "A": "Measurement design is incomplete because it cannot steer execution early in practice.",
+    "B": "Measurement design is weak only if the KPIs are presented in the appendix.",
+    "C": "Measurement design is strong because annual numbers reduce noise and confusion.",
+    "D": "Measurement design is fine because lagging metrics are more accurate than leading ones."
+   },
+   "answer": "A",
+   "explanation": "Lagging metrics confirm, but don’t steer. Strong evaluation rewards leading indicators (activation, retention, privacy incidents, latency) aligned to the causal model.",
+   "lo": null,
+   "n": 7
+  },
+  {
+   "set": "A",
+   "stem": "A team proposes timelines without specifying gating decisions (e.g., privacy audits). Best critique is:",
+   "options": {
+    "A": "Execution logic is complete because timelines alone imply sequencing in practice.",
+    "B": "Execution logic is incomplete because milestones lack go/no-go decision points in practice.",
+    "C": "Execution logic is strong because gating decisions slow innovation too much.",
+    "D": "Execution logic is weak only if the timeline spans more than one year."
+   },
+   "answer": "B",
+   "explanation": "Gating decisions are essential for risk-managed execution; without them, timelines are lists, not plans.",
+   "lo": null,
+   "n": 8
+  },
+  {
+   "set": "A",
+   "stem": "A team recommends “partner with many model providers to avoid dependence” but never ranks tradeoffs. The best evaluation is:",
+   "options": {
+    "A": "Alternatives exist, but tradeoff logic is missing, so the recommendation lacks discipline.",
+    "B": "Alternatives are irrelevant if the conclusion aligns with industry trends over time.",
+    "C": "Alternatives are unnecessary because diversification is always optimal under uncertainty.",
+    "D": "Alternatives are harmful because they signal indecision and reduce confidence."
+   },
+   "answer": "A",
+   "explanation": "Evaluators should require decision criteria: flexibility vs complexity, governance risk, quality variance, integration cost, and brand risk, then rank options.",
+   "lo": null,
+   "n": 9
+  },
+  {
+   "set": "A",
+   "stem": "A team says: “Because the partner is world-class, Apple’s advantage is guaranteed.” Which evaluator response is most correct?",
+   "options": {
+    "A": "They show strong evidence discipline by grounding claims in partner reputation only.",
+    "B": "They confuse brand association with a causal mechanism for sustained advantage in practice.",
+    "C": "They demonstrate scenario planning because certainty reduces uncertainty over time in practice.",
+    "D": "They provide a complete implementation plan because advantage is self-executing in practice."
+   },
+   "answer": "B",
+   "explanation": "Reputation is not a mechanism. Evaluation should reward causal logic: how the partnership changes value, cost, or imitation barriers, not “great partner therefore win.”",
+   "lo": null,
+   "n": 10
+  },
+  {
+   "set": "A",
+   "stem": "A team treats the partnership as a pure feature add-on, ignoring ecosystem complementors. Best evaluation is:",
+   "options": {
+    "A": "Competitive analysis is unnecessary because Apple controls distribution fully.",
+    "B": "Competitive analysis is complete because complementors are outside firm boundaries.",
+    "C": "Competitive analysis is incomplete because ecosystems change adoption and lock-in dynamics.",
+    "D": "Competitive analysis is correct because ecosystem effects occur only in marketplaces."
+   },
+   "answer": "C",
+   "explanation": "Evaluators should reward recognizing complementors and ecosystem constraints: developer adoption, platform policies, and cross-product spillovers.",
+   "lo": null,
+   "n": 11
+  },
+  {
+   "set": "A",
+   "stem": "A team uses strong visuals but the logical chain from diagnosis to actions is unclear. Best evaluation is:",
+   "options": {
+    "A": "Narrative coherence is sufficient if the team included all required sections.",
+    "B": "Narrative coherence is weak because claims and actions are not causally connected.",
+    "C": "Narrative coherence is irrelevant because execution details matter more here.",
+    "D": "Narrative coherence is strong because visuals improve attention and engagement."
+   },
+   "answer": "B",
+   "explanation": "Evaluation should prioritize logic: diagnosis → criteria → choice → actions → metrics, not just presentation aesthetics.",
+   "lo": null,
+   "n": 12
+  },
+  {
+   "set": "A",
+   "stem": "A team’s Q&A defends assumptions by saying “our professor told us so.” Best critique is:",
+   "options": {
+    "A": "Defense is strong because expert authority is a valid form of evidence alone.",
+    "B": "Defense is acceptable if the team’s slides contained a bibliography section.",
+    "C": "Defense is weak only if the professor’s name is mentioned explicitly on slides.",
+    "D": "Defense is weak because it substitutes authority for evidence and reasoning."
+   },
+   "answer": "D",
+   "explanation": "Evaluation of reasoning should penalize authority substitution. Assumptions need evidence, logic, or sensitivity analysis—not appeals to authority.",
+   "lo": null,
+   "n": 13
+  },
+  {
+   "set": "A",
+   "stem": "A team’s deck cites many sources but none are primary; all are summaries of summaries. Best critique is:",
+   "options": {
+    "A": "Evidence chain is weak only if there are fewer than five citations total.",
+    "B": "Evidence chain is strong because secondary sources offer better synthesis at scale.",
+    "C": "Evidence chain is weak because derivative sources amplify errors and reduce traceability.",
+    "D": "Evidence chain is acceptable if the sources are recent and well-written."
+   },
+   "answer": "C",
+   "explanation": "Robust projects mix primary sources (official releases, filings, data) with credible secondary sources; derivative-only chains reduce reliability.",
+   "lo": null,
+   "n": 14
+  },
+  {
+   "set": "A",
+   "stem": "In Q&A, the team answers every risk question with “Apple has great engineers.” Best evaluation?",
+   "options": {
+    "A": "Risk management lacks specificity, because competence claims do not substitute for controls.",
+    "B": "Risk management is complete if the team used frameworks earlier in the slides.",
+    "C": "Risk management is acceptable if the team acknowledged uncertainty honestly in practice.",
+    "D": "Risk management is strong because engineering talent is the primary control mechanism."
+   },
+   "answer": "A",
+   "explanation": "Capability matters, but evaluators should require concrete mitigations: governance, audits, fallback paths, incident response, and incentives.",
+   "lo": null,
+   "n": 15
+  },
+  {
+   "set": "A",
+   "stem": "The team defines the problem as “AI is important.” The strongest critique is:",
+   "options": {
+    "A": "Problem framing is too broad; stakes, scope, and decision boundary are undefined.",
+    "B": "Problem framing is excellent; broadness ensures creativity without constraints in practice.",
+    "C": "Problem framing is acceptable if the slides are visually clean and consistent.",
+    "D": "Problem framing is irrelevant if the recommendation is bold and memorable."
+   },
+   "answer": "A",
+   "explanation": "A good project starts with a crisp problem statement: what decision, for whom, by when, under what constraints, and what success means.",
+   "lo": null,
+   "n": 16
+  },
+  {
+   "set": "A",
+   "stem": "The team presents a stakeholder map but ignores developer incentives. Best evaluation is:",
+   "options": {
+    "A": "Stakeholder analysis is complete because developers are not direct paying customers.",
+    "B": "Stakeholder analysis is unnecessary because Apple sets unilateral platform rules.",
+    "C": "Stakeholder analysis is correct because incentives matter only in two-sided markets.",
+    "D": "Stakeholder analysis is incomplete because developer response shapes platform outcomes."
+   },
+   "answer": "D",
+   "explanation": "Developers are critical stakeholders for platform features. Their incentives affect adoption, complementary innovation, and user experience.",
+   "lo": null,
+   "n": 17
+  },
+  {
+   "set": "A",
+   "stem": "The team proposes “charge per query” but does not discuss price elasticity or willingness-to-pay segments. Best critique is:",
+   "options": {
+    "A": "Commercial logic is sufficient if the team computed contribution margin once.",
+    "B": "Commercial logic is strong because per-query pricing is a common industry pattern.",
+    "C": "Commercial logic is weak only if the project lacks an executive summary.",
+    "D": "Commercial logic is thin because monetization is proposed without demand evidence."
+   },
+   "answer": "D",
+   "explanation": "Monetization requires segment willingness-to-pay, substitution, and price sensitivity evidence; otherwise pricing is guesswork.",
+   "lo": null,
+   "n": 18
+  },
+  {
+   "set": "A",
+   "stem": "The team uses a single competitor comparison but ignores the baseline ‘do nothing’ option. Best evaluation is:",
+   "options": {
+    "A": "Option set is fine because the baseline is implicit whenever a recommendation exists.",
+    "B": "Option set is incomplete because ‘status quo’ is required for incremental value assessment.",
+    "C": "Option set is weak only if the competitor chosen is not the market leader.",
+    "D": "Option set is strong because focusing on competitors reduces decision complexity in practice."
+   },
+   "answer": "B",
+   "explanation": "A disciplined evaluation expects a baseline to compute incremental value and to clarify what changes if the recommendation is adopted.",
+   "lo": null,
+   "n": 19
+  },
+  {
+   "set": "A",
+   "stem": "The team uses a single market size number with unclear geography and time horizon. Best evaluation is:",
+   "options": {
+    "A": "Evidence is acceptable if the slide includes a citation at the bottom.",
+    "B": "Evidence is robust if the number comes from a reputable consultancy report.",
+    "C": "Evidence scope is ambiguous, so the base case is not interpretable or comparable.",
+    "D": "Evidence is fine because any large market implies the strategy will succeed."
+   },
+   "answer": "C",
+   "explanation": "Good evaluation checks scope discipline: geography, segment definition, time, unit (revenue/users), and assumptions behind the number.",
+   "lo": null,
+   "n": 20
+  },
+  {
+   "set": "A",
+   "stem": "The team uses three anecdotes from social media as the main proof of user adoption. The most accurate evaluation is:",
+   "options": {
+    "A": "Evidence is sufficient if the narrative is persuasive, even without measurement.",
+    "B": "Evidence is low-credibility and not triangulated, so inference is weaker than it appears.",
+    "C": "Evidence is strong if quotes are recent, because recency substitutes for rigor.",
+    "D": "Evidence is high-quality because anecdotes capture lived experience better than data."
+   },
+   "answer": "B",
+   "explanation": "Anecdotes can illustrate, not establish. Evaluation should reward triangulation (usage data, surveys, comparable launches) and credibility of sources.",
+   "lo": null,
+   "n": 21
+  },
+  {
+   "set": "A",
+   "stem": "The team’s conclusion is: “Do everything: partner, build, and acquire.” Best critique is:",
+   "options": {
+    "A": "Strategic choice is acceptable if budgets are large enough for Apple at scale.",
+    "B": "Strategic choice is strong because ‘do everything’ hedges risk best in practice.",
+    "C": "Strategic choice is weak only if the team ran out of time in presentation.",
+    "D": "Strategic choice is missing because mutually inconsistent actions are not reconciled in practice."
+   },
+   "answer": "D",
+   "explanation": "Good projects make choices under constraints. “Do everything” avoids trade-offs and hides resource and coordination limits.",
+   "lo": null,
+   "n": 22
+  },
+  {
+   "set": "A",
+   "stem": "The team’s implementation plan lists tasks but no owners, sequencing, or dependencies. The most accurate feedback is:",
+   "options": {
+    "A": "Feasibility is under-specified because execution requires accountability and critical paths in practice.",
+    "B": "Feasibility is strong if the narrative is compelling and the slides are coherent.",
+    "C": "Feasibility is weak only if budgets are missing, because tasks can be improvised.",
+    "D": "Feasibility is strong because detailed timelines reduce the need for named owners."
+   },
+   "answer": "A",
+   "explanation": "Implementation must show who does what, in what order, with dependencies and gating decisions. Tasks alone do not demonstrate feasibility.",
+   "lo": null,
+   "n": 23
+  },
+  {
+   "set": "A",
+   "stem": "The team’s recommendation is coherent but depends on a regulatory change with no contingency plan. Best critique is:",
+   "options": {
+    "A": "Plan is strong because regulatory change is likely whenever big firms lobby effectively.",
+    "B": "Plan is complete because regulation is exogenous and should be ignored in strategy.",
+    "C": "Plan is weak only if the team failed to include a risk register table.",
+    "D": "Plan is brittle because it lacks scenarios and fallback paths for key constraints."
+   },
+   "answer": "D",
+   "explanation": "Non-intuitive weakness: brittle plans. Evaluators should require contingencies, leading signals, and alternative pathways if assumptions fail.",
+   "lo": null,
+   "n": 24
+  },
+  {
+   "set": "A",
+   "stem": "The team’s slide deck is precise, but the oral presentation contradicts two numbers. Best evaluation is:",
+   "options": {
+    "A": "Credibility is strong if the team used citations for the numbers on slides.",
+    "B": "Credibility is weak only if the contradiction appears in the appendix section.",
+    "C": "Credibility is unaffected because Q&A allows corrections and clarifications later in practice.",
+    "D": "Credibility risk rises because internal consistency is a core quality signal."
+   },
+   "answer": "D",
+   "explanation": "Inconsistent numbers signal weak control of the argument; evaluation should penalize internal inconsistency because it undermines trust.",
+   "lo": null,
+   "n": 25
+  },
+  {
+   "set": "B",
+   "stem": "A team argues the partnership is strategic because it ‘sounds visionary.’ Best evaluation is:",
+   "options": {
+    "A": "Strategic merit is adequate if the team used industry frameworks earlier.",
+    "B": "Strategic merit is unproven because value/cost mechanisms are not specified.",
+    "C": "Strategic merit is weak only if the presenter spoke too quickly.",
+    "D": "Strategic merit is proven because vision is a sufficient condition for advantage."
+   },
+   "answer": "B",
+   "explanation": "Vision is not strategy. Evaluation should reward a mechanism: how collaboration changes value, cost, risk, adoption, or defensibility.",
+   "lo": null,
+   "n": 26
+  },
+  {
+   "set": "B",
+   "stem": "A team cites two articles but does not distinguish fact from interpretation. Best evaluation is:",
+   "options": {
+    "A": "Evidence discipline is acceptable if citations are formatted consistently in practice.",
+    "B": "Evidence discipline is weak only if the articles are older than one year.",
+    "C": "Evidence discipline is weak because claims are not separated from commentary.",
+    "D": "Evidence discipline is strong because journalists curate facts reliably for readers."
+   },
+   "answer": "C",
+   "explanation": "Evaluation should reward clear separation: what is observed (facts) vs inferred (interpretations) vs recommended (choices).",
+   "lo": null,
+   "n": 27
+  },
+  {
+   "set": "B",
+   "stem": "A team claims Bedrock access proves exclusive distribution for Anthropic. Best critique is:",
+   "options": {
+    "A": "They show robust analysis because exclusivity is typical for cloud partnerships.",
+    "B": "They show acceptable reasoning because exclusivity is not central to advantage.",
+    "C": "They infer exclusivity from availability, which is a non sequitur without contract terms.",
+    "D": "They demonstrate strong evidence because platform listing implies exclusivity always in practice."
+   },
+   "answer": "C",
+   "explanation": "Availability on a platform does not imply exclusivity. Robust evaluation demands contract evidence or explicit statements of exclusivity.",
+   "lo": null,
+   "n": 28
+  },
+  {
+   "set": "B",
+   "stem": "A team claims ‘AWS customers demand Claude’ but cites no demand evidence. Best evaluation is:",
+   "options": {
+    "A": "Evidence sufficiency is strong because provider statements imply demand by default in practice.",
+    "B": "Evidence sufficiency is weak because demand claims require observable proxies in practice.",
+    "C": "Evidence sufficiency is acceptable if the claim appears only in the introduction.",
+    "D": "Evidence sufficiency is weak only if the team uses more than one provider claim."
+   },
+   "answer": "B",
+   "explanation": "Demand should be supported with proxies: customer case studies, usage stats, adoption announcements, revenue, or credible surveys.",
+   "lo": null,
+   "n": 29
+  },
+  {
+   "set": "B",
+   "stem": "A team claims “synergy” but the synergy is not merger-specific and could be achieved via contract. Best evaluation is:",
+   "options": {
+    "A": "Claim is strong because synergy exists whenever two firms collaborate publicly in practice.",
+    "B": "Claim is weak only if the synergy number is smaller than competitors’ synergy.",
+    "C": "Claim is correct if synergy is described as ‘cross-selling’ in the deck.",
+    "D": "Claim is weak because the mechanism is not unique to the chosen governance form."
+   },
+   "answer": "D",
+   "explanation": "A key evaluation standard: show why the chosen form is necessary (merger-specific or partnership-specific) and why alternatives cannot do it.",
+   "lo": null,
+   "n": 30
+  },
+  {
+   "set": "B",
+   "stem": "A team gives a perfect summary but cannot answer a basic definitional question in Q&A. Best evaluation is:",
+   "options": {
+    "A": "Depth is strong because Q&A is random and should not affect grading much.",
+    "B": "Depth is shallow because the team may be reciting rather than understanding logic.",
+    "C": "Depth is weak only if the presenter is the designated team leader.",
+    "D": "Depth is acceptable if the team provided a long bibliography slide."
+   },
+   "answer": "B",
+   "explanation": "Q&A tests comprehension and ownership. In evaluation, inability to defend basic concepts signals weak mastery and fragile reasoning.",
+   "lo": null,
+   "n": 31
+  },
+  {
+   "set": "B",
+   "stem": "A team lists three strategic risks but no mitigation ownership. Best critique is:",
+   "options": {
+    "A": "Risk work is incomplete because accountability for mitigation is unspecified in practice.",
+    "B": "Risk work is complete because listing risks is sufficient for awareness.",
+    "C": "Risk work is strong because naming risks reduces probability by itself.",
+    "D": "Risk work is weak only if risks are not categorized by financial impact."
+   },
+   "answer": "A",
+   "explanation": "A risk register needs owner, trigger, mitigation, and monitoring. Lists alone do not guide execution.",
+   "lo": null,
+   "n": 32
+  },
+  {
+   "set": "B",
+   "stem": "A team produces impressive charts but the data source is not reproducible. Best evaluation is:",
+   "options": {
+    "A": "Transparency is acceptable if numbers seem reasonable on first inspection.",
+    "B": "Transparency is weak only if the team used more than three charts.",
+    "C": "Transparency is strong because visuals demonstrate competence regardless of sources.",
+    "D": "Transparency is weak because evidence cannot be audited or replicated."
+   },
+   "answer": "D",
+   "explanation": "Evaluation should reward reproducibility: sources, methods, and assumptions must be inspectable, else charts are decorative.",
+   "lo": null,
+   "n": 33
+  },
+  {
+   "set": "B",
+   "stem": "A team says “we will execute in 90 days” but the plan includes multi-year infrastructure changes. Best critique is:",
+   "options": {
+    "A": "Internal consistency is weak because timelines conflict with implied work scope.",
+    "B": "Internal consistency is weak only if the plan lacks a Gantt chart graphic.",
+    "C": "Internal consistency is strong because ambitious deadlines accelerate learning in practice.",
+    "D": "Internal consistency is acceptable if milestones are stated as ‘stretch goals’."
+   },
+   "answer": "A",
+   "explanation": "Mismatch between scope and time undermines credibility; evaluators should penalize inconsistent execution claims.",
+   "lo": null,
+   "n": 34
+  },
+  {
+   "set": "B",
+   "stem": "A team treats Amazon’s minority investment as equivalent to an acquisition. Best evaluation?",
+   "options": {
+    "A": "Conceptual classification is correct because investment size implies control.",
+    "B": "Conceptual classification is correct if the board seats are publicly confirmed.",
+    "C": "Conceptual classification is irrelevant because market share determines control.",
+    "D": "Conceptual classification is incorrect because control rights remain limited."
+   },
+   "answer": "D",
+   "explanation": "Minority stakes do not automatically confer control; evaluation should test governance specifics (residual rights, board control, vetoes).",
+   "lo": null,
+   "n": 35
+  },
+  {
+   "set": "B",
+   "stem": "A team treats reputational risk as a single-line item with no measurable indicator. Best critique is:",
+   "options": {
+    "A": "Risk management is strong because reputational risk cannot be quantified anyway.",
+    "B": "Risk management is thin because monitoring signals and thresholds are absent.",
+    "C": "Risk management is acceptable if the team’s conclusion is conservative overall.",
+    "D": "Risk management is weak only if reputational risk is placed after financial risk."
+   },
+   "answer": "B",
+   "explanation": "Even qualitative risks can be monitored with indicators (complaints, incidents, churn, regulator inquiries). Evaluation expects measurable proxies.",
+   "lo": null,
+   "n": 36
+  },
+  {
+   "set": "B",
+   "stem": "A team uses a competitor matrix but mixes ‘features’ and ‘capabilities’ as if identical. Best evaluation is:",
+   "options": {
+    "A": "Analytical precision is weak only if the team omitted one major competitor.",
+    "B": "Analytical precision is acceptable if the slide design is clean and minimal.",
+    "C": "Analytical precision is strong because features and capabilities are synonyms.",
+    "D": "Analytical precision is weak because categories are conflated, blurring conclusions."
+   },
+   "answer": "D",
+   "explanation": "Features are outputs; capabilities are underlying routines/resources. Conflating them leads to wrong inferences about defensibility and replication.",
+   "lo": null,
+   "n": 37
+  },
+  {
+   "set": "B",
+   "stem": "A team uses a single point estimate for risk probability without explaining base rates. Best critique is:",
+   "options": {
+    "A": "Quantification is fragile because it lacks calibration, base rates, and confidence bounds.",
+    "B": "Quantification is weak only if the probability is displayed with two decimals.",
+    "C": "Quantification is strong because numerical precision signals analytical maturity in practice.",
+    "D": "Quantification is acceptable if probabilities sum to exactly one across categories."
+   },
+   "answer": "A",
+   "explanation": "Risk probabilities require calibration. Point estimates without base-rate justification can mislead and produce false precision.",
+   "lo": null,
+   "n": 38
+  },
+  {
+   "set": "B",
+   "stem": "A team uses a single ‘best case’ forecast and calls it a plan. Best critique is:",
+   "options": {
+    "A": "Planning is strong because focusing on upside motivates execution energy in practice.",
+    "B": "Planning is acceptable if the best case includes a detailed timeline slide.",
+    "C": "Planning is fragile because scenarios and downside constraints are missing in practice.",
+    "D": "Planning is weak only if the forecast does not include a CAGR figure."
+   },
+   "answer": "C",
+   "explanation": "Robust plans include base, upside, downside, and triggers. Single-path optimism is not strategic planning.",
+   "lo": null,
+   "n": 39
+  },
+  {
+   "set": "B",
+   "stem": "A team uses many frameworks but each is applied superficially with no synthesis. Best evaluation is:",
+   "options": {
+    "A": "Analytical rigor is weak only if frameworks are presented before the caselet.",
+    "B": "Analytical rigor is acceptable if the executive summary is concise and clear.",
+    "C": "Analytical rigor is strong because more frameworks increase validity by default.",
+    "D": "Analytical rigor is weak because frameworks are not integrated into one coherent argument."
+   },
+   "answer": "D",
+   "explanation": "Frameworks are tools. Evaluation should reward synthesis: one core logic that integrates evidence and frameworks into decisions.",
+   "lo": null,
+   "n": 40
+  },
+  {
+   "set": "B",
+   "stem": "A team uses ‘AI chips’ as a magic driver without specifying constraints or bottlenecks. Best critique is:",
+   "options": {
+    "A": "Causal chain is complete because hardware always determines software advantage in practice.",
+    "B": "Causal chain is incomplete because operational constraints and timing are absent in practice.",
+    "C": "Causal chain is weak only if the chip vendor is not named explicitly.",
+    "D": "Causal chain is acceptable if the team used a strong narrative arc in slides."
+   },
+   "answer": "B",
+   "explanation": "Hardware matters but must be tied to constraints: supply, performance-per-dollar, integration time, and switching costs.",
+   "lo": null,
+   "n": 41
+  },
+  {
+   "set": "B",
+   "stem": "A team’s deck is concise but omits key assumptions and limitations. Best critique is:",
+   "options": {
+    "A": "Clarity is sufficient if the team uses minimal text and strong visuals.",
+    "B": "Clarity is low because details would always improve comprehension in practice.",
+    "C": "Clarity is weak only if the font size is smaller than typical standards.",
+    "D": "Clarity is high but completeness is low because boundary conditions are hidden."
+   },
+   "answer": "D",
+   "explanation": "Concise decks can still be rigorous if assumptions/limitations are explicit; otherwise conclusions look stronger than justified.",
+   "lo": null,
+   "n": 42
+  },
+  {
+   "set": "B",
+   "stem": "A team’s presentation is excellent but one member clearly did no work. Best evaluation response is:",
+   "options": {
+    "A": "Adjust only presentation marks because contribution affects delivery mostly in practice.",
+    "B": "Use peer evaluation evidence to adjust individual scores, not the team score alone.",
+    "C": "Penalize the whole team equally because shared accountability is always primary.",
+    "D": "Ignore contribution issues because outcomes matter more than process overall in practice."
+   },
+   "answer": "B",
+   "explanation": "Fair evaluation separates team output from individual contribution using peer assessment and documented roles, reducing free-riding incentives.",
+   "lo": null,
+   "n": 43
+  },
+  {
+   "set": "B",
+   "stem": "A team’s recommendation is highly specific but ignores second-order effects (partner retaliation). Best evaluation is:",
+   "options": {
+    "A": "Strategic realism is weak only if the deck has more than twenty slides.",
+    "B": "Strategic realism is acceptable if the team lists ‘competition’ as a risk.",
+    "C": "Strategic realism is incomplete because competitive responses are not considered in practice.",
+    "D": "Strategic realism is strong because specificity implies feasibility automatically in practice."
+   },
+   "answer": "C",
+   "explanation": "Non-intuitive miss: second-order effects. Strong evaluation expects competitor and partner response analysis for major moves.",
+   "lo": null,
+   "n": 44
+  },
+  {
+   "set": "B",
+   "stem": "A team’s slide uses three different definitions of ‘customer’ (end user, buyer, developer). Best critique is:",
+   "options": {
+    "A": "Conceptual clarity is strong because multiple stakeholders are always customers in practice.",
+    "B": "Conceptual clarity is weak only if the slide contains too many bullet points.",
+    "C": "Conceptual clarity is acceptable if each definition appears once only in practice.",
+    "D": "Conceptual clarity is weak because the unit of analysis changes across slides."
+   },
+   "answer": "D",
+   "explanation": "A project must keep stable definitions or explicitly segment stakeholders; shifting the unit of analysis causes analytical errors.",
+   "lo": null,
+   "n": 45
+  },
+  {
+   "set": "B",
+   "stem": "During Q&A, the team admits their data is outdated but says “directionally correct.” Best evaluation is:",
+   "options": {
+    "A": "Credibility is preserved because directional reasoning is always sufficient in practice at scale.",
+    "B": "Credibility is acceptable if the team cites at least one official webpage source.",
+    "C": "Credibility is reduced unless they show sensitivity to updated ranges and impacts in practice.",
+    "D": "Credibility is weak only if the data is more than two years old at scale."
+   },
+   "answer": "C",
+   "explanation": "If data is outdated, evaluators should look for robustness: does the conclusion hold under plausible updated ranges?",
+   "lo": null,
+   "n": 46
+  },
+  {
+   "set": "B",
+   "stem": "The team proposes KPIs but none map to the project’s stated objective. Best critique is:",
+   "options": {
+    "A": "Metric alignment is weak only if the KPIs are not color-coded on slides.",
+    "B": "Metric alignment is strong because any metric creates accountability in practice at scale.",
+    "C": "Metric alignment is weak because measures do not test the theory of change.",
+    "D": "Metric alignment is acceptable if at least one KPI is financial at year end."
+   },
+   "answer": "C",
+   "explanation": "KPIs must map to the objective and causal logic; otherwise you cannot tell if the plan is working.",
+   "lo": null,
+   "n": 47
+  },
+  {
+   "set": "B",
+   "stem": "The team proposes ‘replicate the partnership with five other model labs’ with no capacity plan. Best critique is:",
+   "options": {
+    "A": "Feasibility is strong because more partners always reduce risk and costs.",
+    "B": "Feasibility is weak because resource constraints and coordination load are ignored.",
+    "C": "Feasibility is weak only if the proposal lacks a risk register appendix.",
+    "D": "Feasibility is acceptable if the proposal includes a timeline slide only."
+   },
+   "answer": "B",
+   "explanation": "Multiple deep partnerships create integration, governance, and capacity constraints; evaluators should test whether the organization can actually run them.",
+   "lo": null,
+   "n": 48
+  },
+  {
+   "set": "B",
+   "stem": "The team’s recommendation depends on ‘customers will not multi-home across clouds’ with no evidence. Best critique is:",
+   "options": {
+    "A": "Assumption is correct because multi-homing is impossible in cloud services in practice.",
+    "B": "Assumption is safe because enterprise buyers rarely switch vendors in practice.",
+    "C": "Assumption is irrelevant if the team’s margins look strong under the base case.",
+    "D": "Key behavioral assumption is unsupported and should be tested with scenarios."
+   },
+   "answer": "D",
+   "explanation": "Multi-homing is common in many B2B contexts. High-stakes behavioral claims need evidence or sensitivity analysis.",
+   "lo": null,
+   "n": 49
+  },
+  {
+   "set": "B",
+   "stem": "The team’s unit economics assume ‘compute cost drops by 70%’ with no source. Best critique is:",
+   "options": {
+    "A": "Assumption is acceptable because forecasting requires bold numbers to motivate action.",
+    "B": "Assumption is weak only if the final NPV calculation is missing entirely.",
+    "C": "Assumption is strong because the team used a plausible narrative about AI chips.",
+    "D": "Critical assumption lacks justification and sensitivity bounds, weakening the base case."
+   },
+   "answer": "D",
+   "explanation": "High-impact assumptions need credible sources or scenario bounds; otherwise results are fragile and can be engineered to any conclusion.",
+   "lo": null,
+   "n": 50
+  },
+  {
+   "set": "C",
+   "stem": "A team claims “vertical integration solves supply risk” without discussing execution capacity. Best evaluation is:",
+   "options": {
+    "A": "Causal logic is correct because ownership removes risk by definition in practice.",
+    "B": "Causal logic is incomplete because integration adds capability and coordination demands in practice.",
+    "C": "Causal logic is acceptable if the team cites one example of a successful gigafactory.",
+    "D": "Causal logic is weak only if the integration plan lacks a brand narrative."
+   },
+   "answer": "B",
+   "explanation": "Ownership does not remove execution risk; integration can raise fixed costs, learning demands, and compliance exposure.",
+   "lo": null,
+   "n": 51
+  },
+  {
+   "set": "C",
+   "stem": "A team compares Ola to Tesla but ignores context differences (market, regulation). Best critique is:",
+   "options": {
+    "A": "Analogy is strong because best-practice benchmarking needs no contextual tuning.",
+    "B": "Analogy is weak only if the comparison includes more than two competitors.",
+    "C": "Analogy is acceptable if the comparison focuses only on battery chemistry.",
+    "D": "Analogy is weak because transfer conditions are not established or adjusted."
+   },
+   "answer": "D",
+   "explanation": "Benchmarking requires contextual transfer logic. Without it, analogies become misleading and non-actionable.",
+   "lo": null,
+   "n": 52
+  },
+  {
+   "set": "C",
+   "stem": "A team lists many tasks but no success criteria for each milestone. Best critique is:",
+   "options": {
+    "A": "Execution control is strong because milestones only need dates and task lists.",
+    "B": "Execution control is weak because milestones need measurable acceptance criteria.",
+    "C": "Execution control is weak only if milestones are presented after the conclusion.",
+    "D": "Execution control is acceptable if the tasks are assigned to departments broadly."
+   },
+   "answer": "B",
+   "explanation": "Milestones need acceptance criteria (what “done” means). Dates and tasks without criteria are not controllable.",
+   "lo": null,
+   "n": 53
+  },
+  {
+   "set": "C",
+   "stem": "A team proposes a gigafactory timeline but does not account for permitting and commissioning. Best critique is:",
+   "options": {
+    "A": "Feasibility is acceptable if the team includes a risk slide on ‘permits’.",
+    "B": "Feasibility is weak only if the timeline exceeds eighteen months overall.",
+    "C": "Feasibility is strong because operations teams can parallelize all tasks at scale.",
+    "D": "Feasibility is weak because critical path steps and gating constraints are missing."
+   },
+   "answer": "D",
+   "explanation": "Permits and commissioning are gating items. Evaluation should penalize plans that omit critical path constraints.",
+   "lo": null,
+   "n": 54
+  },
+  {
+   "set": "C",
+   "stem": "A team proposes one strategic option and claims alternatives are ‘wasteful.’ Best critique is:",
+   "options": {
+    "A": "Decision quality is weak because you cannot show dominance without comparing options.",
+    "B": "Decision quality is acceptable if the one option is bold and ambitious.",
+    "C": "Decision quality is weak only if the option is not presented with a flowchart.",
+    "D": "Decision quality is strong because focus prevents analysis paralysis for teams in practice."
+   },
+   "answer": "A",
+   "explanation": "A disciplined recommendation requires at least a baseline and credible alternatives to show why the chosen path dominates under criteria.",
+   "lo": null,
+   "n": 55
+  },
+  {
+   "set": "C",
+   "stem": "A team recommends ‘pause expansion’ but does not define the decision trigger for restarting. Best critique is:",
+   "options": {
+    "A": "Decision rule is weak only if the pause duration exceeds two quarters overall.",
+    "B": "Decision rule is missing because triggers and thresholds are needed for reversible moves.",
+    "C": "Decision rule is unnecessary because pauses are always correct under uncertainty.",
+    "D": "Decision rule is acceptable if the team provides a general timeline for review."
+   },
+   "answer": "B",
+   "explanation": "Reversible strategies require explicit triggers (cash runway, defect rate, demand signal) to restart or continue; otherwise the plan cannot be governed.",
+   "lo": null,
+   "n": 56
+  },
+  {
+   "set": "C",
+   "stem": "A team treats the government notice as ‘minor noise’ and ignores compliance risk. Best critique is:",
+   "options": {
+    "A": "Risk realism is weak only if the notice appears in the appendix section.",
+    "B": "Risk realism is acceptable if the team’s financial model shows high upside.",
+    "C": "Risk realism is strong because firms can always negotiate extensions informally.",
+    "D": "Risk realism is weak because regulatory constraints can change feasible strategy paths."
+   },
+   "answer": "D",
+   "explanation": "Regulatory milestones can affect penalties, credibility, financing, and timelines. Evaluation should reward integrating constraints into feasibility.",
+   "lo": null,
+   "n": 57
+  },
+  {
+   "set": "C",
+   "stem": "A team uses only company press releases as evidence. Best evaluation is:",
+   "options": {
+    "A": "Source balance is strong because primary sources are always superior to outsiders.",
+    "B": "Source balance is weak only if there are fewer than three press release citations.",
+    "C": "Source balance is acceptable if the press releases are recent and detailed.",
+    "D": "Source balance is weak because incentives bias narratives without external corroboration in practice."
+   },
+   "answer": "D",
+   "explanation": "Press releases are primary but biased; evaluation should reward triangulation with independent reporting, filings, and data.",
+   "lo": null,
+   "n": 58
+  },
+  {
+   "set": "C",
+   "stem": "A team uses three models but none is tailored to the case constraints. Best evaluation is:",
+   "options": {
+    "A": "Framework use is weak only if the models are presented in the wrong order.",
+    "B": "Framework use is acceptable if the models are widely taught in business schools.",
+    "C": "Framework use is cosmetic because it does not change decisions or recommendations.",
+    "D": "Framework use is strong because general tools always apply without adjustment in practice."
+   },
+   "answer": "C",
+   "explanation": "Frameworks should shape decisions. Evaluation should penalize superficial tool use that doesn’t affect criteria, options, or actions.",
+   "lo": null,
+   "n": 59
+  },
+  {
+   "set": "C",
+   "stem": "A team’s financial model uses EBITDA as cash flow and ignores working capital. Best critique is:",
+   "options": {
+    "A": "Financial rigor is acceptable if the model includes a sensitivity table on margins.",
+    "B": "Financial rigor is strong because EBITDA is the industry standard for all decisions.",
+    "C": "Financial rigor is weak because cash feasibility requires cash, not accounting proxies in practice.",
+    "D": "Financial rigor is weak only if the model is not built in a spreadsheet tool."
+   },
+   "answer": "C",
+   "explanation": "EBITDA is not cash flow. Feasibility requires cash runway, capex, working capital, and timing.",
+   "lo": null,
+   "n": 60
+  },
+  {
+   "set": "C",
+   "stem": "A team’s implementation plan assigns all work to “operations” with no cross-functional needs. Best critique is:",
+   "options": {
+    "A": "Org realism is weak only if the plan includes more than five workstreams.",
+    "B": "Org realism is acceptable if the plan includes a timeline and a budget slide.",
+    "C": "Org realism is strong because specialization eliminates the need for collaboration in practice.",
+    "D": "Org realism is weak because execution requires cross-functional coordination and ownership in practice."
+   },
+   "answer": "D",
+   "explanation": "Gigafactory and product quality work need engineering, procurement, legal, safety, and finance. Evaluation should penalize unrealistic ownership mapping.",
+   "lo": null,
+   "n": 61
+  },
+  {
+   "set": "C",
+   "stem": "A team’s project is persuasive but uses no numbers anywhere. Best critique is:",
+   "options": {
+    "A": "Evidence base is weak only if the team uses too many charts and visuals.",
+    "B": "Evidence base is incomplete because claims require at least minimal quantification in practice.",
+    "C": "Evidence base is acceptable if the narrative follows a compelling story arc.",
+    "D": "Evidence base is strong because numbers reduce creativity and should be avoided."
+   },
+   "answer": "B",
+   "explanation": "Even qualitative projects need minimal quantification or structured evidence; otherwise claims cannot be compared, tested, or implemented.",
+   "lo": null,
+   "n": 62
+  },
+  {
+   "set": "C",
+   "stem": "A team’s recommendation is to “delay the gigafactory” but they do not model consequences. Best critique is:",
+   "options": {
+    "A": "Tradeoff analysis is missing because delay changes cost, competition, and incentive eligibility.",
+    "B": "Tradeoff analysis is acceptable if the team lists delay as a scenario option only.",
+    "C": "Tradeoff analysis is weak only if the team does not provide a Gantt chart.",
+    "D": "Tradeoff analysis is strong because delay always reduces risk and preserves cash."
+   },
+   "answer": "A",
+   "explanation": "Delay affects learning, supplier dependence, penalties, and market timing; evaluation expects modeled consequences and criteria.",
+   "lo": null,
+   "n": 63
+  },
+  {
+   "set": "C",
+   "stem": "A team’s risk register lists ‘demand slowdown’ but no leading indicators. Best critique is:",
+   "options": {
+    "A": "Monitoring is weak because triggers and early signals are not specified.",
+    "B": "Monitoring is strong because demand risk is unpredictable and cannot be tracked.",
+    "C": "Monitoring is acceptable if demand slowdown is categorized as ‘high impact’.",
+    "D": "Monitoring is weak only if demand slowdown is listed after supply risks."
+   },
+   "answer": "A",
+   "explanation": "Even uncertain demand has indicators (order backlog, channel inventory, price discounting, web traffic). Evaluation expects monitoring signals.",
+   "lo": null,
+   "n": 64
+  },
+  {
+   "set": "C",
+   "stem": "In Q&A, the team cannot explain a key assumption but says “it doesn’t matter.” Best evaluation is:",
+   "options": {
+    "A": "Ownership is acceptable if the final recommendation is conservative overall in practice.",
+    "B": "Ownership is strong because details distract from strategic direction at scale.",
+    "C": "Ownership is weak because assumptions drive outputs; inability to defend is material.",
+    "D": "Ownership is weak only if multiple team members also fail to answer questions."
+   },
+   "answer": "C",
+   "explanation": "A key evaluation criterion is defensibility: if assumptions drive the conclusion, inability to explain them undermines the entire argument.",
+   "lo": null,
+   "n": 65
+  },
+  {
+   "set": "C",
+   "stem": "The team argues that penalties are irrelevant because they are ‘one-time costs.’ Best critique is:",
+   "options": {
+    "A": "Financial reasoning is incomplete because penalties also signal credibility and future cash constraints.",
+    "B": "Financial reasoning is strong because one-time costs do not affect valuation at all.",
+    "C": "Financial reasoning is acceptable if the team’s EBITDA margin improves over time.",
+    "D": "Financial reasoning is weak only if the penalties are not quantified exactly."
+   },
+   "answer": "A",
+   "explanation": "Penalties can affect liquidity, lender confidence, and future compliance; they are not purely accounting noise.",
+   "lo": null,
+   "n": 66
+  },
+  {
+   "set": "C",
+   "stem": "The team claims supplier diversification ‘always reduces risk’ without cost impacts. Best critique is:",
+   "options": {
+    "A": "Cost-risk tradeoff is omitted, making the recommendation incomplete and possibly wrong.",
+    "B": "Cost-risk tradeoff is irrelevant because risk reduction is always the priority.",
+    "C": "Cost-risk tradeoff is weak only if suppliers are not named explicitly on slides.",
+    "D": "Cost-risk tradeoff is acceptable if the team lists costs as an implementation issue."
+   },
+   "answer": "A",
+   "explanation": "Diversification can raise costs and complexity. Evaluation expects cost-risk tradeoff, not one-sided slogans.",
+   "lo": null,
+   "n": 67
+  },
+  {
+   "set": "C",
+   "stem": "The team claims ‘battery cost drops’ but does not show learning curves or scale assumptions. Best critique is:",
+   "options": {
+    "A": "Assumption discipline is weak only if the cost figure lacks two decimal points.",
+    "B": "Assumption discipline is weak because cost improvements need drivers and sensitivity.",
+    "C": "Assumption discipline is acceptable if the final recommendation is conservative in practice.",
+    "D": "Assumption discipline is strong because cost drops are guaranteed in manufacturing."
+   },
+   "answer": "B",
+   "explanation": "Cost improvement requires drivers: yield, scale, procurement, learning. Evaluators should demand assumptions and scenario bounds.",
+   "lo": null,
+   "n": 68
+  },
+  {
+   "set": "C",
+   "stem": "The team includes many operational details but no clear strategic choice. Best evaluation is:",
+   "options": {
+    "A": "Strategic focus is strong because operational excellence is the only strategy in practice.",
+    "B": "Strategic focus is missing because details do not substitute for a decision.",
+    "C": "Strategic focus is acceptable if the team used a clear slide template design.",
+    "D": "Strategic focus is weak only if the executive summary is longer than one slide."
+   },
+   "answer": "B",
+   "explanation": "Evaluation should require a clear choice with tradeoffs. Operations are inputs; strategy is the integrated choice of what to do and not do.",
+   "lo": null,
+   "n": 69
+  },
+  {
+   "set": "C",
+   "stem": "The team recommends raising capital but ignores dilution and cash runway math. Best critique is:",
+   "options": {
+    "A": "Financial completeness is acceptable if the team includes a valuation multiple in practice.",
+    "B": "Financial completeness is strong because capital markets are deep for EV stories.",
+    "C": "Financial completeness is weak only if the team omits a discounted cash flow model.",
+    "D": "Financial completeness is weak because financing choices change control and feasibility in practice."
+   },
+   "answer": "D",
+   "explanation": "Runway, dilution, terms, and covenants directly affect feasibility and strategic freedom. Evaluators should reward coherent financing logic.",
+   "lo": null,
+   "n": 70
+  },
+  {
+   "set": "C",
+   "stem": "The team says: “We will fix quality by changing culture,” but provides no mechanisms. Best critique is:",
+   "options": {
+    "A": "Implementation is strong because culture is the only lever that matters for quality.",
+    "B": "Implementation is vague because culture change needs levers, incentives, and routines in practice.",
+    "C": "Implementation is weak only if the culture slide lacks a famous quote in practice.",
+    "D": "Implementation is acceptable if culture is named as a top risk in the risk slide."
+   },
+   "answer": "B",
+   "explanation": "Culture change must specify mechanisms: hiring, training, incentives, reporting protections, and process redesign. Without levers, it’s rhetorical.",
+   "lo": null,
+   "n": 71
+  },
+  {
+   "set": "C",
+   "stem": "The team treats customer complaints as irrelevant because the strategy is upstream manufacturing. Best critique is:",
+   "options": {
+    "A": "System thinking is weak only if customer data appears in the appendix section.",
+    "B": "System thinking is weak because downstream trust affects demand and financing indirectly.",
+    "C": "System thinking is strong because upstream and downstream are independent functions.",
+    "D": "System thinking is acceptable if complaints are mentioned once in the context slide."
+   },
+   "answer": "B",
+   "explanation": "Downstream trust and brand affect demand and investor confidence; evaluation should reward integrated system views.",
+   "lo": null,
+   "n": 72
+  },
+  {
+   "set": "C",
+   "stem": "The team treats the notice as a ‘PR issue’ and not a strategic constraint. Best critique is:",
+   "options": {
+    "A": "Strategic realism is weak because compliance can change cost, timing, and access to incentives.",
+    "B": "Strategic realism is acceptable if the team focuses on customer value creation only.",
+    "C": "Strategic realism is weak only if the team cites the notice from secondary sources.",
+    "D": "Strategic realism is strong because incentives are optional and never affect strategy."
+   },
+   "answer": "A",
+   "explanation": "Compliance and incentive schemes shape the feasible set: penalties, eligibility, credibility, and cash flow.",
+   "lo": null,
+   "n": 73
+  },
+  {
+   "set": "C",
+   "stem": "The team uses market share data but mixes ‘units sold’ with ‘revenue share’ across slides. Best critique is:",
+   "options": {
+    "A": "Metric consistency is acceptable if the direction of trend is consistent over time.",
+    "B": "Metric consistency is weak only if graphs are not labeled with units clearly.",
+    "C": "Metric consistency is weak because the denominator changes and comparisons mislead.",
+    "D": "Metric consistency is strong because different denominators triangulate the same story."
+   },
+   "answer": "C",
+   "explanation": "Mixing denominators can mislead. Evaluation should reward consistent measurement or explicit conversion and segmentation.",
+   "lo": null,
+   "n": 74
+  },
+  {
+   "set": "C",
+   "stem": "The team’s slides are dense with text, but arguments are logically sound. Best evaluation is:",
+   "options": {
+    "A": "Communication can be improved, but content strength should not be downgraded into error.",
+    "B": "Communication is irrelevant; only the written report matters in evaluation in practice.",
+    "C": "Communication is strong if the team reads the slides verbatim in practice.",
+    "D": "Communication is the only criterion; dense slides automatically imply weak thinking."
+   },
+   "answer": "A",
+   "explanation": "Evaluation should separate delivery/clarity from analytical correctness; style problems are not conceptual errors, though they affect persuasion.",
+   "lo": null,
+   "n": 75
+  },
+  {
+   "set": "D",
+   "stem": "A team argues “the merger lowers prices” but provides no merger-specific mechanism. Best critique is:",
+   "options": {
+    "A": "Causal claim is strong because scale economies always lower consumer prices.",
+    "B": "Causal claim is unsupported because benefits must be merger-specific and verifiable.",
+    "C": "Causal claim is acceptable if the team compares prices at two competitor stores.",
+    "D": "Causal claim is weak only if the team omits a competitive landscape slide."
+   },
+   "answer": "B",
+   "explanation": "Evaluators should require merger-specific and verifiable benefits; generic “scale lowers prices” is not enough, especially under antitrust scrutiny.",
+   "lo": null,
+   "n": 76
+  },
+  {
+   "set": "D",
+   "stem": "A team cites a non-binding price pledge as proof of future lower prices. Best critique is:",
+   "options": {
+    "A": "Evidence logic is weak because pledges are not enforceable mechanisms for outcomes in practice.",
+    "B": "Evidence logic is weak only if the pledge is described in a single bullet point.",
+    "C": "Evidence logic is strong because public pledges are always binding over time in practice.",
+    "D": "Evidence logic is acceptable if the pledge is large relative to annual revenue."
+   },
+   "answer": "A",
+   "explanation": "Promises are not mechanisms. Evaluators should demand binding commitments, governance enforcement, and empirical precedent.",
+   "lo": null,
+   "n": 77
+  },
+  {
+   "set": "D",
+   "stem": "A team claims synergy of $X but does not subtract integration costs. Best critique is:",
+   "options": {
+    "A": "Financial rigor is weak because net synergy is what matters for value creation.",
+    "B": "Financial rigor is strong because integration costs are always sunk and irrelevant.",
+    "C": "Financial rigor is acceptable if the synergy number is benchmarked to peers.",
+    "D": "Financial rigor is weak only if the synergy is smaller than one billion dollars."
+   },
+   "answer": "A",
+   "explanation": "Net value = synergy minus integration cost and delays. Evaluation should penalize gross-only synergy claims.",
+   "lo": null,
+   "n": 78
+  },
+  {
+   "set": "D",
+   "stem": "A team claims “prices will drop” but the plan includes store closures. Best critique is:",
+   "options": {
+    "A": "Internal consistency is weak because actions contradict the stated consumer benefit.",
+    "B": "Internal consistency is weak only if the closures are scheduled after year one.",
+    "C": "Internal consistency is acceptable if closures are framed as ‘optimization’ on slides.",
+    "D": "Internal consistency is strong because closures always reduce cost and lower prices."
+   },
+   "answer": "A",
+   "explanation": "Actions must align with promised outcomes. Closures can raise prices locally and increase scrutiny; evaluators should penalize contradictions.",
+   "lo": null,
+   "n": 79
+  },
+  {
+   "set": "D",
+   "stem": "A team ignores labor and union dynamics in grocery. Best evaluation is:",
+   "options": {
+    "A": "Stakeholder analysis is incomplete because labor constraints affect feasibility and risk.",
+    "B": "Stakeholder analysis is correct because labor issues are outside corporate strategy.",
+    "C": "Stakeholder analysis is unnecessary if the team has strong financial estimates.",
+    "D": "Stakeholder analysis is complete because employees are not strategic stakeholders."
+   },
+   "answer": "A",
+   "explanation": "Labor is central in grocery operations. Evaluation should reward inclusion of workforce impacts, bargaining, and execution constraints.",
+   "lo": null,
+   "n": 80
+  },
+  {
+   "set": "D",
+   "stem": "A team ignores the possibility that remedies (divestitures) remove overlap synergies. Best evaluation is:",
+   "options": {
+    "A": "Regulatory realism is acceptable if the team lists regulation as a generic risk.",
+    "B": "Regulatory realism is incomplete because remedies can destroy the deal’s value logic.",
+    "C": "Regulatory realism is weak only if the team cites more than one news source.",
+    "D": "Regulatory realism is strong because divestitures are always cosmetic in practice at scale."
+   },
+   "answer": "B",
+   "explanation": "Remedies can remove the assets that created synergy. Robust evaluation demands modeling the strategy under plausible remedy scenarios.",
+   "lo": null,
+   "n": 81
+  },
+  {
+   "set": "D",
+   "stem": "A team lists three risks but does not include regulatory risk at all. Best evaluation is:",
+   "options": {
+    "A": "Risk coverage is acceptable if the team focuses on operations and integration risks.",
+    "B": "Risk coverage is incomplete because feasibility depends on regulatory approval outcomes in practice.",
+    "C": "Risk coverage is fine because regulation is exogenous and cannot be influenced anyway.",
+    "D": "Risk coverage is weak only if the team used fewer than two frameworks in analysis."
+   },
+   "answer": "B",
+   "explanation": "In a merger case, regulatory approval is a first-order feasibility constraint; ignoring it is a major evaluation flaw.",
+   "lo": null,
+   "n": 82
+  },
+  {
+   "set": "D",
+   "stem": "A team presents a divestiture buyer as ‘surely capable’ without evidence. Best critique is:",
+   "options": {
+    "A": "Evidence is strong because any buyer approved by parties is capable by default.",
+    "B": "Evidence is thin because buyer capability should be evaluated, not assumed in practice.",
+    "C": "Evidence is weak only if the buyer’s brand name is unfamiliar to the presenters.",
+    "D": "Evidence is acceptable if the team lists the buyer as a top opportunity in slides."
+   },
+   "answer": "B",
+   "explanation": "Buyer capability affects remedy effectiveness and competition outcomes; evaluation should require evidence on operational ability and incentives.",
+   "lo": null,
+   "n": 83
+  },
+  {
+   "set": "D",
+   "stem": "A team proposes an alternative: ‘strategic alliance’ but does not specify what is shared. Best critique is:",
+   "options": {
+    "A": "Alternative is strong because alliances always avoid antitrust scrutiny in practice.",
+    "B": "Alternative is acceptable if the team lists ‘joint purchasing’ as a bullet point.",
+    "C": "Alternative is underspecified because scope, governance, and benefits are unclear in practice.",
+    "D": "Alternative is weak only if the alliance is presented before the conclusion slide."
+   },
+   "answer": "C",
+   "explanation": "Alternatives must be concrete: what activities, what governance, what constraints, and why it achieves benefits without the same risks.",
+   "lo": null,
+   "n": 84
+  },
+  {
+   "set": "D",
+   "stem": "A team proposes operational integration in 6 months for a national chain merger. Best critique is:",
+   "options": {
+    "A": "Feasibility is strong because national retailers can standardize quickly at scale.",
+    "B": "Feasibility is acceptable if the team includes a high-level milestone timeline slide.",
+    "C": "Feasibility is weak because scale and complexity imply longer integration timelines.",
+    "D": "Feasibility is weak only if the plan lacks named integration leaders in slides."
+   },
+   "answer": "C",
+   "explanation": "Large integrations take time. Evaluation should penalize implausible speed claims unless backed by credible capacity and sequencing.",
+   "lo": null,
+   "n": 85
+  },
+  {
+   "set": "D",
+   "stem": "A team states “antitrust risk is low” because the firms are different brands. Best critique is:",
+   "options": {
+    "A": "Conceptual adequacy if the brands target different customer demographics at scale.",
+    "B": "Conceptual weakness only if the team did not include a market map diagram.",
+    "C": "Conceptual correctness because brand variety indicates separate markets in practice at scale.",
+    "D": "Conceptual error because brand variety is not the same as competitive independence."
+   },
+   "answer": "D",
+   "explanation": "Brands can still compete closely. Antitrust focuses on competitive effects and market concentration, not brand names alone.",
+   "lo": null,
+   "n": 86
+  },
+  {
+   "set": "D",
+   "stem": "A team uses a single NPV output but no sensitivity on key drivers. Best critique is:",
+   "options": {
+    "A": "Quantitative rigor is strong because one best estimate is clearer for decision makers.",
+    "B": "Quantitative rigor is weak because outputs depend on uncertain assumptions in practice at scale.",
+    "C": "Quantitative rigor is weak only if the discount rate is not shown on the slide.",
+    "D": "Quantitative rigor is acceptable if the NPV is positive by a large margin at scale."
+   },
+   "answer": "B",
+   "explanation": "Sensitivity analysis is essential for high-uncertainty M&A. Evaluation should reward key driver ranges and break-even conditions.",
+   "lo": null,
+   "n": 87
+  },
+  {
+   "set": "D",
+   "stem": "A team uses one competitor as the only counterfactual. Best evaluation is:",
+   "options": {
+    "A": "Counterfactual set is strong because one strong rival represents the whole market well.",
+    "B": "Counterfactual set is weak because baseline and multiple plausible futures are missing.",
+    "C": "Counterfactual set is acceptable if the team chose the market leader as comparator.",
+    "D": "Counterfactual set is weak only if the rival is smaller than the merging firms."
+   },
+   "answer": "B",
+   "explanation": "Evaluation should reward multiple counterfactuals: baseline, with-remedies, no-merger, partial alliance, and competitor response scenarios.",
+   "lo": null,
+   "n": 88
+  },
+  {
+   "set": "D",
+   "stem": "A team uses one geography to generalize price effects nationally. Best critique is:",
+   "options": {
+    "A": "External validity is strong because grocery markets are identical across states.",
+    "B": "External validity is weak because local market structure varies across regions.",
+    "C": "External validity is acceptable if the chosen geography is a large metropolitan area.",
+    "D": "External validity is weak only if the sample includes fewer than five stores."
+   },
+   "answer": "B",
+   "explanation": "Local competition differs by region. Evaluation should reward careful generalization, segmentation, and mapping local market structure.",
+   "lo": null,
+   "n": 89
+  },
+  {
+   "set": "D",
+   "stem": "A team uses only press commentary and no primary evidence (filings, court documents). Best critique is:",
+   "options": {
+    "A": "Evidence hierarchy is acceptable if the commentary comes from reputable newspapers.",
+    "B": "Evidence hierarchy is strong because commentary includes expert synthesis at scale.",
+    "C": "Evidence hierarchy is weak because primary materials would anchor key claims better.",
+    "D": "Evidence hierarchy is weak only if citations are placed inconsistently on slides."
+   },
+   "answer": "C",
+   "explanation": "For high-stakes claims, primary documents provide stronger anchors. Evaluation should reward mixing primary and credible secondary evidence.",
+   "lo": null,
+   "n": 90
+  },
+  {
+   "set": "D",
+   "stem": "A team’s Q&A admits they did not consider ‘no merger’ as an option. Best critique is:",
+   "options": {
+    "A": "Decision framing is incomplete because baseline is required for incremental value in practice.",
+    "B": "Decision framing is strong because baselines restrict creativity and exploration in practice at scale.",
+    "C": "Decision framing is acceptable if the team’s recommendation is aggressive overall in practice.",
+    "D": "Decision framing is weak only if the baseline is not shown in a table format."
+   },
+   "answer": "A",
+   "explanation": "No-merger baseline is essential to judge incremental benefit and to test whether the proposed path is necessary and dominant.",
+   "lo": null,
+   "n": 91
+  },
+  {
+   "set": "D",
+   "stem": "A team’s argument is internally consistent but ignores the judge’s logic in blocking. Best critique is:",
+   "options": {
+    "A": "Case fidelity is weak only if the judge’s name is not mentioned in the appendix.",
+    "B": "Case fidelity is strong because legal reasoning is outside strategy evaluation in practice.",
+    "C": "Case fidelity is weak because the central constraint is not engaged directly in practice.",
+    "D": "Case fidelity is acceptable if the team references antitrust as a generic risk item."
+   },
+   "answer": "C",
+   "explanation": "In this case, the legal reasoning is central to feasibility; evaluation should penalize ignoring the core constraint.",
+   "lo": null,
+   "n": 92
+  },
+  {
+   "set": "D",
+   "stem": "A team’s plan assumes ‘no employee disruption’ while consolidating distribution. Best critique is:",
+   "options": {
+    "A": "Stakeholder realism is strong because distribution and labor are fully separable systems in practice.",
+    "B": "Stakeholder realism is weak because operational consolidation typically affects labor in practice at scale.",
+    "C": "Stakeholder realism is acceptable if the team includes an HR risk bullet in a slide.",
+    "D": "Stakeholder realism is weak only if the plan includes more than three workstreams."
+   },
+   "answer": "B",
+   "explanation": "Distribution consolidation changes roles, locations, and staffing. Evaluation expects explicit labor impacts and mitigation plans.",
+   "lo": null,
+   "n": 93
+  },
+  {
+   "set": "D",
+   "stem": "In Q&A, the team cannot explain what makes a benefit ‘merger-specific.’ Best evaluation is:",
+   "options": {
+    "A": "Concept mastery is weak because the key test of value creation is not understood.",
+    "B": "Concept mastery is strong because technical definitions are not needed for strategy in practice.",
+    "C": "Concept mastery is weak only if the presenter is the designated financial analyst.",
+    "D": "Concept mastery is acceptable if the team has strong charts and visuals in the deck."
+   },
+   "answer": "A",
+   "explanation": "If the central logic hinges on merger-specific benefits, inability to explain the concept undermines the project’s core argument.",
+   "lo": null,
+   "n": 94
+  },
+  {
+   "set": "D",
+   "stem": "The team argues the merger is justified because Walmart is big. Best evaluation is:",
+   "options": {
+    "A": "Competitive framing is acceptable if the team also cites online grocery growth.",
+    "B": "Competitive framing is complete because big rivals automatically justify any merger.",
+    "C": "Competitive framing is weak only if Walmart appears only once in the presentation.",
+    "D": "Competitive framing is incomplete because it substitutes a rival’s size for mechanism."
+   },
+   "answer": "D",
+   "explanation": "‘Walmart is big’ is not a mechanism. Evaluators should require how the merger changes cost structure, differentiation, service, or bargaining power.",
+   "lo": null,
+   "n": 95
+  },
+  {
+   "set": "D",
+   "stem": "The team claims the merger’s benefit is ‘greater innovation’ but offers no pathway. Best critique is:",
+   "options": {
+    "A": "Mechanism is missing because innovation requires processes, incentives, and resources in practice.",
+    "B": "Mechanism is obvious because bigger firms are always more innovative over time.",
+    "C": "Mechanism is acceptable if the team mentions digital transformation once in slides.",
+    "D": "Mechanism is weak only if the team does not cite an innovation framework diagram."
+   },
+   "answer": "A",
+   "explanation": "Innovation needs a pathway: investments, talent, governance, and processes. Size alone does not prove innovation outcomes.",
+   "lo": null,
+   "n": 96
+  },
+  {
+   "set": "D",
+   "stem": "The team models cost synergies but ignores one-time IT integration costs. Best critique is:",
+   "options": {
+    "A": "Financial completeness is strong because IT costs are minimal in retail mergers.",
+    "B": "Financial completeness is acceptable if the synergy estimate is directionally correct.",
+    "C": "Financial completeness is weak because integration cost timing changes net benefits.",
+    "D": "Financial completeness is weak only if the model lacks a discounted cash flow."
+   },
+   "answer": "C",
+   "explanation": "Integration costs are often large and front-loaded; ignoring them biases net value upward.",
+   "lo": null,
+   "n": 97
+  },
+  {
+   "set": "D",
+   "stem": "The team proposes a ‘culture integration plan’ that is only a new slogan. Best critique is:",
+   "options": {
+    "A": "Implementation is strong because symbols drive behavior more than systems at scale.",
+    "B": "Implementation is weak because cultural integration needs levers and incentives in practice.",
+    "C": "Implementation is weak only if the plan is placed in the appendix section.",
+    "D": "Implementation is acceptable if the team used a compelling story in the conclusion."
+   },
+   "answer": "B",
+   "explanation": "Culture integration requires levers: leadership, incentives, processes, training, and governance; slogans alone are insufficient.",
+   "lo": null,
+   "n": 98
+  },
+  {
+   "set": "D",
+   "stem": "The team treats the injunction as irrelevant because ‘the merger could happen later.’ Best critique is:",
+   "options": {
+    "A": "Feasibility is weak because timing and uncertainty change the decision’s value in practice.",
+    "B": "Feasibility is weak only if the team omitted the name of the presiding judge.",
+    "C": "Feasibility is acceptable if the team’s financial model assumes a later close date.",
+    "D": "Feasibility is strong because legal timelines do not affect competitive dynamics in practice."
+   },
+   "answer": "A",
+   "explanation": "Timing is strategic: costs, competitor moves, and capital allocation change. Evaluators should penalize ignoring decision timing and uncertainty.",
+   "lo": null,
+   "n": 99
+  },
+  {
+   "set": "D",
+   "stem": "The team’s slide deck is elegant but uses jargon without definitions. Best evaluation is:",
+   "options": {
+    "A": "Communication clarity is weak only if the deck uses more than ten acronyms.",
+    "B": "Communication clarity is strong because jargon signals expertise to evaluators in practice.",
+    "C": "Communication clarity is weak because precision requires definitions, not buzzwords in practice.",
+    "D": "Communication clarity is acceptable if jargon is used consistently across slides."
+   },
+   "answer": "C",
+   "explanation": "A rigorous project defines terms and units. Buzzwords without definitions reduce clarity and mask gaps in understanding.",
+   "lo": null,
+   "n": 100
+  }
+ ]
+}
