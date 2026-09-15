@@ -1,0 +1,712 @@
+{
+  "id": "campus-chai",
+  "question": "How many cups of chai does a 1,200-student residential campus get through in a week?",
+  "tabLabel": "Campus chai, weekly",
+  "archetype": "closed-population",
+  "difficulty": "Easy",
+  "timeboxMinutes": 8,
+  "teachingPoint": "A closed population is the one question where your own eyes are legitimately the data — no national constant helps and nobody expects you to have read a report. What is being tested is whether you split that population into streams that genuinely drink at different rates, and then divide the total back by headcount to see whether you have described a campus you would recognise. Most candidates count the students, multiply by a single average, and stop. The students are only three-quarters of the answer, and the average is the thing hiding all the information.",
+
+  "scope": {
+    "countingWhat": "Individual cups of chai — tea brewed with milk, served hot — poured by campus outlets to anyone on site during one ordinary term-time week.",
+    "unit": "cups per week",
+    "timeBasis": "flow (per week)",
+    "geography": "A single residential postgraduate campus in India, 1,200 students living on site, one academic block, one mess, a canteen and a late-night stall. The campus is illustrative — built to show the method clearly, not drawn from any named institution.",
+    "included": [
+      "Students, faculty, support staff and day visitors — everyone physically on site",
+      "The canteen counter, the mess tea urns, the academic-block pantry and the late-night stall",
+      "Tea brewed in hostel rooms on personal kettles",
+      "Tea poured at meetings, guest lectures and recruiter visits in an ordinary week"
+    ],
+    "excluded": [
+      "Chai bought at the stalls outside the gate, even when the drinker lives on campus",
+      "Coffee, green tea, black tea without milk, and packaged cold tea",
+      "Exam week, placement week and festival week — this is a typical week, and the answer says so",
+      "Vacation weeks, when the student stream collapses and the question becomes a different one"
+    ],
+    "boundaryTrap": "The question asks what the campus gets through — that is cups served on campus, not cups drunk by people who belong to the campus. The stall fifty metres outside the gate serves this population all day and falls outside the boundary; the tea poured for a visiting recruiter falls inside it, though the recruiter belongs to nobody here. The two readings differ by something like a fifth. Either is defensible. Answering without naming which one you took is not."
+  },
+
+  "routeChoice": {
+    "chosen": "Bottom-up",
+    "why": "The population is closed and countable — 1,200 students in the prompt, a faculty roll, a staff roster — and the whole answer turns on rates that differ sharply between those groups. So build the streams separately, price each at its own rate, and sum. Everything you need is visible by standing in the place for a day, which is precisely the condition under which bottom-up beats every alternative.",
+    "rejectedRoute": "Top-down",
+    "rejectedWhyNot": "The top-down route is national tea consumption per head — roughly 800 g of leaf a year — scaled to 1,490 people on site and divided by 52. It produces a number, and the number is low by about a factor of three, because the national average is built from a population that includes infants, the coffee-drinking South and rural households brewing weak tea at home. An adult residential campus with a subsidised counter and a night stall does not resemble it. Top-down works when your sub-population looks like the whole; here you would import a constant that describes somebody else and then have no honest way to argue the correction factor. When the population is small, closed and unlike the national average, the national average is not data — it is a distraction."
+  },
+
+  "tree": {
+    "root": "Cups of chai served on campus in one term-time week",
+    "rootFormula": "= Student stream + Support-staff stream + Faculty stream + Visitor stream",
+    "value": "≈ 22,900 cups",
+    "branches": [
+      {
+        "label": "Student stream",
+        "formula": "= (Tier headcount × cups per day), summed, × 7 days",
+        "value": "17,850 cups — 78% of the answer",
+        "note": "Segmented by drinking intensity, not by year or section. Demographics do not predict tea; habit does.",
+        "isCriticalPath": true,
+        "children": [
+          {
+            "label": "Heavy tier — 25% of the cohort",
+            "formula": "300 students × 4 cups × 7 days",
+            "value": "8,400 cups",
+            "note": "Thirty-seven per cent of the whole answer sits in a quarter of the cohort. Every question the interviewer asks about your number will land here."
+          },
+          {
+            "label": "Moderate tier — 50% of the cohort",
+            "formula": "600 students × 2 cups × 7 days",
+            "value": "8,400 cups",
+            "note": "Two cups is the number of times a day tea is put in front of you on an Indian campus without your having to go and look for it."
+          },
+          {
+            "label": "Light and non-drinking tier — 25% of the cohort",
+            "formula": "300 students × 0.5 cups × 7 days",
+            "value": "1,050 cups",
+            "note": "Coffee drinkers and abstainers still take the courtesy cup. Half a cup a day is the honest way to write 'not zero, but close'."
+          }
+        ]
+      },
+      {
+        "label": "Support-staff stream",
+        "formula": "200 staff × 3 cups × 6 days",
+        "value": "3,600 cups — 16% of the answer",
+        "note": "Bigger than the faculty stream by a factor of nearly three, and the stream candidates are most likely to omit entirely.",
+        "children": [
+          {
+            "label": "Heads on site, not heads on payroll",
+            "value": "200 staff",
+            "note": "Housekeeping, mess, security, grounds, library, IT and administration. Outsourced staff drink the same tea as direct staff — count the people, not the contracts."
+          },
+          {
+            "label": "Chai as the shift break",
+            "value": "3 cups per shift",
+            "note": "For staff the cup is the break itself: the morning one, the afternoon one, and the one that marks the end of the shift. That makes this the steadiest rate in the model."
+          }
+        ]
+      },
+      {
+        "label": "Faculty stream",
+        "formula": "90 faculty × 3 cups × 5 days",
+        "value": "1,350 cups — 6% of the answer",
+        "note": "Small, but it costs ten seconds to include and its absence is visible in your tree.",
+        "children": [
+          {
+            "label": "Faculty headcount at roughly 1:15",
+            "value": "90 faculty",
+            "note": "A regulated postgraduate management programme runs near a 1:15 ratio, which puts 1,200 students at 80 to 100 faculty."
+          },
+          {
+            "label": "Five-day presence",
+            "value": "5 days",
+            "note": "Teaching and office hours cluster Monday to Friday. This is the only stream that genuinely runs on a working week."
+          }
+        ]
+      },
+      {
+        "label": "Visitor stream",
+        "formula": "60 visitor-days × 2 cups",
+        "value": "120 cups — under 1% of the answer",
+        "note": "Named, sized, and then set aside — it sits inside the rounding error on everything above it. Saying that out loud is worth more marks than the cups are worth."
+      }
+    ]
+  },
+
+  "assumptions": [
+    {
+      "id": "a_students",
+      "lever": "Students living on campus",
+      "value": "1,200",
+      "numeric": 1200,
+      "unit": "students",
+      "basis": "structural-logic",
+      "defence": "The prompt supplies it — the one number here you do not have to defend, so do not spend a second of your eight minutes on it.",
+      "confidence": "anchor"
+    },
+    {
+      "id": "a_heavy_share",
+      "lever": "Heavy-drinking share of students",
+      "value": "25%",
+      "numeric": 0.25,
+      "unit": "share of students",
+      "basis": "observed-behaviour",
+      "defence": "Walk past the canteen at any hour of the day and roughly the same quarter of the cohort is standing there — the night-before-submission crowd is a stable minority, not the median student.",
+      "confidence": "judgement",
+      "contestedBy": "An interviewer may argue the coffee-drinking share is larger and push ten points of the cohort from the heavy tier into the light tier; that cuts about 2,900 cups, or 13%."
+    },
+    {
+      "id": "a_mod_share",
+      "lever": "Moderate-drinking share of students",
+      "value": "50%",
+      "numeric": 0.5,
+      "unit": "share of students",
+      "basis": "declared-judgement",
+      "defence": "Half the cohort takes tea at the two fixed social occasions — the morning one and the evening one — and rarely outside them.",
+      "confidence": "judgement"
+    },
+    {
+      "id": "a_light_share",
+      "lever": "Light and non-drinking share of students",
+      "value": "25%",
+      "numeric": 0.25,
+      "unit": "share of students",
+      "basis": "structural-logic",
+      "defence": "Forced by the other two shares — the three tiers must sum to the cohort, which is the reason for declaring the mix before pricing any of it.",
+      "confidence": "defensible"
+    },
+    {
+      "id": "a_heavy_rate",
+      "lever": "Cups per day, heavy tier",
+      "value": "4 cups",
+      "numeric": 4,
+      "unit": "cups per student per day",
+      "basis": "observed-behaviour",
+      "defence": "One with breakfast, one mid-morning between sessions, one at the four o'clock break, one after dinner — four is the ritual count on a residential campus, not a heroic one.",
+      "confidence": "judgement",
+      "contestedBy": "Six is defensible in placement season or the week before end-terms, which lifts the total by about 18%."
+    },
+    {
+      "id": "a_mod_rate",
+      "lever": "Cups per day, moderate tier",
+      "value": "2 cups",
+      "numeric": 2,
+      "unit": "cups per student per day",
+      "basis": "observed-behaviour",
+      "defence": "Two is the number of occasions a day on which tea arrives without being sought — the mess at breakfast and the urn at evening tea.",
+      "confidence": "defensible"
+    },
+    {
+      "id": "a_light_rate",
+      "lever": "Cups per day, light tier",
+      "value": "0.5 cups",
+      "numeric": 0.5,
+      "unit": "cups per student per day",
+      "basis": "declared-judgement",
+      "defence": "Three or four cups a week for the people who would tell you they do not drink chai — an openly soft number, and it carries under 5% of the answer.",
+      "confidence": "judgement"
+    },
+    {
+      "id": "a_days_student",
+      "lever": "Student days on campus per week",
+      "value": "7 days",
+      "numeric": 7,
+      "unit": "days per week",
+      "basis": "structural-logic",
+      "defence": "Residential means residential — the cohort is on site on Sunday too, which is exactly why this stream cannot be run on a five-day working week.",
+      "confidence": "anchor"
+    },
+    {
+      "id": "a_faculty",
+      "lever": "Faculty headcount",
+      "value": "90",
+      "numeric": 90,
+      "unit": "faculty",
+      "basis": "published-benchmark",
+      "defence": "A regulated postgraduate management programme runs near a 1:15 faculty-student ratio, which puts 1,200 students at roughly 80 to 100 faculty.",
+      "confidence": "defensible"
+    },
+    {
+      "id": "a_faculty_rate",
+      "lever": "Cups per faculty member per working day",
+      "value": "3 cups",
+      "numeric": 3,
+      "unit": "cups per person per day",
+      "basis": "observed-behaviour",
+      "defence": "Faculty tea is meeting-driven — one on arrival, one in the department, one with whoever walks in during office hours.",
+      "confidence": "judgement"
+    },
+    {
+      "id": "a_faculty_days",
+      "lever": "Faculty days on campus per week",
+      "value": "5 days",
+      "numeric": 5,
+      "unit": "days per week",
+      "basis": "observed-behaviour",
+      "defence": "Teaching and office hours cluster Monday to Friday; Saturday sessions exist but not for most of the faculty in an ordinary week.",
+      "confidence": "defensible"
+    },
+    {
+      "id": "a_staff",
+      "lever": "Support staff on site",
+      "value": "200",
+      "numeric": 200,
+      "unit": "staff",
+      "basis": "structural-logic",
+      "defence": "Housekeeping, mess, security, grounds, library, IT and administration for 1,200 beds and an academic block — roughly one support head per six residents, which is what a residential campus needs to actually run.",
+      "confidence": "judgement",
+      "contestedBy": "A campus that outsources mess and housekeeping might report 120 staff on its own payroll; the contractor's people still drink the tea, so count heads on site, not heads on payroll — otherwise you lose about 1,400 cups a week."
+    },
+    {
+      "id": "a_staff_rate",
+      "lever": "Cups per staff member per shift",
+      "value": "3 cups",
+      "numeric": 3,
+      "unit": "cups per person per shift",
+      "basis": "observed-behaviour",
+      "defence": "For staff the cup is the break — morning, afternoon, and the one that marks the end of the shift. Rates tied to a roster are the steadiest numbers in this model.",
+      "confidence": "judgement"
+    },
+    {
+      "id": "a_staff_days",
+      "lever": "Staff days per week",
+      "value": "6 days",
+      "numeric": 6,
+      "unit": "days per week",
+      "basis": "observed-behaviour",
+      "defence": "A six-day week is the norm for campus support roles, with security and mess rostered across all seven — six is the blended figure.",
+      "confidence": "defensible"
+    },
+    {
+      "id": "a_visitor_days",
+      "lever": "Visitor-days per week",
+      "value": "60",
+      "numeric": 60,
+      "unit": "visitor-days per week",
+      "basis": "declared-judgement",
+      "defence": "Recruiters, guest speakers, vendors, auditors and parents — roughly a dozen a day in an ordinary week, and openly a guess.",
+      "confidence": "shaky",
+      "contestedBy": "Triple it for placement week and the total still moves by about 1% — which is why this stream is worth naming and not worth arguing about."
+    },
+    {
+      "id": "a_visitor_rate",
+      "lever": "Cups per visitor-day",
+      "value": "2 cups",
+      "numeric": 2,
+      "unit": "cups per visitor-day",
+      "basis": "observed-behaviour",
+      "defence": "A visitor is offered tea on arrival and again in the meeting — two is the hospitality default and nobody refuses the first one.",
+      "confidence": "defensible"
+    },
+    {
+      "id": "a_canteen_hours",
+      "lever": "Canteen counter serving hours per day",
+      "value": "14 hours",
+      "numeric": 14,
+      "unit": "hours per day",
+      "basis": "observed-behaviour",
+      "defence": "Seven in the morning to nine at night. The counter is open all day but is not busy all day, which is why the rate paired with it must be an average and not a peak.",
+      "confidence": "defensible"
+    },
+    {
+      "id": "a_canteen_rate",
+      "lever": "Average cups per hour at the canteen counter",
+      "value": "80 cups",
+      "numeric": 80,
+      "unit": "cups per hour",
+      "basis": "observed-behaviour",
+      "defence": "Roughly a cup every forty-five seconds averaged across the day — heavy in three short peaks, close to idle for the long stretches between them.",
+      "confidence": "judgement",
+      "contestedBy": "The honest objection is that you only remember this counter at peak, so 80 is probably generous; that bias is the reason the supply route lands high."
+    },
+    {
+      "id": "a_mess_sittings",
+      "lever": "Mess tea sittings per day",
+      "value": "2",
+      "numeric": 2,
+      "unit": "sittings per day",
+      "basis": "observed-behaviour",
+      "defence": "Breakfast and evening tea — the two occasions when the urn is wheeled out and tea is poured for whoever turns up.",
+      "confidence": "defensible"
+    },
+    {
+      "id": "a_mess_cups",
+      "lever": "Cups poured per mess sitting",
+      "value": "750 cups",
+      "numeric": 750,
+      "unit": "cups per sitting",
+      "basis": "observed-behaviour",
+      "defence": "Around six in ten of a 1,200-strong residential cohort attend each fixed sitting, plus the staff who serve it — roughly 750 cups from the urn.",
+      "confidence": "judgement"
+    },
+    {
+      "id": "a_night_hours",
+      "lever": "Night stall serving hours per day",
+      "value": "5 hours",
+      "numeric": 5,
+      "unit": "hours per day",
+      "basis": "observed-behaviour",
+      "defence": "Nine at night to two in the morning — the stall exists because the library closes and the deadline does not.",
+      "confidence": "judgement"
+    },
+    {
+      "id": "a_night_rate",
+      "lever": "Cups per hour at the night stall",
+      "value": "90 cups",
+      "numeric": 90,
+      "unit": "cups per hour",
+      "basis": "observed-behaviour",
+      "defence": "Narrower window, denser queue — the night stall is the one outlet that is genuinely busy for the whole of its opening time, so its average and its peak are close together.",
+      "confidence": "judgement"
+    },
+    {
+      "id": "a_kettle_share",
+      "lever": "Students brewing tea in their rooms",
+      "value": "15%",
+      "numeric": 0.15,
+      "unit": "share of students",
+      "basis": "declared-judgement",
+      "defence": "About one room in seven keeps a kettle with tea bags or milk sachets; hostel fire rules hold this well below universal.",
+      "confidence": "shaky"
+    },
+    {
+      "id": "a_kettle_rate",
+      "lever": "In-room cups per brewing student per day",
+      "value": "1 cup",
+      "numeric": 1,
+      "unit": "cups per person per day",
+      "basis": "declared-judgement",
+      "defence": "The in-room cup is the late-night one and it is a single cup — it supplements the counter rather than replacing it.",
+      "confidence": "judgement"
+    },
+    {
+      "id": "a_outlet_days",
+      "lever": "Hostel-side outlet days per week",
+      "value": "7 days",
+      "numeric": 7,
+      "unit": "days per week",
+      "basis": "structural-logic",
+      "defence": "The canteen, the mess and the night stall serve a population that never leaves, so they run on Sunday as well — the outlet week is set by the residents, not by the calendar.",
+      "confidence": "defensible"
+    },
+    {
+      "id": "a_pantry_hours",
+      "lever": "Academic-block pantry serving hours per day",
+      "value": "9 hours",
+      "numeric": 9,
+      "unit": "hours per day",
+      "basis": "observed-behaviour",
+      "defence": "Nine in the morning to six in the evening, tracking the teaching day rather than the hostel day.",
+      "confidence": "defensible"
+    },
+    {
+      "id": "a_pantry_rate",
+      "lever": "Cups per hour from the academic-block pantry",
+      "value": "40 cups",
+      "numeric": 40,
+      "unit": "cups per hour",
+      "basis": "declared-judgement",
+      "defence": "Class breaks and office hours — steady rather than peaky, serving faculty, staff and whichever students are in the block anyway.",
+      "confidence": "judgement"
+    },
+    {
+      "id": "a_pantry_days",
+      "lever": "Academic-block pantry days per week",
+      "value": "6 days",
+      "numeric": 6,
+      "unit": "days per week",
+      "basis": "structural-logic",
+      "defence": "The academic block follows the teaching calendar, not the hostel one — this is the single stream in the supply route that does not run seven days.",
+      "confidence": "defensible"
+    }
+  ],
+
+  "calculation": [
+    {
+      "id": "c1",
+      "label": "Heavy-tier students",
+      "expr": "1200 * 0.25",
+      "display": "1,200 students × 25% heavy tier",
+      "result": 300,
+      "unit": "students",
+      "uses": ["a_students", "a_heavy_share"],
+      "soWhat": "Fix the headcount of each tier before you touch a rate. Doing it in this order means the interviewer's challenge lands on one number rather than on a tangle of two."
+    },
+    {
+      "id": "c2",
+      "label": "Moderate-tier students",
+      "expr": "1200 * 0.5",
+      "display": "1,200 students × 50% moderate tier",
+      "result": 600,
+      "unit": "students",
+      "uses": ["a_students", "a_mod_share"],
+      "soWhat": "The median student sits here. If your mix put the median in the heavy tier, you have described a canteen queue rather than a cohort."
+    },
+    {
+      "id": "c3",
+      "label": "Light and non-drinking students",
+      "expr": "1200 * 0.25",
+      "display": "1,200 students × 25% light tier",
+      "result": 300,
+      "unit": "students",
+      "uses": ["a_students", "a_light_share"],
+      "soWhat": "Do not set this tier to zero. Some of them take the courtesy cup, and writing zero is a claim you cannot defend when it costs nothing to write 0.5."
+    },
+    {
+      "id": "c4",
+      "label": "Student cups per day",
+      "expr": "300 * 4 + 600 * 2 + 300 * 0.5",
+      "display": "(300 × 4) + (600 × 2) + (300 × 0.5) = 1,200 + 1,200 + 150",
+      "result": 2550,
+      "unit": "cups per day",
+      "uses": ["a_heavy_rate", "a_mod_rate", "a_light_rate"],
+      "soWhat": "Read the three terms aloud: a quarter of the cohort drinks as much as half of it. That asymmetry is the whole reason for segmenting, and it is invisible the moment you use one blended rate."
+    },
+    {
+      "id": "c5",
+      "label": "Reverse check on the dominant stream",
+      "expr": "2550 / 1200",
+      "display": "2,550 cups ÷ 1,200 students",
+      "result": 2.125,
+      "unit": "cups per student per day",
+      "carriedForward": "≈ 2.1 cups per student per day",
+      "uses": [],
+      "soWhat": "Run this before you go any further. Two cups a day is a student you can picture. Had the tier mix produced five, you would have built a teahouse with a syllabus attached, and the error would have been buried in the total forever."
+    },
+    {
+      "id": "c6",
+      "label": "Student cups per week",
+      "expr": "2550 * 7",
+      "display": "2,550 cups per day × 7 days",
+      "result": 17850,
+      "unit": "cups per week",
+      "carriedForward": "≈ 17,900 cups",
+      "uses": ["a_days_student"],
+      "soWhat": "Seven, not five. This is the single most common arithmetic slip on a residential question, and it quietly removes 5,100 cups."
+    },
+    {
+      "id": "c7",
+      "label": "Faculty cups per week",
+      "expr": "90 * 3 * 5",
+      "display": "90 faculty × 3 cups × 5 days",
+      "result": 1350,
+      "unit": "cups per week",
+      "uses": ["a_faculty", "a_faculty_rate", "a_faculty_days"],
+      "soWhat": "Small in absolute terms. Included because a tree that stops at students is not a tree of the campus, and the interviewer can see the gap."
+    },
+    {
+      "id": "c8",
+      "label": "Support-staff cups per week",
+      "expr": "200 * 3 * 6",
+      "display": "200 staff × 3 cups × 6 days",
+      "result": 3600,
+      "unit": "cups per week",
+      "uses": ["a_staff", "a_staff_rate", "a_staff_days"],
+      "soWhat": "Nearly three times the faculty stream, and the one most candidates never write down. The people who make the tea also drink it."
+    },
+    {
+      "id": "c9",
+      "label": "Visitor cups per week",
+      "expr": "60 * 2",
+      "display": "60 visitor-days × 2 cups",
+      "result": 120,
+      "unit": "cups per week",
+      "uses": ["a_visitor_days", "a_visitor_rate"],
+      "soWhat": "Half a per cent of the answer. Size it, say it is inside the rounding error, and move on — that sentence is the point of the line, not the 120."
+    },
+    {
+      "id": "c10",
+      "label": "Non-student streams combined",
+      "expr": "1350 + 3600 + 120",
+      "display": "1,350 faculty + 3,600 staff + 120 visitors",
+      "result": 5070,
+      "unit": "cups per week",
+      "carriedForward": "≈ 5,100 cups",
+      "uses": [],
+      "soWhat": "Say this number out loud: 5,070 cups, 22% of the answer, from the people the prompt never mentioned. It is also the vacation-week answer, which is a second result for no extra work."
+    },
+    {
+      "id": "c11",
+      "label": "Total cups per week",
+      "expr": "17850 + 5070",
+      "display": "17,850 students + 5,070 everyone else",
+      "result": 22920,
+      "unit": "cups per week",
+      "carriedForward": "≈ 23,000 cups a week",
+      "uses": [],
+      "soWhat": "Round it before you say it. Every input was a judgement to one significant figure, so quoting 22,920 claims a precision the chain cannot carry."
+    }
+  ],
+
+  "finalAnswer": "≈ 23,000 cups of chai a week on an ordinary term-time week — call it 18,000 to 28,000, or roughly 3,300 cups a day",
+  "finalAnswerNumeric": 23000,
+  "answerBand": "18,000 – 28,000 cups per week",
+  "orderOfMagnitude": "10^4",
+
+  "triangulation": {
+    "label": "Supply-side cross-check — count the taps, not the drinkers",
+    "route": "Bottom-up",
+    "premise": "The demand route counted people and asked how much each drinks. This route ignores people entirely and counts serving points: every place on campus where tea is physically poured, its opening hours, and its average throughput. It is genuinely independent — it shares no assumption with the first route except the student headcount, and a candidate who has never met this cohort could still run it by walking the campus once.",
+    "lines": [
+      {
+        "id": "t1",
+        "label": "Canteen counter, cups per day",
+        "expr": "14 * 80",
+        "display": "14 serving hours × 80 cups per hour",
+        "result": 1120,
+        "unit": "cups per day",
+        "uses": ["a_canteen_hours", "a_canteen_rate"],
+        "soWhat": "The hourly rate must be a day-average, not the queue you remember. Estimating throughput from memory is estimating it at peak."
+      },
+      {
+        "id": "t2",
+        "label": "Mess tea urns, cups per day",
+        "expr": "2 * 750",
+        "display": "2 sittings × 750 cups per sitting",
+        "result": 1500,
+        "unit": "cups per day",
+        "uses": ["a_mess_sittings", "a_mess_cups"],
+        "soWhat": "The largest single outlet, and the only one where the tea is pushed at people rather than queued for. Push beats pull on volume."
+      },
+      {
+        "id": "t3",
+        "label": "Night stall, cups per day",
+        "expr": "5 * 90",
+        "display": "5 hours × 90 cups per hour",
+        "result": 450,
+        "unit": "cups per day",
+        "uses": ["a_night_hours", "a_night_rate"],
+        "soWhat": "Fourteen per cent of daily supply from five hours of a twenty-four-hour day. The heavy tier from the first route is standing here."
+      },
+      {
+        "id": "t4",
+        "label": "In-room kettles, cups per day",
+        "expr": "1200 * 0.15 * 1",
+        "display": "1,200 students × 15% brewing in room × 1 cup",
+        "result": 180,
+        "unit": "cups per day",
+        "uses": ["a_students", "a_kettle_share", "a_kettle_rate"],
+        "soWhat": "Easy to forget because it has no counter and no queue. A supply route that only counts commercial outlets undercounts a closed residential population."
+      },
+      {
+        "id": "t5",
+        "label": "Seven-day outlets, cups per week",
+        "expr": "(1120 + 1500 + 450 + 180) * 7",
+        "display": "(1,120 + 1,500 + 450 + 180) cups per day × 7 days",
+        "result": 22750,
+        "unit": "cups per week",
+        "carriedForward": "≈ 22,800 cups",
+        "uses": ["a_outlet_days"],
+        "soWhat": "Four outlets that serve residents run every day of the week. Give each stream its own day count or the whole route inherits one wrong calendar."
+      },
+      {
+        "id": "t6",
+        "label": "Academic-block pantry, cups per week",
+        "expr": "9 * 40 * 6",
+        "display": "9 hours × 40 cups per hour × 6 days",
+        "result": 2160,
+        "unit": "cups per week",
+        "uses": ["a_pantry_hours", "a_pantry_rate", "a_pantry_days"],
+        "soWhat": "The one outlet on the teaching calendar rather than the hostel calendar — six days, not seven."
+      },
+      {
+        "id": "t7",
+        "label": "Supply-side total",
+        "expr": "22750 + 2160",
+        "display": "22,750 residential outlets + 2,160 academic block",
+        "result": 24910,
+        "unit": "cups per week",
+        "carriedForward": "≈ 25,000 cups a week",
+        "uses": [],
+        "soWhat": "Compare to 22,920 from the demand route before you decide which one you believe."
+      }
+    ],
+    "answer": "≈ 25,000 cups a week, against ≈ 23,000 from the demand route — about 9% apart",
+    "verdict": "Nine per cent apart on a question this soft is agreement, and you should say so rather than pretending either figure is the truth. The supply route runs high, and it runs high for a reason worth naming: an outlet's average hourly throughput is a number you reconstruct from memory of standing in the queue, and you only stand in the queue when there is one. That bias is systematic, not random, so take the demand route as the point estimate. The more useful output of the cross-check is not the second number but the width of the gap — two honest routes differing by a tenth is the evidence for quoting a band of 18,000 to 28,000 rather than a point. If the two routes had differed by a factor of three, the instruction would be the opposite: stop, and go find the stream one of them is missing."
+  },
+
+  "sensitivity": {
+    "assumptionId": "a_heavy_rate",
+    "whyThisLever": "It is the largest single number in the answer and the least observable one. The heavy tier is a quarter of the cohort carrying 8,400 cups — 37% of the total — and four cups a day is a memory of a canteen, not a count of anything. Every other candidate lever is either steadier or smaller: the staff and faculty rates are tied to a shift roster, the headcounts are structural, and the visitor stream cannot move the total by more than a per cent however hard you push it. If this answer is wrong, this is where it went wrong.",
+    "cases": [
+      {
+        "scenario": "Conservative",
+        "leverValue": "3 cups per day",
+        "answer": "≈ 20,800 cups a week",
+        "deltaVsBase": "−9%"
+      },
+      {
+        "scenario": "Base",
+        "leverValue": "4 cups per day",
+        "answer": "≈ 22,900 cups a week",
+        "deltaVsBase": "0%"
+      },
+      {
+        "scenario": "Aggressive",
+        "leverValue": "6 cups per day",
+        "answer": "≈ 27,100 cups a week",
+        "deltaVsBase": "+18%"
+      }
+    ],
+    "breakpoint": "On this lever alone the answer only leaves the 18,000 to 28,000 band if the heavy tier is taking seven or more cups a day — 2,200 cups a day out of 300 people, which describes someone who lives at the counter rather than attends classes. Within any range you could defend out loud, the order of magnitude does not move. That is precisely what multi-stream aggregation buys you, and it is the argument for building it this way: four streams with independent errors, none of which can break the total on its own. A single-average model has no such protection — one wrong number there moves the whole answer proportionally.",
+    "oneLiner": "Call it 23,000 a week, and it hangs mainly on four cups a day for the heaviest quarter of the cohort — three takes it to 21,000, six takes it to 27,000, and nothing else I have assumed moves it by more than a tenth."
+  },
+
+  "sanityChecks": [
+    "Per head, the test that matters: 22,920 cups across the 1,490 people on site is 15 cups a head a week, a shade over two a day. Hold that against your own memory of a campus. Three a day and you have built a teahouse; one a day and you have built an office block.",
+    "Physically: 22,920 ÷ 7 is about 3,300 cups a day. At 100 ml a cup that is roughly 330 litres of chai, or one 20-litre urn emptied every hour across a sixteen-hour serving day. A campus with a canteen, a mess counter, a pantry and a night stall clears that without strain. A single kettle could not, and if your answer implied one could, the answer was wrong.",
+    "Against procurement: at roughly 3 g of leaf a cup, 22,920 cups is about 69 kg of tea a week — call it 3.6 tonnes a year, or 2.4 kg per person on site. India's per-capita consumption runs near 800 g a year, so this campus is at three times the national rate. For adults, urban, residential and with a subsidised counter, against a national average that includes infants and the coffee-drinking South, three times is the right direction and a defensible size. Thirty times would have told you something was broken.",
+    "The vacation test: strip out the students and you are left with 5,070 cups, the campus running on staff alone. If your tree cannot produce that second number in ten seconds, it was not built as a tree — it was built as one long multiplication with headings.",
+    "Shape check: students 78%, staff 16%, faculty 6%, visitors under 1%. State the shares, not only the total. An interviewer who disagrees with your answer usually disagrees with one share, and the shares are how they tell you which."
+  ],
+
+  "traps": [
+    {
+      "trap": "Counting the students and calling it the campus.",
+      "whyItHappens": "The prompt hands you 1,200 and the mind treats a supplied number as the complete population — you anchor on the only figure in the question. Staff and faculty are invisible in exactly the way that permanent fixtures are invisible: they are always there, so they never register as a thing to count.",
+      "fix": "Write every headcount line before you write a single rate: students, faculty, staff, visitors. Here the non-students come to 5,070 cups, 22% of the answer. Losing them is not a rounding error, it is a fifth of the number and it is visible in your tree."
+    },
+    {
+      "trap": "One average cup rate across the whole cohort.",
+      "whyItHappens": "An average is faster to write and it feels defensible, so the instinct is to pick a middle number — two cups a day — and multiply. It gets to a plausible total by cancelling two errors against each other, and it destroys the information on the way: you can no longer see that a quarter of the cohort carries as much volume as half of it.",
+      "fix": "Segment by drinking intensity, not by year or section or gender. Three tiers is enough. Then when the interviewer pushes, the push lands on one tier's rate, you can move that rate and requote in ten seconds, and the answer survives the challenge."
+    },
+    {
+      "trap": "Running the whole campus on a five-day week.",
+      "whyItHappens": "Working-week reflex, imported from every other estimation question you have practised. 'Residential' is the word in the prompt doing the work and it is easy to read past, because it looks like scene-setting rather than an instruction.",
+      "fix": "Give each stream its own day count and say why out loud: students seven, staff six, faculty five, academic-block pantry six. Four streams, four different weeks. Running students on five days alone removes 5,100 cups."
+    },
+    {
+      "trap": "Quoting 22,920.",
+      "whyItHappens": "The arithmetic produces it, and after the effort of getting there the number feels earned. But no chain of judgements each good to one significant figure yields five significant figures of output — the precision is manufactured entirely by the calculator.",
+      "fix": "Say 'roughly 23,000 a week, call it 18,000 to 28,000', then name the lever that sets the width of the band. A guesstimate answered as an exact figure signals that you do not understand what an estimate is, and that impression is expensive to reverse."
+    },
+    {
+      "trap": "Letting the boundary drift halfway through.",
+      "whyItHappens": "You scope it cleanly as cups served on campus, then three minutes later you remember the stall outside the gate and quietly fold it in, because it is obviously part of campus life. Nothing in the arithmetic objects. The tree is now summing two different quantities and neither of them is the one you defined.",
+      "fix": "Fix the boundary in one sentence before the first multiplication, and write it where you can see it. If you want to change it, change it out loud, say what it adds, and restate the answer. Moving a boundary is legitimate; moving it silently is not."
+    },
+    {
+      "trap": "Reaching for a national per-capita figure because it feels more rigorous than looking around.",
+      "whyItHappens": "A cited constant sounds like evidence and a personal observation sounds like a guess, so candidates import the national number to seem better prepared. On a closed population of 1,490 adults the national average is the weaker input, not the stronger one — it describes a population that does not resemble this one.",
+      "fix": "On a closed-population question, say plainly that local observation is the appropriate data and that you will use the national figure only as a back-check at the end. Then do exactly that: three times the national rate, in the direction you would predict, at a size you can argue."
+    }
+  ],
+
+  "probes": [
+    {
+      "question": "Which of your numbers is doing the most work?",
+      "intent": "Whether you know where your own answer comes from, or only how to produce one. Candidates who have followed a template cannot answer this, because the template never told them.",
+      "goodAnswer": "The heavy tier's rate. Three hundred students at four cups a day is 8,400 cups, 37% of the total, and four is a judgement rather than an observation. Take it to three and the answer falls 9%; take it to six and it rises 18%. Nothing else I assumed moves the total by more than a tenth, and the visitor stream cannot move it by more than one per cent however hard you push.",
+      "weakAnswer": "'All of them matter', or naming the 1,200 — which is the one number handed to you and therefore the only one that cannot be wrong."
+    },
+    {
+      "question": "It is placement week. What changes?",
+      "intent": "Whether the tree is a live model or a finished sum. A model answers the second question in seconds; a sum has to be rebuilt.",
+      "goodAnswer": "Three things move together. Visitor-days jump from 60 to maybe 200, the night stall runs longer, and the heavy tier widens as the cohort sleeps less. The visitor jump is worth about 280 cups, barely one per cent — it is the behaviour shift that matters. Push the heavy tier to six cups and the week is nearer 27,500. So placement week is the top of my band, not a different question, and that is the useful thing to say.",
+      "weakAnswer": "'It goes up a lot' — a direction with no magnitude, and no statement of which stream carries the increase."
+    },
+    {
+      "question": "The campus caterer says they pour 30,000 a week. Are you wrong?",
+      "intent": "Whether an external figure makes you abandon your method or interrogate the boundary. This is the probe that separates a candidate who understands their own model from one who was reciting it.",
+      "goodAnswer": "Thirty thousand is 31% above me, which is inside the range I would expect two honest counts to differ by — but I would look at the boundary before I moved a single assumption. A caterer counts cups poured, which includes the ones left half-drunk, the urn dregs and every cup at events I scoped out as non-typical. If the same contractor also runs the stall at the gate, that alone closes most of the gap. I would revise to about 26,000 and say precisely which assumption I moved and why.",
+      "weakAnswer": "'Then I will use their number', which throws away the method for an unexamined figure — or defending 22,920 as though it had been measured."
+    },
+    {
+      "question": "Size this for a 400-student campus instead.",
+      "intent": "Whether the tree scales or has to be rebuilt, and whether you can tell a variable stream from a fixed one. This is the same distinction that decides every cost case you will see later.",
+      "goodAnswer": "The student stream scales with headcount — a third of 17,850 is about 5,950. The other streams do not scale linearly, because a campus needs a security roster, a mess and an administration whatever its size: 200 staff might fall to 90, not to 67. Total lands near 9,000 to 10,000, and the per-head rate rises, because the fixed streams are now spread across fewer people. That last point is the interesting one — smaller campus, more cups per head.",
+      "weakAnswer": "'Divide everything by three', which assumes every stream is proportional to student count when none of the non-student ones is."
+    },
+    {
+      "question": "How would you check this in an afternoon?",
+      "intent": "Whether you can convert an estimate into a measurement plan. In practice this is what a client is paying for — the estimate is only what you do before the data arrives.",
+      "goodAnswer": "Two routes and I would rank them. Read the procurement ledger first: one week of tea-leaf and milk purchases gives the total with no behavioural assumption in it at all, and it takes twenty minutes. If that is not available, count from the supply side — stand at the canteen counter for three fifteen-minute blocks at different times of day and scale, which tests the throughput assumption directly and tells me whether my 80 cups an hour was a peak figure in disguise.",
+      "weakAnswer": "'Run a survey' — self-reported cup counts are the least reliable input available and the slowest to collect, and nobody remembers how many cups they had on Tuesday."
+    },
+    {
+      "question": "Your two routes are 9% apart. Which do you believe?",
+      "intent": "Whether you can reason about the direction of your own error rather than splitting the difference, which is the reflex answer and the wrong one.",
+      "goodAnswer": "The demand route, and for a stated reason: the supply route's error is systematic and upward. Hourly throughput at an outlet is reconstructed from memory, and you only remember the counter when there was a queue, so 80 cups an hour is a peak dressed up as an average. The demand route's errors are more symmetric — I could be wrong about the tier mix in either direction. So I take 23,000 as the point and use the gap to set the band.",
+      "weakAnswer": "'I would average them to 24,000' — which treats a known directional bias as though it were random noise, and quietly bakes the bias into the answer instead of correcting for it."
+    }
+  ]
+}

@@ -1,0 +1,701 @@
+{
+  "id": "ceiling-fans-stock",
+  "question": "Right now, how many ceiling fans are hanging in India's homes?",
+  "tabLabel": "Ceiling fans, India",
+  "archetype": "household-ownership-stock",
+  "difficulty": "Medium",
+  "timeboxMinutes": 12,
+  "teachingPoint": "In a household-ownership stock count the answer scales one-for-one on units per owning household — and that is the assumption candidates give the least thought to. Penetration is bounded between zero and one and, in a near-universal category, already sits near its ceiling in most bands, so it can barely move the answer. Units per household is unbounded, is set by something physical rather than economic — wired ceiling points, not income — and the band-level figures are not independent estimates but one mental model of Indian rooms wearing five hats. Get that model wrong and every band moves the same way at once.",
+
+  "scope": {
+    "countingWhat": "Ceiling fans physically installed on a hook in a residential dwelling in India — hanging, whether or not anyone switches them on, and whether or not they still turn.",
+    "unit": "ceiling fans",
+    "timeBasis": "stock (point in time)",
+    "geography": "India, urban and rural",
+    "included": [
+      "Fans in occupied homes, owned and rented alike",
+      "Fans in second homes and in flats standing empty between tenants — they are still hanging",
+      "Dead and disconnected fans still bolted to the hook, because the question asks what is hanging, not what is working",
+      "Unbranded and locally assembled fans, which are a large share of the rural base and invisible in most published market data"
+    ],
+    "excluded": [
+      "Table, pedestal, wall-mounted and exhaust fans — different product, different install, different count",
+      "Fans in offices, shops, godowns, factories, schools, hospitals, hotels and places of worship",
+      "Fans in railway coaches and buses",
+      "Unsold stock in warehouses, dealer godowns and on retail shelves",
+      "Fans bought this season but still in the box, not yet on a hook"
+    ],
+    "boundaryTrap": "'Hanging' is not 'working', and neither is 'sold'. Three different numbers sit inside this question: fans sold in a year (a flow, roughly 5 crore), fans hanging (a stock, the answer), and fans hanging and functional (a smaller stock). A candidate who does not choose one out loud will drift between them mid-calculation — usually building a stock structure and then defending it with a sales figure. Choose 'hanging' and say why: it is the only one of the three you can count from households rather than from records nobody keeps."
+  },
+
+  "routeChoice": {
+    "chosen": "Top-down",
+    "why": "The unit being counted lives inside a household, and households are the one denominator in India that is genuinely well measured — population and household size are census anchors, not guesses. Start from 140 crore people, divide into households, split on the variable that actually drives fan count, and the only things left to assume are ownership rates and fans per home. State the split you are using before you touch a number.",
+    "rejectedRoute": "Bottom-up",
+    "rejectedWhyNot": "A bottom-up route would build from supply — units manufactured and imported, less exports, accumulated across the life of a fan. It is weaker here for two specific reasons. First, it needs a scrappage assumption, and scrappage is the hardest thing to observe in a category where a dead fan often stays on its hook for years; the very ambiguity the scope section had to resolve reappears as an unanchorable number. Second, it counts every fan in the country, so it needs a residential-share split bolted on at the end — a split you would have to assume anyway. The bottom-up route therefore inherits the top-down route's weakest step without shedding any of its own. It is kept below as the triangulation, where a rough answer is useful and a wrong one is cheap."
+  },
+
+  "tree": {
+    "root": "Ceiling fans hanging in Indian homes",
+    "rootFormula": "= Urban fans + Rural fans",
+    "value": "≈ 46 crore (463 Mn)",
+    "branches": [
+      {
+        "label": "Urban fans",
+        "formula": "Urban households × Band share × Penetration × Fans per owning household",
+        "value": "≈ 27 crore (273 Mn)",
+        "note": "12 crore households carrying 59% of the national fan stock. Urban is the smaller population and the larger pool — say that out loud before the interviewer asks why.",
+        "isCriticalPath": true,
+        "children": [
+          {
+            "label": "Affluent urban (20% — 2.4 crore homes)",
+            "formula": "2.4 crore × 100% × 4.0 fans",
+            "value": "≈ 9.6 crore (96 Mn)",
+            "note": "Air conditioning does not remove the fan; it hangs beside it and runs when the AC does not."
+          },
+          {
+            "label": "Middle urban (50% — 6 crore homes)",
+            "formula": "6 crore × 95% × 2.5 fans",
+            "value": "≈ 14.3 crore (143 Mn)",
+            "note": "The largest single block in the tree and the softest fans-per-home figure on the page — a mix of 1BHK and 2BHK stock, not a measured average."
+          },
+          {
+            "label": "Low-income urban (30% — 3.6 crore homes)",
+            "formula": "3.6 crore × 80% × 1.2 fans",
+            "value": "≈ 3.5 crore (35 Mn)",
+            "note": "One room, one hook. Three in ten urban households, about one in eight of the urban fans."
+          }
+        ]
+      },
+      {
+        "label": "Rural fans",
+        "formula": "Rural households × Electrified × Band share × Penetration × Fans per owning household",
+        "value": "≈ 19 crore (190 Mn)",
+        "note": "18 crore households — half again as many as urban — producing two-thirds as many fans. The gap is rooms, not people.",
+        "isCriticalPath": false,
+        "children": [
+          {
+            "label": "Electrification gate (95%)",
+            "formula": "18 crore × 95%",
+            "value": "≈ 17 crore homes",
+            "note": "Connections are near-universal on paper. Holding 95% rather than 99% costs about 1 crore fans — size the step first, then decide it is small."
+          },
+          {
+            "label": "Better-off rural (30% — 5.1 crore homes)",
+            "formula": "5.1 crore × 95% × 2.0 fans",
+            "value": "≈ 9.7 crore (97 Mn)",
+            "note": "Pucca, multi-room, some non-farm income. Two wired ceiling points: the main room and one bedroom."
+          },
+          {
+            "label": "Basic rural (70% — 11.9 crore homes)",
+            "formula": "11.9 crore × 65% × 1.2 fans",
+            "value": "≈ 9.3 crore (93 Mn)",
+            "note": "The shakiest penetration figure here. A kutcha house may have no ceiling to hang a fan from — that is a physical constraint, not an affordability one, and they bite differently."
+          }
+        ]
+      }
+    ]
+  },
+
+  "assumptions": [
+    {
+      "id": "pop_india",
+      "lever": "Population of India",
+      "value": "≈ 140 crore (1.4 bn)",
+      "numeric": 1400000000,
+      "unit": "people",
+      "basis": "census-anchor",
+      "defence": "The 2011 Census counted 121 crore; roughly 1% a year over the decade and a half since lands at 140 crore, which is also where the widely cited international estimates sit.",
+      "confidence": "anchor",
+      "contestedBy": "Nobody serious contests this. If an interviewer pushes, they are testing whether you will abandon a good number under pressure."
+    },
+    {
+      "id": "urban_share",
+      "lever": "Urban share of population",
+      "value": "35%",
+      "numeric": 0.35,
+      "unit": "share of population",
+      "basis": "census-anchor",
+      "defence": "The 2011 Census put it at 31% and urbanisation has run roughly half a point a year since, so 35% is the defensible current figure and the one most published estimates cluster around.",
+      "confidence": "anchor",
+      "contestedBy": "An interviewer who prefers a 'functional urban' definition will push you to 40%. That adds roughly 3 crore fans — about 7% — because urban households are both more numerous per head and better equipped, but the rural loss offsets most of the urban gain."
+    },
+    {
+      "id": "hh_size_urban",
+      "lever": "Average urban household size",
+      "value": "4.0 people",
+      "numeric": 4,
+      "unit": "people per household",
+      "basis": "census-anchor",
+      "defence": "Census 2011 recorded 4.6 for urban India and the figure has fallen with later marriage, smaller flats and migrant single-person households; 4.0 is the current working number and it keeps the division clean.",
+      "confidence": "defensible",
+      "contestedBy": "Hold it at 4.5 and urban households fall from 12 crore to under 11 crore, taking about 2.5 crore fans off the answer — roughly 5%."
+    },
+    {
+      "id": "hh_size_rural",
+      "lever": "Average rural household size",
+      "value": "5.0 people",
+      "numeric": 5,
+      "unit": "people per household",
+      "basis": "census-anchor",
+      "defence": "Rural households run about one person larger than urban ones in every Census round — more children, more co-resident generations — and Census 2011's rural average of 5.0 supports the round figure directly.",
+      "confidence": "anchor",
+      "contestedBy": "Arguing for 4.5 adds 2 crore rural households and about 2 crore fans. It also breaks the urban-rural gap that every round of the Census records, which is a hard position to hold."
+    },
+    {
+      "id": "rural_electrified",
+      "lever": "Rural households with a working grid connection",
+      "value": "95%",
+      "numeric": 0.95,
+      "unit": "share of rural households",
+      "basis": "published-benchmark",
+      "defence": "Household electrification was declared near-universal after the last connection drive, but 'connected' is not 'supplied for enough hours to run a fan', so 95% is the deliberately conservative read of a 99% claim.",
+      "confidence": "defensible",
+      "contestedBy": "Insisting on 99% adds only about 1 crore fans — roughly 2%. This gate is a scope statement, not a swing factor, and showing you know that is the point of including it."
+    },
+    {
+      "id": "urban_band_split",
+      "lever": "Urban income-band split",
+      "value": "20% affluent / 50% middle / 30% low-income",
+      "numeric": 0.5,
+      "unit": "share of urban households (middle band shown)",
+      "basis": "published-benchmark",
+      "defence": "Roughly a fifth of urban households sit in the car-owning, multi-room-flat band, about half in the salaried two-room middle, and the remaining third in chawls, informal settlements and single-room rentals — the shape every urban consumption survey shows.",
+      "confidence": "judgement",
+      "contestedBy": "Push the low-income band to 40% at the middle band's expense and the answer drops about 2 crore. The bands are ordered correctly, which matters more than their exact widths."
+    },
+    {
+      "id": "pen_urban_aff",
+      "lever": "Fan penetration, affluent urban",
+      "value": "100%",
+      "numeric": 1,
+      "unit": "share of band owning at least one fan",
+      "basis": "structural-logic",
+      "defence": "A household that can afford an air conditioner still hangs fans in every room, because fans run through power cuts and through the eight months nobody switches the AC on. Penetration here is not in question.",
+      "confidence": "anchor",
+      "contestedBy": "None worth arguing. If someone proposes 95%, take it — it moves the answer by half a crore."
+    },
+    {
+      "id": "fans_urban_aff",
+      "lever": "Fans per owning household, affluent urban",
+      "value": "4.0",
+      "numeric": 4,
+      "unit": "fans per owning household",
+      "basis": "observed-behaviour",
+      "defence": "Count the hooks in a 3BHK: one in the living room, one in each bedroom, and usually one in the kitchen or on the balcony.",
+      "confidence": "defensible",
+      "contestedBy": "Some will argue an AC-fitted bedroom loses its fan. In practice the fan stays bolted to the hook — which is precisely what this question counts, and why the scope had to be settled first."
+    },
+    {
+      "id": "pen_urban_mid",
+      "lever": "Fan penetration, middle urban",
+      "value": "95%",
+      "numeric": 0.95,
+      "unit": "share of band owning at least one fan",
+      "basis": "structural-logic",
+      "defence": "A ceiling fan is the cheapest durable an Indian household buys and typically the first one it buys; the 5% shortfall is recent migrants in bare rentals, not a real ownership gap.",
+      "confidence": "defensible",
+      "contestedBy": "Arguing for 100% adds under a crore. Penetration in this band has nowhere to go, which is exactly why it is the wrong lever to spend structure time on."
+    },
+    {
+      "id": "fans_urban_mid",
+      "lever": "Fans per owning household, middle urban",
+      "value": "2.5",
+      "numeric": 2.5,
+      "unit": "fans per owning household",
+      "basis": "observed-behaviour",
+      "defence": "A 2BHK has three hooks and a 1BHK has two, and the urban middle is a mix of both — 2.5 is the mix, stated as a mix, not a fudge dressed as a decimal.",
+      "confidence": "judgement",
+      "contestedBy": "Move it to 2.0 and the answer drops 3 crore; move it to 3.0 and it gains 3 crore. This single figure carries 31% of the answer — more than any other number on the page."
+    },
+    {
+      "id": "pen_urban_low",
+      "lever": "Fan penetration, low-income urban",
+      "value": "80%",
+      "numeric": 0.8,
+      "unit": "share of band owning at least one fan",
+      "basis": "observed-behaviour",
+      "defence": "In a single-room tenement the fan competes with rent and a metered connection; four in five have one and the rest run a table fan or nothing.",
+      "confidence": "judgement",
+      "contestedBy": "A range of 70% to 90% is arguable and moves the answer under a crore either way. The band is too small for penetration here to matter."
+    },
+    {
+      "id": "fans_urban_low",
+      "lever": "Fans per owning household, low-income urban",
+      "value": "1.2",
+      "numeric": 1.2,
+      "unit": "fans per owning household",
+      "basis": "observed-behaviour",
+      "defence": "One room, one hook. The 0.2 is the minority with a second room or a separate kitchen.",
+      "confidence": "defensible",
+      "contestedBy": "Almost nobody argues this one, which is a signal: the assumptions that go unchallenged are usually the ones physically constrained rather than economically chosen."
+    },
+    {
+      "id": "rural_band_split",
+      "lever": "Rural housing-quality split",
+      "value": "30% pucca / better-off, 70% basic",
+      "numeric": 0.3,
+      "unit": "share of electrified rural households (better-off band shown)",
+      "basis": "published-benchmark",
+      "defence": "Roughly three in ten rural households live in a fully pucca multi-room house with some non-farm income; the rest are one- and two-room kutcha or semi-pucca homes. Housing quality is the right split here because it sets wired ceiling points directly, where income only sets them through housing.",
+      "confidence": "judgement",
+      "contestedBy": "Push the better-off band to 40% and the answer gains about 2 crore. The split is worth naming, not worth arguing over."
+    },
+    {
+      "id": "pen_rural_hi",
+      "lever": "Fan penetration, better-off rural",
+      "value": "95%",
+      "numeric": 0.95,
+      "unit": "share of band owning at least one fan",
+      "basis": "observed-behaviour",
+      "defence": "Same logic as the urban middle — a pucca house with a working connection has a fan; the shortfall is a rounding allowance, not a segment with a story.",
+      "confidence": "defensible",
+      "contestedBy": "100% is defensible and adds half a crore. Nothing turns on it."
+    },
+    {
+      "id": "fans_rural_hi",
+      "lever": "Fans per owning household, better-off rural",
+      "value": "2.0",
+      "numeric": 2,
+      "unit": "fans per owning household",
+      "basis": "observed-behaviour",
+      "defence": "Two hooks: the main room and one bedroom. A rural house has more floor area than an urban flat and far fewer wired ceiling points — floor area is not the driver, wiring is.",
+      "confidence": "defensible",
+      "contestedBy": "An interviewer from a rural background may argue for 2.5 in this band, worth about 2.5 crore. Concede it and note that it pushes the answer towards the top of your band, not out of it."
+    },
+    {
+      "id": "pen_rural_lo",
+      "lever": "Fan penetration, basic rural",
+      "value": "65%",
+      "numeric": 0.65,
+      "unit": "share of band owning at least one fan",
+      "basis": "declared-judgement",
+      "defence": "Declare this one as a judgement rather than dressing it up: a connected but poor household in a kutcha house may simply have no ceiling to hang a fan from, so 65% allows for affordability and the physical constraint at the same time.",
+      "confidence": "shaky",
+      "contestedBy": "A range of 50% to 80% is genuinely arguable and moves the answer by roughly 2 crore in either direction. It is the weakest number on the page — and still not the lever the answer is most sensitive to, which is the lesson."
+    },
+    {
+      "id": "fans_rural_lo",
+      "lever": "Fans per owning household, basic rural",
+      "value": "1.2",
+      "numeric": 1.2,
+      "unit": "fans per owning household",
+      "basis": "observed-behaviour",
+      "defence": "One- and two-room homes with a single wired ceiling point. The same 1.2 as the urban poor, and deliberately so — the binding constraint is identical in both, which is rooms with wiring rather than income.",
+      "confidence": "defensible",
+      "contestedBy": "Someone may argue rural homes with a verandah hang a second fan there, taking it to 1.5. That is 2.3 crore, and it is a fair point."
+    },
+    {
+      "id": "fans_blend",
+      "lever": "Blended fans per owning household, implied across all five bands",
+      "value": "≈ 2.0 (1.96 exactly)",
+      "numeric": 1.96,
+      "unit": "fans per owning household",
+      "basis": "declared-judgement",
+      "defence": "Not assumed directly — it falls out of the five band figures, and it is the one number to say out loud, because the five are not five independent estimates but a single mental model of how many wired ceiling points an Indian home has.",
+      "confidence": "shaky",
+      "contestedBy": "This is the lever the sensitivity grid runs on. Anyone who has spent time in homes different from the ones you pictured will move it, and every band moves with it."
+    },
+    {
+      "id": "fan_market_value",
+      "lever": "Annual retail value of the Indian ceiling-fan market",
+      "value": "≈ ₹10,000 crore",
+      "numeric": 100000000000,
+      "unit": "₹ per year",
+      "basis": "published-benchmark",
+      "defence": "Trade estimates place the whole domestic fan market in the ₹10,000-12,000 crore range with ceiling fans the dominant share; ₹10,000 crore is the round, conservative read. Illustrative — used to demonstrate the method, not asserted as verified market data.",
+      "confidence": "judgement",
+      "contestedBy": "A candidate citing ₹12,000 crore lands the cross-check at 47 crore fans, which would close the gap with the primary route almost exactly. Do not reach for that number because it is convenient — note that the cross-check is sensitive to it and move on."
+    },
+    {
+      "id": "fan_price",
+      "lever": "Average realised retail price per ceiling fan",
+      "value": "₹2,000",
+      "numeric": 2000,
+      "unit": "₹ per unit",
+      "basis": "published-benchmark",
+      "defence": "Branded fans retail from roughly ₹1,800 to ₹3,500 and unorganised local assembly sells well below ₹1,500; ₹2,000 is a fair blend in a market where the unorganised tail is large and rural.",
+      "confidence": "judgement",
+      "contestedBy": "Quote ₹2,500 because that is what you last paid and units fall to 4 crore a year, dragging the cross-check to 31 crore fans. A price blended from what you personally bought is the most common way this route goes wrong."
+    },
+    {
+      "id": "household_share_sales",
+      "lever": "Share of fan units bought by households",
+      "value": "75%",
+      "numeric": 0.75,
+      "unit": "share of annual units",
+      "basis": "declared-judgement",
+      "defence": "Offices, shops, godowns, schools, workshops and places of worship buy fans too, and they buy in bulk; a quarter of units is the conservative allowance for everything that is not a home.",
+      "confidence": "judgement",
+      "contestedBy": "Move it to 85% and the cross-check rises to 45 crore, landing on top of the primary route. That agreement would be manufactured, not earned — which is why this figure is set before the comparison, not after it."
+    },
+    {
+      "id": "replacement_share",
+      "lever": "Share of household fan sales replacing a dead fan",
+      "value": "70%",
+      "numeric": 0.7,
+      "unit": "share of household units",
+      "basis": "structural-logic",
+      "defence": "In a category already near-universal, most demand has to be replacement; the remaining 30% is new households forming and new rooms being wired, which is roughly the rate at which Indian households are being added.",
+      "confidence": "judgement",
+      "contestedBy": "An interviewer who thinks the base is still growing fast will argue 60%, cutting the cross-check to 34 crore. That is the correct instinct in a young category and the wrong one here."
+    },
+    {
+      "id": "fan_life",
+      "lever": "Average years a fan stays on its hook",
+      "value": "15 years",
+      "numeric": 15,
+      "unit": "years",
+      "basis": "observed-behaviour",
+      "defence": "A ceiling fan has one moving part and no consumables; households replace them when the bearing goes or the room is being repainted, not on any schedule. Fifteen years is long by durable-goods standards and still short of what you see hanging in older homes.",
+      "confidence": "judgement",
+      "contestedBy": "Ten years takes the cross-check to 26 crore and twenty years takes it to 53 crore. This is the cross-check's weakest lever, and it is why the cross-check is a cross-check rather than the primary route."
+    }
+  ],
+
+  "calculation": [
+    {
+      "id": "c1",
+      "label": "Urban population",
+      "expr": "1400000000 * 0.35",
+      "display": "140 crore × 35% urban",
+      "result": 490000000,
+      "tolerance": 0.000001,
+      "unit": "people",
+      "carriedForward": "≈ 49 crore",
+      "uses": ["pop_india", "urban_share"],
+      "soWhat": "Urban and rural have to be separated before anything else, because every multiplier downstream differs between them — household size, penetration and fans per home all break at this line."
+    },
+    {
+      "id": "c2",
+      "label": "Rural population",
+      "expr": "1400000000 * 0.65",
+      "display": "140 crore × 65% rural",
+      "result": 910000000,
+      "tolerance": 0.000001,
+      "unit": "people",
+      "carriedForward": "≈ 91 crore",
+      "uses": ["pop_india", "urban_share"],
+      "soWhat": "Rural is nearly two-thirds of the population. If your structure treats it as a footnote, the answer will be wrong by more than any single assumption error could make it."
+    },
+    {
+      "id": "c3",
+      "label": "Urban households",
+      "expr": "490000000 / 4",
+      "display": "49 crore ÷ 4.0 people per urban household",
+      "result": 122500000,
+      "unit": "households",
+      "carriedForward": "≈ 12 crore (120 Mn) — round here and keep the rest of the arithmetic in your head",
+      "uses": ["hh_size_urban"],
+      "soWhat": "The household, not the person, is the unit that owns a fan. Switching denominator here is the whole move in this archetype."
+    },
+    {
+      "id": "c4",
+      "label": "Rural households",
+      "expr": "910000000 / 5",
+      "display": "91 crore ÷ 5.0 people per rural household",
+      "result": 182000000,
+      "unit": "households",
+      "carriedForward": "≈ 18 crore (180 Mn)",
+      "uses": ["hh_size_rural"],
+      "soWhat": "Rural has half again as many households as urban. Hold that number in mind — the final answer inverts it, and you will be asked why."
+    },
+    {
+      "id": "c5",
+      "label": "Rural households with a working connection",
+      "expr": "180000000 * 0.95",
+      "display": "18 crore × 95% electrified",
+      "result": 171000000,
+      "tolerance": 0.000001,
+      "unit": "households",
+      "carriedForward": "≈ 17 crore (170 Mn)",
+      "uses": ["rural_electrified"],
+      "soWhat": "The gate that stops you counting fans in homes that cannot run one. It costs about 1 crore fans — name it, size it, then say it is small. A step you considered and dismissed reads completely differently from a step you never had."
+    },
+    {
+      "id": "c6",
+      "label": "Fans in affluent urban homes",
+      "expr": "120000000 * 0.2 * 1 * 4",
+      "display": "12 crore urban homes × 20% affluent × 100% own × 4.0 fans",
+      "result": 96000000,
+      "unit": "fans",
+      "carriedForward": "≈ 9.6 crore",
+      "uses": ["urban_band_split", "pen_urban_aff", "fans_urban_aff"],
+      "soWhat": "One in five urban households produces more than a third of urban fans. That concentration is the reason the band split exists at all."
+    },
+    {
+      "id": "c7",
+      "label": "Fans in middle urban homes",
+      "expr": "120000000 * 0.5 * 0.95 * 2.5",
+      "display": "12 crore urban homes × 50% middle × 95% own × 2.5 fans",
+      "result": 142500000,
+      "tolerance": 0.000001,
+      "unit": "fans",
+      "carriedForward": "≈ 14.3 crore",
+      "uses": ["urban_band_split", "pen_urban_mid", "fans_urban_mid"],
+      "soWhat": "The largest block in the model — 31% of the whole answer rests on one figure, the 2.5, and that figure is a judgement about the 1BHK-to-2BHK mix. Say so before the interviewer finds it."
+    },
+    {
+      "id": "c8",
+      "label": "Fans in low-income urban homes",
+      "expr": "120000000 * 0.3 * 0.8 * 1.2",
+      "display": "12 crore urban homes × 30% low-income × 80% own × 1.2 fans",
+      "result": 34560000,
+      "tolerance": 0.000001,
+      "unit": "fans",
+      "carriedForward": "≈ 3.5 crore",
+      "uses": ["urban_band_split", "pen_urban_low", "fans_urban_low"],
+      "soWhat": "Three in ten urban households, about an eighth of urban fans. Both multipliers cut the same way here, which is what makes banded models worth building."
+    },
+    {
+      "id": "c9",
+      "label": "Urban fans, total",
+      "expr": "96000000 + 142500000 + 34560000",
+      "display": "9.6 crore + 14.3 crore + 3.5 crore",
+      "result": 273060000,
+      "unit": "fans",
+      "carriedForward": "≈ 27 crore",
+      "uses": [],
+      "soWhat": "Sub-total before moving to rural. Announce sub-totals as you go — an interviewer who stops you at minute eight should still have a number."
+    },
+    {
+      "id": "c10",
+      "label": "Fans in better-off rural homes",
+      "expr": "170000000 * 0.3 * 0.95 * 2",
+      "display": "17 crore electrified rural homes × 30% pucca × 95% own × 2.0 fans",
+      "result": 96900000,
+      "tolerance": 0.000001,
+      "unit": "fans",
+      "carriedForward": "≈ 9.7 crore",
+      "uses": ["rural_band_split", "pen_rural_hi", "fans_rural_hi"],
+      "soWhat": "Three in ten rural homes produce over half the rural fans — the same concentration pattern as urban, which is a check that the model is behaving."
+    },
+    {
+      "id": "c11",
+      "label": "Fans in basic rural homes",
+      "expr": "170000000 * 0.7 * 0.65 * 1.2",
+      "display": "17 crore electrified rural homes × 70% basic × 65% own × 1.2 fans",
+      "result": 92820000,
+      "tolerance": 0.000001,
+      "unit": "fans",
+      "carriedForward": "≈ 9.3 crore",
+      "uses": ["rural_band_split", "pen_rural_lo", "fans_rural_lo"],
+      "soWhat": "11.9 crore households — the single largest block of homes in the country — and it yields fewer fans than 5.1 crore better-off rural homes. Two low multipliers compound, and compounding is the thing candidates underestimate."
+    },
+    {
+      "id": "c12",
+      "label": "Rural fans, total",
+      "expr": "96900000 + 92820000",
+      "display": "9.7 crore + 9.3 crore",
+      "result": 189720000,
+      "unit": "fans",
+      "carriedForward": "≈ 19 crore",
+      "uses": [],
+      "soWhat": "Rural has 1.5 times urban's households and two-thirds of its fans. The inversion is the model's main finding, and you should be able to attribute it to the two multipliers on sight."
+    },
+    {
+      "id": "c13",
+      "label": "Households owning at least one fan",
+      "expr": "24000000 + 60000000 * 0.95 + 36000000 * 0.8 + 51000000 * 0.95 + 119000000 * 0.65",
+      "display": "2.4 cr + (6 cr × 95%) + (3.6 cr × 80%) + (5.1 cr × 95%) + (11.9 cr × 65%)",
+      "result": 235600000,
+      "tolerance": 0.000001,
+      "unit": "households",
+      "carriedForward": "≈ 23.6 crore fan-owning homes",
+      "uses": ["pen_urban_aff", "pen_urban_mid", "pen_urban_low", "pen_rural_hi", "pen_rural_lo"],
+      "soWhat": "Before announcing a total, collapse the model to a denominator you can defend in a sentence. 23.6 crore of roughly 30 crore households own a fan — 78% national penetration, which is a claim an interviewer can sanity-check instantly."
+    },
+    {
+      "id": "c14",
+      "label": "Implied blended fans per owning household",
+      "expr": "(273060000 + 189720000) / 235600000",
+      "display": "(27.3 crore + 19.0 crore fans) ÷ 23.6 crore owning homes",
+      "result": 1.9643,
+      "tolerance": 0.0001,
+      "unit": "fans per owning household",
+      "carriedForward": "≈ 2.0",
+      "uses": ["fans_blend"],
+      "soWhat": "The whole five-band model reduces to this. It is the number to defend, the number to run sensitivity on, and the number to say aloud: 'a fan-owning Indian home has about two fans.' If that sentence sounds wrong, stop and rebuild — not after the total, but here."
+    },
+    {
+      "id": "c15",
+      "label": "Ceiling fans hanging in Indian homes",
+      "expr": "273060000 + 189720000",
+      "display": "27.3 crore urban + 19.0 crore rural",
+      "result": 462780000,
+      "unit": "fans",
+      "carriedForward": "≈ 46 crore — report this, not 46.3",
+      "uses": [],
+      "soWhat": "The answer. Round to two significant figures, give the band, and name the lever the band comes from before anyone asks."
+    }
+  ],
+
+  "finalAnswer": "≈ 46 crore ceiling fans (roughly 460 million) hanging in Indian homes — about 1.5 per household, and about two per fan-owning household",
+  "finalAnswerNumeric": 460000000,
+  "answerBand": "40-55 crore (400-550 Mn). Say the band out loud. A point estimate here is a claim the assumptions cannot carry, and a guesstimate answered as '46.28 crore' signals you do not understand what an estimate is.",
+  "orderOfMagnitude": "10^8 — hundreds of millions. Being right to the power of ten is the actual test; anything between 30 and 70 crore passes it.",
+
+  "triangulation": {
+    "label": "Supply-side cross-check — annual sales × fan life",
+    "route": "Bottom-up",
+    "premise": "If the installed base were stable, every fan sold to a household would be replacing one that died, so the base would simply be annual replacement sales multiplied by how long a fan lasts. The base is not stable — it is still growing — so strip out the sales that add new hanging points and keep only the replacement flow. This route shares nothing with the household build: no population figure, no household size, no penetration rate, no rooms. That independence is what makes the comparison worth anything.",
+    "lines": [
+      {
+        "id": "t1",
+        "label": "Ceiling fans sold in India in a year",
+        "expr": "100000000000 / 2000",
+        "display": "₹10,000 crore market ÷ ₹2,000 average realised price",
+        "result": 50000000,
+        "unit": "fans per year",
+        "carriedForward": "≈ 5 crore units a year",
+        "uses": ["fan_market_value", "fan_price"],
+        "soWhat": "Deriving units from value rather than quoting a unit figure forces the price assumption into the open, where it can be challenged. Quoting '5 crore fans a year' from memory hides it."
+      },
+      {
+        "id": "t2",
+        "label": "Units bought by households",
+        "expr": "50000000 * 0.75",
+        "display": "5 crore × 75% residential",
+        "result": 37500000,
+        "tolerance": 0.000001,
+        "unit": "fans per year",
+        "carriedForward": "≈ 3.75 crore",
+        "uses": ["household_share_sales"],
+        "soWhat": "The same residential boundary the scope section drew, now applied to a flow instead of a stock. Applying a boundary consistently across two routes is more of the grade than either route's arithmetic."
+      },
+      {
+        "id": "t3",
+        "label": "Replacement units per year",
+        "expr": "37500000 * 0.7",
+        "display": "3.75 crore × 70% replacing a dead fan",
+        "result": 26250000,
+        "tolerance": 0.000001,
+        "unit": "fans per year",
+        "carriedForward": "≈ 2.6 crore",
+        "uses": ["replacement_share"],
+        "soWhat": "Only replacement sales measure the installed base. New installations grow the base rather than revealing its size, and multiplying total sales by fan life is the error that makes this route over-count by a third."
+      },
+      {
+        "id": "t4",
+        "label": "Installed residential base",
+        "expr": "26250000 * 15",
+        "display": "2.6 crore a year × 15-year fan life",
+        "result": 393750000,
+        "unit": "fans",
+        "carriedForward": "≈ 39 crore",
+        "uses": ["fan_life"],
+        "soWhat": "The cross-check answer. Compare it to the household build before deciding which you believe — and have a reason ready that is not 'they are close enough'."
+      }
+    ],
+    "answer": "≈ 39 crore ceiling fans (roughly 394 million)",
+    "verdict": "46 crore against 39 crore — about 15% apart, and the same order of magnitude, which is as close as two genuinely independent routes usually get. Do not average them. The gap has a direction you can name: the household build counts every fan on a hook, dead ones included, while the replacement route only sees fans inside an active replacement cycle and therefore misses the ones nobody has got round to replacing. That asymmetry runs one way, so the true figure sits nearer the higher number. It also shows up again in the sanity checks — the household build implies about 3 crore home replacements a year against this route's 2.6 crore, the same 15% gap appearing in the same place. Two routes disagreeing about one thing rather than four is a good sign, not a bad one. Report 40-55 crore."
+  },
+
+  "sensitivity": {
+    "assumptionId": "fans_blend",
+    "whyThisLever": "Penetration can neither save you nor sink you: it already sits at or near its ceiling in four of the five bands, and even taking the weakest band's penetration to zero moves the answer by a fifth. Fans per owning household behaves completely differently — the total is exactly this figure multiplied by 23.6 crore owning households, so a 25% error in your picture of how many wired ceiling points a home has is a 25% error in the answer, with nothing to damp it. And the five band figures are not five independent guesses that might cancel; they come from one mental image of Indian rooms, so they fail together. This is the lever candidates spend the least time on and the one that decides the answer.",
+    "cases": [
+      {
+        "scenario": "Conservative",
+        "leverValue": "1.5 fans per owning household",
+        "answer": "≈ 35 crore (353 Mn)",
+        "deltaVsBase": "−24%"
+      },
+      {
+        "scenario": "Base",
+        "leverValue": "1.96 fans per owning household (implied by the five bands)",
+        "answer": "≈ 46 crore (463 Mn)",
+        "deltaVsBase": "—"
+      },
+      {
+        "scenario": "Aggressive",
+        "leverValue": "2.5 fans per owning household",
+        "answer": "≈ 59 crore (589 Mn)",
+        "deltaVsBase": "+27%"
+      }
+    ],
+    "breakpoint": "The answer leaves the stated 40-55 crore band below 1.70 or above 2.33 fans per owning household — so the band survives roughly a 15% error in this lever and nothing more. The two routes reconcile exactly at 1.67, which is five fans for every three fan-owning homes. That is the real question underneath the arithmetic: do the Indian homes you have actually been inside average two fans, or five across three? Answer that and you have answered the guesstimate.",
+    "oneLiner": "With no time for the grid: 'The answer scales one-for-one on fans per owning household. Mine implies about two. Take it to 1.5 and the answer is 35 crore; take it to 2.5 and it is 59 crore. Everything else in the chain is a census anchor and cannot move the answer that far.'"
+  },
+
+  "sanityChecks": [
+    "46 crore fans across roughly 30 crore households is about 1.5 fans per household nationally. Picture the country honestly: a rural one-room home with one fan and an urban flat with three, in roughly a three-to-two household ratio. The average lands where it should.",
+    "One fan for every three Indians. If the answer had come out at one per person you would be claiming a fan in every bedroom of every home in the country, rural included — visibly false to anyone who has travelled outside a metro.",
+    "Load test: a ceiling fan draws about 70 watts. On a May evening with half the installed base running, that is 46 crore × 0.5 × 70 W ≈ 16 GW against a national peak of roughly 240 GW — about 7% of peak, and around a quarter of residential load. Fans are routinely described as the largest residential load after lighting, so this sits in the right neighbourhood. An answer of 5 crore fans would put them under 1% of peak, which nobody who has seen a summer load curve would accept.",
+    "Bracket before you trust. 5 crore fans would mean one fan per six households; 500 crore would mean sixteen per household. Both fail in under a second, which places the answer in the tens of crores — and that bracketing is most of what the interviewer is actually testing.",
+    "Replacement implication: 46 crore fans on a 15-year life means about 3 crore replaced in homes every year. The supply-side route allowed 2.6 crore. The same 15% gap turns up in the same place rather than in a new one, which is what makes the two routes reassuring rather than merely different.",
+    "Penetration check: the model implies 78% of Indian households own at least one ceiling fan. That is high but not universal, which is the right shape for a category that is cheap, near-essential in most of the country, and still blocked by kutcha roofs and unreliable supply at the bottom. If your model had produced 95%, you would have forgotten the bottom of the distribution."
+  ],
+
+  "traps": [
+    {
+      "trap": "Answering with fans sold in a year instead of fans hanging.",
+      "whyItHappens": "Market-sizing practice is overwhelmingly annual-flow practice, so the moment a candidate hears 'India' and 'fans' the trained reflex reaches for a sales number. 'Right now' and 'hanging' are the whole question and they go past unheard, because the reflex fires before the prompt finishes.",
+      "fix": "Say the time basis aloud before drawing anything: 'This is a stock at a point in time, not an annual flow.' If you cannot state which of the two you are computing, you are not ready to compute either."
+    },
+    {
+      "trap": "Multiplying households by a single national fans-per-household figure.",
+      "whyItHappens": "One average is faster and feels like it reaches the same place. It does not: fans per household is set by wired ceiling points, which track room count, which tracks income and housing quality. A single average silently asserts that the poorest household has as many ceiling points as the richest — and because the poorest are the majority of households, that error is large and one-directional.",
+      "fix": "Split on the variable the ratio actually depends on. Two urban bands and two rural bands is enough; the point is that the bands genuinely differ, not that there are five of them."
+    },
+    {
+      "trap": "Spending the structure time on penetration and none on fans per household.",
+      "whyItHappens": "Penetration is the number candidates have rehearsed and it sits between zero and one, which makes it feel safely bounded — you cannot be wrong by much. Fans per household is unbounded upward, nobody has a rehearsed figure, so it gets assigned in two seconds and never revisited. It is also the only number in the chain the answer scales linearly on across every band at once.",
+      "fix": "Give units-per-household the airtime you were about to give penetration, and say what physically sets it: wired ceiling points, not income and not floor area. Then state the blended figure the bands imply and defend that single number."
+    },
+    {
+      "trap": "Skipping the rural electrification gate because electrification is now near-universal.",
+      "whyItHappens": "The connection figure is reported at 99%, so the step looks like one that can be dropped without cost. Dropping it is indeed almost harmless here — about 1 crore fans. But the candidate who dropped it did not weigh it, and an interviewer cannot tell the difference between a step you sized and dismissed and a step you never saw.",
+      "fix": "Name the gate, apply 95%, and say out loud that it moves the answer by roughly 2%. Showing that you sized a step before deciding it was small is worth more than the step."
+    },
+    {
+      "trap": "Reporting the answer as 46.28 crore.",
+      "whyItHappens": "The arithmetic produces 462,780,000 and the candidate reads it out, because reading out what you computed feels like rigour. Every digit after the first two was manufactured by assumptions carrying ±25% error, so the precision is an artefact of the calculator, not a property of the estimate.",
+      "fix": "Round to the precision your weakest assumption supports, give a band, and name the lever the band comes from. 'About 46 crore, call it 40 to 55, and it turns almost entirely on fans per home.'"
+    },
+    {
+      "trap": "Averaging the two routes when they disagree.",
+      "whyItHappens": "Two numbers and no rule to choose between them feels like a tie, and averaging looks even-handed. It is the opposite: it discards the only information the second route produced, which is the direction and the cause of the gap.",
+      "fix": "Ask what each route counts that the other does not, and check whether the difference explains the gap's size and sign. Here it does — dead fans left hanging — so lean towards the higher figure and say why."
+    }
+  ],
+
+  "probes": [
+    {
+      "question": "Your fans-per-household figures range from 1.2 to 4. Where did those come from?",
+      "intent": "Whether the ratio was reasoned from something physical or assigned by feel and then defended after the fact.",
+      "goodAnswer": "Names the physical driver first — wired ceiling points, which track room count — then gives the rooms behind each band: one for the urban poor and the basic rural home, two for a pucca rural house, three or four for an urban flat. Concedes without prompting that the middle-urban 2.5 is a 1BHK-to-2BHK mix and is the softest of the five.",
+      "weakAnswer": "'It felt about right for that segment.' Or, more commonly, a confident defence of the penetration rates instead — because those are the numbers the candidate prepared, and answering the question you rehearsed for is the most visible tell there is."
+    },
+    {
+      "question": "The supply-side cross-check gives 39 crore. Which of your two answers do you believe?",
+      "intent": "Whether the candidate can reason about the direction of a gap rather than splitting the difference.",
+      "goodAnswer": "States what each route counts and what it therefore misses. The household build counts fans on hooks, dead ones included; the replacement route counts fans inside an active replacement cycle and so misses every fan nobody has bothered to replace. That asymmetry runs one way only, so the truth sits nearer the higher figure. Reports 40-55 crore rather than picking one.",
+      "weakAnswer": "'I'd take the average, so about 42 crore.' Averaging two estimates without asking why they differ throws away the only thing the second route was built to produce."
+    },
+    {
+      "question": "How would this change for all ceiling fans in India, not only homes?",
+      "intent": "Whether the residential boundary was a deliberate choice or an accident of where the candidate happened to stop.",
+      "goodAnswer": "Reaches for the split already used in the cross-check: homes take about 75% of annual units, so non-residential is roughly a third again on top, taking the total towards 60 crore. Then flags what breaks — commercial fans run far longer hours and are replaced faster, so the 15-year life would have to fall, and the two adjustments push in opposite directions.",
+      "weakAnswer": "'It would be somewhat higher.' A boundary you cannot size is a boundary you did not set."
+    },
+    {
+      "question": "One number, an afternoon and a data subscription. Which do you check?",
+      "intent": "Whether the candidate can rank uncertainty by impact on the answer rather than by personal discomfort with the number.",
+      "goodAnswer": "The blended fans per owning household, because the answer scales one-for-one on it and the five band figures are not independent errors — they come from a single mental model of Indian rooms and move together. Adds that penetration is already near its ceiling in four of five bands and structurally cannot move the answer far, so checking it would be time spent on the wrong lever.",
+      "weakAnswer": "'The population figure' or 'the urban share' — the two best-documented numbers in the whole chain and the two least in need of checking. Candidates pick them because they are checkable, not because they matter."
+    },
+    {
+      "question": "Rural has 18 crore households against urban's 12, yet you give rural fewer fans. Explain.",
+      "intent": "Whether the candidate can read their own ledger and attribute a result to the step that produced it.",
+      "goodAnswer": "Points straight at the two multipliers doing the work: penetration is lower in rural, and fans per owning household is much lower again, because a rural home has more floor area than an urban flat and fewer wired ceiling points. Notes that the two compound, and that this inversion is the model's main finding rather than an embarrassment in it.",
+      "weakAnswer": "Re-reads the arithmetic aloud, correctly, without ever naming which multiplier caused the inversion. Getting the sum right is not the same as understanding what the sum says."
+    },
+    {
+      "question": "Suppose rural penetration in the bottom band is 45%, not 65%. Does your answer change?",
+      "intent": "Whether the candidate can size a challenge instead of either capitulating or digging in.",
+      "goodAnswer": "Works it on the spot — that band contributes about 9.3 crore fans, so cutting penetration by roughly a third takes about 3 crore off, landing near 43 crore. Still inside the 40-55 crore band, so the answer stands and only the point estimate moves. Then adds the honest caveat: if the same pessimism applied to rural fans per home as well, the two would compound and the answer would leave the band.",
+      "weakAnswer": "'Yes, that's fair' followed by a recomputation of the whole tree from the top — or a flat refusal. Neither tells the interviewer whether the challenge actually mattered, which is the only thing the question was asking."
+    }
+  ]
+}

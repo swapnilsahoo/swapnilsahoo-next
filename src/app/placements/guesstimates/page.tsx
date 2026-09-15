@@ -5,12 +5,14 @@ import { ArrowRightIcon } from "@/components/icons/LineIcons";
 import { Container } from "@/components/ui/Container";
 import { InquiryPrelude } from "@/components/ui/InquiryPrelude";
 
+import { guesstimates } from "@/features/placements/data/guesstimates";
+
 import { GuesstimateExplorer } from "./GuesstimateExplorer";
 
 export const metadata: Metadata = {
   title: "Guesstimates: Define, Decompose, Estimate, Sanity-Check",
   description:
-    "A simple, repeatable method for guesstimate questions in case interviews, with three fully worked examples showing every assumption and every step of the arithmetic.",
+    "A simple, repeatable method for guesstimate questions in case interviews, with fully worked examples showing every assumption and every step of the arithmetic.",
   keywords: [
     "guesstimates",
     "market sizing",
@@ -25,7 +27,7 @@ export const metadata: Metadata = {
     type: "article",
     title: "Guesstimates: Define, Decompose, Estimate, Sanity-Check",
     description:
-      "A repeatable estimation method, with three fully worked examples and every assumption shown.",
+      "A repeatable estimation method, with fully worked examples and every assumption shown.",
     url: "/placements/guesstimates",
     images: ["/images/profile_pic.jpg"],
   },
@@ -35,7 +37,7 @@ const structuredData = {
   "@context": "https://schema.org",
   "@type": "LearningResource",
   name: "Guesstimates: Define, Decompose, Estimate, Sanity-Check",
-  headline: "A repeatable estimation method with three fully worked examples",
+  headline: "A repeatable estimation method with fully worked, arithmetic-checked examples",
   learningResourceType: "Method guide",
   educationalLevel: "Postgraduate / MBA",
   publisher: { "@type": "Person", name: "Dr. Swapnil Sahoo" },
@@ -133,8 +135,8 @@ export default function GuesstimatesPage() {
                 <p className="mt-6 max-w-3xl text-base leading-relaxed text-blue-100 sm:text-lg">
                   A guesstimate tests whether you can build a defensible number from visible
                   assumptions, not whether you happen to know the real figure. Four steps, applied
-                  consistently, get you most of the way there — with three fully worked examples
-                  below showing every assumption out loud.
+                  consistently, get you most of the way there — with {guesstimates.length} fully worked
+                  examples below showing every assumption out loud.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <a
@@ -162,7 +164,7 @@ export default function GuesstimatesPage() {
                 </p>
                 <div className="my-4 h-px bg-white/15" />
                 <p className="text-xs leading-relaxed text-white/70">
-                  3 fully worked examples, every assumption shown.
+                  {guesstimates.length} fully worked examples, every assumption shown.
                 </p>
               </div>
             </div>
@@ -236,7 +238,7 @@ export default function GuesstimatesPage() {
         <Container className="max-w-[min(100%,120rem)]">
           <div className="mb-10 max-w-3xl">
             <span className="accent-rule" />
-            <p className="eyebrow mb-3">02 / Three fully worked examples</p>
+            <p className="eyebrow mb-3">02 / {guesstimates.length} fully worked examples</p>
             <h2 id="examples-title" className="display text-4xl font-semibold md:text-5xl">
               Watch the method run end to end.
             </h2>

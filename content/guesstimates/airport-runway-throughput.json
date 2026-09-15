@@ -1,0 +1,646 @@
+{
+  "id": "airport-runway-throughput",
+  "question": "An Indian metro airport works a single runway. How many departing passengers can it physically push through on a busy day — and which resource is actually stopping it doing more?",
+  "tabLabel": "Runway capacity, departures",
+  "archetype": "capacity-bottleneck",
+  "difficulty": "Hard",
+  "timeboxMinutes": 15,
+  "teachingPoint": "Capacity is not the sum of what an operation owns. It is the rate of its tightest resource, and every other resource is slack. So a capacity question is not one estimate but three or four estimates run in parallel — price each candidate constraint in the same unit, take the smallest, and name it. The consequence is the part that gets graded: money spent anywhere except the constraint changes the answer by exactly zero. Most candidates size the part of the airport they have personally queued in, which is the terminal, and the terminal is never what binds.",
+
+  "scope": {
+    "countingWhat": "Passengers who physically board a departing scheduled commercial aircraft at this airport during one busy day, when the runway is worked to the limit of its declared capacity for the whole of the day.",
+    "unit": "departing passengers per day",
+    "timeBasis": "flow (per day)",
+    "geography": "One illustrative Indian metro airport with a single operational runway, a mixed domestic and international schedule and no night curfew. The airport is illustrative — built to show the method clearly, not drawn from any named airport or any published traffic figure.",
+    "included": [
+      "Scheduled commercial departures, domestic and international, across the full 24-hour day",
+      "The 01:00 to 04:00 international bank, which is a real part of an Indian metro schedule and not a dead window",
+      "Every aircraft size in the schedule, from a 70-seat turboprop to a wide-body",
+      "Transfer passengers, counted once — on the flight they board here, not on the one they arrived on"
+    ],
+    "excluded": [
+      "Arriving passengers, who are a separate and roughly equal number",
+      "General aviation, charter, training and military movements — a runway worked at declared capacity has no room for them at peak",
+      "Freighter movements, which consume runway slots at night and carry no passengers; leaving them out slightly overstates the passenger yield of the night window, and that is worth saying aloud",
+      "Crew, ground staff and the people who come only to drop someone off — they fill the terminal and never board",
+      "Days the runway is closed for resurfacing, or degraded by monsoon visibility and single-runway diversions"
+    ],
+    "boundaryTrap": "An airport's own headline figure is passengers handled — arrivals plus departures, with a transferring passenger appearing in both halves. That number is a little over twice this one. So if you quote 63,000 against an authority that publishes 1.4 lakh a day, you have not made an arithmetic error; you have answered a different question, and the only way anyone can tell is if you said which one first. Decide between departing and handled before you multiply anything, and say it in one sentence."
+  },
+
+  "routeChoice": {
+    "chosen": "Bottom-up",
+    "why": "The question asks what the airport can do, not what it does. That is a supply question, and supply is a chain of physical rates: how often an aircraft can use the runway, how much of the day that rate holds, what fraction of movements are departures, how many seats leave on each and how full they are. Every link is either a physical constant or a benchmark you could defend, and the chain has the property that matters here — it names the resource. A route that never names a resource cannot answer the second half of the question.",
+    "rejectedRoute": "Top-down",
+    "rejectedWhyNot": "The top-down route is national air passenger traffic divided across the major airports, or this airport's annual throughput divided by 365. It is faster and it is the wrong quantity. Observed traffic is demand realised; the question asked for supply available, and the two differ by every hour the runway sat idle because nobody wanted to fly at two in the afternoon. Worse, a top-down number cannot be interrogated: when the interviewer asks what would raise it, you have nothing to point at, because you never decomposed the airport into resources. Use the observed annual figure where it belongs — as the back-check at the end, not as the answer."
+  },
+
+  "tree": {
+    "root": "Departing passengers on a busy day at a single-runway airport",
+    "rootFormula": "= Runway movements per day × departure share × seats per departure × load factor, subject to no other resource binding first",
+    "value": "≈ 63,000 departing passengers",
+    "branches": [
+      {
+        "label": "Runway movements per day — the binding resource",
+        "formula": "= (Peak hours × peak rate) + (Shoulder hours × shoulder rate) + (Night hours × night rate)",
+        "value": "780 movements",
+        "note": "The whole answer lives here. Everything downstream is a conversion factor; this is the only line that is a capacity. Split the day into three shapes — a flat 24 hours at the peak rate overstates it by nearly 40%.",
+        "isCriticalPath": true,
+        "children": [
+          {
+            "label": "Peak — 10 hours",
+            "formula": "10 hours × 45 movements per hour",
+            "value": "450 movements — 58% of the day",
+            "note": "Two banks, morning and evening. Forty-five an hour is one movement every 80 seconds, which is what separation minima and a single runway worked in mixed mode allow before you leave anything for a go-around."
+          },
+          {
+            "label": "Shoulder — 9 hours",
+            "formula": "9 hours × 30 movements per hour",
+            "value": "270 movements",
+            "note": "Midday and late evening. The runway could take 45 here too; nobody wants to fly at two in the afternoon. This is the one stretch of the day that is demand-shaped rather than physics-shaped, and it is where a second runway would first show up as waste."
+          },
+          {
+            "label": "Night — 5 hours",
+            "formula": "5 hours × 12 movements per hour",
+            "value": "60 movements",
+            "note": "Midnight to five, carrying the long-haul departure bank and the freighters. Thin, but not zero — an Indian metro airport without a curfew genuinely works these hours, and a candidate who zeroes them loses 8% of the answer for no reason."
+          }
+        ]
+      },
+      {
+        "label": "Departure share of movements",
+        "formula": "780 movements ÷ 2",
+        "value": "390 departures",
+        "note": "Forced, not assumed. Over a full day every aircraft that departs has arrived, so arrivals equal departures to within the handful parked overnight. Halving is the single step candidates most often skip, and skipping it doubles the answer.",
+        "isCriticalPath": true
+      },
+      {
+        "label": "Seats offered per departure",
+        "formula": "= (Domestic departures × domestic seats) + (International departures × international seats)",
+        "value": "74,880 seats — a blend of 192 per departure",
+        "note": "Two fleets, not one average. A single blended seat count gets to a similar total by cancelling errors and then cannot answer the obvious follow-up about the international mix.",
+        "isCriticalPath": true,
+        "children": [
+          {
+            "label": "Domestic — 80% of departures",
+            "formula": "312 departures × 170 seats",
+            "value": "53,040 seats",
+            "note": "The A320 family at 180 to 186 seats does most of the flying; regional turboprops at around 70 pull the blend down to roughly 170."
+          },
+          {
+            "label": "International — 20% of departures",
+            "formula": "78 departures × 280 seats",
+            "value": "21,840 seats",
+            "note": "A fifth of the departures carrying 29% of the seats. Gulf and South-East Asia fly narrow-bodies; Europe and North America fly wide-bodies at 300 to 400. Two hundred and eighty is the blend."
+          }
+        ]
+      },
+      {
+        "label": "Load factor",
+        "formula": "= (53,040 × 85%) + (21,840 × 80%)",
+        "value": "62,556 passengers",
+        "note": "The gap between a seat and a passenger. Indian domestic load factors sit in the mid-80s on a busy day; international runs a few points lower because of one-way seasonal flows.",
+        "isCriticalPath": true
+      },
+      {
+        "label": "Resources that do not bind — the slack",
+        "formula": "= Priced in the same unit, then set aside",
+        "value": "Stands 420 departures · security 80,640 passengers",
+        "note": "Named, sized and rejected. That sentence is the answer to the second half of the question, and it is worth more than the 63,000.",
+        "children": [
+          {
+            "label": "Aircraft stands",
+            "formula": "70 stands × 6 turnarounds",
+            "value": "420 departures — 8% of headroom",
+            "note": "The next-tightest resource, and close enough that it becomes the constraint the moment the runway is relieved. This is what makes a second runway cost more than a second runway."
+          },
+          {
+            "label": "Departure security screening",
+            "formula": "28 lanes × 160 passengers per hour × 18 hours",
+            "value": "80,640 passengers — 29% of headroom",
+            "note": "Feels binding because it is the queue you have stood in. It is not. A terminal is designed with margin against a runway that cannot move."
+          },
+          {
+            "label": "Check-in desks, immigration, car park, apron roads",
+            "value": "Not priced",
+            "note": "Say why you are not pricing them: each is cheap and quick to add, so none of them stays the constraint for long even if it briefly is. Spend your fifteen minutes on the resource that takes a decade to build."
+          }
+        ]
+      }
+    ]
+  },
+
+  "assumptions": [
+    {
+      "id": "a_peak_rate",
+      "lever": "Runway movements per hour at peak",
+      "value": "45 per hour",
+      "numeric": 45,
+      "unit": "movements per hour",
+      "basis": "published-benchmark",
+      "defence": "Separation minima put successive movements on a single runway roughly 75 to 90 seconds apart once you allow for wake turbulence behind a heavy aircraft, which is 40 to 48 an hour — 45 is the working middle and it is the number slot coordinators actually declare for a well-equipped single runway.",
+      "confidence": "defensible",
+      "contestedBy": "An interviewer who has seen a runway with limited rapid-exit taxiways will argue 36; one thinking of a segregated-mode operation with a homogeneous jet fleet will argue 54. That range is ±18% on the final answer and it is the widest band in the model."
+    },
+    {
+      "id": "a_peak_hours",
+      "lever": "Hours per day held at the peak rate",
+      "value": "10 hours",
+      "numeric": 10,
+      "unit": "hours per day",
+      "basis": "observed-behaviour",
+      "defence": "Two banks — roughly 06:00 to 11:00 and 17:00 to 22:00 — which is when business traffic departs and when long-haul arrivals feed the domestic network.",
+      "confidence": "judgement",
+      "contestedBy": "Push it to 13 hours and the shoulder shrinks to 6, so the total moves by only about 6% — the day-shape matters far less than the rate, which is not the intuition most candidates arrive with."
+    },
+    {
+      "id": "a_shoulder_rate",
+      "lever": "Movements per hour in the shoulder",
+      "value": "30 per hour",
+      "numeric": 30,
+      "unit": "movements per hour",
+      "basis": "observed-behaviour",
+      "defence": "Two-thirds of peak. The runway is not the limit in these hours — demand is, because very few people buy a two o'clock departure.",
+      "confidence": "judgement"
+    },
+    {
+      "id": "a_shoulder_hours",
+      "lever": "Shoulder hours per day",
+      "value": "9 hours",
+      "numeric": 9,
+      "unit": "hours per day",
+      "basis": "structural-logic",
+      "defence": "Forced by the other two windows — the three must sum to 24, which is the reason for declaring the day-shape before pricing any of it.",
+      "confidence": "defensible"
+    },
+    {
+      "id": "a_night_rate",
+      "lever": "Movements per hour at night",
+      "value": "12 per hour",
+      "numeric": 12,
+      "unit": "movements per hour",
+      "basis": "observed-behaviour",
+      "defence": "One movement every five minutes through the small hours — the long-haul departure bank to Europe and North America plus overnight freight, which is thin traffic but continuous.",
+      "confidence": "judgement"
+    },
+    {
+      "id": "a_night_hours",
+      "lever": "Night hours per day",
+      "value": "5 hours",
+      "numeric": 5,
+      "unit": "hours per day",
+      "basis": "structural-logic",
+      "defence": "Midnight to five. An Indian metro airport with no curfew works them, which is precisely why the window is worth 60 movements rather than zero.",
+      "confidence": "defensible",
+      "contestedBy": "An airport under a night curfew loses this window entirely — that is 8% of the answer, and it is the first question to ask if the prompt mentions a residential approach path."
+    },
+    {
+      "id": "a_dep_share",
+      "lever": "Departure share of runway movements",
+      "value": "50%",
+      "numeric": 0.5,
+      "unit": "share of movements",
+      "basis": "structural-logic",
+      "defence": "Over a full day every aircraft that departs must first have arrived, so arrivals and departures balance to within the handful that night-stop — this is an identity, not an estimate, and it is the one number here nobody can argue with.",
+      "confidence": "anchor"
+    },
+    {
+      "id": "a_dom_share",
+      "lever": "Domestic share of departures",
+      "value": "80%",
+      "numeric": 0.8,
+      "unit": "share of departures",
+      "basis": "published-benchmark",
+      "defence": "At a large Indian metro airport roughly four movements in five are domestic — international traffic is a fifth of the flights but a much larger share of the seats, which is exactly why the two must be split.",
+      "confidence": "defensible"
+    },
+    {
+      "id": "a_intl_share",
+      "lever": "International share of departures",
+      "value": "20%",
+      "numeric": 0.2,
+      "unit": "share of departures",
+      "basis": "structural-logic",
+      "defence": "The complement of the domestic share — declare the mix once and let the two halves be forced, rather than assuming each separately and having them fail to sum.",
+      "confidence": "defensible",
+      "contestedBy": "A gateway airport with a heavier long-haul programme could run 30%, which lifts the answer by about 5%. The mix moves the answer far less than its prominence in the tree suggests, and saying so is worth a mark."
+    },
+    {
+      "id": "a_dom_seats",
+      "lever": "Average seats per domestic departure",
+      "value": "170 seats",
+      "numeric": 170,
+      "unit": "seats per departure",
+      "basis": "published-benchmark",
+      "defence": "The Indian domestic fleet is overwhelmingly A320-family at 180 to 186 seats, with 70-seat turboprops on regional routes pulling the blend to roughly 170.",
+      "confidence": "defensible",
+      "contestedBy": "A schedule tilted towards the A321 at 220 seats supports 195, which lifts the answer by about 11%; a heavy regional programme supports 140, which cuts it by about 13%."
+    },
+    {
+      "id": "a_intl_seats",
+      "lever": "Average seats per international departure",
+      "value": "280 seats",
+      "numeric": 280,
+      "unit": "seats per departure",
+      "basis": "published-benchmark",
+      "defence": "Gulf and South-East Asia fly narrow-bodies at around 180; Europe and North America fly wide-bodies at 300 to 400. Weighted towards the short-haul end, where most of the frequencies are, 280 is the blend.",
+      "confidence": "judgement"
+    },
+    {
+      "id": "a_dom_lf",
+      "lever": "Domestic load factor",
+      "value": "85%",
+      "numeric": 0.85,
+      "unit": "share of seats filled",
+      "basis": "published-benchmark",
+      "defence": "Indian domestic load factors run in the mid-80s across the year and higher on a busy day, because an airline that cannot fill a route stops flying it rather than flying it empty.",
+      "confidence": "anchor"
+    },
+    {
+      "id": "a_intl_lf",
+      "lever": "International load factor",
+      "value": "80%",
+      "numeric": 0.8,
+      "unit": "share of seats filled",
+      "basis": "published-benchmark",
+      "defence": "A few points below domestic — long-haul seasonal and directional imbalance means one leg of a rotation routinely flies lighter than the other.",
+      "confidence": "defensible"
+    },
+    {
+      "id": "a_stands",
+      "lever": "Aircraft parking stands available",
+      "value": "70 stands",
+      "numeric": 70,
+      "unit": "stands",
+      "basis": "observed-behaviour",
+      "defence": "Contact gates plus remote bays at a metro airport with two terminals — count them from the apron chart or from the satellite view, which takes ninety seconds and is the only way to price this constraint honestly.",
+      "confidence": "judgement"
+    },
+    {
+      "id": "a_stand_turns",
+      "lever": "Usable departures per stand per day",
+      "value": "6 turnarounds",
+      "numeric": 6,
+      "unit": "departures per stand per day",
+      "basis": "structural-logic",
+      "defence": "A narrow-body turnaround occupies a stand for about 50 minutes plus manoeuvring, so a stand could take 15 in a day on paper — but stands hold night-stopping aircraft, wide-bodies sit for hours, and the schedule peaks rather than spreading. Six is the realistic usable figure.",
+      "confidence": "judgement",
+      "contestedBy": "Argue 8 and the stand ceiling rises to 560 departures, which pushes the stands well clear of binding — the headline answer does not move at all, because the runway still binds. That is the cleanest demonstration in the whole question of what a non-binding constraint is."
+    },
+    {
+      "id": "a_sec_lanes",
+      "lever": "Departure security screening lanes",
+      "value": "28 lanes",
+      "numeric": 28,
+      "unit": "lanes",
+      "basis": "observed-behaviour",
+      "defence": "Domestic and international screening halls combined at a metro airport — this is countable by standing in the hall, which is what makes it the easiest of the three constraints to price and the least useful.",
+      "confidence": "judgement"
+    },
+    {
+      "id": "a_lane_rate",
+      "lever": "Passengers screened per lane per hour",
+      "value": "160 per hour",
+      "numeric": 160,
+      "unit": "passengers per lane per hour",
+      "basis": "published-benchmark",
+      "defence": "Roughly one passenger every 22 seconds through a staffed lane with a tray return — the standard planning figure sits between 150 and 180, and 160 is the middle.",
+      "confidence": "defensible"
+    },
+    {
+      "id": "a_terminal_hours",
+      "lever": "Effective terminal processing hours per day",
+      "value": "18 hours",
+      "numeric": 18,
+      "unit": "hours per day",
+      "basis": "structural-logic",
+      "defence": "Passengers arrive to be screened roughly two hours ahead of a departure, so the screening day is the departure day stretched at the front and thinned at the back — 18 hours of genuine throughput rather than 24.",
+      "confidence": "judgement"
+    }
+  ],
+
+  "calculation": [
+    {
+      "id": "c1",
+      "label": "Peak-window movements",
+      "expr": "10 * 45",
+      "display": "10 peak hours × 45 movements per hour",
+      "result": 450,
+      "unit": "movements",
+      "uses": ["a_peak_hours", "a_peak_rate"],
+      "soWhat": "Fifty-eight per cent of the day's movements from ten of its hours. Every challenge the interviewer makes to your answer will land on one of these two numbers, so state them before anything else and make them easy to swap."
+    },
+    {
+      "id": "c2",
+      "label": "Shoulder-window movements",
+      "expr": "9 * 30",
+      "display": "9 shoulder hours × 30 movements per hour",
+      "result": 270,
+      "unit": "movements",
+      "uses": ["a_shoulder_hours", "a_shoulder_rate"],
+      "soWhat": "The runway could take 45 here as well. It does not, because nobody buys a two o'clock departure — so this is the only window where the answer is set by demand rather than by physics, and it is worth saying which."
+    },
+    {
+      "id": "c3",
+      "label": "Night-window movements",
+      "expr": "5 * 12",
+      "display": "5 night hours × 12 movements per hour",
+      "result": 60,
+      "unit": "movements",
+      "uses": ["a_night_hours", "a_night_rate"],
+      "soWhat": "Thin, and not zero. An Indian metro airport without a curfew flies its long-haul bank through these hours, and writing the window off costs 8% of the answer for no analytical gain."
+    },
+    {
+      "id": "c4",
+      "label": "Total runway movements per busy day",
+      "expr": "450 + 270 + 60",
+      "display": "450 peak + 270 shoulder + 60 night",
+      "result": 780,
+      "unit": "movements per day",
+      "uses": [],
+      "soWhat": "This is the capacity. Everything from here to the answer is a unit conversion — no later line can raise this number, and that is what makes the runway the constraint rather than merely the first step."
+    },
+    {
+      "id": "c5",
+      "label": "Departures per day",
+      "expr": "780 / 2",
+      "display": "780 movements ÷ 2, since arrivals equal departures over a full day",
+      "result": 390,
+      "unit": "departures per day",
+      "uses": ["a_dep_share"],
+      "soWhat": "The step most candidates skip, and skipping it doubles the answer. Say the identity out loud as you write it — every aircraft that leaves had to land first — because that sentence is the difference between an assumption and a constraint."
+    },
+    {
+      "id": "c6",
+      "label": "Domestic departures",
+      "expr": "390 * 0.8",
+      "display": "390 departures × 80% domestic",
+      "result": 312,
+      "unit": "departures per day",
+      "uses": ["a_dom_share"],
+      "soWhat": "Four movements in five. Fix the mix before you price the seats, so a challenge on the mix does not force you to redo the seat arithmetic as well."
+    },
+    {
+      "id": "c7",
+      "label": "International departures",
+      "expr": "390 * 0.2",
+      "display": "390 departures × 20% international",
+      "result": 78,
+      "unit": "departures per day",
+      "uses": ["a_intl_share"],
+      "soWhat": "A fifth of the flights. Hold this figure in view — it is about to carry 29% of the seats, and that asymmetry is the entire reason for splitting the fleet."
+    },
+    {
+      "id": "c8",
+      "label": "Domestic seats offered",
+      "expr": "312 * 170",
+      "display": "312 departures × 170 seats",
+      "result": 53040,
+      "unit": "seats per day",
+      "uses": ["a_dom_seats"],
+      "soWhat": "Seventy-one per cent of the seats from the narrow-body fleet. If your answer is wrong, it is more likely wrong here than anywhere downstream, because 170 is a blend and blends hide their spread."
+    },
+    {
+      "id": "c9",
+      "label": "International seats offered",
+      "expr": "78 * 280",
+      "display": "78 departures × 280 seats",
+      "result": 21840,
+      "unit": "seats per day",
+      "uses": ["a_intl_seats"],
+      "soWhat": "Twenty per cent of the departures producing 29% of the seats. A single blended aircraft size across the whole schedule would have erased that, and with it your ability to answer what happens if long-haul grows."
+    },
+    {
+      "id": "c10",
+      "label": "Total seats offered",
+      "expr": "53040 + 21840",
+      "display": "53,040 domestic + 21,840 international",
+      "result": 74880,
+      "unit": "seats per day",
+      "carriedForward": "≈ 75,000 seats",
+      "uses": [],
+      "soWhat": "Seats, not passengers. Quoting this as the answer is the second most common error on this question and it overstates by 20% — an aircraft is not full because the runway is."
+    },
+    {
+      "id": "c11",
+      "label": "Reverse check — blended seats per departure",
+      "expr": "74880 / 390",
+      "display": "74,880 seats ÷ 390 departures",
+      "result": 192,
+      "unit": "seats per departure",
+      "uses": [],
+      "soWhat": "Run this before you go further. One hundred and ninety-two is an A320 with a wide-body every fifth departure — a metro airport you would recognise. Had it come out at 300 you would have built a long-haul hub; at 110, a regional field. The fleet mix is the assumption this line is silently testing."
+    },
+    {
+      "id": "c12",
+      "label": "Domestic departing passengers",
+      "expr": "53040 * 0.85",
+      "display": "53,040 seats × 85% load factor",
+      "result": 45084,
+      "unit": "passengers per day",
+      "uses": ["a_dom_lf"],
+      "soWhat": "The gap between a seat and a passenger is 7,956 people a day on the domestic side alone — larger than most candidates' entire error budget, which is why the load factor cannot be waved through at 100%."
+    },
+    {
+      "id": "c13",
+      "label": "International departing passengers",
+      "expr": "21840 * 0.8",
+      "display": "21,840 seats × 80% load factor",
+      "result": 17472,
+      "unit": "passengers per day",
+      "uses": ["a_intl_lf"],
+      "soWhat": "Five points below domestic, because long-haul demand is directional and seasonal in a way domestic shuttle traffic is not. A small correction, made explicitly rather than absorbed into a single blended figure."
+    },
+    {
+      "id": "c14",
+      "label": "Total departing passengers on a busy day",
+      "expr": "45084 + 17472",
+      "display": "45,084 domestic + 17,472 international",
+      "result": 62556,
+      "unit": "departing passengers per day",
+      "carriedForward": "≈ 63,000 departing passengers",
+      "uses": [],
+      "soWhat": "Round it before you say it. Every input was a benchmark or a judgement good to two significant figures, so 62,556 claims a precision the chain cannot carry — and the figure is worthless anyway until you have said which resource produced it."
+    }
+  ],
+
+  "finalAnswer": "≈ 63,000 departing passengers on a busy day — call it 50,000 to 75,000 — and the runway is what stops it going higher, not the terminal. The stands would allow about 8% more and security screening about 29% more, so a rupee spent on either buys nothing until the runway moves.",
+  "finalAnswerNumeric": 63000,
+  "answerBand": "50,000 – 75,000 departing passengers per day",
+  "orderOfMagnitude": "10^4",
+
+  "triangulation": {
+    "label": "Constraint audit — price the other candidates and take the smallest",
+    "route": "Bottom-up",
+    "premise": "The first route assumed the runway binds. That is the claim the question is really testing, so do not leave it as an assumption — price the next two candidate constraints in the same unit and see which number is smallest. This is not a second estimate of the same quantity; it is a different quantity that happens to share a ceiling, and it is the only honest way to answer 'what is the binding constraint'. If a stand or a security lane came out lower than the runway, the primary answer would be wrong and the recommendation would change completely.",
+    "lines": [
+      {
+        "id": "t1",
+        "label": "Passengers per departure implied by the primary route",
+        "expr": "62556 / 390",
+        "display": "62,556 passengers ÷ 390 departures",
+        "result": 160.4,
+        "tolerance": 0.0001,
+        "unit": "passengers per departure",
+        "carriedForward": "≈ 160 passengers per departure",
+        "uses": [],
+        "soWhat": "Convert the seat-and-load-factor chain into one number so each candidate constraint can be priced in passengers without rebuilding the fleet mix three times. One hundred and sixty is a three-quarters-full A320 with the occasional wide-body — picture it, and if you cannot, the fleet assumptions need revisiting before you go on."
+      },
+      {
+        "id": "t2",
+        "label": "Departures the stands would allow",
+        "expr": "70 * 6",
+        "display": "70 stands × 6 usable turnarounds per day",
+        "result": 420,
+        "unit": "departures per day",
+        "uses": ["a_stands", "a_stand_turns"],
+        "soWhat": "Four hundred and twenty against the runway's 390. The stands are the next-tightest resource and they are close — which is the reason a second runway on its own does not double an airport."
+      },
+      {
+        "id": "t3",
+        "label": "Passengers the stands would allow",
+        "expr": "420 * 160.4",
+        "display": "420 departures × 160 passengers per departure",
+        "result": 67368,
+        "tolerance": 0.0001,
+        "unit": "departing passengers per day",
+        "carriedForward": "≈ 67,000 passengers",
+        "uses": [],
+        "soWhat": "Higher than 63,000, so the stands do not bind — today. Say 'today', because the margin is a single-digit percentage and one busier season closes it."
+      },
+      {
+        "id": "t4",
+        "label": "Passengers departure security screening would allow",
+        "expr": "28 * 160 * 18",
+        "display": "28 lanes × 160 passengers per hour × 18 effective hours",
+        "result": 80640,
+        "unit": "departing passengers per day",
+        "carriedForward": "≈ 81,000 passengers",
+        "uses": ["a_sec_lanes", "a_lane_rate", "a_terminal_hours"],
+        "soWhat": "Twenty-nine per cent above the runway ceiling. The queue you have personally stood in is not the constraint — it is a peak-hour queue inside a resource with a quarter of a day's headroom, which is a scheduling problem, not a capacity one."
+      },
+      {
+        "id": "t5",
+        "label": "Headroom in the next-tightest resource",
+        "expr": "(67368 - 62556) / 62556",
+        "display": "(67,368 stand-limited − 62,556 runway-limited) ÷ 62,556",
+        "result": 0.07692307692307693,
+        "tolerance": 0.000001,
+        "unit": "share above the binding ceiling",
+        "carriedForward": "≈ 8%",
+        "uses": [],
+        "soWhat": "This is the number that turns an estimate into a recommendation. Eight per cent of slack means relieving the runway buys you 8% before the stands take over, so anyone proposing a runway project must fund an apron project in the same breath or spend a great deal of money for very little."
+      }
+    ],
+    "answer": "Runway 62,556 · stands 67,368 · security 80,640 — the runway binds at ≈ 63,000 departing passengers a day",
+    "verdict": "The three numbers rank cleanly, so the conclusion is not close and you can say so without hedging: the runway binds, and it binds by a margin comfortably larger than the error in any single assumption. What deserves the hedge is the gap, not the ranking. Eight per cent of headroom in the stands is inside the noise of my own turnaround assumption — argue 8 turns instead of 6 and the stand ceiling jumps to 560 departures, while the headline answer does not move at all, because the runway still binds. That asymmetry is the point of the whole exercise. A non-binding constraint can be badly estimated and cost you nothing; the binding one is the only number that has to be right. Had the security line come out at 55,000 instead of 80,640, the answer would have been 55,000 and the recommendation would have been to open lanes rather than to build concrete — so run the audit even when you are confident, because it is cheap and the alternative is confidently sizing the wrong resource."
+  },
+
+  "sensitivity": {
+    "assumptionId": "a_peak_rate",
+    "whyThisLever": "It is the rate of the binding resource, so it is the only assumption that moves the answer proportionally — everything else in the chain is a conversion factor applied after the ceiling is already set. Scale it and the shoulder scales with it, because a runway whose geometry limits it to 36 an hour at peak cannot manage 30 in the shoulder either; the same taxiway layout, exit spacing and fleet mix govern both. That gives it more leverage than any other row in the table. The mix, the seat counts and the load factors each move the answer by a tenth at most; this one moves it by nearly a fifth, and it is the number an experienced interviewer will push on first because it is the only one that is genuinely about airports rather than about arithmetic.",
+    "cases": [
+      {
+        "scenario": "Conservative",
+        "leverValue": "36 at peak, 24 in the shoulder — limited rapid-exit taxiways, mixed light and heavy traffic",
+        "answer": "≈ 51,000 departing passengers",
+        "deltaVsBase": "−18%"
+      },
+      {
+        "scenario": "Base",
+        "leverValue": "45 at peak, 30 in the shoulder",
+        "answer": "≈ 63,000 departing passengers",
+        "deltaVsBase": "0%"
+      },
+      {
+        "scenario": "Aggressive",
+        "leverValue": "54 at peak, 36 in the shoulder — full rapid-exit taxiways, segregated flows, homogeneous jet fleet",
+        "answer": "≈ 74,000 departing passengers",
+        "deltaVsBase": "+18%"
+      }
+    ],
+    "breakpoint": "The answer leaves the 50,000 to 75,000 band only below about 35 movements an hour or above about 55. Below 35 you are describing a runway without rapid-exit taxiways, where every landing aircraft rolls to the end before vacating — a real condition, but a different airport from the one in the prompt. Above 55 you are describing either two runways or a segregated-mode operation, which is also a different airport. The interesting breakpoint is elsewhere, though, and it is the one to volunteer: the recommendation flips when the runway ceiling passes the stand ceiling of 420 departures, which happens at about 49 movements an hour at peak. Push past that and the binding constraint changes from concrete to apron, the answer stops rising, and every rupee of runway investment beyond it is wasted until stands are added. Notice what that means — a 9% improvement in runway rate delivers 9% more passengers, and a 30% improvement delivers 8%.",
+    "oneLiner": "Call it 63,000 departing passengers, and it hangs almost entirely on 45 movements an hour on the runway — 36 takes it to 51,000, 54 takes it to 74,000, and nothing else I have assumed moves it by more than a tenth."
+  },
+
+  "sanityChecks": [
+    "The cadence test, and the one to run first: 780 movements over 24 hours is one every 110 seconds averaged across the day, and one every 80 seconds through the peak. Stand at the fence of a busy single-runway airport and that is exactly what you see — a continuous stream with no idle gaps in the morning bank. If your movement figure implied one every four minutes, you have described a quiet regional field; one every 40 seconds and you have described something no single runway has ever sustained.",
+    "Per departure: 62,556 across 390 departures is 160 passengers on the average flight. That is an A320 at about 89%, blended with the occasional wide-body and the occasional turboprop. Hold it against the last flight you took. Two hundred and fifty would mean a long-haul hub, ninety would mean a regional network, and either would tell you the fleet mix was wrong long before anyone challenged the total.",
+    "The annual back-check, which is where the rejected top-down route earns its keep: 62,556 departing plus a near-equal number arriving is about 1.25 lakh passengers through the airport on a busy day. Derate to roughly 85% for an ordinary day across the year and multiply by 365 — about 3.9 crore (39 million) passengers a year. The busiest single-runway airports in the world run in the 40 to 50 million range, so this sits just under them. Right order, right side. Had the arithmetic implied 10 crore, the peak rate would have been the place to look.",
+    "The terminal consistency test: the peak hour holds 22.5 departures at 160 passengers each, so about 3,600 people need screening in that hour. At 160 per lane per hour that is 23 lanes, against the 28 assumed. The terminal is sized about 20% above the runway's peak demand — which is precisely how terminals are actually designed, and finding that your two independently-assumed figures agree is a stronger check than either number alone.",
+    "The doubling test: if your answer is close to what the airport publishes as passengers handled, you have answered the wrong question. Their figure counts both directions and counts a transferring passenger twice; yours counts one boarding each. Expect to be a little under half of theirs, and be suspicious if you are not.",
+    "The slack test: name what you did not spend the answer on. Check-in desks, immigration counters, the car park and the baggage system all have more headroom than the runway, and none of them appears in the arithmetic. If every resource in your model turned out to be binding simultaneously, you have not estimated an airport — you have assumed the answer."
+  ],
+
+  "traps": [
+    {
+      "trap": "Counting every runway movement as a departing flight.",
+      "whyItHappens": "Declared runway capacity is published as a single figure — 45 an hour — and it reads like a rate of aircraft leaving, because that is the only half of the operation a departing passenger ever notices. Nothing in the arithmetic objects, and the mistake is invisible in the tree, which is what makes it dangerous rather than merely wrong.",
+      "fix": "Halve it, and say the identity out loud as you do: over a full day every aircraft that departs has already arrived. Skipping this step doubles the answer to 1.25 lakh, which lands within a rounding error of the number the airport itself publishes — so the error will feel like confirmation. That is the worst possible property for a mistake to have."
+    },
+    {
+      "trap": "Sizing the terminal instead of the runway.",
+      "whyItHappens": "The terminal is the part of the airport a passenger experiences, so it is the part that comes to mind — and the security queue is the only place anyone has ever personally been held up, which makes congestion there feel like evidence of a constraint. It is not. A queue is a peak-hour phenomenon inside a resource that may have a quarter of a day's headroom, and peak queueing tells you nothing about daily capacity.",
+      "fix": "Price every candidate constraint in the same unit before you commit to one: runway 62,556, stands 67,368, screening 80,640 passengers a day. Take the smallest and name it. The audit costs two minutes and it is the difference between an answer and the answer to the question actually asked."
+    },
+    {
+      "trap": "Reaching for the airport's observed traffic instead of its capacity.",
+      "whyItHappens": "The question sounds like 'how many passengers does this airport handle', and a recalled annual figure feels more rigorous than a chain of assumptions — a cited number sounds like evidence and a derived one sounds like a guess. But observed traffic is demand realised, and it embeds every hour the runway sat idle because nobody wanted a two o'clock departure.",
+      "fix": "Say plainly that capacity is a supply question and that the observed figure belongs at the end as a back-check, not at the start as an input. Then actually do it — 3.9 crore a year against the 40 to 50 million the busiest single runways manage is a result you can defend, and it is worth more coming last than the recalled figure would have been coming first."
+    },
+    {
+      "trap": "One average aircraft across the whole schedule.",
+      "whyItHappens": "Averaging a 70-seat turboprop and a 350-seat wide-body into '200 seats' is faster to write and reaches a total within a few per cent of the right one, because the two errors cancel. The total survives; the information does not. You can no longer see that a fifth of the departures carry 29% of the seats.",
+      "fix": "Split domestic from international and price each. It costs one extra line. The payoff arrives when the interviewer asks what happens if the international programme grows — with the split you answer in ten seconds, and without it you rebuild the model while they watch."
+    },
+    {
+      "trap": "Running the runway at peak rate for all 24 hours.",
+      "whyItHappens": "Hours times rate is the obvious multiplication and the day-shape looks like extra work for a second-order correction. It is not second-order: 24 × 45 gives 1,080 movements against 780, overstating the answer by 38%, and it describes an airport with no night and no quiet afternoon — a place nobody has ever flown from.",
+      "fix": "Three windows is enough — peak, shoulder, night — and name what governs each. Peak is physics, shoulder is demand, night is the long-haul bank. Three lines, thirty seconds, and the day-shape now survives a challenge instead of collapsing under one."
+    },
+    {
+      "trap": "Quoting 62,556, or stopping at 74,880 seats.",
+      "whyItHappens": "The arithmetic produces both figures and after fifteen minutes of work they feel earned. Seats in particular feel like the answer because the chain visibly ends there and the load factor looks like a refinement rather than a step. It is a 20% step.",
+      "fix": "Say 'roughly 63,000, call it 50,000 to 75,000', name the lever that sets the width, and make sure the word 'passengers' rather than 'seats' is in the sentence. A guesstimate answered as an exact figure signals that you do not understand what an estimate is, and that impression is expensive to reverse."
+    }
+  ],
+
+  "probes": [
+    {
+      "question": "What is actually stopping this airport doing more?",
+      "intent": "The whole question in one line. It tests whether you identified a resource and a rate, or only produced a number. A candidate who multiplied their way to 63,000 without ever asking what binds cannot answer this, because the arithmetic never told them.",
+      "goodAnswer": "The runway, specifically the separation minimum between successive movements — about 80 seconds, which caps it near 45 an hour and 780 a day. The next-tightest resource is the apron: 70 stands at six usable turnarounds is 420 departures against the runway's 390, so 8% of headroom. Security screening has 29%. Which means the runway binds, but only just ahead of the stands — and that ordering is what I would build a recommendation on, not the 63,000.",
+      "weakAnswer": "'The terminal gets very congested' — which reports a peak-hour queue as though it were a daily capacity limit, and names the one resource in the airport that has a quarter of a day's spare throughput."
+    },
+    {
+      "question": "The airport authority has ₹4,000 crore to spend. Where does it go?",
+      "intent": "Whether the estimate converts into a decision. This is the only reason anyone sizes capacity in practice, and it is where a candidate who understood the constraint logic separates sharply from one who ran the arithmetic correctly.",
+      "goodAnswer": "Not on a terminal, and I would say that first because it is where the money usually goes. Terminal screening runs 29% above the runway ceiling, so an extra hall adds zero passengers. Spend it on the runway's rate — rapid-exit taxiways, a full-length parallel taxiway, better approach aids so the rate holds in monsoon visibility. That lifts 45 an hour towards the low 50s and is worth roughly 15%. But I would ring-fence part of it for apron: the stands are only 8% above the runway and they become binding at about 49 movements an hour, so a runway project without an apron project buys about half of what it promises.",
+      "weakAnswer": "'Build a new terminal, since passenger experience is poor' — which solves a queueing problem with a capacity budget, and adds nothing to the number that was asked about."
+    },
+    {
+      "question": "Suppose they build a second runway 400 metres from the first. Does the answer double?",
+      "intent": "Whether you know that relieving a constraint moves it rather than removes it — the single most transferable idea in the question, and the one that transfers directly into every operations and capital-allocation case you will see later.",
+      "goodAnswer": "No, on two counts. Parallel runways closer than about a kilometre cannot be worked independently in poor visibility, so in monsoon conditions you have one runway with a spare, not two runways — the wet-weather answer barely moves. And even in clear weather the ceiling stops being the runway almost immediately: the stands cap departures at 420, which is 8% above where I am now. So the realistic gain is 8% until the apron is expanded, and then the next thing binds after that. The honest answer is that capacity moves to the next constraint, and the project only makes sense as a programme that funds all of them together.",
+      "weakAnswer": "'Yes, roughly double, since you have twice the runway' — which treats the runway as the only resource in the airport and assumes a constraint can be removed rather than relocated."
+    },
+    {
+      "question": "Which of your numbers is doing the most work?",
+      "intent": "Whether you know where your own answer comes from. Candidates working from a template cannot answer this, because a template tells you what to compute and never which input carries the result.",
+      "goodAnswer": "The peak movement rate, because it is the rate of the binding resource — everything after it is a conversion factor. Thirty-six an hour takes the answer to 51,000 and 54 takes it to 74,000, roughly ±18%. Nothing else moves it by more than a tenth: the international mix is worth about 5%, the domestic seat blend about 12%. And the stand assumptions move it by nothing at all while the runway binds, which is worth stating, because it tells you which of my numbers you should not bother challenging.",
+      "weakAnswer": "Naming the load factor or the number of stands — the first is the best-anchored figure in the table, and the second currently has no effect on the answer whatsoever."
+    },
+    {
+      "question": "The airport publishes 1.4 lakh passengers a day. You said 63,000. Are you wrong?",
+      "intent": "Whether an external figure makes you abandon your method or interrogate your boundary. This is the probe that separates a candidate who owns the model from one who was reciting it.",
+      "goodAnswer": "Probably not wrong, probably answering a different question, and the boundary is where I would look before I moved a single assumption. Their figure is passengers handled — arrivals plus departures, with a transferring passenger appearing in both halves. Double mine and you get 1.25 lakh, which is within 12% of theirs, and transfer double-counting plus a genuinely exceptional peak day closes most of the rest. If they told me it was strictly departures, then I would revise the peak rate upward and say which number I moved.",
+      "weakAnswer": "'Then I will use 1.4 lakh' — which discards a worked method for an unexamined figure, and misses that the gap is almost exactly the factor of two the boundary predicts."
+    },
+    {
+      "question": "How would you check this properly in a week?",
+      "intent": "Whether you can turn an estimate into a measurement plan, and whether you know which of your inputs is worth measuring. An estimate is only what you do before the data arrives.",
+      "goodAnswer": "Two sources, ranked. First the declared capacity in the slot coordination file — airports publish a movements-per-hour figure by season, and that replaces my shakiest assumption with a regulated one in an afternoon. Then count the published departure schedule for a Friday and sum the seat counts by aircraft type, which replaces the mix and the seat blend together and leaves only the load factor assumed. That order matters: I would measure the binding resource first and not spend a day counting stands, because the stand figure cannot change my answer while the runway binds.",
+      "weakAnswer": "'Ask the airport for their traffic data' — which returns demand rather than capacity, and answers the question I explicitly set aside at the start."
+    }
+  ]
+}

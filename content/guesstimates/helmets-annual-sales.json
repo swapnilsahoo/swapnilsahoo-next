@@ -1,0 +1,656 @@
+{
+  "id": "helmets-annual-sales",
+  "question": "How many two-wheeler helmets does India buy in a year?",
+  "tabLabel": "Helmets, annual sales",
+  "archetype": "installed-base-replacement",
+  "difficulty": "Medium",
+  "timeboxMinutes": 12,
+  "teachingPoint": "A stock is not a flow. Annual sales of a durable good come from two populations that behave nothing alike — the base already out there cycling through replacement, and the riders arriving on the road for the first time. Divide a parc by a product life and you have answered half the question, confidently.",
+
+  "scope": {
+    "countingWhat": "New helmets bought for two-wheeler riders and pillions in India over one year — units that leave a shop counter or a dealership floor, whether paid for separately or bundled into the price of a new vehicle.",
+    "unit": "helmets purchased per year",
+    "timeBasis": "flow (per year)",
+    "geography": "India, national — urban and rural fleets counted separately because they behave differently",
+    "included": [
+      "Aftermarket replacement helmets bought by riders already on the road",
+      "Helmets handed over with a new two-wheeler at the dealership",
+      "Pillion helmets bought separately from the rider's own",
+      "Uncertified roadside helmets — they are the volume, not the exception",
+      "Replacements forced by theft, breakage and a cracked visor, not only by age"
+    ],
+    "excluded": [
+      "Bicycle helmets, industrial hard hats and motorsport helmets",
+      "Export production — the question asks what India buys, not what India makes",
+      "Second-hand resale, which moves a helmet without creating a sale into the market",
+      "Helmets sitting unsold in the channel — this counts purchases, not shipments"
+    ],
+    "boundaryTrap": "Units, not riders. The question sounds demographic, so the reflex is to funnel population down to riders and stop. But one vehicle can generate two purchases in a year — rider and pillion — while a rider who never owns a helmet generates none, and a helmet bought in January and stolen in June generates two. Say in your first sentence that you are counting purchase events, and the rest of the structure follows."
+  },
+
+  "routeChoice": {
+    "chosen": "Hybrid",
+    "why": "Size the installed base top-down from the two-wheeler parc, then build annual demand bottom-up on top of it as two separate terms — replacement on the helmets already in use, plus first fit for riders new to the road. The hybrid is not a hedge here. The base can only be reached top-down, because nobody counts helmets; the flow can only be reached bottom-up, because replacement and first fit have different drivers and different sizes.",
+    "rejectedRoute": "Top-down",
+    "rejectedWhyNot": "A clean top-down — population, times riders per head, times helmets per rider, times a replacement rate — puts the entire answer on one undefended ownership figure and drops first-fit demand altogether. In a market still adding roughly 90 lakh two-wheelers to the running fleet every year, the riders arriving for the first time carry about a quarter of annual sales, and they are structurally invisible in any stock-divided-by-life calculation. You would also be counting people when the thing sold is a unit."
+  },
+
+  "tree": {
+    "root": "Helmets bought in India in a year",
+    "rootFormula": "= Replacement demand on helmets already in use + First-fit demand from riders new to the road",
+    "value": "≈ 5.5 crore (55 million) units a year",
+    "branches": [
+      {
+        "label": "Replacement demand",
+        "formula": "= Helmets in regular use ÷ Effective helmet life",
+        "value": "≈ 4.2 crore a year",
+        "note": "Three quarters of the answer sits in this branch, and it rests on a product life nobody can observe directly.",
+        "isCriticalPath": true,
+        "children": [
+          {
+            "label": "Running two-wheeler fleet",
+            "formula": "= Registered parc × Share still on the road",
+            "value": "≈ 17.5 crore vehicles",
+            "note": "Registration is cumulative and dead vehicles are almost never struck off — the register is part fleet, part graveyard."
+          },
+          {
+            "label": "Urban fleet and its helmets",
+            "formula": "= 40% of fleet × 1.2 helmets in use per vehicle",
+            "value": "≈ 8.4 crore helmets",
+            "note": "Rider almost always, pillion about one time in four. Not two helmets a vehicle — look at a signal, not at the rulebook."
+          },
+          {
+            "label": "Rural fleet and its helmets",
+            "formula": "= 60% of fleet × 0.4 helmets in use per vehicle",
+            "value": "≈ 4.2 crore helmets",
+            "note": "The larger fleet carries the smaller helmet base. What differs between town and district road is enforcement, not affordability."
+          },
+          {
+            "label": "Effective helmet life",
+            "formula": "= 3 years, blended across certified and roadside units",
+            "value": "3 years",
+            "note": "The shakiest number in the question, and the one the sensitivity grid is built on."
+          }
+        ]
+      },
+      {
+        "label": "First-fit demand",
+        "formula": "= New two-wheelers going to first-time owners × Helmets supplied per vehicle",
+        "value": "≈ 1.35 crore a year",
+        "note": "A quarter of the answer, and the part a stock-only method drops without noticing.",
+        "isCriticalPath": false,
+        "children": [
+          {
+            "label": "New two-wheelers sold",
+            "formula": "≈ 1.5 crore a year",
+            "value": "1.5 crore vehicles",
+            "note": "A flow. Do not let it drift into the same sentence as the 25 crore parc without saying which is which."
+          },
+          {
+            "label": "Share adding a vehicle rather than replacing one",
+            "formula": "= 60% of new sales",
+            "value": "≈ 0.9 crore vehicles",
+            "note": "Forced by arithmetic, not assumed: the running fleet is still growing about 5% a year, and that growth can only come from buyers who did not own one before."
+          },
+          {
+            "label": "Helmets handed over per new vehicle",
+            "formula": "= 1.5",
+            "value": "≈ 1.35 crore helmets",
+            "note": "The rule asks dealers for two. The realistic average across organised and marginal dealers is lower."
+          }
+        ]
+      },
+      {
+        "label": "Channel split — the same units, cut a second way",
+        "formula": "= Dealership-bundled + Aftermarket",
+        "value": "≈ 2.25 crore bundled · ≈ 3.3 crore aftermarket",
+        "note": "This branch does not add to the total; it re-partitions it. Bundled helmets going to buyers who already rode displace an aftermarket purchase rather than adding one, which is why the split must reconcile back to 5.5 crore and not exceed it.",
+        "isCriticalPath": false,
+        "children": [
+          {
+            "label": "Dealership-bundled",
+            "formula": "= 1.5 crore vehicles × 1.5 helmets",
+            "value": "≈ 2.25 crore",
+            "note": "Bundled into the on-road price, so invisible as a helmet purchase to the buyer and highly visible to the helmet brand."
+          },
+          {
+            "label": "Aftermarket",
+            "formula": "= Total − Bundled",
+            "value": "≈ 3.3 crore",
+            "note": "The accessory shop, the roadside stall, the online order. Where the uncertified volume lives."
+          }
+        ]
+      }
+    ]
+  },
+
+  "assumptions": [
+    {
+      "id": "a-parc",
+      "lever": "Registered two-wheeler parc in India",
+      "value": "25 crore (250 Mn)",
+      "numeric": 250000000,
+      "unit": "vehicles",
+      "basis": "published-benchmark",
+      "defence": "India has registered 1.5 to 1.8 crore two-wheelers a year for over a decade, and the register is cumulative — 25 crore is the round figure transport-ministry data supports and the one to say aloud.",
+      "confidence": "anchor",
+      "contestedBy": "An interviewer who prefers 20 crore takes the installed base down by a fifth and the answer to about 4.7 crore — first-fit demand is untouched, which is why the total falls by 15% and not 20%."
+    },
+    {
+      "id": "a-live-share",
+      "lever": "Share of registered two-wheelers still actually running",
+      "value": "70%",
+      "numeric": 0.7,
+      "unit": "share",
+      "basis": "structural-logic",
+      "defence": "Vehicles are almost never deregistered when they die, so the register always overstates the fleet; against an effective life near fifteen years on a fleet that has roughly doubled in a decade, about seven in ten of the registered units can still be on the road.",
+      "confidence": "defensible",
+      "contestedBy": "60% is a fair challenge given informal scrappage and it takes the answer to roughly 5 crore."
+    },
+    {
+      "id": "a-urban-fleet-share",
+      "lever": "Urban share of the running two-wheeler fleet",
+      "value": "40%",
+      "numeric": 0.4,
+      "unit": "share",
+      "basis": "structural-logic",
+      "defence": "India is about 35% urban, and two-wheeler ownership per household runs higher in towns, but rural India is not a small two-wheeler market — it is where the vehicle is the only motorised option — so a modest tilt above the population share, not a reversal of it.",
+      "confidence": "defensible",
+      "contestedBy": "50/50 is arguable and raises the answer by roughly 8%, or about half a crore units, because it moves fleet from a low-helmet segment to a high one."
+    },
+    {
+      "id": "a-helmets-urban",
+      "lever": "Helmets in regular use per urban two-wheeler",
+      "value": "1.2",
+      "numeric": 1.2,
+      "unit": "helmets per vehicle",
+      "basis": "observed-behaviour",
+      "defence": "Stand at a city signal and count: nearly every rider is wearing one, perhaps one pillion in four is — that is about 1.2 helmets a vehicle in actual use, which is what wears out, rather than the two the rule asks for.",
+      "confidence": "defensible",
+      "contestedBy": "1.5 if you believe pillion compliance has genuinely moved; adds roughly 70 lakh helmets a year."
+    },
+    {
+      "id": "a-helmets-rural",
+      "lever": "Helmets in regular use per rural two-wheeler",
+      "value": "0.4",
+      "numeric": 0.4,
+      "unit": "helmets per vehicle",
+      "basis": "observed-behaviour",
+      "defence": "On a district road helmet use is the exception rather than the rule, and two riders in five owning one they actually use is a generous reading rather than a harsh one.",
+      "confidence": "judgement",
+      "contestedBy": "0.6 if you think enforcement has reached the blocks; that adds about 70 lakh helmets a year."
+    },
+    {
+      "id": "a-helmet-life",
+      "lever": "Effective replacement cycle for a helmet in use",
+      "value": "3 years",
+      "numeric": 3,
+      "unit": "years",
+      "basis": "declared-judgement",
+      "defence": "A certified helmet is rated for about five years, but the cheap shell that carries most of this market's volume cracks, fades, loses its strap or is stolen well before that — three years is the blend across both, and it is openly a judgement.",
+      "confidence": "shaky",
+      "contestedBy": "Four years is defensible for a certified-only reading of the market and cuts replacement demand by a quarter."
+    },
+    {
+      "id": "a-new-sales",
+      "lever": "New two-wheelers sold domestically per year",
+      "value": "1.5 crore (15 Mn)",
+      "numeric": 15000000,
+      "unit": "vehicles per year",
+      "basis": "published-benchmark",
+      "defence": "Domestic two-wheeler sales have run in the 1.5 to 1.8 crore range for years; 1.5 crore is the conservative round number and it is a flow figure, not to be confused with the parc.",
+      "confidence": "anchor",
+      "contestedBy": "1.8 crore lifts first-fit demand to about 1.6 crore and the total to roughly 5.8 crore."
+    },
+    {
+      "id": "a-new-rider-share",
+      "lever": "Share of new two-wheeler buyers adding a vehicle rather than replacing one",
+      "value": "60%",
+      "numeric": 0.6,
+      "unit": "share",
+      "basis": "structural-logic",
+      "defence": "The running fleet is still growing at roughly 5% a year — about 90 lakh vehicles — and that net addition can only come from buyers who did not previously own one, which forces the split rather than leaving it to taste.",
+      "confidence": "defensible",
+      "contestedBy": "A maturing market argues for 50%, trimming first-fit demand by about 22 lakh units."
+    },
+    {
+      "id": "a-bundle-rate",
+      "lever": "Helmets supplied with a new two-wheeler at the dealership",
+      "value": "1.5",
+      "numeric": 1.5,
+      "unit": "helmets per vehicle",
+      "basis": "published-benchmark",
+      "defence": "Indian rules require a dealer to supply certified helmets with a new two-wheeler; organised dealerships comply, smaller ones supply one or let the buyer decline, so 1.5 is the realistic average rather than the rule's figure.",
+      "confidence": "judgement",
+      "contestedBy": "Full compliance at 2.0 raises bundled volume to 3 crore and the total to about 6 crore. Check the current rule before quoting it as a number in the room."
+    },
+    {
+      "id": "a-bundle-substitution",
+      "lever": "Whether a bundled helmet displaces an aftermarket purchase",
+      "value": "Full displacement for buyers who already rode",
+      "numeric": 1,
+      "unit": "share displaced",
+      "basis": "declared-judgement",
+      "defence": "A rider handed a new helmet at the showroom does not walk into an accessory shop the same year, so bundled units going to replacement-vehicle buyers substitute for aftermarket demand instead of adding to it — a simplification that slightly understates the total, and worth saying so.",
+      "confidence": "judgement",
+      "contestedBy": "Assume no displacement and you add about 90 lakh units, which is exactly the double-count this assumption exists to prevent."
+    },
+    {
+      "id": "a-urban-settlements",
+      "lever": "Urban settlements in India with a market street",
+      "value": "8,000",
+      "numeric": 8000,
+      "unit": "towns and cities",
+      "basis": "census-anchor",
+      "defence": "The census counts roughly 4,000 statutory towns and a similar number of census towns, so 8,000 is the working figure for places that carry a retail market of any kind.",
+      "confidence": "anchor",
+      "contestedBy": "Count only statutory towns and the outlet base halves, dropping the cross-check to about 3 crore."
+    },
+    {
+      "id": "a-outlets-per-settlement",
+      "lever": "Helmet-selling retail points per urban settlement",
+      "value": "15",
+      "numeric": 15,
+      "unit": "outlets per town",
+      "basis": "observed-behaviour",
+      "defence": "A metro carries several hundred accessory shops, a district town perhaps a dozen, a small municipality three or four — and because the count of settlements is dominated by small ones, the weighted average sits near 15, not near the metro figure.",
+      "confidence": "judgement",
+      "contestedBy": "25 is arguable if you count every mechanic who keeps a rack; it would push the cross-check above 9 crore and break the agreement with the primary route."
+    },
+    {
+      "id": "a-rural-outlet-uplift",
+      "lever": "Rural and highway selling points as a share of urban ones",
+      "value": "50%",
+      "numeric": 0.5,
+      "unit": "share",
+      "basis": "declared-judgement",
+      "defence": "Rural helmet retail is thin per location but spread across highway stalls and block-town markets; half the urban outlet count is a deliberately restrained figure for a fleet that is 60% rural.",
+      "confidence": "judgement",
+      "contestedBy": "Parity with urban outlets adds 60,000 points and about 1.8 crore units to the cross-check."
+    },
+    {
+      "id": "a-organised-points",
+      "lever": "Organised dealerships and branded helmet stores per urban settlement",
+      "value": "2.5",
+      "numeric": 2.5,
+      "unit": "outlets per town",
+      "basis": "structural-logic",
+      "defence": "Across every two-wheeler make and helmet brand the organised network runs to roughly 20,000 points nationally, which spread over 8,000 towns is about two and a half each — anchored on settlements, deliberately, so this route stays independent of the vehicle-sales figure.",
+      "confidence": "judgement"
+    },
+    {
+      "id": "a-outlet-throughput",
+      "lever": "Helmets sold per outlet per month",
+      "value": "25",
+      "numeric": 25,
+      "unit": "helmets per outlet per month",
+      "basis": "declared-judgement",
+      "defence": "Roughly one helmet a day in a shop that also sells mirrors, seat covers and oil — a highway dealership does four times that and a village stall a fifth, and 25 is the blend across a base dominated by the small ones.",
+      "confidence": "shaky",
+      "contestedBy": "This is the load-bearing number of the cross-check; at 20 a month the route lands on 4.8 crore, which still agrees on order of magnitude."
+    },
+    {
+      "id": "a-months",
+      "lever": "Months in a year",
+      "value": "12",
+      "numeric": 12,
+      "unit": "months",
+      "basis": "physical-constant",
+      "defence": "Not in dispute — listed so every number in the chain has a stated origin.",
+      "confidence": "anchor"
+    }
+  ],
+
+  "calculation": [
+    {
+      "id": "c1",
+      "label": "Two-wheelers actually running",
+      "expr": "250000000 * 0.7",
+      "display": "25 crore registered × 70% still on the road",
+      "result": 175000000,
+      "tolerance": 0,
+      "unit": "vehicles",
+      "carriedForward": "≈ 17.5 crore",
+      "uses": ["a-parc", "a-live-share"],
+      "soWhat": "Take the haircut before anything else. Computing helmet demand on a cumulative register credits the market with vehicles that have not moved in a decade."
+    },
+    {
+      "id": "c2",
+      "label": "Urban running fleet",
+      "expr": "175000000 * 0.4",
+      "display": "17.5 crore × 40% urban",
+      "result": 70000000,
+      "tolerance": 0,
+      "unit": "vehicles",
+      "carriedForward": "≈ 7 crore",
+      "uses": ["a-urban-fleet-share"],
+      "soWhat": "The split has to happen before any behavioural rate is applied, because helmet use is the one thing that differs sharply between the two halves."
+    },
+    {
+      "id": "c3",
+      "label": "Rural running fleet",
+      "expr": "175000000 * 0.6",
+      "display": "17.5 crore × 60% rural",
+      "result": 105000000,
+      "tolerance": 0,
+      "unit": "vehicles",
+      "carriedForward": "≈ 10.5 crore",
+      "uses": ["a-urban-fleet-share"],
+      "soWhat": "The bigger half. Any candidate who applies a city helmet rate to this block inflates the answer by roughly half."
+    },
+    {
+      "id": "c4",
+      "label": "Helmets in regular use, urban",
+      "expr": "70000000 * 1.2",
+      "display": "7 crore urban vehicles × 1.2 helmets in use",
+      "result": 84000000,
+      "tolerance": 0,
+      "unit": "helmets",
+      "carriedForward": "≈ 8.4 crore",
+      "uses": ["a-helmets-urban"],
+      "soWhat": "Helmets in use, not helmets owned. A helmet in a cupboard does not wear out and does not get replaced."
+    },
+    {
+      "id": "c5",
+      "label": "Helmets in regular use, rural",
+      "expr": "105000000 * 0.4",
+      "display": "10.5 crore rural vehicles × 0.4 helmets in use",
+      "result": 42000000,
+      "tolerance": 0,
+      "unit": "helmets",
+      "carriedForward": "≈ 4.2 crore",
+      "uses": ["a-helmets-rural"],
+      "soWhat": "Sixty per cent of the fleet produces a third of the helmet base. That asymmetry is the whole reason for splitting."
+    },
+    {
+      "id": "c6",
+      "label": "Installed helmet base",
+      "expr": "84000000 + 42000000",
+      "display": "8.4 crore urban + 4.2 crore rural",
+      "result": 126000000,
+      "tolerance": 0,
+      "unit": "helmets",
+      "carriedForward": "≈ 12.6 crore",
+      "uses": [],
+      "soWhat": "This is the stock. It is not the answer, and the single most common failure in this question is stopping here and calling it one."
+    },
+    {
+      "id": "c7",
+      "label": "Annual replacement demand",
+      "expr": "126000000 / 3",
+      "display": "12.6 crore helmets ÷ 3-year effective life",
+      "result": 42000000,
+      "tolerance": 0,
+      "unit": "helmets per year",
+      "carriedForward": "≈ 4.2 crore a year",
+      "uses": ["a-helmet-life"],
+      "soWhat": "Stock becomes flow here, and the divisor is the least defensible number in the chain. Flag it as you write it, not when challenged."
+    },
+    {
+      "id": "c8",
+      "label": "New two-wheelers going to first-time owners",
+      "expr": "15000000 * 0.6",
+      "display": "1.5 crore new vehicles × 60% adding rather than replacing",
+      "result": 9000000,
+      "tolerance": 0,
+      "unit": "vehicles per year",
+      "carriedForward": "≈ 90 lakh",
+      "uses": ["a-new-sales", "a-new-rider-share"],
+      "soWhat": "Cross-check it against the fleet: 90 lakh on 17.5 crore is about 5% growth a year, which is what a still-motorising market looks like."
+    },
+    {
+      "id": "c9",
+      "label": "First-fit helmet demand",
+      "expr": "9000000 * 1.5",
+      "display": "90 lakh first-time riders × 1.5 helmets supplied",
+      "result": 13500000,
+      "tolerance": 0,
+      "unit": "helmets per year",
+      "carriedForward": "≈ 1.35 crore a year",
+      "uses": ["a-bundle-rate"],
+      "soWhat": "These are net additions to the installed base, so they cannot overlap with replacement demand. That is what makes them safe to add."
+    },
+    {
+      "id": "c10",
+      "label": "Total helmets bought in a year",
+      "expr": "42000000 + 13500000",
+      "display": "4.2 crore replacement + 1.35 crore first fit",
+      "result": 55500000,
+      "tolerance": 0,
+      "unit": "helmets per year",
+      "carriedForward": "≈ 5.5 crore a year",
+      "uses": [],
+      "soWhat": "Replacement carries roughly three quarters, first fit one quarter. Say the split, because it is the finding — the single number is not."
+    },
+    {
+      "id": "c11",
+      "label": "Units moving through dealerships",
+      "expr": "15000000 * 1.5",
+      "display": "1.5 crore new vehicles × 1.5 helmets bundled",
+      "result": 22500000,
+      "tolerance": 0,
+      "unit": "helmets per year",
+      "carriedForward": "≈ 2.25 crore a year",
+      "uses": ["a-new-sales", "a-bundle-rate"],
+      "soWhat": "Every new vehicle carries a bundled helmet, not only those going to first-time riders — which is precisely where the double-count enters if you are not careful."
+    },
+    {
+      "id": "c12",
+      "label": "Units moving through the aftermarket",
+      "expr": "55500000 - 22500000",
+      "display": "5.55 crore total − 2.25 crore bundled",
+      "result": 33000000,
+      "tolerance": 0,
+      "unit": "helmets per year",
+      "carriedForward": "≈ 3.3 crore a year",
+      "uses": ["a-bundle-substitution"],
+      "soWhat": "Bundled units going to buyers who already rode are met out of the same replacement pool, so the aftermarket is the residual rather than a second addition."
+    },
+    {
+      "id": "c13",
+      "label": "Reconciliation — the two channels must add back",
+      "expr": "22500000 + 33000000",
+      "display": "2.25 crore bundled + 3.3 crore aftermarket",
+      "result": 55500000,
+      "tolerance": 0,
+      "unit": "helmets per year",
+      "carriedForward": "≈ 5.5 crore a year",
+      "uses": [],
+      "soWhat": "If your channel split does not add back to your total, you have counted the dealership bundle twice. Run this line out loud — it costs five seconds and it is the error an interviewer is watching for."
+    }
+  ],
+
+  "finalAnswer": "≈ 5.5 crore (55 million) helmets bought in India in a year — roughly 3.3 crore through the aftermarket and 2.25 crore bundled at dealerships, with replacement carrying about three quarters of the volume",
+  "finalAnswerNumeric": 55500000,
+  "answerBand": "4 crore to 7 crore units a year",
+  "orderOfMagnitude": "10^7",
+
+  "triangulation": {
+    "label": "Retail-throughput cross-check",
+    "route": "Bottom-up",
+    "premise": "Every helmet sold passes over a counter somewhere. Count the counters and ask what one moves in a month. This route shares no input with the primary one — no parc, no product life, no vehicle sales — so if the two land close, the agreement is evidence rather than an echo of the same anchors. Anchor the outlet count on settlements, not on dealerships per vehicle sold, or the independence quietly disappears.",
+    "lines": [
+      {
+        "id": "t1",
+        "label": "Helmet-selling points in urban settlements",
+        "expr": "8000 * 15",
+        "display": "8,000 towns and cities × 15 selling points each",
+        "result": 120000,
+        "tolerance": 0,
+        "unit": "outlets",
+        "carriedForward": "≈ 1.2 lakh",
+        "uses": ["a-urban-settlements", "a-outlets-per-settlement"],
+        "soWhat": "Weight by the number of settlements, which is dominated by small towns — not by the metro you happen to live in."
+      },
+      {
+        "id": "t2",
+        "label": "Rural and highway selling points",
+        "expr": "120000 * 0.5",
+        "display": "1.2 lakh urban points × 50% rural uplift",
+        "result": 60000,
+        "tolerance": 0,
+        "unit": "outlets",
+        "carriedForward": "≈ 60,000",
+        "uses": ["a-rural-outlet-uplift"],
+        "soWhat": "Thin per location, wide in spread. Leave this block out and you have priced a rural fleet through urban shops."
+      },
+      {
+        "id": "t3",
+        "label": "Organised dealerships and branded stores",
+        "expr": "8000 * 2.5",
+        "display": "8,000 towns × 2.5 organised points each",
+        "result": 20000,
+        "tolerance": 0,
+        "unit": "outlets",
+        "carriedForward": "≈ 20,000",
+        "uses": ["a-urban-settlements", "a-organised-points"],
+        "soWhat": "Derived from settlements rather than from vehicle sales, deliberately, so this route stays genuinely independent of the primary one."
+      },
+      {
+        "id": "t4",
+        "label": "Total helmet-selling points nationally",
+        "expr": "120000 + 60000 + 20000",
+        "display": "1.2 lakh urban + 60,000 rural + 20,000 organised",
+        "result": 200000,
+        "tolerance": 0,
+        "unit": "outlets",
+        "carriedForward": "≈ 2 lakh",
+        "uses": [],
+        "soWhat": "Two lakh points across 8,000 towns is about 25 per town all in. Hold that against a district market street before moving on."
+      },
+      {
+        "id": "t5",
+        "label": "Helmets sold per outlet per year",
+        "expr": "25 * 12",
+        "display": "25 helmets a month × 12 months",
+        "result": 300,
+        "tolerance": 0,
+        "unit": "helmets per outlet per year",
+        "carriedForward": "≈ 300",
+        "uses": ["a-outlet-throughput", "a-months"],
+        "soWhat": "About one a day in a shop that mostly sells other things. This is the load-bearing number of the whole cross-check and it deserves to be named as such."
+      },
+      {
+        "id": "t6",
+        "label": "Annual helmet sales, retail route",
+        "expr": "200000 * 300",
+        "display": "2 lakh outlets × 300 helmets a year",
+        "result": 60000000,
+        "tolerance": 0,
+        "unit": "helmets per year",
+        "carriedForward": "≈ 6 crore a year",
+        "uses": [],
+        "soWhat": "Built from counters and throughput, with no parc and no product life anywhere in it."
+      }
+    ],
+    "answer": "≈ 6 crore helmets a year",
+    "verdict": "Six crore against the primary route's 5.5 crore — a gap of under a tenth, which is closer than a method like this deserves. Read it as confirmation of the order of magnitude and nothing finer; two routes that agree on the second digit have usually done so by luck. The useful part is the direction of the gap: the retail route runs slightly high, which is what you would expect, because a count of selling points tends to include the mechanic who keeps three helmets on a shelf and sells one a fortnight. Had the two routes differed by a factor of three, the place to look first would be the rural helmet rate in the primary route and the outlets-per-town figure in this one — the two softest numbers on either side."
+  },
+
+  "sensitivity": {
+    "assumptionId": "a-helmet-life",
+    "whyThisLever": "Every other input in the chain has something behind it — a published registration figure, a census town count, a fleet-growth identity, a behaviour you can observe at a traffic signal. The replacement cycle has none of that. Nobody publishes how long an Indian helmet lasts in use, the blend spans a certified shell rated for five years and a roadside one that cracks in eighteen months, and the number sits directly under three quarters of the answer. It is the lever an interviewer will push on, and the one you should push on first yourself.",
+    "cases": [
+      {
+        "scenario": "Conservative",
+        "leverValue": "4-year life",
+        "answer": "≈ 4.5 crore a year",
+        "deltaVsBase": "−19%"
+      },
+      {
+        "scenario": "Base",
+        "leverValue": "3-year life",
+        "answer": "≈ 5.5 crore a year",
+        "deltaVsBase": "0%"
+      },
+      {
+        "scenario": "Aggressive",
+        "leverValue": "2-year life",
+        "answer": "≈ 7.7 crore a year",
+        "deltaVsBase": "+38%"
+      }
+    ],
+    "breakpoint": "Across the entire plausible range — two years to four — the answer stays inside 4.5 to 7.7 crore, so the order of magnitude never leaves 10^7 and the conclusion does not flip. To drag the answer below 3 crore you would need a blended life of eight years or more, and no helmet in daily Indian use survives eight years of sun, dust and theft. That is worth saying explicitly: the lever you are least sure of turns out not to threaten the finding, only its second digit.",
+    "oneLiner": "About 5.5 crore helmets a year. It hangs on a three-year replacement cycle — stretch that to four and it falls to 4.5 crore, pull it to two and it rises to 7.7 crore. The order of magnitude holds either way, and I would want that cycle tested before I would defend the digit."
+  },
+
+  "sanityChecks": [
+    "Five and a half crore helmets against 17.5 crore running two-wheelers is roughly one helmet bought per three vehicles a year. Picture thirty two-wheelers waiting at a signal: ten new helmets among them over twelve months. Neither absurdly many nor implausibly few.",
+    "Put a price on it. At a blended ₹700 — cheap roadside shells pulling down the ₹2,000 certified ones — the category is worth about ₹3,900 crore at retail. For an accessory that almost every motorised household owns at least one of, a market under ₹5,000 crore feels right: far smaller than tyres, far larger than number plates.",
+    "First-fit demand of 1.35 crore must sit below the 2.25 crore of helmets dealers hand over in total, because some of those go to buyers who already rode. It does. If your first-fit figure ever exceeds bundled supply, you have double-counted the showroom.",
+    "Per household: 5.5 crore helmets against roughly 31 crore households is one helmet per household every five to six years. In a country where fewer than half of households own a two-wheeler at all, that is the right kind of number — and if it came out at one a year, you would know the model had broken.",
+    "Every figure here is illustrative — built to show the method clearly, not asserted as verified market data. What you defend in the room is the structure and the order of magnitude, never the second digit."
+  ],
+
+  "traps": [
+    {
+      "trap": "Counting the parc, dividing by a life, and calling that the market.",
+      "whyItHappens": "The parc is the number a candidate can remember, and stock-divided-by-life feels like a complete method because it produces a flow from a stock. It is half the method. In a market still adding about 90 lakh vehicles to the running fleet each year, riders arriving for the first time carry roughly a quarter of annual demand, and they are structurally invisible to a calculation that only looks at what is already out there.",
+      "fix": "Write the root as two terms before you compute anything — replacement on the existing base, plus first fit for new riders — and say both out loud. The interviewer is listening for the second term."
+    },
+    {
+      "trap": "Treating registered vehicles as running vehicles.",
+      "whyItHappens": "Registration data is cumulative and vehicles are almost never struck off when they stop running, so the register is a graveyard as much as a fleet. The 25 crore figure is easy to recall and carries no visible warning, so candidates compute on all of it and inflate the base by nearly half.",
+      "fix": "Apply a live-share haircut and defend it from vehicle life rather than from taste: a fleet with an effective life near fifteen years that has roughly doubled in a decade cannot be much more than 70% alive."
+    },
+    {
+      "trap": "Counting riders instead of units.",
+      "whyItHappens": "The question sounds demographic, so the reflex is a population funnel down to riders and a stop there. But the thing sold is a unit — one vehicle can generate two purchases in a year through rider and pillion, a rider who never buys generates none, and a stolen helmet generates a second purchase from the same person.",
+      "fix": "Fix the unit in the first sentence of your scope: helmets purchased, not people wearing them. Every later choice follows from that one."
+    },
+    {
+      "trap": "Double-counting the dealership bundle.",
+      "whyItHappens": "Compute replacement on the full installed base, then add every helmet a dealer hands over, and you have counted the same replacement twice for the four in ten new-vehicle buyers who already owned one. The error is invisible because both blocks are individually correct — it is only the addition that is wrong.",
+      "fix": "Decide explicitly whether a bundled helmet adds demand or displaces an aftermarket purchase, then make your channel split add back to your total. If bundled plus aftermarket does not equal your headline, you have found the double-count."
+    },
+    {
+      "trap": "Projecting urban helmet behaviour onto the whole country.",
+      "whyItHappens": "The candidate's own evidence is a city signal where nearly every rider has one on. That single honest observation gets applied to a fleet that is 60% rural, where enforcement is thin and helmet use is the exception — and the answer comes out roughly half again too high.",
+      "fix": "Split the fleet before applying any behavioural rate, and say plainly which half you have actually observed and which half you are inferring."
+    },
+    {
+      "trap": "Blending helmet prices to get a value answer without saying what went into the blend.",
+      "whyItHappens": "Once a unit answer exists, converting to rupees looks like a free extra. But this category spans a ₹400 roadside shell and a ₹4,000 certified one, and a blended price is the most abusable number in the chain — move it from ₹700 to ₹1,200 and the market grows by 70% with no change to a single physical assumption.",
+      "fix": "If you go to value, state the mix that produced the blend — what share is uncertified — and offer the value as a band rather than a figure."
+    }
+  ],
+
+  "probes": [
+    {
+      "question": "You assumed a three-year helmet life. Where does that come from?",
+      "intent": "Whether the shakiest number in the chain has a defence, or whether it was chosen because it made the arithmetic tidy.",
+      "goodAnswer": "Names the two populations inside the blend — a certified helmet rated for about five years and a cheap shell that cracks, fades or is stolen within two — says which dominates by volume and why, then offers the four-year alternative and its effect on the answer before being asked for it.",
+      "weakAnswer": "'Three years felt reasonable.' Honest and completely undefended — it concedes the lever without offering any way to test it, and the interviewer now owns the rest of the conversation."
+    },
+    {
+      "question": "Your answer is 5.5 crore. Suppose the real figure is 4 crore. What broke?",
+      "intent": "Whether you can run your own model backwards and locate the failure, rather than restating the arithmetic more slowly.",
+      "goodAnswer": "Goes straight to the two levers that actually move the answer: takes the live share of the parc down to 60% and the helmet life out to four years, and the model lands at about 4 crore. Neither move is extreme. Then names which of the two it would rather surrender and why.",
+      "weakAnswer": "Re-reads the calculation from the top to show it was done correctly. The arithmetic was never in question — the inputs were."
+    },
+    {
+      "question": "Should the helmets a dealer gives away with a new bike count at all?",
+      "intent": "Whether you understand that scope decides the answer, and whether you will commit to one reading instead of hedging across both.",
+      "goodAnswer": "Says they count as units sold into the market — someone paid, even if it was folded into the on-road price — but that they cannot be added on top of replacement demand for buyers who already owned a helmet. States the reading, then shows the channel split adding back to the total as proof there is no double-count.",
+      "weakAnswer": "'It depends on how you define it', offered as a conclusion rather than as the opening half of a sentence that then chooses a definition."
+    },
+    {
+      "question": "Is this market growing or shrinking?",
+      "intent": "Whether you can read a rate of change off a stock-and-flow model you have just built, rather than reaching for a growth percentage from memory.",
+      "goodAnswer": "Separates the three drivers already sitting inside the model: the running fleet is growing about 5% a year, enforcement is slowly lifting the rural helmet rate off a very low base, and a shift towards certified helmets would lengthen the replacement cycle and cut unit volume while raising value. Notes that the third pulls against the first two, so units and value may not move together.",
+      "weakAnswer": "'Growing, because India is growing.' True and useless — it names no mechanism inside the estimate and would have been said without doing the work."
+    },
+    {
+      "question": "Thirty seconds and one phone call to tighten this. Whom do you call, and what do you ask?",
+      "intent": "Whether you know which input actually carries the uncertainty, and can tell it apart from the input that is merely the most visible.",
+      "goodAnswer": "Calls a large helmet distributor and asks what blended replacement interval their reorder data implies, and what share of volume is uncertified. Explains the choice: the parc is published and lookupable, the replacement cycle is published nowhere and moves the answer by a third.",
+      "weakAnswer": "Asks someone for the market size. That returns the answer instead of testing the method, and is the one thing no interviewer will accept in place of your own estimate."
+    },
+    {
+      "question": "Your rural helmet rate is 0.4 and your urban rate is 1.2. Convince me the gap is really three-fold.",
+      "intent": "Whether a segmentation was made because the segments genuinely behave differently, or because splitting things in two looks like structure.",
+      "goodAnswer": "Grounds the gap in enforcement rather than income — checking is routine at city junctions and rare on district roads — and concedes the direction of error: if enforcement is spreading faster than assumed, 0.4 is too low and the answer is understated. Offers the 0.6 case and its roughly 70 lakh effect.",
+      "weakAnswer": "'Rural people are poorer.' It picks the wrong mechanism — a helmet costs less than a tank of petrol — and it cannot be tested by anything the candidate has seen."
+    }
+  ]
+}

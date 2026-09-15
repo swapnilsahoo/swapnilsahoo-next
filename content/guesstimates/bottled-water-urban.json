@@ -1,0 +1,783 @@
+{
+  "id": "bottled-water-urban",
+  "question": "What is a year of packaged drinking water worth at retail in urban India — and how many litres is that?",
+  "tabLabel": "Packaged water, urban India",
+  "archetype": "population-funnel",
+  "difficulty": "Medium",
+  "timeboxMinutes": 12,
+  "teachingPoint": "A blended price per litre is the most abusable number in a sizing chain. The same litre costs about ₹20 in a chilled 1-litre bottle and about ₹2 in a 20-litre jar, so one average price laid across one total volume can be wrong by a factor rather than a margin. Split the volume by channel before you price anything, and hand back two answers — litres and rupees — because they point in different directions.",
+
+  "scope": {
+    "countingWhat": "Rupees paid at retail, over one year, for sealed packaged drinking water — PET bottles and 20-litre bubble-top jars — by people living in urban India. Litres are computed first and reported alongside, because volume and value behave differently in this category.",
+    "unit": "₹ crore a year, with litres a year reported alongside",
+    "timeBasis": "flow (per year)",
+    "geography": "Urban India — roughly 49 crore people across Tier-1, Tier-2 and Tier-3 towns. Rural India is out.",
+    "included": [
+      "Sealed PET bottles from 250 ml to 2 litres, bought anywhere — kirana, station platform, restaurant, cinema, aircraft",
+      "20-litre bubble-top jars delivered to homes on a standing subscription",
+      "20-litre jars supplied to urban offices, shops, clinics, salons and coaching centres",
+      "Unbranded and locally licensed jar water, which is most of the jar channel by volume",
+      "The price the final buyer pays, inclusive of tax and of any delivery charge already bundled into the jar rate"
+    ],
+    "excluded": [
+      "Municipal tap water and borewell water — billed by a different mechanism entirely, or not billed at all",
+      "Water produced by a home or office RO unit, which is the substitute for this market rather than part of it",
+      "Flavoured water, soda, packaged coconut water, and anything carrying a taste claim",
+      "Imported and premium mineral water, left inside the blended bottled price rather than given its own line — it is a rounding error in litres",
+      "Bulk tanker water for construction, washing and society supply, which is neither packaged nor drinking-grade",
+      "Rural India, and exports of Indian packaged water"
+    ],
+    "boundaryTrap": "The 20-litre jar. It is about 85% of the litres and about a third of the rupees, so the two ways of mishandling it pull in opposite directions. Drop it and your volume collapses by nearly seven times while your value falls by only a third. Keep it but price it like a bottle and the market inflates past ₹1 lakh crore. Say out loud, before a single multiplication, that jars are in and that they carry their own price."
+  },
+
+  "routeChoice": {
+    "chosen": "Top-down",
+    "why": "Start from the urban population because it is the one number the interviewer will concede without argument, and because every gate below it — income band, purchase frequency, pack size, price — is a claim you can defend or revise on its own without disturbing the rest. A funnel is also the only route that lets at-home and out-of-home behaviour be modelled as genuinely different things, and that separation is where this answer actually lives.",
+    "rejectedRoute": "Bottom-up",
+    "rejectedWhyNot": "Counting retail outlets and multiplying by bottles sold a day looks concrete and is not. You would need a national kirana count, a per-outlet daily rate, and separate treatment of every non-kirana channel — stations, restaurants, cinemas, offices — each a guess of the same quality as the ones above but with nothing to check it against. Worse, the jar channel never crosses a shop counter, so an outlet-based route silently deletes 85% of the litres. The supply-side version of bottom-up is worth running here, but as the cross-check, not as the primary."
+  },
+
+  "tree": {
+    "root": "Urban packaged drinking water, retail value, one year",
+    "rootFormula": "= (Bottled litres × bottled ₹/litre) + (Jar litres × jar ₹/litre)",
+    "value": "≈ ₹25,000 crore on ≈ 55 bn litres",
+    "branches": [
+      {
+        "label": "Bottled channel — PET, 250 ml to 2 litres",
+        "formula": "Urban people by income band × bottles a year × 0.75 L per pack × ₹20 per litre",
+        "value": "8.1 bn litres · ₹16,170 crore",
+        "note": "15% of the litres and nearly two-thirds of the rupees. This is an out-of-home occasion business — travel, eating out, a workday away from a cooler — not a hydration business.",
+        "isCriticalPath": true,
+        "children": [
+          {
+            "label": "Top band — 10% of urban people",
+            "formula": "49 Mn × 100 bottles a year",
+            "value": "4,900 Mn bottles",
+            "note": "Buys on most days it leaves the house. Small base, heavy frequency."
+          },
+          {
+            "label": "Middle band — 40% of urban people",
+            "formula": "196 Mn × 25 bottles a year",
+            "value": "4,900 Mn bottles",
+            "note": "Four times the people buying a quarter as often lands on the identical number. Say that out loud — it is the most useful sentence in the tree."
+          },
+          {
+            "label": "Low band — 50% of urban people",
+            "formula": "245 Mn × 4 bottles a year",
+            "value": "980 Mn bottles",
+            "note": "Half of urban India, 9% of the bottles. Water is bought here only when there is no alternative — a long journey, a hospital visit."
+          }
+        ]
+      },
+      {
+        "label": "Jar channel — 20-litre bubble-top, homes",
+        "formula": "Urban households × jar penetration by band × 80 jars a year × 20 L × ₹2 per litre",
+        "value": "32.0 bn litres · ₹6,400 crore",
+        "note": "A subscription, not a purchase. Once a household starts, the litres are near-constant and the decision is renewed monthly rather than at the shelf.",
+        "isCriticalPath": false,
+        "children": [
+          {
+            "label": "Top band — 12 Mn households",
+            "formula": "× 25% on a jar",
+            "value": "3.0 Mn households",
+            "note": "Penetration dips at the top: an RO unit under the sink is the competing product, and it is already installed."
+          },
+          {
+            "label": "Middle band — 48 Mn households",
+            "formula": "× 30% on a jar",
+            "value": "14.4 Mn households",
+            "note": "The peak. Apartment living, distrust of the building tank, and no capital outlay for a filter."
+          },
+          {
+            "label": "Low band — 60 Mn households",
+            "formula": "× 5% on a jar",
+            "value": "3.0 Mn households",
+            "note": "Municipal supply and public taps do this job. ₹40 a jar set against a daily wage is the whole explanation."
+          }
+        ]
+      },
+      {
+        "label": "Jar channel — 20-litre bubble-top, workplaces",
+        "formula": "Urban workers × jar-served share × 300 L a year × ₹2 per litre",
+        "value": "15.0 bn litres · ₹3,000 crore",
+        "note": "The stream candidates forget, and a quarter of the total volume. Every office cooler, clinic waiting room and coaching centre is a standing order nobody at home ever sees.",
+        "isCriticalPath": false,
+        "children": [
+          {
+            "label": "Urban workers",
+            "formula": "490 Mn × 40% participation",
+            "value": "≈ 200 Mn",
+            "note": "Low by international standards, and low for a nameable reason — urban female labour-force participation runs near a quarter."
+          },
+          {
+            "label": "Served by a jar cooler at work",
+            "formula": "200 Mn × 25%",
+            "value": "50 Mn",
+            "note": "The shakiest gate in the whole tree. A construction site, a street cart and a factory floor are all workplaces, and none of them has a cooler."
+          },
+          {
+            "label": "Litres drawn",
+            "formula": "50 Mn × 1 L × 300 working days",
+            "value": "15.0 bn litres",
+            "note": "A litre across a working day is a cup roughly every two hours. Test it against your own desk before you defend it."
+          }
+        ]
+      },
+      {
+        "label": "Price ladder — held apart on purpose",
+        "formula": "Bottled ₹20 per litre · Jar ₹2 per litre",
+        "value": "A tenfold gap inside one category",
+        "note": "These two numbers are never averaged into one. A blended ₹/litre is the single most abusable figure in this question, and the tree is built the way it is to make blending impossible.",
+        "isCriticalPath": false,
+        "children": [
+          {
+            "label": "Bottled",
+            "formula": "₹20 for a 1-litre bottle",
+            "value": "₹20 per litre",
+            "note": "The 2-litre family pack pulls this down towards ₹17; a chilled 250 ml at a cinema pushes it to ₹40. ₹20 is the volume-weighted middle."
+          },
+          {
+            "label": "Jar",
+            "formula": "₹40 for a 20-litre jar, delivered",
+            "value": "₹2 per litre",
+            "note": "Branded metro jars reach ₹60. Local unbranded jars sell at ₹30. The delivery sits inside the price, not on top of it."
+          }
+        ]
+      }
+    ]
+  },
+
+  "assumptions": [
+    {
+      "id": "a-pop",
+      "lever": "Population of India",
+      "value": "1.4 bn (140 crore)",
+      "numeric": 1400000000,
+      "unit": "people",
+      "basis": "census-anchor",
+      "defence": "The working anchor in every Indian sizing question; the published figure sits a little above it, and rounding down buys arithmetic you can run in your head.",
+      "confidence": "anchor",
+      "contestedBy": "Some datasheets use 1.45 bn. Every figure below rises about 4% — not enough to change any conclusion here."
+    },
+    {
+      "id": "a-urban-share",
+      "lever": "Urban share of population",
+      "value": "35%",
+      "numeric": 0.35,
+      "unit": "share",
+      "basis": "census-anchor",
+      "defence": "Census 2011 recorded 31% and the trend has run upward for over a decade, so 35% is the defensible midpoint between the last count and the current estimates.",
+      "confidence": "anchor",
+      "contestedBy": "An interviewer preferring 40% raises the whole answer by 14% and changes nothing structural — the bottled-versus-jar split is untouched by the base."
+    },
+    {
+      "id": "a-income-bands",
+      "lever": "Urban income-band split",
+      "value": "Top 10% / Middle 40% / Low 50%",
+      "unit": "share of urban base",
+      "basis": "published-benchmark",
+      "defence": "The standard consumer-pyramid split used across Indian consumer sizing, and the one an interviewer will recognise without needing a source named.",
+      "confidence": "defensible",
+      "contestedBy": "The split is measured over households but applied to people in the bottle lines. Low-income urban households are larger, so at the people level the low band is nearer 55% and the middle 35% — which cuts bottle volume by about 5%, because that band buys four bottles a year."
+    },
+    {
+      "id": "a-bottles-top",
+      "lever": "Bottles a year, top band",
+      "value": "100",
+      "numeric": 100,
+      "unit": "bottles per person per year",
+      "basis": "observed-behaviour",
+      "defence": "Two a week — a commute, a meal out, a flight, a gym bag — which is what you can watch happen outside any Tier-1 office building.",
+      "confidence": "judgement",
+      "contestedBy": "A genuinely daily buyer sits at 300. Pushing the top band to 200 lifts the total answer by nearly 30% on its own."
+    },
+    {
+      "id": "a-bottles-mid",
+      "lever": "Bottles a year, middle band",
+      "value": "25",
+      "numeric": 25,
+      "unit": "bottles per person per year",
+      "basis": "observed-behaviour",
+      "defence": "One a fortnight — this band carries water from home on most days and buys only when travelling or eating out.",
+      "confidence": "judgement",
+      "contestedBy": "This is the largest single lever on bottle volume because the base under it is 196 Mn. Moving it to 40 lifts total value by about 17%."
+    },
+    {
+      "id": "a-bottles-low",
+      "lever": "Bottles a year, low band",
+      "value": "4",
+      "numeric": 4,
+      "unit": "bottles per person per year",
+      "basis": "observed-behaviour",
+      "defence": "A long train journey, a hospital visit, a wedding — occasions where there is genuinely no tap, and nothing else.",
+      "confidence": "judgement",
+      "contestedBy": "Even doubling it moves the total answer by under 6%. This is the row to stop arguing about first."
+    },
+    {
+      "id": "a-pack-size",
+      "lever": "Average bottled pack size",
+      "value": "0.75 litre",
+      "numeric": 0.75,
+      "unit": "litres per bottle",
+      "basis": "physical-constant",
+      "defence": "The 1-litre bottle dominates volume, the 500 ml dominates count, and the 2-litre home pack sits above both — volume-weighted, the blend lands just under a litre.",
+      "confidence": "defensible",
+      "contestedBy": "Weight it by number of packs sold rather than by litres and you land near 0.6 L, cutting bottled volume by a fifth."
+    },
+    {
+      "id": "a-price-bottle",
+      "lever": "Realised retail price, bottled channel",
+      "value": "₹20 per litre",
+      "numeric": 20,
+      "unit": "₹ per litre",
+      "basis": "published-benchmark",
+      "defence": "The printed MRP on a 1-litre bottle is ₹20 and has been for years; the 2-litre pack pulls the blend down and restaurant-sold small packs pull it up, roughly cancelling.",
+      "confidence": "defensible",
+      "contestedBy": "Chilled 250 ml at a cinema is ₹40 a litre. If out-of-home small packs are a larger share than assumed, this should be ₹24 and the answer rises about 13%."
+    },
+    {
+      "id": "a-hh-size",
+      "lever": "Urban household size",
+      "value": "4 people",
+      "numeric": 4,
+      "unit": "people per household",
+      "basis": "census-anchor",
+      "defence": "The national average is about 4.4 and urban households are consistently smaller than rural ones, so 4 is the right urban figure rather than a convenient one.",
+      "confidence": "anchor",
+      "contestedBy": "Using the national 4.4 would cut urban households by about a tenth, and the jar answer with it."
+    },
+    {
+      "id": "a-jar-pen",
+      "lever": "Household jar penetration by income band",
+      "value": "Top 25% / Middle 30% / Low 5%",
+      "unit": "share of households in band",
+      "basis": "observed-behaviour",
+      "defence": "Penetration peaks in the middle rather than at the top, because the competing product at the top is an RO unit already bolted under the sink, and at the bottom it is a municipal tap that costs nothing.",
+      "confidence": "judgement",
+      "contestedBy": "An interviewer who insists penetration must rise with income will put the top band at 40%; that adds 1.8 Mn households and about 2% to the answer, so the argument is not worth having."
+    },
+    {
+      "id": "a-jars-per-hh",
+      "lever": "Jars a subscribing household takes",
+      "value": "80 a year (about 1.5 a week)",
+      "numeric": 80,
+      "unit": "jars per household per year",
+      "basis": "observed-behaviour",
+      "defence": "Thirty litres a week for a family of four is roughly a litre a head a day for drinking and cooking, which is what the water is actually used for once a filter is out of the picture.",
+      "confidence": "judgement",
+      "contestedBy": "Households that also cook with jar water take three a week. Doubling this lever adds 25% to the total answer, so it matters more than the penetration rate sitting next to it."
+    },
+    {
+      "id": "a-jar-size",
+      "lever": "Jar volume",
+      "value": "20 litres",
+      "numeric": 20,
+      "unit": "litres per jar",
+      "basis": "physical-constant",
+      "defence": "The bubble-top format is standardised at 20 litres nationally, which is why this channel can be counted in jars and converted to litres at the end.",
+      "confidence": "anchor"
+    },
+    {
+      "id": "a-price-jar",
+      "lever": "Realised retail price, jar channel",
+      "value": "₹2 per litre (₹40 for a 20-litre jar, delivered)",
+      "numeric": 2,
+      "unit": "₹ per litre",
+      "basis": "observed-behaviour",
+      "defence": "₹40 delivered is what a jar costs in most urban neighbourhoods, and the delivery sits inside that price rather than being charged on top of it.",
+      "confidence": "defensible",
+      "contestedBy": "A branded metro jar reaches ₹60 (₹3 a litre) and a local unbranded one sells at ₹30 (₹1.50 a litre). That spread is the sensitivity grid below."
+    },
+    {
+      "id": "a-lfpr",
+      "lever": "Urban labour-force participation",
+      "value": "40%",
+      "numeric": 0.4,
+      "unit": "share of urban population",
+      "basis": "published-benchmark",
+      "defence": "Low by international standards for an identifiable reason — urban female participation runs near a quarter — and it is the figure that reconciles a 490 Mn urban base with a roughly 200 Mn urban workforce.",
+      "confidence": "defensible",
+      "contestedBy": "Counting informal and part-time work fully would push this to 45%, adding barely 1% to the total answer — which is why the cooler share below, not this row, is the one to defend."
+    },
+    {
+      "id": "a-work-jar-share",
+      "lever": "Urban workers drinking from a jar cooler at work",
+      "value": "25%",
+      "numeric": 0.25,
+      "unit": "share of urban workers",
+      "basis": "declared-judgement",
+      "defence": "Offices, clinics, shops and coaching centres have coolers; construction sites, street vending and most factory floors do not, and those employ the larger share.",
+      "confidence": "shaky",
+      "contestedBy": "Nothing anchors this number. At 15% it removes 6 bn litres; at 35% it adds 6 bn. Name it as your weakest row before the interviewer does."
+    },
+    {
+      "id": "a-work-litres",
+      "lever": "Litres a jar-served worker draws",
+      "value": "300 a year (1 litre a working day × 300 days)",
+      "numeric": 300,
+      "unit": "litres per worker per year",
+      "basis": "structural-logic",
+      "defence": "A litre across a working day is a cup roughly every two hours, and Indian establishments run a six-day week, which lands near 300 days once festivals and holidays come out.",
+      "confidence": "defensible",
+      "contestedBy": "A five-day corporate week gives 250 days and cuts this stream by a sixth."
+    },
+    {
+      "id": "a-plants",
+      "lever": "Organised packaged-water bottling plants in India",
+      "value": "2,000",
+      "numeric": 2000,
+      "unit": "plants",
+      "basis": "declared-judgement",
+      "defence": "National and regional brands run licensed plants in the low thousands — a few hundred for the national names across their franchise networks, and the balance regional.",
+      "confidence": "judgement",
+      "contestedBy": "Counting every licensed unit including the smallest regional bottlers could double this. It is the loosest number in the supply route and should be said to be."
+    },
+    {
+      "id": "a-line-rate",
+      "lever": "Filling-line throughput",
+      "value": "3,000 litres an hour",
+      "numeric": 3000,
+      "unit": "litres per hour",
+      "basis": "physical-constant",
+      "defence": "A mid-speed PET line fills roughly 100 bottles a minute, which at a litre a bottle is 6,000 an hour before changeovers — halved to 3,000 for realistic mixed-pack running.",
+      "confidence": "judgement"
+    },
+    {
+      "id": "a-plant-hours",
+      "lever": "Plant operating time",
+      "value": "4,800 hours a year (16 hours × 300 days)",
+      "numeric": 4800,
+      "unit": "hours per year",
+      "basis": "structural-logic",
+      "defence": "Two shifts rather than three, because packaged water is seasonal and the third shift is what the summer peak exists to justify.",
+      "confidence": "defensible"
+    },
+    {
+      "id": "a-utilisation",
+      "lever": "Effective capacity utilisation",
+      "value": "40%",
+      "numeric": 0.4,
+      "unit": "share of nameplate",
+      "basis": "structural-logic",
+      "defence": "The category peaks hard between March and June, so plants are sized for summer and idle for much of the year — a nameplate figure taken at face value would overstate output by more than double.",
+      "confidence": "judgement",
+      "contestedBy": "Sixty per cent is defensible for the national brands taken alone, and would lift the supply-side value by about a third."
+    },
+    {
+      "id": "a-jar-units",
+      "lever": "Local jar-filling units across urban India",
+      "value": "30,000",
+      "numeric": 30000,
+      "unit": "units",
+      "basis": "declared-judgement",
+      "defence": "Build it rather than assert it — the top 100 cities support roughly 100 units each and the remaining 7,900 towns two or three, which sums to about 30,000.",
+      "confidence": "judgement",
+      "contestedBy": "This channel is largely unregistered, so the true figure is unknowable. Treat it as an order-of-magnitude claim and say so."
+    },
+    {
+      "id": "a-jar-unit-output",
+      "lever": "Output of one jar-filling unit",
+      "value": "75,000 jars a year (250 a day × 300 days)",
+      "numeric": 75000,
+      "unit": "jars per unit per year",
+      "basis": "observed-behaviour",
+      "defence": "A unit with one filling bay and two delivery vehicles turns about 250 jars a day, which is what that bay and a pair of drivers can physically move.",
+      "confidence": "judgement"
+    },
+    {
+      "id": "a-urban-sales-share",
+      "lever": "Urban share of national packaged-water sales",
+      "value": "85%",
+      "numeric": 0.85,
+      "unit": "share of national value",
+      "basis": "published-benchmark",
+      "defence": "Urban India is about 65% of FMCG sales, and packaged water skews further urban than FMCG as a whole because the jar channel and the out-of-home occasions barely exist in villages.",
+      "confidence": "defensible",
+      "contestedBy": "At 75% the supply route lands 6% below the demand route rather than 6% above. The two stay inside any honest band either way."
+    }
+  ],
+
+  "calculation": [
+    {
+      "id": "c1",
+      "label": "Urban population",
+      "expr": "1400000000 * 0.35",
+      "display": "1,400 Mn × 35% urban",
+      "result": 490000000,
+      "tolerance": 0,
+      "unit": "people",
+      "carriedForward": "490 Mn (49 crore)",
+      "uses": ["a-pop", "a-urban-share"],
+      "soWhat": "Every line below is linear in this one figure. Box it, and derive households and workers from the boxed number rather than reaching back to the national population out of habit."
+    },
+    {
+      "id": "c2",
+      "label": "Bottles bought in the bottled channel, a year",
+      "expr": "(490000000 * 0.10 * 100) + (490000000 * 0.40 * 25) + (490000000 * 0.50 * 4)",
+      "display": "49 Mn top × 100 + 196 Mn middle × 25 + 245 Mn low × 4",
+      "result": 10780000000,
+      "tolerance": 0,
+      "unit": "bottles a year",
+      "carriedForward": "≈ 1,080 crore bottles",
+      "uses": ["a-income-bands", "a-bottles-top", "a-bottles-mid", "a-bottles-low"],
+      "soWhat": "The top and middle bands land on the same 4,900 Mn. A small base buying often and a large base buying rarely are worth the same to a brand, which means losing the light middle costs as much as losing the heavy top."
+    },
+    {
+      "id": "c3",
+      "label": "Bottled-channel litres",
+      "expr": "10780000000 * 0.75",
+      "display": "1,080 crore bottles × 0.75 L average pack",
+      "result": 8085000000,
+      "tolerance": 0,
+      "unit": "litres a year",
+      "carriedForward": "≈ 8.1 bn litres",
+      "uses": ["a-pack-size"],
+      "soWhat": "Pack size is where a 500 ml habit and a 2-litre habit stop being the same purchase. Weight it by litres sold, not by how many of each you can picture on a shelf."
+    },
+    {
+      "id": "c4",
+      "label": "Bottled-channel retail value",
+      "expr": "8085000000 * 20",
+      "display": "8.085 bn litres × ₹20 per litre",
+      "result": 161700000000,
+      "tolerance": 0,
+      "unit": "₹ a year",
+      "carriedForward": "≈ ₹16,170 crore",
+      "uses": ["a-price-bottle"],
+      "soWhat": "This price belongs to this channel and nowhere else. The instant it touches a litres figure that includes jars, the answer is out by a factor rather than a margin."
+    },
+    {
+      "id": "c5",
+      "label": "Urban households",
+      "expr": "490000000 / 4",
+      "display": "490 Mn urban people ÷ 4 per urban household",
+      "result": 122500000,
+      "tolerance": 0,
+      "unit": "households",
+      "carriedForward": "≈ 120 Mn households",
+      "uses": ["a-hh-size"],
+      "soWhat": "Switch units deliberately here. Bottles are bought by people and jars are bought by households, and a candidate who counts both in people has counted the family twice."
+    },
+    {
+      "id": "c6",
+      "label": "Households on a jar subscription",
+      "expr": "(120000000 * 0.10 * 0.25) + (120000000 * 0.40 * 0.30) + (120000000 * 0.50 * 0.05)",
+      "display": "12 Mn top × 25% + 48 Mn middle × 30% + 60 Mn low × 5%",
+      "result": 20400000,
+      "tolerance": 0,
+      "unit": "households",
+      "carriedForward": "≈ 20 Mn households",
+      "uses": ["a-income-bands", "a-jar-pen"],
+      "soWhat": "Penetration peaks in the middle, not at the top. Assuming every consumption rate rises with income is the reflex that gets this question wrong, and the reason it fails here is that the top band already owns the substitute."
+    },
+    {
+      "id": "c7",
+      "label": "Home jar litres",
+      "expr": "20000000 * 80 * 20",
+      "display": "20 Mn households × 80 jars a year × 20 L",
+      "result": 32000000000,
+      "tolerance": 0,
+      "unit": "litres a year",
+      "carriedForward": "≈ 32 bn litres",
+      "uses": ["a-jars-per-hh", "a-jar-size"],
+      "soWhat": "Four times the bottled channel's litres, out of a sixth of urban households. Volume in this category is a standing order, not a shelf decision."
+    },
+    {
+      "id": "c8",
+      "label": "Urban workers",
+      "expr": "490000000 * 0.40",
+      "display": "490 Mn × 40% labour-force participation",
+      "result": 196000000,
+      "tolerance": 0,
+      "unit": "workers",
+      "carriedForward": "≈ 200 Mn workers",
+      "uses": ["a-lfpr"],
+      "soWhat": "The workplace stream is the one candidates skip, and it is a quarter of the volume. Anywhere a person spends nine hours a day is a consumption site."
+    },
+    {
+      "id": "c9",
+      "label": "Workers served by a jar cooler",
+      "expr": "200000000 * 0.25",
+      "display": "200 Mn workers × 25% with a cooler at work",
+      "result": 50000000,
+      "tolerance": 0,
+      "unit": "workers",
+      "carriedForward": "50 Mn",
+      "uses": ["a-work-jar-share"],
+      "soWhat": "Flag this line as your weakest while you are writing it, not after you are challenged on it."
+    },
+    {
+      "id": "c10",
+      "label": "Workplace jar litres",
+      "expr": "50000000 * 300",
+      "display": "50 Mn workers × 300 L a year (1 L × 300 working days)",
+      "result": 15000000000,
+      "tolerance": 0,
+      "unit": "litres a year",
+      "carriedForward": "≈ 15 bn litres",
+      "uses": ["a-work-litres"],
+      "soWhat": "Nearly twice the entire bottled channel, from a stream most answers never open."
+    },
+    {
+      "id": "c11",
+      "label": "Total jar-channel litres",
+      "expr": "32000000000 + 15000000000",
+      "display": "32 bn home + 15 bn workplace",
+      "result": 47000000000,
+      "tolerance": 0,
+      "unit": "litres a year",
+      "carriedForward": "≈ 47 bn litres",
+      "uses": [],
+      "soWhat": "Eighty-five per cent of the litres in this question sit on this line, priced at a tenth of the bottled rate. Hold that before quoting any per-litre figure."
+    },
+    {
+      "id": "c12",
+      "label": "Jar-channel retail value",
+      "expr": "47000000000 * 2",
+      "display": "47 bn litres × ₹2 per litre",
+      "result": 94000000000,
+      "tolerance": 0,
+      "unit": "₹ a year",
+      "carriedForward": "≈ ₹9,400 crore",
+      "uses": ["a-price-jar"],
+      "soWhat": "Six times the bottled volume converts into rather less than the bottled value. Volume leadership and value leadership sit in different channels of the same category."
+    },
+    {
+      "id": "c13",
+      "label": "Total packaged litres, urban India",
+      "expr": "8085000000 + 47000000000",
+      "display": "8.1 bn bottled + 47 bn jar",
+      "result": 55085000000,
+      "tolerance": 0,
+      "unit": "litres a year",
+      "carriedForward": "≈ 55 bn litres (5,500 crore litres)",
+      "uses": [],
+      "soWhat": "This is the first of the two answers, and the only one a supply-side check can genuinely test. Report it before the rupee figure, not after."
+    },
+    {
+      "id": "c14",
+      "label": "Total retail value, urban India",
+      "expr": "161700000000 + 94000000000",
+      "display": "₹16,170 crore bottled + ₹9,400 crore jar",
+      "result": 255700000000,
+      "tolerance": 0,
+      "unit": "₹ a year",
+      "carriedForward": "₹255,700 Mn, before converting",
+      "uses": [],
+      "soWhat": "Keep both components visible in the answer. A single blended total hides the finding that 15% of the litres carry nearly two-thirds of the rupees."
+    },
+    {
+      "id": "c15",
+      "label": "Total retail value in crore",
+      "expr": "255700000000 / 10000000",
+      "display": "₹255,700 Mn ÷ 1 crore",
+      "result": 25570,
+      "tolerance": 0,
+      "unit": "₹ crore a year",
+      "carriedForward": "≈ ₹25,000 crore — round it before you say it",
+      "uses": [],
+      "soWhat": "Say ₹25,000 crore. A guesstimate answered as ₹25,570 crore claims a precision your inputs cannot support, and the interviewer hears the claim before the number."
+    }
+  ],
+
+  "finalAnswer": "≈ ₹25,000 crore a year at retail in urban India, on roughly 55 bn litres (5,500 crore litres). Bottles are 15% of the litres and about two-thirds of the rupees; 20-litre jars are the rest.",
+  "finalAnswerNumeric": 25000,
+  "answerBand": "₹18,000 – ₹35,000 crore a year, on 40 – 70 bn litres. The band is wide because it inherits a ±50% swing on the jar price and a ±40% swing on how often the middle band buys a bottle — and because the workplace cooler gate is an open guess.",
+  "orderOfMagnitude": "10^11 rupees (₹25,000 crore ≈ ₹2.6 × 10^11); 10^10 litres",
+
+  "triangulation": {
+    "label": "Supply-side cross-check — can the country physically fill this much?",
+    "route": "Bottom-up",
+    "premise": "If urban India drinks 55 bn packaged litres a year, somebody has to fill them. Count the filling capacity in two tiers — organised PET plants behind the bottled channel, small local units behind the jar channel — run each at a realistic utilisation, then scale the national output back to urban with a sales-share gate. The route is independent of the population funnel on volume, which is the comparison worth making. Say in advance that it reuses the same two prices, so agreement on value is partly circular.",
+    "lines": [
+      {
+        "id": "t1",
+        "label": "Nameplate output of organised bottling plants",
+        "expr": "2000 * 3000 * 4800",
+        "display": "2,000 plants × 3,000 L an hour × 4,800 hours a year",
+        "result": 28800000000,
+        "tolerance": 0,
+        "unit": "litres a year",
+        "carriedForward": "≈ 29 bn litres of nameplate",
+        "uses": ["a-plants", "a-line-rate", "a-plant-hours"],
+        "soWhat": "Nameplate is not output. Quote it only as the ceiling you are about to knock down."
+      },
+      {
+        "id": "t2",
+        "label": "Effective bottled output",
+        "expr": "28800000000 * 0.4",
+        "display": "29 bn L nameplate × 40% utilisation",
+        "result": 11520000000,
+        "tolerance": 0,
+        "unit": "litres a year",
+        "carriedForward": "≈ 11.5 bn litres",
+        "uses": ["a-utilisation"],
+        "soWhat": "Packaged water peaks between March and June, so plants are built for summer and idle for much of the year. Skipping the utilisation gate is how supply-side routes overstate by two or three times."
+      },
+      {
+        "id": "t3",
+        "label": "Output of the local jar units",
+        "expr": "30000 * 75000 * 20",
+        "display": "30,000 units × 75,000 jars a year × 20 L",
+        "result": 45000000000,
+        "tolerance": 0,
+        "unit": "litres a year",
+        "carriedForward": "≈ 45 bn litres",
+        "uses": ["a-jar-units", "a-jar-unit-output", "a-jar-size"],
+        "soWhat": "This tier is almost entirely unregistered, which is precisely why a demand-side route reaches it more reliably than a supply-side one does."
+      },
+      {
+        "id": "t4",
+        "label": "Total national packaged litres",
+        "expr": "11520000000 + 45000000000",
+        "display": "11.5 bn bottled + 45 bn jar",
+        "result": 56520000000,
+        "tolerance": 0,
+        "unit": "litres a year",
+        "carriedForward": "≈ 57 bn litres, all-India",
+        "uses": [],
+        "soWhat": "All-India, not urban. The demand route counted urban only, so these two figures are not yet comparable — that gate comes below."
+      },
+      {
+        "id": "t5",
+        "label": "National retail value at the same two prices",
+        "expr": "(11520000000 * 20) + (45000000000 * 2)",
+        "display": "11.5 bn L × ₹20 + 45 bn L × ₹2",
+        "result": 320400000000,
+        "tolerance": 0,
+        "unit": "₹ a year",
+        "carriedForward": "₹320,400 Mn, all-India",
+        "uses": ["a-price-bottle", "a-price-jar"],
+        "soWhat": "Reusing the demand route's prices is deliberate and must be declared. It makes the value comparison weak evidence and the volume comparison the real test."
+      },
+      {
+        "id": "t6",
+        "label": "National value in crore",
+        "expr": "320400000000 / 10000000",
+        "display": "₹320,400 Mn ÷ 1 crore",
+        "result": 32040,
+        "tolerance": 0,
+        "unit": "₹ crore a year",
+        "carriedForward": "≈ ₹32,000 crore, all-India",
+        "uses": [],
+        "soWhat": "Before comparing anything, check that the geographies match. They do not yet."
+      },
+      {
+        "id": "t7",
+        "label": "Urban share of that value",
+        "expr": "32040 * 0.85",
+        "display": "₹32,040 crore × 85% urban",
+        "result": 27234,
+        "tolerance": 0,
+        "unit": "₹ crore a year",
+        "carriedForward": "≈ ₹27,000 crore, urban",
+        "uses": ["a-urban-sales-share"],
+        "soWhat": "Now the two routes describe the same thing, and only now is the gap between them worth reading."
+      }
+    ],
+    "answer": "≈ ₹27,000 crore a year of urban retail value, on about 48 bn urban litres out of 57 bn filled nationally.",
+    "verdict": "The supply route lands 6% above the demand route on value and about 13% below it on volume — inside the ±25% you can honestly claim at this level of precision. Do not oversell the agreement. Both routes use the same ₹20 and ₹2 prices, so the value match is partly circular; the volume comparison is the genuinely independent one, and it is the looser of the two. The gap that does exist runs the right way for a nameable reason: the supply route rests on a plant count and a utilisation rate, both open guesses, while the demand route rests on a population anchor and behaviours you can watch. When two routes disagree, say which one you would bet on and why — here it is the demand route, because its weakest input is a behaviour you can observe and the supply route's weakest input is a plant count nobody publishes."
+  },
+
+  "sensitivity": {
+    "assumptionId": "a-price-jar",
+    "whyThisLever": "One number prices 85% of the litres, and it is the number a candidate is most likely to replace by accident. The jar price is not the shakiest input in the tree — the workplace cooler share is — but it is the one whose misuse changes the answer by a factor rather than a fraction, and that is what earns it the grid. Run the defensible spread first, then show what happens if the two channels are blended, because blending is the error this question exists to catch.",
+    "cases": [
+      {
+        "scenario": "Conservative",
+        "leverValue": "₹1.50 per litre (₹30 local unbranded jar)",
+        "answer": "≈ ₹23,200 crore",
+        "deltaVsBase": "−9%"
+      },
+      {
+        "scenario": "Base",
+        "leverValue": "₹2.00 per litre (₹40 delivered jar)",
+        "answer": "≈ ₹25,600 crore",
+        "deltaVsBase": "0%"
+      },
+      {
+        "scenario": "Aggressive",
+        "leverValue": "₹3.00 per litre (₹60 branded metro jar)",
+        "answer": "≈ ₹30,300 crore",
+        "deltaVsBase": "+18%"
+      }
+    ],
+    "breakpoint": "The jar channel only carries half the market's value at about ₹3.44 a litre — a ₹69 jar. That is a branded metro price, not a national average, so under every defensible jar price the bottled channel stays the value leader and the jar channel stays the volume leader. The conclusion is robust; the number is not. The one thing that does break it is blending: price all 47 bn jar litres at the ₹20 bottled rate and the answer goes to about ₹1.1 lakh crore, four times the base and outside any published estimate by a wide margin.",
+    "oneLiner": "With no time for the grid, say this: jars are 85% of the litres and about a third of the rupees, so halving or trebling the jar price moves the answer by under a fifth — but pricing jars like bottles multiplies the whole market by four."
+  },
+
+  "sanityChecks": [
+    "₹25,570 crore across 49 crore urban people is ₹522 a year, or about ₹44 a month each. That is two 1-litre bottles a month plus a share of a household jar subscription — close to what you can watch people actually buy. Had it come out at ₹5,000 a year you would have sized mineral water for Geneva, not packaged water for Ghaziabad.",
+    "Fifty-five bn litres over 49 crore people is about 0.3 litres a day each, roughly a seventh of what a person drinks. Packaged water supplements the tap and the filter; it never replaces them. A figure near 2 litres a day means you have sized total water consumption and dropped the word packaged.",
+    "About 1,080 crore bottles a year is 22 bottles per urban person, one every seventeen days. Since a minority buys one on most days, that average should feel low rather than high. If it lands above 100, the middle-band frequency is the line to revisit.",
+    "Twenty Mn of 120 Mn urban households on a jar subscription is one in six. Walk through a mid-income apartment block and count the blue jars on the landings — if you cannot see roughly that density, revise the penetration rate rather than the price.",
+    "At ₹25,570 crore the category is about 4% of a roughly ₹6 lakh crore urban FMCG pool. That is plausible for a real but low-value-per-litre category. Much above 10% and packaged water would be outselling categories you know from the shelf to be larger.",
+    "The numbers here are illustrative — chosen to be defensible under questioning and round enough to run in your head, not asserted as verified market data. The structure is the deliverable; the number is an order of magnitude."
+  ],
+
+  "traps": [
+    {
+      "trap": "Carrying one blended price per litre across both channels.",
+      "whyItHappens": "The funnel produces a single total volume, and the mind reaches for a single price to multiply it by. The ₹20 bottle MRP is the only water price most candidates can recall on demand, so it wins by availability and the 47 bn jar litres get priced at ten times their worth.",
+      "fix": "Split volume by channel before you price anything. Make it a rule that no price line may touch a litres line spanning more than one channel, and state the rule out loud as you set up the tree."
+    },
+    {
+      "trap": "Sizing the water people drink rather than the water people buy in a pack.",
+      "whyItHappens": "Two to three litres a day is a familiar physiological figure and it slips into the funnel unchallenged because it sounds like data. Multiplied by 490 Mn people and 365 days it produces about 450 bn litres, eight times the real answer.",
+      "fix": "The gate in this funnel is a purchase occasion, not thirst. Ask what makes someone pay for water they could otherwise get free, and count only those moments."
+    },
+    {
+      "trap": "Using the national population and calling the answer urban.",
+      "whyItHappens": "You set up 1.4 bn, apply the 35% gate once, then reach back to the 1.4 bn out of habit when computing households or workers. Nothing in the arithmetic flags it, and the branch where it happened comes out roughly three times too large.",
+      "fix": "Write the urban base once, box it on the page, and derive every subsequent base from the boxed number. If a line uses 1,400 it should be the first line and nothing else."
+    },
+    {
+      "trap": "Dropping the 20-litre jar because it feels like the informal sector.",
+      "whyItHappens": "Jar water is unbranded, paid in cash, locally filled and never appears in a retail audit, so it does not feel like 'the market' the question is asking about. Candidates quietly exclude it and never say they have.",
+      "fix": "It is 85% of the litres. Excluding it is a legitimate scoping choice, but declare it before computing and then stop calling the answer the packaged drinking water market — call it the bottled water market, which is a different and smaller question."
+    },
+    {
+      "trap": "Reporting ₹25,570 crore.",
+      "whyItHappens": "The arithmetic produced five digits and the candidate reads out what is on the page, mistaking the precision of the calculation for the precision of the inputs.",
+      "fix": "Round to ₹25,000 crore and hand over a band of ₹18,000 to ₹35,000 crore. The precision you claim is a claim about your data, and here you have none."
+    },
+    {
+      "trap": "Giving one answer when the question has two.",
+      "whyItHappens": "Sizing questions are rehearsed as rupee questions, so volume gets computed as an intermediate and then discarded. The candidate hands over a value and loses the only finding in the analysis.",
+      "fix": "Report litres and rupees side by side. The sentence that earns the marks is that 15% of the litres carry nearly two-thirds of the rupees, and you cannot say it if you kept only one number."
+    }
+  ],
+
+  "probes": [
+    {
+      "question": "Your jar channel is 85% of the litres and about a third of the rupees. If you were advising a national bottled-water brand, what does that tell you?",
+      "intent": "Whether the candidate can read a commercial implication off a sizing answer, or whether producing the number was the whole exercise.",
+      "goodAnswer": "That volume share and profit pool are different markets wearing one category label. The jar channel is large in litres, locally supplied, unbranded and priced at a tenth of the bottle, so entering it means competing on route density and delivery trust rather than on brand or shelf presence. I would treat it as a separate business with its own economics, and I would want per-litre contribution rather than price before recommending it at all.",
+      "weakAnswer": "The jar market is huge, so the brand should launch 20-litre jars to capture the volume. This reads share of litres as share of opportunity and never asks what a litre earns."
+    },
+    {
+      "question": "I do not accept 35% urban. Use 40%. Redo it.",
+      "intent": "Whether the candidate can propagate a change through the structure without rebuilding it, and whether they know which conclusions survive a changed input.",
+      "goodAnswer": "Every line below the urban base is linear in it, so the whole answer scales by 40 over 35 — about ₹29,000 crore, up 14%. The structure is untouched and so is the finding: bottles still carry roughly two-thirds of the rupees on 15% of the litres, because that split does not depend on the base at all.",
+      "weakAnswer": "Starting again from the top and re-deriving all fifteen lines, which burns four minutes to reach a number the candidate could have scaled in ten seconds, and signals they do not know their own model is linear."
+    },
+    {
+      "question": "Which single number here would you most want to check before this went into a deck?",
+      "intent": "Calibration — whether the candidate can rank their own uncertainty instead of defending every row with equal conviction.",
+      "goodAnswer": "The share of urban workers drinking from a jar cooler at work. It is a declared guess with nothing behind it and it carries 15 bn litres, a quarter of the total volume. The jar price moves the rupee answer more, but I can defend ₹40 for a jar from what I pay for one — I cannot defend 25% from anything.",
+      "weakAnswer": "The population figure, which is the one number in the chain that is actually published and the one nobody at the table will contest."
+    },
+    {
+      "question": "Suppose PET packs under one litre were banned tomorrow. What happens to your answer?",
+      "intent": "Whether the structure survives a shock, or whether it was a chain of multiplications with no behavioural logic underneath it.",
+      "goodAnswer": "The bottled channel is an out-of-home occasion business, so demand migrates rather than disappears. Average pack size rises towards a litre, which lifts litres per purchase while cutting rupees per litre, so value falls by less than the pack-mix change suggests. I would rebuild only the pack-size and price lines and hold the frequency lines fixed, then flag the occasions with no one-litre substitute — a station platform, a cinema seat — as genuinely lost.",
+      "weakAnswer": "Revenue falls by the share of sub-litre packs, which quietly assumes the buyer vanishes along with the pack."
+    },
+    {
+      "question": "Is this market growing, and where?",
+      "intent": "Whether the candidate separates volume growth from mix shift — the distinction that turns a sizing answer into something a client can act on.",
+      "goodAnswer": "Litres grow with urbanisation and with the workplace channel, which tracks formal employment. Rupees grow faster, because the growth sits disproportionately on the bottled side as middle-band frequency drifts from 25 a year towards the top band's 100. One category, two growth stories — and a jar-heavy player captures almost all of the volume growth and almost none of the value growth.",
+      "weakAnswer": "Yes, around 15% a year, quoted without saying which of the two answers, litres or rupees, the figure applies to."
+    }
+  ]
+}

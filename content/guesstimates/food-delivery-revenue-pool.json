@@ -1,0 +1,581 @@
+{
+  "id": "food-delivery-revenue-pool",
+  "question": "What do India's food-delivery platforms earn in a year — not what their customers spend?",
+  "tabLabel": "Food-delivery revenue, India",
+  "archetype": "revenue-pool-take-rate",
+  "difficulty": "Hard",
+  "timeboxMinutes": 15,
+  "teachingPoint": "A marketplace question has two answers sitting on top of each other, and only one of them was asked for. The money that moves through the app is the restaurant's; the money the platform keeps is a slice of it, and here the slice is roughly a fifth. Candidates who hand back gross order value are not out by a rounding error — they are out by a factor of about five, and they have answered a different question confidently. The transferable habit is to write 'whose money is this?' beside every line of the chain, and to treat the take rate as something you build from named components rather than assert as a percentage.",
+
+  "scope": {
+    "countingWhat": "The revenue food-delivery platforms recognise as their own from the food-delivery business in one year, summed across every platform operating in India — commission billed to restaurants, fees collected from customers and advertising sold to restaurants, net of the discounts the platform itself funds. It is not the value of the food ordered.",
+    "unit": "rupees per year",
+    "timeBasis": "flow (per year)",
+    "geography": "India, all cities and towns where delivery actually operates",
+    "included": [
+      "Commission the platform bills the restaurant on the value of the food",
+      "Delivery charges and platform fees collected from the customer",
+      "Advertising, sponsored listings and priority placement sold to restaurants",
+      "Subscription fees for free-delivery programmes, net of the deliveries they buy"
+    ],
+    "excluded": [
+      "The value of the food itself — that is the restaurant's revenue, not the platform's",
+      "GST and other taxes collected on behalf of the government",
+      "Quick commerce and grocery delivery, which run on the same apps and are larger in places",
+      "Dining-out, table booking and events revenue on the same platforms",
+      "Orders a restaurant takes on its own phone line and delivers with its own staff",
+      "The rider's earnings, which are the platform's cost and not anybody's revenue"
+    ],
+    "boundaryTrap": "'How big is food delivery in India' has two readings that differ by roughly a factor of five. Gross order value is the money customers spend, and it is the figure the press prints because it is the larger one. Platform revenue is the slice the platform keeps, and it is what this question asked for. Say which one you are estimating in your first sentence — and while you are drawing the boundary, exclude quick commerce out loud, because the same app now sells groceries in ten minutes and on some platforms that business already moves more money than the food does. A scope error here is not a detail; it is the whole answer."
+  },
+
+  "routeChoice": {
+    "chosen": "Top-down",
+    "why": "Orders are the engine of this business and orders come from people, so start where the people are and narrow: urban India, then the towns where delivery actually runs, then adults, then adults with a phone and a payment method, then the minority who order in a given month. Every step is a rate you can name and defend separately, which means an interviewer who disagrees can point at one step rather than at the answer. Then do the part the question is really about — convert orders into money twice, once at gross order value and once at platform revenue, and say plainly which is which.",
+    "rejectedRoute": "Bottom-up",
+    "rejectedWhyNot": "Bottom-up here means starting from the restaurants: count the outlets listed on the apps, assume orders per outlet per day, bill them. It fails on both levers. The listed base is violently skewed — a dark-kitchen brand in Koramangala may take two hundred orders a day while a listed sweet shop on a Tier-2 market street takes two a week — so your answer is decided by a mean over a distribution nobody can see. And it starts at the wrong unit for this question: billing the restaurant gets you commission and advertising but silently drops the customer-side fees, which are close to a third of platform revenue, so the structure cannot reach the right answer even with perfect levers. A supply-side count is too weak to build on here. It is still strong enough to check with, which is exactly what the triangulation does — but from riders, who are visible on the street, rather than from restaurants, whose order books are not."
+  },
+
+  "tree": {
+    "root": "Annual food-delivery platform revenue, India",
+    "rootFormula": "= Orders a year × Net platform revenue per order",
+    "value": "≈ ₹12,500 crore",
+    "branches": [
+      {
+        "label": "Orders a year",
+        "formula": "Monthly transacting users × Orders per user per month × 12",
+        "value": "≈ 147 crore orders",
+        "note": "The volume engine. Everything on this branch is counted in people and orders — no rupees appear until the branch is finished.",
+        "isCriticalPath": true,
+        "children": [
+          { "label": "Urban population", "formula": "140 crore × 35%", "value": "≈ 49 crore", "note": "The uncontested base. Rural India is excluded not by snobbery but by rider economics — a delivery needs enough orders inside a few kilometres to keep a rider busy." },
+          { "label": "Living where delivery actually runs", "formula": "49 crore × 55%", "value": "≈ 27 crore", "note": "Platforms list hundreds of towns, but coverage in a small town is a few central pin codes, not the town. Serviceable is a smaller idea than listed." },
+          { "label": "Adults in those cities", "formula": "27 crore × 70%", "value": "≈ 18.9 crore", "note": "Above the national 65% adult share, because cities carry working-age migrants and fewer children per household." },
+          { "label": "With a smartphone and a payment method", "formula": "18.9 crore × 65%", "value": "≈ 12.3 crore", "note": "The gate is not phone ownership alone — it is a handset of one's own plus UPI or a card, which knocks out most of the oldest and the poorest tier." },
+          { "label": "Ordering at least once this month", "formula": "12.3 crore × 25%", "value": "≈ 3.1 crore", "note": "The narrowest gate and the one campus intuition gets most wrong. Capability is not habit." },
+          { "label": "Orders a month", "formula": "3.1 crore × 4 orders", "value": "≈ 12.3 crore orders", "note": "One order a month for every app-capable urban adult in the country, which is a cleaner way to state the pair of levers than either of them alone." }
+        ]
+      },
+      {
+        "label": "Gross order value",
+        "formula": "Orders a year × Average order value",
+        "value": "≈ ₹58,900 crore",
+        "note": "The number the press prints and the question did not ask for. Compute it anyway — you need it as the denominator of the take rate, and naming it is how you prove you knew the difference.",
+        "isCriticalPath": false,
+        "children": [
+          { "label": "Metro basket", "formula": "Order for two, main plus sides", "value": "≈ ₹450", "note": "Higher menu prices and a larger share of two-person orders." },
+          { "label": "Smaller-city basket", "formula": "Order for one or two", "value": "≈ ₹320", "note": "Lower menu prices and more single-person orders placed at work." },
+          { "label": "Blended average order value", "formula": "Volume-weighted towards the metros", "value": "₹400", "note": "Menu value of the food only. Delivery and platform fees are handled on the revenue branch so they cannot be counted twice." }
+        ]
+      },
+      {
+        "label": "Net platform revenue per order",
+        "formula": "Commission + Customer fees + Advertising − Platform-funded discount",
+        "value": "₹85, or 21% of the basket",
+        "note": "The branch the question exists for. Build the take rate from named components — assert it as a single percentage and you have nothing to defend when it is challenged.",
+        "isCriticalPath": true,
+        "children": [
+          { "label": "Commission from the restaurant", "formula": "₹400 × 18%", "value": "₹72", "note": "The largest single line, and the one under permanent negotiation — large chains pay materially less than an independent outlet." },
+          { "label": "Delivery and platform fees from the customer", "formula": "Charged per order, waived for subscribers", "value": "₹30", "note": "Blended across full-fee orders and free-delivery subscribers. Visible on the bill, which is why candidates remember it and forget the commission." },
+          { "label": "Advertising sold to restaurants", "formula": "≈ 2% of the basket", "value": "₹8", "note": "Small per order, high margin, and growing — a restaurant fighting for position on a crowded list will pay to be seen." },
+          { "label": "Discount the platform funds itself", "formula": "≈ 6% of the basket", "value": "−₹25", "note": "The only negative term, invisible from the customer's side, and the reason two structurally identical estimates can differ by a third." },
+          { "label": "Net revenue kept", "formula": "72 + 30 + 8 − 25", "value": "₹85", "note": "Revenue, not margin. The rider has not been paid yet." }
+        ]
+      }
+    ]
+  },
+
+  "assumptions": [
+    {
+      "id": "population",
+      "lever": "Population of India",
+      "value": "140 crore",
+      "numeric": 1400000000,
+      "unit": "people",
+      "basis": "census-anchor",
+      "defence": "The 2011 Census counted 121 crore and growth has run under 1% a year since — 140 crore is the figure every Indian interviewer carries and nobody will spend a minute on it.",
+      "confidence": "anchor",
+      "contestedBy": "145 crore is equally sayable. It moves the answer by under 4% and is not worth any of your timebox."
+    },
+    {
+      "id": "urban-share",
+      "lever": "Urban share of population",
+      "value": "35%",
+      "numeric": 0.35,
+      "unit": "share of population",
+      "basis": "census-anchor",
+      "defence": "The last census put urban India near 31% and the trend has run at roughly half a point a year since, which lands at about 35% today.",
+      "confidence": "anchor",
+      "contestedBy": "40% if you count peri-urban districts that are functionally towns. It lifts the answer by about a seventh and does not change the power of ten."
+    },
+    {
+      "id": "served-city-share",
+      "lever": "Urban population living where delivery is actually serviceable",
+      "value": "55%",
+      "numeric": 0.55,
+      "unit": "share of urban population",
+      "basis": "structural-logic",
+      "defence": "A delivery is only viable where a rider can find his next pickup within a few kilometres, so coverage collapses below a density threshold — the metros and larger cities are fully served, and a listed small town usually means a handful of central pin codes rather than the whole town.",
+      "confidence": "judgement",
+      "contestedBy": "Platforms cite listed-town counts running into the hundreds, which implies a far higher share. Listed is not serviced; accept 75% and the answer rises by about a third."
+    },
+    {
+      "id": "urban-adult-share",
+      "lever": "Adult share of the population in served cities",
+      "value": "70%",
+      "numeric": 0.7,
+      "unit": "share of population",
+      "basis": "structural-logic",
+      "defence": "Nationally about 65% of Indians are 18 or over, and cities sit above that because working-age migration lands in them and urban households carry fewer children.",
+      "confidence": "defensible",
+      "contestedBy": "Hold it at the national 65% and the answer falls by about 7% — real, but smaller than the argument costs."
+    },
+    {
+      "id": "app-capable-share",
+      "lever": "Served-city adults with a personal smartphone and a digital payment method",
+      "value": "65%",
+      "numeric": 0.65,
+      "unit": "share of adults",
+      "basis": "observed-behaviour",
+      "defence": "The gate is not a phone in the household but a handset of one's own plus UPI or a card, which is close to universal among urban adults under forty and thins out sharply above sixty and in the lowest income tier.",
+      "confidence": "defensible",
+      "contestedBy": "An interviewer quoting national smartphone-user counts may push to 80%. That lifts the answer by about a quarter, and it conflates household access with a personal, payment-linked handset."
+    },
+    {
+      "id": "transacting-share",
+      "lever": "App-capable urban adults who place at least one order in a given month",
+      "value": "25%",
+      "numeric": 0.25,
+      "unit": "share of app-capable adults",
+      "basis": "declared-judgement",
+      "defence": "Downloading is cheap and ordering is not — most people who have the app use it for an occasion rather than a routine, and a quarter transacting in any one month is the most a category competing with a home kitchen and an office canteen can plausibly hold.",
+      "confidence": "judgement",
+      "contestedBy": "Anything from 20% to 35% is arguable and the answer moves one-for-one with it. This is the lever campus candidates inflate, because everyone in the room orders weekly."
+    },
+    {
+      "id": "orders-per-user-month",
+      "lever": "Orders per transacting user per month",
+      "value": "4",
+      "numeric": 4,
+      "unit": "orders per user per month",
+      "basis": "observed-behaviour",
+      "defence": "The distribution is two-humped — a large group ordering once or twice for a weekend occasion and a small, dense group of young professionals ordering several times a week — and four is where that mix blends.",
+      "confidence": "judgement",
+      "contestedBy": "Three is defensible if you weight the occasional user harder, and takes the answer to about ₹9,400 crore."
+    },
+    {
+      "id": "months-per-year",
+      "lever": "Months in a year",
+      "value": "12",
+      "numeric": 12,
+      "unit": "months",
+      "basis": "physical-constant",
+      "defence": "Twelve, with no seasonality adjustment, because the monsoon lift and the summer dip roughly cancel over a year.",
+      "confidence": "anchor"
+    },
+    {
+      "id": "average-order-value",
+      "lever": "Average order value, menu value of the food only",
+      "value": "₹400",
+      "numeric": 400,
+      "unit": "rupees per order",
+      "basis": "observed-behaviour",
+      "defence": "A typical order is a main dish and a side for one or two people — around ₹450 at metro menu prices and closer to ₹320 in smaller cities, blending to ₹400 once volume is weighted towards the metros.",
+      "confidence": "defensible",
+      "contestedBy": "Platforms quote a higher figure because their gross order value includes delivery charges and taxes. Use their number here and you double-count the customer fees that appear again on the revenue branch."
+    },
+    {
+      "id": "commission-rate",
+      "lever": "Commission the platform bills the restaurant",
+      "value": "18% of the food value",
+      "numeric": 0.18,
+      "unit": "share of order value",
+      "basis": "published-benchmark",
+      "defence": "Published restaurant-partner terms and the industry's periodic public disputes both put headline commission in the high teens to low twenties, and the effective rate sits at the bottom of that band because large chains negotiate it down.",
+      "confidence": "defensible",
+      "contestedBy": "22% is the number restaurant associations quote when they are protesting. It lifts the answer by about a fifth — and overstates it, because the loudest complainants are the outlets with the least bargaining power."
+    },
+    {
+      "id": "customer-fee-per-order",
+      "lever": "Delivery and platform fees collected from the customer, per order",
+      "value": "₹30",
+      "numeric": 30,
+      "unit": "rupees per order",
+      "basis": "observed-behaviour",
+      "defence": "Read your own bill: a delivery charge in the ₹25 to ₹50 range plus a small flat platform fee, blended down because subscribers pay no delivery charge and a large share of orders come from them.",
+      "confidence": "defensible",
+      "contestedBy": "₹45 is what a non-subscriber pays on a short-distance order. Using the sticker rate rather than the blended rate is the standard way this line gets overstated."
+    },
+    {
+      "id": "ad-revenue-per-order",
+      "lever": "Advertising and listing revenue per order",
+      "value": "₹8",
+      "numeric": 8,
+      "unit": "rupees per order",
+      "basis": "published-benchmark",
+      "defence": "Platforms describe advertising as a small but fast-growing and high-margin line, of the order of a few per cent of order value — two per cent of a ₹400 basket is the conservative reading of that.",
+      "confidence": "judgement",
+      "contestedBy": "Four per cent is arguable on a crowded metro listing page. It adds about 9% to the answer and is the line most likely to be larger in three years than it is today."
+    },
+    {
+      "id": "platform-funded-discount",
+      "lever": "Discount the platform funds itself, per order",
+      "value": "₹25",
+      "numeric": 25,
+      "unit": "rupees per order",
+      "basis": "declared-judgement",
+      "defence": "Most of the discount a customer sees is funded by the restaurant buying visibility, but the platform carries the rest — first-order offers, free-delivery waivers and festive promotions — and roughly six per cent of the basket is the honest middle of a range nobody outside the company can observe.",
+      "confidence": "shaky",
+      "contestedBy": "Anywhere from ₹10 in a disciplined year to ₹45 in a competitive one. This is the widest lever on the page and it is the one tested in the sensitivity grid."
+    },
+    {
+      "id": "riders-on-shift",
+      "lever": "Delivery riders out on shift on a typical day, all platforms",
+      "value": "3.2 lakh",
+      "numeric": 320000,
+      "unit": "riders per day",
+      "basis": "observed-behaviour",
+      "defence": "Stand at a busy junction in Gurgaon or Indiranagar at eight in the evening and count the branded backpacks against the total two-wheeler flow — that ratio scaled across the served cities lands in the low lakhs, which is also the order of magnitude platforms describe when they discuss active fleets.",
+      "confidence": "judgement",
+      "contestedBy": "Registered rider counts run several times higher because most riders work part time and many are logged into two apps at once. Use the registration figure and this route over-counts badly."
+    },
+    {
+      "id": "deliveries-per-rider-day",
+      "lever": "Deliveries completed per rider per shift",
+      "value": "13",
+      "numeric": 13,
+      "unit": "deliveries per rider per day",
+      "basis": "observed-behaviour",
+      "defence": "A shift is built around the lunch and dinner peaks, a round trip with pickup waiting and traffic runs close to thirty minutes, and the hours between peaks are mostly idle — eight to nine working hours at that rate gives twelve to fifteen.",
+      "confidence": "judgement",
+      "contestedBy": "Riders in dense metro clusters with batched orders do twenty or more. Applying the best cluster's productivity to the whole country is the classic way this route inflates."
+    },
+    {
+      "id": "days-per-year",
+      "lever": "Operating days in a year",
+      "value": "365",
+      "numeric": 365,
+      "unit": "days",
+      "basis": "physical-constant",
+      "defence": "Delivery does not close — the weekend is the peak, not a holiday.",
+      "confidence": "anchor"
+    },
+    {
+      "id": "rider-payout-per-delivery",
+      "lever": "Total rider payout per delivery, including incentives",
+      "value": "₹60",
+      "numeric": 60,
+      "unit": "rupees per delivery",
+      "basis": "observed-behaviour",
+      "defence": "A base rate in the ₹30 to ₹40 range plus distance pay and peak-hour and streak incentives, which is why riders chase the dinner block — and it is the platform's cost, not the customer's ₹30 delivery fee.",
+      "confidence": "defensible",
+      "contestedBy": "₹50 in a market where rider supply is loose, ₹75 in a monsoon week. That band moves this route by about a fifth either way."
+    },
+    {
+      "id": "rider-cost-share-of-revenue",
+      "lever": "Rider payout as a share of platform food-delivery revenue",
+      "value": "65%",
+      "numeric": 0.65,
+      "unit": "share of revenue",
+      "basis": "published-benchmark",
+      "defence": "Platform disclosures consistently show delivery cost as by far the largest line against food-delivery revenue, running around two-thirds of it and falling slowly as batching improves — which is exactly why a 21% take rate is not a 21% margin.",
+      "confidence": "judgement",
+      "contestedBy": "Anywhere from 55% to 75% depending on the year and the batching rate. The whole band keeps this cross-check inside ₹12,000 to ₹16,500 crore."
+    }
+  ],
+
+  "calculation": [
+    {
+      "id": "c1",
+      "label": "Urban population",
+      "expr": "1400000000 * 0.35",
+      "display": "140 crore × 35% urban",
+      "result": 490000000,
+      "tolerance": 0.000001,
+      "unit": "people",
+      "carriedForward": "≈ 49 crore",
+      "uses": ["population", "urban-share"],
+      "soWhat": "Rural India is dropped here in one line and it should be defended in one line: delivery needs a rider to find his next pickup within a few kilometres, and outside towns that density does not exist."
+    },
+    {
+      "id": "c2",
+      "label": "Population where delivery is serviceable",
+      "expr": "490000000 * 0.55",
+      "display": "49 crore urban × 55% in serviced areas",
+      "result": 269500000,
+      "tolerance": 0.000001,
+      "unit": "people",
+      "carriedForward": "≈ 27 crore",
+      "uses": ["served-city-share"],
+      "soWhat": "The step candidates skip, because 'urban' feels as though it already means 'has apps'. It does not. A platform listing a town usually means it has lit up a few central pin codes, and the difference between listed and serviced is nearly half the urban base."
+    },
+    {
+      "id": "c3",
+      "label": "Adults in serviced areas",
+      "expr": "269500000 * 0.70",
+      "display": "27 crore × 70% aged 18 and over",
+      "result": 188650000,
+      "tolerance": 0.000001,
+      "unit": "adults",
+      "carriedForward": "≈ 18.9 crore",
+      "uses": ["urban-adult-share"],
+      "soWhat": "Use the urban adult share rather than the national one, and say why — cities are demographically older at the bottom end because the children stayed behind."
+    },
+    {
+      "id": "c4",
+      "label": "Adults with a smartphone and a payment method",
+      "expr": "188650000 * 0.65",
+      "display": "18.9 crore adults × 65% app-and-payment capable",
+      "result": 122622500,
+      "tolerance": 0.000001,
+      "unit": "adults",
+      "carriedForward": "≈ 12.3 crore",
+      "uses": ["app-capable-share"],
+      "soWhat": "This is the ceiling on the business, not its size. Everything after this line is about habit rather than access, and conflating the two is how candidates arrive at answers three times too large."
+    },
+    {
+      "id": "c5",
+      "label": "Users transacting in a month",
+      "expr": "122622500 * 0.25",
+      "display": "12.3 crore capable × 25% ordering this month",
+      "result": 30655625,
+      "tolerance": 0.000001,
+      "unit": "users",
+      "carriedForward": "≈ 3.1 crore",
+      "uses": ["transacting-share"],
+      "soWhat": "Three crore people out of a hundred and forty. Say that ratio aloud, because it is the one the room will resist — everyone in a Gurgaon classroom orders in, and the country is not the room."
+    },
+    {
+      "id": "c6",
+      "label": "Orders a month",
+      "expr": "30655625 * 4",
+      "display": "3.07 crore users × 4 orders each",
+      "result": 122622500,
+      "tolerance": 0.000001,
+      "unit": "orders per month",
+      "carriedForward": "≈ 12.3 crore orders",
+      "uses": ["orders-per-user-month"],
+      "soWhat": "Notice where this lands — exactly back on the app-capable base from c4, because a quarter of people ordering four times each is one order a month per capable adult. That restatement is easier to defend than either lever alone, and it is a free check that the pair is not absurd."
+    },
+    {
+      "id": "c7",
+      "label": "Orders a year",
+      "expr": "122622500 * 12",
+      "display": "12.26 crore a month × 12 months",
+      "result": 1471470000,
+      "tolerance": 0.000001,
+      "unit": "orders per year",
+      "carriedForward": "≈ 147 crore orders",
+      "uses": ["months-per-year"],
+      "soWhat": "About 40 lakh orders a day across the country. Hold that figure — it is the one the supply-side cross-check has to reproduce from riders, and a daily order count is far easier to sanity-test than a rupee total."
+    },
+    {
+      "id": "c8",
+      "label": "Gross order value",
+      "expr": "1471470000 * 400",
+      "display": "147 crore orders × ₹400 average basket",
+      "result": 588588000000,
+      "tolerance": 0.000001,
+      "unit": "rupees per year",
+      "carriedForward": "≈ ₹58,900 crore",
+      "uses": ["average-order-value"],
+      "soWhat": "This is the number the headlines call the market, and it is not the answer. Nearly four rupees in five of it belongs to the restaurant. Compute it, name it, and keep going — stopping here is the most expensive mistake available on this question."
+    },
+    {
+      "id": "c9",
+      "label": "Commission per order",
+      "expr": "400 * 0.18",
+      "display": "₹400 basket × 18% commission",
+      "result": 72,
+      "tolerance": 0.000001,
+      "unit": "rupees per order",
+      "uses": ["average-order-value", "commission-rate"],
+      "soWhat": "The largest revenue line, invisible to the customer, and the one under permanent renegotiation — which is why the take rate is a statement about bargaining power rather than a constant of nature."
+    },
+    {
+      "id": "c10",
+      "label": "Net platform revenue per order",
+      "expr": "72 + 30 + 8 - 25",
+      "display": "₹72 commission + ₹30 customer fees + ₹8 advertising − ₹25 platform-funded discount",
+      "result": 85,
+      "tolerance": 0.000001,
+      "unit": "rupees per order",
+      "uses": ["customer-fee-per-order", "ad-revenue-per-order", "platform-funded-discount"],
+      "soWhat": "Four named components instead of one asserted percentage. When the interviewer pushes — and on this question she will — you have four separate things to defend rather than one number with nothing behind it."
+    },
+    {
+      "id": "c11",
+      "label": "Implied net take rate",
+      "expr": "85 / 400",
+      "display": "₹85 kept ÷ ₹400 basket",
+      "result": 0.2125,
+      "tolerance": 0.000001,
+      "unit": "share of order value",
+      "carriedForward": "≈ 21%",
+      "uses": ["average-order-value"],
+      "soWhat": "State this ratio before you state the answer. It is the bridge between the two readings of the question, and it tells the interviewer in one number that you knew there were two."
+    },
+    {
+      "id": "c12",
+      "label": "Annual platform revenue, all players",
+      "expr": "1471470000 * 85",
+      "display": "147 crore orders × ₹85 net revenue each",
+      "result": 125074950000,
+      "tolerance": 0.000001,
+      "unit": "rupees per year",
+      "carriedForward": "≈ ₹12,500 crore",
+      "uses": [],
+      "soWhat": "The answer, and roughly a fifth of the gross order value on line c8. Say both figures in the same breath and label them, because the interviewer is listening for whether you can tell them apart."
+    }
+  ],
+
+  "finalAnswer": "≈ ₹12,500 crore of platform revenue a year across all food-delivery platforms in India, on roughly ₹58,900 crore of gross order value — a net take rate of about 21%. Every rate on this page is illustrative, built to show the method clearly, not asserted as verified market data.",
+  "finalAnswerNumeric": 125074950000,
+  "answerBand": "₹9,000 to ₹18,000 crore. Anything in that range is reachable on an honest and different set of levers, mostly depending on what you assume about discounting and about how many people order in a month. Below ₹6,000 crore or above ₹25,000 crore, one of your rates is carrying weight it cannot bear — and if your answer is near ₹60,000 crore you have not made an arithmetic error, you have answered the other question.",
+  "orderOfMagnitude": "10^11 rupees — ₹12,500 crore, so tens of thousands of crore and not lakhs of crore. Gross order value is 10^11 as well, but at the top of that decade rather than the bottom, so being right to the power of ten does not save you here. That is what makes this one Hard.",
+
+  "triangulation": {
+    "label": "Rider-side cross-check",
+    "route": "Bottom-up",
+    "premise": "Come at it from the street instead of the wallet. Riders are the one part of this business anyone can count without access to a company — they are visible, branded and clustered at predictable hours. Count the fleet out on a day, multiply by the drops a rider makes, and you have orders. Then convert orders into revenue through the platform's cost structure rather than its take rate: the rider payout bill is the largest line against food-delivery revenue and runs at roughly two-thirds of it, so dividing gets you back to revenue without touching commission, fees, advertising or discounting. That is what makes this a genuine second opinion rather than the same chain walked backwards.",
+    "lines": [
+      {
+        "id": "t1",
+        "label": "Orders delivered a day",
+        "expr": "320000 * 13",
+        "display": "3.2 lakh riders on shift × 13 deliveries each",
+        "result": 4160000,
+        "tolerance": 0.000001,
+        "unit": "orders per day",
+        "carriedForward": "≈ 42 lakh a day",
+        "uses": ["riders-on-shift", "deliveries-per-rider-day"],
+        "soWhat": "Against the 40 lakh a day the demand route implied at line c7. Two independent counts of the same flow, about three per cent apart — that is the check worth having, and it arrives before any money is involved."
+      },
+      {
+        "id": "t2",
+        "label": "Orders a year",
+        "expr": "4160000 * 365",
+        "display": "42 lakh a day × 365 days",
+        "result": 1518400000,
+        "tolerance": 0.000001,
+        "unit": "orders per year",
+        "carriedForward": "≈ 152 crore orders",
+        "uses": ["days-per-year"],
+        "soWhat": "No seasonality adjustment, and say so — the monsoon peak and the summer trough roughly cancel, and pretending to model them at this precision would be theatre."
+      },
+      {
+        "id": "t3",
+        "label": "Total rider payout bill",
+        "expr": "1518400000 * 60",
+        "display": "152 crore deliveries × ₹60 paid to the rider",
+        "result": 91104000000,
+        "tolerance": 0.000001,
+        "unit": "rupees per year",
+        "carriedForward": "≈ ₹9,100 crore",
+        "uses": ["rider-payout-per-delivery"],
+        "soWhat": "A cost, not a revenue, and the largest number on this page after gross order value. Note that it is already double the ₹30 the customer pays for delivery — the customer has never funded the ride."
+      },
+      {
+        "id": "t4",
+        "label": "Platform revenue implied by the cost structure",
+        "expr": "91104000000 / 0.65",
+        "display": "₹9,100 crore rider cost ÷ 65% of revenue",
+        "result": 140160000000,
+        "tolerance": 0.000001,
+        "unit": "rupees per year",
+        "carriedForward": "≈ ₹14,000 crore",
+        "uses": ["rider-cost-share-of-revenue"],
+        "soWhat": "Inverting a cost ratio to recover revenue is a move worth naming aloud, because it only works when the cost line is genuinely dominant. Try it on marketing spend and you would get nonsense."
+      }
+    ],
+    "answer": "≈ ₹14,000 crore of platform revenue, against ₹12,500 crore from the demand route",
+    "verdict": "Twelve per cent apart, which is about the right amount of disagreement — close enough to confirm the power of ten, far enough apart to be informative rather than lucky. Both routes agree on the shape of the business: something near 150 crore orders a year and a revenue pool in the low tens of thousands of crore. The gap is worth one sentence of reconciliation, and the place to look is the rider count. A rider logged into two apps at once is one backpack on the street and two entries in the platforms' fleet numbers, so a street count and a company count are not measuring the same thing — correct for that and this route comes down towards the demand answer. Deliveries per rider pulls the same way: thirteen is a metro number, and riders in smaller cities with thinner order density do fewer. What you must not do is average the two and present ₹13,250 crore. Averaging two soft estimates does not halve the error; it only hides which one you believe."
+  },
+
+  "sensitivity": {
+    "assumptionId": "platform-funded-discount",
+    "whyThisLever": "Two tests pick the lever, and most candidates run only the first. How badly is the number pinned, and how much of the answer rides on it? The transacting share is softer than it looks, but it moves orders and gross order value together and an interviewer can at least argue about it from her own habits. The platform-funded discount fails both escapes: nothing outside the company reveals it, because the customer sees a discount and never sees who paid for it, and it sits in the last addition before the answer, so it passes straight through one-for-one. It is also the lever that has actually moved in this industry's history — the discount wars swung it by a factor of four while every other number on this page stayed roughly still.",
+    "cases": [
+      { "scenario": "Conservative", "leverValue": "₹40 funded per order — a competitive year", "answer": "≈ ₹10,300 crore", "deltaVsBase": "−18%" },
+      { "scenario": "Base", "leverValue": "₹25 funded per order", "answer": "≈ ₹12,500 crore", "deltaVsBase": "0%" },
+      { "scenario": "Aggressive", "leverValue": "₹10 funded per order — a disciplined duopoly", "answer": "≈ ₹14,700 crore", "deltaVsBase": "+18%" }
+    ],
+    "breakpoint": "Net revenue per order is ₹110 minus the discount, so at about ₹110 funded per order — 27% of the basket — platform revenue from food delivery goes to zero however many orders get delivered. That is not hypothetical; it is roughly where this industry sat during the acquisition war, when growth in orders and growth in losses were the same line. The honest working range is ₹10 to ₹45, the answer inherits a ₹9,600 to ₹14,700 crore range, and the power of ten never moves. Say that last clause and then stop — it is the difference between a candidate who ran a sensitivity and one who understood why.",
+    "oneLiner": "When there is no time for the grid: 'The number I would defend least is how much of the discount the platform funds itself — call it six per cent of the basket. Halve it or double it and the answer swings by about a fifth either way, and it stays in the low tens of thousands of crore.'"
+  },
+
+  "sanityChecks": [
+    "Turn the answer back into daily life. 147 crore orders a year is roughly 40 lakh a day nationally, which at thirteen drops a rider needs about three lakh riders out on the road. If you have stood on a Bengaluru arterial at eight in the evening, that is the right order — a few per cent of the two-wheelers going past, not one in ten and not one in five hundred.",
+    "Check the transacting user against your own city. About 3.1 crore people ordering in a given month, out of 27 crore living in serviced areas, is roughly one person in nine. In an MBA classroom it would be nine in nine, which is the whole problem with estimating a consumer category from inside the consuming class.",
+    "Put the ₹400 basket against the household food budget. A user ordering four times a month is spending about ₹1,600 on delivered food. For an urban household spending ₹12,000 to ₹15,000 a month on food, that is a tenth to an eighth of the food wallet — plausible for the ordering minority, and clearly impossible as a national average, which is another way of seeing why the 25% gate has to be there.",
+    "Size it against eating out generally. India's whole food-service market — restaurants, canteens, street food, everything prepared outside the home — is of the order of ₹5 lakh crore. Gross order value of ₹58,900 crore makes delivery about one rupee in eight of that. High but believable, since delivery is concentrated in exactly the organised urban outlets where spend per head is highest.",
+    "Split it across the players. Two large platforms carry most of this, so each would be earning of the order of ₹5,000 to ₹6,000 crore a year from food delivery, or roughly ₹1,400 crore a quarter. That is the same order of magnitude as the food-delivery segment figures listed Indian platforms report, which is as much confirmation as an estimate built this way deserves.",
+    "Test the answer against the rider bill. Platform revenue of ₹12,500 crore against a rider payout bill of ₹9,100 crore says two-thirds of every rupee earned goes straight back out to the fleet before a single engineer, marketer or support agent is paid. Had your arithmetic produced revenue below the rider bill, the business would be structurally impossible, and you want to find that here rather than in the interviewer's follow-up."
+  ],
+
+  "traps": [
+    {
+      "trap": "Handing back gross order value as the answer.",
+      "whyItHappens": "Line c8 produces ₹58,900 crore and it feels finished — it is large, it is in rupees, and it matches the figure the candidate half-remembers from a headline, because gross order value is what platforms lead with and what the press repeats. The chain stops because it produced a quotable number, not because it answered the question. The error is not small: it overstates the answer by roughly a factor of five.",
+      "fix": "Write 'whose money is this?' beside every line as you go. At c8 the answer is 'the restaurant's, mostly', and that sentence forces the next step. Structurally, put the take-rate branch in your opening structure rather than adding it later — if it is in the structure you cannot forget it, and if it is a caveat you meant to mention, you will."
+    },
+    {
+      "trap": "Building the take rate as a single asserted percentage.",
+      "whyItHappens": "'Platforms take about twenty per cent' is a real thing candidates have read, and it is roughly right, so it looks efficient. But an asserted percentage has nothing behind it: when the interviewer asks why twenty and not thirty there is no answer, and when she asks what happens if commission is capped by regulation the structure cannot respond, because commission never appeared as a separate object.",
+      "fix": "Decompose it — commission, customer fees, advertising, minus platform-funded discounts. Four things you can defend, four things you can flex, and a number that arrives in roughly the same place while showing where it came from."
+    },
+    {
+      "trap": "Forgetting that the platform pays for part of the discount.",
+      "whyItHappens": "Every other term in the chain is money coming in, so the mind builds an addition. The discount is invisible from the customer's side of the transaction — you see fifty rupees off and you cannot see whether the restaurant bought that visibility or the platform funded the acquisition — so nothing reminds you the term exists. Omit it and you overstate revenue by nearly a third.",
+      "fix": "Write the negative term into the formula before you fill in any of the positives, so the shape of the line is commission plus fees plus advertising minus discount from the start."
+    },
+    {
+      "trap": "Letting quick commerce in through the side door.",
+      "whyItHappens": "The same app now delivers groceries in ten minutes, the same riders carry both, and on some platforms that business is already larger than the food. A candidate reaching for orders per user per month will silently include the grocery orders, because that is how they use the app, and the answer inflates with no visible error in the arithmetic.",
+      "fix": "Exclude it out loud in your scoping sentence, and again when you set orders per user — 'four food orders a month, not four app orders a month'. Then offer it as the obvious extension if there is time, which turns a scope discipline into a second structure."
+    },
+    {
+      "trap": "Reading a 21% take rate as a 21% margin.",
+      "whyItHappens": "A fifth of every order sounds like a rich business, and the word 'take' invites the reading. But the rider payout alone is about two-thirds of that revenue, which is why the triangulation works at all, and technology, marketing and support come out of what is left. The candidate then answers the inevitable 'is this a good business?' from the wrong number.",
+      "fix": "Say 'revenue, not margin' the moment you state the take rate, and keep the ₹60 rider payout visible next to the ₹85 of revenue. The gap between those two figures is the actual conversation about this industry."
+    },
+    {
+      "trap": "Counting every urban Indian as addressable.",
+      "whyItHappens": "'Urban' is the funnel step everyone remembers, and 49 crore is a satisfying base to start multiplying. But delivery runs where rider density works, and a platform that lists a town has usually lit up a few central pin codes in it. Skip the serviceability gate and you begin the chain nearly twice as wide as it should be.",
+      "fix": "Insert the serviceable-area step explicitly and give it a physical reason rather than a statistical one — a rider needs his next pickup within a few kilometres, and below a density threshold the unit economics stop working at any price."
+    }
+  ],
+
+  "probes": [
+    {
+      "question": "You said ₹12,500 crore. I have read that Indian food delivery is a ₹60,000 crore market. Which of us is wrong?",
+      "intent": "Whether you understand that both numbers are right and describe different things, or whether an external anchor makes you abandon your own structure.",
+      "goodAnswer": "Says neither — ₹58,900 crore is gross order value, the money customers spend, and ₹12,500 crore is what the platforms keep, about 21% of it. Points out that the published figure is a useful check on the order count rather than on the answer, so it validates the volume side of the chain and leaves the take rate still to be defended. Asks which reading the interviewer wanted, since the whole question turns on it.",
+      "weakAnswer": "Revises the answer upward to match the remembered figure, trading a defensible structure for a number the candidate cannot explain."
+    },
+    {
+      "question": "Take me through one order. Where do the four hundred rupees end up?",
+      "intent": "Whether the take rate is a real decomposition in your head or a percentage you asserted.",
+      "goodAnswer": "Walks it: about ₹328 to the restaurant after ₹72 of commission, the customer separately paying roughly ₹30 in delivery and platform fees, around ₹8 of advertising attributable to the order, and ₹25 of discount the platform funds — leaving ₹85. Then adds the line that matters: ₹60 of that ₹85 goes to the rider, so the platform keeps about ₹25 to pay for everything else.",
+      "weakAnswer": "Restates twenty per cent in different words, or describes the flows qualitatively without ever making them add up to ₹400."
+    },
+    {
+      "question": "Suppose both large platforms stop funding discounts tomorrow. Does your answer go up by eighteen per cent?",
+      "intent": "Whether you can see that a lever in your arithmetic is also a lever in the market, and that the two do not move independently.",
+      "goodAnswer": "No — revenue per order rises, but the discount was buying orders, so volume falls and the two effects fight. Says which dominates and why: discounting mainly buys the marginal, price-sensitive occasion rather than the habitual dinner order, so the revenue effect probably wins in the short run while the volume effect compounds if a rival keeps discounting. Notes that this is precisely why a disciplined duopoly can hold the line and a fragmented market cannot.",
+      "weakAnswer": "Applies the sensitivity grid mechanically and reports plus eighteen per cent, treating a strategic variable as a constant of nature."
+    },
+    {
+      "question": "Commission is your largest revenue line. What stops a big restaurant chain from delisting and running its own delivery?",
+      "intent": "Whether you can reason about the durability of a revenue pool rather than only its size.",
+      "goodAnswer": "Names what the chain would have to replicate: demand discovery, which is where most orders actually start, and a rider fleet dense enough to deliver in thirty minutes off its own volume alone. Observes that the largest chains already negotiate commission well below the headline rate, which is the pressure valve, and that partial delisting to push regulars onto an own-brand app is the real threat rather than full exit. Concludes that the pool is defensible at the tail and contested at the top, which is why the effective rate sits below the published one.",
+      "weakAnswer": "'Network effects' — a correct phrase that identifies no mechanism and predicts nothing about which restaurants leave."
+    },
+    {
+      "question": "You excluded quick commerce. Defend that, and then tell me what including it would do.",
+      "intent": "Scope discipline, and whether you can extend a structure instead of rebuilding it.",
+      "goodAnswer": "Defends it on economics rather than tidiness — quick commerce is inventory the platform buys and sells, so the revenue is recognised differently and a commission take rate does not describe it at all. Says including it would mean a second structure built on dark stores, orders per store per day and gross margin on goods sold, not a bigger version of this one. Offers the direction: a larger order pool at a smaller basket, on a very different margin profile.",
+      "weakAnswer": "'It is a different business' with no reason given, or agrees to fold it in and carries on multiplying, which quietly changes the unit halfway through the answer."
+    }
+  ]
+}

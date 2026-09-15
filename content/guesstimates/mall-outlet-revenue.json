@@ -1,0 +1,541 @@
+{
+  "id": "mall-outlet-revenue",
+  "question": "What does one quick-service food outlet in a busy Mumbai mall take in on an average day?",
+  "tabLabel": "Mall food outlet, Mumbai",
+  "archetype": "single-asset-revenue",
+  "difficulty": "Easy",
+  "timeboxMinutes": 12,
+  "teachingPoint": "Revenue from a fixed asset is capacity × turnover × price, and turnover is the term that gets dropped. Thirty seats do not sell thirty meals a day — they sell as many as dwell time and trading hours allow. How fast the room turns matters as much as how big it is, and a candidate who writes seats × hours without dividing by dwell time has sized the box and forgotten that it empties.",
+
+  "scope": {
+    "countingWhat": "Money billed at one outlet's till in a day — dine-in plus counter takeaway, net of GST, before rent, food cost or anything else comes out. Revenue, not profit. One outlet, not the brand.",
+    "unit": "₹ per day",
+    "timeBasis": "flow (per day)",
+    "geography": "One standalone quick-service unit inside a busy suburban Mumbai mall — mid-market, trading seven days, not a luxury mall and not a Tier-2 one.",
+    "included": [
+      "Dine-in covers — every person who sits down and eats, counted as a person and not as a bill.",
+      "Counter takeaway — bags that walk out of the same door, rung up at the same till.",
+      "Beverages, sides and desserts where they sit on the same bill.",
+      "A unit with its own dining floor — roughly 1,000 sq ft, seats inside its own frontage.",
+      "Weekdays and weekend days both, averaged across a full week."
+    ],
+    "excluded": [
+      "GST — the tax collected passes through and is not the outlet's revenue.",
+      "Delivery through the aggregators — a different ticket, a different realisation after commission, a different constraint. Named and set aside, not forgotten; one of the probes adds it back.",
+      "Bulk and catering orders placed off the menu.",
+      "A food-court counter sharing the common seating hall — physically a different asset, and the route below does not apply to it.",
+      "The mall's other food outlets, and this brand's other stores in the city."
+    ],
+    "boundaryTrap": "'Average day' is not 'a typical weekday'. A Mumbai mall runs Saturday and Sunday at roughly double a Tuesday, and two of every seven days are weekend days — so the average day sits about 29% above the weekday you are almost certainly picturing. Decide which one the question is asking for, say so in the first thirty seconds, and if it is the average, compute a week and divide by seven. That divisor is the cheapest line in the whole estimate and the one most often skipped."
+  },
+
+  "routeChoice": {
+    "chosen": "Bottom-up",
+    "why": "The asset is physical and its limits are visible — a fixed number of seats, a fixed number of trading hours, a table that can only be turned so often. Build revenue up from what the box can serve and every assumption is something you could verify by standing in the mall for ten minutes with a notebook. It also puts a ceiling on the answer, which is the property a bottom-up route has and a top-down one does not.",
+    "rejectedRoute": "Top-down",
+    "rejectedWhyNot": "Mall footfall × share who walk past the frontage × conversion × average bill looks tidy on the whiteboard, but two of its four terms are unobservable and neither is bounded. Nobody can defend 'what share of mall visitors pass this door' or 'what share of those buy', and a wrong guess on either runs away with the answer because nothing stops it. Keep the footfall route for the cross-check, where its independence is worth something — do not build the spine on two terms you cannot see."
+  },
+
+  "tree": {
+    "root": "Daily revenue, one outlet",
+    "rootFormula": "= (Dine-in covers × dine-in ticket + Takeaway orders × takeaway ticket) for a week ÷ 7 days",
+    "value": "≈ ₹90,000 per day",
+    "branches": [
+      {
+        "label": "Dine-in covers per week",
+        "formula": "= Seat-hours × Occupancy × Covers per occupied seat-hour, weekdays and weekend days summed",
+        "value": "1,944 covers",
+        "note": "Where the answer lives. Three-quarters of the week's money comes through these seats, and every term below is a number you could count on site.",
+        "isCriticalPath": true,
+        "children": [
+          {
+            "label": "Seat-hours per day",
+            "formula": "= 30 seats × 12 trading hours",
+            "value": "360 seat-hours",
+            "note": "The box. Fixed the day the lease was signed, and the one term in this estimate nobody will argue with."
+          },
+          {
+            "label": "Turnover",
+            "formula": "= 60 minutes ÷ 30-minute dwell",
+            "value": "2 covers per occupied seat-hour",
+            "note": "The term candidates drop. It is the whole reason a quick-service room out-earns a sit-down restaurant on the same floor plate."
+          },
+          {
+            "label": "Weekday occupancy",
+            "formula": "= four busy hours in twelve, discounted for the shoulder",
+            "value": "30% → 216 covers",
+            "note": "The shakiest number here, and it sets five of the week's seven days. Declare it before the interviewer finds it."
+          },
+          {
+            "label": "Weekend occupancy",
+            "formula": "= double the weekday rate",
+            "value": "60% → 432 covers",
+            "note": "Two days carrying 44% of the week's revenue. This is the operating fact the estimate is really for."
+          }
+        ]
+      },
+      {
+        "label": "Dine-in ticket",
+        "formula": "= middle of the menu board, per head",
+        "value": "₹250 per cover",
+        "note": "Per person seated, not per bill — a mall bill covers two or three people, and mixing the two is a quiet way to be wrong by a factor of two and a half.",
+        "isCriticalPath": true,
+        "children": []
+      },
+      {
+        "label": "Takeaway stream",
+        "formula": "= 0.5 takeaway orders per dine-in cover",
+        "value": "972 orders per week",
+        "note": "Counter sales to shoppers who never sit down. Pegged to dine-in because the same footfall drives both — say that it is a peg rather than a measurement.",
+        "isCriticalPath": false,
+        "children": [
+          {
+            "label": "Takeaway ticket",
+            "formula": "= one person, no sides",
+            "value": "₹150 per order",
+            "note": "Below the seated ticket by design. It is the mix, not the blended average, that an interviewer will reach for."
+          }
+        ]
+      },
+      {
+        "label": "Days in the week",
+        "formula": "= 5 weekdays + 2 weekend days",
+        "value": "7 days",
+        "note": "The divisor that turns a week into an average day. Leave it out and you have answered a different question from the one asked.",
+        "isCriticalPath": false,
+        "children": []
+      }
+    ]
+  },
+
+  "assumptions": [
+    {
+      "id": "a-seats",
+      "lever": "Seats in the outlet",
+      "value": "30 seats",
+      "numeric": 30,
+      "unit": "seats",
+      "basis": "observed-behaviour",
+      "defence": "A mall quick-service unit runs about 1,000 sq ft; roughly 600 of that is dining floor once the kitchen, counter and store are out, and at 20 sq ft a seat with gangways that is thirty covers.",
+      "confidence": "defensible",
+      "contestedBy": "An anchor-brand unit with 50 seats scales the whole answer by two-thirds, to about ₹1.5 lakh a day. A food-court counter owns no seats at all and needs a counter-throughput route instead."
+    },
+    {
+      "id": "a-hours",
+      "lever": "Trading hours per day",
+      "value": "12 hours (11:00 to 23:00)",
+      "numeric": 12,
+      "unit": "hours per day",
+      "basis": "physical-constant",
+      "defence": "The outlet opens with the mall and stops taking orders when the mall closes — Mumbai malls trade 11:00 to 23:00, which is twelve hours.",
+      "confidence": "anchor",
+      "contestedBy": "Some malls run 10:00 to 22:00 — the same twelve hours against a different clock, so the answer does not move."
+    },
+    {
+      "id": "a-dwell",
+      "lever": "Dwell time per cover",
+      "value": "30 minutes",
+      "numeric": 30,
+      "unit": "minutes",
+      "basis": "observed-behaviour",
+      "defence": "Order at the counter, eat, leave — half an hour is what a tray takes at a quick-service table, and you can time it on your own last mall lunch.",
+      "confidence": "defensible",
+      "contestedBy": "Push dwell to 45 minutes and covers per seat-hour fall from 2 to 1.33 — a third off the answer without touching a single seat. It is the fastest way to shrink this outlet and the one candidates never see coming."
+    },
+    {
+      "id": "a-occ-weekday",
+      "lever": "Weekday seat occupancy, averaged across the trading day",
+      "value": "30%",
+      "numeric": 0.3,
+      "unit": "share of seat-hours filled",
+      "basis": "declared-judgement",
+      "defence": "The room is full for about two lunch hours and two evening hours and close to empty the rest — four busy hours in twelve is a third, and I have shaded it down for the dead shoulder either side.",
+      "confidence": "shaky",
+      "contestedBy": "An interviewer who thinks mall weekdays are dead will push for 20%, which takes roughly ₹17,000 a day off the answer. Give the number before being asked for it."
+    },
+    {
+      "id": "a-occ-weekend",
+      "lever": "Weekend seat occupancy",
+      "value": "60%",
+      "numeric": 0.6,
+      "unit": "share of seat-hours filled",
+      "basis": "declared-judgement",
+      "defence": "On a Saturday afternoon there is a queue at the counter and no free table; double the weekday rate is the mildest version of what anyone standing there can see.",
+      "confidence": "judgement",
+      "contestedBy": "Cap it at 50% on the argument that no room stays full for twelve straight hours and the answer drops about 8%. The weekend matters to the split more than to the average."
+    },
+    {
+      "id": "a-ticket-dinein",
+      "lever": "Dine-in spend per head",
+      "value": "₹250 per cover",
+      "numeric": 250,
+      "unit": "₹ per cover",
+      "basis": "observed-behaviour",
+      "defence": "A combo meal on a mall quick-service board sits between ₹200 and ₹280 before add-ons; ₹250 is the middle of the board, and a cover is one person rather than one bill.",
+      "confidence": "defensible",
+      "contestedBy": "A premium brand at ₹400 a head lifts the answer by roughly half — but then the 30% weekday occupancy has to be defended at that price, and usually it cannot be."
+    },
+    {
+      "id": "a-takeaway-ratio",
+      "lever": "Takeaway orders per dine-in cover",
+      "value": "0.5",
+      "numeric": 0.5,
+      "unit": "orders per cover",
+      "basis": "observed-behaviour",
+      "defence": "Stand at the counter and count: for every two trays carried to a table, about one bag walks out — mall outlets sell heavily to people who are shopping rather than sitting.",
+      "confidence": "judgement",
+      "contestedBy": "A coffee-and-snack format inverts this to 2 takeaway orders per cover and changes the shape of the business entirely. The ratio is the weakest structural link here even though it is not the biggest lever."
+    },
+    {
+      "id": "a-ticket-takeaway",
+      "lever": "Takeaway spend per order",
+      "value": "₹150 per order",
+      "numeric": 150,
+      "unit": "₹ per order",
+      "basis": "observed-behaviour",
+      "defence": "A takeaway order is usually one person with no sides — a wrap and a drink — so it lands below the ₹250 a seated customer spends.",
+      "confidence": "defensible",
+      "contestedBy": "Family takeaway on a Sunday runs ₹500 a bag. Blending the two into a single ticket is exactly the move this split exists to avoid."
+    },
+    {
+      "id": "a-calendar-week",
+      "lever": "Composition of a week",
+      "value": "5 weekdays + 2 weekend days",
+      "numeric": 7,
+      "unit": "days per week",
+      "basis": "physical-constant",
+      "defence": "Seven days, two of them weekend. This is not an assumption so much as the term candidates silently drop when they estimate 'a typical day' and then call it the average.",
+      "confidence": "anchor",
+      "contestedBy": "Friday evening behaves like a weekend in a Mumbai mall. Counting it as 2.5 weekend days lifts the answer about 6% and is a fair point to concede."
+    },
+    {
+      "id": "a-mall-footfall-weekday",
+      "lever": "Mall footfall, weekday",
+      "value": "15,000 visitors",
+      "numeric": 15000,
+      "unit": "visitors per day",
+      "basis": "declared-judgement",
+      "defence": "A busy suburban Mumbai mall runs weekday footfall in the low tens of thousands; 15,000 over a twelve-hour day is about twenty people a minute through the doors, which matches what an entrance actually looks like on a Tuesday.",
+      "confidence": "judgement",
+      "contestedBy": "A top-three Mumbai mall does 30,000 on a weekday, which lifts the cross-check by half to about ₹1.2 lakh — above the capacity route, at which point the capacity route wins, because the seats do not multiply."
+    },
+    {
+      "id": "a-mall-footfall-weekend",
+      "lever": "Mall footfall, weekend day",
+      "value": "35,000 visitors",
+      "numeric": 35000,
+      "unit": "visitors per day",
+      "basis": "declared-judgement",
+      "defence": "Saturday and Sunday run a little over double — full car park, queue at the entrance, and every seating area occupied — so a shade above twice the weekday figure.",
+      "confidence": "judgement",
+      "contestedBy": "Three times the weekday figure is defensible in a mall with a multiplex, and it lifts the cross-check about 14%."
+    },
+    {
+      "id": "a-fnb-share",
+      "lever": "Share of mall visitors who buy food or a drink",
+      "value": "35%",
+      "numeric": 0.35,
+      "unit": "share of visitors",
+      "basis": "observed-behaviour",
+      "defence": "A mall trip runs two to three hours and crosses a mealtime or a coffee break for about a third of visitors; the rest shop and leave without buying anything to eat.",
+      "confidence": "judgement",
+      "contestedBy": "Malls with a multiplex push this past 50%, because a film almost guarantees a purchase. Say which kind of mall you are in before fixing this number."
+    },
+    {
+      "id": "a-capture-share",
+      "lever": "Share of the mall's food buyers captured by this outlet",
+      "value": "5%",
+      "numeric": 0.05,
+      "unit": "share of food buyers",
+      "basis": "structural-logic",
+      "defence": "The mall has roughly 25 places to eat, so an even split is 4%; this unit sits on the main circulation route under a known brand, so call it 5% — and say out loud that the even split is the floor, not the estimate.",
+      "confidence": "judgement",
+      "contestedBy": "An anchor brand next to the multiplex entrance takes 10% and the cross-check doubles. The honest position is that this term carries most of the cross-check's uncertainty."
+    },
+    {
+      "id": "a-spend-per-head",
+      "lever": "Blended spend per person at this outlet",
+      "value": "₹215 per person",
+      "numeric": 215,
+      "unit": "₹ per person",
+      "basis": "structural-logic",
+      "defence": "Two seated customers at ₹250 for every one takeaway at ₹150 gives ₹217 a head; ₹215 is that rounded. It is deliberately imported from the primary route — the two routes differ in how they count heads, not in what a head spends, and pretending otherwise would make the cross-check look more independent than it is.",
+      "confidence": "defensible",
+      "contestedBy": "Nothing worth arguing about. The limit of this term is that it is shared, which is stated in the verdict rather than hidden."
+    }
+  ],
+
+  "calculation": [
+    {
+      "id": "c1",
+      "label": "Seat-hours available in a trading day",
+      "expr": "30 * 12",
+      "display": "30 seats × 12 trading hours",
+      "result": 360,
+      "unit": "seat-hours per day",
+      "uses": ["a-seats", "a-hours"],
+      "soWhat": "This is the whole of the outlet's physical supply. Everything after this line is a question about how much of it gets used, and at what price."
+    },
+    {
+      "id": "c2",
+      "label": "Covers one seat can turn in an hour",
+      "expr": "60 / 30",
+      "display": "60 minutes ÷ 30-minute dwell",
+      "result": 2,
+      "unit": "covers per occupied seat-hour",
+      "uses": ["a-dwell"],
+      "soWhat": "The term most candidates never write. A seat is not a sale — it is a sale every half hour that it is occupied, and this line is the whole difference between a quick-service room and a restaurant with the same floor plate."
+    },
+    {
+      "id": "c3",
+      "label": "Dine-in covers on a weekday",
+      "expr": "360 * 0.30 * 2",
+      "display": "360 seat-hours × 30% occupied × 2 covers each",
+      "result": 216,
+      "unit": "covers",
+      "uses": ["a-seats", "a-hours", "a-occ-weekday", "a-dwell"],
+      "soWhat": "216 people through 30 seats in 12 hours is 18 an hour — one table of three every ten minutes. Picture that before accepting it; if the picture looks wrong, the number is wrong."
+    },
+    {
+      "id": "c4",
+      "label": "Dine-in covers on a weekend day",
+      "expr": "360 * 0.60 * 2",
+      "display": "360 seat-hours × 60% occupied × 2 covers each",
+      "result": 432,
+      "unit": "covers",
+      "uses": ["a-seats", "a-hours", "a-occ-weekend", "a-dwell"],
+      "soWhat": "Double the weekday, and not because weekend shoppers eat more. They arrive across more of the day and stay longer in the mall, so more of the twelve hours are busy ones."
+    },
+    {
+      "id": "c5",
+      "label": "Dine-in covers in a full week",
+      "expr": "216 * 5 + 432 * 2",
+      "display": "216 × 5 weekdays + 432 × 2 weekend days",
+      "result": 1944,
+      "unit": "covers per week",
+      "uses": ["a-calendar-week"],
+      "soWhat": "864 of these 1,944 covers — 44% — land on two days. That is why the outlet staffs and stocks to the weekend and bleeds on Tuesday, and it is the operating point worth saying out loud even though the question only asked for a number."
+    },
+    {
+      "id": "c6",
+      "label": "Dine-in revenue in a week",
+      "expr": "1944 * 250",
+      "display": "1,944 covers × ₹250 a head",
+      "result": 486000,
+      "unit": "₹ per week",
+      "uses": ["a-ticket-dinein"],
+      "soWhat": "₹4.86 lakh a week from the seats alone. Hold it apart from takeaway — the two move on different levers, and the mix is the first thing an interviewer will push on."
+    },
+    {
+      "id": "c7",
+      "label": "Takeaway orders in a week",
+      "expr": "1944 * 0.5",
+      "display": "1,944 dine-in covers × 0.5 takeaway orders each",
+      "result": 972,
+      "unit": "orders per week",
+      "uses": ["a-takeaway-ratio"],
+      "soWhat": "Pegged to dine-in because the same footfall drives both. Call it a peg rather than a measurement — it is the weakest structural link in the model even though it is not the biggest lever."
+    },
+    {
+      "id": "c8",
+      "label": "Takeaway revenue in a week",
+      "expr": "972 * 150",
+      "display": "972 orders × ₹150",
+      "result": 145800,
+      "unit": "₹ per week",
+      "uses": ["a-ticket-takeaway"],
+      "soWhat": "Takeaway is 23% of the week's money on 33% of the transactions. The counter is busier than it is valuable — which is the argument for a second till rather than more seats."
+    },
+    {
+      "id": "c9",
+      "label": "Total revenue in a week",
+      "expr": "486000 + 145800",
+      "display": "₹4,86,000 dine-in + ₹1,45,800 takeaway",
+      "result": 631800,
+      "unit": "₹ per week",
+      "uses": [],
+      "soWhat": "Work the week, not the day. The week is the unit the outlet actually plans in, and it is the only way to stop the weekend disappearing into a single averaged figure."
+    },
+    {
+      "id": "c10",
+      "label": "Revenue on an average day",
+      "expr": "631800 / 7",
+      "display": "₹6,31,800 ÷ 7 days",
+      "result": 90257.14285714286,
+      "tolerance": 0.000001,
+      "unit": "₹ per day",
+      "carriedForward": "≈ ₹90,000",
+      "uses": ["a-calendar-week"],
+      "soWhat": "Round once, here, and say ₹90,000. A candidate who reports ₹90,257 has told the interviewer they do not understand what an estimate is — the digits were never real."
+    }
+  ],
+
+  "finalAnswer": "≈ ₹90,000 a day on an average day — roughly ₹27 lakh a month, or ₹3.3 crore a year. The figures are illustrative, built to show the method rather than asserted as verified trade data.",
+  "finalAnswerNumeric": 90000,
+  "answerBand": "₹70,000 to ₹1.2 lakh a day — ₹21 lakh to ₹36 lakh a month. The band is wide because occupancy is a judgement, and a narrower band here would be a false one.",
+  "orderOfMagnitude": "10^5 rupees per day",
+
+  "triangulation": {
+    "label": "Demand-side cross-check — what the mall sends, not what the box can serve",
+    "route": "Top-down",
+    "premise": "Forget the seats. Start at the mall doors, take the share of visitors who buy food anywhere in the building, take this outlet's share of those, and price it. The two routes share no volume assumption at all — one counts the room, the other counts the crowd — so where they disagree, the disagreement means something.",
+    "lines": [
+      {
+        "id": "t1",
+        "label": "Mall footfall in a week",
+        "expr": "15000 * 5 + 35000 * 2",
+        "display": "15,000 × 5 weekdays + 35,000 × 2 weekend days",
+        "result": 145000,
+        "unit": "visitors per week",
+        "uses": ["a-mall-footfall-weekday", "a-mall-footfall-weekend", "a-calendar-week"],
+        "soWhat": "Same weekday-versus-weekend discipline as the primary route. The mall's weekend skew is the reason both routes must be built on a week."
+      },
+      {
+        "id": "t2",
+        "label": "Mall footfall on an average day",
+        "expr": "145000 / 7",
+        "display": "1,45,000 ÷ 7 days",
+        "result": 20714.285714285714,
+        "tolerance": 0.000001,
+        "unit": "visitors per day",
+        "carriedForward": "≈ 20,700 visitors",
+        "uses": ["a-calendar-week"],
+        "soWhat": "Roughly 20,700 people a day through the doors — about 29 a minute across twelve hours, which is what a busy entrance looks like."
+      },
+      {
+        "id": "t3",
+        "label": "Visitors who buy food or a drink somewhere in the mall",
+        "expr": "145000 * 0.35 / 7",
+        "display": "20,700 visitors × 35% who eat or drink",
+        "result": 7250,
+        "unit": "food buyers per day",
+        "uses": ["a-fnb-share", "a-calendar-week"],
+        "soWhat": "7,250 food buyers is the pool every outlet in the building is competing for. Sizing the pool before splitting it stops you from claiming a share of a number you never wrote down."
+      },
+      {
+        "id": "t4",
+        "label": "Food buyers captured by this outlet",
+        "expr": "7250 * 0.05",
+        "display": "7,250 food buyers × 5% captured",
+        "result": 362.5,
+        "unit": "customers per day",
+        "uses": ["a-capture-share"],
+        "soWhat": "About 363 people. The primary route had the outlet serving about 417 — hold both figures, because the gap between them is the finding."
+      },
+      {
+        "id": "t5",
+        "label": "Daily revenue, demand-side",
+        "expr": "362.5 * 215",
+        "display": "363 customers × ₹215 a head",
+        "result": 77937.5,
+        "unit": "₹ per day",
+        "carriedForward": "≈ ₹78,000",
+        "uses": ["a-spend-per-head"],
+        "soWhat": "₹78,000 against ₹90,000 from the capacity route — near enough to believe, far enough apart to be worth reading."
+      }
+    ],
+    "answer": "≈ ₹78,000 a day",
+    "verdict": "The two routes land about 14% apart, and the capacity route is the higher one. That is the sign you want. The box can serve rather more people than the mall is currently sending it, which is exactly what an outlet that is not full looks like — and the model already says the seats run 39% full. Had the footfall route come out above the capacity route, one of them would have to be thrown away, because an outlet cannot sell more meals than its room can seat and its counter can hand over. Do not average the two into ₹84,000; that throws away the only information the gap contained. Read it instead: either weekday occupancy is a shade generous at 30% or the 5% capture share is a shade mean, and both of those are honest positions. One limit to state plainly — both routes price a head at the same rupees, so this cross-check tests the count and not the price."
+  },
+
+  "sensitivity": {
+    "assumptionId": "a-occ-weekday",
+    "whyThisLever": "It is the only number in the chain with no anchor behind it — seats can be counted, hours are the mall's, dwell time can be timed, tickets are on the board. Weekday occupancy is a judgement, and it sets five of the week's seven days, so it carries more of the answer than any other term. Every other assumption can be argued from something; this one can only be declared.",
+    "cases": [
+      {
+        "scenario": "Conservative",
+        "leverValue": "20% — the room is busy for two and a half hours in twelve",
+        "answer": "≈ ₹74,000 a day (₹22 lakh a month)",
+        "deltaVsBase": "−19%"
+      },
+      {
+        "scenario": "Base",
+        "leverValue": "30% — four busy hours in twelve, shaded down",
+        "answer": "≈ ₹90,000 a day (₹27 lakh a month)",
+        "deltaVsBase": "—"
+      },
+      {
+        "scenario": "Aggressive",
+        "leverValue": "40% — the shoulder hours fill as well as the peaks",
+        "answer": "≈ ₹1.07 lakh a day (₹32 lakh a month)",
+        "deltaVsBase": "+19%"
+      }
+    ],
+    "breakpoint": "The answer only leaves the ₹70,000 to ₹1.2 lakh band if weekday occupancy drops under about 15% or climbs past about 50%. Fifteen per cent means fewer than five of thirty seats filled averaged across the whole trading day, which anyone standing there would notice; fifty per cent means the outlet is half full at four o'clock on a Tuesday, which they would also notice. The lever is uncertain, but it is not unbounded — and that is what makes it safe to declare out loud rather than bury.",
+    "oneLiner": "If there is no time for the grid, say this: weekday occupancy is my shakiest number, it sets five of the week's seven days, and every ten points on it moves the answer about ₹17,000 a day either way."
+  },
+
+  "sanityChecks": [
+    "Against its own ceiling. The model has about 278 dine-in covers on an average day against a physical ceiling of 720 — the seats run 39% full across the trading day. An estimate that puts an outlet above its own ceiling is dead on arrival; one that puts it at 5% would not pay a Mumbai mall rent for a single month.",
+    "Against the queue. About 417 people served across twelve hours is roughly 35 an hour, or one every hundred seconds. One till manages that off-peak and two are needed at lunch, which is the staffing a mall outlet actually runs. Had the arithmetic demanded 200 an hour, the counter in the picture could not physically have handed the food over.",
+    "Against the rent. ₹27 lakh a month on a 1,000 sq ft unit leased at ₹400 to ₹500 a square foot puts rent near a sixth of sales. Mall food leases are written at 15% to 20% of revenue precisely because that is what the format can carry — a daily answer that pushed rent to 40% of sales would be describing an outlet that should already have closed.",
+    "Against the brand. ₹3.3 crore a year sits at the strong end of Indian mall quick-service, which is what 'busy Mumbai mall' was doing in the question. Asked about a Tier-2 mall you should land near a third of this, and saying so unprompted shows you read the qualifier rather than skipped past it.",
+    "Against the calendar. Two days carry 44% of the week. If the model has Saturday equal to Tuesday, it describes a shop that does not exist — and it has also thrown away the only operating insight the estimate contained."
+  ],
+
+  "traps": [
+    {
+      "trap": "Sizing the box and forgetting that it empties.",
+      "whyItHappens": "Seats are a stock and covers are a flow, and the bridge between them is dwell time. Dwell time is invisible — you cannot see it in the room, only in a stopwatch — so it drops out of the chain and the candidate ends up implicitly assuming each seat sells one meal a day. The error is silent because the arithmetic still works; it just describes a different, far worse restaurant.",
+      "fix": "Never write seats × hours without dividing by how long one customer sits. Say the turnover term out loud as its own line: sixty minutes over a thirty-minute dwell is two covers per occupied seat-hour. That single line is what separates a quick-service unit from a fine-dining room with the same floor plate and the same rent."
+    },
+    {
+      "trap": "Calling a weekday the average day.",
+      "whyItHappens": "You estimate by picturing a scene, and the scene you picture is the one you have been in most — a Tuesday. Two of seven days are weekend days and they run at roughly double, so the true average sits about 29% above the weekday you imagined. Nothing in the arithmetic flags the substitution, because the wrong day is computed perfectly.",
+      "fix": "Compute a week and divide by seven. It costs one extra line and it makes the weekend split visible, which is worth more than the accuracy it buys. If the interviewer actually wanted a weekday, you can hand them that figure too, from the same working."
+    },
+    {
+      "trap": "One blended ticket for two different purchases.",
+      "whyItHappens": "An 'average bill' feels like a simplification and is really a concealment. Dine-in and takeaway are different products, bought by different people, in different quantities, at different prices — and the mix is precisely what an interviewer will move when they want to see whether the model bends or breaks. A single average has nowhere to absorb the push.",
+      "fix": "Carry two tickets and one ratio between them. It costs two lines, it survives a challenge on either, and it gives you something structured to say when the interviewer adds delivery as a third stream."
+    },
+    {
+      "trap": "Confusing a cover with a bill.",
+      "whyItHappens": "The words are used interchangeably in conversation and mean different things on a P&L. A cover is one person eating; a bill covers the two or three people who came together. Apply a per-head ticket to a count of bills, or a per-bill ticket to a count of covers, and the answer is out by the group size — a factor of two and a half, quietly, with no arithmetic error anywhere.",
+      "fix": "Say which one you are counting when you first write the term, and keep the units on the page. Here it is covers and a per-head ticket throughout; if you switch to bills, the ticket has to switch with it."
+    },
+    {
+      "trap": "Treating a food-court counter as though it owned seats.",
+      "whyItHappens": "'A quick-service outlet in a mall' covers two physically different assets — a standalone unit with its own dining floor, and a counter in a food court that shares a common seating hall with twenty others. The seat-hours route works on the first and is meaningless on the second, but the phrase does not distinguish them, so the candidate picks whichever one their framework already fits.",
+      "fix": "Ask which one before starting, and take thirty seconds over it. For a food-court counter, drive off counter throughput instead — orders served per minute at the till × trading minutes × the share of those minutes that are genuinely busy — and the seats never enter the model at all."
+    },
+    {
+      "trap": "Answering ₹90,257.",
+      "whyItHappens": "The arithmetic in your head produces every digit and the digits feel like rigour, so they get reported. They are not rigour. Every one of them descends from a 30% that was declared rather than measured, and reporting them tells the interviewer you have not understood the difference between a calculation and an estimate.",
+      "fix": "Carry full precision through the working, then round once, deliberately, at the end, and say the rounding out loud: 'call it ₹90,000 a day'. The rounding is not modesty — it is a statement about how much the number can bear."
+    }
+  ],
+
+  "probes": [
+    {
+      "question": "Which of your numbers would you most want to check before staking anything on this?",
+      "intent": "Whether you can rank your own uncertainty instead of defending every assumption with equal energy. It is also a test of whether you know which term the answer structurally hangs on, as opposed to which one you feel least sure about.",
+      "goodAnswer": "Names weekday occupancy, says why — it has no anchor behind it and it sets five of the week's seven days — and quantifies the swing: ten points either way moves the answer about ₹17,000 a day. Then offers the cheapest way to close it: stand in the mall at three o'clock on a Tuesday and count filled seats for ten minutes.",
+      "weakAnswer": "'They're all assumptions, so any of them could be wrong.' True, useless, and it says you never looked at which term the answer actually hangs on. It also passes up the chance to show that you know how to price your own uncertainty."
+    },
+    {
+      "question": "The outlet also does delivery. What does that do to your number?",
+      "intent": "Whether you can extend a model rather than rebuild it, and whether you notice that delivery eats kitchen capacity but not seats — so it attaches to a different constraint from everything you have built.",
+      "goodAnswer": "Adds it as a third stream on the same kitchen and says why it is not bounded by the dining floor. Sixty orders a day at a ₹350 ticket, net of a 20% aggregator commission, is about ₹17,000 a day — roughly a fifth on top. Then states the real constraint plainly: at the lunch peak, delivery and dine-in queue for the same fryer, so the incremental orders are not free.",
+      "weakAnswer": "'It would increase revenue.' Says nothing about how much, and misses all three things that make delivery different — a higher ticket, a lower realisation after commission, and a constraint that is the kitchen rather than the room."
+    },
+    {
+      "question": "Your two routes are 14% apart. Which one do you believe?",
+      "intent": "Whether you can read a gap rather than average it away. Triangulation is only worth the time it costs if the disagreement is treated as information.",
+      "goodAnswer": "Says the capacity route measures what the box can serve and the footfall route measures what the mall sends, so the capacity route sitting higher is the expected sign — the outlet is not full, and the model already puts the seats at 39%. Points at the two terms that would close the gap, weekday occupancy being a shade generous or the 5% capture share a shade mean, and declines to split the difference without a reason to.",
+      "weakAnswer": "'I'd take the average of the two, so about ₹84,000.' Averaging two estimates is not triangulation. It discards the only thing the exercise produced, which was the direction and size of the disagreement."
+    },
+    {
+      "question": "The mall wants to raise this outlet's rent by ₹1 lakh a month. Take it or leave it?",
+      "intent": "Whether a sizing number can be turned into a decision, which is the only reason a consultant sizes anything.",
+      "goodAnswer": "Converts first: ₹1 lakh a month is about ₹3,300 a day, near 4% of sales, and standing still would need roughly 10 more covers a day or two more points of weekday occupancy. Then asks the question that decides it — what does the mall give back for the money? A better frontage, longer hours, a bigger catchment on the same floor. Rent is worth paying for traffic and not for nothing.",
+      "weakAnswer": "'Rent is a fixed cost, so it doesn't change revenue.' Correct, and beside the point. You were asked for a decision, and the decision turns entirely on how much extra volume the extra rent buys."
+    },
+    {
+      "question": "You assumed thirty seats. Suppose I tell you it is fifty.",
+      "intent": "Whether you know which of your terms are linear and which only look linear, and whether you will volunteer the thing the arithmetic hides.",
+      "goodAnswer": "Scales it — dine-in moves with seats, and takeaway is pegged to dine-in in this model, so the whole answer goes with it: fifty over thirty is two-thirds more, about ₹1.5 lakh a day. Then flags what the scaling conceals: a bigger room in the same mall draws on the same footfall, so occupancy falls and the honest answer sits below the linear one.",
+      "weakAnswer": "'Revenue goes up by 67%.' Right arithmetic, no judgement. The interviewer asked the question to find out whether you would notice that demand did not change when the room did."
+    }
+  ]
+}

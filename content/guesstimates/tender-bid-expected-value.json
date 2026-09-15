@@ -1,0 +1,595 @@
+{
+  "id": "tender-bid-expected-value",
+  "question": "CohortWorks, a vocational training firm, can bid for a three-year state skills contract worth ₹90 crore. The bid costs ₹60 lakh to prepare and is lost if the firm does not win. Is the bid worth making?",
+  "tabLabel": "Tender bid, expected value",
+  "archetype": "expected-value",
+  "difficulty": "Medium",
+  "timeboxMinutes": 12,
+  "teachingPoint": "An expected-value question is not a sizing question in disguise, and most candidates fail it by answering the wrong one — asked whether to bid, they compute what the contract is worth. The contract is worth ₹12 crore if it goes well. The bid is worth ₹1.3 crore, because you win it three times in ten and you pay to enter whatever happens. Two moves separate a good answer from a competent one. Put probabilities on branches that differ in sign rather than in size — the branch where you win and cannot fill the seats is the reason this question exists at all. Then refuse to hold your price constant while treating your chance of winning as given: in a competitive tender those are the same variable, and a bet priced without its odds has not been priced.",
+
+  "scope": {
+    "countingWhat": "The expected value, in rupees, of the decision to submit one bid — the probability-weighted profit from the three-year contract, net of every rupee spent competing for it, assessed at the moment the decision is taken and before anything is known.",
+    "unit": "₹ of expected value on the bid decision",
+    "timeBasis": "stock (point in time)",
+    "geography": "One district cluster tendered by a state skills mission in India. CohortWorks, the mission and every term of the tender are fictional — written for this question, not drawn from any live procurement. The figures are illustrative, built to show the method clearly, not asserted as market data.",
+    "included": [
+      "Contribution from the contract across all three years, in both the high-enrolment and the low-enrolment outcome",
+      "The fixed delivery base — centres, supervision, compliance — which the contract forces you to carry whether the seats fill or not",
+      "Cash spent preparing and submitting the bid, which is gone whichever way the award goes",
+      "The carrying cost of the earnest money for the six months it sits with the state"
+    ],
+    "excluded": [
+      "The ₹2 crore earnest money itself, which is refunded — only its carrying cost is a cost",
+      "The performance bank guarantee principal, on the same reasoning",
+      "The option value of incumbency in the next tender cycle — real, and named rather than guessed at, because a number here would be invented",
+      "Contribution forgone on the corporate pipeline while the proposal team is diverted — sized separately at roughly ₹45 lakh, and held outside the base case so the interviewer can see it move",
+      "Discounting. The surplus arrives across three years and a 12% rate would cut the answer by about a third — stated here rather than quietly skipped, and checked at the end"
+    ],
+    "boundaryTrap": "The earnest money. Two crore rupees leaves the firm's account to accompany the bid, and it comes back within about six months whether you win or lose. It is working capital tied up, not money spent. What it costs you is the carry on ₹2 crore for half a year — roughly ₹10 lakh. Candidates who load the full ₹2 crore into the bid cost arrive at ₹2.6 crore of cost, conclude the bid destroys value, and believe they have found something. They have found a cash outflow and called it a cost. The mirror error sits right next to it: the ₹60 lakh that is genuinely spent is gone in all seven cases out of ten where you lose, and a candidate who quietly assumes it is recoverable has removed the only thing making this a decision."
+  },
+
+  "routeChoice": {
+    "chosen": "Probabilistic",
+    "why": "The question is not how big this contract is, it is whether this bid is worth making, and the two have different answers. The contract earns ₹12 crore if the districts fill and loses ₹2.4 crore if they do not, so no single point estimate of its value can tell you whether to spend ₹60 lakh chasing it. Build the outcomes as branches, put a probability on each, and two things become visible that a point estimate hides: the dispersion, and the fact that one branch is negative. Then the bid cost is subtracted once at the root, because it is spent in every branch. Say the structure out loud before any arithmetic — win or lose, then fill or under-fill — and the interviewer knows in fifteen seconds that you understood the question.",
+    "rejectedRoute": "Bottom-up",
+    "rejectedWhyNot": "Bottom-up here means building the contract's economics from the ground up — 60,000 trainees, ₹15,000 each, ₹90 crore of revenue, ₹12 crore of profit — and it is what most candidates produce in four minutes. The arithmetic is right and it answers a question nobody asked. It contains no probability, so there is nothing in it to set against the ₹60 lakh you must spend for a 30% shot; it produces one number where the decision turns on two outcomes of opposite sign; and it makes the loss-making branch invisible, because an average of ₹12 crore and −₹2.4 crore never appears anywhere in it. Bottom-up is the right route for sizing the prize. It is the wrong route for pricing the bet, and this question is a bet."
+  },
+
+  "tree": {
+    "root": "Expected value of submitting the bid",
+    "rootFormula": "= P(win) × Expected value of the contract if won − Cost of competing, spent either way",
+    "value": "≈ +₹1.27 crore",
+    "branches": [
+      {
+        "label": "You win the tender — 30%",
+        "formula": "0.30 × ₹6.24 crore",
+        "value": "+₹1.87 crore, weighted",
+        "note": "The only branch with any value in it, and it splits again immediately. A tree that stops at win-or-lose has one layer too few — the interesting uncertainty is not whether you get the contract, it is whether the contract is any good once you have it.",
+        "isCriticalPath": true,
+        "children": [
+          {
+            "label": "Enrolment holds — 60% of this branch",
+            "formula": "(60,000 trainees × ₹6,000 contribution) − ₹24 crore fixed",
+            "value": "+₹12.0 crore",
+            "note": "₹36 crore of contribution against a ₹24 crore fixed base. A 13% margin over three years, which is what a well-run government training contract looks like — not a spectacular outcome, the good one."
+          },
+          {
+            "label": "Enrolment disappoints — 40% of this branch",
+            "formula": "(36,000 trainees × ₹6,000 contribution) − ₹24 crore fixed",
+            "value": "−₹2.4 crore",
+            "note": "A 40% shortfall in seats does not cut the profit by 40%. It turns ₹12 crore of profit into ₹2.4 crore of loss, because the fixed base does not shrink when a district under-enrols. This is the branch the question exists to make you find."
+          },
+          {
+            "label": "Probability-weighted value of the contract",
+            "formula": "(0.60 × 12.0) + (0.40 × −2.4)",
+            "value": "+₹6.24 crore",
+            "note": "Just over half the upside. A contract you would describe in a meeting as 'worth ₹12 crore' is worth ₹6.24 crore the moment you price the branch where the seats do not fill."
+          }
+        ]
+      },
+      {
+        "label": "You lose the tender — 70%",
+        "formula": "0.70 × ₹0",
+        "value": "₹0 from the contract",
+        "note": "Zero, not negative. The bid money has already left and is accounted for at the root, so putting it here as well would charge it twice.",
+        "children": [
+          {
+            "label": "What comes back",
+            "value": "₹2 crore of earnest money, in full, within about six months of the award",
+            "note": "Refundable. This is the line candidates turn into a ₹2 crore cost, and the error is large enough to reverse the recommendation on its own."
+          },
+          {
+            "label": "What does not come back",
+            "value": "₹60 lakh of bid preparation",
+            "note": "Seven times in ten this is the entire outcome of the exercise. Any framing in which the bid cost only appears on the winning branch has understated it by a factor of more than three."
+          }
+        ]
+      },
+      {
+        "label": "Cost of competing — incurred in every branch",
+        "formula": "= Proposal team + Centre readiness + Legal + Travel + Earnest-money carry",
+        "value": "−₹0.60 crore",
+        "note": "Because this money is spent whether you win or lose, it sits outside the probability weighting and is subtracted once at the root. Build it from components rather than asserting a round number — 'bid costs are about ₹50 lakh' is a figure an interviewer cannot argue with and therefore cannot give you credit for.",
+        "children": [
+          {
+            "label": "Proposal team",
+            "formula": "6 people × 8 weeks, loaded",
+            "value": "₹25 lakh",
+            "note": "The largest line, and the one whose true cost is not the salary but what those eight weeks would otherwise have produced."
+          },
+          {
+            "label": "Centre readiness and inspection",
+            "value": "₹14 lakh",
+            "note": "Forty sites documented, photographed and brought to inspection standard before a rupee of revenue exists."
+          },
+          {
+            "label": "Legal, compliance and due diligence",
+            "value": "₹6 lakh",
+            "note": "Cheap relative to the penalty clauses it reads."
+          },
+          {
+            "label": "Travel and pre-bid meetings",
+            "value": "₹5 lakh",
+            "note": "Across the district cluster, over two months."
+          },
+          {
+            "label": "Earnest-money carry",
+            "formula": "₹2 crore × 10% a year × 6 months",
+            "value": "₹10 lakh",
+            "note": "The whole of what the ₹2 crore costs you. Get this line right and the rest of the question becomes arithmetic; get it wrong and no amount of careful weighting downstream will save the answer."
+          }
+        ]
+      }
+    ]
+  },
+
+  "assumptions": [
+    {
+      "id": "a_target",
+      "lever": "Sanctioned seats across the three-year term",
+      "value": "60,000 trainees",
+      "numeric": 60000,
+      "unit": "trainees over three years",
+      "basis": "published-benchmark",
+      "defence": "The tender document prints the sanctioned seat count — 20,000 a year for three years — so this is given rather than estimated, and a minute spent defending it is a minute taken from the numbers that are actually contested.",
+      "confidence": "anchor"
+    },
+    {
+      "id": "a_rate",
+      "lever": "Ceiling rate per certified trainee",
+      "value": "₹15,000",
+      "numeric": 15000,
+      "unit": "₹ per trainee",
+      "basis": "published-benchmark",
+      "defence": "Government vocational rates are published per training hour by trade category and sit near ₹40 to ₹50 an hour, so a 300 to 350 hour course prices between ₹12,000 and ₹18,000 — ₹15,000 is the middle of the published band.",
+      "confidence": "defensible",
+      "contestedBy": "An interviewer will point out that this is the ceiling and not the price you will get to charge. That objection is correct, it is the single most important thing anyone can say about this answer, and it is the entire subject of the cross-check below."
+    },
+    {
+      "id": "a_var_cost",
+      "lever": "Variable cost per trainee delivered",
+      "value": "₹9,000",
+      "numeric": 9000,
+      "unit": "₹ per trainee",
+      "basis": "structural-logic",
+      "defence": "Built rather than asserted: ₹4,000 of trainer time spread across a batch of 25, ₹1,500 of assessment and certification fees paid through to the awarding body, ₹1,500 of kit and consumables, and ₹2,000 of mobilisation — the counsellor payment it takes to find a candidate in a rural block and keep them through the course.",
+      "confidence": "judgement",
+      "contestedBy": "Mobilisation is the contested line. Firms who have actually run these contracts will tell you ₹2,000 is optimistic and the working figure is nearer ₹3,500. That correction alone takes the decision through zero, which is why it is the lever the sensitivity grid runs on."
+    },
+    {
+      "id": "a_fixed",
+      "lever": "Fixed delivery cost per year",
+      "value": "₹8 crore",
+      "numeric": 80000000,
+      "unit": "₹ per year",
+      "basis": "structural-logic",
+      "defence": "Forty centres at roughly ₹12 lakh a year each for rent, utilities and a centre manager comes to ₹4.8 crore, plus ₹3.2 crore of regional supervision, MIS, third-party audit and the state-level compliance team the contract obliges you to staff.",
+      "confidence": "defensible",
+      "contestedBy": "A franchise-led model pushes most of this into the variable line — you pay partners per certified trainee instead of holding forty leases. It changes the shape of the whole answer and it is the recommendation the cross-check ends on."
+    },
+    {
+      "id": "a_years",
+      "lever": "Contract term",
+      "value": "3 years",
+      "numeric": 3,
+      "unit": "years",
+      "basis": "structural-logic",
+      "defence": "Stated in the tender. It matters for one reason worth saying out loud: the fixed base is carried for all three years whether the seats fill or not, so the term multiplies the downside as faithfully as it multiplies the upside.",
+      "confidence": "anchor"
+    },
+    {
+      "id": "a_p_win",
+      "lever": "Probability of winning the tender",
+      "value": "30%",
+      "numeric": 0.3,
+      "unit": "probability",
+      "basis": "declared-judgement",
+      "defence": "Six firms typically clear technical prequalification on a contract this size, which makes the naive prior one in six, or 17%. Lift it to 30% because CohortWorks delivered two districts of the previous cycle and scores near the top of the technical gate, so the real contest is three-way rather than six-way.",
+      "confidence": "judgement",
+      "contestedBy": "Anyone who has watched these tenders will say 30% is generous for a firm that is not the incumbent. Halve it to 15% and the expected value is still positive at about ₹0.34 crore — that reply is worth more than defending the 30%."
+    },
+    {
+      "id": "a_p_high",
+      "lever": "Probability that enrolment holds, given you win",
+      "value": "60%",
+      "numeric": 0.6,
+      "unit": "probability",
+      "basis": "declared-judgement",
+      "defence": "Two of the previous cycle's three district clusters filled their sanctioned seats and one did not. That is a sample of three, it is openly a sample of three, and it is precisely why this branch carries a probability rather than a forecast.",
+      "confidence": "judgement"
+    },
+    {
+      "id": "a_low_fill",
+      "lever": "Seat fill in the low-enrolment outcome",
+      "value": "60% of target",
+      "numeric": 0.6,
+      "unit": "share of sanctioned seats",
+      "basis": "observed-behaviour",
+      "defence": "Under-enrolment in rural vocational programmes is a demand problem in the district, not a delivery problem in your centres — candidates enrol, take the stipend, and leave for wage work when sowing starts. A 40% shortfall is the ordinary bad year, not the disaster.",
+      "confidence": "judgement",
+      "contestedBy": "The genuine disaster case is 40% fill, which takes the low branch from a ₹2.4 crore loss to a ₹9.6 crore one and makes the bid a solvency question rather than an investment one."
+    },
+    {
+      "id": "a_bid_cash",
+      "lever": "Cash cost of preparing and submitting the bid",
+      "value": "₹50 lakh",
+      "numeric": 5000000,
+      "unit": "₹",
+      "basis": "declared-judgement",
+      "defence": "Four lines, each separately defensible: ₹25 lakh of loaded senior time for a six-person proposal team over eight weeks, ₹14 lakh to get forty centres documented and inspection-ready, ₹6 lakh of legal and due-diligence review, and ₹5 lakh of travel and pre-bid meetings across the districts.",
+      "confidence": "judgement",
+      "contestedBy": "It excludes what the proposal team would otherwise have done. If those eight weeks would have closed ₹1.5 crore of corporate training at 30% contribution, the true cost of competing is nearer ₹95 lakh and the expected value falls from ₹1.27 crore to about ₹0.82 crore."
+    },
+    {
+      "id": "a_emd",
+      "lever": "Earnest money deposited with the bid",
+      "value": "₹2 crore, refundable",
+      "numeric": 20000000,
+      "unit": "₹",
+      "basis": "structural-logic",
+      "defence": "Earnest money on a services tender runs near 2% of contract value and is returned to unsuccessful bidders once the award is published. It is working capital tied up, not money spent, and that distinction is the whole of this question's boundary.",
+      "confidence": "anchor"
+    },
+    {
+      "id": "a_cost_of_funds",
+      "lever": "Cost of funds",
+      "value": "10% a year",
+      "numeric": 0.1,
+      "unit": "per year",
+      "basis": "published-benchmark",
+      "defence": "A mid-sized services firm borrows working capital somewhere near 10 to 12%; take the low end, because the figure is only carrying ₹2 crore for six months and precision here buys nothing.",
+      "confidence": "defensible"
+    },
+    {
+      "id": "a_bidders",
+      "lever": "Firms clearing the technical gate",
+      "value": "6",
+      "numeric": 6,
+      "unit": "bidders",
+      "basis": "observed-behaviour",
+      "defence": "Prequalification on a contract this size screens on turnover, prior volume delivered and owned centre infrastructure — a filter that leaves five to eight national and regional players, not the thirty firms who collect the tender document.",
+      "confidence": "judgement"
+    },
+    {
+      "id": "a_discount_range",
+      "lever": "Top of the discount-to-ceiling range",
+      "value": "14%",
+      "numeric": 0.14,
+      "unit": "share below the ceiling rate",
+      "basis": "observed-behaviour",
+      "defence": "The previous cycle's published award rates ran from the ceiling down to roughly 14% below it, spread across the range rather than clustered at either end — so treat the spread as flat between zero and 14% and take the expected maximum of six draws, not the average.",
+      "confidence": "judgement",
+      "contestedBy": "If the spread is wider than 14%, the cross-check gets worse rather than better. There is no version of this in which the winner's curse works in your favour, which is what makes it a curse."
+    }
+  ],
+
+  "calculation": [
+    {
+      "id": "c1",
+      "label": "Contract revenue at full enrolment",
+      "expr": "60000 * 15000",
+      "display": "60,000 trainees × ₹15,000 per certified trainee",
+      "result": 900000000,
+      "unit": "₹ over three years",
+      "carriedForward": "₹90 crore",
+      "uses": ["a_target", "a_rate"],
+      "soWhat": "Size the prize before you price the bet. Ninety crore of top line against ₹60 lakh of bid cost is a ratio of 150 to 1, and that ratio already tells you the bid is probably worth making. The real question is not what this contract pays. It is what it costs to deliver."
+    },
+    {
+      "id": "c2",
+      "label": "Contribution per trainee",
+      "expr": "15000 - 9000",
+      "display": "₹15,000 rate − ₹9,000 variable cost",
+      "result": 6000,
+      "unit": "₹ per trainee",
+      "uses": ["a_rate", "a_var_cost"],
+      "soWhat": "This six thousand is the entire model. Everything downstream is this number multiplied by a headcount — and it is also the number with the least evidence behind it, which is an uncomfortable pairing worth naming while you write it."
+    },
+    {
+      "id": "c3",
+      "label": "Fixed delivery cost across the term",
+      "expr": "80000000 * 3",
+      "display": "₹8 crore a year × 3 years",
+      "result": 240000000,
+      "unit": "₹ over three years",
+      "carriedForward": "₹24 crore",
+      "uses": ["a_fixed", "a_years"],
+      "soWhat": "Forty centres do not close because a district under-enrols. This is the number that turns a thin contract into a loss-making one, and a bottom-up revenue build never surfaces it at all."
+    },
+    {
+      "id": "c4",
+      "label": "Surplus if you win and enrolment holds",
+      "expr": "60000 * 6000 - 240000000",
+      "display": "(60,000 × ₹6,000) − ₹24 crore fixed = ₹36 crore − ₹24 crore",
+      "result": 120000000,
+      "unit": "₹ over three years",
+      "carriedForward": "₹12 crore",
+      "uses": ["a_target"],
+      "soWhat": "Twelve crore on ₹90 crore of revenue is a 13% margin over three years, or about 4% a year. For a government training contract that is a good outcome rather than a remarkable one — and remember this is the branch where everything went right."
+    },
+    {
+      "id": "c5",
+      "label": "Trainees actually enrolled in the low case",
+      "expr": "60000 * 0.6",
+      "display": "60,000 sanctioned seats × 60% fill",
+      "result": 36000,
+      "tolerance": 0.000001,
+      "unit": "trainees",
+      "uses": ["a_target", "a_low_fill"],
+      "soWhat": "The seats are sanctioned by the state; the candidates have to be found, counselled and kept. Separating the two is the point of this line — you are not modelling your own execution here, you are modelling demand in a block you have never operated in."
+    },
+    {
+      "id": "c6",
+      "label": "Outcome if you win and enrolment disappoints",
+      "expr": "36000 * 6000 - 240000000",
+      "display": "(36,000 × ₹6,000) − ₹24 crore fixed = ₹21.6 crore − ₹24 crore",
+      "result": -24000000,
+      "unit": "₹ over three years",
+      "carriedForward": "−₹2.4 crore",
+      "uses": ["a_low_fill", "a_fixed"],
+      "soWhat": "Forty per cent fewer trainees does not mean 40% less profit. It means a ₹12 crore profit becomes a ₹2.4 crore loss — a swing of ₹14.4 crore off a revenue shortfall of ₹21.6 crore. That is operating leverage, and it is the whole reason this tree has a second layer."
+    },
+    {
+      "id": "c7",
+      "label": "Expected value of the contract, given you win",
+      "expr": "0.6 * 120000000 + 0.4 * (-24000000)",
+      "display": "(60% × ₹12.0 crore) + (40% × −₹2.4 crore)",
+      "result": 62400000,
+      "tolerance": 0.000001,
+      "unit": "₹ over three years",
+      "carriedForward": "₹6.24 crore",
+      "uses": ["a_p_high"],
+      "soWhat": "Say this out loud, because it is the sentence that separates you from the candidate who sized the contract: a contract everyone in the room would call 'a ₹12 crore contract' is worth ₹6.24 crore once the branch where the seats do not fill is priced rather than ignored."
+    },
+    {
+      "id": "c8",
+      "label": "Carrying cost of the earnest money",
+      "expr": "20000000 * 0.10 * 0.5",
+      "display": "₹2 crore earnest money × 10% a year × 6 months",
+      "result": 1000000,
+      "tolerance": 0.000001,
+      "unit": "₹",
+      "carriedForward": "₹10 lakh",
+      "uses": ["a_emd", "a_cost_of_funds"],
+      "soWhat": "The ₹2 crore is not a cost — it comes back. Ten lakh of carry is the cost. This one line is worth more than any other correction in the question, because the error it prevents is twenty times its own size and points the recommendation the wrong way."
+    },
+    {
+      "id": "c9",
+      "label": "Cost of competing, spent whether you win or lose",
+      "expr": "2500000 + 1400000 + 600000 + 500000 + 1000000",
+      "display": "₹25 lakh proposal team + ₹14 lakh centre readiness + ₹6 lakh legal + ₹5 lakh travel + ₹10 lakh earnest-money carry",
+      "result": 6000000,
+      "unit": "₹",
+      "carriedForward": "₹60 lakh",
+      "uses": ["a_bid_cash", "a_emd", "a_cost_of_funds"],
+      "soWhat": "Five components, none of them arguable on its own. An asserted round number invites the interviewer to substitute their own; a built one moves the conversation to which line they disagree with, which is a conversation you can win."
+    },
+    {
+      "id": "c10",
+      "label": "Breakeven probability of winning",
+      "expr": "6000000 / 62400000",
+      "display": "₹60 lakh cost of competing ÷ ₹6.24 crore expected contract value",
+      "result": 0.0962,
+      "tolerance": 0.005,
+      "unit": "probability",
+      "carriedForward": "≈ 10%",
+      "uses": ["a_bid_cash"],
+      "soWhat": "Compute the hurdle before you compute the answer. You need roughly a one-in-ten chance of winning for the ₹60 lakh to be worth spending, and you have assumed 30% — three times the hurdle. That reframes the whole decision: whether you will win is not the fragile part of this. Whether the contract is worth having if you do is."
+    },
+    {
+      "id": "c11",
+      "label": "Expected value of the bid decision",
+      "expr": "0.3 * 62400000 - 6000000",
+      "display": "(30% × ₹6.24 crore) − ₹60 lakh spent whatever happens",
+      "result": 12720000,
+      "tolerance": 0.000001,
+      "unit": "₹",
+      "carriedForward": "≈ +₹1.3 crore",
+      "uses": ["a_p_win", "a_bid_cash"],
+      "soWhat": "Positive, so on this arithmetic you bid. Now look at the size rather than the sign: ₹1.27 crore of expected value against ₹90 crore of contract revenue is a 1.4% expected return on the top line, thin enough that one assumption can carry it through zero. Which assumption, and by how much, is the only interesting question left."
+    }
+  ],
+
+  "finalAnswer": "≈ +₹1.3 crore of expected value at the ceiling rate — positive, and thin. A 9% overrun on the cost per trainee takes it to zero, and at the discount you would need to actually win the tender it is worth about −₹1.4 crore. So the honest recommendation is conditional rather than yes: bid only after converting the fixed delivery base to a variable one, which holds the expected value near +₹1.5 crore even at the winning price.",
+  "finalAnswerNumeric": 12720000,
+  "answerBand": "−₹0.3 crore to +₹2.8 crore on the cost lever alone — a band that contains zero, and that is the finding rather than a weakness in it. At the price you would have to quote to win, the same contract is worth about −₹1.4 crore.",
+  "orderOfMagnitude": "10^7 — crores, not tens of crores. The bid is worth roughly a tenth of what the contract is worth, and getting that ratio right matters more than the figure.",
+
+  "triangulation": {
+    "label": "Price-to-win cross-check — can you win at the price you just assumed?",
+    "route": "Top-down",
+    "premise": "The primary route held the price at the published ceiling and treated a 30% chance of winning as a fact about the world. It is not. In a competitive tender the price and the probability are the same variable: you win when you have bid low, so the branch in which you get the contract is systematically the branch in which you have given margin away. This route runs the question backwards from the market rather than forwards from your own costs — how many firms clear the gate, how far below the ceiling the winning bid has historically landed, and therefore what you would actually be charging. It shares no probability, no cost and no volume with the first route except the ones the tender itself fixes.",
+    "lines": [
+      {
+        "id": "t1",
+        "label": "Expected winning discount to the ceiling",
+        "expr": "0.14 * 6 / 7",
+        "display": "14% top of the observed range × 6 bidders ÷ 7 — the expected largest of six draws spread evenly across a range",
+        "result": 0.12,
+        "tolerance": 0.000001,
+        "unit": "share below ceiling",
+        "carriedForward": "≈ 12%",
+        "uses": ["a_discount_range", "a_bidders"],
+        "soWhat": "The winner is not the average bidder, it is the most aggressive one. With six bidders the expected winning discount sits six-sevenths of the way up the range, not halfway. That single fraction is the winner's curse in one line, and it is the thing the first route never looked at."
+      },
+      {
+        "id": "t2",
+        "label": "Price you would have to quote to win",
+        "expr": "15000 * (1 - 0.12)",
+        "display": "₹15,000 ceiling × (1 − 12% expected winning discount)",
+        "result": 13200,
+        "tolerance": 0.000001,
+        "unit": "₹ per trainee",
+        "carriedForward": "≈ ₹13,200",
+        "uses": ["a_rate"],
+        "soWhat": "This is the price at which a 30% chance of winning is real rather than assumed. The ₹15,000 used in the first route was the ceiling, not a price, and quoting the ceiling in a competitive tender is a decision to lose taken in advance."
+      },
+      {
+        "id": "t3",
+        "label": "Contribution per trainee at the winning price",
+        "expr": "13200 - 9000",
+        "display": "₹13,200 winning price − ₹9,000 variable cost",
+        "result": 4200,
+        "unit": "₹ per trainee",
+        "uses": ["a_var_cost"],
+        "soWhat": "A 12% cut in price took 30% off the contribution. Discounts come out of margin, never out of cost, so on a thin contract there is no such thing as a small price concession — and that ratio, 12 becoming 30, is worth memorising for every pricing case you will ever see."
+      },
+      {
+        "id": "t4",
+        "label": "High-enrolment outcome at the winning price",
+        "expr": "60000 * 4200 - 240000000",
+        "display": "(60,000 × ₹4,200) − ₹24 crore fixed = ₹25.2 crore − ₹24 crore",
+        "result": 12000000,
+        "unit": "₹ over three years",
+        "carriedForward": "₹1.2 crore",
+        "uses": ["a_target", "a_fixed"],
+        "soWhat": "The good branch has gone from ₹12 crore to ₹1.2 crore. Every rupee you were going to earn on this contract was sitting in the 12% you had to give away to get it — three years of forty centres for a margin under 2%."
+      },
+      {
+        "id": "t5",
+        "label": "Low-enrolment outcome at the winning price",
+        "expr": "36000 * 4200 - 240000000",
+        "display": "(36,000 × ₹4,200) − ₹24 crore fixed = ₹15.1 crore − ₹24 crore",
+        "result": -88800000,
+        "unit": "₹ over three years",
+        "carriedForward": "−₹8.9 crore",
+        "uses": ["a_low_fill", "a_fixed"],
+        "soWhat": "The bad branch has gone from a ₹2.4 crore loss to an ₹8.9 crore one, larger than two years of the firm's profit. This is the point at which a bid decision stops being an investment appraisal and becomes a question for the board."
+      },
+      {
+        "id": "t6",
+        "label": "Expected contract value at the winning price",
+        "expr": "0.6 * 12000000 + 0.4 * (-88800000)",
+        "display": "(60% × ₹1.2 crore) + (40% × −₹8.9 crore)",
+        "result": -28320000,
+        "tolerance": 0.000001,
+        "unit": "₹ over three years",
+        "carriedForward": "−₹2.83 crore",
+        "uses": ["a_p_high"],
+        "soWhat": "Negative before you have spent a rupee on the bid. Same trainees, same costs, same probabilities — one price assumption changed, and the contract you were competing for is now one you should hope to lose."
+      },
+      {
+        "id": "t7",
+        "label": "Expected value of the bid at the price to win",
+        "expr": "0.3 * (-28320000) - 6000000",
+        "display": "(30% × −₹2.83 crore) − ₹60 lakh spent whatever happens",
+        "result": -14496000,
+        "tolerance": 0.000001,
+        "unit": "₹",
+        "carriedForward": "≈ −₹1.45 crore",
+        "uses": ["a_p_win", "a_bid_cash"],
+        "soWhat": "Put the two answers side by side before you say anything else: +₹1.27 crore and −₹1.45 crore, the same contract, opposite signs, ₹2.7 crore apart."
+      }
+    ],
+    "answer": "≈ −₹1.45 crore at the price that actually wins, against +₹1.27 crore at the ceiling rate — the same contract, opposite signs",
+    "verdict": "These two routes do not disagree about arithmetic. They disagree about whether the price is yours to choose, and the whole ₹2.7 crore gap is that one assumption. The first route is what a careful candidate produces when win probability is treated as exogenous — a number sitting on a price you would not get. The second prices the correlation: you win when you have bid low, so the winning branch is structurally the thin-margin branch. Resolve it by solving for the price at which the bid breaks even rather than by splitting the difference. That price is about ₹14,160, a discount of 5.6% to the ceiling. Then ask what that discount buys you against five rivals drawing anywhere up to 14%: the chance all five bid less aggressively is roughly 0.4 to the fifth power, about one in a hundred. There is no price at which both routes are satisfied, and that is the finding — at your price you will not win, and at the winning price you should not want to. The useful move is structural rather than numerical. Convert the fixed base to a variable one: rent classrooms by the batch and contract trainers per cohort instead of holding forty leases for three years, and the ₹24 crore fixed falls to roughly ₹14 crore. Rerun it at the winning price of ₹13,200 and the branches are +₹11.2 crore and +₹1.1 crore — the loss-making branch disappears entirely, the expected value of the bid lands near +₹1.5 crore, and it lands there without assuming you get to charge more than the market will pay. That is the answer: bid, but not with this delivery model."
+  },
+
+  "sensitivity": {
+    "assumptionId": "a_var_cost",
+    "whyThisLever": "It is the only number here that is simultaneously large, load-bearing and genuinely unknown. The rate is published. The seat count is printed in the tender. The fixed base you can count — forty centres, forty leases. The probabilities are judgements, but the answer barely notices them: halve the win probability from 30% to 15% and the expected value is still positive at about ₹0.34 crore, because the hurdle is only 10%. Variable cost per trainee is different in kind. It is a forecast of your own operating performance three years out, at a volume you have not run, in districts where you have not mobilised, and it enters the model as a subtraction from a price you cannot move. If this answer is wrong, it is wrong here.",
+    "cases": [
+      {
+        "scenario": "Conservative",
+        "leverValue": "₹10,000 per trainee — mobilisation at ₹3,000 rather than ₹2,000",
+        "answer": "−₹0.24 crore — the bid destroys value",
+        "deltaVsBase": "−119%"
+      },
+      {
+        "scenario": "Base",
+        "leverValue": "₹9,000 per trainee",
+        "answer": "+₹1.27 crore",
+        "deltaVsBase": "0%"
+      },
+      {
+        "scenario": "Aggressive",
+        "leverValue": "₹8,000 per trainee — batches of 30 rather than 25, assessment fees contracted for the full term",
+        "answer": "+₹2.78 crore",
+        "deltaVsBase": "+119%"
+      }
+    ],
+    "breakpoint": "The bid stops being worth making at a variable cost of about ₹9,840 per trainee — a contribution of ₹5,160 and an overrun of 9% on the ₹9,000 estimate. Nine per cent is well inside the ordinary error of a cost forecast for an operation you have not yet run, so the honest thing to say is that the sign of this answer is not safe. Hold it against the win probability, where the breakpoint is 10% against an assumed 30%: you would have to be wrong there by a factor of three before it changed anything. Two levers, both judgements, and only one of them can break the decision. Say which one, and the interviewer stops testing whether you understand your own model.",
+    "oneLiner": "It is worth roughly ₹1.3 crore of expected value, and all of that sits on delivering a trainee for ₹9,000 — at ₹9,850 the bid is worth nothing, and I have never run this volume in these districts."
+  },
+
+  "sanityChecks": [
+    "The estate and the volume must describe the same thing. Forty centres, four classrooms each, thirty seats a room, four batches a year comes to 19,200 seats a year against a target of 20,000. The ₹8 crore of fixed cost and the 20,000 trainees are two views of one physical operation, and if they had not matched, one of them was invented rather than estimated.",
+    "Margin shape: ₹12 crore on ₹90 crore is 13% across three years, roughly 4% a year on revenue. Government skills contracts are thin-margin, high-volume, slow-paying businesses and that is what 4% looks like. A model returning a 30% margin would be describing corporate training sold to employers, not a state tender, and the error would be in the price, not the arithmetic.",
+    "Bid cost against prize: ₹60 lakh to compete for ₹90 crore is 0.67% of contract value, which is where bid costs on large services tenders sit — somewhere between half a per cent and two per cent. If yours came out near ₹6 crore, you have put the refundable earnest money into it, and the check catches the error in five seconds.",
+    "Loss tolerance, which the expected value never tells you: the worst leaf is a ₹2.4 crore operating loss plus ₹60 lakh of bid cost, and it arrives with probability 0.30 × 0.40, about one in eight. Three crore rupees against a firm turning over ₹40 crore a year is most of a year's profit. A one-in-eight chance of that is a board conversation, not an arithmetic result, and a candidate who reports the ₹1.27 crore without reporting the 12% has answered only half the question.",
+    "Discounting, named rather than skipped: the surplus arrives across three years and the three-year annuity factor at 12% is about 2.4 against an undiscounted 3. That cuts the high branch from ₹12 crore to roughly ₹9.6 crore and the expected value of the bid from ₹1.27 crore to about ₹0.9 crore. Material, not decisive — and saying so takes ten seconds, while quietly ignoring it costs you the marks whichever way the number lands.",
+    "Payment timing, which is what actually kills training companies and appears nowhere in the expected value: the state pays on certification and on verified placement, commonly two to four quarters after the cost is incurred. At 20,000 trainees a year and ₹9,000 of cost each, a two-quarter lag ties up around ₹9 crore of working capital against a ₹1.27 crore expected return. If you say one thing beyond your number, say this one."
+  ],
+
+  "traps": [
+    {
+      "trap": "Putting the ₹2 crore earnest money into the cost of bidding.",
+      "whyItHappens": "The money genuinely leaves the account, and the mind does not distinguish a cash outflow from a cost when both look identical on a bank statement. Under time pressure everything that moves out gets subtracted, and the deposit is the largest number on the page, so it dominates whatever it is added to.",
+      "fix": "Ask of every outflow whether it comes back. Earnest money does, in full, within about six months. What it costs is the carry — ₹2 crore at 10% for half a year, ₹10 lakh. Get this wrong and your bid cost is ₹2.6 crore rather than ₹60 lakh, the expected value swings from +₹1.27 crore to −₹0.73 crore, and you recommend against a bid on the strength of an accounting error."
+    },
+    {
+      "trap": "Computing what the contract is worth instead of what the bid is worth.",
+      "whyItHappens": "Sizing is the reflex every guesstimate has trained, and the contract is the object in the prompt with numbers attached to it. So the candidate builds ₹90 crore of revenue, ₹12 crore of profit, and stops — having produced a correct answer to a question that was not asked.",
+      "fix": "Write the decision at the top of the page before any arithmetic: bid, or do not bid. Then every number has to earn its place by changing that decision. The contract's ₹12 crore is an input to the bid's ₹1.27 crore, and the distance between the two is the probability of winning and the branch where you win and wish you had not."
+    },
+    {
+      "trap": "Letting the fixed cost scale with enrolment.",
+      "whyItHappens": "Once you have written a cost per trainee, the mind treats all cost as per-trainee, because that is the shape the first calculation established. Then the low-enrolment branch is computed as 60% of the good branch — a smaller profit rather than a loss — and the branch that makes the question interesting quietly disappears.",
+      "fix": "Split cost into what the trainee triggers and what the contract commits you to, and do it before you compute either branch. Forty leases, forty centre managers and a compliance team are committed for three years. Here that split is the difference between a ₹7 crore low case and a −₹2.4 crore one, and only one of those is the truth."
+    },
+    {
+      "trap": "Holding your price fixed while treating the win probability as given.",
+      "whyItHappens": "The two numbers arrive from different places — the price from the tender document, the probability from a judgement about the field — so they feel independent. They are not. You win when your bid was the aggressive one, which means the winning branch is systematically the branch where you gave margin away. Any model that fixes one and assumes the other has already answered the question wrongly.",
+      "fix": "Quote a probability and a price as a pair, never separately: 'a 30% chance at ₹13,200, or a 5% chance at ₹14,900.' Then rerun the tree at the price that earns the probability you claimed. Here that moves the answer from +₹1.27 crore to −₹1.45 crore, and finding it is worth more than the original calculation was."
+    },
+    {
+      "trap": "Subtracting the bid cost only from the winning branch.",
+      "whyItHappens": "The tree is drawn win-first and the costs are written into the branch being worked on. The losing branch gets a zero, because nothing happens on it — except that ₹60 lakh has already been spent, and nothing happening is exactly what makes it a loss.",
+      "fix": "Charge the bid cost once at the root, outside the probability weighting, because it is incurred in every state of the world. Charging it only on the 30% branch prices it at ₹18 lakh instead of ₹60 lakh and overstates the answer by ₹42 lakh — a third of the whole result, lost to a diagram drawn in the wrong order."
+    },
+    {
+      "trap": "Stopping at 'the expected value is positive, so we bid.'",
+      "whyItHappens": "Expected value is what the question appeared to ask for, and once a positive number exists the analysis feels complete. But an expected value is an average over outcomes the firm experiences one at a time, and it says nothing about whether the firm survives the bad one.",
+      "fix": "Report the distribution alongside the mean in one sentence: 'Positive expected value of ₹1.27 crore, with a one-in-eight chance of losing ₹3 crore against a firm doing ₹40 crore a year.' Then give the recommendation the risk warrants — bid, with the enrolment target negotiated at the pre-bid meeting and the delivery base variabilised. A number is not a recommendation, and the gap between them is where the marks are."
+    }
+  ],
+
+  "probes": [
+    {
+      "question": "What would have to be true for you not to bid?",
+      "intent": "Whether you know your own breakpoint or only your own answer. A candidate who worked a template cannot answer this, because the template never asked which number was load-bearing.",
+      "goodAnswer": "Cost per trainee above about ₹9,840 — a 9% overrun on my ₹9,000, which is well inside the error of a forecast for districts I have not operated in. That is the one lever that flips the sign on its own. The win probability cannot do it: the hurdle is 10% and I have assumed 30%, so I would have to be wrong by a factor of three. The other way not to bid is structural rather than numerical — if the state will not move the enrolment target and I cannot variabilise the delivery base, the price I need to win makes the contract negative whatever my costs do.",
+      "weakAnswer": "'If the probability of winning were much lower' — which sounds like sensitivity analysis and is the one lever the answer is robust to, so it tells the interviewer you have not run the grid."
+    },
+    {
+      "question": "Our finance director says the cost of bidding is ₹2.6 crore, not ₹60 lakh. Who is right?",
+      "intent": "Whether you can hold a boundary under pressure from a senior person who is wrong, which is most of consulting.",
+      "goodAnswer": "The difference is the ₹2 crore of earnest money, and it is refundable — it comes back within about six months whether we win or lose. It is working capital tied up, not money spent, so the cost is the carry: ₹2 crore at 10% for half a year, about ₹10 lakh, which is already inside my ₹60 lakh. It matters because at ₹2.6 crore the expected value is −₹0.73 crore and we walk away from a positive-value bid. If he means the cash has to be arranged, that is a real constraint and a separate question from whether it is a cost.",
+      "weakAnswer": "Recomputing with ₹2.6 crore because the finance director said so — or conceding the point without noticing that it reverses the recommendation."
+    },
+    {
+      "question": "Suppose we bid, we lose, and the ₹60 lakh is gone. Was bidding a mistake?",
+      "intent": "Whether you can separate a decision from its outcome. This is the probe that most often exposes a candidate who produced the right number without understanding what a probability is.",
+      "goodAnswer": "No. Seven times in ten that is exactly what happens, and the decision priced it: I needed a 10% chance to justify ₹60 lakh and I judged 30%. Losing tells me nothing about whether the judgement was sound. What I would review is the inputs, not the result — was the discount we quoted consistent with the 30% we claimed, and did the winning rate land where the cross-check said it would. If the winner came in 18% below ceiling rather than 12%, my range was wrong and the next bid needs a different price, not a different attitude.",
+      "weakAnswer": "'In hindsight we should not have bid' — judging a decision by its outcome, which guarantees that the firm stops taking positive-value bets after every ordinary loss."
+    },
+    {
+      "question": "A competitor is expected to quote ₹11,000. Do we match?",
+      "intent": "Whether you treat a rival's price as information or as an instruction. Also whether you can say no to winning.",
+      "goodAnswer": "No. At ₹11,000 the contribution is ₹2,000 a trainee, so even at full enrolment the contract is ₹12 crore of contribution against ₹24 crore of fixed cost — a ₹12 crore loss in the branch where everything goes right. Matching is not a competitive response, it is buying the loss. The useful question is what they know that I do not. Either their centres are already built because they hold the incumbent contract and their fixed base is sunk, or their variable cost is genuinely lower on batch size, or they have mispriced. The first two are reasons I cannot match. The third is a reason I should not want to.",
+      "weakAnswer": "'We match to stay in the game', or matching and then finding savings — which is deciding the price first and discovering the cost afterwards, and it is how training companies fail."
+    },
+    {
+      "question": "The state offers to raise the ceiling to ₹17,000 but halve the contract to 30,000 trainees. Take it?",
+      "intent": "Whether the tree is a live model or a finished sum, and whether you know which of your costs are per-centre and which are per-contract.",
+      "goodAnswer": "Yes, and for the risk rather than the return. Contribution rises to ₹8,000, so the high branch is 30,000 × ₹8,000, ₹24 crore of contribution. Fixed cost does not halve — twenty centres instead of forty, but the state-level compliance team, MIS and audit are per-contract — so call it ₹5 crore a year rather than ₹8, ₹15 crore across the term. The high branch becomes ₹9 crore and the low branch −₹0.6 crore instead of −₹2.4 crore, giving an expected value near ₹0.95 crore. Lower than ₹1.27 crore, but the worst outcome has shrunk by three-quarters. For a firm turning over ₹40 crore, that trade is worth taking.",
+      "weakAnswer": "'Yes, the rate is higher' — or 'no, the contract is smaller'. Both answer on one variable, and both miss that the fixed cost is the thing that does not halve."
+    },
+    {
+      "question": "You are the state. How would you write this tender to get better bids?",
+      "intent": "Whether you understood the mechanism you just modelled well enough to run it backwards. The strongest candidates find this easy and it separates them sharply.",
+      "goodAnswer": "Three changes, each aimed at a specific thing in my model. Publish block-level demand data, because the 40% chance of under-enrolment is the largest uncertainty in my tree and every bidder is pricing it with a padding factor the state pays for. Split the payment so a mobilisation-linked component carries part of the enrolment risk, which turns my −₹2.4 crore branch into something closer to breakeven and lets me bid lower. And score on quality as well as price rather than awarding to the lowest rate, because a pure price auction selects the bidder who has most underestimated the cost — and that bidder is the one who abandons centres in year two.",
+      "weakAnswer": "'Invite more bidders to increase competition' — more draws raises the expected winning discount and sharpens the winner's curse, which lowers the price and lowers the delivery quality the state is actually buying."
+    }
+  ]
+}

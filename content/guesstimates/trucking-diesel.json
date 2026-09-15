@@ -1,0 +1,684 @@
+{
+  "id": "trucking-diesel",
+  "question": "In a year, how much diesel do India's goods trucks burn?",
+  "tabLabel": "Truck diesel, India",
+  "archetype": "physical-proxy-consumable",
+  "difficulty": "Hard",
+  "timeboxMinutes": 15,
+  "teachingPoint": "A consumable is never counted directly. It is counted through the physical thing that consumes it, and the whole difficulty of this question is choosing that proxy — not trucks, and not tonnes of freight, but vehicle-kilometres, the one unit a fleet number and a fuel rate will both attach to. Once you are in vehicle-kilometres the rest is a division. The second half of the lesson is that the fleet does not have an average duty cycle: long-haul trucks run three times the annual kilometres of regional ones, so applying either figure to the whole fleet moves the answer by roughly a factor of two in a direction most candidates never notice they chose.",
+  "scope": {
+    "countingWhat": "Diesel burned in the engines of goods-carrying trucks of 7.5 tonnes gross vehicle weight and above, operating on Indian roads, over one year — including the fuel burned while the vehicle is standing still with the engine running.",
+    "unit": "litres of diesel per year",
+    "timeBasis": "flow (per year)",
+    "geography": "India — national and state highways, plus the city and rural roads at either end of a trip",
+    "included": [
+      "Rigid trucks from 7.5 tonnes upward and tractor-trailer combinations, hire-and-reward and own-account alike",
+      "A cement plant's or a retailer's captive fleet, which is not for hire and burns diesel exactly the same way",
+      "Empty return running, which is a quarter of truck-kilometres and produces no freight at all",
+      "Fuel burned idling in toll-plaza queues, at mandis, at checkposts and at loading bays, and overnight with the engine on for the cabin",
+      "Trucks running on state permits inside one state, not only national-permit long-haul vehicles"
+    ],
+    "excluded": [
+      "Light commercial vehicles below 7.5 tonnes — the Ace-class pickups. They outnumber heavy trucks roughly three to one and would still add maybe a quarter again to the answer, which is exactly why the exclusion has to be stated rather than assumed",
+      "Buses and every passenger vehicle, including the diesel cars that used to dominate the segment",
+      "Tractors and farm equipment, which are a large diesel user and not trucks",
+      "Construction plant and mining dumpers working inside a pit rather than on a road",
+      "Railway traction, marine bunkers and standby gensets",
+      "Reefer units driven by a separate auxiliary engine — real, and small enough to name and drop",
+      "The CNG and LNG truck fleet, which is growing and is currently a low single-digit share of heavy goods vehicles"
+    ],
+    "boundaryTrap": "'Truck' in Indian usage runs from a one-tonne Ace to a fifty-tonne multi-axle trailer, and the two ends of that range do not belong in the same calculation. Count vehicles and the light end is most of the fleet. Count diesel and it is perhaps a quarter again on top of the heavy fleet — large enough that including it or excluding it changes the answer materially, and quiet enough that nobody notices you never said which you did. Set the boundary by what burns the fuel rather than by what shares the name, say where you drew it, and say roughly what you left outside."
+  },
+  "routeChoice": {
+    "chosen": "Hybrid",
+    "why": "Neither half of this question can be answered on its own terms. The fleet is a national aggregate and has to come down from one — nobody counts working trucks, so you build the stock from the flow that feeds it: units sold in a year, multiplied by how long a truck stays in service. The fuel is physics and has to come up from one vehicle: kilometres run, divided by kilometres per litre. Vehicle-kilometres is the joint where the two halves meet. Say that out loud before you draw anything — 'I am converting this into vehicle-kilometres, because trucks are counted per vehicle and diesel is burned per kilometre' — because naming the proxy is the step being graded, and the arithmetic after it is a division.",
+    "rejectedRoute": "Top-down",
+    "rejectedWhyNot": "The pure top-down route is national diesel consumption multiplied by the trucking share of it, and it is weaker here for a reason worth naming: it does not estimate anything. The trucking share of diesel is this question's answer expressed as a fraction, so a candidate who quotes it has recalled the answer rather than built it, and has nothing to say when the interviewer moves an input, because there are only two inputs and neither decomposes. It is also brittle in exactly the wrong place — the share is an attribution from a fuel-use study rather than a measurement, and a candidate quoting '30%' usually cannot say whether it includes light commercial vehicles and buses, which is a factor-of-two ambiguity hiding inside one remembered number. It keeps its place below as the cross-check, where a fast independent figure is worth a great deal and being unable to decompose it costs nothing."
+  },
+  "tree": {
+    "root": "Diesel burned by India's goods trucks in a year",
+    "rootFormula": "= (Long-haul vehicle-km ÷ long-haul kmpl) + (Regional vehicle-km ÷ regional kmpl), then uplifted for idling",
+    "value": "≈ 40 bn litres (4,000 crore litres)",
+    "branches": [
+      {
+        "label": "Active fleet, 7.5 tonnes and above",
+        "formula": "Annual sales × working life × fleet-growth haircut",
+        "value": "≈ 32 lakh trucks",
+        "note": "Nobody maintains a count of trucks that are actually running, so build the stock from the flow. Registered goods vehicles number well past a crore — that register carries light vehicles and trucks that stopped turning a wheel years ago, and it is the wrong denominator for a fuel question.",
+        "isCriticalPath": false,
+        "children": [
+          {
+            "label": "Annual sales, goods vehicles ≥ 7.5 t",
+            "formula": "Mid-cycle, not peak",
+            "value": "≈ 3 lakh units a year",
+            "note": "Commercial vehicle sales swing hard with the capex cycle. The fleet is fifteen years of sales, not one, so a peak year is the wrong figure to multiply."
+          },
+          {
+            "label": "Working life",
+            "formula": "Fitness-renewal threshold",
+            "value": "15 years",
+            "note": "A truck that stops paying its way on long-haul drops into regional duty rather than being scrapped, so fifteen years is a floor wearing an average's clothes."
+          },
+          {
+            "label": "Fleet-growth haircut",
+            "formula": "× 0.70",
+            "value": "32 lakh, not 45 lakh",
+            "note": "Sales fifteen years ago were roughly 40% of today's. Multiplying current sales by the full life over-counts a growing fleet — always, and by about a third here."
+          },
+          {
+            "label": "Duty-cycle split",
+            "formula": "35% long-haul / 65% regional",
+            "value": "11.2 lakh / 20.8 lakh",
+            "note": "Split the fleet before you touch a kilometre figure. This is the decision the answer turns on, and it is made in the structure, not in the arithmetic."
+          }
+        ]
+      },
+      {
+        "label": "Long-haul diesel",
+        "formula": "Long-haul trucks × annual km ÷ blended kmpl",
+        "value": "≈ 25 bn litres (2,520 crore litres)",
+        "note": "A third of the fleet burning two-thirds of the fuel. That inversion is the finding of the whole model, and it is why the duty-cycle split had to come before any number.",
+        "isCriticalPath": true,
+        "children": [
+          {
+            "label": "Long-haul trucks",
+            "formula": "32 lakh × 35%",
+            "value": "11.2 lakh trucks",
+            "note": "National-permit tractor-trailers and multi-axle rigids on trunk routes. The minority of vehicles and the majority of kilometres."
+          },
+          {
+            "label": "Annual kilometres",
+            "formula": "300 km a day × 300 working days",
+            "value": "90,000 km",
+            "note": "Indian long-haul averages 30 to 40 kmph on the whole-journey clock once loading detention, checkposts and single-driver rest are counted. Three hundred kilometres is a full day, not a slow one."
+          },
+          {
+            "label": "Vehicle-kilometres",
+            "formula": "11.2 lakh × 90,000",
+            "value": "≈ 101 bn vehicle-km",
+            "note": "The proxy unit. Everything upstream converts into this and everything downstream divides it."
+          },
+          {
+            "label": "Blended mileage",
+            "formula": "3.5 laden × 75% + 5.5 empty × 25%",
+            "value": "4.0 km per litre",
+            "note": "Empty backhauls burn less per kilometre and still burn. Blending lowers the answer, which is the tell that you performed the step rather than mentioned it."
+          }
+        ]
+      },
+      {
+        "label": "Regional diesel",
+        "formula": "Regional trucks × annual km ÷ blended kmpl",
+        "value": "≈ 12.5 bn litres (1,250 crore litres)",
+        "note": "Two-thirds of the fleet, a third of the fuel. Smaller vehicles, a third of the annual kilometres and better mileage — three multipliers cutting the same way, and compounding is the thing candidates underestimate.",
+        "isCriticalPath": false,
+        "children": [
+          {
+            "label": "Regional trucks",
+            "formula": "32 lakh × 65%",
+            "value": "20.8 lakh trucks",
+            "note": "Mandi, port, plant and city-distribution work inside one state, done mostly by 9 to 16 tonne rigid trucks."
+          },
+          {
+            "label": "Annual kilometres",
+            "formula": "100 km a day × 300 working days",
+            "value": "30,000 km",
+            "note": "Two or three short runs with long waits at both ends. Loading and unloading, not driving, is what fills a regional truck's day."
+          },
+          {
+            "label": "Vehicle-kilometres",
+            "formula": "20.8 lakh × 30,000",
+            "value": "≈ 62 bn vehicle-km",
+            "note": "Nearly twice the trucks producing under two-thirds the kilometres. Read that off the ledger before the interviewer asks you to."
+          },
+          {
+            "label": "Blended mileage",
+            "formula": "4.5 laden × 75% + 6.5 empty × 25%",
+            "value": "5.0 km per litre",
+            "note": "Better than long-haul because the vehicle is lighter, not because the roads are kinder. Size beats duty cycle here, which is the opposite of what most candidates guess."
+          }
+        ]
+      },
+      {
+        "label": "Fuel burned standing still",
+        "formula": "Running diesel × 8%",
+        "value": "≈ 3 bn litres (300 crore litres)",
+        "note": "Toll plazas, mandi queues, checkposts, loading bays and an engine left running overnight for the cabin fan. Name it, size it, keep it — an interviewer cannot tell the difference between a step you weighed and a step you never saw.",
+        "isCriticalPath": false,
+        "children": [
+          {
+            "label": "Idling hours",
+            "formula": "2 hours a day × 300 days",
+            "value": "600 engine-hours a year",
+            "note": "Detention at loading points is the single biggest block of it, and it is the reason digital load-matching has an economic case at all."
+          },
+          {
+            "label": "Idling burn rate",
+            "formula": "≈ 2.5 litres an hour",
+            "value": "≈ 1,500 litres a truck a year",
+            "note": "Against 22,500 litres of running fuel for a long-haul truck — about 7%. Rounded to 8% to cover cold starts and auxiliary load."
+          }
+        ]
+      }
+    ]
+  },
+  "assumptions": [
+    {
+      "id": "mhcv_sales",
+      "lever": "Annual sales of goods vehicles of 7.5 tonnes and above",
+      "value": "≈ 3 lakh units a year",
+      "numeric": 300000,
+      "unit": "units per year",
+      "basis": "published-benchmark",
+      "defence": "Medium and heavy commercial vehicle sales are reported monthly by the manufacturers' association and move between roughly 2.5 and 3.5 lakh units across a cycle, with goods vehicles the large majority of that; 3 lakh is the mid-cycle figure, and the mid-cycle figure is the right one because the fleet is fifteen years of sales rather than one.",
+      "confidence": "defensible",
+      "contestedBy": "An interviewer who remembers a record year will offer 4 lakh, which takes the fleet to 42 lakh and the answer to about 53 bn litres. Concede that the series is cyclical and say you chose mid-cycle deliberately — that is a stronger position than defending the number itself."
+    },
+    {
+      "id": "truck_life",
+      "lever": "Years a truck stays in service",
+      "value": "15 years",
+      "numeric": 15,
+      "unit": "years",
+      "basis": "published-benchmark",
+      "defence": "Commercial vehicles must renew fitness after fifteen years under the scrappage rules, which is the closest thing to a published working life; in practice a truck that stops paying its way on long-haul falls into regional duty rather than being scrapped, so fifteen is conservative as an exit age and generous as an average of useful service.",
+      "confidence": "judgement",
+      "contestedBy": "Argue 12 years and the fleet falls to 25 lakh and the answer to about 32 bn litres — landing exactly on the diesel-share cross-check. That coincidence is worth noticing out loud and not worth engineering backwards from."
+    },
+    {
+      "id": "growth_haircut",
+      "lever": "Fleet-growth haircut on sales × life",
+      "value": "0.70",
+      "numeric": 0.7,
+      "unit": "multiplier",
+      "basis": "structural-logic",
+      "defence": "The fleet is the last fifteen years of sales, not fifteen copies of this year's. With sales compounding at roughly 6% a year, sales fifteen years ago were about 40% of today's and the fifteen-year average sits near 70% of the current figure.",
+      "confidence": "judgement",
+      "contestedBy": "A candidate who believes truck sales have been flat drops the haircut altogether, taking the fleet to 45 lakh and the answer to 57 bn litres. The direction of this correction is not arguable for any growing category — only its size is."
+    },
+    {
+      "id": "fleet_active",
+      "lever": "Active goods-truck fleet, 7.5 tonnes and above",
+      "value": "≈ 32 lakh trucks",
+      "numeric": 3200000,
+      "unit": "trucks",
+      "basis": "declared-judgement",
+      "defence": "Not assumed straight — derived from three numbers and then rounded, and called out as a lever in its own right because the answer scales one-for-one on their product, so it carries their errors multiplied rather than averaged. Registered goods vehicles run past a crore; that register includes light vehicles and trucks that stopped running years ago, and nobody deletes a row from it.",
+      "confidence": "shaky",
+      "contestedBy": "This is the lever the sensitivity grid runs on. Anyone with a view on how many registered trucks are actually turning a wheel this year will move it, and the entire answer moves proportionally with it."
+    },
+    {
+      "id": "longhaul_share",
+      "lever": "Share of the fleet in long-haul duty",
+      "value": "35%",
+      "numeric": 0.35,
+      "unit": "share of trucks",
+      "basis": "observed-behaviour",
+      "defence": "National-permit tractor-trailers and multi-axle rigids running trunk routes are a minority of vehicles; the rest of the fleet does mandi, port, plant and city-distribution work inside one state. Roughly a third long-haul is the working split, and the split is visible from any highway dhaba car park.",
+      "confidence": "judgement",
+      "contestedBy": "Push it to 45% and the answer rises about 14%; drop it to 25% and it falls about the same. The exact split matters less than the fact that the two duty cycles were separated at all — a single blended figure is wrong by a factor of two, not fourteen per cent."
+    },
+    {
+      "id": "km_longhaul",
+      "lever": "Annual kilometres, long-haul truck",
+      "value": "90,000 km",
+      "numeric": 90000,
+      "unit": "km per year",
+      "basis": "observed-behaviour",
+      "defence": "Three hundred kilometres a day for three hundred working days. Indian long-haul averages 30 to 40 kmph on the whole-journey clock once loading detention, checkposts and single-driver rest are counted, so 300 km is a full day's run rather than a slow one.",
+      "confidence": "defensible",
+      "contestedBy": "Two-driver operations on the new expressway corridors manage 500 km a day and 1.5 lakh km a year. They are a small and growing share; if they were half the long-haul fleet the answer would rise about a quarter."
+    },
+    {
+      "id": "km_regional",
+      "lever": "Annual kilometres, regional truck",
+      "value": "30,000 km",
+      "numeric": 30000,
+      "unit": "km per year",
+      "basis": "observed-behaviour",
+      "defence": "A hundred kilometres a day for three hundred days — two or three short runs with long waits at both ends. What fills a regional truck's day is loading and unloading, not driving, and that is why the figure is a third of long-haul rather than half.",
+      "confidence": "defensible",
+      "contestedBy": "A range of 25,000 to 40,000 is genuinely arguable and moves the answer by under a tenth, because regional trucks are two-thirds of the fleet and only a third of the fuel."
+    },
+    {
+      "id": "empty_share",
+      "lever": "Share of truck-kilometres run empty",
+      "value": "25%",
+      "numeric": 0.25,
+      "unit": "share of vehicle-km",
+      "basis": "published-benchmark",
+      "defence": "Freight flows are directional — a truck carrying cement out of a plant rarely finds a load coming back — and the load-matching that would fix it is only now becoming digital. A quarter of kilometres empty is the conservative read of a problem usually quoted as worse.",
+      "confidence": "judgement",
+      "contestedBy": "If it is 35%, blended mileage improves and the answer falls about 4%. Empty running is a large industry problem and a small lever in this particular calculation — those two things are easy to confuse, and saying the difference out loud is worth more than the number."
+    },
+    {
+      "id": "kmpl_laden_lh",
+      "lever": "Mileage, long-haul truck running laden",
+      "value": "3.5 km per litre",
+      "numeric": 3.5,
+      "unit": "km per litre",
+      "basis": "physical-constant",
+      "defence": "A forty-tonne combination on a highway at 50 to 60 kmph. This figure is set by mass and rolling resistance rather than by driving style, which is why it varies so little across operators and why it is one of the firmer numbers on the page.",
+      "confidence": "defensible",
+      "contestedBy": "Newer BS-VI tractors with aerodynamic cabs are claimed at 4.0 to 4.5. They are a minority of the fleet today; if they were half of it the answer would fall about a tenth."
+    },
+    {
+      "id": "kmpl_empty_lh",
+      "lever": "Mileage, long-haul truck running empty",
+      "value": "5.5 km per litre",
+      "numeric": 5.5,
+      "unit": "km per litre",
+      "basis": "physical-constant",
+      "defence": "Take twenty-five tonnes of payload off a forty-tonne combination and fuel burn per kilometre falls by roughly a third — not to zero, because the tractor and trailer still weigh fifteen tonnes and the aerodynamic drag is unchanged.",
+      "confidence": "defensible",
+      "contestedBy": "Arguing 6.0 moves the blended figure about 3% and the answer by less. What matters about the empty line is that it exists at all, not where exactly it sits."
+    },
+    {
+      "id": "kmpl_laden_reg",
+      "lever": "Mileage, regional truck running laden",
+      "value": "4.5 km per litre",
+      "numeric": 4.5,
+      "unit": "km per litre",
+      "basis": "physical-constant",
+      "defence": "Regional work is done by 9 to 16 tonne rigid trucks rather than forty-tonne combinations, so the vehicle is far lighter even though the stop-start duty cycle is worse. Vehicle size wins over duty cycle here.",
+      "confidence": "defensible",
+      "contestedBy": "Anyone reasoning only from congestion will argue 3.5 and push the answer up about 8%. Ask them what the truck weighs before conceding — the objection reasons from the road when the binding variable is the vehicle."
+    },
+    {
+      "id": "kmpl_empty_reg",
+      "lever": "Mileage, regional truck running empty",
+      "value": "6.5 km per litre",
+      "numeric": 6.5,
+      "unit": "km per litre",
+      "basis": "physical-constant",
+      "defence": "The same one-third reduction in fuel per kilometre as the long-haul pair, applied to a lighter vehicle. Keeping the two pairs consistent is what makes the duty-cycle comparison mean anything.",
+      "confidence": "defensible",
+      "contestedBy": "Nothing turns on this one — it moves the answer under 2%. Say so and move on rather than defending it at length, because time spent on an immaterial lever is time the interviewer watches you spend."
+    },
+    {
+      "id": "idle_uplift",
+      "lever": "Uplift for fuel burned without moving",
+      "value": "+8%",
+      "numeric": 1.08,
+      "unit": "multiplier",
+      "basis": "observed-behaviour",
+      "defence": "Two hours a day at roughly two and a half litres an hour is about 1,500 litres a year against 22,500 litres of running fuel for a long-haul truck, which is 7%. Round to 8% to cover cold starts and auxiliary load, and say what the number covers.",
+      "confidence": "judgement",
+      "contestedBy": "An interviewer may argue that FASTag and the removal of state checkposts have cut this to 4%. That takes about 1.5 bn litres off the answer — worth naming, not worth defending hard, and a good moment to concede cleanly."
+    },
+    {
+      "id": "diesel_total",
+      "lever": "India's annual diesel consumption",
+      "value": "≈ 9 crore tonnes",
+      "numeric": 90000000,
+      "unit": "tonnes per year",
+      "basis": "published-benchmark",
+      "defence": "Diesel is the single largest petroleum product India consumes, at roughly two-fifths of a petroleum basket of around 23 crore tonnes; the petroleum ministry publishes the figure monthly and it has sat near 9 crore tonnes.",
+      "confidence": "anchor",
+      "contestedBy": "The firmest number in this entry. An interviewer who disputes it is testing whether you will abandon a good figure under pressure, and abandoning it is the wrong answer."
+    },
+    {
+      "id": "litres_per_tonne",
+      "lever": "Litres in a tonne of diesel",
+      "value": "≈ 1,190 litres",
+      "numeric": 1190,
+      "unit": "litres per tonne",
+      "basis": "physical-constant",
+      "defence": "Diesel density is about 0.84 kg per litre, so a tonne is 1,000 ÷ 0.84 ≈ 1,190 litres. Use 1,200 if you are doing it in your head; the difference is under 1%.",
+      "confidence": "anchor",
+      "contestedBy": "Nothing contests a density. The reason to carry it is that the trade quotes tonnes and the pump quotes litres, so without the conversion no published fuel figure is usable at all."
+    },
+    {
+      "id": "truck_share_diesel",
+      "lever": "Share of India's diesel burned by goods trucks of 7.5 tonnes and above",
+      "value": "30%",
+      "numeric": 0.3,
+      "unit": "share of national diesel",
+      "basis": "published-benchmark",
+      "defence": "Fuel-use attribution studies place commercial goods vehicles near 28 to 30% of diesel, with agriculture, buses, cars, railways, industry and standby gensets taking the rest; 30% is the round figure and deliberately the top of that range, because heavy freight has grown faster than the diesel pool since those studies were run. Illustrative — used here to demonstrate a cross-check, not asserted as verified data.",
+      "confidence": "judgement",
+      "contestedBy": "The most abusable number on this page is what '30%' includes. If it covers light commercial vehicles as well, the comparable share for heavy trucks alone is nearer 22% and the cross-check falls to 24 bn litres — an ambiguity that swamps every other disagreement between the two routes, and one you should name before you use the figure."
+    }
+  ],
+  "calculation": [
+    {
+      "id": "c1",
+      "label": "Active goods-truck fleet",
+      "expr": "300000 * 15 * 0.7",
+      "display": "3 lakh sold a year × 15-year working life × 0.70 fleet-growth haircut",
+      "result": 3150000,
+      "tolerance": 0.000001,
+      "unit": "trucks",
+      "carriedForward": "≈ 32 lakh active trucks",
+      "uses": [
+        "mhcv_sales",
+        "truck_life",
+        "growth_haircut"
+      ],
+      "soWhat": "Building a stock from a flow is the move this archetype turns on. There is no census of working trucks, but there is a sales series and a scrappage rule, and those two plus a growth correction give a number you can defend line by line — which the registration total never can."
+    },
+    {
+      "id": "c2",
+      "label": "Long-haul trucks",
+      "expr": "3200000 * 0.35",
+      "display": "32 lakh × 35% long-haul duty",
+      "result": 1120000,
+      "tolerance": 0.000001,
+      "unit": "trucks",
+      "carriedForward": "≈ 11.2 lakh",
+      "uses": [
+        "fleet_active",
+        "longhaul_share"
+      ],
+      "soWhat": "The split has to happen here, before any kilometre figure is applied. Once a single average annual-km number is in the model it cannot be unmixed, and the answer is already wrong by a factor near two."
+    },
+    {
+      "id": "c3",
+      "label": "Regional trucks",
+      "expr": "3200000 * 0.65",
+      "display": "32 lakh × 65% regional duty",
+      "result": 2080000,
+      "tolerance": 0.000001,
+      "unit": "trucks",
+      "carriedForward": "≈ 20.8 lakh",
+      "uses": [
+        "fleet_active",
+        "longhaul_share"
+      ],
+      "soWhat": "Nearly twice as many trucks as the long-haul branch. Hold that ratio in mind, because the fuel total inverts it and you will be asked why."
+    },
+    {
+      "id": "c4",
+      "label": "Blended mileage, long-haul",
+      "expr": "3.5 * 0.75 + 5.5 * 0.25",
+      "display": "3.5 kmpl laden × 75% of km + 5.5 kmpl empty × 25% of km",
+      "result": 4,
+      "tolerance": 0.000001,
+      "unit": "km per litre",
+      "carriedForward": "4.0 km per litre",
+      "uses": [
+        "kmpl_laden_lh",
+        "kmpl_empty_lh",
+        "empty_share"
+      ],
+      "soWhat": "Operators quote laden mileage because that is what they negotiate freight rates on, but a quarter of the kilometres in the model are empty ones. Blending raises the mileage and therefore lowers the answer — a correction that moves against the candidate's instinct, which is how you know it was actually applied."
+    },
+    {
+      "id": "c5",
+      "label": "Blended mileage, regional",
+      "expr": "4.5 * 0.75 + 6.5 * 0.25",
+      "display": "4.5 kmpl laden × 75% of km + 6.5 kmpl empty × 25% of km",
+      "result": 5,
+      "tolerance": 0.000001,
+      "unit": "km per litre",
+      "carriedForward": "5.0 km per litre",
+      "uses": [
+        "kmpl_laden_reg",
+        "kmpl_empty_reg",
+        "empty_share"
+      ],
+      "soWhat": "Regional trucks get better mileage than long-haul ones despite worse roads and worse traffic, because they weigh a quarter as much. If your model has regional mileage worse than highway mileage, you have reasoned from the road rather than from the vehicle."
+    },
+    {
+      "id": "c6",
+      "label": "Long-haul vehicle-kilometres",
+      "expr": "1120000 * 90000",
+      "display": "11.2 lakh trucks × 90,000 km a year",
+      "result": 100800000000,
+      "unit": "vehicle-km per year",
+      "carriedForward": "≈ 101 bn vehicle-km",
+      "uses": [
+        "km_longhaul"
+      ],
+      "soWhat": "The proxy unit finally appears. Everything before this line converts into vehicle-kilometres and everything after it divides them — and that is the whole structural idea being tested."
+    },
+    {
+      "id": "c7",
+      "label": "Long-haul running diesel",
+      "expr": "100800000000 / 4",
+      "display": "101 bn vehicle-km ÷ 4.0 km per litre",
+      "result": 25200000000,
+      "unit": "litres per year",
+      "carriedForward": "≈ 25 bn litres (2,520 crore litres)",
+      "uses": [],
+      "soWhat": "A third of the fleet has produced two-thirds of the fuel before the regional branch has been touched. Announce sub-totals as you go — an interviewer who stops you at minute nine should still be holding a number."
+    },
+    {
+      "id": "c8",
+      "label": "Regional vehicle-kilometres",
+      "expr": "2080000 * 30000",
+      "display": "20.8 lakh trucks × 30,000 km a year",
+      "result": 62400000000,
+      "unit": "vehicle-km per year",
+      "carriedForward": "≈ 62 bn vehicle-km",
+      "uses": [
+        "km_regional"
+      ],
+      "soWhat": "Nearly twice the trucks, under two-thirds the kilometres. The fleet share and the annual-kilometre figure pull against each other, which is precisely why a fleet average of either one is an average of nothing."
+    },
+    {
+      "id": "c9",
+      "label": "Regional running diesel",
+      "expr": "62400000000 / 5",
+      "display": "62 bn vehicle-km ÷ 5.0 km per litre",
+      "result": 12480000000,
+      "unit": "litres per year",
+      "carriedForward": "≈ 12.5 bn litres (1,250 crore litres)",
+      "uses": [],
+      "soWhat": "Three multipliers all cut the same way in this branch — fewer kilometres, lighter vehicles, better mileage — so two-thirds of the fleet lands at a third of the fuel. Compounding in one direction is the effect candidates consistently under-size."
+    },
+    {
+      "id": "c10",
+      "label": "Running diesel, both duty cycles",
+      "expr": "25200000000 + 12480000000",
+      "display": "25.2 bn litres long-haul + 12.5 bn litres regional",
+      "result": 37680000000,
+      "unit": "litres per year",
+      "carriedForward": "≈ 38 bn litres",
+      "uses": [],
+      "soWhat": "The fuel burned while actually moving. Keep it separate from the idling uplift so that when the interviewer challenges the idling figure you can show it was a named 8% rather than something smeared through the mileage numbers."
+    },
+    {
+      "id": "c11",
+      "label": "Implied annual burn per truck",
+      "expr": "37680000000 / 3200000",
+      "display": "38 bn litres ÷ 32 lakh trucks",
+      "result": 11775,
+      "unit": "litres per truck per year",
+      "carriedForward": "≈ 11,800 litres, or about 12,700 once idling is added",
+      "uses": [
+        "fleet_active"
+      ],
+      "soWhat": "Collapse the model to one defensible sentence before announcing a total: the average Indian goods truck burns around twelve thousand litres of diesel a year, which is roughly forty litres a working day. If that sentence sounds wrong, stop here and rebuild — not after the total."
+    },
+    {
+      "id": "c12",
+      "label": "Diesel burned by India's goods trucks in a year",
+      "expr": "37680000000 * 1.08",
+      "display": "38 bn litres running × 1.08 for idling and auxiliary burn",
+      "result": 40694400000,
+      "tolerance": 0.000001,
+      "unit": "litres per year",
+      "carriedForward": "≈ 40 bn litres — report this, not 40.69",
+      "uses": [
+        "idle_uplift"
+      ],
+      "soWhat": "The answer. Round to two significant figures, give the band, and name the lever the band comes from before the interviewer has to ask for it."
+    }
+  ],
+  "finalAnswer": "≈ 40 billion litres of diesel a year — 4,000 crore litres, or roughly 3.4 crore tonnes — burned by India's goods trucks of 7.5 tonnes and above",
+  "finalAnswerNumeric": 40000000000,
+  "answerBand": "32-50 billion litres (3,200-5,000 crore litres). Say the band out loud and say where it comes from — the fleet count, not the fuel physics. A guesstimate answered as '40.69 billion litres' claims a precision that three soft numbers multiplied together cannot carry, and signals you do not understand what an estimate is.",
+  "orderOfMagnitude": "10^10 — tens of billions of litres. Anything between 25 and 60 billion passes the test that actually matters, which is being right to the power of ten.",
+  "triangulation": {
+    "label": "Top-down cross-check — national diesel pool × trucking share",
+    "route": "Top-down",
+    "premise": "Every litre burned by a truck was first sold as part of India's national diesel consumption, and that total is one of the better-published numbers in the Indian economy. Take it, convert tonnes to litres, and apply the share that fuel-use studies attribute to heavy goods vehicles. This route shares nothing at all with the duty-cycle build — no fleet count, no annual kilometres, no mileage, no idling — which is exactly what makes the comparison worth running. It is also worth noticing before you start that this route is a product of two numbers where the primary is a product of six, so it may well be the tighter of the two.",
+    "lines": [
+      {
+        "id": "t1",
+        "label": "India's annual diesel consumption in litres",
+        "expr": "90000000 * 1190",
+        "display": "9 crore tonnes × 1,190 litres per tonne (density 0.84 kg per litre)",
+        "result": 107100000000,
+        "unit": "litres per year",
+        "carriedForward": "≈ 107 bn litres",
+        "uses": [
+          "diesel_total",
+          "litres_per_tonne"
+        ],
+        "soWhat": "The trade quotes tonnes and the pump quotes litres. Doing the conversion explicitly rather than reaching for a remembered litre figure keeps the density assumption visible, where it can be challenged."
+      },
+      {
+        "id": "t2",
+        "label": "Diesel burned by goods trucks of 7.5 tonnes and above",
+        "expr": "107100000000 * 0.3",
+        "display": "107 bn litres × 30% attributed to heavy goods vehicles",
+        "result": 32130000000,
+        "tolerance": 0.000001,
+        "unit": "litres per year",
+        "carriedForward": "≈ 32 bn litres (3,200 crore litres)",
+        "uses": [
+          "truck_share_diesel"
+        ],
+        "soWhat": "The cross-check answer, reached in two lines. Note how little it tells you: it produces a number and no lever, which is why it is a cross-check and not the route you present."
+      },
+      {
+        "id": "t3",
+        "label": "Burn per truck implied by the cross-check",
+        "expr": "32130000000 / 3200000",
+        "display": "32 bn litres ÷ 32 lakh trucks",
+        "result": 10040.625,
+        "unit": "litres per truck per year",
+        "carriedForward": "≈ 10,000 litres a truck a year",
+        "uses": [
+          "fleet_active"
+        ],
+        "soWhat": "Ten thousand litres against the duty-cycle model's 12,700. Putting both routes on a per-truck basis is what turns a total disagreement into a located one."
+      },
+      {
+        "id": "t4",
+        "label": "Active fleet implied by the cross-check, at the duty-cycle burn rate",
+        "expr": "32130000000 / 12717",
+        "display": "32 bn litres ÷ 12,717 litres a truck a year",
+        "result": 2526539.278131635,
+        "tolerance": 0.000001,
+        "unit": "trucks",
+        "carriedForward": "≈ 25 lakh active trucks",
+        "uses": [],
+        "soWhat": "Read the cross-check backwards and it stops being a statement about diesel. It says the country has about 25 lakh working trucks, not 32 lakh. The two routes are not arguing about fuel at all — they are arguing about how many trucks are genuinely turning a wheel, and that is a question somebody could go and settle."
+      }
+    ],
+    "answer": "≈ 32 bn litres (3,200 crore litres)",
+    "verdict": "40 bn litres against 32 bn — about 27% apart, both firmly at 10^10, which is as close as two genuinely independent routes usually get. Do not average them. First locate the gap: run both through litres per truck and it survives, so the disagreement lives in the fuel model or the fleet, not in a stray multiplication. Then run it backwards, as line t4 does, and it resolves into a single sentence — the cross-check is asserting a 25 lakh working fleet where the duty-cycle build assumed 32 lakh, which is the difference between a twelve-year working life and a fifteen-year one. Now the uncomfortable part, and the reason this cross-check is worth more than most. The primary route multiplies six soft numbers and carries something like ±40%. The cross-check multiplies two, one of which is a genuine anchor, and carries maybe ±25% — so the route you did not build is the tighter one, which inverts the assumption candidates bring into the room. Say that plainly. Keep the built route because it is the only one that tells you which lever to pull, lean on the cross-check when setting the band, and report 32-50 bn litres with 40 as the working figure. And name the one thing that would collapse the whole comparison: if that 30% share includes light commercial vehicles, the comparable figure is nearer 22% and the cross-check drops to 24 bn — a bigger move than anything the two routes are currently disagreeing about."
+  },
+  "sensitivity": {
+    "assumptionId": "fleet_active",
+    "whyThisLever": "Every other number in the chain is a rate applied to something, and rates are bounded by physics or by observation — mileage cannot double, annual kilometres cannot triple, the empty share sits between a fifth and a third whatever you believe, and the idling uplift moves the answer by single digits. The fleet is different in kind. The answer is exactly the fleet multiplied by an average burn rate, so a 25% error in the fleet is a 25% error in the answer with nothing downstream to damp it. Worse, the fleet is not one assumption but three multiplied together — annual sales, working life and a growth haircut — each of which could be out by a fifth, and errors that multiply do not cancel the way errors that average do. This is also the lever candidates spend no time on, because a fleet number feels like a fact rather than a construction.",
+    "cases": [
+      {
+        "scenario": "Conservative",
+        "leverValue": "24 lakh active trucks — a 12-year working life and a harder 0.67 haircut",
+        "answer": "≈ 31 bn litres (3,100 crore litres)",
+        "deltaVsBase": "−25%"
+      },
+      {
+        "scenario": "Base",
+        "leverValue": "32 lakh active trucks — 3 lakh sales × 15-year life × 0.70 haircut",
+        "answer": "≈ 40 bn litres (4,000 crore litres)",
+        "deltaVsBase": "—"
+      },
+      {
+        "scenario": "Aggressive",
+        "leverValue": "45 lakh active trucks — sales × life with no growth haircut at all",
+        "answer": "≈ 57 bn litres (5,700 crore litres)",
+        "deltaVsBase": "+41%"
+      }
+    ],
+    "breakpoint": "The answer leaves the stated 32-50 bn litre band below about 26 lakh active trucks or above about 40 lakh — so the band survives roughly a fifth either way on the fleet and no more. The two routes reconcile exactly at about 25 lakh, which is what 3 lakh sales a year and a twelve-year working life produce. So the whole disagreement between an eleven-line build and a two-line cross-check reduces to one empirical question: does the average Indian goods truck work for twelve years or for fifteen? Answer that and you have answered the guesstimate. Notice also that the aggressive case is not a scenario anyone chooses — it is what you get by forgetting the fleet is growing, which makes the most common error on this question a 41% one.",
+    "oneLiner": "With no time for the grid: 'The answer scales one-for-one on the active fleet, and my fleet is three soft numbers multiplied together, so call it 32 lakh trucks plus or minus a fifth. That is 40 bn litres, band 32 to 50. Everything downstream is duty-cycle physics bounded by the vehicle, and none of it moves the answer more than about a tenth.'"
+  },
+  "sanityChecks": [
+    "Share of national diesel. 40 bn litres against a national pool of 107 bn is 38%. Published attributions put heavy goods vehicles nearer 30%. That is not a passing check — it is a failing one, and saying so is the point. Either the fleet is too large, or the attribution studies are stale and heavy freight has taken share since. Name both, say which you lean towards, and report a band rather than pretending the check passed.",
+    "Per truck, per day. 12,700 litres a year over 300 working days is about 42 litres a day for the average truck in the fleet. A long-haul truck alone burns 300 km ÷ 4 kmpl = 75 litres a day and needs a 300-litre tank filled every four days. Any driver would recognise both figures, and a model whose per-unit numbers a practitioner would recognise is a model worth reporting.",
+    "The fuel bill. 40 bn litres at roughly ₹90 a litre is about ₹3.6 lakh crore a year on truck diesel alone — call it 1% of GDP. Fuel is typically half to three-fifths of an operator's cost on a trip, which implies a road-freight bill somewhere near ₹6-7 lakh crore. That is the right order for a market usually described in the ₹6-10 lakh crore range. Illustrative, not asserted as verified market data.",
+    "Freight actually moved. Run the vehicle-kilometres back into tonne-kilometres — 101 bn long-haul vehicle-km at 22 tonnes and 75% loaded, plus 62 bn regional vehicle-km at 9 tonnes and 75% loaded — and the model implies roughly 2,100 bn tonne-km of road freight. Commonly cited estimates sit nearer 2,500-3,000 bn, so this check says the fleet model is about a fifth too small while the diesel-share check says it is a quarter too large. Two checks disagreeing in direction is not a failure of the model; it is a statement that every input carries ±25% and that a point estimate was never available. Report the band and say why it is wide.",
+    "Bracket it before you trust it. 4 bn litres would be 1,250 litres a truck a year — a fortnight's running for a long-haul vehicle, and then eleven and a half months parked. 400 bn litres would be four times everything India burns of every petroleum product used for transport. Both fail in under a second, which places the answer in the tens of billions, and that bracketing is most of what the interviewer is testing.",
+    "Where the fuel is physically bought. 40 bn litres at a 300-litre fill is about 13 crore truck fills a year, or roughly 3.65 lakh fills a day. Truck fuelling concentrates at highway outlets rather than across all of India's fuel retail; spread over the order of 15,000 such outlets, that is around 24 truck fills a day at each — one an hour, round the clock. That matches what a highway pump actually looks like, and an answer ten times larger would not."
+  ],
+  "traps": [
+    {
+      "trap": "Using the registered goods-vehicle count as the fleet.",
+      "whyItHappens": "It is the only truck number anyone half-remembers, and it sounds authoritative because it comes from a register. But a vehicle register is a cumulative record with no deletion discipline — trucks that were cut up for scrap a decade ago are still rows in it — and it counts light commercial vehicles alongside forty-tonne trailers. The candidate then applies a heavy-truck duty cycle to a number built mostly from Ace-class pickups, and the error compounds rather than cancels.",
+      "fix": "Say 'registered is not running' out loud, then build the stock from a flow you can defend line by line: units sold in a year, a working life, and a correction for the fact that the fleet is growing. Three defensible numbers beat one authoritative-sounding one."
+    },
+    {
+      "trap": "Applying one average annual-kilometre figure to the whole fleet.",
+      "whyItHappens": "One average is faster and feels like it arrives in the same place. It does not, because fleet share and annual kilometres are negatively correlated here — the trucks that run the most are the minority — so the fleet average is an average of two populations that share almost nothing. Apply the long-haul figure to everything and the answer roughly doubles; apply the regional figure and it roughly halves. The candidate has made a factor-of-two decision without noticing that a decision was available.",
+      "fix": "Split on duty cycle before any kilometre figure enters the model, and say why the split is the structure rather than a refinement. Two duty cycles is enough — the point is that they genuinely differ, not that there are many of them."
+    },
+    {
+      "trap": "Forgetting empty running, or double-counting it.",
+      "whyItHappens": "Mileage is quoted laden because laden is what operators negotiate freight rates on, so the number that comes to mind is a laden number. A quarter of Indian truck-kilometres are empty backhauls that burn less per kilometre and still burn. The second half of the trap is subtler: a candidate who remembers empty running sometimes subtracts those kilometres from the annual total and then also improves the mileage, taking credit for the same correction twice.",
+      "fix": "Keep every kilometre in the annual figure and put the correction entirely into a blended mileage — laden kmpl weighted by loaded share plus empty kmpl weighted by empty share. State that this makes the answer smaller. A correction that cuts against you is the one an interviewer believes you actually made."
+    },
+    {
+      "trap": "Setting the fleet boundary by vehicle count rather than by fuel burned.",
+      "whyItHappens": "Boundaries get drawn where the category name breaks, and 'truck' colloquially includes the one-tonne pickup. Light commercial vehicles outnumber heavy trucks roughly three to one, so a count-driven boundary triples the fleet — and the candidate then runs heavy-truck kilometres and heavy-truck mileage across all of it. The failure is not that the boundary was drawn in the wrong place; it is that it was drawn on the wrong variable.",
+      "fix": "Draw every boundary on the quantity being estimated. Ask what each class contributes to litres, not to vehicles, then say what you excluded and roughly what it was worth — here, light commercial vehicles are perhaps a quarter again on top, which is material and must be said."
+    },
+    {
+      "trap": "Treating the cross-check as confirmation because both answers start with a three or a four.",
+      "whyItHappens": "Two numbers in the same order of magnitude feel like agreement, and agreement feels like the end of the exercise. But 27% apart is not agreement; it is a located disagreement, and locating it is the most valuable thing the second route produces. Candidates stop because the cross-check was framed in their mind as a formality to be passed rather than an instrument to be read.",
+      "fix": "Convert the gap into the single input that would close it — here, a fleet of 25 lakh rather than 32 lakh, which is a twelve-year working life instead of fifteen. Then say which route you trust more and why. A gap you can express as one number you would go and check is a finding; a gap you wave at is an unforced error."
+    },
+    {
+      "trap": "Assuming the route you built yourself is the one to trust.",
+      "whyItHappens": "Effort feels like evidence. The duty-cycle build took eleven lines and real structural thought, so it feels more earned than a two-line share calculation. But error compounds with every multiplication: six soft numbers carry far more uncertainty than two, one of which is a genuine published anchor. The candidate defends the route they are proud of instead of the one that is tighter.",
+      "fix": "Count the soft multiplications in each route before deciding which sets the band. Present the built route, because it is the only one that identifies a lever — but let the tighter route pull the band, and say out loud that you are doing so."
+    },
+    {
+      "trap": "Reporting the answer in litres, tonnes or rupees without saying which.",
+      "whyItHappens": "Diesel is burned in litres, traded in tonnes, taxed per litre and budgeted in rupees, and the three differ by factors of roughly 1,190 and 90. Mid-answer a candidate reaches for whichever unit the last number happened to be in, and a three-order-of-magnitude slip passes without either party noticing until the sanity check fails for a reason nobody can find.",
+      "fix": "Declare the unit in the scope statement, carry it on every line, and give the other two as translations at the end: 40 bn litres, about 3.4 crore tonnes, roughly ₹3.6 lakh crore at the pump."
+    }
+  ],
+  "probes": [
+    {
+      "question": "Where did your 32 lakh trucks come from, and why not the registration figure?",
+      "intent": "Whether the candidate knows the difference between a register and a count of what is actually working — and whether they can build a stock out of a flow when no stock is published.",
+      "goodAnswer": "Explains the construction in order: about 3 lakh heavy goods vehicles sold a year, a fifteen-year working life, and a haircut because the fleet is the last fifteen years of sales rather than fifteen copies of this year's. Then dismisses the register specifically — it includes light commercial vehicles, nobody deletes a scrapped truck from it, and it is a cumulative record rather than a measurement. Volunteers that this is the softest number in the model and the one the sensitivity runs on.",
+      "weakAnswer": "'India has about 1.4 crore registered goods vehicles, so I took a share of that.' The share is then chosen to make the answer look right, which reverses the whole exercise — and the candidate has no way to challenge their own number, because it came from a memory rather than from a construction."
+    },
+    {
+      "question": "Your answer implies trucks take 38% of India's diesel. Published attributions say about 30%. Which one is wrong?",
+      "intent": "Whether the candidate can hold their own estimate against a published figure without either capitulating or digging in.",
+      "goodAnswer": "Names both possibilities and sizes them. Either the fleet is a fifth too large — plausible, since it rests on three multiplied judgements — or the attribution is stale, since those fuel-use studies are a decade old and heavy freight has grown faster than the diesel pool since. Then adds the point that decides it: whether that 30% includes light commercial vehicles, because if it does the comparable figure is nearer 22% and the published number is the one moving, not mine. Reports 32-50 bn litres either way.",
+      "weakAnswer": "'Then I'll take 30%, so about 32 billion litres.' Abandoning a constructed estimate the moment a published number appears means the construction was never load-bearing — and the candidate has not asked the one question that matters, which is what the published number actually counts."
+    },
+    {
+      "question": "Your two routes are 27% apart. Which single number would you go and check?",
+      "intent": "Whether the candidate can rank uncertainty by how much it moves the answer rather than by how uncomfortable the number makes them feel.",
+      "goodAnswer": "The count of trucks actually working, because the answer scales one-for-one on it and the two routes reconcile at about 25 lakh against my 32 lakh. Adds that the check is tractable — FASTag transaction counts, fitness-certificate renewals or toll-plaza data would all bound the active fleet — and that no amount of checking mileage or annual kilometres could close a 27% gap, because those levers are bounded by the vehicle.",
+      "weakAnswer": "'The mileage figure' — the firmest number on the page, set by mass and rolling resistance and barely variable across operators. Candidates reach for it because it is checkable, not because it matters."
+    },
+    {
+      "question": "Defend the 90,000 kilometres. My uncle's truck does two lakh.",
+      "intent": "Whether the candidate can size a challenge instead of folding to an anecdote or arguing with it.",
+      "goodAnswer": "Concedes the anecdote is real and locates it: a two-driver operation on an expressway corridor, running 500 km a day with minimal detention, which exists and is growing. Then sizes it — those operators are a small share of long-haul today, and if they were half of it the answer would rise about a quarter, still inside the band. Reconstructs the base figure from the clock rather than from memory: 30 to 40 kmph whole-journey average, 300 km a day, 300 working days.",
+      "weakAnswer": "Either 'fair enough, let's say 1.5 lakh' — which moves the answer 50% on one anecdote — or a flat refusal. Neither tells the interviewer whether the challenge mattered, which is the only thing the question asked."
+    },
+    {
+      "question": "Expressways are opening and average truck speeds are rising. What happens to your answer?",
+      "intent": "Whether the candidate can reason about a change that hits several inputs in different directions, rather than moving one number and stopping.",
+      "goodAnswer": "Works through the inputs the change touches. Annual kilometres per truck rise, because a truck covers more ground in the same day. Mileage improves, because steady highway running at constant speed is where a diesel engine is most efficient. The idling uplift falls, because FASTag and fewer checkposts mean less queuing. So fuel per truck goes up while fuel per tonne-kilometre goes down, and the total depends on whether the freight task grows or the same freight is carried by a smaller fleet. Concludes that the question is really about fleet utilisation, not about fuel.",
+      "weakAnswer": "'Mileage improves so diesel consumption falls.' One input moved, the rest held frozen, and the largest effect — that faster trucks need fewer trucks, or carry more freight — never considered at all."
+    },
+    {
+      "question": "Now include light commercial vehicles. Does your structure survive?",
+      "intent": "Whether the residential of the boundary was a deliberate choice with a size attached, or simply where the candidate happened to stop.",
+      "goodAnswer": "Keeps the structure and adds a third duty cycle rather than stretching the existing ones: roughly three times as many vehicles, running perhaps a quarter of the annual kilometres at two to three times the mileage, which lands somewhere near a quarter again on top — call it 10 bn litres and take the total towards 50. Then flags what would break — the fleet construction needs its own sales and life figures, because light commercial vehicles sell in far greater numbers and last fewer years.",
+      "weakAnswer": "'It would be a lot higher, since there are many more of them.' A boundary you cannot size is a boundary you did not set, and the answer reveals that the exclusion was an accident rather than a decision."
+    }
+  ]
+}

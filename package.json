@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/check-media-provenance.mjs && node scripts/check-teaching-lessons.mjs && node scripts/check-scripture-corpora.mjs",
+    "prebuild": "node scripts/check-media-provenance.mjs && node scripts/check-teaching-lessons.mjs && node scripts/check-scripture-corpora.mjs && node scripts/check-guesstimates.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
@@ -16,7 +16,8 @@
     "scaffold:manas-word-study": "node scripts/scaffold-ramcharitmanas-word-study.mjs",
     "manifest:manas-word-study": "node scripts/build-ramcharitmanas-word-study-manifest.mjs",
     "test:smoke": "playwright test release-smoke.spec.mjs --reporter=line --workers=1",
-    "check": "eslint && tsc --noEmit && node scripts/check-media-provenance.mjs && node scripts/check-teaching-lessons.mjs && node scripts/check-scripture-corpora.mjs"
+    "check": "eslint && tsc --noEmit && node scripts/check-media-provenance.mjs && node scripts/check-teaching-lessons.mjs && node scripts/check-scripture-corpora.mjs && node scripts/check-guesstimates.mjs",
+    "check:guesstimates": "node scripts/check-guesstimates.mjs"
   },
   "dependencies": {
     "@indic-transliteration/sanscript": "1.3.3",
