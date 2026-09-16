@@ -72,7 +72,18 @@ const sessionActs = [
 // plan doesn't include at all. Only sessions with a confident topical match get a link.
 const interactive = (file: string) => `/teaching/1-year-mba/${encodeURIComponent(file)}`;
 
-const sessionPlan = [
+type OneYearSession = {
+  number: string;
+  title: string;
+  topics: readonly string[];
+  readings: readonly string[];
+  /** Standalone interactive deck for the session, where one exists. */
+  interactiveHref?: string;
+  /** Practice bank id under content/quizzes, where the session has one. */
+  quizId?: string;
+};
+
+const sessionPlan: readonly OneYearSession[] = [
   {
     number: "01",
     title: "Introduction to Strategy",
@@ -94,6 +105,7 @@ const sessionPlan = [
       "Textbook · Chapter 2",
     ],
     interactiveHref: interactive("session3.html"),
+    quizId: "1yr-03",
   },
   {
     number: "03",
@@ -105,6 +117,7 @@ const sessionPlan = [
       "Textbook · Chapter 3",
     ],
     interactiveHref: interactive("session4.html"),
+    quizId: "1yr-04",
   },
   {
     number: "04",
@@ -199,6 +212,7 @@ const sessionPlan = [
       "Textbook · Chapter 10",
     ],
     interactiveHref: interactive("Session8_Corporate Strategy_v0.8.html"),
+    quizId: "1yr-08",
   },
   {
     number: "11",
@@ -213,6 +227,7 @@ const sessionPlan = [
       "Textbook · Chapter 11",
     ],
     interactiveHref: interactive("Session8_Corporate Strategy_v0.8.html"),
+    quizId: "1yr-08",
   },
   {
     number: "12",
@@ -238,6 +253,7 @@ const sessionPlan = [
       "Textbook · Chapter 13",
     ],
     interactiveHref: interactive("Session8_Corporate Strategy_v0.8.html"),
+    quizId: "1yr-08",
   },
 ] as const;
 
@@ -853,17 +869,28 @@ export function OneYearMbaExperience() {
                       </ol>
                     </div>
                   </div>
-                  {session.interactiveHref ? (
-                    <a
-                      href={session.interactiveHref}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-brand-700 dark:text-brand-300 link-underline mt-5 inline-flex items-center gap-1 text-xs font-semibold"
-                    >
-                      Open the full interactive session
-                      <ArrowRightIcon className="h-3 w-3" aria-hidden="true" />
-                    </a>
-                  ) : null}
+                  <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2">
+                    {session.interactiveHref ? (
+                      <a
+                        href={session.interactiveHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-brand-700 dark:text-brand-300 link-underline inline-flex items-center gap-1 text-xs font-semibold"
+                      >
+                        Open the full interactive session
+                        <ArrowRightIcon className="h-3 w-3" aria-hidden="true" />
+                      </a>
+                    ) : null}
+                    {session.quizId ? (
+                      <Link
+                        href={`/teaching/quiz/${session.quizId}`}
+                        className="text-brand-700 dark:text-brand-300 link-underline inline-flex items-center gap-1 text-xs font-semibold"
+                      >
+                        Practise this session
+                        <ArrowRightIcon className="h-3 w-3" aria-hidden="true" />
+                      </Link>
+                    ) : null}
+                  </div>
                 </div>
               </details>
             ))}

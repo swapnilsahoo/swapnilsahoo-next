@@ -121,6 +121,7 @@ export const sessions: readonly TwoYearSession[] = [
       "Porter, M. E. From Competitive Advantage to Corporate Strategy.",
     ],
     interactiveHref: interactive("session-09-internal-analysis.html"),
+    quizId: "2yr-09",
   },
   {
     number: "06",
