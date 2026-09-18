@@ -1,3 +1,18 @@
 allowBuilds:
   sharp: true
   unrs-resolver: true
+
+# Patched versions of transitive build- and lint-chain packages. Each is pinned
+# inside its existing major line so the consumers that expect that line keep
+# resolving — a blanket bump would hand minimatch v3 a brace-expansion v5.
+#
+# `toml` (via @indic-transliteration/sanscript) is deliberately not overridden:
+# it is referenced only by that package's own scripts/build.js and never by the
+# shipped `sanscript.js` entry, so its advisories are unreachable here, and the
+# fix would mean forcing a major upgrade on a transliteration dependency the
+# scripture readers rely on.
+overrides:
+  brace-expansion@^1.0.0: ^1.1.18
+  brace-expansion@^5.0.0: ^5.0.9
+  js-yaml@^4.0.0: ^4.3.2
+  nanoid@^3.0.0: ^3.3.18
