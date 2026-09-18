@@ -1,0 +1,562 @@
+{
+  "id": "auto-rickshaws",
+  "question": "How many auto-rickshaws are actually out earning a living on Bengaluru's roads on a typical weekday?",
+  "tabLabel": "Auto-rickshaws, Bengaluru",
+  "archetype": "unit-chain-infrastructure",
+  "difficulty": "Medium",
+  "timeboxMinutes": 12,
+  "teachingPoint": "Any 'how many vehicles are out there' question is a flow of work divided by how much work one unit absorbs in a day — and the denominator, which candidates wave at in the last thirty seconds, divides the answer exactly as hard as the numerator multiplies it. The second lesson sits underneath: a fleet is not homogeneous, and the shift pattern is where vehicles and drivers stop being the same number.",
+  "scope": {
+    "countingWhat": "Individual passenger auto-rickshaws that complete at least one paid trip on a typical non-holiday weekday inside Bengaluru's municipal limits.",
+    "unit": "auto-rickshaws (vehicles, not drivers, not permits)",
+    "timeBasis": "stock (point in time)",
+    "geography": "Bengaluru, BBMP municipal area (roughly 740 sq km) — not the wider metropolitan region",
+    "included": [
+      "Passenger autos completing at least one paid trip on the day — street-hailed, stand-based or app-booked",
+      "CNG and electric three-wheelers carrying passengers, since the question is about work done, not about fuel",
+      "Autos on fixed school and office shuttle contracts, which never wait at a stand but are on the road all morning",
+      "Vehicles registered elsewhere in Karnataka that work inside the city on the day"
+    ],
+    "excluded": [
+      "Goods-carrier three-wheelers — same chassis, none of the demand",
+      "Registered but not working today: scrapped, cannibalised, under repair, or parked while the permit is held",
+      "Drivers. One vehicle can carry two of them across a day and a night shift, and the question asked for vehicles",
+      "Trips. Roughly 12.7 lakh of them happen; that is the input to the chain, not the answer",
+      "The region beyond BBMP — Anekal, Nelamangala, Devanahalli and the airport corridor"
+    ],
+    "boundaryTrap": "Four numbers hide behind the phrase 'on the road': permits issued, vehicles on the registration roll, vehicles physically working today, and drivers. End to end they differ by something like a factor of two — much of the roll is scrapped or long parked, and a quarter of the working fleet carries two drivers. There is a second boundary underneath that one. The answer is a stock of vehicles, but every number you can actually estimate is a daily flow of trips; dividing a flow by a flow-per-vehicle is what converts one into the other. If your units do not cancel to 'vehicles', you have built the wrong chain, and no amount of careful arithmetic downstream will rescue it."
+  },
+  "routeChoice": {
+    "chosen": "Hybrid",
+    "why": "The demand half comes from population, which you can anchor, and the supply half comes from what one vehicle can physically absorb in a day, which you can reason out from trip length and waiting time. Neither half is an answer on its own — trips are not vehicles, and a vehicle's capacity means nothing until you know how much work is queued for it. Take the trip pool top-down, take throughput bottom-up, divide, and say out loud that the units cancel to vehicles.",
+    "rejectedRoute": "Top-down",
+    "rejectedWhyNot": "The pure top-down move is to take India's registered three-wheeler fleet and scale it by Bengaluru's share of urban population. It fails twice over. It rests on a national registration base you cannot source in the room and could not defend if you could, and it scales by headcount when auto density is actually set by metro coverage, road width and the municipal permit cap — Bengaluru and Kolkata do not carry the same autos per lakh of people, and nothing inside a population ratio knows that. Worse, it delivers registrations, which is a different quantity from the one the question asked for. Keep it as a cross-check, not as the spine."
+  },
+  "tree": {
+    "root": "Auto-rickshaws working a typical Bengaluru weekday",
+    "rootFormula": "= Daily auto trips ÷ Paid trips per vehicle per day",
+    "value": "≈ 82,000 vehicles",
+    "branches": [
+      {
+        "label": "Daily auto-rickshaw trips",
+        "formula": "= Population × Trips per person × Motorised share × Auto share",
+        "value": "≈ 12.7 lakh trips per day",
+        "note": "The demand the fleet has to absorb. Three of these four levers sit close to anchors; the fourth carries the whole argument.",
+        "isCriticalPath": true,
+        "children": [
+          {
+            "label": "City population, BBMP area",
+            "formula": "Census anchor",
+            "value": "1.3 crore",
+            "note": "The municipal city, not the 1.4 crore metropolitan region. Say which one you are using in the same breath as the number."
+          },
+          {
+            "label": "Trips per person per day, all modes",
+            "formula": "× 1.5",
+            "value": "≈ 1.95 crore trips",
+            "note": "A commuter makes two, a school child two, and a long tail of the elderly and the housebound makes none."
+          },
+          {
+            "label": "Motorised share of trips",
+            "formula": "× 65%",
+            "value": "≈ 1.27 crore motorised trips",
+            "note": "About a third of urban trips are walked or cycled — the kirana, the school gate, the bus stop — and never touch a vehicle."
+          },
+          {
+            "label": "Auto share of motorised trips",
+            "formula": "= 1 − 45% two-wheelers − 33% bus and metro − 12% cars",
+            "value": "10%, giving ≈ 12.7 lakh auto trips",
+            "note": "Built as a residual rather than felt. The shakiest number on the page even so — flag it before the interviewer finds it."
+          }
+        ]
+      },
+      {
+        "label": "Paid trips per vehicle per day",
+        "formula": "= 75% of the fleet × 13.5 trips + 25% × 21.6 trips",
+        "value": "≈ 15.5 trips",
+        "note": "Not the critical path, but not the optional half either — it divides. A two-fold error here costs precisely what a two-fold error in the auto share costs, and candidates spend nine-tenths of their time on the other branch.",
+        "isCriticalPath": false,
+        "children": [
+          {
+            "label": "Paid trips per on-road hour",
+            "formula": "= (60 ÷ 20-minute trip) × 45% of road time paid",
+            "value": "1.35",
+            "note": "Throughput after waiting at the stand, running back empty from a drop and stopping for lunch. Three paid trips every two hours, not four."
+          },
+          {
+            "label": "Single-shift vehicle, 10 h on the road",
+            "formula": "= 10 × 1.35",
+            "value": "13.5 trips a day",
+            "note": "One owner-driver, school run through to the evening peak, and the vehicle goes home with him at night."
+          },
+          {
+            "label": "Double-shift vehicle, 16 h on the road",
+            "formula": "= 16 × 1.35",
+            "value": "21.6 trips a day",
+            "note": "Rented to two drivers in succession — sixty per cent more output from the same vehicle, which is precisely why vehicles and drivers are different counts."
+          },
+          {
+            "label": "Share of the fleet run on two shifts",
+            "formula": "25%",
+            "value": "≈ 15.5 weighted trips",
+            "note": "The weighting is where the fleet stops being homogeneous. Skip it, assume everyone does 13.5, and you overcount vehicles by about a seventh."
+          }
+        ]
+      }
+    ]
+  },
+  "assumptions": [
+    {
+      "id": "a-pop",
+      "lever": "Bengaluru city population, BBMP area",
+      "value": "1.3 crore",
+      "numeric": 13000000,
+      "unit": "people",
+      "basis": "census-anchor",
+      "defence": "The municipal area runs to roughly 1.3 crore; the wider metropolitan region is nearer 1.4 crore, and naming which one you mean is half the scope work done in a single sentence.",
+      "confidence": "anchor",
+      "contestedBy": "An interviewer who wants the metropolitan region pushes you to 1.4 crore — about 8% straight through the chain, which is inside the rounding you are already doing."
+    },
+    {
+      "id": "a-triprate",
+      "lever": "Trips per person per day, all modes and purposes",
+      "value": "1.5",
+      "numeric": 1.5,
+      "unit": "trips per person per day",
+      "basis": "structural-logic",
+      "defence": "A working adult makes two trips and a school child two, while the elderly, the unemployed and those who work where they live make none — averaged across every resident, one and a half is what the identity forces.",
+      "confidence": "defensible",
+      "contestedBy": "Mobility surveys in dense Indian metros run between 1.2 and 1.8; that band alone moves the answer roughly a fifth in either direction."
+    },
+    {
+      "id": "a-motorised",
+      "lever": "Motorised share of all trips",
+      "value": "65%",
+      "numeric": 0.65,
+      "unit": "share",
+      "basis": "observed-behaviour",
+      "defence": "Roughly a third of urban Indian trips are walked or cycled — short hops to a shop, a school or a bus stop — and a trip that ends on foot can never become an auto fare.",
+      "confidence": "defensible",
+      "contestedBy": "Bengaluru's sprawl and poor footpaths argue for a higher motorised share, perhaps 70%; a denser core city would argue for 60%."
+    },
+    {
+      "id": "a-autoshare",
+      "lever": "Auto share of motorised trips",
+      "value": "10%",
+      "numeric": 0.1,
+      "unit": "share",
+      "basis": "declared-judgement",
+      "defence": "Assign the fleet first and take autos as the remainder: two-wheelers carry close to half of Bengaluru's motorised trips, buses and metro roughly a third between them, cars most of what is left, and autos take the residual tenth as a short-hop, price-sensitive mode rather than anybody's default.",
+      "confidence": "shaky",
+      "contestedBy": "Anyone who has waited for an auto outside a metro station will argue 15%; anyone who starts from BMTC's daily ridership will argue 7%. That single lever is worth a factor of two on the answer, and it is the one number in this chain nobody in the room can source."
+    },
+    {
+      "id": "a-modesplit",
+      "lever": "Motorised mode split assigned ahead of autos",
+      "value": "two-wheelers 45%, bus and metro 33%, cars 12%",
+      "numeric": 0.9,
+      "unit": "share of motorised trips claimed before autos",
+      "basis": "observed-behaviour",
+      "defence": "Bengaluru is a two-wheeler city first and a bus city second — BMTC and the metro together move a third of motorised trips, private cars take a shade over a tenth despite dominating the road space, and what is left is the auto's market.",
+      "confidence": "judgement",
+      "contestedBy": "Shift five points from two-wheelers to buses and the residual does not move at all, which is the point of building it this way: the auto share is only exposed to errors in the total, not to how the other three split among themselves."
+    },
+    {
+      "id": "a-triplen",
+      "lever": "Average duration of a paid auto trip",
+      "value": "20 minutes",
+      "numeric": 20,
+      "unit": "minutes",
+      "basis": "observed-behaviour",
+      "defence": "An auto fare is a four to five kilometre hop and Bengaluru's traffic moves at about 15 km/h through most of the working day, so twenty minutes is what the meter actually runs for.",
+      "confidence": "defensible",
+      "contestedBy": "Airport and long-haul fares stretch this; the last-mile metro feeder trip, which is growing, compresses it to eight or ten minutes and lifts the trip count per vehicle."
+    },
+    {
+      "id": "a-util",
+      "lever": "Share of on-road time that is a paid trip",
+      "value": "45%",
+      "numeric": 0.45,
+      "unit": "share",
+      "basis": "observed-behaviour",
+      "defence": "Stand at any auto stand for an hour: the vehicle spends more of its day waiting for a fare, running back empty from a drop or parked over lunch than it does with a passenger in it, so a little under half its road time is metered.",
+      "confidence": "judgement",
+      "contestedBy": "A driver attached to an aggregator runs higher, perhaps 55%, because the app fills the gap between fares; a street-hailing driver on a quiet stretch runs well below 40%."
+    },
+    {
+      "id": "a-singlehrs",
+      "lever": "On-road hours, single-shift vehicle",
+      "value": "10 hours",
+      "numeric": 10,
+      "unit": "hours per day",
+      "basis": "observed-behaviour",
+      "defence": "One driver, one owner-driven vehicle, a day that opens with the school run and closes after the evening peak — ten hours on the road is a long shift already, and the driver still has to get the vehicle home.",
+      "confidence": "defensible"
+    },
+    {
+      "id": "a-doublehrs",
+      "lever": "On-road hours, double-shift vehicle",
+      "value": "16 hours",
+      "numeric": 16,
+      "unit": "hours per day",
+      "basis": "observed-behaviour",
+      "defence": "A vehicle rented to two drivers on a day and a night shift is off the road only for the handover, refuelling and the dead hours before dawn, which caps it near sixteen rather than twenty-four.",
+      "confidence": "judgement",
+      "contestedBy": "Push this to 18 and the fleet shrinks about 6% — small, and that is the useful finding: the shift length matters far less than the share of the fleet that runs two shifts at all."
+    },
+    {
+      "id": "a-doubleshare",
+      "lever": "Share of the working fleet run on two shifts",
+      "value": "25%",
+      "numeric": 0.25,
+      "unit": "share",
+      "basis": "declared-judgement",
+      "defence": "Financed and rented autos are worked hardest because the daily rent has to be earned twice over, and those are the minority; the majority are owner-driven and go home at night with their driver.",
+      "confidence": "judgement",
+      "contestedBy": "Rising vehicle finance penetration argues for a third of the fleet, which would cut the vehicle count about 5% while raising the driver count."
+    },
+    {
+      "id": "a-vehreg",
+      "lever": "Registered vehicles per resident, Bengaluru",
+      "value": "0.85",
+      "numeric": 0.85,
+      "unit": "vehicles per person",
+      "basis": "published-benchmark",
+      "defence": "Bengaluru's registration roll is routinely reported as close to one vehicle per resident — roughly 1.1 crore vehicles against 1.3 crore people — which is exactly why the city gets discussed as a congestion problem rather than a traffic problem.",
+      "confidence": "defensible",
+      "contestedBy": "The roll is cumulative and rarely purged, so this ratio overstates what is physically on the road. Note the direction: it inflates the supply-side cross-check, not the demand-side spine."
+    },
+    {
+      "id": "a-autoreg",
+      "lever": "Passenger three-wheeler share of the registration roll",
+      "value": "1.5%",
+      "numeric": 0.015,
+      "unit": "share",
+      "basis": "structural-logic",
+      "defence": "Two-wheelers take around 70% of the roll and cars around 20%; autos, goods carriers, buses, taxis and tractors share the last tenth, and passenger autos are the larger part of a small slice.",
+      "confidence": "judgement"
+    },
+    {
+      "id": "a-inservice",
+      "lever": "Share of registrations still roadworthy and in service",
+      "value": "60%",
+      "numeric": 0.6,
+      "unit": "share",
+      "basis": "declared-judgement",
+      "defence": "An auto is scrapped, cannibalised for parts or parked for good long before anyone tells the transport office, so two registrations in five on the roll are not a working vehicle.",
+      "confidence": "shaky",
+      "contestedBy": "This is the number the registration route is silent on, and it is doing all the work in that route — anything from 50% to 75% is arguable, which is why the cross-check is a bound and not a second answer."
+    },
+    {
+      "id": "a-worktoday",
+      "lever": "Share of in-service vehicles out on a named weekday",
+      "value": "90%",
+      "numeric": 0.9,
+      "unit": "share",
+      "basis": "structural-logic",
+      "defence": "Drivers take a rest day, fall ill, or lose a day to servicing and paperwork, so about a tenth of a genuinely working fleet is off the road on any particular Tuesday.",
+      "confidence": "defensible"
+    }
+  ],
+  "calculation": [
+    {
+      "id": "c1",
+      "label": "Trips of every kind made in Bengaluru each day",
+      "expr": "13000000 * 1.5",
+      "display": "1.3 crore people × 1.5 trips per person per day",
+      "result": 19500000,
+      "unit": "trips per day",
+      "carriedForward": "≈ 1.95 crore trips a day",
+      "uses": [
+        "a-pop",
+        "a-triprate"
+      ],
+      "soWhat": "This is every journey in the city, including the walk to the bus stop. Most of it gets filtered out in the next two lines, and saying so as you write it stops the interviewer assuming you have confused total trips with auto trips."
+    },
+    {
+      "id": "c2",
+      "label": "Motorised trips a day",
+      "expr": "19500000 * 0.65",
+      "display": "1.95 crore trips × 65% motorised",
+      "result": 12675000,
+      "unit": "trips per day",
+      "carriedForward": "≈ 1.27 crore motorised trips",
+      "uses": [
+        "a-motorised"
+      ],
+      "soWhat": "Walking and cycling leave the pool here. From this line onward every trip is one somebody paid a fare for or burned fuel on, which is the only pool an auto can compete in."
+    },
+    {
+      "id": "c3",
+      "label": "Auto share of motorised trips, built as a residual",
+      "expr": "1 - 0.45 - 0.33 - 0.12",
+      "display": "100% − 45% two-wheelers − 33% bus and metro − 12% cars",
+      "result": 0.1,
+      "unit": "share",
+      "carriedForward": "10%",
+      "uses": [
+        "a-modesplit"
+      ],
+      "soWhat": "Derive the share, do not feel it. Assigning the three big modes first and handing autos the remainder gives you something you can defend line by line, and it protects you from the commonest failure on this question — a candidate reporting their own commute as a city statistic."
+    },
+    {
+      "id": "c4",
+      "label": "Auto-rickshaw trips a day",
+      "expr": "12675000 * 0.1",
+      "display": "1.27 crore motorised trips × 10% auto share",
+      "result": 1267500,
+      "unit": "trips per day",
+      "carriedForward": "≈ 12.7 lakh auto trips",
+      "uses": [
+        "a-autoshare"
+      ],
+      "soWhat": "The demand the fleet has to absorb, and still the weakest number in the chain even after deriving it. Name it as such now — a candidate who volunteers the soft lever is trusted with the hard ones."
+    },
+    {
+      "id": "c5",
+      "label": "Paid trips one vehicle completes per on-road hour",
+      "expr": "60 / 20 * 0.45",
+      "display": "(60 min ÷ 20-minute trip) × 45% of road time paid",
+      "result": 1.35,
+      "unit": "paid trips per on-road hour",
+      "uses": [
+        "a-triplen",
+        "a-util"
+      ],
+      "soWhat": "Throughput, not effort, sets the denominator. Three paid trips every two hours is the honest rate once waiting at a stand and running back empty are counted, and it sits well below what a candidate reasoning from trip length alone will assume."
+    },
+    {
+      "id": "c6",
+      "label": "Road-minutes one paid trip actually costs the vehicle",
+      "expr": "20 / 0.45",
+      "display": "20-minute fare ÷ 45% of road time paid",
+      "result": 44.444,
+      "tolerance": 0.0001,
+      "unit": "minutes per completed trip",
+      "carriedForward": "not carried forward — an intuition check",
+      "uses": [
+        "a-triplen",
+        "a-util"
+      ],
+      "soWhat": "A twenty-minute fare consumes about forty-five minutes of the vehicle's day once the empty return and the wait at the stand are charged against it. That gap, not the length of the fare, is why a ten-hour day yields thirteen trips rather than thirty — and it is the number most candidates never compute at all."
+    },
+    {
+      "id": "c7",
+      "label": "Output of a single-shift vehicle",
+      "expr": "10 * 1.35",
+      "display": "10 on-road hours × 1.35 paid trips per hour",
+      "result": 13.5,
+      "unit": "trips per vehicle per day",
+      "uses": [
+        "a-singlehrs"
+      ],
+      "soWhat": "The owner-driven majority. One driver, one long day, and the vehicle parked at night — this is the number a candidate who ignores shift patterns applies to the entire fleet."
+    },
+    {
+      "id": "c8",
+      "label": "Output of a double-shift vehicle",
+      "expr": "16 * 1.35",
+      "display": "16 on-road hours × 1.35 paid trips per hour",
+      "result": 21.6,
+      "unit": "trips per vehicle per day",
+      "uses": [
+        "a-doublehrs"
+      ],
+      "soWhat": "Sixty per cent more work out of the same asset, because a second driver takes it over rather than buying another one. Put the two shift patterns side by side and the gap between counting vehicles and counting drivers becomes visible instead of theoretical."
+    },
+    {
+      "id": "c9",
+      "label": "Fleet-average paid trips per vehicle per day",
+      "expr": "0.75 * 13.5 + 0.25 * 21.6",
+      "display": "75% of the fleet × 13.5 trips + 25% × 21.6 trips",
+      "result": 15.525,
+      "unit": "trips per vehicle per day",
+      "carriedForward": "≈ 15.5 trips",
+      "uses": [
+        "a-doubleshare"
+      ],
+      "soWhat": "Round to 15.5 before dividing — carrying 15.525 forward would be pretending to a precision the 45% utilisation figure cannot support. Note what the weighting bought: apply 13.5 to the whole fleet instead and the answer inflates by about a seventh, silently."
+    },
+    {
+      "id": "c10",
+      "label": "Auto-rickshaws working a typical weekday",
+      "expr": "1267500 / 15.5",
+      "display": "12.7 lakh auto trips a day ÷ 15.5 trips per vehicle per day",
+      "result": 81774.19,
+      "tolerance": 0.0001,
+      "unit": "vehicles",
+      "carriedForward": "≈ 82,000 vehicles",
+      "uses": [],
+      "soWhat": "Trips per day divided by trips per vehicle per day leaves vehicles — a flow divided by a flow-per-unit gives the stock. Say that out loud. It is how you show the chain is an identity rather than four numbers multiplied in hope, and it is the moment the interviewer decides whether you understood the question or only answered it."
+    }
+  ],
+  "finalAnswer": "≈ 82,000 auto-rickshaws out earning on a typical Bengaluru weekday — say 'a bit over 80,000' aloud, and never 81,774.",
+  "finalAnswerNumeric": 82000,
+  "answerBand": "50,000 to 1.5 lakh — and the width of that band is set almost entirely by one lever, the auto share of motorised trips",
+  "orderOfMagnitude": "10^5",
+  "triangulation": {
+    "label": "Supply-side cross-check · the registration roll, stripped down",
+    "route": "Top-down",
+    "premise": "Approach the fleet as a permitted asset base rather than as answered demand. Start from the vehicles Bengaluru carries on its registration roll, take the auto slice of it, then strip out what is not roadworthy and what is not out today. This route never touches trips, trip length or mode share, so it fails in completely different places from the spine — which is the only reason it is worth running.",
+    "lines": [
+      {
+        "id": "t1",
+        "label": "Registered vehicles of every type in Bengaluru",
+        "expr": "13000000 * 0.85",
+        "display": "1.3 crore people × 0.85 registered vehicles per person",
+        "result": 11050000,
+        "unit": "vehicles",
+        "carriedForward": "≈ 1.1 crore vehicles on the roll",
+        "uses": [
+          "a-pop",
+          "a-vehreg"
+        ],
+        "soWhat": "A city with nearly one registered vehicle per resident is the anchor everyone has read. It is also cumulative, which matters far more by the last line of this route than it does here."
+      },
+      {
+        "id": "t2",
+        "label": "Passenger three-wheelers on the roll",
+        "expr": "11050000 * 0.015",
+        "display": "1.1 crore vehicles × 1.5% passenger autos",
+        "result": 165750,
+        "unit": "vehicles",
+        "carriedForward": "≈ 1.65 lakh registrations",
+        "uses": [
+          "a-autoreg"
+        ],
+        "soWhat": "This is the permit-and-registration figure a candidate might half-remember and offer as the answer. It is an upper bound, and mistaking it for the answer is the most common single failure on this question."
+      },
+      {
+        "id": "t3",
+        "label": "Still roadworthy and genuinely in service",
+        "expr": "165750 * 0.6",
+        "display": "1.65 lakh registrations × 60% still a working vehicle",
+        "result": 99450,
+        "unit": "vehicles",
+        "carriedForward": "≈ 1 lakh in service",
+        "uses": [
+          "a-inservice"
+        ],
+        "soWhat": "Two registrations in five are scrapped, cannibalised or parked for good. This line does all the work in this route and rests on the shakiest number in it — which is exactly why the cross-check is a bound, not a second answer."
+      },
+      {
+        "id": "t4",
+        "label": "Out on the road on a named weekday",
+        "expr": "99450 * 0.9",
+        "display": "1 lakh in service × 90% working today",
+        "result": 89505,
+        "unit": "vehicles",
+        "carriedForward": "≈ 90,000 vehicles",
+        "uses": [
+          "a-worktoday"
+        ],
+        "soWhat": "Rest days, illness and servicing take the last tenth. Only now is the quantity the same as the one the spine produced, and matching the quantity before comparing the numbers is the discipline this whole cross-check exists to teach."
+      },
+      {
+        "id": "t5",
+        "label": "Trips per vehicle the supply route implies",
+        "expr": "1267500 / 89505",
+        "display": "12.7 lakh auto trips a day ÷ 90,000 vehicles",
+        "result": 14.161,
+        "tolerance": 0.0002,
+        "unit": "trips per vehicle per day",
+        "carriedForward": "not carried forward — it reads the gap",
+        "uses": [],
+        "soWhat": "Turn the discrepancy into a statement about a lever rather than a shrug. If the supply route is right, the average vehicle does 14.2 trips a day instead of 15.5 — about nine per cent, comfortably inside the error on a 45% utilisation figure. The two routes are not disagreeing about how big Bengaluru's auto trade is; they are disagreeing about how hard one vehicle works, which is a far smaller claim and a far better thing to say aloud."
+      }
+    ],
+    "answer": "≈ 90,000 auto-rickshaws working a typical weekday",
+    "verdict": "The demand route gives about 82,000 and the supply route about 90,000 — roughly a tenth apart, both sitting at 10^5. Resist calling that confirmation. The two chains share the same 1.3 crore population anchor, so they are not independent, and an error in that anchor moves both by the same proportion in the same direction. The gap that does exist runs the way you would predict: a registration roll is cumulative and a working fleet is not, because vehicles get scrapped far more readily than they get de-registered, so the supply route should sit high. Report the pair as a band — 80,000 to 1,00,000 — and say which way you think the error runs. A candidate who narrates the direction of a discrepancy is doing something a candidate who averages the two numbers is not."
+  },
+  "sensitivity": {
+    "assumptionId": "a-autoshare",
+    "whyThisLever": "It is the only number in the chain nobody in the room can source, and it enters as a direct multiplier — double it and the fleet doubles. Everything else is either a census anchor or bounded by something physical: a paid trip cannot average five minutes, a driver cannot work twenty hours, a third of trips will always be walked. The auto share has no such floor or ceiling, which is why it is where the argument actually happens.",
+    "cases": [
+      {
+        "scenario": "Conservative",
+        "leverValue": "7% — buses and the metro carrying more of the city than you assumed",
+        "answer": "≈ 57,000 vehicles",
+        "deltaVsBase": "−30%"
+      },
+      {
+        "scenario": "Base",
+        "leverValue": "10% — autos as the residual after two-wheelers, public transport and cars",
+        "answer": "≈ 82,000 vehicles",
+        "deltaVsBase": "—"
+      },
+      {
+        "scenario": "Aggressive",
+        "leverValue": "15% — the number a commuter waiting outside a metro station would give you",
+        "answer": "≈ 1.23 lakh vehicles",
+        "deltaVsBase": "+50%"
+      }
+    ],
+    "breakpoint": "To drop the answer below 50,000 you need the auto share under 6%; to clear 1.5 lakh you need it above 19%. Both are arguable over a coffee and neither survives thirty seconds with a mode-share table. That bracket — 50,000 to 1.5 lakh — is the honest precision of this estimate, and the order of magnitude holds right across it. Saying that is a stronger answer than defending 82,000.",
+    "oneLiner": "If there is no time for the grid, say this: the auto share of motorised trips is doing most of the work here, I have used 10%, the defensible range is 7 to 15, and the fleet moves roughly in proportion — so treat the answer as 'under a lakh, and nowhere near ten thousand'."
+  },
+  "sanityChecks": [
+    "Spread 82,000 vehicles over Bengaluru's roughly 14,000 km of city roads and you get about six autos per kilometre of road — and only a fraction of those are on a main road at any one moment. Stand at a busy junction for a minute and that is roughly what passes. Had the chain produced 8 lakh, the street outside would look nothing like the city a resident actually walks through, and that gut check matters as much as the arithmetic.",
+    "A quarter of the fleet running two shifts means about 1.02 lakh drivers, so roughly a lakh households — under 1% of the city's population living directly off the trade. That is the right order for a large informal occupation that is nonetheless not the city's biggest employer. A figure implying 5% of Bengaluru drives an auto would be self-evidently wrong.",
+    "At 15.5 trips a day and an average fare around ₹90, a vehicle grosses roughly ₹1,400. Take out fuel and the daily rent and the driver keeps something in the ₹700 to ₹900 range. That is a plausible Bengaluru day. If the chain had implied ₹4,000 of gross fares per vehicle, either the trip count or the fare is wrong, and the trip count is the one to check first.",
+    "Whatever you believe about permits — 1.5 lakh is the figure usually quoted — the active count has to sit below it, and comfortably below it, because permits are held through repairs, illness and outright abandonment. An estimate that lands above the permit base has counted something other than vehicles, almost always trips or drivers."
+  ],
+  "traps": [
+    {
+      "trap": "Answering the question with the registration figure",
+      "whyItHappens": "Registrations are the only auto-rickshaw number anyone has ever read, so the mind reaches for it under time pressure and dresses it up as recall. The roll is cumulative: the transport office adds vehicles and almost never removes them, so it still carries autos that were scrapped years ago. The two quantities are not close, and they drift further apart every year.",
+      "fix": "State which quantity you are producing before you compute anything — vehicles working today — and treat any registration figure you half-remember as an upper bound to triangulate against, never as the answer itself."
+    },
+    {
+      "trap": "Counting drivers and calling them vehicles",
+      "whyItHappens": "The question says autos and you picture drivers, because the driver is the part of the transaction you actually interact with. About a quarter of the fleet carries two drivers across a day and a night shift, so the two counts differ by roughly 25% before a single arithmetic error has been made — and the error is invisible, because both numbers look equally reasonable.",
+      "fix": "Fix the unit in your scope sentence — vehicles, not drivers, not permits, not trips — and split the fleet by shift pattern so the difference sits on the page where you and the interviewer can both see it."
+    },
+    {
+      "trap": "Setting the auto share of motorised trips from your own habits",
+      "whyItHappens": "A candidate who takes autos daily reaches for 30 or 40%; a candidate who rides a two-wheeler reaches for 3%. Neither is estimating — both are reporting a personal routine as a city statistic, and neither can tell the difference from the inside. An earlier version of this very answer used 40%, and one glance at a mode-share table would have killed it.",
+      "fix": "Build the share as a residual. Assign two-wheelers, then buses and metro, then cars, and give autos what is left. A share you derived can be defended line by line; a share you felt collapses at the first push."
+    },
+    {
+      "trap": "Working the demand numerator hard and waving at the denominator",
+      "whyItHappens": "The population funnel feels like the real analysis, so it takes four minutes, and trips-per-vehicle gets a round number pulled from nowhere in the last thirty seconds. But the denominator divides: a two-fold error in trips per vehicle costs exactly what a two-fold error in the auto share costs, and it is far less likely to be challenged, because it sounds operational rather than assumed.",
+      "fix": "Give the denominator its own small tree — hours on the road, share of those hours paid, minutes per paid trip. Three numbers you can each defend beat one confident number nobody asked about."
+    },
+    {
+      "trap": "Reporting 81,774",
+      "whyItHappens": "The arithmetic produced it and the digits feel like precision you earned. They are precision borrowed from levers you called judgement two minutes earlier — a 45% utilisation figure and a 10% mode share cannot support five significant figures between them, and quoting them tells the interviewer you do not know what an estimate is.",
+      "fix": "Round hard, to two significant figures at most, state the band, and name the one lever that would have to move to break it."
+    }
+  ],
+  "probes": [
+    {
+      "question": "Which of your numbers would you most want to check before you commit to this?",
+      "intent": "Whether you can rank your own uncertainty rather than defending every figure with the same conviction.",
+      "goodAnswer": "The auto share of motorised trips, at 10%. It is a direct multiplier, I built it as a residual rather than from a source, and the defensible range of 7 to 15% takes the answer from about 57,000 to about 1.23 lakh. Everything else is either anchored or bounded — a paid trip cannot average five minutes and a driver cannot work twenty hours — so those levers cannot hurt me the same way.",
+      "weakAnswer": "All of them are assumptions, so ideally I would want real data on all of them."
+    },
+    {
+      "question": "Bike taxis and app cabs have grown fast in Bengaluru. Does that change your answer?",
+      "intent": "Whether you can move one lever in the right direction without rebuilding the chain, and whether you notice the second-order effect.",
+      "goodAnswer": "It compresses the auto share, not the trip pool — the journeys still happen, they change mode. Take three points of motorised share off autos and the fleet falls about a third, into the high 50,000s. The second-order effect runs the other way: displaced drivers attach to aggregator platforms, which lifts paid utilisation above 45% and lets a smaller fleet serve the same trips. Both effects point down, so I would revise the answer down rather than sideways.",
+      "weakAnswer": "Yes, the market is changing, so the number would probably be lower today."
+    },
+    {
+      "question": "Your answer is well under what the city's permit count suggests. Are you wrong?",
+      "intent": "Whether you can hold a discrepancy open and explain its direction instead of retrofitting the chain to close it.",
+      "goodAnswer": "Probably not wrong, but incomplete. A permit roll is cumulative and a working fleet is not, so the gap is mostly vehicles that are scrapped, parked or long off the road — a real wedge, and it runs in the direction you would predict. If you want me to close it, I would raise the in-service share, because that is the number the registration route is silent on. I would not raise the auto trip share to make the two agree, because that is fitting the assumption to the answer.",
+      "weakAnswer": "Then I would revise my assumptions upward until the two numbers match."
+    },
+    {
+      "question": "How would this look on a Sunday?",
+      "intent": "Whether you registered that the weekday basis was a choice you made, not a default you inherited.",
+      "goodAnswer": "The trip pool falls — no school run, no office peak — but not as far as you would expect, because leisure, market and restaurant trips substitute, and those favour autos over buses. So the share rises while the pool falls. Fewer vehicles work, perhaps 15% fewer as drivers take their rest day, and each does somewhat fewer trips. I would take the fleet down about a fifth. The weekday was a deliberate choice of a typical day rather than an average one, and I would say which basis I was using before quoting any number.",
+      "weakAnswer": "It would be lower, because fewer people travel at the weekend."
+    },
+    {
+      "question": "Estimate it a completely different way. Ninety seconds.",
+      "intent": "Whether a second route is already in reserve, and whether you can tell the difference between agreement and confirmation.",
+      "goodAnswer": "Supply side. Bengaluru's registration roll runs close to one vehicle per resident — about 1.1 crore. Passenger autos are roughly 1.5% of that, so about 1.65 lakh registrations. Take 60% as still roadworthy and in service, and 90% of those as out on a given weekday: about 90,000. That lands within a tenth of my first answer, which is closer than either route deserves, because both start from the same population anchor. I would report a band of 80,000 to 1,00,000 rather than treat the agreement as proof.",
+      "weakAnswer": "I would run the same method again with more accurate numbers at each step."
+    }
+  ]
+}

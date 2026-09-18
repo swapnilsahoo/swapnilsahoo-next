@@ -1,0 +1,350 @@
+{
+  "casePlan": [
+    {
+      "id": "quickride-tier2-entry",
+      "title": "QuickRide: two-wheeler taxis in Tier-2 cities",
+      "archetype": "MARKET ENTRY — new format inside the home market (city-selection + unit economics + mode of entry)",
+      "difficulty": "Medium",
+      "isExisting": true,
+      "whyIncluded": "Already the site's strongest case and the archetype the casebooks test most (6-7 of 16 in IIMC). Keep the company and the two exhibits; deepen by adding a real 4-step TAM funnel with a stated percentage per step, a break-even in trips-per-driver-per-day, an explicit greenfield-vs-local-partner cost comparison, and a late twist on driver supply economics. Currently it ends at exhibit interpretation with no break-even arithmetic.",
+      "exhibitIdea": "Exhibit 3 (new) — City-by-city entry P&L at steady state: rows = addressable riders, trips/rider/month, take rate, monthly platform revenue, driver-acquisition cost, city fixed cost, monthly contribution, months to payback. Columns = the three shortlisted cities. Forces the candidate to notice the largest city has the worst payback because of the incumbent."
+    },
+    {
+      "id": "pagesfirst-growth-path",
+      "title": "PagesFirst: seven new stores, or an online platform?",
+      "archetype": "GROWTH — capital allocation between two expansion paths, with a capacity conversion",
+      "difficulty": "Medium",
+      "isExisting": true,
+      "whyIncluded": "Existing case with two good exhibits. Deepen it by adding the move the casebooks treat as mandatory and the site currently skips: converting the revenue target into required operational capacity (stores, titles in stock, warehouse throughput, pick-pack headcount), plus a target-gap bridge from today's revenue to the goal. Also add the phased Phase 1/2/3 recommendation shape.",
+      "exhibitIdea": "Exhibit 3 (new) — Target-gap bridge: current revenue, contribution from same-store growth at industry rate, gap remaining, and the implied number of new stores OR online orders/day needed to close it, with the fixed-cost step change shown at each increment. Makes visible that the online route needs ~4x the order volume anyone has assumed."
+    },
+    {
+      "id": "metriclens-usage-pricing",
+      "title": "MetricLens: flat fee, or usage-based tiers?",
+      "archetype": "PRICING — re-pricing an existing product where a competitor set exists; segment economics",
+      "difficulty": "Medium",
+      "isExisting": true,
+      "whyIncluded": "Existing case with a strong segment exhibit. Deepen by adding the explicit three-lens discipline the books demand (cost floor / competitor benchmark / value ceiling stated as three numbers, then a point chosen inside the corridor with reasons), cost-to-serve per segment, and the churn risk on the heavy-user tail that the migration creates.",
+      "exhibitIdea": "Exhibit 2 (new) — Segment economics matrix: rows = share of customers, revenue share, monthly cost to serve, perceived value per month, current fee, implied margin. Columns = light/medium/heavy. Shows light users are margin-negative on support cost while heavy users capture 4x the value they pay for — so the tiering question is really two separate decisions."
+    },
+    {
+      "id": "hinterland-agency-profitability",
+      "title": "Hinterland Studio: why is a full agency losing money?",
+      "archetype": "PROFITABILITY — single-site service business, declining profit; standard drill-down then Customer Journey lens",
+      "difficulty": "Easy",
+      "isExisting": true,
+      "whyIncluded": "Upgrade of the existing shallow 'Digital Agency Profitability' bank entry (case-interview-bank.ts #05) into a fully worked case with a fictional named client. This is the highest-frequency archetype in the casebooks (10 of 26 in IIMC) and the site has no worked instance of the classic qualitative drill-down. Deliberately the Easy tier so the drill pattern is learnable before the hard cases.",
+      "exhibitIdea": "Exhibit 1 — Utilisation and realisation by service line: rows = retainer, project, production. Columns = billable hours available, hours actually billed, utilisation %, rate card, realised rate, revenue, direct cost, contribution. The reveal is that the busiest line has the lowest realised rate because of unbilled scope creep — profit is a realisation problem, not a demand problem."
+    },
+    {
+      "id": "vantage-ai-diligence",
+      "title": "Vantage Signal: should a growth fund write the cheque?",
+      "archetype": "M&A / DD — PE or VC evaluating an asset; market, moat, unit economics, valuation discipline",
+      "difficulty": "Hard",
+      "isExisting": true,
+      "whyIncluded": "Upgrade of the existing 'AI Startup Due Diligence' bank entry (#08). M&A/DD is the newest and fastest-growing casebook section (7 cases in IIMC, 14 in IIMA) and the site has no worked instance. Deepen to the full spine: industry attractiveness, benchmarked company performance, moat, risks, then a valuation verdict that is conditional on a multiple.",
+      "exhibitIdea": "Exhibit 2 — Benchmark table with a computed multiple: rows = ARR, YoY growth, gross margin, net revenue retention, CAC payback, burn multiple, asking valuation. Columns = Vantage Signal, peer median, best-in-class. Candidate must compute EV/ARR from the ask, compare against the peer median, and land on 'yes at 9x, no at 14x' rather than a flat verdict."
+    },
+    {
+      "id": "ghatvyapar-profitless-growth",
+      "title": "GhatVyapar: orders up 60%, profit down 40%",
+      "archetype": "PROFITABILITY — profitless growth / negative unit economics on a platform",
+      "difficulty": "Medium",
+      "isExisting": true,
+      "whyIncluded": "Upgrade of the existing 'E-Commerce Revenue Drop' bank entry (#07), re-pointed from revenue decline to the archetype the casebooks flag as their growth area (5-6 of 26, skewed hard). Teaches the reframe from P&L to per-order contribution — the single most transferable quantitative move in the profitability family.",
+      "exhibitIdea": "Exhibit 1 — Per-order contribution waterfall across two years: AOV, gross margin, discount funded by platform, delivery cost, packaging, payment gateway, contribution per order; then CAC and repeat rate below the line. Shows contribution per order fell from positive to negative while order count rose — the growth engine is the cost driver."
+    },
+    {
+      "id": "bhavani-alloys-mix",
+      "title": "Bhavani Alloys: the wrong SKU is winning the furnace",
+      "archetype": "PROFITABILITY — product mix under a shared capacity constraint (contribution per bottleneck hour)",
+      "difficulty": "Hard",
+      "isExisting": false,
+      "whyIncluded": "The single most quantitatively demanding archetype in the casebooks and completely absent from the site. Requires the candidate to INVENT a non-obvious metric (contribution per constraint hour, not per unit), respect a contractual minimum and demand ceilings, re-solve the allocation, and state the uplift. This is the case that proves the site's quant depth.",
+      "exhibitIdea": "Exhibit 1 — SKU allocation matrix with formulas in the cells: rows = contribution per tonne, furnace hours per tonne, contribution per furnace hour, monthly demand ceiling, contractual minimum, current allocation (hours), optimal allocation (hours). Columns = four SKUs. Plus a footer row: current monthly contribution vs optimal, and the % uplift. The highest-margin SKU ranks third on the constraint."
+    },
+    {
+      "id": "sahyadri-bearings-adjacent",
+      "title": "Sahyadri Bearings: the problem is two industries away",
+      "archetype": "PROFITABILITY — root cause in an adjacent industry (Customer Journey applied twice)",
+      "difficulty": "Hard",
+      "isExisting": false,
+      "whyIncluded": "The casebooks explicitly name the second application of a framework to an adjacent industry as the marker of the Difficult tier, and the site has nothing that trains chain-length reasoning. Client sells bearings to tractor OEMs; OEM order books collapsed because rural credit tightened after a weak monsoon. Trains the candidate to keep chaining until an exogenous shock is reached rather than stopping at 'our customer ordered less'.",
+      "exhibitIdea": "Exhibit 2 — Two-tier volume bridge: tier one is Sahyadri's dispatch volume by OEM customer over six quarters; tier two is those OEMs' own retail registrations and finance-approval rates over the same quarters. Reading them together shows dispatches track finance approvals with a one-quarter lag — which rules out price, quality and competitor hypotheses in a single move."
+    },
+    {
+      "id": "nilgiri-diagnostics-offer",
+      "title": "Nilgiri Diagnostics: accept the offer on the table?",
+      "archetype": "M&A / DD — founder evaluating an acquisition offer; multiples plus a contingent contract via expected value",
+      "difficulty": "Medium",
+      "isExisting": false,
+      "whyIncluded": "Covers the second M&A shape (3 of 7 in IIMC) that the diligence case does not: valuation by multiples computed on the spot, and a pending contract handled probabilistically. Trains the 'conditional yes' close the books explicitly praise — proceed if the price moves to a named number.",
+      "exhibitIdea": "Exhibit 1 — Valuation block plus contingent-revenue table. Panel A: revenue, EBITDA margin, EBITDA, offer value, computed P/S and EV/EBITDA, the prior round's multiple, and the sector average. Panel B: a pending three-year hospital tender with win probability, annual revenue if won, and margin — so the candidate must probability-weight it and show what the offer implies with and without the tender in the numerator."
+    },
+    {
+      "id": "terrafilm-novel-pricing",
+      "title": "Terrafilm: pricing a product with no competitor",
+      "archetype": "PRICING — genuinely novel product, no competitor set; value from lifetime substitution",
+      "difficulty": "Hard",
+      "isExisting": false,
+      "whyIncluded": "The pricing shape most associated with the Pricing section (3 of 8 in IIMC) and absent from the site — MetricLens has a competitor set and an existing price. Forces the candidate to say aloud that competitor pricing is inapplicable, run cost-based and value-based in parallel, find that the cost floor is implausibly low, and reconcile the gap by choosing how much of the created value to leave with the buyer.",
+      "exhibitIdea": "Exhibit 1 — Value-in-use build for one acre: incremental yield in quintals, realised price per quintal, incremental gross revenue, minus incremental input and labour cost, equals value created per acre per season; alongside Terrafilm's manufacturing cost per acre of film. The corridor is a 30x gap between floor and ceiling, which is the entire teaching point."
+    },
+    {
+      "id": "kalinga-transport-policy",
+      "title": "Kalinga State Transport: self-funding in five years",
+      "archetype": "UNCONVENTIONAL — public policy / government objective with a phased roadmap",
+      "difficulty": "Medium",
+      "isExisting": false,
+      "whyIncluded": "Public policy is the largest Unconventional sub-family (5-6 of 15 in IIMC, ~7 of 108 in IIMA) and the site has none. Trains stakeholder decomposition, the distinction between levers inside and outside the client's control, and phased year-banded recommendations with enablers — the structure test rather than a math test. Also the most credible archetype for an Indian strategy professor's own teaching context.",
+      "exhibitIdea": "Exhibit 1 — Route-class cost recovery: rows = revenue per bus-km, cost per bus-km, occupancy %, subsidised-passenger share, deficit per bus-km, share of total fleet-km. Columns = intercity express, district trunk, rural feeder, city ordinary. Shows a fifth of fleet-km generates most of the deficit while rural feeder is the politically untouchable one — so the candidate must separate the economically obvious answer from the feasible one."
+    },
+    {
+      "id": "konark-coldchain-makebuy",
+      "title": "Konark Cold Chain: the outsourcing fix that failed",
+      "archetype": "UNCONVENTIONAL — make vs buy under constraint, with the 'diagnose why a prior recommendation failed' overlay",
+      "difficulty": "Hard",
+      "isExisting": false,
+      "whyIncluded": "Combines two archetypes the site lacks: the clean two-option annual cost comparison (3-4 of 15) and the rarer, higher-signal 'the client already implemented a consultant's recommendation and it did not work' case. Forces reasoning about implementation, incentives, sequencing and second-order effects rather than framework selection. Deliberately placed last as the capstone.",
+      "exhibitIdea": "Exhibit 2 — Promised vs delivered variance table: rows = cost per tonne-km, on-time delivery %, cold-chain breach rate, spoilage % of consignment value, effective cost per tonne delivered intact. Columns = own-fleet baseline, 3PL business case, 3PL actual. The headline cost per tonne-km did fall exactly as promised, but spoilage tripled and wiped out the saving — the strategy was right and the contract design was wrong."
+    }
+  ],
+  "coverageGaps": [
+    "ARCHETYPE COVERAGE — GUESSTIMATES. The current 3 cover only two of roughly fourteen shapes the casebooks test: one bottom-up single-asset revenue (mall QSR) and two loose top-down consumption funnels (rickshaws, packaged water). Entirely absent: household income-band ownership stock, installed-base-divided-by-replacement-cycle (stock vs flow), capacity/bottleneck throughput, network revenue with a price-mix split, penetration-to-active-usage cascade, physical-proxy consumable, awareness-trial-repeat FMCG funnel, revenue pool net of take rate, closed-population institutional micro-guesstimate, occupational-cohort sizing, and expected-value decision trees (which both books file under guesstimates).",
+    "ROUTE DISCIPLINE. The existing type has a binary `approach: \"Demand-side\" | \"Supply-side\"` label but no field for WHY that route was chosen or what the rejected route would have looked like. Both casebooks make route justification a graded exchange ('you chose demand-supply first and the pricing triad later — why?'). There is also no hybrid or probabilistic option, so two of the four real route types cannot be expressed.",
+    "STOCK VS FLOW is never named anywhere on the site. Both books treat conflating a stock (rickshaws on the road) with a flow (rickshaw trips per day) as a first-order scope error, and the auto-rickshaw case silently relies on getting this right without ever stating it.",
+    "VERIFIABLE ARITHMETIC. Every number on the guesstimates page lives inside a prose paragraph ('1.3cr × 0.3 × 0.4 ≈ 15.6 lakh'). Nothing is machine-checkable, so an arithmetic slip ships silently and a reader cannot audit the chain. The casebooks' single strongest formatting convention — the issue tree as a numeric ledger with the absolute value on every node — is not implemented: IssueTree has no `value` field at all.",
+    "ASSUMPTION DEFENSIBILITY. Assumptions appear only as inline clauses with no basis, no confidence and no named alternative. IIMA's guesstimate answer sheets carry 8-14 explicit 'Facts & Assumptions' bullets each, most with a justification clause; the site averages roughly three undefended ones per question.",
+    "TRIANGULATION IS PREACHED BUT NEVER SHOWN. The packaged-water entry says 'triangulate with a second route if time allows' and then does not. Both books prescribe solving top-down then verifying bottom-up; neither the data nor the renderer has a place to put a second independent route.",
+    "SENSITIVITY. The site names the shaky lever in one sentence on one entry (mall QSR conversion rate) and never quantifies the swing. This is simultaneously the biggest gap in the casebooks themselves and therefore the clearest differentiation opportunity: a conservative/base/aggressive band plus an explicit breakpoint is cheap to author and absent from every casebook in the market.",
+    "INTERVIEWER FOLLOW-UPS. Zero follow-up probes anywhere in the guesstimate data, despite both books showing that every question carries 2-4 post-answer probes ('which number is hurting you most?', 'is that all?', 'what would you sanity-check against?', 'in or out — 20 seconds'). Candidates practising on this site never rehearse the phase where most marks are actually lost.",
+    "CASE ARCHETYPE COVERAGE. The 3 fully-worked cases cover market entry, growth and pricing. Absent as worked cases: all five profitability sub-archetypes (the largest family in both books at 23-25% of cases), the entire M&A / due-diligence family (the newest and fastest-growing section), public policy, make-vs-buy, and the implementation-failure diagnosis. The 10 bank entries gesture at some of these but carry no exhibits, no numbers and no rubric.",
+    "EXHIBITS CARRY NO QUANTITATIVE WEIGHT. Of four exhibits across three cases, three are qualitative comparison tables (city attributes, store-vs-online attributes, discovery channels) and only one contains segment percentages a candidate can actually compute with. No exhibit requires a derived metric, none has a footnote, none states what it deliberately withholds, and no case has a release gate saying what the candidate must have articulated to earn it.",
+    "NO MID-CASE TWIST anywhere on the site, in either the worked cases or the bank. Both books identify the late twist that invalidates the candidate's committed plan as one of the four things that actually produces Difficult-tier difficulty, and the expected response shape (name the dilemma, Option A vs Option B, land on a hybrid with a reason) is highly teachable and completely untaught here.",
+    "NO RUBRIC AND NO BROWNIE POINTS. `strongAnswer: readonly string[]` is a flat bullet list with no dimensions, no weights and no adequate/weak bands — so a student practising alone cannot self-score, and a peer playing interviewer has nothing to mark against. The casebooks' closing page (Approach / Key Learnings / Brownie Points) is described in the audit as the highest-value artefact in the book, and the site has no equivalent.",
+    "NO SHARED CONSTANTS SHEET. Population, urban share, household size, age bands, income bands and metro populations are re-stated inline and inconsistently across entries (the existing three already disagree on urban India: 50 crore in one place, implied differently elsewhere). Both books ship a datasheet appendix; the site needs one registry that every question cites by id.",
+    "CASES ARE NOT DATA-DRIVEN. src/app/placements/case-examples/page.tsx hand-codes all three cases in JSX with exhibit tables as inline const arrays. Adding a fourth case means copy-pasting ~130 lines of markup, which is why the case count has stayed at three.",
+    "DELIBERATELY OUT OF SCOPE FOR THIS BUILD (flag as phase 2, do not silently drop): outbound international expansion with the Internal/External/Quantitative spine; antitrust reverse-engineering; HR and people-funnel cases; crisis-response option generation; operations process-time diagnosis; geometric/volumetric object counting; and digital-platform event-frequency guesstimates."
+  ],
+  "depthUpgrades": [
+    {
+      "field": "scope: Scope — countingWhat, unit, timeBasis, geography, included[], excluded[], boundaryTrap",
+      "why": "The current type jams scope into the first of four prose steps, so the most graded move in the whole exercise is invisible. Making timeBasis a required field forces every question to declare stock vs flow, which is the error both casebooks penalise first. included/excluded arrays make the boundary a checklist a candidate can rehearse (commercial vs personal, issued vs active, organised vs unorganised, metro vs city limits), and boundaryTrap names the specific ambiguity each question was built around — so the reader learns that the scope question is the question, not preamble."
+    },
+    {
+      "field": "route: RouteChoice — chosen, why, rejected{route, whyNot}",
+      "why": "Replaces the flat `approach: \"Demand-side\" | \"Supply-side\"` label. Both books grade framework SEQUENCING, not just framework choice ('you chose demand-supply first and the pricing triad later — why one over the other?'), and interviewers ask it directly. Carrying the rejected route with a specific reason it is weaker HERE also teaches that route choice is contextual rather than a habit, and the union widens to include Hybrid and Probabilistic, which the current two-value type cannot express at all."
+    },
+    {
+      "field": "assumptions: Assumption[] — id, lever, value, numeric, unit, basis, defence, confidence, contestedBy",
+      "why": "Turns undefended inline guesses into an auditable table, which is IIMA's standard device (8-14 'Facts & Assumptions' bullets per guesstimate, most with a justification clause). `basis` as a closed union (census-anchor / published-benchmark / physical-constant / observed-behaviour / structural-logic / declared-judgement) makes the epistemic status of each number explicit and lets the renderer sort by it. `confidence` identifies the shaky levers mechanically rather than editorially. `defence` is the literal sentence to say when challenged. `contestedBy` pre-loads the reasonable alternative an interviewer may prefer, which converts a pushback from a crisis into a rehearsed exchange. The stable `id` is what lets calculation lines and the sensitivity block reference assumptions instead of duplicating them."
+    },
+    {
+      "field": "calculation: CalcLine[] — id, label, expr, display, result, tolerance, unit, carriedForward, uses[], soWhat",
+      "why": "The core upgrade. Arithmetic currently lives in prose and is unverifiable. Splitting each step into a digits-and-operators-only `expr`, a human `display` string and an `expected result` means a vitest unit test can eval every expression on every question at build time and fail CI on any slip — so the site can credibly claim its arithmetic is checked, which no casebook can. `uses[]` wires each line back to the assumptions it consumes, giving the renderer a dependency graph and making it mechanically impossible to use an undeclared assumption. `carriedForward` captures the deliberate rounding candidates actually do (≈ 290 Mn) separately from the exact value, so display rounding never corrupts the check. `soWhat` enforces the books' rule that a number without an interpretation is incomplete. `tolerance` handles the few chains where intentional rounding compounds."
+    },
+    {
+      "field": "tree: TreeNode (recursive, with a `value` on every node)",
+      "why": "The current tree is one level deep with label/formula/note only. The casebooks' single most transferable formatting convention is the issue tree AS A NUMERIC LEDGER — the absolute figure at every node, not just the split percentage, so a reader can audit the chain without recomputing. Recursion is required because the dominant guesstimate archetype is a 4-5 level branching funnel (population → age → urban/rural → eligibility → frequency) and the existing type physically cannot represent it."
+    },
+    {
+      "field": "answer: { headline, numeric, unit, band, orderOfMagnitude }",
+      "why": "`finalAnswer: string` is a display blob. Splitting out `numeric` lets the renderer and tests assert the last calculation line equals the stated answer. `band` replaces false precision with the honest range both books gesture at (a couple of IIMA answers carry an explicit ±5%), and `orderOfMagnitude` teaches the thing that actually matters in a guesstimate — being right to the power of ten — while giving the site a cheap self-grading affordance."
+    },
+    {
+      "field": "triangulation: Triangulation — label, route, premise, lines[], answer, verdict",
+      "why": "Both books prescribe 'if you solved top-down, verify bottom-up' and then demonstrate it in only about 3 of 25 questions. Making a fully-worked second route a required field on every question is the clearest place to beat the source material. Reusing CalcLine means the cross-check is machine-verified too, and `verdict` forces an interpretation of the GAP between the two routes — which is where the real learning sits, since a 2x divergence usually localises the single weakest assumption."
+    },
+    {
+      "field": "sensitivity: Sensitivity — assumptionId, whyThisLever, cases[], breakpoint, oneLiner",
+      "why": "The audit identifies sensitivity as the single biggest gap between these casebooks and real practice: one explicit check in 457 pages, none in 389. Keying it to an `assumptionId` rather than free text guarantees the shaky lever is one of the declared assumptions and lets the renderer highlight it in the assumption table. Three named cases (conservative/base/aggressive) match what both books do implement — scenario comparison rather than a grid — while `breakpoint` adds the move neither book makes: stating what would have to be true to flip the conclusion. `oneLiner` is the compression for when there is no time to run the grid, which is the realistic interview case and exactly what the books say candidates are expected to know."
+    },
+    {
+      "field": "traps: Trap[] — trap, whyItHappens, fix",
+      "why": "The existing type has no failure-mode field; mistakes are only aggregated generically on the page-level 'where candidates lose marks' list, disconnected from any specific question. Attaching traps per question, each with a mechanism (whyItHappens) rather than just a warning, converts them into transferable pattern-recognition — double counting, conflating issued with active, forgetting that a monthly pass must be converted to a per-use price, annualising a weekday rate over 365 days, using a national average on an urban-only behaviour."
+    },
+    {
+      "field": "probes: Probe[] — question, intent, goodAnswer, weakAnswer",
+      "why": "Nothing on the site rehearses the post-answer phase, yet both books show every question ending in 2-4 patterned probes and the audit calls follow-ups 'heavy and highly patterned'. Separating `intent` from `goodAnswer` teaches the candidate to read what is being tested rather than pattern-match a reply, and `weakAnswer` names the plausible-sounding non-answer, which is what most candidates actually produce. Shared verbatim with the case schema so both halves of the site train the same skill."
+    },
+    {
+      "field": "archetype + difficulty + teachingPoint + estimatedMinutes + constantsUsed[]",
+      "why": "Metadata that makes the collection navigable and self-auditing once it passes ten items. `archetype` as a closed union lets the page group by shape and lets a test assert the set actually spans the space rather than piling up six population funnels. `difficulty` enables a progression path. `teachingPoint` states the one transferable idea, so no question exists merely as a trivia item. `constantsUsed[]` referencing a shared constants registry fixes the current inconsistency where entries disagree about urban India's population, and enables one datasheet page every question cites."
+    },
+    {
+      "field": "CASES — exhibits: CaseExhibit[] with columns/rows, kind, handoffLine, headlineRead, whatItDoesNotTell, unlockCondition",
+      "why": "Exhibits are currently inline const arrays in JSX with a summary label. Structuring them as typed column/row data makes them renderable as real tables or charts and reusable across the practice lab. `kind` drives the render. `headlineRead` states the one observation a strong candidate makes within thirty seconds — the actual skill being trained. `whatItDoesNotTell` is the deliberate omission that must be asked for, which is how both books release data. `unlockCondition` encodes the interviewer's release gate so partner practice works as designed: the exhibit is earned by articulating a structure, not handed over on request."
+    },
+    {
+      "field": "CASES — quantWalkthrough: CaseQuantStep[] reusing CalcLine",
+      "why": "The worked cases currently contain no arithmetic at all; the bank entries pose calculations as questions and never show the work. Reusing the same machine-checked CalcLine primitive across guesstimates and cases means one verification test covers the whole site, the two sections teach a single consistent notation, and every case can show every intermediate line — which the audit identifies as the casebooks' one unambiguous strength ('absolutely every line, with no skipped intermediates')."
+    },
+    {
+      "field": "CASES — prompt + hiddenObjective + dataOnRequest[] + clarifiers[]",
+      "why": "Both books state that prompts deliberately omit the objective and that extracting it is the candidate's job, then release data one number at a time only when the exact metric is named. Splitting the read-aloud `prompt` from the `hiddenObjective`, and putting every remaining fact behind a `dataOnRequest` pair keyed to the question that earns it, makes the page playable as designed instead of dumping all facts in the brief. `clarifiers` carries the interviewer's actual answer plus why the question matters, training the near-mandatory four openers (client-specific or industry-wide, how long and how much, uniform or concentrated, revenue streams and their split)."
+    },
+    {
+      "field": "CASES — twist: CaseTwist { trigger, newFact, whyItBreaksThePlan, expectedResponse }",
+      "why": "One of the four mechanisms that actually produce Difficult-tier difficulty, and absent from the site entirely. Encoding the trigger point tells the partner playing interviewer exactly when to drop it, and `expectedResponse` teaches the house answer shape the books reward — name the dilemma explicitly, lay Option A pros/cons against Option B, land on a hybrid with a reason — rather than defending the original plan."
+    },
+    {
+      "field": "CASES — rubric: RubricRow[] { dimension, weight, strong, adequate, weak } + browniePoints[] + keyLearnings[]",
+      "why": "Replaces the flat `strongAnswer: string[]`. Weighted dimensions with three explicit bands make the case self-scorable alone or peer-scorable in pairs, which is what turns a reading page into a practice tool. `browniePoints` and `keyLearnings` mirror the casebooks' closing page — which the audit calls the highest-value artefact in the book and more instructive than the transcript — and the site currently has no equivalent of either."
+    },
+    {
+      "field": "CASES — recommendation: { verdict, shortTerm[], longTerm[], risks[{risk, mitigation}], conditionalOn }",
+      "why": "The books are unambiguous that a flat undifferentiated list is not the house style: recommendations are always split short-term vs long-term or Phase 1/2/3, risks live in their own bucket and must not contradict the recommendation, and a 'conditional yes' is explicitly praised as more nuanced than a binary. Pairing each risk with a named mitigation, and making `conditionalOn` a first-class field, enforces all of that structurally rather than hoping each author remembers it."
+    }
+  ],
+  "guesstimatePlan": [
+    {
+      "id": "auto-rickshaws",
+      "question": "How many auto-rickshaws are actually out earning a living on Bengaluru's roads on a typical weekday?",
+      "archetype": "unit-chain-infrastructure",
+      "route": "Hybrid",
+      "difficulty": "Medium",
+      "isExisting": true,
+      "whyIncluded": "Keep as the opener — it is the cleanest demonstration of demand-divided-by-throughput and the existing numbers hold up. Deepen substantially: state the stock-vs-flow boundary explicitly (vehicles on the road, not trips, not registrations), split the fleet into single-shift and double-shift drivers with different daily trip counts, add a genuine supply-side triangulation (registered permits x active share) against the current demand-side route, and run sensitivity on the auto share of motorised trips, which is the shakiest lever and the one nobody defends."
+    },
+    {
+      "id": "mall-outlet-revenue",
+      "question": "What does a single quick-service food outlet in a busy Mumbai mall take in on an average day?",
+      "archetype": "single-asset-revenue",
+      "route": "Bottom-up",
+      "difficulty": "Easy",
+      "isExisting": true,
+      "whyIncluded": "Keep as the bottom-up anchor and the gentlest entry point. Deepen by replacing the single footfall-x-conversion-x-bill chain with the seat-hours route the casebooks actually reward: covers = seats x operating hours x occupancy / average dwell time, so turnover speed becomes visible as mattering as much as seat count. Add a weekday/weekend split, separate dine-in from takeaway ticket sizes, and triangulate the capacity-based answer against the existing footfall-based one — two routes that should converge and are instructive when they do not."
+    },
+    {
+      "id": "bottled-water-urban",
+      "question": "What is a year of packaged drinking water worth at retail in urban India?",
+      "archetype": "population-funnel",
+      "route": "Top-down",
+      "difficulty": "Medium",
+      "isExisting": true,
+      "whyIncluded": "Keep the question, rebuild the method. Currently a flat population x litres x price line with an undefended 15-litres-per-person figure. Deepen into a proper funnel with income-band-varying penetration and different consumption occasions for at-home versus out-of-home, compute volume and value as separate answers, and triangulate against a supply-side route (plants x lines x capacity x utilisation). Also the natural place to teach that a blended price per litre across 250 ml bottles and 20 litre jars is the single most abusable number in the chain."
+    },
+    {
+      "id": "ceiling-fans-stock",
+      "question": "How many ceiling fans are hanging in Indian homes right now?",
+      "archetype": "household-ownership-stock",
+      "route": "Top-down",
+      "difficulty": "Medium",
+      "isExisting": false,
+      "whyIncluded": "The canonical household-to-income-band-to-ownership-rate stock count, which is the second most common shape in both casebooks and absent from the site. Population / household size gives households; urban and rural split into high/mid/low income bands with a different penetration AND a different units-per-owning-household for each; rural gets an electrification gate. Every division is clean. Teaches that the units-per-household assumption, not the penetration rate, is what the answer is most sensitive to — and it is the assumption candidates spend the least time on."
+    },
+    {
+      "id": "helmets-annual-sales",
+      "question": "How many two-wheeler helmets does India buy in a year?",
+      "archetype": "installed-base-replacement",
+      "route": "Hybrid",
+      "difficulty": "Medium",
+      "isExisting": false,
+      "whyIncluded": "Trains stock versus flow, which nothing on the site currently does. Annual sales = existing rider base / replacement cycle + first-fit for new riders, with a compliance/behaviour gate that pure demographics would miss. The credibility marker the books name explicitly is splitting first-time from repeat demand and separating OEM-bundled units from aftermarket purchases; a candidate who computes only the stock and divides by a life has skipped half the answer. Clean arithmetic throughout on a 250 Mn two-wheeler parc and a ~15 Mn annual new-sales flow."
+    },
+    {
+      "id": "airport-runway-throughput",
+      "question": "How many departing passengers can a single-runway airport physically handle on a busy day — and what is the binding constraint?",
+      "archetype": "capacity-bottleneck",
+      "route": "Bottom-up",
+      "difficulty": "Hard",
+      "isExisting": false,
+      "whyIncluded": "The bottleneck archetype, which the books name as one of three canonical bottom-up routes and which the site lacks entirely. Movements per hour per runway x operating hours, halved for departures, x average seats x load factor, with a domestic/international mix carrying different aircraft sizes. The graded insight is naming the runway as the constraint and saying that adding terminal, check-in or parking capacity changes the answer by zero — the single most reusable idea in supply-side sizing, and it transfers directly into the Bhavani Alloys constraint case."
+    },
+    {
+      "id": "active-credit-cards",
+      "question": "How many credit cards in India actually get used in a given month?",
+      "archetype": "penetration-cascade",
+      "route": "Top-down",
+      "difficulty": "Medium",
+      "isExisting": false,
+      "whyIncluded": "The standard shape for all financial-services sizing and completely missing. Population to adults to bank-account penetration split urban and rural, then cards per holder, then the active share. The whole question is built around one boundary trap the books call out by name — issued versus active — plus multi-holding, since one person with three cards must not be counted as three holders. Deliberately chosen because the naive answer is wrong by a factor of two to three and the candidate can feel why."
+    },
+    {
+      "id": "metro-ticketing-revenue",
+      "question": "What does a city metro network collect in fares over a year?",
+      "archetype": "network-price-mix",
+      "route": "Hybrid",
+      "difficulty": "Medium",
+      "isExisting": false,
+      "whyIncluded": "Covers the price-mix split, which nothing on the site touches. Riders to trips per rider per day, then split into two pricing regimes — monthly pass or smart card versus single-journey token — and annualise each at its own effective per-ride price. The move that earns credit is converting a monthly pass price into an implied per-ride value, because pass holders ride far more often and therefore pay far less per ride; averaging the two posted prices gives a badly wrong answer. Also pairs naturally with the runway question as demand-side against supply-side views of the same kind of network."
+    },
+    {
+      "id": "trucking-diesel",
+      "question": "How much diesel does India's long-haul trucking fleet burn in a year?",
+      "archetype": "physical-proxy-consumable",
+      "route": "Hybrid",
+      "difficulty": "Hard",
+      "isExisting": false,
+      "whyIncluded": "The physical-proxy shape the books label the hardest and always reserve for the Difficult slot. The question is only tractable by converting it into a physical unit — vehicle-kilometres — then applying a consumption rate: heavy trucks x annual km x 1/mileage, computed separately for long-haul and regional duty cycles because their annual kilometres differ by three times. Has an unusually satisfying triangulation against national refinery output and the transport sector's known share of it, and the gap between the two routes is itself the teaching moment."
+    },
+    {
+      "id": "coffee-sachets-daily",
+      "question": "How many single-serve instant coffee sachets are sold across India on an average day?",
+      "archetype": "funnel-conversion-fmcg",
+      "route": "Top-down",
+      "difficulty": "Medium",
+      "isExisting": false,
+      "whyIncluded": "The awareness-to-trial-to-repeat funnel that the books state beats pure top-down for any packaged consumer good, and the site has no FMCG shape at all. Population to consuming age band to urban and rural, then different awareness, trial and repeat-purchase rates by geography, then a consumption frequency per repeat user. Teaches that frequency dominates user count — a point the IIMC book makes explicitly and which most candidates invert — and that a tea-drinking base market means the trial rate, not the population, is the binding number."
+    },
+    {
+      "id": "tender-bid-expected-value",
+      "question": "An edtech firm can bid for a three-year state training contract. The bid costs money to prepare and the outcome is uncertain. Is it worth bidding?",
+      "archetype": "expected-value",
+      "route": "Probabilistic",
+      "difficulty": "Medium",
+      "isExisting": false,
+      "whyIncluded": "Not a sizing question at all, and included precisely because both casebooks file expected-value questions under guesstimates and the site therefore trains candidates for the wrong thing. A two-layer probability tree — win or lose the bid, then high or low enrolment if won — with payoffs at each leaf, probability-weighted to an expected value, minus the sunk-if-lost bid cost, plus an explicit decision rule. It is also the natural home for the sensitivity teaching, since the IIMC book's one and only explicit sensitivity check in 457 pages sits in a question of exactly this shape: raise one cost input and the sign of the answer flips."
+    },
+    {
+      "id": "campus-chai",
+      "question": "How many cups of chai does a 1,200-student residential campus get through in a week?",
+      "archetype": "closed-population",
+      "route": "Bottom-up",
+      "difficulty": "Easy",
+      "isExisting": false,
+      "whyIncluded": "The closed-population micro-guesstimate, where local knowledge is legitimately the data and no national constant helps. Segment the campus into consumption-intensity tiers, add faculty, staff and visitors as separate streams each with its own rate, sum, then divide by total headcount as a per-person plausibility test. Teaches multi-stream aggregation, the per-capita reverse check, and quoting the answer as a band rather than a point. Deliberately the most relatable question in the set for a Great Lakes audience, and the best on-ramp for a student who has never done one."
+    },
+    {
+      "id": "audit-capacity-cas",
+      "question": "How many chartered accountants does it take to audit India's active companies each year?",
+      "archetype": "occupational-cohort",
+      "route": "Hybrid",
+      "difficulty": "Hard",
+      "isExisting": false,
+      "whyIncluded": "Chains three divisions in a row — companies to audit-eligible companies to audit hours to practitioner headcount — which is the unit-chain rule the books state as 'always break into people, institutions, assets'. Adds an occupational-cohort layer where sub-segments differ by more than an order of magnitude in hours required: a listed company and a dormant private limited are not comparable units. Also the cleanest illustration of an 80-20 declaration, since the small tail of large companies consumes a disproportionate share of total audit hours and the rest can be simplified after saying so out loud."
+    },
+    {
+      "id": "food-delivery-revenue-pool",
+      "question": "How much revenue — not order value — is there for food-delivery platforms in India in a year?",
+      "archetype": "revenue-pool-take-rate",
+      "route": "Top-down",
+      "difficulty": "Hard",
+      "isExisting": false,
+      "whyIncluded": "The revenue-pool shape, and the hardest scope trap in the set: the question asks for platform revenue and the naive answer gives gross order value, overstating by roughly a factor of five. Funnel from internet users to transacting users to orders per month, times average order value, gives GMV; then platform revenue is commission plus delivery fee plus advertising minus discounts the platform funds itself. Distinguishing GMV from revenue is exactly the credibility marker the books reward in platform cases, and it wires directly into the GhatVyapar profitless-growth case."
+    }
+  ],
+  "proposedCaseSchema": "// ---------------------------------------------------------------------------\n// src/features/placements/data/case-studies.ts\n// Reuses every primitive from case-primitives.ts — critically CalcLine, so a\n// single arithmetic test covers guesstimates and cases alike.\n// ---------------------------------------------------------------------------\n\nimport type {\n  CalcLine,\n  Difficulty,\n  Probe,\n  TreeNode,\n} from \"./case-primitives\";\n\nexport type CaseFamily =\n  | \"Profitability\"\n  | \"Market entry\"\n  | \"Pricing\"\n  | \"Growth\"\n  | \"M&A / Due diligence\"\n  | \"Operations\"\n  | \"Public policy\"\n  | \"Unconventional\";\n\nexport type ExhibitKind =\n  | \"table\"            // plain rows and columns\n  | \"bridge\"           // a walk from one figure to another\n  | \"segment-split\"    // shares of a whole, by segment\n  | \"timeseries\"       // periods across columns\n  | \"option-compare\"   // two or more mutually exclusive options\n  | \"matrix\";          // items as columns, metrics as rows\n\nexport interface CaseExhibit {\n  id: string;\n  /** Display label, e.g. \"Exhibit 2\". */\n  number: string;\n  title: string;\n  kind: ExhibitKind;\n  /** What the interviewer says while handing it over. */\n  handoffLine: string;\n  columns: readonly string[];\n  /** Row-major. First cell of each row is the row header. */\n  rows: readonly (readonly string[])[];\n  /** Units, definitions, and the caveats a careful reader would want. */\n  footnotes?: readonly string[];\n  /**\n   * The single observation a strong candidate makes within ~30 seconds.\n   * This is the skill being trained; everything else is decoration.\n   */\n  headlineRead: string;\n  /** The deliberate omission the candidate must notice and ask for. */\n  whatItDoesNotTell: string;\n  /**\n   * Release gate for partner practice: what the candidate must have\n   * articulated before this exhibit is earned.\n   */\n  unlockCondition: string;\n  /** Metrics the candidate is expected to derive, not read off. */\n  derivedMetricsExpected?: readonly string[];\n}\n\n/** One quantitative beat inside a case. */\nexport interface CaseQuantStep {\n  id: string;\n  /** The question the interviewer poses, or the candidate should pose. */\n  question: string;\n  /** Machine-checkable arithmetic — identical primitive to guesstimates. */\n  lines: readonly CalcLine[];\n  /** The \"so what\". A number without this is an incomplete answer. */\n  insight: string;\n  /** The specific miscalculation most candidates make here. */\n  commonError?: string;\n  /** Exhibit ids this step draws on. */\n  usesExhibits?: readonly string[];\n}\n\n/** The mid-case fact that invalidates a committed plan. */\nexport interface CaseTwist {\n  /** When the interviewer drops it. */\n  trigger: string;\n  newFact: string;\n  whyItBreaksThePlan: string;\n  /**\n   * The house answer shape: name the dilemma, Option A pros/cons against\n   * Option B, land on a hybrid with a reason. Never defend the old plan.\n   */\n  expectedResponse: string;\n  /** What a candidate who digs in instead sounds like. */\n  failureMode: string;\n}\n\nexport type RubricDimension =\n  | \"Structure\"\n  | \"Quantitative rigour\"\n  | \"Business judgement\"\n  | \"Communication\"\n  | \"Synthesis\";\n\nexport interface RubricRow {\n  dimension: RubricDimension;\n  /** Weights across all rows must sum to 100. Asserted by test. */\n  weight: number;\n  strong: string;\n  adequate: string;\n  weak: string;\n}\n\nexport interface CaseRecommendation {\n  /** May be — and often should be — a conditional yes. */\n  verdict: string;\n  /** The number or named condition the verdict hangs on. */\n  conditionalOn?: string;\n  shortTerm: readonly string[];\n  longTerm: readonly string[];\n  /** Every risk carries its own mitigation. Never a bare list. */\n  risks: readonly { risk: string; mitigation: string }[];\n  /** Must not contradict the verdict — reviewed on author. */\n  whatWouldMakeYouWalkAway?: readonly string[];\n}\n\nexport interface CaseStudy {\n  id: string;\n  number: string;\n  title: string;\n  family: CaseFamily;\n  /** The casebook archetype this case drills. */\n  archetype: string;\n  difficulty: Difficulty;\n  estimatedMinutes: number;\n\n  company: {\n    name: string;\n    sector: string;\n    /** Always true. Enforced by the type, not by convention. */\n    fictional: true;\n    oneLine: string;\n  };\n\n  /** Read aloud verbatim. Deliberately omits the objective. */\n  prompt: string;\n  /** The objective the candidate must extract by asking. Not in the prompt. */\n  hiddenObjective: string;\n\n  clarifiers: readonly {\n    question: string;\n    whyItMatters: string;\n    /** What the interviewer actually replies — terse, volunteering nothing. */\n    interviewerAnswer: string;\n    /** True for the four near-mandatory openers. */\n    isMandatory?: boolean;\n  }[];\n\n  /** Released one at a time, only when the exact metric is named. */\n  dataOnRequest: readonly {\n    askedFor: string;\n    answer: string;\n    /** Set when the ask is a trap, e.g. sunk R&D cost. */\n    isRedHerring?: boolean;\n  }[];\n\n  /** Expected issue tree, values on nodes — the tree is a ledger. */\n  structure: TreeNode;\n  /** How to say the structure aloud in ~90 seconds, then ask to proceed. */\n  structureNarration: string;\n  /** Branches a strong candidate prunes with a reason, before being told. */\n  branchesToPrune: readonly { branch: string; whyRuledOut: string }[];\n\n  exhibits: readonly CaseExhibit[];\n  quantWalkthrough: readonly CaseQuantStep[];\n  twist?: CaseTwist;\n\n  rootCause: string;\n  /** Plausible causes a candidate will chase, and how each is eliminated. */\n  rejectedHypotheses: readonly { hypothesis: string; howEliminated: string }[];\n\n  recommendation: CaseRecommendation;\n\n  /** Post-analysis probes. Same primitive as guesstimates. */\n  probes: readonly Probe[];\n  rubric: readonly RubricRow[];\n  /** What separates strong from average. The casebooks' highest-value page. */\n  browniePoints: readonly string[];\n  /** The transferable principle, independent of this company. */\n  keyLearnings: readonly string[];\n\n  relatedGuesstimateIds?: readonly string[];\n  relatedFrameworkIds?: readonly string[];\n}\n\nexport const caseStudies: readonly CaseStudy[] = [/* … */];",
+  "proposedGuesstimateSchema": "// ---------------------------------------------------------------------------\n// src/features/placements/data/case-primitives.ts\n// Shared by guesstimates, cases and frameworks so one test suite covers all.\n// ---------------------------------------------------------------------------\n\nexport type Difficulty = \"Easy\" | \"Medium\" | \"Hard\";\n\nexport type Route = \"Top-down\" | \"Bottom-up\" | \"Hybrid\" | \"Probabilistic\";\n\n/** How much weight a number can bear when an interviewer pushes on it. */\nexport type Confidence = \"anchor\" | \"defensible\" | \"judgement\" | \"shaky\";\n\n/** Where the number came from — the answer to \"why that number?\" */\nexport type AssumptionBasis =\n  | \"census-anchor\"        // national or city demographic constant\n  | \"published-benchmark\"  // an industry or regulator figure you could cite\n  | \"physical-constant\"    // hours in a day, seats in a coach, litres in a tank\n  | \"observed-behaviour\"   // what you can see on a street or a campus\n  | \"structural-logic\"     // forced by an identity or a constraint, not observed\n  | \"declared-judgement\";  // openly a guess, and said to be one\n\nexport interface Assumption {\n  /** Stable id. Referenced by CalcLine.uses and Sensitivity.assumptionId. */\n  id: string;\n  /** The lever being assumed, e.g. \"Urban share of population\". */\n  lever: string;\n  /** Display form, may carry units: \"35%\", \"₹20 / litre\". */\n  value: string;\n  /** Machine form where one exists: 0.35, 20. */\n  numeric?: number;\n  unit?: string;\n  basis: AssumptionBasis;\n  /** One sentence to say out loud when challenged on this number. */\n  defence: string;\n  confidence: Confidence;\n  /** A reasonable alternative an interviewer may prefer, and its effect. */\n  contestedBy?: string;\n  /** Id into the shared constants registry, when it is a standard anchor. */\n  constantId?: string;\n}\n\n/**\n * One arithmetic step.\n *\n * `expr` MUST contain only digits, decimal points, + - * / ( ) and\n * whitespace — no identifiers, no units, no thousands separators — so a\n * build-time test can evaluate it and assert it equals `result`.\n */\nexport interface CalcLine {\n  id: string;\n  /** Plain-language name of what this line produces. */\n  label: string;\n  /** Machine-evaluable, e.g. \"1400000000 * 0.35 * 0.6\". */\n  expr: string;\n  /** Human-readable, e.g. \"1,400 Mn × 35% urban × 60% adult\". */\n  display: string;\n  /** The value `expr` must evaluate to. Asserted in CI. */\n  result: number;\n  /** Allowed relative error where display rounding compounds. Default 0. */\n  tolerance?: number;\n  unit: string;\n  /** The rounded figure actually carried forward, if different: \"≈ 290 Mn\". */\n  carriedForward?: string;\n  /** Assumption ids consumed. Every id must exist in `assumptions`. */\n  uses: readonly string[];\n  /** Why this intermediate matters. Enforces the \"so what\" rule. */\n  soWhat?: string;\n}\n\n/** Recursive so a 4-5 level funnel can be represented, with values on nodes. */\nexport interface TreeNode {\n  label: string;\n  formula?: string;\n  /** The absolute figure at this node — the tree doubles as a ledger. */\n  value?: string;\n  note?: string;\n  /** Set on the branch that carries the answer, for visual emphasis. */\n  isCriticalPath?: boolean;\n  children?: readonly TreeNode[];\n}\n\nexport interface Scope {\n  /** One sentence: exactly what is being counted. */\n  countingWhat: string;\n  unit: string;\n  /** Stock vs flow, made explicit. The first-order scope error. */\n  timeBasis:\n    | \"stock (point in time)\"\n    | \"flow (per day)\"\n    | \"flow (per week)\"\n    | \"flow (per year)\";\n  geography: string;\n  /** Boundaries to name BEFORE computing. */\n  included: readonly string[];\n  excluded: readonly string[];\n  /** The specific ambiguity this question is built around. */\n  boundaryTrap: string;\n}\n\nexport interface RouteChoice {\n  chosen: Route;\n  /** Why this route, in the candidate's own voice. */\n  why: string;\n  /** The route not taken, and why it is weaker *here*. */\n  rejected: { route: Route; whyNot: string };\n}\n\nexport interface Triangulation {\n  label: string;              // \"Supply-side cross-check\"\n  route: Route;\n  premise: string;\n  /** Fully worked and machine-checked, like the primary route. */\n  lines: readonly CalcLine[];\n  answer: string;\n  /** The gap vs the primary answer, and what the gap tells you. */\n  verdict: string;\n}\n\nexport interface SensitivityCase {\n  scenario: \"Conservative\" | \"Base\" | \"Aggressive\";\n  leverValue: string;\n  answer: string;\n  /** Signed change vs base, e.g. \"−38%\". */\n  deltaVsBase: string;\n}\n\nexport interface Sensitivity {\n  /** Must match an id in `assumptions`. Asserted by test. */\n  assumptionId: string;\n  /** Why this lever is the one that moves the answer. */\n  whyThisLever: string;\n  cases: readonly SensitivityCase[];\n  /** What would have to be true to flip the conclusion. */\n  breakpoint: string;\n  /** What to say when there is no time to run the grid. */\n  oneLiner: string;\n}\n\nexport interface Trap {\n  trap: string;\n  /** The mechanism, not just the warning. */\n  whyItHappens: string;\n  fix: string;\n}\n\nexport interface Probe {\n  /** What the interviewer actually asks. */\n  question: string;\n  /** What is being tested. */\n  intent: string;\n  goodAnswer: string;\n  /** The plausible-sounding non-answer most candidates give. */\n  weakAnswer?: string;\n}\n\n// ---------------------------------------------------------------------------\n// src/features/placements/data/guesstimates.ts\n// ---------------------------------------------------------------------------\n\nexport type GuesstimateArchetype =\n  | \"population-funnel\"\n  | \"household-ownership-stock\"\n  | \"installed-base-replacement\"\n  | \"capacity-bottleneck\"\n  | \"single-asset-revenue\"\n  | \"network-price-mix\"\n  | \"penetration-cascade\"\n  | \"unit-chain-infrastructure\"\n  | \"physical-proxy-consumable\"\n  | \"funnel-conversion-fmcg\"\n  | \"revenue-pool-take-rate\"\n  | \"closed-population\"\n  | \"occupational-cohort\"\n  | \"expected-value\";\n\nexport interface Guesstimate {\n  id: string;\n  number: string;\n  question: string;\n  /** ~8 words, for tab and card labels. */\n  shortLabel: string;\n  archetype: GuesstimateArchetype;\n  difficulty: Difficulty;\n  estimatedMinutes: number;\n  /** The one transferable idea this question exists to teach. */\n  teachingPoint: string;\n\n  scope: Scope;\n  route: RouteChoice;\n  /** Recursive, values on every node. */\n  tree: TreeNode;\n  assumptions: readonly Assumption[];\n  /** Ordered. The last line must equal `answer.numeric`. */\n  calculation: readonly CalcLine[];\n\n  answer: {\n    headline: string;\n    numeric: number;\n    unit: string;\n    /** An honest band, not false precision. */\n    band: string;\n    /** e.g. \"10^5\" — being right to the power of ten is the real test. */\n    orderOfMagnitude: string;\n  };\n\n  /** An independent second route, fully worked. Required, not optional. */\n  triangulation: Triangulation;\n  sensitivity: Sensitivity;\n  /** Plausibility tests, not arithmetic re-checks. */\n  sanityChecks: readonly string[];\n  traps: readonly Trap[];\n  probes: readonly Probe[];\n  /** Ids into the shared constants registry. */\n  constantsUsed: readonly string[];\n  relatedCaseIds?: readonly string[];\n}\n\nexport const guesstimates: readonly Guesstimate[] = [/* … */];",
+  "rendererWorkNeeded": [
+    "BREAKS IMMEDIATELY — GuesstimateExplorer tab strip. `src/app/placements/guesstimates/GuesstimateExplorer.tsx` line ~20 hard-codes `grid-cols-1 gap-1 ... sm:grid-cols-3`. At 14 items this renders a five-row block of 14 full-question buttons roughly 700px tall above the content, and every tab shows the full question text (`{item.question}`) so each cell is 3-4 lines. Replace the tab strip entirely with a left-hand index list on desktop (`lg:grid-cols-[280px_1fr]`, sticky, scrollable) using `shortLabel` plus archetype and difficulty chips, and a collapsed `<select>` or a horizontally-scrollable chip row on mobile. Keep `role=\"tablist\"` semantics with proper `aria-orientation=\"vertical\"` on the desktop list.",
+    "BREAKS IMMEDIATELY — GuesstimateExplorer step grid. Line ~68 hard-codes `sm:grid-cols-2 lg:grid-cols-4` over `active.steps`, which silently assumes exactly four steps. The new schema has no `steps` array at all; it is replaced by `scope`, `route`, `assumptions`, `calculation`, `triangulation`, `sensitivity`. This whole block must be deleted and rebuilt as sectioned panels, not an n-up grid.",
+    "BREAKS IMMEDIATELY — IssueTree is single-level. `src/features/placements/components/IssueTree.tsx` takes `root` + a flat `branches` array and picks between `sm:grid-cols-2|3|4`, so it physically cannot render the recursive `TreeNode` the new schema needs, and it has no slot for a per-node `value`. Rewrite as a recursive component: render each node as a card carrying label, formula and the absolute value, with children laid out in a nested flex column; switch from a columns grid to a horizontal-scroll container (`overflow-x-auto` with `min-w-max`) so a 5-level funnel does not compress to unreadable width. Add `isCriticalPath` styling to highlight the branch carrying the answer. Preserve the existing prop shape as a thin adapter so `case-frameworks` (which imports `CaseFrameworkBranch`) keeps working during migration — `guesstimates.ts` currently imports its branch type from `case-frameworks.ts`, and that coupling must be cut first.",
+    "NEW — Assumption table component. Renders `Assumption[]` as a real table: lever, value, basis badge, confidence badge, defence. Needs a distinct visual treatment per `AssumptionBasis` (six values) and per `Confidence` (four values), with `shaky` visually flagged and cross-linked to the sensitivity block. `contestedBy` belongs in an expandable row, not an extra column. Must scroll horizontally inside its own `overflow-x-auto` container on mobile, and must not be the thing that makes the page body scroll sideways.",
+    "NEW — Calculation ledger component. Renders `CalcLine[]` as a numbered ledger: label, the `display` string in mono, the running result with its unit, `carriedForward` where it differs, and the `soWhat` as a subordinate line. Each line needs hover/tap affordance showing which assumption ids it consumed (`uses[]`) — ideally highlighting those rows in the assumption table. Long `display` strings will overflow: use `overflow-x-auto` per line with `white-space: nowrap` on the mono span rather than wrapping formulas mid-operator, which is unreadable.",
+    "NEW — Triangulation panel. A visually distinct second ledger sitting beside or below the primary one, with a headline comparison of the two answers and the `verdict` as the conclusion. On wide viewports show primary and triangulation side by side (`xl:grid-cols-2`) — this is exactly the kind of content that should consume the horizontal space the standing whitespace instruction calls for rather than sitting in a narrow centre column.",
+    "NEW — Sensitivity component. Three-scenario strip (Conservative / Base / Aggressive) with lever value, resulting answer and signed delta, plus the `breakpoint` called out as a conclusion line and the `oneLiner` as a quotable takeaway. A small horizontal bar or dot plot keyed off the three answers would carry more information than a table at the same cost; if a chart is used, load the dataviz skill first and keep it theme-aware.",
+    "NEW — Traps and Probes components. `Trap[]` as a two-column trap/why/fix list; `Probe[]` as a set of collapsible items where the question is the summary and intent / goodAnswer / weakAnswer are the body — so a reader can self-test before revealing. `Probe` is shared with cases, so build one component used by both pages.",
+    "FILTERING AND NAVIGATION — mandatory at this size. 14 guesstimates and 12 cases cannot be browsed linearly. Add client-side filter chips on archetype, difficulty and route, a count readout, and a deep-linkable selection via `?q=<id>` (or a hash) so a specific question can be shared, bookmarked and linked from a case's `relatedGuesstimateIds`. Current state is `useState` only, so selection is lost on reload and unshareable.",
+    "CASES MUST BECOME DATA-DRIVEN. `src/app/placements/case-examples/page.tsx` (524 lines) hand-codes all three cases in JSX, with exhibit tables as module-level const arrays (`rideMarketData`, `rideEconomics`, `bookstoreComparison`, `usageSegments`) and a ~45-line copy-pasted `<details>`/`<table>` block per exhibit. Extract `src/features/placements/data/case-studies.ts`, build a `<CaseStudyArticle>` component plus a generic `<ExhibitTable>` driven by `CaseExhibit.columns` / `.rows` / `.kind` / `.footnotes`, and reduce the page to a map over the data. Without this, adding case four means duplicating ~130 lines of markup — which is why the count has stayed at three.",
+    "CASE ROUTING. Twelve full cases with exhibits, quant walkthroughs and rubrics will not fit one page: at the new depth each case is 6-10 screens. Move to an index page at `/placements/case-examples` (cards showing family, archetype, difficulty, minutes, exhibit count) plus a detail route at `/placements/case-examples/[caseId]` generated with `generateStaticParams` and per-case `generateMetadata`. Read the routing and metadata guides under `node_modules/next/dist/docs/` before writing this — the project's AGENTS.md warns the conventions differ from what is in training data.",
+    "EXHIBIT REVEAL GATE. Current exhibits are plain `<details>` elements with a Reveal/Hide label, so a candidate can see everything at once and the partner-practice design is unenforced. Render `unlockCondition` inside the closed summary as the gate text (\"Earn this exhibit by having named …\"), and consider an interviewer-mode toggle that reveals `headlineRead`, `whatItDoesNotTell` and `derivedMetricsExpected` only in that mode.",
+    "NEW — Rubric component. `RubricRow[]` as a scorecard: dimension, weight, and three graded bands. Needs to work as a self-scoring instrument — checkbox or radio per dimension with a live weighted total — which means client state, and that total should be resettable. This is the single highest-value addition for a student practising alone, and it does not exist in any form today.",
+    "NEW — Twist reveal. `CaseTwist` needs a deliberately separate, visually interruptive block placed after the quant walkthrough, gated behind the trigger text, showing newFact, whyItBreaksThePlan, expectedResponse and failureMode. Do not fold it into the exhibit `<details>` pattern — the whole point is that it lands after the candidate has committed.",
+    "NEW — Constants reference page. `constantsUsed[]` implies a registry at `src/features/placements/data/india-constants.ts` and a page or drawer rendering it, with each constant showing its value, the working rounding, what it is used for, and back-links to the questions that cite it. This also fixes the existing inconsistency where entries disagree on urban India's population. Build the registry before authoring the questions, not after, or the ids will drift.",
+    "ARITHMETIC VERIFICATION HARNESS. Add a test (vitest, alongside the existing `release-smoke.spec.mjs` conventions) that for every guesstimate and case: validates every `CalcLine.expr` against a strict `/^[\\d\\s.+\\-*/()]+$/` allowlist before evaluating, asserts the evaluated value equals `result` within `tolerance`, asserts every id in `uses[]` exists in `assumptions`, asserts `Sensitivity.assumptionId` resolves, asserts the final calculation line equals `answer.numeric`, and asserts `RubricRow` weights sum to 100. This is what lets the pages claim verified arithmetic, and it is cheap to write once the primitives are shared.",
+    "MOBILE AND WIDE-VIEWPORT AUDIT. Every new component introduces wide tabular content — assumption tables, calculation ledgers, SKU matrices, rubrics. Each must scroll inside its own `overflow-x-auto` wrapper so the page body never scrolls horizontally. Conversely, on wide desktop the existing `Container className=\"max-w-[min(100%,120rem)]\"` pattern is already in use on these pages; the new two-column layouts (index rail plus content, primary ledger beside triangulation, exhibit beside its headline read) should genuinely fill it rather than leaving a narrow centred column, per the standing instruction to avoid unnecessary desktop whitespace. Check 1920px and 2560px before shipping.",
+    "LINK GRAPH. `relatedCaseIds`, `relatedGuesstimateIds` and `relatedFrameworkIds` need a small shared cross-link component, and a build-time test that every referenced id resolves — otherwise these silently rot as the collections grow.",
+    "CONTENT VOLUME AND BUNDLE. Fourteen deep guesstimates plus twelve deep cases is a large data payload for a client component. `GuesstimateExplorer` is `\"use client\"` and currently imports the whole array; at the new depth that ships everything to the browser. Keep the heavy per-item bodies in server components and pass only the index (id, shortLabel, archetype, difficulty) to the client selector, or move selection to the URL so each item renders server-side."
+  ]
+}

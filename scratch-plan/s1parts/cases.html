@@ -1,0 +1,128 @@
+<section id="cases" class="py-16 sm:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Fallen Giants: Cautionary Tales</h2>
+                    <p class="mt-4 text-lg text-slate-600">Let's start by looking at companies that once dominated but failed to adapt. What went wrong?</p>
+                </div>
+
+                <!-- Nokia -->
+                <div id="nokia" class="mb-20 grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-12 items-start bg-slate-50 p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200">
+                    <div class="lg:col-span-2 space-y-4">
+                        <h3 class="text-2xl font-bold text-cyan-700 mb-2">1. Nokia: Connecting People... Then Disconnecting</h3>
+                         <h4 class="text-lg font-semibold text-slate-800">How did the undisputed king of mobile phones lose its crown almost overnight?</h4>
+                         
+                         <img src="https://placehold.co/600x400/0891b2/ffffff?text=Nokia+Legacy" alt="Vintage Nokia phone illustration" class="rounded-lg shadow-md w-full my-4">
+                         <div class="prose-custom text-sm">
+                            <p>Nokia's operational excellence in hardware manufacturing built a global empire. But when Apple's iPhone (2007) and Google's Android (2008) shifted the battleground to software ecosystems and user experience, Nokia faltered.</p>
+                         </div>
+                         <div class="bg-cyan-100 border-l-4 border-cyan-500 p-3 rounded">
+                            <p class="font-semibold text-cyan-800 text-xs uppercase tracking-wider mb-1">Peak:</p>
+                            <p class="text-xs text-cyan-700 leading-snug">Dominated with >40% global market share via superior hardware & operational efficiency.</p>
+                        </div>
+                        <div class="bg-red-100 border-l-4 border-red-500 p-3 rounded">
+                            <p class="font-semibold text-red-800 text-xs uppercase tracking-wider mb-1">Downfall:</p>
+                            <p class="text-xs text-red-700 leading-snug">Dismissed iPhone/Android, clung to aging Symbian OS, failed pivot with Microsoft Windows Phone.</p>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-3 grid grid-cols-1 gap-6">
+                        <!-- Click-to-reveal Buttons -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                             <button onclick="toggleAnalysis('nokia', 'porter')" class="analysis-button bg-blue-100 hover:bg-blue-200 border border-blue-300 text-blue-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Analyze with Porter's Lens</button>
+                             <button onclick="toggleAnalysis('nokia', 'mintzberg')" class="analysis-button bg-teal-100 hover:bg-teal-200 border border-teal-300 text-teal-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">Analyze with Mintzberg's Lens</button>
+                        </div>
+                        <!-- Hidden Analysis Content -->
+                        <div id="nokia-porter-analysis" class="analysis-content bg-blue-50 p-4 rounded-lg border border-blue-200 shadow-sm prose-custom text-xs">
+                             <p class="font-semibold text-blue-800 mb-1">Porter's Lens:</p>
+                             <p class="text-blue-700 leading-snug">Confused Operational Effectiveness (great hardware) with Strategy. Lacked a unique position when the game shifted to software ecosystems. Failed analysis of substitutes (smartphones replacing feature phones).</p>
+                        </div>
+                        <div id="nokia-mintzberg-analysis" class="analysis-content bg-teal-50 p-4 rounded-lg border border-teal-200 shadow-sm prose-custom text-xs">
+                            <p class="font-semibold text-teal-800 mb-1">Mintzberg's Lens:</p>
+                            <p class="text-teal-700 leading-snug">Rigid deliberate strategy (hardware focus) stifled internal emergent ideas (touchscreens, app stores developed internally years prior). Organization forgot how to learn and adapt its 'craft', ignoring warnings from engineers.</p>
+                        </div>
+                        <!-- Chart -->
+                        <div class="mt-4">
+                             <h4 class="font-semibold text-xs text-slate-500 uppercase tracking-wider text-center mb-2">Global Smartphone Market Share (%)</h4>
+                            <div class="chart-container"><canvas id="nokiaChart"></canvas></div>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Kodak -->
+                 <div id="kodak" class="mb-20 grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-12 items-start bg-slate-50 p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200">
+                     <div class="lg:col-span-2 space-y-4">
+                        <h3 class="text-2xl font-bold text-amber-600 mb-2">2. Kodak: Blinded by Success</h3>
+                         <h4 class="text-lg font-semibold text-slate-800">How could the company that invented digital photography be bankrupted by it?</h4>
+                         
+                         <img src="https://placehold.co/600x400/d97706/ffffff?text=Kodak+Legacy" alt="Vintage Kodak camera illustration" class="rounded-lg shadow-md w-full my-4">
+                           <div class="prose-custom text-sm">
+                             <p>Kodak's 'razor-and-blades' model (cheap cameras, profitable film/printing) was a masterpiece of strategic 'fit' in the 20th century. But this very success blinded them to the digital disruption they pioneered in 1975.</p>
+                          </div>
+                         <div class="bg-amber-100 border-l-4 border-amber-500 p-3 rounded">
+                            <p class="font-semibold text-amber-800 text-xs uppercase tracking-wider mb-1">Peak:</p>
+                            <p class="text-xs text-amber-700 leading-snug">Mastery of 'fit' with razor-and-blades model. Market cap $28B (1996).</p>
+                        </div>
+                        <div class="bg-red-100 border-l-4 border-red-500 p-3 rounded">
+                            <p class="font-semibold text-red-800 text-xs uppercase tracking-wider mb-1">Downfall:</p>
+                            <p class="text-xs text-red-700 leading-snug">Feared cannibalizing film, suppressed own digital invention, half-hearted pivot focused on printing, bankruptcy (2012).</p>
+                        </div>
+                    </div>
+                     <div class="lg:col-span-3 grid grid-cols-1 gap-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <button onclick="toggleAnalysis('kodak', 'porter')" class="analysis-button bg-blue-100 hover:bg-blue-200 border border-blue-300 text-blue-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Analyze with Porter's Lens</button>
+                            <button onclick="toggleAnalysis('kodak', 'mintzberg')" class="analysis-button bg-teal-100 hover:bg-teal-200 border border-teal-300 text-teal-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">Analyze with Mintzberg's Lens</button>
+                        </div>
+                        <div id="kodak-porter-analysis" class="analysis-content bg-blue-50 p-4 rounded-lg border border-blue-200 shadow-sm prose-custom text-xs">
+                             <p class="font-semibold text-blue-800 mb-1">Porter's Lens:</p>
+                             <p class="text-blue-700 leading-snug">Unwillingness to make the crucial trade-off: sacrifice highly profitable film for uncertain digital. Tried to straddle both (focusing digital efforts on printing photos), creating no clear position or reinforcing 'fit' in the new digital imaging world. Failed to properly assess the power of the digital substitute.</p>
+                        </div>
+                        <div id="kodak-mintzberg-analysis" class="analysis-content bg-teal-50 p-4 rounded-lg border border-teal-200 shadow-sm prose-custom text-xs">
+                            <p class="font-semibold text-teal-800 mb-1">Mintzberg's Lens:</p>
+                            <p class="text-teal-700 leading-snug">The powerful, established deliberate strategy (protect film) actively killed the brilliant emergent strategy (the digital camera born in its own labs). The formal planning process and culture were too rigid, crushing organizational learning and the ability to 'craft' a new future.</p>
+                        </div>
+                         <div class="mt-4">
+                            <h4 class="font-semibold text-xs text-slate-500 uppercase tracking-wider text-center mb-2">Market Capitalization ($ Billions)</h4>
+                            <div class="chart-container"><canvas id="kodakChart"></canvas></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Yahoo -->
+                <div id="yahoo" class="mb-10 grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-12 items-start bg-slate-50 p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200">
+                     <div class="lg:col-span-2 space-y-4">
+                        <h3 class="text-2xl font-bold text-indigo-600 mb-2">3. Yahoo!: Lost in Translation</h3>
+                         <h4 class="text-lg font-semibold text-slate-800">Why did the internet's original directory fail to navigate the rise of search and social media?</h4>
+                         
+                         <img src="https://placehold.co/600x400/4f46e5/ffffff?text=Yahoo+Legacy" alt="Vintage Yahoo homepage illustration" class="rounded-lg shadow-md w-full my-4">
+                           <div class="prose-custom text-sm">
+                             <p>Yahoo was the gateway for millions in the early internet era. However, missed opportunities (failing to buy Google and Facebook), strategic indecision between being a media vs. tech company, and constant leadership changes led to its decline.</p>
+                          </div>
+                         <div class="bg-indigo-100 border-l-4 border-indigo-500 p-3 rounded">
+                            <p class="font-semibold text-indigo-800 text-xs uppercase tracking-wider mb-1">Peak:</p>
+                            <p class="text-xs text-indigo-700 leading-snug">The web's front door, human-curated directory, market cap >$125B (2000).</p>
+                        </div>
+                        <div class="bg-red-100 border-l-4 border-red-500 p-3 rounded">
+                            <p class="font-semibold text-red-800 text-xs uppercase tracking-wider mb-1">Downfall:</p>
+                            <p class="text-xs text-red-700 leading-snug">Missed Google/Facebook buys, unclear identity (media vs tech), leadership churn, acquired assets mismanaged (Flickr, Tumblr), sold core business for <$5B (2017).</p>
+                        </div>
+                    </div>
+                     <div class="lg:col-span-3 grid grid-cols-1 gap-6">
+                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <button onclick="toggleAnalysis('yahoo', 'porter')" class="analysis-button bg-blue-100 hover:bg-blue-200 border border-blue-300 text-blue-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Analyze with Porter's Lens</button>
+                            <button onclick="toggleAnalysis('yahoo', 'mintzberg')" class="analysis-button bg-teal-100 hover:bg-teal-200 border border-teal-300 text-teal-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">Analyze with Mintzberg's Lens</button>
+                        </div>
+                         <div id="yahoo-porter-analysis" class="analysis-content bg-blue-50 p-4 rounded-lg border border-blue-200 shadow-sm prose-custom text-xs">
+                             <p class="font-semibold text-blue-800 mb-1">Porter's Lens:</p>
+                             <p class="text-blue-700 leading-snug">'Stuck in the middle' - tried to be everything (portal, media, search, tech) with no clear, unique position. Failed to make necessary trade-offs. Acquired assets (Flickr, Tumblr) didn't create reinforcing 'fit' with the core portal strategy.</p>
+                        </div>
+                        <div id="yahoo-mintzberg-analysis" class="analysis-content bg-teal-50 p-4 rounded-lg border border-teal-200 shadow-sm prose-custom text-xs">
+                            <p class="font-semibold text-teal-800 mb-1">Mintzberg's Lens:</p>
+                            <p class="text-teal-700 leading-snug">Strategy was chaotic, not crafted or emergent. Constant CEO changes imposed disjointed deliberate strategies (the 'peanut butter manifesto' era vs. Marissa Mayer's tech focus). Internal conflicts (media vs. tech) prevented any coherent pattern from emerging or organizational learning to occur.</p>
+                        </div>
+                        <div class="mt-4">
+                             <h4 class="font-semibold text-xs text-slate-500 uppercase tracking-wider text-center mb-2">Market Capitalization ($ Billions)</h4>
+                            <div class="chart-container"><canvas id="yahooChart"></canvas></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>

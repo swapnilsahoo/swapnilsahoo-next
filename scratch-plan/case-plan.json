@@ -1,0 +1,110 @@
+[
+  {
+    "id": "quickride-tier2-entry",
+    "title": "QuickRide: two-wheeler taxis in Tier-2 cities",
+    "archetype": "MARKET ENTRY — new format inside the home market (city-selection + unit economics + mode of entry)",
+    "difficulty": "Medium",
+    "isExisting": true,
+    "whyIncluded": "Already the site's strongest case and the archetype the casebooks test most (6-7 of 16 in IIMC). Keep the company and the two exhibits; deepen by adding a real 4-step TAM funnel with a stated percentage per step, a break-even in trips-per-driver-per-day, an explicit greenfield-vs-local-partner cost comparison, and a late twist on driver supply economics. Currently it ends at exhibit interpretation with no break-even arithmetic.",
+    "exhibitIdea": "Exhibit 3 (new) — City-by-city entry P&L at steady state: rows = addressable riders, trips/rider/month, take rate, monthly platform revenue, driver-acquisition cost, city fixed cost, monthly contribution, months to payback. Columns = the three shortlisted cities. Forces the candidate to notice the largest city has the worst payback because of the incumbent."
+  },
+  {
+    "id": "pagesfirst-growth-path",
+    "title": "PagesFirst: seven new stores, or an online platform?",
+    "archetype": "GROWTH — capital allocation between two expansion paths, with a capacity conversion",
+    "difficulty": "Medium",
+    "isExisting": true,
+    "whyIncluded": "Existing case with two good exhibits. Deepen it by adding the move the casebooks treat as mandatory and the site currently skips: converting the revenue target into required operational capacity (stores, titles in stock, warehouse throughput, pick-pack headcount), plus a target-gap bridge from today's revenue to the goal. Also add the phased Phase 1/2/3 recommendation shape.",
+    "exhibitIdea": "Exhibit 3 (new) — Target-gap bridge: current revenue, contribution from same-store growth at industry rate, gap remaining, and the implied number of new stores OR online orders/day needed to close it, with the fixed-cost step change shown at each increment. Makes visible that the online route needs ~4x the order volume anyone has assumed."
+  },
+  {
+    "id": "metriclens-usage-pricing",
+    "title": "MetricLens: flat fee, or usage-based tiers?",
+    "archetype": "PRICING — re-pricing an existing product where a competitor set exists; segment economics",
+    "difficulty": "Medium",
+    "isExisting": true,
+    "whyIncluded": "Existing case with a strong segment exhibit. Deepen by adding the explicit three-lens discipline the books demand (cost floor / competitor benchmark / value ceiling stated as three numbers, then a point chosen inside the corridor with reasons), cost-to-serve per segment, and the churn risk on the heavy-user tail that the migration creates.",
+    "exhibitIdea": "Exhibit 2 (new) — Segment economics matrix: rows = share of customers, revenue share, monthly cost to serve, perceived value per month, current fee, implied margin. Columns = light/medium/heavy. Shows light users are margin-negative on support cost while heavy users capture 4x the value they pay for — so the tiering question is really two separate decisions."
+  },
+  {
+    "id": "hinterland-agency-profitability",
+    "title": "Hinterland Studio: why is a full agency losing money?",
+    "archetype": "PROFITABILITY — single-site service business, declining profit; standard drill-down then Customer Journey lens",
+    "difficulty": "Easy",
+    "isExisting": true,
+    "whyIncluded": "Upgrade of the existing shallow 'Digital Agency Profitability' bank entry (case-interview-bank.ts #05) into a fully worked case with a fictional named client. This is the highest-frequency archetype in the casebooks (10 of 26 in IIMC) and the site has no worked instance of the classic qualitative drill-down. Deliberately the Easy tier so the drill pattern is learnable before the hard cases.",
+    "exhibitIdea": "Exhibit 1 — Utilisation and realisation by service line: rows = retainer, project, production. Columns = billable hours available, hours actually billed, utilisation %, rate card, realised rate, revenue, direct cost, contribution. The reveal is that the busiest line has the lowest realised rate because of unbilled scope creep — profit is a realisation problem, not a demand problem."
+  },
+  {
+    "id": "vantage-ai-diligence",
+    "title": "Vantage Signal: should a growth fund write the cheque?",
+    "archetype": "M&A / DD — PE or VC evaluating an asset; market, moat, unit economics, valuation discipline",
+    "difficulty": "Hard",
+    "isExisting": true,
+    "whyIncluded": "Upgrade of the existing 'AI Startup Due Diligence' bank entry (#08). M&A/DD is the newest and fastest-growing casebook section (7 cases in IIMC, 14 in IIMA) and the site has no worked instance. Deepen to the full spine: industry attractiveness, benchmarked company performance, moat, risks, then a valuation verdict that is conditional on a multiple.",
+    "exhibitIdea": "Exhibit 2 — Benchmark table with a computed multiple: rows = ARR, YoY growth, gross margin, net revenue retention, CAC payback, burn multiple, asking valuation. Columns = Vantage Signal, peer median, best-in-class. Candidate must compute EV/ARR from the ask, compare against the peer median, and land on 'yes at 9x, no at 14x' rather than a flat verdict."
+  },
+  {
+    "id": "ghatvyapar-profitless-growth",
+    "title": "GhatVyapar: orders up 60%, profit down 40%",
+    "archetype": "PROFITABILITY — profitless growth / negative unit economics on a platform",
+    "difficulty": "Medium",
+    "isExisting": true,
+    "whyIncluded": "Upgrade of the existing 'E-Commerce Revenue Drop' bank entry (#07), re-pointed from revenue decline to the archetype the casebooks flag as their growth area (5-6 of 26, skewed hard). Teaches the reframe from P&L to per-order contribution — the single most transferable quantitative move in the profitability family.",
+    "exhibitIdea": "Exhibit 1 — Per-order contribution waterfall across two years: AOV, gross margin, discount funded by platform, delivery cost, packaging, payment gateway, contribution per order; then CAC and repeat rate below the line. Shows contribution per order fell from positive to negative while order count rose — the growth engine is the cost driver."
+  },
+  {
+    "id": "bhavani-alloys-mix",
+    "title": "Bhavani Alloys: the wrong SKU is winning the furnace",
+    "archetype": "PROFITABILITY — product mix under a shared capacity constraint (contribution per bottleneck hour)",
+    "difficulty": "Hard",
+    "isExisting": false,
+    "whyIncluded": "The single most quantitatively demanding archetype in the casebooks and completely absent from the site. Requires the candidate to INVENT a non-obvious metric (contribution per constraint hour, not per unit), respect a contractual minimum and demand ceilings, re-solve the allocation, and state the uplift. This is the case that proves the site's quant depth.",
+    "exhibitIdea": "Exhibit 1 — SKU allocation matrix with formulas in the cells: rows = contribution per tonne, furnace hours per tonne, contribution per furnace hour, monthly demand ceiling, contractual minimum, current allocation (hours), optimal allocation (hours). Columns = four SKUs. Plus a footer row: current monthly contribution vs optimal, and the % uplift. The highest-margin SKU ranks third on the constraint."
+  },
+  {
+    "id": "sahyadri-bearings-adjacent",
+    "title": "Sahyadri Bearings: the problem is two industries away",
+    "archetype": "PROFITABILITY — root cause in an adjacent industry (Customer Journey applied twice)",
+    "difficulty": "Hard",
+    "isExisting": false,
+    "whyIncluded": "The casebooks explicitly name the second application of a framework to an adjacent industry as the marker of the Difficult tier, and the site has nothing that trains chain-length reasoning. Client sells bearings to tractor OEMs; OEM order books collapsed because rural credit tightened after a weak monsoon. Trains the candidate to keep chaining until an exogenous shock is reached rather than stopping at 'our customer ordered less'.",
+    "exhibitIdea": "Exhibit 2 — Two-tier volume bridge: tier one is Sahyadri's dispatch volume by OEM customer over six quarters; tier two is those OEMs' own retail registrations and finance-approval rates over the same quarters. Reading them together shows dispatches track finance approvals with a one-quarter lag — which rules out price, quality and competitor hypotheses in a single move."
+  },
+  {
+    "id": "nilgiri-diagnostics-offer",
+    "title": "Nilgiri Diagnostics: accept the offer on the table?",
+    "archetype": "M&A / DD — founder evaluating an acquisition offer; multiples plus a contingent contract via expected value",
+    "difficulty": "Medium",
+    "isExisting": false,
+    "whyIncluded": "Covers the second M&A shape (3 of 7 in IIMC) that the diligence case does not: valuation by multiples computed on the spot, and a pending contract handled probabilistically. Trains the 'conditional yes' close the books explicitly praise — proceed if the price moves to a named number.",
+    "exhibitIdea": "Exhibit 1 — Valuation block plus contingent-revenue table. Panel A: revenue, EBITDA margin, EBITDA, offer value, computed P/S and EV/EBITDA, the prior round's multiple, and the sector average. Panel B: a pending three-year hospital tender with win probability, annual revenue if won, and margin — so the candidate must probability-weight it and show what the offer implies with and without the tender in the numerator."
+  },
+  {
+    "id": "terrafilm-novel-pricing",
+    "title": "Terrafilm: pricing a product with no competitor",
+    "archetype": "PRICING — genuinely novel product, no competitor set; value from lifetime substitution",
+    "difficulty": "Hard",
+    "isExisting": false,
+    "whyIncluded": "The pricing shape most associated with the Pricing section (3 of 8 in IIMC) and absent from the site — MetricLens has a competitor set and an existing price. Forces the candidate to say aloud that competitor pricing is inapplicable, run cost-based and value-based in parallel, find that the cost floor is implausibly low, and reconcile the gap by choosing how much of the created value to leave with the buyer.",
+    "exhibitIdea": "Exhibit 1 — Value-in-use build for one acre: incremental yield in quintals, realised price per quintal, incremental gross revenue, minus incremental input and labour cost, equals value created per acre per season; alongside Terrafilm's manufacturing cost per acre of film. The corridor is a 30x gap between floor and ceiling, which is the entire teaching point."
+  },
+  {
+    "id": "kalinga-transport-policy",
+    "title": "Kalinga State Transport: self-funding in five years",
+    "archetype": "UNCONVENTIONAL — public policy / government objective with a phased roadmap",
+    "difficulty": "Medium",
+    "isExisting": false,
+    "whyIncluded": "Public policy is the largest Unconventional sub-family (5-6 of 15 in IIMC, ~7 of 108 in IIMA) and the site has none. Trains stakeholder decomposition, the distinction between levers inside and outside the client's control, and phased year-banded recommendations with enablers — the structure test rather than a math test. Also the most credible archetype for an Indian strategy professor's own teaching context.",
+    "exhibitIdea": "Exhibit 1 — Route-class cost recovery: rows = revenue per bus-km, cost per bus-km, occupancy %, subsidised-passenger share, deficit per bus-km, share of total fleet-km. Columns = intercity express, district trunk, rural feeder, city ordinary. Shows a fifth of fleet-km generates most of the deficit while rural feeder is the politically untouchable one — so the candidate must separate the economically obvious answer from the feasible one."
+  },
+  {
+    "id": "konark-coldchain-makebuy",
+    "title": "Konark Cold Chain: the outsourcing fix that failed",
+    "archetype": "UNCONVENTIONAL — make vs buy under constraint, with the 'diagnose why a prior recommendation failed' overlay",
+    "difficulty": "Hard",
+    "isExisting": false,
+    "whyIncluded": "Combines two archetypes the site lacks: the clean two-option annual cost comparison (3-4 of 15) and the rarer, higher-signal 'the client already implemented a consultant's recommendation and it did not work' case. Forces reasoning about implementation, incentives, sequencing and second-order effects rather than framework selection. Deliberately placed last as the capstone.",
+    "exhibitIdea": "Exhibit 2 — Promised vs delivered variance table: rows = cost per tonne-km, on-time delivery %, cold-chain breach rate, spoilage % of consignment value, effective cost per tonne delivered intact. Columns = own-fleet baseline, 3PL business case, 3PL actual. The headline cost per tonne-km did fall exactly as promised, but spoilage tripled and wiped out the saving — the strategy was right and the contract design was wrong."
+  }
+]

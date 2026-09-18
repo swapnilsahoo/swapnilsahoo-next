@@ -1,0 +1,218 @@
+// ---------------------------------------------------------------------------
+// src/features/placements/data/case-primitives.ts
+// Shared by guesstimates, cases and frameworks so one test suite covers all.
+// ---------------------------------------------------------------------------
+
+export type Difficulty = "Easy" | "Medium" | "Hard";
+
+export type Route = "Top-down" | "Bottom-up" | "Hybrid" | "Probabilistic";
+
+/** How much weight a number can bear when an interviewer pushes on it. */
+export type Confidence = "anchor" | "defensible" | "judgement" | "shaky";
+
+/** Where the number came from — the answer to "why that number?" */
+export type AssumptionBasis =
+  | "census-anchor"        // national or city demographic constant
+  | "published-benchmark"  // an industry or regulator figure you could cite
+  | "physical-constant"    // hours in a day, seats in a coach, litres in a tank
+  | "observed-behaviour"   // what you can see on a street or a campus
+  | "structural-logic"     // forced by an identity or a constraint, not observed
+  | "declared-judgement";  // openly a guess, and said to be one
+
+export interface Assumption {
+  /** Stable id. Referenced by CalcLine.uses and Sensitivity.assumptionId. */
+  id: string;
+  /** The lever being assumed, e.g. "Urban share of population". */
+  lever: string;
+  /** Display form, may carry units: "35%", "₹20 / litre". */
+  value: string;
+  /** Machine form where one exists: 0.35, 20. */
+  numeric?: number;
+  unit?: string;
+  basis: AssumptionBasis;
+  /** One sentence to say out loud when challenged on this number. */
+  defence: string;
+  confidence: Confidence;
+  /** A reasonable alternative an interviewer may prefer, and its effect. */
+  contestedBy?: string;
+  /** Id into the shared constants registry, when it is a standard anchor. */
+  constantId?: string;
+}
+
+/**
+ * One arithmetic step.
+ *
+ * `expr` MUST contain only digits, decimal points, + - * / ( ) and
+ * whitespace — no identifiers, no units, no thousands separators — so a
+ * build-time test can evaluate it and assert it equals `result`.
+ */
+export interface CalcLine {
+  id: string;
+  /** Plain-language name of what this line produces. */
+  label: string;
+  /** Machine-evaluable, e.g. "1400000000 * 0.35 * 0.6". */
+  expr: string;
+  /** Human-readable, e.g. "1,400 Mn × 35% urban × 60% adult". */
+  display: string;
+  /** The value `expr` must evaluate to. Asserted in CI. */
+  result: number;
+  /** Allowed relative error where display rounding compounds. Default 0. */
+  tolerance?: number;
+  unit: string;
+  /** The rounded figure actually carried forward, if different: "≈ 290 Mn". */
+  carriedForward?: string;
+  /** Assumption ids consumed. Every id must exist in `assumptions`. */
+  uses: readonly string[];
+  /** Why this intermediate matters. Enforces the "so what" rule. */
+  soWhat?: string;
+}
+
+/** Recursive so a 4-5 level funnel can be represented, with values on nodes. */
+export interface TreeNode {
+  label: string;
+  formula?: string;
+  /** The absolute figure at this node — the tree doubles as a ledger. */
+  value?: string;
+  note?: string;
+  /** Set on the branch that carries the answer, for visual emphasis. */
+  isCriticalPath?: boolean;
+  children?: readonly TreeNode[];
+}
+
+export interface Scope {
+  /** One sentence: exactly what is being counted. */
+  countingWhat: string;
+  unit: string;
+  /** Stock vs flow, made explicit. The first-order scope error. */
+  timeBasis:
+    | "stock (point in time)"
+    | "flow (per day)"
+    | "flow (per week)"
+    | "flow (per year)";
+  geography: string;
+  /** Boundaries to name BEFORE computing. */
+  included: readonly string[];
+  excluded: readonly string[];
+  /** The specific ambiguity this question is built around. */
+  boundaryTrap: string;
+}
+
+export interface RouteChoice {
+  chosen: Route;
+  /** Why this route, in the candidate's own voice. */
+  why: string;
+  /** The route not taken, and why it is weaker *here*. */
+  rejected: { route: Route; whyNot: string };
+}
+
+export interface Triangulation {
+  label: string;              // "Supply-side cross-check"
+  route: Route;
+  premise: string;
+  /** Fully worked and machine-checked, like the primary route. */
+  lines: readonly CalcLine[];
+  answer: string;
+  /** The gap vs the primary answer, and what the gap tells you. */
+  verdict: string;
+}
+
+export interface SensitivityCase {
+  scenario: "Conservative" | "Base" | "Aggressive";
+  leverValue: string;
+  answer: string;
+  /** Signed change vs base, e.g. "−38%". */
+  deltaVsBase: string;
+}
+
+export interface Sensitivity {
+  /** Must match an id in `assumptions`. Asserted by test. */
+  assumptionId: string;
+  /** Why this lever is the one that moves the answer. */
+  whyThisLever: string;
+  cases: readonly SensitivityCase[];
+  /** What would have to be true to flip the conclusion. */
+  breakpoint: string;
+  /** What to say when there is no time to run the grid. */
+  oneLiner: string;
+}
+
+export interface Trap {
+  trap: string;
+  /** The mechanism, not just the warning. */
+  whyItHappens: string;
+  fix: string;
+}
+
+export interface Probe {
+  /** What the interviewer actually asks. */
+  question: string;
+  /** What is being tested. */
+  intent: string;
+  goodAnswer: string;
+  /** The plausible-sounding non-answer most candidates give. */
+  weakAnswer?: string;
+}
+
+// ---------------------------------------------------------------------------
+// src/features/placements/data/guesstimates.ts
+// ---------------------------------------------------------------------------
+
+export type GuesstimateArchetype =
+  | "population-funnel"
+  | "household-ownership-stock"
+  | "installed-base-replacement"
+  | "capacity-bottleneck"
+  | "single-asset-revenue"
+  | "network-price-mix"
+  | "penetration-cascade"
+  | "unit-chain-infrastructure"
+  | "physical-proxy-consumable"
+  | "funnel-conversion-fmcg"
+  | "revenue-pool-take-rate"
+  | "closed-population"
+  | "occupational-cohort"
+  | "expected-value";
+
+export interface Guesstimate {
+  id: string;
+  number: string;
+  question: string;
+  /** ~8 words, for tab and card labels. */
+  shortLabel: string;
+  archetype: GuesstimateArchetype;
+  difficulty: Difficulty;
+  estimatedMinutes: number;
+  /** The one transferable idea this question exists to teach. */
+  teachingPoint: string;
+
+  scope: Scope;
+  route: RouteChoice;
+  /** Recursive, values on every node. */
+  tree: TreeNode;
+  assumptions: readonly Assumption[];
+  /** Ordered. The last line must equal `answer.numeric`. */
+  calculation: readonly CalcLine[];
+
+  answer: {
+    headline: string;
+    numeric: number;
+    unit: string;
+    /** An honest band, not false precision. */
+    band: string;
+    /** e.g. "10^5" — being right to the power of ten is the real test. */
+    orderOfMagnitude: string;
+  };
+
+  /** An independent second route, fully worked. Required, not optional. */
+  triangulation: Triangulation;
+  sensitivity: Sensitivity;
+  /** Plausibility tests, not arithmetic re-checks. */
+  sanityChecks: readonly string[];
+  traps: readonly Trap[];
+  probes: readonly Probe[];
+  /** Ids into the shared constants registry. */
+  constantsUsed: readonly string[];
+  relatedCaseIds?: readonly string[];
+}
+
+export const guesstimates: readonly Guesstimate[] = [/* … */];

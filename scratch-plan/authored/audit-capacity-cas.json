@@ -1,0 +1,596 @@
+{
+  "id": "audit-capacity-cas",
+  "question": "How many practising chartered accountants does it take to get India's companies through one year of statutory audit?",
+  "tabLabel": "CA audit capacity",
+  "archetype": "occupational-cohort",
+  "difficulty": "Hard",
+  "timeboxMinutes": 15,
+
+  "teachingPoint": "An occupational-cohort question is a division wearing a headcount costume — work divided by the work one person does. Both halves go wrong, and neither is the half candidates worry about. The work goes wrong because the units are not comparable: a dormant private limited and a listed group are both 'a company', the audit of one takes two hundred times the audit of the other, and an average across the register therefore describes nothing that exists. The rate goes wrong because a person is not a full year of chargeable hours — a practitioner owes part of the year to work that is not statutory audit, and in India most audit hours are not delivered by chartered accountants at all but by article assistants working under a member's signature. Segment the companies correctly and forget the leverage and you land a factor of three out, which is worse than a rough answer because it is a rough answer that looks carefully built.",
+
+  "scope": {
+    "countingWhat": "Practising chartered accountants whose working year is consumed by the statutory audit of companies on the MCA register — the headcount the annual workload requires, not the number of members the profession happens to have.",
+    "unit": "practising chartered accountants",
+    "timeBasis": "flow (per year)",
+    "geography": "India — every company on the MCA register, and every practice that audits one, from a Nariman Point partnership to a single-room proprietorship in a district town. The tier counts and hour rates below are illustrative — built to show the method clearly, not asserted as verified market data.",
+    "included": [
+      "Statutory audit under the Companies Act of every registered company — private and public, listed and unlisted, operating and dormant",
+      "Chartered accountant hours at every grade on the engagement, from the senior reviewing a bank reconciliation to the partner who signs",
+      "CAs employed inside firms as well as sole practitioners — the work is what is counted, not the shape of the practice",
+      "Consolidation, group reporting and the internal financial controls opinion, where the audit carries them"
+    ],
+    "excluded": [
+      "Tax audit under the Income-tax Act, GST annual return certification, internal audit, ROC filings, valuation and advisory — profitable neighbours of the statutory audit, and not it",
+      "Audits of entities that are not registered companies: LLPs, partnership firms, trusts, societies and co-operatives",
+      "Article assistants and non-CA staff, who appear inside the hours as leverage and never as practitioners",
+      "The roughly two-thirds of ICAI members who work in industry and government and sign nothing"
+    ],
+    "boundaryTrap": "The question sounds like a stock and is a flow divided by a rate — a year of audit work converted into the practitioners it consumes. Two things break here. First, candidates answer with the supply, because four lakh chartered accountants is a number they can recall and the demand is a number they have to build; the supply is precisely what the question is asking you to test, so importing it is assuming the answer. Second, the Indian audit year is not a year. With 31 March year-ends and filing deadlines bunched into the following autumn, roughly half the hours land in a single quarter — so a full-time-equivalent count and a peak-season headcount are different numbers, and you must say which one you are quoting before you quote it."
+  },
+
+  "routeChoice": {
+    "chosen": "Hybrid",
+    "why": "Take the company population from the top, because the MCA register is a published count and nothing you build from the bottom will beat it. Build the audit hours from the bottom, tier by tier, because the register spans two orders of magnitude in work content and there is no average that survives it. Then convert work into people with a capacity rate. Top for the population, bottom for the workload — say which half of the question you are treating which way, out loud, before you start. That sentence is worth a mark on its own, because it tells the interviewer you chose a route rather than defaulted to one.",
+    "rejectedRoute": "Top-down",
+    "rejectedWhyNot": "The clean top-down route is the money: take India's statutory audit fee pool, divide by fee revenue per practising CA, and read off practitioners. It fails on both terms. Audit fees run from about ten thousand rupees for a dormant private limited to several crore for a large listed group — four orders of magnitude — so a blended fee per audit describes no company that exists, and the pool is dominated by a few thousand engagements while the headcount is dominated by the tail. Worse, fee and effort have come apart at the bottom: the small-company audit is competitively priced near a floor almost regardless of the work it takes, so dividing by a fee measures pricing power rather than labour. Money is the right currency when money varies smoothly with the thing you want. Here it does not, and using it would hand you a number you could not defend for a single one of its inputs."
+  },
+
+  "tree": {
+    "root": "Practising chartered accountants required for one year of statutory company audit",
+    "rootFormula": "= Audit team-hours demanded ÷ Team-hours one practitioner carries in a year",
+    "value": "≈ 20,000 practitioners",
+    "branches": [
+      {
+        "label": "Audit team-hours demanded",
+        "formula": "= Σ (companies in tier × hours per audit)",
+        "value": "6.5 crore team-hours a year",
+        "note": "Four tiers, because the register is not one population. The spread between the top tier and the bottom is 200 to 1 on hours per audit — wider than almost any segmentation you will build in a case, and the reason an average here is not a simplification but an error.",
+        "isCriticalPath": true,
+        "children": [
+          {
+            "label": "Listed and large unlisted — 5,000 companies",
+            "formula": "5,000 companies × 2,000 hours",
+            "value": "1.0 crore hours — 15% of the total",
+            "note": "The tier average hides a tenfold spread inside itself: a large listed group runs into tens of thousands of hours and a newly listed small-cap into a few hundred. Say that the average is doing rough work here, because the interviewer already knows it."
+          },
+          {
+            "label": "Mid-size operating companies — 45,000",
+            "formula": "45,000 companies × 400 hours",
+            "value": "1.8 crore hours — 28% of the total",
+            "note": "Real operations, statutory thresholds crossed, an engagement team rather than one person with a laptop. Ten weeks of a small team, which is what 400 hours buys."
+          },
+          {
+            "label": "Small operating companies — 4.5 lakh",
+            "formula": "450,000 companies × 60 hours",
+            "value": "2.7 crore hours — 42% of the total",
+            "note": "The largest single block of hours on the page, and the softest number. Sixty hours is a fortnight of one article and a day of the partner. This is the tier the whole answer swings on."
+          },
+          {
+            "label": "Dormant and nil-filing companies — 10 lakh",
+            "formula": "1,000,000 companies × 10 hours",
+            "value": "1.0 crore hours — 15% of the total",
+            "note": "Ten hours for a set of accounts with nothing in it. Individually trivial, collectively a crore of hours — which is the whole argument against writing the tail off at zero because it feels negligible."
+          }
+        ]
+      },
+      {
+        "label": "Team-hours one practitioner carries in a year",
+        "formula": "= (Chargeable hours × audit share of the year) ÷ CA share of team hours",
+        "value": "3,250 team-hours per practitioner",
+        "note": "Three haircuts in sequence, and candidates typically apply none of them. This branch is small on the page and carries half the answer, because it is the divisor.",
+        "children": [
+          {
+            "label": "Chargeable hours in a year",
+            "formula": "250 working days × 7 chargeable hours",
+            "value": "1,750 hours",
+            "note": "Not 2,000. Two hundred and fifty days is 260 weekdays less about 25 days of leave and holidays, plus the fifteen or so Saturdays the season takes back. Seven chargeable hours is a nine-hour day with the practice management taken out."
+          },
+          {
+            "label": "Share of the chargeable year on statutory audit",
+            "formula": "1,750 hours × 65%",
+            "value": "1,137.5 CA-hours",
+            "note": "Even a practitioner whose practice is built on audit gives a third of the year to tax audit, certification and running the firm. A model that gives them the whole year has quietly invented a person."
+          },
+          {
+            "label": "Leverage — CA share of team hours",
+            "formula": "1,137.5 CA-hours ÷ 35%",
+            "value": "3,250 team-hours",
+            "note": "The distinctively Indian step. Article assistants deliver roughly two-thirds of audit fieldwork hours under a member's signature, so one practitioner's year puts far more team-hours in the field than their own. Ignore this and you need 57,000 CAs and cannot explain where they are."
+          }
+        ]
+      },
+      {
+        "label": "Season concentration — named, and deliberately not multiplied in",
+        "formula": "Peak headcount ≈ FTE × season factor",
+        "value": "≈ 30,000 bodies in the July–September crunch",
+        "note": "Roughly half the hours fall in one quarter, which is twice the even-spread run rate; the season is also worked at a longer day, so call the headcount multiplier about 1.5 rather than 2. The annual requirement is 20,000 and the peak requirement is near 30,000. Both are correct answers to different questions. Put it in the tree, state it, and leave it out of the headline — folding it in silently would be answering a question nobody asked.",
+        "children": []
+      }
+    ]
+  },
+
+  "assumptions": [
+    {
+      "id": "a_active",
+      "lever": "Active companies on the MCA register",
+      "value": "15 lakh",
+      "numeric": 1500000,
+      "unit": "companies",
+      "basis": "published-benchmark",
+      "defence": "The ministry publishes it monthly — roughly 26 lakh companies have ever been registered and about 15 lakh remain active rather than struck off, dissolved or under liquidation.",
+      "confidence": "anchor",
+      "contestedBy": "An interviewer may push the active count to 18 lakh on a broader definition of active; that lifts the answer by about a tenth, almost all of it through the dormant tier."
+    },
+    {
+      "id": "a_dormant_share",
+      "lever": "Dormant or nil-filing share of active companies",
+      "value": "two-thirds",
+      "numeric": 0.6667,
+      "unit": "share of active companies",
+      "basis": "declared-judgement",
+      "defence": "Incorporation in India is cheap and winding up is not, so shells accumulate — a large majority of registered companies file returns with nothing of substance in them, and only a minority carry real operations.",
+      "confidence": "judgement",
+      "contestedBy": "Half rather than two-thirds moves five lakh companies from the dormant tier into the small operating tier and lifts the answer by roughly a third — worth naming, because it is the second most powerful lever on the page."
+    },
+    {
+      "id": "a_large_count",
+      "lever": "Listed and large unlisted companies",
+      "value": "5,000",
+      "numeric": 5000,
+      "unit": "companies",
+      "basis": "published-benchmark",
+      "defence": "The exchanges list a little over five thousand companies between them, and the large unlisted entities that audit like listed ones are a few hundred more — so five thousand is the right anchor and is checkable in a sentence.",
+      "confidence": "defensible"
+    },
+    {
+      "id": "a_mid_count",
+      "lever": "Mid-size operating companies",
+      "value": "45,000",
+      "numeric": 45000,
+      "unit": "companies",
+      "basis": "declared-judgement",
+      "defence": "The band between a genuinely small private limited and a public-interest entity — broadly the companies crossing the statutory thresholds that trigger a real engagement team — is an order of magnitude wider than the listed tier and an order below the small tier.",
+      "confidence": "judgement"
+    },
+    {
+      "id": "a_large_hours",
+      "lever": "Audit hours per listed or large unlisted company",
+      "value": "2,000 hours",
+      "numeric": 2000,
+      "unit": "team-hours per audit",
+      "basis": "declared-judgement",
+      "defence": "A partner, a manager, two seniors and four articles over roughly ten weeks of fieldwork and reporting comes to about two thousand team-hours — the shape of a mid-cap engagement, not the largest ones.",
+      "confidence": "judgement",
+      "contestedBy": "Weight the tier toward the very largest groups and 4,000 is arguable, which adds a crore of hours and about 15% to the answer."
+    },
+    {
+      "id": "a_mid_hours",
+      "lever": "Audit hours per mid-size company",
+      "value": "400 hours",
+      "numeric": 400,
+      "unit": "team-hours per audit",
+      "basis": "declared-judgement",
+      "defence": "One senior and two articles for a month, plus partner review — a fifth of a listed engagement, which is about the ratio of the accounting complexity between the two tiers.",
+      "confidence": "judgement"
+    },
+    {
+      "id": "a_small_hours",
+      "lever": "Audit hours per small operating company",
+      "value": "60 hours",
+      "numeric": 60,
+      "unit": "team-hours per audit",
+      "basis": "declared-judgement",
+      "defence": "A fortnight of one article on the vouching and a day of the partner on review and signature — the standard shape of a small private limited audit in a proprietorship practice.",
+      "confidence": "shaky",
+      "contestedBy": "Thirty hours is defensible where the books come off accounting software and the auditor has held the client for years; a hundred is defensible where they do not. That range moves the answer from about 15,800 to about 25,500."
+    },
+    {
+      "id": "a_dormant_hours",
+      "lever": "Audit hours per dormant or nil-filing company",
+      "value": "10 hours",
+      "numeric": 10,
+      "unit": "team-hours per audit",
+      "basis": "declared-judgement",
+      "defence": "A morning's work on a balance sheet carrying share capital, a bank balance and preliminary expenses — small, but not zero, because the report still has to be drafted, reviewed and signed.",
+      "confidence": "judgement",
+      "contestedBy": "Four hours is arguable and takes about 6% off the answer; this tier matters through its count, not its rate."
+    },
+    {
+      "id": "a_ca_hour_share",
+      "lever": "Share of audit team-hours delivered by qualified CAs",
+      "value": "35%",
+      "numeric": 0.35,
+      "unit": "share of team-hours",
+      "basis": "observed-behaviour",
+      "defence": "Walk into any Indian audit fieldwork room in August and count the heads — the majority are article assistants, and the qualified members are reviewing rather than vouching, so roughly a third of the hours are theirs.",
+      "confidence": "shaky",
+      "contestedBy": "A large-firm practice runs nearer 25% and a sole practitioner with no articles runs near 100%; the blend leans low because the big tiers carry their hours in leveraged firms."
+    },
+    {
+      "id": "a_working_days",
+      "lever": "Working days a year",
+      "value": "250 days",
+      "numeric": 250,
+      "unit": "days per year",
+      "basis": "structural-logic",
+      "defence": "Two hundred and sixty weekdays, less about twenty-five days of leave and public holidays, plus the fifteen or so Saturdays the audit season takes back — and the season is exactly why this is not the usual 220.",
+      "confidence": "defensible"
+    },
+    {
+      "id": "a_chargeable_hours",
+      "lever": "Chargeable hours per working day",
+      "value": "7 hours",
+      "numeric": 7,
+      "unit": "chargeable hours per day",
+      "basis": "observed-behaviour",
+      "defence": "A nine-hour day less the practice management, the travel and the client meetings that bill to nothing — seven is the year-average figure, and it is lower in winter and far higher in September.",
+      "confidence": "defensible"
+    },
+    {
+      "id": "a_audit_share_of_year",
+      "lever": "Statutory company audit as a share of the chargeable year",
+      "value": "65%",
+      "numeric": 0.65,
+      "unit": "share of chargeable hours",
+      "basis": "declared-judgement",
+      "defence": "Even a practitioner whose practice is built on audit gives the remaining third to tax audit, certification, ROC work and business development — nobody in Indian practice does statutory audit and nothing else.",
+      "confidence": "judgement",
+      "contestedBy": "Push it to 80% and the requirement falls to about 16,300; drop it to 50% and it rises to 26,000. It is the quietest of the three divisors and the one nobody thinks to challenge."
+    },
+    {
+      "id": "a_icai_members",
+      "lever": "Chartered accountants on the ICAI roll",
+      "value": "4 lakh",
+      "numeric": 400000,
+      "unit": "members",
+      "basis": "published-benchmark",
+      "defence": "The institute reports its membership and crossed four lakh in the last few years — one of the few numbers in this question that is genuinely published and genuinely current.",
+      "confidence": "anchor"
+    },
+    {
+      "id": "a_cop_share",
+      "lever": "Members holding a Certificate of Practice",
+      "value": "35%",
+      "numeric": 0.35,
+      "unit": "share of members",
+      "basis": "published-benchmark",
+      "defence": "Roughly a third of the profession practises and two-thirds are in employment in industry, banking and government — a split the institute reports and one that has been broadly stable for years.",
+      "confidence": "defensible"
+    },
+    {
+      "id": "a_audit_firm_share",
+      "lever": "Practising members in firms holding statutory audit appointments",
+      "value": "45%",
+      "numeric": 0.45,
+      "unit": "share of practising members",
+      "basis": "declared-judgement",
+      "defence": "A large share of practising members runs a pure tax, GST, ROC or consulting practice and holds no company audit at all — under half sit in firms that audit companies as a line of business.",
+      "confidence": "judgement"
+    },
+    {
+      "id": "a_audit_led_share",
+      "lever": "Audit-led share of members in audit-holding firms",
+      "value": "one in three",
+      "numeric": 0.3333,
+      "unit": "share of that group",
+      "basis": "declared-judgement",
+      "defence": "Holding a few audits is not the same as being an auditor — for perhaps a third of this group statutory audit is the core of the year rather than a seasonal sideline.",
+      "confidence": "shaky",
+      "contestedBy": "One in two would put the supply route at 31,500 against the demand route's 20,000, and the honest reading would then be that the routes disagree by half rather than agree."
+    }
+  ],
+
+  "calculation": [
+    {
+      "id": "c1",
+      "label": "Dormant and nil-filing companies",
+      "expr": "1500000 * 2 / 3",
+      "display": "15 lakh active companies × two-thirds dormant or nil-filing",
+      "result": 1000000,
+      "unit": "companies",
+      "carriedForward": "≈ 10 lakh",
+      "uses": ["a_active", "a_dormant_share"],
+      "soWhat": "Size the tail first, because it is two-thirds of the register and the temptation is to leave it out. Naming it as ten lakh companies makes it impossible to forget and impossible to zero without saying so out loud."
+    },
+    {
+      "id": "c2",
+      "label": "Small operating companies, taken as the residual",
+      "expr": "1500000 - 1000000 - 45000 - 5000",
+      "display": "15 lakh − 10 lakh dormant − 45,000 mid-size − 5,000 large",
+      "result": 450000,
+      "unit": "companies",
+      "carriedForward": "≈ 4.5 lakh",
+      "uses": ["a_active", "a_dormant_share", "a_large_count", "a_mid_count"],
+      "soWhat": "Take the biggest tier as a residual rather than assuming it directly. The four tiers then sum to the register by construction, which removes one whole class of error and one whole class of interviewer question."
+    },
+    {
+      "id": "c3",
+      "label": "Audit hours, listed and large unlisted",
+      "expr": "5000 * 2000",
+      "display": "5,000 companies × 2,000 hours",
+      "result": 10000000,
+      "unit": "team-hours per year",
+      "carriedForward": "1 crore hours",
+      "uses": ["a_large_count", "a_large_hours"],
+      "soWhat": "A third of one per cent of the register producing a crore of hours. Compute this tier first: it is the one whose magnitude is most surprising and the one that decides whether your concentration story holds."
+    },
+    {
+      "id": "c4",
+      "label": "Audit hours, mid-size operating companies",
+      "expr": "45000 * 400",
+      "display": "45,000 companies × 400 hours",
+      "result": 18000000,
+      "unit": "team-hours per year",
+      "carriedForward": "1.8 crore hours",
+      "uses": ["a_mid_count", "a_mid_hours"],
+      "soWhat": "Nine times the count of the top tier at a fifth of the hours each — so it lands nearly twice as large. That crossover is the whole reason a tiered model beats an average."
+    },
+    {
+      "id": "c5",
+      "label": "Audit hours, small operating companies",
+      "expr": "450000 * 60",
+      "display": "4.5 lakh companies × 60 hours",
+      "result": 27000000,
+      "unit": "team-hours per year",
+      "carriedForward": "2.7 crore hours",
+      "uses": ["a_small_hours"],
+      "soWhat": "The largest single block on the page, from the tier nobody writes about. Mark it now as the number the sensitivity grid will be run on, because it is both the biggest and the least observable."
+    },
+    {
+      "id": "c6",
+      "label": "Audit hours, dormant and nil-filing companies",
+      "expr": "1000000 * 10",
+      "display": "10 lakh companies × 10 hours",
+      "result": 10000000,
+      "unit": "team-hours per year",
+      "carriedForward": "1 crore hours",
+      "uses": ["a_dormant_hours"],
+      "soWhat": "Equal to the entire listed tier, built out of work that is individually not worth mentioning. This is the line that refutes writing the tail off."
+    },
+    {
+      "id": "c7",
+      "label": "Total audit team-hours demanded",
+      "expr": "10000000 + 18000000 + 27000000 + 10000000",
+      "display": "1.0 + 1.8 + 2.7 + 1.0 crore hours",
+      "result": 65000000,
+      "unit": "team-hours per year",
+      "carriedForward": "≈ 6.5 crore hours",
+      "uses": [],
+      "soWhat": "The demand side is now closed. Everything after this line is a question about people rather than about companies, and keeping the two halves separate is what lets you defend one while the interviewer attacks the other."
+    },
+    {
+      "id": "c8",
+      "label": "Share of hours sitting in the top 50,000 companies",
+      "expr": "(10000000 + 18000000) / 65000000",
+      "display": "(1.0 + 1.8) crore ÷ 6.5 crore",
+      "result": 0.4308,
+      "tolerance": 0.001,
+      "unit": "share of total hours",
+      "carriedForward": "≈ 43%",
+      "uses": [],
+      "soWhat": "Test the concentration rather than announcing it. Three per cent of the companies carry 43% of the hours — concentrated, and not the 80-20 the reflex expects, because ten lakh dormant shells at ten hours each still come to a crore. Say that out loud; a declaration corrected is worth more than a declaration that quietly did not hold."
+    },
+    {
+      "id": "c9",
+      "label": "Hours delivered by qualified chartered accountants",
+      "expr": "65000000 * 0.35",
+      "display": "6.5 crore team-hours × 35% CA share",
+      "result": 22750000,
+      "unit": "CA-hours per year",
+      "carriedForward": "≈ 2.3 crore CA-hours",
+      "uses": ["a_ca_hour_share"],
+      "soWhat": "The step almost every answer skips. Two-thirds of the fieldwork is done by article assistants under a member's signature, so the profession has to supply a third of the hours, not all of them. Skip this line and the answer comes out near 57,000."
+    },
+    {
+      "id": "c10",
+      "label": "Chargeable hours per practitioner per year",
+      "expr": "250 * 7",
+      "display": "250 working days × 7 chargeable hours",
+      "result": 1750,
+      "unit": "chargeable hours per year",
+      "uses": ["a_working_days", "a_chargeable_hours"],
+      "soWhat": "Build the divisor rather than reaching for 2,000. Two thousand is a gross year for a salaried employee, and using it here imports a person who does not exist in Indian practice."
+    },
+    {
+      "id": "c11",
+      "label": "Full-time equivalents on statutory audit",
+      "expr": "22750000 / 1750",
+      "display": "2.275 crore CA-hours ÷ 1,750 hours a year",
+      "result": 13000,
+      "unit": "full-time equivalents",
+      "carriedForward": "≈ 13,000 FTE",
+      "uses": [],
+      "soWhat": "This is work expressed in people, and it is not yet a headcount. Quote it as FTE and say so, because the next line is the one candidates leave out and interviewers ask about."
+    },
+    {
+      "id": "c12",
+      "label": "Practising chartered accountants required",
+      "expr": "13000 / 0.65",
+      "display": "13,000 FTE ÷ 65% of the year spent on statutory audit",
+      "result": 20000,
+      "unit": "practising chartered accountants",
+      "carriedForward": "≈ 20,000 practitioners",
+      "uses": ["a_audit_share_of_year"],
+      "soWhat": "Thirteen thousand full-time equivalents need twenty thousand real practitioners, because no practitioner gives the whole year to statutory audit. FTE and headcount differ by a third here — quote the wrong one and you have answered a question the interviewer did not ask."
+    }
+  ],
+
+  "finalAnswer": "≈ 20,000 practising chartered accountants carry India's statutory company audit — call it 14,000 to 30,000, and roughly 30,000 bodies in the field during the autumn filing crunch",
+  "finalAnswerNumeric": 20000,
+  "answerBand": "14,000 – 30,000 practising chartered accountants",
+  "orderOfMagnitude": "10^4",
+
+  "triangulation": {
+    "label": "Supply-side cross-check — count the profession, not the work",
+    "route": "Top-down",
+    "premise": "The primary route never looked at a chartered accountant. It counted companies, priced their audits in hours and divided by a capacity rate. This route does the opposite and touches none of those inputs: start from the institute's own roll, strip out the members who are not in practice, strip out the practices that hold no company audits, and ask how many are left for whom statutory audit is the business rather than a seasonal sideline. It shares exactly one number with the first route — the 15 lakh companies, used only in the last line as a ratio and never as an input. Everything else is independent, which is what makes the comparison worth running.",
+    "lines": [
+      {
+        "id": "t1",
+        "label": "Members holding a Certificate of Practice",
+        "expr": "400000 * 0.35",
+        "display": "4 lakh members × 35% in practice",
+        "result": 140000,
+        "unit": "practising members",
+        "carriedForward": "≈ 1.4 lakh",
+        "uses": ["a_icai_members", "a_cop_share"],
+        "soWhat": "Two-thirds of the profession is in employment and audits nothing. Removing them first is the step that stops the four-lakh figure from anchoring everything after it."
+      },
+      {
+        "id": "t2",
+        "label": "Practising members in firms holding statutory audit appointments",
+        "expr": "140000 * 0.45",
+        "display": "1.4 lakh practising × 45% in audit-holding firms",
+        "result": 63000,
+        "unit": "practising members",
+        "carriedForward": "≈ 63,000",
+        "uses": ["a_audit_firm_share"],
+        "soWhat": "A pure tax and GST practice is a chartered accountancy firm that never signs a company audit report. Separating the two is the distinction this route lives or dies on."
+      },
+      {
+        "id": "t3",
+        "label": "Practitioners for whom statutory audit is the core of the year",
+        "expr": "63000 / 3",
+        "display": "63,000 ÷ 3, taking one in three as audit-led",
+        "result": 21000,
+        "unit": "practitioners",
+        "carriedForward": "≈ 21,000",
+        "uses": ["a_audit_led_share"],
+        "soWhat": "The softest number in the route, and the one to concede before it is challenged. Move it to one in two and this route reads 31,500, which would be a disagreement rather than a match."
+      },
+      {
+        "id": "t4",
+        "label": "Audit-led practitioners as a share of the practising profession",
+        "expr": "21000 / 140000",
+        "display": "21,000 ÷ 1.4 lakh practising members",
+        "result": 0.15,
+        "unit": "share of practising members",
+        "carriedForward": "≈ one in seven",
+        "uses": [],
+        "soWhat": "One practising member in seven. Statutory company audit is a large part of what Indian practice does and nowhere near the whole of it — a claim you can hold against anything you know about the profession, which is what makes this line the real check rather than the arithmetic above it."
+      },
+      {
+        "id": "t5",
+        "label": "Statutory audits per practitioner implied",
+        "expr": "1500000 / 21000",
+        "display": "15 lakh companies ÷ 21,000 practitioners",
+        "result": 71.43,
+        "tolerance": 0.001,
+        "unit": "audits per practitioner per year",
+        "carriedForward": "≈ 71 audits",
+        "uses": ["a_active"],
+        "soWhat": "Seventy-one company audits a year, roughly one and a half a week, in a book whose median client is a dormant shell signed off in a morning. That is a recognisable small practice. Five hundred would have been a rubber stamp and five would have been a fantasy."
+      }
+    ],
+    "answer": "≈ 21,000 practitioners, against ≈ 20,000 from the demand route — about 5% apart",
+    "verdict": "Five per cent is closer than either route deserves, and saying so is worth more than claiming the match as confirmation. Neither route is good to better than a factor of two, so the honest reading is not that the answer is 20,500 but that two methods built on almost entirely different inputs failed to contradict each other — a weaker statement and a more useful one. What makes the agreement worth anything is that the routes fail in unrelated ways: the demand route breaks if hours per small audit are wrong, the supply route breaks if the practice mix is wrong, and there is no mechanism by which one of those errors would produce the other. Take 20,000 as the point estimate, because the demand route has more independent terms and therefore averages more of its own error away. Then take the finding the demand route could not produce on its own: 20,000 needed out of roughly 1.4 lakh practising members means the capacity exists with room, so the binding constraint on India's audit system is not the size of the profession. It is the calendar."
+  },
+
+  "sensitivity": {
+    "assumptionId": "a_small_hours",
+    "whyThisLever": "It is the largest block of hours on the page and the least observable number on it. Four and a half lakh small operating companies at sixty hours each is 2.7 crore hours, 42% of the total, and sixty is a recollection of how a small audit runs rather than a count of anything. The obvious rival lever is the CA share of team hours, and it is deliberately not the one chosen: it multiplies the whole answer and therefore moves the number without touching the structure, so a grid on it teaches nothing you could not do in your head. This lever is different. It does not only move the size of the answer — it moves the shape, because it decides whether the concentrated top of the register or the long tail is the story. A lever that can change your conclusion is worth more of your fifteen minutes than a lever that can only change your arithmetic.",
+    "cases": [
+      {
+        "scenario": "Conservative",
+        "leverValue": "30 hours per small audit",
+        "answer": "≈ 15,800 practitioners",
+        "deltaVsBase": "−21%"
+      },
+      {
+        "scenario": "Base",
+        "leverValue": "60 hours per small audit",
+        "answer": "≈ 20,000 practitioners",
+        "deltaVsBase": "0%"
+      },
+      {
+        "scenario": "Aggressive",
+        "leverValue": "100 hours per small audit",
+        "answer": "≈ 25,500 practitioners",
+        "deltaVsBase": "+28%"
+      }
+    ],
+    "breakpoint": "Two breakpoints, and only one of them is about the number. On size, the answer leaves the 14,000 to 30,000 band below roughly 22 hours or above roughly 120 hours per small audit — and the order of magnitude survives anything from 5 hours to 400, an eightyfold swing, which is the real reason to be confident about 10^4 and not about 20,000. On shape, the breakpoint is exactly 40 hours: below it the top 50,000 companies carry more than half the hours and the concentrated story is right, above it the tail carries more and the story is the opposite. The base case of 60 hours sits on the tail side of that line, which is why the concentration check came back at 43% rather than the 80% the reflex expects. If an interviewer talks you down to 40 hours, do not only requote the number — tell them their assumption has just changed which half of the register your recommendation would be about.",
+    "oneLiner": "Call it 20,000, and it hangs mainly on sixty hours to audit a small operating company — thirty takes it to 15,800, a hundred takes it to 25,500, and at forty the long tail stops being the story and the top of the register takes over."
+  },
+
+  "sanityChecks": [
+    "Audits per practitioner, the test that matters most: 15 lakh companies across 20,000 practitioners is 75 a year, about one and a half a week. In a book whose median client is a dormant shell signed off in a morning, that is a practice you would recognise. Five hundred a year would describe a rubber stamp, and five would describe a profession ten times larger than the one that exists.",
+    "Against the roll: 20,000 out of roughly 1.4 lakh practising members is one practitioner in seven. Statutory company audit should be a large but not dominant share of what Indian practice does, because tax, GST, certification and ROC work carry more people than audit does. An answer near a lakh would have claimed the profession does almost nothing else, and that claim is visibly false to anyone who has spent a week inside a CA office.",
+    "The statutory floor: the Companies Act caps how many company audits one member may sign, with the dormant and small-company tail carved out of the cap. The cap therefore binds on the 50,000 companies in the top two tiers — at twenty apiece that needs at least 2,500 signing partners, and 20,000 clears it comfortably. This is the rare guesstimate where a statute rather than a judgement sets your floor, and an answer below about 3,000 would have been illegal before it was implausible.",
+    "Hours per company: 6.5 crore hours over 15 lakh companies averages 43 hours, a little over one working week of team time for the average company on the register. Given that two-thirds of the register files nothing of substance, the average ought to feel low — and a model that had produced 400 hours for the average Indian company would have described a register made entirely of listed groups.",
+    "The season test: 20,000 is a full-year equivalent, and the year is not flat. Put half the hours in one quarter, allow that the quarter is worked at a much longer day, and the same work needs roughly 30,000 people in the field in the crunch. Hold that against what a CA firm actually looks like in September. If your tree cannot produce the peak number from the annual one in ten seconds, it was a sum with headings rather than a model.",
+    "Direction of the error: three of the four largest levers — the dormant share, the hours per small audit and the CA share of team hours — would each be pushed up by an interviewer who thinks small audits are more work than you assumed, and down by one who thinks most of the tail is signed off with little fieldwork. The band is wide because both of those views of the Indian small-company audit are held by people who know the market. Say which one you have assumed, and the width stops looking like vagueness."
+  ],
+
+  "traps": [
+    {
+      "trap": "Answering with the supply.",
+      "whyItHappens": "Four lakh chartered accountants is a figure the candidate can recall and the audit workload is a figure they would have to build. The mind substitutes the available question for the asked one and rarely notices the swap, because what comes out is a number about chartered accountants and therefore feels responsive. It is not. The question is whether the work needs more or fewer people than the profession has, and you cannot test that with the profession's own headcount as your input.",
+      "fix": "Build the demand chain to the end before the roll is allowed anywhere near the model. Then bring the roll in as the triangulation, where it belongs, and let the comparison do the work it was always going to do — 20,000 needed against 1.4 lakh practising is the finding, and it only exists because the two numbers were produced independently."
+    },
+    {
+      "trap": "One average audit across the register.",
+      "whyItHappens": "Averaging is the default move and it feels neutral rather than like a choice. But the register spans 200 to 1 in work content between a dormant shell and a listed group, and the error an average makes across a distribution that wide is neither small nor random — anchor on the large end and you overstate by a factor of ten, anchor on the small end and you lose the top tier's crore of hours entirely.",
+      "fix": "Four tiers, sized before any of them is priced. It costs ninety seconds of the fifteen minutes and it converts the interviewer's hardest challenge into a challenge against one tier's rate, which you can move and requote without rebuilding anything."
+    },
+    {
+      "trap": "Announcing the 80-20 instead of testing it.",
+      "whyItHappens": "Concentration holds so often in business that candidates state it as a finding before they have computed anything, and the statement then quietly shapes the rest of the answer. Here it does not hold in the usual form. The top 3% of companies carry 43% of the hours, because ten lakh dormant companies at ten hours each are still a crore of hours and cannot be dismissed however trivial any one of them is.",
+      "fix": "Declare the shape you expect, compute the share, and then say whether it held. Correcting your own declaration out loud is one of the strongest things you can do in a case, because it demonstrates that the number moved you rather than the other way round."
+    },
+    {
+      "trap": "Dividing hours by 2,000.",
+      "whyItHappens": "Two thousand hours a year is the most widely repeated figure in professional services, and it is a gross salaried year rather than a chargeable practitioner year. Two separate haircuts go missing behind it: the non-chargeable share of the working day, and the share of the practitioner's year that goes to tax audit, certification and running the firm.",
+      "fix": "Build the divisor in two visible lines — 250 days at 7 chargeable hours, then 65% of that year on statutory audit — and say what each haircut is for. Skipping both lands the answer near 11,000 against 20,000, roughly 40% low, and it lands there while looking rigorous."
+    },
+    {
+      "trap": "Converting every audit hour into a chartered accountant hour.",
+      "whyItHappens": "The model asks for CAs, so the instinct is to treat audit hours and CA hours as the same quantity. In India they are further apart than in almost any other profession, because articleship puts a large trained-but-unqualified workforce in the field under a member's signature, and most of the fieldwork hours are theirs.",
+      "fix": "Put leverage in as its own line. It is the single largest correction on the page — at 35% the answer is 20,000, and at 100% it would be 57,000, a number the profession could not supply and which should therefore have told you a step was missing."
+    },
+    {
+      "trap": "Quoting one number when the year has two.",
+      "whyItHappens": "A single figure feels like a finished answer, and the annual full-time equivalent is the one that falls out of the arithmetic. But the Indian audit calendar is bunched into the months before the filing deadlines, so the annual requirement and the peak-season requirement are genuinely different quantities — and for anyone actually deciding something, the peak one is usually the number that matters.",
+      "fix": "Quote both in one sentence, with the basis of each stated: about 20,000 across the year and about 30,000 in the crunch. Then say which question each one answers. A candidate who volunteers the second number has understood that the estimate exists to support a decision rather than to close the conversation."
+    }
+  ],
+
+  "probes": [
+    {
+      "question": "India has about four lakh chartered accountants. You say the work needs twenty thousand. Is the rest of the profession doing nothing?",
+      "intent": "Whether you can hold a demand-side answer against a supply-side fact without either abandoning your method or dismissing the fact. The question is built so that both reflexes are wrong.",
+      "goodAnswer": "The two numbers are not comparable, and the gap is what I would expect. Of four lakh members, roughly a third hold a Certificate of Practice — the other two-thirds are in industry, banking and government and sign nothing. That leaves about 1.4 lakh in practice, of whom my estimate says one in seven is audit-led. The rest run tax, GST, certification, ROC and advisory practices, which is where the volume of Indian professional work actually sits. So the finding is not that the profession is idle. It is that statutory company audit is a smaller part of what chartered accountants do than the public image of the qualification suggests.",
+      "weakAnswer": "Revising the estimate upward to close the gap, which mistakes a stock of qualified people for a measure of the work, and throws away the only independent check the answer had."
+    },
+    {
+      "question": "Ten hours to audit a dormant company. Defend it.",
+      "intent": "Whether you can defend the softest-looking number without over-claiming or folding, and whether you know which of your numbers is actually fragile. The tier carries a crore of hours, so it is not a throwaway.",
+      "goodAnswer": "A dormant company still has a balance sheet carrying share capital, a bank balance and preliminary expenses, and the report still has to be drafted, reviewed and signed. A morning is about right. What matters more is that the tier's weight comes from its count and not its rate — halve it to five hours and the answer falls about 6%, so this is not where my estimate is fragile. If you want to push on something, push on sixty hours for the four and a half lakh small operating companies. That is 42% of my hours and a number I am genuinely less sure of.",
+      "weakAnswer": "Dropping the tier to zero because the audits are trivial, which loses a crore of hours — as large as the entire listed tier — on the grounds that each individual piece of it is small."
+    },
+    {
+      "question": "Suppose small companies are exempted from statutory audit. What happens to your number?",
+      "intent": "Whether the tree is a live model or a finished sum, and whether you can separate the share of clients lost from the share of work lost. Those come apart sharply here, which is the point of the probe.",
+      "goodAnswer": "It depends where the line is drawn, so let me do two. Exempt the dormant tier only and I lose a crore of hours out of 6.5 — the requirement falls to about 17,000, down 15%, while 67% of the clients disappear. Exempt the small operating tier as well and I lose 3.7 crore hours, the requirement falls to about 8,600, down 57%, and 97% of the clients have gone. The asymmetry is the finding: you can take nearly every company out of the audit net and still leave more than 40% of the profession's audit work standing. For a regulator that is the argument for exemption. For the practices in the tail it is close to the whole business, because their revenue tracks client count rather than hours.",
+      "weakAnswer": "'It falls a lot' — a direction with no magnitude, and no recognition that the share of companies lost and the share of hours lost differ by a factor of two."
+    },
+    {
+      "question": "Your two routes came out 5% apart. Does that mean you are right?",
+      "intent": "Whether you understand what a cross-check can and cannot prove. The reflex is to treat agreement as validation, and the reflex is wrong.",
+      "goodAnswer": "No, and I would not claim it. Neither route is good to better than a factor of two, so five per cent apart is closer than they deserve and partly luck. What the agreement does establish is a negative: two methods sharing almost no inputs failed to contradict each other, and they fail for unrelated reasons — mine breaks if hours per small audit are wrong, the supply route breaks if the practice mix is wrong. So I would quote 20,000 with a band of 14,000 to 30,000, take the demand route as the point estimate because it has more independent terms and averages more of its own error away, and be plain that the band comes from the sensitivity grid rather than from the gap between the routes.",
+      "weakAnswer": "'The two routes confirm each other, so I am confident in 20,500' — which reads agreement as evidence and manufactures a fifth significant figure out of two rough models."
+    },
+    {
+      "question": "It is 15 September and the filings are due. Which number do you give the ministry?",
+      "intent": "Whether you noticed the seasonality you scoped, and whether you can tell which of two correct numbers answers the question actually in front of you.",
+      "goodAnswer": "Not the twenty thousand. That is a full-year equivalent and September is not an average month — roughly half the year's hours fall in this quarter, which is twice the even-spread run rate, and even allowing that the season is worked at a much longer day the field needs about 30,000 people in it rather than 20,000. So the answer to a ministry asking whether the deadline is achievable is 30,000, and the sentence worth saying after it is that India's audit capacity problem is a calendar problem rather than a headcount problem. Staggering year-ends would do more for it than qualifying more chartered accountants.",
+      "weakAnswer": "Repeating 20,000, which is the right answer to the annual question and the wrong answer to this one — and which suggests the seasonality was scoped as a formality rather than understood."
+    },
+    {
+      "question": "You have a week and access to the ICAI and the MCA. How would you replace this with real data?",
+      "intent": "Whether you can turn an estimate into a measurement plan, and whether you can rank that plan by how much uncertainty each step removes. In practice this is what the estimate was for.",
+      "goodAnswer": "Three things, ranked by how much of my band they close. First, the MCA filing data gives me the tier counts and the paid-up capital and turnover distribution directly, which replaces my dormant share and my tier sizes with counts and costs a day. Second, time-sheet data from three firms of different sizes — one large, one mid-tier, one proprietorship — gives me hours per audit by tier and the CA share of those hours, which is where 90% of my remaining uncertainty sits and the only step that needs anyone's cooperation. Third, the ICAI firm register gives me the practice mix for the supply route. I would not survey practitioners on how many hours they work: self-reported hours in a profession with a nine-month season are the least reliable input available.",
+      "weakAnswer": "'Get the ICAI data', with no statement of which assumption it would replace or how much of the band it would close — a plan to collect data rather than a plan to resolve a specific uncertainty."
+    }
+  ]
+}

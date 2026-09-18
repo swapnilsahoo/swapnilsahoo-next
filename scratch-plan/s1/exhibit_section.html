@@ -1,0 +1,134 @@
+<section id="exhibits" class="py-16 sm:py-24">
+  <div class="container mx-auto px-6">
+    <div class="max-w-3xl">
+      <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">The exhibit workshop &middot; 22 minutes</p>
+      <h2 class="mt-2 text-3xl md:text-4xl font-bold text-slate-900">Is the chief executive right?</h2>
+      <p class="mt-4 text-slate-600 leading-relaxed">
+        It is early 2018. You sit on the board of an established carmaker. Your chief executive says:
+        <em>&ldquo;Tesla loses money on every car it sells. We are profitable. There is nothing here to learn.&rdquo;</em>
+        You have the case exhibits in front of you. Decide.
+      </p>
+      <p class="mt-3 text-sm text-slate-500">
+        Figures are from the assigned case workbook, FY2017, $ millions. Compute before you reveal &mdash;
+        the reveal is worth nothing if you have not committed to an answer first.
+      </p>
+    </div>
+
+    <!-- Exhibit 2: competitor financials -->
+    <div class="mt-8 bg-white border border-slate-200 rounded-2xl overflow-hidden">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 px-5 py-4">
+        <h3 class="font-bold text-slate-900">Exhibit 2 &middot; Selected competitor financials, FY2017</h3>
+        <button id="revealMargins" type="button"
+          class="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800">
+          Reveal the three columns
+        </button>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full min-w-[46rem] text-left text-sm">
+          <thead class="bg-slate-50 text-xs uppercase tracking-wider text-slate-500">
+            <tr>
+              <th class="px-4 py-3">Firm</th>
+              <th class="px-4 py-3 text-right">Revenue</th>
+              <th class="px-4 py-3 text-right">Gross profit</th>
+              <th class="px-4 py-3 text-right">R&amp;D</th>
+              <th class="px-4 py-3 text-right">Operating income</th>
+              <th class="px-4 py-3 text-right calc-col">Gross margin</th>
+              <th class="px-4 py-3 text-right calc-col">Operating margin</th>
+              <th class="px-4 py-3 text-right calc-col">R&amp;D % rev</th>
+            </tr>
+          </thead>
+          <tbody id="marginBody" class="divide-y divide-slate-100"></tbody>
+          <tfoot class="bg-slate-50 font-semibold">
+            <tr>
+              <td class="px-4 py-3" colspan="5">Median, excluding Tesla</td>
+              <td class="px-4 py-3 text-right calc-col" id="medGM">&mdash;</td>
+              <td class="px-4 py-3 text-right calc-col" id="medOM">&mdash;</td>
+              <td class="px-4 py-3 text-right calc-col" id="medRD">&mdash;</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+    <!-- Findings -->
+    <div id="findings" class="mt-6 grid gap-4 md:grid-cols-3" hidden>
+      <div class="bg-white border border-slate-200 rounded-xl p-5">
+        <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Finding 1</p>
+        <p class="mt-2 font-bold text-slate-900">Ordinary at the gross line</p>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+          Tesla's gross margin is 18.9% against an incumbent median of 17.7% &mdash; below Honda's 22.4%
+          and Daimler's 20.0%. Whatever is happening here, it is not that Tesla builds cars unusually
+          profitably.
+        </p>
+      </div>
+      <div class="bg-white border border-slate-200 rounded-xl p-5">
+        <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Finding 2</p>
+        <p class="mt-2 font-bold text-slate-900">The loss is a spending choice</p>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+          From 18.9% gross to &minus;13.7% operating is a fall of 32.6 points. R&amp;D alone is 11.7% of
+          revenue, <strong>2.3&times;</strong> the 5.1% median &mdash; on a revenue base one-tenth the size.
+          That is a decision, not a manufacturing failure.
+        </p>
+      </div>
+      <div class="bg-white border border-slate-200 rounded-xl p-5">
+        <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Finding 3</p>
+        <p class="mt-2 font-bold text-slate-900">Meanwhile it took the segment</p>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+          Model S volume rose 76% from 2014 to 2016 while nine established rivals fell 25% between them,
+          in a segment that shrank 8%. Share went from 16.7% to 31.9%.
+        </p>
+      </div>
+    </div>
+
+    <!-- Exhibit 1: segment -->
+    <div class="mt-6 bg-white border border-slate-200 rounded-2xl overflow-hidden">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 px-5 py-4">
+        <h3 class="font-bold text-slate-900">Exhibit 1 &middot; US large luxury sedans, unit sales</h3>
+        <span class="text-xs text-slate-500">Segment total fell 8% over the period</span>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full min-w-[34rem] text-left text-sm">
+          <thead class="bg-slate-50 text-xs uppercase tracking-wider text-slate-500">
+            <tr>
+              <th class="px-4 py-3">Model</th>
+              <th class="px-4 py-3 text-right">2014</th>
+              <th class="px-4 py-3 text-right">2016</th>
+              <th class="px-4 py-3 text-right">Change</th>
+              <th class="px-4 py-3 text-right">Share 2016</th>
+            </tr>
+          </thead>
+          <tbody id="segBody" class="divide-y divide-slate-100"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- The argument -->
+    <div class="mt-6 bg-slate-900 text-slate-100 rounded-2xl p-6 sm:p-7">
+      <h3 class="font-bold text-white">What the numbers do and do not settle</h3>
+      <p class="mt-3 text-sm leading-relaxed text-slate-300">
+        The chief executive is reading an income statement as if it were a strategy. The loss is what
+        holding the position costs; the volume shift is what it buys. Whether that trade is worth making
+        is the argument &mdash; that it <em>is</em> a trade rather than incompetence is the finding.
+      </p>
+      <p class="mt-3 text-sm leading-relaxed text-slate-300">
+        The opposite case is also defensible, and you should be able to make it: a firm losing 13.7% at the
+        operating line on one-tenth the revenue has proved nothing durable, and one model in one segment in
+        one country is thin evidence. Note that the BMW 7-Series rose 33% over the same period.
+      </p>
+      <div class="mt-5 grid gap-3 sm:grid-cols-3 text-sm">
+        <div class="rounded-xl bg-white/5 p-4">
+          <p class="font-semibold text-white">Name the refusal</p>
+          <p class="mt-1 text-slate-400">What is Tesla choosing not to do that every rival does?</p>
+        </div>
+        <div class="rounded-xl bg-white/5 p-4">
+          <p class="font-semibold text-white">Name who pays</p>
+          <p class="mt-1 text-slate-400">Buyers, suppliers, shareholders, employees &mdash; which, and how?</p>
+        </div>
+        <div class="rounded-xl bg-white/5 p-4">
+          <p class="font-semibold text-white">Give the number</p>
+          <p class="mt-1 text-slate-400">What figure would change your recommendation?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

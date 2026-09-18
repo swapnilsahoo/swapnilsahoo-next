@@ -1,0 +1,165 @@
+<section id="authors" class="py-16 sm:py-24 bg-white border-y border-slate-200">
+  <div class="container mx-auto px-6">
+    <div class="max-w-3xl">
+      <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">The three articles</p>
+      <h2 class="mt-2 text-3xl md:text-4xl font-bold text-slate-900">One question each</h2>
+      <p class="mt-4 text-slate-600 leading-relaxed">
+        Porter answers <em>what is strategy</em>. Collis and Rukstad give the test for <em>why a firm needs one</em>.
+        Mintzberg answers <em>how strategy is actually made</em>. Each tab rebuilds that author's central diagram
+        so you can work it rather than read it.
+      </p>
+    </div>
+
+    <!-- tab bar -->
+    <div class="mt-8 flex flex-wrap gap-2 border-b border-slate-200" role="tablist" aria-label="The three articles">
+      <button type="button" role="tab" data-author="porter" aria-selected="true"
+        class="author-tab -mb-px border-b-2 border-blue-600 px-4 py-2.5 text-sm font-semibold text-blue-700">
+        Porter 1996
+      </button>
+      <button type="button" role="tab" data-author="collis" aria-selected="false"
+        class="author-tab -mb-px border-b-2 border-transparent px-4 py-2.5 text-sm font-semibold text-slate-500 hover:text-slate-800">
+        Collis &amp; Rukstad 2008
+      </button>
+      <button type="button" role="tab" data-author="mintzberg" aria-selected="false"
+        class="author-tab -mb-px border-b-2 border-transparent px-4 py-2.5 text-sm font-semibold text-slate-500 hover:text-slate-800">
+        Mintzberg 1987
+      </button>
+    </div>
+
+    <!-- ============ PORTER ============ -->
+    <div class="author-panel mt-8" data-panel="porter">
+      <div class="grid gap-6 lg:grid-cols-[1.1fr_.9fr]">
+        <div>
+          <h3 class="text-xl font-bold text-slate-900">The activity system</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+            Porter's claim is that advantage lives in how activities <em>reinforce each other</em>, not in any
+            one of them. Click a node to see what it supports. A rival copying one node gains almost nothing,
+            because the node's value comes from the ones it is tied to.
+          </p>
+          <div class="mt-4 rounded-xl bg-blue-50 border border-blue-200 p-4">
+            <p class="text-sm text-blue-900" id="porterNodeInfo">
+              Select any activity in the map to trace its connections.
+            </p>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <button type="button" id="porterCopyOne"
+              class="rounded-lg border border-slate-300 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50">
+              A rival copies one activity
+            </button>
+            <button type="button" id="porterCopyThree"
+              class="rounded-lg border border-slate-300 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50">
+              A rival copies three
+            </button>
+            <button type="button" id="porterReset"
+              class="rounded-lg border border-slate-300 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50">
+              Reset
+            </button>
+          </div>
+          <p class="mt-3 text-xs text-slate-500" id="porterCopyMsg"></p>
+        </div>
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+          <svg id="porterMap" viewBox="0 0 520 420" class="w-full h-auto" role="img"
+               aria-label="Activity system map: low-cost airline">
+            <g id="porterEdges" stroke="#cbd5e1" stroke-width="1.5"></g>
+            <g id="porterNodes"></g>
+          </svg>
+          <p class="px-2 pb-1 text-[11px] text-slate-500">
+            Redrawn for this session in the form Porter uses. Core choices in dark, supporting activities in light.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-6 grid gap-4 md:grid-cols-3">
+        <div class="rounded-xl border border-slate-200 p-4">
+          <p class="font-semibold text-slate-900 text-sm">First-order fit</p>
+          <p class="mt-1 text-sm text-slate-600">Each activity is consistent with the strategy. Copyable one at a time.</p>
+        </div>
+        <div class="rounded-xl border border-slate-200 p-4">
+          <p class="font-semibold text-slate-900 text-sm">Second-order fit</p>
+          <p class="mt-1 text-sm text-slate-600">Activities reinforce one another. The whole exceeds the sum.</p>
+        </div>
+        <div class="rounded-xl border border-slate-200 p-4">
+          <p class="font-semibold text-slate-900 text-sm">Third-order fit</p>
+          <p class="mt-1 text-sm text-slate-600">Effort is optimised across activities. Hardest of all to imitate.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ COLLIS & RUKSTAD ============ -->
+    <div class="author-panel mt-8 hidden" data-panel="collis">
+      <div class="grid gap-6 lg:grid-cols-2">
+        <div>
+          <h3 class="text-xl font-bold text-slate-900">What a strategy statement is, and is not</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+            Collis and Rukstad's dirty little secret: most executives cannot state the objective, scope and
+            advantage of their business in one simple sentence. Everything above strategy in this hierarchy is
+            useful; none of it tells anyone what to refuse.
+          </p>
+          <div class="mt-5 space-y-2">
+            <div class="rounded-lg border border-slate-200 bg-slate-50 p-3">
+              <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Mission</p>
+              <p class="text-sm text-slate-600">Why we exist</p>
+            </div>
+            <div class="rounded-lg border border-slate-200 bg-slate-50 p-3">
+              <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Values</p>
+              <p class="text-sm text-slate-600">What we believe and how we behave</p>
+            </div>
+            <div class="rounded-lg border border-slate-200 bg-slate-50 p-3">
+              <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Vision</p>
+              <p class="text-sm text-slate-600">What we want to be</p>
+            </div>
+            <div class="rounded-lg border-2 border-blue-500 bg-blue-50 p-3">
+              <p class="text-xs font-semibold uppercase tracking-wider text-blue-700">Strategy</p>
+              <p class="text-sm text-blue-900 font-medium">What our competitive game plan will be &mdash; objective, scope, advantage</p>
+            </div>
+            <div class="rounded-lg border border-slate-200 bg-slate-50 p-3">
+              <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Scorecard</p>
+              <p class="text-sm text-slate-600">How we track and implement it</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold text-slate-900">Test a statement</h3>
+          <p class="mt-2 text-sm text-slate-600">Pick one and see which of the three elements it actually contains.</p>
+          <div class="mt-4 space-y-2" id="collisSamples"></div>
+          <div class="mt-4 rounded-xl border border-slate-200 p-4">
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Verdict</p>
+            <div id="collisVerdict" class="mt-2 text-sm text-slate-600">Choose a statement above.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ MINTZBERG ============ -->
+    <div class="author-panel mt-8 hidden" data-panel="mintzberg">
+      <div class="grid gap-6 lg:grid-cols-[.9fr_1.1fr]">
+        <div>
+          <h3 class="text-xl font-bold text-slate-900">How strategy actually forms</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+            Mintzberg's diagram: intended strategy either gets realised or does not, and meanwhile patterns
+            form through action that nobody intended. What the firm actually did is almost always a blend.
+            Move the slider to see the two extremes, and why neither is realistic.
+          </p>
+          <label class="mt-5 block">
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">
+              How much of the realised strategy was planned?
+            </span>
+            <input id="mintzSlider" type="range" min="0" max="100" value="55" class="mt-2 w-full">
+          </label>
+          <p class="mt-1 text-sm font-semibold text-slate-800"><span id="mintzPct">55</span>% deliberate</p>
+          <div class="mt-4 rounded-xl bg-amber-50 border border-amber-200 p-4">
+            <p class="text-sm text-amber-900" id="mintzVerdict"></p>
+          </div>
+        </div>
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+          <svg id="mintzMap" viewBox="0 0 520 300" class="w-full h-auto" role="img"
+               aria-label="Mintzberg model of deliberate and emergent strategy">
+          </svg>
+          <p class="px-2 pb-1 text-[11px] text-slate-500">
+            Redrawn for this session from Mintzberg's account of strategy formation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

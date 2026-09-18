@@ -1,0 +1,12 @@
+import { chromium } from "playwright";
+const b = await chromium.launch();
+const p = await b.newPage({ viewport: { width: 1440, height: 1000 } });
+await p.goto("https://www.swapnilsahoo.com/teaching/1-year-mba/session1.html", { waitUntil: "domcontentloaded", timeout: 60000 });
+await p.waitForTimeout(2000);
+console.log("title:", await p.title());
+const h = await p.locator("h1,h2,h3").allInnerTexts();
+console.log("headings:"); h.slice(0,20).forEach(t=>console.log("   - "+t.replace(/\s+/g," ").slice(0,70)));
+await p.screenshot({ path: "scratch-plan/s1-top.png" });
+const of = await p.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth);
+console.log("overflow:", of);
+await b.close();

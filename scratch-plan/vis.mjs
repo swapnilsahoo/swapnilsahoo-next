@@ -1,0 +1,11 @@
+import { chromium } from "playwright";
+const b = await chromium.launch();
+const p = await b.newPage({ viewport: { width: 1280, height: 600 } });
+await p.goto("http://localhost:5954/teaching/quiz/2yr-12", { waitUntil: "networkidle" });
+const lead = await p.locator("h1 + p").innerText();
+console.log("session lead:", JSON.stringify(lead.slice(0, 120)));
+await p.goto("http://localhost:5954/teaching/quiz", { waitUntil: "networkidle" });
+const lead2 = await p.locator("h1 + p").innerText();
+console.log("index lead  :", JSON.stringify(lead2.slice(0, 120)));
+await p.screenshot({ path: "scratch-plan/quiz-index2.png" });
+await b.close();

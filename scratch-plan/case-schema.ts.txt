@@ -1,0 +1,189 @@
+// ---------------------------------------------------------------------------
+// src/features/placements/data/case-studies.ts
+// Reuses every primitive from case-primitives.ts — critically CalcLine, so a
+// single arithmetic test covers guesstimates and cases alike.
+// ---------------------------------------------------------------------------
+
+import type {
+  CalcLine,
+  Difficulty,
+  Probe,
+  TreeNode,
+} from "./case-primitives";
+
+export type CaseFamily =
+  | "Profitability"
+  | "Market entry"
+  | "Pricing"
+  | "Growth"
+  | "M&A / Due diligence"
+  | "Operations"
+  | "Public policy"
+  | "Unconventional";
+
+export type ExhibitKind =
+  | "table"            // plain rows and columns
+  | "bridge"           // a walk from one figure to another
+  | "segment-split"    // shares of a whole, by segment
+  | "timeseries"       // periods across columns
+  | "option-compare"   // two or more mutually exclusive options
+  | "matrix";          // items as columns, metrics as rows
+
+export interface CaseExhibit {
+  id: string;
+  /** Display label, e.g. "Exhibit 2". */
+  number: string;
+  title: string;
+  kind: ExhibitKind;
+  /** What the interviewer says while handing it over. */
+  handoffLine: string;
+  columns: readonly string[];
+  /** Row-major. First cell of each row is the row header. */
+  rows: readonly (readonly string[])[];
+  /** Units, definitions, and the caveats a careful reader would want. */
+  footnotes?: readonly string[];
+  /**
+   * The single observation a strong candidate makes within ~30 seconds.
+   * This is the skill being trained; everything else is decoration.
+   */
+  headlineRead: string;
+  /** The deliberate omission the candidate must notice and ask for. */
+  whatItDoesNotTell: string;
+  /**
+   * Release gate for partner practice: what the candidate must have
+   * articulated before this exhibit is earned.
+   */
+  unlockCondition: string;
+  /** Metrics the candidate is expected to derive, not read off. */
+  derivedMetricsExpected?: readonly string[];
+}
+
+/** One quantitative beat inside a case. */
+export interface CaseQuantStep {
+  id: string;
+  /** The question the interviewer poses, or the candidate should pose. */
+  question: string;
+  /** Machine-checkable arithmetic — identical primitive to guesstimates. */
+  lines: readonly CalcLine[];
+  /** The "so what". A number without this is an incomplete answer. */
+  insight: string;
+  /** The specific miscalculation most candidates make here. */
+  commonError?: string;
+  /** Exhibit ids this step draws on. */
+  usesExhibits?: readonly string[];
+}
+
+/** The mid-case fact that invalidates a committed plan. */
+export interface CaseTwist {
+  /** When the interviewer drops it. */
+  trigger: string;
+  newFact: string;
+  whyItBreaksThePlan: string;
+  /**
+   * The house answer shape: name the dilemma, Option A pros/cons against
+   * Option B, land on a hybrid with a reason. Never defend the old plan.
+   */
+  expectedResponse: string;
+  /** What a candidate who digs in instead sounds like. */
+  failureMode: string;
+}
+
+export type RubricDimension =
+  | "Structure"
+  | "Quantitative rigour"
+  | "Business judgement"
+  | "Communication"
+  | "Synthesis";
+
+export interface RubricRow {
+  dimension: RubricDimension;
+  /** Weights across all rows must sum to 100. Asserted by test. */
+  weight: number;
+  strong: string;
+  adequate: string;
+  weak: string;
+}
+
+export interface CaseRecommendation {
+  /** May be — and often should be — a conditional yes. */
+  verdict: string;
+  /** The number or named condition the verdict hangs on. */
+  conditionalOn?: string;
+  shortTerm: readonly string[];
+  longTerm: readonly string[];
+  /** Every risk carries its own mitigation. Never a bare list. */
+  risks: readonly { risk: string; mitigation: string }[];
+  /** Must not contradict the verdict — reviewed on author. */
+  whatWouldMakeYouWalkAway?: readonly string[];
+}
+
+export interface CaseStudy {
+  id: string;
+  number: string;
+  title: string;
+  family: CaseFamily;
+  /** The casebook archetype this case drills. */
+  archetype: string;
+  difficulty: Difficulty;
+  estimatedMinutes: number;
+
+  company: {
+    name: string;
+    sector: string;
+    /** Always true. Enforced by the type, not by convention. */
+    fictional: true;
+    oneLine: string;
+  };
+
+  /** Read aloud verbatim. Deliberately omits the objective. */
+  prompt: string;
+  /** The objective the candidate must extract by asking. Not in the prompt. */
+  hiddenObjective: string;
+
+  clarifiers: readonly {
+    question: string;
+    whyItMatters: string;
+    /** What the interviewer actually replies — terse, volunteering nothing. */
+    interviewerAnswer: string;
+    /** True for the four near-mandatory openers. */
+    isMandatory?: boolean;
+  }[];
+
+  /** Released one at a time, only when the exact metric is named. */
+  dataOnRequest: readonly {
+    askedFor: string;
+    answer: string;
+    /** Set when the ask is a trap, e.g. sunk R&D cost. */
+    isRedHerring?: boolean;
+  }[];
+
+  /** Expected issue tree, values on nodes — the tree is a ledger. */
+  structure: TreeNode;
+  /** How to say the structure aloud in ~90 seconds, then ask to proceed. */
+  structureNarration: string;
+  /** Branches a strong candidate prunes with a reason, before being told. */
+  branchesToPrune: readonly { branch: string; whyRuledOut: string }[];
+
+  exhibits: readonly CaseExhibit[];
+  quantWalkthrough: readonly CaseQuantStep[];
+  twist?: CaseTwist;
+
+  rootCause: string;
+  /** Plausible causes a candidate will chase, and how each is eliminated. */
+  rejectedHypotheses: readonly { hypothesis: string; howEliminated: string }[];
+
+  recommendation: CaseRecommendation;
+
+  /** Post-analysis probes. Same primitive as guesstimates. */
+  probes: readonly Probe[];
+  rubric: readonly RubricRow[];
+  /** What separates strong from average. The casebooks' highest-value page. */
+  browniePoints: readonly string[];
+  /** The transferable principle, independent of this company. */
+  keyLearnings: readonly string[];
+
+  relatedGuesstimateIds?: readonly string[];
+  relatedFrameworkIds?: readonly string[];
+}
+
+export const caseStudies: readonly CaseStudy[] = [/* … */];

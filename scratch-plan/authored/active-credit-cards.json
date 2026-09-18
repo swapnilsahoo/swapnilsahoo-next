@@ -1,0 +1,507 @@
+{
+  "id": "active-credit-cards",
+  "question": "How many of the credit cards in India actually get used in a given month?",
+  "tabLabel": "Active credit cards, India",
+  "archetype": "penetration-cascade",
+  "difficulty": "Medium",
+  "timeboxMinutes": 12,
+  "teachingPoint": "A penetration cascade fails at the step nobody says out loud. Here that step is the gap between issued and active — roughly half the cards in the country do not move in a given month, so the number banks publish is about twice the number this question asks for. Name the boundary before the first multiplication and carry the activity rate as an explicit lever, not as an afterthought bolted on when the interviewer raises an eyebrow.",
+
+  "scope": {
+    "countingWhat": "Distinct credit cards that record at least one transaction — swiped, tapped or entered online — during a single calendar month. You are counting cards, not swipes: the month is the activity test, not the unit of the answer.",
+    "unit": "credit cards",
+    "timeBasis": "stock (point in time)",
+    "geography": "India, urban and rural, all states",
+    "included": [
+      "Cards issued to individuals by banks and their co-brand partners",
+      "Add-on and supplementary cards, counted as separate cards when used separately",
+      "Cards used only online and never presented at a terminal",
+      "A card used once in the month for a single ₹200 bill — one transaction is the test"
+    ],
+    "excluded": [
+      "Commercial and corporate cards billed to a company account",
+      "Debit cards, prepaid and gift cards, forex travel cards",
+      "Buy-now-pay-later and pay-later credit lines that carry no card number",
+      "Cards issued but never activated, and cards that sat in a drawer all month"
+    ],
+    "boundaryTrap": "'Credit cards in India' has two readings and they differ by roughly a factor of two — cards in issue, which is the figure banks report, and cards that actually transact in a month. Dormancy in this category is not a rounding error; it is the whole question. Say in your first sentence which one you are estimating. If the interviewer wanted the other, you have spent thirty seconds, not the question."
+  },
+
+  "routeChoice": {
+    "chosen": "Top-down",
+    "why": "The population is the one number here nobody will argue with, and every step after it narrows — adults, then adults a bank will actually lend to unsecured, then the ones who took a card, then cards, then cards that move. A cascade fails visibly: if a step is wrong, the interviewer can point at the step rather than at your answer. Start from the biggest defensible number and spend your credibility on the narrowing.",
+    "rejectedRoute": "Bottom-up",
+    "rejectedWhyNot": "Bottom-up here means starting from the issuers — count the banks, assume a card book each, add them up. It collapses on the first branch. The distribution is brutally skewed: a handful of large issuers carry most of the base and the tail runs to hundreds of small banks and co-brand tie-ups whose portfolios you cannot guess, so your answer ends up decided by a number you have no way to defend. Worse, it hands you cards in issue and tells you nothing about dormancy, so you would have to bolt the activity rate on afterwards anyway. Go bottom-up when the unit is observable and roughly uniform. An issuer's card book is neither."
+  },
+
+  "tree": {
+    "root": "Credit cards transacting in a month",
+    "rootFormula": "= Cardholders × Cards per holder × Share of cards active in the month",
+    "value": "≈ 5.7 crore",
+    "branches": [
+      {
+        "label": "Cardholders",
+        "formula": "Adults × Urban/rural split × Eligibility × Take-up",
+        "value": "≈ 5.8 crore people",
+        "note": "People, not cards. Everything on this branch is measured in humans and must not be handed back as an answer.",
+        "isCriticalPath": true,
+        "children": [
+          { "label": "Adults aged 18 and over", "formula": "140 crore × 65%", "value": "≈ 91 crore", "note": "The uncontested base. Do not spend time defending it." },
+          { "label": "Urban adults", "formula": "91 crore × 40%", "value": "≈ 36.4 crore", "note": "Above the 35% urban share of total population, because working-age migration lands in cities and urban households carry fewer children." },
+          { "label": "Urban adults an issuer will underwrite", "formula": "36.4 crore × 25%", "value": "≈ 9.1 crore", "note": "The step that does the real narrowing. A bank account is not a credit line — this gate is documented income plus a bureau record." },
+          { "label": "Urban holders", "formula": "9.1 crore × 55% take-up", "value": "≈ 5.0 crore", "note": "Eligible is not the same as interested. UPI already does the convenience job, so the card has to earn its annual fee on credit and rewards alone." },
+          { "label": "Rural adults", "formula": "91 crore × 60%", "value": "≈ 54.6 crore", "note": "A very large base behind a very narrow gate." },
+          { "label": "Rural holders", "formula": "54.6 crore × 4% eligible × 35% take-up", "value": "≈ 76 lakh", "note": "Thirteen per cent of all holders. Material enough to carry, too small to argue about." }
+        ]
+      },
+      {
+        "label": "Cards per holder",
+        "formula": "Blended multi-holding factor",
+        "value": "1.8 cards",
+        "note": "The conversion from people to cards. Skip it and the answer is out by the whole factor.",
+        "isCriticalPath": true,
+        "children": [
+          { "label": "One card only", "formula": "50% of holders × 1", "value": "0.50", "note": "Usually the salary bank's card, taken because it was pre-approved." },
+          { "label": "Two cards", "formula": "35% of holders × 2", "value": "0.70", "note": "One for general spend, one for a category or a fee waiver." },
+          { "label": "Three or more", "formula": "15% of holders × 4", "value": "0.60", "note": "Rewards optimisers and frequent flyers. A thin tail that pulls the mean up hard." },
+          { "label": "Cards in issue", "formula": "5.77 crore × 1.8", "value": "≈ 10.4 crore", "note": "The number the system publishes. Check it here, out loud, before the last step." }
+        ]
+      },
+      {
+        "label": "Share active in the month",
+        "formula": "Cards with at least one transaction ÷ cards in issue",
+        "value": "55%",
+        "note": "The lever the question is actually about, and the one nothing observable pins down.",
+        "isCriticalPath": true,
+        "children": [
+          { "label": "Transacting at least once", "formula": "10.38 crore × 55%", "value": "≈ 5.7 crore", "note": "The answer." },
+          { "label": "Dormant this month", "formula": "10.38 crore × 45%", "value": "≈ 4.7 crore", "note": "Acquired for a joining offer or one EMI purchase, then parked. Issuance is cheap; activation is not." }
+        ]
+      }
+    ]
+  },
+
+  "assumptions": [
+    {
+      "id": "population",
+      "lever": "India population",
+      "value": "140 crore",
+      "numeric": 1400000000,
+      "unit": "people",
+      "basis": "census-anchor",
+      "defence": "The 2011 Census counted 121 crore and growth has run under 1% a year since — 140 crore is the figure every Indian interviewer carries and nobody will spend a minute on it.",
+      "confidence": "anchor",
+      "contestedBy": "Some will prefer 145 crore. It moves the answer by under 4% and is not worth any of your timebox."
+    },
+    {
+      "id": "adult-share",
+      "lever": "Share of population aged 18 and over",
+      "value": "65%",
+      "numeric": 0.65,
+      "unit": "share of population",
+      "basis": "census-anchor",
+      "defence": "India's median age sits close to 28 and roughly a third of the country is under 18, which leaves about two-thirds adult.",
+      "confidence": "anchor",
+      "contestedBy": "68% on a more recent projection. A three-point move here changes nothing that survives rounding."
+    },
+    {
+      "id": "urban-adult-share",
+      "lever": "Urban share of adults",
+      "value": "40%",
+      "numeric": 0.4,
+      "unit": "share of adults",
+      "basis": "structural-logic",
+      "defence": "The urban share of total population is about 35%, but cities hold a disproportionate share of working-age migrants and fewer children per household, so the urban share of adults sits a few points above the headline.",
+      "confidence": "defensible",
+      "contestedBy": "Hold it flat at 35% and urban holders fall by an eighth, pulling the final answer to roughly 5.2 crore."
+    },
+    {
+      "id": "urban-eligibility",
+      "lever": "Urban adults an issuer will underwrite unsecured",
+      "value": "25%",
+      "numeric": 0.25,
+      "unit": "share of urban adults",
+      "basis": "structural-logic",
+      "defence": "Issuers price off documented income and a credit-bureau record, so the gate is formal salaried employment plus the self-employed who file returns — a minority of urban adults, and a quarter is the generous end of that minority.",
+      "confidence": "judgement",
+      "contestedBy": "An interviewer who has worked in cards may push to 30-35% on the strength of salaried-account data, which lifts the final answer to between 6.7 and 7.7 crore."
+    },
+    {
+      "id": "rural-eligibility",
+      "lever": "Rural adults an issuer will underwrite unsecured",
+      "value": "4%",
+      "numeric": 0.04,
+      "unit": "share of rural adults",
+      "basis": "structural-logic",
+      "defence": "Outside towns documented income is thin and the cost of underwriting and collecting on a small unsecured line is hard to recover, so issuance is largely confined to government and bank staff and the larger farmers.",
+      "confidence": "judgement",
+      "contestedBy": "Double it to 8% and the final answer rises by about 13% — real, but smaller than the argument would cost you."
+    },
+    {
+      "id": "urban-takeup",
+      "lever": "Eligible urban adults who actually hold a card",
+      "value": "55%",
+      "numeric": 0.55,
+      "unit": "share of eligible",
+      "basis": "observed-behaviour",
+      "defence": "Eligibility is not ownership. UPI already does the convenience job a card does in most other markets, so the surviving reasons to carry one are credit and rewards, and a little over half of eligible urban adults find that worth an annual fee.",
+      "confidence": "judgement",
+      "contestedBy": "Benchmarking to a developed-market take-up near 80% is the standard error here — it would put holders above 8 crore and the card base near 15 crore, well outside anything reported."
+    },
+    {
+      "id": "rural-takeup",
+      "lever": "Eligible rural adults who hold a card",
+      "value": "35%",
+      "numeric": 0.35,
+      "unit": "share of eligible",
+      "basis": "declared-judgement",
+      "defence": "Lower than urban because branch-led cross-sell is thinner and the merchant acceptance that makes a card useful is concentrated in towns — this is openly a guess, and it is carried as one.",
+      "confidence": "shaky",
+      "contestedBy": "Anywhere from 25% to 45% is arguable. The branch carries 13% of holders, so the entire range moves the final answer by under 4%."
+    },
+    {
+      "id": "cards-per-holder",
+      "lever": "Cards per cardholder (multi-holding factor)",
+      "value": "1.8",
+      "numeric": 1.8,
+      "unit": "cards per holder",
+      "basis": "observed-behaviour",
+      "defence": "Half of holders run a single card, about a third carry two, and a thin tail of rewards optimisers carries four or more — that mix blends to 1.8, and it is the tail that keeps it above 1.5.",
+      "confidence": "defensible",
+      "contestedBy": "1.5 is arguable if you think the tail is thinner; it takes cards in issue to 8.7 crore and the answer to 4.8 crore."
+    },
+    {
+      "id": "active-share",
+      "lever": "Cards in issue that record a transaction in the month",
+      "value": "55%",
+      "numeric": 0.55,
+      "unit": "share of cards in issue",
+      "basis": "published-benchmark",
+      "defence": "Dormancy here is structural rather than incidental — a large share of issuance comes from joining offers and one-off EMI conversions, and those cards go quiet within a quarter; activity rates reported for Indian card portfolios cluster around half.",
+      "confidence": "judgement",
+      "contestedBy": "Issuers usually define 'active' over 90 days rather than 30, which flatters the figure. On a strict 30-day test 45% is equally arguable and takes the answer to 4.7 crore."
+    },
+    {
+      "id": "card-touchpoints",
+      "lever": "Card-accepting merchant touchpoints in India",
+      "value": "1 crore",
+      "numeric": 10000000,
+      "unit": "touchpoints",
+      "basis": "published-benchmark",
+      "defence": "Reported point-of-sale terminal counts run to roughly 90 lakh, and online merchants accepting cards add of the order of another 10 lakh.",
+      "confidence": "judgement",
+      "contestedBy": "Terminal counts carry a long dormant tail of their own; strip it and the base falls towards 70 lakh, cutting the cross-check by about a third."
+    },
+    {
+      "id": "credit-txn-per-touchpoint",
+      "lever": "Credit-card transactions per touchpoint per day",
+      "value": "1.3",
+      "numeric": 1.3,
+      "unit": "transactions per touchpoint per day",
+      "basis": "declared-judgement",
+      "defence": "Most terminals now see mostly UPI and debit, and credit is a minority rail concentrated in a few large merchants — this is a mean over a violently skewed distribution and is stated as one.",
+      "confidence": "shaky",
+      "contestedBy": "Anything from 1 to 2 is arguable, which is exactly why this route checks the power of ten and nothing finer."
+    },
+    {
+      "id": "days-per-month",
+      "lever": "Days in a month",
+      "value": "30",
+      "numeric": 30,
+      "unit": "days",
+      "basis": "physical-constant",
+      "defence": "Thirty is the working month for any estimate carried to two significant figures."
+      ,
+      "confidence": "anchor"
+    },
+    {
+      "id": "txn-per-active-card",
+      "lever": "Transactions per active card per month",
+      "value": "7",
+      "numeric": 7,
+      "unit": "transactions per card per month",
+      "basis": "observed-behaviour",
+      "defence": "Read a statement you have actually seen: one or two large recurring bills, a couple of online orders and a handful of card-present swipes — call it seven, remembering that a card used once still counts as active.",
+      "confidence": "defensible",
+      "contestedBy": "Ten is defensible if you picture only heavy users; it would cut the cross-check to 3.9 crore and open a real gap worth reconciling."
+    }
+  ],
+
+  "calculation": [
+    {
+      "id": "c1",
+      "label": "Adult population",
+      "expr": "1400000000 * 0.65",
+      "display": "140 crore × 65% aged 18 and over",
+      "result": 910000000,
+      "tolerance": 0.000001,
+      "unit": "adults",
+      "carriedForward": "≈ 91 crore",
+      "uses": ["population", "adult-share"],
+      "soWhat": "The only line on this page an interviewer will accept without a defence. Get through it in one breath."
+    },
+    {
+      "id": "c2",
+      "label": "Urban adults",
+      "expr": "910000000 * 0.40",
+      "display": "91 crore adults × 40% urban",
+      "result": 364000000,
+      "tolerance": 0.000001,
+      "unit": "urban adults",
+      "carriedForward": "≈ 36.4 crore",
+      "uses": ["urban-adult-share"],
+      "soWhat": "Splitting here rather than later is the point of the cascade — the eligibility gate that follows is five to six times tighter in the villages, and a blended national rate would hide that."
+    },
+    {
+      "id": "c3",
+      "label": "Rural adults",
+      "expr": "910000000 - 364000000",
+      "display": "91 crore adults − 36.4 crore urban",
+      "result": 546000000,
+      "tolerance": 0.000001,
+      "unit": "rural adults",
+      "carriedForward": "≈ 54.6 crore",
+      "uses": ["urban-adult-share"],
+      "soWhat": "Subtract rather than multiply again, so the two halves are guaranteed to add back to the adult base."
+    },
+    {
+      "id": "c4",
+      "label": "Urban adults an issuer will underwrite",
+      "expr": "364000000 * 0.25",
+      "display": "36.4 crore urban adults × 25% income-eligible",
+      "result": 91000000,
+      "tolerance": 0.000001,
+      "unit": "eligible urban adults",
+      "carriedForward": "≈ 9.1 crore",
+      "uses": ["urban-eligibility"],
+      "soWhat": "This is where the funnel actually narrows, and it is the step candidates replace with bank-account penetration. An account is a deposit relationship the bank cannot lose money on; a card is an unsecured credit line, and the two are underwritten on completely different evidence."
+    },
+    {
+      "id": "c5",
+      "label": "Rural adults an issuer will underwrite",
+      "expr": "546000000 * 0.04",
+      "display": "54.6 crore rural adults × 4% income-eligible",
+      "result": 21840000,
+      "tolerance": 0.000001,
+      "unit": "eligible rural adults",
+      "carriedForward": "≈ 2.2 crore",
+      "uses": ["rural-eligibility"],
+      "soWhat": "Sixty per cent of the adult base yields under a fifth of the eligible pool. That asymmetry is the finding, not a detail."
+    },
+    {
+      "id": "c6",
+      "label": "Urban cardholders",
+      "expr": "91000000 * 0.55",
+      "display": "9.1 crore eligible × 55% take-up",
+      "result": 50050000,
+      "tolerance": 0.000001,
+      "unit": "cardholders",
+      "carriedForward": "≈ 5.0 crore",
+      "uses": ["urban-takeup"],
+      "soWhat": "Separating eligibility from take-up gives you two levers an interviewer can push on independently, and lets you answer the UPI question without rebuilding the tree."
+    },
+    {
+      "id": "c7",
+      "label": "Rural cardholders",
+      "expr": "21840000 * 0.35",
+      "display": "2.18 crore eligible × 35% take-up",
+      "result": 7644000,
+      "tolerance": 0.000001,
+      "unit": "cardholders",
+      "carriedForward": "≈ 76 lakh",
+      "uses": ["rural-takeup"],
+      "soWhat": "Small, and worth saying so before the interviewer does — flagging your own immaterial branch buys more credit than defending it."
+    },
+    {
+      "id": "c8",
+      "label": "Total cardholders",
+      "expr": "50050000 + 7644000",
+      "display": "5.0 crore urban + 76 lakh rural",
+      "result": 57694000,
+      "tolerance": 0.000001,
+      "unit": "cardholders",
+      "carriedForward": "≈ 5.8 crore",
+      "uses": [],
+      "soWhat": "People, not cards. Roughly one adult in sixteen. Anyone who hands this number back as the answer has lost the multi-holding step and is out by nearly a factor of two."
+    },
+    {
+      "id": "c9",
+      "label": "Cards per holder",
+      "expr": "0.5 * 1 + 0.35 * 2 + 0.15 * 4",
+      "display": "50% hold one + 35% hold two + 15% hold three or more (average four)",
+      "result": 1.8,
+      "tolerance": 0.000001,
+      "unit": "cards per holder",
+      "uses": ["cards-per-holder"],
+      "soWhat": "Build the blend rather than asserting it, because the whole factor comes from the thin top tail — say 'about a sixth of holders carry four cards' and 1.8 stops sounding arbitrary."
+    },
+    {
+      "id": "c10",
+      "label": "Cards in issue",
+      "expr": "57694000 * 1.8",
+      "display": "5.77 crore holders × 1.8 cards each",
+      "result": 103849200,
+      "tolerance": 0.000001,
+      "unit": "credit cards",
+      "carriedForward": "≈ 10.4 crore",
+      "uses": ["cards-per-holder"],
+      "soWhat": "Pause on this line. It is the one intermediate the interviewer may independently know, so it is your free calibration check — and it is not the answer."
+    },
+    {
+      "id": "c11",
+      "label": "Cards transacting in the month",
+      "expr": "103849200 * 0.55",
+      "display": "10.38 crore cards in issue × 55% active in the month",
+      "result": 57117060,
+      "tolerance": 0.000001,
+      "unit": "credit cards",
+      "carriedForward": "≈ 5.7 crore",
+      "uses": ["active-share"],
+      "soWhat": "The last multiplication is the one the question was about. Notice where it lands — almost exactly back at the holder count, which says the average cardholder runs one card a month and keeps the rest for a specific offer."
+    }
+  ],
+
+  "finalAnswer": "≈ 5.7 crore credit cards transact at least once in a typical month — roughly half a base of about 10.4 crore cards in issue. Every rate on this page is illustrative, built to show the method clearly, not asserted as verified market data.",
+  "finalAnswerNumeric": 57117060,
+  "answerBand": "4.5 to 7 crore cards. Anything between 4 and 8 crore is defensible on a different but honest set of levers. Outside that band one of your rates is carrying weight it cannot bear, and the interviewer will find it before you do.",
+  "orderOfMagnitude": "10^7 — tens of millions of cards, not hundreds of millions",
+
+  "triangulation": {
+    "label": "Merchant-side cross-check",
+    "route": "Bottom-up",
+    "premise": "Come at it from the terminals rather than the wallets. If you can size the credit-card transactions the country's merchants process in a month, and you know roughly how often one active card is used, the number of active cards falls out of the division. This route shares no lever with the cascade — no population, no eligibility, no take-up — which is what makes it worth the three minutes.",
+    "lines": [
+      {
+        "id": "t1",
+        "label": "Card-accepting touchpoints",
+        "expr": "9000000 + 1000000",
+        "display": "≈ 90 lakh POS terminals + ≈ 10 lakh online merchants",
+        "result": 10000000,
+        "tolerance": 0.000001,
+        "unit": "touchpoints",
+        "carriedForward": "≈ 1 crore",
+        "uses": ["card-touchpoints"],
+        "soWhat": "Online merchants are a small count and a large share of credit spend. Counting them as touchpoints keeps the arithmetic clean even though it understates their weight, and saying so costs nothing."
+      },
+      {
+        "id": "t2",
+        "label": "Credit-card transactions a day",
+        "expr": "10000000 * 1.3",
+        "display": "1 crore touchpoints × 1.3 credit transactions a day",
+        "result": 13000000,
+        "tolerance": 0.000001,
+        "unit": "transactions per day",
+        "carriedForward": "≈ 1.3 crore a day",
+        "uses": ["credit-txn-per-touchpoint"],
+        "soWhat": "This is a mean over a violently skewed distribution — a handful of travel and e-commerce merchants carry a large share while a neighbourhood terminal may see no credit card for days. Means over skewed distributions are where cross-checks quietly go wrong, so say it before the interviewer does."
+      },
+      {
+        "id": "t3",
+        "label": "Credit-card transactions a month",
+        "expr": "13000000 * 30",
+        "display": "1.3 crore a day × 30 days",
+        "result": 390000000,
+        "tolerance": 0.000001,
+        "unit": "transactions per month",
+        "carriedForward": "≈ 39 crore",
+        "uses": ["days-per-month"],
+        "soWhat": "A flow, in transactions. Do not hand this back — the question asked for a count of cards, and 39 crore is the most plausible-sounding wrong answer available."
+      },
+      {
+        "id": "t4",
+        "label": "Active cards implied",
+        "expr": "390000000 / 7",
+        "display": "39 crore transactions ÷ 7 transactions per active card",
+        "result": 55714285.71,
+        "tolerance": 0.000001,
+        "unit": "credit cards",
+        "carriedForward": "≈ 5.6 crore",
+        "uses": ["txn-per-active-card"],
+        "soWhat": "Dividing a flow by a rate converts it back into a stock. Naming that out loud is how you show you understood the unit problem rather than survived it."
+      }
+    ],
+    "answer": "≈ 5.6 crore cards transacting in a month, against 5.7 crore from the cascade",
+    "verdict": "The two routes land about three per cent apart. Do not celebrate that. On levers this soft, agreement that tight is luck, and reading it as confirmation is a worse error than a visible gap would have been. The routes also share hidden DNA — both are describing the same market, so if the real card base were half what you think, both would be wrong together and wrong in the same direction. What the agreement genuinely buys you is the power of ten and the right to say the answer sits in the mid-to-high five crores rather than in the tens of crores. Say that much and no more. Had the two landed three crore apart, the reconciliation would have been the more useful conversation, and the first place to look would be transactions per active card — a long tail of cards used once a month drags that average well below what a heavy user's own statement suggests."
+  },
+
+  "sensitivity": {
+    "assumptionId": "active-share",
+    "whyThisLever": "Two tests decide which lever to stress, and most candidates apply only one. The first is how badly the number is pinned. The second is how much of the answer rides on it. The rural take-up rate is the shakiest figure on this page and moves the answer by under four per cent — leave it alone. The active share is the last multiplication in the chain, so it passes straight through to the answer one-for-one, nothing observable pins it down, and it is the lever the question was built around. Shaky and load-bearing is the pair worth testing.",
+    "cases": [
+      { "scenario": "Conservative", "leverValue": "40% of cards active in the month", "answer": "≈ 4.2 crore cards", "deltaVsBase": "−27%" },
+      { "scenario": "Base", "leverValue": "55% of cards active in the month", "answer": "≈ 5.7 crore cards", "deltaVsBase": "0%" },
+      { "scenario": "Aggressive", "leverValue": "70% of cards active in the month", "answer": "≈ 7.3 crore cards", "deltaVsBase": "+27%" }
+    ],
+    "breakpoint": "Above roughly 70% the arithmetic starts claiming something you can check against ordinary life: at 1.8 cards a holder, a 70% active share means the average cardholder puts spend on more than one card every single month, and the two-card habit is a minority habit rather than the norm. Below roughly 35% you are claiming cards in issue run close to three times cards in use, which is more dormancy than a base carrying annual fees and fee-waiver spend targets can sustain — issuers cull those cards. So the honest range on this lever is 35% to 70%, the answer inherits a 3.6 to 7.3 crore range, and the power of ten never moves. That last clause is the one worth saying aloud.",
+    "oneLiner": "When there is no time for the grid, say this and move on: 'About half the card base transacts in any given month, so the published issuance figure is roughly double the answer — and if you prefer 45% or 65%, the answer moves by about a quarter either way and stays firmly in the crores.'"
+  },
+
+  "sanityChecks": [
+    "Your chain produces about 10.4 crore cards in issue on the way past. Publicly reported counts of the Indian card base are of that order, which says the eligibility and multi-holding levers are roughly right. Check that intermediate out loud — had it come out at 3 crore or 30 crore you want to find the broken step before the last line, not after it.",
+    "Multiply the two card-side levers on their own: 1.8 cards a holder × 55% active ≈ 1.0. The arithmetic is quietly asserting that the average cardholder puts spend on almost exactly one card a month. Test that against the wallets you actually know — people who hold three cards run one and keep the others for a specific offer. The shape is right.",
+    "5.8 crore holders against 91 crore adults is roughly one adult in sixteen. In a Gurgaon classroom that will feel absurdly low, because everyone in the room has a card. The country is not the room, and the distance between those two intuitions is the single biggest reason campus candidates over-size financial services.",
+    "Put it on households: 140 crore people at about 4.5 to a household is roughly 31 crore households, so fewer than one household in five contains a credit-card holder. That is consistent with a category still concentrated in salaried metro India, and flatly inconsistent with the answer you would have reached from bank-account penetration.",
+    "Turn the answer into money. 5.7 crore active cards at a plausible ₹25,000 to ₹30,000 of monthly spend each gives ₹1.4 to ₹1.7 lakh crore a month, or of the order of ₹18 lakh crore a year. Reported system-wide card spends run in that range — a third and cruder check that costs fifteen seconds and catches an answer wrong by a factor of five."
+  ],
+
+  "traps": [
+    {
+      "trap": "Answering 'cards in issue' when the question asked for cards used.",
+      "whyItHappens": "The number that surfaces from memory is the one banks publish, because issuance is what gets reported every quarter and dormancy appears in no headline. The candidate reaches the card base, recognises it as something that sounds authoritative, and stops — the chain feels finished because it produced a quotable figure.",
+      "fix": "Write the word 'active' at the top of your page before the first multiplication, and make the activity rate the last lever in the chain so the structure cannot finish without it. If it is genuinely the last step you cannot forget it; if it is a caveat you intended to mention, you will."
+    },
+    {
+      "trap": "Handing back cardholders as though they were cards.",
+      "whyItHappens": "The cascade naturally produces people, and a person feels like the natural unit of a penetration question, so the instinct is to stop at the human count. But a wallet with three cards is one person and three cards. Skip the multi-holding step and the answer is out by the full factor — here, nearly two.",
+      "fix": "Name the unit at every node as you write it: this line is people, this line is cards. The moment the unit changes, announce it — 'now I convert people into cards' — and the interviewer hears a candidate tracking units rather than one multiplying numbers."
+    },
+    {
+      "trap": "Using bank-account penetration as the eligibility gate.",
+      "whyItHappens": "Account penetration is the financial-inclusion statistic every candidate has read, it sits comfortably above 75%, and it slots neatly into the funnel shape. The trouble is that it barely narrows anything — you finish with seventy-odd crore 'eligible' adults instead of eleven, and a final answer several times too high. An account is a deposit relationship the bank cannot lose money on; a credit card is an unsecured line underwritten on documented income and a bureau record.",
+      "fix": "Replace the account layer with an income-and-documentation layer, and say why you are replacing it. The sentence 'a bank account is not a credit line' is worth more marks than the number that follows it."
+    },
+    {
+      "trap": "Reading the campus wallet as the country.",
+      "whyItHappens": "Everyone in an MBA classroom holds a card, so six per cent adult penetration feels wrong by an order of magnitude. The candidate rarely argues with the number openly — they quietly lift the eligibility or take-up rate until the answer stops feeling uncomfortable, and then present it as derived.",
+      "fix": "Anchor on formal-sector employment rather than on the people you can see, and state that anchor aloud. If your own intuition is fighting the arithmetic, narrate that too — 'this feels low to me, and I think that is a sampling problem on my side' is a stronger answer than a silently inflated rate."
+    },
+    {
+      "trap": "Letting 'in a month' turn the answer into a flow.",
+      "whyItHappens": "The words 'in a given month' pull hard towards a rate, and the merchant-side route in particular produces a beautiful monthly transaction figure — 39 crore — sitting one division short of the answer. It is the most plausible-sounding wrong number on the page, and it is wrong by a factor of seven.",
+      "fix": "The month is the activity test, not the denominator. Restate the unit before you speak the number: the answer is a count of cards, and it is roughly 5.7 crore."
+    }
+  ],
+
+  "probes": [
+    {
+      "question": "Your answer is cards. How many Indians hold a credit card?",
+      "intent": "Whether you kept units straight and can walk your own chain backwards without rebuilding it.",
+      "goodAnswer": "Gives about 5.8 crore people, roughly one adult in sixteen, and notes it is a different number from the 5.7 crore active cards even though the two land close — one holder may carry two cards of which only one moves this month. Names the near-coincidence and explains it rather than pretending it was designed.",
+      "weakAnswer": "Repeats the card figure, or divides it by something without saying which lever is being undone."
+    },
+    {
+      "question": "The regulator publishes roughly 10 crore cards in issue. Does that help you or hurt you?",
+      "intent": "Whether you can absorb an external anchor without abandoning your own structure.",
+      "goodAnswer": "Uses it to validate the intermediate rather than the answer — the cascade produced 10.4 crore in issue, so eligibility and multi-holding hold up, and the published figure now becomes the numerator. Points out that the activity rate is still the candidate's to defend, and that it is the only lever standing between that anchor and the answer.",
+      "weakAnswer": "Back-solves from 10 crore and drops the cascade, which feels efficient and leaves nothing to defend on the one lever the question was actually testing."
+    },
+    {
+      "question": "UPI is everywhere. Should that raise or lower your take-up number?",
+      "intent": "Whether you can reason about a substitute rather than recite that one exists.",
+      "goodAnswer": "Lowers take-up among eligible adults, because UPI removed the convenience reason to carry a card and left only credit and rewards — which is why 55% rather than a developed-market 80%. Adds that it may raise spend per active card, since the people who still bother are the deliberate users, and notices the two effects pull in opposite directions.",
+      "weakAnswer": "'UPI is disrupting credit cards' — a true sentence that moves no number and specifies no direction."
+    },
+    {
+      "question": "Which of your numbers are you least willing to defend?",
+      "intent": "Calibration. Whether you can rank your own uncertainty instead of flattening it.",
+      "goodAnswer": "Names the 55% active share, because nothing observable pins it and it is the last multiplication, so it passes straight into the answer. Shows the 40 to 70 band, notes it moves the answer by about a quarter either way while the power of ten survives, and separately flags that rural take-up is the shakiest figure on the page but moves almost nothing, so it is not the one to test.",
+      "weakAnswer": "'They are all estimates,' or naming the population figure — the one number in the chain nobody was going to challenge."
+    },
+    {
+      "question": "Rural is four per cent of a 55-crore adult base. Is that branch even worth carrying?",
+      "intent": "Whether you can drop or keep a branch on the evidence rather than out of tidiness or attachment to your own structure.",
+      "goodAnswer": "Puts it at about 76 lakh holders, roughly 13% of the total — material enough to keep in the structure, not material enough to argue about — and notes that doubling rural eligibility moves the final answer by about 13%. Says the remaining time is better spent on the active share, and means it.",
+      "weakAnswer": "Drops it silently to save time, or defends it at length because it is already drawn on the page."
+    }
+  ]
+}

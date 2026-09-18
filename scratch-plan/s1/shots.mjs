@@ -1,0 +1,16 @@
+import { chromium } from "playwright";
+const b=await chromium.launch();
+const p=await b.newPage({viewport:{width:1440,height:1050}});
+await p.goto("http://localhost:4321/teaching/1-year-mba/session1.html",{waitUntil:"networkidle"});
+await p.waitForTimeout(900);
+await p.locator("#porterNodes g").nth(3).click();
+await p.waitForTimeout(300);
+await p.locator("#authors").scrollIntoViewIfNeeded();
+await p.waitForTimeout(400);
+await p.screenshot({path:"scratch-plan/s1/shot-porter.png"});
+await p.locator('.ex-tab[data-ex="india"]').click();
+await p.waitForTimeout(300);
+await p.locator("#examples").scrollIntoViewIfNeeded();
+await p.waitForTimeout(400);
+await p.screenshot({path:"scratch-plan/s1/shot-examples.png"});
+await b.close();

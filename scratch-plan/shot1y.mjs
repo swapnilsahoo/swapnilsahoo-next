@@ -1,0 +1,12 @@
+import { chromium } from "playwright";
+const b = await chromium.launch();
+const p = await b.newPage({ viewport: { width: 1440, height: 1100 } });
+await p.goto("https://www.swapnilsahoo.com/teaching/1-year-mba", { waitUntil: "domcontentloaded", timeout: 60000 });
+await p.waitForTimeout(2500);
+await p.addStyleTag({ content: ".reveal-pending{opacity:1!important;transform:none!important}" });
+const h = p.getByText("By the end, learners can", { exact: false }).first();
+await h.scrollIntoViewIfNeeded();
+await p.waitForTimeout(500);
+await p.screenshot({ path: "scratch-plan/1y-outcomes.png" });
+console.log("captured outcomes");
+await b.close();

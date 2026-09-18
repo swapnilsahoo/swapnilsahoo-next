@@ -1,0 +1,602 @@
+[
+  {
+    "constant": "Conglomerate fact-sheet dossiers — the single biggest memorisation load in this book",
+    "typicalValue": "For each of ~12 Indian/Indian-operating groups: founding year, founder name, current chairman and MD/CEO names, HQ city, market capitalisation in USD billions to roughly one significant figure, annual revenue in USD billions, employee headcount to the nearest ten thousand, number of listed entities, country footprint, and the list of subsidiary companies and sectors. Magnitude bands seen: the largest Indian groups sit in the hundreds of USD billions of market cap and roughly $100-165bn revenue; large single-vertical majors in the $25-75bn market cap and $15-25bn revenue band; mid-tier and privately held groups around $2-3bn revenue.",
+    "usedFor": "Answering 'why this company', 'which group company would you join and why', 'which of their strategies do you disagree with', and for grounding any GD point in a real corporate example. This replaces market-sizing constants as the quantitative memory burden for GM interviews."
+  },
+  {
+    "constant": "Corporate vision/mission statements and the named core-values list, per group",
+    "typicalValue": "4 to 7 named values per group, expected close to verbatim. Patterns include five-value sets built around integrity/excellence/unity/responsibility/pioneering; five-value sets around citizenship/professionalism/customer-first/quality/dignity of the individual; acronym-based value sets; and unusually long seven-value sets at the Europe-headquartered firms. Purpose and vision statements are one sentence and quotable.",
+    "usedFor": "Explicitly required. The book instructs candidates to align every HR and ethics answer to the interviewing company's stated values, and to tie GD ethical positions to the group's founding principles. Value-misalignment is treated as a real failure mode."
+  },
+  {
+    "constant": "CSR flagship programme names per group",
+    "typicalValue": "2-5 named initiatives per group across education, community health, sustainable livelihood/skilling, women's empowerment, water conservation, and rural/village development. Skilling numbers quoted in thousands of people, village-transformation programmes in the low hundreds of villages, school-infrastructure programmes in the low hundreds of schools.",
+    "usedFor": "'Why this company' answers, and for demonstrating that a candidate has read the group's annual/sustainability reporting rather than just its Wikipedia page."
+  },
+  {
+    "constant": "Everyday Indian retail price ladders for common consumer durables and FMCG",
+    "typicalValue": "Personal-care liquids in the small-bottle format priced around a low three-digit rupee figure per 100ml. Mass-market household electrical durables in the ₹2,000-5,000 band, with the premium/smart tier of the same category extending into the mid-five-figure rupee range. Candidates are expected to name the two or three genuine Indian brands that occupy each rung.",
+    "usedFor": "The object-in-the-room pricing probe. This is the ONLY genuinely numeric Indian market knowledge the book tests, and it is price-point recall plus brand-ladder awareness — not derived estimation."
+  },
+  {
+    "constant": "Indian power and energy-transition structural facts",
+    "typicalValue": "Coal remains the dominant generation source on cost and availability grounds; the transition is constrained by high upfront renewable capex, the intermittency of solar and wind, and the scale of investment needed in grid upgrades and storage; government policy is actively incentivising the shift; levelized cost of energy (LCOE) is the correct whole-life comparison basis between renewable options; wind carries higher maintenance burden due to moving parts while solar is lower-maintenance and incrementally scalable.",
+    "usedFor": "Sector-view probes at energy, power and infrastructure employers, and the wind-vs-solar investment GD. Expected as a structured argument, not a headline."
+  },
+  {
+    "constant": "EV and mobility sector directional facts",
+    "typicalValue": "Demand growth driven by environmental awareness and government incentives; high R&D, manufacturing and supply-chain capex as the entry barrier; incumbent advantage as the competitive reality; charging infrastructure and range/charge anxiety as the adoption blocker; affordable rural-facing EVs and urban compact commuter EVs named as the classic underserved beachhead segments; fuel cost inflation as the substitution driver away from ICE two-wheelers.",
+    "usedFor": "EV market-entry GD and automotive GTM cases — the most frequently recurring sector in the book."
+  },
+  {
+    "constant": "Banking and financial-services levers",
+    "typicalValue": "CASA ratio named as the primary competitive lever for a new bank — attract deposits with higher initial interest rates, then defend against switching with service quality. Macro vs micro factor framing (business cycle, recession/boom as macro; competitive intensity as micro) is expected when asked to analyse the sector.",
+    "usedFor": "A live PI probe at the Tata-family process where a candidate's own mention of competition was turned into an instant sector case."
+  },
+  {
+    "constant": "Agriculture-to-industrial demand transmission chain",
+    "typicalValue": "Monsoon performance -> crop yield -> farm income and purchasing power -> discretionary farm-equipment demand, with secondary effects on rural dealer inventory and working capital. Equipment perceived as deferrable non-essential capex under income stress.",
+    "usedFor": "The agricultural-equipment demand-shock GD, and rural-demand reasoning generally. This causal chain is expected to be stated explicitly as the opening diagnosis."
+  },
+  {
+    "constant": "Aviation sector operating levers",
+    "typicalValue": "Absence of dynamic pricing and undertrained frontline staff named as loss drivers; route-level demand shocks from regional disruption; passenger communication and real-time updates as the reputation lever; compensation and rebooking support as the containment lever.",
+    "usedFor": "Airline turnaround GD and the aviation-employer PI."
+  },
+  {
+    "constant": "The prescribed Indian business-news reading diet",
+    "typicalValue": "Economic Times, Mint, Business Standard as the daily Indian sources; Harvard Business Review and McKinsey Insights as the analytical sources; plus company annual reports and financial statements; plus government policy, corporate-governance and ethical-practice developments relevant to the target group.",
+    "usedFor": "Stated verbatim as the preparation instruction for the Tata process. Effectively the book's definition of 'business acumen' — current-affairs fluency substitutes entirely for quantitative fluency."
+  },
+  {
+    "constant": "NOT EXPECTED — constants conspicuously absent",
+    "typicalValue": "India's population; urban/rural split; household size; number of households; income-decile or SEC bucket distribution; smartphone, two-wheeler, four-wheeler, internet or category penetration rates; per-capita consumption figures; typical sector gross or EBITDA margins; typical retail markups; working-age population; life expectancy; literacy; GDP or per-capita income. NONE of these appear anywhere in 74 pages.",
+    "usedFor": "Nothing in this book. Flagging explicitly so a content build is not mis-calibrated: the standard Indian guesstimate constant set has zero presence here and must be sourced from a genuine consulting casebook instead."
+  },
+  {
+    "constant": "Population of India",
+    "typicalValue": "Cheatsheet says 1.46 bn (146 crore); worked answers use 1.3-1.4 bn freely",
+    "usedFor": "Starting node of nearly every top-down guesstimate and every India market-entry TAM"
+  },
+  {
+    "constant": "Average household size",
+    "typicalValue": "Cheatsheet 4.38; worked answers use 4 for urban and 5 for rural",
+    "usedFor": "Converting population to households — the mandatory second step of the dominant archetype"
+  },
+  {
+    "constant": "Urban / rural split",
+    "typicalValue": "Cheatsheet 35/65; worked answers use 30/70 and 40/60 interchangeably without objection",
+    "usedFor": "First behavioural cut in almost every sizing"
+  },
+  {
+    "constant": "Income-tier split and bands",
+    "typicalValue": "Bands: destitute ≤ ₹1.25 lakh/yr, aspirers ₹1.25-5 lakh, middle class ₹5-30 lakh, rich > ₹30 lakh. Working splits used: 20/40/40, 10/40/50, or 30/40/20/10 across poor / lower-middle / upper-middle / rich",
+    "usedFor": "Affordability and ownership-rate segmentation; the branch that carries most of the estimate's weight"
+  },
+  {
+    "constant": "Gender split",
+    "typicalValue": "51/49 M/F",
+    "usedFor": "Product categories with gendered usage"
+  },
+  {
+    "constant": "Age split",
+    "typicalValue": "Working buckets used: 0-5 ~10%, 5-18 ~20%, 18-21 ~25%, 20-59 ~35%, 60+ ~10%; developing-market skew assumed toward the young",
+    "usedFor": "Any age-gated product — education, alcohol, employment, vehicles"
+  },
+  {
+    "constant": "Literacy rate",
+    "typicalValue": "78% overall (M 85%, F 70%)",
+    "usedFor": "Media, education, financial-product penetration"
+  },
+  {
+    "constant": "Life expectancy",
+    "typicalValue": "72 years",
+    "usedFor": "Cohort and replacement-cycle reasoning"
+  },
+  {
+    "constant": "Cell phone access",
+    "typicalValue": "74%",
+    "usedFor": "Telecom, fintech, delivery-app funnels"
+  },
+  {
+    "constant": "Smartphone access",
+    "typicalValue": "48%",
+    "usedFor": "App-based service sizing"
+  },
+  {
+    "constant": "Internet penetration",
+    "typicalValue": "66%",
+    "usedFor": "Digital service funnels; often the second filter after population"
+  },
+  {
+    "constant": "Mobile penetration and prepaid share (used in cases, not on the cheatsheet)",
+    "typicalValue": "~80% mobile penetration; ~90% of mobile users on prepaid",
+    "usedFor": "Telecom subscriber base and ARPU sizing"
+  },
+  {
+    "constant": "TV penetration by geography",
+    "typicalValue": "Urban ~90%, rural ~70%",
+    "usedFor": "Media/viewership sizing"
+  },
+  {
+    "constant": "Number of states / UTs",
+    "typicalValue": "28 states, 8 UTs",
+    "usedFor": "State-level scaling from a national number and vice versa"
+  },
+  {
+    "constant": "Geographic dimensions of India",
+    "typicalValue": "~3,200 km N-S, ~3,000 km W-E",
+    "usedFor": "Logistics, transport and coverage guesstimates"
+  },
+  {
+    "constant": "Commercial airports in India",
+    "typicalValue": "~100 handling regular commercial passenger flights",
+    "usedFor": "Aviation, travel and tourism-inflow sizing"
+  },
+  {
+    "constant": "Metro city populations (memorise as a block)",
+    "typicalValue": "Delhi ~34.7 Mn (1,483 km²), Mumbai ~22.1 Mn (603 km²), Kolkata ~15.3 Mn (205 km²), Bangalore ~14.4 Mn (741 km²), Chennai ~12.3 Mn (426 km²), Hyderabad ~11.3 Mn (650 km²)",
+    "usedFor": "City-scoped guesstimates; areas are given so density-based bottom-ups are possible. Candidates are additionally told to know their own city's numbers cold"
+  },
+  {
+    "constant": "Large-state population anchor",
+    "typicalValue": "Maharashtra ~12 crore; used to derive state-level asset counts via a per-capita ratio",
+    "usedFor": "State-level public-policy and market-entry sizing"
+  },
+  {
+    "constant": "Employment by sector split",
+    "typicalValue": "Agriculture / manufacturing / construction+trade+transport / other services — listed as a standard filter",
+    "usedFor": "B2B, agri and industrial sizing"
+  },
+  {
+    "constant": "Product lifespans and replacement cycles (de facto constants from worked answers)",
+    "typicalValue": "Tractor ~10 yrs; kitchen appliance ~4 yrs; car replacement 3 yrs (rich) / 5 yrs (upper-middle) / 10 yrs (lower-middle); tyres 5 per car (4 + spare) plus ~1 burst replacement a year",
+    "usedFor": "Converting an installed base into annual demand — the step candidates most often forget"
+  },
+  {
+    "constant": "Vehicle ownership per household by income",
+    "typicalValue": "Cars: 2 per HH rich and upper-middle, 1 lower-middle, 0 poor. Two-wheelers: ~0.5 low income, ~1.2 middle, ~1.0 high",
+    "usedFor": "Automotive and mobility sizing"
+  },
+  {
+    "constant": "Colour-mix of cars sold",
+    "typicalValue": "White ~40%, black ~20%, silver ~15%, red ~5-10%",
+    "usedFor": "The classic sub-attribute filter at the end of a vehicle guesstimate"
+  },
+  {
+    "constant": "EV penetration of two-wheeler fleet (stock, not sales)",
+    "typicalValue": "~4% of the on-road fleet in a tech-hub city; ~6-7% of recent new sales — candidates are expected to distinguish stock from flow",
+    "usedFor": "EV sizing, and as a worked example of the stock-vs-sales trap"
+  },
+  {
+    "constant": "Aviation operating assumptions",
+    "typicalValue": "~3,500 domestic flights/day; ~16 operating hours; ~160 seats domestic and ~250 international; ~85% load factor; ~180 seats as 30 rows × 6 seats for a narrowbody",
+    "usedFor": "Airspace, airport-throughput and tourist-inflow guesstimates"
+  },
+  {
+    "constant": "Retail / service operating assumptions",
+    "typicalValue": "10-hour retail day (roughly 10 AM to 8 PM); ~60% capacity utilisation for service chairs, ~50% for treatment rooms; ~1-in-4 customer attach rate for add-on product sales",
+    "usedFor": "Outlet-level revenue guesstimates"
+  },
+  {
+    "constant": "Alcohol behaviour assumptions",
+    "typicalValue": "~60% of working-age adults consume; ~20-40% prefer beer within the alcohol basket; 2-6 servings/day depending on occasion and tourist vs resident",
+    "usedFor": "Beverage and hospitality consumption sizing"
+  },
+  {
+    "constant": "Unit conventions",
+    "typicalValue": "Always dual-report crore/lakh alongside mn/bn; ₹ figures land in lakh or crore; 1 crore = 10 mn, 1 lakh = 0.1 mn",
+    "usedFor": "Every Indian case — the book treats fluency in both systems as non-negotiable"
+  },
+  {
+    "constant": "Industry-primer sizes (for industry-flavoured cases)",
+    "typicalValue": "India FMCG ~$236 bn (2024) → ~$780 bn (2030); India retail $779 bn (2019) → ~$1.8 tn (2030); India IT/ITES $250+ bn → $500 bn by 2030; India logistics ~$228 bn (2024) → ~$429 bn (2033); India airlines ~$20 bn FY24 at 8-10% CAGR; India automotive revenue ~$120 bn (2024); global e-commerce ~$6.3 tn (2024); gross bank credit ~₹118.9 lakh crore",
+    "usedFor": "Anchoring a TAM or sanity-checking a bottom-up estimate against a published top-down figure"
+  },
+  {
+    "constant": "Sector-specific KPI benchmarks",
+    "typicalValue": "Hotels: occupancy ~66-68%, ARR ~₹8.2-8.4k, RevPAR ~₹5.4-5.7k. Cement: ~₹367/bag. Telecom: ARPU. E-commerce: GMV, AOV, CAC, contribution margin/order, return rate. Manufacturing: OEE (competitive benchmark ~95%)",
+    "usedFor": "Speaking in the industry's own metrics — the expert notes single this out as a differentiator"
+  },
+  {
+    "constant": "Total population of India",
+    "typicalValue": "1,400 million (1.4B) — used as the starting universe in essentially every top-down guesstimate",
+    "usedFor": "Top of every population funnel"
+  },
+  {
+    "constant": "Urban / rural split",
+    "typicalValue": "Appendix table says 40% urban (560M) / 60% rural (840M); WORKED EXAMPLES routinely use 35/65 or even 30/70. Candidates should be ready to state and defend either, and note the book is internally inconsistent here",
+    "usedFor": "First segmentation cut in almost all guesstimates"
+  },
+  {
+    "constant": "Average household size",
+    "typicalValue": "4 persons (occasionally 4-5) → ~350 million households nationally",
+    "usedFor": "Any durable-goods, appliance, vehicle or housing estimate"
+  },
+  {
+    "constant": "Age distribution",
+    "typicalValue": "0-14: 25% (350M); 15-24: 25% (350M); 25-34: 15% (210M); 35-44: 15% (210M); 45-54: 10% (140M); 55+: 10% (140M). Headline heuristics: 50% under 25, 65% under 35",
+    "usedFor": "Age-gating any consumption estimate"
+  },
+  {
+    "constant": "Annual household income bands (national)",
+    "typicalValue": "BPL (<₹1.25L): 15% / 210M; Low (₹1.25L-5L): 50% / 700M; Middle (₹5L-30L): 30% / 420M; High (>₹30L): 5% / 70M",
+    "usedFor": "Affordability filters in pricing and market-entry TAM chains"
+  },
+  {
+    "constant": "Working income split used INSIDE guesstimates (differs from the appendix)",
+    "typicalValue": "Urban households: High 10% / Mid 40% / Low 50%. Rural households: High 5% / Mid 25% / Low 70%",
+    "usedFor": "Household-level ownership and consumption segmentation"
+  },
+  {
+    "constant": "Gender split",
+    "typicalValue": "Male 52% (728M) / Female 48% (672M); sex ratio 1.07 M:F",
+    "usedFor": "Gender-segmented personal-care and service estimates"
+  },
+  {
+    "constant": "Urban tier structure",
+    "typicalValue": "Tier 1 = top 10 cities, 120M, 20% of urban population; Tier 2 = next 50 cities, 85M, 15%; Tier 3 = next 100 cities, 70M, 12%",
+    "usedFor": "Geographic prioritisation in market entry and growth cases"
+  },
+  {
+    "constant": "Major metro populations",
+    "typicalValue": "Delhi ~33M, Mumbai ~20M, Kolkata ~15M, Bangalore ~15M, Chennai ~12M, Hyderabad ~12M (with areas of roughly 1,500 / 600 / 200 / 700 / 400 / 650 sq km respectively)",
+    "usedFor": "City-level sizing and density arguments"
+  },
+  {
+    "constant": "Land area of India",
+    "typicalValue": "3,300 thousand sq km total; land 70%, forest 20%, water 10%",
+    "usedFor": "Area-based and agricultural estimates"
+  },
+  {
+    "constant": "Religious composition",
+    "typicalValue": "Hindu 80%, Muslim 15%, Christian 2%, Sikh 1.5%, Others 1.5%",
+    "usedFor": "Festival/occasion-driven consumption estimates"
+  },
+  {
+    "constant": "Electrification",
+    "typicalValue": "Urban households ~100%; rural households ~95%",
+    "usedFor": "Utility and appliance penetration"
+  },
+  {
+    "constant": "Banking / financial access",
+    "typicalValue": "Adults (18+) ≈ 70% of population; bank account penetration ~80% urban, ~60% rural; ~1.2-1.8 cards per account holder; 40-60% of issued cards actually active",
+    "usedFor": "Financial services sizing"
+  },
+  {
+    "constant": "Internet and telecom base",
+    "typicalValue": "Internet users ~780M (telecom chapter says 830M internet subscribers); internet penetration ~60%; total telecom subscribers 1.1B; tele-density 85%; telecom subscriber split urban 56% / rural 44%",
+    "usedFor": "Any digital, e-commerce, fintech or platform case"
+  },
+  {
+    "constant": "Life expectancy / product-use horizon",
+    "typicalValue": "~70 years, with the usable consumption window taken as ~60 years (ignoring infancy and old age)",
+    "usedFor": "Lifetime-value pricing of durable or perpetual products"
+  },
+  {
+    "constant": "Vehicle parc (on-road stock)",
+    "typicalValue": "Order of magnitude used: ~250M two-wheelers, ~50M cars, ~15M trucks/buses, ~5M tractors. Annual new sales: ~15M two-wheelers, ~4M cars, ~1M commercial vehicles, ~0.8M tractors. Replacement cycles: 2-4 years for tyres depending on vehicle class",
+    "usedFor": "Auto, components, aftermarket and fuel estimates"
+  },
+  {
+    "constant": "Fuel and mileage",
+    "typicalValue": "Petrol ~₹100/litre; two-wheeler mileage ~50 km/litre",
+    "usedFor": "Transport unit economics and cost-per-trip builds"
+  },
+  {
+    "constant": "Calendar conventions",
+    "typicalValue": "30 days/month, 365 days/year, 250-300 working days/year, 12-hour retail operating day",
+    "usedFor": "Annualising any daily estimate"
+  },
+  {
+    "constant": "Aviation operating norms",
+    "typicalValue": "Average aircraft ~180 seats domestic / ~300 international; load factor ~70%; domestic:international passenger split ~70:30 at a major metro airport; ~10 movements/hour/runway; ~20 operational hours/day; fuel = 40-45% of an Indian airline's cost base",
+    "usedFor": "Aviation sizing and profitability cases"
+  },
+  {
+    "constant": "Power sector",
+    "typicalValue": "Installed capacity ~411 GW; peak demand ~205 GW; generation mix roughly thermal 57% / hydro 30% / renewables 11% / nuclear 2% (as printed); largest generator ~72 GW; national target 500 GW renewable; India 3rd largest producer and consumer of electricity",
+    "usedFor": "Power, utilities and infrastructure cases"
+  },
+  {
+    "constant": "Oil and gas",
+    "typicalValue": "India imports ~88% of its oil demand; import bill ~$120B; sourcing mix Middle East 53% / Africa 15% / USA 13% / RoW 19%; 3rd largest energy consumer; 4th largest LNG importer; 20% ethanol blending target",
+    "usedFor": "Energy and commodity cases"
+  },
+  {
+    "constant": "Cement",
+    "typicalValue": "Industry ~$143B; CAGR ~5.5%; ~4.5% of GDP; top 4 players ~75% share; capacity ~360 MT; India 2nd largest producer with >7% of global capacity; demand mix rural 29% / infra 25% / urban 23% / industry 23% (housing = 52%)",
+    "usedFor": "Cement, construction and infra cases"
+  },
+  {
+    "constant": "FMCG",
+    "typicalValue": "~$110B; ~3.5% of GDP; urban = 65% of sales; category mix HPC 40% / F&B 30% / Health 30%; general trade still dominant vs modern trade / D2C",
+    "usedFor": "FMCG profitability and growth cases"
+  },
+  {
+    "constant": "E-commerce",
+    "typicalValue": "~$75B, CAGR ~21%, ~2.4% of GDP, e-commerce ≈ 10% of retail; projected ~$350B by 2030; category mix electronics 40% / apparel 40% / food 7% / jewellery 7% / other 6%",
+    "usedFor": "E-commerce and quick-commerce cases"
+  },
+  {
+    "constant": "Banking and payments",
+    "typicalValue": "Banking assets ~$2.7T; public sector banks ~60% of assets; ~2.1 lakh ATMs; fintech industry ~$150B; ~1 lakh scheduled commercial bank branches; payment volume mix UPI P2P 43% / UPI P2M 42% / credit card 8% / debit card 4% / other 3%; ~40% of global digital transactions occur in India",
+    "usedFor": "Banking, payments and fintech cases"
+  },
+  {
+    "constant": "Telecom",
+    "typicalValue": "~$37B industry, CAGR ~9.4%, ~1.1% of GDP (note: revenues have DECLINED from ~$40B in 2016)",
+    "usedFor": "Telecom profitability and ARPU cases"
+  },
+  {
+    "constant": "Competition-law merger thresholds",
+    "typicalValue": "Notification to the competition regulator is mandatory above ~₹2,000 crore combined assets or ~₹6,000 crore turnover in India; a de minimis exemption exists below the deal-value threshold",
+    "usedFor": "M&A and antitrust cases"
+  },
+  {
+    "constant": "Paint/coating physical proxies",
+    "typicalValue": "Coverage ~1 litre per 100 sq ft (two coats); paintable area ~600 sq ft per home; repaint cycle ~5 years urban / ~8 years rural; industrial paint ≈ 25% of decorative volume",
+    "usedFor": "Physical-proxy consumable guesstimates"
+  },
+  {
+    "constant": "India population",
+    "typicalValue": "1.4 billion (also written 140 crore / 142 crore)",
+    "usedFor": "The universal starting anchor for nearly every demand-side guesstimate"
+  },
+  {
+    "constant": "Urban : rural split",
+    "typicalValue": "35% urban (≈500M) : 65% rural (≈900M); one case uses 490M urban / 420M semi-urban",
+    "usedFor": "First cut in almost every national sizing"
+  },
+  {
+    "constant": "Average household size",
+    "typicalValue": "Urban 4, rural 5 (a flat ≈4 when not splitting); giving ~125M urban and ~180M rural households, ~305-350M total",
+    "usedFor": "Converting population to households for durables, appliances, subscriptions, groceries"
+  },
+  {
+    "constant": "Urban tier split",
+    "typicalValue": "Tier 1 : Tier 2/3 = 25 : 75 (alternative: T1 20%, T2 35%, T3 45%)",
+    "usedFor": "Purchasing-power and lifestyle adjustment within urban population"
+  },
+  {
+    "constant": "Household income bands",
+    "typicalValue": "High >₹20 L p.a. ≈5%, Mid ₹5-20 L ≈40%, Low <₹5 L ≈55% of urban households; rural skewed far lower. Delhi variant: BPL 20%, Middle 70%, High 10%",
+    "usedFor": "Affordability filters and differentiated penetration rates"
+  },
+  {
+    "constant": "Age distribution",
+    "typicalValue": "Under 10 ≈10%, 10-45 ≈60%, over 45 ≈30% (urban). City variant: 0-15 = 25%, 16-64 = 70%, 65+ = 5%. Working-age (15-60) ≈60% of population",
+    "usedFor": "Consumption-relevant population filters"
+  },
+  {
+    "constant": "Labour force participation rate",
+    "typicalValue": "~50% of working-age (→ ~420M labour force); agri 45% : non-agri 55%; blue 50% / grey 30% / white collar 20%; 85% of white collar is urban",
+    "usedFor": "Any workforce, employment, recruitment or B2B-employee guesstimate"
+  },
+  {
+    "constant": "Smartphone penetration",
+    "typicalValue": "Urban ~80% (400M of 500M), rural ~60% (540M of 900M) → ~940M smartphone users; active social media ~600M (280M urban + 320M rural)",
+    "usedFor": "Digital adoption funnels: apps, reels, GenAI, e-commerce, fintech"
+  },
+  {
+    "constant": "Internet penetration (metro)",
+    "typicalValue": "~80% in a Tier-1 city",
+    "usedFor": "App-user funnels at city level"
+  },
+  {
+    "constant": "Delhi population",
+    "typicalValue": "3 crore (30M) metro-wide; ~12M used for the core city; area ~1,500 km²; ~60,000 tourist arrivals per day",
+    "usedFor": "The default city for city-scale guesstimates; area used as a sizing anchor"
+  },
+  {
+    "constant": "Urban road density",
+    "typicalValue": "~1 km of main road per km² of city area",
+    "usedFor": "Converting city area into road length as an infrastructure anchor"
+  },
+  {
+    "constant": "National highway length",
+    "typicalValue": "~150,000 km total, ~80% (120,000 km) serviceable; roadside stall density ~1 per 4 km",
+    "usedFor": "Highway-economy guesstimates (dhabas, tea stalls, fuel stops, tolls)"
+  },
+  {
+    "constant": "Vehicles per capita (urban)",
+    "typicalValue": "Four-wheelers ~15 per 100 people; two-wheelers ~50 per 100 people",
+    "usedFor": "Parking, fuel, insurance, servicing, tolls"
+  },
+  {
+    "constant": "Two-wheeler market",
+    "typicalValue": "~24M units sold per year (≈21M replacement + ≈3M new); total motorcycle sales cited elsewhere as ~15M; replacement cycle 4-8 years by income segment",
+    "usedFor": "Auto sizing and as a sanity benchmark for any two-wheeler-adjacent estimate"
+  },
+  {
+    "constant": "Fuel and vehicle running costs",
+    "typicalValue": "Petrol ~₹100/litre; car mileage ~25 km/l; average metro cab trip ~5 km; cab fare ~₹20/km plus ~₹50 base; ride-hailing platform commission 30%; driver works 12 hrs/day, 25 days/month, ~30 min per trip",
+    "usedFor": "Gig-economy, fleet, mobility and personal-decision cases"
+  },
+  {
+    "constant": "Urban transport fare anchors (Mumbai N-S corridor)",
+    "typicalValue": "Local train ~₹60-100; taxi ~₹300-350; journey times: train 40 min, taxi 60 min",
+    "usedFor": "Value-based and competitor-based pricing of any new transport service"
+  },
+  {
+    "constant": "Paid parking economics",
+    "typicalValue": "4W ₹30/day Tier 1, ₹20 Tier 2; 2W ₹10 Tier 1, ₹5 Tier 2; ~300 paid days per year",
+    "usedFor": "Parking, mall ancillary revenue, municipal revenue"
+  },
+  {
+    "constant": "Domestic aviation unit economics",
+    "typicalValue": "Narrowbody capacity ~180 seats, load factor ~85%; international ~300 seats, ~70%; a major metro airport handles ~600 domestic + ~50 international flights/day; connecting passengers 20% domestic, 30% international; a busy international airport ≈ one take-off per runway per 5 minutes",
+    "usedFor": "Airport footfall, duty-free, ground handling, airline route economics"
+  },
+  {
+    "constant": "Airline cost structure",
+    "typicalValue": "Aviation turbine fuel ≈37-40% of operating cost; equipment rentals and hangar ~15%; MRO ~10%",
+    "usedFor": "Airline profitability cost-side prioritisation"
+  },
+  {
+    "constant": "Operating-days conventions",
+    "typicalValue": "250 (weekday-only commuter service), 300 (retail/manufacturing, or 'net of inactivity'), 340 (power plant), 360/365 (hotels, hospitals, always-on assets)",
+    "usedFor": "Annualising any daily figure — stating and justifying this is expected"
+  },
+  {
+    "constant": "Capital-equipment life and break-even horizon",
+    "typicalValue": "Heavy plant equipment life 20-25 years; break even at roughly half of life (10-12 years); plant load / capacity utilisation 60-70%",
+    "usedFor": "Infrastructure and power pricing; the utilisation haircut is a known interviewer trap"
+  },
+  {
+    "constant": "Discount rate / cost of capital",
+    "typicalValue": "10% is the default; PE minimum acceptable return 15%; PE payback gate often <7 years; PE ticket size US$20-30M",
+    "usedFor": "NPV, perpetuity valuation (profit ÷ discount rate), and investment screening"
+  },
+  {
+    "constant": "Milk and staples",
+    "typicalValue": "Packaged milk ~₹60/litre; household consumption 10-30 litres/month by segment; tea ~₹7-15 per cup by footfall tier",
+    "usedFor": "FMCG, dairy, quick-commerce, roadside retail sizing"
+  },
+  {
+    "constant": "Retail channel structure",
+    "typicalValue": "Kirana / general trade ≈80% of FMCG sales; modern trade and e-commerce the balance",
+    "usedFor": "FMCG distribution and channel-shift cases"
+  },
+  {
+    "constant": "India's global market rank",
+    "typicalValue": "3rd largest aviation market; 2nd largest telecom market; 3rd largest automobile market; 2nd largest cement market; 2nd largest crude steel producer; among the 5 largest FMCG markets",
+    "usedFor": "Opening context statements and market-attractiveness arguments"
+  },
+  {
+    "constant": "Sector market sizes and CAGRs (the Industry Reports section's memorisable set)",
+    "typicalValue": "Airlines $15B (2025) → $22.5B (2030), ~8.5%; Automobile $137B (FY25) → $203B (FY30), ~8%; E-commerce $75B (FY22) → $200B (FY26), ~30%; Telecom ~$30-37B, ~2nd largest by subscribers; FMCG ~$110B base, ~9%; Healthcare ~39%; Pharma ~30%; Hospitality 14-15%; Asset management ~12%; Banking ~10%; Power 9-10%; Logistics 9-10%; Retail ~9%; Food processing ~9%; IT services 8-9%; Tech & software ~8%; Insurance ~7%; Iron & steel ~4.3%; EV ~41% (2025-30)",
+    "usedFor": "Market growth assumptions, industry attractiveness, and sanity-checking any sizing"
+  },
+  {
+    "constant": "Telecom subscriber base",
+    "typicalValue": "~1,188 million telephone subscribers (Oct 2024); 5G projected at 350M subscriptions (27% of mobile) by 2026",
+    "usedFor": "Telecom and digital-services sizing"
+  },
+  {
+    "constant": "Aviation and telecom market shares",
+    "typicalValue": "IndiGo ~61%, Air India ~19%, SpiceJet ~5%, others ~15%. Carbonated soft drinks illustrative split: leader 50%, challenger 45%, fragmented 5%",
+    "usedFor": "Competitive landscape framing and market-share assumptions"
+  },
+  {
+    "constant": "Diagnostics and healthcare unit economics",
+    "typicalValue": "~10% of population seeks healthcare annually; ~70% of those need diagnostics; average diagnostic test ~₹750-1,000",
+    "usedFor": "Healthcare market entry and diagnostics sizing"
+  },
+  {
+    "constant": "Payment / transaction backdrop",
+    "typicalValue": "UPI crossed 10B+ monthly transactions; DPDP Act 2023 for data; GST, PLI schemes (₹15,000 Cr pharma, ₹12,195 Cr telecom, ₹10,900 Cr food processing) as recurring policy levers",
+    "usedFor": "Behavioural-shift arguments (e.g. digital payments displacing low-value cash purchases) and PESTEL/political sections"
+  },
+  {
+    "constant": "India total population",
+    "typicalValue": "1,450 Mn in the datasheet; 1,400 Mn (1.4 Bn) used as the working anchor in almost every guesstimate",
+    "usedFor": "Universal anchor for national top-down sizing"
+  },
+  {
+    "constant": "Urban / rural split",
+    "typicalValue": "Datasheet 37% / 63% (530 Mn / 920 Mn); guesstimates consistently round to 35% / 65% (~500 Mn urban / ~900 Mn rural)",
+    "usedFor": "First filter in nearly every national guesstimate"
+  },
+  {
+    "constant": "Gender split",
+    "typicalValue": "~50/50 (748 Mn male / 702 Mn female); sex ratio 94%, i.e. ~940 females per 1,000 males",
+    "usedFor": "Gendered product categories"
+  },
+  {
+    "constant": "Life expectancy",
+    "typicalValue": "72 overall (male 70.5, female 73.6); rounded to 70 as the shortcut for a uniform age distribution",
+    "usedFor": "The 'assume uniform age distribution over 70 years' trick — each single-year cohort ~1.4% of population, so a 2-year cohort ~3%"
+  },
+  {
+    "constant": "Age-band distribution",
+    "typicalValue": "0-12: 21%, 13-24: 21%, 25-34: 17%, 35-44: 14%, 45-54: 11%, 55+: 15%. Coarse working split used in cases: 0-18 ~20-30%, 18-60 ~60-70%, 60+ ~10%",
+    "usedFor": "Age filters"
+  },
+  {
+    "constant": "Average household size",
+    "typicalValue": "India 4.2; urban 3.7; rural 4.4. Guesstimates commonly round to 4 urban / 5 rural, or a flat 4-5",
+    "usedFor": "Converting population to households — the standard second step for any durable/subscription/utility product"
+  },
+  {
+    "constant": "Average annual household income",
+    "typicalValue": "India Rs 2.5 L; urban Rs 3.5 L; rural Rs 2.0 L",
+    "usedFor": "Affordability filters"
+  },
+  {
+    "constant": "Household income class distribution",
+    "typicalValue": "<Rs 1 L: 12%; Rs 1-2 L: 38%; Rs 2-5 L: 35%; Rs 5-10 L: 13%; >Rs 10 L: 2%",
+    "usedFor": "Income-tier segmentation. NOTE: guesstimates in practice use much coarser invented ladders (e.g. upper 20% / middle 30% / lower-middle 30% / BPL 20%, or 10/50/40 for urban) — the datasheet is the defensible fallback if challenged"
+  },
+  {
+    "constant": "Household savings rate and expenditure split",
+    "typicalValue": "Savings 27% (urban 32%, rural 23%); of expenditure: food 50% (urban 45%, rural 55%), travel 10%, other 40%",
+    "usedFor": "Wallet-share and affordability arguments"
+  },
+  {
+    "constant": "Poverty line",
+    "typicalValue": "~10% of population below poverty line (~$2 or Rs 150 per day)",
+    "usedFor": "Excluding a non-addressable base segment"
+  },
+  {
+    "constant": "Metro city populations (Mn)",
+    "typicalValue": "Delhi 35, Mumbai 22, Kolkata 16, Bengaluru 14, Chennai 12, Hyderabad 11, Ahmedabad 9, Surat 8, Pune 8, Jaipur 4.5. In city guesstimates Mumbai is habitually taken as 20 Mn, Delhi 20 Mn, Hyderabad 12 Mn, Ahmedabad 9 Mn (~90 lakh)",
+    "usedFor": "City-level sizing anchors"
+  },
+  {
+    "constant": "Cumulative urban concentration",
+    "typicalValue": "Top 10 cities = 135 Mn; top 50 = 220 Mn; top 100 = 255 Mn",
+    "usedFor": "Tier-based rollout sizing"
+  },
+  {
+    "constant": "Tier-1 / Tier-2 / Tier-3 population split of urban India",
+    "typicalValue": "Of ~500 Mn urban: Tier-1 ~100 Mn, Tier-2 ~200 Mn, Tier-3 ~200 Mn",
+    "usedFor": "Digital adoption and premium-product penetration ladders"
+  },
+  {
+    "constant": "Sector-wise employment",
+    "typicalValue": "Agriculture 40% (urban 5%, rural 55%); Industry 26% (urban 32%, rural 23%); Services 34% (urban 63%, rural 22%)",
+    "usedFor": "Occupational cohort sizing, B2B/white-collar filters"
+  },
+  {
+    "constant": "Religion split",
+    "typicalValue": "Hindu 80%, Muslim 14%, Christian 2.5%, Others 3.5%",
+    "usedFor": "Culturally-segmented consumption categories"
+  },
+  {
+    "constant": "Demographic rates",
+    "typicalValue": "Birth rate 16.1 per 1,000; death rate 6.6 per 1,000; population growth 0.9% p.a.",
+    "usedFor": "Forward-projecting a market, cohort flow estimates"
+  },
+  {
+    "constant": "India land area",
+    "typicalValue": "~3.2-4 Mn sq km (a guesstimate uses 4 Mn sq km as the working figure)",
+    "usedFor": "Geometric/density-derived infrastructure counts"
+  },
+  {
+    "constant": "Gross enrolment ratio, senior secondary",
+    "typicalValue": "~70% for Class XI-XII",
+    "usedFor": "Education and test-prep cohort funnels"
+  },
+  {
+    "constant": "Lok Sabha voter turnout",
+    "typicalValue": "~70%",
+    "usedFor": "Election/civic infrastructure sizing"
+  },
+  {
+    "constant": "Time constants used as if they were data",
+    "typicalValue": "365 days/year; ~250 working days/year; ~260 weekdays + ~105 weekend days/year; 12 months; ~40 weeks of on-campus time per academic year",
+    "usedFor": "Annualising any daily rate; weekday/weekend occupancy splits"
+  },
+  {
+    "constant": "Unit conventions",
+    "typicalValue": "Lakh = 0.1 Mn; Crore = 10 Mn; answers quoted interchangeably in Lakh/Crore and Mn/Bn. USD used for global/pharma/tech cases",
+    "usedFor": "Every answer. Candidates are expected to convert fluently between the two systems mid-sentence"
+  },
+  {
+    "constant": "Sector-level constants supplied by the 27 Panorama reports",
+    "typicalValue": "Each industry primer carries: market structure and concentration (e.g. top-2 share), segment mix percentages, the cost-driver stack as % of total cost, the revenue-driver list, sector-specific KPIs with their definitions and benchmark values, penetration rates vs global comparators, and 4-6 sector-specific jargon definitions",
+    "usedFor": "The book's stated expectation is that candidates memorise the cost-stack shape and the KPI vocabulary of a sector before interviewing for it — enough to hypothesise which cost head is likely broken before asking"
+  }
+]

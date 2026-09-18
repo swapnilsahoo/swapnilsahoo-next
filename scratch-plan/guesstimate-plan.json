@@ -1,0 +1,128 @@
+[
+  {
+    "id": "auto-rickshaws",
+    "question": "How many auto-rickshaws are actually out earning a living on Bengaluru's roads on a typical weekday?",
+    "archetype": "unit-chain-infrastructure",
+    "route": "Hybrid",
+    "difficulty": "Medium",
+    "isExisting": true,
+    "whyIncluded": "Keep as the opener — it is the cleanest demonstration of demand-divided-by-throughput and the existing numbers hold up. Deepen substantially: state the stock-vs-flow boundary explicitly (vehicles on the road, not trips, not registrations), split the fleet into single-shift and double-shift drivers with different daily trip counts, add a genuine supply-side triangulation (registered permits x active share) against the current demand-side route, and run sensitivity on the auto share of motorised trips, which is the shakiest lever and the one nobody defends."
+  },
+  {
+    "id": "mall-outlet-revenue",
+    "question": "What does a single quick-service food outlet in a busy Mumbai mall take in on an average day?",
+    "archetype": "single-asset-revenue",
+    "route": "Bottom-up",
+    "difficulty": "Easy",
+    "isExisting": true,
+    "whyIncluded": "Keep as the bottom-up anchor and the gentlest entry point. Deepen by replacing the single footfall-x-conversion-x-bill chain with the seat-hours route the casebooks actually reward: covers = seats x operating hours x occupancy / average dwell time, so turnover speed becomes visible as mattering as much as seat count. Add a weekday/weekend split, separate dine-in from takeaway ticket sizes, and triangulate the capacity-based answer against the existing footfall-based one — two routes that should converge and are instructive when they do not."
+  },
+  {
+    "id": "bottled-water-urban",
+    "question": "What is a year of packaged drinking water worth at retail in urban India?",
+    "archetype": "population-funnel",
+    "route": "Top-down",
+    "difficulty": "Medium",
+    "isExisting": true,
+    "whyIncluded": "Keep the question, rebuild the method. Currently a flat population x litres x price line with an undefended 15-litres-per-person figure. Deepen into a proper funnel with income-band-varying penetration and different consumption occasions for at-home versus out-of-home, compute volume and value as separate answers, and triangulate against a supply-side route (plants x lines x capacity x utilisation). Also the natural place to teach that a blended price per litre across 250 ml bottles and 20 litre jars is the single most abusable number in the chain."
+  },
+  {
+    "id": "ceiling-fans-stock",
+    "question": "How many ceiling fans are hanging in Indian homes right now?",
+    "archetype": "household-ownership-stock",
+    "route": "Top-down",
+    "difficulty": "Medium",
+    "isExisting": false,
+    "whyIncluded": "The canonical household-to-income-band-to-ownership-rate stock count, which is the second most common shape in both casebooks and absent from the site. Population / household size gives households; urban and rural split into high/mid/low income bands with a different penetration AND a different units-per-owning-household for each; rural gets an electrification gate. Every division is clean. Teaches that the units-per-household assumption, not the penetration rate, is what the answer is most sensitive to — and it is the assumption candidates spend the least time on."
+  },
+  {
+    "id": "helmets-annual-sales",
+    "question": "How many two-wheeler helmets does India buy in a year?",
+    "archetype": "installed-base-replacement",
+    "route": "Hybrid",
+    "difficulty": "Medium",
+    "isExisting": false,
+    "whyIncluded": "Trains stock versus flow, which nothing on the site currently does. Annual sales = existing rider base / replacement cycle + first-fit for new riders, with a compliance/behaviour gate that pure demographics would miss. The credibility marker the books name explicitly is splitting first-time from repeat demand and separating OEM-bundled units from aftermarket purchases; a candidate who computes only the stock and divides by a life has skipped half the answer. Clean arithmetic throughout on a 250 Mn two-wheeler parc and a ~15 Mn annual new-sales flow."
+  },
+  {
+    "id": "airport-runway-throughput",
+    "question": "How many departing passengers can a single-runway airport physically handle on a busy day — and what is the binding constraint?",
+    "archetype": "capacity-bottleneck",
+    "route": "Bottom-up",
+    "difficulty": "Hard",
+    "isExisting": false,
+    "whyIncluded": "The bottleneck archetype, which the books name as one of three canonical bottom-up routes and which the site lacks entirely. Movements per hour per runway x operating hours, halved for departures, x average seats x load factor, with a domestic/international mix carrying different aircraft sizes. The graded insight is naming the runway as the constraint and saying that adding terminal, check-in or parking capacity changes the answer by zero — the single most reusable idea in supply-side sizing, and it transfers directly into the Bhavani Alloys constraint case."
+  },
+  {
+    "id": "active-credit-cards",
+    "question": "How many credit cards in India actually get used in a given month?",
+    "archetype": "penetration-cascade",
+    "route": "Top-down",
+    "difficulty": "Medium",
+    "isExisting": false,
+    "whyIncluded": "The standard shape for all financial-services sizing and completely missing. Population to adults to bank-account penetration split urban and rural, then cards per holder, then the active share. The whole question is built around one boundary trap the books call out by name — issued versus active — plus multi-holding, since one person with three cards must not be counted as three holders. Deliberately chosen because the naive answer is wrong by a factor of two to three and the candidate can feel why."
+  },
+  {
+    "id": "metro-ticketing-revenue",
+    "question": "What does a city metro network collect in fares over a year?",
+    "archetype": "network-price-mix",
+    "route": "Hybrid",
+    "difficulty": "Medium",
+    "isExisting": false,
+    "whyIncluded": "Covers the price-mix split, which nothing on the site touches. Riders to trips per rider per day, then split into two pricing regimes — monthly pass or smart card versus single-journey token — and annualise each at its own effective per-ride price. The move that earns credit is converting a monthly pass price into an implied per-ride value, because pass holders ride far more often and therefore pay far less per ride; averaging the two posted prices gives a badly wrong answer. Also pairs naturally with the runway question as demand-side against supply-side views of the same kind of network."
+  },
+  {
+    "id": "trucking-diesel",
+    "question": "How much diesel does India's long-haul trucking fleet burn in a year?",
+    "archetype": "physical-proxy-consumable",
+    "route": "Hybrid",
+    "difficulty": "Hard",
+    "isExisting": false,
+    "whyIncluded": "The physical-proxy shape the books label the hardest and always reserve for the Difficult slot. The question is only tractable by converting it into a physical unit — vehicle-kilometres — then applying a consumption rate: heavy trucks x annual km x 1/mileage, computed separately for long-haul and regional duty cycles because their annual kilometres differ by three times. Has an unusually satisfying triangulation against national refinery output and the transport sector's known share of it, and the gap between the two routes is itself the teaching moment."
+  },
+  {
+    "id": "coffee-sachets-daily",
+    "question": "How many single-serve instant coffee sachets are sold across India on an average day?",
+    "archetype": "funnel-conversion-fmcg",
+    "route": "Top-down",
+    "difficulty": "Medium",
+    "isExisting": false,
+    "whyIncluded": "The awareness-to-trial-to-repeat funnel that the books state beats pure top-down for any packaged consumer good, and the site has no FMCG shape at all. Population to consuming age band to urban and rural, then different awareness, trial and repeat-purchase rates by geography, then a consumption frequency per repeat user. Teaches that frequency dominates user count — a point the IIMC book makes explicitly and which most candidates invert — and that a tea-drinking base market means the trial rate, not the population, is the binding number."
+  },
+  {
+    "id": "tender-bid-expected-value",
+    "question": "An edtech firm can bid for a three-year state training contract. The bid costs money to prepare and the outcome is uncertain. Is it worth bidding?",
+    "archetype": "expected-value",
+    "route": "Probabilistic",
+    "difficulty": "Medium",
+    "isExisting": false,
+    "whyIncluded": "Not a sizing question at all, and included precisely because both casebooks file expected-value questions under guesstimates and the site therefore trains candidates for the wrong thing. A two-layer probability tree — win or lose the bid, then high or low enrolment if won — with payoffs at each leaf, probability-weighted to an expected value, minus the sunk-if-lost bid cost, plus an explicit decision rule. It is also the natural home for the sensitivity teaching, since the IIMC book's one and only explicit sensitivity check in 457 pages sits in a question of exactly this shape: raise one cost input and the sign of the answer flips."
+  },
+  {
+    "id": "campus-chai",
+    "question": "How many cups of chai does a 1,200-student residential campus get through in a week?",
+    "archetype": "closed-population",
+    "route": "Bottom-up",
+    "difficulty": "Easy",
+    "isExisting": false,
+    "whyIncluded": "The closed-population micro-guesstimate, where local knowledge is legitimately the data and no national constant helps. Segment the campus into consumption-intensity tiers, add faculty, staff and visitors as separate streams each with its own rate, sum, then divide by total headcount as a per-person plausibility test. Teaches multi-stream aggregation, the per-capita reverse check, and quoting the answer as a band rather than a point. Deliberately the most relatable question in the set for a Great Lakes audience, and the best on-ramp for a student who has never done one."
+  },
+  {
+    "id": "audit-capacity-cas",
+    "question": "How many chartered accountants does it take to audit India's active companies each year?",
+    "archetype": "occupational-cohort",
+    "route": "Hybrid",
+    "difficulty": "Hard",
+    "isExisting": false,
+    "whyIncluded": "Chains three divisions in a row — companies to audit-eligible companies to audit hours to practitioner headcount — which is the unit-chain rule the books state as 'always break into people, institutions, assets'. Adds an occupational-cohort layer where sub-segments differ by more than an order of magnitude in hours required: a listed company and a dormant private limited are not comparable units. Also the cleanest illustration of an 80-20 declaration, since the small tail of large companies consumes a disproportionate share of total audit hours and the rest can be simplified after saying so out loud."
+  },
+  {
+    "id": "food-delivery-revenue-pool",
+    "question": "How much revenue — not order value — is there for food-delivery platforms in India in a year?",
+    "archetype": "revenue-pool-take-rate",
+    "route": "Top-down",
+    "difficulty": "Hard",
+    "isExisting": false,
+    "whyIncluded": "The revenue-pool shape, and the hardest scope trap in the set: the question asks for platform revenue and the naive answer gives gross order value, overstating by roughly a factor of five. Funnel from internet users to transacting users to orders per month, times average order value, gives GMV; then platform revenue is commission plus delivery fee plus advertising minus discounts the platform funds itself. Distinguishing GMV from revenue is exactly the credibility marker the books reward in platform cases, and it wires directly into the GhatVyapar profitless-growth case."
+  }
+]

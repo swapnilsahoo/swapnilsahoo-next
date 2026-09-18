@@ -1,0 +1,47 @@
+<section id="activities" class="py-16 sm:py-24 bg-slate-100">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Strategy Workshop & Simulation</h2>
+                    <p class="mt-4 text-lg text-slate-600">Apply what you've learned. Make the strategic calls and see the consequences.</p>
+                </div>
+
+                <!-- Workshop 1: Blockbuster -->
+                <div id="workshop" class="mt-16 bg-white p-6 sm:p-8 rounded-xl shadow-lg mb-12 border-t-4 border-purple-500 transform hover:scale-[1.01] transition-transform duration-300">
+                    <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2">Workshop 1: The "Blockbuster" Dilemma</h3>
+                    <p class="text-slate-600 mb-6 text-sm leading-relaxed">Imagine you are the CEO of 'VideoBarn', the dominant video rental chain in 2005. A small startup called 'Netflix' is mailing DVDs and has started talking about "streaming." What is your strategic move?</p>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <button onclick="showWorkshopResult('A')" class="activity-button workshop-button group"><strong class="group-hover:text-purple-800">A) Double Down:</strong> Invest heavily in improving the in-store experience. More titles, better popcorn.</button>
+                        <button onclick="showWorkshopResult('B')" class="activity-button workshop-button group"><strong class="group-hover:text-purple-800">B) Acquire & Suppress:</strong> Buy the 'Netflix' startup, but slow-walk the transition to protect your profitable stores.</button>
+                        <button onclick="showWorkshopResult('C')" class="activity-button workshop-button group"><strong class="group-hover:text-purple-800">C) Launch a Skunkworks:</strong> Create a separate, independent division to build a competing streaming service.</button>
+                    </div>
+                </div>
+
+                 <!-- Workshop 2: Digital News -->
+                <div id="workshop-news" class="bg-white p-6 sm:p-8 rounded-xl shadow-lg mb-12 border-t-4 border-blue-500 transform hover:scale-[1.01] transition-transform duration-300">
+                    <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2">Workshop 2: The Digital News Dilemma</h3>
+                    <p class="text-slate-600 mb-6 text-sm leading-relaxed">You run a successful regional newspaper with high local readership and ad revenue (circa 2008). Online news sites are gaining traction, often giving away content for free. What's your move?</p>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <button onclick="showNewsWorkshopResult('A')" class="activity-button news-button group"><strong class="group-hover:text-blue-800">A) Defend Print:</strong> Focus resources on making the print newspaper indispensable with exclusive local content.</button>
+                        <button onclick="showNewsWorkshopResult('B')" class="activity-button news-button group"><strong class="group-hover:text-blue-800">B) Cautious Online:</strong> Put some articles online free, keep best for print to protect subscriptions.</button>
+                        <button onclick="showNewsWorkshopResult('C')" class="activity-button news-button group"><strong class="group-hover:text-blue-800">C) Go All-In Digital:</strong> Aggressively build online platform, experiment with digital subscriptions/ads.</button>
+                    </div>
+                </div>
+
+                <!-- Quick Decision: Trade-off -->
+                 <div id="tradeoff-challenge" class="bg-white p-6 sm:p-8 rounded-xl shadow-lg mb-12 border-t-4 border-amber-500 transform hover:scale-[1.01] transition-transform duration-300">
+                    <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2">Quick Decision: The Trade-off Challenge</h3>
+                    <p class="text-slate-600 mb-6 text-sm leading-relaxed">Your budget airline is known for rock-bottom fares. A consultant suggests adding free checked bags and snacks like major carriers to attract more customers. According to Porter, should you do it?</p>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <button onclick="showTradeoffResult('A')" class="activity-button tradeoff-button group"><strong class="group-hover:text-amber-800">A) Yes:</strong> More amenities attract more customers, leading to growth. OE demands matching competitors.</button>
+                        <button onclick="showTradeoffResult('B')" class="activity-button tradeoff-button group"><strong class="group-hover:text-amber-800">B) No:</strong> Adding services blurs our low-cost position, increases complexity/cost, violates necessary trade-offs.</button>
+                    </div>
+                </div>
+
+                <!-- Simulation -->
+                <div id="simulation" class="bg-white p-6 sm:p-8 rounded-xl shadow-lg border-t-4 border-rose-500 transform hover:scale-[1.01] transition-transform duration-300">
+                    <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2">Simulation: Launching "Phoenix Motors" (Expanded)</h3>
+                    <p class="text-slate-600 mb-6 text-sm leading-relaxed">You are launching a new electric car company in a market dominated by legacy automakers. You have limited capital. Choose your path step-by-step.</p>
+                    <div id="simulation-container" class="space-y-6"></div>
+                </div>
+            </div>
+        </section>
