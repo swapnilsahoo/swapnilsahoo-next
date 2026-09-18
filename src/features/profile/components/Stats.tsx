@@ -3,7 +3,7 @@ import { stats } from "@/features/profile/data/stats";
 
 export function Stats() {
   return (
-    <section className="mb-20">
+    <section className="mb-12 md:mb-14">
       <Container className="max-w-[min(100%,120rem)]">
         <div className="glass-card grid grid-cols-2 gap-6 p-8 text-center md:grid-cols-5 md:p-10 md:text-left">
           {stats.map((stat) => (

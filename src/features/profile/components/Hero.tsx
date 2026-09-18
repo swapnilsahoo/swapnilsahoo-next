@@ -8,7 +8,7 @@ import { AffiliationMarquee } from "./AffiliationMarquee";
 
 export function Hero() {
   return (
-    <header id="top" className="relative overflow-x-clip pt-14 pb-16 md:pt-20 md:pb-24">
+    <header id="top" className="relative overflow-x-clip pt-12 pb-12 md:pt-16 md:pb-16">
       <div className="aurora" />
       <Container className="grid max-w-[min(100%,120rem)] items-center gap-10 md:grid-cols-12">
         <Reveal className="md:col-span-8">
@@ -30,8 +30,7 @@ export function Hero() {
           <p className="text-ink-700 dark:text-ink-200 mb-8 max-w-2xl text-lg leading-relaxed md:text-xl">
             Before joining academia, I spent 17 years in strategic roles at Wipro, Accenture,
             Cognizant, Exilant, TimesofMoney, Mahindra and 42Gears Mobility. That experience now
-            shapes my research on how
-            organisations act when resources are tight and the way I teach{" "}
+            shapes my research on how organisations act when resources are tight and the way I teach{" "}
             <strong>
               Strategy &amp; Entrepreneurship at Great Lakes Institute of Management, Gurgaon, where
               I head the Entrepreneurship and AI initiatives.
@@ -62,7 +61,7 @@ export function Hero() {
             </a>
           </div>
 
-          <div className="mt-12">
+          <div className="mt-9">
             <p className="eyebrow mb-4">The organisations that shaped my work</p>
             <AffiliationMarquee />
           </div>

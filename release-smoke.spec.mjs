@@ -836,6 +836,11 @@ test("Entrepreneurship shelf · complete SSR library, filters and progressive re
     await expect(page.locator(`[data-shelf-category="${category}"]:visible`)).toHaveCount(4);
   }
 
+  const booksRail = main.getByRole("list", {
+    name: "Books recommendations. Scroll horizontally to browse.",
+  });
+  expect(await booksRail.evaluate((rail) => rail.scrollWidth > rail.clientWidth)).toBe(true);
+
   const search = main.getByLabel("Search titles, creators, years, or commentary");
   await search.fill("Theranos");
   await expect(main.getByRole("status")).toContainText("Showing 1 of 1");
@@ -845,7 +850,7 @@ test("Entrepreneurship shelf · complete SSR library, filters and progressive re
   await main.getByRole("button", { name: "Movies 14", exact: true }).click();
   await expect(main.getByRole("status")).toContainText("Showing 12 of 14");
   await expect(page.locator('[data-shelf-category="movies"]:visible')).toHaveCount(12);
-  await main.getByRole("button", { name: "Show more recommendations", exact: true }).click();
+  await main.getByRole("button", { name: "Show more", exact: true }).click();
   await expect(page.locator('[data-shelf-category="movies"]:visible')).toHaveCount(14);
   await expect(main.getByRole("status")).toContainText("Showing 14 of 14");
 

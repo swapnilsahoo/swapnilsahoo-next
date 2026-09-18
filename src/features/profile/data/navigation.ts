@@ -281,9 +281,5 @@ export const moreDropdown: NavDropdown = {
 export const compactMoreDropdown: NavDropdown = {
   label: "More",
   href: moreDropdown.href,
-  items: [
-    ...entrepreneurshipDropdown.items,
-    ...secondaryNavLinks,
-    ...moreDropdown.items,
-  ],
+  items: [...entrepreneurshipDropdown.items, ...secondaryNavLinks, ...moreDropdown.items],
 };

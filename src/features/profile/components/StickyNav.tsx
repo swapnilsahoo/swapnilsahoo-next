@@ -7,6 +7,7 @@ import {
   compactMoreDropdown,
   entrepreneurshipDropdown,
   moreDropdown,
+  phdDropdown,
   placementsDropdown,
   researchDropdown,
   secondaryNavLinks,
@@ -17,8 +18,7 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { NavDropdownMenu } from "./NavDropdownMenu";
 import { MobileNav } from "./MobileNav";
 
-const navItemClassName =
-  "link-underline inline-flex min-h-11 items-center rounded-lg px-3 py-1.5";
+const navItemClassName = "link-underline inline-flex min-h-11 items-center rounded-lg px-3 py-1.5";
 
 function NavTextLink({ link }: { link: NavLink }) {
   if (!link.href.startsWith("/")) {
@@ -70,6 +70,7 @@ export function StickyNav() {
         <div className="hidden items-center gap-1 text-[13px] font-medium whitespace-nowrap lg:flex xl:hidden">
           <NavTextLink link={aboutNavLink} />
           <NavDropdownMenu dropdown={researchDropdown} />
+          <NavDropdownMenu dropdown={phdDropdown} />
           <NavDropdownMenu dropdown={teachingDropdown} />
           <NavDropdownMenu dropdown={placementsDropdown} />
           <NavDropdownMenu dropdown={aiDropdown} />
@@ -80,6 +81,7 @@ export function StickyNav() {
         <div className="hidden items-center gap-1 text-[13px] font-medium whitespace-nowrap xl:flex">
           <NavTextLink link={aboutNavLink} />
           <NavDropdownMenu dropdown={researchDropdown} />
+          <NavDropdownMenu dropdown={phdDropdown} />
           <NavDropdownMenu dropdown={teachingDropdown} />
           <NavDropdownMenu dropdown={placementsDropdown} />
           <NavDropdownMenu dropdown={entrepreneurshipDropdown} />

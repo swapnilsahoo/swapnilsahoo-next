@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 import {
@@ -8,6 +9,7 @@ import {
   aiDropdown,
   entrepreneurshipDropdown,
   moreDropdown,
+  phdDropdown,
   placementsDropdown,
   researchDropdown,
   secondaryNavLinks,
@@ -20,6 +22,7 @@ const mobileLinks: Array<NavLink & { group: string }> = [
   { ...aboutNavLink, group: "Profile" },
   ...secondaryNavLinks.map((link) => ({ ...link, group: "Profile" })),
   ...researchDropdown.items.map((link) => ({ ...link, group: "Research" })),
+  ...phdDropdown.items.map((link) => ({ ...link, group: "PhD" })),
   ...teachingDropdown.items.map((link) => ({ ...link, group: "Teaching" })),
   ...placementsDropdown.items.map((link) => ({ ...link, group: "Placements" })),
   ...entrepreneurshipDropdown.items.map((link) => ({ ...link, group: "Entrepreneurship" })),
@@ -60,8 +63,12 @@ function MobileLink({
     );
   }
 
+  // The whole panel stays mounted (just visually hidden via aria-hidden/inert)
+  // so every group's links render at all times. Default Link prefetch would
+  // eagerly prefetch all of them on mount; we disable that here and prefetch
+  // once the menu is actually opened instead (see MobileNav below).
   return (
-    <Link href={link.href} className={className} onClick={onNavigate}>
+    <Link href={link.href} prefetch={false} className={className} onClick={onNavigate}>
       {link.label}
     </Link>
   );
@@ -71,6 +78,21 @@ export function MobileNav() {
   const [open, setOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const router = useRouter();
+  const prefetched = useRef(false);
+
+  // Prefetch every mobile nav link only once the menu is actually opened,
+  // instead of the whole always-mounted panel prefetching on page load.
+  useEffect(() => {
+    if (!open || prefetched.current) return;
+    prefetched.current = true;
+    for (const link of mobileLinks) {
+      if (!link.external && link.href.startsWith("/")) router.prefetch(link.href);
+      for (const child of link.children ?? []) {
+        if (!child.external && child.href.startsWith("/")) router.prefetch(child.href);
+      }
+    }
+  }, [open, router]);
 
   useEffect(() => {
     if (!open) return;
@@ -100,6 +122,7 @@ export function MobileNav() {
   const groups = [
     "Profile",
     "Research",
+    "PhD",
     "Teaching",
     "Placements",
     "Entrepreneurship",
@@ -109,6 +132,7 @@ export function MobileNav() {
   const groupHref: Record<(typeof groups)[number], string | null> = {
     Profile: null,
     Research: researchDropdown.href,
+    PhD: phdDropdown.href,
     Teaching: teachingDropdown.href,
     Placements: placementsDropdown.href,
     Entrepreneurship: entrepreneurshipDropdown.href,

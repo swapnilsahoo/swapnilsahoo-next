@@ -57,7 +57,7 @@ function ShelfCard({ item, index }: { item: ShelfItem; index: number }) {
           </div>
         )}
       </div>
-      <div className="flex flex-1 flex-col p-6">
+      <div className="flex flex-1 flex-col p-5">
         <span className="text-ink-400 font-mono text-xs">{String(index + 1).padStart(2, "0")}</span>
         <h4 className="mt-3 font-serif text-xl font-semibold">{item.title}</h4>
         <p className="text-ink-500 dark:text-ink-400 mt-1 text-xs font-semibold tracking-wide uppercase">
@@ -138,7 +138,7 @@ export function ShelfLibrary({ groups, totalCount }: { groups: ShelfGroup[]; tot
   };
 
   return (
-    <section aria-labelledby="shelf-library-title" className="py-16 sm:py-24">
+    <section aria-labelledby="shelf-library-title" className="py-12 sm:py-16">
       <Container className="max-w-[min(100%,120rem)]">
         <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
           <div className="max-w-3xl">
@@ -236,7 +236,7 @@ export function ShelfLibrary({ groups, totalCount }: { groups: ShelfGroup[]; tot
           </div>
         ) : null}
 
-        <div className="mt-12 space-y-16">
+        <div className="mt-10 space-y-10 lg:space-y-12">
           {groups.map((group) => {
             const groupHasMatch = matchingEntries.some((entry) => entry.group.id === group.id);
             const groupHasVisibleItem = visibleEntries.some((entry) => entry.group.id === group.id);
@@ -250,7 +250,7 @@ export function ShelfLibrary({ groups, totalCount }: { groups: ShelfGroup[]; tot
                 className="scroll-mt-28"
                 data-shelf-group={group.id}
               >
-                <div className="mb-8 max-w-3xl">
+                <div className="mb-5 max-w-3xl">
                   <p className="eyebrow mb-3">{group.eyebrow}</p>
                   <h3
                     id={`${group.id}-title`}
@@ -263,14 +263,19 @@ export function ShelfLibrary({ groups, totalCount }: { groups: ShelfGroup[]; tot
                   </p>
                 </div>
 
-                <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" role="list">
+                <ul
+                  className="focus-visible:ring-brand-500 flex snap-x snap-mandatory items-stretch gap-4 overflow-x-auto overscroll-x-contain scroll-smooth pb-4 focus-visible:rounded-xl focus-visible:ring-2 focus-visible:outline-none"
+                  role="list"
+                  tabIndex={0}
+                  aria-label={`${group.label} recommendations. Scroll horizontally to browse.`}
+                >
                   {group.items.map((item, index) => {
                     const key = `${group.id}:${item.title}`;
                     return (
                       <li
                         key={item.title}
                         hidden={!matchingKeys.has(key) || !visibleKeys.has(key)}
-                        className="h-full min-w-0"
+                        className="w-[82vw] max-w-[19rem] shrink-0 snap-start sm:w-[17rem] lg:w-[18rem]"
                         data-shelf-item={item.title}
                         data-shelf-category={group.id}
                       >
@@ -291,7 +296,7 @@ export function ShelfLibrary({ groups, totalCount }: { groups: ShelfGroup[]; tot
               onClick={() => setRevealStep((step) => step + 1)}
               className="bg-ink-950 focus-visible:ring-brand-500 inline-flex min-h-12 items-center justify-center rounded-xl px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 focus-visible:ring-2 focus-visible:outline-none dark:bg-white dark:text-slate-950"
             >
-              Show more recommendations
+              Show more
             </button>
           </div>
         ) : null}

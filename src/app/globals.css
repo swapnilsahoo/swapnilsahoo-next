@@ -705,6 +705,35 @@ main [class*="text-[11px]"] {
   background: var(--surface);
 }
 
+/* Keep long editorial pages dense enough to scan on desktop. Individual sections
+   retain their mobile rhythm; only the oversized desktop padding steps are capped. */
+@media (min-width: 48.001rem) {
+  main :where(section, header)[class*="py-16"] {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  main :where(section, header)[class*="py-20"] {
+    padding-top: 3.5rem !important;
+    padding-bottom: 3.5rem !important;
+  }
+
+  main :where(section, header)[class*="py-24"] {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+
+  main :where(section, header)[class*="py-28"] {
+    padding-top: 4.5rem !important;
+    padding-bottom: 4.5rem !important;
+  }
+
+  main :where(section, header)[class*="py-32"] {
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+  }
+}
+
 @media (max-width: 48rem) {
   body {
     background-attachment: scroll;

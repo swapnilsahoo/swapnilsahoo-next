@@ -9,7 +9,10 @@ import { testimonials } from "@/features/profile/data/testimonials";
 function TestimonialCard({ testimonial }: { testimonial: (typeof testimonials)[number] }) {
   return (
     <figure className="glass-card flex h-full w-72 shrink-0 snap-start flex-col p-6 sm:w-80">
-      <span className="text-brand-300 dark:text-brand-700 font-serif text-4xl leading-none" aria-hidden="true">
+      <span
+        className="text-brand-300 dark:text-brand-700 font-serif text-4xl leading-none"
+        aria-hidden="true"
+      >
         &ldquo;
       </span>
       <blockquote className="text-ink-700 dark:text-ink-200 mt-2 flex-1 text-sm leading-relaxed">
@@ -33,7 +36,7 @@ export function Testimonials() {
 
   return (
     <Reveal>
-      <section id="testimonials" className="mb-16">
+      <section id="testimonials" className="mb-12">
         <Container className="max-w-[min(100%,120rem)]">
           <div className="mb-8 grid gap-10 md:grid-cols-12">
             <div className="md:col-span-4">
@@ -50,7 +53,7 @@ export function Testimonials() {
             </p>
           </div>
 
-          <div className="-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 [scrollbar-width:thin]">
+          <div className="-mx-6 flex snap-x snap-mandatory [scrollbar-width:thin] gap-4 overflow-x-auto px-6 pb-2">
             {visible.map((testimonial) => (
               <TestimonialCard key={testimonial.name} testimonial={testimonial} />
             ))}

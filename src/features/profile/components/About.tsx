@@ -11,7 +11,7 @@ import {
 export function About() {
   return (
     <Reveal>
-      <section id="about" className="mb-16">
+      <section id="about" className="mb-12">
         <Container className="max-w-[min(100%,120rem)]">
           <div className="grid gap-10 md:grid-cols-12">
             <div className="md:col-span-4">
