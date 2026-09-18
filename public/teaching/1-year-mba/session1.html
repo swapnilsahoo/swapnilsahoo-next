@@ -185,13 +185,16 @@
                 <h1 class="text-xl font-bold text-slate-900 hidden sm:block">What is Strategy?</h1>
                 <div class="hidden md:flex space-x-8">
                     <a href="#q1" class="nav-link text-sm font-medium">What is Strategy?</a>
+                    <a href="#authors" class="nav-link text-sm font-medium">The Articles</a>
                     <a href="#cases" class="nav-link text-sm font-medium">Fallen Giants</a>
                     <a href="#lenses" class="nav-link text-sm font-medium">Two Lenses</a>
                     <a href="#positioning-examples" class="nav-link text-sm font-medium">Positioning</a>
                     <a href="#fit-examples" class="nav-link text-sm font-medium">Fit</a>
+                    <a href="#examples" class="nav-link text-sm font-medium">Ten Positions</a>
                     <a href="#q2" class="nav-link text-sm font-medium">Why Need It?</a>
                     <a href="#q3" class="nav-link text-sm font-medium">How Made?</a>
                     <a href="#tesla" class="nav-link text-sm font-medium">Tesla</a>
+                    <a href="#exhibits" class="nav-link text-sm font-medium">Exhibits</a>
                     <a href="#activities" class="nav-link text-sm font-medium">Activities</a>
                     <a href="#quiz" class="nav-link text-sm font-medium">Quiz</a>
                 </div>
@@ -199,13 +202,16 @@
                     <select id="mobile-nav" class="block w-auto rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-xs py-1 px-2">
                         <option value="#top">Top</option>
                         <option value="#q1">What is Strategy?</option>
+                        <option value="#authors">The three articles</option>
                         <option value="#cases">Fallen Giants</option>
                         <option value="#lenses">Two Lenses</option>
                         <option value="#positioning-examples">Positioning</option>
                         <option value="#fit-examples">Fit</option>
+                        <option value="#examples">Ten positions</option>
                         <option value="#q2">Why Need It?</option>
                         <option value="#q3">How Made?</option>
                         <option value="#tesla">Tesla</option>
+                        <option value="#exhibits">Exhibit workshop</option>
                         <option value="#activities">Activities</option>
                         <option value="#quiz">Quiz</option>
                         <option value="#check">Concept Check</option>
@@ -322,6 +328,173 @@
   </div>
 </section>
 
+<section id="authors" class="py-16 sm:py-24 bg-white border-y border-slate-200">
+  <div class="container mx-auto px-6">
+    <div class="max-w-3xl">
+      <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">The three articles</p>
+      <h2 class="mt-2 text-3xl md:text-4xl font-bold text-slate-900">One question each</h2>
+      <p class="mt-4 text-slate-600 leading-relaxed">
+        Porter answers <em>what is strategy</em>. Collis and Rukstad give the test for <em>why a firm needs one</em>.
+        Mintzberg answers <em>how strategy is actually made</em>. Each tab rebuilds that author's central diagram
+        so you can work it rather than read it.
+      </p>
+    </div>
+
+    <!-- tab bar -->
+    <div class="mt-8 flex flex-wrap gap-2 border-b border-slate-200" role="tablist" aria-label="The three articles">
+      <button type="button" role="tab" data-author="porter" aria-selected="true"
+        class="author-tab -mb-px border-b-2 border-blue-600 px-4 py-2.5 text-sm font-semibold text-blue-700">
+        Porter 1996
+      </button>
+      <button type="button" role="tab" data-author="collis" aria-selected="false"
+        class="author-tab -mb-px border-b-2 border-transparent px-4 py-2.5 text-sm font-semibold text-slate-500 hover:text-slate-800">
+        Collis &amp; Rukstad 2008
+      </button>
+      <button type="button" role="tab" data-author="mintzberg" aria-selected="false"
+        class="author-tab -mb-px border-b-2 border-transparent px-4 py-2.5 text-sm font-semibold text-slate-500 hover:text-slate-800">
+        Mintzberg 1987
+      </button>
+    </div>
+
+    <!-- ============ PORTER ============ -->
+    <div class="author-panel mt-8" data-panel="porter">
+      <div class="grid gap-6 lg:grid-cols-[1.1fr_.9fr]">
+        <div>
+          <h3 class="text-xl font-bold text-slate-900">The activity system</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+            Porter's claim is that advantage lives in how activities <em>reinforce each other</em>, not in any
+            one of them. Click a node to see what it supports. A rival copying one node gains almost nothing,
+            because the node's value comes from the ones it is tied to.
+          </p>
+          <div class="mt-4 rounded-xl bg-blue-50 border border-blue-200 p-4">
+            <p class="text-sm text-blue-900" id="porterNodeInfo">
+              Select any activity in the map to trace its connections.
+            </p>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <button type="button" id="porterCopyOne"
+              class="rounded-lg border border-slate-300 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50">
+              A rival copies one activity
+            </button>
+            <button type="button" id="porterCopyThree"
+              class="rounded-lg border border-slate-300 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50">
+              A rival copies three
+            </button>
+            <button type="button" id="porterReset"
+              class="rounded-lg border border-slate-300 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50">
+              Reset
+            </button>
+          </div>
+          <p class="mt-3 text-xs text-slate-500" id="porterCopyMsg"></p>
+        </div>
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+          <svg id="porterMap" viewBox="0 0 520 420" class="w-full h-auto" role="img"
+               aria-label="Activity system map: low-cost airline">
+            <g id="porterEdges" stroke="#cbd5e1" stroke-width="1.5"></g>
+            <g id="porterNodes"></g>
+          </svg>
+          <p class="px-2 pb-1 text-[11px] text-slate-500">
+            Redrawn for this session in the form Porter uses. Core choices in dark, supporting activities in light.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-6 grid gap-4 md:grid-cols-3">
+        <div class="rounded-xl border border-slate-200 p-4">
+          <p class="font-semibold text-slate-900 text-sm">First-order fit</p>
+          <p class="mt-1 text-sm text-slate-600">Each activity is consistent with the strategy. Copyable one at a time.</p>
+        </div>
+        <div class="rounded-xl border border-slate-200 p-4">
+          <p class="font-semibold text-slate-900 text-sm">Second-order fit</p>
+          <p class="mt-1 text-sm text-slate-600">Activities reinforce one another. The whole exceeds the sum.</p>
+        </div>
+        <div class="rounded-xl border border-slate-200 p-4">
+          <p class="font-semibold text-slate-900 text-sm">Third-order fit</p>
+          <p class="mt-1 text-sm text-slate-600">Effort is optimised across activities. Hardest of all to imitate.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ COLLIS & RUKSTAD ============ -->
+    <div class="author-panel mt-8 hidden" data-panel="collis">
+      <div class="grid gap-6 lg:grid-cols-2">
+        <div>
+          <h3 class="text-xl font-bold text-slate-900">What a strategy statement is, and is not</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+            Collis and Rukstad's dirty little secret: most executives cannot state the objective, scope and
+            advantage of their business in one simple sentence. Everything above strategy in this hierarchy is
+            useful; none of it tells anyone what to refuse.
+          </p>
+          <div class="mt-5 space-y-2">
+            <div class="rounded-lg border border-slate-200 bg-slate-50 p-3">
+              <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Mission</p>
+              <p class="text-sm text-slate-600">Why we exist</p>
+            </div>
+            <div class="rounded-lg border border-slate-200 bg-slate-50 p-3">
+              <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Values</p>
+              <p class="text-sm text-slate-600">What we believe and how we behave</p>
+            </div>
+            <div class="rounded-lg border border-slate-200 bg-slate-50 p-3">
+              <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Vision</p>
+              <p class="text-sm text-slate-600">What we want to be</p>
+            </div>
+            <div class="rounded-lg border-2 border-blue-500 bg-blue-50 p-3">
+              <p class="text-xs font-semibold uppercase tracking-wider text-blue-700">Strategy</p>
+              <p class="text-sm text-blue-900 font-medium">What our competitive game plan will be &mdash; objective, scope, advantage</p>
+            </div>
+            <div class="rounded-lg border border-slate-200 bg-slate-50 p-3">
+              <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Scorecard</p>
+              <p class="text-sm text-slate-600">How we track and implement it</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold text-slate-900">Test a statement</h3>
+          <p class="mt-2 text-sm text-slate-600">Pick one and see which of the three elements it actually contains.</p>
+          <div class="mt-4 space-y-2" id="collisSamples"></div>
+          <div class="mt-4 rounded-xl border border-slate-200 p-4">
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Verdict</p>
+            <div id="collisVerdict" class="mt-2 text-sm text-slate-600">Choose a statement above.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ MINTZBERG ============ -->
+    <div class="author-panel mt-8 hidden" data-panel="mintzberg">
+      <div class="grid gap-6 lg:grid-cols-[.9fr_1.1fr]">
+        <div>
+          <h3 class="text-xl font-bold text-slate-900">How strategy actually forms</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+            Mintzberg's diagram: intended strategy either gets realised or does not, and meanwhile patterns
+            form through action that nobody intended. What the firm actually did is almost always a blend.
+            Move the slider to see the two extremes, and why neither is realistic.
+          </p>
+          <label class="mt-5 block">
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">
+              How much of the realised strategy was planned?
+            </span>
+            <input id="mintzSlider" type="range" min="0" max="100" value="55" class="mt-2 w-full">
+          </label>
+          <p class="mt-1 text-sm font-semibold text-slate-800"><span id="mintzPct">55</span>% deliberate</p>
+          <div class="mt-4 rounded-xl bg-amber-50 border border-amber-200 p-4">
+            <p class="text-sm text-amber-900" id="mintzVerdict"></p>
+          </div>
+        </div>
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+          <svg id="mintzMap" viewBox="0 0 520 300" class="w-full h-auto" role="img"
+               aria-label="Mintzberg model of deliberate and emergent strategy">
+          </svg>
+          <p class="px-2 pb-1 text-[11px] text-slate-500">
+            Redrawn for this session from Mintzberg's account of strategy formation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <section id="cases" class="py-16 sm:py-24 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center max-w-3xl mx-auto mb-16">
@@ -333,6 +506,7 @@
                 <div id="nokia" class="mb-20 grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-12 items-start bg-slate-50 p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200">
                     <div class="lg:col-span-2 space-y-4">
                         <h3 class="text-2xl font-bold text-cyan-700 mb-2">1. Nokia: Connecting People... Then Disconnecting</h3>
+<div class="mt-2 flex flex-wrap gap-1.5"><span class="rounded-full bg-blue-100 px-2.5 py-1 text-[10px] font-semibold text-blue-800">Porter &middot; OE mistaken for position</span><span class="rounded-full bg-amber-100 px-2.5 py-1 text-[10px] font-semibold text-amber-800">Mintzberg &middot; emergent ideas suppressed</span></div>
                          <h4 class="text-lg font-semibold text-slate-800">How did the undisputed king of mobile phones lose its crown almost overnight?</h4>
                          
                          <img src="https://placehold.co/600x400/0891b2/ffffff?text=Nokia+Legacy" alt="Vintage Nokia phone illustration" class="rounded-lg shadow-md w-full my-4">
@@ -375,6 +549,7 @@
                  <div id="kodak" class="mb-20 grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-12 items-start bg-slate-50 p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200">
                      <div class="lg:col-span-2 space-y-4">
                         <h3 class="text-2xl font-bold text-amber-600 mb-2">2. Kodak: Blinded by Success</h3>
+<div class="mt-2 flex flex-wrap gap-1.5"><span class="rounded-full bg-blue-100 px-2.5 py-1 text-[10px] font-semibold text-blue-800">Porter &middot; refused the trade-off</span><span class="rounded-full bg-amber-100 px-2.5 py-1 text-[10px] font-semibold text-amber-800">Mintzberg &middot; deliberate plan killed the emergent one</span></div>
                          <h4 class="text-lg font-semibold text-slate-800">How could the company that invented digital photography be bankrupted by it?</h4>
                          
                          <img src="https://placehold.co/600x400/d97706/ffffff?text=Kodak+Legacy" alt="Vintage Kodak camera illustration" class="rounded-lg shadow-md w-full my-4">
@@ -414,6 +589,7 @@
                 <div id="yahoo" class="mb-10 grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-12 items-start bg-slate-50 p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200">
                      <div class="lg:col-span-2 space-y-4">
                         <h3 class="text-2xl font-bold text-indigo-600 mb-2">3. Yahoo!: Lost in Translation</h3>
+<div class="mt-2 flex flex-wrap gap-1.5"><span class="rounded-full bg-blue-100 px-2.5 py-1 text-[10px] font-semibold text-blue-800">Porter &middot; stuck in the middle, no fit</span><span class="rounded-full bg-emerald-100 px-2.5 py-1 text-[10px] font-semibold text-emerald-800">Collis &amp; Rukstad &middot; could not state a scope</span></div>
                          <h4 class="text-lg font-semibold text-slate-800">Why did the internet's original directory fail to navigate the rise of search and social media?</h4>
                          
                          <img src="https://placehold.co/600x400/4f46e5/ffffff?text=Yahoo+Legacy" alt="Vintage Yahoo homepage illustration" class="rounded-lg shadow-md w-full my-4">
@@ -662,6 +838,43 @@
              </div>
         </section>
 
+<section id="examples" class="py-16 sm:py-24">
+  <div class="container mx-auto px-6">
+    <div class="max-w-3xl">
+      <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Ten positions worth knowing</p>
+      <h2 class="mt-2 text-3xl md:text-4xl font-bold text-slate-900">Who refuses what</h2>
+      <p class="mt-4 text-slate-600 leading-relaxed">
+        Every firm below is famous for what it will not do. Open one to see the refusal, the trade-off that
+        protects it, and the reason a rival cannot simply add the same thing on Monday morning. Judge each one
+        yourself before you open it.
+      </p>
+    </div>
+
+    <div class="mt-8 flex flex-wrap gap-2 border-b border-slate-200" role="tablist" aria-label="Example sets">
+      <button type="button" role="tab" data-ex="global" aria-selected="true"
+        class="ex-tab -mb-px border-b-2 border-blue-600 px-4 py-2.5 text-sm font-semibold text-blue-700">
+        Five global
+      </button>
+      <button type="button" role="tab" data-ex="india" aria-selected="false"
+        class="ex-tab -mb-px border-b-2 border-transparent px-4 py-2.5 text-sm font-semibold text-slate-500 hover:text-slate-800">
+        Five Indian
+      </button>
+    </div>
+
+    <div id="exGrid" class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3"></div>
+
+    <div class="mt-8 rounded-2xl border border-slate-200 bg-white p-6">
+      <h3 class="font-bold text-slate-900">The pattern across all ten</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+        None of these firms is defined by being better. Each is defined by a refusal that costs it something
+        real and would cost a rival more. When you cannot name what a firm refuses, you are usually looking at
+        operational effectiveness wearing the word strategy.
+      </p>
+    </div>
+  </div>
+</section>
+
+
 <section id="q2" class="bg-white border-y border-slate-200">
   <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
     <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Question 02 &middot; Collis &amp; Rukstad (2008)</p>
@@ -833,6 +1046,142 @@
     </div>
   </div>
 </section>
+
+<section id="exhibits" class="py-16 sm:py-24">
+  <div class="container mx-auto px-6">
+    <div class="max-w-3xl">
+      <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">The exhibit workshop &middot; 22 minutes</p>
+      <h2 class="mt-2 text-3xl md:text-4xl font-bold text-slate-900">Is the chief executive right?</h2>
+      <p class="mt-4 text-slate-600 leading-relaxed">
+        It is early 2018. You sit on the board of an established carmaker. Your chief executive says:
+        <em>&ldquo;Tesla loses money on every car it sells. We are profitable. There is nothing here to learn.&rdquo;</em>
+        You have the case exhibits in front of you. Decide.
+      </p>
+      <p class="mt-3 text-sm text-slate-500">
+        Figures are from the assigned case workbook, FY2017, $ millions. Compute before you reveal &mdash;
+        the reveal is worth nothing if you have not committed to an answer first.
+      </p>
+    </div>
+
+    <!-- Exhibit 2: competitor financials -->
+    <div class="mt-8 bg-white border border-slate-200 rounded-2xl overflow-hidden">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 px-5 py-4">
+        <h3 class="font-bold text-slate-900">Exhibit 2 &middot; Selected competitor financials, FY2017</h3>
+        <button id="revealMargins" type="button"
+          class="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800">
+          Reveal the three columns
+        </button>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full min-w-[46rem] text-left text-sm">
+          <thead class="bg-slate-50 text-xs uppercase tracking-wider text-slate-500">
+            <tr>
+              <th class="px-4 py-3">Firm</th>
+              <th class="px-4 py-3 text-right">Revenue</th>
+              <th class="px-4 py-3 text-right">Gross profit</th>
+              <th class="px-4 py-3 text-right">R&amp;D</th>
+              <th class="px-4 py-3 text-right">Operating income</th>
+              <th class="px-4 py-3 text-right calc-col">Gross margin</th>
+              <th class="px-4 py-3 text-right calc-col">Operating margin</th>
+              <th class="px-4 py-3 text-right calc-col">R&amp;D % rev</th>
+            </tr>
+          </thead>
+          <tbody id="marginBody" class="divide-y divide-slate-100"></tbody>
+          <tfoot class="bg-slate-50 font-semibold">
+            <tr>
+              <td class="px-4 py-3" colspan="5">Median, excluding Tesla</td>
+              <td class="px-4 py-3 text-right calc-col" id="medGM">&mdash;</td>
+              <td class="px-4 py-3 text-right calc-col" id="medOM">&mdash;</td>
+              <td class="px-4 py-3 text-right calc-col" id="medRD">&mdash;</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+    <!-- Findings -->
+    <div id="findings" class="mt-6 grid gap-4 md:grid-cols-3" hidden>
+      <div class="bg-white border border-slate-200 rounded-xl p-5">
+        <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Finding 1</p>
+        <p class="mt-2 font-bold text-slate-900">Ordinary at the gross line</p>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+          Tesla's gross margin is 18.9% against an incumbent median of 17.7% &mdash; below Honda's 22.4%
+          and Daimler's 20.0%. Whatever is happening here, it is not that Tesla builds cars unusually
+          profitably.
+        </p>
+      </div>
+      <div class="bg-white border border-slate-200 rounded-xl p-5">
+        <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Finding 2</p>
+        <p class="mt-2 font-bold text-slate-900">The loss is a spending choice</p>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+          From 18.9% gross to &minus;13.7% operating is a fall of 32.6 points. R&amp;D alone is 11.7% of
+          revenue, <strong>2.3&times;</strong> the 5.1% median &mdash; on a revenue base one-tenth the size.
+          That is a decision, not a manufacturing failure.
+        </p>
+      </div>
+      <div class="bg-white border border-slate-200 rounded-xl p-5">
+        <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Finding 3</p>
+        <p class="mt-2 font-bold text-slate-900">Meanwhile it took the segment</p>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+          Model S volume rose 76% from 2014 to 2016 while nine established rivals fell 25% between them,
+          in a segment that shrank 8%. Share went from 16.7% to 31.9%.
+        </p>
+      </div>
+    </div>
+
+    <!-- Exhibit 1: segment -->
+    <div class="mt-6 bg-white border border-slate-200 rounded-2xl overflow-hidden">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 px-5 py-4">
+        <h3 class="font-bold text-slate-900">Exhibit 1 &middot; US large luxury sedans, unit sales</h3>
+        <span class="text-xs text-slate-500">Segment total fell 8% over the period</span>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full min-w-[34rem] text-left text-sm">
+          <thead class="bg-slate-50 text-xs uppercase tracking-wider text-slate-500">
+            <tr>
+              <th class="px-4 py-3">Model</th>
+              <th class="px-4 py-3 text-right">2014</th>
+              <th class="px-4 py-3 text-right">2016</th>
+              <th class="px-4 py-3 text-right">Change</th>
+              <th class="px-4 py-3 text-right">Share 2016</th>
+            </tr>
+          </thead>
+          <tbody id="segBody" class="divide-y divide-slate-100"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- The argument -->
+    <div class="mt-6 bg-slate-900 text-slate-100 rounded-2xl p-6 sm:p-7">
+      <h3 class="font-bold text-white">What the numbers do and do not settle</h3>
+      <p class="mt-3 text-sm leading-relaxed text-slate-300">
+        The chief executive is reading an income statement as if it were a strategy. The loss is what
+        holding the position costs; the volume shift is what it buys. Whether that trade is worth making
+        is the argument &mdash; that it <em>is</em> a trade rather than incompetence is the finding.
+      </p>
+      <p class="mt-3 text-sm leading-relaxed text-slate-300">
+        The opposite case is also defensible, and you should be able to make it: a firm losing 13.7% at the
+        operating line on one-tenth the revenue has proved nothing durable, and one model in one segment in
+        one country is thin evidence. Note that the BMW 7-Series rose 33% over the same period.
+      </p>
+      <div class="mt-5 grid gap-3 sm:grid-cols-3 text-sm">
+        <div class="rounded-xl bg-white/5 p-4">
+          <p class="font-semibold text-white">Name the refusal</p>
+          <p class="mt-1 text-slate-400">What is Tesla choosing not to do that every rival does?</p>
+        </div>
+        <div class="rounded-xl bg-white/5 p-4">
+          <p class="font-semibold text-white">Name who pays</p>
+          <p class="mt-1 text-slate-400">Buyers, suppliers, shareholders, employees &mdash; which, and how?</p>
+        </div>
+        <div class="rounded-xl bg-white/5 p-4">
+          <p class="font-semibold text-white">Give the number</p>
+          <p class="mt-1 text-slate-400">What figure would change your recommendation?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <section id="activities" class="py-16 sm:py-24 bg-slate-100">
             <div class="container mx-auto px-6">
@@ -1592,6 +1941,475 @@ QUIZ.forEach((item,i)=>{
   quizEl.appendChild(card);
 });
 })();
+</script>
+<script>
+(function(){
+  var FIRMS = [
+    ["Audi",72199.8,12109.8,4310.8,6624.6],
+    ["BMW",118489.4,22055.7,4423.6,11642.7],
+    ["Daimler",197322.3,39440.4,7084.5,15563.2],
+    ["Fiat Chrysler",133028.3,20359.0,3746.4,8447.4],
+    ["Ford",156776.0,16579.0,8000.0,5052.0],
+    ["GM",145588.0,20164.0,7300.0,10703.0],
+    ["Honda",125553.4,28101.8,6429.3,7540.0],
+    ["Nissan",105112.5,20605.3,6240.7,6656.8],
+    ["Tesla",11758.8,2222.5,1378.1,-1606.3]
+  ];
+  var SEG = [
+    ["Tesla Model S",16698,29421],["Mercedes-Benz S-Class",24524,18803],
+    ["BMW 7-Series",9744,12918],["Lexus LS",8559,5514],["Audi A7",8133,6558],
+    ["BMW 6-Series",8647,3950],["Mercedes-Benz CLS-Class",7595,2571],
+    ["Audi A8",5904,4149],["Porsche Panamera",5740,4403],["Jaguar XJ",4329,3834]
+  ];
+  var body = document.getElementById("marginBody");
+  var segBody = document.getElementById("segBody");
+  if (!body || !segBody) return;
+
+  function fmt(n){ return n.toLocaleString("en-US",{maximumFractionDigits:0}); }
+  function pct(n){ return n.toFixed(1) + "%"; }
+
+  FIRMS.forEach(function(f){
+    var name=f[0], rev=f[1], gp=f[2], rd=f[3], oi=f[4];
+    var isT = name === "Tesla";
+    var tr = document.createElement("tr");
+    if (isT) tr.className = "bg-amber-50";
+    tr.innerHTML =
+      '<td class="px-4 py-2.5 font-medium' + (isT ? " text-amber-900" : "") + '">' + name + '</td>' +
+      '<td class="px-4 py-2.5 text-right tabular-nums">' + fmt(rev) + '</td>' +
+      '<td class="px-4 py-2.5 text-right tabular-nums">' + fmt(gp) + '</td>' +
+      '<td class="px-4 py-2.5 text-right tabular-nums">' + fmt(rd) + '</td>' +
+      '<td class="px-4 py-2.5 text-right tabular-nums">' + fmt(oi) + '</td>' +
+      '<td class="px-4 py-2.5 text-right tabular-nums calc-col text-slate-400">&mdash;</td>' +
+      '<td class="px-4 py-2.5 text-right tabular-nums calc-col text-slate-400">&mdash;</td>' +
+      '<td class="px-4 py-2.5 text-right tabular-nums calc-col text-slate-400">&mdash;</td>';
+    body.appendChild(tr);
+  });
+
+  var seg16 = SEG.reduce(function(a,r){ return a + r[2]; }, 0);
+  SEG.forEach(function(r){
+    var isT = r[0].indexOf("Tesla") === 0;
+    var chg = (r[2]/r[1] - 1) * 100;
+    var tr = document.createElement("tr");
+    if (isT) tr.className = "bg-amber-50";
+    tr.innerHTML =
+      '<td class="px-4 py-2.5 font-medium' + (isT ? " text-amber-900" : "") + '">' + r[0] + '</td>' +
+      '<td class="px-4 py-2.5 text-right tabular-nums">' + fmt(r[1]) + '</td>' +
+      '<td class="px-4 py-2.5 text-right tabular-nums">' + fmt(r[2]) + '</td>' +
+      '<td class="px-4 py-2.5 text-right tabular-nums ' +
+        (chg >= 0 ? "text-emerald-700" : "text-rose-600") + '">' +
+        (chg >= 0 ? "+" : "") + chg.toFixed(0) + '%</td>' +
+      '<td class="px-4 py-2.5 text-right tabular-nums">' + (100*r[2]/seg16).toFixed(1) + '%</td>';
+    segBody.appendChild(tr);
+  });
+
+  function median(a){
+    var s = a.slice().sort(function(x,y){ return x-y; });
+    var m = Math.floor(s.length/2);
+    return s.length % 2 ? s[m] : (s[m-1]+s[m])/2;
+  }
+
+  var btn = document.getElementById("revealMargins");
+  if (!btn) return;
+  btn.addEventListener("click", function(){
+    var rows = body.querySelectorAll("tr");
+    var gms=[], oms=[], rds=[];
+    FIRMS.forEach(function(f,i){
+      var rev=f[1], gm=f[2]/rev*100, om=f[4]/rev*100, rd=f[3]/rev*100;
+      if (f[0] !== "Tesla"){ gms.push(gm); oms.push(om); rds.push(rd); }
+      var cells = rows[i].querySelectorAll(".calc-col");
+      cells[0].innerHTML = pct(gm);
+      cells[1].innerHTML = pct(om);
+      cells[2].innerHTML = pct(rd);
+      cells[0].className = "px-4 py-2.5 text-right tabular-nums calc-col font-semibold";
+      cells[1].className = "px-4 py-2.5 text-right tabular-nums calc-col font-semibold " +
+        (om < 0 ? "text-rose-600" : "");
+      cells[2].className = "px-4 py-2.5 text-right tabular-nums calc-col font-semibold " +
+        (rd > 8 ? "text-amber-700" : "");
+    });
+    document.getElementById("medGM").innerHTML = pct(median(gms));
+    document.getElementById("medOM").innerHTML = pct(median(oms));
+    document.getElementById("medRD").innerHTML = pct(median(rds));
+    var f = document.getElementById("findings");
+    if (f) f.hidden = false;
+    btn.disabled = true;
+    btn.textContent = "Revealed";
+    btn.className = "rounded-lg bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-500";
+  });
+})();
+
+</script>
+<script>
+(function () {
+  // ---------- tab switching ----------
+  var tabs = document.querySelectorAll(".author-tab");
+  var panels = document.querySelectorAll(".author-panel");
+  if (!tabs.length) return;
+  tabs.forEach(function (t) {
+    t.addEventListener("click", function () {
+      var key = t.dataset.author;
+      tabs.forEach(function (x) {
+        var on = x === t;
+        x.setAttribute("aria-selected", on ? "true" : "false");
+        x.className = "author-tab -mb-px border-b-2 px-4 py-2.5 text-sm font-semibold " +
+          (on ? "border-blue-600 text-blue-700"
+              : "border-transparent text-slate-500 hover:text-slate-800");
+      });
+      panels.forEach(function (p) {
+        p.classList.toggle("hidden", p.dataset.panel !== key);
+      });
+    });
+  });
+
+  // ---------- Porter activity system ----------
+  var NODES = [
+    { id: "price",  x: 260, y: 40,  r: 42, core: true,  label: "Very low\nticket prices" },
+    { id: "freq",   x: 100, y: 130, r: 40, core: true,  label: "Frequent,\nreliable\ndepartures" },
+    { id: "util",   x: 420, y: 130, r: 38, core: true,  label: "High aircraft\nutilisation" },
+    { id: "crew",   x: 260, y: 175, r: 40, core: true,  label: "Lean, productive\nground crews" },
+    { id: "fleet",  x: 420, y: 265, r: 36, core: false, label: "Standard\n737 fleet" },
+    { id: "nomeal", x: 90,  y: 250, r: 32, core: false, label: "No meals" },
+    { id: "noseat", x: 175, y: 305, r: 34, core: false, label: "No seat\nassignments" },
+    { id: "nobag",  x: 300, y: 330, r: 36, core: false, label: "No baggage\ntransfers" },
+    { id: "point",  x: 55,  y: 190, r: 34, core: false, label: "Point-to-point\nshort haul" },
+    { id: "auto",   x: 410, y: 355, r: 34, core: false, label: "Automated\nticketing" }
+  ];
+  var EDGES = [
+    ["price","freq"],["price","crew"],["price","nomeal"],["price","noseat"],["price","auto"],
+    ["freq","crew"],["freq","point"],["freq","util"],
+    ["crew","util"],["crew","nobag"],["crew","noseat"],["crew","fleet"],
+    ["util","fleet"],["util","nobag"],
+    ["point","nobag"],["fleet","crew"]
+  ];
+  var REINFORCES = {
+    price:  "Low fares are only sustainable because meals, seat assignments and baggage transfers were removed, and because automated ticketing cut distribution cost.",
+    freq:   "Frequent departures need fast turnarounds, which need lean crews; point-to-point routing avoids waiting on connecting traffic.",
+    util:   "Aircraft earn only when flying. Utilisation depends on turnaround speed, which depends on the crew and on one aircraft type.",
+    crew:   "The crew is the hinge of the whole system: it enables turnaround speed, which enables utilisation, which enables the fare.",
+    fleet:  "One aircraft type simplifies maintenance, training and scheduling, which is what lets a small crew turn a plane quickly.",
+    nomeal: "No catering means no galley loading, which removes minutes from every turnaround.",
+    noseat: "No seat assignments speeds boarding, which shortens the turnaround.",
+    nobag:  "No baggage transfers is what makes point-to-point viable, and removes the slowest step in a turnaround.",
+    point:  "Point-to-point routing avoids the connection waits a hub imposes, protecting departure reliability.",
+    auto:   "Automated ticketing removes agent commission, supporting the fare directly."
+  };
+  var svg = document.getElementById("porterMap");
+  if (svg) {
+    var gE = document.getElementById("porterEdges");
+    var gN = document.getElementById("porterNodes");
+    var byId = {};
+    NODES.forEach(function (n) { byId[n.id] = n; });
+    var NS = "http://www.w3.org/2000/svg";
+
+    EDGES.forEach(function (e, i) {
+      var a = byId[e[0]], b = byId[e[1]];
+      var l = document.createElementNS(NS, "line");
+      l.setAttribute("x1", a.x); l.setAttribute("y1", a.y);
+      l.setAttribute("x2", b.x); l.setAttribute("y2", b.y);
+      l.dataset.a = e[0]; l.dataset.b = e[1];
+      l.setAttribute("class", "porter-edge");
+      gE.appendChild(l);
+    });
+
+    NODES.forEach(function (n) {
+      var g = document.createElementNS(NS, "g");
+      g.setAttribute("class", "porter-node");
+      g.setAttribute("tabindex", "0");
+      g.setAttribute("role", "button");
+      g.dataset.id = n.id;
+      g.style.cursor = "pointer";
+
+      var c = document.createElementNS(NS, "circle");
+      c.setAttribute("cx", n.x); c.setAttribute("cy", n.y); c.setAttribute("r", n.r);
+      c.setAttribute("fill", n.core ? "#1e3a8a" : "#e0e7ff");
+      c.setAttribute("stroke", n.core ? "#1e3a8a" : "#a5b4fc");
+      c.setAttribute("stroke-width", "1.5");
+      g.appendChild(c);
+
+      var lines = n.label.split("\n");
+      lines.forEach(function (ln, i) {
+        var t = document.createElementNS(NS, "text");
+        t.setAttribute("x", n.x);
+        t.setAttribute("y", n.y + (i - (lines.length - 1) / 2) * 10 + 3);
+        t.setAttribute("text-anchor", "middle");
+        t.setAttribute("font-size", "8.5");
+        t.setAttribute("fill", n.core ? "#ffffff" : "#1e3a8a");
+        t.setAttribute("font-weight", n.core ? "600" : "500");
+        t.textContent = ln;
+        g.appendChild(t);
+      });
+      gN.appendChild(g);
+
+      function select() {
+        gE.querySelectorAll("line").forEach(function (l) {
+          var on = l.dataset.a === n.id || l.dataset.b === n.id;
+          l.setAttribute("stroke", on ? "#2563eb" : "#e2e8f0");
+          l.setAttribute("stroke-width", on ? "2.5" : "1.2");
+        });
+        gN.querySelectorAll("g").forEach(function (o) {
+          var connected = EDGES.some(function (e) {
+            return (e[0] === n.id && e[1] === o.dataset.id) || (e[1] === n.id && e[0] === o.dataset.id);
+          });
+          o.style.opacity = (o.dataset.id === n.id || connected) ? "1" : "0.35";
+        });
+        var info = document.getElementById("porterNodeInfo");
+        if (info) info.textContent = REINFORCES[n.id];
+      }
+      g.addEventListener("click", select);
+      g.addEventListener("keydown", function (ev) {
+        if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); select(); }
+      });
+    });
+
+    function resetMap() {
+      gE.querySelectorAll("line").forEach(function (l) {
+        l.setAttribute("stroke", "#cbd5e1"); l.setAttribute("stroke-width", "1.5");
+      });
+      gN.querySelectorAll("g").forEach(function (o) { o.style.opacity = "1"; });
+      var msg = document.getElementById("porterCopyMsg");
+      if (msg) msg.textContent = "";
+      var info = document.getElementById("porterNodeInfo");
+      if (info) info.textContent = "Select any activity in the map to trace its connections.";
+    }
+
+    function dim(ids, message) {
+      resetMap();
+      gN.querySelectorAll("g").forEach(function (o) {
+        if (ids.indexOf(o.dataset.id) === -1) o.style.opacity = "0.25";
+      });
+      gE.querySelectorAll("line").forEach(function (l) {
+        var on = ids.indexOf(l.dataset.a) > -1 && ids.indexOf(l.dataset.b) > -1;
+        l.setAttribute("stroke", on ? "#16a34a" : "#e2e8f0");
+        l.setAttribute("stroke-width", on ? "2.5" : "1.2");
+      });
+      var msg = document.getElementById("porterCopyMsg");
+      if (msg) msg.textContent = message;
+    }
+
+    var b1 = document.getElementById("porterCopyOne");
+    var b3 = document.getElementById("porterCopyThree");
+    var br = document.getElementById("porterReset");
+    if (b1) b1.addEventListener("click", function () {
+      dim(["nomeal"], "Copied: no meals. It buys a few minutes of turnaround and nothing else, because the crew, the fleet and the routing that convert those minutes into utilisation are all still missing. One node, almost no gain.");
+    });
+    if (b3) b3.addEventListener("click", function () {
+      dim(["nomeal", "noseat", "auto"], "Copied: no meals, no seat assignments, automated ticketing. Three real cost savings — and still no fare advantage, because none of them touches utilisation. Porter's point: partial imitation buys partial cost and none of the position.");
+    });
+    if (br) br.addEventListener("click", resetMap);
+  }
+
+  // ---------- Collis & Rukstad statement tester ----------
+  var SAMPLES = [
+    { t: "To be the world's most customer-centric company.",
+      o: false, s: false, a: false,
+      v: "A mission, not a strategy. No measurable objective, no scope, and 'customer-centric' is something every rival also claims." },
+    { t: "Grow revenue 20% a year by serving conservative individual investors in suburban and rural areas, through face-to-face advisers in local one-broker offices.",
+      o: true, s: true, a: true,
+      v: "All three. A dated objective, a scope that names who is served and by implication who is not, and an advantage that is delivered by a specific activity choice rather than asserted." },
+    { t: "To deliver world-class quality and innovation across all our markets.",
+      o: false, s: false, a: false,
+      v: "None of the three. 'All our markets' is the opposite of scope, and no rival would claim the reverse." },
+    { t: "Double market share in urban India by 2029, in entry-level two-wheelers only, by being the lowest-cost manufacturer in the segment.",
+      o: true, s: true, a: true,
+      v: "All three, and the scope does the hardest work: 'entry-level only' is a refusal a product manager can act on." }
+  ];
+  var wrap = document.getElementById("collisSamples");
+  if (wrap) {
+    SAMPLES.forEach(function (s, i) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "w-full rounded-lg border border-slate-300 p-3 text-left text-sm hover:bg-slate-50";
+      b.textContent = s.t;
+      b.addEventListener("click", function () {
+        wrap.querySelectorAll("button").forEach(function (x) {
+          x.className = "w-full rounded-lg border border-slate-300 p-3 text-left text-sm hover:bg-slate-50";
+        });
+        b.className = "w-full rounded-lg border-2 border-blue-500 bg-blue-50 p-3 text-left text-sm";
+        function chip(on, label) {
+          return '<span class="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold ' +
+            (on ? "bg-emerald-100 text-emerald-800" : "bg-rose-100 text-rose-700") + '">' +
+            (on ? "✓ " : "✗ ") + label + "</span>";
+        }
+        document.getElementById("collisVerdict").innerHTML =
+          '<div class="flex flex-wrap gap-2">' + chip(s.o, "Objective") + chip(s.s, "Scope") + chip(s.a, "Advantage") + "</div>" +
+          '<p class="mt-3 leading-relaxed">' + s.v + "</p>";
+      });
+      wrap.appendChild(b);
+    });
+  }
+
+  // ---------- Mintzberg slider ----------
+  var slider = document.getElementById("mintzSlider");
+  var mSvg = document.getElementById("mintzMap");
+  if (slider && mSvg) {
+    var NS2 = "http://www.w3.org/2000/svg";
+    function draw(pct) {
+      var del = pct / 100;
+      var eme = 1 - del;
+      mSvg.innerHTML = "";
+      function box(x, y, w, h, fill, stroke, label, sub) {
+        var g = document.createElementNS(NS2, "g");
+        var r = document.createElementNS(NS2, "rect");
+        r.setAttribute("x", x); r.setAttribute("y", y);
+        r.setAttribute("width", w); r.setAttribute("height", h);
+        r.setAttribute("rx", 8);
+        r.setAttribute("fill", fill); r.setAttribute("stroke", stroke); r.setAttribute("stroke-width", 1.5);
+        g.appendChild(r);
+        var t = document.createElementNS(NS2, "text");
+        t.setAttribute("x", x + w / 2); t.setAttribute("y", y + (sub ? h / 2 - 2 : h / 2 + 4));
+        t.setAttribute("text-anchor", "middle"); t.setAttribute("font-size", "11");
+        t.setAttribute("font-weight", "600"); t.setAttribute("fill", "#0f172a");
+        t.textContent = label; g.appendChild(t);
+        if (sub) {
+          var t2 = document.createElementNS(NS2, "text");
+          t2.setAttribute("x", x + w / 2); t2.setAttribute("y", y + h / 2 + 12);
+          t2.setAttribute("text-anchor", "middle"); t2.setAttribute("font-size", "9");
+          t2.setAttribute("fill", "#475569"); t2.textContent = sub; g.appendChild(t2);
+        }
+        mSvg.appendChild(g);
+      }
+      function arrow(x1, y1, x2, y2, w, colour, label) {
+        var l = document.createElementNS(NS2, "line");
+        l.setAttribute("x1", x1); l.setAttribute("y1", y1);
+        l.setAttribute("x2", x2); l.setAttribute("y2", y2);
+        l.setAttribute("stroke", colour); l.setAttribute("stroke-width", Math.max(1.5, w));
+        l.setAttribute("stroke-linecap", "round");
+        mSvg.appendChild(l);
+        if (label) {
+          var t = document.createElementNS(NS2, "text");
+          t.setAttribute("x", (x1 + x2) / 2); t.setAttribute("y", (y1 + y2) / 2 - 6);
+          t.setAttribute("text-anchor", "middle"); t.setAttribute("font-size", "9");
+          t.setAttribute("fill", colour); t.setAttribute("font-weight", "600");
+          t.textContent = label; mSvg.appendChild(t);
+        }
+      }
+      box(20, 30, 120, 44, "#dbeafe", "#3b82f6", "Intended", "strategy");
+      box(360, 110, 130, 48, "#dcfce7", "#16a34a", "Realised", "what the firm did");
+      box(20, 200, 120, 44, "#fee2e2", "#ef4444", "Unrealised", "never happened");
+      box(150, 240, 150, 44, "#fef3c7", "#f59e0b", "Emergent", "patterns that formed");
+
+      arrow(140, 52, 360, 128, 1.5 + del * 7, "#2563eb", "deliberate");
+      arrow(80, 74, 80, 200, 1.5 + eme * 5, "#ef4444", "");
+      arrow(300, 262, 400, 158, 1.5 + eme * 7, "#f59e0b", "emergent");
+    }
+    function verdict(p) {
+      if (p >= 95) return "A purely deliberate strategy requires the world to behave exactly as forecast and the organisation to learn nothing along the way. Mintzberg's point is that this almost never happens.";
+      if (p <= 5) return "A purely emergent strategy means no intention at all — the firm is only ever reacting. Also rare, and not something to aspire to.";
+      if (p >= 70) return "Plan-led, with some learning. Typical of stable industries. The risk is that the firm stops noticing the patterns forming outside the plan.";
+      if (p <= 30) return "Learning-led. Typical of young firms and fast-moving markets. The risk is that nobody can say what the firm is refusing to do.";
+      return "The realistic case: roughly half the realised strategy was intended, the rest formed through action and was adopted once it worked. Recognising which is which is the managerial skill.";
+    }
+    function update() {
+      var p = Number(slider.value);
+      document.getElementById("mintzPct").textContent = p;
+      document.getElementById("mintzVerdict").textContent = verdict(p);
+      draw(p);
+    }
+    slider.addEventListener("input", update);
+    update();
+  }
+})();
+
+</script>
+<script>
+(function () {
+  var EX = {
+    global: [
+      { n: "IKEA", tag: "Variety + cost", pos: "Flat-pack, self-service furniture at a price no full-service retailer can match.",
+        refuse: "Delivery, assembly, sales assistance, and city-centre locations.",
+        fit: "Modular design makes flat packing possible; flat packing makes out-of-town warehouses viable; warehouses make self-selection necessary; self-selection removes the sales floor.",
+        why: "A department store adding flat-pack keeps its rent, its delivery fleet and its sales staff. It gets the cost of the choice without the saving." },
+      { n: "Southwest Airlines", tag: "Access + cost", pos: "Short-haul, point-to-point flying at bus-like fares.",
+        refuse: "Meals, seat assignments, baggage transfers, hubs, and more than one aircraft type.",
+        fit: "One fleet type speeds turnarounds; fast turnarounds raise utilisation; utilisation funds the fare; point-to-point avoids connection waits.",
+        why: "Continental tried it as Continental Lite and stopped. A full-service carrier cannot drop baggage transfer on some routes without breaking the hub it depends on elsewhere." },
+      { n: "Vanguard", tag: "Needs-based", pos: "Low-cost index investing owned by its own funds.",
+        refuse: "Star managers, active trading, and sales commissions.",
+        fit: "Mutual ownership removes the profit motive that would push fees up; index tracking removes research cost; low turnover removes trading cost.",
+        why: "An active manager cutting fees to match Vanguard destroys the revenue that pays the managers who justify the fee." },
+      { n: "In-N-Out Burger", tag: "Variety + focus", pos: "A tiny menu, fresh never frozen, in a handful of states.",
+        refuse: "Franchising, freezers, national expansion, and menu extensions.",
+        fit: "No freezers forces supply within a day's drive of a distribution centre; that limit forces geographic concentration; concentration keeps quality consistent.",
+        why: "A national chain matching the menu still has a frozen supply chain, because its footprint requires one." },
+      { n: "Aravind Eye Care", tag: "Access + cost", pos: "High-volume cataract surgery, free for those who cannot pay, funded by those who can.",
+        refuse: "Surgeon-paced scheduling, a single price, and low throughput.",
+        fit: "Assembly-line theatre design raises surgeon throughput; throughput lowers unit cost; low cost makes cross-subsidy viable; volume produces surgical quality.",
+        why: "A conventional hospital adding free patients simply adds cost, because its theatres are not built to run at that rate." }
+    ],
+    india: [
+      { n: "Reliance Jio", tag: "Access", pos: "All-IP 4G built nationwide before selling a single subscription.",
+        refuse: "Legacy 2G and 3G networks, and gradual regional rollout.",
+        fit: "Greenfield all-IP means no legacy maintenance; national scale at launch makes free introductory pricing survivable; data-only design fits the smartphone era.",
+        why: "Incumbents carried 2G and 3G estates they could not abandon and could not cheaply match free data against." },
+      { n: "Zerodha", tag: "Cost", pos: "Flat-fee discount broking with no relationship managers.",
+        refuse: "Percentage brokerage, advisory services, and a branch network.",
+        fit: "No advice means no advisers; no advisers means no branches; no branches means the flat fee clears cost; software substitutes for people.",
+        why: "A full-service broker matching the flat fee destroys the commission that funds its advisers, who are the reason clients came." },
+      { n: "Nirma", tag: "Cost", pos: "Detergent for households that had never bought detergent.",
+        refuse: "Premium formulation, urban-first distribution, and expensive media.",
+        fit: "Simple formulation lowers input cost; low cost enables rural pricing; rural focus avoids competing where incumbents were strong.",
+        why: "An established brand cutting price cannibalises its own premium volume, which is where its profit sits." },
+      { n: "Amul", tag: "Needs-based", pos: "A farmer-owned cooperative capturing the margin normally taken by intermediaries.",
+        refuse: "Private ownership, and buying milk on the open market.",
+        fit: "Farmer ownership secures supply; secure supply supports a national brand; brand scale funds procurement reach; procurement reach deepens ownership.",
+        why: "A private dairy cannot promise farmers the surplus, because its shareholders are the ones expecting it." },
+      { n: "Dabbawalas of Mumbai", tag: "Access", pos: "Home-cooked lunch delivered across a city at near-perfect reliability.",
+        refuse: "Cooking, refrigeration, motorised transport for the main leg, and written tracking.",
+        fit: "Not cooking removes kitchens entirely; a coded marking system removes literacy as a constraint; rail plus handcart removes traffic risk; local recruitment supplies trust.",
+        why: "A logistics firm can buy vans and software and still not have the neighbourhood relationships the system runs on." }
+    ]
+  };
+
+  var grid = document.getElementById("exGrid");
+  var tabs = document.querySelectorAll(".ex-tab");
+  if (!grid || !tabs.length) return;
+
+  function render(set) {
+    grid.innerHTML = "";
+    EX[set].forEach(function (e) {
+      var card = document.createElement("div");
+      card.className = "rounded-2xl border border-slate-200 bg-white p-5 flex flex-col";
+      card.innerHTML =
+        '<div class="flex items-start justify-between gap-3">' +
+          '<h3 class="font-bold text-slate-900">' + e.n + "</h3>" +
+          '<span class="shrink-0 rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-slate-600">' + e.tag + "</span>" +
+        "</div>" +
+        '<p class="mt-2 text-sm text-slate-600 leading-relaxed">' + e.pos + "</p>" +
+        '<button type="button" class="ex-open mt-4 self-start rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50">' +
+          "What does it refuse?" +
+        "</button>" +
+        '<div class="ex-body mt-4 space-y-3 border-t border-slate-200 pt-4" hidden>' +
+          '<div><p class="text-[10px] font-semibold uppercase tracking-wider text-rose-600">Refuses</p>' +
+            '<p class="mt-1 text-sm text-slate-700">' + e.refuse + "</p></div>" +
+          '<div><p class="text-[10px] font-semibold uppercase tracking-wider text-blue-600">The fit</p>' +
+            '<p class="mt-1 text-sm text-slate-700">' + e.fit + "</p></div>" +
+          '<div><p class="text-[10px] font-semibold uppercase tracking-wider text-emerald-700">Why copying fails</p>' +
+            '<p class="mt-1 text-sm text-slate-700">' + e.why + "</p></div>" +
+        "</div>";
+      var btn = card.querySelector(".ex-open");
+      var body = card.querySelector(".ex-body");
+      btn.addEventListener("click", function () {
+        body.hidden = !body.hidden;
+        btn.textContent = body.hidden ? "What does it refuse?" : "Hide";
+      });
+      grid.appendChild(card);
+    });
+  }
+
+  tabs.forEach(function (t) {
+    t.addEventListener("click", function () {
+      tabs.forEach(function (x) {
+        var on = x === t;
+        x.setAttribute("aria-selected", on ? "true" : "false");
+        x.className = "ex-tab -mb-px border-b-2 px-4 py-2.5 text-sm font-semibold " +
+          (on ? "border-blue-600 text-blue-700" : "border-transparent text-slate-500 hover:text-slate-800");
+      });
+      render(t.dataset.ex);
+    });
+  });
+
+  render("global");
+})();
+
 </script>
 </body>
 </html>
