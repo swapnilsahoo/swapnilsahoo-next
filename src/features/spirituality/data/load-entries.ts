@@ -865,6 +865,17 @@ const ALL_SECTIONS = "All sections";
 const DEFAULT_PAGE_SIZE = 12;
 const SAHASRANAMA_PAGE_SIZE = 50;
 
+/**
+ * Hard server-side ceiling on entries per response. Set to the largest page the
+ * reader itself ever asks for, so a crafted `?limit=` cannot pull the corpus
+ * down in fewer round trips than the UI would.
+ */
+const MAX_PAGE_SIZE = SAHASRANAMA_PAGE_SIZE;
+
+/** Bounds on free-text parameters, applied before any scan of the corpus. */
+const MAX_QUERY_LENGTH = 120;
+const MAX_PARAM_LENGTH = 200;
+
 function hasDistinctStudyRows(entry: ReaderEntry) {
   if (entry.words.length !== 1) return entry.words.length > 0;
 
@@ -944,23 +955,27 @@ export async function queryScriptureEntries(
   }: ScriptureEntryQuery
 ): Promise<ScriptureEntryQueryResult> {
   const entries = await loadScriptureEntries(slug);
-  const requestedEntry = entryId
-    ? entries.find((entry) => entry.id === entryId)
+  const safeEntryId = entryId?.slice(0, MAX_PARAM_LENGTH);
+  const safeSection = section.slice(0, MAX_PARAM_LENGTH);
+  const requestedEntry = safeEntryId
+    ? entries.find((entry) => entry.id === safeEntryId)
     : Number.isInteger(sequence)
       ? entries.find((entry) => entry.sequence === sequence)
       : undefined;
 
-  if (entryId || Number.isInteger(sequence)) {
+  if (safeEntryId || Number.isInteger(sequence)) {
     return requestedEntry
       ? { entries: [requestedEntry], focusId: requestedEntry.id, total: 1 }
       : { entries: [], total: 0 };
   }
 
-  const normalizedQuery = query.trim().toLocaleLowerCase().slice(0, 120);
-  const safeLimit = Math.min(Math.max(Math.trunc(limit), 1), 100);
-  const safeOffset = Math.max(Math.trunc(offset), 0);
+  const normalizedQuery = query.trim().toLocaleLowerCase().slice(0, MAX_QUERY_LENGTH);
+  const safeLimit = Number.isFinite(limit)
+    ? Math.min(Math.max(Math.trunc(limit), 1), MAX_PAGE_SIZE)
+    : DEFAULT_PAGE_SIZE;
+  const safeOffset = Number.isFinite(offset) ? Math.max(Math.trunc(offset), 0) : 0;
   const filteredEntries = entries.filter((entry) => {
-    if (section !== ALL_SECTIONS && entry.section !== section) return false;
+    if (safeSection !== ALL_SECTIONS && entry.section !== safeSection) return false;
     if (!normalizedQuery) return true;
 
     return [

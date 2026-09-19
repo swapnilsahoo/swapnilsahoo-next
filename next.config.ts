@@ -1,5 +1,14 @@
 import type { NextConfig } from "next";
 
+import {
+  API_SECURITY_HEADERS,
+  APP_CSP_HEADER,
+  APP_SOURCE,
+  BASE_SECURITY_HEADERS,
+  DECK_CSP_HEADER,
+  STATIC_DECK_SOURCE,
+} from "./security-headers";
+
 const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/*": ["./content/scriptures/**/*"],
@@ -15,31 +24,12 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
-      {
-        source: "/:path*",
-        headers: [
-          {
-            key: "X-Content-Type-Options",
-            value: "nosniff",
-          },
-          {
-            key: "Referrer-Policy",
-            value: "strict-origin-when-cross-origin",
-          },
-          {
-            key: "X-Frame-Options",
-            value: "SAMEORIGIN",
-          },
-          {
-            key: "Permissions-Policy",
-            value: "camera=(), microphone=(), geolocation=(), browsing-topics=()",
-          },
-          {
-            key: "X-DNS-Prefetch-Control",
-            value: "on",
-          },
-        ],
-      },
+      { source: "/:path*", headers: BASE_SECURITY_HEADERS },
+      // Exactly one of the next two matches any given path, so a response never
+      // carries two Content-Security-Policy headers.
+      { source: STATIC_DECK_SOURCE, headers: [DECK_CSP_HEADER] },
+      { source: APP_SOURCE, headers: [APP_CSP_HEADER] },
+      { source: "/api/:path*", headers: API_SECURITY_HEADERS },
     ];
   },
   async redirects() {
