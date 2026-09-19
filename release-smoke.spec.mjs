@@ -367,7 +367,7 @@ test("Karma Yoga branches · nested desktop and mobile navigation", async ({ pag
   await page.goto(`${baseUrl}/teaching/karma-yoga`, { waitUntil: "domcontentloaded" });
 
   const primaryNav = page.getByRole("navigation", { name: "Primary navigation" });
-  const teachingTrigger = primaryNav.getByRole("button", { name: "Teaching", exact: true });
+  const teachingTrigger = primaryNav.getByRole("button", { name: "Teaching submenu", exact: true });
   const menuId = await teachingTrigger.getAttribute("aria-controls");
   expect(menuId).toBeTruthy();
   await teachingTrigger.hover();
@@ -496,7 +496,7 @@ test("Comics & Fiction branches · page and navigation", async ({ page }) => {
   }
 
   const primaryNav = page.getByRole("navigation", { name: "Primary navigation" });
-  const moreTrigger = primaryNav.getByRole("button", { name: "More", exact: true });
+  const moreTrigger = primaryNav.getByRole("button", { name: "More submenu", exact: true });
   const menuId = await moreTrigger.getAttribute("aria-controls");
   expect(menuId).toBeTruthy();
   await moreTrigger.hover();
@@ -598,7 +598,9 @@ test("Homepage gallery · AOM 2026 event photographs", async ({ page }) => {
   await page.goto(`${baseUrl}/#gallery`, { waitUntil: "domcontentloaded" });
 
   const gallery = page.getByRole("region", { name: "Fieldwork and teaching gallery" });
-  const firstSlide = gallery.getByRole("group", { name: "1 of 27", exact: true });
+  // Matches the slide's position, not the gallery total, so adding photographs
+  // does not break these assertions.
+  const firstSlide = gallery.getByRole("group", { name: /^1 of \d+$/ });
   const photo = firstSlide.getByRole("img", {
     name: /Swapnil Sahoo with four fellow Academy of Management attendees at AOM 2026/,
   });
@@ -627,7 +629,7 @@ test("Homepage gallery · AOM 2026 event photographs", async ({ page }) => {
 
   await gallery.getByRole("button", { name: "Go to slide 2", exact: true }).click();
 
-  const secondSlide = gallery.getByRole("group", { name: "2 of 27", exact: true });
+  const secondSlide = gallery.getByRole("group", { name: /^2 of \d+$/ });
   const sessionPhoto = secondSlide.getByRole("img", {
     name: /AOM 2026 participants gathered around a conference table/,
   });
@@ -637,26 +639,56 @@ test("Homepage gallery · AOM 2026 event photographs", async ({ page }) => {
     "true"
   );
   await expect(sessionPhoto).toBeVisible();
-  await expect(secondSlide).toContainText("Dean Shepherd, Madeline Toubiana and Raj Shankar");
+  // Asserted name by name rather than as one phrase, so re-wording the caption
+  // or adding panelists does not break the test.
+  await expect(secondSlide).toContainText("Dean Shepherd");
+  await expect(secondSlide).toContainText("Madeline Toubiana");
+  await expect(secondSlide).toContainText("Raj Krishnan Shankar");
   await expect(secondSlide).toContainText("Trenton Williams");
   await expect(secondSlide).toContainText("Golshan Javadian");
   await expect(secondSlide.getByRole("link")).toHaveCount(0);
 
   await gallery.getByRole("button", { name: "Go to slide 3", exact: true }).click();
 
-  const thirdSlide = gallery.getByRole("group", { name: "3 of 27", exact: true });
-  const presentationPhoto = thirdSlide.getByRole("img", {
-    name: /Swapnil Sahoo presenting Reconstructing Entrepreneurship Under Constraint at AOM 2026/,
+  const thirdSlide = gallery.getByRole("group", { name: /^3 of \d+$/ });
+  const workshopPhoto = thirdSlide.getByRole("img", {
+    name: /Dean Shepherd and fellow scholars during the AOM 2026 Global Scholar Development/,
   });
 
   await expect(gallery.getByRole("button", { name: "Go to slide 3", exact: true })).toHaveAttribute(
     "aria-current",
     "true"
   );
-  await expect(presentationPhoto).toBeVisible();
-  await expect(thirdSlide).toContainText("Presenting entrepreneurship under constraint");
-  await expect(thirdSlide).toContainText("co-authored with Munish Thakur");
+  await expect(workshopPhoto).toBeVisible();
+  await expect(thirdSlide).toContainText("Paper development workshop in progress");
+  await expect(thirdSlide).toContainText("Dean Shepherd");
   await expect(thirdSlide.getByRole("link")).toHaveCount(0);
+  await workshopPhoto.scrollIntoViewIfNeeded();
+  await expect
+    .poll(
+      () =>
+        workshopPhoto.evaluate(
+          (image) => image.complete && image.naturalWidth > 0 && image.naturalHeight > 0
+        ),
+      { timeout: 15_000 }
+    )
+    .toBe(true);
+
+  await gallery.getByRole("button", { name: "Go to slide 4", exact: true }).click();
+
+  const fourthSlide = gallery.getByRole("group", { name: /^4 of \d+$/ });
+  const presentationPhoto = fourthSlide.getByRole("img", {
+    name: /Swapnil Sahoo presenting Reconstructing Entrepreneurship Under Constraint at AOM 2026/,
+  });
+
+  await expect(gallery.getByRole("button", { name: "Go to slide 4", exact: true })).toHaveAttribute(
+    "aria-current",
+    "true"
+  );
+  await expect(presentationPhoto).toBeVisible();
+  await expect(fourthSlide).toContainText("Presenting entrepreneurship under constraint");
+  await expect(fourthSlide).toContainText("co-authored with Munish Thakur");
+  await expect(fourthSlide.getByRole("link")).toHaveCount(0);
   await presentationPhoto.scrollIntoViewIfNeeded();
   await expect
     .poll(
@@ -677,21 +709,18 @@ test("Homepage gallery · AOM 2026 event photographs", async ({ page }) => {
     2
   );
 
-  await gallery.getByRole("button", { name: "Go to slide 4", exact: true }).click();
+  // The dot controls only cover the first four slides, so step to the fifth.
+  await gallery.getByRole("button", { name: "Next slide", exact: true }).click();
 
-  const fourthSlide = gallery.getByRole("group", { name: "4 of 27", exact: true });
-  const portrait = fourthSlide.getByRole("img", {
+  const fifthSlide = gallery.getByRole("group", { name: /^5 of \d+$/ });
+  const portrait = fifthSlide.getByRole("img", {
     name: /Swapnil Sahoo with Prof\. J\.P\. Eggers at AOM 2026/,
   });
 
-  await expect(gallery.getByRole("button", { name: "Go to slide 4", exact: true })).toHaveAttribute(
-    "aria-current",
-    "true"
-  );
   await expect(portrait).toBeVisible();
-  await expect(fourthSlide).toContainText("With Prof. J.P. Eggers");
-  await expect(fourthSlide).toContainText("best conversations do not close questions");
-  await expect(fourthSlide.getByRole("link")).toHaveCount(0);
+  await expect(fifthSlide).toContainText("With Prof. J.P. Eggers");
+  await expect(fifthSlide).toContainText("best conversations do not close questions");
+  await expect(fifthSlide.getByRole("link")).toHaveCount(0);
   await portrait.scrollIntoViewIfNeeded();
   await expect
     .poll(
@@ -1022,7 +1051,7 @@ test("Immortals · metadata, branch navigation and sitemap discovery", async ({ 
   ).toHaveAttribute("aria-current", "page");
 
   const primaryNav = page.getByRole("navigation", { name: "Primary navigation" });
-  const moreTrigger = primaryNav.getByRole("button", { name: "More", exact: true });
+  const moreTrigger = primaryNav.getByRole("button", { name: "More submenu", exact: true });
   const menuId = await moreTrigger.getAttribute("aria-controls");
   expect(menuId).toBeTruthy();
   await moreTrigger.hover();
@@ -1169,7 +1198,9 @@ test("Research · site navigation and sitemap discovery", async ({ page, request
 for (const dropdown of [
   {
     label: "Teaching",
-    firstLink: "1-Year MBA",
+    // Must be the first focusable link in the menu: the group heading, not the
+    // nested course link beneath it — the Tab assertion below depends on it.
+    firstLink: "Strategic Management",
     lastLink: "Executive MDPs",
     minimumWidth: 240,
     adjacentLink: "PhD",
@@ -1187,8 +1218,10 @@ for (const dropdown of [
     await page.goto(`${baseUrl}/`, { waitUntil: "domcontentloaded" });
 
     const primaryNav = page.getByRole("navigation", { name: "Primary navigation" });
+    // The trigger is the chevron button beside the label's own link, so its
+    // accessible name is "<label> submenu" rather than the bare label.
     const trigger = primaryNav.getByRole("button", {
-      name: dropdown.label,
+      name: `${dropdown.label} submenu`,
       exact: true,
     });
     const adjacentLink = primaryNav.getByRole("link", {

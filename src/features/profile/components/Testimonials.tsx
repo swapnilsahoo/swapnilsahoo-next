@@ -53,7 +53,10 @@ export function Testimonials() {
             </p>
           </div>
 
-          <div className="-mx-6 flex snap-x snap-mandatory [scrollbar-width:thin] gap-4 overflow-x-auto px-6 pb-2">
+          {/* The negative margin has to track the container's own padding
+              (px-4 sm:px-6 lg:px-8) so the cards bleed to the edge without
+              pushing the page wider than the viewport on small phones. */}
+          <div className="-mx-4 flex snap-x snap-mandatory [scrollbar-width:thin] gap-4 overflow-x-auto px-4 pb-2 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
             {visible.map((testimonial) => (
               <TestimonialCard key={testimonial.name} testimonial={testimonial} />
             ))}
