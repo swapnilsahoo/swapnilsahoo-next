@@ -65,32 +65,54 @@ requires). Tailwind's Play CDN was verified to work on the decks without it.
 
 ## Must be configured outside the repo
 
-### Cloudflare
+Rate limiting cannot live in application code here: the site has no Redis and no
+durable store, and per-instance in-memory counters do not work correctly across
+serverless invocations. It has to be enforced at the edge.
 
-Rate limiting belongs here, not in application code: this site has no Redis and
-no durable store, and per-instance in-memory counters do not work correctly
-across serverless invocations.
+### Where the edge actually is
 
-1. **Rate limiting rule** — path `/api/*`, 60 requests per minute per IP,
-   action *Managed Challenge*. Legitimate use of the reader is a handful of
+`www.swapnilsahoo.com` responds with `Server: Vercel` and **no `cf-ray` header**,
+so despite Cloudflare being part of the wider stack it is **not currently
+proxying this domain** — requests reach Vercel directly. Cloudflare WAF and rate
+limiting rules therefore have nothing to act on unless the DNS records are
+switched to proxied (orange cloud) first.
+
+Pick one of the two:
+
+**Option A — Vercel Firewall (nothing to re-point).**
+
+1. **Rate limit** — Firewall → Rules: path starts with `/api/`, 60 requests per
+   minute per IP, action *Challenge*. Legitimate reader use is a handful of
    requests per page view; sustained triple-digit rates are scraping.
-2. **Bot Fight Mode** — on. Leave *Verified Bots* allowed so Googlebot and
-   Bingbot keep indexing; the site's value depends on being found.
-3. **WAF Managed Rules** — Cloudflare Free Managed Ruleset enabled.
-4. **Always Use HTTPS** — on, and **Minimum TLS 1.2**.
-5. **HSTS** — the origin sends `max-age=63072000; includeSubDomains; preload`.
-   Only submit to <https://hstspreload.org> once you are certain every current
-   and future subdomain will serve HTTPS; preload is hard to reverse.
+2. **Attack Challenge Mode** — leave off day to day; switch on during an active
+   flood. It challenges every visitor, so it costs real traffic.
+3. **Bot filtering** — enable Vercel's managed bot rules, keeping verified
+   search crawlers allowed.
 
-Do not enable a blanket "block all bots" rule — it will deindex the site.
+**Option B — put the domain behind Cloudflare** by setting the DNS records to
+proxied, then apply the same rate limit on `/api/*` (action *Managed Challenge*),
+Bot Fight Mode with *Verified Bots* allowed, the Free Managed WAF ruleset,
+Always Use HTTPS and Minimum TLS 1.2. This adds a hop and a second cache layer in
+front of Vercel's, so only take it if Cloudflare is wanted for other reasons.
 
-### Vercel
+Under either option, never enable a blanket "block all bots" rule — it will
+deindex the site, whose value depends on being found.
 
-1. Set `NEXT_PUBLIC_SITE_URL` to `https://www.swapnilsahoo.com` for Production.
-   It is a public canonical URL, not a secret; the code falls back to that value.
-2. Keep **Deployment Protection** off for Production (the site is public) and
-   consider enabling it for Preview deployments so drafts are not indexed.
-3. No other environment variables are required. The project has no secrets.
+**HSTS preload** — the origin already sends
+`max-age=63072000; includeSubDomains; preload`. Only submit to
+<https://hstspreload.org> once every current and future subdomain will serve
+HTTPS; preload is hard to reverse.
+
+### Vercel environment
+
+`NEXT_PUBLIC_SITE_URL` is **not required**. The code falls back to
+`https://www.swapnilsahoo.com`, and production `robots.txt` and `sitemap.xml`
+were verified to emit exactly that. Set it only if the canonical host changes.
+
+Keep **Deployment Protection** off for Production (the site is public), and
+consider enabling it for Preview deployments so drafts are not indexed.
+
+The project has no secrets, so there is nothing else to configure.
 
 ### Not applicable
 
