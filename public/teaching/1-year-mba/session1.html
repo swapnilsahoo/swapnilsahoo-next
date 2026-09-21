@@ -16,14 +16,14 @@
             },
             colors: {
               slate: {
-                50:'#F8F8F6',100:'#F1F1EC',200:'#E4E4DC',300:'#CBCBC1',
-                400:'#9C9C91',500:'#71716A',600:'#52524C',700:'#3B3B36',
-                800:'#232320',900:'#161613',950:'#0C0C0A'
+                50:'#F8FAFC',100:'#F1F5F9',200:'#E2E8F0',300:'#CBD5E1',
+                400:'#94A3B8',500:'#64748B',600:'#475569',700:'#334155',
+                800:'#1E293B',900:'#0F172A',950:'#020617'
               },
               gray: {
-                50:'#F8F8F6',100:'#F1F1EC',200:'#E4E4DC',300:'#CBCBC1',
-                400:'#9C9C91',500:'#71716A',600:'#52524C',700:'#3B3B36',
-                800:'#232320',900:'#161613'
+                50:'#F8FAFC',100:'#F1F5F9',200:'#E2E8F0',300:'#CBD5E1',
+                400:'#94A3B8',500:'#64748B',600:'#475569',700:'#334155',
+                800:'#1E293B',900:'#0F172A'
               },
               blue: {
                 50:'#EEF1FF',100:'#E0E5FF',200:'#C6CEFE',300:'#A3AEFB',
@@ -32,8 +32,8 @@
               }
             },
             boxShadow: {
-              lift: '0 1px 2px rgba(12,12,10,.04), 0 8px 24px -12px rgba(12,12,10,.18)',
-              liftmd: '0 2px 4px rgba(12,12,10,.05), 0 18px 40px -18px rgba(12,12,10,.28)'
+              lift: '0 1px 2px rgba(15,23,42,.04), 0 8px 24px -12px rgba(15,23,42,.18)',
+              liftmd: '0 2px 4px rgba(15,23,42,.05), 0 18px 40px -18px rgba(15,23,42,.28)'
             }
           }
         }
@@ -46,12 +46,12 @@
     <style>
         :root{
           --sticky-offset:100px;
-          --paper:#F8F8F6; --ink:#161613; --muted:#52524C; --line:#E4E4DC;
-          --card:#FFFFFF; --accent:#4F46E5; --accent-soft:#EEF1FF;
+          --paper:#FFFFFF; --ink:#0F172A; --muted:#475569; --line:#E2E8F0;
+          --card:#FFFFFF; --accent:#4F46E5; --accent-soft:#EEF2FF;
         }
         html.dark{
-          --paper:#0C0C0A; --ink:#F1F1EC; --muted:#9C9C91; --line:#2A2A26;
-          --card:#161613; --accent:#818CF8; --accent-soft:#1B1850;
+          --paper:#0B1120; --ink:#E2E8F0; --muted:#94A3B8; --line:#1E293B;
+          --card:#111A2E; --accent:#818CF8; --accent-soft:#1E1B4B;
         }
         html{scroll-padding-top:120px}
         body{
@@ -64,17 +64,17 @@
 
         /* ---- dark-mode repaint of the utility classes already in the markup ---- */
         html.dark .bg-white{background:var(--card)!important}
-        html.dark .bg-slate-50,html.dark .bg-slate-100,html.dark .bg-gray-50{background:#121210!important}
+        html.dark .bg-slate-50,html.dark .bg-slate-100,html.dark .bg-gray-50{background:#0F172A!important}
         html.dark .border-slate-200,html.dark .border-slate-300,html.dark .border-gray-200{border-color:var(--line)!important}
         html.dark .text-slate-900,html.dark .text-gray-900,html.dark .text-slate-800{color:var(--ink)!important}
-        html.dark .text-slate-600,html.dark .text-slate-700,html.dark .text-gray-600,html.dark .text-gray-700{color:#B8B8AE!important}
+        html.dark .text-slate-600,html.dark .text-slate-700,html.dark .text-gray-600,html.dark .text-gray-700{color:#CBD5E1!important}
         html.dark .text-slate-500,html.dark .text-slate-400{color:var(--muted)!important}
         html.dark .divide-slate-100>*+*{border-color:var(--line)!important}
-        html.dark table thead{background:#1C1C18!important}
+        html.dark table thead{background:#162032!important}
 
 
         /* ---- dark: translucent + tinted surfaces ---- */
-        html.dark .bg-white\/85,html.dark .bg-white\/80,html.dark .bg-white\/90{background:rgba(18,18,16,.88)!important}
+        html.dark .bg-white\/85,html.dark .bg-white\/80,html.dark .bg-white\/90{background:rgba(11,17,32,.90)!important}
         html.dark .bg-blue-50,html.dark .bg-indigo-50{background:#171C3C!important}
         html.dark .bg-blue-100,html.dark .bg-indigo-100{background:#1F2552!important}
         html.dark .bg-blue-200{background:#272E60!important}
@@ -88,14 +88,14 @@
         html.dark .bg-teal-100{background:#12302E!important}
         html.dark .bg-teal-200{background:#173B38!important}
         html.dark .bg-cyan-100{background:#102A33!important}
-        html.dark .bg-slate-200{background:#26261F!important}
+        html.dark .bg-slate-200{background:#1E293B!important}
 
         /* dark surfaces: keep bars/cards as raised panels, turn actions into the accent */
-        html.dark div.bg-slate-900,html.dark footer.bg-gray-800{background:#1A1A16!important}
+        html.dark div.bg-slate-900,html.dark footer.bg-gray-800{background:#111A2E!important}
         html.dark a.bg-slate-900,html.dark button.bg-slate-900,html.dark span.bg-slate-900{background:#4F46E5!important;color:#fff!important}
         html.dark a.bg-slate-900:hover,html.dark button.bg-slate-900:hover{background:#6366F1!important}
         html.dark .border-gray-700{border-color:var(--line)!important}
-        html.dark .text-slate-100,html.dark .text-slate-200,html.dark .text-slate-300{color:#D7D7CE!important}
+        html.dark .text-slate-100,html.dark .text-slate-200,html.dark .text-slate-300{color:#E2E8F0!important}
 
         /* dark: tinted text has to lighten to stay legible */
         html.dark .text-blue-600,html.dark .text-blue-700,html.dark .text-blue-800{color:#A3AEFB!important}
@@ -119,8 +119,8 @@
         html.dark .text-amber-900,html.dark .text-orange-600{color:#FBBF24!important}
         html.dark .text-cyan-700,html.dark .text-cyan-800,html.dark .text-sky-700{color:#67E8F9!important}
         html.dark input,html.dark textarea,html.dark select{
-          background:#1A1A16!important;color:var(--ink)!important;border-color:var(--line)!important}
-        html.dark input::placeholder,html.dark textarea::placeholder{color:#7A7A71!important}
+          background:#111A2E!important;color:var(--ink)!important;border-color:var(--line)!important}
+        html.dark input::placeholder,html.dark textarea::placeholder{color:#64748B!important}
 
 
         /* light: lift the few tinted headings that sat under 4.5:1 */
@@ -130,7 +130,7 @@
 
 
         /* dark: hover states must not flash a light surface */
-        html.dark .hover\:bg-slate-50:hover,html.dark .hover\:bg-slate-100:hover{background:#26261F!important}
+        html.dark .hover\:bg-slate-50:hover,html.dark .hover\:bg-slate-100:hover{background:#1E293B!important}
         html.dark .hover\:bg-blue-200:hover{background:#2B3268!important}
         html.dark .hover\:bg-teal-200:hover{background:#17403C!important}
         html.dark .hover\:bg-rose-100:hover{background:#421C23!important}
@@ -157,9 +157,9 @@
 
         /* ---- cards get real depth ---- */
         .rounded-xl,.rounded-2xl{transition:box-shadow .22s ease,transform .22s ease,border-color .22s}
-        section .bg-white.rounded-2xl,section .bg-white.rounded-xl{box-shadow:0 1px 2px rgba(12,12,10,.04),0 8px 24px -14px rgba(12,12,10,.16)}
+        section .bg-white.rounded-2xl,section .bg-white.rounded-xl{box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -14px rgba(15,23,42,.16)}
         section .bg-white.rounded-2xl:hover,section .bg-white.rounded-xl:hover{
-          box-shadow:0 2px 6px rgba(12,12,10,.06),0 20px 44px -20px rgba(12,12,10,.26);transform:translateY(-2px)}
+          box-shadow:0 2px 6px rgba(15,23,42,.06),0 20px 44px -20px rgba(15,23,42,.26);transform:translateY(-2px)}
 
         /* ---- scroll reveal ---- */
         .rv{opacity:0;transform:translateY(14px)}
@@ -281,15 +281,15 @@
 
         /* ---- dark variants for the restored components ---- */
         html.dark .card,html.dark .concept-card{background:var(--card)!important;border-color:var(--line)!important}
-        html.dark .concept-card p.definition{color:#9C9C91}
+        html.dark .concept-card p.definition{color:#94A3B8}
         html.dark .concept-card .example{border-top-color:var(--line)}
-        html.dark .concept-card .example h5,html.dark .concept-card .example strong{color:#D7D7CE}
-        html.dark .concept-card .example p{color:#B8B8AE}
-        html.dark .prose-custom p,html.dark .prose-custom ul,html.dark .prose-custom li{color:#B8B8AE}
+        html.dark .concept-card .example h5,html.dark .concept-card .example strong{color:#E2E8F0}
+        html.dark .concept-card .example p{color:#CBD5E1}
+        html.dark .prose-custom p,html.dark .prose-custom ul,html.dark .prose-custom li{color:#CBD5E1}
         html.dark .prose-custom strong{color:var(--ink)}
-        html.dark .comparison-table thead th{background:#1C1C18;border-bottom-color:var(--line)}
-        html.dark .comparison-table tbody tr:nth-child(even){background:#131310}
-        html.dark .comparison-table tbody tr:hover{background:#1B2140}
+        html.dark .comparison-table thead th{background:#162032;border-bottom-color:var(--line)}
+        html.dark .comparison-table tbody tr:nth-child(even){background:#0F172A}
+        html.dark .comparison-table tbody tr:hover{background:#1E2749}
         html.dark .quiz-option.correct{background-color:#14321F!important;border-color:#2F7D52!important;color:#6EE7A8!important}
         html.dark .quiz-option.incorrect{background-color:#3A181E!important;border-color:#9B3540!important;color:#FCA5A5!important}
         html.dark .workshop-button{background:#2A1B3D;border-color:#3D2A55;color:#DCC7F5}
@@ -310,7 +310,7 @@
     </style>
 </head>
 
-<body class="bg-slate-50 text-slate-700">
+<body class="text-slate-700">
 
 <div id="readbar" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
 
@@ -512,7 +512,7 @@
           class="h-full w-full object-cover opacity-90 transition duration-300 group-hover:opacity-100">
         <span class="absolute inset-0 grid place-items-center">
           <span class="grid h-16 w-16 place-items-center rounded-full bg-white/95 shadow-xl transition duration-300 group-hover:scale-110">
-            <svg viewBox="0 0 24 24" class="ml-1 h-7 w-7" fill="#0C0C0A" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            <svg viewBox="0 0 24 24" class="ml-1 h-7 w-7" fill="#0F172A" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
           </span>
         </span>
         <span class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-4 text-left">
@@ -721,7 +721,7 @@
                          
                          <figure class="my-4">
                            <svg viewBox="0 0 600 240" role="img" aria-labelledby="nokia-ft nokia-fd" class="w-full rounded-lg border border-slate-200 bg-white">
-                             <title id="nokia-ft">Nokia: from 50.9% of the global handset market in 2007 to selling the handset business in 2013</title>
+                             <title id="nokia-ft">Nokia: from 50.8% of the global handset market in 2007 to selling the handset business in 2013</title>
                              <desc id="nokia-fd">A descending curve from the peak through the refusal to the end, with the three dates marked.</desc>
                              <g class="text-slate-400" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 4" opacity=".55">
                                <line x1="60" y1="200" x2="555" y2="200"/>
@@ -736,11 +736,12 @@
                                <text x="548" y="170" text-anchor="end">2013</text>
                              </g>
                              <g class="text-slate-500" fill="currentColor" font-size="11.5">
-                               <text x="62" y="219">50.9% global share</text>
+                               <text x="62" y="219">50.8% global share</text>
                                <text x="300" y="219" text-anchor="middle">Doubled down on Symbian</text>
                                <text x="548" y="219" text-anchor="end">Handsets sold to Microsoft</text>
                              </g>
                            </svg>
+                           <dl class="mt-3 grid grid-cols-3 gap-2 text-center"><div class="rounded-lg bg-slate-50 px-2 py-2.5"><dt class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Peak 2007</dt><dd class="mt-0.5 font-display text-base font-bold tabular-nums text-slate-900">50.8%</dd></div><div class="rounded-lg bg-slate-50 px-2 py-2.5"><dt class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">2013</dt><dd class="mt-0.5 font-display text-base font-bold tabular-nums text-slate-900">3.1%</dd></div><div class="rounded-lg bg-rose-50 px-2 py-2.5"><dt class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">Swing</dt><dd class="mt-0.5 font-display text-base font-bold tabular-nums text-rose-700">&minus;47.7 pts</dd></div></dl>
                            <figcaption class="mt-2 text-xs text-slate-500">The refusal is the middle point, not the last one. By 2013 the outcome was already decided.</figcaption>
                          </figure>
                          <div class="prose-custom text-sm">
@@ -807,6 +808,7 @@
                                <text x="548" y="219" text-anchor="end">Chapter 11</text>
                              </g>
                            </svg>
+                           <dl class="mt-3 grid grid-cols-3 gap-2 text-center"><div class="rounded-lg bg-slate-50 px-2 py-2.5"><dt class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Peak 1996</dt><dd class="mt-0.5 font-display text-base font-bold tabular-nums text-slate-900">$28B</dd></div><div class="rounded-lg bg-slate-50 px-2 py-2.5"><dt class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">2012</dt><dd class="mt-0.5 font-display text-base font-bold tabular-nums text-slate-900">$0.1B</dd></div><div class="rounded-lg bg-rose-50 px-2 py-2.5"><dt class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">Value lost</dt><dd class="mt-0.5 font-display text-base font-bold tabular-nums text-rose-700">&minus;99.6%</dd></div></dl>
                            <figcaption class="mt-2 text-xs text-slate-500">Kodak invented the digital camera in 1975 and buried it to protect film. The trade-off it would not make was made for it.</figcaption>
                          </figure>
                            <div class="prose-custom text-sm">
@@ -850,7 +852,7 @@
                          
                          <figure class="my-4">
                            <svg viewBox="0 0 600 240" role="img" aria-labelledby="yahoo-ft yahoo-fd" class="w-full rounded-lg border border-slate-200 bg-white">
-                             <title id="yahoo-ft">Yahoo: from roughly $125B in 2000 to a $4.48B sale of the core business in 2016</title>
+                             <title id="yahoo-ft">Yahoo: from roughly $125B in 2000 to a $4.48B sale of the core business, closed in 2017</title>
                              <desc id="yahoo-fd">A descending curve from the peak through the refusal to the end, with the three dates marked.</desc>
                              <g class="text-slate-400" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 4" opacity=".55">
                                <line x1="60" y1="200" x2="555" y2="200"/>
@@ -862,7 +864,7 @@
                              <g class="text-slate-900" fill="currentColor" font-size="15" font-weight="700">
                                <text x="62" y="48">2000</text>
                                <text x="300" y="110" text-anchor="middle">2002-08</text>
-                               <text x="548" y="170" text-anchor="end">2016</text>
+                               <text x="548" y="170" text-anchor="end">2017</text>
                              </g>
                              <g class="text-slate-500" fill="currentColor" font-size="11.5">
                                <text x="62" y="219">~$125B market cap</text>
@@ -870,6 +872,7 @@
                                <text x="548" y="219" text-anchor="end">Core sold for $4.48B</text>
                              </g>
                            </svg>
+                           <dl class="mt-3 grid grid-cols-3 gap-2 text-center"><div class="rounded-lg bg-slate-50 px-2 py-2.5"><dt class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Peak 2000</dt><dd class="mt-0.5 font-display text-base font-bold tabular-nums text-slate-900">$125B</dd></div><div class="rounded-lg bg-slate-50 px-2 py-2.5"><dt class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">2017 sale</dt><dd class="mt-0.5 font-display text-base font-bold tabular-nums text-slate-900">$4.48B</dd></div><div class="rounded-lg bg-rose-50 px-2 py-2.5"><dt class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">Value lost</dt><dd class="mt-0.5 font-display text-base font-bold tabular-nums text-rose-700">&minus;96.4%</dd></div></dl>
                            <figcaption class="mt-2 text-xs text-slate-500">Collis and Rukstad's test: Yahoo could never state its scope in one sentence, so every team chose a different one.</figcaption>
                          </figure>
                            <div class="prose-custom text-sm">
@@ -1407,6 +1410,38 @@
         </p>
       </div>
     </div>
+
+    <div id="moreMetrics" class="mt-5 rounded-2xl border border-slate-200 bg-white p-5" hidden>
+      <h4 class="font-bold text-slate-900">Three more readings of the same table</h4>
+      <p class="mt-1 text-sm text-slate-600">Every figure below is computed from Exhibit 2 above, not quoted from anywhere else.</p>
+      <div class="mt-4 grid gap-4 md:grid-cols-3">
+        <div class="rounded-xl bg-slate-50 p-4">
+          <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Research intensity vs research budget</p>
+          <p class="mt-2 text-sm text-slate-700">Tesla spends <strong class="tabular-nums">$1,378m</strong> on R&amp;D, which is only
+            <strong class="tabular-nums">17.2%</strong> of Ford&rsquo;s <strong class="tabular-nums">$8,000m</strong> &mdash; yet as a share of
+            revenue it is <strong class="tabular-nums">2.3&times;</strong> Ford&rsquo;s. A small budget spent at a very different intensity.</p>
+        </div>
+        <div class="rounded-xl bg-slate-50 p-4">
+          <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Return on each research dollar</p>
+          <p class="mt-2 text-sm text-slate-700">Tesla earns <strong class="tabular-nums">$1.61</strong> of gross profit per dollar of R&amp;D.
+            The median rival earns <strong class="tabular-nums">$3.84</strong>. Tesla is buying something that has not arrived yet &mdash;
+            which is either a position being built, or money being burned.</p>
+        </div>
+        <div class="rounded-xl bg-slate-50 p-4">
+          <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Scale, and who is actually profitable</p>
+          <p class="mt-2 text-sm text-slate-700">Tesla&rsquo;s revenue is <strong class="tabular-nums">7.5%</strong> of Ford&rsquo;s.
+            It lost <strong class="tabular-nums">$1,606m</strong> at the operating line, while
+            <strong class="tabular-nums">0 of 8</strong> rivals posted a loss; their median operating income was
+            <strong class="tabular-nums">+$7,994m</strong>.</p>
+        </div>
+      </div>
+      <p class="mt-4 border-t border-slate-200 pt-3 text-sm text-slate-600">
+        Notice what none of this settles. A firm building an activity system and a firm failing at a conventional one
+        produce similar-looking statements for a while. The question to take into class is which set of numbers would
+        look different in 2022 under each reading.
+      </p>
+    </div>
+
 
     <!-- Exhibit 1: segment -->
     <div class="mt-6 bg-white border border-slate-200 rounded-2xl overflow-hidden">
@@ -2310,6 +2345,8 @@ QUIZ.forEach((item,i)=>{
     document.getElementById("medRD").innerHTML = pct(median(rds));
     var f = document.getElementById("findings");
     if (f) f.hidden = false;
+    var mm = document.getElementById("moreMetrics");
+    if (mm) mm.hidden = false;
     btn.disabled = true;
     btn.textContent = "Revealed";
     btn.className = "rounded-lg bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-500";
@@ -2870,8 +2907,8 @@ QUIZ.forEach((item,i)=>{
   function chartTheme(){
     if(!window.Chart||!Chart.getChart) return;
     var dark=document.documentElement.classList.contains("dark");
-    var tick=dark?"#9C9C91":"#52524C";
-    var grid=dark?"rgba(228,228,220,.12)":"rgba(12,12,10,.08)";
+    var tick=dark?"#94A3B8":"#475569";
+    var grid=dark?"rgba(226,232,240,.12)":"rgba(15,23,42,.08)";
     Chart.defaults.color=tick;
     document.querySelectorAll("canvas").forEach(function(c){
       var ch=Chart.getChart(c); if(!ch||!ch.config) return;
