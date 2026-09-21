@@ -6,226 +6,405 @@
     <title>Session 1: Introduction to Strategy | STRAMGT 221 — Dr. Swapnil Sahoo</title>
     <meta name="description" content="Session 1 of Strategic Management (PGPM): what strategy is, why firms need one, and how strategy gets made — Porter, Mintzberg and Collis &amp; Rukstad, with the Nokia, Kodak and Yahoo cautionary tales and the Tesla case.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter','ui-sans-serif','system-ui','sans-serif'],
+              display: ['Fraunces','ui-serif','Georgia','serif']
+            },
+            colors: {
+              slate: {
+                50:'#F8F8F6',100:'#F1F1EC',200:'#E4E4DC',300:'#CBCBC1',
+                400:'#9C9C91',500:'#71716A',600:'#52524C',700:'#3B3B36',
+                800:'#232320',900:'#161613',950:'#0C0C0A'
+              },
+              gray: {
+                50:'#F8F8F6',100:'#F1F1EC',200:'#E4E4DC',300:'#CBCBC1',
+                400:'#9C9C91',500:'#71716A',600:'#52524C',700:'#3B3B36',
+                800:'#232320',900:'#161613'
+              },
+              blue: {
+                50:'#EEF1FF',100:'#E0E5FF',200:'#C6CEFE',300:'#A3AEFB',
+                400:'#818CF8',500:'#6366F1',600:'#4F46E5',700:'#4338CA',
+                800:'#372FA8',900:'#2E2A82',950:'#1B1850'
+              }
+            },
+            boxShadow: {
+              lift: '0 1px 2px rgba(12,12,10,.04), 0 8px 24px -12px rgba(12,12,10,.18)',
+              liftmd: '0 2px 4px rgba(12,12,10,.05), 0 18px 40px -18px rgba(12,12,10,.28)'
+            }
+          }
+        }
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        :root {
-            --sticky-offset: 100px; /* Default offset, updated by JS */
+        :root{
+          --sticky-offset:100px;
+          --paper:#F8F8F6; --ink:#161613; --muted:#52524C; --line:#E4E4DC;
+          --card:#FFFFFF; --accent:#4F46E5; --accent-soft:#EEF1FF;
         }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* slate-50 */
-            color: #1f2937; /* gray-800 */
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+        html.dark{
+          --paper:#0C0C0A; --ink:#F1F1EC; --muted:#9C9C91; --line:#2A2A26;
+          --card:#161613; --accent:#818CF8; --accent-soft:#1B1850;
         }
-        html {
-            scroll-behavior: smooth;
+        html{scroll-padding-top:120px}
+        body{
+          font-family:'Inter',sans-serif;
+          background:var(--paper); color:var(--ink);
+          -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
         }
-        .active-nav {
-            color: #2563eb; /* text-blue-600 */
-            border-bottom-color: #2563eb;
-            font-weight: 600;
+        h1,h2,h3,.display{font-family:'Fraunces',ui-serif,Georgia,serif; letter-spacing:-.02em}
+        h1{font-optical-sizing:auto}
+
+        /* ---- dark-mode repaint of the utility classes already in the markup ---- */
+        html.dark .bg-white{background:var(--card)!important}
+        html.dark .bg-slate-50,html.dark .bg-slate-100,html.dark .bg-gray-50{background:#121210!important}
+        html.dark .border-slate-200,html.dark .border-slate-300,html.dark .border-gray-200{border-color:var(--line)!important}
+        html.dark .text-slate-900,html.dark .text-gray-900,html.dark .text-slate-800{color:var(--ink)!important}
+        html.dark .text-slate-600,html.dark .text-slate-700,html.dark .text-gray-600,html.dark .text-gray-700{color:#B8B8AE!important}
+        html.dark .text-slate-500,html.dark .text-slate-400{color:var(--muted)!important}
+        html.dark .divide-slate-100>*+*{border-color:var(--line)!important}
+        html.dark table thead{background:#1C1C18!important}
+
+
+        /* ---- dark: translucent + tinted surfaces ---- */
+        html.dark .bg-white\/85,html.dark .bg-white\/80,html.dark .bg-white\/90{background:rgba(18,18,16,.88)!important}
+        html.dark .bg-blue-50,html.dark .bg-indigo-50{background:#171C3C!important}
+        html.dark .bg-blue-100,html.dark .bg-indigo-100{background:#1F2552!important}
+        html.dark .bg-blue-200{background:#272E60!important}
+        html.dark .bg-amber-50{background:#2A2110!important}
+        html.dark .bg-amber-100{background:#382C14!important}
+        html.dark .bg-rose-50{background:#2C1418!important}
+        html.dark .bg-rose-100,html.dark .bg-red-100{background:#3A181E!important}
+        html.dark .bg-emerald-50{background:#0F261A!important}
+        html.dark .bg-emerald-100{background:#143324!important}
+        html.dark .bg-teal-50{background:#0E2624!important}
+        html.dark .bg-teal-100{background:#12302E!important}
+        html.dark .bg-teal-200{background:#173B38!important}
+        html.dark .bg-cyan-100{background:#102A33!important}
+        html.dark .bg-slate-200{background:#26261F!important}
+
+        /* dark surfaces: keep bars/cards as raised panels, turn actions into the accent */
+        html.dark div.bg-slate-900,html.dark footer.bg-gray-800{background:#1A1A16!important}
+        html.dark a.bg-slate-900,html.dark button.bg-slate-900,html.dark span.bg-slate-900{background:#4F46E5!important;color:#fff!important}
+        html.dark a.bg-slate-900:hover,html.dark button.bg-slate-900:hover{background:#6366F1!important}
+        html.dark .border-gray-700{border-color:var(--line)!important}
+        html.dark .text-slate-100,html.dark .text-slate-200,html.dark .text-slate-300{color:#D7D7CE!important}
+
+        /* dark: tinted text has to lighten to stay legible */
+        html.dark .text-blue-600,html.dark .text-blue-700,html.dark .text-blue-800{color:#A3AEFB!important}
+        html.dark .text-rose-600,html.dark .text-rose-700,html.dark .text-red-600,html.dark .text-red-700{color:#FCA5A5!important}
+        html.dark .text-emerald-600,html.dark .text-emerald-700,html.dark .text-emerald-800{color:#6EE7A8!important}
+        html.dark .text-amber-600,html.dark .text-amber-700,html.dark .text-amber-800{color:#FCD34D!important}
+        html.dark .text-teal-600,html.dark .text-teal-700,html.dark .text-teal-800{color:#5EEAD4!important}
+
+        /* dark: tinted borders */
+        html.dark .border-blue-200,html.dark .border-blue-300,html.dark .border-blue-400{border-color:#2F3670!important}
+        html.dark .border-amber-200,html.dark .border-amber-500{border-color:#4A3A1A!important}
+        html.dark .border-rose-200,html.dark .border-rose-400{border-color:#4A2028!important}
+        html.dark .border-teal-200,html.dark .border-teal-300{border-color:#1C4B47!important}
+
+
+        /* dark: remaining tinted text families + form controls */
+        html.dark .text-blue-900,html.dark .text-indigo-600,html.dark .text-indigo-700,
+        html.dark .text-indigo-800,html.dark .text-purple-800{color:#B4BCFC!important}
+        html.dark .text-red-800,html.dark .text-rose-800{color:#FCA5A5!important}
+        html.dark .text-emerald-900{color:#6EE7A8!important}
+        html.dark .text-amber-900,html.dark .text-orange-600{color:#FBBF24!important}
+        html.dark .text-cyan-700,html.dark .text-cyan-800,html.dark .text-sky-700{color:#67E8F9!important}
+        html.dark input,html.dark textarea,html.dark select{
+          background:#1A1A16!important;color:var(--ink)!important;border-color:var(--line)!important}
+        html.dark input::placeholder,html.dark textarea::placeholder{color:#7A7A71!important}
+
+
+        /* light: lift the few tinted headings that sat under 4.5:1 */
+        html:not(.dark) .text-amber-600{color:#B45309}
+        html:not(.dark) .text-orange-600{color:#C2410C}
+        html:not(.dark) .text-teal-600{color:#0F766E}
+
+
+        /* dark: hover states must not flash a light surface */
+        html.dark .hover\:bg-slate-50:hover,html.dark .hover\:bg-slate-100:hover{background:#26261F!important}
+        html.dark .hover\:bg-blue-200:hover{background:#2B3268!important}
+        html.dark .hover\:bg-teal-200:hover{background:#17403C!important}
+        html.dark .hover\:bg-rose-100:hover{background:#421C23!important}
+
+        /* ---- reading progress ---- */
+        #readbar{position:fixed;top:0;left:0;height:3px;width:0;z-index:70;
+          background:linear-gradient(90deg,#4F46E5,#818CF8);transition:width .12s linear}
+
+        /* ---- section rail (desktop) ---- */
+        #rail{position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:40;display:none}
+        @media (min-width:1380px){#rail{display:block}}
+        #rail a{display:flex;align-items:center;gap:9px;padding:3px 0;color:var(--muted);
+          font-size:11px;text-decoration:none;opacity:.55;transition:opacity .2s}
+        #rail a:hover,#rail a.on{opacity:1;color:var(--accent)}
+        #rail .dot{width:7px;height:7px;border-radius:99px;background:currentColor;flex:none;transition:transform .2s}
+        #rail a.on .dot{transform:scale(1.6)}
+        #rail .lbl{opacity:0;transform:translateX(-4px);transition:.2s;white-space:nowrap}
+        #rail a:hover .lbl,#rail a.on .lbl{opacity:1;transform:none}
+
+        /* ---- nav ---- */
+        .nav-link{transition:color .18s,border-color .18s;border-bottom:2px solid transparent;
+          padding-bottom:4px;color:var(--muted)}
+        .nav-link:hover,.active-nav{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+
+        /* ---- cards get real depth ---- */
+        .rounded-xl,.rounded-2xl{transition:box-shadow .22s ease,transform .22s ease,border-color .22s}
+        section .bg-white.rounded-2xl,section .bg-white.rounded-xl{box-shadow:0 1px 2px rgba(12,12,10,.04),0 8px 24px -14px rgba(12,12,10,.16)}
+        section .bg-white.rounded-2xl:hover,section .bg-white.rounded-xl:hover{
+          box-shadow:0 2px 6px rgba(12,12,10,.06),0 20px 44px -20px rgba(12,12,10,.26);transform:translateY(-2px)}
+
+        /* ---- scroll reveal ---- */
+        .rv{opacity:0;transform:translateY(14px)}
+        .rv.in{opacity:1;transform:none;transition:opacity .55s cubic-bezier(.2,.7,.3,1),transform .55s cubic-bezier(.2,.7,.3,1)}
+
+        /* ---- completion ---- */
+        .done-badge{display:inline-flex;align-items:center;gap:5px;border-radius:99px;
+          background:#DCFCE7;color:#166534;padding:2px 9px;font-size:10px;font-weight:700;
+          text-transform:uppercase;letter-spacing:.06em}
+        html.dark .done-badge{background:#14321F;color:#6EE7A8}
+
+        /* ---- focus, motion, print ---- */
+        a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,[tabindex]:focus-visible{
+          outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+        @media (prefers-reduced-motion:reduce){
+          *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+          .rv{opacity:1;transform:none}
+          html{scroll-behavior:auto}
         }
-        .nav-link {
-            transition: all 0.2s ease-in-out;
-            border-bottom: 2px solid transparent;
-            padding-bottom: 4px; /* Align with active state */
-            color: #4b5563; /* text-gray-600 */
-        }
-        .nav-link:hover {
-            color: #2563eb;
-            border-bottom-color: #2563eb;
-        }
+        @media print{#readbar,#rail,#top-bar,#main-header,#drawer,#drawerBtn{display:none!important}}
 
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 350px;
+
+        /* ---- one shell width for every section (no stranded gutters) ---- */
+        body .container,
+        body section.max-w-6xl,
+        body div.max-w-6xl{
+          width:100%;
+          max-width:88rem!important;
+          margin-left:auto;margin-right:auto;
+          padding-left:clamp(1.25rem,3.5vw,2.75rem);
+          padding-right:clamp(1.25rem,3.5vw,2.75rem);
         }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 350px;
-                 max-height: 400px;
-            }
+        @media (min-width:1700px){
+          body .container,body section.max-w-6xl,body div.max-w-6xl{max-width:96rem!important}
         }
 
-        .analysis-content {
-             max-height: 0;
-             overflow: hidden;
-             transition: max-height 0.5s ease-out, opacity 0.3s ease-out, margin-top 0.5s ease-out;
-             opacity: 0;
-             margin-top: 0;
-        }
-        .analysis-content.visible {
-             max-height: 500px; /* Adjust as needed */
-             opacity: 1;
-             margin-top: 1rem;
-        }
-         .analysis-button {
-             transition: background-color 0.2s ease;
-         }
 
-        .quiz-option { cursor: pointer; transition: all 0.2s ease-in-out; }
-        .quiz-option.correct { background-color: #dcfce7 !important; border-color: #22c55e !important; color: #15803d !important; font-weight: 500; }
-        .quiz-option.incorrect { background-color: #fee2e2 !important; border-color: #ef4444 !important; color: #b91c1c !important; font-weight: 500; }
-        .quiz-option:disabled { opacity: 0.8; cursor: default; }
-        .quiz-explanation { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out, margin-top 0.5s ease-in-out, opacity 0.5s ease-in-out; margin-top: 0; opacity: 0; }
-        .quiz-explanation.visible { opacity: 1; margin-top: 1rem; }
-
-        /* Top bar icon styling */
-        .top-bar-link svg, .footer-link svg { width: 1.125rem; height: 1.125rem; fill: currentColor; transition: color 0.2s ease-in-out; }
-        /* Custom Hexagon Icon Styles */
-        .hexagon-icon { position: relative; width: 28px; height: 28px; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3)); display: inline-block; vertical-align: middle; }
-        .hexagon-icon svg { width: 100%; height: 100%; animation: glow 2.5s infinite ease-in-out; }
-        .hexagon-path { stroke: #B91C1C; stroke-width: 1; }
-        .hexagon-s { font-family: 'Georgia', serif; font-weight: bold; font-size: 48px; fill: #facc15; text-anchor: middle; dominant-baseline: central; }
-        /* Glow Animation */
-        @keyframes glow { 0%, 100% { filter: drop-shadow(0 0 4px rgba(239, 68, 68, 0.7)); } 50% { filter: drop-shadow(0 0 10px rgba(239, 68, 68, 1)); } }
-        /* Sticky Header Logic */
-        #main-header.sticky-nav { position: sticky; z-index: 40; }
-        #top-bar.sticky-top { position: sticky; top: 0; z-index: 50; }
-
-        /* Modal Styling */
-        #modal { background-color: rgba(0, 0, 0, 0.7); }
-        #modal-content { max-height: calc(100vh - 4rem); }
-
-        /* Scroll Margin */
-         section[id] { scroll-margin-top: var(--sticky-offset); }
-
-         /* Positioning & Fit examples styling */
-        .concept-card { background-color: #ffffff; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05); padding: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; height: 100%; }
-        .concept-card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -4px rgba(0, 0, 0, 0.07); }
-        .concept-card h4 { font-size: 1.125rem; font-weight: 600; margin-bottom: 0.75rem; }
-        .concept-card p.definition { font-style: italic; color: #6b7280; margin-bottom: 1rem; font-size: 0.875rem; flex-grow: 1; }
-        .concept-card .example { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e5e7eb; }
-        .concept-card .example:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
-        .concept-card .example h5 { font-weight: 600; color: #374151; margin-bottom: 0.5rem; font-size: 0.875rem; }
-        .concept-card .example p { font-size: 0.875rem; color: #4b5563; margin-bottom: 0.25rem; line-height: 1.5; }
-        .concept-card .example strong { color: #1f2937; }
-        .border-needs { border-left-color: #f43f5e; } .border-variety { border-left-color: #0ea5e9; } .border-access { border-left-color: #10b981; }
-        .border-fit1 { border-left-color: #fbbf24; } .border-fit2 { border-left-color: #f97316; } .border-fit3 { border-left-color: #ef4444; }
-
-        /* General Prose Styling */
-        .prose-custom p, .prose-custom ul, .prose-custom li { font-size: 0.875rem; line-height: 1.6; color: #374151; }
-        .prose-custom p { margin-bottom: 1em; } .prose-custom ul { margin-top: 0.5em; margin-bottom: 1em; padding-left: 1.25em; list-style-type: disc; }
-        .prose-custom li { margin-bottom: 0.25em; } .prose-custom strong { font-weight: 600; color: #111827; }
-
-        /* Table Styling */
-        .comparison-table th, .comparison-table td { padding: 0.75rem 1rem; vertical-align: top; font-size: 0.75rem; }
-        .comparison-table thead th { background-color: #f3f4f6; border-bottom: 2px solid #e5e7eb; }
-        .comparison-table tbody tr:nth-child(even) { background-color: #f9fafb; } .comparison-table tbody tr:hover { background-color: #eff6ff; }
-        .comparison-table th[scope="row"] { white-space: nowrap; }
-
-        /* Activity Button Styling */
-        .activity-button { padding: 0.75rem 1rem; border-radius: 0.5rem; text-align: left; transition: all 0.2s ease-in-out; font-size: 0.875rem; border-width: 1px; display: block; width: 100%; height: 100%; }
-        .activity-button strong { display: block; margin-bottom: 0.25rem; font-weight: 600; }
-        .activity-button:focus { outline: none; box-shadow: 0 0 0 2px var(--tw-ring-color); }
-        .activity-button:focus-visible { box-shadow: 0 0 0 2px var(--tw-ring-color); }
-        .workshop-button { background-color: #f3e8ff; border-color: #e9d5ff; --tw-ring-color: #c084fc; color: #581c87; } .workshop-button:hover { background-color: #e9d5ff; border-color: #d8b4fe;} .workshop-button strong { color: #7e22ce; } .workshop-button:hover strong { color: #6b21a8; }
-        .news-button { background-color: #dbeafe; border-color: #bfdbfe; --tw-ring-color: #60a5fa; color: #1e40af; } .news-button:hover { background-color: #bfdbfe; border-color: #93c5fd;} .news-button strong { color: #1d4ed8; } .news-button:hover strong { color: #1e3a8a; }
-        .tradeoff-button { background-color: #fef3c7; border-color: #fde68a; --tw-ring-color: #fbbf24; color: #78350f; } .tradeoff-button:hover { background-color: #fde68a; border-color: #fcd34d;} .tradeoff-button strong { color: #b45309; } .tradeoff-button:hover strong { color: #92400e; }
-        .simulation-button { background-color: #ffe4e6; border-color: #fecdd3; --tw-ring-color: #fb7185; color: #881337; } .simulation-button:hover { background-color: #fecdd3; border-color: #fda4af;} .simulation-button strong { color: #be123c; } .simulation-button:hover strong { color: #9f1239; }
-
-    
-        .card{background:#fff;border:1px solid #e2e8f0;border-radius:14px}
-        .pill{display:inline-flex;align-items:center;gap:.4rem;border-radius:9999px;padding:.2rem .7rem;font-size:.7rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+        /* ============ restored component styles (were defined in the original head) ============ */
         [hidden]{display:none!important}
+        section[id]{scroll-margin-top:var(--sticky-offset)}
+        @media (min-width:768px){.chart-container{height:350px;max-height:400px}}
+
+        .analysis-content{max-height:0;overflow:hidden;opacity:0;margin-top:0;
+          padding-top:0!important;padding-bottom:0!important;border-top-width:0!important;border-bottom-width:0!important;
+          transition:max-height .5s ease-out,opacity .3s ease-out,margin-top .5s ease-out,padding .5s ease-out}
+        .analysis-content.visible{max-height:500px;opacity:1;margin-top:1rem;
+          padding-top:1rem!important;padding-bottom:1rem!important;border-top-width:1px!important;border-bottom-width:1px!important}
+        .analysis-button{transition:background-color .2s ease}
+
+        .quiz-option{cursor:pointer;transition:all .2s ease-in-out}
+        .quiz-option.correct{background-color:#dcfce7!important;border-color:#22c55e!important;color:#15803d!important;font-weight:500}
+        .quiz-option.incorrect{background-color:#fee2e2!important;border-color:#ef4444!important;color:#b91c1c!important;font-weight:500}
+        .quiz-option:disabled{opacity:.8;cursor:default}
+        .quiz-explanation{max-height:0;overflow:hidden;margin-top:0;opacity:0;
+          transition:max-height .5s ease-in-out,margin-top .5s ease-in-out,opacity .5s ease-in-out}
+        .quiz-explanation.visible{opacity:1;margin-top:1rem;max-height:500px}
+
+        .top-bar-link svg,.footer-link svg{width:1.125rem;height:1.125rem;fill:currentColor;transition:color .2s ease-in-out}
+        .hexagon-icon{position:relative;width:28px;height:28px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.3));display:inline-block;vertical-align:middle}
+        .hexagon-icon svg{width:100%;height:100%;animation:glow 2.5s infinite ease-in-out}
+        .hexagon-path{stroke:#B91C1C;stroke-width:1}
+        .hexagon-s{font-family:Georgia,serif;font-weight:bold;font-size:48px;fill:#facc15;text-anchor:middle;dominant-baseline:central}
+        @keyframes glow{0%,100%{filter:drop-shadow(0 0 4px rgba(239,68,68,.7))}50%{filter:drop-shadow(0 0 10px rgba(239,68,68,1))}}
+        #main-header.sticky-nav{position:sticky;z-index:40}
+        #top-bar.sticky-top{position:sticky;top:0;z-index:50}
+        #modal{background-color:rgba(0,0,0,.7)}
+        #modal-content{max-height:calc(100vh - 4rem)}
+
+        .concept-card{background:#fff;border-radius:.75rem;padding:1.5rem;margin-bottom:1.5rem;border-left:4px solid;
+          box-shadow:0 4px 6px -1px rgba(0,0,0,.05),0 2px 4px -2px rgba(0,0,0,.05);
+          transition:transform .3s ease,box-shadow .3s ease;display:flex;flex-direction:column;height:100%}
+        .concept-card:hover{transform:translateY(-4px);box-shadow:0 10px 15px -3px rgba(0,0,0,.07),0 4px 6px -4px rgba(0,0,0,.07)}
+        .concept-card h4{font-size:1.125rem;font-weight:600;margin-bottom:.75rem}
+        .concept-card p.definition{font-style:italic;color:#6b7280;margin-bottom:1rem;font-size:.875rem;flex-grow:1}
+        .concept-card .example{margin-top:1rem;padding-top:1rem;border-top:1px solid #e5e7eb}
+        .concept-card .example:first-of-type{margin-top:0;padding-top:0;border-top:none}
+        .concept-card .example h5{font-weight:600;color:#374151;margin-bottom:.5rem;font-size:.875rem}
+        .concept-card .example p{font-size:.875rem;color:#4b5563;margin-bottom:.25rem;line-height:1.5}
+        .concept-card .example strong{color:#1f2937}
+        .border-needs{border-left-color:#f43f5e}.border-variety{border-left-color:#0ea5e9}.border-access{border-left-color:#10b981}
+        .border-fit1{border-left-color:#fbbf24}.border-fit2{border-left-color:#f97316}.border-fit3{border-left-color:#ef4444}
+
+        .prose-custom p,.prose-custom ul,.prose-custom li{font-size:.875rem;line-height:1.6;color:#374151}
+        .prose-custom p{margin-bottom:1em}
+        .prose-custom ul{margin-top:.5em;margin-bottom:1em;padding-left:1.25em;list-style-type:disc}
+        .prose-custom li{margin-bottom:.25em}
+        .prose-custom strong{font-weight:600;color:#111827}
+
+        .comparison-table th,.comparison-table td{padding:.75rem 1rem;vertical-align:top;font-size:.75rem}
+        .comparison-table thead th{background-color:#f3f4f6;border-bottom:2px solid #e5e7eb}
+        .comparison-table tbody tr:nth-child(even){background-color:#f9fafb}
+        .comparison-table tbody tr:hover{background-color:#eff6ff}
+        .comparison-table th[scope="row"]{white-space:nowrap}
+
+        .activity-button{padding:.75rem 1rem;border-radius:.5rem;text-align:left;transition:all .2s ease-in-out;
+          font-size:.875rem;border-width:1px;display:block;width:100%;height:100%}
+        .activity-button strong{display:block;margin-bottom:.25rem;font-weight:600}
+        .activity-button:focus{outline:none;box-shadow:0 0 0 2px var(--tw-ring-color)}
+        .activity-button:focus-visible{box-shadow:0 0 0 2px var(--tw-ring-color)}
+        .workshop-button{background:#f3e8ff;border-color:#e9d5ff;--tw-ring-color:#c084fc;color:#581c87}
+        .workshop-button:hover{background:#e9d5ff;border-color:#d8b4fe}
+        .workshop-button strong{color:#7e22ce}.workshop-button:hover strong{color:#6b21a8}
+        .news-button{background:#dbeafe;border-color:#bfdbfe;--tw-ring-color:#60a5fa;color:#1e40af}
+        .news-button:hover{background:#bfdbfe;border-color:#93c5fd}
+        .news-button strong{color:#1d4ed8}.news-button:hover strong{color:#1e3a8a}
+        .tradeoff-button{background:#fef3c7;border-color:#fde68a;--tw-ring-color:#fbbf24;color:#78350f}
+        .tradeoff-button:hover{background:#fde68a;border-color:#fcd34d}
+        .tradeoff-button strong{color:#b45309}.tradeoff-button:hover strong{color:#92400e}
+        .simulation-button{background:#ffe4e6;border-color:#fecdd3;--tw-ring-color:#fb7185;color:#881337}
+        .simulation-button:hover{background:#fecdd3;border-color:#fda4af}
+        .simulation-button strong{color:#be123c}.simulation-button:hover strong{color:#9f1239}
+
+        .card{background:#fff;border:1px solid #e2e8f0;border-radius:14px}
+        .pill{display:inline-flex;align-items:center;gap:.4rem;border-radius:9999px;padding:.2rem .7rem;
+          font-size:.7rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
         .opt:disabled{cursor:default}
         .ref{padding-left:1.6rem;text-indent:-1.6rem}
+        @media print{.no-print{display:none!important}}
+
+        /* ---- dark variants for the restored components ---- */
+        html.dark .card,html.dark .concept-card{background:var(--card)!important;border-color:var(--line)!important}
+        html.dark .concept-card p.definition{color:#9C9C91}
+        html.dark .concept-card .example{border-top-color:var(--line)}
+        html.dark .concept-card .example h5,html.dark .concept-card .example strong{color:#D7D7CE}
+        html.dark .concept-card .example p{color:#B8B8AE}
+        html.dark .prose-custom p,html.dark .prose-custom ul,html.dark .prose-custom li{color:#B8B8AE}
+        html.dark .prose-custom strong{color:var(--ink)}
+        html.dark .comparison-table thead th{background:#1C1C18;border-bottom-color:var(--line)}
+        html.dark .comparison-table tbody tr:nth-child(even){background:#131310}
+        html.dark .comparison-table tbody tr:hover{background:#1B2140}
+        html.dark .quiz-option.correct{background-color:#14321F!important;border-color:#2F7D52!important;color:#6EE7A8!important}
+        html.dark .quiz-option.incorrect{background-color:#3A181E!important;border-color:#9B3540!important;color:#FCA5A5!important}
+        html.dark .workshop-button{background:#2A1B3D;border-color:#3D2A55;color:#DCC7F5}
+        html.dark .workshop-button:hover{background:#3D2A55}
+        html.dark .workshop-button strong{color:#C9A7F0}
+        html.dark .news-button{background:#1A2244;border-color:#2B3668;color:#BCC7FA}
+        html.dark .news-button:hover{background:#2B3668}
+        html.dark .news-button strong{color:#A3AEFB}
+        html.dark .tradeoff-button{background:#312512;border-color:#4A3A1A;color:#F3D9A4}
+        html.dark .tradeoff-button:hover{background:#4A3A1A}
+        html.dark .tradeoff-button strong{color:#FBBF24}
+        html.dark .simulation-button{background:#331419;border-color:#4A2028;color:#F6BEC5}
+        html.dark .simulation-button:hover{background:#4A2028}
+        html.dark .simulation-button strong{color:#FCA5A5}
+
+        .chart-container{position:relative;width:100%;max-width:600px;margin-inline:auto;height:300px;max-height:350px}
+        .tabular-nums{font-variant-numeric:tabular-nums}
     </style>
-    <link rel="stylesheet" href="/teaching/responsive.css">
 </head>
 
 <body class="bg-slate-50 text-slate-700">
 
-    <!-- Top Bar -->
-    <div id="top-bar" class="bg-gray-800 text-white py-1 hidden sm:block sticky-top">
-        <div class="container mx-auto px-6 flex justify-between items-center h-10">
-            <p class="text-xs font-medium text-slate-400">© Dr. Swapnil Sahoo 2026</p>
-            <div class="flex items-center space-x-4">
-                <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white group" title="Website">
-                    <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
-                        <svg viewBox="0 0 52 60">
-                            <defs><linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
-                            <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#redGradient)"/><text class="hexagon-s" x="26" y="32">S</text>
-                        </svg>
-                    </div>
-                </a>
-                <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white top-bar-link" title="X/Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-                <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white top-bar-link" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.575 2h.093zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" clip-rule="evenodd"/></svg></a>
-                <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white top-bar-link" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg></a>
-            </div>
+<div id="readbar" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+<nav id="rail" aria-label="Section navigation"></nav>
+
+<!-- Top Bar -->
+<div id="top-bar" class="bg-slate-900 text-slate-300 hidden sm:block">
+  <div class="container mx-auto px-6 flex justify-between items-center h-11 text-xs">
+    <div class="flex items-center gap-3 min-w-0">
+      <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="group shrink-0" title="swapnilsahoo.com">
+        <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
+          <svg viewBox="0 0 52 60" aria-label="Swapnil Sahoo" role="img">
+            <defs><linearGradient id="topRedGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
+            <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#topRedGradient)"/><text class="hexagon-s" x="26" y="32">S</text>
+          </svg>
         </div>
+      </a>
+      <p class="truncate font-medium text-slate-400">&copy; Dr. Swapnil Sahoo 2026 &middot; Great Lakes Institute of Management, Gurgaon</p>
     </div>
+    <div class="flex items-center gap-4 shrink-0">
+      <a href="https://www.swapnilsahoo.com/teaching/1-year-mba" class="hidden md:inline text-slate-400 hover:text-white transition">STRAMGT 221</a>
+      <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="X/Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.575 2h.093zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" clip-rule="evenodd"/></svg></a>
+      <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg></a>
+    </div>
+  </div>
+</div>
 
-    <!-- Main Navigation Bar -->
-    <nav id="main-header" class="sticky-nav bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200">
-        <div class="container mx-auto px-6 py-3">
-            <div class="flex justify-between items-center">
-                 <!-- Logo/Title for Mobile -->
-                 <div class="flex items-center space-x-2 sm:hidden">
-                     <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="text-gray-300 group" title="Website">
-                        <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
-                            <svg viewBox="0 0 52 60">
-                                <defs><linearGradient id="mobileRedGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
-                                <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#mobileRedGradient)"/><text class="hexagon-s" x="26" y="32">S</text>
-                            </svg>
-                        </div>
-                    </a>
-                    <h1 class="text-lg font-semibold text-slate-900">What is Strategy?</h1>
-                </div>
-                 <!-- Title for Desktop -->
-                <h1 class="text-xl font-bold text-slate-900 hidden sm:block">What is Strategy?</h1>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#q1" class="nav-link text-sm font-medium">What is Strategy?</a>
-                    <a href="#authors" class="nav-link text-sm font-medium">The Articles</a>
-                    <a href="#cases" class="nav-link text-sm font-medium">Fallen Giants</a>
-                    <a href="#lenses" class="nav-link text-sm font-medium">Two Lenses</a>
-                    <a href="#positioning-examples" class="nav-link text-sm font-medium">Positioning</a>
-                    <a href="#fit-examples" class="nav-link text-sm font-medium">Fit</a>
-                    <a href="#examples" class="nav-link text-sm font-medium">Ten Positions</a>
-                    <a href="#q2" class="nav-link text-sm font-medium">Why Need It?</a>
-                    <a href="#q3" class="nav-link text-sm font-medium">How Made?</a>
-                    <a href="#tesla" class="nav-link text-sm font-medium">Tesla</a>
-                    <a href="#exhibits" class="nav-link text-sm font-medium">Exhibits</a>
-                    <a href="#activities" class="nav-link text-sm font-medium">Activities</a>
-                    <a href="#quiz" class="nav-link text-sm font-medium">Quiz</a>
-                </div>
-                <div class="md:hidden">
-                    <select id="mobile-nav" class="block w-auto rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-xs py-1 px-2">
-                        <option value="#top">Top</option>
-                        <option value="#q1">What is Strategy?</option>
-                        <option value="#authors">The three articles</option>
-                        <option value="#cases">Fallen Giants</option>
-                        <option value="#lenses">Two Lenses</option>
-                        <option value="#positioning-examples">Positioning</option>
-                        <option value="#fit-examples">Fit</option>
-                        <option value="#examples">Ten positions</option>
-                        <option value="#q2">Why Need It?</option>
-                        <option value="#q3">How Made?</option>
-                        <option value="#tesla">Tesla</option>
-                        <option value="#exhibits">Exhibit workshop</option>
-                        <option value="#activities">Activities</option>
-                        <option value="#quiz">Quiz</option>
-                        <option value="#check">Concept Check</option>
-                        <option value="#readings">Readings</option>
-                    </select>
-                </div>
-            </div>
+<!-- Main Navigation -->
+<nav id="main-header" class="sticky top-0 z-50 border-b border-slate-200 bg-white/85 backdrop-blur-md">
+  <div class="container mx-auto px-6">
+    <div class="flex h-16 items-center justify-between gap-4">
+
+      <div class="flex items-center gap-3 min-w-0">
+        <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-slate-900 text-white font-display text-sm font-semibold">01</span>
+        <div class="min-w-0">
+          <p class="truncate font-display text-base font-semibold leading-tight text-slate-900">Introduction to Strategy</p>
+          <p class="hidden truncate text-[11px] text-slate-500 sm:block">90 minutes · <span id="progPct">0</span>% read · <span id="doneCount">0</span>/7 activities done</p>
         </div>
-    </nav>
+      </div>
 
-    <!-- Hero Section -->
-    <main>
-        
+      <div class="hidden xl:flex items-center gap-5 text-sm">
+        <a href="#q1" class="nav-link">What is Strategy?</a>
+        <a href="#authors" class="nav-link">The Articles</a>
+        <a href="#cases" class="nav-link">Fallen Giants</a>
+        <a href="#examples" class="nav-link">Ten Positions</a>
+        <a href="#tesla" class="nav-link">Tesla</a>
+        <a href="#exhibits" class="nav-link">Exhibits</a>
+        <a href="#quiz" class="nav-link">Quiz</a>
+      </div>
 
+      <div class="flex items-center gap-2">
+        <button id="themeBtn" type="button" aria-label="Toggle dark mode"
+          class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 transition">
+          <svg class="h-4 w-4 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="hidden h-4 w-4 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <button id="drawerBtn" type="button" aria-label="Open section menu" aria-expanded="false"
+          class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 transition xl:hidden">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <select id="mobile-nav" class="sr-only" tabindex="-1" aria-hidden="true">
+          <option value="#top">Top</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Slide-out drawer -->
+<div id="drawer" class="fixed inset-0 z-[60] hidden">
+  <div id="drawerScrim" class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"></div>
+  <aside class="absolute right-0 top-0 h-full w-[min(88vw,20rem)] overflow-y-auto bg-white p-5 shadow-2xl">
+    <div class="flex items-center justify-between">
+      <p class="font-display text-lg font-semibold text-slate-900">Session 1</p>
+      <button id="drawerClose" type="button" aria-label="Close menu"
+        class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="mt-3 rounded-xl bg-slate-50 p-3">
+      <div class="flex items-center justify-between text-xs text-slate-500">
+        <span>Progress</span><span><span id="drawerDone">0</span>/7 activities</span>
+      </div>
+      <div class="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-200">
+        <div id="drawerBar" class="h-full rounded-full bg-blue-600 transition-all" style="width:0%"></div>
+      </div>
+    </div>
+    <nav id="drawerNav" class="mt-4 grid gap-0.5" aria-label="Sections"></nav>
+  </aside>
+</div>
+
+
+<span id="hero" aria-hidden="true"></span>
 <section id="top" class="bg-white border-b border-slate-200">
   <div class="mx-auto max-w-6xl px-4 py-10 md:py-12 grid gap-8 md:grid-cols-[1.25fr_.75fr] md:items-center">
     <div>
@@ -235,7 +414,12 @@
         <span class="pill bg-slate-100 text-slate-600">Business &amp; competitive strategy</span>
       </div>
       <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-slate-900">Introduction to Strategy</h1>
-      <p class="mt-4 text-slate-600 md:text-lg leading-relaxed max-w-2xl">
+      <p class="mt-2 font-display text-lg md:text-xl italic text-blue-700">Cautionary Tales &amp; A Dual Lens</p>
+      <p class="mt-3 text-slate-600 md:text-lg leading-relaxed max-w-2xl">
+        Explore strategy through the competing lenses of Michael Porter&rsquo;s analysis and Henry
+        Mintzberg&rsquo;s emergent view.
+      </p>
+      <p class="mt-3 text-slate-600 md:text-lg leading-relaxed max-w-2xl">
         Almost everyone in the room already uses the word &ldquo;strategy&rdquo; at work. This session
         makes the word precise enough to be useful &mdash; and precise enough to be wrong, which is
         what makes it a decision tool rather than a compliment.
@@ -316,6 +500,32 @@
       dozens of mutually reinforcing choices is a different problem entirely.
     </p>
   </div>
+
+
+  <!-- lecture video -->
+  <figure class="mt-8 no-print">
+    <div id="porterVideo" class="relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-900" style="aspect-ratio:16/9">
+      <button type="button" id="porterVideoBtn"
+        class="group absolute inset-0 h-full w-full cursor-pointer"
+        aria-label="Play the lecture: What is strategy, and why is operational effectiveness alone insufficient?">
+        <img src="https://i.ytimg.com/vi/jnKIiKhk09I/maxresdefault.jpg" alt="" loading="lazy" decoding="async"
+          class="h-full w-full object-cover opacity-90 transition duration-300 group-hover:opacity-100">
+        <span class="absolute inset-0 grid place-items-center">
+          <span class="grid h-16 w-16 place-items-center rounded-full bg-white/95 shadow-xl transition duration-300 group-hover:scale-110">
+            <svg viewBox="0 0 24 24" class="ml-1 h-7 w-7" fill="#0C0C0A" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+        </span>
+        <span class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-4 text-left">
+          <span class="block text-[10px] font-semibold uppercase tracking-wider text-white/70">Lecture &middot; Question 01</span>
+          <span class="block text-sm font-semibold text-white">What is strategy, and why is operational effectiveness alone insufficient?</span>
+        </span>
+      </button>
+    </div>
+    <figcaption class="mt-2 text-xs text-slate-500">
+      Dr. Swapnil Sahoo. Watch before class, then take the sorter below.
+      <a href="https://youtu.be/jnKIiKhk09I" target="_blank" rel="noopener noreferrer" class="font-semibold text-blue-700 hover:underline">Open on YouTube</a>
+    </figcaption>
+  </figure>
 
   <!-- interactive sorter -->
   <div class="mt-6 card p-5 no-print">
@@ -509,7 +719,30 @@
 <div class="mt-2 flex flex-wrap gap-1.5"><span class="rounded-full bg-blue-100 px-2.5 py-1 text-[10px] font-semibold text-blue-800">Porter &middot; OE mistaken for position</span><span class="rounded-full bg-amber-100 px-2.5 py-1 text-[10px] font-semibold text-amber-800">Mintzberg &middot; emergent ideas suppressed</span></div>
                          <h4 class="text-lg font-semibold text-slate-800">How did the undisputed king of mobile phones lose its crown almost overnight?</h4>
                          
-                         <img src="https://placehold.co/600x400/0891b2/ffffff?text=Nokia+Legacy" alt="Vintage Nokia phone illustration" class="rounded-lg shadow-md w-full my-4">
+                         <figure class="my-4">
+                           <svg viewBox="0 0 600 240" role="img" aria-labelledby="nokia-ft nokia-fd" class="w-full rounded-lg border border-slate-200 bg-white">
+                             <title id="nokia-ft">Nokia: from 50.9% of the global handset market in 2007 to selling the handset business in 2013</title>
+                             <desc id="nokia-fd">A descending curve from the peak through the refusal to the end, with the three dates marked.</desc>
+                             <g class="text-slate-400" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 4" opacity=".55">
+                               <line x1="60" y1="200" x2="555" y2="200"/>
+                             </g>
+                             <path d="M62,70 C170,74 225,112 300,132 S455,178 548,192" fill="none" stroke="#0891b2" stroke-width="3" stroke-linecap="round"/>
+                             <g fill="#0891b2">
+                               <circle cx="62" cy="70" r="6"/><circle cx="300" cy="132" r="6"/><circle cx="548" cy="192" r="6"/>
+                             </g>
+                             <g class="text-slate-900" fill="currentColor" font-size="15" font-weight="700">
+                               <text x="62" y="48">2007</text>
+                               <text x="300" y="110" text-anchor="middle">2008-10</text>
+                               <text x="548" y="170" text-anchor="end">2013</text>
+                             </g>
+                             <g class="text-slate-500" fill="currentColor" font-size="11.5">
+                               <text x="62" y="219">50.9% global share</text>
+                               <text x="300" y="219" text-anchor="middle">Doubled down on Symbian</text>
+                               <text x="548" y="219" text-anchor="end">Handsets sold to Microsoft</text>
+                             </g>
+                           </svg>
+                           <figcaption class="mt-2 text-xs text-slate-500">The refusal is the middle point, not the last one. By 2013 the outcome was already decided.</figcaption>
+                         </figure>
                          <div class="prose-custom text-sm">
                             <p>Nokia's operational excellence in hardware manufacturing built a global empire. But when Apple's iPhone (2007) and Google's Android (2008) shifted the battleground to software ecosystems and user experience, Nokia faltered.</p>
                          </div>
@@ -552,7 +785,30 @@
 <div class="mt-2 flex flex-wrap gap-1.5"><span class="rounded-full bg-blue-100 px-2.5 py-1 text-[10px] font-semibold text-blue-800">Porter &middot; refused the trade-off</span><span class="rounded-full bg-amber-100 px-2.5 py-1 text-[10px] font-semibold text-amber-800">Mintzberg &middot; deliberate plan killed the emergent one</span></div>
                          <h4 class="text-lg font-semibold text-slate-800">How could the company that invented digital photography be bankrupted by it?</h4>
                          
-                         <img src="https://placehold.co/600x400/d97706/ffffff?text=Kodak+Legacy" alt="Vintage Kodak camera illustration" class="rounded-lg shadow-md w-full my-4">
+                         <figure class="my-4">
+                           <svg viewBox="0 0 600 240" role="img" aria-labelledby="kodak-ft kodak-fd" class="w-full rounded-lg border border-slate-200 bg-white">
+                             <title id="kodak-ft">Kodak: from a $28B market capitalisation in 1996 to bankruptcy in 2012</title>
+                             <desc id="kodak-fd">A descending curve from the peak through the refusal to the end, with the three dates marked.</desc>
+                             <g class="text-slate-400" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 4" opacity=".55">
+                               <line x1="60" y1="200" x2="555" y2="200"/>
+                             </g>
+                             <path d="M62,70 C170,74 225,112 300,132 S455,178 548,192" fill="none" stroke="#d97706" stroke-width="3" stroke-linecap="round"/>
+                             <g fill="#d97706">
+                               <circle cx="62" cy="70" r="6"/><circle cx="300" cy="132" r="6"/><circle cx="548" cy="192" r="6"/>
+                             </g>
+                             <g class="text-slate-900" fill="currentColor" font-size="15" font-weight="700">
+                               <text x="62" y="48">1996</text>
+                               <text x="300" y="110" text-anchor="middle">2000s</text>
+                               <text x="548" y="170" text-anchor="end">2012</text>
+                             </g>
+                             <g class="text-slate-500" fill="currentColor" font-size="11.5">
+                               <text x="62" y="219">$28B market cap</text>
+                               <text x="300" y="219" text-anchor="middle">Protected film over digital</text>
+                               <text x="548" y="219" text-anchor="end">Chapter 11</text>
+                             </g>
+                           </svg>
+                           <figcaption class="mt-2 text-xs text-slate-500">Kodak invented the digital camera in 1975 and buried it to protect film. The trade-off it would not make was made for it.</figcaption>
+                         </figure>
                            <div class="prose-custom text-sm">
                              <p>Kodak's 'razor-and-blades' model (cheap cameras, profitable film/printing) was a masterpiece of strategic 'fit' in the 20th century. But this very success blinded them to the digital disruption they pioneered in 1975.</p>
                           </div>
@@ -592,7 +848,30 @@
 <div class="mt-2 flex flex-wrap gap-1.5"><span class="rounded-full bg-blue-100 px-2.5 py-1 text-[10px] font-semibold text-blue-800">Porter &middot; stuck in the middle, no fit</span><span class="rounded-full bg-emerald-100 px-2.5 py-1 text-[10px] font-semibold text-emerald-800">Collis &amp; Rukstad &middot; could not state a scope</span></div>
                          <h4 class="text-lg font-semibold text-slate-800">Why did the internet's original directory fail to navigate the rise of search and social media?</h4>
                          
-                         <img src="https://placehold.co/600x400/4f46e5/ffffff?text=Yahoo+Legacy" alt="Vintage Yahoo homepage illustration" class="rounded-lg shadow-md w-full my-4">
+                         <figure class="my-4">
+                           <svg viewBox="0 0 600 240" role="img" aria-labelledby="yahoo-ft yahoo-fd" class="w-full rounded-lg border border-slate-200 bg-white">
+                             <title id="yahoo-ft">Yahoo: from roughly $125B in 2000 to a $4.48B sale of the core business in 2016</title>
+                             <desc id="yahoo-fd">A descending curve from the peak through the refusal to the end, with the three dates marked.</desc>
+                             <g class="text-slate-400" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 4" opacity=".55">
+                               <line x1="60" y1="200" x2="555" y2="200"/>
+                             </g>
+                             <path d="M62,70 C170,74 225,112 300,132 S455,178 548,192" fill="none" stroke="#4f46e5" stroke-width="3" stroke-linecap="round"/>
+                             <g fill="#4f46e5">
+                               <circle cx="62" cy="70" r="6"/><circle cx="300" cy="132" r="6"/><circle cx="548" cy="192" r="6"/>
+                             </g>
+                             <g class="text-slate-900" fill="currentColor" font-size="15" font-weight="700">
+                               <text x="62" y="48">2000</text>
+                               <text x="300" y="110" text-anchor="middle">2002-08</text>
+                               <text x="548" y="170" text-anchor="end">2016</text>
+                             </g>
+                             <g class="text-slate-500" fill="currentColor" font-size="11.5">
+                               <text x="62" y="219">~$125B market cap</text>
+                               <text x="300" y="219" text-anchor="middle">Never chose media or search</text>
+                               <text x="548" y="219" text-anchor="end">Core sold for $4.48B</text>
+                             </g>
+                           </svg>
+                           <figcaption class="mt-2 text-xs text-slate-500">Collis and Rukstad's test: Yahoo could never state its scope in one sentence, so every team chose a different one.</figcaption>
+                         </figure>
                            <div class="prose-custom text-sm">
                              <p>Yahoo was the gateway for millions in the early internet era. However, missed opportunities (failing to buy Google and Facebook), strategic indecision between being a media vs. tech company, and constant leadership changes led to its decline.</p>
                           </div>
@@ -2410,6 +2689,226 @@ QUIZ.forEach((item,i)=>{
   render("global");
 })();
 
+</script>
+<script>
+(function () {
+  var SECTIONS = [
+    ["q1", "What is strategy?"], ["authors", "The three articles"], ["cases", "Fallen giants"],
+    ["lenses", "Two lenses"], ["positioning-examples", "Positioning"], ["fit-examples", "Fit"],
+    ["examples", "Ten positions"], ["q2", "Why need one?"], ["q3", "How is it made?"],
+    ["tesla", "Tesla"], ["exhibits", "Exhibit workshop"], ["activities", "Workshops"],
+    ["studio", "Studio"], ["quiz", "Quiz"], ["check", "Concept check"], ["readings", "Readings"]
+  ];
+  var KEY = "s1-progress-v1";
+  var ACTIVITIES = ["sorter", "classifier", "exhibits", "porter", "collis", "quiz", "video"];
+
+  // ---------- theme ----------
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem("s1-theme");
+    if (saved === "dark" || (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+      root.classList.add("dark");
+    }
+  } catch (e) {}
+  var themeBtn = document.getElementById("themeBtn");
+  if (themeBtn) {
+    themeBtn.addEventListener("click", function () {
+      root.classList.toggle("dark");
+      try { localStorage.setItem("s1-theme", root.classList.contains("dark") ? "dark" : "light"); } catch (e) {}
+    });
+  }
+
+  // ---------- reading progress ----------
+  var bar = document.getElementById("readbar");
+  var pctEl = document.getElementById("progPct");
+  function onScroll() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? Math.min(100, Math.max(0, (h.scrollTop / max) * 100)) : 0;
+    if (bar) { bar.style.width = p + "%"; bar.setAttribute("aria-valuenow", Math.round(p)); }
+    if (pctEl) pctEl.textContent = Math.round(p);
+  }
+  var ticking = false;
+  window.addEventListener("scroll", function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () { onScroll(); ticking = false; });
+  }, { passive: true });
+  onScroll();
+
+  // ---------- rail + drawer nav ----------
+  var rail = document.getElementById("rail");
+  var dnav = document.getElementById("drawerNav");
+  SECTIONS.forEach(function (s) {
+    if (!document.getElementById(s[0])) return;
+    if (rail) {
+      var a = document.createElement("a");
+      a.href = "#" + s[0];
+      a.dataset.sec = s[0];
+      a.innerHTML = '<span class="dot"></span><span class="lbl">' + s[1] + "</span>";
+      rail.appendChild(a);
+    }
+    if (dnav) {
+      var d = document.createElement("a");
+      d.href = "#" + s[0];
+      d.className = "rounded-lg px-3 py-2.5 text-sm text-slate-700 hover:bg-slate-100";
+      d.textContent = s[1];
+      d.addEventListener("click", closeDrawer);
+      dnav.appendChild(d);
+    }
+  });
+
+  var drawer = document.getElementById("drawer");
+  var drawerBtn = document.getElementById("drawerBtn");
+  function openDrawer() {
+    if (!drawer) return;
+    drawer.classList.remove("hidden");
+    if (drawerBtn) drawerBtn.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  }
+  function closeDrawer() {
+    if (!drawer) return;
+    drawer.classList.add("hidden");
+    if (drawerBtn) drawerBtn.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
+  if (drawerBtn) drawerBtn.addEventListener("click", openDrawer);
+  var dc = document.getElementById("drawerClose");
+  var ds = document.getElementById("drawerScrim");
+  if (dc) dc.addEventListener("click", closeDrawer);
+  if (ds) ds.addEventListener("click", closeDrawer);
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeDrawer(); });
+
+  // ---------- scrollspy for the rail ----------
+  var spy = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting || !rail) return;
+      rail.querySelectorAll("a").forEach(function (a) {
+        a.classList.toggle("on", a.dataset.sec === en.target.id);
+      });
+    });
+  }, { rootMargin: "-45% 0px -50% 0px" });
+  SECTIONS.forEach(function (s) {
+    var el = document.getElementById(s[0]);
+    if (el) spy.observe(el);
+  });
+
+  // ---------- scroll reveal ----------
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduce) {
+    var targets = document.querySelectorAll("section > .container > *");
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.06, rootMargin: "0px 0px -8% 0px" });
+    targets.forEach(function (t, i) {
+      // never hide anything already on screen at load
+      if (t.getBoundingClientRect().top < window.innerHeight) return;
+      t.classList.add("rv");
+      io.observe(t);
+    });
+  }
+
+  // ---------- completion tracking ----------
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { state = {}; }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  function count() { return ACTIVITIES.filter(function (k) { return state[k]; }).length; }
+  function paint() {
+    var n = count(), total = ACTIVITIES.length;
+    var a = document.getElementById("doneCount"); if (a) a.textContent = n;
+    var b = document.getElementById("drawerDone"); if (b) b.textContent = n;
+    var c = document.getElementById("drawerBar"); if (c) c.style.width = (100 * n / total) + "%";
+    ACTIVITIES.forEach(function (k) {
+      var badge = document.querySelector('[data-done-for="' + k + '"]');
+      if (badge) badge.hidden = !state[k];
+    });
+  }
+  function mark(k) { if (!state[k]) { state[k] = true; save(); paint(); } }
+  paint();
+
+  // wire completion to the real interactions already on the page
+  function onClickWithin(sel, key) {
+    var el = document.querySelector(sel);
+    if (el) el.addEventListener("click", function () { mark(key); });
+  }
+  onClickWithin("#oeSorter", "sorter");
+  onClickWithin("#porterVideoBtn", "video");
+  onClickWithin("#emClassifier", "classifier");
+  onClickWithin("#revealMargins", "exhibits");
+  onClickWithin("#porterNodes", "porter");
+  onClickWithin("#collisSamples", "collis");
+  var qc = document.getElementById("quiz-container");
+  if (qc) qc.addEventListener("click", function () { mark("quiz"); });
+
+  // reset control, appended to the readings section if present
+  var readings = document.getElementById("readings");
+  if (readings) {
+    var wrap = readings.querySelector(".container");
+    if (wrap) {
+      var p = document.createElement("div");
+      p.className = "mt-8 flex flex-wrap items-center gap-3 border-t border-slate-200 pt-6 text-sm";
+      p.innerHTML = '<span class="text-slate-500">Your progress on this page is saved in this browser only.</span>' +
+        '<button type="button" id="resetProg" class="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-100">Reset my progress</button>';
+      wrap.appendChild(p);
+      var rp = document.getElementById("resetProg");
+      if (rp) rp.addEventListener("click", function () {
+        state = {}; save(); paint();
+        rp.textContent = "Reset";
+        setTimeout(function () { rp.textContent = "Reset my progress"; }, 1400);
+      });
+    }
+  }
+})();
+
+</script>
+
+<script>
+/* keep the Chart.js canvases legible in both themes */
+(function(){
+  function chartTheme(){
+    if(!window.Chart||!Chart.getChart) return;
+    var dark=document.documentElement.classList.contains("dark");
+    var tick=dark?"#9C9C91":"#52524C";
+    var grid=dark?"rgba(228,228,220,.12)":"rgba(12,12,10,.08)";
+    Chart.defaults.color=tick;
+    document.querySelectorAll("canvas").forEach(function(c){
+      var ch=Chart.getChart(c); if(!ch||!ch.config) return;
+      // Chart.js v4 rebuilds chart.options on update(), so mutate the config
+      var o=ch.config.options=ch.config.options||{};
+      var sc=o.scales=o.scales||{};
+      Object.keys(sc).forEach(function(k){
+        if(!sc[k]) return;
+        sc[k].ticks=sc[k].ticks||{}; sc[k].ticks.color=tick;
+        if(sc[k].grid&&sc[k].grid.display===false) return;
+        sc[k].grid=sc[k].grid||{}; sc[k].grid.color=grid;
+      });
+      var pl=o.plugins=o.plugins||{};
+      if(pl.legend){ pl.legend.labels=pl.legend.labels||{}; pl.legend.labels.color=tick; }
+      ch.update("none");
+    });
+  }
+  var btn=document.getElementById("themeBtn");
+  if(btn) btn.addEventListener("click",function(){ setTimeout(chartTheme,60); });
+
+  // click-to-load the lecture so the YouTube player costs nothing until wanted
+  var vb=document.getElementById("porterVideoBtn");
+  if(vb) vb.addEventListener("click",function(){
+    var wrap=document.getElementById("porterVideo");
+    if(!wrap) return;
+    var f=document.createElement("iframe");
+    f.className="absolute inset-0 h-full w-full";
+    f.src="https://www.youtube-nocookie.com/embed/jnKIiKhk09I?autoplay=1&rel=0&modestbranding=1";
+    f.title="What is strategy, and why is operational effectiveness alone insufficient?";
+    f.allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    f.setAttribute("allowfullscreen","");
+    f.setAttribute("referrerpolicy","strict-origin-when-cross-origin");
+    wrap.innerHTML="";
+    wrap.appendChild(f);
+  });
+  var n=0, iv=setInterval(function(){ chartTheme(); if(++n>20) clearInterval(iv); },400);
+})();
 </script>
 </body>
 </html>
