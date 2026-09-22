@@ -3,138 +3,1728 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Session 2: Strategy of Disruption — Tesla</title>
+    <title>Session 2: Elon Musk at Tesla | STRAMGT 221 — Dr. Swapnil Sahoo</title>
+    <meta name="description" content="Session 2 of Strategic Management (PGPM): applying Porter and Mintzberg to Tesla&#39;s entry into the U.S. auto industry — five forces, the valuation paradox, production hell, and the governance question behind Musk&#39;s request for 25% voting control.">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter','ui-sans-serif','system-ui','sans-serif'],
+              display: ['Fraunces','ui-serif','Georgia','serif']
+            },
+            colors: {
+              slate: {
+                50:'#F8FAFC',100:'#F1F5F9',200:'#E2E8F0',300:'#CBD5E1',
+                400:'#94A3B8',500:'#64748B',600:'#475569',700:'#334155',
+                800:'#1E293B',900:'#0F172A',950:'#020617'
+              },
+              gray: {
+                50:'#F8FAFC',100:'#F1F5F9',200:'#E2E8F0',300:'#CBD5E1',
+                400:'#94A3B8',500:'#64748B',600:'#475569',700:'#334155',
+                800:'#1E293B',900:'#0F172A'
+              },
+              blue: {
+                50:'#EEF1FF',100:'#E0E5FF',200:'#C6CEFE',300:'#A3AEFB',
+                400:'#818CF8',500:'#6366F1',600:'#4F46E5',700:'#4338CA',
+                800:'#372FA8',900:'#2E2A82',950:'#1B1850'
+              }
+            },
+            boxShadow: {
+              lift: '0 1px 2px rgba(15,23,42,.04), 0 8px 24px -12px rgba(15,23,42,.18)',
+              liftmd: '0 2px 4px rgba(15,23,42,.05), 0 18px 40px -18px rgba(15,23,42,.28)'
+            }
+          }
+        }
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        :root {
-            --ink-900:#0a1426;--ink-700:#27354b;--ink-600:#3e4c63;--ink-500:#5b6b82;--ink-300:#b6bfcc;--ink-100:#eef1f5;
-            --brand-700:#1d4ed8;--brand-600:#2563eb;--brand-500:#3b82f6;--brand-50:#eff6ff;
-            --accent-500:#de911d;--page-bg:#f7f7f5;
+        :root{
+          --sticky-offset:100px;
+          --paper:#FFFFFF; --ink:#0F172A; --muted:#475569; --line:#E2E8F0;
+          --card:#FFFFFF; --accent:#4F46E5; --accent-soft:#EEF2FF;
         }
-        * { box-sizing: border-box; }
-        body { font-family:'Inter',sans-serif; color:var(--ink-900); background:var(--page-bg); line-height:1.65; margin:0; }
-        h1,h2,h3,.serif { font-family:'Fraunces',serif; }
-        .mono { font-family:'JetBrains Mono',monospace; }
-        .glass-card { background:#fff; border:1px solid rgba(15,23,42,0.1); border-radius:16px; box-shadow:0 1px 2px rgba(15,23,42,0.05); }
-        .fp-box { background:var(--brand-50); border-left:6px solid var(--brand-700); border-radius:0 16px 16px 0; padding:1.75rem 2rem; }
-        .fp-eyebrow { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--brand-700); margin-bottom:.6rem; }
-        .eyebrow { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--brand-700); }
-        .nav-link { color:var(--ink-500); font-size:.875rem; font-weight:500; text-decoration:none; }
+        html.dark{
+          --paper:#0B1120; --ink:#E2E8F0; --muted:#94A3B8; --line:#1E293B;
+          --card:#111A2E; --accent:#818CF8; --accent-soft:#1E1B4B;
+        }
+        html{scroll-padding-top:120px}
+        body{
+          font-family:'Inter',sans-serif;
+          background:var(--paper); color:var(--ink);
+          -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+        }
+        h1,h2,h3,.display{font-family:'Fraunces',ui-serif,Georgia,serif; letter-spacing:-.02em}
+        h1{font-optical-sizing:auto}
+
+        /* ---- dark-mode repaint of the utility classes already in the markup ---- */
+        html.dark .bg-white{background:var(--card)!important}
+        html.dark .bg-slate-50,html.dark .bg-slate-100,html.dark .bg-gray-50{background:#0F172A!important}
+        html.dark .border-slate-200,html.dark .border-slate-300,html.dark .border-gray-200{border-color:var(--line)!important}
+        html.dark .text-slate-900,html.dark .text-gray-900,html.dark .text-slate-800{color:var(--ink)!important}
+        html.dark .text-slate-600,html.dark .text-slate-700,html.dark .text-gray-600,html.dark .text-gray-700{color:#CBD5E1!important}
+        html.dark .text-slate-500,html.dark .text-slate-400{color:var(--muted)!important}
+        html.dark .divide-slate-100>*+*{border-color:var(--line)!important}
+        html.dark table thead{background:#162032!important}
+
+
+        /* ---- dark: translucent + tinted surfaces ---- */
+        html.dark .bg-white\/85,html.dark .bg-white\/80,html.dark .bg-white\/90{background:rgba(11,17,32,.90)!important}
+        html.dark .bg-blue-50,html.dark .bg-indigo-50{background:#171C3C!important}
+        html.dark .bg-blue-100,html.dark .bg-indigo-100{background:#1F2552!important}
+        html.dark .bg-blue-200{background:#272E60!important}
+        html.dark .bg-amber-50{background:#2A2110!important}
+        html.dark .bg-amber-100{background:#382C14!important}
+        html.dark .bg-rose-50{background:#2C1418!important}
+        html.dark .bg-rose-100,html.dark .bg-red-100{background:#3A181E!important}
+        html.dark .bg-emerald-50{background:#0F261A!important}
+        html.dark .bg-emerald-100{background:#143324!important}
+        html.dark .bg-teal-50{background:#0E2624!important}
+        html.dark .bg-teal-100{background:#12302E!important}
+        html.dark .bg-teal-200{background:#173B38!important}
+        html.dark .bg-cyan-100{background:#102A33!important}
+        html.dark .bg-slate-200{background:#1E293B!important}
+
+        /* dark surfaces: keep bars/cards as raised panels, turn actions into the accent */
+        html.dark div.bg-slate-900,html.dark footer.bg-gray-800{background:#111A2E!important}
+        html.dark a.bg-slate-900,html.dark button.bg-slate-900,html.dark span.bg-slate-900{background:#4F46E5!important;color:#fff!important}
+        html.dark a.bg-slate-900:hover,html.dark button.bg-slate-900:hover{background:#6366F1!important}
+        html.dark .border-gray-700{border-color:var(--line)!important}
+        html.dark .text-slate-100,html.dark .text-slate-200,html.dark .text-slate-300{color:#E2E8F0!important}
+
+        /* dark: tinted text has to lighten to stay legible */
+        html.dark .text-blue-600,html.dark .text-blue-700,html.dark .text-blue-800{color:#A3AEFB!important}
+        html.dark .text-rose-600,html.dark .text-rose-700,html.dark .text-red-600,html.dark .text-red-700{color:#FCA5A5!important}
+        html.dark .text-emerald-600,html.dark .text-emerald-700,html.dark .text-emerald-800{color:#6EE7A8!important}
+        html.dark .text-amber-600,html.dark .text-amber-700,html.dark .text-amber-800{color:#FCD34D!important}
+        html.dark .text-teal-600,html.dark .text-teal-700,html.dark .text-teal-800{color:#5EEAD4!important}
+
+        /* dark: tinted borders */
+        html.dark .border-blue-200,html.dark .border-blue-300,html.dark .border-blue-400{border-color:#2F3670!important}
+        html.dark .border-amber-200,html.dark .border-amber-500{border-color:#4A3A1A!important}
+        html.dark .border-rose-200,html.dark .border-rose-400{border-color:#4A2028!important}
+        html.dark .border-teal-200,html.dark .border-teal-300{border-color:#1C4B47!important}
+
+
+        /* dark: remaining tinted text families + form controls */
+        html.dark .text-blue-900,html.dark .text-indigo-600,html.dark .text-indigo-700,
+        html.dark .text-indigo-800,html.dark .text-purple-800{color:#B4BCFC!important}
+        html.dark .text-red-800,html.dark .text-rose-800{color:#FCA5A5!important}
+        html.dark .text-emerald-900{color:#6EE7A8!important}
+        html.dark .text-amber-900,html.dark .text-orange-600{color:#FBBF24!important}
+        html.dark .text-cyan-700,html.dark .text-cyan-800,html.dark .text-sky-700{color:#67E8F9!important}
+        html.dark input,html.dark textarea,html.dark select{
+          background:#111A2E!important;color:var(--ink)!important;border-color:var(--line)!important}
+        html.dark input::placeholder,html.dark textarea::placeholder{color:#64748B!important}
+
+
+        /* light: lift the few tinted headings that sat under 4.5:1 */
+        html:not(.dark) .text-amber-600{color:#B45309}
+        html:not(.dark) .text-orange-600{color:#C2410C}
+        html:not(.dark) .text-teal-600{color:#0F766E}
+
+
+        /* dark: hover states must not flash a light surface */
+        html.dark .hover\:bg-slate-50:hover,html.dark .hover\:bg-slate-100:hover{background:#1E293B!important}
+        html.dark .hover\:bg-blue-200:hover{background:#2B3268!important}
+        html.dark .hover\:bg-teal-200:hover{background:#17403C!important}
+        html.dark .hover\:bg-rose-100:hover{background:#421C23!important}
+
+        /* ---- reading progress ---- */
+        #readbar{position:fixed;top:0;left:0;height:3px;width:0;z-index:70;
+          background:linear-gradient(90deg,#4F46E5,#818CF8);transition:width .12s linear}
+
+        /* ---- section rail (desktop) ---- */
+        #rail{position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:40;display:none}
+        @media (min-width:1380px){#rail{display:block}}
+        #rail a{display:flex;align-items:center;gap:9px;padding:3px 0;color:var(--muted);
+          font-size:11px;text-decoration:none;opacity:.55;transition:opacity .2s}
+        #rail a:hover,#rail a.on{opacity:1;color:var(--accent)}
+        #rail .dot{width:7px;height:7px;border-radius:99px;background:currentColor;flex:none;transition:transform .2s}
+        #rail a.on .dot{transform:scale(1.6)}
+        #rail .lbl{opacity:0;transform:translateX(-4px);transition:.2s;white-space:nowrap}
+        #rail a:hover .lbl,#rail a.on .lbl{opacity:1;transform:none}
+
+        /* ---- nav ---- */
+        .nav-link{transition:color .18s,border-color .18s;border-bottom:2px solid transparent;
+          padding-bottom:4px;color:var(--muted)}
+        .nav-link:hover,.active-nav{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+
+        /* ---- cards get real depth ---- */
+        .rounded-xl,.rounded-2xl{transition:box-shadow .22s ease,transform .22s ease,border-color .22s}
+        section .bg-white.rounded-2xl,section .bg-white.rounded-xl{box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -14px rgba(15,23,42,.16)}
+        section .bg-white.rounded-2xl:hover,section .bg-white.rounded-xl:hover{
+          box-shadow:0 2px 6px rgba(15,23,42,.06),0 20px 44px -20px rgba(15,23,42,.26);transform:translateY(-2px)}
+
+        /* ---- scroll reveal ---- */
+        .rv{opacity:0;transform:translateY(14px)}
+        .rv.in{opacity:1;transform:none;transition:opacity .55s cubic-bezier(.2,.7,.3,1),transform .55s cubic-bezier(.2,.7,.3,1)}
+
+        /* ---- completion ---- */
+        .done-badge{display:inline-flex;align-items:center;gap:5px;border-radius:99px;
+          background:#DCFCE7;color:#166534;padding:2px 9px;font-size:10px;font-weight:700;
+          text-transform:uppercase;letter-spacing:.06em}
+        html.dark .done-badge{background:#14321F;color:#6EE7A8}
+
+        /* ---- focus, motion, print ---- */
+        a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,[tabindex]:focus-visible{
+          outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+        @media (prefers-reduced-motion:reduce){
+          *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+          .rv{opacity:1;transform:none}
+          html{scroll-behavior:auto}
+        }
+        @media print{#readbar,#rail,#top-bar,#main-header,#drawer,#drawerBtn{display:none!important}}
+
+
+        /* ---- one shell width for every section (no stranded gutters) ---- */
+        body .container,
+        body section.max-w-6xl,
+        body div.max-w-6xl{
+          width:100%;
+          max-width:88rem!important;
+          margin-left:auto;margin-right:auto;
+          padding-left:clamp(1.25rem,3.5vw,2.75rem);
+          padding-right:clamp(1.25rem,3.5vw,2.75rem);
+        }
+        @media (min-width:1700px){
+          body .container,body section.max-w-6xl,body div.max-w-6xl{max-width:96rem!important}
+        }
+
+
+        /* ============ restored component styles (were defined in the original head) ============ */
+        [hidden]{display:none!important}
+        section[id]{scroll-margin-top:var(--sticky-offset)}
+        @media (min-width:768px){.chart-container{height:350px;max-height:400px}}
+
+        .analysis-content{max-height:0;overflow:hidden;opacity:0;margin-top:0;
+          padding-top:0!important;padding-bottom:0!important;border-top-width:0!important;border-bottom-width:0!important;
+          transition:max-height .5s ease-out,opacity .3s ease-out,margin-top .5s ease-out,padding .5s ease-out}
+        .analysis-content.visible{max-height:500px;opacity:1;margin-top:1rem;
+          padding-top:1rem!important;padding-bottom:1rem!important;border-top-width:1px!important;border-bottom-width:1px!important}
+        .analysis-button{transition:background-color .2s ease}
+
+        .quiz-option{cursor:pointer;transition:all .2s ease-in-out}
+        .quiz-option.correct{background-color:#dcfce7!important;border-color:#22c55e!important;color:#15803d!important;font-weight:500}
+        .quiz-option.incorrect{background-color:#fee2e2!important;border-color:#ef4444!important;color:#b91c1c!important;font-weight:500}
+        .quiz-option:disabled{opacity:.8;cursor:default}
+        .quiz-explanation{max-height:0;overflow:hidden;margin-top:0;opacity:0;
+          transition:max-height .5s ease-in-out,margin-top .5s ease-in-out,opacity .5s ease-in-out}
+        .quiz-explanation.visible{opacity:1;margin-top:1rem;max-height:500px}
+
+        .top-bar-link svg,.footer-link svg{width:1.125rem;height:1.125rem;fill:currentColor;transition:color .2s ease-in-out}
+        .hexagon-icon{position:relative;width:28px;height:28px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.3));display:inline-block;vertical-align:middle}
+        .hexagon-icon svg{width:100%;height:100%;animation:glow 2.5s infinite ease-in-out}
+        .hexagon-path{stroke:#B91C1C;stroke-width:1}
+        .hexagon-s{font-family:Georgia,serif;font-weight:bold;font-size:48px;fill:#facc15;text-anchor:middle;dominant-baseline:central}
+        @keyframes glow{0%,100%{filter:drop-shadow(0 0 4px rgba(239,68,68,.7))}50%{filter:drop-shadow(0 0 10px rgba(239,68,68,1))}}
+        #main-header.sticky-nav{position:sticky;z-index:40}
+        #top-bar.sticky-top{position:sticky;top:0;z-index:50}
+        #modal{background-color:rgba(0,0,0,.7)}
+        #modal-content{max-height:calc(100vh - 4rem)}
+
+        .concept-card{background:#fff;border-radius:.75rem;padding:1.5rem;margin-bottom:1.5rem;border-left:4px solid;
+          box-shadow:0 4px 6px -1px rgba(0,0,0,.05),0 2px 4px -2px rgba(0,0,0,.05);
+          transition:transform .3s ease,box-shadow .3s ease;display:flex;flex-direction:column;height:100%}
+        .concept-card:hover{transform:translateY(-4px);box-shadow:0 10px 15px -3px rgba(0,0,0,.07),0 4px 6px -4px rgba(0,0,0,.07)}
+        .concept-card h4{font-size:1.125rem;font-weight:600;margin-bottom:.75rem}
+        .concept-card p.definition{font-style:italic;color:#6b7280;margin-bottom:1rem;font-size:.875rem;flex-grow:1}
+        .concept-card .example{margin-top:1rem;padding-top:1rem;border-top:1px solid #e5e7eb}
+        .concept-card .example:first-of-type{margin-top:0;padding-top:0;border-top:none}
+        .concept-card .example h5{font-weight:600;color:#374151;margin-bottom:.5rem;font-size:.875rem}
+        .concept-card .example p{font-size:.875rem;color:#4b5563;margin-bottom:.25rem;line-height:1.5}
+        .concept-card .example strong{color:#1f2937}
+        .border-needs{border-left-color:#f43f5e}.border-variety{border-left-color:#0ea5e9}.border-access{border-left-color:#10b981}
+        .border-fit1{border-left-color:#fbbf24}.border-fit2{border-left-color:#f97316}.border-fit3{border-left-color:#ef4444}
+
+        .prose-custom p,.prose-custom ul,.prose-custom li{font-size:.875rem;line-height:1.6;color:#374151}
+        .prose-custom p{margin-bottom:1em}
+        .prose-custom ul{margin-top:.5em;margin-bottom:1em;padding-left:1.25em;list-style-type:disc}
+        .prose-custom li{margin-bottom:.25em}
+        .prose-custom strong{font-weight:600;color:#111827}
+
+        .comparison-table th,.comparison-table td{padding:.75rem 1rem;vertical-align:top;font-size:.75rem}
+        .comparison-table thead th{background-color:#f3f4f6;border-bottom:2px solid #e5e7eb}
+        .comparison-table tbody tr:nth-child(even){background-color:#f9fafb}
+        .comparison-table tbody tr:hover{background-color:#eff6ff}
+        .comparison-table th[scope="row"]{white-space:nowrap}
+
+        .activity-button{padding:.75rem 1rem;border-radius:.5rem;text-align:left;transition:all .2s ease-in-out;
+          font-size:.875rem;border-width:1px;display:block;width:100%;height:100%}
+        .activity-button strong{display:block;margin-bottom:.25rem;font-weight:600}
+        .activity-button:focus{outline:none;box-shadow:0 0 0 2px var(--tw-ring-color)}
+        .activity-button:focus-visible{box-shadow:0 0 0 2px var(--tw-ring-color)}
+        .workshop-button{background:#f3e8ff;border-color:#e9d5ff;--tw-ring-color:#c084fc;color:#581c87}
+        .workshop-button:hover{background:#e9d5ff;border-color:#d8b4fe}
+        .workshop-button strong{color:#7e22ce}.workshop-button:hover strong{color:#6b21a8}
+        .news-button{background:#dbeafe;border-color:#bfdbfe;--tw-ring-color:#60a5fa;color:#1e40af}
+        .news-button:hover{background:#bfdbfe;border-color:#93c5fd}
+        .news-button strong{color:#1d4ed8}.news-button:hover strong{color:#1e3a8a}
+        .tradeoff-button{background:#fef3c7;border-color:#fde68a;--tw-ring-color:#fbbf24;color:#78350f}
+        .tradeoff-button:hover{background:#fde68a;border-color:#fcd34d}
+        .tradeoff-button strong{color:#b45309}.tradeoff-button:hover strong{color:#92400e}
+        .simulation-button{background:#ffe4e6;border-color:#fecdd3;--tw-ring-color:#fb7185;color:#881337}
+        .simulation-button:hover{background:#fecdd3;border-color:#fda4af}
+        .simulation-button strong{color:#be123c}.simulation-button:hover strong{color:#9f1239}
+
+        .card{background:#fff;border:1px solid #e2e8f0;border-radius:14px}
+        .pill{display:inline-flex;align-items:center;gap:.4rem;border-radius:9999px;padding:.2rem .7rem;
+          font-size:.7rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+        .opt:disabled{cursor:default}
+        .ref{padding-left:1.6rem;text-indent:-1.6rem}
+        @media print{.no-print{display:none!important}}
+
+        /* ---- dark variants for the restored components ---- */
+        html.dark .card,html.dark .concept-card{background:var(--card)!important;border-color:var(--line)!important}
+        html.dark .concept-card p.definition{color:#94A3B8}
+        html.dark .concept-card .example{border-top-color:var(--line)}
+        html.dark .concept-card .example h5,html.dark .concept-card .example strong{color:#E2E8F0}
+        html.dark .concept-card .example p{color:#CBD5E1}
+        html.dark .prose-custom p,html.dark .prose-custom ul,html.dark .prose-custom li{color:#CBD5E1}
+        html.dark .prose-custom strong{color:var(--ink)}
+        html.dark .comparison-table thead th{background:#162032;border-bottom-color:var(--line)}
+        html.dark .comparison-table tbody tr:nth-child(even){background:#0F172A}
+        html.dark .comparison-table tbody tr:hover{background:#1E2749}
+        html.dark .quiz-option.correct{background-color:#14321F!important;border-color:#2F7D52!important;color:#6EE7A8!important}
+        html.dark .quiz-option.incorrect{background-color:#3A181E!important;border-color:#9B3540!important;color:#FCA5A5!important}
+        html.dark .workshop-button{background:#2A1B3D;border-color:#3D2A55;color:#DCC7F5}
+        html.dark .workshop-button:hover{background:#3D2A55}
+        html.dark .workshop-button strong{color:#C9A7F0}
+        html.dark .news-button{background:#1A2244;border-color:#2B3668;color:#BCC7FA}
+        html.dark .news-button:hover{background:#2B3668}
+        html.dark .news-button strong{color:#A3AEFB}
+        html.dark .tradeoff-button{background:#312512;border-color:#4A3A1A;color:#F3D9A4}
+        html.dark .tradeoff-button:hover{background:#4A3A1A}
+        html.dark .tradeoff-button strong{color:#FBBF24}
+        html.dark .simulation-button{background:#331419;border-color:#4A2028;color:#F6BEC5}
+        html.dark .simulation-button:hover{background:#4A2028}
+        html.dark .simulation-button strong{color:#FCA5A5}
+
+        .chart-container{position:relative;width:100%;max-width:600px;margin-inline:auto;height:300px;max-height:350px}
+        .tabular-nums{font-variant-numeric:tabular-nums}
     </style>
-    <link rel="stylesheet" href="/teaching/responsive.css">
 </head>
-<body class="antialiased">
-    <div class="fixed top-0 left-0 w-full h-1 z-50" style="background:var(--ink-100)"><div id="progress-bar" class="h-full transition-all" style="background:var(--brand-700);width:0%"></div></div>
-    <nav class="sticky top-0 z-40" style="background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(15,23,42,.08)">
-        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-            <span class="font-bold">Session 2 · Strategy of Disruption</span>
-            <div class="hidden md:flex gap-6">
-                <a href="#question" class="nav-link">Question</a>
-                <a href="#reading" class="nav-link">The Case</a>
-                <a href="#timeline" class="nav-link">Near-Death, Twice</a>
-                <a href="#quiz" class="nav-link" style="color:var(--brand-700);font-weight:700">Quiz</a>
-            </div>
-        </div>
-    </nav>
+<body class="text-slate-700">
 
-    <header id="question" class="py-20 px-6 text-center" style="background:linear-gradient(to bottom,var(--brand-50),var(--page-bg))">
-        <div class="max-w-4xl mx-auto">
-            <p class="eyebrow mb-4">Session 2 · Strategy of Disruption: Tesla</p>
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">Tesla nearly died in 2008.<br><span class="italic" style="color:var(--brand-700)">It nearly died again in 2018.</span></h1>
-            <p class="text-lg max-w-2xl mx-auto" style="color:var(--ink-600)">
-                A company that survives one near-bankruptcy might be lucky. One that survives two, a decade apart, on the same founder's watch, is running a different kind of experiment entirely. Was Tesla's chaos a necessary cost of disruption, or a preventable failure of execution that got lucky twice?
-            </p>
-        </div>
-    </header>
+<div id="readbar" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
 
-    <section id="reading" class="py-16 px-6" style="border-top:1px solid rgba(15,23,42,.06)">
-        <div class="max-w-3xl mx-auto fp-box">
-            <p class="fp-eyebrow">The Case</p>
-            <p class="mb-4" style="color:var(--ink-700)">
-                Tesla's 2008–2012 entry into the U.S. auto industry: the Roadster shipped in 2008 with the company weeks from bankruptcy; the Model S launch in 2012 required a last-minute $465M DOE loan and a Daimler equity investment just to survive production ramp-up. The pattern repeated in 2017–2018's "production hell" for the Model 3, where Elon Musk slept on the factory floor and the company burned through cash at a rate that had short-sellers openly betting on collapse.
-            </p>
-            <p class="fp-eyebrow">First Principle Question</p>
-            <p style="color:var(--ink-700)">If Tesla had been run by a professional, risk-averse CEO instead of a founder willing to bet the company twice, would Tesla exist today — or would it have quietly failed, the "safe" way, before ever reaching Model 3 volume?</p>
-        </div>
-    </section>
+<nav id="rail" aria-label="Section navigation"></nav>
 
-    <section id="timeline" class="py-16 px-6 text-white" style="background:var(--ink-900)">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-12">
-                <p class="fp-eyebrow" style="color:#93c5fd">Two Decades, Two Near-Death Experiences</p>
-                <h2 class="text-3xl md:text-4xl font-bold serif">The Master Plan, Under Fire</h2>
-                <div class="mt-6 max-w-2xl mx-auto p-5 rounded-xl" style="background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.3)">
-                    <p class="fp-eyebrow" style="color:#bfdbfe">First Principle Question</p>
-                    <p class="text-sm" style="color:#dbeafe">Musk's 2006 "Secret Master Plan" (sports car → funds an affordable car → funds an even more affordable car → solar) took 16 years to execute. Would you have kept funding it in year 10, with no proof it worked yet?</p>
-                </div>
-            </div>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="p-6 rounded-xl" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)">
-                    <p class="font-bold mb-2" style="color:#f87171">2008: The Roadster Crisis</p>
-                    <p class="text-sm" style="color:#cbd5e1">The 2008 financial crisis hit exactly as Tesla needed a fresh funding round to finish Roadster deliveries. Musk personally put in his last liquid capital; the round closed on Christmas Eve 2008 — Tesla later confirmed it had days of cash left. This wasn't a hypothetical near-miss; it was reported as literally days from payroll failure.</p>
-                </div>
-                <div class="p-6 rounded-xl" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)">
-                    <p class="font-bold mb-2" style="color:#f87171">2017–18: Production Hell</p>
-                    <p class="text-sm" style="color:#cbd5e1">The Model 3 ramp fell dramatically short of targets (Musk had promised 5,000/week; actual output stalled in the hundreds for months). Musk moved onto the factory floor. Short interest in Tesla stock hit historic highs on public bets the company would run out of cash before the Model 3 became profitable.</p>
-                </div>
-            </div>
+<!-- Top Bar -->
+<div id="top-bar" class="bg-slate-900 text-slate-300 hidden sm:block">
+  <div class="container mx-auto px-6 flex justify-between items-center h-11 text-xs">
+    <div class="flex items-center gap-3 min-w-0">
+      <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="group shrink-0" title="swapnilsahoo.com">
+        <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
+          <svg viewBox="0 0 52 60" aria-label="Swapnil Sahoo" role="img">
+            <defs><linearGradient id="topRedGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
+            <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#topRedGradient)"/><text class="hexagon-s" x="26" y="32">S</text>
+          </svg>
         </div>
-    </section>
+      </a>
+      <p class="truncate font-medium text-slate-400">&copy; Dr. Swapnil Sahoo 2026 &middot; Great Lakes Institute of Management, Gurgaon</p>
+    </div>
+    <div class="flex items-center gap-4 shrink-0">
+      <a href="https://www.swapnilsahoo.com/teaching/1-year-mba" class="hidden md:inline text-slate-400 hover:text-white transition">STRAMGT 221</a>
+      <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="X/Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.575 2h.093zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" clip-rule="evenodd"/></svg></a>
+      <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg></a>
+    </div>
+  </div>
+</div>
 
-    <section class="py-20 px-6">
-        <div class="max-w-4xl mx-auto">
-            <div class="fp-box mb-8">
-                <p class="fp-eyebrow">First Principle Question</p>
-                <p style="color:var(--ink-700)">Operational effectiveness (doing things well) is not strategy (doing things differently) — Porter's core distinction from Session 1. Which of Tesla's near-death moments was actually a strategy failure, and which was just poor operational execution of a sound strategy? Does the distinction even matter to an investor who lost money either way?</p>
-            </div>
-            <div class="glass-card p-8">
-                <h3 class="text-2xl font-bold serif mb-4">Classroom Debate: The Founder Premium</h3>
-                <p class="text-sm mb-4" style="color:var(--ink-600)">Divide into two groups. Group A argues Musk's willingness to bet the company twice was the source of Tesla's advantage — a professional CEO would have played it safe and lost to incumbents with more capital. Group B argues Tesla survived <em>despite</em> Musk's risk-taking, not because of it, and got lucky on financing timing both times.</p>
-                <p class="text-sm" style="color:var(--ink-600)">Bring evidence: Tesla's stock performance, the fate of other EV startups from the same era (Fisker, Coda) that also bet big and failed, and what "founder mode" governance research (Hambrick & Mason's Upper Echelons Theory) predicts about high-risk-tolerance leaders.</p>
-            </div>
+<!-- Main Navigation -->
+<nav id="main-header" class="sticky top-0 z-50 border-b border-slate-200 bg-white/85 backdrop-blur-md">
+  <div class="container mx-auto px-6">
+    <div class="flex h-16 items-center justify-between gap-4">
+
+      <div class="flex items-center gap-3 min-w-0">
+        <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-slate-900 text-white font-display text-sm font-semibold">02</span>
+        <div class="min-w-0">
+          <p class="truncate font-display text-base font-semibold leading-tight text-slate-900">Elon Musk at Tesla</p>
+          <p class="hidden truncate text-[11px] text-slate-500 sm:block">90 minutes · <span id="progPct">0</span>% read · <span id="doneCount">0</span>/6 activities done</p>
         </div>
-    </section>
+      </div>
 
-    <section id="quiz" class="py-20 px-6" style="background:var(--ink-100);border-top:1px solid rgba(15,23,42,.06)">
-        <div class="max-w-2xl mx-auto text-center">
-            <p class="fp-eyebrow mb-3">First Principle Question</p>
-            <h2 class="text-3xl font-bold serif mb-8">Check Your Understanding</h2>
-            <div id="quiz-box" class="glass-card p-8 text-left"></div>
-            <button onclick="nextQ()" class="mt-6 px-8 py-3 text-white rounded-full font-semibold" style="background:var(--ink-900)">Next</button>
-            <div id="quiz-fb" class="mt-6 hidden text-left"></div>
+      <div class="hidden xl:flex items-center gap-5 text-sm">
+        <a href="#recap" class="nav-link">Recap</a>
+        <a href="#forces" class="nav-link">Five Forces</a>
+        <a href="#paradox" class="nav-link">The Paradox</a>
+        <a href="#exhibit" class="nav-link">Exhibits</a>
+        <a href="#oe" class="nav-link">Production Hell</a>
+        <a href="#governance" class="nav-link">Governance</a>
+        <a href="#quiz" class="nav-link">Quiz</a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button id="themeBtn" type="button" aria-label="Toggle dark mode"
+          class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 transition">
+          <svg class="h-4 w-4 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="hidden h-4 w-4 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <button id="drawerBtn" type="button" aria-label="Open section menu" aria-expanded="false"
+          class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 transition xl:hidden">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <select id="mobile-nav" class="sr-only" tabindex="-1" aria-hidden="true">
+          <option value="#top">Top</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Slide-out drawer -->
+<div id="drawer" class="fixed inset-0 z-[60] hidden">
+  <div id="drawerScrim" class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"></div>
+  <aside class="absolute right-0 top-0 h-full w-[min(88vw,20rem)] overflow-y-auto bg-white p-5 shadow-2xl">
+    <div class="flex items-center justify-between">
+      <p class="font-display text-lg font-semibold text-slate-900">Session 2</p>
+      <button id="drawerClose" type="button" aria-label="Close menu"
+        class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="mt-3 rounded-xl bg-slate-50 p-3">
+      <div class="flex items-center justify-between text-xs text-slate-500">
+        <span>Progress</span><span><span id="drawerDone">0</span>/6 activities</span>
+      </div>
+      <div class="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-200">
+        <div id="drawerBar" class="h-full rounded-full bg-blue-600 transition-all" style="width:0%"></div>
+      </div>
+    </div>
+    <nav id="drawerNav" class="mt-4 grid gap-0.5" aria-label="Sections"></nav>
+  </aside>
+</div>
+
+
+
+<style>
+  #quarters .card, #quarters .chart-container { min-width: 0 }
+  #quarters canvas { max-width: 100% !important }
+</style>
+<span id="hero" aria-hidden="true"></span>
+<section id="top" class="bg-white border-b border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-10 md:py-12 grid gap-8 md:grid-cols-[1.25fr_.75fr] md:items-center">
+    <div>
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span class="pill bg-blue-50 text-blue-700">Session 02</span>
+        <span class="pill bg-slate-100 text-slate-600">1.5 hours</span>
+        <span class="pill bg-slate-100 text-slate-600">Case analysis</span>
+      </div>
+      <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-slate-900">Elon Musk at Tesla</h1>
+      <p class="mt-2 font-display text-lg md:text-xl italic text-blue-700">Putting Session 1&rsquo;s tools under load</p>
+      <p class="mt-3 text-slate-600 md:text-lg leading-relaxed max-w-2xl">
+        Session 1 gave you two lenses and a test. This session points them at one company and asks whether
+        they hold. Tesla entered the most hostile industry a new firm could pick, lost money for a decade,
+        and was still valued above General Motors. Either the frameworks explain that, or they do not.
+      </p>
+      <div class="mt-6 flex flex-wrap gap-3 text-sm">
+        <a href="#recap" class="rounded-lg bg-slate-900 px-4 py-2.5 font-semibold text-white hover:bg-slate-800">Start with the recap</a>
+        <a href="#readings" class="rounded-lg border border-slate-300 px-4 py-2.5 font-semibold text-slate-700 hover:bg-slate-50">Readings &amp; preparation</a>
+      </div>
+    </div>
+    <div class="card p-5">
+      <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">What you must decide</p>
+      <ol class="mt-3 space-y-3">
+        <li class="flex gap-3"><span class="font-mono text-xs text-blue-600 pt-0.5">01</span><span class="text-sm font-semibold text-slate-800">How did one leader revolutionise an entire industry?</span></li>
+        <li class="flex gap-3"><span class="font-mono text-xs text-blue-600 pt-0.5">02</span><span class="text-sm font-semibold text-slate-800">Which leadership traits produced the outlier result?</span></li>
+        <li class="flex gap-3"><span class="font-mono text-xs text-blue-600 pt-0.5">03</span><span class="text-sm font-semibold text-slate-800">Is he still the right leader &mdash; and would you grant 25% voting control?</span></li>
+      </ol>
+      <p class="mt-4 pt-4 border-t border-slate-200 text-xs text-slate-500 leading-relaxed">
+        Come to class with a position on the third question and the evidence you would accept as
+        disproof. A view you cannot imagine losing is a preference, not an argument.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="recap" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Carried forward &middot; Session 1</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">The three things you already have</h2>
+  <p class="mt-3 text-slate-600 max-w-3xl leading-relaxed">
+    Nothing in this session is new theory. Every claim below is a tool from
+    <a href="/teaching/1-year-mba/session1.html" class="font-semibold text-blue-700 hover:underline">Session 1</a>
+    being loaded until it either holds or breaks.
+  </p>
+  <div class="mt-6 grid gap-4 md:grid-cols-3">
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Porter (1996)</p>
+      <h3 class="mt-1 font-bold text-slate-900">Strategy is not operational effectiveness</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Doing the same activities better gets copied. Doing
+        different activities, and refusing what they preclude, does not. Watch for which of Tesla&rsquo;s troubles
+        are OE failures and which are strategic choices.</p>
+    </div>
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Porter &middot; fit</p>
+      <h3 class="mt-1 font-bold text-slate-900">Advantage lives in the system</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">A rival can copy one activity. Copying dozens of
+        mutually reinforcing ones is a different problem. Ask what a legacy carmaker would have to give up to
+        match Tesla, not what it would have to add.</p>
+    </div>
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Mintzberg (1987)</p>
+      <h3 class="mt-1 font-bold text-slate-900">Strategy is also a pattern that emerges</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">The 2006 master plan was deliberate. Energy storage,
+        the charging network, direct sales and software margin were not all in it. Decide how much of Tesla was
+        planned and how much was realised along the way.</p>
+    </div>
+  </div>
+  <div class="mt-6 rounded-2xl bg-amber-50 border border-amber-200 p-5">
+    <p class="text-[10px] font-semibold uppercase tracking-wider text-amber-800">The trap this session sets</p>
+    <p class="mt-1 text-sm text-slate-700 leading-relaxed">
+      It is very easy to explain Tesla backwards. It succeeded, therefore the strategy was brilliant. Hold yourself
+      to the harder standard: state, from the 2017 data alone, what you would have concluded &mdash; and what
+      evidence would have changed your mind.
+    </p>
+  </div>
+</section>
+
+<section id="masterplan" class="bg-white border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Strategic intent</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">The plan Musk published in 2006</h2>
+    <p class="mt-3 text-slate-600 max-w-3xl leading-relaxed">
+      Musk posted the plan publicly under the title &ldquo;The Secret Tesla Motors Master Plan (just between you
+      and me).&rdquo; Its stated purpose was &ldquo;to help expedite the move from a mine-and-burn hydrocarbon
+      economy towards a solar electric economy.&rdquo; Four lines, in order.
+    </p>
+    <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="rounded-xl border border-blue-200 bg-blue-50 p-4"><p class="font-mono text-xs text-blue-700">STEP 1</p><p class="mt-1 text-sm font-semibold text-slate-900">Build a sports car</p><p class="mt-1 text-xs text-slate-600">Roadster, 2008. Low volume, high price, proves the technology.</p></div>
+      <div class="rounded-xl border border-blue-200 bg-blue-50 p-4"><p class="font-mono text-xs text-blue-700">STEP 2</p><p class="mt-1 text-sm font-semibold text-slate-900">Use that money to build an affordable car</p><p class="mt-1 text-xs text-slate-600">Model S, 2012. The step this session tests hardest.</p></div>
+      <div class="rounded-xl border border-blue-200 bg-blue-50 p-4"><p class="font-mono text-xs text-blue-700">STEP 3</p><p class="mt-1 text-sm font-semibold text-slate-900">Use that money to build an even more affordable car</p><p class="mt-1 text-xs text-slate-600">Model 3, 2017. Where production hell happened.</p></div>
+      <div class="rounded-xl border border-blue-200 bg-blue-50 p-4"><p class="font-mono text-xs text-blue-700">STEP 4</p><p class="mt-1 text-sm font-semibold text-slate-900">Provide zero-emission power generation</p><p class="mt-1 text-xs text-slate-600">Solar and storage. The step critics call a distraction.</p></div>
+    </div>
+    <div class="mt-6 grid gap-5 md:grid-cols-2">
+      <div class="rounded-2xl border border-slate-200 p-5">
+        <h3 class="font-bold text-slate-900">Why publishing it was itself strategic</h3>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">A plan announced in advance recruits people who want
+          that outcome &mdash; engineers, early buyers, investors willing to hold through losses. It also removes the
+          option of quietly abandoning it. Porter would call the published refusal a commitment device; Mintzberg
+          would note that it set a direction without specifying the route.</p>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-5">
+        <h3 class="font-bold text-slate-900">The question to hold open</h3>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Step 4 arrived as a $2.6&nbsp;billion acquisition of
+          SolarCity in 2016 &mdash; during the Model 3 ramp, and of a company chaired by Musk himself. Was that the
+          master plan being completed, or attention and capital leaving the one thing that had to work? You will
+          have the cash figures in hand before you answer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="forces" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Porter&rsquo;s five forces</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">The industry a rational planner would have avoided</h2>
+  <p class="mt-3 text-slate-600 max-w-3xl leading-relaxed">
+    Run the analysis as it stood before Tesla shipped a car. Select each force to see the evidence from the case
+    exhibits, and the verdict a Porterian analyst would have written.
+  </p>
+  <div id="forceGrid" class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-5"></div>
+  <div id="forceDetail" class="mt-4 rounded-2xl border border-slate-200 bg-white p-5 min-h-[9rem]"></div>
+  <div class="mt-6 rounded-2xl bg-slate-900 p-6 text-slate-100">
+    <h3 class="font-bold text-white">The conclusion the framework actually produces</h3>
+    <p class="mt-2 text-sm leading-relaxed text-slate-300">
+      Four of five forces are hostile and the fifth is no help. The correct Porterian recommendation in 2003 was
+      <strong class="text-white">do not enter</strong>. Tesla entered anyway and, by 2017, was worth more than General
+      Motors. That is not a footnote to the framework &mdash; it is the problem this session exists to work on.
+      Either the analysis was wrong, or it was right and something outside it decided the outcome.
+    </p>
+  </div>
+</section>
+
+<section id="paradox" class="bg-white border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">The number that frames the session</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">A carmaker that barely made cars</h2>
+    <p class="mt-3 text-slate-600 max-w-3xl leading-relaxed">
+      Before you reveal the answer, commit to an estimate. In 2017, Tesla&rsquo;s market capitalisation was
+      <strong>higher than General Motors&rsquo;</strong>. How many vehicles do you think Tesla built in 2016 for
+      every 100 that GM built?
+    </p>
+    <div class="mt-5 flex flex-wrap items-center gap-3">
+      <label for="guessProd" class="text-sm font-semibold text-slate-700">Your estimate:</label>
+      <input id="guessProd" type="number" min="0" max="100" step="1" value="10"
+        class="w-28 rounded-lg border border-slate-300 px-3 py-2 text-sm" aria-label="Tesla vehicles per 100 GM vehicles">
+      <span class="text-sm text-slate-500">per 100</span>
+      <button id="revealParadox" type="button"
+        class="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800">Reveal the figures</button>
+    </div>
+    <div id="paradoxOut" class="mt-6" hidden></div>
+  </div>
+</section>
+
+<section id="exhibit" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">The exhibit workshop &middot; 20 minutes</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Eleven carmakers, one of them losing money</h2>
+  <p class="mt-3 text-slate-600 max-w-3xl leading-relaxed">
+    These are the FY2017 figures from the case exhibits, in $ millions. Work out the margins yourself before you
+    reveal them &mdash; the reveal is worth nothing if you have not committed to an answer first.
+  </p>
+  <div class="mt-6 card p-5">
+    <div class="flex flex-wrap items-baseline justify-between gap-3">
+      <h3 class="font-bold text-slate-900">Exhibit &middot; Selected competitor financials, FY2017</h3>
+      <button id="revealExhibit" type="button"
+        class="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800">Compute the ratios</button>
+    </div>
+    <div class="mt-4 overflow-x-auto">
+      <table class="w-full text-xs text-left text-slate-600 comparison-table">
+        <thead class="text-[10px] uppercase tracking-wider text-slate-500">
+          <tr>
+            <th scope="col">Firm</th>
+            <th scope="col" class="text-right">Revenue</th>
+            <th scope="col" class="text-right">Gross profit</th>
+            <th scope="col" class="text-right">R&amp;D</th>
+            <th scope="col" class="text-right">Operating income</th>
+            <th scope="col" class="text-right calc-col">Gross margin</th>
+            <th scope="col" class="text-right calc-col">Operating margin</th>
+            <th scope="col" class="text-right calc-col">R&amp;D % rev</th>
+          </tr>
+        </thead>
+        <tbody id="exhibitBody" class="divide-y divide-slate-100"></tbody>
+        <tfoot class="border-t-2 border-slate-300 text-xs font-semibold text-slate-700">
+          <tr>
+            <td class="px-4 py-3">Median, excluding Tesla</td>
+            <td colspan="4"></td>
+            <td class="px-4 py-3 text-right calc-col" id="exMedGM">&mdash;</td>
+            <td class="px-4 py-3 text-right calc-col" id="exMedOM">&mdash;</td>
+            <td class="px-4 py-3 text-right calc-col" id="exMedRD">&mdash;</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+  <div id="exhibitFindings" class="mt-5 grid gap-4 md:grid-cols-3" hidden></div>
+
+  <div class="mt-8 card p-5">
+    <h3 class="font-bold text-slate-900">Who Tesla actually had to buy from</h3>
+    <p class="mt-1 text-sm text-slate-600">The five largest automotive suppliers, FY2017 ($ millions). This is the
+      supplier-power force, with numbers attached.</p>
+    <div class="mt-4 overflow-x-auto">
+      <table class="w-full text-xs text-left text-slate-600 comparison-table">
+        <thead class="text-[10px] uppercase tracking-wider text-slate-500">
+          <tr><th scope="col">Supplier</th><th scope="col" class="text-right">Revenue</th>
+              <th scope="col" class="text-right">R&amp;D</th><th scope="col" class="text-right">Share of global auto supply</th></tr>
+        </thead>
+        <tbody id="supplierBody" class="divide-y divide-slate-100"></tbody>
+      </table>
+    </div>
+    <p id="supplierNote" class="mt-3 text-sm text-slate-600"></p>
+  </div>
+</section>
+
+<section id="quarters" class="bg-white border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Twelve quarters</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">What the money was doing</h2>
+    <p class="mt-3 text-slate-600 max-w-3xl leading-relaxed">
+      Every series below is taken from the case exhibit, 2016 Q1 to 2018 Q4. Read them together: the revenue line
+      and the loss line move in the same direction for two years, and then one quarter changes.
+    </p>
+    <div class="mt-6 grid gap-6 lg:grid-cols-2">
+      <div class="card p-5 min-w-0">
+        <h3 class="font-bold text-slate-900">Revenue and net income</h3>
+        <p class="mt-1 text-xs text-slate-500">$ millions. Bars are revenue, the line is net income.</p>
+        <div class="chart-container mt-3"><canvas id="revChart"></canvas></div>
+      </div>
+      <div class="card p-5 min-w-0">
+        <h3 class="font-bold text-slate-900">Vehicle production</h3>
+        <p class="mt-1 text-xs text-slate-500">Units per quarter. The Model 3 ramp is the vertical section.</p>
+        <div class="chart-container mt-3"><canvas id="prodChart"></canvas></div>
+      </div>
+      <div class="card p-5 min-w-0">
+        <h3 class="font-bold text-slate-900">Cash on hand</h3>
+        <p class="mt-1 text-xs text-slate-500">$ millions. This is the line that decides whether the strategy survives.</p>
+        <div class="chart-container mt-3"><canvas id="cashChart"></canvas></div>
+      </div>
+      <div class="card p-5 min-w-0">
+        <h3 class="font-bold text-slate-900">Luxury sedan unit sales, U.S.</h3>
+        <p class="mt-1 text-xs text-slate-500">Model S against the established large luxury sedans, 2011&ndash;2017.</p>
+        <div class="chart-container mt-3"><canvas id="luxChart"></canvas></div>
+      </div>
+    </div>
+    <div id="quartersNote" class="mt-6 rounded-2xl bg-blue-50 border border-blue-200 p-5"></div>
+  </div>
+</section>
+
+<section id="pricing" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Pricing power</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">The cleanest evidence of a real position</h2>
+  <p class="mt-3 text-slate-600 max-w-3xl leading-relaxed">
+    A discount is what a firm pays to move a car it cannot sell at list. Compare what each maker actually collected
+    against what it asked, in 2017. Then look at what buyers said about quality.
+  </p>
+  <div class="mt-5">
+    <button id="revealPricing" type="button"
+      class="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800">Show the discounts</button>
+  </div>
+  <div id="pricingOut" class="mt-6" hidden></div>
+</section>
+
+<section id="oe" class="bg-white border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Operational effectiveness, not strategy</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Production hell, classified</h2>
+    <p class="mt-3 text-slate-600 max-w-3xl leading-relaxed">
+      Session 1&rsquo;s first distinction earns its keep here. Tesla&rsquo;s worst years were not a failure of position.
+      The position was working &mdash; the Model S outsold every established large luxury sedan and barely discounted.
+      What failed was the ability to build the thing at rate.
+    </p>
+    <div class="mt-6 grid gap-5 md:grid-cols-2">
+      <div class="rounded-2xl border border-rose-200 bg-rose-50 p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">An OE failure</p>
+        <h3 class="mt-1 font-bold text-slate-900">Excessive automation</h3>
+        <p class="mt-2 text-sm text-slate-700 leading-relaxed">Tesla skipped the industry&rsquo;s standard pilot
+          production stage and over-automated final assembly. Musk&rsquo;s own verdict:
+          &ldquo;Excessive automation at Tesla was a mistake&hellip; Humans are underrated.&rdquo; The fix was manual
+          rework and a tent-built production line &mdash; expensive, and copied from no one.</p>
+      </div>
+      <div class="rounded-2xl border border-blue-200 bg-blue-50 p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">A strategic choice</p>
+        <h3 class="mt-1 font-bold text-slate-900">Owning the battery</h3>
+        <p class="mt-2 text-sm text-slate-700 leading-relaxed">Building the Gigafactory was not an efficiency move.
+          Tesla&rsquo;s 2020 volume goal would have required roughly the world&rsquo;s entire 2012 output of
+          lithium-ion cells. Making the scarcest, costliest component in-house answers supplier power directly &mdash;
+          a different activity, not the same one done better.</p>
+      </div>
+    </div>
+    <div class="mt-6 card p-5">
+      <h3 class="font-bold text-slate-900">Sort these yourself</h3>
+      <p class="mt-1 text-sm text-slate-600">For each, decide whether Tesla was failing at execution or making a
+        strategic choice. There is a defensible case on both sides of two of them.</p>
+      <ul id="oeSorter2" class="mt-4 grid gap-2.5"></ul>
+      <p class="mt-3 text-xs text-slate-500"><span id="oeScore2">0</span> / 6 classified</p>
+    </div>
+  </div>
+</section>
+
+<section id="governance" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">The Mintzberg lens, and its bill</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">The same trait, twice</h2>
+  <p class="mt-3 text-slate-600 max-w-3xl leading-relaxed">
+    Each episode below is the output of a single disposition. Select one to see the case for reading it as an asset,
+    the case for reading it as a liability, and what it cost.
+  </p>
+  <div id="govScenarios" class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4"></div>
+  <div id="govDetail" class="mt-4 rounded-2xl border border-slate-200 bg-white p-5 min-h-[10rem]"></div>
+  <div class="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+    <h3 class="font-bold text-slate-900">The uncomfortable finding</h3>
+    <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+      You cannot keep the upside and remove the downside by hiring better. The willingness to stake the company is
+      the same willingness that produces the tweet, the deadline no one can hit, and the acquisition of a company you
+      chair. Governance is not a fix for this &mdash; it is a decision about how much of it you will buy, and at what price.
+    </p>
+  </div>
+</section>
+
+<section id="verdict" class="bg-white border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">The decision</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Would you grant 25% voting control?</h2>
+    <p class="mt-3 text-slate-600 max-w-3xl leading-relaxed">
+      This is the assignment question. Take a position, then assemble the argument you would actually make in the
+      board room. Select the claims you would rely on; the page will tell you what your own case commits you to.
+    </p>
+    <div class="mt-6 grid gap-5 lg:grid-cols-[.9fr_1.1fr]">
+      <div class="card p-5">
+        <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Your position</p>
+        <div class="mt-3 flex gap-2">
+          <button type="button" data-vote="for" class="vote-btn flex-1 rounded-lg border border-slate-300 px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">Grant it</button>
+          <button type="button" data-vote="against" class="vote-btn flex-1 rounded-lg border border-slate-300 px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">Refuse it</button>
         </div>
-    </section>
-    <footer class="py-8 text-center text-sm" style="color:var(--ink-500);border-top:1px solid rgba(15,23,42,.06)">© Dr. Swapnil Sahoo 2026</footer>
+        <p class="mt-4 text-xs font-semibold uppercase tracking-wider text-slate-500">Claims you rely on</p>
+        <div id="claimList" class="mt-2 grid gap-2"></div>
+      </div>
+      <div id="verdictOut" class="card p-5">
+        <p class="text-sm text-slate-500">Choose a position and at least one claim.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        window.onscroll = () => {
-            const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            document.getElementById('progress-bar').style.width = (window.scrollY / h) * 100 + '%';
-        };
-        const qs = [
-            { q: "What forced Tesla's near-collapse in late 2008?", opts: ["A product recall", "The global financial crisis hitting exactly when a fresh funding round was needed", "A labor strike", "A patent lawsuit"], correct: 1, fb: "Correct — Tesla's funding round closed on Christmas Eve 2008 with reportedly days of cash left." },
-            { q: "The 2017-18 'production hell' refers to Tesla's struggle to:", opts: ["Design the Model 3", "Ramp Model 3 manufacturing to promised volumes", "Get regulatory approval", "Hire engineers"], correct: 1, fb: "Right — Musk had promised 5,000/week; actual output stalled far below that for months." },
-            { q: "Porter's distinction between operational effectiveness and strategy is relevant here because:", opts: ["It explains Tesla's marketing", "It helps separate genuine strategic risk-taking from poor execution of a sound strategy", "It has nothing to do with this case", "It only applies to software companies"], correct: 1, fb: "Yes — the debate over whether Tesla's near-deaths reflect strategy or execution failures hinges on exactly this distinction." },
-        ];
-        let qi = 0;
-        function loadQ() {
-            const q = qs[qi];
-            document.getElementById('quiz-fb').classList.add('hidden');
-            document.getElementById('quiz-box').innerHTML = '<p class="font-semibold mb-4">' + (qi+1) + '. ' + q.q + '</p>' +
-                q.opts.map((o,i) => '<button onclick="checkQ('+i+')" class="block w-full text-left p-3 mb-2 rounded-lg" style="border:1px solid var(--ink-300)">'+o+'</button>').join('');
-        }
-        function checkQ(i) {
-            const q = qs[qi]; const fb = document.getElementById('quiz-fb');
-            fb.classList.remove('hidden');
-            fb.innerHTML = i === q.correct
-                ? '<div class="p-4 rounded-lg text-sm" style="background:#f0fdf4;border:1px solid #bbf7d0;color:#166534">✅ '+q.fb+'</div>'
-                : '<div class="p-4 rounded-lg text-sm" style="background:#fef2f2;border:1px solid #fecaca;color:#991b1b">❌ Not quite — review and try the next one.</div>';
-        }
-        function nextQ() { qi = (qi+1) % qs.length; loadQ(); }
-        loadQ();
-    </script>
+<section id="quiz" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Knowledge check</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Fifteen questions</h2>
+  <p class="mt-3 text-slate-600 max-w-3xl leading-relaxed">
+    Answer before you look. Each answer explains itself, and the explanation matters more than the score.
+  </p>
+  <div class="mt-4 flex flex-wrap items-center gap-3 text-sm">
+    <span class="text-slate-500"><span id="s2QuizScore">0</span> / <span id="s2QuizTotal">15</span> correct</span>
+    <button id="s2QuizReset" type="button" class="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50">Start again</button>
+  </div>
+  <div id="s2Quiz" class="mt-6 grid gap-4"></div>
+</section>
+
+<section id="readings" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Preparation</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Readings for Session 2</h2>
+  <div class="mt-6 grid gap-4 md:grid-cols-2">
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Required &middot; the case</p>
+      <p class="mt-2 text-sm text-slate-700 ref">Serafeim, G. (2022). <em>Elon Musk at Tesla</em> (HBS No. 123-044). Harvard Business School Publishing.</p>
+      <p class="mt-2 text-xs text-slate-500">Read the whole case. Come with a position on the voting-control question.</p>
+    </div>
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Required &middot; the industry</p>
+      <p class="mt-2 text-sm text-slate-700 ref">Sull, D., &amp; Reavis, C. (2019). <em>Tesla&rsquo;s entry into the U.S. auto industry</em> (No. 18-186). MIT Sloan School of Management.</p>
+      <p class="mt-2 text-xs text-slate-500">Licensed CC&nbsp;BY-NC-ND&nbsp;3.0. The exhibits used throughout this page come from this case.</p>
+    </div>
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Carried forward</p>
+      <p class="mt-2 text-sm text-slate-700 ref">Porter, M. E. (1996). What is strategy? <em>Harvard Business Review, 74</em>(6), 61&ndash;78.</p>
+      <p class="mt-2 text-sm text-slate-700 ref">Mintzberg, H. (1987). Crafting strategy. <em>Harvard Business Review, 65</em>(4), 66&ndash;75.</p>
+      <p class="mt-2 text-sm text-slate-700 ref">Collis, D. J., &amp; Rukstad, M. G. (2008). Can you say what your strategy is? <em>Harvard Business Review, 86</em>(4), 82&ndash;90.</p>
+    </div>
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Primary source</p>
+      <p class="mt-2 text-sm text-slate-700 ref">Musk, E. (2006, August 2). <em>The secret Tesla Motors master plan (just between you and me)</em>. Tesla.
+        <a href="https://www.tesla.com/secret-master-plan" target="_blank" rel="noopener noreferrer" class="font-semibold text-blue-700 hover:underline">tesla.com</a></p>
+      <p class="mt-2 text-xs text-slate-500">Four lines. Read it before class; it takes two minutes and frames everything.</p>
+    </div>
+  </div>
+  <div class="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+    <h3 class="font-bold text-slate-900">A note on the figures on this page</h3>
+    <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+      Every number in the exhibit workshop, the quarterly charts and the pricing table is read directly from the
+      exhibit workbook accompanying Sull and Reavis (2019), and every ratio is computed in the browser from those
+      figures rather than typed in. Where a figure is quoted in the text, it is the same figure the chart plots.
+    </p>
+  </div>
+</section>
+
+<footer class="bg-gray-800 mt-16 sm:mt-24 border-t border-gray-700">
+  <div class="container mx-auto px-6 py-8 text-center">
+    <p class="text-sm text-slate-400">&copy; Dr. Swapnil Sahoo 2026 &middot; Great Lakes Institute of Management, Gurgaon</p>
+    <p class="mt-2 text-xs text-slate-500">STRAMGT 221 &middot; Strategic Management (PGPM) &middot; Session 2</p>
+    <div class="mt-4 flex items-center justify-center gap-5">
+      <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-400 hover:text-white">swapnilsahoo.com</a>
+      <a href="/teaching/1-year-mba/session1.html" class="text-sm text-slate-400 hover:text-white">&larr; Session 1</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.S2DATA = {
+  firms: [["Audi", 72199.8, 12109.8, 4310.8, 6624.6, 36920.0, 1903.0, 91231.0], ["BMW", 118489.4, 22055.7, 4423.6, 11642.7, 59703.5, 2359.0, 129932.0], ["Daimler", 197322.3, 39440.4, 7084.5, 15563.2, 68809.54, 2526.0, 289321.0], ["Fiat Chrysler", 133028.3, 20359.0, 3746.4, 8447.4, 29365.4, 4682.0, 235915.0], ["Ford", 156776.0, 16579.0, 8000.0, 5052.0, 44113.95, 6429.0, 202000.0], ["GM", 145588.0, 20164.0, 7300.0, 10703.0, 55530.36, 7793.0, 180000.0], ["Honda", 125553.4, 28101.8, 6429.3, 7540.0, 52019.94, 4999.0, 211915.0], ["Nissan", 105112.5, 20605.3, 6240.7, 6656.8, 38048.19, 5556.0, 137250.0], ["Tesla", 11758.8, 2222.5, 1378.1, -1606.3, 58232.91, 83.0, 37543.0], ["Toyota", 247508.5, 43613.1, 9305.2, 17886.7, 188170.27, 10213.0, 364445.0], ["Volkswagen", 276995.7, 48846.1, 13945.7, 15569.5, 86628.86, 10126.0, 642292.0]],
+  suppliers: [["Robert Bosch", 93739.2, 8722.4, 0.023], ["Continental", 52845.2, 3726.8, 0.018], ["Magna International", 38946.0, null, 0.015], ["DENSO Corporation", 40602.2, null, 0.014], ["ZF Friedrichshafen", 43760.8, 2678.9, 0.011]],
+  lux: {"years": [2011, 2012, 2013, 2014, 2015, 2016, 2017], "sales": {"Tesla Model S": [0, null, null, 16698, 25202, 29421, 27060], "Audi A7": [6270, 8598, 8483, 8133, 7721, 6558, 4810], "Audi A8": [5700, 6002, 6300, 5904, 4990, 4149, 3127], "BMW 6-Series": [3903, 8208, 9762, 8647, 8146, 3950, 3355], "BMW 7-Series": [11299, 11098, 10932, 9744, 9292, 12918, 9276], "Jaguar XJ": [5481, 5183, 5434, 4329, 3611, 3834, 2721], "Lexus LS": [9568, 8345, 10727, 8559, 7165, 5514, 4094], "Mercedes-Benz CLS-Class": [5665, 8521, 8032, 7595, 6152, 2571, 1839], "Mercedes-Benz S-Class": [12258, 12587, 13303, 24524, 21934, 18803, 15888], "Porsche Panamera": [6879, 7614, 5421, 5740, 4985, 4403, 6731]}},
+  price: {"Tesla Model X 75D": {"msrp2016": 84200.0, "avg2016": 84200.0, "msrp2017": 80700.0, "avg2017": 80700.0}, "Tesla Model S 90D": {"msrp2016": 90700.0, "avg2016": 90700.0, "msrp2017": 90700.0, "avg2017": 87743.0}, "Audi A7 Premium Plus": {"msrp2016": 69225.0, "avg2016": 63444.0, "msrp2017": 69750.0, "avg2017": 62719.0}, "Audi A8 L3.0T": {"msrp2016": 82425.0, "avg2016": 74149.0, "msrp2017": 83450.0, "avg2017": 73920.0}, "BMW 7-Series 740i": {"msrp2016": 82295.0, "avg2016": 73942.0, "msrp2017": 82495.0, "avg2017": 70351.0}, "Jaguar XJ R-Sport": {"msrp2016": 75395.0, "avg2016": 69438.0, "msrp2017": 75395.0, "avg2017": 69582.0}, "Lexus LS 460": {"msrp2016": 73470.0, "avg2016": 67092.0, "msrp2017": 73515.0, "avg2017": 67060.0}, "Mercedes-Benz S-Class S550": {"msrp2016": 96575.0, "avg2016": 85584.0, "msrp2017": 97595.0, "avg2017": 87464.0}, "Porsche Panamera 4": {"msrp2016": 83850.0, "avg2016": 75305.0, "msrp2017": 90650.0, "avg2017": 87576.0}},
+  evals: {"Tesla Model X": [0.92, null, null, null, 9.1], "Tesla Model S": [0.94, 4.0, 92.0, null, 9.6], "Audi A7": [0.82, null, null, null, 9.2], "Audi A8": [0.74, null, 77.0, null, 8.9], "BMW 6 Series": [0.77, 3.0, null, null, 8.2], "BMW 7 Series": [0.86, 4.0, 86.0, null, 9.1], "Jaguar XJ": [null, 2.0, 58.0, null, 8.1], "Lexus LS": [0.8, 4.0, null, null, 8.1], "Mercedes-Benz CLS-Class": [null, null, null, null, 8.5], "Mercedes-Benz S": [0.77, 3.0, 78.0, null, 9.6], "Porsche Panamera 4": [null, 3.0, null, null, 9.3]},
+  qtr: {"labels": ["2011 Q1", "2011 Q2", "2011 Q3", "2011 Q4", "2012 Q1", "2012 Q2", "2012 Q3", "2012 Q4", "2013 Q1", "2013 Q2", "2013 Q3", "2013 Q4", "2014 Q1", "2014 Q2", "2014 Q3", "2014 Q4", "2015 Q1", "2015 Q2", "2015 Q3", "2015 Q4", "2016 Q1", "2016 Q2", "2016 Q3", "2016 Q4", "2017 Q1", "2017 Q2", "2017 Q3", "2017 Q4", "2018 Q1", "2018 Q2", "2018 Q3", "2018 Q4", "2019 Q1", "2019 Q2"], "totalRevenue": [49.03, 58.171, 57.666, 39.375, 30.167, 26.653, 50.104, 306.332, 561.792, 405.139, 431.346, 615.219, 620.542, 769.349, 851.804, 956.661, 939.88, 954.976, 936.789, 1214.38, 1147.0, 1270.0, 2298.436, 2284.631, 2696.27, 2789.557, 2984.675, 3288.249, 3408.751, 4002.231, 6824.413, 7225.873, 4541.464, 6349.676], "netIncome": [-48.941, -58.903, -65.078, -81.489, -89.873, -105.603, -110.804, -89.933, 11.248, -30.502, -38.496, -16.264, -49.8, -61.9, -74.708, -107.632, -154.181, -184.227, -229.858, -320.397, -282.0, -293.0, 22.0, -228.222, -396.054, -399.785, -670.48, -770.537, -784.627, -743.0, 254.673, 210.078, -667.645, -389.262], "cash": [100.655, 319.38, 213.328, 255.266, 218.57, 210.554, 85.693, 201.89, 214.417, 746.057, 795.116, 845.889, 2393.908, 2674.91, 2370.735, 1905.713, 1510.076, 1150.673, 1426.036, 1196.908, 1442.0, 3246.0, 3084.0, 3393.0, 4006.0, 3035.0, 3530.0, 3367.914, 2665.673, 2236.0, 2967.504, 3685.618, 2198.169, 4954.74], "rd": [41.162, 52.531, 54.083, 61.205, 68.391, 74.854, 61.901, 68.832, 54.859, 52.312, 56.351, 68.454, 81.544, 107.717, 135.873, 139.566, 167.154, 181.712, 178.791, 190.243, 182.0, 192.0, 214.0, 246.0, 322.0, 369.0, 331.0, 354.367, 367.096, 386.0, 350.848, 356.297, 340.174, 323.898], "totalDeliveries": [null, null, null, null, null, null, 321.0, 2400.0, 4900.0, 5150.0, 5500.0, 6892.0, 6457.0, 7579.0, 7785.0, 9834.0, 10045.0, 11532.0, 11574.0, 17400.0, 14820.0, 14370.0, 24500.0, 22200, 24950, 22000, 26150, 29870, 29910, 40749, 83775, 90966, 63019, 95356], "totalProduction": [null, null, null, null, null, null, null, null, 4900.0, 5150.0, 5500.0, 6892.0, 7535.0, 8763.0, 7785.0, 11627.0, 11160.0, 12807.0, 13091.0, 14037.0, 14820.0, 18345.0, 25185.0, 24882.0, 25418.0, 25708.0, 25336.0, 24565.0, 34494.0, 53339.0, null, 86555, 77138, 87048], "model3Deliveries": [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 220.0, 1550.0, 8180.0, 18449.0, 56065.0, 63359.0, 50928.0, 77634.0], "modelSXDeliveries": [null, null, null, null, null, null, 321, 2400, 4900, 5150, 5500, 6892, 6457, 7579, 7785, 9834, 10045, 11532, 11574, 17400, 14820, 14370, 24500, 22200, 24950, 22000, 25930, 28320, 21730, 22300, 27710.0, 27607.0, 12091.0, 17722.0], "fcf": [-108.158, -159.422, -184.067, -180.937, -222.892, -255.879, -272.227, -206.726, -23.419, -148.931, -80.758, -34.059, -223.93, -239.097, -246.478, -553.993, -638.034, -590.201, -575.947, -577.745, -506, -463, 844, -838.944, -267.008, 115.33, -606.22, -686.813, -1354.252, -1174.25, 1418.517, 1669.256, -1464.628, 706.808], "ebitda": [-43.829, -54.421, -60.197, -76.122, -84.6, -101.827, -100.938, -78.093, 12.266, 10.406, -2.104, 24.232, 0.301, 25.962, 25.843, -6.864, -25.334, -78.799, -73.296, -116.61, -92, -55, 366, 61.278, 120.546, 526.115, 631.14, -128.265, -180.741, -135.745, 919.582, 910.273, -54.254, 411.114]}
+};
+</script>
+
+<script>window.S2QUIZ = [
+ {
+  "q": "What does Porter define as the primary goal of Operational Effectiveness (OE)?",
+  "o": [
+   "Performing similar activities better than rivals.",
+   "Making necessary trade-offs.",
+   "Expanding market share in high-growth segments.",
+   "Achieving a unique market position."
+  ],
+  "a": 0,
+  "e": "OE is defined as performing similar activities better—improving quality, efficiency, and speed. It is distinct from Strategy, which is about performing different activities."
+ },
+ {
+  "q": "Tesla's initial Roadster/Model S launch strategy aligns best with which of Porter's competitive forces relative to the auto industry?",
+  "o": [
+   "Threat of New Entrants (EVs being non-traditional for the auto industry).",
+   "Threat of Substitutes (EVs replace ICE cars).",
+   "Bargaining Power of Buyers (Customers demanding EVs).",
+   "Rivalry Among Existing Competitors (Direct head-to-head competition)."
+  ],
+  "a": 1,
+  "e": "By creating a superior, high-performance electric car, Tesla offered a powerful substitute for traditional gasoline luxury cars, changing the basis of competition."
+ },
+ {
+  "q": "The 'production hell' faced during the Model 3 ramp-up is a clear failure of:",
+  "o": [
+   "Strategic Positioning.",
+   "Vertical Integration as a Trade-off.",
+   "Operational Effectiveness (OE).",
+   "Customer segmentation."
+  ],
+  "a": 2,
+  "e": "The chaos, rework, and lack of efficiency were failures of Operational Effectiveness—the system was not performing the manufacturing activity well."
+ },
+ {
+  "q": "Why did Tesla's Direct Sales Model create a crucial strategic advantage (a competitive barrier) over legacy automakers?",
+  "o": [
+   "It was cheaper than hiring commissioned sales agents.",
+   "It eliminated all capital costs for distribution.",
+   "It forced all legacy rivals to immediately adopt the model.",
+   "It bypassed the dealer network whose profit model ($\\\\sim 60\\\\%$ from service/parts) was fundamentally misaligned with low-maintenance EVs."
+  ],
+  "a": 3,
+  "e": "The dealer profit model created a structural conflict for incumbents, making Tesla's direct sales a powerful structural advantage (Trade-off) that rivals could not easily copy without facing massive internal conflict."
+ },
+ {
+  "q": "Tesla's remarkably high R&D spending (over $\\\\mathbf{11\\\\%}$ of revenue) is BEST justified by its strategy as a requirement for:",
+  "o": [
+   "Sustaining Vertical Integration and technology control (software, battery IP).",
+   "Reducing labor costs on the factory floor.",
+   "Financing Musk's other ventures (SpaceX, X).",
+   "Achieving market share targets for the Model 3."
+  ],
+  "a": 0,
+  "e": "To own and control the battery, AI, and software systems (Vertical Integration), Tesla must maintain this high R&D cost. It is a mandatory cost to sustain its unique strategic Activity System."
+ },
+ {
+  "q": "The concept of Fit is critical for competitive sustainability because:",
+  "o": [
+   "It guarantees the company will always earn a profit.",
+   "It makes the entire Activity System harder to imitate than any single component.",
+   "It forces the company to focus purely on Operational Effectiveness.",
+   "It prevents the CEO from taking any external risks."
+  ],
+  "a": 1,
+  "e": "Porter states that when activities are interdependent (Fit), a rival must copy the entire complex system to gain any benefit, making imitation mathematically difficult."
+ },
+ {
+  "q": "The acquisition of SolarCity created severe Governance risks. Strategically, this acquisition risked violating the principle of:",
+  "o": [
+   "The Bargaining Power of Suppliers.",
+   "Operational Effectiveness (OE).",
+   "Trade-offs, by diverting resources and focus from the core Model 3 production crisis.",
+   "Strategic Position, by moving too far from the luxury segment."
+  ],
+  "a": 2,
+  "e": "The SolarCity deal forced a clear choice of resource allocation: focus on the existential Model 3 ramp-up or fund the non-core energy business, violating the necessary resource trade-offs."
+ },
+ {
+  "q": "Why is Musk's 'ultra hardcore' leadership style considered a Trade-off for Tesla?",
+  "o": [
+   "It makes the company attractive to all institutional investors.",
+   "It is the only style compatible with selling EVs.",
+   "It guarantees high employee retention and loyalty.",
+   "It substitutes for a robust, standardized Operational Effectiveness system, relying on individual superhuman effort."
+  ],
+  "a": 3,
+  "e": "Musk's style is a Trade-off that trades stable, repeatable processes (good OE) for chaotic, high-intensity innovation and push—an unsustainable, but sometimes necessary, lever."
+ },
+ {
+  "q": "In the simulation, arguing to HIRE AN EXTERNAL CEO is primarily a vote for which strategic component?",
+  "o": [
+   "Enhanced Operational Effectiveness and improved Governance.",
+   "The abandonment of the Vertical Integration model.",
+   "New, radical R&D investment.",
+   "Increased market share in the luxury segment."
+  ],
+  "a": 0,
+  "e": "An external CEO's value proposition is always professionalizing systems to improve compliance (Governance) and efficiency (OE)."
+ },
+ {
+  "q": "The controversy over working conditions and safety at the Fremont factory (leading to low ESG scores) fundamentally threatens Tesla's core Activity System because:",
+  "o": [
+   "It proves that Tesla's battery technology is unsafe.",
+   "It damages the company's brand, raising the cost of capital and alienating institutional investors who prioritize sustainability.",
+   "It means the Model Y is no longer competitive on price.",
+   "It forces the company to outsource all R&D activities."
+  ],
+  "a": 1,
+  "e": "Poor ESG scores directly increase the cost of capital and threaten long-term stability by limiting access to institutional investment pools (a failure of the Activity System's Fit with finance)."
+ },
+ {
+  "q": "Porter argues that the sustainability of a strategy relies on Second- and Third-Order Fit. Which of the following best represents a Second-Order Fit activity at Tesla?",
+  "o": [
+   "Offering Model S vehicles in red, black, and white.",
+   "Installing robots on the assembly line (Operational Effectiveness).",
+   "Using Direct Sales to control pricing, which reinforces the Over-the-Air Software Updates to build a strong customer relationship.",
+   "Borrowing money from a bank (General Activity)."
+  ],
+  "a": 2,
+  "e": "The two activities reinforce each other: Direct contact facilitates rapid software deployment, and excellent software validates the direct customer relationship."
+ },
+ {
+  "q": "The debate over Musk's $\\\\mathbf{25\\\\%}$ voting control demand directly relates to the teaching objective concerning:",
+  "o": [
+   "The shift in luxury sedan sales market share (Chart 4).",
+   "The necessity of reducing fixed costs.",
+   "Measuring Operational Effectiveness (OE).",
+   "Reflecting on Governance and Growth for founder-led companies."
+  ],
+  "a": 3,
+  "e": "This is a core governance issue at a critical growth juncture, directly testing the balance of founder control vs. corporate accountability."
+ },
+ {
+  "q": "The fact that in $\\\\mathbf{2017}$, Tesla required 11% of revenue for $\\\\mathbf{R\\\\&D}$ while rivals required $\\\\mathbf{3\\\\%}$ to $\\\\mathbf{7\\\\%}$ suggests that the primary basis of competition in the auto industry has shifted from:",
+  "o": [
+   "Operational Effectiveness (low-cost, efficient assembly) to Vertical Integration (owning the tech stack).",
+   "Product quality to marketing expenditure.",
+   "Access-based positioning to needs-based positioning.",
+   "Maximizing production efficiency to maximizing retail sales."
+  ],
+  "a": 0,
+  "e": "High R&D is necessary to own the core technology (battery, AI), proving that the battle has moved beyond merely efficient assembly (OE)."
+ },
+ {
+  "q": "If the Board chose the COMPROMISE option (Musk to Executive Chairman), the primary risk, according to Porter, is that the company would violate the core principle of:",
+  "o": [
+   "The pursuit of perfect Operational Effectiveness.",
+   "Making clear Trade-offs (risking strategic incoherence).",
+   "Ignoring competitor actions (Benchmarking).",
+   "Eliminating all fixed costs."
+  ],
+  "a": 1,
+  "e": "A compromise is an attempt to avoid a clear choice, risking the 'stuck in the middle' syndrome and leading to management indecision and confusion."
+ },
+ {
+  "q": "The leadership style that is perfect for a scrappy startup seeking Strategic Position (like early Tesla) but is ill-suited for a massive, mature public company is called the Leadership Lifecycle problem. This primarily highlights the need for the right leader to manage the evolving demands of:",
+  "o": [
+   "The need to sell the company to a larger rival.",
+   "The company's external lobbying efforts.",
+   "The transition from Strategy-as-Founding Vision to Strategy-as-Sustainable System.",
+   "The market's increasing acceptance of EVs."
+  ],
+  "a": 2,
+  "e": "The chaotic, visionary founder is necessary to establish the unique position, but the systematic, disciplined manager is needed to sustain the complex Activity System."
+ }
+];</script>
+
+<script>
+(function () {
+  var D = window.S2DATA;
+  var F = D.firms, SUP = D.suppliers, QT = D.qtr;
+  function idx(name) { for (var i = 0; i < F.length; i++) if (F[i][0] === name) return i; return -1; }
+  var T = idx("Tesla"), GM = idx("GM"), FORD = idx("Ford");
+  function money(n) { return n.toLocaleString("en-US", { maximumFractionDigits: 0 }); }
+  function pct(n, d) { return n.toFixed(d === undefined ? 1 : d) + "%"; }
+  function median(a) { var s = a.slice().sort(function (x, y) { return x - y; }); var n = s.length;
+    return n % 2 ? s[(n - 1) / 2] : (s[n / 2 - 1] + s[n / 2]) / 2; }
+
+  /* ---------------- five forces ---------------- */
+  var teslaRev = F[T][1], boschRev = SUP[0][1], boschRd = SUP[0][2];
+  var supplierShare = SUP.reduce(function (s, r) { return s + (r[3] || 0); }, 0) * 100;
+  var FORCES = [
+    { k: "entry", n: "Threat of new entrants", v: "Very low", tone: "rose",
+      d: "Sull and Reavis (2019) put the cost of developing a new car at as much as $6 billion and up to six years, before a single unit is sold. Add factories, a dealer network, crash certification and a brand nobody has heard of. The barrier is not one wall; it is a series of them, each expensive.",
+      q: "If entry is this hard, why does that make Tesla's survival evidence of something other than luck?" },
+    { k: "supplier", n: "Bargaining power of suppliers", v: "High", tone: "rose",
+      d: "The five largest suppliers took " + supplierShare.toFixed(1) + "% of global automotive supply between them. Bosch alone had revenue of $" + money(boschRev) + "m — " + (boschRev / teslaRev).toFixed(1) + " times Tesla's entire 2017 revenue — and spent $" + money(boschRd) + "m on R&D, equal to " + (100 * boschRd / teslaRev).toFixed(0) + "% of everything Tesla earned that year.",
+      q: "Tesla's answer was to build the Gigafactory. Which force was that spending aimed at, and what did it refuse in exchange?" },
+    { k: "buyer", n: "Bargaining power of buyers", v: "Moderate to high", tone: "amber",
+      d: "Buyers compare on price with near-perfect information and switch brands cheaply. The industry answered with discounting: in 2017 the BMW 7-Series sold at roughly 15% below list. Tesla did not discount, which is the single cleanest sign that it had built something other than a commodity.",
+      q: "Is a 3% discount a sign of strategic position, or of a company that simply could not build enough cars to need one?" },
+    { k: "substitute", n: "Threat of substitutes", v: "Moderate, rising", tone: "amber",
+      d: "The substitute for a car is not only another car. It is ride-hailing, public transport, e-bikes and not commuting at all. For a firm selling on cost this is a threat; for a firm selling a position it matters less, because its buyers are not choosing on price.",
+      q: "Does a rising substitute threat hurt Tesla more or less than it hurts a volume manufacturer?" },
+    { k: "rivalry", n: "Rivalry among competitors", v: "Intense", tone: "rose",
+      d: "Eleven global manufacturers with vast fixed costs, chronic overcapacity and decades of practice at squeezing cost out of the same activities. In 2017 Tesla's revenue was $" + money(teslaRev) + "m against GM's $" + money(F[GM][1]) + "m, and its share of the U.S. car and light-truck market was 0.2%.",
+      q: "Porter would call most of this rivalry competition on operational effectiveness. What was Tesla competing on instead?" }
+  ];
+  var grid = document.getElementById("forceGrid"), detail = document.getElementById("forceDetail");
+  if (grid && detail) {
+    FORCES.forEach(function (f, i) {
+      var b = document.createElement("button");
+      b.type = "button"; b.dataset.k = f.k;
+      b.className = "force-btn rounded-xl border border-slate-200 bg-white p-4 text-left transition hover:border-blue-400";
+      b.innerHTML = '<p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Force ' + (i + 1) + '</p>' +
+        '<p class="mt-1 text-sm font-bold text-slate-900">' + f.n + '</p>' +
+        '<p class="mt-2 inline-block rounded-full px-2 py-0.5 text-[10px] font-semibold ' +
+        (f.tone === "rose" ? "bg-rose-50 text-rose-700" : "bg-amber-50 text-amber-800") + '">' + f.v + '</p>';
+      b.addEventListener("click", function () { show(f); });
+      grid.appendChild(b);
+    });
+    function show(f) {
+      grid.querySelectorAll(".force-btn").forEach(function (x) {
+        x.classList.toggle("border-blue-600", x.dataset.k === f.k);
+        x.classList.toggle("bg-blue-50", x.dataset.k === f.k);
+      });
+      detail.innerHTML = '<p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">' + f.n + '</p>' +
+        '<p class="mt-2 text-sm text-slate-700 leading-relaxed">' + f.d + '</p>' +
+        '<p class="mt-3 border-t border-slate-200 pt-3 text-sm font-semibold text-slate-900">' + f.q + '</p>';
+    }
+    show(FORCES[0]);
+  }
+
+  /* ---------------- the valuation paradox ---------------- */
+  var rp = document.getElementById("revealParadox");
+  if (rp) rp.addEventListener("click", function () {
+    var out = document.getElementById("paradoxOut");
+    var guess = parseFloat((document.getElementById("guessProd") || {}).value);
+    var tProd = F[T][6] * 1000, gProd = F[GM][6] * 1000;
+    var per100 = 100 * tProd / gProd;
+    var mcT = F[T][5] * 1e6 / tProd, mcG = F[GM][5] * 1e6 / gProd;
+    var line = isNaN(guess) ? "" :
+      '<p class="mt-3 text-sm ' + (Math.abs(guess - per100) <= 1 ? "text-emerald-700" : "text-slate-600") + '">You said ' +
+      guess + ' per 100. The answer is <strong>' + per100.toFixed(1) + '</strong> per 100.</p>';
+    out.innerHTML =
+      '<div class="grid gap-4 md:grid-cols-3">' +
+        card("2016 vehicles built", money(tProd), "Tesla", money(gProd) + " at GM") +
+        card("2017 market value", "$" + money(F[T][5]) + "m", "Tesla", "$" + money(F[GM][5]) + "m at GM") +
+        card("Market value per vehicle built", "$" + money(mcT), "Tesla", "$" + money(mcG) + " at GM", true) +
+      '</div>' + line +
+      '<div class="mt-5 rounded-2xl bg-slate-900 p-5 text-slate-100">' +
+        '<p class="text-sm leading-relaxed">GM built <strong class="text-white">' + (gProd / tProd).toFixed(0) +
+        ' times</strong> as many vehicles as Tesla and was worth <strong class="text-white">less</strong>. ' +
+        'Per vehicle produced, the market valued Tesla at <strong class="text-white">' + (mcT / mcG).toFixed(0) +
+        ' times</strong> GM. Employment tells the same story: ' + money(F[T][7]) + ' people at Tesla against ' +
+        money(F[GM][7]) + ' at GM.</p>' +
+        '<p class="mt-3 text-sm leading-relaxed text-slate-300">Two readings are available and they are not compatible. ' +
+        'Either the market was pricing an activity system that incumbents could not copy, or it was pricing a story. ' +
+        'Session 1 gives you the test: name what Tesla refused to do, and say what it would cost GM to match it.</p>' +
+      '</div>';
+    out.hidden = false;
+    this.disabled = true; this.textContent = "Revealed";
+    this.className = "rounded-lg bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-500";
+  });
+  function card(label, big, who, sub, hot) {
+    return '<div class="rounded-2xl border p-4 ' + (hot ? "border-blue-300 bg-blue-50" : "border-slate-200 bg-slate-50") + '">' +
+      '<p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">' + label + '</p>' +
+      '<p class="mt-1 font-display text-2xl font-bold tabular-nums text-slate-900">' + big + '</p>' +
+      '<p class="text-xs text-slate-500">' + who + '</p>' +
+      '<p class="mt-2 border-t border-slate-200 pt-2 text-xs text-slate-600">' + sub + '</p></div>';
+  }
+
+  /* ---------------- exhibit workshop ---------------- */
+  var body = document.getElementById("exhibitBody");
+  if (body) {
+    F.forEach(function (f) {
+      var isT = f[0] === "Tesla";
+      var tr = document.createElement("tr");
+      if (isT) tr.className = "bg-amber-50";
+      tr.innerHTML =
+        '<td class="px-4 py-2.5 font-medium' + (isT ? " text-amber-900" : "") + '">' + f[0] + '</td>' +
+        '<td class="px-4 py-2.5 text-right tabular-nums">' + money(f[1]) + '</td>' +
+        '<td class="px-4 py-2.5 text-right tabular-nums">' + money(f[2]) + '</td>' +
+        '<td class="px-4 py-2.5 text-right tabular-nums">' + money(f[3]) + '</td>' +
+        '<td class="px-4 py-2.5 text-right tabular-nums">' + money(f[4]) + '</td>' +
+        '<td class="px-4 py-2.5 text-right calc-col">&mdash;</td>' +
+        '<td class="px-4 py-2.5 text-right calc-col">&mdash;</td>' +
+        '<td class="px-4 py-2.5 text-right calc-col">&mdash;</td>';
+      body.appendChild(tr);
+    });
+  }
+  var sb = document.getElementById("supplierBody");
+  if (sb) {
+    SUP.forEach(function (s) {
+      var tr = document.createElement("tr");
+      tr.innerHTML = '<td class="px-4 py-2.5 font-medium">' + s[0] + '</td>' +
+        '<td class="px-4 py-2.5 text-right tabular-nums">' + money(s[1]) + '</td>' +
+        '<td class="px-4 py-2.5 text-right tabular-nums">' + (s[2] ? money(s[2]) : "n/a") + '</td>' +
+        '<td class="px-4 py-2.5 text-right tabular-nums">' + pct(100 * s[3]) + '</td>';
+      sb.appendChild(tr);
+    });
+    document.getElementById("supplierNote").innerHTML =
+      "Bosch alone earned <strong>" + (SUP[0][1] / teslaRev).toFixed(1) + " times</strong> Tesla's 2017 revenue and spent <strong>" +
+      (100 * SUP[0][2] / teslaRev).toFixed(0) + "%</strong> of it on research. These were the firms Tesla would have had to depend on for the battery — which is why it built its own factory instead.";
+  }
+  var rex = document.getElementById("revealExhibit");
+  if (rex) rex.addEventListener("click", function () {
+    var gms = [], oms = [], rds = [];
+    F.forEach(function (f, i) {
+      var gm = 100 * f[2] / f[1], om = 100 * f[4] / f[1], rd = 100 * f[3] / f[1];
+      if (f[0] !== "Tesla") { gms.push(gm); oms.push(om); rds.push(rd); }
+      var c = body.children[i].querySelectorAll(".calc-col");
+      c[0].textContent = pct(gm); c[1].textContent = pct(om); c[2].textContent = pct(rd);
+      c[1].className = "px-4 py-2.5 text-right calc-col font-semibold " + (om < 0 ? "text-rose-700" : "");
+      c[2].className = "px-4 py-2.5 text-right calc-col font-semibold " + (rd > 8 ? "text-amber-700" : "");
+    });
+    document.getElementById("exMedGM").textContent = pct(median(gms));
+    document.getElementById("exMedOM").textContent = pct(median(oms));
+    document.getElementById("exMedRD").textContent = pct(median(rds));
+    var tgm = 100 * F[T][2] / F[T][1], tom = 100 * F[T][4] / F[T][1], trd = 100 * F[T][3] / F[T][1];
+    var fnd = document.getElementById("exhibitFindings");
+    fnd.innerHTML =
+      find("Finding 1", "Ordinary at the gross line",
+        "Tesla's gross margin was " + pct(tgm) + " against a median of " + pct(median(gms)) +
+        ". Whatever explains Tesla, it is not that it built cars unusually profitably.") +
+      find("Finding 2", "The loss is a spending decision",
+        "From " + pct(tgm) + " gross to " + pct(tom) + " operating is a fall of " + (tgm - tom).toFixed(1) +
+        " points. R&D alone was " + pct(trd) + " of revenue against a median of " + pct(median(rds)) + " — " +
+        (trd / median(rds)).toFixed(1) + " times, on a revenue base a fraction of the size.") +
+      find("Finding 3", "Every rival was profitable",
+        "Tesla lost $" + money(Math.abs(F[T][4])) + "m at the operating line. Of the other " + (F.length - 1) +
+        " firms, " + F.filter(function (f) { return f[0] !== "Tesla" && f[4] < 0; }).length +
+        " posted an operating loss. This was not an industry-wide bad year.");
+    fnd.hidden = false;
+    this.disabled = true; this.textContent = "Computed";
+    this.className = "rounded-lg bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-500";
+  });
+  function find(tag, h, p) {
+    return '<div class="rounded-2xl border border-slate-200 bg-white p-5">' +
+      '<p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">' + tag + '</p>' +
+      '<h4 class="mt-1 font-bold text-slate-900">' + h + '</h4>' +
+      '<p class="mt-2 text-sm text-slate-600 leading-relaxed">' + p + '</p></div>';
+  }
+
+  /* ---------------- pricing power ---------------- */
+  var rpr = document.getElementById("revealPricing");
+  if (rpr) rpr.addEventListener("click", function () {
+    var rows = [];
+    Object.keys(D.price).forEach(function (k) {
+      var v = D.price[k];
+      if (v.msrp2017 && v.avg2017) rows.push([k, v.msrp2017, v.avg2017, 100 * (v.msrp2017 - v.avg2017) / v.msrp2017]);
+    });
+    rows.sort(function (a, b) { return a[3] - b[3]; });
+    var html = '<div class="card p-5"><h3 class="font-bold text-slate-900">Discount off list, 2017</h3>' +
+      '<div class="mt-4 overflow-x-auto"><table class="w-full text-xs text-left text-slate-600 comparison-table">' +
+      '<thead class="text-[10px] uppercase tracking-wider text-slate-500"><tr><th>Model</th>' +
+      '<th class="text-right">List price</th><th class="text-right">Average paid</th><th class="text-right">Discount</th></tr></thead><tbody class="divide-y divide-slate-100">';
+    rows.forEach(function (r) {
+      var isT = /Tesla/.test(r[0]);
+      html += '<tr' + (isT ? ' class="bg-amber-50"' : '') + '><td class="px-4 py-2.5 font-medium' + (isT ? ' text-amber-900' : '') + '">' + r[0] + '</td>' +
+        '<td class="px-4 py-2.5 text-right tabular-nums">$' + money(r[1]) + '</td>' +
+        '<td class="px-4 py-2.5 text-right tabular-nums">$' + money(r[2]) + '</td>' +
+        '<td class="px-4 py-2.5 text-right tabular-nums font-semibold ' + (r[3] < 5 ? 'text-emerald-700' : r[3] > 10 ? 'text-rose-700' : '') + '">' + pct(r[3]) + '</td></tr>';
+    });
+    html += '</tbody></table></div></div>';
+    var ms = D.evals["Tesla Model S"] || [];
+    html += '<div class="mt-5 grid gap-4 md:grid-cols-2">' +
+      '<div class="rounded-2xl border border-emerald-200 bg-emerald-50 p-5">' +
+        '<p class="text-[10px] font-semibold uppercase tracking-wider text-emerald-800">What the position bought</p>' +
+        '<p class="mt-2 text-sm text-slate-700 leading-relaxed">The Model S gave up ' + pct(rows.filter(function(r){return /Model S/.test(r[0]);})[0][3]) +
+        ' off list. The BMW 7-Series gave up ' + pct(rows[rows.length - 1][3]) + '. On a car near $80,000 that gap is roughly $' +
+        money(rows[rows.length - 1][1] * rows[rows.length - 1][3] / 100 - rows.filter(function(r){return /Model S/.test(r[0]);})[0][1] * rows.filter(function(r){return /Model S/.test(r[0]);})[0][3] / 100) +
+        ' per car of margin that Tesla simply kept.</p></div>' +
+      '<div class="rounded-2xl border border-amber-200 bg-amber-50 p-5">' +
+        '<p class="text-[10px] font-semibold uppercase tracking-wider text-amber-800">And what it did not</p>' +
+        '<p class="mt-2 text-sm text-slate-700 leading-relaxed">The same exhibit scores the Model S at ' +
+        (ms[0] !== null && ms[0] !== undefined ? (ms[0] * 100).toFixed(0) + '% owner satisfaction, the highest in the table' : 'the highest owner satisfaction in the table') +
+        ', while its predicted reliability scored only ' + (ms[1] || 4) + ' out of 5. Buyers were paying full price for a car they did not rate as dependable. ' +
+        'That is Porter’s distinction in one row: the position was strong while operational effectiveness was not.</p></div></div>';
+    var out = document.getElementById("pricingOut");
+    out.innerHTML = html; out.hidden = false;
+    this.disabled = true; this.textContent = "Shown";
+    this.className = "rounded-lg bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-500";
+  });
+
+  /* ---------------- OE vs strategy sorter ---------------- */
+  var ITEMS = [
+    { t: "Skipping pilot production and over-automating final assembly", a: "oe",
+      why: "A choice about how to execute a known activity, made badly. Musk called it a mistake himself." },
+    { t: "Building the Gigafactory to make its own battery cells", a: "strategy",
+      why: "A different activity, taken on to answer supplier power. It costs something real and precludes a lighter balance sheet." },
+    { t: "Selling directly rather than through franchised dealers", a: "strategy",
+      why: "A refusal. Dealers earn much of their profit from servicing, which sits badly with a car designed to need less of it." },
+    { t: "Missing the 5,000-cars-per-week target for months", a: "oe",
+      why: "A failure to perform a planned activity at rate. Nothing about the position changed." },
+    { t: "Shipping features by over-the-air software update", a: "strategy",
+      why: "It changes what a car is after purchase, and reinforces direct sales by keeping the customer relationship." },
+    { t: "Paying $2.6bn for SolarCity during the Model 3 ramp", a: "both",
+      why: "Defensible as completing the master plan, and attackable as attention and capital leaving the one thing that had to work. Both readings are available; say which you hold and why." }
+  ];
+  var sorter = document.getElementById("oeSorter2");
+  if (sorter) {
+    var done = 0;
+    ITEMS.forEach(function (it) {
+      var li = document.createElement("li");
+      li.className = "rounded-xl border border-slate-200 p-4";
+      li.innerHTML = '<p class="text-sm font-medium text-slate-800">' + it.t + '</p>' +
+        '<div class="mt-3 flex flex-wrap gap-2">' +
+        '<button type="button" data-v="oe" class="opt rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50">Operational effectiveness</button>' +
+        '<button type="button" data-v="strategy" class="opt rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50">Strategic choice</button>' +
+        '<button type="button" data-v="both" class="opt rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50">Arguable either way</button>' +
+        '</div><p class="mt-3 text-xs text-slate-600 leading-relaxed" hidden></p>';
+      var msg = li.querySelector("p:last-child");
+      li.querySelectorAll(".opt").forEach(function (b) {
+        b.addEventListener("click", function () {
+          if (li.dataset.answered) return;
+          li.dataset.answered = "1"; done++;
+          var el = document.getElementById("oeScore2"); if (el) el.textContent = done;
+          li.querySelectorAll(".opt").forEach(function (x) {
+            x.disabled = true;
+            if (x.dataset.v === it.a) x.className = "opt rounded-lg border border-emerald-500 bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-800";
+            else if (x === b) x.className = "opt rounded-lg border border-rose-400 bg-rose-50 px-3 py-1.5 text-xs font-semibold text-rose-700";
+            else x.className = "opt rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-400";
+          });
+          msg.textContent = it.why; msg.hidden = false;
+        });
+      });
+      sorter.appendChild(li);
+    });
+  }
+
+  /* ---------------- governance scenarios ---------------- */
+  var GOV = [
+    { k: "tweet", n: "“Funding secured”", y: "2018",
+      asset: "A leader who treats public communication as his own channel can move faster than a communications department and speak directly to the people who fund him.",
+      cost: "The SEC charged securities fraud. Musk and Tesla each paid $20m, and he was required to step down as chairman.",
+      read: "Hard to defend as anything other than a governance failure. The interesting question is whether the board could have prevented it without also removing what makes him effective." },
+    { k: "floor", n: "Sleeping on the factory floor", y: "2018",
+      asset: "During the Model 3 ramp Musk worked extreme hours on the line itself. It is credible, visible commitment, and it is why people followed him through the worst quarters.",
+      cost: "It is not a system. A founder substituting personal effort for repeatable process is buying time at a price that rises every year.",
+      read: "Asset and warning at once. Ask what Tesla would have done if he had been unavailable for six months." },
+    { k: "solarcity", n: "The SolarCity acquisition", y: "2016",
+      asset: "Step four of the 2006 master plan. Vertically completing the energy system is exactly what the published plan promised.",
+      cost: "$2.6bn and significant management attention, spent during the Model 3 ramp, on a company Musk chaired and in which he held a stake. Critics called it a bailout of related parties.",
+      read: "This is where the master plan and the conflict of interest point in the same direction. Decide which you think was doing the work." },
+    { k: "esg", n: "Removed from the S&P 500 ESG Index", y: "2022",
+      asset: "Tesla's product does more to reduce transport emissions than most index constituents. There is a real argument that the rating measured the wrong thing.",
+      cost: "Musk's response was that “ESG is a scam.” Whatever the merits, alienating the institutions that price your capital is expensive for a firm that raises a great deal of it.",
+      read: "Separate the substantive complaint from the way it was made. The first may be right; the second is a governance cost." }
+  ];
+  var gs = document.getElementById("govScenarios"), gd = document.getElementById("govDetail");
+  if (gs && gd) {
+    GOV.forEach(function (g) {
+      var b = document.createElement("button");
+      b.type = "button"; b.dataset.k = g.k;
+      b.className = "gov-btn rounded-xl border border-slate-200 bg-white p-4 text-left transition hover:border-blue-400";
+      b.innerHTML = '<p class="font-mono text-[10px] text-slate-500">' + g.y + '</p>' +
+        '<p class="mt-1 text-sm font-bold text-slate-900">' + g.n + '</p>';
+      b.addEventListener("click", function () { showGov(g); });
+      gs.appendChild(b);
+    });
+    function showGov(g) {
+      gs.querySelectorAll(".gov-btn").forEach(function (x) {
+        x.classList.toggle("border-blue-600", x.dataset.k === g.k);
+        x.classList.toggle("bg-blue-50", x.dataset.k === g.k);
+      });
+      gd.innerHTML =
+        '<p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">' + g.y + ' &middot; ' + g.n + '</p>' +
+        '<div class="mt-3 grid gap-4 md:grid-cols-2">' +
+          '<div class="rounded-xl bg-emerald-50 border border-emerald-200 p-4"><p class="text-[10px] font-semibold uppercase tracking-wider text-emerald-800">Read as an asset</p><p class="mt-1 text-sm text-slate-700 leading-relaxed">' + g.asset + '</p></div>' +
+          '<div class="rounded-xl bg-rose-50 border border-rose-200 p-4"><p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">What it cost</p><p class="mt-1 text-sm text-slate-700 leading-relaxed">' + g.cost + '</p></div>' +
+        '</div>' +
+        '<p class="mt-3 border-t border-slate-200 pt-3 text-sm text-slate-700 leading-relaxed"><strong class="text-slate-900">Where it lands.</strong> ' + g.read + '</p>';
+    }
+    showGov(GOV[0]);
+  }
+
+  /* ---------------- the 25% vote ---------------- */
+  var CLAIMS = [
+    { k: "system", t: "Tesla's advantage is an activity system, not a person", side: "against",
+      s: "If the advantage really is the system — batteries, software, charging, direct sales — then it survives its architect, and paying for control with votes buys you nothing you do not already own." },
+    { k: "founder", t: "The advantage is inseparable from the founder", side: "for",
+      s: "If you believe this, refusing control risks the thing you are trying to protect. But notice what you have conceded: a succession problem dressed up as a strategy." },
+    { k: "record", t: "The record justifies unusual latitude", side: "for",
+      s: "He built the firm from nothing against a hostile industry. The counter is that past outlier returns are exactly when boards are most tempted to stop asking questions." },
+    { k: "sec", t: "The 2018 SEC settlement showed the guardrails were needed", side: "against",
+      s: "An external regulator had to enforce what the board did not. Granting more control after that requires you to argue the board has since become more capable of saying no." },
+    { k: "capital", t: "Concentrated control raises the cost of capital", side: "against",
+      s: "Institutions price governance. If control deters them, the firm pays for it on every future raise — and Tesla raises often." },
+    { k: "retention", t: "Without it he goes and takes the vision elsewhere", side: "for",
+      s: "A real risk, and also the clearest statement of the problem: you are being asked to pay a premium to retain someone who has told you he will leave without it." }
+  ];
+  var cl = document.getElementById("claimList"), vout = document.getElementById("verdictOut");
+  var chosen = {}, vote = null;
+  if (cl && vout) {
+    CLAIMS.forEach(function (c) {
+      var b = document.createElement("button");
+      b.type = "button"; b.dataset.k = c.k;
+      b.className = "claim-btn rounded-lg border border-slate-300 px-3 py-2 text-left text-xs font-semibold text-slate-700 hover:bg-slate-50";
+      b.textContent = c.t;
+      b.addEventListener("click", function () {
+        chosen[c.k] = !chosen[c.k];
+        b.className = "claim-btn rounded-lg border px-3 py-2 text-left text-xs font-semibold " +
+          (chosen[c.k] ? "border-blue-600 bg-blue-50 text-blue-800" : "border-slate-300 text-slate-700 hover:bg-slate-50");
+        render();
+      });
+      cl.appendChild(b);
+    });
+    document.querySelectorAll(".vote-btn").forEach(function (b) {
+      b.addEventListener("click", function () {
+        vote = b.dataset.vote;
+        document.querySelectorAll(".vote-btn").forEach(function (x) {
+          x.className = "vote-btn flex-1 rounded-lg border px-3 py-2.5 text-sm font-semibold " +
+            (x === b ? "border-blue-600 bg-blue-50 text-blue-800" : "border-slate-300 text-slate-700 hover:bg-slate-50");
+        });
+        render();
+      });
+    });
+    function render() {
+      var picked = CLAIMS.filter(function (c) { return chosen[c.k]; });
+      if (!vote || !picked.length) {
+        vout.innerHTML = '<p class="text-sm text-slate-500">Choose a position and at least one claim.</p>';
+        return;
+      }
+      var agree = picked.filter(function (c) { return c.side === vote; });
+      var against = picked.filter(function (c) { return c.side !== vote; });
+      var html = '<p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Your case: ' +
+        (vote === "for" ? "grant the 25%" : "refuse the 25%") + '</p>';
+      html += '<div class="mt-3 grid gap-2">';
+      agree.forEach(function (c) {
+        html += '<div class="rounded-lg bg-slate-50 p-3"><p class="text-xs font-semibold text-slate-900">' + c.t + '</p>' +
+          '<p class="mt-1 text-xs text-slate-600 leading-relaxed">' + c.s + '</p></div>';
+      });
+      html += '</div>';
+      if (against.length) {
+        html += '<div class="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-4">' +
+          '<p class="text-[10px] font-semibold uppercase tracking-wider text-amber-800">You are also relying on ' +
+          against.length + ' claim' + (against.length > 1 ? 's that cut' : ' that cuts') + ' against your own vote</p>';
+        against.forEach(function (c) {
+          html += '<p class="mt-2 text-xs text-slate-700 leading-relaxed"><strong>' + c.t + '.</strong> ' + c.s + '</p>';
+        });
+        html += '<p class="mt-2 text-xs font-semibold text-amber-900">Either drop it, or explain in class why it does not decide the question.</p></div>';
+      } else {
+        html += '<div class="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-4">' +
+          '<p class="text-xs text-slate-600 leading-relaxed">Your claims all point one way. That is a coherent case, and also a warning: ' +
+          'select the strongest claim on the other side and say what would have to be true for it to win.</p></div>';
+      }
+      vout.innerHTML = html;
+    }
+  }
+
+  /* ---------------- quiz ---------------- */
+  var QUIZ = window.S2QUIZ || [];
+  var qw = document.getElementById("s2Quiz");
+  if (qw && QUIZ.length) {
+    var score = 0;
+    document.getElementById("s2QuizTotal").textContent = QUIZ.length;
+    function build() {
+      qw.innerHTML = ""; score = 0;
+      document.getElementById("s2QuizScore").textContent = "0";
+      QUIZ.forEach(function (item, n) {
+        var d = document.createElement("div");
+        d.className = "card p-5";
+        var opts = item.o.map(function (t, k) {
+          return '<button type="button" class="quiz-option w-full rounded-lg border border-slate-300 px-3 py-2 text-left text-sm text-slate-700" data-k="' + k + '">' +
+            String.fromCharCode(65 + k) + ". " + t + '</button>';
+        }).join("");
+        d.innerHTML = '<p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Question ' + (n + 1) + '</p>' +
+          '<p class="mt-1 text-sm font-semibold text-slate-900">' + item.q + '</p>' +
+          '<div class="mt-3 grid gap-2">' + opts + '</div>' +
+          '<p class="quiz-explanation text-xs text-slate-600 bg-slate-100 p-3 rounded-md border border-slate-200"></p>';
+        var expl = d.querySelector(".quiz-explanation");
+        d.querySelectorAll(".quiz-option").forEach(function (b) {
+          b.addEventListener("click", function () {
+            if (d.dataset.answered) return;
+            d.dataset.answered = "1";
+            var k = parseInt(b.dataset.k, 10);
+            if (k === item.a) { score++; document.getElementById("s2QuizScore").textContent = score; }
+            d.querySelectorAll(".quiz-option").forEach(function (x) {
+              x.disabled = true;
+              var xi = parseInt(x.dataset.k, 10);
+              if (xi === item.a) x.classList.add("correct");
+              else if (x === b) x.classList.add("incorrect");
+            });
+            expl.textContent = item.e;
+            expl.classList.add("visible");
+          });
+        });
+        qw.appendChild(d);
+      });
+    }
+    build();
+    var rb = document.getElementById("s2QuizReset");
+    if (rb) rb.addEventListener("click", build);
+  }
+})();
+</script>
+
+<script>
+(function () {
+  if (!window.Chart || !window.S2DATA) return;
+  var Q = window.S2DATA.qtr, L = window.S2DATA.lux;
+  var i0 = Q.labels.indexOf("2016 Q1"), i1 = Q.labels.indexOf("2018 Q4");
+  var lab = Q.labels.slice(i0, i1 + 1).map(function (s) {
+    var p = s.split(" ");
+    return p[1] === "Q1" ? p[0] + " Q1" : p[1];
+  });
+  function win(a) { return a.slice(i0, i1 + 1); }
+  var base = {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: true, labels: { boxWidth: 10, font: { size: 10 } } } },
+    scales: { x: { grid: { display: false }, ticks: { font: { size: 9 } } },
+              y: { grid: { color: "rgba(15,23,42,.08)" }, ticks: { font: { size: 9 } } } }
+  };
+  function clone(o) { return JSON.parse(JSON.stringify(o)); }
+
+  // revenue + net income
+  var c1 = document.getElementById("revChart");
+  if (c1) {
+    var o = clone(base);
+    o.scales.y.ticks = { font: { size: 9 }, callback: function (v) { return "$" + v; } };
+    new Chart(c1.getContext("2d"), {
+      data: {
+        labels: lab,
+        datasets: [
+          { type: "bar", label: "Revenue ($m)", data: win(Q.totalRevenue), backgroundColor: "rgba(79,70,229,.35)", borderColor: "#4F46E5", borderWidth: 1 },
+          { type: "line", label: "Net income ($m)", data: win(Q.netIncome), borderColor: "#e11d48", backgroundColor: "#e11d48", tension: .25, pointRadius: 3, borderWidth: 2 }
+        ]
+      }, options: o
+    });
+  }
+  // production
+  var c2 = document.getElementById("prodChart");
+  if (c2) {
+    var o2 = clone(base);
+    o2.plugins.legend.display = false;
+    new Chart(c2.getContext("2d"), {
+      type: "line",
+      data: { labels: lab, datasets: [{ label: "Vehicles produced", data: win(Q.totalProduction), borderColor: "#4F46E5", backgroundColor: "rgba(79,70,229,.12)", fill: true, tension: .25, pointRadius: 3, borderWidth: 2, spanGaps: true }] },
+      options: o2
+    });
+  }
+  // cash
+  var c3 = document.getElementById("cashChart");
+  if (c3) {
+    var o3 = clone(base);
+    o3.plugins.legend.display = false;
+    o3.scales.y.ticks = { font: { size: 9 }, callback: function (v) { return "$" + v; } };
+    new Chart(c3.getContext("2d"), {
+      type: "line",
+      data: { labels: lab, datasets: [{ label: "Cash ($m)", data: win(Q.cash), borderColor: "#0891b2", backgroundColor: "rgba(8,145,178,.12)", fill: true, tension: .25, pointRadius: 3, borderWidth: 2 }] },
+      options: o3
+    });
+  }
+  // luxury sedans
+  var c4 = document.getElementById("luxChart");
+  if (c4) {
+    var COLORS = { "Tesla Model S": "#4F46E5", "Mercedes-Benz S-Class": "#334155", "BMW 7-Series": "#64748B", "Lexus LS": "#94A3B8", "Audi A8": "#CBD5E1" };
+    var ds = Object.keys(COLORS).filter(function (k) { return L.sales[k]; }).map(function (k) {
+      return { label: k, data: L.sales[k], borderColor: COLORS[k], backgroundColor: COLORS[k],
+               borderWidth: k === "Tesla Model S" ? 3 : 1.5, tension: .25, pointRadius: 2, spanGaps: true };
+    });
+    new Chart(c4.getContext("2d"), { type: "line", data: { labels: L.years, datasets: ds }, options: clone(base) });
+  }
+
+  // the note under the charts, computed from the same series
+  var note = document.getElementById("quartersNote");
+  if (note) {
+    var ni = win(Q.netIncome), ch = win(Q.cash), fc = win(Q.fcf), dl = win(Q.totalDeliveries);
+    var r0 = function (v) { return Math.round(v).toLocaleString("en-US"); };
+    // the turn: the first profitable quarter that ends the unbroken run of losses
+    var turn = -1;
+    for (var k = ni.length - 1; k >= 0; k--) {
+      if (ni[k] !== null && ni[k] < 0) { turn = k + 1; break; }
+    }
+    while (turn < ni.length && (ni[turn] === null || ni[turn] <= 0)) turn++;
+    // the loss run that precedes it, and its worst quarter and cash trough
+    var start = turn - 1;
+    while (start > 0 && ni[start - 1] !== null && ni[start - 1] < 0) start--;
+    var worst = start, low = start;
+    for (var j = start; j < turn; j++) {
+      if (ni[j] !== null && ni[j] < ni[worst]) worst = j;
+      if (ch[j] !== null && ch[j] < ch[low]) low = j;
+    }
+    var yoy = turn - 4;
+    var html = '<p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Read the four together</p>' +
+      '<p class="mt-2 text-sm text-slate-700 leading-relaxed">Tesla lost money in every quarter from <strong>' +
+      lab_full(start) + '</strong> to <strong>' + lab_full(turn - 1) + '</strong> — ' + (turn - start) +
+      ' consecutive quarters, the worst of them <strong>$' + r0(Math.abs(ni[worst])) + 'm</strong> in ' + lab_full(worst) +
+      '. Cash fell to <strong>$' + r0(ch[low]) + 'm</strong> in ' + lab_full(low) + ', its lowest point of the ramp.</p>' +
+      '<p class="mt-3 text-sm text-slate-700 leading-relaxed">The run ends in <strong>' + lab_full(turn) +
+      '</strong>: net income <strong>+$' + r0(ni[turn]) + 'm</strong> and free cash flow <strong>+$' + r0(fc[turn]) + 'm</strong>';
+    if (yoy >= 0 && dl[turn] !== null && dl[yoy] !== null) {
+      html += ', in the same quarter deliveries reached <strong>' + r0(dl[turn]) + '</strong>, against ' +
+        r0(dl[yoy]) + ' a year earlier — a factor of ' + (dl[turn] / dl[yoy]).toFixed(1) + '.';
+    } else { html += '.'; }
+    html += ' The whole strategy was a bet that volume would arrive before the cash ran out. It did, with ' +
+      'roughly one quarter to spare.</p>';
+    note.innerHTML = html;
+  }
+  function lab_full(k) { return Q.labels.slice(i0, i1 + 1)[k]; }
+})();
+</script>
+
+<script>
+(function () {
+  var SECTIONS = [
+    ["recap", "Session 1 recap"],
+    ["masterplan", "The master plan"],
+    ["forces", "Five forces"],
+    ["paradox", "The valuation paradox"],
+    ["exhibit", "Exhibit workshop"],
+    ["quarters", "The quarters"],
+    ["pricing", "Pricing power"],
+    ["oe", "Production hell"],
+    ["governance", "Governance"],
+    ["verdict", "The 25% vote"],
+    ["quiz", "Quiz"],
+    ["readings", "Readings"]
+  ];
+  var KEY = "s2-progress-v1";
+  var ACTIVITIES = ["forces", "paradox", "exhibit", "pricing", "governance", "quiz"];
+
+  // ---------- theme ----------
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem("s2-theme");
+    if (saved === "dark" || (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+      root.classList.add("dark");
+    }
+  } catch (e) {}
+  var themeBtn = document.getElementById("themeBtn");
+  if (themeBtn) {
+    themeBtn.addEventListener("click", function () {
+      root.classList.toggle("dark");
+      try { localStorage.setItem("s2-theme", root.classList.contains("dark") ? "dark" : "light"); } catch (e) {}
+    });
+  }
+
+  // ---------- reading progress ----------
+  var bar = document.getElementById("readbar");
+  var pctEl = document.getElementById("progPct");
+  function onScroll() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? Math.min(100, Math.max(0, (h.scrollTop / max) * 100)) : 0;
+    if (bar) { bar.style.width = p + "%"; bar.setAttribute("aria-valuenow", Math.round(p)); }
+    if (pctEl) pctEl.textContent = Math.round(p);
+  }
+  var ticking = false;
+  window.addEventListener("scroll", function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () { onScroll(); ticking = false; });
+  }, { passive: true });
+  onScroll();
+
+  // ---------- rail + drawer nav ----------
+  var rail = document.getElementById("rail");
+  var dnav = document.getElementById("drawerNav");
+  SECTIONS.forEach(function (s) {
+    if (!document.getElementById(s[0])) return;
+    if (rail) {
+      var a = document.createElement("a");
+      a.href = "#" + s[0];
+      a.dataset.sec = s[0];
+      a.innerHTML = '<span class="dot"></span><span class="lbl">' + s[1] + "</span>";
+      rail.appendChild(a);
+    }
+    if (dnav) {
+      var d = document.createElement("a");
+      d.href = "#" + s[0];
+      d.className = "rounded-lg px-3 py-2.5 text-sm text-slate-700 hover:bg-slate-100";
+      d.textContent = s[1];
+      d.addEventListener("click", closeDrawer);
+      dnav.appendChild(d);
+    }
+  });
+
+  var drawer = document.getElementById("drawer");
+  var drawerBtn = document.getElementById("drawerBtn");
+  function openDrawer() {
+    if (!drawer) return;
+    drawer.classList.remove("hidden");
+    if (drawerBtn) drawerBtn.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  }
+  function closeDrawer() {
+    if (!drawer) return;
+    drawer.classList.add("hidden");
+    if (drawerBtn) drawerBtn.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
+  if (drawerBtn) drawerBtn.addEventListener("click", openDrawer);
+  var dc = document.getElementById("drawerClose");
+  var ds = document.getElementById("drawerScrim");
+  if (dc) dc.addEventListener("click", closeDrawer);
+  if (ds) ds.addEventListener("click", closeDrawer);
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeDrawer(); });
+
+  // ---------- scrollspy for the rail ----------
+  var spy = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting || !rail) return;
+      rail.querySelectorAll("a").forEach(function (a) {
+        a.classList.toggle("on", a.dataset.sec === en.target.id);
+      });
+    });
+  }, { rootMargin: "-45% 0px -50% 0px" });
+  SECTIONS.forEach(function (s) {
+    var el = document.getElementById(s[0]);
+    if (el) spy.observe(el);
+  });
+
+  // ---------- scroll reveal ----------
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduce) {
+    var targets = document.querySelectorAll("section > .container > *");
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.06, rootMargin: "0px 0px -8% 0px" });
+    targets.forEach(function (t, i) {
+      // never hide anything already on screen at load
+      if (t.getBoundingClientRect().top < window.innerHeight) return;
+      t.classList.add("rv");
+      io.observe(t);
+    });
+  }
+
+  // ---------- completion tracking ----------
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { state = {}; }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  function count() { return ACTIVITIES.filter(function (k) { return state[k]; }).length; }
+  function paint() {
+    var n = count(), total = ACTIVITIES.length;
+    var a = document.getElementById("doneCount"); if (a) a.textContent = n;
+    var b = document.getElementById("drawerDone"); if (b) b.textContent = n;
+    var c = document.getElementById("drawerBar"); if (c) c.style.width = (100 * n / total) + "%";
+    ACTIVITIES.forEach(function (k) {
+      var badge = document.querySelector('[data-done-for="' + k + '"]');
+      if (badge) badge.hidden = !state[k];
+    });
+  }
+  function mark(k) { if (!state[k]) { state[k] = true; save(); paint(); } }
+  paint();
+
+  // wire completion to the real interactions already on the page
+  function onClickWithin(sel, key) {
+    var el = document.querySelector(sel);
+    if (el) el.addEventListener("click", function () { mark(key); });
+  }
+  onClickWithin("#forceGrid", "forces");
+  onClickWithin("#revealParadox", "paradox");
+  onClickWithin("#revealExhibit", "exhibit");
+  onClickWithin("#revealPricing", "pricing");
+  onClickWithin("#govScenarios", "governance");
+  var qc = document.getElementById("s2Quiz");
+  if (qc) qc.addEventListener("click", function () { mark("quiz"); });
+
+  // reset control, appended to the readings section if present
+  var readings = document.getElementById("readings");
+  if (readings) {
+    var wrap = readings.querySelector(".container");
+    if (wrap) {
+      var p = document.createElement("div");
+      p.className = "mt-8 flex flex-wrap items-center gap-3 border-t border-slate-200 pt-6 text-sm";
+      p.innerHTML = '<span class="text-slate-500">Your progress on this page is saved in this browser only.</span>' +
+        '<button type="button" id="resetProg" class="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-100">Reset my progress</button>';
+      wrap.appendChild(p);
+      var rp = document.getElementById("resetProg");
+      if (rp) rp.addEventListener("click", function () {
+        state = {}; save(); paint();
+        rp.textContent = "Reset";
+        setTimeout(function () { rp.textContent = "Reset my progress"; }, 1400);
+      });
+    }
+  }
+})();
+
+</script>
+
+<script>
+/* keep the Chart.js canvases legible in both themes */
+(function(){
+  function chartTheme(){
+    if(!window.Chart||!Chart.getChart) return;
+    var dark=document.documentElement.classList.contains("dark");
+    var tick=dark?"#94A3B8":"#475569";
+    var grid=dark?"rgba(226,232,240,.12)":"rgba(15,23,42,.08)";
+    Chart.defaults.color=tick;
+    document.querySelectorAll("canvas").forEach(function(c){
+      var ch=Chart.getChart(c); if(!ch||!ch.config) return;
+      // Chart.js v4 rebuilds chart.options on update(), so mutate the config
+      var o=ch.config.options=ch.config.options||{};
+      var sc=o.scales=o.scales||{};
+      Object.keys(sc).forEach(function(k){
+        if(!sc[k]) return;
+        sc[k].ticks=sc[k].ticks||{}; sc[k].ticks.color=tick;
+        if(sc[k].grid&&sc[k].grid.display===false) return;
+        sc[k].grid=sc[k].grid||{}; sc[k].grid.color=grid;
+      });
+      var pl=o.plugins=o.plugins||{};
+      if(pl.legend){ pl.legend.labels=pl.legend.labels||{}; pl.legend.labels.color=tick; }
+      ch.update("none");
+    });
+  }
+  var btn=document.getElementById("themeBtn");
+  if(btn) btn.addEventListener("click",function(){ setTimeout(chartTheme,60); });
+
+  var n=0, iv=setInterval(function(){ chartTheme(); if(++n>20) clearInterval(iv); },400);
+})();
+</script>
 </body>
 </html>
