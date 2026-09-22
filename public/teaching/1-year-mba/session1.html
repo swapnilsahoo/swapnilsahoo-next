@@ -308,6 +308,16 @@
         .chart-container{position:relative;width:100%;max-width:600px;margin-inline:auto;height:300px;max-height:350px}
         .tabular-nums{font-variant-numeric:tabular-nums}
     </style>
+    <script>
+      /* theme, resolved before first paint: light unless this visitor chose dark */
+      (function () {
+        try {
+          if (localStorage.getItem("s1-theme") === "dark") {
+            document.documentElement.classList.add("dark");
+          }
+        } catch (e) {}
+      })();
+    </script>
 </head>
 
 <body class="text-slate-700">
@@ -2855,10 +2865,8 @@ QUIZ.forEach((item,i)=>{
   // ---------- theme ----------
   var root = document.documentElement;
   try {
-    var saved = localStorage.getItem("s1-theme");
-    if (saved === "dark" || (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-      root.classList.add("dark");
-    }
+    // light is the default; dark only when the visitor has asked for it
+    if (localStorage.getItem("s1-theme") === "dark") root.classList.add("dark");
   } catch (e) {}
   var themeBtn = document.getElementById("themeBtn");
   if (themeBtn) {
