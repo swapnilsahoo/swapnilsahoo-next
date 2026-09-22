@@ -348,7 +348,7 @@
         <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-slate-900 text-white font-display text-sm font-semibold">01</span>
         <div class="min-w-0">
           <p class="truncate font-display text-base font-semibold leading-tight text-slate-900">Introduction to Strategy</p>
-          <p class="hidden truncate text-[11px] text-slate-500 sm:block">90 minutes · <span id="progPct">0</span>% read · <span id="doneCount">0</span>/7 activities done</p>
+          <p class="hidden truncate text-[11px] text-slate-500 sm:block">90 minutes · <span id="progPct">0</span>% read · <span id="doneCount">0</span>/8 activities done</p>
         </div>
       </div>
 
@@ -393,7 +393,7 @@
     </div>
     <div class="mt-3 rounded-xl bg-slate-50 p-3">
       <div class="flex items-center justify-between text-xs text-slate-500">
-        <span>Progress</span><span><span id="drawerDone">0</span>/7 activities</span>
+        <span>Progress</span><span><span id="drawerDone">0</span>/8 activities</span>
       </div>
       <div class="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-200">
         <div id="drawerBar" class="h-full rounded-full bg-blue-600 transition-all" style="width:0%"></div>
@@ -905,6 +905,57 @@
                             <div class="chart-container"><canvas id="yahooChart"></canvas></div>
                         </div>
                     </div>
+                </div>
+
+                <!-- synthesis: lecture + autopsy exercise -->
+                <div class="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-8 no-print">
+                  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Synthesis &middot; 5 minutes</p>
+                  <h3 class="mt-2 text-2xl font-bold text-slate-900">Three deaths, one autopsy</h3>
+                  <p class="mt-3 max-w-3xl text-slate-600 leading-relaxed">
+                    You have just read three failures in detail. Before you watch the general argument, commit to a
+                    diagnosis for each one. Then watch, then come back and see whether you would still sign the same
+                    death certificate.
+                  </p>
+
+                  <div class="mt-6 grid gap-6 lg:grid-cols-[1.05fr_.95fr] lg:items-start">
+
+                    <figure class="lg:sticky lg:top-28">
+                      <div id="failVideo" class="relative overflow-hidden rounded-2xl border border-slate-300 bg-slate-900" style="aspect-ratio:16/9">
+                        <button type="button" id="failVideoBtn"
+                          class="group absolute inset-0 h-full w-full cursor-pointer"
+                          aria-label="Play the lecture: Why Great Businesses Fail, Stanford Graduate School of Business">
+                          <img src="https://i.ytimg.com/vi/sNLC7wbXEl0/maxresdefault.jpg" alt="" loading="lazy" decoding="async"
+                            class="h-full w-full object-cover opacity-90 transition duration-300 group-hover:opacity-100">
+                          <span class="absolute inset-0 grid place-items-center">
+                            <span class="grid h-16 w-16 place-items-center rounded-full bg-white/95 shadow-xl transition duration-300 group-hover:scale-110">
+                              <svg viewBox="0 0 24 24" class="ml-1 h-7 w-7" fill="#0F172A" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                            </span>
+                          </span>
+                          <span class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-4 text-left">
+                            <span class="block text-[10px] font-semibold uppercase tracking-wider text-white/70">Stanford Graduate School of Business</span>
+                            <span class="block text-sm font-semibold text-white">Why Great Businesses Fail</span>
+                          </span>
+                        </button>
+                      </div>
+                      <figcaption class="mt-2 text-xs text-slate-500">
+                        Stanford Graduate School of Business.
+                        <a href="https://www.youtube.com/watch?v=sNLC7wbXEl0" target="_blank" rel="noopener noreferrer" class="font-semibold text-blue-700 hover:underline">Open on YouTube</a>
+                        &middot; Watch after you have filled in all three diagnoses.
+                      </figcaption>
+                    </figure>
+
+                    <div>
+                      <div class="flex flex-wrap items-baseline justify-between gap-2">
+                        <h4 class="font-bold text-slate-900">Sign the death certificate</h4>
+                        <span class="text-xs text-slate-500"><span id="autopsyCount">0</span> / 3 diagnosed</span>
+                      </div>
+                      <p class="mt-1 text-sm text-slate-600">One primary cause each. You will be told when a second cause
+                        is also defensible.</p>
+                      <div id="autopsy" class="mt-4 grid gap-3"></div>
+                      <div id="autopsyVerdict" class="mt-4" hidden></div>
+                    </div>
+
+                  </div>
                 </div>
             </div>
         </section>
@@ -2737,7 +2788,7 @@ QUIZ.forEach((item,i)=>{
     ["studio", "Studio"], ["quiz", "Quiz"], ["check", "Concept check"], ["readings", "Readings"]
   ];
   var KEY = "s1-progress-v1";
-  var ACTIVITIES = ["sorter", "classifier", "exhibits", "porter", "collis", "quiz", "video"];
+  var ACTIVITIES = ["sorter", "classifier", "exhibits", "porter", "collis", "quiz", "video", "autopsy"];
 
   // ---------- theme ----------
   var root = document.documentElement;
@@ -2872,6 +2923,7 @@ QUIZ.forEach((item,i)=>{
   }
   onClickWithin("#oeSorter", "sorter");
   onClickWithin("#porterVideoBtn", "video");
+  onClickWithin("#autopsy", "autopsy");
   onClickWithin("#emClassifier", "classifier");
   onClickWithin("#revealMargins", "exhibits");
   onClickWithin("#porterNodes", "porter");
@@ -2945,6 +2997,139 @@ QUIZ.forEach((item,i)=>{
     wrap.appendChild(f);
   });
   var n=0, iv=setInterval(function(){ chartTheme(); if(++n>20) clearInterval(iv); },400);
+})();
+</script>
+
+<script>
+/* Fallen Giants: predict -> watch -> revise */
+(function () {
+  var MODES = [
+    { k: "oe",         t: "Competed only on operational effectiveness" },
+    { k: "tradeoff",   t: "Refused a necessary trade-off" },
+    { k: "scope",      t: "Could not say what business it was in" },
+    { k: "straddle",   t: "Added the new activity without giving up the old" },
+    { k: "suppressed", t: "A deliberate plan crushed the emergent one" }
+  ];
+  var CASES = [
+    { id: "nokia", n: "Nokia", tone: "cyan", primary: "oe", secondary: "suppressed",
+      why: "Nokia was the best in the world at the activities the industry already valued \u2014 hardware, manufacturing, distribution, scale. That is operational effectiveness, and it was real. What it was not was a position, because the basis of competition moved to software and ecosystems while Nokia was still winning the old contest.",
+      sec: "Emergent ideas suppressed is also defensible: Nokia had touchscreen and smartphone work internally and did not let it displace Symbian.",
+      no: { tradeoff: "Nokia did not refuse a trade-off so much as fail to notice one had appeared.",
+            scope: "Nokia could state its business clearly. Its problem was that the statement stopped being valuable.",
+            straddle: "The Microsoft partnership was a late pivot, not a straddle of two positions held at once." } },
+    { id: "kodak", n: "Kodak", tone: "amber", primary: "tradeoff", secondary: "suppressed",
+      why: "Kodak invented the digital camera in 1975 and would not let it cannibalise film, which was where all the profit sat. Porter\u2019s point is that a position requires giving something up; Kodak declined to give up the thing digital would destroy, and so made no position in digital at all.",
+      sec: "A deliberate plan crushing the emergent one is the same event told from Mintzberg\u2019s side \u2014 the plan to protect film killed the digital business born in its own labs.",
+      no: { oe: "Kodak\u2019s execution in film was excellent to the end. This was not an execution failure.",
+            scope: "Kodak knew exactly what business it was in. That was the problem.",
+            straddle: "Kodak\u2019s half-move into printing digital photos is straddle-adjacent, but the root cause was the refusal that produced it." } },
+    { id: "yahoo", n: "Yahoo!", tone: "indigo", primary: "scope", secondary: "straddle",
+      why: "Ask what Yahoo was for and you get a different answer from every team: portal, media company, search engine, technology platform. Collis and Rukstad\u2019s test is whether you can state objective, scope and advantage in one sentence. Yahoo could not, so every acquisition pulled in a different direction and none reinforced the others.",
+      sec: "Straddling is the visible symptom: Yahoo held media and search positions at once and let neither preclude the other.",
+      no: { oe: "Yahoo\u2019s problem was not doing things badly; it was not knowing which things to do.",
+            tradeoff: "There was no single trade-off it refused. It refused to choose at all.",
+            suppressed: "Yahoo\u2019s strategies were imposed and discarded repeatedly rather than suppressed." } }
+  ];
+
+  var wrap = document.getElementById("autopsy");
+  if (!wrap) return;
+  var picked = {}, revealed = false;
+
+  CASES.forEach(function (c) {
+    var d = document.createElement("div");
+    d.className = "rounded-xl border border-slate-200 bg-white p-4";
+    d.innerHTML = '<p class="text-sm font-bold text-slate-900">' + c.n + '</p>' +
+      '<div class="mt-2 grid gap-1.5"></div>' +
+      '<div class="mt-3 border-t border-slate-200 pt-3 text-xs leading-relaxed" hidden></div>';
+    var opts = d.querySelector("div");
+    var out = d.querySelectorAll("div")[1];
+    MODES.forEach(function (m) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "au-opt rounded-lg border border-slate-300 px-2.5 py-1.5 text-left text-xs font-medium text-slate-700 hover:bg-slate-50";
+      b.textContent = m.t;
+      b.addEventListener("click", function () {
+        if (revealed) return;
+        picked[c.id] = m.k;
+        opts.querySelectorAll(".au-opt").forEach(function (x) {
+          x.className = "au-opt rounded-lg border px-2.5 py-1.5 text-left text-xs font-medium " +
+            (x === b ? "border-blue-600 bg-blue-50 text-blue-800" : "border-slate-300 text-slate-700 hover:bg-slate-50");
+        });
+        var n = Object.keys(picked).length;
+        document.getElementById("autopsyCount").textContent = n;
+        if (n === CASES.length) showBtn();
+      });
+      opts.appendChild(b);
+    });
+    c._el = d; c._out = out; c._opts = opts;
+    wrap.appendChild(d);
+  });
+
+  function showBtn() {
+    var v = document.getElementById("autopsyVerdict");
+    if (v.dataset.ready) return;
+    v.dataset.ready = "1"; v.hidden = false;
+    v.innerHTML = '<button type="button" id="autopsyGo" ' +
+      'class="w-full rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-800">' +
+      'Compare with the evidence on this page</button>';
+    document.getElementById("autopsyGo").addEventListener("click", reveal);
+  }
+
+  function reveal() {
+    revealed = true;
+    var right = 0, partial = 0;
+    CASES.forEach(function (c) {
+      var mine = picked[c.id];
+      var hit = mine === c.primary, near = mine === c.secondary;
+      if (hit) right++; else if (near) partial++;
+      c._opts.querySelectorAll(".au-opt").forEach(function (x, k) {
+        var mk = MODES[k].k;
+        x.disabled = true;
+        var cls = "au-opt rounded-lg border px-2.5 py-1.5 text-left text-xs font-medium ";
+        if (mk === c.primary) cls += "border-emerald-500 bg-emerald-50 text-emerald-800";
+        else if (mk === c.secondary) cls += "border-amber-400 bg-amber-50 text-amber-800";
+        else if (mk === mine) cls += "border-rose-400 bg-rose-50 text-rose-700";
+        else cls += "border-slate-200 text-slate-400";
+        x.className = cls;
+      });
+      var html = '<p class="text-slate-700"><strong class="text-slate-900">Primary cause.</strong> ' + c.why + '</p>' +
+        '<p class="mt-2 text-amber-800"><strong>Also defensible.</strong> ' + c.sec + '</p>';
+      if (mine !== c.primary && mine !== c.secondary && c.no[mine]) {
+        html += '<p class="mt-2 text-rose-700"><strong>On your choice.</strong> ' + c.no[mine] + '</p>';
+      }
+      c._out.innerHTML = html;
+      c._out.hidden = false;
+    });
+    var v = document.getElementById("autopsyVerdict");
+    var msg = right === 3
+      ? "All three primary causes. Now the harder question: the lecture argues these failures share a mechanism. Name it in one sentence before class."
+      : (right + partial === 3
+        ? "You landed on a defensible cause for each, and on " + right + " of the three primary ones. The amber answers are not wrong \u2014 they are the same failure seen through the other lens."
+        : "You have " + right + " primary and " + partial + " defensible. Read the red notes, then watch the lecture and decide whether you would change any answer.");
+    v.innerHTML = '<div class="rounded-xl border border-slate-300 bg-white p-4">' +
+      '<p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Your autopsy</p>' +
+      '<p class="mt-1 text-sm text-slate-700 leading-relaxed">' + msg + '</p>' +
+      '<p class="mt-3 border-t border-slate-200 pt-3 text-sm text-slate-700 leading-relaxed">' +
+      '<strong class="text-slate-900">Carry this into the lecture.</strong> Every one of these firms was excellent at ' +
+      'something when it died. Watch for the moment the argument stops being about what the firms did badly and ' +
+      'starts being about what they refused to stop doing.</p></div>';
+  }
+
+  /* click-to-load the lecture */
+  var vb = document.getElementById("failVideoBtn");
+  if (vb) vb.addEventListener("click", function () {
+    var w = document.getElementById("failVideo");
+    if (!w) return;
+    var f = document.createElement("iframe");
+    f.className = "absolute inset-0 h-full w-full";
+    f.src = "https://www.youtube-nocookie.com/embed/sNLC7wbXEl0?autoplay=1&rel=0&modestbranding=1";
+    f.title = "Why Great Businesses Fail \u2014 Stanford Graduate School of Business";
+    f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    f.setAttribute("allowfullscreen", "");
+    f.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
+    w.innerHTML = "";
+    w.appendChild(f);
+  });
 })();
 </script>
 </body>
