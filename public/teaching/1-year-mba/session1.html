@@ -957,6 +957,54 @@
 
                   </div>
                 </div>
+
+                <!-- Sull: active inertia, the mechanism under all three -->
+                <div class="mt-8 rounded-2xl border border-slate-300 bg-white p-6 sm:p-8">
+                  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">The mechanism &middot; Sull (1999)</p>
+                  <h3 class="mt-2 text-2xl font-bold text-slate-900">None of them froze</h3>
+                  <div class="mt-3 grid gap-6 lg:grid-cols-[1.15fr_.85fr] lg:items-start">
+                    <div>
+                      <p class="text-slate-600 leading-relaxed">
+                        The comfortable explanation for Nokia, Kodak and Yahoo is that they saw the threat and did
+                        nothing. Donald Sull went looking for that paralysis in firms that had fallen this way and
+                        reports finding almost none of it. Managers of besieged companies usually spot the threat
+                        early, analyse it carefully, and launch a flurry of initiatives. They fail anyway.
+                      </p>
+                      <p class="mt-3 text-slate-600 leading-relaxed">
+                        His name for this is <strong class="text-slate-900">active inertia</strong>, and the term is
+                        borrowed precisely. In physics, inertia is not only a body at rest; it is also a moving body&rsquo;s
+                        tendency to persist along its existing path. The problem is <em>not an inability to take action
+                        but an inability to take appropriate action</em> &mdash; the response follows the grooves that
+                        produced the earlier success.
+                      </p>
+                      <p class="mt-3 text-slate-600 leading-relaxed">
+                        Sull identifies four things that make a company successful and then, unchanged, make it rigid.
+                        Select one to see how it showed up in each of the three firms above.
+                      </p>
+                      <div id="inertiaTabs" class="mt-5 flex flex-wrap gap-2"></div>
+                      <div id="inertiaDetail" class="mt-4 grid gap-2.5"></div>
+                    </div>
+                    <div class="rounded-xl bg-slate-50 border border-slate-200 p-5">
+                      <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Why this matters for Session 1</p>
+                      <p class="mt-2 text-sm text-slate-700 leading-relaxed">
+                        Sull is describing the same failure Porter describes, from the inside. Porter says a position
+                        requires trade-offs and that competing only on operational effectiveness converges the industry.
+                        Sull explains <em>why</em> a capable management team cannot simply choose otherwise: the frames,
+                        processes, relationships and values that delivered the old position are still there, still
+                        working, and still pointing the wrong way.
+                      </p>
+                      <p class="mt-3 text-sm text-slate-700 leading-relaxed">
+                        It is also the answer to the smug version of this session. Every one of these firms was run by
+                        intelligent people who could see what you can see. Ask what your own organisation does
+                        superbly today that it would be unable to stop doing.
+                      </p>
+                      <p class="mt-4 border-t border-slate-200 pt-3 text-xs text-slate-500">
+                        Both versions of Sull&rsquo;s article are in the <a href="#readings" class="font-semibold text-blue-700 hover:underline">readings</a>
+                        &mdash; the full <em>Harvard Business Review</em> treatment and a shorter <em>Financial Times</em> piece.
+                      </p>
+                    </div>
+                  </div>
+                </div>
             </div>
         </section>
 
@@ -1674,8 +1722,8 @@
   <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Readings for Session 1</h2>
   <p class="mt-3 text-slate-600 max-w-3xl leading-relaxed">
     Read the case last, after the three articles &mdash; it is the material you argue with, and the
-    articles are the tools you argue with. All four are obtained through the course pack; none is
-    reproduced on this page.
+    articles are the tools you argue with. The four required items are obtained through the course pack,
+    and the two recommended ones are in the session folder; none is reproduced on this page.
   </p>
   <ol class="mt-6 grid gap-3">
     <li class="card p-5">
@@ -1697,6 +1745,20 @@
       <span class="pill bg-slate-100 text-slate-600">Article &middot; Q2</span>
       <p class="mt-2 font-semibold text-slate-900">Collis, D. J., &amp; Rukstad, M. G. (2008). Can You Say What Your Strategy Is? <span class="font-normal italic">Harvard Business Review</span>.</p>
       <p class="mt-1 text-sm text-slate-600">The strategy statement: objective, scope, advantage.</p>
+    </li>
+    <li class="card p-5">
+      <span class="pill bg-blue-50 text-blue-700">Recommended &middot; the mechanism</span>
+      <p class="mt-2 font-semibold text-slate-900">Sull, D. N. (1999). Why Good Companies Go Bad. <span class="font-normal italic">Harvard Business Review, 77</span><span class="font-normal">(4). (Reprint No.&nbsp;99410)</span></p>
+      <p class="mt-1 text-sm text-slate-600">The source of <strong>active inertia</strong> and the four mechanisms &mdash;
+        frames becoming blinders, processes becoming routines, relationships becoming shackles, values becoming dogmas.
+        Read it against the three Fallen Giants above.</p>
+    </li>
+    <li class="card p-5">
+      <span class="pill bg-blue-50 text-blue-700">Recommended &middot; short version</span>
+      <p class="mt-2 font-semibold text-slate-900">Sull, D. N. (2005, October 3). Why good companies go bad. <span class="font-normal italic">Financial Times</span>.</p>
+      <p class="mt-1 text-sm text-slate-600">The same argument in a few pages, with a wider set of examples. Start here if
+        you are short of time, then read the 1999 article for the mechanisms in full. Sull also wrote the Tesla industry
+        case used in <a href="/teaching/1-year-mba/session2.html" class="font-semibold text-blue-700 hover:underline">Session 2</a>.</p>
     </li>
   </ol>
 
@@ -3130,6 +3192,68 @@ QUIZ.forEach((item,i)=>{
     w.innerHTML = "";
     w.appendChild(f);
   });
+})();
+</script>
+
+<script>
+/* Sull's four hardening mechanisms, applied to the three firms above */
+(function () {
+  var M = [
+    { k: "frames", n: "Strategic frames", becomes: "blinders",
+      def: "The mental models that answer what business are we in, who are our competitors, which customers matter. They focus attention \u2014 and then exclude whatever falls outside the frame.",
+      cases: {
+        Nokia: "Framed the contest as who builds the best handset: hardware, scale, distribution. A device that was really a computer with a phone attached did not register as the same competition.",
+        Kodak: "Framed itself as a film and chemicals business selling consumables. Inside that frame digital imaging reads as a threat to the business rather than as the business.",
+        "Yahoo!": "Never settled on a frame at all \u2014 portal, media company, search engine, technology platform. An unsettled frame cannot blind you, but it cannot focus you either."
+      } },
+    { k: "processes", n: "Processes", becomes: "routines",
+      def: "Once a way of working proves itself, there are strong incentives to lock it in and stop looking for alternatives. That is what makes a large organisation predictable enough to coordinate.",
+      cases: {
+        Nokia: "A development and portfolio process tuned to ship dozens of handset variants a year. Superb at what it was for; the wrong machine for concentrating on one software platform.",
+        Kodak: "Razor-and-blades: sell the camera cheaply, earn on film and processing. Every downstream process assumed a consumable that digital removed.",
+        "Yahoo!": "A repeated acquire-and-absorb routine \u2014 Flickr, Tumblr and others \u2014 with no matching routine for deciding what to shut down."
+      } },
+    { k: "relationships", n: "Relationships", becomes: "shackles",
+      def: "The bonds with customers, suppliers, distributors, employees and investors that a company must build to succeed. They are assets, and they also constrain what it can later stop doing.",
+      cases: {
+        Nokia: "Deep carrier relationships that specified and subsidised handsets, and a supply base built for high-volume hardware.",
+        Kodak: "Retailers and photo-processing labs whose economics depended on prints being made. Dismantling film meant dismantling them.",
+        "Yahoo!": "Advertisers and media partners buying reach on the portal, which made the portal expensive to take apart."
+      } },
+    { k: "values", n: "Values", becomes: "dogmas",
+      def: "The deeply held beliefs that unify and inspire, and that tell employees who they are. As a company matures these harden into rules that are no longer examined.",
+      cases: {
+        Nokia: "Engineering pride in reliability and hardware quality \u2014 exactly the standard by which the iPhone initially looked like a poor phone.",
+        Kodak: "The Kodak moment as identity, not just as marketing. Being the film company was a statement about what the firm was for.",
+        "Yahoo!": "Being the web\u2019s front door, human-curated and editorially shaped, at the moment the answer became algorithmic."
+      } }
+  ];
+  var tabs = document.getElementById("inertiaTabs"), out = document.getElementById("inertiaDetail");
+  if (!tabs || !out) return;
+  var TONE = { Nokia: "cyan", Kodak: "amber", "Yahoo!": "indigo" };
+  M.forEach(function (m) {
+    var b = document.createElement("button");
+    b.type = "button"; b.dataset.k = m.k;
+    b.className = "in-tab rounded-lg border border-slate-300 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50";
+    b.innerHTML = m.n + ' <span class="text-slate-400">\u2192</span> ' + m.becomes;
+    b.addEventListener("click", function () { show(m); });
+    tabs.appendChild(b);
+  });
+  function show(m) {
+    tabs.querySelectorAll(".in-tab").forEach(function (x) {
+      x.className = "in-tab rounded-lg border px-3 py-2 text-xs font-semibold " +
+        (x.dataset.k === m.k ? "border-blue-600 bg-blue-50 text-blue-800" : "border-slate-300 text-slate-700 hover:bg-slate-50");
+    });
+    var html = '<p class="rounded-lg bg-blue-50 border border-blue-200 p-3 text-sm text-slate-700 leading-relaxed">' +
+      '<strong class="text-slate-900">' + m.n + " become " + m.becomes + ".</strong> " + m.def + '</p>';
+    ["Nokia", "Kodak", "Yahoo!"].forEach(function (f) {
+      html += '<div class="rounded-lg border border-slate-200 p-3">' +
+        '<p class="text-[10px] font-semibold uppercase tracking-wider text-' + TONE[f] + '-700">' + f + '</p>' +
+        '<p class="mt-1 text-sm text-slate-600 leading-relaxed">' + m.cases[f] + '</p></div>';
+    });
+    out.innerHTML = html;
+  }
+  show(M[0]);
 })();
 </script>
 </body>
