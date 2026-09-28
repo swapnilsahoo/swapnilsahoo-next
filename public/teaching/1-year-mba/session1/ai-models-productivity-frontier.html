@@ -1,0 +1,1787 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Productivity Frontier of AI Models | Session 1 · STRAMGT 221 — Dr. Swapnil Sahoo</title>
+    <meta name="description" content="Porter's productivity frontier redrawn with real data: 100 AI model settings from 23 labs, placed by capability and cost per task (Artificial Analysis, 28 September 2026). Who is behind the frontier, who is at it, how fast it moves, where rivals converge, and who is shifting the curve.">
+    <meta name="author" content="Dr. Swapnil Sahoo">
+    <link rel="canonical" href="https://www.swapnilsahoo.com/teaching/1-year-mba/session1/ai-models-productivity-frontier.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Dr. Swapnil Sahoo">
+    <meta property="og:title" content="The productivity frontier of AI models">
+    <meta property="og:description" content="Only 3 of 23 AI labs sit on the productivity frontier today: OpenAI, Xiaomi and Anthropic. Porter's 1996 framework, redrawn with 100 real model settings.">
+    <meta property="og:url" content="https://www.swapnilsahoo.com/teaching/1-year-mba/session1/ai-models-productivity-frontier.html">
+    <meta property="og:image" content="https://www.swapnilsahoo.com/teaching/1-year-mba/session1/ai-models-productivity-frontier-og.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="627">
+    <meta property="og:image:alt" content="A chart of 100 AI model settings by capability and cost per task, with the productivity frontier held by OpenAI, Xiaomi and Anthropic.">
+    <meta property="article:published_time" content="2026-09-28">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@swapnilsahoo">
+    <meta name="twitter:title" content="The productivity frontier of AI models">
+    <meta name="twitter:description" content="Only 3 of 23 AI labs sit on the productivity frontier today: OpenAI, Xiaomi and Anthropic. Porter's 1996 framework, redrawn with 100 real model settings.">
+    <meta name="twitter:image" content="https://www.swapnilsahoo.com/teaching/1-year-mba/session1/ai-models-productivity-frontier-og.png">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"Article",
+     "headline":"The productivity frontier of AI models",
+     "description":"Porter's productivity frontier redrawn with 100 AI model settings from 23 labs, using Artificial Analysis data from 28 September 2026.",
+     "datePublished":"2026-09-28","dateModified":"2026-09-28",
+     "author":{"@type":"Person","name":"Swapnil Sahoo","url":"https://www.swapnilsahoo.com"},
+     "image":"https://www.swapnilsahoo.com/teaching/1-year-mba/session1/ai-models-productivity-frontier-og.png",
+     "mainEntityOfPage":"https://www.swapnilsahoo.com/teaching/1-year-mba/session1/ai-models-productivity-frontier.html"}
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter','ui-sans-serif','system-ui','sans-serif'],
+              display: ['Fraunces','ui-serif','Georgia','serif']
+            },
+            colors: {
+              slate: {
+                50:'#F8FAFC',100:'#F1F5F9',200:'#E2E8F0',300:'#CBD5E1',
+                400:'#94A3B8',500:'#64748B',600:'#475569',700:'#334155',
+                800:'#1E293B',900:'#0F172A',950:'#020617'
+              },
+              blue: {
+                50:'#EEF1FF',100:'#E0E5FF',200:'#C6CEFE',300:'#A3AEFB',
+                400:'#818CF8',500:'#6366F1',600:'#4F46E5',700:'#4338CA',
+                800:'#372FA8',900:'#2E2A82',950:'#1B1850'
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
+    <style>
+        :root{
+          --sticky-offset:100px;
+          --paper:#FFFFFF; --ink:#0F172A; --muted:#475569; --line:#E2E8F0;
+          --card:#FFFFFF; --accent:#4F46E5; --accent-soft:#EEF2FF;
+        }
+        html.dark{
+          --paper:#0B1120; --ink:#E2E8F0; --muted:#94A3B8; --line:#1E293B;
+          --card:#111A2E; --accent:#818CF8; --accent-soft:#1E1B4B;
+        }
+        html{scroll-padding-top:120px}
+        body{font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);
+          -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+        h1,h2,h3,.display{font-family:'Fraunces',ui-serif,Georgia,serif;letter-spacing:-.02em}
+        [hidden]{display:none!important}
+        section[id]{scroll-margin-top:var(--sticky-offset)}
+        .tabular-nums{font-variant-numeric:tabular-nums}
+
+        /* ---- dark-mode repaint of the utility classes used in the markup ---- */
+        html.dark .bg-white{background:var(--card)!important}
+        html.dark .bg-slate-50,html.dark .bg-slate-100{background:#0F172A!important}
+        html.dark .border-slate-200,html.dark .border-slate-300{border-color:var(--line)!important}
+        html.dark .text-slate-900,html.dark .text-slate-800{color:var(--ink)!important}
+        html.dark .text-slate-600,html.dark .text-slate-700{color:#CBD5E1!important}
+        html.dark .text-slate-500,html.dark .text-slate-400{color:var(--muted)!important}
+        html.dark .divide-slate-100>*+*{border-color:var(--line)!important}
+        html.dark table thead{background:#162032!important}
+        html.dark .bg-white\/85{background:rgba(11,17,32,.90)!important}
+        html.dark .bg-blue-50{background:#171C3C!important}
+        html.dark .bg-amber-50{background:#2A2110!important}
+        html.dark .bg-emerald-50{background:#0F261A!important}
+        html.dark .bg-slate-200{background:#1E293B!important}
+        html.dark div.bg-slate-900,html.dark footer.bg-gray-800{background:#111A2E!important}
+        html.dark a.bg-slate-900,html.dark button.bg-slate-900,html.dark span.bg-slate-900{background:#4F46E5!important;color:#fff!important}
+        html.dark a.bg-slate-900:hover,html.dark button.bg-slate-900:hover{background:#6366F1!important}
+        html.dark .border-gray-700{border-color:var(--line)!important}
+        html.dark .text-blue-600,html.dark .text-blue-700,html.dark .text-blue-800{color:#A3AEFB!important}
+        html.dark .text-amber-700,html.dark .text-amber-800{color:#FCD34D!important}
+        html.dark .text-emerald-700,html.dark .text-emerald-800{color:#6EE7A8!important}
+        html.dark .border-blue-200,html.dark .border-blue-600{border-color:#2F3670!important}
+        html.dark .border-amber-200{border-color:#4A3A1A!important}
+        html.dark select{background:#111A2E!important;color:var(--ink)!important;border-color:var(--line)!important}
+        html.dark .hover\:bg-slate-50:hover,html.dark .hover\:bg-slate-100:hover{background:#1E293B!important}
+        html.dark .hover\:bg-slate-800:hover{background:#6366F1!important}
+
+        /* ---- reading progress + section rail ---- */
+        #readbar{position:fixed;top:0;left:0;height:3px;width:0;z-index:70;
+          background:linear-gradient(90deg,#4F46E5,#818CF8);transition:width .12s linear}
+        #rail{position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:40;display:none}
+        @media (min-width:1380px){#rail{display:block}}
+        #rail a{position:relative;display:flex;align-items:center;padding:4px 10px 4px 0;color:var(--muted);
+          font-size:11px;text-decoration:none;opacity:.55;transition:opacity .2s}
+        #rail a:hover,#rail a.on{opacity:1;color:var(--accent)}
+        #rail .dot{width:7px;height:7px;border-radius:99px;background:currentColor;flex:none;transition:transform .2s}
+        #rail a.on .dot{transform:scale(1.6)}
+        #rail .lbl{position:absolute;left:18px;top:50%;transform:translate(-4px,-50%);opacity:0;
+          pointer-events:none;white-space:nowrap;transition:opacity .2s,transform .2s;
+          background:var(--card);border:1px solid var(--line);border-radius:6px;padding:1px 7px;
+          box-shadow:0 4px 14px -8px rgba(15,23,42,.35)}
+        #rail a:hover .lbl,#rail a:focus-visible .lbl{opacity:1;transform:translate(0,-50%)}
+        @media (min-width:1760px){#rail a.on .lbl{opacity:1;transform:translate(0,-50%)}}
+
+        /* ---- nav ---- */
+        .nav-link{transition:color .18s,border-color .18s;border-bottom:2px solid transparent;padding-bottom:4px;color:var(--muted)}
+        .nav-link:hover{color:var(--accent);border-bottom-color:var(--accent)}
+        .top-bar-link svg,.footer-link svg{width:1.125rem;height:1.125rem;fill:currentColor}
+        .hexagon-icon{position:relative;width:28px;height:28px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.3));display:inline-block;vertical-align:middle}
+        .hexagon-icon svg{width:100%;height:100%}
+        .hexagon-path{stroke:#B91C1C;stroke-width:1}
+        .hexagon-s{font-family:Georgia,serif;font-weight:bold;font-size:48px;fill:#facc15;text-anchor:middle;dominant-baseline:central}
+
+        /* ---- one shell width for every section (no stranded gutters) ---- */
+        body .container,body section.max-w-6xl,body div.max-w-6xl{
+          width:100%;max-width:88rem!important;margin-left:auto;margin-right:auto;
+          padding-left:clamp(1rem,3.5vw,2.75rem);padding-right:clamp(1rem,3.5vw,2.75rem)}
+        @media (min-width:1700px){body .container,body section.max-w-6xl,body div.max-w-6xl{max-width:96rem!important}}
+
+        /* ---- components ---- */
+        .card{background:#fff;border:1px solid #e2e8f0;border-radius:14px}
+        html.dark .card{background:var(--card)!important;border-color:var(--line)!important}
+        .pill{display:inline-flex;align-items:center;gap:.4rem;border-radius:9999px;padding:.2rem .7rem;
+          font-size:.7rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+        .kicker{font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#4338CA}
+        html.dark .kicker{color:#A3AEFB}
+        .prose-r p{margin-top:.85rem;line-height:1.7;color:#334155}
+        .prose-r ul{margin-top:.85rem;display:grid;gap:.55rem}
+        .prose-r li{position:relative;padding-left:1.1rem;line-height:1.6;color:#334155}
+        .prose-r li::before{content:"";position:absolute;left:.1rem;top:.62em;width:.4rem;height:.4rem;border-radius:99px;background:#4F46E5}
+        .prose-r strong{color:#0F172A;font-weight:600}
+        html.dark .prose-r p,html.dark .prose-r li{color:#CBD5E1}
+        html.dark .prose-r strong{color:var(--ink)}
+        .quote{border-left:2px solid #4F46E5;padding-left:.9rem;font-style:italic;color:#334155;line-height:1.65}
+        .quote cite{display:block;margin-top:.3rem;font-style:normal;font-size:.75rem;color:#64748B}
+        html.dark .quote{color:#CBD5E1;border-color:#6E72F0}
+        html.dark .quote cite{color:var(--muted)}
+        .stat{font-family:'Fraunces',ui-serif,Georgia,serif;font-weight:700;letter-spacing:-.02em;color:#0F172A;line-height:1.05}
+        html.dark .stat{color:var(--ink)}
+        .ref{padding-left:1.6rem;text-indent:-1.6rem;min-width:0;overflow-wrap:anywhere}
+        .comparison-table th,.comparison-table td{padding:.55rem .8rem;vertical-align:top}
+        .comparison-table thead th{background:#F1F5F9;border-bottom:1px solid #E2E8F0}
+        .comparison-table tbody tr:nth-child(even){background:#F8FAFC}
+        html.dark .comparison-table thead th{background:#162032;border-bottom-color:var(--line)}
+        html.dark .comparison-table tbody tr:nth-child(even){background:#0F172A}
+        .chip{border:1px solid #CBD5E1;border-radius:999px;padding:.3rem .75rem;font-size:.75rem;font-weight:600;color:#334155;white-space:nowrap;transition:background .15s,border-color .15s,color .15s}
+        .chip:hover{background:#F1F5F9}
+        .chip[aria-pressed="true"]{background:#4F46E5;border-color:#4F46E5;color:#fff}
+        html.dark .chip{border-color:#26344F;color:#CBD5E1}
+        html.dark .chip:hover{background:#1E293B}
+        html.dark .chip[aria-pressed="true"]{background:#4F46E5;border-color:#6E72F0;color:#fff}
+        .af-lens{display:grid;gap:1.75rem;grid-template-columns:minmax(0,1fr)}
+        @media (min-width:1024px){.af-lens{grid-template-columns:minmax(0,.92fr) minmax(0,1.28fr);gap:2.5rem;align-items:start}
+          .af-lens-chart{position:sticky;top:calc(var(--sticky-offset) - 12px)}}
+        .af-map{display:grid;gap:1.25rem;grid-template-columns:minmax(0,1fr)}
+        @media (min-width:1024px){.af-map{grid-template-columns:minmax(0,1.62fr) minmax(0,1fr);align-items:start}}
+
+        /* ---- the charts: dark values only under html.dark (the toggle), never the OS setting ---- */
+        .af-viz{--af-surface:#FFFFFF;--af-ink:#0F172A;--af-ink2:#475569;--af-ink3:#64748B;--af-grid:#EEF2F6;--af-axis:#CBD5E1;
+          --af-hi:#4F46E5;--af-base:#768399;--af-wash:rgba(15,23,42,.045);--af-band:rgba(79,70,229,.09);
+          --af-tip:#FFFFFF;--af-tipline:#E2E8F0;--af-o1:#2a78d6;--af-o2:#eb6834;--af-o3:#1baf7a}
+        html.dark .af-viz{--af-surface:#111A2E;--af-ink:#E2E8F0;--af-ink2:#CBD5E1;--af-ink3:#94A3B8;--af-grid:#18233A;--af-axis:#2B3A55;
+          --af-hi:#6E72F0;--af-base:#5B6B82;--af-wash:rgba(226,232,240,.05);--af-band:rgba(110,114,240,.16);
+          --af-tip:#162032;--af-tipline:#26344F;--af-o1:#3987e5;--af-o2:#d95926;--af-o3:#199e70}
+        .af-viz svg text{font-family:Inter,ui-sans-serif,system-ui,sans-serif}
+        .af-plot{position:relative;outline:none;border-radius:8px}
+        .af-plot:focus-visible{box-shadow:0 0 0 2px var(--af-hi)}
+        .af-grid line{stroke:var(--af-grid);stroke-width:1;shape-rendering:crispEdges}
+        .af-axis{stroke:var(--af-axis);stroke-width:1;shape-rendering:crispEdges}
+        .af-tick{fill:var(--af-ink3);font-size:11px;font-variant-numeric:tabular-nums}
+        .af-axis-title{fill:var(--af-ink2);font-size:11.5px;font-weight:500}
+        .af-wash{fill:var(--af-wash)}
+        .af-frontier{fill:none;stroke:var(--af-ink);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+        .af-frontier.af-o1{fill:none;stroke:var(--af-o1);stroke-width:3}
+        .af-frontier.af-o2{fill:none;stroke:var(--af-o2);stroke-width:3}
+        .af-frontier.af-o3{fill:none;stroke:var(--af-o3);stroke-width:3}
+        .af-ghost{fill:none;stroke:var(--af-base);stroke-width:2;stroke-opacity:.75;stroke-linejoin:round}
+        .af-dot{stroke:var(--af-surface);stroke-width:1.5;stroke-linejoin:round;transition:opacity .2s}
+        .af-base{fill:var(--af-base)}
+        .af-hi{fill:var(--af-hi)}
+        .af-o1{fill:var(--af-o1)}.af-o2{fill:var(--af-o2)}.af-o3{fill:var(--af-o3)}
+        .af-dim{opacity:.36}
+        .af-curve{fill:none;stroke:var(--af-hi);stroke-width:2;stroke-opacity:.55;stroke-linejoin:round}
+        .af-arrow{stroke:var(--af-ink2);stroke-width:1.5}
+        .af-arrowhead{fill:var(--af-ink2)}
+        .af-arrow.af-strong{stroke:var(--af-hi);stroke-width:2}
+        .af-arrowhead.af-strong{fill:var(--af-hi)}
+        .af-rule{stroke:var(--af-ink2);stroke-width:1.5}
+        .af-bandfill{fill:var(--af-band)}
+        .af-bracket{stroke:var(--af-ink2);stroke-width:1.5;fill:none}
+        .af-ring{fill:none;stroke:var(--af-ink);stroke-width:2;pointer-events:none}
+        .af-pick{fill:none;stroke:var(--af-hi);stroke-width:2}
+        .af-hit{fill:transparent;cursor:crosshair}
+        .af-lbl{fill:var(--af-ink);font-size:11.5px;font-weight:600;paint-order:stroke;stroke:var(--af-surface);stroke-width:3.5px;stroke-linejoin:round;pointer-events:none}
+        .af-lbl.af-sm{font-size:10.5px;font-weight:500;fill:var(--af-ink2)}
+        .af-tip{position:absolute;z-index:5;pointer-events:none;min-width:11rem;max-width:17rem;background:var(--af-tip);
+          border:1px solid var(--af-tipline);border-radius:10px;padding:.5rem .65rem;box-shadow:0 8px 24px -12px rgba(15,23,42,.35)}
+        .af-tip-sep{margin-top:.4rem;padding-top:.4rem;border-top:1px solid var(--af-tipline)}
+        .af-tip-value{font-size:13px;font-weight:700;color:var(--af-ink);font-variant-numeric:tabular-nums}
+        .af-tip-name{font-size:12px;color:var(--af-ink2)}
+        .af-tip-meta{margin-top:1px;font-size:11px;color:var(--af-ink3)}
+        .af-key{display:inline-flex;align-items:center;gap:.4rem}
+        .af-key svg{flex:none}
+        .af-viz input[type=range]{accent-color:var(--af-hi);width:100%}
+        .af-read{font-size:.875rem;line-height:1.6;color:#334155}
+        html.dark .af-read{color:#CBD5E1}
+        .af-read strong{color:#0F172A}
+        html.dark .af-read strong{color:var(--ink)}
+        .af-sw{display:inline-block;width:.7rem;height:.7rem;border-radius:3px;vertical-align:-1px}
+
+        /* ---- focus, motion, print ---- */
+        a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+        .rv{opacity:0;transform:translateY(14px)}
+        .rv.in{opacity:1;transform:none;transition:opacity .55s cubic-bezier(.2,.7,.3,1),transform .55s cubic-bezier(.2,.7,.3,1)}
+        @media (prefers-reduced-motion:reduce){
+          *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+          .rv{opacity:1;transform:none}
+          html{scroll-behavior:auto}
+        }
+        @media print{#readbar,#rail,#top-bar,#main-header,#drawer,.no-print{display:none!important}
+          .af-lens-chart{position:static}}
+    </style>
+    <script>
+      /* theme, resolved before first paint: light unless this visitor chose dark (shared with Session 1) */
+      (function () {
+        try {
+          if (localStorage.getItem("s1-theme") === "dark") document.documentElement.classList.add("dark");
+        } catch (e) {}
+      })();
+    </script>
+</head>
+
+<body class="text-slate-700">
+
+<div id="readbar" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+<nav id="rail" aria-label="Section navigation"></nav>
+
+<!-- Top Bar -->
+<div id="top-bar" class="bg-slate-900 text-slate-300 hidden sm:block">
+  <div class="container mx-auto px-6 flex justify-between items-center h-11 text-xs">
+    <div class="flex items-center gap-3 min-w-0">
+      <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="group shrink-0" title="swapnilsahoo.com">
+        <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
+          <svg viewBox="0 0 52 60" aria-label="Swapnil Sahoo" role="img">
+            <defs><linearGradient id="topRedGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
+            <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#topRedGradient)"/><text class="hexagon-s" x="26" y="32">S</text>
+          </svg>
+        </div>
+      </a>
+      <p class="truncate font-medium text-slate-400">&copy; Dr. Swapnil Sahoo 2026 &middot; Great Lakes Institute of Management, Gurgaon</p>
+    </div>
+    <div class="flex items-center gap-4 shrink-0">
+      <a href="/teaching/1-year-mba/session1.html" class="hidden md:inline text-slate-400 hover:text-white transition">Session 1</a>
+      <a href="https://www.swapnilsahoo.com/teaching/1-year-mba" class="hidden md:inline text-slate-400 hover:text-white transition">STRAMGT 221</a>
+      <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="X/Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.930-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- Main Navigation -->
+<nav id="main-header" class="sticky top-0 z-50 border-b border-slate-200 bg-white/85 backdrop-blur-md">
+  <div class="container mx-auto px-6">
+    <div class="flex h-16 items-center justify-between gap-4">
+      <div class="flex items-center gap-3 min-w-0">
+        <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-slate-900 text-white font-display text-sm font-semibold">AI</span>
+        <div class="min-w-0">
+          <p class="truncate font-display text-base font-semibold leading-tight text-slate-900">The AI Productivity Frontier</p>
+          <p class="hidden truncate text-[11px] text-slate-500 sm:block">Session 1 companion · data as of 28 Sep 2026 · <span id="progPct">0</span>% read</p>
+        </div>
+      </div>
+      <div class="hidden xl:flex items-center gap-5 text-sm">
+        <a href="#summary" class="nav-link">Summary</a>
+        <a href="#map" class="nav-link">The Map</a>
+        <a href="#lens-1" class="nav-link">Five Lenses</a>
+        <a href="#positions" class="nav-link">Positions</a>
+        <a href="#lessons" class="nav-link">Lessons</a>
+        <a href="#method" class="nav-link">Method</a>
+        <a href="/teaching/1-year-mba/session1.html" class="nav-link">&larr; Session 1</a>
+      </div>
+      <div class="flex items-center gap-2">
+        <button id="themeBtn" type="button" aria-label="Toggle dark mode"
+          class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 transition">
+          <svg class="h-4 w-4 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="hidden h-4 w-4 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <button id="drawerBtn" type="button" aria-label="Open section menu" aria-expanded="false"
+          class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 transition xl:hidden">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Slide-out drawer -->
+<div id="drawer" class="fixed inset-0 z-[60] hidden">
+  <div id="drawerScrim" class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"></div>
+  <aside class="absolute right-0 top-0 h-full w-[min(88vw,20rem)] overflow-y-auto bg-white p-5 shadow-2xl">
+    <div class="flex items-center justify-between">
+      <p class="font-display text-lg font-semibold text-slate-900">AI Productivity Frontier</p>
+      <button id="drawerClose" type="button" aria-label="Close menu"
+        class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <nav id="drawerNav" class="mt-4 grid gap-0.5" aria-label="Sections"></nav>
+    <a href="/teaching/1-year-mba/session1.html" class="mt-4 block rounded-lg border border-slate-200 px-3 py-2.5 text-sm font-semibold text-slate-800 hover:bg-slate-100">&larr; Back to Session 1</a>
+  </aside>
+</div>
+
+<!-- ============================== HERO ============================== -->
+<section id="top" class="bg-white border-b border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-10 md:py-14 grid gap-8 lg:grid-cols-[1.3fr_.9fr] lg:items-center">
+    <div>
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span class="pill bg-blue-50 text-blue-700">Session 01 &middot; Companion report</span>
+        <span class="pill bg-slate-100 text-slate-600">Data as of 28 September 2026</span>
+        <span class="pill bg-slate-100 text-slate-600">15-minute read</span>
+      </div>
+      <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-slate-900">The productivity frontier of AI models</h1>
+      <p class="mt-3 font-display text-lg md:text-xl italic text-blue-700">Porter&rsquo;s 1996 exhibit, redrawn with <span data-fact="n">100</span> real model settings from <span data-fact="labs">23</span> labs</p>
+      <p class="mt-4 text-slate-600 md:text-lg leading-relaxed max-w-3xl">
+        In &ldquo;What Is Strategy?&rdquo;, Michael Porter asks us to &ldquo;imagine for a moment a productivity frontier that
+        constitutes the sum of all existing best practices at any given time&rdquo; (Porter, 1996). The market for AI models
+        lets us draw that frontier with real numbers. Every point on the charts below is one model at one reasoning setting.
+        Its height is what it can do, measured by the Artificial Analysis Intelligence Index. Its position from left to right
+        is what it costs to run one task.
+      </p>
+      <p class="mt-3 text-slate-600 md:text-lg leading-relaxed max-w-3xl">
+        What emerges is Porter&rsquo;s argument, almost line for line. Most models sit behind the frontier. The few on it
+        face a hard trade-off between capability and cost. The frontier moves outward every few months. Rivals converge on
+        similar capability, and competition slides toward price. And only three labs are shifting the curve.
+      </p>
+      <div class="mt-6 flex flex-wrap gap-3 text-sm no-print">
+        <a href="#map" class="rounded-lg bg-slate-900 px-4 py-2.5 font-semibold text-white hover:bg-slate-800">Explore the map</a>
+        <a href="#lens-1" class="rounded-lg border border-slate-300 px-4 py-2.5 font-semibold text-slate-700 hover:bg-slate-50">Read the five lenses</a>
+        <a id="shareLinkedIn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.swapnilsahoo.com%2Fteaching%2F1-year-mba%2Fsession1%2Fai-models-productivity-frontier.html" target="_blank" rel="noopener noreferrer" class="rounded-lg border border-slate-300 px-4 py-2.5 font-semibold text-slate-700 hover:bg-slate-50">Share on LinkedIn</a>
+      </div>
+    </div>
+    <div class="card p-5 sm:p-6">
+      <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">The frontier today</p>
+      <dl class="mt-4 grid grid-cols-2 gap-x-5 gap-y-5">
+        <div>
+          <dt class="sr-only">Labs on the frontier</dt>
+          <dd class="stat text-3xl"><span data-fact="frontierLabs">3</span> <span class="text-lg font-semibold text-slate-500">of <span data-fact="labs">23</span></span></dd>
+          <dd class="mt-1 text-sm text-slate-600 leading-snug">labs hold the frontier: OpenAI, Xiaomi and Anthropic.</dd>
+        </div>
+        <div>
+          <dt class="sr-only">Settings on the frontier</dt>
+          <dd class="stat text-3xl"><span data-fact="frontierN">11</span> <span class="text-lg font-semibold text-slate-500">of <span data-fact="n">100</span></span></dd>
+          <dd class="mt-1 text-sm text-slate-600 leading-snug">settings are on it. For each of the other <span data-fact="behind">89</span>, another setting scores at least as high for less.</dd>
+        </div>
+        <div>
+          <dt class="sr-only">Annual fall in the cost of a given capability</dt>
+          <dd class="stat text-3xl">13&times; <span class="text-lg font-semibold text-slate-500">a year</span></dd>
+          <dd class="mt-1 text-sm text-slate-600 leading-snug">is how fast the cost of a given level of performance has fallen since 2023 (Emberson &amp; Roodman, 2026).</dd>
+        </div>
+        <div>
+          <dt class="sr-only">Labs within two points</dt>
+          <dd class="stat text-3xl"><span data-fact="band44Labs">8</span> <span class="text-lg font-semibold text-slate-500">labs</span></dd>
+          <dd class="mt-1 text-sm text-slate-600 leading-snug">score between 44 and 46, at costs per task <span data-fact="band44Ratio">42&times;</span> apart.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== SUMMARY ============================== -->
+<section id="summary" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="kicker">The short version</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Five findings, one for each of Porter&rsquo;s lenses</h2>
+  <div class="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+    <a href="#lens-1" class="card p-5 block hover:border-blue-200 transition">
+      <p class="text-[11px] font-semibold uppercase tracking-wider text-blue-700">1 &middot; Behind the frontier</p>
+      <p class="stat mt-2 text-2xl"><span data-fact="behind">89</span> of <span data-fact="n">100</span></p>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">settings are beaten by a rival, or a sibling, that scores at least as high for less. Qwen3.8 Max scores 45 at $5.41 a task; MiMo-V2.6-Pro scores 46 for $0.13.</p>
+    </a>
+    <a href="#lens-2" class="card p-5 block hover:border-blue-200 transition">
+      <p class="text-[11px] font-semibold uppercase tracking-wider text-blue-700">2 &middot; At the frontier</p>
+      <p class="stat mt-2 text-2xl">+<span data-fact="opusGain">16</span> points, <span data-fact="opusCostX">11&times;</span> the cost</p>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">On the frontier, capability has a price. Claude Opus 5.5&rsquo;s last two points cost <span data-fact="opusLastPerPt">$1.26</span> each, against about <span data-fact="opusFirstPerPt">9 cents</span> a point for its first nine.</p>
+    </a>
+    <a href="#lens-3" class="card p-5 block hover:border-blue-200 transition">
+      <p class="text-[11px] font-semibold uppercase tracking-wider text-blue-700">3 &middot; The frontier moves</p>
+      <p class="stat mt-2 text-2xl">13&times; a year</p>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">The cost of a given level of performance has fallen about 47% a quarter since 2023. New releases routinely make a lab&rsquo;s own older models obsolete.</p>
+    </a>
+    <a href="#lens-4" class="card p-5 block hover:border-blue-200 transition">
+      <p class="text-[11px] font-semibold uppercase tracking-wider text-blue-700">4 &middot; Convergence</p>
+      <p class="stat mt-2 text-2xl"><span data-fact="band44Labs">8</span> labs, 2 points</p>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Eight labs score between 44 and 46, at costs from $0.13 to $5.41 a task. Between rivals this close, the competition shifts to price.</p>
+    </a>
+    <a href="#lens-5" class="card p-5 block hover:border-blue-200 transition">
+      <p class="text-[11px] font-semibold uppercase tracking-wider text-blue-700">5 &middot; Who shifts the curve</p>
+      <p class="stat mt-2 text-2xl"><span data-fact="frontierLabs">3</span> labs, <span data-fact="frontierModels">5</span> models</p>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">OpenAI&rsquo;s GPT-6 Luna holds the cheapest end, Xiaomi&rsquo;s MiMo-V2.6 the middle, and Anthropic&rsquo;s Claude Opus 5.5 everything from $1.34 a task up.</p>
+    </a>
+  </div>
+  <div class="mt-5 rounded-xl border border-blue-200 bg-blue-50 p-5">
+    <p class="text-sm font-semibold text-slate-900">The strategic point</p>
+    <p class="mt-1.5 text-sm text-slate-700 leading-relaxed max-w-5xl">
+      Porter&rsquo;s warning applies with unusual force. When rivals converge on the same best practice, &ldquo;competition
+      becomes a series of races down identical paths that no one can win&rdquo; (Porter, 1996). A lasting advantage in AI,
+      for a lab or for a company that uses AI, will have to come from strategic positioning, not from the model alone.
+    </p>
+  </div>
+</section>
+
+<!-- ============================== THE MAP ============================== -->
+<section id="map" class="mx-auto max-w-6xl px-4 py-12 md:py-14 border-t border-slate-200">
+  <p class="kicker">The map</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900"><span data-fact="n">100</span> settings, one frontier</h2>
+  <p class="mt-3 max-w-4xl text-slate-600 leading-relaxed">
+    Read it like Porter&rsquo;s exhibit. Capability rises up the page and cost falls to the right, so the best place to
+    be is the top-right corner. The black staircase is the productivity frontier: for any budget, the highest score anyone
+    offers at that cost or less. The shaded area beyond it is what no model can do yet. Hover over or tap any point, or
+    focus the chart and use the arrow keys.
+  </p>
+
+  <div id="mapChart" class="af-viz mt-6 card p-4 sm:p-5">
+    <div class="flex flex-wrap items-center gap-2 no-print" role="group" aria-label="Highlight a lab">
+      <span class="mr-1 text-xs font-semibold text-slate-600">Highlight a lab</span>
+      <div id="labChips" class="flex flex-wrap gap-1.5"></div>
+      <label class="sr-only" for="labMore">More labs</label>
+      <select id="labMore" class="rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-semibold text-slate-700"></select>
+    </div>
+    <div class="af-map mt-4">
+      <div class="min-w-0">
+        <div data-legend class="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-600"></div>
+        <div data-plot class="af-plot mt-2" tabindex="0" role="group" aria-label="Interactive chart of 100 AI model settings. Use the left and right arrow keys to step through them.">
+          <svg class="block w-full" role="img"></svg>
+          <div data-tip class="af-tip" hidden></div>
+        </div>
+        <p data-live class="sr-only" aria-live="polite"></p>
+      </div>
+      <div class="grid gap-4">
+        <div id="labCard" class="rounded-xl border border-slate-200 bg-slate-50 p-4 af-read" aria-live="polite"></div>
+        <div class="rounded-xl border border-slate-200 p-4 no-print">
+          <label for="budget" class="text-sm font-semibold text-slate-900">What does your budget buy?</label>
+          <input id="budget" type="range" min="0" max="1000" value="611" class="mt-3" aria-describedby="budgetOut">
+          <div class="flex justify-between text-[11px] text-slate-500"><span>half a cent a task</span><span>$8 a task</span></div>
+          <p id="budgetOut" class="mt-2 af-read" aria-live="polite"></p>
+        </div>
+        <div class="rounded-xl border border-slate-200 p-4 no-print">
+          <label for="bar" class="text-sm font-semibold text-slate-900">What does your quality bar cost?</label>
+          <input id="bar" type="range" min="5" max="58" value="50" class="mt-3" aria-describedby="barOut">
+          <div class="flex justify-between text-[11px] text-slate-500"><span>score of 5</span><span>score of 58</span></div>
+          <p id="barOut" class="mt-2 af-read" aria-live="polite"></p>
+        </div>
+        <p class="text-xs text-slate-500 leading-relaxed">The frontier is a menu, not a league table. A buyer who needs a score of 46 can pay $0.13 a task for it, or $5.41.</p>
+      </div>
+    </div>
+    <details class="mt-4">
+      <summary class="cursor-pointer text-xs font-semibold text-slate-700">Show all <span data-fact="n">100</span> settings as a table</summary>
+      <div class="mt-2 max-h-[28rem] overflow-auto rounded-lg border border-slate-200">
+        <table class="w-full text-xs text-left text-slate-600 comparison-table">
+          <thead class="text-[10px] uppercase tracking-wider text-slate-500 sticky top-0">
+            <tr><th scope="col">Setting (as Artificial Analysis lists it)</th><th scope="col">Lab</th>
+              <th scope="col" class="text-right">Index</th><th scope="col" class="text-right">Cost per task</th><th scope="col">Frontier</th></tr>
+          </thead>
+          <tbody id="allTable"></tbody>
+        </table>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ============================== LENS 1 ============================== -->
+<section id="lens-1" class="mx-auto max-w-6xl px-4 py-12 md:py-14 border-t border-slate-200">
+  <div class="af-lens">
+    <div>
+      <p class="kicker">Lens 1 of 5 &middot; Behind the frontier</p>
+      <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Most models are behind the frontier</h2>
+      <div class="prose-r">
+        <p>A setting is behind the frontier when another one scores at least as high for less. By that test,
+          <strong><span data-fact="behind">89</span> of the <span data-fact="n">100</span> settings are behind</strong>. That is normal in an
+          industry where best practice moves this fast, but the distances are large. The arrows run from five well-known
+          models to the cheapest rival that matches or beats them.</p>
+        <ul>
+          <li>Alibaba&rsquo;s <strong>Qwen3.8 Max</strong> scores 45 at $5.41 a task. Xiaomi&rsquo;s MiMo-V2.6-Pro scores 46 for $0.13, about <span data-fact="ex_qwen">42&times;</span> cheaper.</li>
+          <li>SpaceXAI&rsquo;s <strong>Grok 4.7 (xhigh)</strong> scores 46 at $3.74, <span data-fact="ex_grok">29&times;</span> the cost of MiMo-V2.6-Pro.</li>
+          <li>Anthropic&rsquo;s <strong>Claude Sonnet 5 (max)</strong> scores 38 at $5.09. Xiaomi&rsquo;s MiMo-V2.6-Flash scores 38 for $0.06, about <span data-fact="ex_sonnet">85&times;</span> cheaper.</li>
+          <li>Google&rsquo;s <strong>Gemini 3.1 Pro Preview</strong> scores 30 at $0.67. OpenAI&rsquo;s GPT-6 Luna (high) scores 32 for $0.03, about <span data-fact="ex_gemini">22&times;</span> cheaper.</li>
+          <li>OpenAI&rsquo;s <strong>GPT-6 Astra (max)</strong> scores 53 at $3.26. Anthropic&rsquo;s Claude Opus 5.5 (high) scores 54 for $1.82, <span data-fact="ex_astra">1.8&times;</span> cheaper. Every GPT-6 Astra setting is behind the frontier.</li>
+        </ul>
+        <p>Being behind is not only a problem for smaller labs. Anthropic&rsquo;s own Claude Fable 5.1 (max) scores 53 at
+          $7.63, while Claude Opus 5.5 (high) scores 54 for $1.82. Meta&rsquo;s Muse Spark 1.3 (max) is close: GPT-6 Sol
+          (max) matches its 48 for $1.06 instead of $1.60.</p>
+        <p>Behind the frontier, Porter&rsquo;s trade-off does not yet bind. A lab that improves how it trains and serves its
+          models can raise capability and cut cost at the same time. That is operational effectiveness: necessary,
+          valuable, and open to everyone.</p>
+      </div>
+      <blockquote class="quote mt-5">&ldquo;Simultaneous improvement of cost and differentiation is possible only when a company
+        begins far behind the productivity frontier or when the frontier shifts outward.&rdquo;<cite>Porter (1996)</cite></blockquote>
+    </div>
+    <div class="af-lens-chart">
+      <div id="lens1Chart" class="af-viz card p-4 sm:p-5">
+        <div class="no-print">
+          <label for="pick1" class="text-xs font-semibold text-slate-700">Check any model</label>
+          <select id="pick1" class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800"></select>
+        </div>
+        <div data-legend class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-600"></div>
+        <div data-plot class="af-plot mt-2" tabindex="0" role="group" aria-label="Chart of models behind the frontier. Use the arrow keys to step through the settings.">
+          <svg class="block w-full" role="img"></svg>
+          <div data-tip class="af-tip" hidden></div>
+        </div>
+        <p data-live class="sr-only" aria-live="polite"></p>
+        <p id="read1" class="mt-3 af-read" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== LENS 2 ============================== -->
+<section id="lens-2" class="mx-auto max-w-6xl px-4 py-12 md:py-14 border-t border-slate-200">
+  <div class="af-lens">
+    <div>
+      <p class="kicker">Lens 2 of 5 &middot; At the frontier</p>
+      <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">At the frontier, capability has a price</h2>
+      <div class="prose-r">
+        <p>Most models can run at several reasoning settings. A higher setting lets the model think longer, which uses more
+          tokens and costs more per task. Each step up the dial is a movement <em>along</em> the frontier, not beyond it:
+          capability bought with cost.</p>
+        <p><strong>Claude Opus 5.5</strong> shows the trade-off cleanly. From its low setting to max it gains
+          <span data-fact="opusGain">16</span> points, 42 to 58, while its cost per task rises almost elevenfold, from
+          $0.55 to $5.98. The price of each extra point climbs as you go: about 9 cents a point from low to medium, 16 cents
+          from medium to high, 82 cents from high to xhigh, and <span data-fact="opusLastPerPt">$1.26</span> from xhigh to max.</p>
+        <p>Not every trade-off is real. Three models are listed at both a low-reasoning and a non-reasoning setting, all
+          from OpenAI, and for each of them the low setting scores higher at the same or lower cost. GPT-6 Sol scores 34 at
+          $0.13 with low reasoning, and 28 at $0.33 without. Porter calls these false trade-offs, which &ldquo;occur
+          primarily when there is redundant or wasted effort, poor control or accuracy, or weak coordination.&rdquo;</p>
+        <p>For a buyer, the right setting is a position, not a ranking. A task that needs a score of 51 should not pay for 58.</p>
+      </div>
+      <blockquote class="quote mt-5">&ldquo;At the frontier, where companies have achieved current best practice, the trade-off
+        between cost and differentiation is very real indeed.&rdquo;<cite>Porter (1996)</cite></blockquote>
+    </div>
+    <div class="af-lens-chart">
+      <div id="lens2Chart" class="af-viz card p-4 sm:p-5">
+        <div class="grid gap-3 sm:grid-cols-2 no-print">
+          <div>
+            <label for="pick2" class="text-xs font-semibold text-slate-700">Model</label>
+            <select id="pick2" class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800"></select>
+          </div>
+          <div>
+            <label for="effort" class="text-xs font-semibold text-slate-700">Reasoning setting: <span id="effortName" class="text-slate-900"></span></label>
+            <input id="effort" type="range" min="0" max="4" value="2" step="1" class="mt-3">
+          </div>
+        </div>
+        <div data-legend class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-600"></div>
+        <div data-plot class="af-plot mt-2" tabindex="0" role="group" aria-label="Chart of one model's reasoning settings. Use the arrow keys to step through the settings.">
+          <svg class="block w-full" role="img"></svg>
+          <div data-tip class="af-tip" hidden></div>
+        </div>
+        <p data-live class="sr-only" aria-live="polite"></p>
+        <p id="read2" class="mt-3 af-read" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== LENS 3 ============================== -->
+<section id="lens-3" class="mx-auto max-w-6xl px-4 py-12 md:py-14 border-t border-slate-200">
+  <div class="af-lens">
+    <div>
+      <p class="kicker">Lens 3 of 5 &middot; The frontier moves</p>
+      <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">The frontier never stands still</h2>
+      <div class="prose-r">
+        <p>Porter wrote that &ldquo;the productivity frontier is constantly shifting outward as new technologies and
+          management approaches are developed and as new inputs become available.&rdquo; In AI the shift is measured in
+          months. Epoch AI estimates that &ldquo;the cost of achieving a given level of AI performance has fallen about 47%
+          per quarter since 2023, or 13&times; per year&rdquo; (Emberson &amp; Roodman, 2026). Across individual tasks the
+          range is wider still, from 9&times; to 900&times; a year (Cottier et al., 2025). The Stanford AI Index reports that
+          the cost of a system performing at the level of GPT-3.5 &ldquo;dropped over 280-fold between November 2022 and
+          October 2024&rdquo; (Stanford Institute for Human-Centered Artificial Intelligence [Stanford HAI], 2025).</p>
+        <p>Slide forward to see what the 13-fold rate would do to today&rsquo;s frontier if it simply continued. After a
+          year, the score of 58 that costs $5.98 a task today would cost about <span data-fact="proj12">$0.46</span>, and
+          every setting on today&rsquo;s map would sit behind the new frontier.</p>
+        <p>The same force shows up inside each lab, where new releases make older ones obsolete:</p>
+        <ul>
+          <li>Xiaomi&rsquo;s <strong>MiMo-V2.6-Flash</strong> scores 38 at $0.06. Its older MiMo-V2.5-Pro scores 26 at $0.05.</li>
+          <li>DeepSeek&rsquo;s <strong>V4.1 Flash (max)</strong> scores 39 at $0.27, beating its own V4 Pro (36 at $0.67).</li>
+          <li>OpenAI&rsquo;s <strong>GPT-6 Sol (high)</strong> scores 43 at $0.37, beating GPT-5.6 Terra (max), 42 at $1.40.</li>
+          <li>Anthropic&rsquo;s <strong>Claude Opus 5.5 (low)</strong> scores 42 at $0.55, beating Claude Sonnet 5 (max), 38 at $5.09.</li>
+        </ul>
+        <p>The releases themselves come quickly. Google shipped Gemini 3.8 Flash on 2 September 2026, three weeks after its
+          previous model release (Li, 2026).</p>
+      </div>
+      <blockquote class="quote mt-5">&ldquo;OE competition shifts the productivity frontier outward, effectively raising the bar
+        for everyone. But although such competition produces absolute improvement in operational effectiveness, it leads to
+        relative improvement for no one.&rdquo;<cite>Porter (1996)</cite></blockquote>
+    </div>
+    <div class="af-lens-chart">
+      <div id="lens3Chart" class="af-viz card p-4 sm:p-5">
+        <div class="no-print">
+          <label for="months" class="text-xs font-semibold text-slate-700">Months from today, at 13&times; a year: <span id="monthsOut" class="text-slate-900"></span></label>
+          <input id="months" type="range" min="0" max="24" value="12" step="3" class="mt-3">
+          <div class="flex justify-between text-[11px] text-slate-500"><span>today</span><span>two years</span></div>
+        </div>
+        <div data-legend class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-600"></div>
+        <div data-plot class="af-plot mt-2" tabindex="0" role="group" aria-label="Chart of the frontier moving outward. Use the arrow keys to step through the settings.">
+          <svg class="block w-full" role="img"></svg>
+          <div data-tip class="af-tip" hidden></div>
+        </div>
+        <p data-live class="sr-only" aria-live="polite"></p>
+        <p id="read3" class="mt-3 af-read" aria-live="polite"></p>
+        <p class="mt-1 text-[11px] text-slate-500">The moved frontier illustrates a historical rate. It is not a forecast.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== LENS 4 ============================== -->
+<section id="lens-4" class="mx-auto max-w-6xl px-4 py-12 md:py-14 border-t border-slate-200">
+  <div class="af-lens">
+    <div>
+      <p class="kicker">Lens 4 of 5 &middot; Convergence</p>
+      <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Everyone benchmarks everyone</h2>
+      <div class="prose-r">
+        <p>Porter&rsquo;s second reason why operational effectiveness is not enough is, in his words, &ldquo;more subtle and
+          insidious&rdquo;: competitive convergence. &ldquo;The more benchmarking companies do, the more they look
+          alike.&rdquo; AI labs benchmark one another in public, on shared leaderboards.</p>
+        <p>Move the band and count the labs inside it. Between 44 and 46 there are <strong><span data-fact="band44Labs">8</span>
+          labs</strong>, from the United States and China, with <span data-fact="band44N">12</span> settings between them.
+          Their costs run from <span data-fact="band44Min">$0.13</span> to <span data-fact="band44Max">$5.41</span> a task,
+          <span data-fact="band44Ratio">42&times;</span> apart. Between rivals this close, the thing left to compete on is price.</p>
+        <p>The very top has not converged. Anthropic&rsquo;s best score is 58, OpenAI&rsquo;s 53 and Meta&rsquo;s 48. But the
+          pack behind them is dense, and the gaps that once separated kinds of model have nearly closed. On the Arena
+          leaderboard, the best closed-weight model led the best open-weight model by 15.2% in May 2023, by 0.5% in August
+          2024 and by 3.3% in March 2026. The top US model led the top Chinese model by 2.7% (Stanford HAI, 2026). On broad
+          knowledge tasks, &ldquo;the overall spread between the top-ranked and 15th-ranked model is just over 4 percentage
+          points.&rdquo;</p>
+      </div>
+      <dl class="mt-5 grid grid-cols-2 gap-3">
+        <div class="card p-4"><dt class="text-xs text-slate-500">Closed vs open-weight gap, Arena</dt><dd class="stat mt-1 text-xl">15.2% &rarr; 3.3%</dd><dd class="text-xs text-slate-500">May 2023 to March 2026</dd></div>
+        <div class="card p-4"><dt class="text-xs text-slate-500">Top US vs top Chinese model</dt><dd class="stat mt-1 text-xl">2.7%</dd><dd class="text-xs text-slate-500">Arena, March 2026</dd></div>
+        <div class="card p-4"><dt class="text-xs text-slate-500">1st vs 15th model, broad knowledge</dt><dd class="stat mt-1 text-xl">just over 4 pts</dd><dd class="text-xs text-slate-500">AI Index 2026</dd></div>
+        <div class="card p-4"><dt class="text-xs text-slate-500">Labs scoring 44 to 46 here</dt><dd class="stat mt-1 text-xl"><span data-fact="band44Labs">8</span> labs</dd><dd class="text-xs text-slate-500">costs <span data-fact="band44Ratio">42&times;</span> apart</dd></div>
+      </dl>
+      <blockquote class="quote mt-5">&ldquo;With capability no longer a clear differentiator, competitive pressure is shifting toward
+        cost, reliability, and real-world usefulness.&rdquo;<cite>Stanford HAI (2026), AI Index, Chapter 2</cite></blockquote>
+      <blockquote class="quote mt-4">&ldquo;As rivals imitate one another&rsquo;s improvements in quality, cycle times, or supplier
+        partnerships, strategies converge and competition becomes a series of races down identical paths that no one can
+        win.&rdquo;<cite>Porter (1996)</cite></blockquote>
+    </div>
+    <div class="af-lens-chart">
+      <div id="lens4Chart" class="af-viz card p-4 sm:p-5">
+        <div class="no-print">
+          <label for="band" class="text-xs font-semibold text-slate-700">Score band: <span id="bandOut" class="text-slate-900"></span></label>
+          <input id="band" type="range" min="6" max="57" value="45" step="1" class="mt-3">
+          <div class="flex justify-between text-[11px] text-slate-500"><span>5 to 7</span><span>56 to 58</span></div>
+        </div>
+        <div data-legend class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-600"></div>
+        <div data-plot class="af-plot mt-2" tabindex="0" role="group" aria-label="Chart of the labs inside a score band. Use the arrow keys to step through the settings.">
+          <svg class="block w-full" role="img"></svg>
+          <div data-tip class="af-tip" hidden></div>
+        </div>
+        <p data-live class="sr-only" aria-live="polite"></p>
+        <p id="read4" class="mt-3 af-read" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== LENS 5 ============================== -->
+<section id="lens-5" class="mx-auto max-w-6xl px-4 py-12 md:py-14 border-t border-slate-200">
+  <div class="af-lens">
+    <div>
+      <p class="kicker">Lens 5 of 5 &middot; Who is shifting the curve</p>
+      <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Three labs define the frontier</h2>
+      <div class="prose-r">
+        <p>Colour the frontier by who owns it. All <span data-fact="frontierN">11</span> frontier points come from
+          <span data-fact="frontierModels">5</span> models and <span data-fact="frontierLabs">3</span> labs. Every other lab,
+          including Google, Meta, SpaceXAI, Alibaba and DeepSeek, is behind the frontier at every price.</p>
+        <ul id="ownerList">
+          <li><strong>Under $0.06 a task: OpenAI.</strong> GPT-6 Luna holds the cheapest end at four settings, from 21 points for less than half a cent to 34 for $0.04.</li>
+          <li><strong>$0.06 to $1.06: Xiaomi.</strong> MiMo-V2.6-Flash scores 38 for $0.06, and MiMo-V2.6-Pro 46 for $0.13. For any budget from $0.13 to $1.06, MiMo-V2.6-Pro is the best model available.</li>
+          <li><strong>$1.06 to $1.34: OpenAI.</strong> GPT-6 Sol at its max setting scores 48.</li>
+          <li><strong>$1.34 and above: Anthropic.</strong> Claude Opus 5.5 holds the top at four settings, from 51 to the highest score measured, 58.</li>
+        </ul>
+        <p>These are three different positions: the cheapest capable model, the best value in the middle, and the highest
+          capability at a premium. Whether each is a strategy or merely a lead is the question Porter would ask. At a 13-fold
+          annual shift, a lead in capability or cost lasts only until the next release. The durable question is what each
+          lab does that others cannot easily copy.</p>
+      </div>
+      <blockquote class="quote mt-5">&ldquo;A company can outperform rivals only if it can establish a difference that it can
+        preserve.&rdquo;<cite>Porter (1996)</cite></blockquote>
+    </div>
+    <div class="af-lens-chart">
+      <div id="lens5Chart" class="af-viz card p-4 sm:p-5">
+        <div data-legend class="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-600"></div>
+        <div data-plot class="af-plot mt-2" tabindex="0" role="group" aria-label="Chart of the frontier coloured by the lab that owns each stretch. Use the arrow keys to step through the settings.">
+          <svg class="block w-full" role="img"></svg>
+          <div data-tip class="af-tip" hidden></div>
+        </div>
+        <p data-live class="sr-only" aria-live="polite"></p>
+        <div class="mt-3 overflow-x-auto">
+          <table class="w-full text-xs text-left text-slate-600 comparison-table">
+            <thead class="text-[10px] uppercase tracking-wider text-slate-500">
+              <tr><th scope="col">Budget per task</th><th scope="col">Lab</th><th scope="col">Frontier model</th><th scope="col" class="text-right">Scores</th></tr>
+            </thead>
+            <tbody id="ownerTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== POSITIONS ============================== -->
+<section id="positions" class="mx-auto max-w-6xl px-4 py-12 md:py-14 border-t border-slate-200">
+  <p class="kicker">Positions, not just scores</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Reading each lab through Porter</h2>
+  <p class="mt-3 max-w-4xl text-slate-600 leading-relaxed">
+    A score is operational effectiveness. A position is a choice about which customers, needs and price points to serve,
+    backed by activities that rivals cannot copy without giving something up. Each card gives a lab&rsquo;s place on the map
+    and the question Porter would ask of it. They are prompts for discussion, not verdicts.
+  </p>
+  <div class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+    <article class="card p-5">
+      <div class="flex items-center justify-between gap-2"><h3 class="text-lg font-bold text-slate-900">Anthropic</h3><span class="pill bg-emerald-50 text-emerald-800">On the frontier &middot; 4 points</span></div>
+      <p class="mt-3 text-sm text-slate-700 leading-relaxed"><strong class="text-slate-900">On the map.</strong> The highest score measured, 58, from Claude Opus 5.5 at max, and every frontier point above $1.34 a task. Its other models sit behind. Claude Fable 5.1 scores 53 at up to $7.63. Its cheapest listed model, Claude 4.5 Haiku, scores 17 at $0.28, where GPT-6 Luna (medium) scores 29 for $0.02.</p>
+      <p class="mt-3 text-sm text-slate-700 leading-relaxed"><strong class="text-slate-900">Porter&rsquo;s question.</strong> A premium position lasts only while the top is scarce. What would a rival have to give up to occupy it?</p>
+    </article>
+    <article class="card p-5">
+      <div class="flex items-center justify-between gap-2"><h3 class="text-lg font-bold text-slate-900">OpenAI</h3><span class="pill bg-emerald-50 text-emerald-800">On the frontier &middot; 5 points</span></div>
+      <p class="mt-3 text-sm text-slate-700 leading-relaxed"><strong class="text-slate-900">On the map.</strong> The broadest line-up, with <span data-fact="countOpenAI">26</span> settings. It holds the cheapest end of the frontier with GPT-6 Luna and a band in the middle with GPT-6 Sol. Its most capable model, GPT-6 Astra, scores 53 at max but is behind the frontier at every setting.</p>
+      <p class="mt-3 text-sm text-slate-700 leading-relaxed"><strong class="text-slate-900">Porter&rsquo;s question.</strong> Is serving every price point a coherent position, or straddling, the trap Porter describes at Continental Lite?</p>
+    </article>
+    <article class="card p-5">
+      <div class="flex items-center justify-between gap-2"><h3 class="text-lg font-bold text-slate-900">Xiaomi</h3><span class="pill bg-emerald-50 text-emerald-800">On the frontier &middot; 2 points</span></div>
+      <p class="mt-3 text-sm text-slate-700 leading-relaxed"><strong class="text-slate-900">On the map.</strong> MiMo-V2.6-Pro scores 46 for $0.13 a task, the best capability available for any budget from $0.13 to $1.06. MiMo-V2.6-Flash holds the frontier at $0.06. Xiaomi is the only lab outside the United States on the frontier.</p>
+      <p class="mt-3 text-sm text-slate-700 leading-relaxed"><strong class="text-slate-900">Porter&rsquo;s question.</strong> Is its low cost a position, backed by activities rivals cannot copy, or a price others can match next quarter?</p>
+    </article>
+    <article class="card p-5">
+      <div class="flex items-center justify-between gap-2"><h3 class="text-lg font-bold text-slate-900">Google</h3><span class="pill bg-slate-100 text-slate-600">Behind &middot; best 41</span></div>
+      <p class="mt-3 text-sm text-slate-700 leading-relaxed"><strong class="text-slate-900">On the map.</strong> Its best setting, Gemini 3.8 Flash (high), scores 41 at $1.24. MiMo-V2.6-Pro scores 46 for about a tenth of that. The newest Pro model on the leaderboard is Gemini 3.1 Pro Preview, 30 at $0.67. Google shipped 3.8 Flash three weeks after its previous release.</p>
+      <p class="mt-3 text-sm text-slate-700 leading-relaxed"><strong class="text-slate-900">Porter&rsquo;s question.</strong> If Google&rsquo;s advantage is not on this chart, where is it? Consider access-based positioning: reaching customers through channels others lack.</p>
+    </article>
+    <article class="card p-5">
+      <div class="flex items-center justify-between gap-2"><h3 class="text-lg font-bold text-slate-900">Meta</h3><span class="pill bg-slate-100 text-slate-600">Behind &middot; best 48</span></div>
+      <p class="mt-3 text-sm text-slate-700 leading-relaxed"><strong class="text-slate-900">On the map.</strong> Muse Spark 1.3 (max) scores 48 at $1.60, just behind GPT-6 Sol (max), which matches it for $1.06. Its small Muse Glimmer (high) scores 17 at $0.06.</p>
+      <p class="mt-3 text-sm text-slate-700 leading-relaxed"><strong class="text-slate-900">Porter&rsquo;s question.</strong> How close to the frontier is close enough, when the frontier moves 13-fold a year?</p>
+    </article>
+    <article class="card p-5">
+      <div class="flex items-center justify-between gap-2"><h3 class="text-lg font-bold text-slate-900">SpaceXAI</h3><span class="pill bg-slate-100 text-slate-600">Behind &middot; best 46</span></div>
+      <p class="mt-3 text-sm text-slate-700 leading-relaxed"><strong class="text-slate-900">On the map.</strong> Grok 4.7 scores 46 at $2.73 (high) and $3.74 (xhigh). MiMo-V2.6-Pro reaches 46 for $0.13. SpaceXAI is the former xAI, which SpaceX acquired in February 2026 and renamed in July (&ldquo;SpaceXAI,&rdquo; 2026).</p>
+      <p class="mt-3 text-sm text-slate-700 leading-relaxed"><strong class="text-slate-900">Porter&rsquo;s question.</strong> Belonging to a rocket and satellite company is a distinctive set of activities. Does it create fit that a buyer of a model would pay for?</p>
+    </article>
+    <article class="card p-5">
+      <div class="flex items-center justify-between gap-2"><h3 class="text-lg font-bold text-slate-900">Alibaba (Qwen)</h3><span class="pill bg-slate-100 text-slate-600">Behind &middot; best 45</span></div>
+      <p class="mt-3 text-sm text-slate-700 leading-relaxed"><strong class="text-slate-900">On the map.</strong> <span data-fact="countAlibaba">12</span> settings, the third-largest line-up. Qwen3.8 Max scores 45 at $5.41, the most expensive setting at that level, while Qwen3.8-Flash-Next scores 40 for $0.37.</p>
+      <p class="mt-3 text-sm text-slate-700 leading-relaxed"><strong class="text-slate-900">Porter&rsquo;s question.</strong> Many models for many needs is variety-based positioning. Is each one distinct enough to win its own segment?</p>
+    </article>
+    <article class="card p-5">
+      <div class="flex items-center justify-between gap-2"><h3 class="text-lg font-bold text-slate-900">DeepSeek</h3><span class="pill bg-slate-100 text-slate-600">Behind &middot; best 39</span></div>
+      <p class="mt-3 text-sm text-slate-700 leading-relaxed"><strong class="text-slate-900">On the map.</strong> V4.1 Flash (max) scores 39 at $0.27 and beats DeepSeek&rsquo;s own V4 Pro. In February 2025, DeepSeek-R1 briefly matched the top US model (Stanford HAI, 2026).</p>
+      <p class="mt-3 text-sm text-slate-700 leading-relaxed"><strong class="text-slate-900">Porter&rsquo;s question.</strong> A breakthrough moves the frontier for everyone. What does it take to keep the lead it creates?</p>
+    </article>
+    <article class="card p-5">
+      <div class="flex items-center justify-between gap-2"><h3 class="text-lg font-bold text-slate-900">Z AI, Moonshot AI, StepFun and others</h3><span class="pill bg-slate-100 text-slate-600">Behind</span></div>
+      <p class="mt-3 text-sm text-slate-700 leading-relaxed"><strong class="text-slate-900">On the map.</strong> GLM-5.3 (max) scores 45 at $2.01 and GLM-5.3-Flash 42 at $0.25. Kimi K3 (max) scores 44 at $2.00 and Step 5 Preview 44 at $0.72. MiniMax-M3 scores 29 at $0.51, and Tencent&rsquo;s Hy3 25 at $0.07.</p>
+      <p class="mt-3 text-sm text-slate-700 leading-relaxed"><strong class="text-slate-900">Porter&rsquo;s question.</strong> In the densest band of the map, what makes any one of them the obvious choice?</p>
+    </article>
+  </div>
+
+  <div class="mt-6 card p-4 sm:p-5">
+    <h3 class="font-bold text-slate-900">All <span data-fact="labs">23</span> labs at a glance</h3>
+    <p class="mt-1 text-xs text-slate-500 leading-relaxed">&ldquo;Closest to the frontier&rdquo; is the lab&rsquo;s best-placed setting: how many times the cheapest matching cost it pays for its score. 1&times; means it is on the frontier.</p>
+    <div class="mt-3 overflow-x-auto">
+      <table class="w-full text-xs text-left text-slate-600 comparison-table">
+        <thead class="text-[10px] uppercase tracking-wider text-slate-500">
+          <tr><th scope="col">Lab</th><th scope="col" class="text-right">Settings</th><th scope="col" class="text-right">On frontier</th>
+            <th scope="col">Best score</th><th scope="col">Lowest cost</th><th scope="col">Closest to the frontier</th></tr>
+        </thead>
+        <tbody id="labTable"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== LESSONS ============================== -->
+<section id="lessons" class="mx-auto max-w-6xl px-4 py-12 md:py-14 border-t border-slate-200">
+  <p class="kicker">What it means</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Three lessons from the frontier</h2>
+  <div class="mt-6 grid gap-4 lg:grid-cols-3">
+    <div class="card p-5">
+      <p class="text-[11px] font-semibold uppercase tracking-wider text-blue-700">For AI labs</p>
+      <h3 class="mt-1 text-lg font-bold text-slate-900">Operational effectiveness is not a strategy</h3>
+      <p class="mt-2 text-sm text-slate-700 leading-relaxed">The frontier moves about 13-fold a year, and eight labs crowd into a
+        two-point band. A lead built only on a better model is a lead in operational effectiveness, and such leads diffuse:
+        &ldquo;Competitors can quickly imitate management techniques, new technologies, input improvements, and superior ways
+        of meeting customers&rsquo; needs&rdquo; (Porter, 1996). Durable advantage needs choices with trade-offs: which
+        customers and tasks to serve, through which channels, with which kinds of model, and what to refuse.</p>
+    </div>
+    <div class="card p-5">
+      <p class="text-[11px] font-semibold uppercase tracking-wider text-blue-700">For companies that buy AI</p>
+      <h3 class="mt-1 text-lg font-bold text-slate-900">The frontier is a menu, not a league table</h3>
+      <p class="mt-2 text-sm text-slate-700 leading-relaxed">The right model is the cheapest setting that clears your quality
+        bar, and it changes every few months. A task that needs a score of 46 can be served for $0.13 a task today rather than
+        $5.41. The last two points of the top model cost $1.26 each; pay for them only if the task needs them. Re-run the choice
+        every quarter.</p>
+    </div>
+    <div class="card p-5">
+      <p class="text-[11px] font-semibold uppercase tracking-wider text-blue-700">For strategists</p>
+      <h3 class="mt-1 text-lg font-bold text-slate-900">A frontier model is not a strategy either</h3>
+      <p class="mt-2 text-sm text-slate-700 leading-relaxed">If every firm in an industry uses the same frontier model, AI
+        becomes operational effectiveness: necessary, quickly copied and competed away. Advantage comes from what a firm does
+        differently with it: its data, its workflows, and the fit between AI and the rest of its activities. &ldquo;The essence
+        of strategy is choosing what not to do&rdquo; (Porter, 1996).</p>
+    </div>
+  </div>
+
+  <div class="mt-6 card p-5">
+    <h3 class="font-bold text-slate-900">Questions for discussion</h3>
+    <ol class="mt-3 grid gap-3 text-sm text-slate-700 leading-relaxed list-decimal pl-5 lg:grid-cols-2 lg:gap-x-10">
+      <li>Anthropic holds the top of the frontier, Xiaomi the middle and OpenAI the cheapest end. Which of these is a strategic position, and which only a lead in operational effectiveness?</li>
+      <li>OpenAI offers <span data-fact="countOpenAI">26</span> settings, from under half a cent to $3.26 a task. Is that a coherent position, or straddling?</li>
+      <li>If the cost of any given capability falls 13-fold a year, what, if anything, can an AI lab own for five years?</li>
+      <li>Eight labs score between 44 and 46. What should the cheapest of them, Xiaomi&rsquo;s MiMo-V2.6-Pro at $0.13, and the dearest, Alibaba&rsquo;s Qwen3.8 Max at $5.41, each do next?</li>
+      <li>Your company uses the same frontier model as its three largest rivals. Where must your advantage come from?</li>
+      <li>Artificial Analysis weights agents, coding, scientific reasoning and general knowledge. If your customers weighted them differently, would the frontier change hands?</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================== METHOD ============================== -->
+<section id="method" class="mx-auto max-w-6xl px-4 py-12 md:py-14 border-t border-slate-200">
+  <p class="kicker">Method, caveats and sources</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">How this was built</h2>
+  <div class="mt-6 grid gap-6 lg:grid-cols-2">
+    <div class="grid gap-4 text-sm text-slate-700 leading-relaxed">
+      <p><strong class="text-slate-900">Data.</strong> The Artificial Analysis LLM leaderboard, read on 28 September 2026. Its
+        Intelligence Index v4.3.2 combines ten evaluations (AA-Briefcase, GDPval-AA, AutomationBench-AA, Terminal-Bench 4.0,
+        SciCode, AA-LCR, AA-Omniscience, Humanity&rsquo;s Last Exam, GDP.pdf and CritPt) as &ldquo;a weighted average across four
+        categories: Agents (30%), Coding (20%), Scientific Reasoning (20%) and General (30%)&rdquo; (Artificial Analysis, 2026a).
+        Cost per task is the leaderboard&rsquo;s figure in US dollars. Artificial Analysis computes costs from &ldquo;the token
+        counts reported by each model&rsquo;s API provider.&rdquo;</p>
+      <p><strong class="text-slate-900">Coverage.</strong> The leaderboard listed 249 settings, and 102 showed a cost per task.
+        Two of those, Cohere&rsquo;s Command A+ and North Mini Code, show $0.00, which cannot sit on a logarithmic axis. That
+        leaves <span data-fact="n">100</span> settings from <span data-fact="labs">23</span> labs. A setting is a model at a
+        named reasoning level (non-reasoning, low, medium, high, xhigh or max). Each is plotted separately, as Artificial
+        Analysis lists them.</p>
+      <p><strong class="text-slate-900">The frontier.</strong> A setting is on the frontier when no other setting scores at least
+        as high for less, or higher for the same cost. The staircase gives the highest score available at or below each cost.
+        Every chart computes it in your browser from the table on this page.</p>
+      <p><strong class="text-slate-900">Checks.</strong> The table was extracted from the leaderboard twice, independently, and
+        the two extractions agreed on every row they shared. Every figure quoted in the text was computed by script from the
+        same rows and checked against the charts.</p>
+    </div>
+    <div class="grid gap-4 text-sm text-slate-700 leading-relaxed">
+      <p><strong class="text-slate-900">Names.</strong> Artificial Analysis lists Moonshot AI&rsquo;s models under
+        &ldquo;Kimi&rdquo; and labels Anthropic&rsquo;s settings &ldquo;with fallback&rdquo;. The table keeps its names; the
+        charts shorten them. SpaceXAI is the former xAI.</p>
+      <p><strong class="text-slate-900">Limits.</strong> This is one index on one day. Scores are whole numbers, so ties are
+        common. Costs are shown to the cent, so ratios involving costs under ten cents are approximate. The index says nothing
+        about speed, latency, context length, reliability in production, data protection or licensing, all of which buyers
+        weigh. Epoch AI&rsquo;s rate describes the past; the projection in Lens 3 illustrates it and is not a forecast.</p>
+      <p><strong class="text-slate-900">Independence.</strong> All scores and costs are Artificial Analysis&rsquo;s, unaltered.
+        This page adds only arithmetic and Porter.</p>
+    </div>
+  </div>
+
+  <h3 class="mt-10 font-bold text-slate-900">References</h3>
+  <ul class="mt-3 grid gap-2 text-sm text-slate-700 leading-relaxed">
+    <li class="ref">Artificial Analysis. (2026a). <em>Intelligence benchmarking methodology</em> (Intelligence Index v4.3.2). Retrieved September 28, 2026, from <a class="text-blue-700 underline decoration-blue-200 underline-offset-2 break-words" href="https://artificialanalysis.ai/methodology/intelligence-benchmarking" target="_blank" rel="noopener noreferrer">https://artificialanalysis.ai/methodology/intelligence-benchmarking</a></li>
+    <li class="ref">Artificial Analysis. (2026b). <em>LLM leaderboard</em> [Data set]. Retrieved September 28, 2026, from <a class="text-blue-700 underline decoration-blue-200 underline-offset-2 break-words" href="https://artificialanalysis.ai/leaderboards/models" target="_blank" rel="noopener noreferrer">https://artificialanalysis.ai/leaderboards/models</a></li>
+    <li class="ref">Cottier, B., Snodin, B., Owen, D., &amp; Adamczewski, T. (2025, March 12). <em>LLM inference prices have fallen rapidly but unequally across tasks</em>. Epoch AI. <a class="text-blue-700 underline decoration-blue-200 underline-offset-2 break-words" href="https://epoch.ai/data-insights/llm-inference-price-trends" target="_blank" rel="noopener noreferrer">https://epoch.ai/data-insights/llm-inference-price-trends</a></li>
+    <li class="ref">Emberson, L., &amp; Roodman, D. (2026, September 22). <em>The plunging price of thought</em> [Report]. Epoch AI. <a class="text-blue-700 underline decoration-blue-200 underline-offset-2 break-words" href="https://epoch.ai/publications/the-plunging-price-of-thought" target="_blank" rel="noopener noreferrer">https://epoch.ai/publications/the-plunging-price-of-thought</a></li>
+    <li class="ref">Li, A. (2026, September 2). Gemini 3.8 Flash rolling out three weeks after last release. <em>9to5Google</em>. <a class="text-blue-700 underline decoration-blue-200 underline-offset-2 break-words" href="https://9to5google.com/2026/09/02/gemini-3-8-flash-launch/" target="_blank" rel="noopener noreferrer">https://9to5google.com/2026/09/02/gemini-3-8-flash-launch/</a></li>
+    <li class="ref">Porter, M. E. (1996). What is strategy? <em>Harvard Business Review, 74</em>(6), 61&ndash;78.</li>
+    <li class="ref">SpaceXAI. (2026). In <em>Wikipedia</em>. Retrieved September 28, 2026, from <a class="text-blue-700 underline decoration-blue-200 underline-offset-2 break-words" href="https://en.wikipedia.org/wiki/SpaceXAI" target="_blank" rel="noopener noreferrer">https://en.wikipedia.org/wiki/SpaceXAI</a></li>
+    <li class="ref">Stanford Institute for Human-Centered Artificial Intelligence. (2025). <em>Artificial Intelligence Index report 2025</em>. Stanford University. <a class="text-blue-700 underline decoration-blue-200 underline-offset-2 break-words" href="https://hai.stanford.edu/ai-index/2025-ai-index-report" target="_blank" rel="noopener noreferrer">https://hai.stanford.edu/ai-index/2025-ai-index-report</a></li>
+    <li class="ref">Stanford Institute for Human-Centered Artificial Intelligence. (2026). <em>Artificial Intelligence Index report 2026: Chapter 2, Technical performance</em>. Stanford University. <a class="text-blue-700 underline decoration-blue-200 underline-offset-2 break-words" href="https://hai.stanford.edu/assets/files/ai_index_report_2026_chapter_2_technical.pdf" target="_blank" rel="noopener noreferrer">https://hai.stanford.edu/assets/files/ai_index_report_2026_chapter_2_technical.pdf</a></li>
+  </ul>
+
+  <div class="mt-10 flex flex-wrap items-center gap-3 border-t border-slate-200 pt-6 text-sm no-print">
+    <a href="/teaching/1-year-mba/session1.html" class="rounded-lg bg-slate-900 px-4 py-2.5 font-semibold text-white hover:bg-slate-800">&larr; Back to Session 1</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.swapnilsahoo.com%2Fteaching%2F1-year-mba%2Fsession1%2Fai-models-productivity-frontier.html" target="_blank" rel="noopener noreferrer" class="rounded-lg border border-slate-300 px-4 py-2.5 font-semibold text-slate-700 hover:bg-slate-50">Share on LinkedIn</a>
+    <a href="#top" class="rounded-lg border border-slate-300 px-4 py-2.5 font-semibold text-slate-700 hover:bg-slate-50">Back to top</a>
+  </div>
+</section>
+
+<footer class="bg-gray-800 mt-8 border-t border-gray-700">
+  <div class="container mx-auto px-6 py-5">
+    <div class="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6">
+      <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-3 group">
+        <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
+          <svg viewBox="0 0 52 60" aria-hidden="true">
+            <defs><linearGradient id="footerRedGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
+            <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#footerRedGradient)"/><text class="hexagon-s" x="26" y="32">S</text>
+          </svg>
+        </div>
+        <span class="text-xs font-semibold text-slate-300 group-hover:text-white transition-colors">Dr. Swapnil Sahoo</span>
+      </a>
+      <p class="text-xs text-slate-400 text-center">&copy; Dr. Swapnil Sahoo 2026 &middot; Data: Artificial Analysis, 28 September 2026</p>
+      <div class="flex space-x-5">
+        <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white footer-link" title="X/Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white footer-link" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================== PAGE SHELL: theme, progress, rail, drawer ============================== -->
+<script>
+(function () {
+  var SECTIONS = [
+    ["summary", "The short version"], ["map", "The map"], ["lens-1", "Behind the frontier"],
+    ["lens-2", "At the frontier"], ["lens-3", "The frontier moves"], ["lens-4", "Convergence"],
+    ["lens-5", "Who shifts the curve"], ["positions", "Positions"], ["lessons", "Lessons"], ["method", "Method & sources"]
+  ];
+  var root = document.documentElement;
+  var themeBtn = document.getElementById("themeBtn");
+  if (themeBtn) themeBtn.addEventListener("click", function () {
+    root.classList.toggle("dark");
+    try { localStorage.setItem("s1-theme", root.classList.contains("dark") ? "dark" : "light"); } catch (e) {}
+  });
+
+  var bar = document.getElementById("readbar"), pctEl = document.getElementById("progPct");
+  function onScroll() {
+    var h = document.documentElement, max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? Math.min(100, Math.max(0, (h.scrollTop / max) * 100)) : 0;
+    if (bar) { bar.style.width = p + "%"; bar.setAttribute("aria-valuenow", Math.round(p)); }
+    if (pctEl) pctEl.textContent = Math.round(p);
+  }
+  var ticking = false;
+  window.addEventListener("scroll", function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () { onScroll(); ticking = false; });
+  }, { passive: true });
+  onScroll();
+
+  var rail = document.getElementById("rail"), dnav = document.getElementById("drawerNav");
+  var drawer = document.getElementById("drawer"), drawerBtn = document.getElementById("drawerBtn");
+  function openDrawer() { drawer.classList.remove("hidden"); drawerBtn.setAttribute("aria-expanded", "true"); document.body.style.overflow = "hidden"; }
+  function closeDrawer() { drawer.classList.add("hidden"); drawerBtn.setAttribute("aria-expanded", "false"); document.body.style.overflow = ""; }
+  SECTIONS.forEach(function (s) {
+    if (!document.getElementById(s[0])) return;
+    var a = document.createElement("a");
+    a.href = "#" + s[0]; a.dataset.sec = s[0];
+    var dot = document.createElement("span"); dot.className = "dot";
+    var lbl = document.createElement("span"); lbl.className = "lbl"; lbl.textContent = s[1];
+    a.appendChild(dot); a.appendChild(lbl);
+    rail.appendChild(a);
+    var d = document.createElement("a");
+    d.href = "#" + s[0];
+    d.className = "rounded-lg px-3 py-2.5 text-sm text-slate-700 hover:bg-slate-100";
+    d.textContent = s[1];
+    d.addEventListener("click", closeDrawer);
+    dnav.appendChild(d);
+  });
+  drawerBtn.addEventListener("click", openDrawer);
+  document.getElementById("drawerClose").addEventListener("click", closeDrawer);
+  document.getElementById("drawerScrim").addEventListener("click", closeDrawer);
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeDrawer(); });
+
+  var spy = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting) return;
+      rail.querySelectorAll("a").forEach(function (a) { a.classList.toggle("on", a.dataset.sec === en.target.id); });
+    });
+  }, { rootMargin: "-45% 0px -50% 0px" });
+  SECTIONS.forEach(function (s) { var el = document.getElementById(s[0]); if (el) spy.observe(el); });
+})();
+</script>
+
+<!-- ============================== THE FRONTIER: data, arithmetic and charts ============================== -->
+<script>
+(function () {
+  "use strict";
+  /* Artificial Analysis LLM leaderboard, 28 September 2026: [setting, lab, Intelligence Index v4.3.2, cost per task in US$].
+     Every setting with a cost per task above $0.00. Moonshot AI is listed there as "Kimi". */
+  var ROWS = [
+    ["Claude Opus 5.5 (max with fallback)","Anthropic",58,5.98],["Claude Opus 5.5 (xhigh with fallback)","Anthropic",56,3.46],
+    ["Claude Opus 5.5 (high with fallback)","Anthropic",54,1.82],["Claude Fable 5.1 (max with fallback)","Anthropic",53,7.63],
+    ["Claude Fable 5.1 (xhigh with fallback)","Anthropic",53,5.98],["GPT-6 Astra (max)","OpenAI",53,3.26],["GPT-6 Astra (xhigh)","OpenAI",52,2.31],
+    ["Claude Opus 5.5 (medium with fallback)","Anthropic",51,1.34],["Claude Fable 5.1 (high with fallback)","Anthropic",51,3.91],
+    ["GPT-6 Astra (high)","OpenAI",51,1.73],["GPT-6 Astra (medium)","OpenAI",50,1.54],["Claude Fable 5.1 (medium with fallback)","Anthropic",49,2.98],
+    ["Muse Spark 1.3 (max)","Meta",48,1.60],["GPT-6 Sol (max)","OpenAI",48,1.06],["Claude Fable 5.1 (low with fallback)","Anthropic",47,2.37],
+    ["Grok 4.7 (xhigh)","SpaceXAI",46,3.74],["Grok 4.7 (high)","SpaceXAI",46,2.73],["MiMo-V2.6-Pro","Xiaomi",46,0.13],
+    ["GPT-6 Astra (low)","OpenAI",46,0.82],["Qwen3.8 Max (0902)","Alibaba",45,5.41],["Muse Spark 1.3 (xhigh)","Meta",45,1.37],
+    ["GLM-5.3 (max)","Z AI",45,2.01],["Grok 4.6 (high)","SpaceXAI",44,1.86],["Grok 4.6 (xhigh)","SpaceXAI",44,2.32],["GPT-6 Sol (xhigh)","OpenAI",44,0.53],
+    ["Step 5 Preview","StepFun",44,0.72],["Kimi K3 (max)","Moonshot AI",44,2.00],["Grok 4.6 (medium)","SpaceXAI",43,1.50],
+    ["GPT-6 Sol (high)","OpenAI",43,0.37],["Claude Opus 5.5 (low with fallback)","Anthropic",42,0.55],["GPT-5.6 Terra (max)","OpenAI",42,1.40],
+    ["GLM-5.3-Flash","Z AI",42,0.25],["Gemini 3.8 Flash (high)","Google",41,1.24],["Qwen3.8 2.4T A95B","Alibaba",40,2.16],
+    ["Qwen3.8-Flash-Next","Alibaba",40,0.37],["GPT-6 Sol (medium)","OpenAI",40,0.25],["Gemini 3.8 Flash (medium)","Google",40,0.93],
+    ["DeepSeek V4.1 Flash (max)","DeepSeek",39,0.27],["Claude Sonnet 5 (max)","Anthropic",38,5.09],["GPT-5.6 Terra (xhigh)","OpenAI",38,0.63],
+    ["MiMo-V2.6-Flash","Xiaomi",38,0.06],["GPT-6 Luna (max)","OpenAI",37,0.07],["DeepSeek V4 Pro 0813 (max)","DeepSeek",36,0.67],
+    ["Grok 4.6 (low)","SpaceXAI",35,0.48],["DeepSeek V4 Flash Vision (max)","DeepSeek",35,0.31],["Claude Sonnet 5 (xhigh)","Anthropic",34,2.87],
+    ["GLM-5.3 (low)","Z AI",34,0.85],["GPT-5.6 Terra (high)","OpenAI",34,0.34],["GPT-6 Sol (low)","OpenAI",34,0.13],
+    ["GPT-6 Luna (xhigh)","OpenAI",34,0.04],["Qwen3.8 27B (xhigh)","Alibaba",34,1.01],["GPT-6 Luna (high)","OpenAI",32,0.03],
+    ["Claude Sonnet 5 (high)","Anthropic",32,1.79],["GPT-5.6 Terra (medium)","OpenAI",30,0.18],["Gemini 3.1 Pro Preview","Google",30,0.67],
+    ["GPT-6 Luna (medium)","OpenAI",29,0.02],["MiniMax-M3","MiniMax",29,0.51],["GPT-6 Sol (Non-reasoning)","OpenAI",28,0.33],
+    ["Claude Sonnet 5 (medium)","Anthropic",28,1.00],["Qwen3.8 27B (medium)","Alibaba",28,1.13],["GPT-5.6 Terra (low)","OpenAI",27,0.14],
+    ["Quasar 438B (max)","Multiverse Computing",27,2.02],["Apodex 1.1","Apodex",26,0.46],["Qwen3.8 27B (low)","Alibaba",26,1.05],
+    ["GPT-5.5 Instant (June 2026)","OpenAI",26,0.69],["MiMo-V2.5-Pro","Xiaomi",26,0.05],["Kimi K2.7 Code","Moonshot AI",26,0.54],["Hy3","Tencent",25,0.07],
+    ["Qwen3.7 Plus","Alibaba",25,0.22],["DeepSeek V4.1 Flash (Non-reasoning)","DeepSeek",25,0.15],["Claude Sonnet 5 (low)","Anthropic",24,0.51],
+    ["Nemotron 3 Ultra","NVIDIA",23,0.60],["Gemini 3.5 Flash-Lite","Google",22,0.12],["GPT-6 Luna (low)","OpenAI",21,0.0045],
+    ["GPT-5.6 Terra (Non-reasoning)","OpenAI",21,0.14],["Qwen3.8 27B","Alibaba",20,2.49],["LongCat 2.0","LongCat",19,0.06],
+    ["Qwen3.5 397B A17B","Alibaba",18,0.47],["GPT-6 Luna (Non-reasoning)","OpenAI",18,0.01],["Qwen3.6 35B A3B","Alibaba",18,0.48],
+    ["Muse Glimmer (high)","Meta",17,0.06],["Claude 4.5 Haiku","Anthropic",17,0.28],["Ring-2.6-1T","InclusionAI",17,0.29],
+    ["Qwen3.5 122B A10B","Alibaba",16,0.32],["Mistral Medium 3.5","Mistral",14,0.50],["Nemotron 3.5 Lightning","NVIDIA",13,0.10],
+    ["Nemotron 3 Super","NVIDIA",13,1.64],["Mercury 2.5","Inception",12,0.12],["gpt-oss-120b (high)","OpenAI",12,0.11],
+    ["Mistral Small 4","Mistral",11,0.02],["Granite 4.2 8B","IBM",11,0.02],["Trinity Large Thinking","Arcee AI",11,0.12],
+    ["Mistral Large 3","Mistral",9,0.03],["Qwen3 Coder Next","Alibaba",9,0.55],["Granite 4.2 3B","IBM",9,0.01],["gpt-oss-20b (high)","OpenAI",9,0.01],
+    ["Nemotron 3 Nano","NVIDIA",9,0.02],["Celeris-1","Celeris",6,0.05],["Ministral 3 14B","Mistral",6,0.02],["Ministral 3 8B","Mistral",5,0.01]
+  ];
+
+  var NS = "http://www.w3.org/2000/svg";
+  var EFF = ["non-reasoning", "low", "medium", "high", "xhigh", "max"];
+  var RE = /^(.*?)\s*\((max|xhigh|high|medium|low|Non-reasoning)(?: with fallback)?\)\s*$/;
+
+  /* ---------------- the arithmetic ---------------- */
+  var M = ROWS.map(function (r, i) {
+    var p = RE.exec(r[0]);
+    return { id: i, name: r[0], lab: r[1], index: r[2], cost: r[3],
+      base: p ? p[1] : r[0], effort: p ? p[2].toLowerCase() : null };
+  });
+  function dominates(o, m) {
+    return o !== m && o.cost <= m.cost && o.index >= m.index && (o.cost < m.cost || o.index > m.index);
+  }
+  M.forEach(function (m) {
+    var r = null;
+    M.forEach(function (o) {
+      if (dominates(o, m) && (!r || o.cost < r.cost || (o.cost === r.cost && o.index > r.index))) r = o;
+    });
+    m.onFrontier = !r;
+    m.rival = r;
+  });
+  var FRONT = M.filter(function (m) { return m.onFrontier; }).sort(function (a, b) { return a.cost - b.cost; });
+  function bestUnder(c) {
+    var b = null;
+    M.forEach(function (m) { if (m.cost <= c + 1e-12 && (!b || m.index > b.index || (m.index === b.index && m.cost < b.cost))) b = m; });
+    return b;
+  }
+  function cheapestAt(q) {
+    var b = null;
+    M.forEach(function (m) { if (m.index >= q && (!b || m.cost < b.cost || (m.cost === b.cost && m.index > b.index))) b = m; });
+    return b;
+  }
+  M.forEach(function (m) { m.costGap = m.cost / cheapestAt(m.index).cost; });
+  var LABS = {};
+  M.forEach(function (m) { (LABS[m.lab] = LABS[m.lab] || []).push(m); });
+  var CURVES = {};
+  M.forEach(function (m) { if (m.effort) (CURVES[m.base] = CURVES[m.base] || []).push(m); });
+  Object.keys(CURVES).forEach(function (k) {
+    CURVES[k].sort(function (a, b) { return EFF.indexOf(a.effort) - EFF.indexOf(b.effort); });
+  });
+  var OWNERS = [];
+  FRONT.forEach(function (m) { if (OWNERS.indexOf(m.lab) < 0) OWNERS.push(m.lab); });
+  var OSHAPE = ["circle", "square", "triangle"];
+  var FAM = [];   // one label per frontier model: its most capable frontier setting
+  FRONT.forEach(function (m) {
+    for (var i = 0; i < FAM.length; i++) if (FAM[i].base === m.base) { if (m.index > FAM[i].index) FAM[i] = m; return; }
+    FAM.push(m);
+  });
+  function byName(n) { for (var i = 0; i < M.length; i++) if (M[i].name === n) return M[i]; return null; }
+
+  /* ---------------- formatting ---------------- */
+  function usd(c) { return "$" + (c < 0.01 ? String(+c.toFixed(4)) : c.toFixed(2)); }
+  function usdCalc(c) { return "$" + (c >= 0.1 ? c.toFixed(2) : c >= 0.01 ? String(+c.toFixed(3)) : c.toPrecision(2)); }
+  function times(r) {
+    if (r < 10) { var s = r.toFixed(1); return (s.slice(-2) === ".0" ? s.slice(0, -2) : s) + "×"; }
+    if (r < 100) return Math.round(r) + "×";
+    return (Math.round(r / 10) * 10).toLocaleString("en-US") + "×";
+  }
+  function short(m) { return m.effort ? m.base + " (" + m.effort + ")" : m.base; }
+  function cents(c) { return Math.round(c * 100) + " cents"; }
+  function status(m) {
+    if (m.onFrontier) return "On the frontier";
+    var r = m.rival;
+    return r.cost === m.cost ? "Behind: " + short(r) + " scores " + r.index + " for the same cost"
+      : "Behind: " + short(r) + " (" + r.lab + ") scores " + r.index + " and is " + times(m.cost / r.cost) + " cheaper";
+  }
+  function r1(v) { return Math.round(v * 10) / 10; }
+  function clear(n) { while (n.firstChild) n.removeChild(n.firstChild); }
+  function h(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+
+  /* ---------------- facts the prose quotes (checked by the test suite) ---------------- */
+  function band(lo, hi) {
+    var s = M.filter(function (m) { return m.index >= lo && m.index <= hi; }), labs = [];
+    s.forEach(function (m) { if (labs.indexOf(m.lab) < 0) labs.push(m.lab); });
+    var cheap = null, dear = null;
+    s.forEach(function (m) {
+      if (!cheap || m.cost < cheap.cost) cheap = m;
+      if (!dear || m.cost > dear.cost) dear = m;
+    });
+    return { s: s, labs: labs.sort(), cheap: cheap, dear: dear };
+  }
+  var opus = CURVES["Claude Opus 5.5"], b44 = band(44, 46);
+  var FACTS = {
+    n: String(M.length), labs: String(Object.keys(LABS).length), frontierN: String(FRONT.length),
+    behind: String(M.length - FRONT.length), frontierLabs: String(OWNERS.length), frontierModels: String(FAM.length),
+    band44Labs: String(b44.labs.length), band44N: String(b44.s.length), band44Min: usd(b44.cheap.cost), band44Max: usd(b44.dear.cost),
+    band44Ratio: times(b44.dear.cost / b44.cheap.cost),
+    opusGain: String(opus[opus.length - 1].index - opus[0].index),
+    opusCostX: times(opus[opus.length - 1].cost / opus[0].cost).replace(/\.\d/, ""),
+    opusLastPerPt: usd((opus[4].cost - opus[3].cost) / (opus[4].index - opus[3].index)),
+    opusFirstPerPt: cents((opus[1].cost - opus[0].cost) / (opus[1].index - opus[0].index)),
+    proj12: usdCalc(FRONT[FRONT.length - 1].cost / 13),
+    countOpenAI: String(LABS.OpenAI.length), countAlibaba: String(LABS.Alibaba.length)
+  };
+  [["ex_qwen", "Qwen3.8 Max (0902)"], ["ex_grok", "Grok 4.7 (xhigh)"], ["ex_sonnet", "Claude Sonnet 5 (max)"],
+   ["ex_gemini", "Gemini 3.1 Pro Preview"], ["ex_astra", "GPT-6 Astra (max)"]].forEach(function (p) {
+    var m = byName(p[1]); FACTS[p[0]] = times(m.cost / m.rival.cost);
+  });
+  window.__AF = { M: M, FRONT: FRONT, FACTS: FACTS, OWNERS: OWNERS };
+
+  /* ---------------- the chart engine ---------------- */
+  var XMAX = 10, XMIN = 0.003, YMAX = 60;
+  function log10(v) { return Math.log(v) / Math.LN10; }
+  var LX = log10(XMAX), LN = log10(XMIN);
+  function shapePath(kind, x, y, s) {
+    x = r1(x); y = r1(y);
+    if (kind === "diamond") return "M" + x + " " + r1(y - s) + "L" + r1(x + s) + " " + y + "L" + x + " " + r1(y + s) + "L" + r1(x - s) + " " + y + "Z";
+    if (kind === "square") return "M" + r1(x - s * .85) + " " + r1(y - s * .85) + "h" + r1(1.7 * s) + "v" + r1(1.7 * s) + "h" + r1(-1.7 * s) + "Z";
+    if (kind === "triangle") return "M" + x + " " + r1(y - s * 1.15) + "L" + r1(x + s * 1.1) + " " + r1(y + s * .8) + "L" + r1(x - s * 1.1) + " " + r1(y + s * .8) + "Z";
+    return "M" + r1(x - s) + " " + y + "a" + s + " " + s + " 0 1 0 " + r1(2 * s) + " 0a" + s + " " + s + " 0 1 0 " + r1(-2 * s) + " 0";
+  }
+  function tickLabel(c) { return c >= 1 ? "$" + c : c >= 0.01 ? "$" + c.toFixed(2) : "$" + c; }
+  var CAND = [[9, 4, "start"], [-9, 4, "end"], [0, -10, "middle"], [0, 17, "middle"],
+              [8, -8, "start"], [-8, -8, "end"], [8, 15, "start"], [-8, 15, "end"]];
+
+  function makeChart(root, cfg) {
+    var plot = root.querySelector("[data-plot]"), svg = plot.querySelector("svg");
+    var tip = plot.querySelector("[data-tip]"), live = root.querySelector("[data-live]");
+    var legend = root.querySelector("[data-legend]");
+    var G = {}, lastW = 0, st = cfg.state, focusId = null, kbd = false;
+    var order = M.slice().sort(function (a, b) { return b.cost - a.cost || b.index - a.index; });
+    var api = { state: st };
+
+    function el(name, attrs, parent) {
+      var n = document.createElementNS(NS, name);
+      for (var k in attrs) if (attrs[k] !== undefined && attrs[k] !== null) n.setAttribute(k, attrs[k]);
+      (parent || svg).appendChild(n);
+      return n;
+    }
+    function txt(x, y, s, anchor, cls, parent) {
+      var n = el("text", { x: r1(x), y: r1(y), "text-anchor": anchor, "class": cls }, parent);
+      n.textContent = s;
+      return n;
+    }
+    function X(c) { return G.x0 + (LX - log10(c)) / (LX - LN) * (G.x1 - G.x0); }
+    function Y(v) { return G.y1 - v / YMAX * (G.y1 - G.y0); }
+    function hidden(m) { return cfg.hidden ? cfg.hidden(m, st) : false; }
+
+    function build() {
+      var W = Math.max(280, Math.round(plot.clientWidth));
+      lastW = W;
+      var narrow = W < 560;
+      var H = Math.round(Math.max(340, Math.min(cfg.maxH || 520, W * (narrow ? .95 : .62))));
+      var L = narrow ? 38 : 46, R = 10, T = 10, B = narrow ? 46 : 50;
+      G = { W: W, H: H, narrow: narrow, x0: L, x1: W - R, y0: T, y1: H - B };
+      svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+      svg.setAttribute("width", W);
+      svg.setAttribute("height", H);
+      svg.setAttribute("aria-labelledby", cfg.id + "-t " + cfg.id + "-d");
+      clear(svg);
+      el("title", { id: cfg.id + "-t" }).textContent = cfg.title;
+      G.desc = el("desc", { id: cfg.id + "-d" });
+      var defs = el("defs", {});
+      var cp = el("clipPath", { id: cfg.id + "-clip" }, defs);
+      el("rect", { x: G.x0, y: G.y0 - 3, width: G.x1 - G.x0 + 1, height: G.y1 - G.y0 + 3 }, cp);
+      var clip = "url(#" + cfg.id + "-clip)";
+      G.xt = narrow ? [10, 1, 0.1, 0.01] : [10, 3, 1, 0.3, 0.1, 0.03, 0.01, 0.003];
+      var grid = el("g", { "class": "af-grid" });
+      [10, 20, 30, 40, 50, 60].forEach(function (v) { el("line", { x1: G.x0, x2: G.x1, y1: r1(Y(v)), y2: r1(Y(v)) }, grid); });
+      G.xt.forEach(function (c) { el("line", { x1: r1(X(c)), x2: r1(X(c)), y1: G.y0, y2: G.y1 }, grid); });
+      G.wash = el("path", { "class": "af-wash", "clip-path": clip });
+      G.band = el("g", { "clip-path": clip });
+      G.ghost = el("path", { "class": "af-ghost", "clip-path": clip });
+      G.front = el("g", { "clip-path": clip });
+      G.curves = el("g", {});
+      G.marks = el("g", {});
+      G.over = el("g", {});
+      G.labels = el("g", {});
+      el("line", { x1: G.x0, y1: G.y1, x2: G.x1, y2: G.y1, "class": "af-axis" });
+      el("line", { x1: G.x0, y1: G.y0, x2: G.x0, y2: G.y1, "class": "af-axis" });
+      [0, 10, 20, 30, 40, 50, 60].forEach(function (v) { txt(G.x0 - 7, Y(v) + 3.5, String(v), "end", "af-tick"); });
+      G.xt.forEach(function (c, i) {
+        txt(X(c), G.y1 + 15, tickLabel(c), i === 0 ? "start" : i === G.xt.length - 1 ? "end" : "middle", "af-tick");
+      });
+      txt((G.x0 + G.x1) / 2, H - 8, narrow ? "Cost per task, US$ (log) · cheaper →"
+        : "Cost per task, US$ (log scale) · cheaper to the right →", "middle", "af-axis-title");
+      var my = (G.y0 + G.y1) / 2;
+      txt(10, my, "Intelligence Index", "middle", "af-axis-title").setAttribute("transform", "rotate(-90 10 " + r1(my) + ")");
+      G.dots = M.map(function (m) { return el("path", { "data-id": m.id }, G.marks); });
+      G.ring = el("circle", { r: 10, "class": "af-ring", visibility: "hidden" });
+      G.hit = el("rect", { x: G.x0 - 12, y: G.y0 - 12, width: G.x1 - G.x0 + 24, height: G.y1 - G.y0 + 24, "class": "af-hit" });
+      G.hit.addEventListener("pointermove", onPointer);
+      G.hit.addEventListener("pointerdown", onPointer);
+      G.hit.addEventListener("pointerleave", function (e) { if (e.pointerType !== "touch" && !kbd) hideTip(); });
+    }
+
+    /* the staircase: for any budget, the best score available at or below it */
+    function stairPts(f) {
+      var pts = [];
+      for (var k = 0; k < FRONT.length; k++) {
+        var cx = X(FRONT[k].cost / f), cy = Y(FRONT[k].index);
+        if (k) pts.push([cx, Y(FRONT[k - 1].index)]);
+        pts.push([cx, cy]);
+      }
+      pts.push([G.x0 - 4, Y(FRONT[FRONT.length - 1].index)]);
+      return pts;
+    }
+    function pathOf(pts) { return "M" + pts.map(function (p) { return r1(p[0]) + " " + r1(p[1]); }).join("L"); }
+    function washPath(stair) {
+      var rev = stair.slice().reverse(), first = stair[0];
+      return "M" + (G.x0 - 4) + " " + (G.y0 - 4) + "L" + rev.map(function (p) { return r1(p[0]) + " " + r1(p[1]); }).join("L") +
+        "L" + r1(first[0]) + " " + (G.y1 + 4) + "L" + (G.x1 + 4) + " " + (G.y1 + 4) + "L" + (G.x1 + 4) + " " + (G.y0 - 4) + "Z";
+    }
+    function ownerStairs() {
+      for (var k = 0; k < FRONT.length; k++) {
+        var m = FRONT[k], cx = X(m.cost), cy = Y(m.index), pts = [];
+        if (k) pts.push([cx, Y(FRONT[k - 1].index)]);
+        pts.push([cx, cy]);
+        pts.push([k + 1 < FRONT.length ? X(FRONT[k + 1].cost) : G.x0 - 4, cy]);
+        el("path", { d: pathOf(pts), "class": "af-frontier af-o" + (OWNERS.indexOf(m.lab) + 1) }, G.front);
+      }
+    }
+
+    function update() {
+      var f = cfg.shift ? cfg.shift(st) : 1;
+      G.pos = {};
+      M.forEach(function (m) { G.pos[m.id] = [X(m.cost), Y(m.index)]; });
+      var stair = stairPts(f);
+      G.wash.setAttribute("d", washPath(stair));
+      clear(G.front);
+      if (cfg.owners) ownerStairs();
+      else el("path", { d: pathOf(stair), "class": "af-frontier" }, G.front);
+      if (f !== 1) { G.ghost.setAttribute("d", pathOf(stairPts(1))); G.ghost.style.display = ""; }
+      else G.ghost.style.display = "none";
+      var top = [];
+      M.forEach(function (m) {
+        var s = cfg.style(m, st), p = G.pos[m.id], node = G.dots[m.id];
+        node.setAttribute("d", shapePath(s.shape || "circle", p[0], p[1], s.size || 4.5));
+        node.setAttribute("class", "af-dot " + (s.cls || "af-base"));
+        node.style.display = hidden(m) ? "none" : "";
+        if (s.top) top.push(node);
+      });
+      top.forEach(function (n) { G.marks.appendChild(n); });
+      clear(G.over); clear(G.curves); clear(G.band); clear(G.labels);
+      if (cfg.decorate) cfg.decorate(api, st);
+      placeLabels(cfg.labels ? cfg.labels(st, api) : []);
+      G.desc.textContent = cfg.describe ? cfg.describe(st) : "";
+      if (legend && cfg.legend) legend.innerHTML = cfg.legend(st);
+      if (focusId !== null && !tip.hidden) showTip(M[focusId]);
+      if (cfg.after) cfg.after(st);
+    }
+
+    /* labels: greedy placement, never over another label, preferably not over a mark */
+    function over(a, b) { return a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h; }
+    function placeLabels(list) {
+      var placed = [];
+      list.forEach(function (L) {
+        var p = L.at || G.pos[L.m.id];
+        var t = txt(p[0], p[1], L.text, "start", "af-lbl" + (L.cls ? " " + L.cls : ""), G.labels);
+        var C = L.cand || CAND, pick = null, spare = null;
+        for (var i = 0; i < C.length; i++) {
+          t.setAttribute("x", r1(p[0] + C[i][0]));
+          t.setAttribute("y", r1(p[1] + C[i][1]));
+          t.setAttribute("text-anchor", C[i][2]);
+          var bb = t.getBBox(), b = { x: bb.x - 2, y: bb.y - 1, w: bb.width + 4, h: bb.height + 2 };
+          if (b.x < G.x0 + 3 || b.x + b.w > G.x1 + 2 || b.y < G.y0 - 6 || b.y + b.h > G.y1 - 2) continue;
+          if (placed.some(function (q) { return over(b, q); })) continue;
+          var onMark = M.some(function (o) {
+            if ((L.m && o === L.m) || hidden(o)) return false;
+            var q = G.pos[o.id];
+            return q[0] > b.x - 3 && q[0] < b.x + b.w + 3 && q[1] > b.y - 3 && q[1] < b.y + b.h + 3;
+          });
+          if (!onMark) { pick = { c: C[i], b: b }; break; }
+          if (!spare) spare = { c: C[i], b: b };
+        }
+        pick = pick || spare;
+        if (!pick) { t.parentNode.removeChild(t); return; }
+        t.setAttribute("x", r1(p[0] + pick.c[0]));
+        t.setAttribute("y", r1(p[1] + pick.c[1]));
+        t.setAttribute("text-anchor", pick.c[2]);
+        t.setAttribute("data-label", L.text);
+        placed.push(pick.b);
+      });
+    }
+
+    /* tooltip: the nearest point within 24px, listing every setting that shares its spot */
+    function onPointer(e) {
+      var r = svg.getBoundingClientRect();
+      var px = (e.clientX - r.left) * (G.W / r.width), py = (e.clientY - r.top) * (G.H / r.height);
+      var best = null, bd = 24 * 24;
+      M.forEach(function (m) {
+        if (hidden(m)) return;
+        var q = G.pos[m.id], dx = q[0] - px, dy = q[1] - py, d = dx * dx + dy * dy;
+        if (d < bd) { bd = d; best = m; }
+      });
+      kbd = false;
+      if (best) showTip(best); else hideTip();
+    }
+    function showTip(m) {
+      focusId = m.id;
+      var p = G.pos[m.id];
+      var here = M.filter(function (o) {
+        var q = G.pos[o.id];
+        return !hidden(o) && Math.abs(q[0] - p[0]) < 6 && Math.abs(q[1] - p[1]) < 6;
+      }).sort(function (a, b) { return b.index - a.index || a.cost - b.cost; });
+      clear(tip);
+      here.slice(0, 4).forEach(function (o, i) {
+        var box = h("div", i ? "af-tip-sep" : "");
+        box.appendChild(h("p", "af-tip-value", o.index + " · " + usd(o.cost) + " per task"));
+        box.appendChild(h("p", "af-tip-name", short(o) + " · " + o.lab));
+        box.appendChild(h("p", "af-tip-meta", status(o)));
+        tip.appendChild(box);
+      });
+      if (here.length > 4) tip.appendChild(h("p", "af-tip-meta", "+" + (here.length - 4) + " more at this point"));
+      tip.hidden = false;
+      var tw = tip.offsetWidth, th = tip.offsetHeight, cw = plot.clientWidth;
+      var left = p[0] + 14, top = p[1] - th - 10;
+      if (left + tw > cw) left = p[0] - tw - 14;
+      if (top < 0) top = p[1] + 14;
+      tip.style.left = Math.max(0, Math.min(cw - tw, left)) + "px";
+      tip.style.top = Math.max(0, top) + "px";
+      G.ring.setAttribute("cx", r1(p[0]));
+      G.ring.setAttribute("cy", r1(p[1]));
+      G.ring.setAttribute("visibility", "visible");
+      if (live) live.textContent = here.map(function (o) {
+        return short(o) + ", " + o.lab + ": index " + o.index + ", " + usd(o.cost) + " per task. " + status(o) + ".";
+      }).join(" ");
+    }
+    function hideTip() {
+      focusId = null;
+      tip.hidden = true;
+      if (G.ring) G.ring.setAttribute("visibility", "hidden");
+    }
+    plot.addEventListener("keydown", function (e) {
+      var step = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+      if (e.key === "Escape") { hideTip(); return; }
+      if (!step && e.key !== "Home" && e.key !== "End") return;
+      e.preventDefault();
+      var vis = order.filter(function (m) { return !hidden(m); }), i = -1;
+      for (var k = 0; k < vis.length; k++) if (vis[k].id === focusId) i = k;
+      if (e.key === "Home") i = 0;
+      else if (e.key === "End") i = vis.length - 1;
+      else i = i < 0 ? 0 : Math.max(0, Math.min(vis.length - 1, i + step));
+      kbd = true;
+      showTip(vis[i]);
+    });
+    plot.addEventListener("blur", function () { kbd = false; hideTip(); });
+
+    api.update = update;
+    api.X = X; api.Y = Y; api.el = el; api.txt = txt;
+    api.pos = function (m) { return G.pos[m.id]; };
+    api.layer = function (k) { return G[k]; };
+    api.geo = function () { return G; };
+    api.pathOf = pathOf;
+    build();
+    update();
+    if (window.ResizeObserver) {
+      new ResizeObserver(function () {
+        var w = Math.round(plot.clientWidth);
+        if (w && Math.abs(w - lastW) >= 1) { build(); update(); }
+      }).observe(plot);
+    }
+    return api;
+  }
+
+  /* ---------------- shared drawing helpers ---------------- */
+  function arrow(c, from, to, strong) {
+    var a = c.pos(from), b = c.pos(to), dx = b[0] - a[0], dy = b[1] - a[1], d = Math.sqrt(dx * dx + dy * dy);
+    if (d < 20) return;
+    var ux = dx / d, uy = dy / d, sx = a[0] + ux * 8, sy = a[1] + uy * 8, ex = b[0] - ux * 10, ey = b[1] - uy * 10;
+    var cls = strong ? " af-strong" : "", s = 6.5;
+    c.el("line", { x1: r1(sx), y1: r1(sy), x2: r1(ex - ux * 4), y2: r1(ey - uy * 4), "class": "af-arrow" + cls }, c.layer("over"));
+    c.el("path", { d: "M" + r1(ex) + " " + r1(ey) + "L" + r1(ex - ux * s - uy * s * .6) + " " + r1(ey - uy * s + ux * s * .6) +
+      "L" + r1(ex - ux * s + uy * s * .6) + " " + r1(ey - uy * s - ux * s * .6) + "Z", "class": "af-arrowhead" + cls }, c.layer("over"));
+  }
+  function curve(c, base, cls) {
+    var pts = CURVES[base];
+    if (!pts || pts.length < 2) return;
+    c.el("path", { d: c.pathOf(pts.map(function (m) { return c.pos(m); })), "class": cls || "af-curve" }, c.layer("curves"));
+  }
+  function ringAt(c, m) {
+    var p = c.pos(m);
+    c.el("circle", { cx: r1(p[0]), cy: r1(p[1]), r: 9, "class": "af-pick" }, c.layer("over"));
+  }
+  var K = {
+    front: '<span class="af-key"><svg width="18" height="10" viewBox="0 0 18 10" aria-hidden="true"><path d="M1 8H9V2H17" class="af-frontier" style="stroke-width:2"/></svg>Productivity frontier</span>',
+    wash: '<span class="af-key"><svg width="14" height="12" viewBox="0 0 14 12" aria-hidden="true"><rect x="1" y="1" width="12" height="10" rx="2" style="fill:var(--af-wash);stroke:var(--af-axis)"/></svg>Beyond today&rsquo;s best practice</span>',
+    diamond: function (cls, label) { return '<span class="af-key"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1.5L12.5 7L7 12.5L1.5 7Z" class="af-dot ' + cls + '"/></svg>' + label + '</span>'; },
+    dot: function (cls, label) { return '<span class="af-key"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="4.5" class="af-dot ' + cls + '"/></svg>' + label + '</span>'; },
+    shape: function (kind, cls, label) { return '<span class="af-key"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="' + shapePath(kind, 7, 7.4, 5) + '" class="af-dot ' + cls + '"/></svg>' + label + '</span>'; },
+    line: function (cls, label) { return '<span class="af-key"><svg width="18" height="10" viewBox="0 0 18 10" aria-hidden="true"><line x1="1" y1="5" x2="17" y2="5" class="' + cls + '"/></svg>' + label + '</span>'; }
+  };
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (ch) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[ch]; }); }
+  function famLabels() { return FAM.map(function (m) { return { m: m, text: m.base }; }); }
+
+  /* ================= 1. the map ================= */
+  var MAJOR = ["Anthropic", "OpenAI", "Google", "Meta", "SpaceXAI", "Xiaomi", "Alibaba", "DeepSeek", "Z AI", "Moonshot AI"];
+  var mapState = { lab: "All", tool: null, budget: 0, bar: 50 };
+  var chips = document.getElementById("labChips"), more = document.getElementById("labMore");
+  ["All"].concat(MAJOR).forEach(function (lab) {
+    var b = h("button", "chip", lab === "All" ? "All labs" : lab);
+    b.type = "button";
+    b.setAttribute("data-lab", lab);
+    b.setAttribute("aria-pressed", lab === "All" ? "true" : "false");
+    b.addEventListener("click", function () { setLab(lab); });
+    chips.appendChild(b);
+  });
+  var others = Object.keys(LABS).filter(function (l) { return MAJOR.indexOf(l) < 0; }).sort();
+  more.appendChild(new Option("More labs…", ""));
+  others.forEach(function (l) { more.appendChild(new Option(l + " (" + LABS[l].length + ")", l)); });
+  more.addEventListener("change", function () { if (more.value) setLab(more.value); });
+  function setLab(lab) {
+    mapState.lab = lab;
+    chips.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-lab") === lab ? "true" : "false"); });
+    if (MAJOR.indexOf(lab) >= 0 || lab === "All") more.value = "";
+    mapChart.update();
+  }
+  function labCard(lab) {
+    var box = document.getElementById("labCard");
+    if (lab === "All") {
+      var counts = OWNERS.map(function (l) { return FRONT.filter(function (m) { return m.lab === l; }).length + " from " + l; });
+      box.innerHTML = "<strong>All labs.</strong> " + M.length + " settings from " + Object.keys(LABS).length + " labs. " +
+        FRONT.length + " are on the frontier: " + counts.join(", ").replace(/, ([^,]*)$/, " and $1") +
+        ". Pick a lab to see where its models sit and how its reasoning settings trade capability for cost.";
+      return;
+    }
+    var s = LABS[lab], on = s.filter(function (m) { return m.onFrontier; });
+    var best = s.slice().sort(function (a, b) { return b.index - a.index || a.cost - b.cost; })[0];
+    var cheap = s.slice().sort(function (a, b) { return a.cost - b.cost || b.index - a.index; })[0];
+    var close = s.slice().sort(function (a, b) { return a.costGap - b.costGap || b.index - a.index; })[0];
+    var t = "<strong>" + esc(lab) + ".</strong> " + s.length + (s.length === 1 ? " setting" : " settings") + ", " +
+      (on.length ? on.length + " on the frontier. " : "none on the frontier. ") +
+      "Best: " + esc(short(best)) + ", " + best.index + " at " + usd(best.cost) + ". " +
+      (s.length > 1 ? "Cheapest: " + esc(short(cheap)) + ", " + cheap.index + " at " + usd(cheap.cost) + ". " : "");
+    if (!on.length) t += "Closest to the frontier: " + esc(short(close)) + ", which costs " + times(close.costGap) +
+      " as much as the cheapest setting that matches its score (" + esc(short(cheapestAt(close.index))) + ").";
+    box.innerHTML = t;
+  }
+  var mapChart = makeChart(document.getElementById("mapChart"), {
+    id: "afmap", title: "The productivity frontier of AI models: 100 settings from 23 labs", maxH: 560, state: mapState,
+    style: function (m, s) {
+      if (s.lab === "All") return m.onFrontier ? { shape: "diamond", size: 6, cls: "af-hi", top: true } : { cls: "af-base" };
+      if (m.lab === s.lab) return { shape: m.onFrontier ? "diamond" : "circle", size: m.onFrontier ? 6 : 4.8, cls: "af-hi", top: true };
+      return { cls: "af-base af-dim" };
+    },
+    decorate: function (c, s) {
+      if (s.lab !== "All") Object.keys(CURVES).forEach(function (k) { if (CURVES[k][0].lab === s.lab) curve(c, k); });
+      var G = c.geo();
+      if (s.tool === "budget") {
+        var bx = c.X(budgetValue());
+        c.el("line", { x1: r1(bx), x2: r1(bx), y1: G.y0, y2: G.y1, "class": "af-rule" }, c.layer("over"));
+        var bu = bestUnder(budgetValue()); if (bu) ringAt(c, bu);
+      } else if (s.tool === "bar") {
+        var by = c.Y(s.bar);
+        c.el("line", { x1: G.x0, x2: G.x1, y1: r1(by), y2: r1(by), "class": "af-rule" }, c.layer("over"));
+        var ca = cheapestAt(s.bar); if (ca) ringAt(c, ca);
+      }
+    },
+    labels: function (s) {
+      if (s.lab === "All") return famLabels();
+      var seen = {}, out = [];
+      LABS[s.lab].slice().sort(function (a, b) { return b.index - a.index || a.cost - b.cost; }).forEach(function (m) {
+        if (seen[m.base] || out.length >= 6) return;
+        seen[m.base] = 1; out.push({ m: m, text: m.base });
+      });
+      return out;
+    },
+    legend: function (s) {
+      if (s.lab === "All") return K.diamond("af-hi", "On the frontier") + K.dot("af-base", "Behind the frontier") + K.front + K.wash;
+      return K.dot("af-hi", esc(s.lab)) + K.dot("af-base af-dim", "Other labs") + K.line("af-curve", "Reasoning settings of one model, joined") + K.front;
+    },
+    describe: function (s) {
+      return "Each point is a model at one reasoning setting, plotted by cost per task (log scale, falling to the right) and " +
+        "Intelligence Index. " + FRONT.length + " of " + M.length + " settings form the frontier." +
+        (s.lab === "All" ? "" : " Highlighted: " + s.lab + ".");
+    },
+    after: function (s) { labCard(s.lab); }
+  });
+  var budget = document.getElementById("budget"), barIn = document.getElementById("bar");
+  function budgetValue() { var lo = log10(0.005), hi = log10(8); return Math.pow(10, lo + (hi - lo) * (+budget.value) / 1000); }
+  function readBudget() {
+    var c = budgetValue(), m = bestUnder(c);
+    document.getElementById("budgetOut").innerHTML = m
+      ? "Up to <strong>" + usdCalc(c) + "</strong> a task, the best available score is <strong>" + m.index + "</strong>: " +
+        esc(short(m)) + " (" + esc(m.lab) + "), at " + usd(m.cost) + "."
+      : "Nothing on the leaderboard runs this cheaply.";
+  }
+  function readBar() {
+    var q = +barIn.value, m = cheapestAt(q);
+    document.getElementById("barOut").innerHTML = "The cheapest setting that scores at least <strong>" + q + "</strong> is " +
+      esc(short(m)) + " (" + esc(m.lab) + "), at <strong>" + usd(m.cost) + "</strong> a task.";
+  }
+  budget.addEventListener("input", function () { mapState.tool = "budget"; readBudget(); mapChart.update(); });
+  barIn.addEventListener("input", function () { mapState.tool = "bar"; readBar(); mapChart.update(); });
+  readBudget(); readBar();
+
+  (function table() {
+    var tb = document.getElementById("allTable");
+    M.slice().sort(function (a, b) { return b.index - a.index || a.cost - b.cost; }).forEach(function (m) {
+      var tr = document.createElement("tr");
+      [m.name, m.lab, String(m.index), usd(m.cost), m.onFrontier ? "On the frontier" : status(m).replace(/^Behind: /, "Behind · ")]
+        .forEach(function (v, i) {
+          var td = h("td", (i === 2 || i === 3) ? "text-right tabular-nums" : (i === 0 ? "font-medium text-slate-800" : ""), v);
+          tr.appendChild(td);
+        });
+      tb.appendChild(tr);
+    });
+  })();
+
+  /* ================= 2. lens 1: behind the frontier ================= */
+  var EX1 = ["Qwen3.8 Max (0902)", "Grok 4.7 (xhigh)", "Gemini 3.1 Pro Preview", "Claude Sonnet 5 (max)", "GPT-6 Astra (max)"].map(byName);
+  var l1 = { pick: null };
+  var pick1 = document.getElementById("pick1");
+  pick1.appendChild(new Option("The five examples in the text", ""));
+  Object.keys(LABS).sort().forEach(function (lab) {
+    var g = document.createElement("optgroup");
+    g.label = lab;
+    LABS[lab].slice().sort(function (a, b) { return b.index - a.index || a.cost - b.cost; }).forEach(function (m) {
+      g.appendChild(new Option(short(m) + " · " + m.index + " at " + usd(m.cost), String(m.id)));
+    });
+    pick1.appendChild(g);
+  });
+  var lens1 = makeChart(document.getElementById("lens1Chart"), {
+    id: "afl1", title: "Models behind the frontier and the cheaper rivals that beat them", maxH: 520, state: l1,
+    style: function (m, s) {
+      if (s.pick) {
+        if (m === s.pick) return { shape: m.onFrontier ? "diamond" : "circle", size: 6, cls: "af-hi", top: true };
+        if (m === s.pick.rival) return { shape: "diamond", size: 6, cls: "af-hi", top: true };
+        return m.onFrontier ? { shape: "diamond", size: 5, cls: "af-base" } : { cls: "af-base af-dim" };
+      }
+      if (EX1.indexOf(m) >= 0) return { size: 5.5, cls: "af-hi", top: true };
+      if (EX1.some(function (e) { return e.rival === m; })) return { shape: "diamond", size: 6, cls: "af-hi", top: true };
+      return m.onFrontier ? { shape: "diamond", size: 5, cls: "af-base" } : { cls: "af-base af-dim" };
+    },
+    decorate: function (c, s) {
+      if (s.pick) { if (s.pick.rival) arrow(c, s.pick, s.pick.rival, true); ringAt(c, s.pick); }
+      else EX1.forEach(function (m) { arrow(c, m, m.rival, false); });
+    },
+    labels: function (s) {
+      if (s.pick) return [{ m: s.pick, text: short(s.pick) }].concat(s.pick.rival ? [{ m: s.pick.rival, text: short(s.pick.rival) }] : []);
+      var out = EX1.map(function (m) { return { m: m, text: m.base }; });
+      EX1.forEach(function (m) { if (!out.some(function (o) { return o.m === m.rival; })) out.push({ m: m.rival, text: short(m.rival) }); });
+      return out;
+    },
+    legend: function (s) {
+      return K.dot("af-hi", s.pick ? "The model you chose" : "Behind: a well-known model") +
+        K.diamond("af-hi", "The cheapest rival at least as capable") + K.diamond("af-base", "Other frontier settings") + K.front;
+    },
+    describe: function () { return "Arrows run from models behind the frontier to the cheapest setting that scores at least as high."; },
+    after: function (s) {
+      var out = document.getElementById("read1");
+      if (!s.pick) {
+        out.innerHTML = "Each arrow runs from a model to the cheapest setting that scores at least as high. Pick any model above to test it.";
+        return;
+      }
+      var m = s.pick;
+      if (m.onFrontier) {
+        out.innerHTML = "<strong>" + esc(short(m)) + "</strong> (" + esc(m.lab) + ") scores " + m.index + " at " + usd(m.cost) +
+          " a task and is <strong>on the frontier</strong>: no setting is both cheaper and at least as capable.";
+        return;
+      }
+      var r = m.rival, gain = bestUnder(m.cost);
+      out.innerHTML = "<strong>" + esc(short(m)) + "</strong> (" + esc(m.lab) + ") scores " + m.index + " at " + usd(m.cost) + " a task. " +
+        esc(short(r)) + " (" + esc(r.lab) + ") scores " + r.index + (r.cost === m.cost ? " for the same cost. " : " for " + usd(r.cost) +
+        ", <strong>" + times(m.cost / r.cost) + " cheaper</strong>. ") +
+        (gain.index > m.index ? "At " + usd(m.cost) + " a task, the frontier offers " + gain.index + " points, from " + esc(short(gain)) + "." : "");
+    }
+  });
+  pick1.addEventListener("change", function () { l1.pick = pick1.value === "" ? null : M[+pick1.value]; lens1.update(); });
+
+  /* ================= 3. lens 2: at the frontier ================= */
+  var l2 = { base: "Claude Opus 5.5", k: 2 };
+  var pick2 = document.getElementById("pick2"), effort = document.getElementById("effort");
+  Object.keys(CURVES).filter(function (k) { return CURVES[k].length >= 2; })
+    .sort(function (a, b) { return CURVES[b][CURVES[b].length - 1].index - CURVES[a][CURVES[a].length - 1].index; })
+    .forEach(function (k) { pick2.appendChild(new Option(k + " · " + CURVES[k][0].lab + " · " + CURVES[k].length + " settings", k)); });
+  pick2.value = l2.base;
+  function syncEffort() {
+    var c = CURVES[l2.base];
+    effort.max = String(c.length - 1);
+    if (l2.k > c.length - 1) l2.k = c.length - 1;
+    effort.value = String(l2.k);
+    document.getElementById("effortName").textContent = c[l2.k].effort;
+  }
+  var lens2 = makeChart(document.getElementById("lens2Chart"), {
+    id: "afl2", title: "One model's reasoning settings: capability bought with cost", maxH: 520, state: l2,
+    style: function (m, s) {
+      var c = CURVES[s.base];
+      if (c.indexOf(m) >= 0) return { shape: m.onFrontier ? "diamond" : "circle", size: m === c[s.k] ? 6.5 : 5, cls: "af-hi", top: true };
+      return m.onFrontier ? { shape: "diamond", size: 5, cls: "af-base" } : { cls: "af-base af-dim" };
+    },
+    decorate: function (c, s) { curve(c, s.base); ringAt(c, CURVES[s.base][s.k]); },
+    labels: function (s) {
+      var c = CURVES[s.base], out = [{ m: c[c.length - 1], text: s.base }];
+      c.forEach(function (m) { out.push({ m: m, text: m.effort, cls: "af-sm" }); });
+      return out;
+    },
+    legend: function (s) {
+      return K.dot("af-hi", esc(s.base) + " at each setting") + K.line("af-curve", "Its trade-off curve") +
+        K.diamond("af-base", "Other frontier settings") + K.front;
+    },
+    describe: function (s) { return "The reasoning settings of " + s.base + ", joined in order from lowest to highest."; },
+    after: function (s) {
+      var c = CURVES[s.base], m = c[s.k], lo = c[0], t = "<strong>" + esc(s.base) + " at " + m.effort + "</strong>: " + m.index +
+        " for " + usd(m.cost) + " a task. ";
+      if (s.k > 0) {
+        var p = c[s.k - 1], dp = m.index - p.index, dc = m.cost - p.cost;
+        t += "Against " + lo.effort + ": " + (m.index - lo.index >= 0 ? "+" : "−") + Math.abs(m.index - lo.index) + " points for " +
+          times(m.cost / lo.cost) + " the cost. ";
+        if (dc <= 0 && dp >= 0) t += "The step from " + p.effort + " is both cheaper and at least as capable: a false trade-off. ";
+        else if (dp > 0) t += "The step from " + p.effort + " adds " + dp + (dp === 1 ? " point" : " points") + " for " + usdCalc(dc) +
+          ", or " + usdCalc(dc / dp) + " a point. ";
+        else t += "The step from " + p.effort + " costs " + usdCalc(dc) + " more for no gain. ";
+      } else t += "Slide the dial to buy more capability. ";
+      t += m.onFrontier ? "This setting is <strong>on the frontier</strong>." : status(m) + ".";
+      document.getElementById("read2").innerHTML = t;
+    }
+  });
+  syncEffort(); lens2.update();
+  pick2.addEventListener("change", function () { l2.base = pick2.value; l2.k = Math.min(2, CURVES[l2.base].length - 1); syncEffort(); lens2.update(); });
+  effort.addEventListener("input", function () { l2.k = +effort.value; syncEffort(); lens2.update(); });
+
+  /* ================= 4. lens 3: the frontier moves ================= */
+  var l3 = { months: 12 };
+  var monthsIn = document.getElementById("months");
+  var TOP = FRONT[FRONT.length - 1], MID = byName("MiMo-V2.6-Pro");
+  var lens3 = makeChart(document.getElementById("lens3Chart"), {
+    id: "afl3", title: "Today's frontier and the frontier after a period at 13 times a year", maxH: 520, state: l3,
+    shift: function (s) { return Math.pow(13, s.months / 12); },
+    style: function (m) { return m.onFrontier ? { shape: "diamond", size: 5.5, cls: "af-hi", top: true } : { cls: "af-base af-dim" }; },
+    labels: function (s, c) {
+      var out = [{ m: TOP, text: "58 today: " + usd(TOP.cost) }];
+      if (s.months > 0) {
+        var f = Math.pow(13, s.months / 12);
+        out.push({ at: [c.X(TOP.cost / f), c.Y(TOP.index)], text: "58 after " + s.months + " months: " + usdCalc(TOP.cost / f),
+          cand: [[6, 16, "start"], [-6, 16, "end"], [6, 30, "start"]] });
+      }
+      return out;
+    },
+    legend: function (s) {
+      return (s.months ? K.line("af-frontier", "Frontier after " + s.months + " months") + K.line("af-ghost", "Today&rsquo;s frontier")
+        : K.front) + K.diamond("af-hi", "Today&rsquo;s frontier settings") + K.wash;
+    },
+    describe: function (s) { return "Today's frontier and the frontier " + s.months + " months on, if costs keep falling 13-fold a year."; },
+    after: function (s) {
+      var f = Math.pow(13, s.months / 12);
+      document.getElementById("monthsOut").textContent = s.months === 0 ? "today" : s.months + " months";
+      document.getElementById("read3").innerHTML = s.months === 0
+        ? "Today the best score, 58, costs " + usd(TOP.cost) + " a task, and 46 costs " + usd(MID.cost) + ". Slide forward."
+        : "After <strong>" + s.months + " months</strong> at 13&times; a year, a score of 58 would cost about <strong>" +
+          usdCalc(TOP.cost / f) + "</strong> a task and 46 about " + usdCalc(MID.cost / f) +
+          ". All " + M.length + " of today&rsquo;s settings would sit behind this frontier.";
+    }
+  });
+  monthsIn.addEventListener("input", function () { l3.months = +monthsIn.value; lens3.update(); });
+
+  /* ================= 5. lens 4: convergence ================= */
+  var l4 = { c: 45 };
+  var bandIn = document.getElementById("band");
+  var lens4 = makeChart(document.getElementById("lens4Chart"), {
+    id: "afl4", title: "Settings inside a three-point band of the Intelligence Index", maxH: 520, state: l4,
+    style: function (m, s) {
+      return (m.index >= s.c - 1 && m.index <= s.c + 1) ? { size: 5, cls: "af-hi", top: true } : { cls: "af-base af-dim" };
+    },
+    decorate: function (c, s) {
+      var G = c.geo(), yt = c.Y(s.c + 1.5), yb = c.Y(s.c - 1.5);
+      c.el("rect", { x: G.x0, y: r1(yt), width: G.x1 - G.x0, height: r1(yb - yt), "class": "af-bandfill" }, c.layer("band"));
+      var b = band(s.c - 1, s.c + 1);
+      if (b.s.length > 1) {
+        var xa = c.X(b.dear.cost), xb = c.X(b.cheap.cost), yy = yb + 9;
+        if (yy > G.y1 - 4) yy = yt - 9;
+        c.el("path", { d: "M" + r1(xa) + " " + r1(yy - 4) + "V" + r1(yy) + "H" + r1(xb) + "V" + r1(yy - 4), "class": "af-bracket" }, c.layer("over"));
+      }
+    },
+    labels: function (s) {
+      var b = band(s.c - 1, s.c + 1);
+      if (!b.s.length) return [];
+      var out = [{ m: b.cheap, text: b.cheap.base }];
+      if (b.dear !== b.cheap) out.push({ m: b.dear, text: b.dear.base });
+      return out;
+    },
+    legend: function () {
+      return '<span class="af-key"><svg width="14" height="12" viewBox="0 0 14 12" aria-hidden="true"><rect x="1" y="1" width="12" height="10" rx="2" class="af-bandfill"/></svg>Score band</span>' +
+        K.dot("af-hi", "Settings in the band") + K.dot("af-base af-dim", "Outside it") +
+        '<span class="af-key"><svg width="18" height="10" viewBox="0 0 18 10" aria-hidden="true"><path d="M1 3V7H17V3" class="af-bracket"/></svg>Their cost range</span>';
+    },
+    describe: function (s) { return "Settings scoring " + (s.c - 1) + " to " + (s.c + 1) + " are highlighted, with the range of their costs."; },
+    after: function (s) {
+      var b = band(s.c - 1, s.c + 1);
+      document.getElementById("bandOut").textContent = (s.c - 1) + " to " + (s.c + 1);
+      var out = document.getElementById("read4");
+      if (!b.s.length) { out.textContent = "No setting scores " + (s.c - 1) + " to " + (s.c + 1) + "."; return; }
+      out.innerHTML = "<strong>" + b.labs.length + (b.labs.length === 1 ? " lab" : " labs") + "</strong> and " + b.s.length +
+        (b.s.length === 1 ? " setting score " : " settings score ") + (s.c - 1) + " to " + (s.c + 1) + ": " + esc(b.labs.join(", ")) + ". " +
+        (b.s.length > 1 ? "Cost per task runs from " + usd(b.cheap.cost) + " (" + esc(short(b.cheap)) + ") to " + usd(b.dear.cost) +
+          " (" + esc(short(b.dear)) + "), <strong>" + times(b.dear.cost / b.cheap.cost) + " apart</strong>." : "");
+    }
+  });
+  bandIn.addEventListener("input", function () { l4.c = +bandIn.value; lens4.update(); });
+
+  /* ================= 6. lens 5: who is shifting the curve ================= */
+  var lens5 = makeChart(document.getElementById("lens5Chart"), {
+    id: "afl5", title: "The productivity frontier coloured by the lab that owns each stretch", maxH: 520, state: {}, owners: true,
+    style: function (m) {
+      if (!m.onFrontier) return { cls: "af-base af-dim" };
+      var k = OWNERS.indexOf(m.lab);
+      return { shape: OSHAPE[k], size: 5.5, cls: "af-o" + (k + 1), top: true };
+    },
+    labels: famLabels,
+    legend: function () {
+      return OWNERS.map(function (l, k) { return K.shape(OSHAPE[k], "af-o" + (k + 1), esc(l)); }).join("") +
+        K.dot("af-base af-dim", "Every other lab (behind)");
+    },
+    describe: function () { return "The frontier's stretches coloured by owner: " + OWNERS.join(", ") + "."; }
+  });
+  (function ownerTable() {
+    var tb = document.getElementById("ownerTable"), runs = [];
+    FRONT.forEach(function (m, k) {
+      var hi = k + 1 < FRONT.length ? FRONT[k + 1].cost : null, last = runs[runs.length - 1];
+      if (last && last.lab === m.lab) { last.hi = hi; last.models.push(m); }
+      else runs.push({ lab: m.lab, lo: m.cost, hi: hi, models: [m] });
+    });
+    runs.forEach(function (r, i) {
+      var tr = document.createElement("tr"), k = OWNERS.indexOf(r.lab);
+      var names = [];
+      r.models.forEach(function (m) { if (names.indexOf(m.base) < 0) names.push(m.base); });
+      var range = i === 0 ? "Under " + usd(r.hi) : r.hi ? usd(r.lo) + " to " + usd(r.hi) : usd(r.lo) + " and above";
+      var lab = h("td", "font-medium text-slate-800");
+      var sw = h("span", "af-sw"); sw.style.background = "var(--af-o" + (k + 1) + ")"; sw.style.marginRight = ".4rem";
+      lab.appendChild(sw); lab.appendChild(document.createTextNode(r.lab));
+      tr.appendChild(h("td", "tabular-nums", range));
+      tr.appendChild(lab);
+      tr.appendChild(h("td", "", names.join(", ")));
+      tr.appendChild(h("td", "text-right tabular-nums", r.models[0].index === r.models[r.models.length - 1].index
+        ? String(r.models[0].index) : r.models[0].index + " to " + r.models[r.models.length - 1].index));
+      tb.appendChild(tr);
+    });
+  })();
+
+  /* ================= 7. the lab table ================= */
+  (function labTable() {
+    var tb = document.getElementById("labTable");
+    Object.keys(LABS).map(function (lab) {
+      var s = LABS[lab];
+      return {
+        lab: lab, s: s, on: s.filter(function (m) { return m.onFrontier; }).length,
+        best: s.slice().sort(function (a, b) { return b.index - a.index || a.cost - b.cost; })[0],
+        cheap: s.slice().sort(function (a, b) { return a.cost - b.cost || b.index - a.index; })[0],
+        close: s.slice().sort(function (a, b) { return a.costGap - b.costGap || b.index - a.index; })[0]
+      };
+    }).sort(function (a, b) { return b.best.index - a.best.index || a.best.cost - b.best.cost; }).forEach(function (r) {
+      var tr = document.createElement("tr");
+      tr.appendChild(h("td", "font-medium text-slate-800", r.lab));
+      tr.appendChild(h("td", "text-right tabular-nums", String(r.s.length)));
+      tr.appendChild(h("td", "text-right tabular-nums", String(r.on)));
+      tr.appendChild(h("td", "", r.best.index + " · " + short(r.best) + " · " + usd(r.best.cost)));
+      tr.appendChild(h("td", "", usd(r.cheap.cost) + " · " + short(r.cheap) + " · " + r.cheap.index));
+      tr.appendChild(h("td", "", r.close.costGap < 1.0001 ? "On the frontier (" + short(r.close) + ")" : times(r.close.costGap) + " · " + short(r.close)));
+      tb.appendChild(tr);
+    });
+  })();
+})();
+</script>
+</body>
+</html>
