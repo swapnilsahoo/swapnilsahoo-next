@@ -1,0 +1,782 @@
+[
+ {
+  "set": "A",
+  "stem": "Which option is the best vision statement under Chapter 2’s criteria (purposeful, forward-looking, “to…”, customer/problem-oriented)?",
+  "options": {
+   "A": "To deliver groceries in 12 minutes using hyperlocal dark stores.",
+   "B": "To make everyday essentials reliably available to urban households, even under city constraints.",
+   "C": "By optimising rider routing and warehouse pick rates across the city.",
+   "D": "By becoming the market leader in quick-commerce GMV."
+  },
+  "answer": "B",
+  "explanation": "Vision defines what the firm ultimately wants to accomplish and typically begins with “to”; problem- or customer-oriented visions correlate more with long-term success than narrow product/process claims.",
+  "lo": "PulseCart"
+ },
+ {
+  "set": "A",
+  "stem": "Which option is the best mission statement (what PulseCart does and how, typically “by…”)?",
+  "options": {
+   "A": "To make everyday essentials reliably available to urban households.",
+   "B": "By operating micro-warehouses and a delivery network that balances speed, accuracy, and safety.",
+   "C": "To become the fastest delivery player in the city.",
+   "D": "By maximising order volume and rider utilisation."
+  },
+  "answer": "B",
+  "explanation": "Mission describes what the organisation does and how it proposes to accomplish the vision; Chapter 2 distinguishes vision (“to…”) from mission (“by…”).",
+  "lo": "PulseCart"
+ },
+ {
+  "set": "A",
+  "stem": "Which option is most consistent with “core values as guardrails” rather than PR language?",
+  "options": {
+   "A": "“We comply with all applicable laws.”",
+   "B": "“We never compromise rider safety, and we disclose substitutions transparently.”",
+   "C": "“We aim to delight customers.”",
+   "D": "“We will be number one.”"
+  },
+  "answer": "B",
+  "explanation": "Core values are ethical standards and norms that stabilise strategy and serve as guardrails during execution; merely legalistic or aspirational slogans don’t do that work.",
+  "lo": "PulseCart"
+ },
+ {
+  "set": "A",
+  "stem": "PulseCart’s CEO keeps aligning goals to current constraints (static fit). Chapter 2’s risk is best captured as:",
+  "options": {
+   "A": "Static fit builds dynamic capabilities faster than stretch goals.",
+   "B": "Static fit is fine unless the firm is profitable.",
+   "C": "Static fit can become strategic misfit in high-velocity environments because actions lag reality.",
+   "D": "Static fit is identical to strategic intent."
+  },
+  "answer": "C",
+  "explanation": "Chapter 2 warns that in fast-moving environments, static fit leads to misfit because the environment changes faster than the firm’s response.",
+  "lo": "PulseCart"
+ },
+ {
+  "set": "A",
+  "stem": "Which is the clearest “strategic intent” for PulseCart (stretch goal that pervades the organisation and accelerates learning)?",
+  "options": {
+   "A": "Reduce delivery time by 30 seconds this quarter.",
+   "B": "Maintain current SLA and avoid expansion.",
+   "C": "Build a capability to deliver reliability under constraints (accuracy + safety + transparency) at scale across cities within 24 months.",
+   "D": "Improve pick-rate productivity by 5%."
+  },
+  "answer": "C",
+  "explanation": "Strategic intent is a stretch goal that creates organisational purpose and drives learning to build core competencies, not incremental KPI tuning.",
+  "lo": "PulseCart"
+ },
+ {
+  "set": "A",
+  "stem": "Given PulseCart is small and in a high-velocity market, which strategy process is most defensible in Chapter 2 terms?",
+  "options": {
+   "A": "Top-down strategic planning, because turbulence demands central control.",
+   "B": "Scenario planning, because only large firms can do it.",
+   "C": "Strategy as planned emergence, because feedback loops are short and adaptation must be fast.",
+   "D": "No planning process; pure improvisation."
+  },
+  "answer": "C",
+  "explanation": "Chapter 2 suggests planned emergence fits smaller firms and fast-moving environments; top-down planning fits more stable contexts.",
+  "lo": "PulseCart"
+ },
+ {
+  "set": "A",
+  "stem": "Which statement best captures planned emergence rather than top-down planning?",
+  "options": {
+   "A": "Only executives generate initiatives; others execute.",
+   "B": "A dominant plan is created, but autonomous bottom-up initiatives can emerge and be evaluated/coordinated by top management.",
+   "C": "Multiple futures are mapped; no initiatives are chosen.",
+   "D": "Strategy equals budgeting."
+  },
+  "answer": "B",
+  "explanation": "Planned emergence blends top-down direction with bottom-up initiatives and evaluation/coordination by leadership.",
+  "lo": "PulseCart"
+ },
+ {
+  "set": "A",
+  "stem": "PulseCart’s substitution controversy: which is the Chapter 2 logic for why values matter strategically (not morally alone)?",
+  "options": {
+   "A": "Values are irrelevant if incentives work.",
+   "B": "Values stabilise strategy and provide execution guardrails, especially when decisions are decentralised.",
+   "C": "Values are only for external branding.",
+   "D": "Values substitute for mission."
+  },
+  "answer": "B",
+  "explanation": "Values underlie vision, provide stability, and act as guardrails during the pursuit of advantage.",
+  "lo": "PulseCart"
+ },
+ {
+  "set": "A",
+  "stem": "A strong empirical association between vision statements and performance is more likely when:",
+  "options": {
+   "A": "The vision is product-oriented and never changes.",
+   "B": "The vision is customer-oriented, stakeholders are invested, and structures align with the vision.",
+   "C": "The vision is written by consultants and kept confidential.",
+   "D": "The vision is expressed as quarterly OKRs."
+  },
+  "answer": "B",
+  "explanation": "Chapter 2 lists these conditions for a stronger vision–performance relationship.",
+  "lo": "PulseCart"
+ },
+ {
+  "set": "A",
+  "stem": "Which move best reflects “strategic leadership uses influence (not just authority) in implementation”?",
+  "options": {
+   "A": "CEO mandates a rewrite of all team OKRs overnight.",
+   "B": "CEO uses persuasion to align Ops/Product/Finance around the intent and trade-offs, then commits resources credibly.",
+   "C": "CEO delegates everything to Finance.",
+   "D": "CEO waits for the regulator’s final order."
+  },
+  "answer": "B",
+  "explanation": "Strategic leaders draw on position power and informal influence (persuasion) to implement strategy effectively.",
+  "lo": "PulseCart"
+ },
+ {
+  "set": "A",
+  "stem": "PulseCart faces a potential regulation limiting peak-hour delivery. Which approach best fits “scenario planning” logic?",
+  "options": {
+   "A": "Lock in one forecast and plan only for it.",
+   "B": "Build a single dominant plan and suppress alternatives.",
+   "C": "Develop multiple plausible regulatory/market futures and pre-commit contingent responses.",
+   "D": "Crowdsource decisions without executive synthesis."
+  },
+  "answer": "C",
+  "explanation": "Scenario planning is designed for uncertainty by considering multiple plausible futures (distinct from a single dominant plan).",
+  "lo": "PulseCart"
+ },
+ {
+  "set": "A",
+  "stem": "The “12-minute promise” is becoming brittle as constraints rise. The most Chapter-2-consistent reframing is:",
+  "options": {
+   "A": "Double down on speed as the sole purpose.",
+   "B": "Shift vision to a problem-defining/customer-oriented reliability promise that preserves flexibility.",
+   "C": "Replace vision with a mission-only statement.",
+   "D": "Eliminate values to improve agility."
+  },
+  "answer": "B",
+  "explanation": "Problem-defining/customer-oriented visions support strategic flexibility to meet changing needs and opportunities.",
+  "lo": "PulseCart"
+ },
+ {
+  "set": "A",
+  "stem": "In planned emergence, the realised strategy is best described as:",
+  "options": {
+   "A": "Intended strategy only.",
+   "B": "Emergent strategy only.",
+   "C": "A combination of intended and emergent strategy.",
+   "D": "Whatever Finance budgets."
+  },
+  "answer": "C",
+  "explanation": "Chapter 2 explicitly states realised strategy combines intended and emergent components under planned emergence.",
+  "lo": "PulseCart"
+ },
+ {
+  "set": "A",
+  "stem": "The biggest “con” risk of planned emergence in PulseCart is:",
+  "options": {
+   "A": "It eliminates employee buy-in.",
+   "B": "It can create unclear communication/lines and many bottom-up ideas may be dead ends without a good evaluation process.",
+   "C": "It only works in stable environments.",
+   "D": "It forbids strategic intent."
+  },
+  "answer": "B",
+  "explanation": "Chapter 2 flags confusion/lack of focus and weak evaluation of emergent ideas as major downsides.",
+  "lo": "PulseCart"
+ },
+ {
+  "set": "A",
+  "stem": "Which intervention is most aligned with Chapter 2’s idea that employees must feel invested in vision/values?",
+  "options": {
+   "A": "Keep values fixed and unknown to teams.",
+   "B": "Annual review where employees help revise values and assess success relative to vision/mission.",
+   "C": "Replace values with KPI dashboards.",
+   "D": "Outsource culture to HR."
+  },
+  "answer": "B",
+  "explanation": "Chapter 2 notes firms build commitment by involving employees in reviewing/revising values and assessing progress against vision/mission.",
+  "lo": "PulseCart"
+ },
+ {
+  "set": "B",
+  "stem": "In Chapter 2 terms, MediMesh is most clearly facing:",
+  "options": {
+   "A": "A stable-fit environment where alignment guarantees durable advantage.",
+   "B": "A strategic inflection point where the environment shifts faster than the firm’s current approach.",
+   "C": "A mission-writing problem only.",
+   "D": "A purely operational bottleneck."
+  },
+  "answer": "B",
+  "explanation": "Strategic inflection points arise when competitive realities shift; static fit can become misfit in high-velocity contexts like tech/health innovation.",
+  "lo": "MediMesh"
+ },
+ {
+  "set": "B",
+  "stem": "Which response best addresses “strategic dissonance” (misalignment between strategy and changing reality)?",
+  "options": {
+   "A": "Keep execution tight on the old plan to prove discipline.",
+   "B": "Treat new signals as noise until profits drop.",
+   "C": "Re-test assumptions, consider alternate futures, and adjust intent/commitments before misfit hardens.",
+   "D": "Replace the CEO."
+  },
+  "answer": "C",
+  "explanation": "Chapter 2’s logic is to navigate inflection points by noticing misfit early and adapting strategy process/assumptions, not doubling down on static alignment.",
+  "lo": "MediMesh"
+ },
+ {
+  "set": "B",
+  "stem": "Which is the strongest problem-defining vision for MediMesh (not product-defining)?",
+  "options": {
+   "A": "To build the best AI triage model in the market.",
+   "B": "To reduce preventable clinical deterioration by enabling timely escalation and accountable review.",
+   "C": "By achieving FDA clearance and shipping weekly updates.",
+   "D": "By bundling with EHR vendors."
+  },
+  "answer": "B",
+  "explanation": "Problem-defining/customer-oriented visions preserve flexibility and correlate with long-term success more than tool-centric declarations.",
+  "lo": "MediMesh"
+ },
+ {
+  "set": "B",
+  "stem": "Which option best fits a mission statement?",
+  "options": {
+   "A": "To reduce preventable clinical deterioration.",
+   "B": "By deploying clinician-in-the-loop triage workflows for clinics and hospitals.",
+   "C": "To become category leader in AI triage.",
+   "D": "To accelerate innovation."
+  },
+  "answer": "B",
+  "explanation": "Mission explains what the organisation does and how it accomplishes the vision (“by…”).",
+  "lo": "MediMesh"
+ },
+ {
+  "set": "B",
+  "stem": "The board worries the CTO is overconfident (“we’ll ship our way out”). Which Chapter 2 decision-process tool most directly counters unchallenged assumptions?",
+  "options": {
+   "A": "Devil’s advocacy.",
+   "B": "Mission rewrite.",
+   "C": "Static fit.",
+   "D": "Pure top-down planning."
+  },
+  "answer": "A",
+  "explanation": "Devil’s advocacy explicitly scrutinises and critiques underlying assumptions and downsides through a separate team/role.",
+  "lo": "MediMesh"
+ },
+ {
+  "set": "B",
+  "stem": "Which sequence best matches the devil’s advocacy method described in Chapter 2?",
+  "options": {
+   "A": "Two teams generate two plans; executives synthesise.",
+   "B": "Team 1 proposes; Team 2 critiques assumptions; Team 1 revises; critique repeats; agreement under executive supervision.",
+   "C": "CEO decides; teams execute.",
+   "D": "Everyone votes anonymously."
+  },
+  "answer": "B",
+  "explanation": "That is the stepwise process shown for devil’s advocacy in the chapter.",
+  "lo": "MediMesh"
+ },
+ {
+  "set": "B",
+  "stem": "If the board wants two fully developed alternative strategies (e.g., compliance-first vs speed-first) and then a synthesis, the best fit is:",
+  "options": {
+   "A": "Devil’s advocacy.",
+   "B": "Dialectic inquiry.",
+   "C": "Top-down planning.",
+   "D": "No process."
+  },
+  "answer": "B",
+  "explanation": "Dialectic inquiry begins with two teams generating alternate detailed courses (thesis/antithesis), followed by executive synthesis.",
+  "lo": "MediMesh"
+ },
+ {
+  "set": "B",
+  "stem": "Which “strategic intent” is most faithful to Chapter 2 (stretch + capability-building)?",
+  "options": {
+   "A": "Get 10 new enterprise customers this quarter.",
+   "B": "Achieve compliance at minimum cost.",
+   "C": "Build the core competency to deliver clinically accountable triage under evolving regulation, at scale, within 18 months.",
+   "D": "Reduce cloud spend by 7%."
+  },
+  "answer": "C",
+  "explanation": "Strategic intent is a stretch goal that pervades the firm with purpose and accelerates learning to build core competencies.",
+  "lo": "MediMesh"
+ },
+ {
+  "set": "B",
+  "stem": "Which statement best captures why values must be more than “legal compliance” in MediMesh’s context?",
+  "options": {
+   "A": "Legal compliance is sufficient for long-term trust.",
+   "B": "Ethical core values create guardrails and stability; many harmful actions can be legal yet reputation-destroying.",
+   "C": "Values slow innovation and should be avoided.",
+   "D": "Values are identical to the mission."
+  },
+  "answer": "B",
+  "explanation": "Chapter 2 emphasises ethical standards beyond mere legality and their guardrail function for long-term success.",
+  "lo": "MediMesh"
+ },
+ {
+  "set": "B",
+  "stem": "MediMesh is still small, but uncertainty is high (regulation + incumbent bundling). Which process choice is most defensible?",
+  "options": {
+   "A": "Only top-down planning because uncertainty requires control.",
+   "B": "Scenario planning to map plausible regulatory/market futures, plus rapid feedback loops internally.",
+   "C": "No planning because planning is slow.",
+   "D": "Only planned emergence because scenarios are for large firms."
+  },
+  "answer": "B",
+  "explanation": "Chapter 2 explicitly keeps scenario planning in the strategic toolkit for uncertainty; environment rate-of-change informs the choice.",
+  "lo": "MediMesh"
+ },
+ {
+  "set": "B",
+  "stem": "Which is the sharpest diagnosis of “static fit” risk in MediMesh’s setting?",
+  "options": {
+   "A": "Static fit is optimal because healthcare is slow.",
+   "B": "Static fit limits stretch goals and can lag shifting competitive/regulatory realities.",
+   "C": "Static fit equals strategic intent.",
+   "D": "Static fit guarantees core competency creation."
+  },
+  "answer": "B",
+  "explanation": "The chapter contrasts static fit with stretch-goal learning and notes the lag problem in fast-moving contexts.",
+  "lo": "MediMesh"
+ },
+ {
+  "set": "B",
+  "stem": "The CEO needs adoption and safety. Which values statement best functions as a guardrail?",
+  "options": {
+   "A": "“Move fast.”",
+   "B": "“Maximise growth.”",
+   "C": "“Clinical accountability first: transparency, auditability, and escalation when uncertain.”",
+   "D": "“Never lose a deal.”"
+  },
+  "answer": "C",
+  "explanation": "Guardrail values constrain behaviour under pressure and protect long-term success; they must be lived, not marketed.",
+  "lo": "MediMesh"
+ },
+ {
+  "set": "B",
+  "stem": "Which is most consistent with “strategic leaders use influence to implement”?",
+  "options": {
+   "A": "CEO uses persuasion to align CTO/Legal/Sales on trade-offs, then makes credible commitments.",
+   "B": "CEO avoids meetings.",
+   "C": "CEO delegates the conflict to Slack threads.",
+   "D": "CEO waits for perfect certainty."
+  },
+  "answer": "A",
+  "explanation": "Chapter 2 highlights position and informal influence (persuasion) as core to implementation.",
+  "lo": "MediMesh"
+ },
+ {
+  "set": "B",
+  "stem": "If MediMesh adopts planned emergence, the realised strategy will most likely be:",
+  "options": {
+   "A": "Only what the CEO intended.",
+   "B": "Only bottom-up experiments.",
+   "C": "A combination of intended direction and emergent initiatives.",
+   "D": "A random walk."
+  },
+  "answer": "C",
+  "explanation": "The chapter defines realised strategy in planned emergence as intended + emergent strategy together.",
+  "lo": "MediMesh"
+ },
+ {
+  "set": "B",
+  "stem": "Which is the strongest board-level governance move consistent with Chapter 2’s employee buy-in logic?",
+  "options": {
+   "A": "Vision/values kept for executives only.",
+   "B": "Mechanisms where teams periodically assess progress relative to vision/mission and surface initiatives.",
+   "C": "Replace values with compliance checklists.",
+   "D": "Treat culture as irrelevant."
+  },
+  "answer": "B",
+  "explanation": "Chapter 2 notes tactics that build belief and investment by employees in vision/values and progress assessment.",
+  "lo": "MediMesh"
+ },
+ {
+  "set": "C",
+  "stem": "Which vision is most aligned with Chapter 2’s “purpose-driven, forward-looking, problem-defining” logic?",
+  "options": {
+   "A": "To sell modular microgrids with patented inverters.",
+   "B": "To enable reliable, verifiable clean power for communities and industry where the central grid fails.",
+   "C": "By maximising megawatts installed.",
+   "D": "By winning tenders through aggressive claims."
+  },
+  "answer": "B",
+  "explanation": "Purpose-driven visions motivate and are stronger when customer/problem-oriented, preserving flexibility under changing needs/opportunities.",
+  "lo": "GridLeaf"
+ },
+ {
+  "set": "C",
+  "stem": "Which is the best mission statement?",
+  "options": {
+   "A": "To enable reliable, verifiable clean power where the grid fails.",
+   "B": "By designing, installing, and monitoring modular microgrids with transparent measurement and reporting.",
+   "C": "To dominate the microgrid category.",
+   "D": "To accelerate growth."
+  },
+  "answer": "B",
+  "explanation": "Mission describes what the organisation does and how it accomplishes the vision (“by…”).",
+  "lo": "GridLeaf"
+ },
+ {
+  "set": "C",
+  "stem": "The partner urges exaggerated emissions claims. Chapter 2’s most precise objection is:",
+  "options": {
+   "A": "It is illegal in all cases, so values are irrelevant.",
+   "B": "Even if not illegal, weak extralegal ethical standards make firms prone to reputation-threatening behaviour.",
+   "C": "It will improve investor confidence.",
+   "D": "It is a mission problem only."
+  },
+  "answer": "B",
+  "explanation": "Chapter 2 stresses that harmful behaviour may be legal; ethical standards beyond legality reduce existential risk to the firm’s reputation and future.",
+  "lo": "GridLeaf"
+ },
+ {
+  "set": "C",
+  "stem": "Which core values statement best functions as a “guardrail” for GridLeaf?",
+  "options": {
+   "A": "“We will be number one.”",
+   "B": "“We comply with laws.”",
+   "C": "“We report impact claims transparently and auditably; we refuse to misstate outcomes.”",
+   "D": "“We move fast reinforcing what investors want.”"
+  },
+  "answer": "C",
+  "explanation": "Values are ethical standards that stabilise strategy and keep execution on track; they must guide day-to-day decisions under pressure.",
+  "lo": "GridLeaf"
+ },
+ {
+  "set": "C",
+  "stem": "GridLeaf faces two plausible policy futures. The planning approach most directly built for this is:",
+  "options": {
+   "A": "Top-down strategic planning only.",
+   "B": "Scenario planning.",
+   "C": "Planned emergence only, with no scenarios.",
+   "D": "No planning."
+  },
+  "answer": "B",
+  "explanation": "Scenario planning is in the strategic toolkit for uncertainty and multiple plausible futures, distinct from a single dominant plan.",
+  "lo": "GridLeaf"
+ },
+ {
+  "set": "C",
+  "stem": "If GridLeaf is mid-sized and must satisfy investors and remain adaptive, which hybrid is most defensible?",
+  "options": {
+   "A": "A single dominant five-year plan with no revision.",
+   "B": "Scenario planning with contingent commitments plus selective planned emergence for local experiments.",
+   "C": "Pure improvisation.",
+   "D": "Values are sufficient; planning unnecessary."
+  },
+  "answer": "B",
+  "explanation": "Chapter 2 keeps all three approaches available and links choice to rate of change; combining scenarios with adaptive initiatives is consistent with that logic.",
+  "lo": "GridLeaf"
+ },
+ {
+  "set": "C",
+  "stem": "Which is the most accurate statement about why customer-oriented visions correlate with performance?",
+  "options": {
+   "A": "They prevent the vision from ever changing.",
+   "B": "They allow strategic flexibility to meet changing needs and exploit opportunities.",
+   "C": "They guarantee cost leadership.",
+   "D": "They substitute for strategy."
+  },
+  "answer": "B",
+  "explanation": "Chapter 2 explicitly links problem-defining/customer-oriented vision to flexibility and long-term success correlation.",
+  "lo": "GridLeaf"
+ },
+ {
+  "set": "C",
+  "stem": "GridLeaf’s COO insists on tight alignment to current resources (static fit). In turbulent policy contexts, Chapter 2’s critique is:",
+  "options": {
+   "A": "Static fit accelerates stretch goals.",
+   "B": "Static fit maintains status quo and can curtail stretch-goal capability building.",
+   "C": "Static fit is identical to strategic intent.",
+   "D": "Static fit is preferred only in high-velocity settings."
+  },
+  "answer": "B",
+  "explanation": "Chapter 2 contrasts static fit with strategic intent’s stretch-goal learning and capability building.",
+  "lo": "GridLeaf"
+ },
+ {
+  "set": "C",
+  "stem": "Which strategic intent best fits Chapter 2?",
+  "options": {
+   "A": "Increase installations by 10% this quarter.",
+   "B": "Build a core competency in verifiable microgrid performance across regulatory regimes within two years.",
+   "C": "Reduce marketing spend.",
+   "D": "Copy the incumbent’s tender playbook."
+  },
+  "answer": "B",
+  "explanation": "Strategic intent is a stretch goal that creates purpose and drives learning to build core competencies for advantage.",
+  "lo": "GridLeaf"
+ },
+ {
+  "set": "C",
+  "stem": "To reduce groupthink about “everyone exaggerates,” which tool is the cleanest fit?",
+  "options": {
+   "A": "Devil’s advocacy.",
+   "B": "Mission rewrite.",
+   "C": "Static fit.",
+   "D": "Hiring more salespeople."
+  },
+  "answer": "A",
+  "explanation": "Devil’s advocacy institutionalises critique of assumptions and downsides by a separate team/role.",
+  "lo": "GridLeaf"
+ },
+ {
+  "set": "C",
+  "stem": "If leadership wants two teams to develop: (i) “subsidy boom strategy” and (ii) “audit crackdown strategy,” then synthesise, the best fit is:",
+  "options": {
+   "A": "Devil’s advocacy.",
+   "B": "Dialectic inquiry.",
+   "C": "Top-down planning.",
+   "D": "No framework."
+  },
+  "answer": "B",
+  "explanation": "Dialectic inquiry begins with thesis/antithesis and ends with executive synthesis/choice.",
+  "lo": "GridLeaf"
+ },
+ {
+  "set": "C",
+  "stem": "Which is most consistent with Chapter 2’s warning about values being “PR exercises”?",
+  "options": {
+   "A": "Values matter only externally.",
+   "B": "Values must be lived with integrity by leadership; otherwise employees read them as lip service.",
+   "C": "Values only apply to junior staff.",
+   "D": "Values can be outsourced to marketing."
+  },
+  "answer": "B",
+  "explanation": "Chapter 2 stresses that values statements without leadership commitment become PR and lose behavioural force.",
+  "lo": "GridLeaf"
+ },
+ {
+  "set": "C",
+  "stem": "Under planned emergence, a key advantage is:",
+  "options": {
+   "A": "Lowest employee buy-in.",
+   "B": "Highest strategic flexibility and buy-in, with room for emergent initiatives.",
+   "C": "No need for intended strategy.",
+   "D": "Guaranteed focus with zero confusion."
+  },
+  "answer": "B",
+  "explanation": "Chapter 2 lists high flexibility and employee buy-in as a major pro of planned emergence.",
+  "lo": "GridLeaf"
+ },
+ {
+  "set": "C",
+  "stem": "Under planned emergence, a key risk GridLeaf must manage is:",
+  "options": {
+   "A": "Too much clarity.",
+   "B": "Confusion and weak evaluation of bottom-up ideas, missing big opportunities or chasing dead ends.",
+   "C": "Inability to respond quickly.",
+   "D": "Overreliance on a single dominant plan."
+  },
+  "answer": "B",
+  "explanation": "Those are explicit cons in the planned emergence comparison table.",
+  "lo": "GridLeaf"
+ },
+ {
+  "set": "C",
+  "stem": "Which leadership behaviour best fits Chapter 2’s view of implementation?",
+  "options": {
+   "A": "Only issuing directives.",
+   "B": "Using influence and persuasion to align stakeholders, then making credible commitments.",
+   "C": "Avoiding cross-functional debate.",
+   "D": "Treating ethics as separate from strategy."
+  },
+  "answer": "B",
+  "explanation": "Strategic leaders use position and informal influence to direct activities in implementation; they also must back vision with commitments.",
+  "lo": "GridLeaf"
+ },
+ {
+  "set": "D",
+  "stem": "Which strategy process choice best fits a small firm in a high-velocity environment, per Chapter 2?",
+  "options": {
+   "A": "Top-down planning as default.",
+   "B": "Planned emergence, because feedback loops are short and adaptation is fast.",
+   "C": "Scenario planning is forbidden for small firms.",
+   "D": "No process at all."
+  },
+  "answer": "B",
+  "explanation": "Chapter 2 explicitly points to planned emergence for small firms in fast-changing environments; top-down planning fits stable contexts more.",
+  "lo": "CredWeave"
+ },
+ {
+  "set": "D",
+  "stem": "Under planned emergence, the role of top management is best described as:",
+  "options": {
+   "A": "Eliminate bottom-up initiatives.",
+   "B": "Allow bottom-up initiatives to emerge for evaluation and coordination while maintaining top-down direction.",
+   "C": "Replace vision/mission with experiments.",
+   "D": "Decide nothing."
+  },
+  "answer": "B",
+  "explanation": "Planned emergence blends top-down vision with bottom-up initiatives that are evaluated and coordinated by top management.",
+  "lo": "CredWeave"
+ },
+ {
+  "set": "D",
+  "stem": "CredWeave’s realised strategy, in Chapter 2 terms, will most likely be:",
+  "options": {
+   "A": "Intended only.",
+   "B": "Emergent only.",
+   "C": "A combination of intended and emergent strategy.",
+   "D": "Only what Compliance approves."
+  },
+  "answer": "C",
+  "explanation": "Chapter 2 states realised strategy combines intended and emergent strategy under planned emergence.",
+  "lo": "CredWeave"
+ },
+ {
+  "set": "D",
+  "stem": "Which option is most consistent with “problem-defining/customer-oriented” vision logic (not product-defining)?",
+  "options": {
+   "A": "To build the most accurate underwriting model.",
+   "B": "To enable fair, timely access to working-capital at the point of need for small merchants.",
+   "C": "By integrating into every checkout in the country.",
+   "D": "By maximising approvals."
+  },
+  "answer": "B",
+  "explanation": "Customer/problem-defining visions enable flexibility and correlate with long-term success more than tool-centric claims.",
+  "lo": "CredWeave"
+ },
+ {
+  "set": "D",
+  "stem": "Which option is most clearly a mission statement?",
+  "options": {
+   "A": "To enable fair, timely access to working-capital at the point of need.",
+   "B": "By embedding credit rails into merchant platforms with transparent terms and risk controls.",
+   "C": "To become the category winner.",
+   "D": "To accelerate growth."
+  },
+  "answer": "B",
+  "explanation": "Mission describes what the firm does and how it accomplishes the vision (“by…”).",
+  "lo": "CredWeave"
+ },
+ {
+  "set": "D",
+  "stem": "The board’s fear: planned emergence becomes chaos. Which Chapter 2 “con” is most relevant?",
+  "options": {
+   "A": "It guarantees clarity.",
+   "B": "Unclear communication/lines can confuse employees; many bottom-up ideas may be dead ends without evaluation.",
+   "C": "It reduces flexibility.",
+   "D": "It only works in slow-moving environments."
+  },
+  "answer": "B",
+  "explanation": "Confusion, lack of focus, and weak evaluation of emergent ideas are explicit risks in the chapter.",
+  "lo": "CredWeave"
+ },
+ {
+  "set": "D",
+  "stem": "CredWeave sees rising defaults after expansion. This is most consistent with the early stage of:",
+  "options": {
+   "A": "Strategic inflection point risk (fit starting to slip as conditions change).",
+   "B": "Guaranteed competitive advantage.",
+   "C": "Mission–vision confusion only.",
+   "D": "Proof that values do not matter."
+  },
+  "answer": "A",
+  "explanation": "Chapter 2’s inflection-point discussion highlights that alignment can become misfit as conditions shift, especially in high-velocity settings.",
+  "lo": "CredWeave"
+ },
+ {
+  "set": "D",
+  "stem": "Which “strategic intent” best fits Chapter 2’s definition?",
+  "options": {
+   "A": "Reduce default rate by 0.5% next month.",
+   "B": "Build the core competency to scale fair, auditable underwriting across categories within 18 months, even when signals shift.",
+   "C": "Increase approvals.",
+   "D": "Cut support costs."
+  },
+  "answer": "B",
+  "explanation": "Strategic intent is a stretch goal that pervades the organisation with purpose and accelerates learning to build core competencies.",
+  "lo": "CredWeave"
+ },
+ {
+  "set": "D",
+  "stem": "The data scientist proposes a sensitive feature; Compliance worries about explainability and reputation. Which values statement best acts as a guardrail?",
+  "options": {
+   "A": "“We do what is legal.”",
+   "B": "“We prioritise growth.”",
+   "C": "“We use signals we can justify: transparency, auditability, and respect for customers’ dignity.”",
+   "D": "“We never slow down.”"
+  },
+  "answer": "C",
+  "explanation": "Ethical core values function as guardrails to keep the firm on track while pursuing vision/mission; legality alone is insufficient for long-term resilience.",
+  "lo": "CredWeave"
+ },
+ {
+  "set": "D",
+  "stem": "To test the underwriting feature proposal while limiting groupthink, the best fit is:",
+  "options": {
+   "A": "Devil’s advocacy.",
+   "B": "Replace the vision.",
+   "C": "Static fit.",
+   "D": "Budgeting."
+  },
+  "answer": "A",
+  "explanation": "Devil’s advocacy institutionalises critique of assumptions and downsides via a separate challenger role/team.",
+  "lo": "CredWeave"
+ },
+ {
+  "set": "D",
+  "stem": "If the board demands two fully developed alternatives (aggressive expansion vs controlled compliance-first), then synthesis, the best fit is:",
+  "options": {
+   "A": "Devil’s advocacy.",
+   "B": "Dialectic inquiry.",
+   "C": "Top-down planning only.",
+   "D": "No framework."
+  },
+  "answer": "B",
+  "explanation": "Dialectic inquiry explicitly runs thesis/antithesis and then executive synthesis/choice.",
+  "lo": "CredWeave"
+ },
+ {
+  "set": "D",
+  "stem": "Which statement best captures Chapter 2’s view of implementation leadership?",
+  "options": {
+   "A": "Implementation is operational; strategy ends at formulation.",
+   "B": "Effective leaders use authority and persuasion/influence to direct activities in implementation.",
+   "C": "Implementation requires eliminating disagreement.",
+   "D": "Implementation is the same as writing a vision statement."
+  },
+  "answer": "B",
+  "explanation": "Chapter 2 emphasises position and informal influence (persuasion) in implementing strategy.",
+  "lo": "CredWeave"
+ },
+ {
+  "set": "D",
+  "stem": "CredWeave wants employees “invested” in purpose. Which practice is most consistent with Chapter 2?",
+  "options": {
+   "A": "Vision/values are confidential.",
+   "B": "Employees periodically review/revise values and assess success relative to vision/mission.",
+   "C": "Replace values with financial targets.",
+   "D": "Outsource purpose to brand teams."
+  },
+  "answer": "B",
+  "explanation": "Chapter 2 gives examples of involving employees in values review and progress assessment against vision/mission to build belief and motivation.",
+  "lo": "CredWeave"
+ },
+ {
+  "set": "D",
+  "stem": "Which option best reflects the chapter’s empirical conditions strengthening the vision–performance link?",
+  "options": {
+   "A": "Vision is purely product-oriented.",
+   "B": "Vision is customer-oriented; stakeholders are invested; structures (e.g., incentives) align with the vision.",
+   "C": "Vision is never communicated.",
+   "D": "Vision is replaced by quarterly dashboards."
+  },
+  "answer": "B",
+  "explanation": "Those three conditions are listed in Chapter 2 as making the association more likely.",
+  "lo": "CredWeave"
+ },
+ {
+  "set": "D",
+  "stem": "CredWeave’s fastest path to prevent planned emergence from becoming “random experiments” is to:",
+  "options": {
+   "A": "Ban bottom-up initiatives.",
+   "B": "Keep an intended direction (vision/intent) while establishing a clear evaluation/coordination mechanism for emergent initiatives.",
+   "C": "Avoid mission/values work.",
+   "D": "Let every team run independent strategy."
+  },
+  "answer": "B",
+  "explanation": "Planned emergence needs top-down direction plus systematic evaluation/coordination; otherwise the chapter’s listed cons (confusion, dead ends) dominate.",
+  "lo": "CredWeave"
+ }
+]

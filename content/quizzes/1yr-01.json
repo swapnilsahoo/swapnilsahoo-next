@@ -1,0 +1,569 @@
+{
+ "sessionId": "1yr-01",
+ "course": "1-year-mba",
+ "sessionNumber": 1,
+ "title": "What is Strategy",
+ "questionCount": 40,
+ "questions": [
+  {
+   "set": "A",
+   "stem": "According to Michael Porter, the root cause of \"mutually destructive competition\" where companies engage in a zero-sum battle is often the failure to:",
+   "options": {
+    "A": "Distinguish between operational effectiveness and strategy.",
+    "B": "Achieve global scale.",
+    "C": "Implement a robust mission statement.",
+    "D": "Invest sufficiently in research and development."
+   },
+   "answer": "A",
+   "explanation": "Porter's central argument is that the failure to distinguish between operational effectiveness (doing the same things better) and strategy (doing different things) leads to \"competitive convergence.\" This forces companies to compete on price and efficiency alone, which is mutually destructive to industry profits.",
+   "lo": "Porter vs Mintzberg",
+   "n": 1
+  },
+  {
+   "set": "A",
+   "stem": "Nokia's dominance in the feature phone era was a masterclass in operational effectiveness, including a world-class supply chain and manufacturing scale. From a Porterian perspective, why did this excellence fail to provide a sustainable advantage against the iPhone?",
+   "options": {
+    "A": "Apple's hardware was fundamentally more reliable than Nokia's.",
+    "B": "The basis of competition shifted from operational effectiveness in hardware to a unique strategic position based on a software ecosystem.",
+    "C": "Nokia failed to make the necessary trade-offs to lower its prices.",
+    "D": "Nokia's marketing budget was smaller than Apple's."
+   },
+   "answer": "B",
+   "explanation": "Nokia was a master of OE in the feature phone world. However, Apple's iPhone did not just offer a better feature phone; it created a new strategic position based on a software ecosystem (iOS and the App Store). Nokia's operational strengths in hardware manufacturing were irrelevant in this new game, and they lacked the unique software-based position to compete.",
+   "lo": "Porter vs Mintzberg",
+   "n": 2
+  },
+  {
+   "set": "A",
+   "stem": "Mintzberg uses the metaphor of a potter to illustrate that strategy is \"crafted.\" What does this metaphor primarily emphasize?",
+   "options": {
+    "A": "A company's past experiences are irrelevant to its future strategy.",
+    "B": "Strategy is a top-down, analytical process of formal planning.",
+    "C": "Strategy formulation and implementation are intertwined in a fluid process of learning and adaptation.",
+    "D": "The most effective strategies are always artistic and unpredictable."
+   },
+   "answer": "C",
+   "explanation": "Mintzberg's potter metaphor highlights that strategy is not a detached, purely intellectual exercise. It's a hands-on process where the strategist (like the potter) learns from the material (the market, the organization) and adapts the design as they go. Formulation and implementation are inseparable.",
+   "lo": "Porter vs Mintzberg",
+   "n": 3
+  },
+  {
+   "set": "A",
+   "stem": "Kodak invented the first digital camera in 1975 but failed to commercialize it for the mass market for years. This decision is a classic example of violating which of Porter's core strategic principles?",
+   "options": {
+    "A": "The need for continuous improvement in operational effectiveness.",
+    "B": "The importance of a needs-based positioning over a variety-based one.",
+    "C": "The requirement to build a system of \"fit\" among all company activities.",
+    "D": "The necessity of making clear trade-offs, in this case, sacrificing the highly profitable film business to pursue a new, uncertain digital position."
+   },
+   "answer": "D",
+   "explanation": "Kodak's leadership was unwilling to make the painful trade-off of cannibalizing its incredibly profitable film business to fully embrace the digital future. A true strategy, according to Porter, requires choosing what not to do. By trying to protect film, Kodak failed to commit to a winning digital position.",
+   "lo": "Porter vs Mintzberg",
+   "n": 4
+  },
+  {
+   "set": "A",
+   "stem": "Yahoo's strategy in the late 1990s and early 2000s involved adding hundreds of disparate services (Mail, News, Shopping, etc.). This approach failed primarily because:",
+   "options": {
+    "A": "It lacked a coherent system of \"fit\" where the activities reinforced one another to create a defensible advantage.",
+    "B": "The company did not invest enough in advertising for each individual service.",
+    "C": "The technology used for the services was inferior to all competitors.",
+    "D": "It was an example of a deliberate strategy that was poorly communicated."
+   },
+   "answer": "A",
+   "explanation": "Porter's concept of \"fit\" means that a company's activities should reinforce one another. Yahoo's collection of 400+ services were disparate and disconnected. Its photo service (Flickr), blogging service (Tumblr), and search function never created a synergistic system, making it easy for focused competitors like Google or Facebook to pick them apart.",
+   "lo": "Porter vs Mintzberg",
+   "n": 5
+  },
+  {
+   "set": "A",
+   "stem": "Mintzberg describes a company's \"realized strategy\" as a combination of its \"deliberate\" and \"emergent\" strategies. The story of Honda's accidental success in the US with small motorcycles after its plan to sell large ones failed is a textbook example of:",
+   "options": {
+    "A": "A purely deliberate strategy succeeding.",
+    "B": "A successful emergent strategy replacing a failed deliberate one.",
+    "C": "A failure in operational effectiveness.",
+    "D": "A lack of strategic trade-offs."
+   },
+   "answer": "B",
+   "explanation": "Honda's deliberate strategy was to sell large motorcycles in the US. When that failed, they discovered a huge, unexpected market for their small Super Cub bikes. This pattern of action was not intended but emerged from the field, becoming their new, successful strategy. This is Mintzberg's classic example of an emergent strategy.",
+   "lo": "Porter vs Mintzberg",
+   "n": 6
+  },
+  {
+   "set": "A",
+   "stem": "When Continental Airlines tried to compete with Southwest by launching \"Continental Lite,\" it failed. Porter uses this to illustrate the danger of \"straddling,\" which occurs when a company:",
+   "options": {
+    "A": "Fails to benchmark its competitors effectively.",
+    "B": "Enters a new market without sufficient capital.",
+    "C": "Tries to imitate a competitor's low-cost position without abandoning its existing high-cost activities, thus failing to make necessary trade-offs.",
+    "D": "Focuses too much on emergent strategies over deliberate ones."
+   },
+   "answer": "C",
+   "explanation": "\"Straddling\" is Porter's term for a company trying to occupy two different strategic positions at once. Continental tried to be a full-service airline and a low-cost airline simultaneously. It couldn't make the necessary trade-offs (e.g., eliminating baggage handling or using a single aircraft type) and was therefore inefficient and uncompetitive in both positions.",
+   "lo": "Porter vs Mintzberg",
+   "n": 7
+  },
+  {
+   "set": "A",
+   "stem": "From a Mintzbergian perspective, the constant turnover of CEOs at Yahoo, each with a different turnaround plan, created a state of strategic chaos because:",
+   "options": {
+    "A": "Each CEO failed to properly analyze the competitive landscape using Porter's Five Forces.",
+    "B": "The company's mission statement was not inspiring enough.",
+    "C": "The focus on quarterly earnings was too intense.",
+    "D": "It prevented any coherent pattern of action, either deliberate or emergent, from taking hold for a meaningful period."
+   },
+   "answer": "D",
+   "explanation": "Mintzberg argues that strategy is a \"pattern in action over time.\" With a revolving door of CEOs, Yahoo never had stable leadership long enough for a coherent pattern to form. Each new CEO brought a new \"deliberate\" plan, but the constant change prevented any real learning or the emergence of a sustainable direction.",
+   "lo": "Porter vs Mintzberg",
+   "n": 8
+  },
+  {
+   "set": "A",
+   "stem": "Nokia's \"Burning Platform\" memo correctly identified that the \"battle of devices has now become a war of ecosystems.\" However, the subsequent decision to partner exclusively with Microsoft can be critiqued from a Porterian lens as:",
+   "options": {
+    "A": "A strategic choice that bet the entire company on a new position without sufficient evidence that its activities could create a winning \"fit\" in that ecosystem.",
+    "B": "An example of a successful emergent strategy.",
+    "C": "A move that increased the number of trade-offs the company had to make.",
+    "D": "A failure to improve the operational effectiveness of its Symbian OS."
+   },
+   "answer": "A",
+   "explanation": "While the memo correctly diagnosed the problem, the solution was a massive strategic bet. Nokia committed entirely to the Windows Phone position without a clear system of activities to make it successful. The \"fit\" was poor because Nokia's excellent hardware could not overcome the critical weakness of the Windows ecosystem: a lack of apps and developer support.",
+   "lo": "Porter vs Mintzberg",
+   "n": 9
+  },
+  {
+   "set": "A",
+   "stem": "What is the most critical flaw in defining a company's strategic objective as \"maximizing shareholder value\"?",
+   "options": {
+    "A": "It is too short-term focused.",
+    "B": "It is a result, not a specific, actionable goal that can guide employee choices and trade-offs.",
+    "C": "It ignores the needs of other stakeholders.",
+    "D": "It is not measurable."
+   },
+   "answer": "B",
+   "explanation": "A strategic objective must be a specific, measurable, and time-bound goal that guides the organization's choices. \"Maximizing shareholder value\" is the outcome of a successful strategy, not the strategy itself. It is too vague to help a salesperson decide on pricing or an engineer decide which features to prioritize.",
+   "lo": "Porter vs Mintzberg",
+   "n": 10
+  },
+  {
+   "set": "B",
+   "stem": "Which of the following statements best synthesizes the core strategic error of BOTH Nokia and Kodak through a Porterian lens?",
+   "options": {
+    "A": "Both companies failed primarily due to a decline in their operational effectiveness and manufacturing quality.",
+    "B": "Both companies had a unique and valuable strategic position but failed to communicate it effectively.",
+    "C": "Both companies' dominant strategic positions became obsolete, and they were unwilling to make the necessary, painful trade-offs to build a new position.",
+    "D": "Both companies failed because they did not have a strong enough system of \"fit\" among their activities during their peak."
+   },
+   "answer": "C",
+   "explanation": "This captures the essential failing of both giants. Both companies became leaders by perfecting a specific position (Hardware for Nokia, Film for Kodak). When the world changed, they suffered from inertia. They refused to make the painful trade-offs necessary to abandon their old, profitable models to commit to the new reality.",
+   "lo": "Porter vs Mintzberg",
+   "n": 11
+  },
+  {
+   "set": "B",
+   "stem": "Henry Mintzberg's concept of a \"deliberate strategy\" that precludes learning is most vividly demonstrated by which corporate action?",
+   "options": {
+    "A": "Nokia's CEO Stephen Elop issuing the \"Burning Platform\" memo to rally employees.",
+    "B": "Yahoo's decision to outsource its search function to Google in 2000.",
+    "C": "Yahoo's decision to acquire Tumblr for $1.1 billion to enter the social media space.",
+    "D": "Kodak's management actively suppressing its own engineers' invention of the digital camera to protect the film business."
+   },
+   "answer": "D",
+   "explanation": "Mintzberg argues that rigid plans can blind a company. Kodak’s deliberate strategy (protecting the \"yellow box\" of film) was so strong it actively suppressed learning. Even when its own R&D labs invented the future (digital), management ignored it because it didn't fit the existing plan.",
+   "lo": "Porter vs Mintzberg",
+   "n": 12
+  },
+  {
+   "set": "B",
+   "stem": "Imagine it is 2007 and you are a senior strategist at Nokia. A junior engineer presents a prototype of a touchscreen phone with an intuitive OS and an \"app store\" concept. A Mintzbergian leader focused on \"crafting strategy\" would most likely:",
+   "options": {
+    "A": "Recognize this as a potentially powerful \"emergent strategy\" and provide resources for it to develop.",
+    "B": "Commission a detailed market analysis report to be completed over the next 12 months.",
+    "C": "Fire the engineer for working on projects outside of their defined scope.",
+    "D": "Reject the idea immediately as it does not fit the current five-year deliberate plan."
+   },
+   "answer": "A",
+   "explanation": "A Mintzbergian leader views strategy as \"crafting.\" They understand that great ideas don't only come from the top. They would see the engineer’s prototype as a \"weed in the garden\"—a potential emergent strategy to be nurtured and tested, rather than a threat to the formal plan.",
+   "lo": "Porter vs Mintzberg",
+   "n": 13
+  },
+  {
+   "set": "B",
+   "stem": "Porter argues that a sustainable advantage is built on a system of reinforcing activities (\"fit\"). Which of the following hypothetical actions would have most severely weakened Kodak's \"fit\" during its film-era peak?",
+   "options": {
+    "A": "Investing in more efficient film manufacturing processes.",
+    "B": "Launching a new line of professional-grade cameras that used a non-proprietary, open-standard film format.",
+    "C": "Expanding its \"Kodak moment\" advertising campaign globally.",
+    "D": "Lowering the price of its entry-level Brownie cameras."
+   },
+   "answer": "B",
+   "explanation": "Kodak's advantage was built on Second-Order Fit (Reinforcement). Their cheap cameras only worked with their proprietary film and chemicals. Switching to an \"open standard\" would break the reinforcement loop between the \"razor\" (camera) and the \"blades\" (film), making their entire ecosystem vulnerable.",
+   "lo": "Porter vs Mintzberg",
+   "n": 14
+  },
+  {
+   "set": "B",
+   "stem": "The strategic failures of Yahoo and Nokia, when compared, reveal a crucial distinction. Yahoo's failure can be characterized as a crisis of ______, while Nokia's was a crisis of ______.",
+   "options": {
+    "A": "Implementation; Formulation.",
+    "B": "Ambition; Resources.",
+    "C": "Coherence (no clear position); Inertia (a rigid, obsolete position).",
+    "D": "Culture; Technology."
+   },
+   "answer": "C",
+   "explanation": "Yahoo never decided what it wanted to be (Media? Tech? Search?), leading to a lack of coherence. Nokia knew exactly what it was (The best hardware manufacturer), but that position became obsolete, and they couldn't move past it.",
+   "lo": "Porter vs Mintzberg",
+   "n": 15
+  },
+  {
+   "set": "B",
+   "stem": "Mintzberg's \"quantum theory of change\" suggests that organizations experience long periods of stability punctuated by brief, revolutionary upheavals. In this context, \"emergent strategies\" are most valuable because:",
+   "options": {
+    "A": "They are easier for senior management to control.",
+    "B": "They constantly challenge and destabilize the organization.",
+    "C": "They are always more profitable than deliberate strategies.",
+    "D": "They provide a portfolio of tested, internal alternatives that the organization can turn to when a strategic revolution becomes necessary."
+   },
+   "answer": "D",
+   "explanation": "In Mintzberg's view, organizations stay stable for long periods. When a massive industry shift occurs, they need a \"revolution.\" Having a history of emergent strategies allows a company to reach into its own \"garden\" and pick a pre-tested alternative path to survive the upheaval.",
+   "lo": "Porter vs Mintzberg",
+   "n": 16
+  },
+  {
+   "set": "B",
+   "stem": "If Yahoo had successfully acquired Google in 2002, what would have been the most significant strategic challenge for Yahoo's leadership, according to Porter's concepts?",
+   "options": {
+    "A": "Resolving the fundamental trade-off between Google's model (sending users away quickly) and Yahoo's portal model (keeping users on-site).",
+    "B": "Finding enough server capacity to handle Google's search volume.",
+    "C": "Convincing Wall Street that the acquisition price was justified.",
+    "D": "Managing the cultural integration of Google's engineers."
+   },
+   "answer": "A",
+   "explanation": "Strategy is about trade-offs. Yahoo’s \"portal\" model relied on keeping users on their site to show banner ads. Google’s search model relied on getting users away to the best result instantly. Integrating the two would have required a massive, potentially impossible, strategic trade-off.",
+   "lo": "Porter vs Mintzberg",
+   "n": 17
+  },
+  {
+   "set": "B",
+   "stem": "Which statement best captures the paradox of \"Operational Effectiveness\" as described by Porter?",
+   "options": {
+    "A": "It is the single most important source of sustainable competitive advantage.",
+    "B": "The relentless pursuit of it by all competitors leads to \"competitive convergence,\" where everyone looks the same and profitability suffers.",
+    "C": "It is only relevant for manufacturing companies, not service companies.",
+    "D": "The more you improve it, the more you fall behind your competitors."
+   },
+   "answer": "B",
+   "explanation": "Operational Effectiveness (OE) is about \"best practices.\" If every competitor copies the same best practices (benchmarking), they all start to look identical. This is \"Competitive Convergence,\" which destroys industry profit margins because the only remaining differentiator is price.",
+   "lo": "Porter vs Mintzberg",
+   "n": 18
+  },
+  {
+   "set": "B",
+   "stem": "A key difference between Porter's view of the strategist and Mintzberg's view is that:",
+   "options": {
+    "A": "Porter focuses on internal capabilities, while Mintzberg focuses on external market analysis.",
+    "B": "Porter's ideas are outdated, while Mintzberg's are modern.",
+    "C": "Porter's strategist is a rational analyst, while Mintzberg's is more of an intuitive pattern-recognizer.",
+    "D": "Porter believes in decentralization, while Mintzberg advocates for strong central control."
+   },
+   "answer": "C",
+   "explanation": "Porter sees the strategist as an architect using logic and data to design a position. Mintzberg sees the strategist as a craftsman, using experience and intuition to craft and recognize patterns that emerge from action.",
+   "lo": "Porter vs Mintzberg",
+   "n": 19
+  },
+  {
+   "set": "B",
+   "stem": "The failure of Nokia's partnership with Microsoft to create a viable \"third ecosystem\" can be attributed to a lack of \"fit.\" Which of the following best illustrates this?",
+   "options": {
+    "A": "Microsoft's marketing budget was insufficient to compete with Apple and Google.",
+    "B": "The physical design of Nokia's phones was incompatible with the software.",
+    "C": "The two companies' corporate cultures were too similar.",
+    "D": "Nokia's hardware design could not compensate for the Windows Phone ecosystem's critical lack of apps."
+   },
+   "answer": "D",
+   "explanation": "A strategy requires Fit. Nokia provided world-class hardware, but it wasn't reinforced by the Windows software ecosystem. A smartphone is a system; the hardware alone couldn't overcome the \"app gap,\" leading to a weak overall strategic system.",
+   "lo": "Porter vs Mintzberg",
+   "n": 20
+  },
+  {
+   "set": "C",
+   "stem": "According to Michael Porter, \"straddling\" occurs when a company:",
+   "options": {
+    "A": "Attempts to match a rival’s success by adding new features to its existing model without sacrificing its current activities.",
+    "B": "Perfectly aligns its internal culture with its external marketing.",
+    "C": "Focuses exclusively on operational effectiveness to drive out competitors.",
+    "D": "Pursues a niche market while ignoring the mass market."
+   },
+   "answer": "A",
+   "explanation": "Straddling is the attempt to have it both ways. A company tries to copy a successful rival (like a low-cost carrier) while maintaining its own high-cost model. This fails because the company cannot achieve the necessary trade-offs and \"fit\" for either position, becoming inefficient in both.",
+   "lo": "Porter vs Mintzberg",
+   "n": 21
+  },
+  {
+   "set": "C",
+   "stem": "Rebel Foods manages brands like Behrouz Biryani and Faasos from a single cloud kitchen. This is a primary example of ______ positioning.",
+   "options": {
+    "A": "Access-based (reaching customers through delivery apps).",
+    "B": "Variety-based (specializing in a subset of industry products across many customer types).",
+    "C": "Technology-based (using Rebel OS to manage logistics).",
+    "D": "Needs-based (serving the specific demographic of biryani lovers)."
+   },
+   "answer": "B",
+   "explanation": "Variety-based positioning focuses on producing a specific subset of products rather than a specific customer segment. Rebel Foods doesn't target \"biryani lovers\" exclusively; it focuses on the variety of food types (food missions) and serves a broad audience from a specialized, centralized cloud-kitchen infrastructure.",
+   "lo": "Porter vs Mintzberg",
+   "n": 22
+  },
+  {
+   "set": "C",
+   "stem": "In the context of Porter’s \"Fit,\" why is Third-Order Fit (Optimization of Effort) the most difficult to imitate?",
+   "options": {
+    "A": "Because it requires the highest marketing spend.",
+    "B": "Because it is based on a single proprietary technology.",
+    "C": "Because it involves deep coordination across the entire value chain that is invisible to outsiders.",
+    "D": "Because it relies on having the most talented individual employees."
+   },
+   "answer": "C",
+   "explanation": "Third-order fit is about Optimization of Effort. It involves sophisticated coordination across the entire value chain (like Asian Paints' supply chain). It is difficult to copy because a competitor can't just buy a tool or hire a person; they would have to replicate an entire, mostly invisible, system of interconnected organizational processes.",
+   "lo": "Porter vs Mintzberg",
+   "n": 23
+  },
+  {
+   "set": "C",
+   "stem": "Mintzberg’s concept of \"Emergent Strategy\" suggests that a successful strategy is often:",
+   "options": {
+    "A": "A result of top-down mandates from the CEO.",
+    "B": "Primarily driven by analyzing competitor financial statements.",
+    "C": "A rigid adherence to a five-year plan.",
+    "D": "A pattern of behavior that develops over time through organizational learning."
+   },
+   "answer": "D",
+   "explanation": "Mintzberg believes strategy is a \"pattern in a stream of actions.\" It’s not just about the starting plan; it’s about the organizational capacity to learn from what works in the real world and adapt the strategy accordingly.",
+   "lo": "Porter vs Mintzberg",
+   "n": 24
+  },
+  {
+   "set": "C",
+   "stem": "Which corporate failure best illustrates the \"Fallacy of Strategic Planning\" (the separation of formulation from implementation)?",
+   "options": {
+    "A": "Nokia, where senior management plans were disconnected from the emergent insights of their own engineers.",
+    "B": "IKEA, by requiring customers to assemble furniture.",
+    "C": "Southwest Airlines, by using a single aircraft type.",
+    "D": "Nirma, by focusing on low-cost detergent."
+   },
+   "answer": "A",
+   "explanation": "The \"Fallacy of Strategic Planning\" is the belief that \"thinkers\" can plan strategy and \"doers\" can just execute it. Nokia’s failure was that the executive plans (formulation) were completely out of touch with the actual technological shifts being observed by the engineers (implementation).",
+   "lo": "Porter vs Mintzberg",
+   "n": 25
+  },
+  {
+   "set": "C",
+   "stem": "Porter identifies \"trade-offs\" as the backbone of strategy. Trade-offs arise for three reasons. Which of the following is NOT one of them?",
+   "options": {
+    "A": "Limits on internal coordination and control.",
+    "B": "The lack of sufficient R&D funding.",
+    "C": "Inconsistencies in image or reputation.",
+    "D": "Incompatibility in activities (different configurations required)."
+   },
+   "answer": "B",
+   "explanation": "Porter explicitly defines three sources of trade-offs: Image (luxury vs. budget), Activities (manual vs. automated), and Coordination (complexity limits). R&D funding is a resource issue, not a fundamental strategic trade-off.",
+   "lo": "Porter vs Mintzberg",
+   "n": 26
+  },
+  {
+   "set": "C",
+   "stem": "A \"Realized Strategy,\" per Mintzberg, is essentially:",
+   "options": {
+    "A": "The strategy the board of directors approved.",
+    "B": "The parts of the intended strategy that were successfully implemented.",
+    "C": "A blend of deliberate strategy and emergent adaptations.",
+    "D": "The strategy a company uses during a crisis."
+   },
+   "answer": "C",
+   "explanation": "No plan survives reality perfectly. The Realized Strategy is what actually happened—the part of the plan that worked (Deliberate) combined with the adaptations made along the way (Emergent).",
+   "lo": "Porter vs Mintzberg",
+   "n": 27
+  },
+  {
+   "set": "C",
+   "stem": "Why did Asian Paints’ deployment of tinting machines in small dealer shops represent Third-Order Fit?",
+   "options": {
+    "A": "It was an emergent strategy that management initially resisted.",
+    "B": "It was simple consistency with a low-cost strategy.",
+    "C": "It reinforced the brand image but had no impact on supply chain.",
+    "D": "It optimized the entire system by reducing finished goods inventory while maximizing color variety for the customer."
+   },
+   "answer": "D",
+   "explanation": "This is Optimization. By placing machines at the point of sale, Asian Paints removed the need to stock 1,000+ shades of pre-mixed paint. This optimized the entire system: less warehouse waste, lower inventory costs, and better customer service.",
+   "lo": "Porter vs Mintzberg",
+   "n": 28
+  },
+  {
+   "set": "C",
+   "stem": "From a Mintzbergian perspective, the potter at the wheel represents the strategist because:",
+   "options": {
+    "A": "The shape of the pot emerges through the potter's hands interacting with the clay.",
+    "B": "Only the master potter (CEO) can decide the final design.",
+    "C": "It highlights that strategy is a static, one-time event.",
+    "D": "The potter follows a blueprint exactly."
+   },
+   "answer": "A",
+   "explanation": "This metaphor attacks the \"Designer\" view. It suggests the strategist is shaping the strategy based on feedback from the material (the market). It emphasizes learning-by-doing and the discovery of unexpected patterns.",
+   "lo": "Porter vs Mintzberg",
+   "n": 29
+  },
+  {
+   "set": "C",
+   "stem": "When Reliance Jio offered free data during its launch, it was primarily using ______ positioning to disrupt the market.",
+   "options": {
+    "A": "Needs-based (catering only to high-end tech users).",
+    "B": "Access-based (reaching a previously underserved mass market via affordable channels).",
+    "C": "Quality-based (offering the fastest speed in the world).",
+    "D": "Variety-based (offering many types of data plans)."
+   },
+   "answer": "B",
+   "explanation": "Access-based positioning is about reaching customers in unique ways. Jio reached the \"unconnected\" mass market of India by breaking the access barrier of high costs and lack of hardware, creating a unique channel to a massive, underserved segment.",
+   "lo": "Porter vs Mintzberg",
+   "n": 30
+  },
+  {
+   "set": "D",
+   "stem": "Porter's \"Five Forces\" model is primarily a tool to analyze:",
+   "options": {
+    "A": "The personal psychological traits of a successful entrepreneur.",
+    "B": "The internal strengths and weaknesses of a CEO.",
+    "C": "The underlying profitability and attractiveness of an industry.",
+    "D": "The day-to-day operational efficiency of a factory."
+   },
+   "answer": "C",
+   "explanation": "Porter’s Five Forces (Rivalry, Substitutes, New Entrants, Buyer Power, Supplier Power) determines the structure of an industry. It is used to determine if an industry is inherently profitable and where the \"value\" is currently sitting.",
+   "lo": "Porter vs Mintzberg",
+   "n": 31
+  },
+  {
+   "set": "D",
+   "stem": "Urban Company (formerly UrbanClap) targets busy professionals who need verified home services. This is a classic example of ______ positioning.",
+   "options": {
+    "A": "Price-based (always being the cheapest).",
+    "B": "Access-based (geographic focus).",
+    "C": "Variety-based (specializing in plumbing only).",
+    "D": "Needs-based (serving the diverse requirements of a specific customer segment)."
+   },
+   "answer": "D",
+   "explanation": "Needs-based positioning starts with a defined set of customers (Urban Professionals) and attempts to meet all their related needs (Cleaning, Beauty, Repair). It is about the \"Who\" and the range of their requirements.",
+   "lo": "Porter vs Mintzberg",
+   "n": 32
+  },
+  {
+   "set": "D",
+   "stem": "Second-Order Fit (Reinforcing Activities) is best described as a state where:",
+   "options": {
+    "A": "Individual activities multiply the impact of each other (e.g., R&D and Marketing).",
+    "B": "Costs are reduced by 50% across the board.",
+    "C": "The company adopts the same practices as its most successful rival.",
+    "D": "All activities are consistent with the strategy."
+   },
+   "answer": "A",
+   "explanation": "Second-Order Fit is about Reinforcement. This goes beyond simple consistency. For example, Titan's high-end design (R&D) is made more valuable by its exclusive \"World of Titan\" showrooms (Marketing), which in turn makes the high-quality after-sales service more credible.",
+   "lo": "Porter vs Mintzberg",
+   "n": 33
+  },
+  {
+   "set": "D",
+   "stem": "The failure of Yahoo to integrate acquisitions like Flickr and Tumblr is, through a Mintzbergian lens, a failure of:",
+   "options": {
+    "A": "Strategic Planning (the plan was too detailed).",
+    "B": "Crafting Strategy (the inability to nurture and learn from emergent patterns).",
+    "C": "Operational Effectiveness (the servers were too slow).",
+    "D": "Variety-based positioning."
+   },
+   "answer": "B",
+   "explanation": "Mintzberg calls emergent strategies \"weeds in a garden.\" Yahoo bought many \"weeds\" (emergent opportunities like Flickr), but its management couldn't \"craft\" them into a coherent strategy. They treated acquisitions as checkboxes rather than sources of organizational learning.",
+   "lo": "Porter vs Mintzberg",
+   "n": 34
+  },
+  {
+   "set": "D",
+   "stem": "Porter uses the term \"The Productivity Frontier\" to describe:",
+   "options": {
+    "A": "The point where a company must fire its management.",
+    "B": "The level of R&D spending in the tech industry.",
+    "C": "The maximum value a company can create at a given cost using available best practices.",
+    "D": "The geographic boundary of a company’s sales."
+   },
+   "answer": "C",
+   "explanation": "The Productivity Frontier is the state of \"best practice.\" Porter argues that most companies spend their time trying to reach this frontier (Operational Effectiveness). Strategy is about choosing a position that is different from the frontier.",
+   "lo": "Porter vs Mintzberg",
+   "n": 35
+  },
+  {
+   "set": "D",
+   "stem": "Which of the following is a \"Trade-off\" that IKEA makes to support its low-cost position?",
+   "options": {
+    "A": "Opening stores only in expensive city-center locations.",
+    "B": "Using high-quality wood for all its products.",
+    "C": "Providing full-service delivery and assembly for all customers at no cost.",
+    "D": "Requiring customers to do their own assembly and transport."
+   },
+   "answer": "D",
+   "explanation": "Strategy is the art of sacrifice. IKEA sacrifices service (delivery/assembly) to achieve its low-cost position. If they added full-service delivery, they would blur their position and their low-cost \"fit\" would collapse.",
+   "lo": "Porter vs Mintzberg",
+   "n": 36
+  },
+  {
+   "set": "D",
+   "stem": "In Mintzberg's \"Crafting Strategy,\" he argues that strategy formulation and implementation are:",
+   "options": {
+    "A": "Intertwined and iterative, where thinking and doing happen together.",
+    "B": "Tasks that should be outsourced to consultants.",
+    "C": "Entirely the responsibility of the CFO.",
+    "D": "Distinct stages that should never overlap."
+   },
+   "answer": "A",
+   "explanation": "Mintzberg’s \"Crafting\" view rejects the idea that a CEO thinks and a manager acts. He argues that thinking and doing happen together, and strategy is a constant, messy process of refinement.",
+   "lo": "Porter vs Mintzberg",
+   "n": 37
+  },
+  {
+   "set": "D",
+   "stem": "Nokia’s \"Burning Platform\" memo acknowledged the rise of ecosystems. Why, then, did the partnership with Microsoft fail strategically?",
+   "options": {
+    "A": "Because Microsoft didn't have enough money.",
+    "B": "Because the activities of the two companies lacked \"fit\" and couldn't create a competitive third ecosystem.",
+    "C": "Because Nokia stopped making durable phones.",
+    "D": "Because Porter’s Five Forces didn't apply to phones."
+   },
+   "answer": "B",
+   "explanation": "Strategy requires a system of activities that Fit. Nokia had hardware scale; Microsoft had software expertise. However, their combined system (the Windows Phone) failed to achieve \"fit\" with the market because it lacked the third reinforcing element: the App Developer community.",
+   "lo": "Porter vs Mintzberg",
+   "n": 38
+  },
+  {
+   "set": "D",
+   "stem": "\"Access-Based Positioning\" is most relevant when:",
+   "options": {
+    "A": "A company offers a wide variety of products to the same person.",
+    "B": "Technology is the only way to reach a customer.",
+    "C": "Customers have the same needs but are reached through different channels or locations.",
+    "D": "Customers have very different needs but are in the same location."
+   },
+   "answer": "C",
+   "explanation": "Access-based positioning focuses on how you reach a customer. Allegiant Air is a classic example—they serve travelers in small towns. The need (vacation) is the same as city-dwellers, but the access (small regional airports) is different.",
+   "lo": "Porter vs Mintzberg",
+   "n": 39
+  },
+  {
+   "set": "D",
+   "stem": "When a company is \"Stuck in the Middle,\" it means:",
+   "options": {
+    "A": "It is located halfway between its suppliers and its customers.",
+    "B": "It has a perfect balance of deliberate and emergent strategy.",
+    "C": "It is the market leader in a niche segment.",
+    "D": "It has failed to choose between a low-cost or differentiation strategy, resulting in a blurry position and poor \"fit.\""
+   },
+   "answer": "D",
+   "explanation": "\"Stuck in the Middle\" is Porter's diagnosis for strategic failure. A company tries to be high-quality and low-cost without making the trade-offs for either. This results in a confusing brand and a system of activities that work against each other.",
+   "lo": "Porter vs Mintzberg",
+   "n": 40
+  }
+ ]
+}

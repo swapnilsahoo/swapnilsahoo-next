@@ -67,123 +67,61 @@ export interface Guesstimate {
 
 export const guesstimates: readonly Guesstimate[] = [
   {
-    "timeboxMinutes": 12,
-    "sensitivity": {
-      "assumptionId": "a-autoshare",
-      "whyThisLever": "It is the only number in the chain nobody in the room can source, and it enters as a direct multiplier — double it and the fleet doubles. Everything else is either a census anchor or bounded by something physical: a paid trip cannot average five minutes, a driver cannot work twenty hours, a third of trips will always be walked. The auto share has no such floor or ceiling, which is why it is where the argument actually happens.",
-      "cases": [
-        {
-          "scenario": "Conservative",
-          "leverValue": "7% — buses and the metro carrying more of the city than you assumed",
-          "answer": "≈ 57,000 vehicles",
-          "deltaVsBase": "−30%"
-        },
-        {
-          "scenario": "Base",
-          "leverValue": "10% — autos as the residual after two-wheelers, public transport and cars",
-          "answer": "≈ 82,000 vehicles",
-          "deltaVsBase": "—"
-        },
-        {
-          "scenario": "Aggressive",
-          "leverValue": "15% — the number a commuter waiting outside a metro station would give you",
-          "answer": "≈ 1.23 lakh vehicles",
-          "deltaVsBase": "+50%"
-        }
-      ],
-      "breakpoint": "To drop the answer below 50,000 you need the auto share under 6%; to clear 1.5 lakh you need it above 19%. Both are arguable over a coffee and neither survives thirty seconds with a mode-share table. That bracket — 50,000 to 1.5 lakh — is the honest precision of this estimate, and the order of magnitude holds right across it. Saying that is a stronger answer than defending 82,000.",
-      "oneLiner": "If there is no time for the grid, say this: the auto share of motorised trips is doing most of the work here, I have used 10%, the defensible range is 7 to 15, and the fleet moves roughly in proportion — so treat the answer as 'under a lakh, and nowhere near ten thousand'."
-    },
-    "number": "01",
-    "difficulty": "Medium",
-    "id": "auto-rickshaws",
-    "archetype": "unit-chain-infrastructure",
-    "routeChoice": {
-      "chosen": "Hybrid",
-      "why": "The demand half comes from population, which you can anchor, and the supply half comes from what one vehicle can physically absorb in a day, which you can reason out from trip length and waiting time. Neither half is an answer on its own — trips are not vehicles, and a vehicle's capacity means nothing until you know how much work is queued for it. Take the trip pool top-down, take throughput bottom-up, divide, and say out loud that the units cancel to vehicles.",
-      "rejectedRoute": "Top-down",
-      "rejectedWhyNot": "The pure top-down move is to take India's registered three-wheeler fleet and scale it by Bengaluru's share of urban population. It fails twice over. It rests on a national registration base you cannot source in the room and could not defend if you could, and it scales by headcount when auto density is actually set by metro coverage, road width and the municipal permit cap — Bengaluru and Kolkata do not carry the same autos per lakh of people, and nothing inside a population ratio knows that. Worse, it delivers registrations, which is a different quantity from the one the question asked for. Keep it as a cross-check, not as the spine."
-    },
-    "sanityChecks": [
-      "Spread 82,000 vehicles over Bengaluru's roughly 14,000 km of city roads and you get about six autos per kilometre of road — and only a fraction of those are on a main road at any one moment. Stand at a busy junction for a minute and that is roughly what passes. Had the chain produced 8 lakh, the street outside would look nothing like the city a resident actually walks through, and that gut check matters as much as the arithmetic.",
-      "A quarter of the fleet running two shifts means about 1.02 lakh drivers, so roughly a lakh households — under 1% of the city's population living directly off the trade. That is the right order for a large informal occupation that is nonetheless not the city's biggest employer. A figure implying 5% of Bengaluru drives an auto would be self-evidently wrong.",
-      "At 15.5 trips a day and an average fare around ₹90, a vehicle grosses roughly ₹1,400. Take out fuel and the daily rent and the driver keeps something in the ₹700 to ₹900 range. That is a plausible Bengaluru day. If the chain had implied ₹4,000 of gross fares per vehicle, either the trip count or the fare is wrong, and the trip count is the one to check first.",
-      "Whatever you believe about permits — 1.5 lakh is the figure usually quoted — the active count has to sit below it, and comfortably below it, because permits are held through repairs, illness and outright abandonment. An estimate that lands above the permit base has counted something other than vehicles, almost always trips or drivers."
-    ],
     "answerBand": "50,000 to 1.5 lakh — and the width of that band is set almost entirely by one lever, the auto share of motorised trips",
-    "tree": {
-      "root": "Auto-rickshaws working a typical Bengaluru weekday",
-      "rootFormula": "= Daily auto trips ÷ Paid trips per vehicle per day",
-      "value": "≈ 82,000 vehicles",
-      "branches": [
-        {
-          "label": "Daily auto-rickshaw trips",
-          "formula": "= Population × Trips per person × Motorised share × Auto share",
-          "value": "≈ 12.7 lakh trips per day",
-          "note": "The demand the fleet has to absorb. Three of these four levers sit close to anchors; the fourth carries the whole argument.",
-          "isCriticalPath": true,
-          "children": [
-            {
-              "label": "City population, BBMP area",
-              "formula": "Census anchor",
-              "value": "1.3 crore",
-              "note": "The municipal city, not the 1.4 crore metropolitan region. Say which one you are using in the same breath as the number."
-            },
-            {
-              "label": "Trips per person per day, all modes",
-              "formula": "× 1.5",
-              "value": "≈ 1.95 crore trips",
-              "note": "A commuter makes two, a school child two, and a long tail of the elderly and the housebound makes none."
-            },
-            {
-              "label": "Motorised share of trips",
-              "formula": "× 65%",
-              "value": "≈ 1.27 crore motorised trips",
-              "note": "About a third of urban trips are walked or cycled — the kirana, the school gate, the bus stop — and never touch a vehicle."
-            },
-            {
-              "label": "Auto share of motorised trips",
-              "formula": "= 1 − 45% two-wheelers − 33% bus and metro − 12% cars",
-              "value": "10%, giving ≈ 12.7 lakh auto trips",
-              "note": "Built as a residual rather than felt. The shakiest number on the page even so — flag it before the interviewer finds it."
-            }
-          ]
-        },
-        {
-          "label": "Paid trips per vehicle per day",
-          "formula": "= 75% of the fleet × 13.5 trips + 25% × 21.6 trips",
-          "value": "≈ 15.5 trips",
-          "note": "Not the critical path, but not the optional half either — it divides. A two-fold error here costs precisely what a two-fold error in the auto share costs, and candidates spend nine-tenths of their time on the other branch.",
-          "isCriticalPath": false,
-          "children": [
-            {
-              "label": "Paid trips per on-road hour",
-              "formula": "= (60 ÷ 20-minute trip) × 45% of road time paid",
-              "value": "1.35",
-              "note": "Throughput after waiting at the stand, running back empty from a drop and stopping for lunch. Three paid trips every two hours, not four."
-            },
-            {
-              "label": "Single-shift vehicle, 10 h on the road",
-              "formula": "= 10 × 1.35",
-              "value": "13.5 trips a day",
-              "note": "One owner-driver, school run through to the evening peak, and the vehicle goes home with him at night."
-            },
-            {
-              "label": "Double-shift vehicle, 16 h on the road",
-              "formula": "= 16 × 1.35",
-              "value": "21.6 trips a day",
-              "note": "Rented to two drivers in succession — sixty per cent more output from the same vehicle, which is precisely why vehicles and drivers are different counts."
-            },
-            {
-              "label": "Share of the fleet run on two shifts",
-              "formula": "25%",
-              "value": "≈ 15.5 weighted trips",
-              "note": "The weighting is where the fleet stops being homogeneous. Skip it, assume everyone does 13.5, and you overcount vehicles by about a seventh."
-            }
-          ]
-        }
-      ]
+    "scope": {
+      "countingWhat": "Individual passenger auto-rickshaws that complete at least one paid trip on a typical non-holiday weekday inside Bengaluru's municipal limits.",
+      "unit": "auto-rickshaws (vehicles, not drivers, not permits)",
+      "timeBasis": "stock (point in time)",
+      "geography": "Bengaluru, BBMP municipal area (roughly 740 sq km) — not the wider metropolitan region",
+      "included": [
+        "Passenger autos completing at least one paid trip on the day — street-hailed, stand-based or app-booked",
+        "CNG and electric three-wheelers carrying passengers, since the question is about work done, not about fuel",
+        "Autos on fixed school and office shuttle contracts, which never wait at a stand but are on the road all morning",
+        "Vehicles registered elsewhere in Karnataka that work inside the city on the day"
+      ],
+      "excluded": [
+        "Goods-carrier three-wheelers — same chassis, none of the demand",
+        "Registered but not working today: scrapped, cannibalised, under repair, or parked while the permit is held",
+        "Drivers. One vehicle can carry two of them across a day and a night shift, and the question asked for vehicles",
+        "Trips. Roughly 12.7 lakh of them happen; that is the input to the chain, not the answer",
+        "The region beyond BBMP — Anekal, Nelamangala, Devanahalli and the airport corridor"
+      ],
+      "boundaryTrap": "Four numbers hide behind the phrase 'on the road': permits issued, vehicles on the registration roll, vehicles physically working today, and drivers. End to end they differ by something like a factor of two — much of the roll is scrapped or long parked, and a quarter of the working fleet carries two drivers. There is a second boundary underneath that one. The answer is a stock of vehicles, but every number you can actually estimate is a daily flow of trips; dividing a flow by a flow-per-vehicle is what converts one into the other. If your units do not cancel to 'vehicles', you have built the wrong chain, and no amount of careful arithmetic downstream will rescue it."
     },
+    "question": "How many auto-rickshaws are actually out earning a living on Bengaluru's roads on a typical weekday?",
+    "difficulty": "Medium",
+    "probes": [
+      {
+        "question": "Which of your numbers would you most want to check before you commit to this?",
+        "intent": "Whether you can rank your own uncertainty rather than defending every figure with the same conviction.",
+        "goodAnswer": "The auto share of motorised trips, at 10%. It is a direct multiplier, I built it as a residual rather than from a source, and the defensible range of 7 to 15% takes the answer from about 57,000 to about 1.23 lakh. Everything else is either anchored or bounded — a paid trip cannot average five minutes and a driver cannot work twenty hours — so those levers cannot hurt me the same way.",
+        "weakAnswer": "All of them are assumptions, so ideally I would want real data on all of them."
+      },
+      {
+        "question": "Bike taxis and app cabs have grown fast in Bengaluru. Does that change your answer?",
+        "intent": "Whether you can move one lever in the right direction without rebuilding the chain, and whether you notice the second-order effect.",
+        "goodAnswer": "It compresses the auto share, not the trip pool — the journeys still happen, they change mode. Take three points of motorised share off autos and the fleet falls about a third, into the high 50,000s. The second-order effect runs the other way: displaced drivers attach to aggregator platforms, which lifts paid utilisation above 45% and lets a smaller fleet serve the same trips. Both effects point down, so I would revise the answer down rather than sideways.",
+        "weakAnswer": "Yes, the market is changing, so the number would probably be lower today."
+      },
+      {
+        "question": "Your answer is well under what the city's permit count suggests. Are you wrong?",
+        "intent": "Whether you can hold a discrepancy open and explain its direction instead of retrofitting the chain to close it.",
+        "goodAnswer": "Probably not wrong, but incomplete. A permit roll is cumulative and a working fleet is not, so the gap is mostly vehicles that are scrapped, parked or long off the road — a real wedge, and it runs in the direction you would predict. If you want me to close it, I would raise the in-service share, because that is the number the registration route is silent on. I would not raise the auto trip share to make the two agree, because that is fitting the assumption to the answer.",
+        "weakAnswer": "Then I would revise my assumptions upward until the two numbers match."
+      },
+      {
+        "question": "How would this look on a Sunday?",
+        "intent": "Whether you registered that the weekday basis was a choice you made, not a default you inherited.",
+        "goodAnswer": "The trip pool falls — no school run, no office peak — but not as far as you would expect, because leisure, market and restaurant trips substitute, and those favour autos over buses. So the share rises while the pool falls. Fewer vehicles work, perhaps 15% fewer as drivers take their rest day, and each does somewhat fewer trips. I would take the fleet down about a fifth. The weekday was a deliberate choice of a typical day rather than an average one, and I would say which basis I was using before quoting any number.",
+        "weakAnswer": "It would be lower, because fewer people travel at the weekend."
+      },
+      {
+        "question": "Estimate it a completely different way. Ninety seconds.",
+        "intent": "Whether a second route is already in reserve, and whether you can tell the difference between agreement and confirmation.",
+        "goodAnswer": "Supply side. Bengaluru's registration roll runs close to one vehicle per resident — about 1.1 crore. Passenger autos are roughly 1.5% of that, so about 1.65 lakh registrations. Take 60% as still roadworthy and in service, and 90% of those as out on a given weekday: about 90,000. That lands within a tenth of my first answer, which is closer than either route deserves, because both start from the same population anchor. I would report a band of 80,000 to 1,00,000 rather than treat the agreement as proof.",
+        "weakAnswer": "I would run the same method again with more accurate numbers at each step."
+      }
+    ],
     "triangulation": {
       "label": "Supply-side cross-check · the registration roll, stripped down",
       "route": "Top-down",
@@ -258,194 +196,141 @@ export const guesstimates: readonly Guesstimate[] = [
       "answer": "≈ 90,000 auto-rickshaws working a typical weekday",
       "verdict": "The demand route gives about 82,000 and the supply route about 90,000 — roughly a tenth apart, both sitting at 10^5. Resist calling that confirmation. The two chains share the same 1.3 crore population anchor, so they are not independent, and an error in that anchor moves both by the same proportion in the same direction. The gap that does exist runs the way you would predict: a registration roll is cumulative and a working fleet is not, because vehicles get scrapped far more readily than they get de-registered, so the supply route should sit high. Report the pair as a band — 80,000 to 1,00,000 — and say which way you think the error runs. A candidate who narrates the direction of a discrepancy is doing something a candidate who averages the two numbers is not."
     },
-    "probes": [
+    "tree": {
+      "root": "Auto-rickshaws working a typical Bengaluru weekday",
+      "rootFormula": "= Daily auto trips ÷ Paid trips per vehicle per day",
+      "value": "≈ 82,000 vehicles",
+      "branches": [
+        {
+          "label": "Daily auto-rickshaw trips",
+          "formula": "= Population × Trips per person × Motorised share × Auto share",
+          "value": "≈ 12.7 lakh trips per day",
+          "note": "The demand the fleet has to absorb. Three of these four levers sit close to anchors; the fourth carries the whole argument.",
+          "isCriticalPath": true,
+          "children": [
+            {
+              "label": "City population, BBMP area",
+              "formula": "Census anchor",
+              "value": "1.3 crore",
+              "note": "The municipal city, not the 1.4 crore metropolitan region. Say which one you are using in the same breath as the number."
+            },
+            {
+              "label": "Trips per person per day, all modes",
+              "formula": "× 1.5",
+              "value": "≈ 1.95 crore trips",
+              "note": "A commuter makes two, a school child two, and a long tail of the elderly and the housebound makes none."
+            },
+            {
+              "label": "Motorised share of trips",
+              "formula": "× 65%",
+              "value": "≈ 1.27 crore motorised trips",
+              "note": "About a third of urban trips are walked or cycled — the kirana, the school gate, the bus stop — and never touch a vehicle."
+            },
+            {
+              "label": "Auto share of motorised trips",
+              "formula": "= 1 − 45% two-wheelers − 33% bus and metro − 12% cars",
+              "value": "10%, giving ≈ 12.7 lakh auto trips",
+              "note": "Built as a residual rather than felt. The shakiest number on the page even so — flag it before the interviewer finds it."
+            }
+          ]
+        },
+        {
+          "label": "Paid trips per vehicle per day",
+          "formula": "= 75% of the fleet × 13.5 trips + 25% × 21.6 trips",
+          "value": "≈ 15.5 trips",
+          "note": "Not the critical path, but not the optional half either — it divides. A two-fold error here costs precisely what a two-fold error in the auto share costs, and candidates spend nine-tenths of their time on the other branch.",
+          "isCriticalPath": false,
+          "children": [
+            {
+              "label": "Paid trips per on-road hour",
+              "formula": "= (60 ÷ 20-minute trip) × 45% of road time paid",
+              "value": "1.35",
+              "note": "Throughput after waiting at the stand, running back empty from a drop and stopping for lunch. Three paid trips every two hours, not four."
+            },
+            {
+              "label": "Single-shift vehicle, 10 h on the road",
+              "formula": "= 10 × 1.35",
+              "value": "13.5 trips a day",
+              "note": "One owner-driver, school run through to the evening peak, and the vehicle goes home with him at night."
+            },
+            {
+              "label": "Double-shift vehicle, 16 h on the road",
+              "formula": "= 16 × 1.35",
+              "value": "21.6 trips a day",
+              "note": "Rented to two drivers in succession — sixty per cent more output from the same vehicle, which is precisely why vehicles and drivers are different counts."
+            },
+            {
+              "label": "Share of the fleet run on two shifts",
+              "formula": "25%",
+              "value": "≈ 15.5 weighted trips",
+              "note": "The weighting is where the fleet stops being homogeneous. Skip it, assume everyone does 13.5, and you overcount vehicles by about a seventh."
+            }
+          ]
+        }
+      ]
+    },
+    "timeboxMinutes": 12,
+    "traps": [
       {
-        "question": "Which of your numbers would you most want to check before you commit to this?",
-        "intent": "Whether you can rank your own uncertainty rather than defending every figure with the same conviction.",
-        "goodAnswer": "The auto share of motorised trips, at 10%. It is a direct multiplier, I built it as a residual rather than from a source, and the defensible range of 7 to 15% takes the answer from about 57,000 to about 1.23 lakh. Everything else is either anchored or bounded — a paid trip cannot average five minutes and a driver cannot work twenty hours — so those levers cannot hurt me the same way.",
-        "weakAnswer": "All of them are assumptions, so ideally I would want real data on all of them."
+        "trap": "Answering the question with the registration figure",
+        "whyItHappens": "Registrations are the only auto-rickshaw number anyone has ever read, so the mind reaches for it under time pressure and dresses it up as recall. The roll is cumulative: the transport office adds vehicles and almost never removes them, so it still carries autos that were scrapped years ago. The two quantities are not close, and they drift further apart every year.",
+        "fix": "State which quantity you are producing before you compute anything — vehicles working today — and treat any registration figure you half-remember as an upper bound to triangulate against, never as the answer itself."
       },
       {
-        "question": "Bike taxis and app cabs have grown fast in Bengaluru. Does that change your answer?",
-        "intent": "Whether you can move one lever in the right direction without rebuilding the chain, and whether you notice the second-order effect.",
-        "goodAnswer": "It compresses the auto share, not the trip pool — the journeys still happen, they change mode. Take three points of motorised share off autos and the fleet falls about a third, into the high 50,000s. The second-order effect runs the other way: displaced drivers attach to aggregator platforms, which lifts paid utilisation above 45% and lets a smaller fleet serve the same trips. Both effects point down, so I would revise the answer down rather than sideways.",
-        "weakAnswer": "Yes, the market is changing, so the number would probably be lower today."
+        "trap": "Counting drivers and calling them vehicles",
+        "whyItHappens": "The question says autos and you picture drivers, because the driver is the part of the transaction you actually interact with. About a quarter of the fleet carries two drivers across a day and a night shift, so the two counts differ by roughly 25% before a single arithmetic error has been made — and the error is invisible, because both numbers look equally reasonable.",
+        "fix": "Fix the unit in your scope sentence — vehicles, not drivers, not permits, not trips — and split the fleet by shift pattern so the difference sits on the page where you and the interviewer can both see it."
       },
       {
-        "question": "Your answer is well under what the city's permit count suggests. Are you wrong?",
-        "intent": "Whether you can hold a discrepancy open and explain its direction instead of retrofitting the chain to close it.",
-        "goodAnswer": "Probably not wrong, but incomplete. A permit roll is cumulative and a working fleet is not, so the gap is mostly vehicles that are scrapped, parked or long off the road — a real wedge, and it runs in the direction you would predict. If you want me to close it, I would raise the in-service share, because that is the number the registration route is silent on. I would not raise the auto trip share to make the two agree, because that is fitting the assumption to the answer.",
-        "weakAnswer": "Then I would revise my assumptions upward until the two numbers match."
+        "trap": "Setting the auto share of motorised trips from your own habits",
+        "whyItHappens": "A candidate who takes autos daily reaches for 30 or 40%; a candidate who rides a two-wheeler reaches for 3%. Neither is estimating — both are reporting a personal routine as a city statistic, and neither can tell the difference from the inside. An earlier version of this very answer used 40%, and one glance at a mode-share table would have killed it.",
+        "fix": "Build the share as a residual. Assign two-wheelers, then buses and metro, then cars, and give autos what is left. A share you derived can be defended line by line; a share you felt collapses at the first push."
       },
       {
-        "question": "How would this look on a Sunday?",
-        "intent": "Whether you registered that the weekday basis was a choice you made, not a default you inherited.",
-        "goodAnswer": "The trip pool falls — no school run, no office peak — but not as far as you would expect, because leisure, market and restaurant trips substitute, and those favour autos over buses. So the share rises while the pool falls. Fewer vehicles work, perhaps 15% fewer as drivers take their rest day, and each does somewhat fewer trips. I would take the fleet down about a fifth. The weekday was a deliberate choice of a typical day rather than an average one, and I would say which basis I was using before quoting any number.",
-        "weakAnswer": "It would be lower, because fewer people travel at the weekend."
+        "trap": "Working the demand numerator hard and waving at the denominator",
+        "whyItHappens": "The population funnel feels like the real analysis, so it takes four minutes, and trips-per-vehicle gets a round number pulled from nowhere in the last thirty seconds. But the denominator divides: a two-fold error in trips per vehicle costs exactly what a two-fold error in the auto share costs, and it is far less likely to be challenged, because it sounds operational rather than assumed.",
+        "fix": "Give the denominator its own small tree — hours on the road, share of those hours paid, minutes per paid trip. Three numbers you can each defend beat one confident number nobody asked about."
       },
       {
-        "question": "Estimate it a completely different way. Ninety seconds.",
-        "intent": "Whether a second route is already in reserve, and whether you can tell the difference between agreement and confirmation.",
-        "goodAnswer": "Supply side. Bengaluru's registration roll runs close to one vehicle per resident — about 1.1 crore. Passenger autos are roughly 1.5% of that, so about 1.65 lakh registrations. Take 60% as still roadworthy and in service, and 90% of those as out on a given weekday: about 90,000. That lands within a tenth of my first answer, which is closer than either route deserves, because both start from the same population anchor. I would report a band of 80,000 to 1,00,000 rather than treat the agreement as proof.",
-        "weakAnswer": "I would run the same method again with more accurate numbers at each step."
+        "trap": "Reporting 81,774",
+        "whyItHappens": "The arithmetic produced it and the digits feel like precision you earned. They are precision borrowed from levers you called judgement two minutes earlier — a 45% utilisation figure and a 10% mode share cannot support five significant figures between them, and quoting them tells the interviewer you do not know what an estimate is.",
+        "fix": "Round hard, to two significant figures at most, state the band, and name the one lever that would have to move to break it."
       }
     ],
     "finalAnswerNumeric": 82000,
-    "tabLabel": "Auto-rickshaws, Bengaluru",
-    "finalAnswer": "≈ 82,000 auto-rickshaws out earning on a typical Bengaluru weekday — say 'a bit over 80,000' aloud, and never 81,774.",
-    "scope": {
-      "countingWhat": "Individual passenger auto-rickshaws that complete at least one paid trip on a typical non-holiday weekday inside Bengaluru's municipal limits.",
-      "unit": "auto-rickshaws (vehicles, not drivers, not permits)",
-      "timeBasis": "stock (point in time)",
-      "geography": "Bengaluru, BBMP municipal area (roughly 740 sq km) — not the wider metropolitan region",
-      "included": [
-        "Passenger autos completing at least one paid trip on the day — street-hailed, stand-based or app-booked",
-        "CNG and electric three-wheelers carrying passengers, since the question is about work done, not about fuel",
-        "Autos on fixed school and office shuttle contracts, which never wait at a stand but are on the road all morning",
-        "Vehicles registered elsewhere in Karnataka that work inside the city on the day"
+    "number": "01",
+    "sensitivity": {
+      "assumptionId": "a-autoshare",
+      "whyThisLever": "It is the only number in the chain nobody in the room can source, and it enters as a direct multiplier — double it and the fleet doubles. Everything else is either a census anchor or bounded by something physical: a paid trip cannot average five minutes, a driver cannot work twenty hours, a third of trips will always be walked. The auto share has no such floor or ceiling, which is why it is where the argument actually happens.",
+      "cases": [
+        {
+          "scenario": "Conservative",
+          "leverValue": "7% — buses and the metro carrying more of the city than you assumed",
+          "answer": "≈ 57,000 vehicles",
+          "deltaVsBase": "−30%"
+        },
+        {
+          "scenario": "Base",
+          "leverValue": "10% — autos as the residual after two-wheelers, public transport and cars",
+          "answer": "≈ 82,000 vehicles",
+          "deltaVsBase": "—"
+        },
+        {
+          "scenario": "Aggressive",
+          "leverValue": "15% — the number a commuter waiting outside a metro station would give you",
+          "answer": "≈ 1.23 lakh vehicles",
+          "deltaVsBase": "+50%"
+        }
       ],
-      "excluded": [
-        "Goods-carrier three-wheelers — same chassis, none of the demand",
-        "Registered but not working today: scrapped, cannibalised, under repair, or parked while the permit is held",
-        "Drivers. One vehicle can carry two of them across a day and a night shift, and the question asked for vehicles",
-        "Trips. Roughly 12.7 lakh of them happen; that is the input to the chain, not the answer",
-        "The region beyond BBMP — Anekal, Nelamangala, Devanahalli and the airport corridor"
-      ],
-      "boundaryTrap": "Four numbers hide behind the phrase 'on the road': permits issued, vehicles on the registration roll, vehicles physically working today, and drivers. End to end they differ by something like a factor of two — much of the roll is scrapped or long parked, and a quarter of the working fleet carries two drivers. There is a second boundary underneath that one. The answer is a stock of vehicles, but every number you can actually estimate is a daily flow of trips; dividing a flow by a flow-per-vehicle is what converts one into the other. If your units do not cancel to 'vehicles', you have built the wrong chain, and no amount of careful arithmetic downstream will rescue it."
+      "breakpoint": "To drop the answer below 50,000 you need the auto share under 6%; to clear 1.5 lakh you need it above 19%. Both are arguable over a coffee and neither survives thirty seconds with a mode-share table. That bracket — 50,000 to 1.5 lakh — is the honest precision of this estimate, and the order of magnitude holds right across it. Saying that is a stronger answer than defending 82,000.",
+      "oneLiner": "If there is no time for the grid, say this: the auto share of motorised trips is doing most of the work here, I have used 10%, the defensible range is 7 to 15, and the fleet moves roughly in proportion — so treat the answer as 'under a lakh, and nowhere near ten thousand'."
     },
-    "calculation": [
-      {
-        "id": "c1",
-        "label": "Trips of every kind made in Bengaluru each day",
-        "expr": "13000000 * 1.5",
-        "display": "1.3 crore people × 1.5 trips per person per day",
-        "result": 19500000,
-        "unit": "trips per day",
-        "carriedForward": "≈ 1.95 crore trips a day",
-        "uses": [
-          "a-pop",
-          "a-triprate"
-        ],
-        "soWhat": "This is every journey in the city, including the walk to the bus stop. Most of it gets filtered out in the next two lines, and saying so as you write it stops the interviewer assuming you have confused total trips with auto trips."
-      },
-      {
-        "id": "c2",
-        "label": "Motorised trips a day",
-        "expr": "19500000 * 0.65",
-        "display": "1.95 crore trips × 65% motorised",
-        "result": 12675000,
-        "unit": "trips per day",
-        "carriedForward": "≈ 1.27 crore motorised trips",
-        "uses": [
-          "a-motorised"
-        ],
-        "soWhat": "Walking and cycling leave the pool here. From this line onward every trip is one somebody paid a fare for or burned fuel on, which is the only pool an auto can compete in."
-      },
-      {
-        "id": "c3",
-        "label": "Auto share of motorised trips, built as a residual",
-        "expr": "1 - 0.45 - 0.33 - 0.12",
-        "display": "100% − 45% two-wheelers − 33% bus and metro − 12% cars",
-        "result": 0.1,
-        "unit": "share",
-        "carriedForward": "10%",
-        "uses": [
-          "a-modesplit"
-        ],
-        "soWhat": "Derive the share, do not feel it. Assigning the three big modes first and handing autos the remainder gives you something you can defend line by line, and it protects you from the commonest failure on this question — a candidate reporting their own commute as a city statistic."
-      },
-      {
-        "id": "c4",
-        "label": "Auto-rickshaw trips a day",
-        "expr": "12675000 * 0.1",
-        "display": "1.27 crore motorised trips × 10% auto share",
-        "result": 1267500,
-        "unit": "trips per day",
-        "carriedForward": "≈ 12.7 lakh auto trips",
-        "uses": [
-          "a-autoshare"
-        ],
-        "soWhat": "The demand the fleet has to absorb, and still the weakest number in the chain even after deriving it. Name it as such now — a candidate who volunteers the soft lever is trusted with the hard ones."
-      },
-      {
-        "id": "c5",
-        "label": "Paid trips one vehicle completes per on-road hour",
-        "expr": "60 / 20 * 0.45",
-        "display": "(60 min ÷ 20-minute trip) × 45% of road time paid",
-        "result": 1.35,
-        "unit": "paid trips per on-road hour",
-        "uses": [
-          "a-triplen",
-          "a-util"
-        ],
-        "soWhat": "Throughput, not effort, sets the denominator. Three paid trips every two hours is the honest rate once waiting at a stand and running back empty are counted, and it sits well below what a candidate reasoning from trip length alone will assume."
-      },
-      {
-        "id": "c6",
-        "label": "Road-minutes one paid trip actually costs the vehicle",
-        "expr": "20 / 0.45",
-        "display": "20-minute fare ÷ 45% of road time paid",
-        "result": 44.444,
-        "tolerance": 0.0001,
-        "unit": "minutes per completed trip",
-        "carriedForward": "not carried forward — an intuition check",
-        "uses": [
-          "a-triplen",
-          "a-util"
-        ],
-        "soWhat": "A twenty-minute fare consumes about forty-five minutes of the vehicle's day once the empty return and the wait at the stand are charged against it. That gap, not the length of the fare, is why a ten-hour day yields thirteen trips rather than thirty — and it is the number most candidates never compute at all."
-      },
-      {
-        "id": "c7",
-        "label": "Output of a single-shift vehicle",
-        "expr": "10 * 1.35",
-        "display": "10 on-road hours × 1.35 paid trips per hour",
-        "result": 13.5,
-        "unit": "trips per vehicle per day",
-        "uses": [
-          "a-singlehrs"
-        ],
-        "soWhat": "The owner-driven majority. One driver, one long day, and the vehicle parked at night — this is the number a candidate who ignores shift patterns applies to the entire fleet."
-      },
-      {
-        "id": "c8",
-        "label": "Output of a double-shift vehicle",
-        "expr": "16 * 1.35",
-        "display": "16 on-road hours × 1.35 paid trips per hour",
-        "result": 21.6,
-        "unit": "trips per vehicle per day",
-        "uses": [
-          "a-doublehrs"
-        ],
-        "soWhat": "Sixty per cent more work out of the same asset, because a second driver takes it over rather than buying another one. Put the two shift patterns side by side and the gap between counting vehicles and counting drivers becomes visible instead of theoretical."
-      },
-      {
-        "id": "c9",
-        "label": "Fleet-average paid trips per vehicle per day",
-        "expr": "0.75 * 13.5 + 0.25 * 21.6",
-        "display": "75% of the fleet × 13.5 trips + 25% × 21.6 trips",
-        "result": 15.525,
-        "unit": "trips per vehicle per day",
-        "carriedForward": "≈ 15.5 trips",
-        "uses": [
-          "a-doubleshare"
-        ],
-        "soWhat": "Round to 15.5 before dividing — carrying 15.525 forward would be pretending to a precision the 45% utilisation figure cannot support. Note what the weighting bought: apply 13.5 to the whole fleet instead and the answer inflates by about a seventh, silently."
-      },
-      {
-        "id": "c10",
-        "label": "Auto-rickshaws working a typical weekday",
-        "expr": "1267500 / 15.5",
-        "display": "12.7 lakh auto trips a day ÷ 15.5 trips per vehicle per day",
-        "result": 81774.19,
-        "tolerance": 0.0001,
-        "unit": "vehicles",
-        "carriedForward": "≈ 82,000 vehicles",
-        "uses": [],
-        "soWhat": "Trips per day divided by trips per vehicle per day leaves vehicles — a flow divided by a flow-per-unit gives the stock. Say that out loud. It is how you show the chain is an identity rather than four numbers multiplied in hope, and it is the moment the interviewer decides whether you understood the question or only answered it."
-      }
+    "sanityChecks": [
+      "Spread 82,000 vehicles over Bengaluru's roughly 14,000 km of city roads and you get about six autos per kilometre of road — and only a fraction of those are on a main road at any one moment. Stand at a busy junction for a minute and that is roughly what passes. Had the chain produced 8 lakh, the street outside would look nothing like the city a resident actually walks through, and that gut check matters as much as the arithmetic.",
+      "A quarter of the fleet running two shifts means about 1.02 lakh drivers, so roughly a lakh households — under 1% of the city's population living directly off the trade. That is the right order for a large informal occupation that is nonetheless not the city's biggest employer. A figure implying 5% of Bengaluru drives an auto would be self-evidently wrong.",
+      "At 15.5 trips a day and an average fare around ₹90, a vehicle grosses roughly ₹1,400. Take out fuel and the daily rent and the driver keeps something in the ₹700 to ₹900 range. That is a plausible Bengaluru day. If the chain had implied ₹4,000 of gross fares per vehicle, either the trip count or the fare is wrong, and the trip count is the one to check first.",
+      "Whatever you believe about permits — 1.5 lakh is the figure usually quoted — the active count has to sit below it, and comfortably below it, because permits are held through repairs, illness and outright abandonment. An estimate that lands above the permit base has counted something other than vehicles, almost always trips or drivers."
     ],
-    "orderOfMagnitude": "10^5",
     "assumptions": [
       {
         "id": "a-pop",
@@ -599,153 +484,208 @@ export const guesstimates: readonly Guesstimate[] = [
         "confidence": "defensible"
       }
     ],
-    "question": "How many auto-rickshaws are actually out earning a living on Bengaluru's roads on a typical weekday?",
-    "traps": [
+    "finalAnswer": "≈ 82,000 auto-rickshaws out earning on a typical Bengaluru weekday — say 'a bit over 80,000' aloud, and never 81,774.",
+    "calculation": [
       {
-        "trap": "Answering the question with the registration figure",
-        "whyItHappens": "Registrations are the only auto-rickshaw number anyone has ever read, so the mind reaches for it under time pressure and dresses it up as recall. The roll is cumulative: the transport office adds vehicles and almost never removes them, so it still carries autos that were scrapped years ago. The two quantities are not close, and they drift further apart every year.",
-        "fix": "State which quantity you are producing before you compute anything — vehicles working today — and treat any registration figure you half-remember as an upper bound to triangulate against, never as the answer itself."
+        "id": "c1",
+        "label": "Trips of every kind made in Bengaluru each day",
+        "expr": "13000000 * 1.5",
+        "display": "1.3 crore people × 1.5 trips per person per day",
+        "result": 19500000,
+        "unit": "trips per day",
+        "carriedForward": "≈ 1.95 crore trips a day",
+        "uses": [
+          "a-pop",
+          "a-triprate"
+        ],
+        "soWhat": "This is every journey in the city, including the walk to the bus stop. Most of it gets filtered out in the next two lines, and saying so as you write it stops the interviewer assuming you have confused total trips with auto trips."
       },
       {
-        "trap": "Counting drivers and calling them vehicles",
-        "whyItHappens": "The question says autos and you picture drivers, because the driver is the part of the transaction you actually interact with. About a quarter of the fleet carries two drivers across a day and a night shift, so the two counts differ by roughly 25% before a single arithmetic error has been made — and the error is invisible, because both numbers look equally reasonable.",
-        "fix": "Fix the unit in your scope sentence — vehicles, not drivers, not permits, not trips — and split the fleet by shift pattern so the difference sits on the page where you and the interviewer can both see it."
+        "id": "c2",
+        "label": "Motorised trips a day",
+        "expr": "19500000 * 0.65",
+        "display": "1.95 crore trips × 65% motorised",
+        "result": 12675000,
+        "unit": "trips per day",
+        "carriedForward": "≈ 1.27 crore motorised trips",
+        "uses": [
+          "a-motorised"
+        ],
+        "soWhat": "Walking and cycling leave the pool here. From this line onward every trip is one somebody paid a fare for or burned fuel on, which is the only pool an auto can compete in."
       },
       {
-        "trap": "Setting the auto share of motorised trips from your own habits",
-        "whyItHappens": "A candidate who takes autos daily reaches for 30 or 40%; a candidate who rides a two-wheeler reaches for 3%. Neither is estimating — both are reporting a personal routine as a city statistic, and neither can tell the difference from the inside. An earlier version of this very answer used 40%, and one glance at a mode-share table would have killed it.",
-        "fix": "Build the share as a residual. Assign two-wheelers, then buses and metro, then cars, and give autos what is left. A share you derived can be defended line by line; a share you felt collapses at the first push."
+        "id": "c3",
+        "label": "Auto share of motorised trips, built as a residual",
+        "expr": "1 - 0.45 - 0.33 - 0.12",
+        "display": "100% − 45% two-wheelers − 33% bus and metro − 12% cars",
+        "result": 0.1,
+        "unit": "share",
+        "carriedForward": "10%",
+        "uses": [
+          "a-modesplit"
+        ],
+        "soWhat": "Derive the share, do not feel it. Assigning the three big modes first and handing autos the remainder gives you something you can defend line by line, and it protects you from the commonest failure on this question — a candidate reporting their own commute as a city statistic."
       },
       {
-        "trap": "Working the demand numerator hard and waving at the denominator",
-        "whyItHappens": "The population funnel feels like the real analysis, so it takes four minutes, and trips-per-vehicle gets a round number pulled from nowhere in the last thirty seconds. But the denominator divides: a two-fold error in trips per vehicle costs exactly what a two-fold error in the auto share costs, and it is far less likely to be challenged, because it sounds operational rather than assumed.",
-        "fix": "Give the denominator its own small tree — hours on the road, share of those hours paid, minutes per paid trip. Three numbers you can each defend beat one confident number nobody asked about."
+        "id": "c4",
+        "label": "Auto-rickshaw trips a day",
+        "expr": "12675000 * 0.1",
+        "display": "1.27 crore motorised trips × 10% auto share",
+        "result": 1267500,
+        "unit": "trips per day",
+        "carriedForward": "≈ 12.7 lakh auto trips",
+        "uses": [
+          "a-autoshare"
+        ],
+        "soWhat": "The demand the fleet has to absorb, and still the weakest number in the chain even after deriving it. Name it as such now — a candidate who volunteers the soft lever is trusted with the hard ones."
       },
       {
-        "trap": "Reporting 81,774",
-        "whyItHappens": "The arithmetic produced it and the digits feel like precision you earned. They are precision borrowed from levers you called judgement two minutes earlier — a 45% utilisation figure and a 10% mode share cannot support five significant figures between them, and quoting them tells the interviewer you do not know what an estimate is.",
-        "fix": "Round hard, to two significant figures at most, state the band, and name the one lever that would have to move to break it."
+        "id": "c5",
+        "label": "Paid trips one vehicle completes per on-road hour",
+        "expr": "60 / 20 * 0.45",
+        "display": "(60 min ÷ 20-minute trip) × 45% of road time paid",
+        "result": 1.35,
+        "unit": "paid trips per on-road hour",
+        "uses": [
+          "a-triplen",
+          "a-util"
+        ],
+        "soWhat": "Throughput, not effort, sets the denominator. Three paid trips every two hours is the honest rate once waiting at a stand and running back empty are counted, and it sits well below what a candidate reasoning from trip length alone will assume."
+      },
+      {
+        "id": "c6",
+        "label": "Road-minutes one paid trip actually costs the vehicle",
+        "expr": "20 / 0.45",
+        "display": "20-minute fare ÷ 45% of road time paid",
+        "result": 44.444,
+        "tolerance": 0.0001,
+        "unit": "minutes per completed trip",
+        "carriedForward": "not carried forward — an intuition check",
+        "uses": [
+          "a-triplen",
+          "a-util"
+        ],
+        "soWhat": "A twenty-minute fare consumes about forty-five minutes of the vehicle's day once the empty return and the wait at the stand are charged against it. That gap, not the length of the fare, is why a ten-hour day yields thirteen trips rather than thirty — and it is the number most candidates never compute at all."
+      },
+      {
+        "id": "c7",
+        "label": "Output of a single-shift vehicle",
+        "expr": "10 * 1.35",
+        "display": "10 on-road hours × 1.35 paid trips per hour",
+        "result": 13.5,
+        "unit": "trips per vehicle per day",
+        "uses": [
+          "a-singlehrs"
+        ],
+        "soWhat": "The owner-driven majority. One driver, one long day, and the vehicle parked at night — this is the number a candidate who ignores shift patterns applies to the entire fleet."
+      },
+      {
+        "id": "c8",
+        "label": "Output of a double-shift vehicle",
+        "expr": "16 * 1.35",
+        "display": "16 on-road hours × 1.35 paid trips per hour",
+        "result": 21.6,
+        "unit": "trips per vehicle per day",
+        "uses": [
+          "a-doublehrs"
+        ],
+        "soWhat": "Sixty per cent more work out of the same asset, because a second driver takes it over rather than buying another one. Put the two shift patterns side by side and the gap between counting vehicles and counting drivers becomes visible instead of theoretical."
+      },
+      {
+        "id": "c9",
+        "label": "Fleet-average paid trips per vehicle per day",
+        "expr": "0.75 * 13.5 + 0.25 * 21.6",
+        "display": "75% of the fleet × 13.5 trips + 25% × 21.6 trips",
+        "result": 15.525,
+        "unit": "trips per vehicle per day",
+        "carriedForward": "≈ 15.5 trips",
+        "uses": [
+          "a-doubleshare"
+        ],
+        "soWhat": "Round to 15.5 before dividing — carrying 15.525 forward would be pretending to a precision the 45% utilisation figure cannot support. Note what the weighting bought: apply 13.5 to the whole fleet instead and the answer inflates by about a seventh, silently."
+      },
+      {
+        "id": "c10",
+        "label": "Auto-rickshaws working a typical weekday",
+        "expr": "1267500 / 15.5",
+        "display": "12.7 lakh auto trips a day ÷ 15.5 trips per vehicle per day",
+        "result": 81774.19,
+        "tolerance": 0.0001,
+        "unit": "vehicles",
+        "carriedForward": "≈ 82,000 vehicles",
+        "uses": [],
+        "soWhat": "Trips per day divided by trips per vehicle per day leaves vehicles — a flow divided by a flow-per-unit gives the stock. Say that out loud. It is how you show the chain is an identity rather than four numbers multiplied in hope, and it is the moment the interviewer decides whether you understood the question or only answered it."
       }
     ],
-    "teachingPoint": "Any 'how many vehicles are out there' question is a flow of work divided by how much work one unit absorbs in a day — and the denominator, which candidates wave at in the last thirty seconds, divides the answer exactly as hard as the numerator multiplies it. The second lesson sits underneath: a fleet is not homogeneous, and the shift pattern is where vehicles and drivers stop being the same number."
+    "id": "auto-rickshaws",
+    "tabLabel": "Auto-rickshaws, Bengaluru",
+    "teachingPoint": "Any 'how many vehicles are out there' question is a flow of work divided by how much work one unit absorbs in a day — and the denominator, which candidates wave at in the last thirty seconds, divides the answer exactly as hard as the numerator multiplies it. The second lesson sits underneath: a fleet is not homogeneous, and the shift pattern is where vehicles and drivers stop being the same number.",
+    "orderOfMagnitude": "10^5",
+    "routeChoice": {
+      "chosen": "Hybrid",
+      "why": "The demand half comes from population, which you can anchor, and the supply half comes from what one vehicle can physically absorb in a day, which you can reason out from trip length and waiting time. Neither half is an answer on its own — trips are not vehicles, and a vehicle's capacity means nothing until you know how much work is queued for it. Take the trip pool top-down, take throughput bottom-up, divide, and say out loud that the units cancel to vehicles.",
+      "rejectedRoute": "Top-down",
+      "rejectedWhyNot": "The pure top-down move is to take India's registered three-wheeler fleet and scale it by Bengaluru's share of urban population. It fails twice over. It rests on a national registration base you cannot source in the room and could not defend if you could, and it scales by headcount when auto density is actually set by metro coverage, road width and the municipal permit cap — Bengaluru and Kolkata do not carry the same autos per lakh of people, and nothing inside a population ratio knows that. Worse, it delivers registrations, which is a different quantity from the one the question asked for. Keep it as a cross-check, not as the spine."
+    },
+    "archetype": "unit-chain-infrastructure"
   },
   {
-    "timeboxMinutes": 12,
-    "sensitivity": {
-      "assumptionId": "a-occ-weekday",
-      "whyThisLever": "It is the only number in the chain with no anchor behind it — seats can be counted, hours are the mall's, dwell time can be timed, tickets are on the board. Weekday occupancy is a judgement, and it sets five of the week's seven days, so it carries more of the answer than any other term. Every other assumption can be argued from something; this one can only be declared.",
-      "cases": [
-        {
-          "scenario": "Conservative",
-          "leverValue": "20% — the room is busy for two and a half hours in twelve",
-          "answer": "≈ ₹74,000 a day (₹22 lakh a month)",
-          "deltaVsBase": "−19%"
-        },
-        {
-          "scenario": "Base",
-          "leverValue": "30% — four busy hours in twelve, shaded down",
-          "answer": "≈ ₹90,000 a day (₹27 lakh a month)",
-          "deltaVsBase": "—"
-        },
-        {
-          "scenario": "Aggressive",
-          "leverValue": "40% — the shoulder hours fill as well as the peaks",
-          "answer": "≈ ₹1.07 lakh a day (₹32 lakh a month)",
-          "deltaVsBase": "+19%"
-        }
-      ],
-      "breakpoint": "The answer only leaves the ₹70,000 to ₹1.2 lakh band if weekday occupancy drops under about 15% or climbs past about 50%. Fifteen per cent means fewer than five of thirty seats filled averaged across the whole trading day, which anyone standing there would notice; fifty per cent means the outlet is half full at four o'clock on a Tuesday, which they would also notice. The lever is uncertain, but it is not unbounded — and that is what makes it safe to declare out loud rather than bury.",
-      "oneLiner": "If there is no time for the grid, say this: weekday occupancy is my shakiest number, it sets five of the week's seven days, and every ten points on it moves the answer about ₹17,000 a day either way."
-    },
-    "number": "02",
-    "difficulty": "Easy",
-    "id": "mall-outlet-revenue",
-    "archetype": "single-asset-revenue",
-    "routeChoice": {
-      "chosen": "Bottom-up",
-      "why": "The asset is physical and its limits are visible — a fixed number of seats, a fixed number of trading hours, a table that can only be turned so often. Build revenue up from what the box can serve and every assumption is something you could verify by standing in the mall for ten minutes with a notebook. It also puts a ceiling on the answer, which is the property a bottom-up route has and a top-down one does not.",
-      "rejectedRoute": "Top-down",
-      "rejectedWhyNot": "Mall footfall × share who walk past the frontage × conversion × average bill looks tidy on the whiteboard, but two of its four terms are unobservable and neither is bounded. Nobody can defend 'what share of mall visitors pass this door' or 'what share of those buy', and a wrong guess on either runs away with the answer because nothing stops it. Keep the footfall route for the cross-check, where its independence is worth something — do not build the spine on two terms you cannot see."
-    },
-    "sanityChecks": [
-      "Against its own ceiling. The model has about 278 dine-in covers on an average day against a physical ceiling of 720 — the seats run 39% full across the trading day. An estimate that puts an outlet above its own ceiling is dead on arrival; one that puts it at 5% would not pay a Mumbai mall rent for a single month.",
-      "Against the queue. About 417 people served across twelve hours is roughly 35 an hour, or one every hundred seconds. One till manages that off-peak and two are needed at lunch, which is the staffing a mall outlet actually runs. Had the arithmetic demanded 200 an hour, the counter in the picture could not physically have handed the food over.",
-      "Against the rent. ₹27 lakh a month on a 1,000 sq ft unit leased at ₹400 to ₹500 a square foot puts rent near a sixth of sales. Mall food leases are written at 15% to 20% of revenue precisely because that is what the format can carry — a daily answer that pushed rent to 40% of sales would be describing an outlet that should already have closed.",
-      "Against the brand. ₹3.3 crore a year sits at the strong end of Indian mall quick-service, which is what 'busy Mumbai mall' was doing in the question. Asked about a Tier-2 mall you should land near a third of this, and saying so unprompted shows you read the qualifier rather than skipped past it.",
-      "Against the calendar. Two days carry 44% of the week. If the model has Saturday equal to Tuesday, it describes a shop that does not exist — and it has also thrown away the only operating insight the estimate contained."
-    ],
     "answerBand": "₹70,000 to ₹1.2 lakh a day — ₹21 lakh to ₹36 lakh a month. The band is wide because occupancy is a judgement, and a narrower band here would be a false one.",
-    "tree": {
-      "root": "Daily revenue, one outlet",
-      "rootFormula": "= (Dine-in covers × dine-in ticket + Takeaway orders × takeaway ticket) for a week ÷ 7 days",
-      "value": "≈ ₹90,000 per day",
-      "branches": [
-        {
-          "label": "Dine-in covers per week",
-          "formula": "= Seat-hours × Occupancy × Covers per occupied seat-hour, weekdays and weekend days summed",
-          "value": "1,944 covers",
-          "note": "Where the answer lives. Three-quarters of the week's money comes through these seats, and every term below is a number you could count on site.",
-          "isCriticalPath": true,
-          "children": [
-            {
-              "label": "Seat-hours per day",
-              "formula": "= 30 seats × 12 trading hours",
-              "value": "360 seat-hours",
-              "note": "The box. Fixed the day the lease was signed, and the one term in this estimate nobody will argue with."
-            },
-            {
-              "label": "Turnover",
-              "formula": "= 60 minutes ÷ 30-minute dwell",
-              "value": "2 covers per occupied seat-hour",
-              "note": "The term candidates drop. It is the whole reason a quick-service room out-earns a sit-down restaurant on the same floor plate."
-            },
-            {
-              "label": "Weekday occupancy",
-              "formula": "= four busy hours in twelve, discounted for the shoulder",
-              "value": "30% → 216 covers",
-              "note": "The shakiest number here, and it sets five of the week's seven days. Declare it before the interviewer finds it."
-            },
-            {
-              "label": "Weekend occupancy",
-              "formula": "= double the weekday rate",
-              "value": "60% → 432 covers",
-              "note": "Two days carrying 44% of the week's revenue. This is the operating fact the estimate is really for."
-            }
-          ]
-        },
-        {
-          "label": "Dine-in ticket",
-          "formula": "= middle of the menu board, per head",
-          "value": "₹250 per cover",
-          "note": "Per person seated, not per bill — a mall bill covers two or three people, and mixing the two is a quiet way to be wrong by a factor of two and a half.",
-          "isCriticalPath": true,
-          "children": []
-        },
-        {
-          "label": "Takeaway stream",
-          "formula": "= 0.5 takeaway orders per dine-in cover",
-          "value": "972 orders per week",
-          "note": "Counter sales to shoppers who never sit down. Pegged to dine-in because the same footfall drives both — say that it is a peg rather than a measurement.",
-          "isCriticalPath": false,
-          "children": [
-            {
-              "label": "Takeaway ticket",
-              "formula": "= one person, no sides",
-              "value": "₹150 per order",
-              "note": "Below the seated ticket by design. It is the mix, not the blended average, that an interviewer will reach for."
-            }
-          ]
-        },
-        {
-          "label": "Days in the week",
-          "formula": "= 5 weekdays + 2 weekend days",
-          "value": "7 days",
-          "note": "The divisor that turns a week into an average day. Leave it out and you have answered a different question from the one asked.",
-          "isCriticalPath": false,
-          "children": []
-        }
-      ]
+    "scope": {
+      "countingWhat": "Money billed at one outlet's till in a day — dine-in plus counter takeaway, net of GST, before rent, food cost or anything else comes out. Revenue, not profit. One outlet, not the brand.",
+      "unit": "₹ per day",
+      "timeBasis": "flow (per day)",
+      "geography": "One standalone quick-service unit inside a busy suburban Mumbai mall — mid-market, trading seven days, not a luxury mall and not a Tier-2 one.",
+      "included": [
+        "Dine-in covers — every person who sits down and eats, counted as a person and not as a bill.",
+        "Counter takeaway — bags that walk out of the same door, rung up at the same till.",
+        "Beverages, sides and desserts where they sit on the same bill.",
+        "A unit with its own dining floor — roughly 1,000 sq ft, seats inside its own frontage.",
+        "Weekdays and weekend days both, averaged across a full week."
+      ],
+      "excluded": [
+        "GST — the tax collected passes through and is not the outlet's revenue.",
+        "Delivery through the aggregators — a different ticket, a different realisation after commission, a different constraint. Named and set aside, not forgotten; one of the probes adds it back.",
+        "Bulk and catering orders placed off the menu.",
+        "A food-court counter sharing the common seating hall — physically a different asset, and the route below does not apply to it.",
+        "The mall's other food outlets, and this brand's other stores in the city."
+      ],
+      "boundaryTrap": "'Average day' is not 'a typical weekday'. A Mumbai mall runs Saturday and Sunday at roughly double a Tuesday, and two of every seven days are weekend days — so the average day sits about 29% above the weekday you are almost certainly picturing. Decide which one the question is asking for, say so in the first thirty seconds, and if it is the average, compute a week and divide by seven. That divisor is the cheapest line in the whole estimate and the one most often skipped."
     },
+    "question": "What does one quick-service food outlet in a busy Mumbai mall take in on an average day?",
+    "difficulty": "Easy",
+    "probes": [
+      {
+        "question": "Which of your numbers would you most want to check before staking anything on this?",
+        "intent": "Whether you can rank your own uncertainty instead of defending every assumption with equal energy. It is also a test of whether you know which term the answer structurally hangs on, as opposed to which one you feel least sure about.",
+        "goodAnswer": "Names weekday occupancy, says why — it has no anchor behind it and it sets five of the week's seven days — and quantifies the swing: ten points either way moves the answer about ₹17,000 a day. Then offers the cheapest way to close it: stand in the mall at three o'clock on a Tuesday and count filled seats for ten minutes.",
+        "weakAnswer": "'They're all assumptions, so any of them could be wrong.' True, useless, and it says you never looked at which term the answer actually hangs on. It also passes up the chance to show that you know how to price your own uncertainty."
+      },
+      {
+        "question": "The outlet also does delivery. What does that do to your number?",
+        "intent": "Whether you can extend a model rather than rebuild it, and whether you notice that delivery eats kitchen capacity but not seats — so it attaches to a different constraint from everything you have built.",
+        "goodAnswer": "Adds it as a third stream on the same kitchen and says why it is not bounded by the dining floor. Sixty orders a day at a ₹350 ticket, net of a 20% aggregator commission, is about ₹17,000 a day — roughly a fifth on top. Then states the real constraint plainly: at the lunch peak, delivery and dine-in queue for the same fryer, so the incremental orders are not free.",
+        "weakAnswer": "'It would increase revenue.' Says nothing about how much, and misses all three things that make delivery different — a higher ticket, a lower realisation after commission, and a constraint that is the kitchen rather than the room."
+      },
+      {
+        "question": "Your two routes are 14% apart. Which one do you believe?",
+        "intent": "Whether you can read a gap rather than average it away. Triangulation is only worth the time it costs if the disagreement is treated as information.",
+        "goodAnswer": "Says the capacity route measures what the box can serve and the footfall route measures what the mall sends, so the capacity route sitting higher is the expected sign — the outlet is not full, and the model already puts the seats at 39%. Points at the two terms that would close the gap, weekday occupancy being a shade generous or the 5% capture share a shade mean, and declines to split the difference without a reason to.",
+        "weakAnswer": "'I'd take the average of the two, so about ₹84,000.' Averaging two estimates is not triangulation. It discards the only thing the exercise produced, which was the direction and size of the disagreement."
+      },
+      {
+        "question": "The mall wants to raise this outlet's rent by ₹1 lakh a month. Take it or leave it?",
+        "intent": "Whether a sizing number can be turned into a decision, which is the only reason a consultant sizes anything.",
+        "goodAnswer": "Converts first: ₹1 lakh a month is about ₹3,300 a day, near 4% of sales, and standing still would need roughly 10 more covers a day or two more points of weekday occupancy. Then asks the question that decides it — what does the mall give back for the money? A better frontage, longer hours, a bigger catchment on the same floor. Rent is worth paying for traffic and not for nothing.",
+        "weakAnswer": "'Rent is a fixed cost, so it doesn't change revenue.' Correct, and beside the point. You were asked for a decision, and the decision turns entirely on how much extra volume the extra rent buys."
+      },
+      {
+        "question": "You assumed thirty seats. Suppose I tell you it is fifty.",
+        "intent": "Whether you know which of your terms are linear and which only look linear, and whether you will volunteer the thing the arithmetic hides.",
+        "goodAnswer": "Scales it — dine-in moves with seats, and takeaway is pegged to dine-in in this model, so the whole answer goes with it: fifty over thirty is two-thirds more, about ₹1.5 lakh a day. Then flags what the scaling conceals: a bigger room in the same mall draws on the same footfall, so occupancy falls and the honest answer sits below the linear one.",
+        "weakAnswer": "'Revenue goes up by 67%.' Right arithmetic, no judgement. The interviewer asked the question to find out whether you would notice that demand did not change when the room did."
+      }
+    ],
     "triangulation": {
       "label": "Demand-side cross-check — what the mall sends, not what the box can serve",
       "route": "Top-down",
@@ -821,192 +761,145 @@ export const guesstimates: readonly Guesstimate[] = [
       "answer": "≈ ₹78,000 a day",
       "verdict": "The two routes land about 14% apart, and the capacity route is the higher one. That is the sign you want. The box can serve rather more people than the mall is currently sending it, which is exactly what an outlet that is not full looks like — and the model already says the seats run 39% full. Had the footfall route come out above the capacity route, one of them would have to be thrown away, because an outlet cannot sell more meals than its room can seat and its counter can hand over. Do not average the two into ₹84,000; that throws away the only information the gap contained. Read it instead: either weekday occupancy is a shade generous at 30% or the 5% capture share is a shade mean, and both of those are honest positions. One limit to state plainly — both routes price a head at the same rupees, so this cross-check tests the count and not the price."
     },
-    "probes": [
+    "tree": {
+      "root": "Daily revenue, one outlet",
+      "rootFormula": "= (Dine-in covers × dine-in ticket + Takeaway orders × takeaway ticket) for a week ÷ 7 days",
+      "value": "≈ ₹90,000 per day",
+      "branches": [
+        {
+          "label": "Dine-in covers per week",
+          "formula": "= Seat-hours × Occupancy × Covers per occupied seat-hour, weekdays and weekend days summed",
+          "value": "1,944 covers",
+          "note": "Where the answer lives. Three-quarters of the week's money comes through these seats, and every term below is a number you could count on site.",
+          "isCriticalPath": true,
+          "children": [
+            {
+              "label": "Seat-hours per day",
+              "formula": "= 30 seats × 12 trading hours",
+              "value": "360 seat-hours",
+              "note": "The box. Fixed the day the lease was signed, and the one term in this estimate nobody will argue with."
+            },
+            {
+              "label": "Turnover",
+              "formula": "= 60 minutes ÷ 30-minute dwell",
+              "value": "2 covers per occupied seat-hour",
+              "note": "The term candidates drop. It is the whole reason a quick-service room out-earns a sit-down restaurant on the same floor plate."
+            },
+            {
+              "label": "Weekday occupancy",
+              "formula": "= four busy hours in twelve, discounted for the shoulder",
+              "value": "30% → 216 covers",
+              "note": "The shakiest number here, and it sets five of the week's seven days. Declare it before the interviewer finds it."
+            },
+            {
+              "label": "Weekend occupancy",
+              "formula": "= double the weekday rate",
+              "value": "60% → 432 covers",
+              "note": "Two days carrying 44% of the week's revenue. This is the operating fact the estimate is really for."
+            }
+          ]
+        },
+        {
+          "label": "Dine-in ticket",
+          "formula": "= middle of the menu board, per head",
+          "value": "₹250 per cover",
+          "note": "Per person seated, not per bill — a mall bill covers two or three people, and mixing the two is a quiet way to be wrong by a factor of two and a half.",
+          "isCriticalPath": true,
+          "children": []
+        },
+        {
+          "label": "Takeaway stream",
+          "formula": "= 0.5 takeaway orders per dine-in cover",
+          "value": "972 orders per week",
+          "note": "Counter sales to shoppers who never sit down. Pegged to dine-in because the same footfall drives both — say that it is a peg rather than a measurement.",
+          "isCriticalPath": false,
+          "children": [
+            {
+              "label": "Takeaway ticket",
+              "formula": "= one person, no sides",
+              "value": "₹150 per order",
+              "note": "Below the seated ticket by design. It is the mix, not the blended average, that an interviewer will reach for."
+            }
+          ]
+        },
+        {
+          "label": "Days in the week",
+          "formula": "= 5 weekdays + 2 weekend days",
+          "value": "7 days",
+          "note": "The divisor that turns a week into an average day. Leave it out and you have answered a different question from the one asked.",
+          "isCriticalPath": false,
+          "children": []
+        }
+      ]
+    },
+    "timeboxMinutes": 12,
+    "traps": [
       {
-        "question": "Which of your numbers would you most want to check before staking anything on this?",
-        "intent": "Whether you can rank your own uncertainty instead of defending every assumption with equal energy. It is also a test of whether you know which term the answer structurally hangs on, as opposed to which one you feel least sure about.",
-        "goodAnswer": "Names weekday occupancy, says why — it has no anchor behind it and it sets five of the week's seven days — and quantifies the swing: ten points either way moves the answer about ₹17,000 a day. Then offers the cheapest way to close it: stand in the mall at three o'clock on a Tuesday and count filled seats for ten minutes.",
-        "weakAnswer": "'They're all assumptions, so any of them could be wrong.' True, useless, and it says you never looked at which term the answer actually hangs on. It also passes up the chance to show that you know how to price your own uncertainty."
+        "trap": "Sizing the box and forgetting that it empties.",
+        "whyItHappens": "Seats are a stock and covers are a flow, and the bridge between them is dwell time. Dwell time is invisible — you cannot see it in the room, only in a stopwatch — so it drops out of the chain and the candidate ends up implicitly assuming each seat sells one meal a day. The error is silent because the arithmetic still works; it just describes a different, far worse restaurant.",
+        "fix": "Never write seats × hours without dividing by how long one customer sits. Say the turnover term out loud as its own line: sixty minutes over a thirty-minute dwell is two covers per occupied seat-hour. That single line is what separates a quick-service unit from a fine-dining room with the same floor plate and the same rent."
       },
       {
-        "question": "The outlet also does delivery. What does that do to your number?",
-        "intent": "Whether you can extend a model rather than rebuild it, and whether you notice that delivery eats kitchen capacity but not seats — so it attaches to a different constraint from everything you have built.",
-        "goodAnswer": "Adds it as a third stream on the same kitchen and says why it is not bounded by the dining floor. Sixty orders a day at a ₹350 ticket, net of a 20% aggregator commission, is about ₹17,000 a day — roughly a fifth on top. Then states the real constraint plainly: at the lunch peak, delivery and dine-in queue for the same fryer, so the incremental orders are not free.",
-        "weakAnswer": "'It would increase revenue.' Says nothing about how much, and misses all three things that make delivery different — a higher ticket, a lower realisation after commission, and a constraint that is the kitchen rather than the room."
+        "trap": "Calling a weekday the average day.",
+        "whyItHappens": "You estimate by picturing a scene, and the scene you picture is the one you have been in most — a Tuesday. Two of seven days are weekend days and they run at roughly double, so the true average sits about 29% above the weekday you imagined. Nothing in the arithmetic flags the substitution, because the wrong day is computed perfectly.",
+        "fix": "Compute a week and divide by seven. It costs one extra line and it makes the weekend split visible, which is worth more than the accuracy it buys. If the interviewer actually wanted a weekday, you can hand them that figure too, from the same working."
       },
       {
-        "question": "Your two routes are 14% apart. Which one do you believe?",
-        "intent": "Whether you can read a gap rather than average it away. Triangulation is only worth the time it costs if the disagreement is treated as information.",
-        "goodAnswer": "Says the capacity route measures what the box can serve and the footfall route measures what the mall sends, so the capacity route sitting higher is the expected sign — the outlet is not full, and the model already puts the seats at 39%. Points at the two terms that would close the gap, weekday occupancy being a shade generous or the 5% capture share a shade mean, and declines to split the difference without a reason to.",
-        "weakAnswer": "'I'd take the average of the two, so about ₹84,000.' Averaging two estimates is not triangulation. It discards the only thing the exercise produced, which was the direction and size of the disagreement."
+        "trap": "One blended ticket for two different purchases.",
+        "whyItHappens": "An 'average bill' feels like a simplification and is really a concealment. Dine-in and takeaway are different products, bought by different people, in different quantities, at different prices — and the mix is precisely what an interviewer will move when they want to see whether the model bends or breaks. A single average has nowhere to absorb the push.",
+        "fix": "Carry two tickets and one ratio between them. It costs two lines, it survives a challenge on either, and it gives you something structured to say when the interviewer adds delivery as a third stream."
       },
       {
-        "question": "The mall wants to raise this outlet's rent by ₹1 lakh a month. Take it or leave it?",
-        "intent": "Whether a sizing number can be turned into a decision, which is the only reason a consultant sizes anything.",
-        "goodAnswer": "Converts first: ₹1 lakh a month is about ₹3,300 a day, near 4% of sales, and standing still would need roughly 10 more covers a day or two more points of weekday occupancy. Then asks the question that decides it — what does the mall give back for the money? A better frontage, longer hours, a bigger catchment on the same floor. Rent is worth paying for traffic and not for nothing.",
-        "weakAnswer": "'Rent is a fixed cost, so it doesn't change revenue.' Correct, and beside the point. You were asked for a decision, and the decision turns entirely on how much extra volume the extra rent buys."
+        "trap": "Confusing a cover with a bill.",
+        "whyItHappens": "The words are used interchangeably in conversation and mean different things on a P&L. A cover is one person eating; a bill covers the two or three people who came together. Apply a per-head ticket to a count of bills, or a per-bill ticket to a count of covers, and the answer is out by the group size — a factor of two and a half, quietly, with no arithmetic error anywhere.",
+        "fix": "Say which one you are counting when you first write the term, and keep the units on the page. Here it is covers and a per-head ticket throughout; if you switch to bills, the ticket has to switch with it."
       },
       {
-        "question": "You assumed thirty seats. Suppose I tell you it is fifty.",
-        "intent": "Whether you know which of your terms are linear and which only look linear, and whether you will volunteer the thing the arithmetic hides.",
-        "goodAnswer": "Scales it — dine-in moves with seats, and takeaway is pegged to dine-in in this model, so the whole answer goes with it: fifty over thirty is two-thirds more, about ₹1.5 lakh a day. Then flags what the scaling conceals: a bigger room in the same mall draws on the same footfall, so occupancy falls and the honest answer sits below the linear one.",
-        "weakAnswer": "'Revenue goes up by 67%.' Right arithmetic, no judgement. The interviewer asked the question to find out whether you would notice that demand did not change when the room did."
+        "trap": "Treating a food-court counter as though it owned seats.",
+        "whyItHappens": "'A quick-service outlet in a mall' covers two physically different assets — a standalone unit with its own dining floor, and a counter in a food court that shares a common seating hall with twenty others. The seat-hours route works on the first and is meaningless on the second, but the phrase does not distinguish them, so the candidate picks whichever one their framework already fits.",
+        "fix": "Ask which one before starting, and take thirty seconds over it. For a food-court counter, drive off counter throughput instead — orders served per minute at the till × trading minutes × the share of those minutes that are genuinely busy — and the seats never enter the model at all."
+      },
+      {
+        "trap": "Answering ₹90,257.",
+        "whyItHappens": "The arithmetic in your head produces every digit and the digits feel like rigour, so they get reported. They are not rigour. Every one of them descends from a 30% that was declared rather than measured, and reporting them tells the interviewer you have not understood the difference between a calculation and an estimate.",
+        "fix": "Carry full precision through the working, then round once, deliberately, at the end, and say the rounding out loud: 'call it ₹90,000 a day'. The rounding is not modesty — it is a statement about how much the number can bear."
       }
     ],
     "finalAnswerNumeric": 90000,
-    "tabLabel": "Mall food outlet, Mumbai",
-    "finalAnswer": "≈ ₹90,000 a day on an average day — roughly ₹27 lakh a month, or ₹3.3 crore a year. The figures are illustrative, built to show the method rather than asserted as verified trade data.",
-    "scope": {
-      "countingWhat": "Money billed at one outlet's till in a day — dine-in plus counter takeaway, net of GST, before rent, food cost or anything else comes out. Revenue, not profit. One outlet, not the brand.",
-      "unit": "₹ per day",
-      "timeBasis": "flow (per day)",
-      "geography": "One standalone quick-service unit inside a busy suburban Mumbai mall — mid-market, trading seven days, not a luxury mall and not a Tier-2 one.",
-      "included": [
-        "Dine-in covers — every person who sits down and eats, counted as a person and not as a bill.",
-        "Counter takeaway — bags that walk out of the same door, rung up at the same till.",
-        "Beverages, sides and desserts where they sit on the same bill.",
-        "A unit with its own dining floor — roughly 1,000 sq ft, seats inside its own frontage.",
-        "Weekdays and weekend days both, averaged across a full week."
+    "number": "02",
+    "sensitivity": {
+      "assumptionId": "a-occ-weekday",
+      "whyThisLever": "It is the only number in the chain with no anchor behind it — seats can be counted, hours are the mall's, dwell time can be timed, tickets are on the board. Weekday occupancy is a judgement, and it sets five of the week's seven days, so it carries more of the answer than any other term. Every other assumption can be argued from something; this one can only be declared.",
+      "cases": [
+        {
+          "scenario": "Conservative",
+          "leverValue": "20% — the room is busy for two and a half hours in twelve",
+          "answer": "≈ ₹74,000 a day (₹22 lakh a month)",
+          "deltaVsBase": "−19%"
+        },
+        {
+          "scenario": "Base",
+          "leverValue": "30% — four busy hours in twelve, shaded down",
+          "answer": "≈ ₹90,000 a day (₹27 lakh a month)",
+          "deltaVsBase": "—"
+        },
+        {
+          "scenario": "Aggressive",
+          "leverValue": "40% — the shoulder hours fill as well as the peaks",
+          "answer": "≈ ₹1.07 lakh a day (₹32 lakh a month)",
+          "deltaVsBase": "+19%"
+        }
       ],
-      "excluded": [
-        "GST — the tax collected passes through and is not the outlet's revenue.",
-        "Delivery through the aggregators — a different ticket, a different realisation after commission, a different constraint. Named and set aside, not forgotten; one of the probes adds it back.",
-        "Bulk and catering orders placed off the menu.",
-        "A food-court counter sharing the common seating hall — physically a different asset, and the route below does not apply to it.",
-        "The mall's other food outlets, and this brand's other stores in the city."
-      ],
-      "boundaryTrap": "'Average day' is not 'a typical weekday'. A Mumbai mall runs Saturday and Sunday at roughly double a Tuesday, and two of every seven days are weekend days — so the average day sits about 29% above the weekday you are almost certainly picturing. Decide which one the question is asking for, say so in the first thirty seconds, and if it is the average, compute a week and divide by seven. That divisor is the cheapest line in the whole estimate and the one most often skipped."
+      "breakpoint": "The answer only leaves the ₹70,000 to ₹1.2 lakh band if weekday occupancy drops under about 15% or climbs past about 50%. Fifteen per cent means fewer than five of thirty seats filled averaged across the whole trading day, which anyone standing there would notice; fifty per cent means the outlet is half full at four o'clock on a Tuesday, which they would also notice. The lever is uncertain, but it is not unbounded — and that is what makes it safe to declare out loud rather than bury.",
+      "oneLiner": "If there is no time for the grid, say this: weekday occupancy is my shakiest number, it sets five of the week's seven days, and every ten points on it moves the answer about ₹17,000 a day either way."
     },
-    "calculation": [
-      {
-        "id": "c1",
-        "label": "Seat-hours available in a trading day",
-        "expr": "30 * 12",
-        "display": "30 seats × 12 trading hours",
-        "result": 360,
-        "unit": "seat-hours per day",
-        "uses": [
-          "a-seats",
-          "a-hours"
-        ],
-        "soWhat": "This is the whole of the outlet's physical supply. Everything after this line is a question about how much of it gets used, and at what price."
-      },
-      {
-        "id": "c2",
-        "label": "Covers one seat can turn in an hour",
-        "expr": "60 / 30",
-        "display": "60 minutes ÷ 30-minute dwell",
-        "result": 2,
-        "unit": "covers per occupied seat-hour",
-        "uses": [
-          "a-dwell"
-        ],
-        "soWhat": "The term most candidates never write. A seat is not a sale — it is a sale every half hour that it is occupied, and this line is the whole difference between a quick-service room and a restaurant with the same floor plate."
-      },
-      {
-        "id": "c3",
-        "label": "Dine-in covers on a weekday",
-        "expr": "360 * 0.30 * 2",
-        "display": "360 seat-hours × 30% occupied × 2 covers each",
-        "result": 216,
-        "unit": "covers",
-        "uses": [
-          "a-seats",
-          "a-hours",
-          "a-occ-weekday",
-          "a-dwell"
-        ],
-        "soWhat": "216 people through 30 seats in 12 hours is 18 an hour — one table of three every ten minutes. Picture that before accepting it; if the picture looks wrong, the number is wrong."
-      },
-      {
-        "id": "c4",
-        "label": "Dine-in covers on a weekend day",
-        "expr": "360 * 0.60 * 2",
-        "display": "360 seat-hours × 60% occupied × 2 covers each",
-        "result": 432,
-        "unit": "covers",
-        "uses": [
-          "a-seats",
-          "a-hours",
-          "a-occ-weekend",
-          "a-dwell"
-        ],
-        "soWhat": "Double the weekday, and not because weekend shoppers eat more. They arrive across more of the day and stay longer in the mall, so more of the twelve hours are busy ones."
-      },
-      {
-        "id": "c5",
-        "label": "Dine-in covers in a full week",
-        "expr": "216 * 5 + 432 * 2",
-        "display": "216 × 5 weekdays + 432 × 2 weekend days",
-        "result": 1944,
-        "unit": "covers per week",
-        "uses": [
-          "a-calendar-week"
-        ],
-        "soWhat": "864 of these 1,944 covers — 44% — land on two days. That is why the outlet staffs and stocks to the weekend and bleeds on Tuesday, and it is the operating point worth saying out loud even though the question only asked for a number."
-      },
-      {
-        "id": "c6",
-        "label": "Dine-in revenue in a week",
-        "expr": "1944 * 250",
-        "display": "1,944 covers × ₹250 a head",
-        "result": 486000,
-        "unit": "₹ per week",
-        "uses": [
-          "a-ticket-dinein"
-        ],
-        "soWhat": "₹4.86 lakh a week from the seats alone. Hold it apart from takeaway — the two move on different levers, and the mix is the first thing an interviewer will push on."
-      },
-      {
-        "id": "c7",
-        "label": "Takeaway orders in a week",
-        "expr": "1944 * 0.5",
-        "display": "1,944 dine-in covers × 0.5 takeaway orders each",
-        "result": 972,
-        "unit": "orders per week",
-        "uses": [
-          "a-takeaway-ratio"
-        ],
-        "soWhat": "Pegged to dine-in because the same footfall drives both. Call it a peg rather than a measurement — it is the weakest structural link in the model even though it is not the biggest lever."
-      },
-      {
-        "id": "c8",
-        "label": "Takeaway revenue in a week",
-        "expr": "972 * 150",
-        "display": "972 orders × ₹150",
-        "result": 145800,
-        "unit": "₹ per week",
-        "uses": [
-          "a-ticket-takeaway"
-        ],
-        "soWhat": "Takeaway is 23% of the week's money on 33% of the transactions. The counter is busier than it is valuable — which is the argument for a second till rather than more seats."
-      },
-      {
-        "id": "c9",
-        "label": "Total revenue in a week",
-        "expr": "486000 + 145800",
-        "display": "₹4,86,000 dine-in + ₹1,45,800 takeaway",
-        "result": 631800,
-        "unit": "₹ per week",
-        "uses": [],
-        "soWhat": "Work the week, not the day. The week is the unit the outlet actually plans in, and it is the only way to stop the weekend disappearing into a single averaged figure."
-      },
-      {
-        "id": "c10",
-        "label": "Revenue on an average day",
-        "expr": "631800 / 7",
-        "display": "₹6,31,800 ÷ 7 days",
-        "result": 90257.14285714286,
-        "tolerance": 1e-06,
-        "unit": "₹ per day",
-        "carriedForward": "≈ ₹90,000",
-        "uses": [
-          "a-calendar-week"
-        ],
-        "soWhat": "Round once, here, and say ₹90,000. A candidate who reports ₹90,257 has told the interviewer they do not understand what an estimate is — the digits were never real."
-      }
+    "sanityChecks": [
+      "Against its own ceiling. The model has about 278 dine-in covers on an average day against a physical ceiling of 720 — the seats run 39% full across the trading day. An estimate that puts an outlet above its own ceiling is dead on arrival; one that puts it at 5% would not pay a Mumbai mall rent for a single month.",
+      "Against the queue. About 417 people served across twelve hours is roughly 35 an hour, or one every hundred seconds. One till manages that off-peak and two are needed at lunch, which is the staffing a mall outlet actually runs. Had the arithmetic demanded 200 an hour, the counter in the picture could not physically have handed the food over.",
+      "Against the rent. ₹27 lakh a month on a 1,000 sq ft unit leased at ₹400 to ₹500 a square foot puts rent near a sixth of sales. Mall food leases are written at 15% to 20% of revenue precisely because that is what the format can carry — a daily answer that pushed rent to 40% of sales would be describing an outlet that should already have closed.",
+      "Against the brand. ₹3.3 crore a year sits at the strong end of Indian mall quick-service, which is what 'busy Mumbai mall' was doing in the question. Asked about a Tier-2 mall you should land near a third of this, and saying so unprompted shows you read the qualifier rather than skipped past it.",
+      "Against the calendar. Two days carry 44% of the week. If the model has Saturday equal to Tuesday, it describes a shop that does not exist — and it has also thrown away the only operating insight the estimate contained."
     ],
-    "orderOfMagnitude": "10^5 rupees per day",
     "assumptions": [
       {
         "id": "a-seats",
@@ -1163,88 +1056,314 @@ export const guesstimates: readonly Guesstimate[] = [
         "contestedBy": "Nothing worth arguing about. The limit of this term is that it is shared, which is stated in the verdict rather than hidden."
       }
     ],
-    "question": "What does one quick-service food outlet in a busy Mumbai mall take in on an average day?",
-    "traps": [
+    "finalAnswer": "≈ ₹90,000 a day on an average day — roughly ₹27 lakh a month, or ₹3.3 crore a year. The figures are illustrative, built to show the method rather than asserted as verified trade data.",
+    "calculation": [
       {
-        "trap": "Sizing the box and forgetting that it empties.",
-        "whyItHappens": "Seats are a stock and covers are a flow, and the bridge between them is dwell time. Dwell time is invisible — you cannot see it in the room, only in a stopwatch — so it drops out of the chain and the candidate ends up implicitly assuming each seat sells one meal a day. The error is silent because the arithmetic still works; it just describes a different, far worse restaurant.",
-        "fix": "Never write seats × hours without dividing by how long one customer sits. Say the turnover term out loud as its own line: sixty minutes over a thirty-minute dwell is two covers per occupied seat-hour. That single line is what separates a quick-service unit from a fine-dining room with the same floor plate and the same rent."
+        "id": "c1",
+        "label": "Seat-hours available in a trading day",
+        "expr": "30 * 12",
+        "display": "30 seats × 12 trading hours",
+        "result": 360,
+        "unit": "seat-hours per day",
+        "uses": [
+          "a-seats",
+          "a-hours"
+        ],
+        "soWhat": "This is the whole of the outlet's physical supply. Everything after this line is a question about how much of it gets used, and at what price."
       },
       {
-        "trap": "Calling a weekday the average day.",
-        "whyItHappens": "You estimate by picturing a scene, and the scene you picture is the one you have been in most — a Tuesday. Two of seven days are weekend days and they run at roughly double, so the true average sits about 29% above the weekday you imagined. Nothing in the arithmetic flags the substitution, because the wrong day is computed perfectly.",
-        "fix": "Compute a week and divide by seven. It costs one extra line and it makes the weekend split visible, which is worth more than the accuracy it buys. If the interviewer actually wanted a weekday, you can hand them that figure too, from the same working."
+        "id": "c2",
+        "label": "Covers one seat can turn in an hour",
+        "expr": "60 / 30",
+        "display": "60 minutes ÷ 30-minute dwell",
+        "result": 2,
+        "unit": "covers per occupied seat-hour",
+        "uses": [
+          "a-dwell"
+        ],
+        "soWhat": "The term most candidates never write. A seat is not a sale — it is a sale every half hour that it is occupied, and this line is the whole difference between a quick-service room and a restaurant with the same floor plate."
       },
       {
-        "trap": "One blended ticket for two different purchases.",
-        "whyItHappens": "An 'average bill' feels like a simplification and is really a concealment. Dine-in and takeaway are different products, bought by different people, in different quantities, at different prices — and the mix is precisely what an interviewer will move when they want to see whether the model bends or breaks. A single average has nowhere to absorb the push.",
-        "fix": "Carry two tickets and one ratio between them. It costs two lines, it survives a challenge on either, and it gives you something structured to say when the interviewer adds delivery as a third stream."
+        "id": "c3",
+        "label": "Dine-in covers on a weekday",
+        "expr": "360 * 0.30 * 2",
+        "display": "360 seat-hours × 30% occupied × 2 covers each",
+        "result": 216,
+        "unit": "covers",
+        "uses": [
+          "a-seats",
+          "a-hours",
+          "a-occ-weekday",
+          "a-dwell"
+        ],
+        "soWhat": "216 people through 30 seats in 12 hours is 18 an hour — one table of three every ten minutes. Picture that before accepting it; if the picture looks wrong, the number is wrong."
       },
       {
-        "trap": "Confusing a cover with a bill.",
-        "whyItHappens": "The words are used interchangeably in conversation and mean different things on a P&L. A cover is one person eating; a bill covers the two or three people who came together. Apply a per-head ticket to a count of bills, or a per-bill ticket to a count of covers, and the answer is out by the group size — a factor of two and a half, quietly, with no arithmetic error anywhere.",
-        "fix": "Say which one you are counting when you first write the term, and keep the units on the page. Here it is covers and a per-head ticket throughout; if you switch to bills, the ticket has to switch with it."
+        "id": "c4",
+        "label": "Dine-in covers on a weekend day",
+        "expr": "360 * 0.60 * 2",
+        "display": "360 seat-hours × 60% occupied × 2 covers each",
+        "result": 432,
+        "unit": "covers",
+        "uses": [
+          "a-seats",
+          "a-hours",
+          "a-occ-weekend",
+          "a-dwell"
+        ],
+        "soWhat": "Double the weekday, and not because weekend shoppers eat more. They arrive across more of the day and stay longer in the mall, so more of the twelve hours are busy ones."
       },
       {
-        "trap": "Treating a food-court counter as though it owned seats.",
-        "whyItHappens": "'A quick-service outlet in a mall' covers two physically different assets — a standalone unit with its own dining floor, and a counter in a food court that shares a common seating hall with twenty others. The seat-hours route works on the first and is meaningless on the second, but the phrase does not distinguish them, so the candidate picks whichever one their framework already fits.",
-        "fix": "Ask which one before starting, and take thirty seconds over it. For a food-court counter, drive off counter throughput instead — orders served per minute at the till × trading minutes × the share of those minutes that are genuinely busy — and the seats never enter the model at all."
+        "id": "c5",
+        "label": "Dine-in covers in a full week",
+        "expr": "216 * 5 + 432 * 2",
+        "display": "216 × 5 weekdays + 432 × 2 weekend days",
+        "result": 1944,
+        "unit": "covers per week",
+        "uses": [
+          "a-calendar-week"
+        ],
+        "soWhat": "864 of these 1,944 covers — 44% — land on two days. That is why the outlet staffs and stocks to the weekend and bleeds on Tuesday, and it is the operating point worth saying out loud even though the question only asked for a number."
       },
       {
-        "trap": "Answering ₹90,257.",
-        "whyItHappens": "The arithmetic in your head produces every digit and the digits feel like rigour, so they get reported. They are not rigour. Every one of them descends from a 30% that was declared rather than measured, and reporting them tells the interviewer you have not understood the difference between a calculation and an estimate.",
-        "fix": "Carry full precision through the working, then round once, deliberately, at the end, and say the rounding out loud: 'call it ₹90,000 a day'. The rounding is not modesty — it is a statement about how much the number can bear."
+        "id": "c6",
+        "label": "Dine-in revenue in a week",
+        "expr": "1944 * 250",
+        "display": "1,944 covers × ₹250 a head",
+        "result": 486000,
+        "unit": "₹ per week",
+        "uses": [
+          "a-ticket-dinein"
+        ],
+        "soWhat": "₹4.86 lakh a week from the seats alone. Hold it apart from takeaway — the two move on different levers, and the mix is the first thing an interviewer will push on."
+      },
+      {
+        "id": "c7",
+        "label": "Takeaway orders in a week",
+        "expr": "1944 * 0.5",
+        "display": "1,944 dine-in covers × 0.5 takeaway orders each",
+        "result": 972,
+        "unit": "orders per week",
+        "uses": [
+          "a-takeaway-ratio"
+        ],
+        "soWhat": "Pegged to dine-in because the same footfall drives both. Call it a peg rather than a measurement — it is the weakest structural link in the model even though it is not the biggest lever."
+      },
+      {
+        "id": "c8",
+        "label": "Takeaway revenue in a week",
+        "expr": "972 * 150",
+        "display": "972 orders × ₹150",
+        "result": 145800,
+        "unit": "₹ per week",
+        "uses": [
+          "a-ticket-takeaway"
+        ],
+        "soWhat": "Takeaway is 23% of the week's money on 33% of the transactions. The counter is busier than it is valuable — which is the argument for a second till rather than more seats."
+      },
+      {
+        "id": "c9",
+        "label": "Total revenue in a week",
+        "expr": "486000 + 145800",
+        "display": "₹4,86,000 dine-in + ₹1,45,800 takeaway",
+        "result": 631800,
+        "unit": "₹ per week",
+        "uses": [],
+        "soWhat": "Work the week, not the day. The week is the unit the outlet actually plans in, and it is the only way to stop the weekend disappearing into a single averaged figure."
+      },
+      {
+        "id": "c10",
+        "label": "Revenue on an average day",
+        "expr": "631800 / 7",
+        "display": "₹6,31,800 ÷ 7 days",
+        "result": 90257.14285714286,
+        "tolerance": 1e-06,
+        "unit": "₹ per day",
+        "carriedForward": "≈ ₹90,000",
+        "uses": [
+          "a-calendar-week"
+        ],
+        "soWhat": "Round once, here, and say ₹90,000. A candidate who reports ₹90,257 has told the interviewer they do not understand what an estimate is — the digits were never real."
       }
     ],
-    "teachingPoint": "Revenue from a fixed asset is capacity × turnover × price, and turnover is the term that gets dropped. Thirty seats do not sell thirty meals a day — they sell as many as dwell time and trading hours allow. How fast the room turns matters as much as how big it is, and a candidate who writes seats × hours without dividing by dwell time has sized the box and forgotten that it empties."
+    "id": "mall-outlet-revenue",
+    "tabLabel": "Mall food outlet, Mumbai",
+    "teachingPoint": "Revenue from a fixed asset is capacity × turnover × price, and turnover is the term that gets dropped. Thirty seats do not sell thirty meals a day — they sell as many as dwell time and trading hours allow. How fast the room turns matters as much as how big it is, and a candidate who writes seats × hours without dividing by dwell time has sized the box and forgotten that it empties.",
+    "orderOfMagnitude": "10^5 rupees per day",
+    "routeChoice": {
+      "chosen": "Bottom-up",
+      "why": "The asset is physical and its limits are visible — a fixed number of seats, a fixed number of trading hours, a table that can only be turned so often. Build revenue up from what the box can serve and every assumption is something you could verify by standing in the mall for ten minutes with a notebook. It also puts a ceiling on the answer, which is the property a bottom-up route has and a top-down one does not.",
+      "rejectedRoute": "Top-down",
+      "rejectedWhyNot": "Mall footfall × share who walk past the frontage × conversion × average bill looks tidy on the whiteboard, but two of its four terms are unobservable and neither is bounded. Nobody can defend 'what share of mall visitors pass this door' or 'what share of those buy', and a wrong guess on either runs away with the answer because nothing stops it. Keep the footfall route for the cross-check, where its independence is worth something — do not build the spine on two terms you cannot see."
+    },
+    "archetype": "single-asset-revenue"
   },
   {
-    "timeboxMinutes": 12,
-    "sensitivity": {
-      "assumptionId": "a-price-jar",
-      "whyThisLever": "One number prices 85% of the litres, and it is the number a candidate is most likely to replace by accident. The jar price is not the shakiest input in the tree — the workplace cooler share is — but it is the one whose misuse changes the answer by a factor rather than a fraction, and that is what earns it the grid. Run the defensible spread first, then show what happens if the two channels are blended, because blending is the error this question exists to catch.",
-      "cases": [
+    "answerBand": "₹18,000 – ₹35,000 crore a year, on 40 – 70 bn litres. The band is wide because it inherits a ±50% swing on the jar price and a ±40% swing on how often the middle band buys a bottle — and because the workplace cooler gate is an open guess.",
+    "scope": {
+      "countingWhat": "Rupees paid at retail, over one year, for sealed packaged drinking water — PET bottles and 20-litre bubble-top jars — by people living in urban India. Litres are computed first and reported alongside, because volume and value behave differently in this category.",
+      "unit": "₹ crore a year, with litres a year reported alongside",
+      "timeBasis": "flow (per year)",
+      "geography": "Urban India — roughly 49 crore people across Tier-1, Tier-2 and Tier-3 towns. Rural India is out.",
+      "included": [
+        "Sealed PET bottles from 250 ml to 2 litres, bought anywhere — kirana, station platform, restaurant, cinema, aircraft",
+        "20-litre bubble-top jars delivered to homes on a standing subscription",
+        "20-litre jars supplied to urban offices, shops, clinics, salons and coaching centres",
+        "Unbranded and locally licensed jar water, which is most of the jar channel by volume",
+        "The price the final buyer pays, inclusive of tax and of any delivery charge already bundled into the jar rate"
+      ],
+      "excluded": [
+        "Municipal tap water and borewell water — billed by a different mechanism entirely, or not billed at all",
+        "Water produced by a home or office RO unit, which is the substitute for this market rather than part of it",
+        "Flavoured water, soda, packaged coconut water, and anything carrying a taste claim",
+        "Imported and premium mineral water, left inside the blended bottled price rather than given its own line — it is a rounding error in litres",
+        "Bulk tanker water for construction, washing and society supply, which is neither packaged nor drinking-grade",
+        "Rural India, and exports of Indian packaged water"
+      ],
+      "boundaryTrap": "The 20-litre jar. It is about 85% of the litres and about a third of the rupees, so the two ways of mishandling it pull in opposite directions. Drop it and your volume collapses by nearly seven times while your value falls by only a third. Keep it but price it like a bottle and the market inflates past ₹1 lakh crore. Say out loud, before a single multiplication, that jars are in and that they carry their own price."
+    },
+    "question": "What is a year of packaged drinking water worth at retail in urban India — and how many litres is that?",
+    "difficulty": "Medium",
+    "probes": [
+      {
+        "question": "Your jar channel is 85% of the litres and about a third of the rupees. If you were advising a national bottled-water brand, what does that tell you?",
+        "intent": "Whether the candidate can read a commercial implication off a sizing answer, or whether producing the number was the whole exercise.",
+        "goodAnswer": "That volume share and profit pool are different markets wearing one category label. The jar channel is large in litres, locally supplied, unbranded and priced at a tenth of the bottle, so entering it means competing on route density and delivery trust rather than on brand or shelf presence. I would treat it as a separate business with its own economics, and I would want per-litre contribution rather than price before recommending it at all.",
+        "weakAnswer": "The jar market is huge, so the brand should launch 20-litre jars to capture the volume. This reads share of litres as share of opportunity and never asks what a litre earns."
+      },
+      {
+        "question": "I do not accept 35% urban. Use 40%. Redo it.",
+        "intent": "Whether the candidate can propagate a change through the structure without rebuilding it, and whether they know which conclusions survive a changed input.",
+        "goodAnswer": "Every line below the urban base is linear in it, so the whole answer scales by 40 over 35 — about ₹29,000 crore, up 14%. The structure is untouched and so is the finding: bottles still carry roughly two-thirds of the rupees on 15% of the litres, because that split does not depend on the base at all.",
+        "weakAnswer": "Starting again from the top and re-deriving all fifteen lines, which burns four minutes to reach a number the candidate could have scaled in ten seconds, and signals they do not know their own model is linear."
+      },
+      {
+        "question": "Which single number here would you most want to check before this went into a deck?",
+        "intent": "Calibration — whether the candidate can rank their own uncertainty instead of defending every row with equal conviction.",
+        "goodAnswer": "The share of urban workers drinking from a jar cooler at work. It is a declared guess with nothing behind it and it carries 15 bn litres, a quarter of the total volume. The jar price moves the rupee answer more, but I can defend ₹40 for a jar from what I pay for one — I cannot defend 25% from anything.",
+        "weakAnswer": "The population figure, which is the one number in the chain that is actually published and the one nobody at the table will contest."
+      },
+      {
+        "question": "Suppose PET packs under one litre were banned tomorrow. What happens to your answer?",
+        "intent": "Whether the structure survives a shock, or whether it was a chain of multiplications with no behavioural logic underneath it.",
+        "goodAnswer": "The bottled channel is an out-of-home occasion business, so demand migrates rather than disappears. Average pack size rises towards a litre, which lifts litres per purchase while cutting rupees per litre, so value falls by less than the pack-mix change suggests. I would rebuild only the pack-size and price lines and hold the frequency lines fixed, then flag the occasions with no one-litre substitute — a station platform, a cinema seat — as genuinely lost.",
+        "weakAnswer": "Revenue falls by the share of sub-litre packs, which quietly assumes the buyer vanishes along with the pack."
+      },
+      {
+        "question": "Is this market growing, and where?",
+        "intent": "Whether the candidate separates volume growth from mix shift — the distinction that turns a sizing answer into something a client can act on.",
+        "goodAnswer": "Litres grow with urbanisation and with the workplace channel, which tracks formal employment. Rupees grow faster, because the growth sits disproportionately on the bottled side as middle-band frequency drifts from 25 a year towards the top band's 100. One category, two growth stories — and a jar-heavy player captures almost all of the volume growth and almost none of the value growth.",
+        "weakAnswer": "Yes, around 15% a year, quoted without saying which of the two answers, litres or rupees, the figure applies to."
+      }
+    ],
+    "triangulation": {
+      "label": "Supply-side cross-check — can the country physically fill this much?",
+      "route": "Bottom-up",
+      "premise": "If urban India drinks 55 bn packaged litres a year, somebody has to fill them. Count the filling capacity in two tiers — organised PET plants behind the bottled channel, small local units behind the jar channel — run each at a realistic utilisation, then scale the national output back to urban with a sales-share gate. The route is independent of the population funnel on volume, which is the comparison worth making. Say in advance that it reuses the same two prices, so agreement on value is partly circular.",
+      "lines": [
         {
-          "scenario": "Conservative",
-          "leverValue": "₹1.50 per litre (₹30 local unbranded jar)",
-          "answer": "≈ ₹23,200 crore",
-          "deltaVsBase": "−9%"
+          "id": "t1",
+          "label": "Nameplate output of organised bottling plants",
+          "expr": "2000 * 3000 * 4800",
+          "display": "2,000 plants × 3,000 L an hour × 4,800 hours a year",
+          "result": 28800000000,
+          "tolerance": 0,
+          "unit": "litres a year",
+          "carriedForward": "≈ 29 bn litres of nameplate",
+          "uses": [
+            "a-plants",
+            "a-line-rate",
+            "a-plant-hours"
+          ],
+          "soWhat": "Nameplate is not output. Quote it only as the ceiling you are about to knock down."
         },
         {
-          "scenario": "Base",
-          "leverValue": "₹2.00 per litre (₹40 delivered jar)",
-          "answer": "≈ ₹25,600 crore",
-          "deltaVsBase": "0%"
+          "id": "t2",
+          "label": "Effective bottled output",
+          "expr": "28800000000 * 0.4",
+          "display": "29 bn L nameplate × 40% utilisation",
+          "result": 11520000000,
+          "tolerance": 0,
+          "unit": "litres a year",
+          "carriedForward": "≈ 11.5 bn litres",
+          "uses": [
+            "a-utilisation"
+          ],
+          "soWhat": "Packaged water peaks between March and June, so plants are built for summer and idle for much of the year. Skipping the utilisation gate is how supply-side routes overstate by two or three times."
         },
         {
-          "scenario": "Aggressive",
-          "leverValue": "₹3.00 per litre (₹60 branded metro jar)",
-          "answer": "≈ ₹30,300 crore",
-          "deltaVsBase": "+18%"
+          "id": "t3",
+          "label": "Output of the local jar units",
+          "expr": "30000 * 75000 * 20",
+          "display": "30,000 units × 75,000 jars a year × 20 L",
+          "result": 45000000000,
+          "tolerance": 0,
+          "unit": "litres a year",
+          "carriedForward": "≈ 45 bn litres",
+          "uses": [
+            "a-jar-units",
+            "a-jar-unit-output",
+            "a-jar-size"
+          ],
+          "soWhat": "This tier is almost entirely unregistered, which is precisely why a demand-side route reaches it more reliably than a supply-side one does."
+        },
+        {
+          "id": "t4",
+          "label": "Total national packaged litres",
+          "expr": "11520000000 + 45000000000",
+          "display": "11.5 bn bottled + 45 bn jar",
+          "result": 56520000000,
+          "tolerance": 0,
+          "unit": "litres a year",
+          "carriedForward": "≈ 57 bn litres, all-India",
+          "uses": [],
+          "soWhat": "All-India, not urban. The demand route counted urban only, so these two figures are not yet comparable — that gate comes below."
+        },
+        {
+          "id": "t5",
+          "label": "National retail value at the same two prices",
+          "expr": "(11520000000 * 20) + (45000000000 * 2)",
+          "display": "11.5 bn L × ₹20 + 45 bn L × ₹2",
+          "result": 320400000000,
+          "tolerance": 0,
+          "unit": "₹ a year",
+          "carriedForward": "₹320,400 Mn, all-India",
+          "uses": [
+            "a-price-bottle",
+            "a-price-jar"
+          ],
+          "soWhat": "Reusing the demand route's prices is deliberate and must be declared. It makes the value comparison weak evidence and the volume comparison the real test."
+        },
+        {
+          "id": "t6",
+          "label": "National value in crore",
+          "expr": "320400000000 / 10000000",
+          "display": "₹320,400 Mn ÷ 1 crore",
+          "result": 32040,
+          "tolerance": 0,
+          "unit": "₹ crore a year",
+          "carriedForward": "≈ ₹32,000 crore, all-India",
+          "uses": [],
+          "soWhat": "Before comparing anything, check that the geographies match. They do not yet."
+        },
+        {
+          "id": "t7",
+          "label": "Urban share of that value",
+          "expr": "32040 * 0.85",
+          "display": "₹32,040 crore × 85% urban",
+          "result": 27234,
+          "tolerance": 0,
+          "unit": "₹ crore a year",
+          "carriedForward": "≈ ₹27,000 crore, urban",
+          "uses": [
+            "a-urban-sales-share"
+          ],
+          "soWhat": "Now the two routes describe the same thing, and only now is the gap between them worth reading."
         }
       ],
-      "breakpoint": "The jar channel only carries half the market's value at about ₹3.44 a litre — a ₹69 jar. That is a branded metro price, not a national average, so under every defensible jar price the bottled channel stays the value leader and the jar channel stays the volume leader. The conclusion is robust; the number is not. The one thing that does break it is blending: price all 47 bn jar litres at the ₹20 bottled rate and the answer goes to about ₹1.1 lakh crore, four times the base and outside any published estimate by a wide margin.",
-      "oneLiner": "With no time for the grid, say this: jars are 85% of the litres and about a third of the rupees, so halving or trebling the jar price moves the answer by under a fifth — but pricing jars like bottles multiplies the whole market by four."
+      "answer": "≈ ₹27,000 crore a year of urban retail value, on about 48 bn urban litres out of 57 bn filled nationally.",
+      "verdict": "The supply route lands 6% above the demand route on value and about 13% below it on volume — inside the ±25% you can honestly claim at this level of precision. Do not oversell the agreement. Both routes use the same ₹20 and ₹2 prices, so the value match is partly circular; the volume comparison is the genuinely independent one, and it is the looser of the two. The gap that does exist runs the right way for a nameable reason: the supply route rests on a plant count and a utilisation rate, both open guesses, while the demand route rests on a population anchor and behaviours you can watch. When two routes disagree, say which one you would bet on and why — here it is the demand route, because its weakest input is a behaviour you can observe and the supply route's weakest input is a plant count nobody publishes."
     },
-    "number": "03",
-    "difficulty": "Medium",
-    "id": "bottled-water-urban",
-    "archetype": "population-funnel",
-    "routeChoice": {
-      "chosen": "Top-down",
-      "why": "Start from the urban population because it is the one number the interviewer will concede without argument, and because every gate below it — income band, purchase frequency, pack size, price — is a claim you can defend or revise on its own without disturbing the rest. A funnel is also the only route that lets at-home and out-of-home behaviour be modelled as genuinely different things, and that separation is where this answer actually lives.",
-      "rejectedRoute": "Bottom-up",
-      "rejectedWhyNot": "Counting retail outlets and multiplying by bottles sold a day looks concrete and is not. You would need a national kirana count, a per-outlet daily rate, and separate treatment of every non-kirana channel — stations, restaurants, cinemas, offices — each a guess of the same quality as the ones above but with nothing to check it against. Worse, the jar channel never crosses a shop counter, so an outlet-based route silently deletes 85% of the litres. The supply-side version of bottom-up is worth running here, but as the cross-check, not as the primary."
-    },
-    "sanityChecks": [
-      "₹25,570 crore across 49 crore urban people is ₹522 a year, or about ₹44 a month each. That is two 1-litre bottles a month plus a share of a household jar subscription — close to what you can watch people actually buy. Had it come out at ₹5,000 a year you would have sized mineral water for Geneva, not packaged water for Ghaziabad.",
-      "Fifty-five bn litres over 49 crore people is about 0.3 litres a day each, roughly a seventh of what a person drinks. Packaged water supplements the tap and the filter; it never replaces them. A figure near 2 litres a day means you have sized total water consumption and dropped the word packaged.",
-      "About 1,080 crore bottles a year is 22 bottles per urban person, one every seventeen days. Since a minority buys one on most days, that average should feel low rather than high. If it lands above 100, the middle-band frequency is the line to revisit.",
-      "Twenty Mn of 120 Mn urban households on a jar subscription is one in six. Walk through a mid-income apartment block and count the blue jars on the landings — if you cannot see roughly that density, revise the penetration rate rather than the price.",
-      "At ₹25,570 crore the category is about 4% of a roughly ₹6 lakh crore urban FMCG pool. That is plausible for a real but low-value-per-litre category. Much above 10% and packaged water would be outselling categories you know from the shelf to be larger.",
-      "The numbers here are illustrative — chosen to be defensible under questioning and round enough to run in your head, not asserted as verified market data. The structure is the deliverable; the number is an order of magnitude."
-    ],
-    "answerBand": "₹18,000 – ₹35,000 crore a year, on 40 – 70 bn litres. The band is wide because it inherits a ±50% swing on the jar price and a ±40% swing on how often the middle band buys a bottle — and because the workplace cooler gate is an open guess.",
     "tree": {
       "root": "Urban packaged drinking water, retail value, one year",
       "rootFormula": "= (Bottled litres × bottled ₹/litre) + (Jar litres × jar ₹/litre)",
@@ -1354,382 +1473,75 @@ export const guesstimates: readonly Guesstimate[] = [
         }
       ]
     },
-    "triangulation": {
-      "label": "Supply-side cross-check — can the country physically fill this much?",
-      "route": "Bottom-up",
-      "premise": "If urban India drinks 55 bn packaged litres a year, somebody has to fill them. Count the filling capacity in two tiers — organised PET plants behind the bottled channel, small local units behind the jar channel — run each at a realistic utilisation, then scale the national output back to urban with a sales-share gate. The route is independent of the population funnel on volume, which is the comparison worth making. Say in advance that it reuses the same two prices, so agreement on value is partly circular.",
-      "lines": [
-        {
-          "id": "t1",
-          "label": "Nameplate output of organised bottling plants",
-          "expr": "2000 * 3000 * 4800",
-          "display": "2,000 plants × 3,000 L an hour × 4,800 hours a year",
-          "result": 28800000000,
-          "tolerance": 0,
-          "unit": "litres a year",
-          "carriedForward": "≈ 29 bn litres of nameplate",
-          "uses": [
-            "a-plants",
-            "a-line-rate",
-            "a-plant-hours"
-          ],
-          "soWhat": "Nameplate is not output. Quote it only as the ceiling you are about to knock down."
-        },
-        {
-          "id": "t2",
-          "label": "Effective bottled output",
-          "expr": "28800000000 * 0.4",
-          "display": "29 bn L nameplate × 40% utilisation",
-          "result": 11520000000,
-          "tolerance": 0,
-          "unit": "litres a year",
-          "carriedForward": "≈ 11.5 bn litres",
-          "uses": [
-            "a-utilisation"
-          ],
-          "soWhat": "Packaged water peaks between March and June, so plants are built for summer and idle for much of the year. Skipping the utilisation gate is how supply-side routes overstate by two or three times."
-        },
-        {
-          "id": "t3",
-          "label": "Output of the local jar units",
-          "expr": "30000 * 75000 * 20",
-          "display": "30,000 units × 75,000 jars a year × 20 L",
-          "result": 45000000000,
-          "tolerance": 0,
-          "unit": "litres a year",
-          "carriedForward": "≈ 45 bn litres",
-          "uses": [
-            "a-jar-units",
-            "a-jar-unit-output",
-            "a-jar-size"
-          ],
-          "soWhat": "This tier is almost entirely unregistered, which is precisely why a demand-side route reaches it more reliably than a supply-side one does."
-        },
-        {
-          "id": "t4",
-          "label": "Total national packaged litres",
-          "expr": "11520000000 + 45000000000",
-          "display": "11.5 bn bottled + 45 bn jar",
-          "result": 56520000000,
-          "tolerance": 0,
-          "unit": "litres a year",
-          "carriedForward": "≈ 57 bn litres, all-India",
-          "uses": [],
-          "soWhat": "All-India, not urban. The demand route counted urban only, so these two figures are not yet comparable — that gate comes below."
-        },
-        {
-          "id": "t5",
-          "label": "National retail value at the same two prices",
-          "expr": "(11520000000 * 20) + (45000000000 * 2)",
-          "display": "11.5 bn L × ₹20 + 45 bn L × ₹2",
-          "result": 320400000000,
-          "tolerance": 0,
-          "unit": "₹ a year",
-          "carriedForward": "₹320,400 Mn, all-India",
-          "uses": [
-            "a-price-bottle",
-            "a-price-jar"
-          ],
-          "soWhat": "Reusing the demand route's prices is deliberate and must be declared. It makes the value comparison weak evidence and the volume comparison the real test."
-        },
-        {
-          "id": "t6",
-          "label": "National value in crore",
-          "expr": "320400000000 / 10000000",
-          "display": "₹320,400 Mn ÷ 1 crore",
-          "result": 32040,
-          "tolerance": 0,
-          "unit": "₹ crore a year",
-          "carriedForward": "≈ ₹32,000 crore, all-India",
-          "uses": [],
-          "soWhat": "Before comparing anything, check that the geographies match. They do not yet."
-        },
-        {
-          "id": "t7",
-          "label": "Urban share of that value",
-          "expr": "32040 * 0.85",
-          "display": "₹32,040 crore × 85% urban",
-          "result": 27234,
-          "tolerance": 0,
-          "unit": "₹ crore a year",
-          "carriedForward": "≈ ₹27,000 crore, urban",
-          "uses": [
-            "a-urban-sales-share"
-          ],
-          "soWhat": "Now the two routes describe the same thing, and only now is the gap between them worth reading."
-        }
-      ],
-      "answer": "≈ ₹27,000 crore a year of urban retail value, on about 48 bn urban litres out of 57 bn filled nationally.",
-      "verdict": "The supply route lands 6% above the demand route on value and about 13% below it on volume — inside the ±25% you can honestly claim at this level of precision. Do not oversell the agreement. Both routes use the same ₹20 and ₹2 prices, so the value match is partly circular; the volume comparison is the genuinely independent one, and it is the looser of the two. The gap that does exist runs the right way for a nameable reason: the supply route rests on a plant count and a utilisation rate, both open guesses, while the demand route rests on a population anchor and behaviours you can watch. When two routes disagree, say which one you would bet on and why — here it is the demand route, because its weakest input is a behaviour you can observe and the supply route's weakest input is a plant count nobody publishes."
-    },
-    "probes": [
+    "timeboxMinutes": 12,
+    "traps": [
       {
-        "question": "Your jar channel is 85% of the litres and about a third of the rupees. If you were advising a national bottled-water brand, what does that tell you?",
-        "intent": "Whether the candidate can read a commercial implication off a sizing answer, or whether producing the number was the whole exercise.",
-        "goodAnswer": "That volume share and profit pool are different markets wearing one category label. The jar channel is large in litres, locally supplied, unbranded and priced at a tenth of the bottle, so entering it means competing on route density and delivery trust rather than on brand or shelf presence. I would treat it as a separate business with its own economics, and I would want per-litre contribution rather than price before recommending it at all.",
-        "weakAnswer": "The jar market is huge, so the brand should launch 20-litre jars to capture the volume. This reads share of litres as share of opportunity and never asks what a litre earns."
+        "trap": "Carrying one blended price per litre across both channels.",
+        "whyItHappens": "The funnel produces a single total volume, and the mind reaches for a single price to multiply it by. The ₹20 bottle MRP is the only water price most candidates can recall on demand, so it wins by availability and the 47 bn jar litres get priced at ten times their worth.",
+        "fix": "Split volume by channel before you price anything. Make it a rule that no price line may touch a litres line spanning more than one channel, and state the rule out loud as you set up the tree."
       },
       {
-        "question": "I do not accept 35% urban. Use 40%. Redo it.",
-        "intent": "Whether the candidate can propagate a change through the structure without rebuilding it, and whether they know which conclusions survive a changed input.",
-        "goodAnswer": "Every line below the urban base is linear in it, so the whole answer scales by 40 over 35 — about ₹29,000 crore, up 14%. The structure is untouched and so is the finding: bottles still carry roughly two-thirds of the rupees on 15% of the litres, because that split does not depend on the base at all.",
-        "weakAnswer": "Starting again from the top and re-deriving all fifteen lines, which burns four minutes to reach a number the candidate could have scaled in ten seconds, and signals they do not know their own model is linear."
+        "trap": "Sizing the water people drink rather than the water people buy in a pack.",
+        "whyItHappens": "Two to three litres a day is a familiar physiological figure and it slips into the funnel unchallenged because it sounds like data. Multiplied by 490 Mn people and 365 days it produces about 450 bn litres, eight times the real answer.",
+        "fix": "The gate in this funnel is a purchase occasion, not thirst. Ask what makes someone pay for water they could otherwise get free, and count only those moments."
       },
       {
-        "question": "Which single number here would you most want to check before this went into a deck?",
-        "intent": "Calibration — whether the candidate can rank their own uncertainty instead of defending every row with equal conviction.",
-        "goodAnswer": "The share of urban workers drinking from a jar cooler at work. It is a declared guess with nothing behind it and it carries 15 bn litres, a quarter of the total volume. The jar price moves the rupee answer more, but I can defend ₹40 for a jar from what I pay for one — I cannot defend 25% from anything.",
-        "weakAnswer": "The population figure, which is the one number in the chain that is actually published and the one nobody at the table will contest."
+        "trap": "Using the national population and calling the answer urban.",
+        "whyItHappens": "You set up 1.4 bn, apply the 35% gate once, then reach back to the 1.4 bn out of habit when computing households or workers. Nothing in the arithmetic flags it, and the branch where it happened comes out roughly three times too large.",
+        "fix": "Write the urban base once, box it on the page, and derive every subsequent base from the boxed number. If a line uses 1,400 it should be the first line and nothing else."
       },
       {
-        "question": "Suppose PET packs under one litre were banned tomorrow. What happens to your answer?",
-        "intent": "Whether the structure survives a shock, or whether it was a chain of multiplications with no behavioural logic underneath it.",
-        "goodAnswer": "The bottled channel is an out-of-home occasion business, so demand migrates rather than disappears. Average pack size rises towards a litre, which lifts litres per purchase while cutting rupees per litre, so value falls by less than the pack-mix change suggests. I would rebuild only the pack-size and price lines and hold the frequency lines fixed, then flag the occasions with no one-litre substitute — a station platform, a cinema seat — as genuinely lost.",
-        "weakAnswer": "Revenue falls by the share of sub-litre packs, which quietly assumes the buyer vanishes along with the pack."
+        "trap": "Dropping the 20-litre jar because it feels like the informal sector.",
+        "whyItHappens": "Jar water is unbranded, paid in cash, locally filled and never appears in a retail audit, so it does not feel like 'the market' the question is asking about. Candidates quietly exclude it and never say they have.",
+        "fix": "It is 85% of the litres. Excluding it is a legitimate scoping choice, but declare it before computing and then stop calling the answer the packaged drinking water market — call it the bottled water market, which is a different and smaller question."
       },
       {
-        "question": "Is this market growing, and where?",
-        "intent": "Whether the candidate separates volume growth from mix shift — the distinction that turns a sizing answer into something a client can act on.",
-        "goodAnswer": "Litres grow with urbanisation and with the workplace channel, which tracks formal employment. Rupees grow faster, because the growth sits disproportionately on the bottled side as middle-band frequency drifts from 25 a year towards the top band's 100. One category, two growth stories — and a jar-heavy player captures almost all of the volume growth and almost none of the value growth.",
-        "weakAnswer": "Yes, around 15% a year, quoted without saying which of the two answers, litres or rupees, the figure applies to."
+        "trap": "Reporting ₹25,570 crore.",
+        "whyItHappens": "The arithmetic produced five digits and the candidate reads out what is on the page, mistaking the precision of the calculation for the precision of the inputs.",
+        "fix": "Round to ₹25,000 crore and hand over a band of ₹18,000 to ₹35,000 crore. The precision you claim is a claim about your data, and here you have none."
+      },
+      {
+        "trap": "Giving one answer when the question has two.",
+        "whyItHappens": "Sizing questions are rehearsed as rupee questions, so volume gets computed as an intermediate and then discarded. The candidate hands over a value and loses the only finding in the analysis.",
+        "fix": "Report litres and rupees side by side. The sentence that earns the marks is that 15% of the litres carry nearly two-thirds of the rupees, and you cannot say it if you kept only one number."
       }
     ],
     "finalAnswerNumeric": 25000,
-    "tabLabel": "Packaged water, urban India",
-    "finalAnswer": "≈ ₹25,000 crore a year at retail in urban India, on roughly 55 bn litres (5,500 crore litres). Bottles are 15% of the litres and about two-thirds of the rupees; 20-litre jars are the rest.",
-    "scope": {
-      "countingWhat": "Rupees paid at retail, over one year, for sealed packaged drinking water — PET bottles and 20-litre bubble-top jars — by people living in urban India. Litres are computed first and reported alongside, because volume and value behave differently in this category.",
-      "unit": "₹ crore a year, with litres a year reported alongside",
-      "timeBasis": "flow (per year)",
-      "geography": "Urban India — roughly 49 crore people across Tier-1, Tier-2 and Tier-3 towns. Rural India is out.",
-      "included": [
-        "Sealed PET bottles from 250 ml to 2 litres, bought anywhere — kirana, station platform, restaurant, cinema, aircraft",
-        "20-litre bubble-top jars delivered to homes on a standing subscription",
-        "20-litre jars supplied to urban offices, shops, clinics, salons and coaching centres",
-        "Unbranded and locally licensed jar water, which is most of the jar channel by volume",
-        "The price the final buyer pays, inclusive of tax and of any delivery charge already bundled into the jar rate"
+    "number": "03",
+    "sensitivity": {
+      "assumptionId": "a-price-jar",
+      "whyThisLever": "One number prices 85% of the litres, and it is the number a candidate is most likely to replace by accident. The jar price is not the shakiest input in the tree — the workplace cooler share is — but it is the one whose misuse changes the answer by a factor rather than a fraction, and that is what earns it the grid. Run the defensible spread first, then show what happens if the two channels are blended, because blending is the error this question exists to catch.",
+      "cases": [
+        {
+          "scenario": "Conservative",
+          "leverValue": "₹1.50 per litre (₹30 local unbranded jar)",
+          "answer": "≈ ₹23,200 crore",
+          "deltaVsBase": "−9%"
+        },
+        {
+          "scenario": "Base",
+          "leverValue": "₹2.00 per litre (₹40 delivered jar)",
+          "answer": "≈ ₹25,600 crore",
+          "deltaVsBase": "0%"
+        },
+        {
+          "scenario": "Aggressive",
+          "leverValue": "₹3.00 per litre (₹60 branded metro jar)",
+          "answer": "≈ ₹30,300 crore",
+          "deltaVsBase": "+18%"
+        }
       ],
-      "excluded": [
-        "Municipal tap water and borewell water — billed by a different mechanism entirely, or not billed at all",
-        "Water produced by a home or office RO unit, which is the substitute for this market rather than part of it",
-        "Flavoured water, soda, packaged coconut water, and anything carrying a taste claim",
-        "Imported and premium mineral water, left inside the blended bottled price rather than given its own line — it is a rounding error in litres",
-        "Bulk tanker water for construction, washing and society supply, which is neither packaged nor drinking-grade",
-        "Rural India, and exports of Indian packaged water"
-      ],
-      "boundaryTrap": "The 20-litre jar. It is about 85% of the litres and about a third of the rupees, so the two ways of mishandling it pull in opposite directions. Drop it and your volume collapses by nearly seven times while your value falls by only a third. Keep it but price it like a bottle and the market inflates past ₹1 lakh crore. Say out loud, before a single multiplication, that jars are in and that they carry their own price."
+      "breakpoint": "The jar channel only carries half the market's value at about ₹3.44 a litre — a ₹69 jar. That is a branded metro price, not a national average, so under every defensible jar price the bottled channel stays the value leader and the jar channel stays the volume leader. The conclusion is robust; the number is not. The one thing that does break it is blending: price all 47 bn jar litres at the ₹20 bottled rate and the answer goes to about ₹1.1 lakh crore, four times the base and outside any published estimate by a wide margin.",
+      "oneLiner": "With no time for the grid, say this: jars are 85% of the litres and about a third of the rupees, so halving or trebling the jar price moves the answer by under a fifth — but pricing jars like bottles multiplies the whole market by four."
     },
-    "calculation": [
-      {
-        "id": "c1",
-        "label": "Urban population",
-        "expr": "1400000000 * 0.35",
-        "display": "1,400 Mn × 35% urban",
-        "result": 490000000,
-        "tolerance": 0,
-        "unit": "people",
-        "carriedForward": "490 Mn (49 crore)",
-        "uses": [
-          "a-pop",
-          "a-urban-share"
-        ],
-        "soWhat": "Every line below is linear in this one figure. Box it, and derive households and workers from the boxed number rather than reaching back to the national population out of habit."
-      },
-      {
-        "id": "c2",
-        "label": "Bottles bought in the bottled channel, a year",
-        "expr": "(490000000 * 0.10 * 100) + (490000000 * 0.40 * 25) + (490000000 * 0.50 * 4)",
-        "display": "49 Mn top × 100 + 196 Mn middle × 25 + 245 Mn low × 4",
-        "result": 10780000000,
-        "tolerance": 0,
-        "unit": "bottles a year",
-        "carriedForward": "≈ 1,080 crore bottles",
-        "uses": [
-          "a-income-bands",
-          "a-bottles-top",
-          "a-bottles-mid",
-          "a-bottles-low"
-        ],
-        "soWhat": "The top and middle bands land on the same 4,900 Mn. A small base buying often and a large base buying rarely are worth the same to a brand, which means losing the light middle costs as much as losing the heavy top."
-      },
-      {
-        "id": "c3",
-        "label": "Bottled-channel litres",
-        "expr": "10780000000 * 0.75",
-        "display": "1,080 crore bottles × 0.75 L average pack",
-        "result": 8085000000,
-        "tolerance": 0,
-        "unit": "litres a year",
-        "carriedForward": "≈ 8.1 bn litres",
-        "uses": [
-          "a-pack-size"
-        ],
-        "soWhat": "Pack size is where a 500 ml habit and a 2-litre habit stop being the same purchase. Weight it by litres sold, not by how many of each you can picture on a shelf."
-      },
-      {
-        "id": "c4",
-        "label": "Bottled-channel retail value",
-        "expr": "8085000000 * 20",
-        "display": "8.085 bn litres × ₹20 per litre",
-        "result": 161700000000,
-        "tolerance": 0,
-        "unit": "₹ a year",
-        "carriedForward": "≈ ₹16,170 crore",
-        "uses": [
-          "a-price-bottle"
-        ],
-        "soWhat": "This price belongs to this channel and nowhere else. The instant it touches a litres figure that includes jars, the answer is out by a factor rather than a margin."
-      },
-      {
-        "id": "c5",
-        "label": "Urban households",
-        "expr": "490000000 / 4",
-        "display": "490 Mn urban people ÷ 4 per urban household",
-        "result": 122500000,
-        "tolerance": 0,
-        "unit": "households",
-        "carriedForward": "≈ 120 Mn households",
-        "uses": [
-          "a-hh-size"
-        ],
-        "soWhat": "Switch units deliberately here. Bottles are bought by people and jars are bought by households, and a candidate who counts both in people has counted the family twice."
-      },
-      {
-        "id": "c6",
-        "label": "Households on a jar subscription",
-        "expr": "(120000000 * 0.10 * 0.25) + (120000000 * 0.40 * 0.30) + (120000000 * 0.50 * 0.05)",
-        "display": "12 Mn top × 25% + 48 Mn middle × 30% + 60 Mn low × 5%",
-        "result": 20400000,
-        "tolerance": 0,
-        "unit": "households",
-        "carriedForward": "≈ 20 Mn households",
-        "uses": [
-          "a-income-bands",
-          "a-jar-pen"
-        ],
-        "soWhat": "Penetration peaks in the middle, not at the top. Assuming every consumption rate rises with income is the reflex that gets this question wrong, and the reason it fails here is that the top band already owns the substitute."
-      },
-      {
-        "id": "c7",
-        "label": "Home jar litres",
-        "expr": "20000000 * 80 * 20",
-        "display": "20 Mn households × 80 jars a year × 20 L",
-        "result": 32000000000,
-        "tolerance": 0,
-        "unit": "litres a year",
-        "carriedForward": "≈ 32 bn litres",
-        "uses": [
-          "a-jars-per-hh",
-          "a-jar-size"
-        ],
-        "soWhat": "Four times the bottled channel's litres, out of a sixth of urban households. Volume in this category is a standing order, not a shelf decision."
-      },
-      {
-        "id": "c8",
-        "label": "Urban workers",
-        "expr": "490000000 * 0.40",
-        "display": "490 Mn × 40% labour-force participation",
-        "result": 196000000,
-        "tolerance": 0,
-        "unit": "workers",
-        "carriedForward": "≈ 200 Mn workers",
-        "uses": [
-          "a-lfpr"
-        ],
-        "soWhat": "The workplace stream is the one candidates skip, and it is a quarter of the volume. Anywhere a person spends nine hours a day is a consumption site."
-      },
-      {
-        "id": "c9",
-        "label": "Workers served by a jar cooler",
-        "expr": "200000000 * 0.25",
-        "display": "200 Mn workers × 25% with a cooler at work",
-        "result": 50000000,
-        "tolerance": 0,
-        "unit": "workers",
-        "carriedForward": "50 Mn",
-        "uses": [
-          "a-work-jar-share"
-        ],
-        "soWhat": "Flag this line as your weakest while you are writing it, not after you are challenged on it."
-      },
-      {
-        "id": "c10",
-        "label": "Workplace jar litres",
-        "expr": "50000000 * 300",
-        "display": "50 Mn workers × 300 L a year (1 L × 300 working days)",
-        "result": 15000000000,
-        "tolerance": 0,
-        "unit": "litres a year",
-        "carriedForward": "≈ 15 bn litres",
-        "uses": [
-          "a-work-litres"
-        ],
-        "soWhat": "Nearly twice the entire bottled channel, from a stream most answers never open."
-      },
-      {
-        "id": "c11",
-        "label": "Total jar-channel litres",
-        "expr": "32000000000 + 15000000000",
-        "display": "32 bn home + 15 bn workplace",
-        "result": 47000000000,
-        "tolerance": 0,
-        "unit": "litres a year",
-        "carriedForward": "≈ 47 bn litres",
-        "uses": [],
-        "soWhat": "Eighty-five per cent of the litres in this question sit on this line, priced at a tenth of the bottled rate. Hold that before quoting any per-litre figure."
-      },
-      {
-        "id": "c12",
-        "label": "Jar-channel retail value",
-        "expr": "47000000000 * 2",
-        "display": "47 bn litres × ₹2 per litre",
-        "result": 94000000000,
-        "tolerance": 0,
-        "unit": "₹ a year",
-        "carriedForward": "≈ ₹9,400 crore",
-        "uses": [
-          "a-price-jar"
-        ],
-        "soWhat": "Six times the bottled volume converts into rather less than the bottled value. Volume leadership and value leadership sit in different channels of the same category."
-      },
-      {
-        "id": "c13",
-        "label": "Total packaged litres, urban India",
-        "expr": "8085000000 + 47000000000",
-        "display": "8.1 bn bottled + 47 bn jar",
-        "result": 55085000000,
-        "tolerance": 0,
-        "unit": "litres a year",
-        "carriedForward": "≈ 55 bn litres (5,500 crore litres)",
-        "uses": [],
-        "soWhat": "This is the first of the two answers, and the only one a supply-side check can genuinely test. Report it before the rupee figure, not after."
-      },
-      {
-        "id": "c14",
-        "label": "Total retail value, urban India",
-        "expr": "161700000000 + 94000000000",
-        "display": "₹16,170 crore bottled + ₹9,400 crore jar",
-        "result": 255700000000,
-        "tolerance": 0,
-        "unit": "₹ a year",
-        "carriedForward": "₹255,700 Mn, before converting",
-        "uses": [],
-        "soWhat": "Keep both components visible in the answer. A single blended total hides the finding that 15% of the litres carry nearly two-thirds of the rupees."
-      },
-      {
-        "id": "c15",
-        "label": "Total retail value in crore",
-        "expr": "255700000000 / 10000000",
-        "display": "₹255,700 Mn ÷ 1 crore",
-        "result": 25570,
-        "tolerance": 0,
-        "unit": "₹ crore a year",
-        "carriedForward": "≈ ₹25,000 crore — round it before you say it",
-        "uses": [],
-        "soWhat": "Say ₹25,000 crore. A guesstimate answered as ₹25,570 crore claims a precision your inputs cannot support, and the interviewer hears the claim before the number."
-      }
+    "sanityChecks": [
+      "₹25,570 crore across 49 crore urban people is ₹522 a year, or about ₹44 a month each. That is two 1-litre bottles a month plus a share of a household jar subscription — close to what you can watch people actually buy. Had it come out at ₹5,000 a year you would have sized mineral water for Geneva, not packaged water for Ghaziabad.",
+      "Fifty-five bn litres over 49 crore people is about 0.3 litres a day each, roughly a seventh of what a person drinks. Packaged water supplements the tap and the filter; it never replaces them. A figure near 2 litres a day means you have sized total water consumption and dropped the word packaged.",
+      "About 1,080 crore bottles a year is 22 bottles per urban person, one every seventeen days. Since a minority buys one on most days, that average should feel low rather than high. If it lands above 100, the middle-band frequency is the line to revisit.",
+      "Twenty Mn of 120 Mn urban households on a jar subscription is one in six. Walk through a mid-income apartment block and count the blue jars on the landings — if you cannot see roughly that density, revise the penetration rate rather than the price.",
+      "At ₹25,570 crore the category is about 4% of a roughly ₹6 lakh crore urban FMCG pool. That is plausible for a real but low-value-per-litre category. Much above 10% and packaged water would be outselling categories you know from the shelf to be larger.",
+      "The numbers here are illustrative — chosen to be defensible under questioning and round enough to run in your head, not asserted as verified market data. The structure is the deliverable; the number is an order of magnitude."
     ],
-    "orderOfMagnitude": "10^11 rupees (₹25,000 crore ≈ ₹2.6 × 10^11); 10^10 litres",
     "assumptions": [
       {
         "id": "a-pop",
@@ -1979,149 +1791,291 @@ export const guesstimates: readonly Guesstimate[] = [
         "contestedBy": "At 75% the supply route lands 6% below the demand route rather than 6% above. The two stay inside any honest band either way."
       }
     ],
-    "question": "What is a year of packaged drinking water worth at retail in urban India — and how many litres is that?",
-    "traps": [
+    "finalAnswer": "≈ ₹25,000 crore a year at retail in urban India, on roughly 55 bn litres (5,500 crore litres). Bottles are 15% of the litres and about two-thirds of the rupees; 20-litre jars are the rest.",
+    "calculation": [
       {
-        "trap": "Carrying one blended price per litre across both channels.",
-        "whyItHappens": "The funnel produces a single total volume, and the mind reaches for a single price to multiply it by. The ₹20 bottle MRP is the only water price most candidates can recall on demand, so it wins by availability and the 47 bn jar litres get priced at ten times their worth.",
-        "fix": "Split volume by channel before you price anything. Make it a rule that no price line may touch a litres line spanning more than one channel, and state the rule out loud as you set up the tree."
+        "id": "c1",
+        "label": "Urban population",
+        "expr": "1400000000 * 0.35",
+        "display": "1,400 Mn × 35% urban",
+        "result": 490000000,
+        "tolerance": 0,
+        "unit": "people",
+        "carriedForward": "490 Mn (49 crore)",
+        "uses": [
+          "a-pop",
+          "a-urban-share"
+        ],
+        "soWhat": "Every line below is linear in this one figure. Box it, and derive households and workers from the boxed number rather than reaching back to the national population out of habit."
       },
       {
-        "trap": "Sizing the water people drink rather than the water people buy in a pack.",
-        "whyItHappens": "Two to three litres a day is a familiar physiological figure and it slips into the funnel unchallenged because it sounds like data. Multiplied by 490 Mn people and 365 days it produces about 450 bn litres, eight times the real answer.",
-        "fix": "The gate in this funnel is a purchase occasion, not thirst. Ask what makes someone pay for water they could otherwise get free, and count only those moments."
+        "id": "c2",
+        "label": "Bottles bought in the bottled channel, a year",
+        "expr": "(490000000 * 0.10 * 100) + (490000000 * 0.40 * 25) + (490000000 * 0.50 * 4)",
+        "display": "49 Mn top × 100 + 196 Mn middle × 25 + 245 Mn low × 4",
+        "result": 10780000000,
+        "tolerance": 0,
+        "unit": "bottles a year",
+        "carriedForward": "≈ 1,080 crore bottles",
+        "uses": [
+          "a-income-bands",
+          "a-bottles-top",
+          "a-bottles-mid",
+          "a-bottles-low"
+        ],
+        "soWhat": "The top and middle bands land on the same 4,900 Mn. A small base buying often and a large base buying rarely are worth the same to a brand, which means losing the light middle costs as much as losing the heavy top."
       },
       {
-        "trap": "Using the national population and calling the answer urban.",
-        "whyItHappens": "You set up 1.4 bn, apply the 35% gate once, then reach back to the 1.4 bn out of habit when computing households or workers. Nothing in the arithmetic flags it, and the branch where it happened comes out roughly three times too large.",
-        "fix": "Write the urban base once, box it on the page, and derive every subsequent base from the boxed number. If a line uses 1,400 it should be the first line and nothing else."
+        "id": "c3",
+        "label": "Bottled-channel litres",
+        "expr": "10780000000 * 0.75",
+        "display": "1,080 crore bottles × 0.75 L average pack",
+        "result": 8085000000,
+        "tolerance": 0,
+        "unit": "litres a year",
+        "carriedForward": "≈ 8.1 bn litres",
+        "uses": [
+          "a-pack-size"
+        ],
+        "soWhat": "Pack size is where a 500 ml habit and a 2-litre habit stop being the same purchase. Weight it by litres sold, not by how many of each you can picture on a shelf."
       },
       {
-        "trap": "Dropping the 20-litre jar because it feels like the informal sector.",
-        "whyItHappens": "Jar water is unbranded, paid in cash, locally filled and never appears in a retail audit, so it does not feel like 'the market' the question is asking about. Candidates quietly exclude it and never say they have.",
-        "fix": "It is 85% of the litres. Excluding it is a legitimate scoping choice, but declare it before computing and then stop calling the answer the packaged drinking water market — call it the bottled water market, which is a different and smaller question."
+        "id": "c4",
+        "label": "Bottled-channel retail value",
+        "expr": "8085000000 * 20",
+        "display": "8.085 bn litres × ₹20 per litre",
+        "result": 161700000000,
+        "tolerance": 0,
+        "unit": "₹ a year",
+        "carriedForward": "≈ ₹16,170 crore",
+        "uses": [
+          "a-price-bottle"
+        ],
+        "soWhat": "This price belongs to this channel and nowhere else. The instant it touches a litres figure that includes jars, the answer is out by a factor rather than a margin."
       },
       {
-        "trap": "Reporting ₹25,570 crore.",
-        "whyItHappens": "The arithmetic produced five digits and the candidate reads out what is on the page, mistaking the precision of the calculation for the precision of the inputs.",
-        "fix": "Round to ₹25,000 crore and hand over a band of ₹18,000 to ₹35,000 crore. The precision you claim is a claim about your data, and here you have none."
+        "id": "c5",
+        "label": "Urban households",
+        "expr": "490000000 / 4",
+        "display": "490 Mn urban people ÷ 4 per urban household",
+        "result": 122500000,
+        "tolerance": 0,
+        "unit": "households",
+        "carriedForward": "≈ 120 Mn households",
+        "uses": [
+          "a-hh-size"
+        ],
+        "soWhat": "Switch units deliberately here. Bottles are bought by people and jars are bought by households, and a candidate who counts both in people has counted the family twice."
       },
       {
-        "trap": "Giving one answer when the question has two.",
-        "whyItHappens": "Sizing questions are rehearsed as rupee questions, so volume gets computed as an intermediate and then discarded. The candidate hands over a value and loses the only finding in the analysis.",
-        "fix": "Report litres and rupees side by side. The sentence that earns the marks is that 15% of the litres carry nearly two-thirds of the rupees, and you cannot say it if you kept only one number."
+        "id": "c6",
+        "label": "Households on a jar subscription",
+        "expr": "(120000000 * 0.10 * 0.25) + (120000000 * 0.40 * 0.30) + (120000000 * 0.50 * 0.05)",
+        "display": "12 Mn top × 25% + 48 Mn middle × 30% + 60 Mn low × 5%",
+        "result": 20400000,
+        "tolerance": 0,
+        "unit": "households",
+        "carriedForward": "≈ 20 Mn households",
+        "uses": [
+          "a-income-bands",
+          "a-jar-pen"
+        ],
+        "soWhat": "Penetration peaks in the middle, not at the top. Assuming every consumption rate rises with income is the reflex that gets this question wrong, and the reason it fails here is that the top band already owns the substitute."
+      },
+      {
+        "id": "c7",
+        "label": "Home jar litres",
+        "expr": "20000000 * 80 * 20",
+        "display": "20 Mn households × 80 jars a year × 20 L",
+        "result": 32000000000,
+        "tolerance": 0,
+        "unit": "litres a year",
+        "carriedForward": "≈ 32 bn litres",
+        "uses": [
+          "a-jars-per-hh",
+          "a-jar-size"
+        ],
+        "soWhat": "Four times the bottled channel's litres, out of a sixth of urban households. Volume in this category is a standing order, not a shelf decision."
+      },
+      {
+        "id": "c8",
+        "label": "Urban workers",
+        "expr": "490000000 * 0.40",
+        "display": "490 Mn × 40% labour-force participation",
+        "result": 196000000,
+        "tolerance": 0,
+        "unit": "workers",
+        "carriedForward": "≈ 200 Mn workers",
+        "uses": [
+          "a-lfpr"
+        ],
+        "soWhat": "The workplace stream is the one candidates skip, and it is a quarter of the volume. Anywhere a person spends nine hours a day is a consumption site."
+      },
+      {
+        "id": "c9",
+        "label": "Workers served by a jar cooler",
+        "expr": "200000000 * 0.25",
+        "display": "200 Mn workers × 25% with a cooler at work",
+        "result": 50000000,
+        "tolerance": 0,
+        "unit": "workers",
+        "carriedForward": "50 Mn",
+        "uses": [
+          "a-work-jar-share"
+        ],
+        "soWhat": "Flag this line as your weakest while you are writing it, not after you are challenged on it."
+      },
+      {
+        "id": "c10",
+        "label": "Workplace jar litres",
+        "expr": "50000000 * 300",
+        "display": "50 Mn workers × 300 L a year (1 L × 300 working days)",
+        "result": 15000000000,
+        "tolerance": 0,
+        "unit": "litres a year",
+        "carriedForward": "≈ 15 bn litres",
+        "uses": [
+          "a-work-litres"
+        ],
+        "soWhat": "Nearly twice the entire bottled channel, from a stream most answers never open."
+      },
+      {
+        "id": "c11",
+        "label": "Total jar-channel litres",
+        "expr": "32000000000 + 15000000000",
+        "display": "32 bn home + 15 bn workplace",
+        "result": 47000000000,
+        "tolerance": 0,
+        "unit": "litres a year",
+        "carriedForward": "≈ 47 bn litres",
+        "uses": [],
+        "soWhat": "Eighty-five per cent of the litres in this question sit on this line, priced at a tenth of the bottled rate. Hold that before quoting any per-litre figure."
+      },
+      {
+        "id": "c12",
+        "label": "Jar-channel retail value",
+        "expr": "47000000000 * 2",
+        "display": "47 bn litres × ₹2 per litre",
+        "result": 94000000000,
+        "tolerance": 0,
+        "unit": "₹ a year",
+        "carriedForward": "≈ ₹9,400 crore",
+        "uses": [
+          "a-price-jar"
+        ],
+        "soWhat": "Six times the bottled volume converts into rather less than the bottled value. Volume leadership and value leadership sit in different channels of the same category."
+      },
+      {
+        "id": "c13",
+        "label": "Total packaged litres, urban India",
+        "expr": "8085000000 + 47000000000",
+        "display": "8.1 bn bottled + 47 bn jar",
+        "result": 55085000000,
+        "tolerance": 0,
+        "unit": "litres a year",
+        "carriedForward": "≈ 55 bn litres (5,500 crore litres)",
+        "uses": [],
+        "soWhat": "This is the first of the two answers, and the only one a supply-side check can genuinely test. Report it before the rupee figure, not after."
+      },
+      {
+        "id": "c14",
+        "label": "Total retail value, urban India",
+        "expr": "161700000000 + 94000000000",
+        "display": "₹16,170 crore bottled + ₹9,400 crore jar",
+        "result": 255700000000,
+        "tolerance": 0,
+        "unit": "₹ a year",
+        "carriedForward": "₹255,700 Mn, before converting",
+        "uses": [],
+        "soWhat": "Keep both components visible in the answer. A single blended total hides the finding that 15% of the litres carry nearly two-thirds of the rupees."
+      },
+      {
+        "id": "c15",
+        "label": "Total retail value in crore",
+        "expr": "255700000000 / 10000000",
+        "display": "₹255,700 Mn ÷ 1 crore",
+        "result": 25570,
+        "tolerance": 0,
+        "unit": "₹ crore a year",
+        "carriedForward": "≈ ₹25,000 crore — round it before you say it",
+        "uses": [],
+        "soWhat": "Say ₹25,000 crore. A guesstimate answered as ₹25,570 crore claims a precision your inputs cannot support, and the interviewer hears the claim before the number."
       }
     ],
-    "teachingPoint": "A blended price per litre is the most abusable number in a sizing chain. The same litre costs about ₹20 in a chilled 1-litre bottle and about ₹2 in a 20-litre jar, so one average price laid across one total volume can be wrong by a factor rather than a margin. Split the volume by channel before you price anything, and hand back two answers — litres and rupees — because they point in different directions."
-  },
-  {
-    "timeboxMinutes": 12,
-    "sensitivity": {
-      "assumptionId": "fans_blend",
-      "whyThisLever": "Penetration can neither save you nor sink you: it already sits at or near its ceiling in four of the five bands, and even taking the weakest band's penetration to zero moves the answer by a fifth. Fans per owning household behaves completely differently — the total is exactly this figure multiplied by 23.6 crore owning households, so a 25% error in your picture of how many wired ceiling points a home has is a 25% error in the answer, with nothing to damp it. And the five band figures are not five independent guesses that might cancel; they come from one mental image of Indian rooms, so they fail together. This is the lever candidates spend the least time on and the one that decides the answer.",
-      "cases": [
-        {
-          "scenario": "Conservative",
-          "leverValue": "1.5 fans per owning household",
-          "answer": "≈ 35 crore (353 Mn)",
-          "deltaVsBase": "−24%"
-        },
-        {
-          "scenario": "Base",
-          "leverValue": "1.96 fans per owning household (implied by the five bands)",
-          "answer": "≈ 46 crore (463 Mn)",
-          "deltaVsBase": "—"
-        },
-        {
-          "scenario": "Aggressive",
-          "leverValue": "2.5 fans per owning household",
-          "answer": "≈ 59 crore (589 Mn)",
-          "deltaVsBase": "+27%"
-        }
-      ],
-      "breakpoint": "The answer leaves the stated 40-55 crore band below 1.70 or above 2.33 fans per owning household — so the band survives roughly a 15% error in this lever and nothing more. The two routes reconcile exactly at 1.67, which is five fans for every three fan-owning homes. That is the real question underneath the arithmetic: do the Indian homes you have actually been inside average two fans, or five across three? Answer that and you have answered the guesstimate.",
-      "oneLiner": "With no time for the grid: 'The answer scales one-for-one on fans per owning household. Mine implies about two. Take it to 1.5 and the answer is 35 crore; take it to 2.5 and it is 59 crore. Everything else in the chain is a census anchor and cannot move the answer that far.'"
-    },
-    "number": "04",
-    "difficulty": "Medium",
-    "id": "ceiling-fans-stock",
-    "archetype": "household-ownership-stock",
+    "id": "bottled-water-urban",
+    "tabLabel": "Packaged water, urban India",
+    "teachingPoint": "A blended price per litre is the most abusable number in a sizing chain. The same litre costs about ₹20 in a chilled 1-litre bottle and about ₹2 in a 20-litre jar, so one average price laid across one total volume can be wrong by a factor rather than a margin. Split the volume by channel before you price anything, and hand back two answers — litres and rupees — because they point in different directions.",
+    "orderOfMagnitude": "10^11 rupees (₹25,000 crore ≈ ₹2.6 × 10^11); 10^10 litres",
     "routeChoice": {
       "chosen": "Top-down",
-      "why": "The unit being counted lives inside a household, and households are the one denominator in India that is genuinely well measured — population and household size are census anchors, not guesses. Start from 140 crore people, divide into households, split on the variable that actually drives fan count, and the only things left to assume are ownership rates and fans per home. State the split you are using before you touch a number.",
+      "why": "Start from the urban population because it is the one number the interviewer will concede without argument, and because every gate below it — income band, purchase frequency, pack size, price — is a claim you can defend or revise on its own without disturbing the rest. A funnel is also the only route that lets at-home and out-of-home behaviour be modelled as genuinely different things, and that separation is where this answer actually lives.",
       "rejectedRoute": "Bottom-up",
-      "rejectedWhyNot": "A bottom-up route would build from supply — units manufactured and imported, less exports, accumulated across the life of a fan. It is weaker here for two specific reasons. First, it needs a scrappage assumption, and scrappage is the hardest thing to observe in a category where a dead fan often stays on its hook for years; the very ambiguity the scope section had to resolve reappears as an unanchorable number. Second, it counts every fan in the country, so it needs a residential-share split bolted on at the end — a split you would have to assume anyway. The bottom-up route therefore inherits the top-down route's weakest step without shedding any of its own. It is kept below as the triangulation, where a rough answer is useful and a wrong one is cheap."
+      "rejectedWhyNot": "Counting retail outlets and multiplying by bottles sold a day looks concrete and is not. You would need a national kirana count, a per-outlet daily rate, and separate treatment of every non-kirana channel — stations, restaurants, cinemas, offices — each a guess of the same quality as the ones above but with nothing to check it against. Worse, the jar channel never crosses a shop counter, so an outlet-based route silently deletes 85% of the litres. The supply-side version of bottom-up is worth running here, but as the cross-check, not as the primary."
     },
-    "sanityChecks": [
-      "46 crore fans across roughly 30 crore households is about 1.5 fans per household nationally. Picture the country honestly: a rural one-room home with one fan and an urban flat with three, in roughly a three-to-two household ratio. The average lands where it should.",
-      "One fan for every three Indians. If the answer had come out at one per person you would be claiming a fan in every bedroom of every home in the country, rural included — visibly false to anyone who has travelled outside a metro.",
-      "Load test: a ceiling fan draws about 70 watts. On a May evening with half the installed base running, that is 46 crore × 0.5 × 70 W ≈ 16 GW against a national peak of roughly 240 GW — about 7% of peak, and around a quarter of residential load. Fans are routinely described as the largest residential load after lighting, so this sits in the right neighbourhood. An answer of 5 crore fans would put them under 1% of peak, which nobody who has seen a summer load curve would accept.",
-      "Bracket before you trust. 5 crore fans would mean one fan per six households; 500 crore would mean sixteen per household. Both fail in under a second, which places the answer in the tens of crores — and that bracketing is most of what the interviewer is actually testing.",
-      "Replacement implication: 46 crore fans on a 15-year life means about 3 crore replaced in homes every year. The supply-side route allowed 2.6 crore. The same 15% gap turns up in the same place rather than in a new one, which is what makes the two routes reassuring rather than merely different.",
-      "Penetration check: the model implies 78% of Indian households own at least one ceiling fan. That is high but not universal, which is the right shape for a category that is cheap, near-essential in most of the country, and still blocked by kutcha roofs and unreliable supply at the bottom. If your model had produced 95%, you would have forgotten the bottom of the distribution."
-    ],
+    "archetype": "population-funnel"
+  },
+  {
     "answerBand": "40-55 crore (400-550 Mn). Say the band out loud. A point estimate here is a claim the assumptions cannot carry, and a guesstimate answered as '46.28 crore' signals you do not understand what an estimate is.",
-    "tree": {
-      "root": "Ceiling fans hanging in Indian homes",
-      "rootFormula": "= Urban fans + Rural fans",
-      "value": "≈ 46 crore (463 Mn)",
-      "branches": [
-        {
-          "label": "Urban fans",
-          "formula": "Urban households × Band share × Penetration × Fans per owning household",
-          "value": "≈ 27 crore (273 Mn)",
-          "note": "12 crore households carrying 59% of the national fan stock. Urban is the smaller population and the larger pool — say that out loud before the interviewer asks why.",
-          "isCriticalPath": true,
-          "children": [
-            {
-              "label": "Affluent urban (20% — 2.4 crore homes)",
-              "formula": "2.4 crore × 100% × 4.0 fans",
-              "value": "≈ 9.6 crore (96 Mn)",
-              "note": "Air conditioning does not remove the fan; it hangs beside it and runs when the AC does not."
-            },
-            {
-              "label": "Middle urban (50% — 6 crore homes)",
-              "formula": "6 crore × 95% × 2.5 fans",
-              "value": "≈ 14.3 crore (143 Mn)",
-              "note": "The largest single block in the tree and the softest fans-per-home figure on the page — a mix of 1BHK and 2BHK stock, not a measured average."
-            },
-            {
-              "label": "Low-income urban (30% — 3.6 crore homes)",
-              "formula": "3.6 crore × 80% × 1.2 fans",
-              "value": "≈ 3.5 crore (35 Mn)",
-              "note": "One room, one hook. Three in ten urban households, about one in eight of the urban fans."
-            }
-          ]
-        },
-        {
-          "label": "Rural fans",
-          "formula": "Rural households × Electrified × Band share × Penetration × Fans per owning household",
-          "value": "≈ 19 crore (190 Mn)",
-          "note": "18 crore households — half again as many as urban — producing two-thirds as many fans. The gap is rooms, not people.",
-          "isCriticalPath": false,
-          "children": [
-            {
-              "label": "Electrification gate (95%)",
-              "formula": "18 crore × 95%",
-              "value": "≈ 17 crore homes",
-              "note": "Connections are near-universal on paper. Holding 95% rather than 99% costs about 1 crore fans — size the step first, then decide it is small."
-            },
-            {
-              "label": "Better-off rural (30% — 5.1 crore homes)",
-              "formula": "5.1 crore × 95% × 2.0 fans",
-              "value": "≈ 9.7 crore (97 Mn)",
-              "note": "Pucca, multi-room, some non-farm income. Two wired ceiling points: the main room and one bedroom."
-            },
-            {
-              "label": "Basic rural (70% — 11.9 crore homes)",
-              "formula": "11.9 crore × 65% × 1.2 fans",
-              "value": "≈ 9.3 crore (93 Mn)",
-              "note": "The shakiest penetration figure here. A kutcha house may have no ceiling to hang a fan from — that is a physical constraint, not an affordability one, and they bite differently."
-            }
-          ]
-        }
-      ]
+    "scope": {
+      "countingWhat": "Ceiling fans physically installed on a hook in a residential dwelling in India — hanging, whether or not anyone switches them on, and whether or not they still turn.",
+      "unit": "ceiling fans",
+      "timeBasis": "stock (point in time)",
+      "geography": "India, urban and rural",
+      "included": [
+        "Fans in occupied homes, owned and rented alike",
+        "Fans in second homes and in flats standing empty between tenants — they are still hanging",
+        "Dead and disconnected fans still bolted to the hook, because the question asks what is hanging, not what is working",
+        "Unbranded and locally assembled fans, which are a large share of the rural base and invisible in most published market data"
+      ],
+      "excluded": [
+        "Table, pedestal, wall-mounted and exhaust fans — different product, different install, different count",
+        "Fans in offices, shops, godowns, factories, schools, hospitals, hotels and places of worship",
+        "Fans in railway coaches and buses",
+        "Unsold stock in warehouses, dealer godowns and on retail shelves",
+        "Fans bought this season but still in the box, not yet on a hook"
+      ],
+      "boundaryTrap": "'Hanging' is not 'working', and neither is 'sold'. Three different numbers sit inside this question: fans sold in a year (a flow, roughly 5 crore), fans hanging (a stock, the answer), and fans hanging and functional (a smaller stock). A candidate who does not choose one out loud will drift between them mid-calculation — usually building a stock structure and then defending it with a sales figure. Choose 'hanging' and say why: it is the only one of the three you can count from households rather than from records nobody keeps."
     },
+    "question": "Right now, how many ceiling fans are hanging in India's homes?",
+    "difficulty": "Medium",
+    "probes": [
+      {
+        "question": "Your fans-per-household figures range from 1.2 to 4. Where did those come from?",
+        "intent": "Whether the ratio was reasoned from something physical or assigned by feel and then defended after the fact.",
+        "goodAnswer": "Names the physical driver first — wired ceiling points, which track room count — then gives the rooms behind each band: one for the urban poor and the basic rural home, two for a pucca rural house, three or four for an urban flat. Concedes without prompting that the middle-urban 2.5 is a 1BHK-to-2BHK mix and is the softest of the five.",
+        "weakAnswer": "'It felt about right for that segment.' Or, more commonly, a confident defence of the penetration rates instead — because those are the numbers the candidate prepared, and answering the question you rehearsed for is the most visible tell there is."
+      },
+      {
+        "question": "The supply-side cross-check gives 39 crore. Which of your two answers do you believe?",
+        "intent": "Whether the candidate can reason about the direction of a gap rather than splitting the difference.",
+        "goodAnswer": "States what each route counts and what it therefore misses. The household build counts fans on hooks, dead ones included; the replacement route counts fans inside an active replacement cycle and so misses every fan nobody has bothered to replace. That asymmetry runs one way only, so the truth sits nearer the higher figure. Reports 40-55 crore rather than picking one.",
+        "weakAnswer": "'I'd take the average, so about 42 crore.' Averaging two estimates without asking why they differ throws away the only thing the second route was built to produce."
+      },
+      {
+        "question": "How would this change for all ceiling fans in India, not only homes?",
+        "intent": "Whether the residential boundary was a deliberate choice or an accident of where the candidate happened to stop.",
+        "goodAnswer": "Reaches for the split already used in the cross-check: homes take about 75% of annual units, so non-residential is roughly a third again on top, taking the total towards 60 crore. Then flags what breaks — commercial fans run far longer hours and are replaced faster, so the 15-year life would have to fall, and the two adjustments push in opposite directions.",
+        "weakAnswer": "'It would be somewhat higher.' A boundary you cannot size is a boundary you did not set."
+      },
+      {
+        "question": "One number, an afternoon and a data subscription. Which do you check?",
+        "intent": "Whether the candidate can rank uncertainty by impact on the answer rather than by personal discomfort with the number.",
+        "goodAnswer": "The blended fans per owning household, because the answer scales one-for-one on it and the five band figures are not independent errors — they come from a single mental model of Indian rooms and move together. Adds that penetration is already near its ceiling in four of five bands and structurally cannot move the answer far, so checking it would be time spent on the wrong lever.",
+        "weakAnswer": "'The population figure' or 'the urban share' — the two best-documented numbers in the whole chain and the two least in need of checking. Candidates pick them because they are checkable, not because they matter."
+      },
+      {
+        "question": "Rural has 18 crore households against urban's 12, yet you give rural fewer fans. Explain.",
+        "intent": "Whether the candidate can read their own ledger and attribute a result to the step that produced it.",
+        "goodAnswer": "Points straight at the two multipliers doing the work: penetration is lower in rural, and fans per owning household is much lower again, because a rural home has more floor area than an urban flat and fewer wired ceiling points. Notes that the two compound, and that this inversion is the model's main finding rather than an embarrassment in it.",
+        "weakAnswer": "Re-reads the arithmetic aloud, correctly, without ever naming which multiplier caused the inversion. Getting the sum right is not the same as understanding what the sum says."
+      },
+      {
+        "question": "Suppose rural penetration in the bottom band is 45%, not 65%. Does your answer change?",
+        "intent": "Whether the candidate can size a challenge instead of either capitulating or digging in.",
+        "goodAnswer": "Works it on the spot — that band contributes about 9.3 crore fans, so cutting penetration by roughly a third takes about 3 crore off, landing near 43 crore. Still inside the 40-55 crore band, so the answer stands and only the point estimate moves. Then adds the honest caveat: if the same pessimism applied to rural fans per home as well, the two would compound and the answer would leave the band.",
+        "weakAnswer": "'Yes, that's fair' followed by a recomputation of the whole tree from the top — or a flat refusal. Neither tells the interviewer whether the challenge actually mattered, which is the only thing the question was asking."
+      }
+    ],
     "triangulation": {
       "label": "Supply-side cross-check — annual sales × fan life",
       "route": "Bottom-up",
@@ -2186,284 +2140,136 @@ export const guesstimates: readonly Guesstimate[] = [
       "answer": "≈ 39 crore ceiling fans (roughly 394 million)",
       "verdict": "46 crore against 39 crore — about 15% apart, and the same order of magnitude, which is as close as two genuinely independent routes usually get. Do not average them. The gap has a direction you can name: the household build counts every fan on a hook, dead ones included, while the replacement route only sees fans inside an active replacement cycle and therefore misses the ones nobody has got round to replacing. That asymmetry runs one way, so the true figure sits nearer the higher number. It also shows up again in the sanity checks — the household build implies about 3 crore home replacements a year against this route's 2.6 crore, the same 15% gap appearing in the same place. Two routes disagreeing about one thing rather than four is a good sign, not a bad one. Report 40-55 crore."
     },
-    "probes": [
+    "tree": {
+      "root": "Ceiling fans hanging in Indian homes",
+      "rootFormula": "= Urban fans + Rural fans",
+      "value": "≈ 46 crore (463 Mn)",
+      "branches": [
+        {
+          "label": "Urban fans",
+          "formula": "Urban households × Band share × Penetration × Fans per owning household",
+          "value": "≈ 27 crore (273 Mn)",
+          "note": "12 crore households carrying 59% of the national fan stock. Urban is the smaller population and the larger pool — say that out loud before the interviewer asks why.",
+          "isCriticalPath": true,
+          "children": [
+            {
+              "label": "Affluent urban (20% — 2.4 crore homes)",
+              "formula": "2.4 crore × 100% × 4.0 fans",
+              "value": "≈ 9.6 crore (96 Mn)",
+              "note": "Air conditioning does not remove the fan; it hangs beside it and runs when the AC does not."
+            },
+            {
+              "label": "Middle urban (50% — 6 crore homes)",
+              "formula": "6 crore × 95% × 2.5 fans",
+              "value": "≈ 14.3 crore (143 Mn)",
+              "note": "The largest single block in the tree and the softest fans-per-home figure on the page — a mix of 1BHK and 2BHK stock, not a measured average."
+            },
+            {
+              "label": "Low-income urban (30% — 3.6 crore homes)",
+              "formula": "3.6 crore × 80% × 1.2 fans",
+              "value": "≈ 3.5 crore (35 Mn)",
+              "note": "One room, one hook. Three in ten urban households, about one in eight of the urban fans."
+            }
+          ]
+        },
+        {
+          "label": "Rural fans",
+          "formula": "Rural households × Electrified × Band share × Penetration × Fans per owning household",
+          "value": "≈ 19 crore (190 Mn)",
+          "note": "18 crore households — half again as many as urban — producing two-thirds as many fans. The gap is rooms, not people.",
+          "isCriticalPath": false,
+          "children": [
+            {
+              "label": "Electrification gate (95%)",
+              "formula": "18 crore × 95%",
+              "value": "≈ 17 crore homes",
+              "note": "Connections are near-universal on paper. Holding 95% rather than 99% costs about 1 crore fans — size the step first, then decide it is small."
+            },
+            {
+              "label": "Better-off rural (30% — 5.1 crore homes)",
+              "formula": "5.1 crore × 95% × 2.0 fans",
+              "value": "≈ 9.7 crore (97 Mn)",
+              "note": "Pucca, multi-room, some non-farm income. Two wired ceiling points: the main room and one bedroom."
+            },
+            {
+              "label": "Basic rural (70% — 11.9 crore homes)",
+              "formula": "11.9 crore × 65% × 1.2 fans",
+              "value": "≈ 9.3 crore (93 Mn)",
+              "note": "The shakiest penetration figure here. A kutcha house may have no ceiling to hang a fan from — that is a physical constraint, not an affordability one, and they bite differently."
+            }
+          ]
+        }
+      ]
+    },
+    "timeboxMinutes": 12,
+    "traps": [
       {
-        "question": "Your fans-per-household figures range from 1.2 to 4. Where did those come from?",
-        "intent": "Whether the ratio was reasoned from something physical or assigned by feel and then defended after the fact.",
-        "goodAnswer": "Names the physical driver first — wired ceiling points, which track room count — then gives the rooms behind each band: one for the urban poor and the basic rural home, two for a pucca rural house, three or four for an urban flat. Concedes without prompting that the middle-urban 2.5 is a 1BHK-to-2BHK mix and is the softest of the five.",
-        "weakAnswer": "'It felt about right for that segment.' Or, more commonly, a confident defence of the penetration rates instead — because those are the numbers the candidate prepared, and answering the question you rehearsed for is the most visible tell there is."
+        "trap": "Answering with fans sold in a year instead of fans hanging.",
+        "whyItHappens": "Market-sizing practice is overwhelmingly annual-flow practice, so the moment a candidate hears 'India' and 'fans' the trained reflex reaches for a sales number. 'Right now' and 'hanging' are the whole question and they go past unheard, because the reflex fires before the prompt finishes.",
+        "fix": "Say the time basis aloud before drawing anything: 'This is a stock at a point in time, not an annual flow.' If you cannot state which of the two you are computing, you are not ready to compute either."
       },
       {
-        "question": "The supply-side cross-check gives 39 crore. Which of your two answers do you believe?",
-        "intent": "Whether the candidate can reason about the direction of a gap rather than splitting the difference.",
-        "goodAnswer": "States what each route counts and what it therefore misses. The household build counts fans on hooks, dead ones included; the replacement route counts fans inside an active replacement cycle and so misses every fan nobody has bothered to replace. That asymmetry runs one way only, so the truth sits nearer the higher figure. Reports 40-55 crore rather than picking one.",
-        "weakAnswer": "'I'd take the average, so about 42 crore.' Averaging two estimates without asking why they differ throws away the only thing the second route was built to produce."
+        "trap": "Multiplying households by a single national fans-per-household figure.",
+        "whyItHappens": "One average is faster and feels like it reaches the same place. It does not: fans per household is set by wired ceiling points, which track room count, which tracks income and housing quality. A single average silently asserts that the poorest household has as many ceiling points as the richest — and because the poorest are the majority of households, that error is large and one-directional.",
+        "fix": "Split on the variable the ratio actually depends on. Two urban bands and two rural bands is enough; the point is that the bands genuinely differ, not that there are five of them."
       },
       {
-        "question": "How would this change for all ceiling fans in India, not only homes?",
-        "intent": "Whether the residential boundary was a deliberate choice or an accident of where the candidate happened to stop.",
-        "goodAnswer": "Reaches for the split already used in the cross-check: homes take about 75% of annual units, so non-residential is roughly a third again on top, taking the total towards 60 crore. Then flags what breaks — commercial fans run far longer hours and are replaced faster, so the 15-year life would have to fall, and the two adjustments push in opposite directions.",
-        "weakAnswer": "'It would be somewhat higher.' A boundary you cannot size is a boundary you did not set."
+        "trap": "Spending the structure time on penetration and none on fans per household.",
+        "whyItHappens": "Penetration is the number candidates have rehearsed and it sits between zero and one, which makes it feel safely bounded — you cannot be wrong by much. Fans per household is unbounded upward, nobody has a rehearsed figure, so it gets assigned in two seconds and never revisited. It is also the only number in the chain the answer scales linearly on across every band at once.",
+        "fix": "Give units-per-household the airtime you were about to give penetration, and say what physically sets it: wired ceiling points, not income and not floor area. Then state the blended figure the bands imply and defend that single number."
       },
       {
-        "question": "One number, an afternoon and a data subscription. Which do you check?",
-        "intent": "Whether the candidate can rank uncertainty by impact on the answer rather than by personal discomfort with the number.",
-        "goodAnswer": "The blended fans per owning household, because the answer scales one-for-one on it and the five band figures are not independent errors — they come from a single mental model of Indian rooms and move together. Adds that penetration is already near its ceiling in four of five bands and structurally cannot move the answer far, so checking it would be time spent on the wrong lever.",
-        "weakAnswer": "'The population figure' or 'the urban share' — the two best-documented numbers in the whole chain and the two least in need of checking. Candidates pick them because they are checkable, not because they matter."
+        "trap": "Skipping the rural electrification gate because electrification is now near-universal.",
+        "whyItHappens": "The connection figure is reported at 99%, so the step looks like one that can be dropped without cost. Dropping it is indeed almost harmless here — about 1 crore fans. But the candidate who dropped it did not weigh it, and an interviewer cannot tell the difference between a step you sized and dismissed and a step you never saw.",
+        "fix": "Name the gate, apply 95%, and say out loud that it moves the answer by roughly 2%. Showing that you sized a step before deciding it was small is worth more than the step."
       },
       {
-        "question": "Rural has 18 crore households against urban's 12, yet you give rural fewer fans. Explain.",
-        "intent": "Whether the candidate can read their own ledger and attribute a result to the step that produced it.",
-        "goodAnswer": "Points straight at the two multipliers doing the work: penetration is lower in rural, and fans per owning household is much lower again, because a rural home has more floor area than an urban flat and fewer wired ceiling points. Notes that the two compound, and that this inversion is the model's main finding rather than an embarrassment in it.",
-        "weakAnswer": "Re-reads the arithmetic aloud, correctly, without ever naming which multiplier caused the inversion. Getting the sum right is not the same as understanding what the sum says."
+        "trap": "Reporting the answer as 46.28 crore.",
+        "whyItHappens": "The arithmetic produces 462,780,000 and the candidate reads it out, because reading out what you computed feels like rigour. Every digit after the first two was manufactured by assumptions carrying ±25% error, so the precision is an artefact of the calculator, not a property of the estimate.",
+        "fix": "Round to the precision your weakest assumption supports, give a band, and name the lever the band comes from. 'About 46 crore, call it 40 to 55, and it turns almost entirely on fans per home.'"
       },
       {
-        "question": "Suppose rural penetration in the bottom band is 45%, not 65%. Does your answer change?",
-        "intent": "Whether the candidate can size a challenge instead of either capitulating or digging in.",
-        "goodAnswer": "Works it on the spot — that band contributes about 9.3 crore fans, so cutting penetration by roughly a third takes about 3 crore off, landing near 43 crore. Still inside the 40-55 crore band, so the answer stands and only the point estimate moves. Then adds the honest caveat: if the same pessimism applied to rural fans per home as well, the two would compound and the answer would leave the band.",
-        "weakAnswer": "'Yes, that's fair' followed by a recomputation of the whole tree from the top — or a flat refusal. Neither tells the interviewer whether the challenge actually mattered, which is the only thing the question was asking."
+        "trap": "Averaging the two routes when they disagree.",
+        "whyItHappens": "Two numbers and no rule to choose between them feels like a tie, and averaging looks even-handed. It is the opposite: it discards the only information the second route produced, which is the direction and the cause of the gap.",
+        "fix": "Ask what each route counts that the other does not, and check whether the difference explains the gap's size and sign. Here it does — dead fans left hanging — so lean towards the higher figure and say why."
       }
     ],
     "finalAnswerNumeric": 460000000,
-    "tabLabel": "Ceiling fans, India",
-    "finalAnswer": "≈ 46 crore ceiling fans (roughly 460 million) hanging in Indian homes — about 1.5 per household, and about two per fan-owning household",
-    "scope": {
-      "countingWhat": "Ceiling fans physically installed on a hook in a residential dwelling in India — hanging, whether or not anyone switches them on, and whether or not they still turn.",
-      "unit": "ceiling fans",
-      "timeBasis": "stock (point in time)",
-      "geography": "India, urban and rural",
-      "included": [
-        "Fans in occupied homes, owned and rented alike",
-        "Fans in second homes and in flats standing empty between tenants — they are still hanging",
-        "Dead and disconnected fans still bolted to the hook, because the question asks what is hanging, not what is working",
-        "Unbranded and locally assembled fans, which are a large share of the rural base and invisible in most published market data"
+    "number": "04",
+    "sensitivity": {
+      "assumptionId": "fans_blend",
+      "whyThisLever": "Penetration can neither save you nor sink you: it already sits at or near its ceiling in four of the five bands, and even taking the weakest band's penetration to zero moves the answer by a fifth. Fans per owning household behaves completely differently — the total is exactly this figure multiplied by 23.6 crore owning households, so a 25% error in your picture of how many wired ceiling points a home has is a 25% error in the answer, with nothing to damp it. And the five band figures are not five independent guesses that might cancel; they come from one mental image of Indian rooms, so they fail together. This is the lever candidates spend the least time on and the one that decides the answer.",
+      "cases": [
+        {
+          "scenario": "Conservative",
+          "leverValue": "1.5 fans per owning household",
+          "answer": "≈ 35 crore (353 Mn)",
+          "deltaVsBase": "−24%"
+        },
+        {
+          "scenario": "Base",
+          "leverValue": "1.96 fans per owning household (implied by the five bands)",
+          "answer": "≈ 46 crore (463 Mn)",
+          "deltaVsBase": "—"
+        },
+        {
+          "scenario": "Aggressive",
+          "leverValue": "2.5 fans per owning household",
+          "answer": "≈ 59 crore (589 Mn)",
+          "deltaVsBase": "+27%"
+        }
       ],
-      "excluded": [
-        "Table, pedestal, wall-mounted and exhaust fans — different product, different install, different count",
-        "Fans in offices, shops, godowns, factories, schools, hospitals, hotels and places of worship",
-        "Fans in railway coaches and buses",
-        "Unsold stock in warehouses, dealer godowns and on retail shelves",
-        "Fans bought this season but still in the box, not yet on a hook"
-      ],
-      "boundaryTrap": "'Hanging' is not 'working', and neither is 'sold'. Three different numbers sit inside this question: fans sold in a year (a flow, roughly 5 crore), fans hanging (a stock, the answer), and fans hanging and functional (a smaller stock). A candidate who does not choose one out loud will drift between them mid-calculation — usually building a stock structure and then defending it with a sales figure. Choose 'hanging' and say why: it is the only one of the three you can count from households rather than from records nobody keeps."
+      "breakpoint": "The answer leaves the stated 40-55 crore band below 1.70 or above 2.33 fans per owning household — so the band survives roughly a 15% error in this lever and nothing more. The two routes reconcile exactly at 1.67, which is five fans for every three fan-owning homes. That is the real question underneath the arithmetic: do the Indian homes you have actually been inside average two fans, or five across three? Answer that and you have answered the guesstimate.",
+      "oneLiner": "With no time for the grid: 'The answer scales one-for-one on fans per owning household. Mine implies about two. Take it to 1.5 and the answer is 35 crore; take it to 2.5 and it is 59 crore. Everything else in the chain is a census anchor and cannot move the answer that far.'"
     },
-    "calculation": [
-      {
-        "id": "c1",
-        "label": "Urban population",
-        "expr": "1400000000 * 0.35",
-        "display": "140 crore × 35% urban",
-        "result": 490000000,
-        "tolerance": 1e-06,
-        "unit": "people",
-        "carriedForward": "≈ 49 crore",
-        "uses": [
-          "pop_india",
-          "urban_share"
-        ],
-        "soWhat": "Urban and rural have to be separated before anything else, because every multiplier downstream differs between them — household size, penetration and fans per home all break at this line."
-      },
-      {
-        "id": "c2",
-        "label": "Rural population",
-        "expr": "1400000000 * 0.65",
-        "display": "140 crore × 65% rural",
-        "result": 910000000,
-        "tolerance": 1e-06,
-        "unit": "people",
-        "carriedForward": "≈ 91 crore",
-        "uses": [
-          "pop_india",
-          "urban_share"
-        ],
-        "soWhat": "Rural is nearly two-thirds of the population. If your structure treats it as a footnote, the answer will be wrong by more than any single assumption error could make it."
-      },
-      {
-        "id": "c3",
-        "label": "Urban households",
-        "expr": "490000000 / 4",
-        "display": "49 crore ÷ 4.0 people per urban household",
-        "result": 122500000,
-        "unit": "households",
-        "carriedForward": "≈ 12 crore (120 Mn) — round here and keep the rest of the arithmetic in your head",
-        "uses": [
-          "hh_size_urban"
-        ],
-        "soWhat": "The household, not the person, is the unit that owns a fan. Switching denominator here is the whole move in this archetype."
-      },
-      {
-        "id": "c4",
-        "label": "Rural households",
-        "expr": "910000000 / 5",
-        "display": "91 crore ÷ 5.0 people per rural household",
-        "result": 182000000,
-        "unit": "households",
-        "carriedForward": "≈ 18 crore (180 Mn)",
-        "uses": [
-          "hh_size_rural"
-        ],
-        "soWhat": "Rural has half again as many households as urban. Hold that number in mind — the final answer inverts it, and you will be asked why."
-      },
-      {
-        "id": "c5",
-        "label": "Rural households with a working connection",
-        "expr": "180000000 * 0.95",
-        "display": "18 crore × 95% electrified",
-        "result": 171000000,
-        "tolerance": 1e-06,
-        "unit": "households",
-        "carriedForward": "≈ 17 crore (170 Mn)",
-        "uses": [
-          "rural_electrified"
-        ],
-        "soWhat": "The gate that stops you counting fans in homes that cannot run one. It costs about 1 crore fans — name it, size it, then say it is small. A step you considered and dismissed reads completely differently from a step you never had."
-      },
-      {
-        "id": "c6",
-        "label": "Fans in affluent urban homes",
-        "expr": "120000000 * 0.2 * 1 * 4",
-        "display": "12 crore urban homes × 20% affluent × 100% own × 4.0 fans",
-        "result": 96000000,
-        "unit": "fans",
-        "carriedForward": "≈ 9.6 crore",
-        "uses": [
-          "urban_band_split",
-          "pen_urban_aff",
-          "fans_urban_aff"
-        ],
-        "soWhat": "One in five urban households produces more than a third of urban fans. That concentration is the reason the band split exists at all."
-      },
-      {
-        "id": "c7",
-        "label": "Fans in middle urban homes",
-        "expr": "120000000 * 0.5 * 0.95 * 2.5",
-        "display": "12 crore urban homes × 50% middle × 95% own × 2.5 fans",
-        "result": 142500000,
-        "tolerance": 1e-06,
-        "unit": "fans",
-        "carriedForward": "≈ 14.3 crore",
-        "uses": [
-          "urban_band_split",
-          "pen_urban_mid",
-          "fans_urban_mid"
-        ],
-        "soWhat": "The largest block in the model — 31% of the whole answer rests on one figure, the 2.5, and that figure is a judgement about the 1BHK-to-2BHK mix. Say so before the interviewer finds it."
-      },
-      {
-        "id": "c8",
-        "label": "Fans in low-income urban homes",
-        "expr": "120000000 * 0.3 * 0.8 * 1.2",
-        "display": "12 crore urban homes × 30% low-income × 80% own × 1.2 fans",
-        "result": 34560000,
-        "tolerance": 1e-06,
-        "unit": "fans",
-        "carriedForward": "≈ 3.5 crore",
-        "uses": [
-          "urban_band_split",
-          "pen_urban_low",
-          "fans_urban_low"
-        ],
-        "soWhat": "Three in ten urban households, about an eighth of urban fans. Both multipliers cut the same way here, which is what makes banded models worth building."
-      },
-      {
-        "id": "c9",
-        "label": "Urban fans, total",
-        "expr": "96000000 + 142500000 + 34560000",
-        "display": "9.6 crore + 14.3 crore + 3.5 crore",
-        "result": 273060000,
-        "unit": "fans",
-        "carriedForward": "≈ 27 crore",
-        "uses": [],
-        "soWhat": "Sub-total before moving to rural. Announce sub-totals as you go — an interviewer who stops you at minute eight should still have a number."
-      },
-      {
-        "id": "c10",
-        "label": "Fans in better-off rural homes",
-        "expr": "170000000 * 0.3 * 0.95 * 2",
-        "display": "17 crore electrified rural homes × 30% pucca × 95% own × 2.0 fans",
-        "result": 96900000,
-        "tolerance": 1e-06,
-        "unit": "fans",
-        "carriedForward": "≈ 9.7 crore",
-        "uses": [
-          "rural_band_split",
-          "pen_rural_hi",
-          "fans_rural_hi"
-        ],
-        "soWhat": "Three in ten rural homes produce over half the rural fans — the same concentration pattern as urban, which is a check that the model is behaving."
-      },
-      {
-        "id": "c11",
-        "label": "Fans in basic rural homes",
-        "expr": "170000000 * 0.7 * 0.65 * 1.2",
-        "display": "17 crore electrified rural homes × 70% basic × 65% own × 1.2 fans",
-        "result": 92820000,
-        "tolerance": 1e-06,
-        "unit": "fans",
-        "carriedForward": "≈ 9.3 crore",
-        "uses": [
-          "rural_band_split",
-          "pen_rural_lo",
-          "fans_rural_lo"
-        ],
-        "soWhat": "11.9 crore households — the single largest block of homes in the country — and it yields fewer fans than 5.1 crore better-off rural homes. Two low multipliers compound, and compounding is the thing candidates underestimate."
-      },
-      {
-        "id": "c12",
-        "label": "Rural fans, total",
-        "expr": "96900000 + 92820000",
-        "display": "9.7 crore + 9.3 crore",
-        "result": 189720000,
-        "unit": "fans",
-        "carriedForward": "≈ 19 crore",
-        "uses": [],
-        "soWhat": "Rural has 1.5 times urban's households and two-thirds of its fans. The inversion is the model's main finding, and you should be able to attribute it to the two multipliers on sight."
-      },
-      {
-        "id": "c13",
-        "label": "Households owning at least one fan",
-        "expr": "24000000 + 60000000 * 0.95 + 36000000 * 0.8 + 51000000 * 0.95 + 119000000 * 0.65",
-        "display": "2.4 cr + (6 cr × 95%) + (3.6 cr × 80%) + (5.1 cr × 95%) + (11.9 cr × 65%)",
-        "result": 235600000,
-        "tolerance": 1e-06,
-        "unit": "households",
-        "carriedForward": "≈ 23.6 crore fan-owning homes",
-        "uses": [
-          "pen_urban_aff",
-          "pen_urban_mid",
-          "pen_urban_low",
-          "pen_rural_hi",
-          "pen_rural_lo"
-        ],
-        "soWhat": "Before announcing a total, collapse the model to a denominator you can defend in a sentence. 23.6 crore of roughly 30 crore households own a fan — 78% national penetration, which is a claim an interviewer can sanity-check instantly."
-      },
-      {
-        "id": "c14",
-        "label": "Implied blended fans per owning household",
-        "expr": "(273060000 + 189720000) / 235600000",
-        "display": "(27.3 crore + 19.0 crore fans) ÷ 23.6 crore owning homes",
-        "result": 1.9643,
-        "tolerance": 0.0001,
-        "unit": "fans per owning household",
-        "carriedForward": "≈ 2.0",
-        "uses": [
-          "fans_blend"
-        ],
-        "soWhat": "The whole five-band model reduces to this. It is the number to defend, the number to run sensitivity on, and the number to say aloud: 'a fan-owning Indian home has about two fans.' If that sentence sounds wrong, stop and rebuild — not after the total, but here."
-      },
-      {
-        "id": "c15",
-        "label": "Ceiling fans hanging in Indian homes",
-        "expr": "273060000 + 189720000",
-        "display": "27.3 crore urban + 19.0 crore rural",
-        "result": 462780000,
-        "unit": "fans",
-        "carriedForward": "≈ 46 crore — report this, not 46.3",
-        "uses": [],
-        "soWhat": "The answer. Round to two significant figures, give the band, and name the lever the band comes from before anyone asks."
-      }
+    "sanityChecks": [
+      "46 crore fans across roughly 30 crore households is about 1.5 fans per household nationally. Picture the country honestly: a rural one-room home with one fan and an urban flat with three, in roughly a three-to-two household ratio. The average lands where it should.",
+      "One fan for every three Indians. If the answer had come out at one per person you would be claiming a fan in every bedroom of every home in the country, rural included — visibly false to anyone who has travelled outside a metro.",
+      "Load test: a ceiling fan draws about 70 watts. On a May evening with half the installed base running, that is 46 crore × 0.5 × 70 W ≈ 16 GW against a national peak of roughly 240 GW — about 7% of peak, and around a quarter of residential load. Fans are routinely described as the largest residential load after lighting, so this sits in the right neighbourhood. An answer of 5 crore fans would put them under 1% of peak, which nobody who has seen a summer load curve would accept.",
+      "Bracket before you trust. 5 crore fans would mean one fan per six households; 500 crore would mean sixteen per household. Both fail in under a second, which places the answer in the tens of crores — and that bracketing is most of what the interviewer is actually testing.",
+      "Replacement implication: 46 crore fans on a 15-year life means about 3 crore replaced in homes every year. The supply-side route allowed 2.6 crore. The same 15% gap turns up in the same place rather than in a new one, which is what makes the two routes reassuring rather than merely different.",
+      "Penetration check: the model implies 78% of Indian households own at least one ceiling fan. That is high but not universal, which is the right shape for a category that is cheap, near-essential in most of the country, and still blocked by kutcha roofs and unreliable supply at the bottom. If your model had produced 95%, you would have forgotten the bottom of the distribution."
     ],
-    "orderOfMagnitude": "10^8 — hundreds of millions. Being right to the power of ten is the actual test; anything between 30 and 70 crore passes it.",
     "assumptions": [
       {
         "id": "pop_india",
@@ -2719,175 +2525,297 @@ export const guesstimates: readonly Guesstimate[] = [
         "contestedBy": "Ten years takes the cross-check to 26 crore and twenty years takes it to 53 crore. This is the cross-check's weakest lever, and it is why the cross-check is a cross-check rather than the primary route."
       }
     ],
-    "question": "Right now, how many ceiling fans are hanging in India's homes?",
-    "traps": [
+    "finalAnswer": "≈ 46 crore ceiling fans (roughly 460 million) hanging in Indian homes — about 1.5 per household, and about two per fan-owning household",
+    "calculation": [
       {
-        "trap": "Answering with fans sold in a year instead of fans hanging.",
-        "whyItHappens": "Market-sizing practice is overwhelmingly annual-flow practice, so the moment a candidate hears 'India' and 'fans' the trained reflex reaches for a sales number. 'Right now' and 'hanging' are the whole question and they go past unheard, because the reflex fires before the prompt finishes.",
-        "fix": "Say the time basis aloud before drawing anything: 'This is a stock at a point in time, not an annual flow.' If you cannot state which of the two you are computing, you are not ready to compute either."
+        "id": "c1",
+        "label": "Urban population",
+        "expr": "1400000000 * 0.35",
+        "display": "140 crore × 35% urban",
+        "result": 490000000,
+        "tolerance": 1e-06,
+        "unit": "people",
+        "carriedForward": "≈ 49 crore",
+        "uses": [
+          "pop_india",
+          "urban_share"
+        ],
+        "soWhat": "Urban and rural have to be separated before anything else, because every multiplier downstream differs between them — household size, penetration and fans per home all break at this line."
       },
       {
-        "trap": "Multiplying households by a single national fans-per-household figure.",
-        "whyItHappens": "One average is faster and feels like it reaches the same place. It does not: fans per household is set by wired ceiling points, which track room count, which tracks income and housing quality. A single average silently asserts that the poorest household has as many ceiling points as the richest — and because the poorest are the majority of households, that error is large and one-directional.",
-        "fix": "Split on the variable the ratio actually depends on. Two urban bands and two rural bands is enough; the point is that the bands genuinely differ, not that there are five of them."
+        "id": "c2",
+        "label": "Rural population",
+        "expr": "1400000000 * 0.65",
+        "display": "140 crore × 65% rural",
+        "result": 910000000,
+        "tolerance": 1e-06,
+        "unit": "people",
+        "carriedForward": "≈ 91 crore",
+        "uses": [
+          "pop_india",
+          "urban_share"
+        ],
+        "soWhat": "Rural is nearly two-thirds of the population. If your structure treats it as a footnote, the answer will be wrong by more than any single assumption error could make it."
       },
       {
-        "trap": "Spending the structure time on penetration and none on fans per household.",
-        "whyItHappens": "Penetration is the number candidates have rehearsed and it sits between zero and one, which makes it feel safely bounded — you cannot be wrong by much. Fans per household is unbounded upward, nobody has a rehearsed figure, so it gets assigned in two seconds and never revisited. It is also the only number in the chain the answer scales linearly on across every band at once.",
-        "fix": "Give units-per-household the airtime you were about to give penetration, and say what physically sets it: wired ceiling points, not income and not floor area. Then state the blended figure the bands imply and defend that single number."
+        "id": "c3",
+        "label": "Urban households",
+        "expr": "490000000 / 4",
+        "display": "49 crore ÷ 4.0 people per urban household",
+        "result": 122500000,
+        "unit": "households",
+        "carriedForward": "≈ 12 crore (120 Mn) — round here and keep the rest of the arithmetic in your head",
+        "uses": [
+          "hh_size_urban"
+        ],
+        "soWhat": "The household, not the person, is the unit that owns a fan. Switching denominator here is the whole move in this archetype."
       },
       {
-        "trap": "Skipping the rural electrification gate because electrification is now near-universal.",
-        "whyItHappens": "The connection figure is reported at 99%, so the step looks like one that can be dropped without cost. Dropping it is indeed almost harmless here — about 1 crore fans. But the candidate who dropped it did not weigh it, and an interviewer cannot tell the difference between a step you sized and dismissed and a step you never saw.",
-        "fix": "Name the gate, apply 95%, and say out loud that it moves the answer by roughly 2%. Showing that you sized a step before deciding it was small is worth more than the step."
+        "id": "c4",
+        "label": "Rural households",
+        "expr": "910000000 / 5",
+        "display": "91 crore ÷ 5.0 people per rural household",
+        "result": 182000000,
+        "unit": "households",
+        "carriedForward": "≈ 18 crore (180 Mn)",
+        "uses": [
+          "hh_size_rural"
+        ],
+        "soWhat": "Rural has half again as many households as urban. Hold that number in mind — the final answer inverts it, and you will be asked why."
       },
       {
-        "trap": "Reporting the answer as 46.28 crore.",
-        "whyItHappens": "The arithmetic produces 462,780,000 and the candidate reads it out, because reading out what you computed feels like rigour. Every digit after the first two was manufactured by assumptions carrying ±25% error, so the precision is an artefact of the calculator, not a property of the estimate.",
-        "fix": "Round to the precision your weakest assumption supports, give a band, and name the lever the band comes from. 'About 46 crore, call it 40 to 55, and it turns almost entirely on fans per home.'"
+        "id": "c5",
+        "label": "Rural households with a working connection",
+        "expr": "180000000 * 0.95",
+        "display": "18 crore × 95% electrified",
+        "result": 171000000,
+        "tolerance": 1e-06,
+        "unit": "households",
+        "carriedForward": "≈ 17 crore (170 Mn)",
+        "uses": [
+          "rural_electrified"
+        ],
+        "soWhat": "The gate that stops you counting fans in homes that cannot run one. It costs about 1 crore fans — name it, size it, then say it is small. A step you considered and dismissed reads completely differently from a step you never had."
       },
       {
-        "trap": "Averaging the two routes when they disagree.",
-        "whyItHappens": "Two numbers and no rule to choose between them feels like a tie, and averaging looks even-handed. It is the opposite: it discards the only information the second route produced, which is the direction and the cause of the gap.",
-        "fix": "Ask what each route counts that the other does not, and check whether the difference explains the gap's size and sign. Here it does — dead fans left hanging — so lean towards the higher figure and say why."
+        "id": "c6",
+        "label": "Fans in affluent urban homes",
+        "expr": "120000000 * 0.2 * 1 * 4",
+        "display": "12 crore urban homes × 20% affluent × 100% own × 4.0 fans",
+        "result": 96000000,
+        "unit": "fans",
+        "carriedForward": "≈ 9.6 crore",
+        "uses": [
+          "urban_band_split",
+          "pen_urban_aff",
+          "fans_urban_aff"
+        ],
+        "soWhat": "One in five urban households produces more than a third of urban fans. That concentration is the reason the band split exists at all."
+      },
+      {
+        "id": "c7",
+        "label": "Fans in middle urban homes",
+        "expr": "120000000 * 0.5 * 0.95 * 2.5",
+        "display": "12 crore urban homes × 50% middle × 95% own × 2.5 fans",
+        "result": 142500000,
+        "tolerance": 1e-06,
+        "unit": "fans",
+        "carriedForward": "≈ 14.3 crore",
+        "uses": [
+          "urban_band_split",
+          "pen_urban_mid",
+          "fans_urban_mid"
+        ],
+        "soWhat": "The largest block in the model — 31% of the whole answer rests on one figure, the 2.5, and that figure is a judgement about the 1BHK-to-2BHK mix. Say so before the interviewer finds it."
+      },
+      {
+        "id": "c8",
+        "label": "Fans in low-income urban homes",
+        "expr": "120000000 * 0.3 * 0.8 * 1.2",
+        "display": "12 crore urban homes × 30% low-income × 80% own × 1.2 fans",
+        "result": 34560000,
+        "tolerance": 1e-06,
+        "unit": "fans",
+        "carriedForward": "≈ 3.5 crore",
+        "uses": [
+          "urban_band_split",
+          "pen_urban_low",
+          "fans_urban_low"
+        ],
+        "soWhat": "Three in ten urban households, about an eighth of urban fans. Both multipliers cut the same way here, which is what makes banded models worth building."
+      },
+      {
+        "id": "c9",
+        "label": "Urban fans, total",
+        "expr": "96000000 + 142500000 + 34560000",
+        "display": "9.6 crore + 14.3 crore + 3.5 crore",
+        "result": 273060000,
+        "unit": "fans",
+        "carriedForward": "≈ 27 crore",
+        "uses": [],
+        "soWhat": "Sub-total before moving to rural. Announce sub-totals as you go — an interviewer who stops you at minute eight should still have a number."
+      },
+      {
+        "id": "c10",
+        "label": "Fans in better-off rural homes",
+        "expr": "170000000 * 0.3 * 0.95 * 2",
+        "display": "17 crore electrified rural homes × 30% pucca × 95% own × 2.0 fans",
+        "result": 96900000,
+        "tolerance": 1e-06,
+        "unit": "fans",
+        "carriedForward": "≈ 9.7 crore",
+        "uses": [
+          "rural_band_split",
+          "pen_rural_hi",
+          "fans_rural_hi"
+        ],
+        "soWhat": "Three in ten rural homes produce over half the rural fans — the same concentration pattern as urban, which is a check that the model is behaving."
+      },
+      {
+        "id": "c11",
+        "label": "Fans in basic rural homes",
+        "expr": "170000000 * 0.7 * 0.65 * 1.2",
+        "display": "17 crore electrified rural homes × 70% basic × 65% own × 1.2 fans",
+        "result": 92820000,
+        "tolerance": 1e-06,
+        "unit": "fans",
+        "carriedForward": "≈ 9.3 crore",
+        "uses": [
+          "rural_band_split",
+          "pen_rural_lo",
+          "fans_rural_lo"
+        ],
+        "soWhat": "11.9 crore households — the single largest block of homes in the country — and it yields fewer fans than 5.1 crore better-off rural homes. Two low multipliers compound, and compounding is the thing candidates underestimate."
+      },
+      {
+        "id": "c12",
+        "label": "Rural fans, total",
+        "expr": "96900000 + 92820000",
+        "display": "9.7 crore + 9.3 crore",
+        "result": 189720000,
+        "unit": "fans",
+        "carriedForward": "≈ 19 crore",
+        "uses": [],
+        "soWhat": "Rural has 1.5 times urban's households and two-thirds of its fans. The inversion is the model's main finding, and you should be able to attribute it to the two multipliers on sight."
+      },
+      {
+        "id": "c13",
+        "label": "Households owning at least one fan",
+        "expr": "24000000 + 60000000 * 0.95 + 36000000 * 0.8 + 51000000 * 0.95 + 119000000 * 0.65",
+        "display": "2.4 cr + (6 cr × 95%) + (3.6 cr × 80%) + (5.1 cr × 95%) + (11.9 cr × 65%)",
+        "result": 235600000,
+        "tolerance": 1e-06,
+        "unit": "households",
+        "carriedForward": "≈ 23.6 crore fan-owning homes",
+        "uses": [
+          "pen_urban_aff",
+          "pen_urban_mid",
+          "pen_urban_low",
+          "pen_rural_hi",
+          "pen_rural_lo"
+        ],
+        "soWhat": "Before announcing a total, collapse the model to a denominator you can defend in a sentence. 23.6 crore of roughly 30 crore households own a fan — 78% national penetration, which is a claim an interviewer can sanity-check instantly."
+      },
+      {
+        "id": "c14",
+        "label": "Implied blended fans per owning household",
+        "expr": "(273060000 + 189720000) / 235600000",
+        "display": "(27.3 crore + 19.0 crore fans) ÷ 23.6 crore owning homes",
+        "result": 1.9643,
+        "tolerance": 0.0001,
+        "unit": "fans per owning household",
+        "carriedForward": "≈ 2.0",
+        "uses": [
+          "fans_blend"
+        ],
+        "soWhat": "The whole five-band model reduces to this. It is the number to defend, the number to run sensitivity on, and the number to say aloud: 'a fan-owning Indian home has about two fans.' If that sentence sounds wrong, stop and rebuild — not after the total, but here."
+      },
+      {
+        "id": "c15",
+        "label": "Ceiling fans hanging in Indian homes",
+        "expr": "273060000 + 189720000",
+        "display": "27.3 crore urban + 19.0 crore rural",
+        "result": 462780000,
+        "unit": "fans",
+        "carriedForward": "≈ 46 crore — report this, not 46.3",
+        "uses": [],
+        "soWhat": "The answer. Round to two significant figures, give the band, and name the lever the band comes from before anyone asks."
       }
     ],
-    "teachingPoint": "In a household-ownership stock count the answer scales one-for-one on units per owning household — and that is the assumption candidates give the least thought to. Penetration is bounded between zero and one and, in a near-universal category, already sits near its ceiling in most bands, so it can barely move the answer. Units per household is unbounded, is set by something physical rather than economic — wired ceiling points, not income — and the band-level figures are not independent estimates but one mental model of Indian rooms wearing five hats. Get that model wrong and every band moves the same way at once."
+    "id": "ceiling-fans-stock",
+    "tabLabel": "Ceiling fans, India",
+    "teachingPoint": "In a household-ownership stock count the answer scales one-for-one on units per owning household — and that is the assumption candidates give the least thought to. Penetration is bounded between zero and one and, in a near-universal category, already sits near its ceiling in most bands, so it can barely move the answer. Units per household is unbounded, is set by something physical rather than economic — wired ceiling points, not income — and the band-level figures are not independent estimates but one mental model of Indian rooms wearing five hats. Get that model wrong and every band moves the same way at once.",
+    "orderOfMagnitude": "10^8 — hundreds of millions. Being right to the power of ten is the actual test; anything between 30 and 70 crore passes it.",
+    "routeChoice": {
+      "chosen": "Top-down",
+      "why": "The unit being counted lives inside a household, and households are the one denominator in India that is genuinely well measured — population and household size are census anchors, not guesses. Start from 140 crore people, divide into households, split on the variable that actually drives fan count, and the only things left to assume are ownership rates and fans per home. State the split you are using before you touch a number.",
+      "rejectedRoute": "Bottom-up",
+      "rejectedWhyNot": "A bottom-up route would build from supply — units manufactured and imported, less exports, accumulated across the life of a fan. It is weaker here for two specific reasons. First, it needs a scrappage assumption, and scrappage is the hardest thing to observe in a category where a dead fan often stays on its hook for years; the very ambiguity the scope section had to resolve reappears as an unanchorable number. Second, it counts every fan in the country, so it needs a residential-share split bolted on at the end — a split you would have to assume anyway. The bottom-up route therefore inherits the top-down route's weakest step without shedding any of its own. It is kept below as the triangulation, where a rough answer is useful and a wrong one is cheap."
+    },
+    "archetype": "household-ownership-stock"
   },
   {
-    "timeboxMinutes": 12,
-    "sensitivity": {
-      "assumptionId": "a-helmet-life",
-      "whyThisLever": "Every other input in the chain has something behind it — a published registration figure, a census town count, a fleet-growth identity, a behaviour you can observe at a traffic signal. The replacement cycle has none of that. Nobody publishes how long an Indian helmet lasts in use, the blend spans a certified shell rated for five years and a roadside one that cracks in eighteen months, and the number sits directly under three quarters of the answer. It is the lever an interviewer will push on, and the one you should push on first yourself.",
-      "cases": [
-        {
-          "scenario": "Conservative",
-          "leverValue": "4-year life",
-          "answer": "≈ 4.5 crore a year",
-          "deltaVsBase": "−19%"
-        },
-        {
-          "scenario": "Base",
-          "leverValue": "3-year life",
-          "answer": "≈ 5.5 crore a year",
-          "deltaVsBase": "0%"
-        },
-        {
-          "scenario": "Aggressive",
-          "leverValue": "2-year life",
-          "answer": "≈ 7.7 crore a year",
-          "deltaVsBase": "+38%"
-        }
-      ],
-      "breakpoint": "Across the entire plausible range — two years to four — the answer stays inside 4.5 to 7.7 crore, so the order of magnitude never leaves 10^7 and the conclusion does not flip. To drag the answer below 3 crore you would need a blended life of eight years or more, and no helmet in daily Indian use survives eight years of sun, dust and theft. That is worth saying explicitly: the lever you are least sure of turns out not to threaten the finding, only its second digit.",
-      "oneLiner": "About 5.5 crore helmets a year. It hangs on a three-year replacement cycle — stretch that to four and it falls to 4.5 crore, pull it to two and it rises to 7.7 crore. The order of magnitude holds either way, and I would want that cycle tested before I would defend the digit."
-    },
-    "number": "05",
-    "difficulty": "Medium",
-    "id": "helmets-annual-sales",
-    "archetype": "installed-base-replacement",
-    "routeChoice": {
-      "chosen": "Hybrid",
-      "why": "Size the installed base top-down from the two-wheeler parc, then build annual demand bottom-up on top of it as two separate terms — replacement on the helmets already in use, plus first fit for riders new to the road. The hybrid is not a hedge here. The base can only be reached top-down, because nobody counts helmets; the flow can only be reached bottom-up, because replacement and first fit have different drivers and different sizes.",
-      "rejectedRoute": "Top-down",
-      "rejectedWhyNot": "A clean top-down — population, times riders per head, times helmets per rider, times a replacement rate — puts the entire answer on one undefended ownership figure and drops first-fit demand altogether. In a market still adding roughly 90 lakh two-wheelers to the running fleet every year, the riders arriving for the first time carry about a quarter of annual sales, and they are structurally invisible in any stock-divided-by-life calculation. You would also be counting people when the thing sold is a unit."
-    },
-    "sanityChecks": [
-      "Five and a half crore helmets against 17.5 crore running two-wheelers is roughly one helmet bought per three vehicles a year. Picture thirty two-wheelers waiting at a signal: ten new helmets among them over twelve months. Neither absurdly many nor implausibly few.",
-      "Put a price on it. At a blended ₹700 — cheap roadside shells pulling down the ₹2,000 certified ones — the category is worth about ₹3,900 crore at retail. For an accessory that almost every motorised household owns at least one of, a market under ₹5,000 crore feels right: far smaller than tyres, far larger than number plates.",
-      "First-fit demand of 1.35 crore must sit below the 2.25 crore of helmets dealers hand over in total, because some of those go to buyers who already rode. It does. If your first-fit figure ever exceeds bundled supply, you have double-counted the showroom.",
-      "Per household: 5.5 crore helmets against roughly 31 crore households is one helmet per household every five to six years. In a country where fewer than half of households own a two-wheeler at all, that is the right kind of number — and if it came out at one a year, you would know the model had broken.",
-      "Every figure here is illustrative — built to show the method clearly, not asserted as verified market data. What you defend in the room is the structure and the order of magnitude, never the second digit."
-    ],
     "answerBand": "4 crore to 7 crore units a year",
-    "tree": {
-      "root": "Helmets bought in India in a year",
-      "rootFormula": "= Replacement demand on helmets already in use + First-fit demand from riders new to the road",
-      "value": "≈ 5.5 crore (55 million) units a year",
-      "branches": [
-        {
-          "label": "Replacement demand",
-          "formula": "= Helmets in regular use ÷ Effective helmet life",
-          "value": "≈ 4.2 crore a year",
-          "note": "Three quarters of the answer sits in this branch, and it rests on a product life nobody can observe directly.",
-          "isCriticalPath": true,
-          "children": [
-            {
-              "label": "Running two-wheeler fleet",
-              "formula": "= Registered parc × Share still on the road",
-              "value": "≈ 17.5 crore vehicles",
-              "note": "Registration is cumulative and dead vehicles are almost never struck off — the register is part fleet, part graveyard."
-            },
-            {
-              "label": "Urban fleet and its helmets",
-              "formula": "= 40% of fleet × 1.2 helmets in use per vehicle",
-              "value": "≈ 8.4 crore helmets",
-              "note": "Rider almost always, pillion about one time in four. Not two helmets a vehicle — look at a signal, not at the rulebook."
-            },
-            {
-              "label": "Rural fleet and its helmets",
-              "formula": "= 60% of fleet × 0.4 helmets in use per vehicle",
-              "value": "≈ 4.2 crore helmets",
-              "note": "The larger fleet carries the smaller helmet base. What differs between town and district road is enforcement, not affordability."
-            },
-            {
-              "label": "Effective helmet life",
-              "formula": "= 3 years, blended across certified and roadside units",
-              "value": "3 years",
-              "note": "The shakiest number in the question, and the one the sensitivity grid is built on."
-            }
-          ]
-        },
-        {
-          "label": "First-fit demand",
-          "formula": "= New two-wheelers going to first-time owners × Helmets supplied per vehicle",
-          "value": "≈ 1.35 crore a year",
-          "note": "A quarter of the answer, and the part a stock-only method drops without noticing.",
-          "isCriticalPath": false,
-          "children": [
-            {
-              "label": "New two-wheelers sold",
-              "formula": "≈ 1.5 crore a year",
-              "value": "1.5 crore vehicles",
-              "note": "A flow. Do not let it drift into the same sentence as the 25 crore parc without saying which is which."
-            },
-            {
-              "label": "Share adding a vehicle rather than replacing one",
-              "formula": "= 60% of new sales",
-              "value": "≈ 0.9 crore vehicles",
-              "note": "Forced by arithmetic, not assumed: the running fleet is still growing about 5% a year, and that growth can only come from buyers who did not own one before."
-            },
-            {
-              "label": "Helmets handed over per new vehicle",
-              "formula": "= 1.5",
-              "value": "≈ 1.35 crore helmets",
-              "note": "The rule asks dealers for two. The realistic average across organised and marginal dealers is lower."
-            }
-          ]
-        },
-        {
-          "label": "Channel split — the same units, cut a second way",
-          "formula": "= Dealership-bundled + Aftermarket",
-          "value": "≈ 2.25 crore bundled · ≈ 3.3 crore aftermarket",
-          "note": "This branch does not add to the total; it re-partitions it. Bundled helmets going to buyers who already rode displace an aftermarket purchase rather than adding one, which is why the split must reconcile back to 5.5 crore and not exceed it.",
-          "isCriticalPath": false,
-          "children": [
-            {
-              "label": "Dealership-bundled",
-              "formula": "= 1.5 crore vehicles × 1.5 helmets",
-              "value": "≈ 2.25 crore",
-              "note": "Bundled into the on-road price, so invisible as a helmet purchase to the buyer and highly visible to the helmet brand."
-            },
-            {
-              "label": "Aftermarket",
-              "formula": "= Total − Bundled",
-              "value": "≈ 3.3 crore",
-              "note": "The accessory shop, the roadside stall, the online order. Where the uncertified volume lives."
-            }
-          ]
-        }
-      ]
+    "scope": {
+      "countingWhat": "New helmets bought for two-wheeler riders and pillions in India over one year — units that leave a shop counter or a dealership floor, whether paid for separately or bundled into the price of a new vehicle.",
+      "unit": "helmets purchased per year",
+      "timeBasis": "flow (per year)",
+      "geography": "India, national — urban and rural fleets counted separately because they behave differently",
+      "included": [
+        "Aftermarket replacement helmets bought by riders already on the road",
+        "Helmets handed over with a new two-wheeler at the dealership",
+        "Pillion helmets bought separately from the rider's own",
+        "Uncertified roadside helmets — they are the volume, not the exception",
+        "Replacements forced by theft, breakage and a cracked visor, not only by age"
+      ],
+      "excluded": [
+        "Bicycle helmets, industrial hard hats and motorsport helmets",
+        "Export production — the question asks what India buys, not what India makes",
+        "Second-hand resale, which moves a helmet without creating a sale into the market",
+        "Helmets sitting unsold in the channel — this counts purchases, not shipments"
+      ],
+      "boundaryTrap": "Units, not riders. The question sounds demographic, so the reflex is to funnel population down to riders and stop. But one vehicle can generate two purchases in a year — rider and pillion — while a rider who never owns a helmet generates none, and a helmet bought in January and stolen in June generates two. Say in your first sentence that you are counting purchase events, and the rest of the structure follows."
     },
+    "question": "How many two-wheeler helmets does India buy in a year?",
+    "difficulty": "Medium",
+    "probes": [
+      {
+        "question": "You assumed a three-year helmet life. Where does that come from?",
+        "intent": "Whether the shakiest number in the chain has a defence, or whether it was chosen because it made the arithmetic tidy.",
+        "goodAnswer": "Names the two populations inside the blend — a certified helmet rated for about five years and a cheap shell that cracks, fades or is stolen within two — says which dominates by volume and why, then offers the four-year alternative and its effect on the answer before being asked for it.",
+        "weakAnswer": "'Three years felt reasonable.' Honest and completely undefended — it concedes the lever without offering any way to test it, and the interviewer now owns the rest of the conversation."
+      },
+      {
+        "question": "Your answer is 5.5 crore. Suppose the real figure is 4 crore. What broke?",
+        "intent": "Whether you can run your own model backwards and locate the failure, rather than restating the arithmetic more slowly.",
+        "goodAnswer": "Goes straight to the two levers that actually move the answer: takes the live share of the parc down to 60% and the helmet life out to four years, and the model lands at about 4 crore. Neither move is extreme. Then names which of the two it would rather surrender and why.",
+        "weakAnswer": "Re-reads the calculation from the top to show it was done correctly. The arithmetic was never in question — the inputs were."
+      },
+      {
+        "question": "Should the helmets a dealer gives away with a new bike count at all?",
+        "intent": "Whether you understand that scope decides the answer, and whether you will commit to one reading instead of hedging across both.",
+        "goodAnswer": "Says they count as units sold into the market — someone paid, even if it was folded into the on-road price — but that they cannot be added on top of replacement demand for buyers who already owned a helmet. States the reading, then shows the channel split adding back to the total as proof there is no double-count.",
+        "weakAnswer": "'It depends on how you define it', offered as a conclusion rather than as the opening half of a sentence that then chooses a definition."
+      },
+      {
+        "question": "Is this market growing or shrinking?",
+        "intent": "Whether you can read a rate of change off a stock-and-flow model you have just built, rather than reaching for a growth percentage from memory.",
+        "goodAnswer": "Separates the three drivers already sitting inside the model: the running fleet is growing about 5% a year, enforcement is slowly lifting the rural helmet rate off a very low base, and a shift towards certified helmets would lengthen the replacement cycle and cut unit volume while raising value. Notes that the third pulls against the first two, so units and value may not move together.",
+        "weakAnswer": "'Growing, because India is growing.' True and useless — it names no mechanism inside the estimate and would have been said without doing the work."
+      },
+      {
+        "question": "Thirty seconds and one phone call to tighten this. Whom do you call, and what do you ask?",
+        "intent": "Whether you know which input actually carries the uncertainty, and can tell it apart from the input that is merely the most visible.",
+        "goodAnswer": "Calls a large helmet distributor and asks what blended replacement interval their reorder data implies, and what share of volume is uncertified. Explains the choice: the parc is published and lookupable, the replacement cycle is published nowhere and moves the answer by a third.",
+        "weakAnswer": "Asks someone for the market size. That returns the answer instead of testing the method, and is the one thing no interviewer will accept in place of your own estimate."
+      },
+      {
+        "question": "Your rural helmet rate is 0.4 and your urban rate is 1.2. Convince me the gap is really three-fold.",
+        "intent": "Whether a segmentation was made because the segments genuinely behave differently, or because splitting things in two looks like structure.",
+        "goodAnswer": "Grounds the gap in enforcement rather than income — checking is routine at city junctions and rare on district roads — and concedes the direction of error: if enforcement is spreading faster than assumed, 0.4 is too low and the answer is understated. Offers the 0.6 case and its roughly 70 lakh effect.",
+        "weakAnswer": "'Rural people are poorer.' It picks the wrong mechanism — a helmet costs less than a tank of petrol — and it cannot be tested by anything the candidate has seen."
+      }
+    ],
     "triangulation": {
       "label": "Retail-throughput cross-check",
       "route": "Bottom-up",
@@ -2980,67 +2908,339 @@ export const guesstimates: readonly Guesstimate[] = [
       "answer": "≈ 6 crore helmets a year",
       "verdict": "Six crore against the primary route's 5.5 crore — a gap of under a tenth, which is closer than a method like this deserves. Read it as confirmation of the order of magnitude and nothing finer; two routes that agree on the second digit have usually done so by luck. The useful part is the direction of the gap: the retail route runs slightly high, which is what you would expect, because a count of selling points tends to include the mechanic who keeps three helmets on a shelf and sells one a fortnight. Had the two routes differed by a factor of three, the place to look first would be the rural helmet rate in the primary route and the outlets-per-town figure in this one — the two softest numbers on either side."
     },
-    "probes": [
+    "tree": {
+      "root": "Helmets bought in India in a year",
+      "rootFormula": "= Replacement demand on helmets already in use + First-fit demand from riders new to the road",
+      "value": "≈ 5.5 crore (55 million) units a year",
+      "branches": [
+        {
+          "label": "Replacement demand",
+          "formula": "= Helmets in regular use ÷ Effective helmet life",
+          "value": "≈ 4.2 crore a year",
+          "note": "Three quarters of the answer sits in this branch, and it rests on a product life nobody can observe directly.",
+          "isCriticalPath": true,
+          "children": [
+            {
+              "label": "Running two-wheeler fleet",
+              "formula": "= Registered parc × Share still on the road",
+              "value": "≈ 17.5 crore vehicles",
+              "note": "Registration is cumulative and dead vehicles are almost never struck off — the register is part fleet, part graveyard."
+            },
+            {
+              "label": "Urban fleet and its helmets",
+              "formula": "= 40% of fleet × 1.2 helmets in use per vehicle",
+              "value": "≈ 8.4 crore helmets",
+              "note": "Rider almost always, pillion about one time in four. Not two helmets a vehicle — look at a signal, not at the rulebook."
+            },
+            {
+              "label": "Rural fleet and its helmets",
+              "formula": "= 60% of fleet × 0.4 helmets in use per vehicle",
+              "value": "≈ 4.2 crore helmets",
+              "note": "The larger fleet carries the smaller helmet base. What differs between town and district road is enforcement, not affordability."
+            },
+            {
+              "label": "Effective helmet life",
+              "formula": "= 3 years, blended across certified and roadside units",
+              "value": "3 years",
+              "note": "The shakiest number in the question, and the one the sensitivity grid is built on."
+            }
+          ]
+        },
+        {
+          "label": "First-fit demand",
+          "formula": "= New two-wheelers going to first-time owners × Helmets supplied per vehicle",
+          "value": "≈ 1.35 crore a year",
+          "note": "A quarter of the answer, and the part a stock-only method drops without noticing.",
+          "isCriticalPath": false,
+          "children": [
+            {
+              "label": "New two-wheelers sold",
+              "formula": "≈ 1.5 crore a year",
+              "value": "1.5 crore vehicles",
+              "note": "A flow. Do not let it drift into the same sentence as the 25 crore parc without saying which is which."
+            },
+            {
+              "label": "Share adding a vehicle rather than replacing one",
+              "formula": "= 60% of new sales",
+              "value": "≈ 0.9 crore vehicles",
+              "note": "Forced by arithmetic, not assumed: the running fleet is still growing about 5% a year, and that growth can only come from buyers who did not own one before."
+            },
+            {
+              "label": "Helmets handed over per new vehicle",
+              "formula": "= 1.5",
+              "value": "≈ 1.35 crore helmets",
+              "note": "The rule asks dealers for two. The realistic average across organised and marginal dealers is lower."
+            }
+          ]
+        },
+        {
+          "label": "Channel split — the same units, cut a second way",
+          "formula": "= Dealership-bundled + Aftermarket",
+          "value": "≈ 2.25 crore bundled · ≈ 3.3 crore aftermarket",
+          "note": "This branch does not add to the total; it re-partitions it. Bundled helmets going to buyers who already rode displace an aftermarket purchase rather than adding one, which is why the split must reconcile back to 5.5 crore and not exceed it.",
+          "isCriticalPath": false,
+          "children": [
+            {
+              "label": "Dealership-bundled",
+              "formula": "= 1.5 crore vehicles × 1.5 helmets",
+              "value": "≈ 2.25 crore",
+              "note": "Bundled into the on-road price, so invisible as a helmet purchase to the buyer and highly visible to the helmet brand."
+            },
+            {
+              "label": "Aftermarket",
+              "formula": "= Total − Bundled",
+              "value": "≈ 3.3 crore",
+              "note": "The accessory shop, the roadside stall, the online order. Where the uncertified volume lives."
+            }
+          ]
+        }
+      ]
+    },
+    "timeboxMinutes": 12,
+    "traps": [
       {
-        "question": "You assumed a three-year helmet life. Where does that come from?",
-        "intent": "Whether the shakiest number in the chain has a defence, or whether it was chosen because it made the arithmetic tidy.",
-        "goodAnswer": "Names the two populations inside the blend — a certified helmet rated for about five years and a cheap shell that cracks, fades or is stolen within two — says which dominates by volume and why, then offers the four-year alternative and its effect on the answer before being asked for it.",
-        "weakAnswer": "'Three years felt reasonable.' Honest and completely undefended — it concedes the lever without offering any way to test it, and the interviewer now owns the rest of the conversation."
+        "trap": "Counting the parc, dividing by a life, and calling that the market.",
+        "whyItHappens": "The parc is the number a candidate can remember, and stock-divided-by-life feels like a complete method because it produces a flow from a stock. It is half the method. In a market still adding about 90 lakh vehicles to the running fleet each year, riders arriving for the first time carry roughly a quarter of annual demand, and they are structurally invisible to a calculation that only looks at what is already out there.",
+        "fix": "Write the root as two terms before you compute anything — replacement on the existing base, plus first fit for new riders — and say both out loud. The interviewer is listening for the second term."
       },
       {
-        "question": "Your answer is 5.5 crore. Suppose the real figure is 4 crore. What broke?",
-        "intent": "Whether you can run your own model backwards and locate the failure, rather than restating the arithmetic more slowly.",
-        "goodAnswer": "Goes straight to the two levers that actually move the answer: takes the live share of the parc down to 60% and the helmet life out to four years, and the model lands at about 4 crore. Neither move is extreme. Then names which of the two it would rather surrender and why.",
-        "weakAnswer": "Re-reads the calculation from the top to show it was done correctly. The arithmetic was never in question — the inputs were."
+        "trap": "Treating registered vehicles as running vehicles.",
+        "whyItHappens": "Registration data is cumulative and vehicles are almost never struck off when they stop running, so the register is a graveyard as much as a fleet. The 25 crore figure is easy to recall and carries no visible warning, so candidates compute on all of it and inflate the base by nearly half.",
+        "fix": "Apply a live-share haircut and defend it from vehicle life rather than from taste: a fleet with an effective life near fifteen years that has roughly doubled in a decade cannot be much more than 70% alive."
       },
       {
-        "question": "Should the helmets a dealer gives away with a new bike count at all?",
-        "intent": "Whether you understand that scope decides the answer, and whether you will commit to one reading instead of hedging across both.",
-        "goodAnswer": "Says they count as units sold into the market — someone paid, even if it was folded into the on-road price — but that they cannot be added on top of replacement demand for buyers who already owned a helmet. States the reading, then shows the channel split adding back to the total as proof there is no double-count.",
-        "weakAnswer": "'It depends on how you define it', offered as a conclusion rather than as the opening half of a sentence that then chooses a definition."
+        "trap": "Counting riders instead of units.",
+        "whyItHappens": "The question sounds demographic, so the reflex is a population funnel down to riders and a stop there. But the thing sold is a unit — one vehicle can generate two purchases in a year through rider and pillion, a rider who never buys generates none, and a stolen helmet generates a second purchase from the same person.",
+        "fix": "Fix the unit in the first sentence of your scope: helmets purchased, not people wearing them. Every later choice follows from that one."
       },
       {
-        "question": "Is this market growing or shrinking?",
-        "intent": "Whether you can read a rate of change off a stock-and-flow model you have just built, rather than reaching for a growth percentage from memory.",
-        "goodAnswer": "Separates the three drivers already sitting inside the model: the running fleet is growing about 5% a year, enforcement is slowly lifting the rural helmet rate off a very low base, and a shift towards certified helmets would lengthen the replacement cycle and cut unit volume while raising value. Notes that the third pulls against the first two, so units and value may not move together.",
-        "weakAnswer": "'Growing, because India is growing.' True and useless — it names no mechanism inside the estimate and would have been said without doing the work."
+        "trap": "Double-counting the dealership bundle.",
+        "whyItHappens": "Compute replacement on the full installed base, then add every helmet a dealer hands over, and you have counted the same replacement twice for the four in ten new-vehicle buyers who already owned one. The error is invisible because both blocks are individually correct — it is only the addition that is wrong.",
+        "fix": "Decide explicitly whether a bundled helmet adds demand or displaces an aftermarket purchase, then make your channel split add back to your total. If bundled plus aftermarket does not equal your headline, you have found the double-count."
       },
       {
-        "question": "Thirty seconds and one phone call to tighten this. Whom do you call, and what do you ask?",
-        "intent": "Whether you know which input actually carries the uncertainty, and can tell it apart from the input that is merely the most visible.",
-        "goodAnswer": "Calls a large helmet distributor and asks what blended replacement interval their reorder data implies, and what share of volume is uncertified. Explains the choice: the parc is published and lookupable, the replacement cycle is published nowhere and moves the answer by a third.",
-        "weakAnswer": "Asks someone for the market size. That returns the answer instead of testing the method, and is the one thing no interviewer will accept in place of your own estimate."
+        "trap": "Projecting urban helmet behaviour onto the whole country.",
+        "whyItHappens": "The candidate's own evidence is a city signal where nearly every rider has one on. That single honest observation gets applied to a fleet that is 60% rural, where enforcement is thin and helmet use is the exception — and the answer comes out roughly half again too high.",
+        "fix": "Split the fleet before applying any behavioural rate, and say plainly which half you have actually observed and which half you are inferring."
       },
       {
-        "question": "Your rural helmet rate is 0.4 and your urban rate is 1.2. Convince me the gap is really three-fold.",
-        "intent": "Whether a segmentation was made because the segments genuinely behave differently, or because splitting things in two looks like structure.",
-        "goodAnswer": "Grounds the gap in enforcement rather than income — checking is routine at city junctions and rare on district roads — and concedes the direction of error: if enforcement is spreading faster than assumed, 0.4 is too low and the answer is understated. Offers the 0.6 case and its roughly 70 lakh effect.",
-        "weakAnswer": "'Rural people are poorer.' It picks the wrong mechanism — a helmet costs less than a tank of petrol — and it cannot be tested by anything the candidate has seen."
+        "trap": "Blending helmet prices to get a value answer without saying what went into the blend.",
+        "whyItHappens": "Once a unit answer exists, converting to rupees looks like a free extra. But this category spans a ₹400 roadside shell and a ₹4,000 certified one, and a blended price is the most abusable number in the chain — move it from ₹700 to ₹1,200 and the market grows by 70% with no change to a single physical assumption.",
+        "fix": "If you go to value, state the mix that produced the blend — what share is uncertified — and offer the value as a band rather than a figure."
       }
     ],
     "finalAnswerNumeric": 55500000,
-    "tabLabel": "Helmets, annual sales",
-    "finalAnswer": "≈ 5.5 crore (55 million) helmets bought in India in a year — roughly 3.3 crore through the aftermarket and 2.25 crore bundled at dealerships, with replacement carrying about three quarters of the volume",
-    "scope": {
-      "countingWhat": "New helmets bought for two-wheeler riders and pillions in India over one year — units that leave a shop counter or a dealership floor, whether paid for separately or bundled into the price of a new vehicle.",
-      "unit": "helmets purchased per year",
-      "timeBasis": "flow (per year)",
-      "geography": "India, national — urban and rural fleets counted separately because they behave differently",
-      "included": [
-        "Aftermarket replacement helmets bought by riders already on the road",
-        "Helmets handed over with a new two-wheeler at the dealership",
-        "Pillion helmets bought separately from the rider's own",
-        "Uncertified roadside helmets — they are the volume, not the exception",
-        "Replacements forced by theft, breakage and a cracked visor, not only by age"
+    "number": "05",
+    "sensitivity": {
+      "assumptionId": "a-helmet-life",
+      "whyThisLever": "Every other input in the chain has something behind it — a published registration figure, a census town count, a fleet-growth identity, a behaviour you can observe at a traffic signal. The replacement cycle has none of that. Nobody publishes how long an Indian helmet lasts in use, the blend spans a certified shell rated for five years and a roadside one that cracks in eighteen months, and the number sits directly under three quarters of the answer. It is the lever an interviewer will push on, and the one you should push on first yourself.",
+      "cases": [
+        {
+          "scenario": "Conservative",
+          "leverValue": "4-year life",
+          "answer": "≈ 4.5 crore a year",
+          "deltaVsBase": "−19%"
+        },
+        {
+          "scenario": "Base",
+          "leverValue": "3-year life",
+          "answer": "≈ 5.5 crore a year",
+          "deltaVsBase": "0%"
+        },
+        {
+          "scenario": "Aggressive",
+          "leverValue": "2-year life",
+          "answer": "≈ 7.7 crore a year",
+          "deltaVsBase": "+38%"
+        }
       ],
-      "excluded": [
-        "Bicycle helmets, industrial hard hats and motorsport helmets",
-        "Export production — the question asks what India buys, not what India makes",
-        "Second-hand resale, which moves a helmet without creating a sale into the market",
-        "Helmets sitting unsold in the channel — this counts purchases, not shipments"
-      ],
-      "boundaryTrap": "Units, not riders. The question sounds demographic, so the reflex is to funnel population down to riders and stop. But one vehicle can generate two purchases in a year — rider and pillion — while a rider who never owns a helmet generates none, and a helmet bought in January and stolen in June generates two. Say in your first sentence that you are counting purchase events, and the rest of the structure follows."
+      "breakpoint": "Across the entire plausible range — two years to four — the answer stays inside 4.5 to 7.7 crore, so the order of magnitude never leaves 10^7 and the conclusion does not flip. To drag the answer below 3 crore you would need a blended life of eight years or more, and no helmet in daily Indian use survives eight years of sun, dust and theft. That is worth saying explicitly: the lever you are least sure of turns out not to threaten the finding, only its second digit.",
+      "oneLiner": "About 5.5 crore helmets a year. It hangs on a three-year replacement cycle — stretch that to four and it falls to 4.5 crore, pull it to two and it rises to 7.7 crore. The order of magnitude holds either way, and I would want that cycle tested before I would defend the digit."
     },
+    "sanityChecks": [
+      "Five and a half crore helmets against 17.5 crore running two-wheelers is roughly one helmet bought per three vehicles a year. Picture thirty two-wheelers waiting at a signal: ten new helmets among them over twelve months. Neither absurdly many nor implausibly few.",
+      "Put a price on it. At a blended ₹700 — cheap roadside shells pulling down the ₹2,000 certified ones — the category is worth about ₹3,900 crore at retail. For an accessory that almost every motorised household owns at least one of, a market under ₹5,000 crore feels right: far smaller than tyres, far larger than number plates.",
+      "First-fit demand of 1.35 crore must sit below the 2.25 crore of helmets dealers hand over in total, because some of those go to buyers who already rode. It does. If your first-fit figure ever exceeds bundled supply, you have double-counted the showroom.",
+      "Per household: 5.5 crore helmets against roughly 31 crore households is one helmet per household every five to six years. In a country where fewer than half of households own a two-wheeler at all, that is the right kind of number — and if it came out at one a year, you would know the model had broken.",
+      "Every figure here is illustrative — built to show the method clearly, not asserted as verified market data. What you defend in the room is the structure and the order of magnitude, never the second digit."
+    ],
+    "assumptions": [
+      {
+        "id": "a-parc",
+        "lever": "Registered two-wheeler parc in India",
+        "value": "25 crore (250 Mn)",
+        "numeric": 250000000,
+        "unit": "vehicles",
+        "basis": "published-benchmark",
+        "defence": "India has registered 1.5 to 1.8 crore two-wheelers a year for over a decade, and the register is cumulative — 25 crore is the round figure transport-ministry data supports and the one to say aloud.",
+        "confidence": "anchor",
+        "contestedBy": "An interviewer who prefers 20 crore takes the installed base down by a fifth and the answer to about 4.7 crore — first-fit demand is untouched, which is why the total falls by 15% and not 20%."
+      },
+      {
+        "id": "a-live-share",
+        "lever": "Share of registered two-wheelers still actually running",
+        "value": "70%",
+        "numeric": 0.7,
+        "unit": "share",
+        "basis": "structural-logic",
+        "defence": "Vehicles are almost never deregistered when they die, so the register always overstates the fleet; against an effective life near fifteen years on a fleet that has roughly doubled in a decade, about seven in ten of the registered units can still be on the road.",
+        "confidence": "defensible",
+        "contestedBy": "60% is a fair challenge given informal scrappage and it takes the answer to roughly 5 crore."
+      },
+      {
+        "id": "a-urban-fleet-share",
+        "lever": "Urban share of the running two-wheeler fleet",
+        "value": "40%",
+        "numeric": 0.4,
+        "unit": "share",
+        "basis": "structural-logic",
+        "defence": "India is about 35% urban, and two-wheeler ownership per household runs higher in towns, but rural India is not a small two-wheeler market — it is where the vehicle is the only motorised option — so a modest tilt above the population share, not a reversal of it.",
+        "confidence": "defensible",
+        "contestedBy": "50/50 is arguable and raises the answer by roughly 8%, or about half a crore units, because it moves fleet from a low-helmet segment to a high one."
+      },
+      {
+        "id": "a-helmets-urban",
+        "lever": "Helmets in regular use per urban two-wheeler",
+        "value": "1.2",
+        "numeric": 1.2,
+        "unit": "helmets per vehicle",
+        "basis": "observed-behaviour",
+        "defence": "Stand at a city signal and count: nearly every rider is wearing one, perhaps one pillion in four is — that is about 1.2 helmets a vehicle in actual use, which is what wears out, rather than the two the rule asks for.",
+        "confidence": "defensible",
+        "contestedBy": "1.5 if you believe pillion compliance has genuinely moved; adds roughly 70 lakh helmets a year."
+      },
+      {
+        "id": "a-helmets-rural",
+        "lever": "Helmets in regular use per rural two-wheeler",
+        "value": "0.4",
+        "numeric": 0.4,
+        "unit": "helmets per vehicle",
+        "basis": "observed-behaviour",
+        "defence": "On a district road helmet use is the exception rather than the rule, and two riders in five owning one they actually use is a generous reading rather than a harsh one.",
+        "confidence": "judgement",
+        "contestedBy": "0.6 if you think enforcement has reached the blocks; that adds about 70 lakh helmets a year."
+      },
+      {
+        "id": "a-helmet-life",
+        "lever": "Effective replacement cycle for a helmet in use",
+        "value": "3 years",
+        "numeric": 3,
+        "unit": "years",
+        "basis": "declared-judgement",
+        "defence": "A certified helmet is rated for about five years, but the cheap shell that carries most of this market's volume cracks, fades, loses its strap or is stolen well before that — three years is the blend across both, and it is openly a judgement.",
+        "confidence": "shaky",
+        "contestedBy": "Four years is defensible for a certified-only reading of the market and cuts replacement demand by a quarter."
+      },
+      {
+        "id": "a-new-sales",
+        "lever": "New two-wheelers sold domestically per year",
+        "value": "1.5 crore (15 Mn)",
+        "numeric": 15000000,
+        "unit": "vehicles per year",
+        "basis": "published-benchmark",
+        "defence": "Domestic two-wheeler sales have run in the 1.5 to 1.8 crore range for years; 1.5 crore is the conservative round number and it is a flow figure, not to be confused with the parc.",
+        "confidence": "anchor",
+        "contestedBy": "1.8 crore lifts first-fit demand to about 1.6 crore and the total to roughly 5.8 crore."
+      },
+      {
+        "id": "a-new-rider-share",
+        "lever": "Share of new two-wheeler buyers adding a vehicle rather than replacing one",
+        "value": "60%",
+        "numeric": 0.6,
+        "unit": "share",
+        "basis": "structural-logic",
+        "defence": "The running fleet is still growing at roughly 5% a year — about 90 lakh vehicles — and that net addition can only come from buyers who did not previously own one, which forces the split rather than leaving it to taste.",
+        "confidence": "defensible",
+        "contestedBy": "A maturing market argues for 50%, trimming first-fit demand by about 22 lakh units."
+      },
+      {
+        "id": "a-bundle-rate",
+        "lever": "Helmets supplied with a new two-wheeler at the dealership",
+        "value": "1.5",
+        "numeric": 1.5,
+        "unit": "helmets per vehicle",
+        "basis": "published-benchmark",
+        "defence": "Indian rules require a dealer to supply certified helmets with a new two-wheeler; organised dealerships comply, smaller ones supply one or let the buyer decline, so 1.5 is the realistic average rather than the rule's figure.",
+        "confidence": "judgement",
+        "contestedBy": "Full compliance at 2.0 raises bundled volume to 3 crore and the total to about 6 crore. Check the current rule before quoting it as a number in the room."
+      },
+      {
+        "id": "a-bundle-substitution",
+        "lever": "Whether a bundled helmet displaces an aftermarket purchase",
+        "value": "Full displacement for buyers who already rode",
+        "numeric": 1,
+        "unit": "share displaced",
+        "basis": "declared-judgement",
+        "defence": "A rider handed a new helmet at the showroom does not walk into an accessory shop the same year, so bundled units going to replacement-vehicle buyers substitute for aftermarket demand instead of adding to it — a simplification that slightly understates the total, and worth saying so.",
+        "confidence": "judgement",
+        "contestedBy": "Assume no displacement and you add about 90 lakh units, which is exactly the double-count this assumption exists to prevent."
+      },
+      {
+        "id": "a-urban-settlements",
+        "lever": "Urban settlements in India with a market street",
+        "value": "8,000",
+        "numeric": 8000,
+        "unit": "towns and cities",
+        "basis": "census-anchor",
+        "defence": "The census counts roughly 4,000 statutory towns and a similar number of census towns, so 8,000 is the working figure for places that carry a retail market of any kind.",
+        "confidence": "anchor",
+        "contestedBy": "Count only statutory towns and the outlet base halves, dropping the cross-check to about 3 crore."
+      },
+      {
+        "id": "a-outlets-per-settlement",
+        "lever": "Helmet-selling retail points per urban settlement",
+        "value": "15",
+        "numeric": 15,
+        "unit": "outlets per town",
+        "basis": "observed-behaviour",
+        "defence": "A metro carries several hundred accessory shops, a district town perhaps a dozen, a small municipality three or four — and because the count of settlements is dominated by small ones, the weighted average sits near 15, not near the metro figure.",
+        "confidence": "judgement",
+        "contestedBy": "25 is arguable if you count every mechanic who keeps a rack; it would push the cross-check above 9 crore and break the agreement with the primary route."
+      },
+      {
+        "id": "a-rural-outlet-uplift",
+        "lever": "Rural and highway selling points as a share of urban ones",
+        "value": "50%",
+        "numeric": 0.5,
+        "unit": "share",
+        "basis": "declared-judgement",
+        "defence": "Rural helmet retail is thin per location but spread across highway stalls and block-town markets; half the urban outlet count is a deliberately restrained figure for a fleet that is 60% rural.",
+        "confidence": "judgement",
+        "contestedBy": "Parity with urban outlets adds 60,000 points and about 1.8 crore units to the cross-check."
+      },
+      {
+        "id": "a-organised-points",
+        "lever": "Organised dealerships and branded helmet stores per urban settlement",
+        "value": "2.5",
+        "numeric": 2.5,
+        "unit": "outlets per town",
+        "basis": "structural-logic",
+        "defence": "Across every two-wheeler make and helmet brand the organised network runs to roughly 20,000 points nationally, which spread over 8,000 towns is about two and a half each — anchored on settlements, deliberately, so this route stays independent of the vehicle-sales figure.",
+        "confidence": "judgement"
+      },
+      {
+        "id": "a-outlet-throughput",
+        "lever": "Helmets sold per outlet per month",
+        "value": "25",
+        "numeric": 25,
+        "unit": "helmets per outlet per month",
+        "basis": "declared-judgement",
+        "defence": "Roughly one helmet a day in a shop that also sells mirrors, seat covers and oil — a highway dealership does four times that and a village stall a fifth, and 25 is the blend across a base dominated by the small ones.",
+        "confidence": "shaky",
+        "contestedBy": "This is the load-bearing number of the cross-check; at 20 a month the route lands on 4.8 crore, which still agrees on order of magnitude."
+      },
+      {
+        "id": "a-months",
+        "lever": "Months in a year",
+        "value": "12",
+        "numeric": 12,
+        "unit": "months",
+        "basis": "physical-constant",
+        "defence": "Not in dispute — listed so every number in the chain has a stated origin.",
+        "confidence": "anchor"
+      }
+    ],
+    "finalAnswer": "≈ 5.5 crore (55 million) helmets bought in India in a year — roughly 3.3 crore through the aftermarket and 2.25 crore bundled at dealerships, with replacement carrying about three quarters of the volume",
     "calculation": [
       {
         "id": "c1",
@@ -3222,265 +3422,153 @@ export const guesstimates: readonly Guesstimate[] = [
         "soWhat": "If your channel split does not add back to your total, you have counted the dealership bundle twice. Run this line out loud — it costs five seconds and it is the error an interviewer is watching for."
       }
     ],
+    "id": "helmets-annual-sales",
+    "tabLabel": "Helmets, annual sales",
+    "teachingPoint": "A stock is not a flow. Annual sales of a durable good come from two populations that behave nothing alike — the base already out there cycling through replacement, and the riders arriving on the road for the first time. Divide a parc by a product life and you have answered half the question, confidently.",
     "orderOfMagnitude": "10^7",
-    "assumptions": [
-      {
-        "id": "a-parc",
-        "lever": "Registered two-wheeler parc in India",
-        "value": "25 crore (250 Mn)",
-        "numeric": 250000000,
-        "unit": "vehicles",
-        "basis": "published-benchmark",
-        "defence": "India has registered 1.5 to 1.8 crore two-wheelers a year for over a decade, and the register is cumulative — 25 crore is the round figure transport-ministry data supports and the one to say aloud.",
-        "confidence": "anchor",
-        "contestedBy": "An interviewer who prefers 20 crore takes the installed base down by a fifth and the answer to about 4.7 crore — first-fit demand is untouched, which is why the total falls by 15% and not 20%."
-      },
-      {
-        "id": "a-live-share",
-        "lever": "Share of registered two-wheelers still actually running",
-        "value": "70%",
-        "numeric": 0.7,
-        "unit": "share",
-        "basis": "structural-logic",
-        "defence": "Vehicles are almost never deregistered when they die, so the register always overstates the fleet; against an effective life near fifteen years on a fleet that has roughly doubled in a decade, about seven in ten of the registered units can still be on the road.",
-        "confidence": "defensible",
-        "contestedBy": "60% is a fair challenge given informal scrappage and it takes the answer to roughly 5 crore."
-      },
-      {
-        "id": "a-urban-fleet-share",
-        "lever": "Urban share of the running two-wheeler fleet",
-        "value": "40%",
-        "numeric": 0.4,
-        "unit": "share",
-        "basis": "structural-logic",
-        "defence": "India is about 35% urban, and two-wheeler ownership per household runs higher in towns, but rural India is not a small two-wheeler market — it is where the vehicle is the only motorised option — so a modest tilt above the population share, not a reversal of it.",
-        "confidence": "defensible",
-        "contestedBy": "50/50 is arguable and raises the answer by roughly 8%, or about half a crore units, because it moves fleet from a low-helmet segment to a high one."
-      },
-      {
-        "id": "a-helmets-urban",
-        "lever": "Helmets in regular use per urban two-wheeler",
-        "value": "1.2",
-        "numeric": 1.2,
-        "unit": "helmets per vehicle",
-        "basis": "observed-behaviour",
-        "defence": "Stand at a city signal and count: nearly every rider is wearing one, perhaps one pillion in four is — that is about 1.2 helmets a vehicle in actual use, which is what wears out, rather than the two the rule asks for.",
-        "confidence": "defensible",
-        "contestedBy": "1.5 if you believe pillion compliance has genuinely moved; adds roughly 70 lakh helmets a year."
-      },
-      {
-        "id": "a-helmets-rural",
-        "lever": "Helmets in regular use per rural two-wheeler",
-        "value": "0.4",
-        "numeric": 0.4,
-        "unit": "helmets per vehicle",
-        "basis": "observed-behaviour",
-        "defence": "On a district road helmet use is the exception rather than the rule, and two riders in five owning one they actually use is a generous reading rather than a harsh one.",
-        "confidence": "judgement",
-        "contestedBy": "0.6 if you think enforcement has reached the blocks; that adds about 70 lakh helmets a year."
-      },
-      {
-        "id": "a-helmet-life",
-        "lever": "Effective replacement cycle for a helmet in use",
-        "value": "3 years",
-        "numeric": 3,
-        "unit": "years",
-        "basis": "declared-judgement",
-        "defence": "A certified helmet is rated for about five years, but the cheap shell that carries most of this market's volume cracks, fades, loses its strap or is stolen well before that — three years is the blend across both, and it is openly a judgement.",
-        "confidence": "shaky",
-        "contestedBy": "Four years is defensible for a certified-only reading of the market and cuts replacement demand by a quarter."
-      },
-      {
-        "id": "a-new-sales",
-        "lever": "New two-wheelers sold domestically per year",
-        "value": "1.5 crore (15 Mn)",
-        "numeric": 15000000,
-        "unit": "vehicles per year",
-        "basis": "published-benchmark",
-        "defence": "Domestic two-wheeler sales have run in the 1.5 to 1.8 crore range for years; 1.5 crore is the conservative round number and it is a flow figure, not to be confused with the parc.",
-        "confidence": "anchor",
-        "contestedBy": "1.8 crore lifts first-fit demand to about 1.6 crore and the total to roughly 5.8 crore."
-      },
-      {
-        "id": "a-new-rider-share",
-        "lever": "Share of new two-wheeler buyers adding a vehicle rather than replacing one",
-        "value": "60%",
-        "numeric": 0.6,
-        "unit": "share",
-        "basis": "structural-logic",
-        "defence": "The running fleet is still growing at roughly 5% a year — about 90 lakh vehicles — and that net addition can only come from buyers who did not previously own one, which forces the split rather than leaving it to taste.",
-        "confidence": "defensible",
-        "contestedBy": "A maturing market argues for 50%, trimming first-fit demand by about 22 lakh units."
-      },
-      {
-        "id": "a-bundle-rate",
-        "lever": "Helmets supplied with a new two-wheeler at the dealership",
-        "value": "1.5",
-        "numeric": 1.5,
-        "unit": "helmets per vehicle",
-        "basis": "published-benchmark",
-        "defence": "Indian rules require a dealer to supply certified helmets with a new two-wheeler; organised dealerships comply, smaller ones supply one or let the buyer decline, so 1.5 is the realistic average rather than the rule's figure.",
-        "confidence": "judgement",
-        "contestedBy": "Full compliance at 2.0 raises bundled volume to 3 crore and the total to about 6 crore. Check the current rule before quoting it as a number in the room."
-      },
-      {
-        "id": "a-bundle-substitution",
-        "lever": "Whether a bundled helmet displaces an aftermarket purchase",
-        "value": "Full displacement for buyers who already rode",
-        "numeric": 1,
-        "unit": "share displaced",
-        "basis": "declared-judgement",
-        "defence": "A rider handed a new helmet at the showroom does not walk into an accessory shop the same year, so bundled units going to replacement-vehicle buyers substitute for aftermarket demand instead of adding to it — a simplification that slightly understates the total, and worth saying so.",
-        "confidence": "judgement",
-        "contestedBy": "Assume no displacement and you add about 90 lakh units, which is exactly the double-count this assumption exists to prevent."
-      },
-      {
-        "id": "a-urban-settlements",
-        "lever": "Urban settlements in India with a market street",
-        "value": "8,000",
-        "numeric": 8000,
-        "unit": "towns and cities",
-        "basis": "census-anchor",
-        "defence": "The census counts roughly 4,000 statutory towns and a similar number of census towns, so 8,000 is the working figure for places that carry a retail market of any kind.",
-        "confidence": "anchor",
-        "contestedBy": "Count only statutory towns and the outlet base halves, dropping the cross-check to about 3 crore."
-      },
-      {
-        "id": "a-outlets-per-settlement",
-        "lever": "Helmet-selling retail points per urban settlement",
-        "value": "15",
-        "numeric": 15,
-        "unit": "outlets per town",
-        "basis": "observed-behaviour",
-        "defence": "A metro carries several hundred accessory shops, a district town perhaps a dozen, a small municipality three or four — and because the count of settlements is dominated by small ones, the weighted average sits near 15, not near the metro figure.",
-        "confidence": "judgement",
-        "contestedBy": "25 is arguable if you count every mechanic who keeps a rack; it would push the cross-check above 9 crore and break the agreement with the primary route."
-      },
-      {
-        "id": "a-rural-outlet-uplift",
-        "lever": "Rural and highway selling points as a share of urban ones",
-        "value": "50%",
-        "numeric": 0.5,
-        "unit": "share",
-        "basis": "declared-judgement",
-        "defence": "Rural helmet retail is thin per location but spread across highway stalls and block-town markets; half the urban outlet count is a deliberately restrained figure for a fleet that is 60% rural.",
-        "confidence": "judgement",
-        "contestedBy": "Parity with urban outlets adds 60,000 points and about 1.8 crore units to the cross-check."
-      },
-      {
-        "id": "a-organised-points",
-        "lever": "Organised dealerships and branded helmet stores per urban settlement",
-        "value": "2.5",
-        "numeric": 2.5,
-        "unit": "outlets per town",
-        "basis": "structural-logic",
-        "defence": "Across every two-wheeler make and helmet brand the organised network runs to roughly 20,000 points nationally, which spread over 8,000 towns is about two and a half each — anchored on settlements, deliberately, so this route stays independent of the vehicle-sales figure.",
-        "confidence": "judgement"
-      },
-      {
-        "id": "a-outlet-throughput",
-        "lever": "Helmets sold per outlet per month",
-        "value": "25",
-        "numeric": 25,
-        "unit": "helmets per outlet per month",
-        "basis": "declared-judgement",
-        "defence": "Roughly one helmet a day in a shop that also sells mirrors, seat covers and oil — a highway dealership does four times that and a village stall a fifth, and 25 is the blend across a base dominated by the small ones.",
-        "confidence": "shaky",
-        "contestedBy": "This is the load-bearing number of the cross-check; at 20 a month the route lands on 4.8 crore, which still agrees on order of magnitude."
-      },
-      {
-        "id": "a-months",
-        "lever": "Months in a year",
-        "value": "12",
-        "numeric": 12,
-        "unit": "months",
-        "basis": "physical-constant",
-        "defence": "Not in dispute — listed so every number in the chain has a stated origin.",
-        "confidence": "anchor"
-      }
-    ],
-    "question": "How many two-wheeler helmets does India buy in a year?",
-    "traps": [
-      {
-        "trap": "Counting the parc, dividing by a life, and calling that the market.",
-        "whyItHappens": "The parc is the number a candidate can remember, and stock-divided-by-life feels like a complete method because it produces a flow from a stock. It is half the method. In a market still adding about 90 lakh vehicles to the running fleet each year, riders arriving for the first time carry roughly a quarter of annual demand, and they are structurally invisible to a calculation that only looks at what is already out there.",
-        "fix": "Write the root as two terms before you compute anything — replacement on the existing base, plus first fit for new riders — and say both out loud. The interviewer is listening for the second term."
-      },
-      {
-        "trap": "Treating registered vehicles as running vehicles.",
-        "whyItHappens": "Registration data is cumulative and vehicles are almost never struck off when they stop running, so the register is a graveyard as much as a fleet. The 25 crore figure is easy to recall and carries no visible warning, so candidates compute on all of it and inflate the base by nearly half.",
-        "fix": "Apply a live-share haircut and defend it from vehicle life rather than from taste: a fleet with an effective life near fifteen years that has roughly doubled in a decade cannot be much more than 70% alive."
-      },
-      {
-        "trap": "Counting riders instead of units.",
-        "whyItHappens": "The question sounds demographic, so the reflex is a population funnel down to riders and a stop there. But the thing sold is a unit — one vehicle can generate two purchases in a year through rider and pillion, a rider who never buys generates none, and a stolen helmet generates a second purchase from the same person.",
-        "fix": "Fix the unit in the first sentence of your scope: helmets purchased, not people wearing them. Every later choice follows from that one."
-      },
-      {
-        "trap": "Double-counting the dealership bundle.",
-        "whyItHappens": "Compute replacement on the full installed base, then add every helmet a dealer hands over, and you have counted the same replacement twice for the four in ten new-vehicle buyers who already owned one. The error is invisible because both blocks are individually correct — it is only the addition that is wrong.",
-        "fix": "Decide explicitly whether a bundled helmet adds demand or displaces an aftermarket purchase, then make your channel split add back to your total. If bundled plus aftermarket does not equal your headline, you have found the double-count."
-      },
-      {
-        "trap": "Projecting urban helmet behaviour onto the whole country.",
-        "whyItHappens": "The candidate's own evidence is a city signal where nearly every rider has one on. That single honest observation gets applied to a fleet that is 60% rural, where enforcement is thin and helmet use is the exception — and the answer comes out roughly half again too high.",
-        "fix": "Split the fleet before applying any behavioural rate, and say plainly which half you have actually observed and which half you are inferring."
-      },
-      {
-        "trap": "Blending helmet prices to get a value answer without saying what went into the blend.",
-        "whyItHappens": "Once a unit answer exists, converting to rupees looks like a free extra. But this category spans a ₹400 roadside shell and a ₹4,000 certified one, and a blended price is the most abusable number in the chain — move it from ₹700 to ₹1,200 and the market grows by 70% with no change to a single physical assumption.",
-        "fix": "If you go to value, state the mix that produced the blend — what share is uncertified — and offer the value as a band rather than a figure."
-      }
-    ],
-    "teachingPoint": "A stock is not a flow. Annual sales of a durable good come from two populations that behave nothing alike — the base already out there cycling through replacement, and the riders arriving on the road for the first time. Divide a parc by a product life and you have answered half the question, confidently."
+    "routeChoice": {
+      "chosen": "Hybrid",
+      "why": "Size the installed base top-down from the two-wheeler parc, then build annual demand bottom-up on top of it as two separate terms — replacement on the helmets already in use, plus first fit for riders new to the road. The hybrid is not a hedge here. The base can only be reached top-down, because nobody counts helmets; the flow can only be reached bottom-up, because replacement and first fit have different drivers and different sizes.",
+      "rejectedRoute": "Top-down",
+      "rejectedWhyNot": "A clean top-down — population, times riders per head, times helmets per rider, times a replacement rate — puts the entire answer on one undefended ownership figure and drops first-fit demand altogether. In a market still adding roughly 90 lakh two-wheelers to the running fleet every year, the riders arriving for the first time carry about a quarter of annual sales, and they are structurally invisible in any stock-divided-by-life calculation. You would also be counting people when the thing sold is a unit."
+    },
+    "archetype": "installed-base-replacement"
   },
   {
-    "timeboxMinutes": 15,
-    "sensitivity": {
-      "assumptionId": "a_peak_rate",
-      "whyThisLever": "It is the rate of the binding resource, so it is the only assumption that moves the answer proportionally — everything else in the chain is a conversion factor applied after the ceiling is already set. Scale it and the shoulder scales with it, because a runway whose geometry limits it to 36 an hour at peak cannot manage 30 in the shoulder either; the same taxiway layout, exit spacing and fleet mix govern both. That gives it more leverage than any other row in the table. The mix, the seat counts and the load factors each move the answer by a tenth at most; this one moves it by nearly a fifth, and it is the number an experienced interviewer will push on first because it is the only one that is genuinely about airports rather than about arithmetic.",
-      "cases": [
+    "answerBand": "50,000 – 75,000 departing passengers per day",
+    "scope": {
+      "countingWhat": "Passengers who physically board a departing scheduled commercial aircraft at this airport during one busy day, when the runway is worked to the limit of its declared capacity for the whole of the day.",
+      "unit": "departing passengers per day",
+      "timeBasis": "flow (per day)",
+      "geography": "One illustrative Indian metro airport with a single operational runway, a mixed domestic and international schedule and no night curfew. The airport is illustrative — built to show the method clearly, not drawn from any named airport or any published traffic figure.",
+      "included": [
+        "Scheduled commercial departures, domestic and international, across the full 24-hour day",
+        "The 01:00 to 04:00 international bank, which is a real part of an Indian metro schedule and not a dead window",
+        "Every aircraft size in the schedule, from a 70-seat turboprop to a wide-body",
+        "Transfer passengers, counted once — on the flight they board here, not on the one they arrived on"
+      ],
+      "excluded": [
+        "Arriving passengers, who are a separate and roughly equal number",
+        "General aviation, charter, training and military movements — a runway worked at declared capacity has no room for them at peak",
+        "Freighter movements, which consume runway slots at night and carry no passengers; leaving them out slightly overstates the passenger yield of the night window, and that is worth saying aloud",
+        "Crew, ground staff and the people who come only to drop someone off — they fill the terminal and never board",
+        "Days the runway is closed for resurfacing, or degraded by monsoon visibility and single-runway diversions"
+      ],
+      "boundaryTrap": "An airport's own headline figure is passengers handled — arrivals plus departures, with a transferring passenger appearing in both halves. That number is a little over twice this one. So if you quote 63,000 against an authority that publishes 1.4 lakh a day, you have not made an arithmetic error; you have answered a different question, and the only way anyone can tell is if you said which one first. Decide between departing and handled before you multiply anything, and say it in one sentence."
+    },
+    "question": "An Indian metro airport works a single runway. How many departing passengers can it physically push through on a busy day — and which resource is actually stopping it doing more?",
+    "difficulty": "Hard",
+    "probes": [
+      {
+        "question": "What is actually stopping this airport doing more?",
+        "intent": "The whole question in one line. It tests whether you identified a resource and a rate, or only produced a number. A candidate who multiplied their way to 63,000 without ever asking what binds cannot answer this, because the arithmetic never told them.",
+        "goodAnswer": "The runway, specifically the separation minimum between successive movements — about 80 seconds, which caps it near 45 an hour and 780 a day. The next-tightest resource is the apron: 70 stands at six usable turnarounds is 420 departures against the runway's 390, so 8% of headroom. Security screening has 29%. Which means the runway binds, but only just ahead of the stands — and that ordering is what I would build a recommendation on, not the 63,000.",
+        "weakAnswer": "'The terminal gets very congested' — which reports a peak-hour queue as though it were a daily capacity limit, and names the one resource in the airport that has a quarter of a day's spare throughput."
+      },
+      {
+        "question": "The airport authority has ₹4,000 crore to spend. Where does it go?",
+        "intent": "Whether the estimate converts into a decision. This is the only reason anyone sizes capacity in practice, and it is where a candidate who understood the constraint logic separates sharply from one who ran the arithmetic correctly.",
+        "goodAnswer": "Not on a terminal, and I would say that first because it is where the money usually goes. Terminal screening runs 29% above the runway ceiling, so an extra hall adds zero passengers. Spend it on the runway's rate — rapid-exit taxiways, a full-length parallel taxiway, better approach aids so the rate holds in monsoon visibility. That lifts 45 an hour towards the low 50s and is worth roughly 15%. But I would ring-fence part of it for apron: the stands are only 8% above the runway and they become binding at about 49 movements an hour, so a runway project without an apron project buys about half of what it promises.",
+        "weakAnswer": "'Build a new terminal, since passenger experience is poor' — which solves a queueing problem with a capacity budget, and adds nothing to the number that was asked about."
+      },
+      {
+        "question": "Suppose they build a second runway 400 metres from the first. Does the answer double?",
+        "intent": "Whether you know that relieving a constraint moves it rather than removes it — the single most transferable idea in the question, and the one that transfers directly into every operations and capital-allocation case you will see later.",
+        "goodAnswer": "No, on two counts. Parallel runways closer than about a kilometre cannot be worked independently in poor visibility, so in monsoon conditions you have one runway with a spare, not two runways — the wet-weather answer barely moves. And even in clear weather the ceiling stops being the runway almost immediately: the stands cap departures at 420, which is 8% above where I am now. So the realistic gain is 8% until the apron is expanded, and then the next thing binds after that. The honest answer is that capacity moves to the next constraint, and the project only makes sense as a programme that funds all of them together.",
+        "weakAnswer": "'Yes, roughly double, since you have twice the runway' — which treats the runway as the only resource in the airport and assumes a constraint can be removed rather than relocated."
+      },
+      {
+        "question": "Which of your numbers is doing the most work?",
+        "intent": "Whether you know where your own answer comes from. Candidates working from a template cannot answer this, because a template tells you what to compute and never which input carries the result.",
+        "goodAnswer": "The peak movement rate, because it is the rate of the binding resource — everything after it is a conversion factor. Thirty-six an hour takes the answer to 51,000 and 54 takes it to 74,000, roughly ±18%. Nothing else moves it by more than a tenth: the international mix is worth about 5%, the domestic seat blend about 12%. And the stand assumptions move it by nothing at all while the runway binds, which is worth stating, because it tells you which of my numbers you should not bother challenging.",
+        "weakAnswer": "Naming the load factor or the number of stands — the first is the best-anchored figure in the table, and the second currently has no effect on the answer whatsoever."
+      },
+      {
+        "question": "The airport publishes 1.4 lakh passengers a day. You said 63,000. Are you wrong?",
+        "intent": "Whether an external figure makes you abandon your method or interrogate your boundary. This is the probe that separates a candidate who owns the model from one who was reciting it.",
+        "goodAnswer": "Probably not wrong, probably answering a different question, and the boundary is where I would look before I moved a single assumption. Their figure is passengers handled — arrivals plus departures, with a transferring passenger appearing in both halves. Double mine and you get 1.25 lakh, which is within 12% of theirs, and transfer double-counting plus a genuinely exceptional peak day closes most of the rest. If they told me it was strictly departures, then I would revise the peak rate upward and say which number I moved.",
+        "weakAnswer": "'Then I will use 1.4 lakh' — which discards a worked method for an unexamined figure, and misses that the gap is almost exactly the factor of two the boundary predicts."
+      },
+      {
+        "question": "How would you check this properly in a week?",
+        "intent": "Whether you can turn an estimate into a measurement plan, and whether you know which of your inputs is worth measuring. An estimate is only what you do before the data arrives.",
+        "goodAnswer": "Two sources, ranked. First the declared capacity in the slot coordination file — airports publish a movements-per-hour figure by season, and that replaces my shakiest assumption with a regulated one in an afternoon. Then count the published departure schedule for a Friday and sum the seat counts by aircraft type, which replaces the mix and the seat blend together and leaves only the load factor assumed. That order matters: I would measure the binding resource first and not spend a day counting stands, because the stand figure cannot change my answer while the runway binds.",
+        "weakAnswer": "'Ask the airport for their traffic data' — which returns demand rather than capacity, and answers the question I explicitly set aside at the start."
+      }
+    ],
+    "triangulation": {
+      "label": "Constraint audit — price the other candidates and take the smallest",
+      "route": "Bottom-up",
+      "premise": "The first route assumed the runway binds. That is the claim the question is really testing, so do not leave it as an assumption — price the next two candidate constraints in the same unit and see which number is smallest. This is not a second estimate of the same quantity; it is a different quantity that happens to share a ceiling, and it is the only honest way to answer 'what is the binding constraint'. If a stand or a security lane came out lower than the runway, the primary answer would be wrong and the recommendation would change completely.",
+      "lines": [
         {
-          "scenario": "Conservative",
-          "leverValue": "36 at peak, 24 in the shoulder — limited rapid-exit taxiways, mixed light and heavy traffic",
-          "answer": "≈ 51,000 departing passengers",
-          "deltaVsBase": "−18%"
+          "id": "t1",
+          "label": "Passengers per departure implied by the primary route",
+          "expr": "62556 / 390",
+          "display": "62,556 passengers ÷ 390 departures",
+          "result": 160.4,
+          "tolerance": 0.0001,
+          "unit": "passengers per departure",
+          "carriedForward": "≈ 160 passengers per departure",
+          "uses": [],
+          "soWhat": "Convert the seat-and-load-factor chain into one number so each candidate constraint can be priced in passengers without rebuilding the fleet mix three times. One hundred and sixty is a three-quarters-full A320 with the occasional wide-body — picture it, and if you cannot, the fleet assumptions need revisiting before you go on."
         },
         {
-          "scenario": "Base",
-          "leverValue": "45 at peak, 30 in the shoulder",
-          "answer": "≈ 63,000 departing passengers",
-          "deltaVsBase": "0%"
+          "id": "t2",
+          "label": "Departures the stands would allow",
+          "expr": "70 * 6",
+          "display": "70 stands × 6 usable turnarounds per day",
+          "result": 420,
+          "unit": "departures per day",
+          "uses": [
+            "a_stands",
+            "a_stand_turns"
+          ],
+          "soWhat": "Four hundred and twenty against the runway's 390. The stands are the next-tightest resource and they are close — which is the reason a second runway on its own does not double an airport."
         },
         {
-          "scenario": "Aggressive",
-          "leverValue": "54 at peak, 36 in the shoulder — full rapid-exit taxiways, segregated flows, homogeneous jet fleet",
-          "answer": "≈ 74,000 departing passengers",
-          "deltaVsBase": "+18%"
+          "id": "t3",
+          "label": "Passengers the stands would allow",
+          "expr": "420 * 160.4",
+          "display": "420 departures × 160 passengers per departure",
+          "result": 67368,
+          "tolerance": 0.0001,
+          "unit": "departing passengers per day",
+          "carriedForward": "≈ 67,000 passengers",
+          "uses": [],
+          "soWhat": "Higher than 63,000, so the stands do not bind — today. Say 'today', because the margin is a single-digit percentage and one busier season closes it."
+        },
+        {
+          "id": "t4",
+          "label": "Passengers departure security screening would allow",
+          "expr": "28 * 160 * 18",
+          "display": "28 lanes × 160 passengers per hour × 18 effective hours",
+          "result": 80640,
+          "unit": "departing passengers per day",
+          "carriedForward": "≈ 81,000 passengers",
+          "uses": [
+            "a_sec_lanes",
+            "a_lane_rate",
+            "a_terminal_hours"
+          ],
+          "soWhat": "Twenty-nine per cent above the runway ceiling. The queue you have personally stood in is not the constraint — it is a peak-hour queue inside a resource with a quarter of a day's headroom, which is a scheduling problem, not a capacity one."
+        },
+        {
+          "id": "t5",
+          "label": "Headroom in the next-tightest resource",
+          "expr": "(67368 - 62556) / 62556",
+          "display": "(67,368 stand-limited − 62,556 runway-limited) ÷ 62,556",
+          "result": 0.07692307692307693,
+          "tolerance": 1e-06,
+          "unit": "share above the binding ceiling",
+          "carriedForward": "≈ 8%",
+          "uses": [],
+          "soWhat": "This is the number that turns an estimate into a recommendation. Eight per cent of slack means relieving the runway buys you 8% before the stands take over, so anyone proposing a runway project must fund an apron project in the same breath or spend a great deal of money for very little."
         }
       ],
-      "breakpoint": "The answer leaves the 50,000 to 75,000 band only below about 35 movements an hour or above about 55. Below 35 you are describing a runway without rapid-exit taxiways, where every landing aircraft rolls to the end before vacating — a real condition, but a different airport from the one in the prompt. Above 55 you are describing either two runways or a segregated-mode operation, which is also a different airport. The interesting breakpoint is elsewhere, though, and it is the one to volunteer: the recommendation flips when the runway ceiling passes the stand ceiling of 420 departures, which happens at about 49 movements an hour at peak. Push past that and the binding constraint changes from concrete to apron, the answer stops rising, and every rupee of runway investment beyond it is wasted until stands are added. Notice what that means — a 9% improvement in runway rate delivers 9% more passengers, and a 30% improvement delivers 8%.",
-      "oneLiner": "Call it 63,000 departing passengers, and it hangs almost entirely on 45 movements an hour on the runway — 36 takes it to 51,000, 54 takes it to 74,000, and nothing else I have assumed moves it by more than a tenth."
+      "answer": "Runway 62,556 · stands 67,368 · security 80,640 — the runway binds at ≈ 63,000 departing passengers a day",
+      "verdict": "The three numbers rank cleanly, so the conclusion is not close and you can say so without hedging: the runway binds, and it binds by a margin comfortably larger than the error in any single assumption. What deserves the hedge is the gap, not the ranking. Eight per cent of headroom in the stands is inside the noise of my own turnaround assumption — argue 8 turns instead of 6 and the stand ceiling jumps to 560 departures, while the headline answer does not move at all, because the runway still binds. That asymmetry is the point of the whole exercise. A non-binding constraint can be badly estimated and cost you nothing; the binding one is the only number that has to be right. Had the security line come out at 55,000 instead of 80,640, the answer would have been 55,000 and the recommendation would have been to open lanes rather than to build concrete — so run the audit even when you are confident, because it is cheap and the alternative is confidently sizing the wrong resource."
     },
-    "number": "06",
-    "difficulty": "Hard",
-    "id": "airport-runway-throughput",
-    "archetype": "capacity-bottleneck",
-    "routeChoice": {
-      "chosen": "Bottom-up",
-      "why": "The question asks what the airport can do, not what it does. That is a supply question, and supply is a chain of physical rates: how often an aircraft can use the runway, how much of the day that rate holds, what fraction of movements are departures, how many seats leave on each and how full they are. Every link is either a physical constant or a benchmark you could defend, and the chain has the property that matters here — it names the resource. A route that never names a resource cannot answer the second half of the question.",
-      "rejectedRoute": "Top-down",
-      "rejectedWhyNot": "The top-down route is national air passenger traffic divided across the major airports, or this airport's annual throughput divided by 365. It is faster and it is the wrong quantity. Observed traffic is demand realised; the question asked for supply available, and the two differ by every hour the runway sat idle because nobody wanted to fly at two in the afternoon. Worse, a top-down number cannot be interrogated: when the interviewer asks what would raise it, you have nothing to point at, because you never decomposed the airport into resources. Use the observed annual figure where it belongs — as the back-check at the end, not as the answer."
-    },
-    "sanityChecks": [
-      "The cadence test, and the one to run first: 780 movements over 24 hours is one every 110 seconds averaged across the day, and one every 80 seconds through the peak. Stand at the fence of a busy single-runway airport and that is exactly what you see — a continuous stream with no idle gaps in the morning bank. If your movement figure implied one every four minutes, you have described a quiet regional field; one every 40 seconds and you have described something no single runway has ever sustained.",
-      "Per departure: 62,556 across 390 departures is 160 passengers on the average flight. That is an A320 at about 89%, blended with the occasional wide-body and the occasional turboprop. Hold it against the last flight you took. Two hundred and fifty would mean a long-haul hub, ninety would mean a regional network, and either would tell you the fleet mix was wrong long before anyone challenged the total.",
-      "The annual back-check, which is where the rejected top-down route earns its keep: 62,556 departing plus a near-equal number arriving is about 1.25 lakh passengers through the airport on a busy day. Derate to roughly 85% for an ordinary day across the year and multiply by 365 — about 3.9 crore (39 million) passengers a year. The busiest single-runway airports in the world run in the 40 to 50 million range, so this sits just under them. Right order, right side. Had the arithmetic implied 10 crore, the peak rate would have been the place to look.",
-      "The terminal consistency test: the peak hour holds 22.5 departures at 160 passengers each, so about 3,600 people need screening in that hour. At 160 per lane per hour that is 23 lanes, against the 28 assumed. The terminal is sized about 20% above the runway's peak demand — which is precisely how terminals are actually designed, and finding that your two independently-assumed figures agree is a stronger check than either number alone.",
-      "The doubling test: if your answer is close to what the airport publishes as passengers handled, you have answered the wrong question. Their figure counts both directions and counts a transferring passenger twice; yours counts one boarding each. Expect to be a little under half of theirs, and be suspicious if you are not.",
-      "The slack test: name what you did not spend the answer on. Check-in desks, immigration counters, the car park and the baggage system all have more headroom than the runway, and none of them appears in the arithmetic. If every resource in your model turned out to be binding simultaneously, you have not estimated an airport — you have assumed the answer."
-    ],
-    "answerBand": "50,000 – 75,000 departing passengers per day",
     "tree": {
       "root": "Departing passengers on a busy day at a single-runway airport",
       "rootFormula": "= Runway movements per day × departure share × seats per departure × load factor, subject to no other resource binding first",
@@ -3575,308 +3663,75 @@ export const guesstimates: readonly Guesstimate[] = [
         }
       ]
     },
-    "triangulation": {
-      "label": "Constraint audit — price the other candidates and take the smallest",
-      "route": "Bottom-up",
-      "premise": "The first route assumed the runway binds. That is the claim the question is really testing, so do not leave it as an assumption — price the next two candidate constraints in the same unit and see which number is smallest. This is not a second estimate of the same quantity; it is a different quantity that happens to share a ceiling, and it is the only honest way to answer 'what is the binding constraint'. If a stand or a security lane came out lower than the runway, the primary answer would be wrong and the recommendation would change completely.",
-      "lines": [
-        {
-          "id": "t1",
-          "label": "Passengers per departure implied by the primary route",
-          "expr": "62556 / 390",
-          "display": "62,556 passengers ÷ 390 departures",
-          "result": 160.4,
-          "tolerance": 0.0001,
-          "unit": "passengers per departure",
-          "carriedForward": "≈ 160 passengers per departure",
-          "uses": [],
-          "soWhat": "Convert the seat-and-load-factor chain into one number so each candidate constraint can be priced in passengers without rebuilding the fleet mix three times. One hundred and sixty is a three-quarters-full A320 with the occasional wide-body — picture it, and if you cannot, the fleet assumptions need revisiting before you go on."
-        },
-        {
-          "id": "t2",
-          "label": "Departures the stands would allow",
-          "expr": "70 * 6",
-          "display": "70 stands × 6 usable turnarounds per day",
-          "result": 420,
-          "unit": "departures per day",
-          "uses": [
-            "a_stands",
-            "a_stand_turns"
-          ],
-          "soWhat": "Four hundred and twenty against the runway's 390. The stands are the next-tightest resource and they are close — which is the reason a second runway on its own does not double an airport."
-        },
-        {
-          "id": "t3",
-          "label": "Passengers the stands would allow",
-          "expr": "420 * 160.4",
-          "display": "420 departures × 160 passengers per departure",
-          "result": 67368,
-          "tolerance": 0.0001,
-          "unit": "departing passengers per day",
-          "carriedForward": "≈ 67,000 passengers",
-          "uses": [],
-          "soWhat": "Higher than 63,000, so the stands do not bind — today. Say 'today', because the margin is a single-digit percentage and one busier season closes it."
-        },
-        {
-          "id": "t4",
-          "label": "Passengers departure security screening would allow",
-          "expr": "28 * 160 * 18",
-          "display": "28 lanes × 160 passengers per hour × 18 effective hours",
-          "result": 80640,
-          "unit": "departing passengers per day",
-          "carriedForward": "≈ 81,000 passengers",
-          "uses": [
-            "a_sec_lanes",
-            "a_lane_rate",
-            "a_terminal_hours"
-          ],
-          "soWhat": "Twenty-nine per cent above the runway ceiling. The queue you have personally stood in is not the constraint — it is a peak-hour queue inside a resource with a quarter of a day's headroom, which is a scheduling problem, not a capacity one."
-        },
-        {
-          "id": "t5",
-          "label": "Headroom in the next-tightest resource",
-          "expr": "(67368 - 62556) / 62556",
-          "display": "(67,368 stand-limited − 62,556 runway-limited) ÷ 62,556",
-          "result": 0.07692307692307693,
-          "tolerance": 1e-06,
-          "unit": "share above the binding ceiling",
-          "carriedForward": "≈ 8%",
-          "uses": [],
-          "soWhat": "This is the number that turns an estimate into a recommendation. Eight per cent of slack means relieving the runway buys you 8% before the stands take over, so anyone proposing a runway project must fund an apron project in the same breath or spend a great deal of money for very little."
-        }
-      ],
-      "answer": "Runway 62,556 · stands 67,368 · security 80,640 — the runway binds at ≈ 63,000 departing passengers a day",
-      "verdict": "The three numbers rank cleanly, so the conclusion is not close and you can say so without hedging: the runway binds, and it binds by a margin comfortably larger than the error in any single assumption. What deserves the hedge is the gap, not the ranking. Eight per cent of headroom in the stands is inside the noise of my own turnaround assumption — argue 8 turns instead of 6 and the stand ceiling jumps to 560 departures, while the headline answer does not move at all, because the runway still binds. That asymmetry is the point of the whole exercise. A non-binding constraint can be badly estimated and cost you nothing; the binding one is the only number that has to be right. Had the security line come out at 55,000 instead of 80,640, the answer would have been 55,000 and the recommendation would have been to open lanes rather than to build concrete — so run the audit even when you are confident, because it is cheap and the alternative is confidently sizing the wrong resource."
-    },
-    "probes": [
+    "timeboxMinutes": 15,
+    "traps": [
       {
-        "question": "What is actually stopping this airport doing more?",
-        "intent": "The whole question in one line. It tests whether you identified a resource and a rate, or only produced a number. A candidate who multiplied their way to 63,000 without ever asking what binds cannot answer this, because the arithmetic never told them.",
-        "goodAnswer": "The runway, specifically the separation minimum between successive movements — about 80 seconds, which caps it near 45 an hour and 780 a day. The next-tightest resource is the apron: 70 stands at six usable turnarounds is 420 departures against the runway's 390, so 8% of headroom. Security screening has 29%. Which means the runway binds, but only just ahead of the stands — and that ordering is what I would build a recommendation on, not the 63,000.",
-        "weakAnswer": "'The terminal gets very congested' — which reports a peak-hour queue as though it were a daily capacity limit, and names the one resource in the airport that has a quarter of a day's spare throughput."
+        "trap": "Counting every runway movement as a departing flight.",
+        "whyItHappens": "Declared runway capacity is published as a single figure — 45 an hour — and it reads like a rate of aircraft leaving, because that is the only half of the operation a departing passenger ever notices. Nothing in the arithmetic objects, and the mistake is invisible in the tree, which is what makes it dangerous rather than merely wrong.",
+        "fix": "Halve it, and say the identity out loud as you do: over a full day every aircraft that departs has already arrived. Skipping this step doubles the answer to 1.25 lakh, which lands within a rounding error of the number the airport itself publishes — so the error will feel like confirmation. That is the worst possible property for a mistake to have."
       },
       {
-        "question": "The airport authority has ₹4,000 crore to spend. Where does it go?",
-        "intent": "Whether the estimate converts into a decision. This is the only reason anyone sizes capacity in practice, and it is where a candidate who understood the constraint logic separates sharply from one who ran the arithmetic correctly.",
-        "goodAnswer": "Not on a terminal, and I would say that first because it is where the money usually goes. Terminal screening runs 29% above the runway ceiling, so an extra hall adds zero passengers. Spend it on the runway's rate — rapid-exit taxiways, a full-length parallel taxiway, better approach aids so the rate holds in monsoon visibility. That lifts 45 an hour towards the low 50s and is worth roughly 15%. But I would ring-fence part of it for apron: the stands are only 8% above the runway and they become binding at about 49 movements an hour, so a runway project without an apron project buys about half of what it promises.",
-        "weakAnswer": "'Build a new terminal, since passenger experience is poor' — which solves a queueing problem with a capacity budget, and adds nothing to the number that was asked about."
+        "trap": "Sizing the terminal instead of the runway.",
+        "whyItHappens": "The terminal is the part of the airport a passenger experiences, so it is the part that comes to mind — and the security queue is the only place anyone has ever personally been held up, which makes congestion there feel like evidence of a constraint. It is not. A queue is a peak-hour phenomenon inside a resource that may have a quarter of a day's headroom, and peak queueing tells you nothing about daily capacity.",
+        "fix": "Price every candidate constraint in the same unit before you commit to one: runway 62,556, stands 67,368, screening 80,640 passengers a day. Take the smallest and name it. The audit costs two minutes and it is the difference between an answer and the answer to the question actually asked."
       },
       {
-        "question": "Suppose they build a second runway 400 metres from the first. Does the answer double?",
-        "intent": "Whether you know that relieving a constraint moves it rather than removes it — the single most transferable idea in the question, and the one that transfers directly into every operations and capital-allocation case you will see later.",
-        "goodAnswer": "No, on two counts. Parallel runways closer than about a kilometre cannot be worked independently in poor visibility, so in monsoon conditions you have one runway with a spare, not two runways — the wet-weather answer barely moves. And even in clear weather the ceiling stops being the runway almost immediately: the stands cap departures at 420, which is 8% above where I am now. So the realistic gain is 8% until the apron is expanded, and then the next thing binds after that. The honest answer is that capacity moves to the next constraint, and the project only makes sense as a programme that funds all of them together.",
-        "weakAnswer": "'Yes, roughly double, since you have twice the runway' — which treats the runway as the only resource in the airport and assumes a constraint can be removed rather than relocated."
+        "trap": "Reaching for the airport's observed traffic instead of its capacity.",
+        "whyItHappens": "The question sounds like 'how many passengers does this airport handle', and a recalled annual figure feels more rigorous than a chain of assumptions — a cited number sounds like evidence and a derived one sounds like a guess. But observed traffic is demand realised, and it embeds every hour the runway sat idle because nobody wanted a two o'clock departure.",
+        "fix": "Say plainly that capacity is a supply question and that the observed figure belongs at the end as a back-check, not at the start as an input. Then actually do it — 3.9 crore a year against the 40 to 50 million the busiest single runways manage is a result you can defend, and it is worth more coming last than the recalled figure would have been coming first."
       },
       {
-        "question": "Which of your numbers is doing the most work?",
-        "intent": "Whether you know where your own answer comes from. Candidates working from a template cannot answer this, because a template tells you what to compute and never which input carries the result.",
-        "goodAnswer": "The peak movement rate, because it is the rate of the binding resource — everything after it is a conversion factor. Thirty-six an hour takes the answer to 51,000 and 54 takes it to 74,000, roughly ±18%. Nothing else moves it by more than a tenth: the international mix is worth about 5%, the domestic seat blend about 12%. And the stand assumptions move it by nothing at all while the runway binds, which is worth stating, because it tells you which of my numbers you should not bother challenging.",
-        "weakAnswer": "Naming the load factor or the number of stands — the first is the best-anchored figure in the table, and the second currently has no effect on the answer whatsoever."
+        "trap": "One average aircraft across the whole schedule.",
+        "whyItHappens": "Averaging a 70-seat turboprop and a 350-seat wide-body into '200 seats' is faster to write and reaches a total within a few per cent of the right one, because the two errors cancel. The total survives; the information does not. You can no longer see that a fifth of the departures carry 29% of the seats.",
+        "fix": "Split domestic from international and price each. It costs one extra line. The payoff arrives when the interviewer asks what happens if the international programme grows — with the split you answer in ten seconds, and without it you rebuild the model while they watch."
       },
       {
-        "question": "The airport publishes 1.4 lakh passengers a day. You said 63,000. Are you wrong?",
-        "intent": "Whether an external figure makes you abandon your method or interrogate your boundary. This is the probe that separates a candidate who owns the model from one who was reciting it.",
-        "goodAnswer": "Probably not wrong, probably answering a different question, and the boundary is where I would look before I moved a single assumption. Their figure is passengers handled — arrivals plus departures, with a transferring passenger appearing in both halves. Double mine and you get 1.25 lakh, which is within 12% of theirs, and transfer double-counting plus a genuinely exceptional peak day closes most of the rest. If they told me it was strictly departures, then I would revise the peak rate upward and say which number I moved.",
-        "weakAnswer": "'Then I will use 1.4 lakh' — which discards a worked method for an unexamined figure, and misses that the gap is almost exactly the factor of two the boundary predicts."
+        "trap": "Running the runway at peak rate for all 24 hours.",
+        "whyItHappens": "Hours times rate is the obvious multiplication and the day-shape looks like extra work for a second-order correction. It is not second-order: 24 × 45 gives 1,080 movements against 780, overstating the answer by 38%, and it describes an airport with no night and no quiet afternoon — a place nobody has ever flown from.",
+        "fix": "Three windows is enough — peak, shoulder, night — and name what governs each. Peak is physics, shoulder is demand, night is the long-haul bank. Three lines, thirty seconds, and the day-shape now survives a challenge instead of collapsing under one."
       },
       {
-        "question": "How would you check this properly in a week?",
-        "intent": "Whether you can turn an estimate into a measurement plan, and whether you know which of your inputs is worth measuring. An estimate is only what you do before the data arrives.",
-        "goodAnswer": "Two sources, ranked. First the declared capacity in the slot coordination file — airports publish a movements-per-hour figure by season, and that replaces my shakiest assumption with a regulated one in an afternoon. Then count the published departure schedule for a Friday and sum the seat counts by aircraft type, which replaces the mix and the seat blend together and leaves only the load factor assumed. That order matters: I would measure the binding resource first and not spend a day counting stands, because the stand figure cannot change my answer while the runway binds.",
-        "weakAnswer": "'Ask the airport for their traffic data' — which returns demand rather than capacity, and answers the question I explicitly set aside at the start."
+        "trap": "Quoting 62,556, or stopping at 74,880 seats.",
+        "whyItHappens": "The arithmetic produces both figures and after fifteen minutes of work they feel earned. Seats in particular feel like the answer because the chain visibly ends there and the load factor looks like a refinement rather than a step. It is a 20% step.",
+        "fix": "Say 'roughly 63,000, call it 50,000 to 75,000', name the lever that sets the width, and make sure the word 'passengers' rather than 'seats' is in the sentence. A guesstimate answered as an exact figure signals that you do not understand what an estimate is, and that impression is expensive to reverse."
       }
     ],
     "finalAnswerNumeric": 63000,
-    "tabLabel": "Runway capacity, departures",
-    "finalAnswer": "≈ 63,000 departing passengers on a busy day — call it 50,000 to 75,000 — and the runway is what stops it going higher, not the terminal. The stands would allow about 8% more and security screening about 29% more, so a rupee spent on either buys nothing until the runway moves.",
-    "scope": {
-      "countingWhat": "Passengers who physically board a departing scheduled commercial aircraft at this airport during one busy day, when the runway is worked to the limit of its declared capacity for the whole of the day.",
-      "unit": "departing passengers per day",
-      "timeBasis": "flow (per day)",
-      "geography": "One illustrative Indian metro airport with a single operational runway, a mixed domestic and international schedule and no night curfew. The airport is illustrative — built to show the method clearly, not drawn from any named airport or any published traffic figure.",
-      "included": [
-        "Scheduled commercial departures, domestic and international, across the full 24-hour day",
-        "The 01:00 to 04:00 international bank, which is a real part of an Indian metro schedule and not a dead window",
-        "Every aircraft size in the schedule, from a 70-seat turboprop to a wide-body",
-        "Transfer passengers, counted once — on the flight they board here, not on the one they arrived on"
+    "number": "06",
+    "sensitivity": {
+      "assumptionId": "a_peak_rate",
+      "whyThisLever": "It is the rate of the binding resource, so it is the only assumption that moves the answer proportionally — everything else in the chain is a conversion factor applied after the ceiling is already set. Scale it and the shoulder scales with it, because a runway whose geometry limits it to 36 an hour at peak cannot manage 30 in the shoulder either; the same taxiway layout, exit spacing and fleet mix govern both. That gives it more leverage than any other row in the table. The mix, the seat counts and the load factors each move the answer by a tenth at most; this one moves it by nearly a fifth, and it is the number an experienced interviewer will push on first because it is the only one that is genuinely about airports rather than about arithmetic.",
+      "cases": [
+        {
+          "scenario": "Conservative",
+          "leverValue": "36 at peak, 24 in the shoulder — limited rapid-exit taxiways, mixed light and heavy traffic",
+          "answer": "≈ 51,000 departing passengers",
+          "deltaVsBase": "−18%"
+        },
+        {
+          "scenario": "Base",
+          "leverValue": "45 at peak, 30 in the shoulder",
+          "answer": "≈ 63,000 departing passengers",
+          "deltaVsBase": "0%"
+        },
+        {
+          "scenario": "Aggressive",
+          "leverValue": "54 at peak, 36 in the shoulder — full rapid-exit taxiways, segregated flows, homogeneous jet fleet",
+          "answer": "≈ 74,000 departing passengers",
+          "deltaVsBase": "+18%"
+        }
       ],
-      "excluded": [
-        "Arriving passengers, who are a separate and roughly equal number",
-        "General aviation, charter, training and military movements — a runway worked at declared capacity has no room for them at peak",
-        "Freighter movements, which consume runway slots at night and carry no passengers; leaving them out slightly overstates the passenger yield of the night window, and that is worth saying aloud",
-        "Crew, ground staff and the people who come only to drop someone off — they fill the terminal and never board",
-        "Days the runway is closed for resurfacing, or degraded by monsoon visibility and single-runway diversions"
-      ],
-      "boundaryTrap": "An airport's own headline figure is passengers handled — arrivals plus departures, with a transferring passenger appearing in both halves. That number is a little over twice this one. So if you quote 63,000 against an authority that publishes 1.4 lakh a day, you have not made an arithmetic error; you have answered a different question, and the only way anyone can tell is if you said which one first. Decide between departing and handled before you multiply anything, and say it in one sentence."
+      "breakpoint": "The answer leaves the 50,000 to 75,000 band only below about 35 movements an hour or above about 55. Below 35 you are describing a runway without rapid-exit taxiways, where every landing aircraft rolls to the end before vacating — a real condition, but a different airport from the one in the prompt. Above 55 you are describing either two runways or a segregated-mode operation, which is also a different airport. The interesting breakpoint is elsewhere, though, and it is the one to volunteer: the recommendation flips when the runway ceiling passes the stand ceiling of 420 departures, which happens at about 49 movements an hour at peak. Push past that and the binding constraint changes from concrete to apron, the answer stops rising, and every rupee of runway investment beyond it is wasted until stands are added. Notice what that means — a 9% improvement in runway rate delivers 9% more passengers, and a 30% improvement delivers 8%.",
+      "oneLiner": "Call it 63,000 departing passengers, and it hangs almost entirely on 45 movements an hour on the runway — 36 takes it to 51,000, 54 takes it to 74,000, and nothing else I have assumed moves it by more than a tenth."
     },
-    "calculation": [
-      {
-        "id": "c1",
-        "label": "Peak-window movements",
-        "expr": "10 * 45",
-        "display": "10 peak hours × 45 movements per hour",
-        "result": 450,
-        "unit": "movements",
-        "uses": [
-          "a_peak_hours",
-          "a_peak_rate"
-        ],
-        "soWhat": "Fifty-eight per cent of the day's movements from ten of its hours. Every challenge the interviewer makes to your answer will land on one of these two numbers, so state them before anything else and make them easy to swap."
-      },
-      {
-        "id": "c2",
-        "label": "Shoulder-window movements",
-        "expr": "9 * 30",
-        "display": "9 shoulder hours × 30 movements per hour",
-        "result": 270,
-        "unit": "movements",
-        "uses": [
-          "a_shoulder_hours",
-          "a_shoulder_rate"
-        ],
-        "soWhat": "The runway could take 45 here as well. It does not, because nobody buys a two o'clock departure — so this is the only window where the answer is set by demand rather than by physics, and it is worth saying which."
-      },
-      {
-        "id": "c3",
-        "label": "Night-window movements",
-        "expr": "5 * 12",
-        "display": "5 night hours × 12 movements per hour",
-        "result": 60,
-        "unit": "movements",
-        "uses": [
-          "a_night_hours",
-          "a_night_rate"
-        ],
-        "soWhat": "Thin, and not zero. An Indian metro airport without a curfew flies its long-haul bank through these hours, and writing the window off costs 8% of the answer for no analytical gain."
-      },
-      {
-        "id": "c4",
-        "label": "Total runway movements per busy day",
-        "expr": "450 + 270 + 60",
-        "display": "450 peak + 270 shoulder + 60 night",
-        "result": 780,
-        "unit": "movements per day",
-        "uses": [],
-        "soWhat": "This is the capacity. Everything from here to the answer is a unit conversion — no later line can raise this number, and that is what makes the runway the constraint rather than merely the first step."
-      },
-      {
-        "id": "c5",
-        "label": "Departures per day",
-        "expr": "780 / 2",
-        "display": "780 movements ÷ 2, since arrivals equal departures over a full day",
-        "result": 390,
-        "unit": "departures per day",
-        "uses": [
-          "a_dep_share"
-        ],
-        "soWhat": "The step most candidates skip, and skipping it doubles the answer. Say the identity out loud as you write it — every aircraft that leaves had to land first — because that sentence is the difference between an assumption and a constraint."
-      },
-      {
-        "id": "c6",
-        "label": "Domestic departures",
-        "expr": "390 * 0.8",
-        "display": "390 departures × 80% domestic",
-        "result": 312,
-        "unit": "departures per day",
-        "uses": [
-          "a_dom_share"
-        ],
-        "soWhat": "Four movements in five. Fix the mix before you price the seats, so a challenge on the mix does not force you to redo the seat arithmetic as well."
-      },
-      {
-        "id": "c7",
-        "label": "International departures",
-        "expr": "390 * 0.2",
-        "display": "390 departures × 20% international",
-        "result": 78,
-        "unit": "departures per day",
-        "uses": [
-          "a_intl_share"
-        ],
-        "soWhat": "A fifth of the flights. Hold this figure in view — it is about to carry 29% of the seats, and that asymmetry is the entire reason for splitting the fleet."
-      },
-      {
-        "id": "c8",
-        "label": "Domestic seats offered",
-        "expr": "312 * 170",
-        "display": "312 departures × 170 seats",
-        "result": 53040,
-        "unit": "seats per day",
-        "uses": [
-          "a_dom_seats"
-        ],
-        "soWhat": "Seventy-one per cent of the seats from the narrow-body fleet. If your answer is wrong, it is more likely wrong here than anywhere downstream, because 170 is a blend and blends hide their spread."
-      },
-      {
-        "id": "c9",
-        "label": "International seats offered",
-        "expr": "78 * 280",
-        "display": "78 departures × 280 seats",
-        "result": 21840,
-        "unit": "seats per day",
-        "uses": [
-          "a_intl_seats"
-        ],
-        "soWhat": "Twenty per cent of the departures producing 29% of the seats. A single blended aircraft size across the whole schedule would have erased that, and with it your ability to answer what happens if long-haul grows."
-      },
-      {
-        "id": "c10",
-        "label": "Total seats offered",
-        "expr": "53040 + 21840",
-        "display": "53,040 domestic + 21,840 international",
-        "result": 74880,
-        "unit": "seats per day",
-        "carriedForward": "≈ 75,000 seats",
-        "uses": [],
-        "soWhat": "Seats, not passengers. Quoting this as the answer is the second most common error on this question and it overstates by 20% — an aircraft is not full because the runway is."
-      },
-      {
-        "id": "c11",
-        "label": "Reverse check — blended seats per departure",
-        "expr": "74880 / 390",
-        "display": "74,880 seats ÷ 390 departures",
-        "result": 192,
-        "unit": "seats per departure",
-        "uses": [],
-        "soWhat": "Run this before you go further. One hundred and ninety-two is an A320 with a wide-body every fifth departure — a metro airport you would recognise. Had it come out at 300 you would have built a long-haul hub; at 110, a regional field. The fleet mix is the assumption this line is silently testing."
-      },
-      {
-        "id": "c12",
-        "label": "Domestic departing passengers",
-        "expr": "53040 * 0.85",
-        "display": "53,040 seats × 85% load factor",
-        "result": 45084,
-        "unit": "passengers per day",
-        "uses": [
-          "a_dom_lf"
-        ],
-        "soWhat": "The gap between a seat and a passenger is 7,956 people a day on the domestic side alone — larger than most candidates' entire error budget, which is why the load factor cannot be waved through at 100%."
-      },
-      {
-        "id": "c13",
-        "label": "International departing passengers",
-        "expr": "21840 * 0.8",
-        "display": "21,840 seats × 80% load factor",
-        "result": 17472,
-        "unit": "passengers per day",
-        "uses": [
-          "a_intl_lf"
-        ],
-        "soWhat": "Five points below domestic, because long-haul demand is directional and seasonal in a way domestic shuttle traffic is not. A small correction, made explicitly rather than absorbed into a single blended figure."
-      },
-      {
-        "id": "c14",
-        "label": "Total departing passengers on a busy day",
-        "expr": "45084 + 17472",
-        "display": "45,084 domestic + 17,472 international",
-        "result": 62556,
-        "unit": "departing passengers per day",
-        "carriedForward": "≈ 63,000 departing passengers",
-        "uses": [],
-        "soWhat": "Round it before you say it. Every input was a benchmark or a judgement good to two significant figures, so 62,556 claims a precision the chain cannot carry — and the figure is worthless anyway until you have said which resource produced it."
-      }
+    "sanityChecks": [
+      "The cadence test, and the one to run first: 780 movements over 24 hours is one every 110 seconds averaged across the day, and one every 80 seconds through the peak. Stand at the fence of a busy single-runway airport and that is exactly what you see — a continuous stream with no idle gaps in the morning bank. If your movement figure implied one every four minutes, you have described a quiet regional field; one every 40 seconds and you have described something no single runway has ever sustained.",
+      "Per departure: 62,556 across 390 departures is 160 passengers on the average flight. That is an A320 at about 89%, blended with the occasional wide-body and the occasional turboprop. Hold it against the last flight you took. Two hundred and fifty would mean a long-haul hub, ninety would mean a regional network, and either would tell you the fleet mix was wrong long before anyone challenged the total.",
+      "The annual back-check, which is where the rejected top-down route earns its keep: 62,556 departing plus a near-equal number arriving is about 1.25 lakh passengers through the airport on a busy day. Derate to roughly 85% for an ordinary day across the year and multiply by 365 — about 3.9 crore (39 million) passengers a year. The busiest single-runway airports in the world run in the 40 to 50 million range, so this sits just under them. Right order, right side. Had the arithmetic implied 10 crore, the peak rate would have been the place to look.",
+      "The terminal consistency test: the peak hour holds 22.5 departures at 160 passengers each, so about 3,600 people need screening in that hour. At 160 per lane per hour that is 23 lanes, against the 28 assumed. The terminal is sized about 20% above the runway's peak demand — which is precisely how terminals are actually designed, and finding that your two independently-assumed figures agree is a stronger check than either number alone.",
+      "The doubling test: if your answer is close to what the airport publishes as passengers handled, you have answered the wrong question. Their figure counts both directions and counts a transferring passenger twice; yours counts one boarding each. Expect to be a little under half of theirs, and be suspicious if you are not.",
+      "The slack test: name what you did not spend the answer on. Check-in desks, immigration counters, the car park and the baggage system all have more headroom than the runway, and none of them appears in the arithmetic. If every resource in your model turned out to be binding simultaneously, you have not estimated an airport — you have assumed the answer."
     ],
-    "orderOfMagnitude": "10^4",
     "assumptions": [
       {
         "id": "a_peak_rate",
@@ -4065,87 +3920,306 @@ export const guesstimates: readonly Guesstimate[] = [
         "confidence": "judgement"
       }
     ],
-    "question": "An Indian metro airport works a single runway. How many departing passengers can it physically push through on a busy day — and which resource is actually stopping it doing more?",
-    "traps": [
+    "finalAnswer": "≈ 63,000 departing passengers on a busy day — call it 50,000 to 75,000 — and the runway is what stops it going higher, not the terminal. The stands would allow about 8% more and security screening about 29% more, so a rupee spent on either buys nothing until the runway moves.",
+    "calculation": [
       {
-        "trap": "Counting every runway movement as a departing flight.",
-        "whyItHappens": "Declared runway capacity is published as a single figure — 45 an hour — and it reads like a rate of aircraft leaving, because that is the only half of the operation a departing passenger ever notices. Nothing in the arithmetic objects, and the mistake is invisible in the tree, which is what makes it dangerous rather than merely wrong.",
-        "fix": "Halve it, and say the identity out loud as you do: over a full day every aircraft that departs has already arrived. Skipping this step doubles the answer to 1.25 lakh, which lands within a rounding error of the number the airport itself publishes — so the error will feel like confirmation. That is the worst possible property for a mistake to have."
+        "id": "c1",
+        "label": "Peak-window movements",
+        "expr": "10 * 45",
+        "display": "10 peak hours × 45 movements per hour",
+        "result": 450,
+        "unit": "movements",
+        "uses": [
+          "a_peak_hours",
+          "a_peak_rate"
+        ],
+        "soWhat": "Fifty-eight per cent of the day's movements from ten of its hours. Every challenge the interviewer makes to your answer will land on one of these two numbers, so state them before anything else and make them easy to swap."
       },
       {
-        "trap": "Sizing the terminal instead of the runway.",
-        "whyItHappens": "The terminal is the part of the airport a passenger experiences, so it is the part that comes to mind — and the security queue is the only place anyone has ever personally been held up, which makes congestion there feel like evidence of a constraint. It is not. A queue is a peak-hour phenomenon inside a resource that may have a quarter of a day's headroom, and peak queueing tells you nothing about daily capacity.",
-        "fix": "Price every candidate constraint in the same unit before you commit to one: runway 62,556, stands 67,368, screening 80,640 passengers a day. Take the smallest and name it. The audit costs two minutes and it is the difference between an answer and the answer to the question actually asked."
+        "id": "c2",
+        "label": "Shoulder-window movements",
+        "expr": "9 * 30",
+        "display": "9 shoulder hours × 30 movements per hour",
+        "result": 270,
+        "unit": "movements",
+        "uses": [
+          "a_shoulder_hours",
+          "a_shoulder_rate"
+        ],
+        "soWhat": "The runway could take 45 here as well. It does not, because nobody buys a two o'clock departure — so this is the only window where the answer is set by demand rather than by physics, and it is worth saying which."
       },
       {
-        "trap": "Reaching for the airport's observed traffic instead of its capacity.",
-        "whyItHappens": "The question sounds like 'how many passengers does this airport handle', and a recalled annual figure feels more rigorous than a chain of assumptions — a cited number sounds like evidence and a derived one sounds like a guess. But observed traffic is demand realised, and it embeds every hour the runway sat idle because nobody wanted a two o'clock departure.",
-        "fix": "Say plainly that capacity is a supply question and that the observed figure belongs at the end as a back-check, not at the start as an input. Then actually do it — 3.9 crore a year against the 40 to 50 million the busiest single runways manage is a result you can defend, and it is worth more coming last than the recalled figure would have been coming first."
+        "id": "c3",
+        "label": "Night-window movements",
+        "expr": "5 * 12",
+        "display": "5 night hours × 12 movements per hour",
+        "result": 60,
+        "unit": "movements",
+        "uses": [
+          "a_night_hours",
+          "a_night_rate"
+        ],
+        "soWhat": "Thin, and not zero. An Indian metro airport without a curfew flies its long-haul bank through these hours, and writing the window off costs 8% of the answer for no analytical gain."
       },
       {
-        "trap": "One average aircraft across the whole schedule.",
-        "whyItHappens": "Averaging a 70-seat turboprop and a 350-seat wide-body into '200 seats' is faster to write and reaches a total within a few per cent of the right one, because the two errors cancel. The total survives; the information does not. You can no longer see that a fifth of the departures carry 29% of the seats.",
-        "fix": "Split domestic from international and price each. It costs one extra line. The payoff arrives when the interviewer asks what happens if the international programme grows — with the split you answer in ten seconds, and without it you rebuild the model while they watch."
+        "id": "c4",
+        "label": "Total runway movements per busy day",
+        "expr": "450 + 270 + 60",
+        "display": "450 peak + 270 shoulder + 60 night",
+        "result": 780,
+        "unit": "movements per day",
+        "uses": [],
+        "soWhat": "This is the capacity. Everything from here to the answer is a unit conversion — no later line can raise this number, and that is what makes the runway the constraint rather than merely the first step."
       },
       {
-        "trap": "Running the runway at peak rate for all 24 hours.",
-        "whyItHappens": "Hours times rate is the obvious multiplication and the day-shape looks like extra work for a second-order correction. It is not second-order: 24 × 45 gives 1,080 movements against 780, overstating the answer by 38%, and it describes an airport with no night and no quiet afternoon — a place nobody has ever flown from.",
-        "fix": "Three windows is enough — peak, shoulder, night — and name what governs each. Peak is physics, shoulder is demand, night is the long-haul bank. Three lines, thirty seconds, and the day-shape now survives a challenge instead of collapsing under one."
+        "id": "c5",
+        "label": "Departures per day",
+        "expr": "780 / 2",
+        "display": "780 movements ÷ 2, since arrivals equal departures over a full day",
+        "result": 390,
+        "unit": "departures per day",
+        "uses": [
+          "a_dep_share"
+        ],
+        "soWhat": "The step most candidates skip, and skipping it doubles the answer. Say the identity out loud as you write it — every aircraft that leaves had to land first — because that sentence is the difference between an assumption and a constraint."
       },
       {
-        "trap": "Quoting 62,556, or stopping at 74,880 seats.",
-        "whyItHappens": "The arithmetic produces both figures and after fifteen minutes of work they feel earned. Seats in particular feel like the answer because the chain visibly ends there and the load factor looks like a refinement rather than a step. It is a 20% step.",
-        "fix": "Say 'roughly 63,000, call it 50,000 to 75,000', name the lever that sets the width, and make sure the word 'passengers' rather than 'seats' is in the sentence. A guesstimate answered as an exact figure signals that you do not understand what an estimate is, and that impression is expensive to reverse."
+        "id": "c6",
+        "label": "Domestic departures",
+        "expr": "390 * 0.8",
+        "display": "390 departures × 80% domestic",
+        "result": 312,
+        "unit": "departures per day",
+        "uses": [
+          "a_dom_share"
+        ],
+        "soWhat": "Four movements in five. Fix the mix before you price the seats, so a challenge on the mix does not force you to redo the seat arithmetic as well."
+      },
+      {
+        "id": "c7",
+        "label": "International departures",
+        "expr": "390 * 0.2",
+        "display": "390 departures × 20% international",
+        "result": 78,
+        "unit": "departures per day",
+        "uses": [
+          "a_intl_share"
+        ],
+        "soWhat": "A fifth of the flights. Hold this figure in view — it is about to carry 29% of the seats, and that asymmetry is the entire reason for splitting the fleet."
+      },
+      {
+        "id": "c8",
+        "label": "Domestic seats offered",
+        "expr": "312 * 170",
+        "display": "312 departures × 170 seats",
+        "result": 53040,
+        "unit": "seats per day",
+        "uses": [
+          "a_dom_seats"
+        ],
+        "soWhat": "Seventy-one per cent of the seats from the narrow-body fleet. If your answer is wrong, it is more likely wrong here than anywhere downstream, because 170 is a blend and blends hide their spread."
+      },
+      {
+        "id": "c9",
+        "label": "International seats offered",
+        "expr": "78 * 280",
+        "display": "78 departures × 280 seats",
+        "result": 21840,
+        "unit": "seats per day",
+        "uses": [
+          "a_intl_seats"
+        ],
+        "soWhat": "Twenty per cent of the departures producing 29% of the seats. A single blended aircraft size across the whole schedule would have erased that, and with it your ability to answer what happens if long-haul grows."
+      },
+      {
+        "id": "c10",
+        "label": "Total seats offered",
+        "expr": "53040 + 21840",
+        "display": "53,040 domestic + 21,840 international",
+        "result": 74880,
+        "unit": "seats per day",
+        "carriedForward": "≈ 75,000 seats",
+        "uses": [],
+        "soWhat": "Seats, not passengers. Quoting this as the answer is the second most common error on this question and it overstates by 20% — an aircraft is not full because the runway is."
+      },
+      {
+        "id": "c11",
+        "label": "Reverse check — blended seats per departure",
+        "expr": "74880 / 390",
+        "display": "74,880 seats ÷ 390 departures",
+        "result": 192,
+        "unit": "seats per departure",
+        "uses": [],
+        "soWhat": "Run this before you go further. One hundred and ninety-two is an A320 with a wide-body every fifth departure — a metro airport you would recognise. Had it come out at 300 you would have built a long-haul hub; at 110, a regional field. The fleet mix is the assumption this line is silently testing."
+      },
+      {
+        "id": "c12",
+        "label": "Domestic departing passengers",
+        "expr": "53040 * 0.85",
+        "display": "53,040 seats × 85% load factor",
+        "result": 45084,
+        "unit": "passengers per day",
+        "uses": [
+          "a_dom_lf"
+        ],
+        "soWhat": "The gap between a seat and a passenger is 7,956 people a day on the domestic side alone — larger than most candidates' entire error budget, which is why the load factor cannot be waved through at 100%."
+      },
+      {
+        "id": "c13",
+        "label": "International departing passengers",
+        "expr": "21840 * 0.8",
+        "display": "21,840 seats × 80% load factor",
+        "result": 17472,
+        "unit": "passengers per day",
+        "uses": [
+          "a_intl_lf"
+        ],
+        "soWhat": "Five points below domestic, because long-haul demand is directional and seasonal in a way domestic shuttle traffic is not. A small correction, made explicitly rather than absorbed into a single blended figure."
+      },
+      {
+        "id": "c14",
+        "label": "Total departing passengers on a busy day",
+        "expr": "45084 + 17472",
+        "display": "45,084 domestic + 17,472 international",
+        "result": 62556,
+        "unit": "departing passengers per day",
+        "carriedForward": "≈ 63,000 departing passengers",
+        "uses": [],
+        "soWhat": "Round it before you say it. Every input was a benchmark or a judgement good to two significant figures, so 62,556 claims a precision the chain cannot carry — and the figure is worthless anyway until you have said which resource produced it."
       }
     ],
-    "teachingPoint": "Capacity is not the sum of what an operation owns. It is the rate of its tightest resource, and every other resource is slack. So a capacity question is not one estimate but three or four estimates run in parallel — price each candidate constraint in the same unit, take the smallest, and name it. The consequence is the part that gets graded: money spent anywhere except the constraint changes the answer by exactly zero. Most candidates size the part of the airport they have personally queued in, which is the terminal, and the terminal is never what binds."
+    "id": "airport-runway-throughput",
+    "tabLabel": "Runway capacity, departures",
+    "teachingPoint": "Capacity is not the sum of what an operation owns. It is the rate of its tightest resource, and every other resource is slack. So a capacity question is not one estimate but three or four estimates run in parallel — price each candidate constraint in the same unit, take the smallest, and name it. The consequence is the part that gets graded: money spent anywhere except the constraint changes the answer by exactly zero. Most candidates size the part of the airport they have personally queued in, which is the terminal, and the terminal is never what binds.",
+    "orderOfMagnitude": "10^4",
+    "routeChoice": {
+      "chosen": "Bottom-up",
+      "why": "The question asks what the airport can do, not what it does. That is a supply question, and supply is a chain of physical rates: how often an aircraft can use the runway, how much of the day that rate holds, what fraction of movements are departures, how many seats leave on each and how full they are. Every link is either a physical constant or a benchmark you could defend, and the chain has the property that matters here — it names the resource. A route that never names a resource cannot answer the second half of the question.",
+      "rejectedRoute": "Top-down",
+      "rejectedWhyNot": "The top-down route is national air passenger traffic divided across the major airports, or this airport's annual throughput divided by 365. It is faster and it is the wrong quantity. Observed traffic is demand realised; the question asked for supply available, and the two differ by every hour the runway sat idle because nobody wanted to fly at two in the afternoon. Worse, a top-down number cannot be interrogated: when the interviewer asks what would raise it, you have nothing to point at, because you never decomposed the airport into resources. Use the observed annual figure where it belongs — as the back-check at the end, not as the answer."
+    },
+    "archetype": "capacity-bottleneck"
   },
   {
-    "timeboxMinutes": 12,
-    "sensitivity": {
-      "assumptionId": "active-share",
-      "whyThisLever": "Two tests decide which lever to stress, and most candidates apply only one. The first is how badly the number is pinned. The second is how much of the answer rides on it. The rural take-up rate is the shakiest figure on this page and moves the answer by under four per cent — leave it alone. The active share is the last multiplication in the chain, so it passes straight through to the answer one-for-one, nothing observable pins it down, and it is the lever the question was built around. Shaky and load-bearing is the pair worth testing.",
-      "cases": [
+    "answerBand": "4.5 to 7 crore cards. Anything between 4 and 8 crore is defensible on a different but honest set of levers. Outside that band one of your rates is carrying weight it cannot bear, and the interviewer will find it before you do.",
+    "scope": {
+      "countingWhat": "Distinct credit cards that record at least one transaction — swiped, tapped or entered online — during a single calendar month. You are counting cards, not swipes: the month is the activity test, not the unit of the answer.",
+      "unit": "credit cards",
+      "timeBasis": "stock (point in time)",
+      "geography": "India, urban and rural, all states",
+      "included": [
+        "Cards issued to individuals by banks and their co-brand partners",
+        "Add-on and supplementary cards, counted as separate cards when used separately",
+        "Cards used only online and never presented at a terminal",
+        "A card used once in the month for a single ₹200 bill — one transaction is the test"
+      ],
+      "excluded": [
+        "Commercial and corporate cards billed to a company account",
+        "Debit cards, prepaid and gift cards, forex travel cards",
+        "Buy-now-pay-later and pay-later credit lines that carry no card number",
+        "Cards issued but never activated, and cards that sat in a drawer all month"
+      ],
+      "boundaryTrap": "'Credit cards in India' has two readings and they differ by roughly a factor of two — cards in issue, which is the figure banks report, and cards that actually transact in a month. Dormancy in this category is not a rounding error; it is the whole question. Say in your first sentence which one you are estimating. If the interviewer wanted the other, you have spent thirty seconds, not the question."
+    },
+    "question": "How many of the credit cards in India actually get used in a given month?",
+    "difficulty": "Medium",
+    "probes": [
+      {
+        "question": "Your answer is cards. How many Indians hold a credit card?",
+        "intent": "Whether you kept units straight and can walk your own chain backwards without rebuilding it.",
+        "goodAnswer": "Gives about 5.8 crore people, roughly one adult in sixteen, and notes it is a different number from the 5.7 crore active cards even though the two land close — one holder may carry two cards of which only one moves this month. Names the near-coincidence and explains it rather than pretending it was designed.",
+        "weakAnswer": "Repeats the card figure, or divides it by something without saying which lever is being undone."
+      },
+      {
+        "question": "The regulator publishes roughly 10 crore cards in issue. Does that help you or hurt you?",
+        "intent": "Whether you can absorb an external anchor without abandoning your own structure.",
+        "goodAnswer": "Uses it to validate the intermediate rather than the answer — the cascade produced 10.4 crore in issue, so eligibility and multi-holding hold up, and the published figure now becomes the numerator. Points out that the activity rate is still the candidate's to defend, and that it is the only lever standing between that anchor and the answer.",
+        "weakAnswer": "Back-solves from 10 crore and drops the cascade, which feels efficient and leaves nothing to defend on the one lever the question was actually testing."
+      },
+      {
+        "question": "UPI is everywhere. Should that raise or lower your take-up number?",
+        "intent": "Whether you can reason about a substitute rather than recite that one exists.",
+        "goodAnswer": "Lowers take-up among eligible adults, because UPI removed the convenience reason to carry a card and left only credit and rewards — which is why 55% rather than a developed-market 80%. Adds that it may raise spend per active card, since the people who still bother are the deliberate users, and notices the two effects pull in opposite directions.",
+        "weakAnswer": "'UPI is disrupting credit cards' — a true sentence that moves no number and specifies no direction."
+      },
+      {
+        "question": "Which of your numbers are you least willing to defend?",
+        "intent": "Calibration. Whether you can rank your own uncertainty instead of flattening it.",
+        "goodAnswer": "Names the 55% active share, because nothing observable pins it and it is the last multiplication, so it passes straight into the answer. Shows the 40 to 70 band, notes it moves the answer by about a quarter either way while the power of ten survives, and separately flags that rural take-up is the shakiest figure on the page but moves almost nothing, so it is not the one to test.",
+        "weakAnswer": "'They are all estimates,' or naming the population figure — the one number in the chain nobody was going to challenge."
+      },
+      {
+        "question": "Rural is four per cent of a 55-crore adult base. Is that branch even worth carrying?",
+        "intent": "Whether you can drop or keep a branch on the evidence rather than out of tidiness or attachment to your own structure.",
+        "goodAnswer": "Puts it at about 76 lakh holders, roughly 13% of the total — material enough to keep in the structure, not material enough to argue about — and notes that doubling rural eligibility moves the final answer by about 13%. Says the remaining time is better spent on the active share, and means it.",
+        "weakAnswer": "Drops it silently to save time, or defends it at length because it is already drawn on the page."
+      }
+    ],
+    "triangulation": {
+      "label": "Merchant-side cross-check",
+      "route": "Bottom-up",
+      "premise": "Come at it from the terminals rather than the wallets. If you can size the credit-card transactions the country's merchants process in a month, and you know roughly how often one active card is used, the number of active cards falls out of the division. This route shares no lever with the cascade — no population, no eligibility, no take-up — which is what makes it worth the three minutes.",
+      "lines": [
         {
-          "scenario": "Conservative",
-          "leverValue": "40% of cards active in the month",
-          "answer": "≈ 4.2 crore cards",
-          "deltaVsBase": "−27%"
+          "id": "t1",
+          "label": "Card-accepting touchpoints",
+          "expr": "9000000 + 1000000",
+          "display": "≈ 90 lakh POS terminals + ≈ 10 lakh online merchants",
+          "result": 10000000,
+          "tolerance": 1e-06,
+          "unit": "touchpoints",
+          "carriedForward": "≈ 1 crore",
+          "uses": [
+            "card-touchpoints"
+          ],
+          "soWhat": "Online merchants are a small count and a large share of credit spend. Counting them as touchpoints keeps the arithmetic clean even though it understates their weight, and saying so costs nothing."
         },
         {
-          "scenario": "Base",
-          "leverValue": "55% of cards active in the month",
-          "answer": "≈ 5.7 crore cards",
-          "deltaVsBase": "0%"
+          "id": "t2",
+          "label": "Credit-card transactions a day",
+          "expr": "10000000 * 1.3",
+          "display": "1 crore touchpoints × 1.3 credit transactions a day",
+          "result": 13000000,
+          "tolerance": 1e-06,
+          "unit": "transactions per day",
+          "carriedForward": "≈ 1.3 crore a day",
+          "uses": [
+            "credit-txn-per-touchpoint"
+          ],
+          "soWhat": "This is a mean over a violently skewed distribution — a handful of travel and e-commerce merchants carry a large share while a neighbourhood terminal may see no credit card for days. Means over skewed distributions are where cross-checks quietly go wrong, so say it before the interviewer does."
         },
         {
-          "scenario": "Aggressive",
-          "leverValue": "70% of cards active in the month",
-          "answer": "≈ 7.3 crore cards",
-          "deltaVsBase": "+27%"
+          "id": "t3",
+          "label": "Credit-card transactions a month",
+          "expr": "13000000 * 30",
+          "display": "1.3 crore a day × 30 days",
+          "result": 390000000,
+          "tolerance": 1e-06,
+          "unit": "transactions per month",
+          "carriedForward": "≈ 39 crore",
+          "uses": [
+            "days-per-month"
+          ],
+          "soWhat": "A flow, in transactions. Do not hand this back — the question asked for a count of cards, and 39 crore is the most plausible-sounding wrong answer available."
+        },
+        {
+          "id": "t4",
+          "label": "Active cards implied",
+          "expr": "390000000 / 7",
+          "display": "39 crore transactions ÷ 7 transactions per active card",
+          "result": 55714285.71,
+          "tolerance": 1e-06,
+          "unit": "credit cards",
+          "carriedForward": "≈ 5.6 crore",
+          "uses": [
+            "txn-per-active-card"
+          ],
+          "soWhat": "Dividing a flow by a rate converts it back into a stock. Naming that out loud is how you show you understood the unit problem rather than survived it."
         }
       ],
-      "breakpoint": "Above roughly 70% the arithmetic starts claiming something you can check against ordinary life: at 1.8 cards a holder, a 70% active share means the average cardholder puts spend on more than one card every single month, and the two-card habit is a minority habit rather than the norm. Below roughly 35% you are claiming cards in issue run close to three times cards in use, which is more dormancy than a base carrying annual fees and fee-waiver spend targets can sustain — issuers cull those cards. So the honest range on this lever is 35% to 70%, the answer inherits a 3.6 to 7.3 crore range, and the power of ten never moves. That last clause is the one worth saying aloud.",
-      "oneLiner": "When there is no time for the grid, say this and move on: 'About half the card base transacts in any given month, so the published issuance figure is roughly double the answer — and if you prefer 45% or 65%, the answer moves by about a quarter either way and stays firmly in the crores.'"
+      "answer": "≈ 5.6 crore cards transacting in a month, against 5.7 crore from the cascade",
+      "verdict": "The two routes land about three per cent apart. Do not celebrate that. On levers this soft, agreement that tight is luck, and reading it as confirmation is a worse error than a visible gap would have been. The routes also share hidden DNA — both are describing the same market, so if the real card base were half what you think, both would be wrong together and wrong in the same direction. What the agreement genuinely buys you is the power of ten and the right to say the answer sits in the mid-to-high five crores rather than in the tens of crores. Say that much and no more. Had the two landed three crore apart, the reconciliation would have been the more useful conversation, and the first place to look would be transactions per active card — a long tail of cards used once a month drags that average well below what a heavy user's own statement suggests."
     },
-    "number": "07",
-    "difficulty": "Medium",
-    "id": "active-credit-cards",
-    "archetype": "penetration-cascade",
-    "routeChoice": {
-      "chosen": "Top-down",
-      "why": "The population is the one number here nobody will argue with, and every step after it narrows — adults, then adults a bank will actually lend to unsecured, then the ones who took a card, then cards, then cards that move. A cascade fails visibly: if a step is wrong, the interviewer can point at the step rather than at your answer. Start from the biggest defensible number and spend your credibility on the narrowing.",
-      "rejectedRoute": "Bottom-up",
-      "rejectedWhyNot": "Bottom-up here means starting from the issuers — count the banks, assume a card book each, add them up. It collapses on the first branch. The distribution is brutally skewed: a handful of large issuers carry most of the base and the tail runs to hundreds of small banks and co-brand tie-ups whose portfolios you cannot guess, so your answer ends up decided by a number you have no way to defend. Worse, it hands you cards in issue and tells you nothing about dormancy, so you would have to bolt the activity rate on afterwards anyway. Go bottom-up when the unit is observable and roughly uniform. An issuer's card book is neither."
-    },
-    "sanityChecks": [
-      "Your chain produces about 10.4 crore cards in issue on the way past. Publicly reported counts of the Indian card base are of that order, which says the eligibility and multi-holding levers are roughly right. Check that intermediate out loud — had it come out at 3 crore or 30 crore you want to find the broken step before the last line, not after it.",
-      "Multiply the two card-side levers on their own: 1.8 cards a holder × 55% active ≈ 1.0. The arithmetic is quietly asserting that the average cardholder puts spend on almost exactly one card a month. Test that against the wallets you actually know — people who hold three cards run one and keep the others for a specific offer. The shape is right.",
-      "5.8 crore holders against 91 crore adults is roughly one adult in sixteen. In a Gurgaon classroom that will feel absurdly low, because everyone in the room has a card. The country is not the room, and the distance between those two intuitions is the single biggest reason campus candidates over-size financial services.",
-      "Put it on households: 140 crore people at about 4.5 to a household is roughly 31 crore households, so fewer than one household in five contains a credit-card holder. That is consistent with a category still concentrated in salaried metro India, and flatly inconsistent with the answer you would have reached from bank-account penetration.",
-      "Turn the answer into money. 5.7 crore active cards at a plausible ₹25,000 to ₹30,000 of monthly spend each gives ₹1.4 to ₹1.7 lakh crore a month, or of the order of ₹18 lakh crore a year. Reported system-wide card spends run in that range — a third and cruder check that costs fifteen seconds and catches an answer wrong by a factor of five."
-    ],
-    "answerBand": "4.5 to 7 crore cards. Anything between 4 and 8 crore is defensible on a different but honest set of levers. Outside that band one of your rates is carrying weight it cannot bear, and the interviewer will find it before you do.",
     "tree": {
       "root": "Credit cards transacting in a month",
       "rootFormula": "= Cardholders × Cards per holder × Share of cards active in the month",
@@ -4252,125 +4326,214 @@ export const guesstimates: readonly Guesstimate[] = [
         }
       ]
     },
-    "triangulation": {
-      "label": "Merchant-side cross-check",
-      "route": "Bottom-up",
-      "premise": "Come at it from the terminals rather than the wallets. If you can size the credit-card transactions the country's merchants process in a month, and you know roughly how often one active card is used, the number of active cards falls out of the division. This route shares no lever with the cascade — no population, no eligibility, no take-up — which is what makes it worth the three minutes.",
-      "lines": [
-        {
-          "id": "t1",
-          "label": "Card-accepting touchpoints",
-          "expr": "9000000 + 1000000",
-          "display": "≈ 90 lakh POS terminals + ≈ 10 lakh online merchants",
-          "result": 10000000,
-          "tolerance": 1e-06,
-          "unit": "touchpoints",
-          "carriedForward": "≈ 1 crore",
-          "uses": [
-            "card-touchpoints"
-          ],
-          "soWhat": "Online merchants are a small count and a large share of credit spend. Counting them as touchpoints keeps the arithmetic clean even though it understates their weight, and saying so costs nothing."
-        },
-        {
-          "id": "t2",
-          "label": "Credit-card transactions a day",
-          "expr": "10000000 * 1.3",
-          "display": "1 crore touchpoints × 1.3 credit transactions a day",
-          "result": 13000000,
-          "tolerance": 1e-06,
-          "unit": "transactions per day",
-          "carriedForward": "≈ 1.3 crore a day",
-          "uses": [
-            "credit-txn-per-touchpoint"
-          ],
-          "soWhat": "This is a mean over a violently skewed distribution — a handful of travel and e-commerce merchants carry a large share while a neighbourhood terminal may see no credit card for days. Means over skewed distributions are where cross-checks quietly go wrong, so say it before the interviewer does."
-        },
-        {
-          "id": "t3",
-          "label": "Credit-card transactions a month",
-          "expr": "13000000 * 30",
-          "display": "1.3 crore a day × 30 days",
-          "result": 390000000,
-          "tolerance": 1e-06,
-          "unit": "transactions per month",
-          "carriedForward": "≈ 39 crore",
-          "uses": [
-            "days-per-month"
-          ],
-          "soWhat": "A flow, in transactions. Do not hand this back — the question asked for a count of cards, and 39 crore is the most plausible-sounding wrong answer available."
-        },
-        {
-          "id": "t4",
-          "label": "Active cards implied",
-          "expr": "390000000 / 7",
-          "display": "39 crore transactions ÷ 7 transactions per active card",
-          "result": 55714285.71,
-          "tolerance": 1e-06,
-          "unit": "credit cards",
-          "carriedForward": "≈ 5.6 crore",
-          "uses": [
-            "txn-per-active-card"
-          ],
-          "soWhat": "Dividing a flow by a rate converts it back into a stock. Naming that out loud is how you show you understood the unit problem rather than survived it."
-        }
-      ],
-      "answer": "≈ 5.6 crore cards transacting in a month, against 5.7 crore from the cascade",
-      "verdict": "The two routes land about three per cent apart. Do not celebrate that. On levers this soft, agreement that tight is luck, and reading it as confirmation is a worse error than a visible gap would have been. The routes also share hidden DNA — both are describing the same market, so if the real card base were half what you think, both would be wrong together and wrong in the same direction. What the agreement genuinely buys you is the power of ten and the right to say the answer sits in the mid-to-high five crores rather than in the tens of crores. Say that much and no more. Had the two landed three crore apart, the reconciliation would have been the more useful conversation, and the first place to look would be transactions per active card — a long tail of cards used once a month drags that average well below what a heavy user's own statement suggests."
-    },
-    "probes": [
+    "timeboxMinutes": 12,
+    "traps": [
       {
-        "question": "Your answer is cards. How many Indians hold a credit card?",
-        "intent": "Whether you kept units straight and can walk your own chain backwards without rebuilding it.",
-        "goodAnswer": "Gives about 5.8 crore people, roughly one adult in sixteen, and notes it is a different number from the 5.7 crore active cards even though the two land close — one holder may carry two cards of which only one moves this month. Names the near-coincidence and explains it rather than pretending it was designed.",
-        "weakAnswer": "Repeats the card figure, or divides it by something without saying which lever is being undone."
+        "trap": "Answering 'cards in issue' when the question asked for cards used.",
+        "whyItHappens": "The number that surfaces from memory is the one banks publish, because issuance is what gets reported every quarter and dormancy appears in no headline. The candidate reaches the card base, recognises it as something that sounds authoritative, and stops — the chain feels finished because it produced a quotable figure.",
+        "fix": "Write the word 'active' at the top of your page before the first multiplication, and make the activity rate the last lever in the chain so the structure cannot finish without it. If it is genuinely the last step you cannot forget it; if it is a caveat you intended to mention, you will."
       },
       {
-        "question": "The regulator publishes roughly 10 crore cards in issue. Does that help you or hurt you?",
-        "intent": "Whether you can absorb an external anchor without abandoning your own structure.",
-        "goodAnswer": "Uses it to validate the intermediate rather than the answer — the cascade produced 10.4 crore in issue, so eligibility and multi-holding hold up, and the published figure now becomes the numerator. Points out that the activity rate is still the candidate's to defend, and that it is the only lever standing between that anchor and the answer.",
-        "weakAnswer": "Back-solves from 10 crore and drops the cascade, which feels efficient and leaves nothing to defend on the one lever the question was actually testing."
+        "trap": "Handing back cardholders as though they were cards.",
+        "whyItHappens": "The cascade naturally produces people, and a person feels like the natural unit of a penetration question, so the instinct is to stop at the human count. But a wallet with three cards is one person and three cards. Skip the multi-holding step and the answer is out by the full factor — here, nearly two.",
+        "fix": "Name the unit at every node as you write it: this line is people, this line is cards. The moment the unit changes, announce it — 'now I convert people into cards' — and the interviewer hears a candidate tracking units rather than one multiplying numbers."
       },
       {
-        "question": "UPI is everywhere. Should that raise or lower your take-up number?",
-        "intent": "Whether you can reason about a substitute rather than recite that one exists.",
-        "goodAnswer": "Lowers take-up among eligible adults, because UPI removed the convenience reason to carry a card and left only credit and rewards — which is why 55% rather than a developed-market 80%. Adds that it may raise spend per active card, since the people who still bother are the deliberate users, and notices the two effects pull in opposite directions.",
-        "weakAnswer": "'UPI is disrupting credit cards' — a true sentence that moves no number and specifies no direction."
+        "trap": "Using bank-account penetration as the eligibility gate.",
+        "whyItHappens": "Account penetration is the financial-inclusion statistic every candidate has read, it sits comfortably above 75%, and it slots neatly into the funnel shape. The trouble is that it barely narrows anything — you finish with seventy-odd crore 'eligible' adults instead of eleven, and a final answer several times too high. An account is a deposit relationship the bank cannot lose money on; a credit card is an unsecured line underwritten on documented income and a bureau record.",
+        "fix": "Replace the account layer with an income-and-documentation layer, and say why you are replacing it. The sentence 'a bank account is not a credit line' is worth more marks than the number that follows it."
       },
       {
-        "question": "Which of your numbers are you least willing to defend?",
-        "intent": "Calibration. Whether you can rank your own uncertainty instead of flattening it.",
-        "goodAnswer": "Names the 55% active share, because nothing observable pins it and it is the last multiplication, so it passes straight into the answer. Shows the 40 to 70 band, notes it moves the answer by about a quarter either way while the power of ten survives, and separately flags that rural take-up is the shakiest figure on the page but moves almost nothing, so it is not the one to test.",
-        "weakAnswer": "'They are all estimates,' or naming the population figure — the one number in the chain nobody was going to challenge."
+        "trap": "Reading the campus wallet as the country.",
+        "whyItHappens": "Everyone in an MBA classroom holds a card, so six per cent adult penetration feels wrong by an order of magnitude. The candidate rarely argues with the number openly — they quietly lift the eligibility or take-up rate until the answer stops feeling uncomfortable, and then present it as derived.",
+        "fix": "Anchor on formal-sector employment rather than on the people you can see, and state that anchor aloud. If your own intuition is fighting the arithmetic, narrate that too — 'this feels low to me, and I think that is a sampling problem on my side' is a stronger answer than a silently inflated rate."
       },
       {
-        "question": "Rural is four per cent of a 55-crore adult base. Is that branch even worth carrying?",
-        "intent": "Whether you can drop or keep a branch on the evidence rather than out of tidiness or attachment to your own structure.",
-        "goodAnswer": "Puts it at about 76 lakh holders, roughly 13% of the total — material enough to keep in the structure, not material enough to argue about — and notes that doubling rural eligibility moves the final answer by about 13%. Says the remaining time is better spent on the active share, and means it.",
-        "weakAnswer": "Drops it silently to save time, or defends it at length because it is already drawn on the page."
+        "trap": "Letting 'in a month' turn the answer into a flow.",
+        "whyItHappens": "The words 'in a given month' pull hard towards a rate, and the merchant-side route in particular produces a beautiful monthly transaction figure — 39 crore — sitting one division short of the answer. It is the most plausible-sounding wrong number on the page, and it is wrong by a factor of seven.",
+        "fix": "The month is the activity test, not the denominator. Restate the unit before you speak the number: the answer is a count of cards, and it is roughly 5.7 crore."
       }
     ],
     "finalAnswerNumeric": 57117060,
-    "tabLabel": "Active credit cards, India",
-    "finalAnswer": "≈ 5.7 crore credit cards transact at least once in a typical month — roughly half a base of about 10.4 crore cards in issue. Every rate on this page is illustrative, built to show the method clearly, not asserted as verified market data.",
-    "scope": {
-      "countingWhat": "Distinct credit cards that record at least one transaction — swiped, tapped or entered online — during a single calendar month. You are counting cards, not swipes: the month is the activity test, not the unit of the answer.",
-      "unit": "credit cards",
-      "timeBasis": "stock (point in time)",
-      "geography": "India, urban and rural, all states",
-      "included": [
-        "Cards issued to individuals by banks and their co-brand partners",
-        "Add-on and supplementary cards, counted as separate cards when used separately",
-        "Cards used only online and never presented at a terminal",
-        "A card used once in the month for a single ₹200 bill — one transaction is the test"
+    "number": "07",
+    "sensitivity": {
+      "assumptionId": "active-share",
+      "whyThisLever": "Two tests decide which lever to stress, and most candidates apply only one. The first is how badly the number is pinned. The second is how much of the answer rides on it. The rural take-up rate is the shakiest figure on this page and moves the answer by under four per cent — leave it alone. The active share is the last multiplication in the chain, so it passes straight through to the answer one-for-one, nothing observable pins it down, and it is the lever the question was built around. Shaky and load-bearing is the pair worth testing.",
+      "cases": [
+        {
+          "scenario": "Conservative",
+          "leverValue": "40% of cards active in the month",
+          "answer": "≈ 4.2 crore cards",
+          "deltaVsBase": "−27%"
+        },
+        {
+          "scenario": "Base",
+          "leverValue": "55% of cards active in the month",
+          "answer": "≈ 5.7 crore cards",
+          "deltaVsBase": "0%"
+        },
+        {
+          "scenario": "Aggressive",
+          "leverValue": "70% of cards active in the month",
+          "answer": "≈ 7.3 crore cards",
+          "deltaVsBase": "+27%"
+        }
       ],
-      "excluded": [
-        "Commercial and corporate cards billed to a company account",
-        "Debit cards, prepaid and gift cards, forex travel cards",
-        "Buy-now-pay-later and pay-later credit lines that carry no card number",
-        "Cards issued but never activated, and cards that sat in a drawer all month"
-      ],
-      "boundaryTrap": "'Credit cards in India' has two readings and they differ by roughly a factor of two — cards in issue, which is the figure banks report, and cards that actually transact in a month. Dormancy in this category is not a rounding error; it is the whole question. Say in your first sentence which one you are estimating. If the interviewer wanted the other, you have spent thirty seconds, not the question."
+      "breakpoint": "Above roughly 70% the arithmetic starts claiming something you can check against ordinary life: at 1.8 cards a holder, a 70% active share means the average cardholder puts spend on more than one card every single month, and the two-card habit is a minority habit rather than the norm. Below roughly 35% you are claiming cards in issue run close to three times cards in use, which is more dormancy than a base carrying annual fees and fee-waiver spend targets can sustain — issuers cull those cards. So the honest range on this lever is 35% to 70%, the answer inherits a 3.6 to 7.3 crore range, and the power of ten never moves. That last clause is the one worth saying aloud.",
+      "oneLiner": "When there is no time for the grid, say this and move on: 'About half the card base transacts in any given month, so the published issuance figure is roughly double the answer — and if you prefer 45% or 65%, the answer moves by about a quarter either way and stays firmly in the crores.'"
     },
+    "sanityChecks": [
+      "Your chain produces about 10.4 crore cards in issue on the way past. Publicly reported counts of the Indian card base are of that order, which says the eligibility and multi-holding levers are roughly right. Check that intermediate out loud — had it come out at 3 crore or 30 crore you want to find the broken step before the last line, not after it.",
+      "Multiply the two card-side levers on their own: 1.8 cards a holder × 55% active ≈ 1.0. The arithmetic is quietly asserting that the average cardholder puts spend on almost exactly one card a month. Test that against the wallets you actually know — people who hold three cards run one and keep the others for a specific offer. The shape is right.",
+      "5.8 crore holders against 91 crore adults is roughly one adult in sixteen. In a Gurgaon classroom that will feel absurdly low, because everyone in the room has a card. The country is not the room, and the distance between those two intuitions is the single biggest reason campus candidates over-size financial services.",
+      "Put it on households: 140 crore people at about 4.5 to a household is roughly 31 crore households, so fewer than one household in five contains a credit-card holder. That is consistent with a category still concentrated in salaried metro India, and flatly inconsistent with the answer you would have reached from bank-account penetration.",
+      "Turn the answer into money. 5.7 crore active cards at a plausible ₹25,000 to ₹30,000 of monthly spend each gives ₹1.4 to ₹1.7 lakh crore a month, or of the order of ₹18 lakh crore a year. Reported system-wide card spends run in that range — a third and cruder check that costs fifteen seconds and catches an answer wrong by a factor of five."
+    ],
+    "assumptions": [
+      {
+        "id": "population",
+        "lever": "India population",
+        "value": "140 crore",
+        "numeric": 1400000000,
+        "unit": "people",
+        "basis": "census-anchor",
+        "defence": "The 2011 Census counted 121 crore and growth has run under 1% a year since — 140 crore is the figure every Indian interviewer carries and nobody will spend a minute on it.",
+        "confidence": "anchor",
+        "contestedBy": "Some will prefer 145 crore. It moves the answer by under 4% and is not worth any of your timebox."
+      },
+      {
+        "id": "adult-share",
+        "lever": "Share of population aged 18 and over",
+        "value": "65%",
+        "numeric": 0.65,
+        "unit": "share of population",
+        "basis": "census-anchor",
+        "defence": "India's median age sits close to 28 and roughly a third of the country is under 18, which leaves about two-thirds adult.",
+        "confidence": "anchor",
+        "contestedBy": "68% on a more recent projection. A three-point move here changes nothing that survives rounding."
+      },
+      {
+        "id": "urban-adult-share",
+        "lever": "Urban share of adults",
+        "value": "40%",
+        "numeric": 0.4,
+        "unit": "share of adults",
+        "basis": "structural-logic",
+        "defence": "The urban share of total population is about 35%, but cities hold a disproportionate share of working-age migrants and fewer children per household, so the urban share of adults sits a few points above the headline.",
+        "confidence": "defensible",
+        "contestedBy": "Hold it flat at 35% and urban holders fall by an eighth, pulling the final answer to roughly 5.2 crore."
+      },
+      {
+        "id": "urban-eligibility",
+        "lever": "Urban adults an issuer will underwrite unsecured",
+        "value": "25%",
+        "numeric": 0.25,
+        "unit": "share of urban adults",
+        "basis": "structural-logic",
+        "defence": "Issuers price off documented income and a credit-bureau record, so the gate is formal salaried employment plus the self-employed who file returns — a minority of urban adults, and a quarter is the generous end of that minority.",
+        "confidence": "judgement",
+        "contestedBy": "An interviewer who has worked in cards may push to 30-35% on the strength of salaried-account data, which lifts the final answer to between 6.7 and 7.7 crore."
+      },
+      {
+        "id": "rural-eligibility",
+        "lever": "Rural adults an issuer will underwrite unsecured",
+        "value": "4%",
+        "numeric": 0.04,
+        "unit": "share of rural adults",
+        "basis": "structural-logic",
+        "defence": "Outside towns documented income is thin and the cost of underwriting and collecting on a small unsecured line is hard to recover, so issuance is largely confined to government and bank staff and the larger farmers.",
+        "confidence": "judgement",
+        "contestedBy": "Double it to 8% and the final answer rises by about 13% — real, but smaller than the argument would cost you."
+      },
+      {
+        "id": "urban-takeup",
+        "lever": "Eligible urban adults who actually hold a card",
+        "value": "55%",
+        "numeric": 0.55,
+        "unit": "share of eligible",
+        "basis": "observed-behaviour",
+        "defence": "Eligibility is not ownership. UPI already does the convenience job a card does in most other markets, so the surviving reasons to carry one are credit and rewards, and a little over half of eligible urban adults find that worth an annual fee.",
+        "confidence": "judgement",
+        "contestedBy": "Benchmarking to a developed-market take-up near 80% is the standard error here — it would put holders above 8 crore and the card base near 15 crore, well outside anything reported."
+      },
+      {
+        "id": "rural-takeup",
+        "lever": "Eligible rural adults who hold a card",
+        "value": "35%",
+        "numeric": 0.35,
+        "unit": "share of eligible",
+        "basis": "declared-judgement",
+        "defence": "Lower than urban because branch-led cross-sell is thinner and the merchant acceptance that makes a card useful is concentrated in towns — this is openly a guess, and it is carried as one.",
+        "confidence": "shaky",
+        "contestedBy": "Anywhere from 25% to 45% is arguable. The branch carries 13% of holders, so the entire range moves the final answer by under 4%."
+      },
+      {
+        "id": "cards-per-holder",
+        "lever": "Cards per cardholder (multi-holding factor)",
+        "value": "1.8",
+        "numeric": 1.8,
+        "unit": "cards per holder",
+        "basis": "observed-behaviour",
+        "defence": "Half of holders run a single card, about a third carry two, and a thin tail of rewards optimisers carries four or more — that mix blends to 1.8, and it is the tail that keeps it above 1.5.",
+        "confidence": "defensible",
+        "contestedBy": "1.5 is arguable if you think the tail is thinner; it takes cards in issue to 8.7 crore and the answer to 4.8 crore."
+      },
+      {
+        "id": "active-share",
+        "lever": "Cards in issue that record a transaction in the month",
+        "value": "55%",
+        "numeric": 0.55,
+        "unit": "share of cards in issue",
+        "basis": "published-benchmark",
+        "defence": "Dormancy here is structural rather than incidental — a large share of issuance comes from joining offers and one-off EMI conversions, and those cards go quiet within a quarter; activity rates reported for Indian card portfolios cluster around half.",
+        "confidence": "judgement",
+        "contestedBy": "Issuers usually define 'active' over 90 days rather than 30, which flatters the figure. On a strict 30-day test 45% is equally arguable and takes the answer to 4.7 crore."
+      },
+      {
+        "id": "card-touchpoints",
+        "lever": "Card-accepting merchant touchpoints in India",
+        "value": "1 crore",
+        "numeric": 10000000,
+        "unit": "touchpoints",
+        "basis": "published-benchmark",
+        "defence": "Reported point-of-sale terminal counts run to roughly 90 lakh, and online merchants accepting cards add of the order of another 10 lakh.",
+        "confidence": "judgement",
+        "contestedBy": "Terminal counts carry a long dormant tail of their own; strip it and the base falls towards 70 lakh, cutting the cross-check by about a third."
+      },
+      {
+        "id": "credit-txn-per-touchpoint",
+        "lever": "Credit-card transactions per touchpoint per day",
+        "value": "1.3",
+        "numeric": 1.3,
+        "unit": "transactions per touchpoint per day",
+        "basis": "declared-judgement",
+        "defence": "Most terminals now see mostly UPI and debit, and credit is a minority rail concentrated in a few large merchants — this is a mean over a violently skewed distribution and is stated as one.",
+        "confidence": "shaky",
+        "contestedBy": "Anything from 1 to 2 is arguable, which is exactly why this route checks the power of ten and nothing finer."
+      },
+      {
+        "id": "days-per-month",
+        "lever": "Days in a month",
+        "value": "30",
+        "numeric": 30,
+        "unit": "days",
+        "basis": "physical-constant",
+        "defence": "Thirty is the working month for any estimate carried to two significant figures.",
+        "confidence": "anchor"
+      },
+      {
+        "id": "txn-per-active-card",
+        "lever": "Transactions per active card per month",
+        "value": "7",
+        "numeric": 7,
+        "unit": "transactions per card per month",
+        "basis": "observed-behaviour",
+        "defence": "Read a statement you have actually seen: one or two large recurring bills, a couple of online orders and a handful of card-present swipes — call it seven, remembering that a card used once still counts as active.",
+        "confidence": "defensible",
+        "contestedBy": "Ten is defensible if you picture only heavy users; it would cut the cross-check to 3.9 crore and open a real gap worth reconciling."
+      }
+    ],
+    "finalAnswer": "≈ 5.7 crore credit cards transact at least once in a typical month — roughly half a base of about 10.4 crore cards in issue. Every rate on this page is illustrative, built to show the method clearly, not asserted as verified market data.",
     "calculation": [
       {
         "id": "c1",
@@ -4525,228 +4688,787 @@ export const guesstimates: readonly Guesstimate[] = [
         "soWhat": "The last multiplication is the one the question was about. Notice where it lands — almost exactly back at the holder count, which says the average cardholder runs one card a month and keeps the rest for a specific offer."
       }
     ],
+    "id": "active-credit-cards",
+    "tabLabel": "Active credit cards, India",
+    "teachingPoint": "A penetration cascade fails at the step nobody says out loud. Here that step is the gap between issued and active — roughly half the cards in the country do not move in a given month, so the number banks publish is about twice the number this question asks for. Name the boundary before the first multiplication and carry the activity rate as an explicit lever, not as an afterthought bolted on when the interviewer raises an eyebrow.",
     "orderOfMagnitude": "10^7 — tens of millions of cards, not hundreds of millions",
-    "assumptions": [
-      {
-        "id": "population",
-        "lever": "India population",
-        "value": "140 crore",
-        "numeric": 1400000000,
-        "unit": "people",
-        "basis": "census-anchor",
-        "defence": "The 2011 Census counted 121 crore and growth has run under 1% a year since — 140 crore is the figure every Indian interviewer carries and nobody will spend a minute on it.",
-        "confidence": "anchor",
-        "contestedBy": "Some will prefer 145 crore. It moves the answer by under 4% and is not worth any of your timebox."
-      },
-      {
-        "id": "adult-share",
-        "lever": "Share of population aged 18 and over",
-        "value": "65%",
-        "numeric": 0.65,
-        "unit": "share of population",
-        "basis": "census-anchor",
-        "defence": "India's median age sits close to 28 and roughly a third of the country is under 18, which leaves about two-thirds adult.",
-        "confidence": "anchor",
-        "contestedBy": "68% on a more recent projection. A three-point move here changes nothing that survives rounding."
-      },
-      {
-        "id": "urban-adult-share",
-        "lever": "Urban share of adults",
-        "value": "40%",
-        "numeric": 0.4,
-        "unit": "share of adults",
-        "basis": "structural-logic",
-        "defence": "The urban share of total population is about 35%, but cities hold a disproportionate share of working-age migrants and fewer children per household, so the urban share of adults sits a few points above the headline.",
-        "confidence": "defensible",
-        "contestedBy": "Hold it flat at 35% and urban holders fall by an eighth, pulling the final answer to roughly 5.2 crore."
-      },
-      {
-        "id": "urban-eligibility",
-        "lever": "Urban adults an issuer will underwrite unsecured",
-        "value": "25%",
-        "numeric": 0.25,
-        "unit": "share of urban adults",
-        "basis": "structural-logic",
-        "defence": "Issuers price off documented income and a credit-bureau record, so the gate is formal salaried employment plus the self-employed who file returns — a minority of urban adults, and a quarter is the generous end of that minority.",
-        "confidence": "judgement",
-        "contestedBy": "An interviewer who has worked in cards may push to 30-35% on the strength of salaried-account data, which lifts the final answer to between 6.7 and 7.7 crore."
-      },
-      {
-        "id": "rural-eligibility",
-        "lever": "Rural adults an issuer will underwrite unsecured",
-        "value": "4%",
-        "numeric": 0.04,
-        "unit": "share of rural adults",
-        "basis": "structural-logic",
-        "defence": "Outside towns documented income is thin and the cost of underwriting and collecting on a small unsecured line is hard to recover, so issuance is largely confined to government and bank staff and the larger farmers.",
-        "confidence": "judgement",
-        "contestedBy": "Double it to 8% and the final answer rises by about 13% — real, but smaller than the argument would cost you."
-      },
-      {
-        "id": "urban-takeup",
-        "lever": "Eligible urban adults who actually hold a card",
-        "value": "55%",
-        "numeric": 0.55,
-        "unit": "share of eligible",
-        "basis": "observed-behaviour",
-        "defence": "Eligibility is not ownership. UPI already does the convenience job a card does in most other markets, so the surviving reasons to carry one are credit and rewards, and a little over half of eligible urban adults find that worth an annual fee.",
-        "confidence": "judgement",
-        "contestedBy": "Benchmarking to a developed-market take-up near 80% is the standard error here — it would put holders above 8 crore and the card base near 15 crore, well outside anything reported."
-      },
-      {
-        "id": "rural-takeup",
-        "lever": "Eligible rural adults who hold a card",
-        "value": "35%",
-        "numeric": 0.35,
-        "unit": "share of eligible",
-        "basis": "declared-judgement",
-        "defence": "Lower than urban because branch-led cross-sell is thinner and the merchant acceptance that makes a card useful is concentrated in towns — this is openly a guess, and it is carried as one.",
-        "confidence": "shaky",
-        "contestedBy": "Anywhere from 25% to 45% is arguable. The branch carries 13% of holders, so the entire range moves the final answer by under 4%."
-      },
-      {
-        "id": "cards-per-holder",
-        "lever": "Cards per cardholder (multi-holding factor)",
-        "value": "1.8",
-        "numeric": 1.8,
-        "unit": "cards per holder",
-        "basis": "observed-behaviour",
-        "defence": "Half of holders run a single card, about a third carry two, and a thin tail of rewards optimisers carries four or more — that mix blends to 1.8, and it is the tail that keeps it above 1.5.",
-        "confidence": "defensible",
-        "contestedBy": "1.5 is arguable if you think the tail is thinner; it takes cards in issue to 8.7 crore and the answer to 4.8 crore."
-      },
-      {
-        "id": "active-share",
-        "lever": "Cards in issue that record a transaction in the month",
-        "value": "55%",
-        "numeric": 0.55,
-        "unit": "share of cards in issue",
-        "basis": "published-benchmark",
-        "defence": "Dormancy here is structural rather than incidental — a large share of issuance comes from joining offers and one-off EMI conversions, and those cards go quiet within a quarter; activity rates reported for Indian card portfolios cluster around half.",
-        "confidence": "judgement",
-        "contestedBy": "Issuers usually define 'active' over 90 days rather than 30, which flatters the figure. On a strict 30-day test 45% is equally arguable and takes the answer to 4.7 crore."
-      },
-      {
-        "id": "card-touchpoints",
-        "lever": "Card-accepting merchant touchpoints in India",
-        "value": "1 crore",
-        "numeric": 10000000,
-        "unit": "touchpoints",
-        "basis": "published-benchmark",
-        "defence": "Reported point-of-sale terminal counts run to roughly 90 lakh, and online merchants accepting cards add of the order of another 10 lakh.",
-        "confidence": "judgement",
-        "contestedBy": "Terminal counts carry a long dormant tail of their own; strip it and the base falls towards 70 lakh, cutting the cross-check by about a third."
-      },
-      {
-        "id": "credit-txn-per-touchpoint",
-        "lever": "Credit-card transactions per touchpoint per day",
-        "value": "1.3",
-        "numeric": 1.3,
-        "unit": "transactions per touchpoint per day",
-        "basis": "declared-judgement",
-        "defence": "Most terminals now see mostly UPI and debit, and credit is a minority rail concentrated in a few large merchants — this is a mean over a violently skewed distribution and is stated as one.",
-        "confidence": "shaky",
-        "contestedBy": "Anything from 1 to 2 is arguable, which is exactly why this route checks the power of ten and nothing finer."
-      },
-      {
-        "id": "days-per-month",
-        "lever": "Days in a month",
-        "value": "30",
-        "numeric": 30,
-        "unit": "days",
-        "basis": "physical-constant",
-        "defence": "Thirty is the working month for any estimate carried to two significant figures.",
-        "confidence": "anchor"
-      },
-      {
-        "id": "txn-per-active-card",
-        "lever": "Transactions per active card per month",
-        "value": "7",
-        "numeric": 7,
-        "unit": "transactions per card per month",
-        "basis": "observed-behaviour",
-        "defence": "Read a statement you have actually seen: one or two large recurring bills, a couple of online orders and a handful of card-present swipes — call it seven, remembering that a card used once still counts as active.",
-        "confidence": "defensible",
-        "contestedBy": "Ten is defensible if you picture only heavy users; it would cut the cross-check to 3.9 crore and open a real gap worth reconciling."
-      }
-    ],
-    "question": "How many of the credit cards in India actually get used in a given month?",
-    "traps": [
-      {
-        "trap": "Answering 'cards in issue' when the question asked for cards used.",
-        "whyItHappens": "The number that surfaces from memory is the one banks publish, because issuance is what gets reported every quarter and dormancy appears in no headline. The candidate reaches the card base, recognises it as something that sounds authoritative, and stops — the chain feels finished because it produced a quotable figure.",
-        "fix": "Write the word 'active' at the top of your page before the first multiplication, and make the activity rate the last lever in the chain so the structure cannot finish without it. If it is genuinely the last step you cannot forget it; if it is a caveat you intended to mention, you will."
-      },
-      {
-        "trap": "Handing back cardholders as though they were cards.",
-        "whyItHappens": "The cascade naturally produces people, and a person feels like the natural unit of a penetration question, so the instinct is to stop at the human count. But a wallet with three cards is one person and three cards. Skip the multi-holding step and the answer is out by the full factor — here, nearly two.",
-        "fix": "Name the unit at every node as you write it: this line is people, this line is cards. The moment the unit changes, announce it — 'now I convert people into cards' — and the interviewer hears a candidate tracking units rather than one multiplying numbers."
-      },
-      {
-        "trap": "Using bank-account penetration as the eligibility gate.",
-        "whyItHappens": "Account penetration is the financial-inclusion statistic every candidate has read, it sits comfortably above 75%, and it slots neatly into the funnel shape. The trouble is that it barely narrows anything — you finish with seventy-odd crore 'eligible' adults instead of eleven, and a final answer several times too high. An account is a deposit relationship the bank cannot lose money on; a credit card is an unsecured line underwritten on documented income and a bureau record.",
-        "fix": "Replace the account layer with an income-and-documentation layer, and say why you are replacing it. The sentence 'a bank account is not a credit line' is worth more marks than the number that follows it."
-      },
-      {
-        "trap": "Reading the campus wallet as the country.",
-        "whyItHappens": "Everyone in an MBA classroom holds a card, so six per cent adult penetration feels wrong by an order of magnitude. The candidate rarely argues with the number openly — they quietly lift the eligibility or take-up rate until the answer stops feeling uncomfortable, and then present it as derived.",
-        "fix": "Anchor on formal-sector employment rather than on the people you can see, and state that anchor aloud. If your own intuition is fighting the arithmetic, narrate that too — 'this feels low to me, and I think that is a sampling problem on my side' is a stronger answer than a silently inflated rate."
-      },
-      {
-        "trap": "Letting 'in a month' turn the answer into a flow.",
-        "whyItHappens": "The words 'in a given month' pull hard towards a rate, and the merchant-side route in particular produces a beautiful monthly transaction figure — 39 crore — sitting one division short of the answer. It is the most plausible-sounding wrong number on the page, and it is wrong by a factor of seven.",
-        "fix": "The month is the activity test, not the denominator. Restate the unit before you speak the number: the answer is a count of cards, and it is roughly 5.7 crore."
-      }
-    ],
-    "teachingPoint": "A penetration cascade fails at the step nobody says out loud. Here that step is the gap between issued and active — roughly half the cards in the country do not move in a given month, so the number banks publish is about twice the number this question asks for. Name the boundary before the first multiplication and carry the activity rate as an explicit lever, not as an afterthought bolted on when the interviewer raises an eyebrow."
+    "routeChoice": {
+      "chosen": "Top-down",
+      "why": "The population is the one number here nobody will argue with, and every step after it narrows — adults, then adults a bank will actually lend to unsecured, then the ones who took a card, then cards, then cards that move. A cascade fails visibly: if a step is wrong, the interviewer can point at the step rather than at your answer. Start from the biggest defensible number and spend your credibility on the narrowing.",
+      "rejectedRoute": "Bottom-up",
+      "rejectedWhyNot": "Bottom-up here means starting from the issuers — count the banks, assume a card book each, add them up. It collapses on the first branch. The distribution is brutally skewed: a handful of large issuers carry most of the base and the tail runs to hundreds of small banks and co-brand tie-ups whose portfolios you cannot guess, so your answer ends up decided by a number you have no way to defend. Worse, it hands you cards in issue and tells you nothing about dormancy, so you would have to bolt the activity rate on afterwards anyway. Go bottom-up when the unit is observable and roughly uniform. An issuer's card book is neither."
+    },
+    "archetype": "penetration-cascade"
   },
   {
-    "timeboxMinutes": 15,
+    "answerBand": "₹1,900 – ₹3,500 crore a year. The band is set mostly by the rider share — 8% of residents on a working day could credibly be 6% or 11% — and secondly by the pay-per-ride fare, which swings the larger revenue line by about a fifth either way.",
+    "scope": {
+      "countingWhat": "Fare revenue — money collected at the farebox — over one year by a single large metro rail network in one Indian city. Passes, tokens, QR tickets and stored-value cards count; nothing else does.",
+      "unit": "₹ crore a year",
+      "timeBasis": "flow (per year)",
+      "geography": "One illustrative Indian city of 2 crore people with a mature metro of about eight lines.",
+      "included": [
+        "Monthly passes and trip-packs bought by daily commuters",
+        "Single-journey tokens and QR tickets",
+        "Stored-value smart cards, at their discounted per-ride fare",
+        "Weekend and holiday travel by occasional riders"
+      ],
+      "excluded": [
+        "Advertising, station retail and property development income",
+        "Parking and feeder-bus fares",
+        "Consultancy and other non-transport income",
+        "Fines and penalty fares",
+        "Suburban rail and city buses"
+      ],
+      "boundaryTrap": "An operator's headline revenue usually includes property, advertising and consultancy income, which can be a large share of the total. This question is the farebox alone. Watch the volume side too: published ridership is often counted by line, which counts a passenger who changes lines twice, while a fare is charged once per journey."
+    },
+    "question": "What does a city metro network collect in fares over a year?",
+    "difficulty": "Medium",
+    "probes": [
+      {
+        "question": "Pass holders make 45% of working-day journeys and pay 30% of the fares. Should the metro raise the pass price?",
+        "intent": "Whether the candidate can read a pricing decision off the split, rather than treating the gap as underpricing.",
+        "goodAnswer": "Not necessarily. A pass sells a guaranteed base load and cash up front, and it is the product that keeps commuters off the roads at the peak. The sharper question is when pass journeys happen: at the peak, where trains are full and the discount buys nothing, or off-peak, where it fills empty seats. An off-peak or peak-surcharged pass could protect revenue without losing the regulars.",
+        "weakAnswer": "Yes — pass holders pay less per ride, so the metro is leaving money on the table."
+      },
+      {
+        "question": "Where does your ₹20 per pass ride come from, and what would move it?",
+        "intent": "Whether the implied fare is understood as a derived number rather than a posted one.",
+        "goodAnswer": "It is the monthly price divided by the rides a holder actually takes — ₹1,000 ÷ 50. A holder who adds a midday trip and rides on Saturdays pays less per ride; one who works from home two days a week pays more. The realised fare on passes falls as their users ride more, which is why the posted price alone cannot be multiplied through.",
+        "weakAnswer": "It's the pass fare."
+      },
+      {
+        "question": "The city opens two new lines next year. What happens to your answer?",
+        "intent": "Whether the candidate sees network effects rather than scaling by track length.",
+        "goodAnswer": "The rider share rises by more than the added length, because each new line makes new journeys possible on the old lines too. The interchange factor rises, so line-level ridership grows faster than journeys. Pass uptake rises as more commutes become metro end to end. Revenue grows — but the average fare per journey can fall if the new lines mostly carry short feeder trips.",
+        "weakAnswer": "Add a quarter to the answer, because there is a quarter more track."
+      },
+      {
+        "question": "Your supply check agreed within 2%. Should that make you more confident?",
+        "intent": "Triangulation humility.",
+        "goodAnswer": "About the volume, somewhat: the two routes share no inputs. About the revenue, not at all — capacity knows how many journeys there are, not what each paid, so the pass-versus-token split is untouched. And the 35% load factor could as easily be 25% or 45%, which would move the supply figure by about 30%; the tightness of the agreement is partly luck.",
+        "weakAnswer": "Yes — two methods agree, so the number is right."
+      },
+      {
+        "question": "If you could ask the operator for one number, what would it be?",
+        "intent": "Whether the candidate knows which inputs dominate.",
+        "goodAnswer": "Journeys by ticket type, with the average fare on each — how many were made on passes and how many paid per ride. That replaces the rider share, the pass share and the fare in one stroke. Total ridership alone would help much less, because the revenue question is about the mix.",
+        "weakAnswer": "Total daily ridership."
+      }
+    ],
+    "triangulation": {
+      "label": "Supply-side cross-check — could the network physically carry this many journeys?",
+      "route": "Bottom-up",
+      "premise": "Count what the trains can carry instead of who rides them: runs a day, places a run, how full the runs actually are, how many times a place is refilled along a run, and how many line-boardings make one journey. The route shares no inputs with the demand route, so agreement on volume is real evidence — but it cannot price anything, so it says nothing about the pass-versus-token split.",
+      "lines": [
+        {
+          "id": "t1",
+          "label": "Train runs on a working day",
+          "expr": "8 * 170 * 2",
+          "display": "8 lines × 170 runs × 2 directions",
+          "result": 2720,
+          "tolerance": 0,
+          "unit": "runs",
+          "carriedForward": "2,720 runs",
+          "uses": [
+            "a-lines",
+            "a-runs"
+          ],
+          "soWhat": "Supply starts from what the timetable can run, not from who wants to ride."
+        },
+        {
+          "id": "t2",
+          "label": "Places offered",
+          "expr": "2720 * 1500",
+          "display": "2,720 runs × 1,500 places",
+          "result": 4080000,
+          "tolerance": 0,
+          "unit": "places",
+          "carriedForward": "40.8 lakh places",
+          "uses": [
+            "a-train-cap"
+          ],
+          "soWhat": "A ceiling, not a count — most of these places run empty."
+        },
+        {
+          "id": "t3",
+          "label": "Places occupied, on average",
+          "expr": "4080000 * 0.35",
+          "display": "40.8 lakh × 35% occupancy",
+          "result": 1428000,
+          "tolerance": 0,
+          "unit": "places",
+          "carriedForward": "14.3 lakh",
+          "uses": [
+            "a-load"
+          ],
+          "soWhat": "The load factor is the shakiest number on this side, and it is shaky in a useful way: full rush-hour trains are a peak fact, not an all-day one."
+        },
+        {
+          "id": "t4",
+          "label": "Line-boardings",
+          "expr": "1428000 * 2.5",
+          "display": "14.28 lakh × 2.5 refills",
+          "result": 3570000,
+          "tolerance": 0,
+          "unit": "boardings",
+          "carriedForward": "35.7 lakh boardings",
+          "uses": [
+            "a-turnover"
+          ],
+          "soWhat": "Each place is used about two and a half times along a run."
+        },
+        {
+          "id": "t5",
+          "label": "Journeys on a working day",
+          "expr": "3570000 / 1.25",
+          "display": "35.7 lakh boardings ÷ 1.25 per journey",
+          "result": 2856000,
+          "tolerance": 0,
+          "unit": "journeys",
+          "carriedForward": "28.6 lakh journeys",
+          "uses": [
+            "a-interchange"
+          ],
+          "soWhat": "Against 28.2 lakh from the demand route. Priced once per journey, gate in to gate out."
+        }
+      ],
+      "answer": "≈ 28.6 lakh journeys on a working day, against 28.2 lakh from the demand route (12.8 lakh on passes, 15.4 lakh pay-per-ride).",
+      "verdict": "Within about 1.5% on volume, from two routes that share no inputs — better agreement than either route deserves, since the load factor alone could move the supply figure by 30%. The claim to make is that the demand funnel is not inventing riders the network could not carry, not that the answer is confirmed. Revenue is untested by this route: it knows how many journeys there are, not what each one paid."
+    },
+    "tree": {
+      "root": "Annual farebox of one city metro network",
+      "rootFormula": "= (Pass holders × monthly pass price × 12) + (Pay-per-ride journeys a year × average fare)",
+      "value": "≈ ₹2,570 crore",
+      "branches": [
+        {
+          "label": "Pay-per-ride — tokens, QR tickets, stored-value cards",
+          "formula": "9.6 lakh riders × 1.6 journeys × 335.75 day-equivalents × ₹35",
+          "value": "51.6 crore journeys · ₹1,805 crore",
+          "note": "70% of the money. Weekends and holidays belong here: pass-holding commuters vanish on a Sunday, occasional riders do not.",
+          "isCriticalPath": true,
+          "children": [
+            {
+              "label": "Journeys on a working day",
+              "formula": "9.6 lakh × 1.6",
+              "value": "15.4 lakh",
+              "note": "Fewer journeys a head than a commuter, because some occasional riders go one way only."
+            },
+            {
+              "label": "Working-day equivalents a year",
+              "formula": "300 + 65 × 55%",
+              "value": "335.75",
+              "note": "Sundays and holidays count at a little over half a working day."
+            },
+            {
+              "label": "Average fare",
+              "formula": "Middle of a distance-slab table",
+              "value": "₹35 a journey",
+              "note": "The only lever that moves this line and leaves the pass line untouched."
+            }
+          ]
+        },
+        {
+          "label": "Pass holders — daily commuters",
+          "formula": "16 lakh riders × 40% × ₹1,000 × 12 months",
+          "value": "6.4 lakh holders · ₹768 crore",
+          "note": "Priced by the month, not the ride. 45% of working-day journeys and 30% of the money — the gap between those two shares is the whole lesson.",
+          "isCriticalPath": false,
+          "children": [
+            {
+              "label": "Riders on a working day",
+              "formula": "2 crore residents × 8%",
+              "value": "16 lakh",
+              "note": "The shakiest number in the tree; both branches inherit it."
+            },
+            {
+              "label": "Implied fare per pass ride",
+              "formula": "₹1,000 ÷ (2 journeys × 25 days)",
+              "value": "₹20 a ride",
+              "note": "Against ₹35 for a token. The heaviest users pay the least per ride — say it out loud."
+            }
+          ]
+        }
+      ]
+    },
+    "timeboxMinutes": 12,
+    "traps": [
+      {
+        "trap": "Pricing every ride at the token fare.",
+        "whyItHappens": "The token price is the only metro fare most candidates can quote, and one price across one ride count feels clean. It ignores that the heaviest users — the ones there every working day — pay the least per ride.",
+        "fix": "Convert the pass into its implied per-ride price first: ₹1,000 ÷ 50 rides is ₹20, not ₹35. Priced at the token fare, the pass line comes out at ₹1,344 crore instead of ₹768 crore — 75% too high — and the total 22% too high."
+      },
+      {
+        "trap": "Multiplying journeys by the monthly pass price.",
+        "whyItHappens": "After journeys are split into pass and token, the pass share of journeys looks like a count of pass holders. It is not: every holder makes two journeys a day. A worked solution to a suburban-rail version of this question in circulation makes exactly this slip.",
+        "fix": "Split people, not journeys, before applying a monthly price. 6.4 lakh holders × ₹1,000 × 12 is ₹768 crore; 12.8 lakh pass journeys × ₹1,000 × 12 would be ₹1,536 crore — double, because each holder was counted once per trip."
+      },
+      {
+        "trap": "Annualising the pass by days.",
+        "whyItHappens": "Every other line in the tree is multiplied up by working days, so the pass line gets the same treatment by momentum.",
+        "fix": "A pass is bought monthly: holders × price × 12. Multiplying by 300 working days prices each holder at ₹3 lakh a year, which is a car, not a metro pass."
+      },
+      {
+        "trap": "Counting line-boardings as journeys.",
+        "whyItHappens": "Line-level ridership is the figure most often reported, and it counts a passenger who changes lines once on each line.",
+        "fix": "Fares are charged once per journey, gate in to gate out. Divide line-boardings by the interchange factor — 1.25 here — before pricing anything."
+      },
+      {
+        "trap": "Adding pass holders' weekend rides to revenue.",
+        "whyItHappens": "The weekend multiplier gets applied to all journeys, the pass holders' included, and their Sunday trips then earn a token fare.",
+        "fix": "A pass holder's extra rides are free at the margin — the month paid for them. Apply the weekend factor to pay-per-ride travel only."
+      },
+      {
+        "trap": "Starting from the whole city and a daily trip rate.",
+        "whyItHappens": "Population × trips per person per day is the reflex for any transport question, and it silently assumes everyone in the city uses the metro.",
+        "fix": "Gate on the share of residents who ride on a working day — 8% here — before counting a single journey. A metro serves corridors, not a whole city."
+      }
+    ],
+    "finalAnswerNumeric": 2500,
+    "number": "08",
     "sensitivity": {
-      "assumptionId": "fleet_active",
-      "whyThisLever": "Every other number in the chain is a rate applied to something, and rates are bounded by physics or by observation — mileage cannot double, annual kilometres cannot triple, the empty share sits between a fifth and a third whatever you believe, and the idling uplift moves the answer by single digits. The fleet is different in kind. The answer is exactly the fleet multiplied by an average burn rate, so a 25% error in the fleet is a 25% error in the answer with nothing downstream to damp it. Worse, the fleet is not one assumption but three multiplied together — annual sales, working life and a growth haircut — each of which could be out by a fifth, and errors that multiply do not cancel the way errors that average do. This is also the lever candidates spend no time on, because a fleet number feels like a fact rather than a construction.",
+      "assumptionId": "a-fare",
+      "whyThisLever": "The rider share is shakier, but it scales every line equally and teaches nothing. The pay-per-ride fare earns the grid because it moves only 70% of the answer: the pass line does not move at all, which is exactly what a pass is for — it turns a volatile per-ride income into a fixed monthly one.",
       "cases": [
         {
           "scenario": "Conservative",
-          "leverValue": "24 lakh active trucks — a 12-year working life and a harder 0.67 haircut",
-          "answer": "≈ 31 bn litres (3,100 crore litres)",
-          "deltaVsBase": "−25%"
+          "leverValue": "₹25 a journey (short feeder trips, low slabs)",
+          "answer": "≈ ₹2,060 crore",
+          "deltaVsBase": "−20%"
         },
         {
           "scenario": "Base",
-          "leverValue": "32 lakh active trucks — 3 lakh sales × 15-year life × 0.70 haircut",
-          "answer": "≈ 40 bn litres (4,000 crore litres)",
-          "deltaVsBase": "—"
+          "leverValue": "₹35 a journey",
+          "answer": "≈ ₹2,570 crore",
+          "deltaVsBase": "0%"
         },
         {
           "scenario": "Aggressive",
-          "leverValue": "45 lakh active trucks — sales × life with no growth haircut at all",
-          "answer": "≈ 57 bn litres (5,700 crore litres)",
-          "deltaVsBase": "+41%"
+          "leverValue": "₹45 a journey (long cross-city commutes)",
+          "answer": "≈ ₹3,090 crore",
+          "deltaVsBase": "+20%"
         }
       ],
-      "breakpoint": "The answer leaves the stated 32-50 bn litre band below about 26 lakh active trucks or above about 40 lakh — so the band survives roughly a fifth either way on the fleet and no more. The two routes reconcile exactly at about 25 lakh, which is what 3 lakh sales a year and a twelve-year working life produce. So the whole disagreement between an eleven-line build and a two-line cross-check reduces to one empirical question: does the average Indian goods truck work for twelve years or for fifteen? Answer that and you have answered the guesstimate. Notice also that the aggressive case is not a scenario anyone chooses — it is what you get by forgetting the fleet is growing, which makes the most common error on this question a 41% one.",
-      "oneLiner": "With no time for the grid: 'The answer scales one-for-one on the active fleet, and my fleet is three soft numbers multiplied together, so call it 32 lakh trucks plus or minus a fifth. That is 40 bn litres, band 32 to 50. Everything downstream is duty-cycle physics bounded by the vehicle, and none of it moves the answer more than about a tenth.'"
-    },
-    "number": "08",
-    "difficulty": "Hard",
-    "id": "trucking-diesel",
-    "archetype": "physical-proxy-consumable",
-    "routeChoice": {
-      "chosen": "Hybrid",
-      "why": "Neither half of this question can be answered on its own terms. The fleet is a national aggregate and has to come down from one — nobody counts working trucks, so you build the stock from the flow that feeds it: units sold in a year, multiplied by how long a truck stays in service. The fuel is physics and has to come up from one vehicle: kilometres run, divided by kilometres per litre. Vehicle-kilometres is the joint where the two halves meet. Say that out loud before you draw anything — 'I am converting this into vehicle-kilometres, because trucks are counted per vehicle and diesel is burned per kilometre' — because naming the proxy is the step being graded, and the arithmetic after it is a division.",
-      "rejectedRoute": "Top-down",
-      "rejectedWhyNot": "The pure top-down route is national diesel consumption multiplied by the trucking share of it, and it is weaker here for a reason worth naming: it does not estimate anything. The trucking share of diesel is this question's answer expressed as a fraction, so a candidate who quotes it has recalled the answer rather than built it, and has nothing to say when the interviewer moves an input, because there are only two inputs and neither decomposes. It is also brittle in exactly the wrong place — the share is an attribution from a fuel-use study rather than a measurement, and a candidate quoting '30%' usually cannot say whether it includes light commercial vehicles and buses, which is a factor-of-two ambiguity hiding inside one remembered number. It keeps its place below as the cross-check, where a fast independent figure is worth a great deal and being unable to decompose it costs nothing."
+      "breakpoint": "The pay-per-ride fare would have to fall to about ₹15 before the two regimes brought in equal money — below any realistic average fare. Passes stay the minority of the revenue in every plausible case, even though they are close to half of the working-day journeys.",
+      "oneLiner": "Every ₹10 on the average fare moves the answer by about ₹515 crore — and moves the pass line by nothing."
     },
     "sanityChecks": [
-      "Share of national diesel. 40 bn litres against a national pool of 107 bn is 38%. Published attributions put heavy goods vehicles nearer 30%. That is not a passing check — it is a failing one, and saying so is the point. Either the fleet is too large, or the attribution studies are stale and heavy freight has taken share since. Name both, say which you lean towards, and report a band rather than pretending the check passed.",
-      "Per truck, per day. 12,700 litres a year over 300 working days is about 42 litres a day for the average truck in the fleet. A long-haul truck alone burns 300 km ÷ 4 kmpl = 75 litres a day and needs a 300-litre tank filled every four days. Any driver would recognise both figures, and a model whose per-unit numbers a practitioner would recognise is a model worth reporting.",
-      "The fuel bill. 40 bn litres at roughly ₹90 a litre is about ₹3.6 lakh crore a year on truck diesel alone — call it 1% of GDP. Fuel is typically half to three-fifths of an operator's cost on a trip, which implies a road-freight bill somewhere near ₹6-7 lakh crore. That is the right order for a market usually described in the ₹6-10 lakh crore range. Illustrative, not asserted as verified market data.",
-      "Freight actually moved. Run the vehicle-kilometres back into tonne-kilometres — 101 bn long-haul vehicle-km at 22 tonnes and 75% loaded, plus 62 bn regional vehicle-km at 9 tonnes and 75% loaded — and the model implies roughly 2,100 bn tonne-km of road freight. Commonly cited estimates sit nearer 2,500-3,000 bn, so this check says the fleet model is about a fifth too small while the diesel-share check says it is a quarter too large. Two checks disagreeing in direction is not a failure of the model; it is a statement that every input carries ±25% and that a point estimate was never available. Report the band and say why it is wide.",
-      "Bracket it before you trust it. 4 bn litres would be 1,250 litres a truck a year — a fortnight's running for a long-haul vehicle, and then eleven and a half months parked. 400 bn litres would be four times everything India burns of every petroleum product used for transport. Both fail in under a second, which places the answer in the tens of billions, and that bracketing is most of what the interviewer is testing.",
-      "Where the fuel is physically bought. 40 bn litres at a 300-litre fill is about 13 crore truck fills a year, or roughly 3.65 lakh fills a day. Truck fuelling concentrates at highway outlets rather than across all of India's fuel retail; spread over the order of 15,000 such outlets, that is around 24 truck fills a day at each — one an hour, round the clock. That matches what a highway pump actually looks like, and an answer ten times larger would not."
+      "₹2,573 crore across about 90 crore journeys a year is ₹28.6 a journey — between the ₹20 a pass holder pays per ride and the ₹35 a token costs, and closer to the token because pay-per-ride journeys are the majority of the year's trips. A blended fare outside that ₹20–₹35 range would mean a line had been priced twice.",
+      "Per resident, the city spends ₹1,286 a year on metro fares — about ₹107 a month. A single pass holder's month is ₹1,000, so the whole city spends roughly what one resident in ten would if everyone else stayed home.",
+      "Pass holders are 40% of working-day riders, 45% of working-day journeys and 30% of the money. Revenue share below journey share is the signature of a discounted product; the reverse would mean the pass had been priced per journey.",
+      "The supply side needs only a 35% average load to carry the demand figure. An estimate that needed trains 90% full across the whole day would mean the rider share was too high — full trains are a rush-hour, peak-direction fact.",
+      "Twenty-eight lakh journeys on a working day across sixteen lakh riders is 1.76 journeys each — two for pass holders, 1.6 for everyone else. A working-day figure above about 2.5 journeys a rider would mean line changes had been counted as journeys.",
+      "The two common errors land together: pricing pass rides at the token fare gives about ₹3,150 crore, and multiplying journeys by the pass price about ₹3,340 crore. An answer in that range is a flag, not a coincidence."
     ],
+    "assumptions": [
+      {
+        "id": "a-city-pop",
+        "lever": "Population of the city",
+        "value": "2 crore (20 Mn)",
+        "numeric": 20000000,
+        "unit": "people",
+        "basis": "declared-judgement",
+        "defence": "The scope of the question, not a finding: one large Indian city with a mature, multi-line metro. Fixing it up front keeps every later number tied to a place you can picture.",
+        "confidence": "anchor",
+        "contestedBy": "A smaller city with a younger network changes the rider share far more than it changes the population — carry the city as given and argue about the share."
+      },
+      {
+        "id": "a-rider-share",
+        "lever": "Share of residents who ride on a working day",
+        "value": "8%",
+        "numeric": 0.08,
+        "unit": "share",
+        "basis": "declared-judgement",
+        "defence": "Most residents never touch the metro on a given day: it serves some corridors well and others not at all, and many trips are short, local or by two-wheeler. One resident in twelve on a working day is a mature network, not a new one.",
+        "confidence": "shaky",
+        "contestedBy": "A young network might be 3%; a dense, well-connected one could pass 12%. This is the single shakiest input, and every line below is linear in it."
+      },
+      {
+        "id": "a-pass-share",
+        "lever": "Share of working-day riders on a monthly pass",
+        "value": "40%",
+        "numeric": 0.4,
+        "unit": "share",
+        "basis": "observed-behaviour",
+        "defence": "Passes are bought by people who ride the same route twice a day, five or six days a week. They are a minority of everyone who rides in a month but a large share of the people riding on any one working day — because they are there every day and occasional riders are not.",
+        "confidence": "judgement",
+        "contestedBy": "A network that sells only stored-value cards has no pass regime at all; one with a generous student pass could be above half."
+      },
+      {
+        "id": "a-pass-trips",
+        "lever": "Journeys a pass holder makes on a working day",
+        "value": "2",
+        "numeric": 2,
+        "unit": "journeys a day",
+        "basis": "structural-logic",
+        "defence": "Out and back. Some add a midday trip and some take a lift one way, but two is the number a commuter pass is priced around.",
+        "confidence": "defensible",
+        "contestedBy": "Hybrid working pulls it below two on average; a holder who also rides on Saturdays pushes the monthly count up."
+      },
+      {
+        "id": "a-ppr-trips",
+        "lever": "Journeys a pay-per-ride rider makes on a day they ride",
+        "value": "1.6",
+        "numeric": 1.6,
+        "unit": "journeys a day",
+        "basis": "observed-behaviour",
+        "defence": "Occasional riders often make a return trip, but a meaningful minority ride one way — to a station, then a cab or a lift home.",
+        "confidence": "judgement",
+        "contestedBy": "Tourists and shoppers can make three or four hops in a day; the blend barely moves the answer."
+      },
+      {
+        "id": "a-days-month",
+        "lever": "Working days in a month",
+        "value": "25",
+        "numeric": 25,
+        "unit": "days",
+        "basis": "structural-logic",
+        "defence": "A six-day week less holidays for many workplaces and a five-day week for others; 25 is the working count a monthly pass is bought against.",
+        "confidence": "defensible",
+        "contestedBy": "A strictly five-day workforce gives 22, which raises the implied fare per pass ride to about ₹23."
+      },
+      {
+        "id": "a-pass-price",
+        "lever": "Monthly pass price",
+        "value": "₹1,000",
+        "numeric": 1000,
+        "unit": "₹ a month",
+        "basis": "declared-judgement",
+        "defence": "Priced so a daily commuter saves clearly against paying per ride — the point of a pass is to lock in the heaviest users. ₹1,000 against fifty rides is ₹20 a ride.",
+        "confidence": "judgement",
+        "contestedBy": "Some systems sell trip-packs of 40–50 journeys rather than unlimited months; the per-ride arithmetic is identical."
+      },
+      {
+        "id": "a-months",
+        "lever": "Months of pass sales in a year",
+        "value": "12",
+        "numeric": 12,
+        "unit": "months",
+        "basis": "structural-logic",
+        "defence": "Holders who let a pass lapse in a holiday month are roughly offset by new holders joining; twelve full months is the honest simplification.",
+        "confidence": "anchor",
+        "contestedBy": "A strongly seasonal city — a college town emptying in summer — would take a month or two off."
+      },
+      {
+        "id": "a-fare",
+        "lever": "Average fare per pay-per-ride journey",
+        "value": "₹35",
+        "numeric": 35,
+        "unit": "₹ a journey",
+        "basis": "declared-judgement",
+        "defence": "Indian metro fares are distance-slab tables that start around ₹10; a typical 12–15 km journey falls in the middle of the table, with the small stored-value-card discount taken off.",
+        "confidence": "defensible",
+        "contestedBy": "A network of short feeder trips averages nearer ₹25; long cross-city commutes on a high-slab table push it past ₹45."
+      },
+      {
+        "id": "a-work-days-year",
+        "lever": "Working days in a year",
+        "value": "300",
+        "numeric": 300,
+        "unit": "days",
+        "basis": "structural-logic",
+        "defence": "Twenty-five working days a month, twelve months. It must match the monthly figure used for the pass, or the two regimes are annualised on different calendars.",
+        "confidence": "defensible",
+        "contestedBy": "A five-day-week city is nearer 250; the pay-per-ride line falls by about 7%."
+      },
+      {
+        "id": "a-off-days",
+        "lever": "Sundays and holidays in a year",
+        "value": "65",
+        "numeric": 65,
+        "unit": "days",
+        "basis": "structural-logic",
+        "defence": "Whatever is not a working day: 365 less 300.",
+        "confidence": "anchor",
+        "contestedBy": "Follows mechanically from the working-day count."
+      },
+      {
+        "id": "a-off-factor",
+        "lever": "Pay-per-ride travel on a non-working day, versus a working day",
+        "value": "55%",
+        "numeric": 0.55,
+        "unit": "share",
+        "basis": "observed-behaviour",
+        "defence": "Commuters vanish on a Sunday; shoppers, families and weekend visitors partly replace them. Only pay-per-ride travel counts here — a pass holder's Sunday ride was already paid for with the month.",
+        "confidence": "judgement",
+        "contestedBy": "Cities with a strong weekend leisure economy run close to 70%; industrial ones fall below 40%."
+      },
+      {
+        "id": "a-lines",
+        "lever": "Lines in the network",
+        "value": "8",
+        "numeric": 8,
+        "unit": "lines",
+        "basis": "declared-judgement",
+        "defence": "A mature network in a city of this size — the same picture the population assumption sets up.",
+        "confidence": "judgement",
+        "contestedBy": "Fewer, longer lines carry similar volumes with fewer interchanges."
+      },
+      {
+        "id": "a-runs",
+        "lever": "Train runs per line per direction on a working day",
+        "value": "170",
+        "numeric": 170,
+        "unit": "runs",
+        "basis": "structural-logic",
+        "defence": "A train every five to seven minutes on average over an eighteen-hour operating day is about 150–220 runs each way; rush-hour headways are tighter and late-evening ones wider.",
+        "confidence": "defensible",
+        "contestedBy": "Busy trunk lines run far more; new branch lines far fewer."
+      },
+      {
+        "id": "a-train-cap",
+        "lever": "Passengers a six-coach train carries at a practical full load",
+        "value": "1,500",
+        "numeric": 1500,
+        "unit": "passengers",
+        "basis": "declared-judgement",
+        "defence": "About 250 a coach standing and seated at a practical full load. Crush loads in the rush hour are higher, which is exactly why they are not the average.",
+        "confidence": "defensible",
+        "contestedBy": "Eight-coach trains on trunk lines carry about a third more."
+      },
+      {
+        "id": "a-load",
+        "lever": "Average occupancy across every run of the day",
+        "value": "35%",
+        "numeric": 0.35,
+        "unit": "share",
+        "basis": "observed-behaviour",
+        "defence": "Peak-direction trains in the rush hour run full; counter-peak, midday and late trains run nearly empty. Averaged over every run, about a third of capacity is used.",
+        "confidence": "shaky",
+        "contestedBy": "Anything from 25% to 45% is defensible, which moves the supply figure by about 30% either way."
+      },
+      {
+        "id": "a-turnover",
+        "lever": "Times each place is refilled along a run",
+        "value": "2.5",
+        "numeric": 2.5,
+        "unit": "refills a run",
+        "basis": "structural-logic",
+        "defence": "An average journey covers about 40% of a line's length, so each place is used about two and a half times over one end-to-end run.",
+        "confidence": "judgement",
+        "contestedBy": "Short-hop, dense-station lines turn over faster; airport lines hardly turn over at all."
+      },
+      {
+        "id": "a-interchange",
+        "lever": "Line-boardings per journey",
+        "value": "1.25",
+        "numeric": 1.25,
+        "unit": "boardings a journey",
+        "basis": "observed-behaviour",
+        "defence": "About a quarter of journeys change lines once. A line-level count sees them twice; the farebox charges them once, gate in to gate out.",
+        "confidence": "judgement",
+        "contestedBy": "Radial networks with a single central interchange run higher."
+      }
+    ],
+    "finalAnswer": "≈ ₹2,500 crore a year in fares, for an illustrative network carrying about 28 lakh journeys on a working day. Pass holders make 45% of working-day journeys but pay 30% of the money, because a pass works out at ₹20 a ride against ₹35 for a token.",
+    "calculation": [
+      {
+        "id": "c1",
+        "label": "Riders on a working day",
+        "expr": "20000000 * 0.08",
+        "display": "2 crore residents × 8%",
+        "result": 1600000,
+        "tolerance": 0,
+        "unit": "riders",
+        "carriedForward": "16 lakh riders",
+        "uses": [
+          "a-city-pop",
+          "a-rider-share"
+        ],
+        "soWhat": "The shakiest number in the tree, and every line below is linear in it. Box it, and argue about it once rather than on every line."
+      },
+      {
+        "id": "c2",
+        "label": "Pass holders",
+        "expr": "1600000 * 0.4",
+        "display": "16 lakh × 40%",
+        "result": 640000,
+        "tolerance": 0,
+        "unit": "holders",
+        "carriedForward": "6.4 lakh holders",
+        "uses": [
+          "a-pass-share"
+        ],
+        "soWhat": "People, not journeys. A monthly price is only ever multiplied by people."
+      },
+      {
+        "id": "c3",
+        "label": "Pay-per-ride riders on a working day",
+        "expr": "1600000 * 0.6",
+        "display": "16 lakh × 60%",
+        "result": 960000,
+        "tolerance": 0,
+        "unit": "riders",
+        "carriedForward": "9.6 lakh riders",
+        "uses": [
+          "a-pass-share"
+        ],
+        "soWhat": "The other 60%. They pay by the ride, so from here they are counted in journeys."
+      },
+      {
+        "id": "c4",
+        "label": "Rides a pass holder takes in a month",
+        "expr": "2 * 25",
+        "display": "2 journeys × 25 working days",
+        "result": 50,
+        "tolerance": 0,
+        "unit": "rides a month",
+        "carriedForward": "50 rides",
+        "uses": [
+          "a-pass-trips",
+          "a-days-month"
+        ],
+        "soWhat": "The denominator for the most important division in the question."
+      },
+      {
+        "id": "c5",
+        "label": "What a pass holder pays per ride",
+        "expr": "1000 / 50",
+        "display": "₹1,000 ÷ 50 rides",
+        "result": 20,
+        "tolerance": 0,
+        "unit": "₹ a ride",
+        "carriedForward": "₹20 a ride",
+        "uses": [
+          "a-pass-price"
+        ],
+        "soWhat": "This is the move the question exists to test. A pass holder pays ₹20 a ride against ₹35 for a token — the heaviest users pay the least. Say it before you multiply anything, and the pass line cannot be double-counted."
+      },
+      {
+        "id": "c6",
+        "label": "Pass revenue in a year",
+        "expr": "640000 * 1000 * 12",
+        "display": "6.4 lakh holders × ₹1,000 × 12 months",
+        "result": 7680000000,
+        "tolerance": 0,
+        "unit": "₹ a year",
+        "carriedForward": "₹768 crore",
+        "uses": [
+          "a-pass-price",
+          "a-months"
+        ],
+        "soWhat": "Annualised by months, because that is how a pass is bought. Multiplying by working days here would price each holder at ₹3 lakh a year."
+      },
+      {
+        "id": "c7",
+        "label": "Pay-per-ride journeys on a working day",
+        "expr": "960000 * 1.6",
+        "display": "9.6 lakh riders × 1.6 journeys",
+        "result": 1536000,
+        "tolerance": 0,
+        "unit": "journeys a day",
+        "carriedForward": "15.4 lakh journeys",
+        "uses": [
+          "a-ppr-trips"
+        ],
+        "soWhat": "Together with the 12.8 lakh pass journeys this is 28.2 lakh journeys on a working day. Pass holders are 40% of the riders but 45% of the journeys."
+      },
+      {
+        "id": "c8",
+        "label": "Working-day equivalents in a year",
+        "expr": "300 + 65 * 0.55",
+        "display": "300 working days + 65 days × 55%",
+        "result": 335.75,
+        "tolerance": 0,
+        "unit": "day-equivalents",
+        "carriedForward": "335.75",
+        "uses": [
+          "a-work-days-year",
+          "a-off-days",
+          "a-off-factor"
+        ],
+        "soWhat": "Weekends belong to the pay-per-ride line only. A pass holder's Sunday ride earns the network nothing extra."
+      },
+      {
+        "id": "c9",
+        "label": "Pay-per-ride journeys in a year",
+        "expr": "1536000 * 335.75",
+        "display": "15.36 lakh × 335.75",
+        "result": 515712000,
+        "tolerance": 0,
+        "unit": "journeys a year",
+        "carriedForward": "51.6 crore journeys",
+        "uses": [],
+        "soWhat": "Over half the year's journeys, and — as the next line shows — over two-thirds of its money."
+      },
+      {
+        "id": "c10",
+        "label": "Pay-per-ride revenue in a year",
+        "expr": "515712000 * 35",
+        "display": "51.6 crore journeys × ₹35",
+        "result": 18049920000,
+        "tolerance": 0,
+        "unit": "₹ a year",
+        "carriedForward": "₹1,805 crore",
+        "uses": [
+          "a-fare"
+        ],
+        "soWhat": "The larger line by far, and the only one the average fare touches."
+      },
+      {
+        "id": "c11",
+        "label": "Total farebox in a year",
+        "expr": "7680000000 + 18049920000",
+        "display": "₹768 crore passes + ₹1,805 crore pay-per-ride",
+        "result": 25729920000,
+        "tolerance": 0,
+        "unit": "₹ a year",
+        "carriedForward": "₹2,573 crore",
+        "uses": [],
+        "soWhat": "Passes are 30% of the money on 45% of the working-day journeys. If your pass line came out with a larger share of revenue than of journeys, you priced it per trip."
+      },
+      {
+        "id": "c12",
+        "label": "Total farebox in crore",
+        "expr": "25729920000 / 10000000",
+        "display": "₹25,730 Mn ÷ 1 crore",
+        "result": 2572.992,
+        "tolerance": 0,
+        "unit": "₹ crore a year",
+        "carriedForward": "≈ ₹2,500 crore — round it before you say it",
+        "uses": [],
+        "soWhat": "Say ₹2,500 crore. The rider share alone could move it by a quarter; four significant figures would claim a precision nothing above supports."
+      }
+    ],
+    "id": "metro-ticketing-revenue",
+    "tabLabel": "Metro fares, one city",
+    "teachingPoint": "A monthly pass and a token are two different prices for the same ride, and the pass is the one that misleads. Convert it into what a holder actually pays per ride before you multiply anything: ₹1,000 a month across fifty rides is ₹20 a ride, against ₹35 for a token. Split people before you apply a monthly price and journeys before you apply a per-ride one, and the two regimes cannot contaminate each other.",
+    "orderOfMagnitude": "10^10 rupees (₹2,500 crore ≈ ₹2.6 × 10^10); about 10^9 journeys a year",
+    "routeChoice": {
+      "chosen": "Hybrid",
+      "why": "The riders come top-down — residents, then the share who ride on a working day — because nobody can count a metro's riders from the bottom in an interview. The money comes bottom-up, product by product, because a pass and a token price the same ride differently and that difference is the question.",
+      "rejectedRoute": "Top-down",
+      "rejectedWhyNot": "A pure top-down route — riders × journeys × one average fare × days — needs a single average fare, and there is no honest single fare when four in ten of the day's riders prepay for the month. Choosing that number is exactly where the answer goes wrong, so the route has to split before it prices."
+    },
+    "archetype": "network-price-mix"
+  },
+  {
     "answerBand": "32-50 billion litres (3,200-5,000 crore litres). Say the band out loud and say where it comes from — the fleet count, not the fuel physics. A guesstimate answered as '40.69 billion litres' claims a precision that three soft numbers multiplied together cannot carry, and signals you do not understand what an estimate is.",
+    "scope": {
+      "countingWhat": "Diesel burned in the engines of goods-carrying trucks of 7.5 tonnes gross vehicle weight and above, operating on Indian roads, over one year — including the fuel burned while the vehicle is standing still with the engine running.",
+      "unit": "litres of diesel per year",
+      "timeBasis": "flow (per year)",
+      "geography": "India — national and state highways, plus the city and rural roads at either end of a trip",
+      "included": [
+        "Rigid trucks from 7.5 tonnes upward and tractor-trailer combinations, hire-and-reward and own-account alike",
+        "A cement plant's or a retailer's captive fleet, which is not for hire and burns diesel exactly the same way",
+        "Empty return running, which is a quarter of truck-kilometres and produces no freight at all",
+        "Fuel burned idling in toll-plaza queues, at mandis, at checkposts and at loading bays, and overnight with the engine on for the cabin",
+        "Trucks running on state permits inside one state, not only national-permit long-haul vehicles"
+      ],
+      "excluded": [
+        "Light commercial vehicles below 7.5 tonnes — the Ace-class pickups. They outnumber heavy trucks roughly three to one and would still add maybe a quarter again to the answer, which is exactly why the exclusion has to be stated rather than assumed",
+        "Buses and every passenger vehicle, including the diesel cars that used to dominate the segment",
+        "Tractors and farm equipment, which are a large diesel user and not trucks",
+        "Construction plant and mining dumpers working inside a pit rather than on a road",
+        "Railway traction, marine bunkers and standby gensets",
+        "Reefer units driven by a separate auxiliary engine — real, and small enough to name and drop",
+        "The CNG and LNG truck fleet, which is growing and is currently a low single-digit share of heavy goods vehicles"
+      ],
+      "boundaryTrap": "'Truck' in Indian usage runs from a one-tonne Ace to a fifty-tonne multi-axle trailer, and the two ends of that range do not belong in the same calculation. Count vehicles and the light end is most of the fleet. Count diesel and it is perhaps a quarter again on top of the heavy fleet — large enough that including it or excluding it changes the answer materially, and quiet enough that nobody notices you never said which you did. Set the boundary by what burns the fuel rather than by what shares the name, say where you drew it, and say roughly what you left outside."
+    },
+    "question": "In a year, how much diesel do India's goods trucks burn?",
+    "difficulty": "Hard",
+    "probes": [
+      {
+        "question": "Where did your 32 lakh trucks come from, and why not the registration figure?",
+        "intent": "Whether the candidate knows the difference between a register and a count of what is actually working — and whether they can build a stock out of a flow when no stock is published.",
+        "goodAnswer": "Explains the construction in order: about 3 lakh heavy goods vehicles sold a year, a fifteen-year working life, and a haircut because the fleet is the last fifteen years of sales rather than fifteen copies of this year's. Then dismisses the register specifically — it includes light commercial vehicles, nobody deletes a scrapped truck from it, and it is a cumulative record rather than a measurement. Volunteers that this is the softest number in the model and the one the sensitivity runs on.",
+        "weakAnswer": "'India has about 1.4 crore registered goods vehicles, so I took a share of that.' The share is then chosen to make the answer look right, which reverses the whole exercise — and the candidate has no way to challenge their own number, because it came from a memory rather than from a construction."
+      },
+      {
+        "question": "Your answer implies trucks take 38% of India's diesel. Published attributions say about 30%. Which one is wrong?",
+        "intent": "Whether the candidate can hold their own estimate against a published figure without either capitulating or digging in.",
+        "goodAnswer": "Names both possibilities and sizes them. Either the fleet is a fifth too large — plausible, since it rests on three multiplied judgements — or the attribution is stale, since those fuel-use studies are a decade old and heavy freight has grown faster than the diesel pool since. Then adds the point that decides it: whether that 30% includes light commercial vehicles, because if it does the comparable figure is nearer 22% and the published number is the one moving, not mine. Reports 32-50 bn litres either way.",
+        "weakAnswer": "'Then I'll take 30%, so about 32 billion litres.' Abandoning a constructed estimate the moment a published number appears means the construction was never load-bearing — and the candidate has not asked the one question that matters, which is what the published number actually counts."
+      },
+      {
+        "question": "Your two routes are 27% apart. Which single number would you go and check?",
+        "intent": "Whether the candidate can rank uncertainty by how much it moves the answer rather than by how uncomfortable the number makes them feel.",
+        "goodAnswer": "The count of trucks actually working, because the answer scales one-for-one on it and the two routes reconcile at about 25 lakh against my 32 lakh. Adds that the check is tractable — FASTag transaction counts, fitness-certificate renewals or toll-plaza data would all bound the active fleet — and that no amount of checking mileage or annual kilometres could close a 27% gap, because those levers are bounded by the vehicle.",
+        "weakAnswer": "'The mileage figure' — the firmest number on the page, set by mass and rolling resistance and barely variable across operators. Candidates reach for it because it is checkable, not because it matters."
+      },
+      {
+        "question": "Defend the 90,000 kilometres. My uncle's truck does two lakh.",
+        "intent": "Whether the candidate can size a challenge instead of folding to an anecdote or arguing with it.",
+        "goodAnswer": "Concedes the anecdote is real and locates it: a two-driver operation on an expressway corridor, running 500 km a day with minimal detention, which exists and is growing. Then sizes it — those operators are a small share of long-haul today, and if they were half of it the answer would rise about a quarter, still inside the band. Reconstructs the base figure from the clock rather than from memory: 30 to 40 kmph whole-journey average, 300 km a day, 300 working days.",
+        "weakAnswer": "Either 'fair enough, let's say 1.5 lakh' — which moves the answer 50% on one anecdote — or a flat refusal. Neither tells the interviewer whether the challenge mattered, which is the only thing the question asked."
+      },
+      {
+        "question": "Expressways are opening and average truck speeds are rising. What happens to your answer?",
+        "intent": "Whether the candidate can reason about a change that hits several inputs in different directions, rather than moving one number and stopping.",
+        "goodAnswer": "Works through the inputs the change touches. Annual kilometres per truck rise, because a truck covers more ground in the same day. Mileage improves, because steady highway running at constant speed is where a diesel engine is most efficient. The idling uplift falls, because FASTag and fewer checkposts mean less queuing. So fuel per truck goes up while fuel per tonne-kilometre goes down, and the total depends on whether the freight task grows or the same freight is carried by a smaller fleet. Concludes that the question is really about fleet utilisation, not about fuel.",
+        "weakAnswer": "'Mileage improves so diesel consumption falls.' One input moved, the rest held frozen, and the largest effect — that faster trucks need fewer trucks, or carry more freight — never considered at all."
+      },
+      {
+        "question": "Now include light commercial vehicles. Does your structure survive?",
+        "intent": "Whether the residential of the boundary was a deliberate choice with a size attached, or simply where the candidate happened to stop.",
+        "goodAnswer": "Keeps the structure and adds a third duty cycle rather than stretching the existing ones: roughly three times as many vehicles, running perhaps a quarter of the annual kilometres at two to three times the mileage, which lands somewhere near a quarter again on top — call it 10 bn litres and take the total towards 50. Then flags what would break — the fleet construction needs its own sales and life figures, because light commercial vehicles sell in far greater numbers and last fewer years.",
+        "weakAnswer": "'It would be a lot higher, since there are many more of them.' A boundary you cannot size is a boundary you did not set, and the answer reveals that the exclusion was an accident rather than a decision."
+      }
+    ],
+    "triangulation": {
+      "label": "Top-down cross-check — national diesel pool × trucking share",
+      "route": "Top-down",
+      "premise": "Every litre burned by a truck was first sold as part of India's national diesel consumption, and that total is one of the better-published numbers in the Indian economy. Take it, convert tonnes to litres, and apply the share that fuel-use studies attribute to heavy goods vehicles. This route shares nothing at all with the duty-cycle build — no fleet count, no annual kilometres, no mileage, no idling — which is exactly what makes the comparison worth running. It is also worth noticing before you start that this route is a product of two numbers where the primary is a product of six, so it may well be the tighter of the two.",
+      "lines": [
+        {
+          "id": "t1",
+          "label": "India's annual diesel consumption in litres",
+          "expr": "90000000 * 1190",
+          "display": "9 crore tonnes × 1,190 litres per tonne (density 0.84 kg per litre)",
+          "result": 107100000000,
+          "unit": "litres per year",
+          "carriedForward": "≈ 107 bn litres",
+          "uses": [
+            "diesel_total",
+            "litres_per_tonne"
+          ],
+          "soWhat": "The trade quotes tonnes and the pump quotes litres. Doing the conversion explicitly rather than reaching for a remembered litre figure keeps the density assumption visible, where it can be challenged."
+        },
+        {
+          "id": "t2",
+          "label": "Diesel burned by goods trucks of 7.5 tonnes and above",
+          "expr": "107100000000 * 0.3",
+          "display": "107 bn litres × 30% attributed to heavy goods vehicles",
+          "result": 32130000000,
+          "tolerance": 1e-06,
+          "unit": "litres per year",
+          "carriedForward": "≈ 32 bn litres (3,200 crore litres)",
+          "uses": [
+            "truck_share_diesel"
+          ],
+          "soWhat": "The cross-check answer, reached in two lines. Note how little it tells you: it produces a number and no lever, which is why it is a cross-check and not the route you present."
+        },
+        {
+          "id": "t3",
+          "label": "Burn per truck implied by the cross-check",
+          "expr": "32130000000 / 3200000",
+          "display": "32 bn litres ÷ 32 lakh trucks",
+          "result": 10040.625,
+          "unit": "litres per truck per year",
+          "carriedForward": "≈ 10,000 litres a truck a year",
+          "uses": [
+            "fleet_active"
+          ],
+          "soWhat": "Ten thousand litres against the duty-cycle model's 12,700. Putting both routes on a per-truck basis is what turns a total disagreement into a located one."
+        },
+        {
+          "id": "t4",
+          "label": "Active fleet implied by the cross-check, at the duty-cycle burn rate",
+          "expr": "32130000000 / 12717",
+          "display": "32 bn litres ÷ 12,717 litres a truck a year",
+          "result": 2526539.278131635,
+          "tolerance": 1e-06,
+          "unit": "trucks",
+          "carriedForward": "≈ 25 lakh active trucks",
+          "uses": [],
+          "soWhat": "Read the cross-check backwards and it stops being a statement about diesel. It says the country has about 25 lakh working trucks, not 32 lakh. The two routes are not arguing about fuel at all — they are arguing about how many trucks are genuinely turning a wheel, and that is a question somebody could go and settle."
+        }
+      ],
+      "answer": "≈ 32 bn litres (3,200 crore litres)",
+      "verdict": "40 bn litres against 32 bn — about 27% apart, both firmly at 10^10, which is as close as two genuinely independent routes usually get. Do not average them. First locate the gap: run both through litres per truck and it survives, so the disagreement lives in the fuel model or the fleet, not in a stray multiplication. Then run it backwards, as line t4 does, and it resolves into a single sentence — the cross-check is asserting a 25 lakh working fleet where the duty-cycle build assumed 32 lakh, which is the difference between a twelve-year working life and a fifteen-year one. Now the uncomfortable part, and the reason this cross-check is worth more than most. The primary route multiplies six soft numbers and carries something like ±40%. The cross-check multiplies two, one of which is a genuine anchor, and carries maybe ±25% — so the route you did not build is the tighter one, which inverts the assumption candidates bring into the room. Say that plainly. Keep the built route because it is the only one that tells you which lever to pull, lean on the cross-check when setting the band, and report 32-50 bn litres with 40 as the working figure. And name the one thing that would collapse the whole comparison: if that 30% share includes light commercial vehicles, the comparable figure is nearer 22% and the cross-check drops to 24 bn — a bigger move than anything the two routes are currently disagreeing about."
+    },
     "tree": {
       "root": "Diesel burned by India's goods trucks in a year",
       "rootFormula": "= (Long-haul vehicle-km ÷ long-haul kmpl) + (Regional vehicle-km ÷ regional kmpl), then uplifted for idling",
@@ -4874,299 +5596,80 @@ export const guesstimates: readonly Guesstimate[] = [
         }
       ]
     },
-    "triangulation": {
-      "label": "Top-down cross-check — national diesel pool × trucking share",
-      "route": "Top-down",
-      "premise": "Every litre burned by a truck was first sold as part of India's national diesel consumption, and that total is one of the better-published numbers in the Indian economy. Take it, convert tonnes to litres, and apply the share that fuel-use studies attribute to heavy goods vehicles. This route shares nothing at all with the duty-cycle build — no fleet count, no annual kilometres, no mileage, no idling — which is exactly what makes the comparison worth running. It is also worth noticing before you start that this route is a product of two numbers where the primary is a product of six, so it may well be the tighter of the two.",
-      "lines": [
-        {
-          "id": "t1",
-          "label": "India's annual diesel consumption in litres",
-          "expr": "90000000 * 1190",
-          "display": "9 crore tonnes × 1,190 litres per tonne (density 0.84 kg per litre)",
-          "result": 107100000000,
-          "unit": "litres per year",
-          "carriedForward": "≈ 107 bn litres",
-          "uses": [
-            "diesel_total",
-            "litres_per_tonne"
-          ],
-          "soWhat": "The trade quotes tonnes and the pump quotes litres. Doing the conversion explicitly rather than reaching for a remembered litre figure keeps the density assumption visible, where it can be challenged."
-        },
-        {
-          "id": "t2",
-          "label": "Diesel burned by goods trucks of 7.5 tonnes and above",
-          "expr": "107100000000 * 0.3",
-          "display": "107 bn litres × 30% attributed to heavy goods vehicles",
-          "result": 32130000000,
-          "tolerance": 1e-06,
-          "unit": "litres per year",
-          "carriedForward": "≈ 32 bn litres (3,200 crore litres)",
-          "uses": [
-            "truck_share_diesel"
-          ],
-          "soWhat": "The cross-check answer, reached in two lines. Note how little it tells you: it produces a number and no lever, which is why it is a cross-check and not the route you present."
-        },
-        {
-          "id": "t3",
-          "label": "Burn per truck implied by the cross-check",
-          "expr": "32130000000 / 3200000",
-          "display": "32 bn litres ÷ 32 lakh trucks",
-          "result": 10040.625,
-          "unit": "litres per truck per year",
-          "carriedForward": "≈ 10,000 litres a truck a year",
-          "uses": [
-            "fleet_active"
-          ],
-          "soWhat": "Ten thousand litres against the duty-cycle model's 12,700. Putting both routes on a per-truck basis is what turns a total disagreement into a located one."
-        },
-        {
-          "id": "t4",
-          "label": "Active fleet implied by the cross-check, at the duty-cycle burn rate",
-          "expr": "32130000000 / 12717",
-          "display": "32 bn litres ÷ 12,717 litres a truck a year",
-          "result": 2526539.278131635,
-          "tolerance": 1e-06,
-          "unit": "trucks",
-          "carriedForward": "≈ 25 lakh active trucks",
-          "uses": [],
-          "soWhat": "Read the cross-check backwards and it stops being a statement about diesel. It says the country has about 25 lakh working trucks, not 32 lakh. The two routes are not arguing about fuel at all — they are arguing about how many trucks are genuinely turning a wheel, and that is a question somebody could go and settle."
-        }
-      ],
-      "answer": "≈ 32 bn litres (3,200 crore litres)",
-      "verdict": "40 bn litres against 32 bn — about 27% apart, both firmly at 10^10, which is as close as two genuinely independent routes usually get. Do not average them. First locate the gap: run both through litres per truck and it survives, so the disagreement lives in the fuel model or the fleet, not in a stray multiplication. Then run it backwards, as line t4 does, and it resolves into a single sentence — the cross-check is asserting a 25 lakh working fleet where the duty-cycle build assumed 32 lakh, which is the difference between a twelve-year working life and a fifteen-year one. Now the uncomfortable part, and the reason this cross-check is worth more than most. The primary route multiplies six soft numbers and carries something like ±40%. The cross-check multiplies two, one of which is a genuine anchor, and carries maybe ±25% — so the route you did not build is the tighter one, which inverts the assumption candidates bring into the room. Say that plainly. Keep the built route because it is the only one that tells you which lever to pull, lean on the cross-check when setting the band, and report 32-50 bn litres with 40 as the working figure. And name the one thing that would collapse the whole comparison: if that 30% share includes light commercial vehicles, the comparable figure is nearer 22% and the cross-check drops to 24 bn — a bigger move than anything the two routes are currently disagreeing about."
-    },
-    "probes": [
+    "timeboxMinutes": 15,
+    "traps": [
       {
-        "question": "Where did your 32 lakh trucks come from, and why not the registration figure?",
-        "intent": "Whether the candidate knows the difference between a register and a count of what is actually working — and whether they can build a stock out of a flow when no stock is published.",
-        "goodAnswer": "Explains the construction in order: about 3 lakh heavy goods vehicles sold a year, a fifteen-year working life, and a haircut because the fleet is the last fifteen years of sales rather than fifteen copies of this year's. Then dismisses the register specifically — it includes light commercial vehicles, nobody deletes a scrapped truck from it, and it is a cumulative record rather than a measurement. Volunteers that this is the softest number in the model and the one the sensitivity runs on.",
-        "weakAnswer": "'India has about 1.4 crore registered goods vehicles, so I took a share of that.' The share is then chosen to make the answer look right, which reverses the whole exercise — and the candidate has no way to challenge their own number, because it came from a memory rather than from a construction."
+        "trap": "Using the registered goods-vehicle count as the fleet.",
+        "whyItHappens": "It is the only truck number anyone half-remembers, and it sounds authoritative because it comes from a register. But a vehicle register is a cumulative record with no deletion discipline — trucks that were cut up for scrap a decade ago are still rows in it — and it counts light commercial vehicles alongside forty-tonne trailers. The candidate then applies a heavy-truck duty cycle to a number built mostly from Ace-class pickups, and the error compounds rather than cancels.",
+        "fix": "Say 'registered is not running' out loud, then build the stock from a flow you can defend line by line: units sold in a year, a working life, and a correction for the fact that the fleet is growing. Three defensible numbers beat one authoritative-sounding one."
       },
       {
-        "question": "Your answer implies trucks take 38% of India's diesel. Published attributions say about 30%. Which one is wrong?",
-        "intent": "Whether the candidate can hold their own estimate against a published figure without either capitulating or digging in.",
-        "goodAnswer": "Names both possibilities and sizes them. Either the fleet is a fifth too large — plausible, since it rests on three multiplied judgements — or the attribution is stale, since those fuel-use studies are a decade old and heavy freight has grown faster than the diesel pool since. Then adds the point that decides it: whether that 30% includes light commercial vehicles, because if it does the comparable figure is nearer 22% and the published number is the one moving, not mine. Reports 32-50 bn litres either way.",
-        "weakAnswer": "'Then I'll take 30%, so about 32 billion litres.' Abandoning a constructed estimate the moment a published number appears means the construction was never load-bearing — and the candidate has not asked the one question that matters, which is what the published number actually counts."
+        "trap": "Applying one average annual-kilometre figure to the whole fleet.",
+        "whyItHappens": "One average is faster and feels like it arrives in the same place. It does not, because fleet share and annual kilometres are negatively correlated here — the trucks that run the most are the minority — so the fleet average is an average of two populations that share almost nothing. Apply the long-haul figure to everything and the answer roughly doubles; apply the regional figure and it roughly halves. The candidate has made a factor-of-two decision without noticing that a decision was available.",
+        "fix": "Split on duty cycle before any kilometre figure enters the model, and say why the split is the structure rather than a refinement. Two duty cycles is enough — the point is that they genuinely differ, not that there are many of them."
       },
       {
-        "question": "Your two routes are 27% apart. Which single number would you go and check?",
-        "intent": "Whether the candidate can rank uncertainty by how much it moves the answer rather than by how uncomfortable the number makes them feel.",
-        "goodAnswer": "The count of trucks actually working, because the answer scales one-for-one on it and the two routes reconcile at about 25 lakh against my 32 lakh. Adds that the check is tractable — FASTag transaction counts, fitness-certificate renewals or toll-plaza data would all bound the active fleet — and that no amount of checking mileage or annual kilometres could close a 27% gap, because those levers are bounded by the vehicle.",
-        "weakAnswer": "'The mileage figure' — the firmest number on the page, set by mass and rolling resistance and barely variable across operators. Candidates reach for it because it is checkable, not because it matters."
+        "trap": "Forgetting empty running, or double-counting it.",
+        "whyItHappens": "Mileage is quoted laden because laden is what operators negotiate freight rates on, so the number that comes to mind is a laden number. A quarter of Indian truck-kilometres are empty backhauls that burn less per kilometre and still burn. The second half of the trap is subtler: a candidate who remembers empty running sometimes subtracts those kilometres from the annual total and then also improves the mileage, taking credit for the same correction twice.",
+        "fix": "Keep every kilometre in the annual figure and put the correction entirely into a blended mileage — laden kmpl weighted by loaded share plus empty kmpl weighted by empty share. State that this makes the answer smaller. A correction that cuts against you is the one an interviewer believes you actually made."
       },
       {
-        "question": "Defend the 90,000 kilometres. My uncle's truck does two lakh.",
-        "intent": "Whether the candidate can size a challenge instead of folding to an anecdote or arguing with it.",
-        "goodAnswer": "Concedes the anecdote is real and locates it: a two-driver operation on an expressway corridor, running 500 km a day with minimal detention, which exists and is growing. Then sizes it — those operators are a small share of long-haul today, and if they were half of it the answer would rise about a quarter, still inside the band. Reconstructs the base figure from the clock rather than from memory: 30 to 40 kmph whole-journey average, 300 km a day, 300 working days.",
-        "weakAnswer": "Either 'fair enough, let's say 1.5 lakh' — which moves the answer 50% on one anecdote — or a flat refusal. Neither tells the interviewer whether the challenge mattered, which is the only thing the question asked."
+        "trap": "Setting the fleet boundary by vehicle count rather than by fuel burned.",
+        "whyItHappens": "Boundaries get drawn where the category name breaks, and 'truck' colloquially includes the one-tonne pickup. Light commercial vehicles outnumber heavy trucks roughly three to one, so a count-driven boundary triples the fleet — and the candidate then runs heavy-truck kilometres and heavy-truck mileage across all of it. The failure is not that the boundary was drawn in the wrong place; it is that it was drawn on the wrong variable.",
+        "fix": "Draw every boundary on the quantity being estimated. Ask what each class contributes to litres, not to vehicles, then say what you excluded and roughly what it was worth — here, light commercial vehicles are perhaps a quarter again on top, which is material and must be said."
       },
       {
-        "question": "Expressways are opening and average truck speeds are rising. What happens to your answer?",
-        "intent": "Whether the candidate can reason about a change that hits several inputs in different directions, rather than moving one number and stopping.",
-        "goodAnswer": "Works through the inputs the change touches. Annual kilometres per truck rise, because a truck covers more ground in the same day. Mileage improves, because steady highway running at constant speed is where a diesel engine is most efficient. The idling uplift falls, because FASTag and fewer checkposts mean less queuing. So fuel per truck goes up while fuel per tonne-kilometre goes down, and the total depends on whether the freight task grows or the same freight is carried by a smaller fleet. Concludes that the question is really about fleet utilisation, not about fuel.",
-        "weakAnswer": "'Mileage improves so diesel consumption falls.' One input moved, the rest held frozen, and the largest effect — that faster trucks need fewer trucks, or carry more freight — never considered at all."
+        "trap": "Treating the cross-check as confirmation because both answers start with a three or a four.",
+        "whyItHappens": "Two numbers in the same order of magnitude feel like agreement, and agreement feels like the end of the exercise. But 27% apart is not agreement; it is a located disagreement, and locating it is the most valuable thing the second route produces. Candidates stop because the cross-check was framed in their mind as a formality to be passed rather than an instrument to be read.",
+        "fix": "Convert the gap into the single input that would close it — here, a fleet of 25 lakh rather than 32 lakh, which is a twelve-year working life instead of fifteen. Then say which route you trust more and why. A gap you can express as one number you would go and check is a finding; a gap you wave at is an unforced error."
       },
       {
-        "question": "Now include light commercial vehicles. Does your structure survive?",
-        "intent": "Whether the residential of the boundary was a deliberate choice with a size attached, or simply where the candidate happened to stop.",
-        "goodAnswer": "Keeps the structure and adds a third duty cycle rather than stretching the existing ones: roughly three times as many vehicles, running perhaps a quarter of the annual kilometres at two to three times the mileage, which lands somewhere near a quarter again on top — call it 10 bn litres and take the total towards 50. Then flags what would break — the fleet construction needs its own sales and life figures, because light commercial vehicles sell in far greater numbers and last fewer years.",
-        "weakAnswer": "'It would be a lot higher, since there are many more of them.' A boundary you cannot size is a boundary you did not set, and the answer reveals that the exclusion was an accident rather than a decision."
+        "trap": "Assuming the route you built yourself is the one to trust.",
+        "whyItHappens": "Effort feels like evidence. The duty-cycle build took eleven lines and real structural thought, so it feels more earned than a two-line share calculation. But error compounds with every multiplication: six soft numbers carry far more uncertainty than two, one of which is a genuine published anchor. The candidate defends the route they are proud of instead of the one that is tighter.",
+        "fix": "Count the soft multiplications in each route before deciding which sets the band. Present the built route, because it is the only one that identifies a lever — but let the tighter route pull the band, and say out loud that you are doing so."
+      },
+      {
+        "trap": "Reporting the answer in litres, tonnes or rupees without saying which.",
+        "whyItHappens": "Diesel is burned in litres, traded in tonnes, taxed per litre and budgeted in rupees, and the three differ by factors of roughly 1,190 and 90. Mid-answer a candidate reaches for whichever unit the last number happened to be in, and a three-order-of-magnitude slip passes without either party noticing until the sanity check fails for a reason nobody can find.",
+        "fix": "Declare the unit in the scope statement, carry it on every line, and give the other two as translations at the end: 40 bn litres, about 3.4 crore tonnes, roughly ₹3.6 lakh crore at the pump."
       }
     ],
     "finalAnswerNumeric": 40000000000,
-    "tabLabel": "Truck diesel, India",
-    "finalAnswer": "≈ 40 billion litres of diesel a year — 4,000 crore litres, or roughly 3.4 crore tonnes — burned by India's goods trucks of 7.5 tonnes and above",
-    "scope": {
-      "countingWhat": "Diesel burned in the engines of goods-carrying trucks of 7.5 tonnes gross vehicle weight and above, operating on Indian roads, over one year — including the fuel burned while the vehicle is standing still with the engine running.",
-      "unit": "litres of diesel per year",
-      "timeBasis": "flow (per year)",
-      "geography": "India — national and state highways, plus the city and rural roads at either end of a trip",
-      "included": [
-        "Rigid trucks from 7.5 tonnes upward and tractor-trailer combinations, hire-and-reward and own-account alike",
-        "A cement plant's or a retailer's captive fleet, which is not for hire and burns diesel exactly the same way",
-        "Empty return running, which is a quarter of truck-kilometres and produces no freight at all",
-        "Fuel burned idling in toll-plaza queues, at mandis, at checkposts and at loading bays, and overnight with the engine on for the cabin",
-        "Trucks running on state permits inside one state, not only national-permit long-haul vehicles"
+    "number": "09",
+    "sensitivity": {
+      "assumptionId": "fleet_active",
+      "whyThisLever": "Every other number in the chain is a rate applied to something, and rates are bounded by physics or by observation — mileage cannot double, annual kilometres cannot triple, the empty share sits between a fifth and a third whatever you believe, and the idling uplift moves the answer by single digits. The fleet is different in kind. The answer is exactly the fleet multiplied by an average burn rate, so a 25% error in the fleet is a 25% error in the answer with nothing downstream to damp it. Worse, the fleet is not one assumption but three multiplied together — annual sales, working life and a growth haircut — each of which could be out by a fifth, and errors that multiply do not cancel the way errors that average do. This is also the lever candidates spend no time on, because a fleet number feels like a fact rather than a construction.",
+      "cases": [
+        {
+          "scenario": "Conservative",
+          "leverValue": "24 lakh active trucks — a 12-year working life and a harder 0.67 haircut",
+          "answer": "≈ 31 bn litres (3,100 crore litres)",
+          "deltaVsBase": "−25%"
+        },
+        {
+          "scenario": "Base",
+          "leverValue": "32 lakh active trucks — 3 lakh sales × 15-year life × 0.70 haircut",
+          "answer": "≈ 40 bn litres (4,000 crore litres)",
+          "deltaVsBase": "—"
+        },
+        {
+          "scenario": "Aggressive",
+          "leverValue": "45 lakh active trucks — sales × life with no growth haircut at all",
+          "answer": "≈ 57 bn litres (5,700 crore litres)",
+          "deltaVsBase": "+41%"
+        }
       ],
-      "excluded": [
-        "Light commercial vehicles below 7.5 tonnes — the Ace-class pickups. They outnumber heavy trucks roughly three to one and would still add maybe a quarter again to the answer, which is exactly why the exclusion has to be stated rather than assumed",
-        "Buses and every passenger vehicle, including the diesel cars that used to dominate the segment",
-        "Tractors and farm equipment, which are a large diesel user and not trucks",
-        "Construction plant and mining dumpers working inside a pit rather than on a road",
-        "Railway traction, marine bunkers and standby gensets",
-        "Reefer units driven by a separate auxiliary engine — real, and small enough to name and drop",
-        "The CNG and LNG truck fleet, which is growing and is currently a low single-digit share of heavy goods vehicles"
-      ],
-      "boundaryTrap": "'Truck' in Indian usage runs from a one-tonne Ace to a fifty-tonne multi-axle trailer, and the two ends of that range do not belong in the same calculation. Count vehicles and the light end is most of the fleet. Count diesel and it is perhaps a quarter again on top of the heavy fleet — large enough that including it or excluding it changes the answer materially, and quiet enough that nobody notices you never said which you did. Set the boundary by what burns the fuel rather than by what shares the name, say where you drew it, and say roughly what you left outside."
+      "breakpoint": "The answer leaves the stated 32-50 bn litre band below about 26 lakh active trucks or above about 40 lakh — so the band survives roughly a fifth either way on the fleet and no more. The two routes reconcile exactly at about 25 lakh, which is what 3 lakh sales a year and a twelve-year working life produce. So the whole disagreement between an eleven-line build and a two-line cross-check reduces to one empirical question: does the average Indian goods truck work for twelve years or for fifteen? Answer that and you have answered the guesstimate. Notice also that the aggressive case is not a scenario anyone chooses — it is what you get by forgetting the fleet is growing, which makes the most common error on this question a 41% one.",
+      "oneLiner": "With no time for the grid: 'The answer scales one-for-one on the active fleet, and my fleet is three soft numbers multiplied together, so call it 32 lakh trucks plus or minus a fifth. That is 40 bn litres, band 32 to 50. Everything downstream is duty-cycle physics bounded by the vehicle, and none of it moves the answer more than about a tenth.'"
     },
-    "calculation": [
-      {
-        "id": "c1",
-        "label": "Active goods-truck fleet",
-        "expr": "300000 * 15 * 0.7",
-        "display": "3 lakh sold a year × 15-year working life × 0.70 fleet-growth haircut",
-        "result": 3150000,
-        "tolerance": 1e-06,
-        "unit": "trucks",
-        "carriedForward": "≈ 32 lakh active trucks",
-        "uses": [
-          "mhcv_sales",
-          "truck_life",
-          "growth_haircut"
-        ],
-        "soWhat": "Building a stock from a flow is the move this archetype turns on. There is no census of working trucks, but there is a sales series and a scrappage rule, and those two plus a growth correction give a number you can defend line by line — which the registration total never can."
-      },
-      {
-        "id": "c2",
-        "label": "Long-haul trucks",
-        "expr": "3200000 * 0.35",
-        "display": "32 lakh × 35% long-haul duty",
-        "result": 1120000,
-        "tolerance": 1e-06,
-        "unit": "trucks",
-        "carriedForward": "≈ 11.2 lakh",
-        "uses": [
-          "fleet_active",
-          "longhaul_share"
-        ],
-        "soWhat": "The split has to happen here, before any kilometre figure is applied. Once a single average annual-km number is in the model it cannot be unmixed, and the answer is already wrong by a factor near two."
-      },
-      {
-        "id": "c3",
-        "label": "Regional trucks",
-        "expr": "3200000 * 0.65",
-        "display": "32 lakh × 65% regional duty",
-        "result": 2080000,
-        "tolerance": 1e-06,
-        "unit": "trucks",
-        "carriedForward": "≈ 20.8 lakh",
-        "uses": [
-          "fleet_active",
-          "longhaul_share"
-        ],
-        "soWhat": "Nearly twice as many trucks as the long-haul branch. Hold that ratio in mind, because the fuel total inverts it and you will be asked why."
-      },
-      {
-        "id": "c4",
-        "label": "Blended mileage, long-haul",
-        "expr": "3.5 * 0.75 + 5.5 * 0.25",
-        "display": "3.5 kmpl laden × 75% of km + 5.5 kmpl empty × 25% of km",
-        "result": 4,
-        "tolerance": 1e-06,
-        "unit": "km per litre",
-        "carriedForward": "4.0 km per litre",
-        "uses": [
-          "kmpl_laden_lh",
-          "kmpl_empty_lh",
-          "empty_share"
-        ],
-        "soWhat": "Operators quote laden mileage because that is what they negotiate freight rates on, but a quarter of the kilometres in the model are empty ones. Blending raises the mileage and therefore lowers the answer — a correction that moves against the candidate's instinct, which is how you know it was actually applied."
-      },
-      {
-        "id": "c5",
-        "label": "Blended mileage, regional",
-        "expr": "4.5 * 0.75 + 6.5 * 0.25",
-        "display": "4.5 kmpl laden × 75% of km + 6.5 kmpl empty × 25% of km",
-        "result": 5,
-        "tolerance": 1e-06,
-        "unit": "km per litre",
-        "carriedForward": "5.0 km per litre",
-        "uses": [
-          "kmpl_laden_reg",
-          "kmpl_empty_reg",
-          "empty_share"
-        ],
-        "soWhat": "Regional trucks get better mileage than long-haul ones despite worse roads and worse traffic, because they weigh a quarter as much. If your model has regional mileage worse than highway mileage, you have reasoned from the road rather than from the vehicle."
-      },
-      {
-        "id": "c6",
-        "label": "Long-haul vehicle-kilometres",
-        "expr": "1120000 * 90000",
-        "display": "11.2 lakh trucks × 90,000 km a year",
-        "result": 100800000000,
-        "unit": "vehicle-km per year",
-        "carriedForward": "≈ 101 bn vehicle-km",
-        "uses": [
-          "km_longhaul"
-        ],
-        "soWhat": "The proxy unit finally appears. Everything before this line converts into vehicle-kilometres and everything after it divides them — and that is the whole structural idea being tested."
-      },
-      {
-        "id": "c7",
-        "label": "Long-haul running diesel",
-        "expr": "100800000000 / 4",
-        "display": "101 bn vehicle-km ÷ 4.0 km per litre",
-        "result": 25200000000,
-        "unit": "litres per year",
-        "carriedForward": "≈ 25 bn litres (2,520 crore litres)",
-        "uses": [],
-        "soWhat": "A third of the fleet has produced two-thirds of the fuel before the regional branch has been touched. Announce sub-totals as you go — an interviewer who stops you at minute nine should still be holding a number."
-      },
-      {
-        "id": "c8",
-        "label": "Regional vehicle-kilometres",
-        "expr": "2080000 * 30000",
-        "display": "20.8 lakh trucks × 30,000 km a year",
-        "result": 62400000000,
-        "unit": "vehicle-km per year",
-        "carriedForward": "≈ 62 bn vehicle-km",
-        "uses": [
-          "km_regional"
-        ],
-        "soWhat": "Nearly twice the trucks, under two-thirds the kilometres. The fleet share and the annual-kilometre figure pull against each other, which is precisely why a fleet average of either one is an average of nothing."
-      },
-      {
-        "id": "c9",
-        "label": "Regional running diesel",
-        "expr": "62400000000 / 5",
-        "display": "62 bn vehicle-km ÷ 5.0 km per litre",
-        "result": 12480000000,
-        "unit": "litres per year",
-        "carriedForward": "≈ 12.5 bn litres (1,250 crore litres)",
-        "uses": [],
-        "soWhat": "Three multipliers all cut the same way in this branch — fewer kilometres, lighter vehicles, better mileage — so two-thirds of the fleet lands at a third of the fuel. Compounding in one direction is the effect candidates consistently under-size."
-      },
-      {
-        "id": "c10",
-        "label": "Running diesel, both duty cycles",
-        "expr": "25200000000 + 12480000000",
-        "display": "25.2 bn litres long-haul + 12.5 bn litres regional",
-        "result": 37680000000,
-        "unit": "litres per year",
-        "carriedForward": "≈ 38 bn litres",
-        "uses": [],
-        "soWhat": "The fuel burned while actually moving. Keep it separate from the idling uplift so that when the interviewer challenges the idling figure you can show it was a named 8% rather than something smeared through the mileage numbers."
-      },
-      {
-        "id": "c11",
-        "label": "Implied annual burn per truck",
-        "expr": "37680000000 / 3200000",
-        "display": "38 bn litres ÷ 32 lakh trucks",
-        "result": 11775,
-        "unit": "litres per truck per year",
-        "carriedForward": "≈ 11,800 litres, or about 12,700 once idling is added",
-        "uses": [
-          "fleet_active"
-        ],
-        "soWhat": "Collapse the model to one defensible sentence before announcing a total: the average Indian goods truck burns around twelve thousand litres of diesel a year, which is roughly forty litres a working day. If that sentence sounds wrong, stop here and rebuild — not after the total."
-      },
-      {
-        "id": "c12",
-        "label": "Diesel burned by India's goods trucks in a year",
-        "expr": "37680000000 * 1.08",
-        "display": "38 bn litres running × 1.08 for idling and auxiliary burn",
-        "result": 40694400000,
-        "tolerance": 1e-06,
-        "unit": "litres per year",
-        "carriedForward": "≈ 40 bn litres — report this, not 40.69",
-        "uses": [
-          "idle_uplift"
-        ],
-        "soWhat": "The answer. Round to two significant figures, give the band, and name the lever the band comes from before the interviewer has to ask for it."
-      }
+    "sanityChecks": [
+      "Share of national diesel. 40 bn litres against a national pool of 107 bn is 38%. Published attributions put heavy goods vehicles nearer 30%. That is not a passing check — it is a failing one, and saying so is the point. Either the fleet is too large, or the attribution studies are stale and heavy freight has taken share since. Name both, say which you lean towards, and report a band rather than pretending the check passed.",
+      "Per truck, per day. 12,700 litres a year over 300 working days is about 42 litres a day for the average truck in the fleet. A long-haul truck alone burns 300 km ÷ 4 kmpl = 75 litres a day and needs a 300-litre tank filled every four days. Any driver would recognise both figures, and a model whose per-unit numbers a practitioner would recognise is a model worth reporting.",
+      "The fuel bill. 40 bn litres at roughly ₹90 a litre is about ₹3.6 lakh crore a year on truck diesel alone — call it 1% of GDP. Fuel is typically half to three-fifths of an operator's cost on a trip, which implies a road-freight bill somewhere near ₹6-7 lakh crore. That is the right order for a market usually described in the ₹6-10 lakh crore range. Illustrative, not asserted as verified market data.",
+      "Freight actually moved. Run the vehicle-kilometres back into tonne-kilometres — 101 bn long-haul vehicle-km at 22 tonnes and 75% loaded, plus 62 bn regional vehicle-km at 9 tonnes and 75% loaded — and the model implies roughly 2,100 bn tonne-km of road freight. Commonly cited estimates sit nearer 2,500-3,000 bn, so this check says the fleet model is about a fifth too small while the diesel-share check says it is a quarter too large. Two checks disagreeing in direction is not a failure of the model; it is a statement that every input carries ±25% and that a point estimate was never available. Report the band and say why it is wide.",
+      "Bracket it before you trust it. 4 bn litres would be 1,250 litres a truck a year — a fortnight's running for a long-haul vehicle, and then eleven and a half months parked. 400 bn litres would be four times everything India burns of every petroleum product used for transport. Both fail in under a second, which places the answer in the tens of billions, and that bracketing is most of what the interviewer is testing.",
+      "Where the fuel is physically bought. 40 bn litres at a 300-litre fill is about 13 crore truck fills a year, or roughly 3.65 lakh fills a day. Truck fuelling concentrates at highway outlets rather than across all of India's fuel retail; spread over the order of 15,000 such outlets, that is around 24 truck fills a day at each — one an hour, round the clock. That matches what a highway pump actually looks like, and an answer ten times larger would not."
     ],
-    "orderOfMagnitude": "10^10 — tens of billions of litres. Anything between 25 and 60 billion passes the test that actually matters, which is being right to the power of ten.",
     "assumptions": [
       {
         "id": "mhcv_sales",
@@ -5345,180 +5848,850 @@ export const guesstimates: readonly Guesstimate[] = [
         "contestedBy": "The most abusable number on this page is what '30%' includes. If it covers light commercial vehicles as well, the comparable share for heavy trucks alone is nearer 22% and the cross-check falls to 24 bn litres — an ambiguity that swamps every other disagreement between the two routes, and one you should name before you use the figure."
       }
     ],
-    "question": "In a year, how much diesel do India's goods trucks burn?",
-    "traps": [
+    "finalAnswer": "≈ 40 billion litres of diesel a year — 4,000 crore litres, or roughly 3.4 crore tonnes — burned by India's goods trucks of 7.5 tonnes and above",
+    "calculation": [
       {
-        "trap": "Using the registered goods-vehicle count as the fleet.",
-        "whyItHappens": "It is the only truck number anyone half-remembers, and it sounds authoritative because it comes from a register. But a vehicle register is a cumulative record with no deletion discipline — trucks that were cut up for scrap a decade ago are still rows in it — and it counts light commercial vehicles alongside forty-tonne trailers. The candidate then applies a heavy-truck duty cycle to a number built mostly from Ace-class pickups, and the error compounds rather than cancels.",
-        "fix": "Say 'registered is not running' out loud, then build the stock from a flow you can defend line by line: units sold in a year, a working life, and a correction for the fact that the fleet is growing. Three defensible numbers beat one authoritative-sounding one."
+        "id": "c1",
+        "label": "Active goods-truck fleet",
+        "expr": "300000 * 15 * 0.7",
+        "display": "3 lakh sold a year × 15-year working life × 0.70 fleet-growth haircut",
+        "result": 3150000,
+        "tolerance": 1e-06,
+        "unit": "trucks",
+        "carriedForward": "≈ 32 lakh active trucks",
+        "uses": [
+          "mhcv_sales",
+          "truck_life",
+          "growth_haircut"
+        ],
+        "soWhat": "Building a stock from a flow is the move this archetype turns on. There is no census of working trucks, but there is a sales series and a scrappage rule, and those two plus a growth correction give a number you can defend line by line — which the registration total never can."
       },
       {
-        "trap": "Applying one average annual-kilometre figure to the whole fleet.",
-        "whyItHappens": "One average is faster and feels like it arrives in the same place. It does not, because fleet share and annual kilometres are negatively correlated here — the trucks that run the most are the minority — so the fleet average is an average of two populations that share almost nothing. Apply the long-haul figure to everything and the answer roughly doubles; apply the regional figure and it roughly halves. The candidate has made a factor-of-two decision without noticing that a decision was available.",
-        "fix": "Split on duty cycle before any kilometre figure enters the model, and say why the split is the structure rather than a refinement. Two duty cycles is enough — the point is that they genuinely differ, not that there are many of them."
+        "id": "c2",
+        "label": "Long-haul trucks",
+        "expr": "3200000 * 0.35",
+        "display": "32 lakh × 35% long-haul duty",
+        "result": 1120000,
+        "tolerance": 1e-06,
+        "unit": "trucks",
+        "carriedForward": "≈ 11.2 lakh",
+        "uses": [
+          "fleet_active",
+          "longhaul_share"
+        ],
+        "soWhat": "The split has to happen here, before any kilometre figure is applied. Once a single average annual-km number is in the model it cannot be unmixed, and the answer is already wrong by a factor near two."
       },
       {
-        "trap": "Forgetting empty running, or double-counting it.",
-        "whyItHappens": "Mileage is quoted laden because laden is what operators negotiate freight rates on, so the number that comes to mind is a laden number. A quarter of Indian truck-kilometres are empty backhauls that burn less per kilometre and still burn. The second half of the trap is subtler: a candidate who remembers empty running sometimes subtracts those kilometres from the annual total and then also improves the mileage, taking credit for the same correction twice.",
-        "fix": "Keep every kilometre in the annual figure and put the correction entirely into a blended mileage — laden kmpl weighted by loaded share plus empty kmpl weighted by empty share. State that this makes the answer smaller. A correction that cuts against you is the one an interviewer believes you actually made."
+        "id": "c3",
+        "label": "Regional trucks",
+        "expr": "3200000 * 0.65",
+        "display": "32 lakh × 65% regional duty",
+        "result": 2080000,
+        "tolerance": 1e-06,
+        "unit": "trucks",
+        "carriedForward": "≈ 20.8 lakh",
+        "uses": [
+          "fleet_active",
+          "longhaul_share"
+        ],
+        "soWhat": "Nearly twice as many trucks as the long-haul branch. Hold that ratio in mind, because the fuel total inverts it and you will be asked why."
       },
       {
-        "trap": "Setting the fleet boundary by vehicle count rather than by fuel burned.",
-        "whyItHappens": "Boundaries get drawn where the category name breaks, and 'truck' colloquially includes the one-tonne pickup. Light commercial vehicles outnumber heavy trucks roughly three to one, so a count-driven boundary triples the fleet — and the candidate then runs heavy-truck kilometres and heavy-truck mileage across all of it. The failure is not that the boundary was drawn in the wrong place; it is that it was drawn on the wrong variable.",
-        "fix": "Draw every boundary on the quantity being estimated. Ask what each class contributes to litres, not to vehicles, then say what you excluded and roughly what it was worth — here, light commercial vehicles are perhaps a quarter again on top, which is material and must be said."
+        "id": "c4",
+        "label": "Blended mileage, long-haul",
+        "expr": "3.5 * 0.75 + 5.5 * 0.25",
+        "display": "3.5 kmpl laden × 75% of km + 5.5 kmpl empty × 25% of km",
+        "result": 4,
+        "tolerance": 1e-06,
+        "unit": "km per litre",
+        "carriedForward": "4.0 km per litre",
+        "uses": [
+          "kmpl_laden_lh",
+          "kmpl_empty_lh",
+          "empty_share"
+        ],
+        "soWhat": "Operators quote laden mileage because that is what they negotiate freight rates on, but a quarter of the kilometres in the model are empty ones. Blending raises the mileage and therefore lowers the answer — a correction that moves against the candidate's instinct, which is how you know it was actually applied."
       },
       {
-        "trap": "Treating the cross-check as confirmation because both answers start with a three or a four.",
-        "whyItHappens": "Two numbers in the same order of magnitude feel like agreement, and agreement feels like the end of the exercise. But 27% apart is not agreement; it is a located disagreement, and locating it is the most valuable thing the second route produces. Candidates stop because the cross-check was framed in their mind as a formality to be passed rather than an instrument to be read.",
-        "fix": "Convert the gap into the single input that would close it — here, a fleet of 25 lakh rather than 32 lakh, which is a twelve-year working life instead of fifteen. Then say which route you trust more and why. A gap you can express as one number you would go and check is a finding; a gap you wave at is an unforced error."
+        "id": "c5",
+        "label": "Blended mileage, regional",
+        "expr": "4.5 * 0.75 + 6.5 * 0.25",
+        "display": "4.5 kmpl laden × 75% of km + 6.5 kmpl empty × 25% of km",
+        "result": 5,
+        "tolerance": 1e-06,
+        "unit": "km per litre",
+        "carriedForward": "5.0 km per litre",
+        "uses": [
+          "kmpl_laden_reg",
+          "kmpl_empty_reg",
+          "empty_share"
+        ],
+        "soWhat": "Regional trucks get better mileage than long-haul ones despite worse roads and worse traffic, because they weigh a quarter as much. If your model has regional mileage worse than highway mileage, you have reasoned from the road rather than from the vehicle."
       },
       {
-        "trap": "Assuming the route you built yourself is the one to trust.",
-        "whyItHappens": "Effort feels like evidence. The duty-cycle build took eleven lines and real structural thought, so it feels more earned than a two-line share calculation. But error compounds with every multiplication: six soft numbers carry far more uncertainty than two, one of which is a genuine published anchor. The candidate defends the route they are proud of instead of the one that is tighter.",
-        "fix": "Count the soft multiplications in each route before deciding which sets the band. Present the built route, because it is the only one that identifies a lever — but let the tighter route pull the band, and say out loud that you are doing so."
+        "id": "c6",
+        "label": "Long-haul vehicle-kilometres",
+        "expr": "1120000 * 90000",
+        "display": "11.2 lakh trucks × 90,000 km a year",
+        "result": 100800000000,
+        "unit": "vehicle-km per year",
+        "carriedForward": "≈ 101 bn vehicle-km",
+        "uses": [
+          "km_longhaul"
+        ],
+        "soWhat": "The proxy unit finally appears. Everything before this line converts into vehicle-kilometres and everything after it divides them — and that is the whole structural idea being tested."
       },
       {
-        "trap": "Reporting the answer in litres, tonnes or rupees without saying which.",
-        "whyItHappens": "Diesel is burned in litres, traded in tonnes, taxed per litre and budgeted in rupees, and the three differ by factors of roughly 1,190 and 90. Mid-answer a candidate reaches for whichever unit the last number happened to be in, and a three-order-of-magnitude slip passes without either party noticing until the sanity check fails for a reason nobody can find.",
-        "fix": "Declare the unit in the scope statement, carry it on every line, and give the other two as translations at the end: 40 bn litres, about 3.4 crore tonnes, roughly ₹3.6 lakh crore at the pump."
+        "id": "c7",
+        "label": "Long-haul running diesel",
+        "expr": "100800000000 / 4",
+        "display": "101 bn vehicle-km ÷ 4.0 km per litre",
+        "result": 25200000000,
+        "unit": "litres per year",
+        "carriedForward": "≈ 25 bn litres (2,520 crore litres)",
+        "uses": [],
+        "soWhat": "A third of the fleet has produced two-thirds of the fuel before the regional branch has been touched. Announce sub-totals as you go — an interviewer who stops you at minute nine should still be holding a number."
+      },
+      {
+        "id": "c8",
+        "label": "Regional vehicle-kilometres",
+        "expr": "2080000 * 30000",
+        "display": "20.8 lakh trucks × 30,000 km a year",
+        "result": 62400000000,
+        "unit": "vehicle-km per year",
+        "carriedForward": "≈ 62 bn vehicle-km",
+        "uses": [
+          "km_regional"
+        ],
+        "soWhat": "Nearly twice the trucks, under two-thirds the kilometres. The fleet share and the annual-kilometre figure pull against each other, which is precisely why a fleet average of either one is an average of nothing."
+      },
+      {
+        "id": "c9",
+        "label": "Regional running diesel",
+        "expr": "62400000000 / 5",
+        "display": "62 bn vehicle-km ÷ 5.0 km per litre",
+        "result": 12480000000,
+        "unit": "litres per year",
+        "carriedForward": "≈ 12.5 bn litres (1,250 crore litres)",
+        "uses": [],
+        "soWhat": "Three multipliers all cut the same way in this branch — fewer kilometres, lighter vehicles, better mileage — so two-thirds of the fleet lands at a third of the fuel. Compounding in one direction is the effect candidates consistently under-size."
+      },
+      {
+        "id": "c10",
+        "label": "Running diesel, both duty cycles",
+        "expr": "25200000000 + 12480000000",
+        "display": "25.2 bn litres long-haul + 12.5 bn litres regional",
+        "result": 37680000000,
+        "unit": "litres per year",
+        "carriedForward": "≈ 38 bn litres",
+        "uses": [],
+        "soWhat": "The fuel burned while actually moving. Keep it separate from the idling uplift so that when the interviewer challenges the idling figure you can show it was a named 8% rather than something smeared through the mileage numbers."
+      },
+      {
+        "id": "c11",
+        "label": "Implied annual burn per truck",
+        "expr": "37680000000 / 3200000",
+        "display": "38 bn litres ÷ 32 lakh trucks",
+        "result": 11775,
+        "unit": "litres per truck per year",
+        "carriedForward": "≈ 11,800 litres, or about 12,700 once idling is added",
+        "uses": [
+          "fleet_active"
+        ],
+        "soWhat": "Collapse the model to one defensible sentence before announcing a total: the average Indian goods truck burns around twelve thousand litres of diesel a year, which is roughly forty litres a working day. If that sentence sounds wrong, stop here and rebuild — not after the total."
+      },
+      {
+        "id": "c12",
+        "label": "Diesel burned by India's goods trucks in a year",
+        "expr": "37680000000 * 1.08",
+        "display": "38 bn litres running × 1.08 for idling and auxiliary burn",
+        "result": 40694400000,
+        "tolerance": 1e-06,
+        "unit": "litres per year",
+        "carriedForward": "≈ 40 bn litres — report this, not 40.69",
+        "uses": [
+          "idle_uplift"
+        ],
+        "soWhat": "The answer. Round to two significant figures, give the band, and name the lever the band comes from before the interviewer has to ask for it."
       }
     ],
-    "teachingPoint": "A consumable is never counted directly. It is counted through the physical thing that consumes it, and the whole difficulty of this question is choosing that proxy — not trucks, and not tonnes of freight, but vehicle-kilometres, the one unit a fleet number and a fuel rate will both attach to. Once you are in vehicle-kilometres the rest is a division. The second half of the lesson is that the fleet does not have an average duty cycle: long-haul trucks run three times the annual kilometres of regional ones, so applying either figure to the whole fleet moves the answer by roughly a factor of two in a direction most candidates never notice they chose."
+    "id": "trucking-diesel",
+    "tabLabel": "Truck diesel, India",
+    "teachingPoint": "A consumable is never counted directly. It is counted through the physical thing that consumes it, and the whole difficulty of this question is choosing that proxy — not trucks, and not tonnes of freight, but vehicle-kilometres, the one unit a fleet number and a fuel rate will both attach to. Once you are in vehicle-kilometres the rest is a division. The second half of the lesson is that the fleet does not have an average duty cycle: long-haul trucks run three times the annual kilometres of regional ones, so applying either figure to the whole fleet moves the answer by roughly a factor of two in a direction most candidates never notice they chose.",
+    "orderOfMagnitude": "10^10 — tens of billions of litres. Anything between 25 and 60 billion passes the test that actually matters, which is being right to the power of ten.",
+    "routeChoice": {
+      "chosen": "Hybrid",
+      "why": "Neither half of this question can be answered on its own terms. The fleet is a national aggregate and has to come down from one — nobody counts working trucks, so you build the stock from the flow that feeds it: units sold in a year, multiplied by how long a truck stays in service. The fuel is physics and has to come up from one vehicle: kilometres run, divided by kilometres per litre. Vehicle-kilometres is the joint where the two halves meet. Say that out loud before you draw anything — 'I am converting this into vehicle-kilometres, because trucks are counted per vehicle and diesel is burned per kilometre' — because naming the proxy is the step being graded, and the arithmetic after it is a division.",
+      "rejectedRoute": "Top-down",
+      "rejectedWhyNot": "The pure top-down route is national diesel consumption multiplied by the trucking share of it, and it is weaker here for a reason worth naming: it does not estimate anything. The trucking share of diesel is this question's answer expressed as a fraction, so a candidate who quotes it has recalled the answer rather than built it, and has nothing to say when the interviewer moves an input, because there are only two inputs and neither decomposes. It is also brittle in exactly the wrong place — the share is an attribution from a fuel-use study rather than a measurement, and a candidate quoting '30%' usually cannot say whether it includes light commercial vehicles and buses, which is a factor-of-two ambiguity hiding inside one remembered number. It keeps its place below as the cross-check, where a fast independent figure is worth a great deal and being unable to decompose it costs nothing."
+    },
+    "archetype": "physical-proxy-consumable"
   },
   {
-    "timeboxMinutes": 12,
-    "sensitivity": {
-      "assumptionId": "a_var_cost",
-      "whyThisLever": "It is the only number here that is simultaneously large, load-bearing and genuinely unknown. The rate is published. The seat count is printed in the tender. The fixed base you can count — forty centres, forty leases. The probabilities are judgements, but the answer barely notices them: halve the win probability from 30% to 15% and the expected value is still positive at about ₹0.34 crore, because the hurdle is only 10%. Variable cost per trainee is different in kind. It is a forecast of your own operating performance three years out, at a volume you have not run, in districts where you have not mobilised, and it enters the model as a subtraction from a price you cannot move. If this answer is wrong, it is wrong here.",
-      "cases": [
+    "answerBand": "70 lakh – 2.7 crore a day. The band is wide because it inherits roughly ±50% on urban frequency and a third either way on urban trial, and the two multiply. Population and awareness barely matter by comparison.",
+    "scope": {
+      "countingWhat": "Single-serve instant coffee sachets bought in India on an average day — the small one-cup packs sold for a few rupees each, including three-in-one premixes. Jars, refill pouches, filter coffee and coffee bought by the cup are out.",
+      "unit": "sachets a day",
+      "timeBasis": "flow (per day)",
+      "geography": "All of India, run as two funnels — urban (35%) and rural (65%).",
+      "included": [
+        "Branded single-serve instant coffee sachets and three-in-one premixes",
+        "Sachets bought for home, office desks, hostels and travel",
+        "Sachets sold in strips at kiranas and paan shops"
+      ],
+      "excluded": [
+        "Instant coffee in jars and refill pouches",
+        "South Indian filter coffee and roast-and-ground powder",
+        "Coffee bought by the cup — cafés, vending machines, office pantries",
+        "Sachets exported"
+      ],
+      "boundaryTrap": "The category figure people half-remember is instant coffee as a whole, in tonnes or rupees — most of it jars and pouches bought by heavy urban drinkers. Sachets are a different, smaller business built on trial and affordability. Size the pack, not the category."
+    },
+    "question": "How many single-serve instant coffee sachets are sold across India on an average day?",
+    "difficulty": "Medium",
+    "probes": [
+      {
+        "question": "Rural India is two-thirds of the people and a fifth of your sachets. As the brand, where do you invest?",
+        "intent": "Whether the candidate reads a growth lever off the funnel instead of stopping at the number.",
+        "goodAnswer": "Trial in rural India. Awareness is already over half and the sachet is already the affordable format, so the constraint is a first cup — sampling at haats and melas, distribution into smaller villages, a lower price point. Raising rural trial from 15% to 30% doubles the rural line; persuading urban drinkers to drink more is the harder and more expensive lever.",
+        "weakAnswer": "Cut prices in rural India to make it affordable."
+      },
+      {
+        "question": "Why does the sachet share fall as a drinker drinks more?",
+        "intent": "Whether the candidate sees the sachet as an acquisition and convenience format, not the whole category.",
+        "goodAnswer": "Because a jar or a pouch costs less per cup. A light drinker will not tie money up in a jar and wants no waste; a heavy drinker does the arithmetic and trades up. The sachet recruits and serves the occasional drinker and loses them to the jar as they become loyal — so a growing sachet line beside a flat jar line would be a warning, not good news.",
+        "weakAnswer": "Sachets are more convenient."
+      },
+      {
+        "question": "You were asked about an average day. What does that hide?",
+        "intent": "Seasonality awareness.",
+        "goodAnswer": "Hot drinks sell more in winter and the monsoon, and exam seasons move hostel demand. An average day hides the peak the supply chain actually has to meet; a brand planning production would want the peak week, not the mean.",
+        "weakAnswer": "Nothing — I averaged it."
+      },
+      {
+        "question": "A rival launches a ₹1 sachet. Which box in your funnel moves?",
+        "intent": "Mapping a commercial move onto a specific gate.",
+        "goodAnswer": "Trial first, especially in rural India, and then repeat among the lightest drinkers. Frequency among heavy drinkers hardly moves — they are on jars already. If the ₹1 sachet mostly takes existing sachet buyers, the sachet count rises while category value can fall.",
+        "weakAnswer": "The whole market grows."
+      },
+      {
+        "question": "Your two routes agree within 11%. Which would you defend to a client?",
+        "intent": "Whether the candidate can separate a plausibility check from a decision model.",
+        "goodAnswer": "The funnel, because every gate is something the client can act on — trial, repeat, frequency, format. The occasions route is a sense check that the answer is a plausible slice of India's hot drinks; it takes the sachet share as given, so it cannot explain the urban–rural gap, which is the most useful finding in the whole exercise.",
+        "weakAnswer": "The one that gives the higher number."
+      }
+    ],
+    "triangulation": {
+      "label": "Occasions cross-check — what share of India's hot cups could come out of a sachet?",
+      "route": "Top-down",
+      "premise": "Start from occasions instead of people: how many hot cups India's coffee-age band drinks in a day, what share are coffee, what share of the coffee is instant, and what share of the instant comes out of a sachet. The route shares only the population anchor with the funnel, so agreement is worth something — but it takes the sachet share as an input instead of deriving it, so it cannot explain why the urban and rural lines differ.",
+      "lines": [
         {
-          "scenario": "Conservative",
-          "leverValue": "₹10,000 per trainee — mobilisation at ₹3,000 rather than ₹2,000",
-          "answer": "−₹0.24 crore — the bid destroys value",
-          "deltaVsBase": "−119%"
+          "id": "t1",
+          "label": "Hot cups a day in the band",
+          "expr": "840000000 * 1.6",
+          "display": "840 Mn × 1.6 cups a day",
+          "result": 1344000000,
+          "tolerance": 0,
+          "unit": "cups a day",
+          "carriedForward": "134 crore hot cups",
+          "uses": [
+            "a-hot-cups"
+          ],
+          "soWhat": "The occasions base — overwhelmingly tea."
         },
         {
-          "scenario": "Base",
-          "leverValue": "₹9,000 per trainee",
-          "answer": "+₹1.27 crore",
-          "deltaVsBase": "0%"
+          "id": "t2",
+          "label": "Coffee cups a day",
+          "expr": "1344000000 * 0.07",
+          "display": "134 crore × 7% coffee",
+          "result": 94080000.0,
+          "tolerance": 0,
+          "unit": "cups a day",
+          "carriedForward": "9.4 crore coffee cups",
+          "uses": [
+            "a-coffee-share"
+          ],
+          "soWhat": "Most of these are South Indian filter coffee."
         },
         {
-          "scenario": "Aggressive",
-          "leverValue": "₹8,000 per trainee — batches of 30 rather than 25, assessment fees contracted for the full term",
-          "answer": "+₹2.78 crore",
-          "deltaVsBase": "+119%"
+          "id": "t3",
+          "label": "Instant coffee cups a day",
+          "expr": "94080000 * 0.35",
+          "display": "9.4 crore × 35% instant",
+          "result": 32928000.0,
+          "tolerance": 0,
+          "unit": "cups a day",
+          "carriedForward": "3.3 crore instant cups",
+          "uses": [
+            "a-instant-share"
+          ],
+          "soWhat": "Instant is the smaller part of India's coffee, and the part this question is about."
+        },
+        {
+          "id": "t4",
+          "label": "Instant cups from a sachet",
+          "expr": "32928000 * 0.5",
+          "display": "3.3 crore × 50% from sachets",
+          "result": 16464000,
+          "tolerance": 0,
+          "unit": "sachets a day",
+          "carriedForward": "1.65 crore sachets",
+          "uses": [
+            "a-sachet-share"
+          ],
+          "soWhat": "Against 1.48 crore from the funnel."
         }
       ],
-      "breakpoint": "The bid stops being worth making at a variable cost of about ₹9,840 per trainee — a contribution of ₹5,160 and an overrun of 9% on the ₹9,000 estimate. Nine per cent is well inside the ordinary error of a cost forecast for an operation you have not yet run, so the honest thing to say is that the sign of this answer is not safe. Hold it against the win probability, where the breakpoint is 10% against an assumed 30%: you would have to be wrong there by a factor of three before it changed anything. Two levers, both judgements, and only one of them can break the decision. Say which one, and the interviewer stops testing whether you understand your own model.",
-      "oneLiner": "It is worth roughly ₹1.3 crore of expected value, and all of that sits on delivering a trainee for ₹9,000 — at ₹9,850 the bid is worth nothing, and I have never run this volume in these districts."
+      "answer": "≈ 1.65 crore sachets a day, against 1.48 crore from the funnel.",
+      "verdict": "Within about 11%, from two routes that share only the population figure — close enough to defend, not close enough to prove. The funnel stays the headline because its gates are levers a brand can pull: trial, repeat, frequency and format. The occasions route is a plausibility bound: it confirms that a coffee sachet is about one hot cup in ninety in a tea-first country, not that any particular gate is right."
     },
-    "number": "09",
-    "difficulty": "Medium",
-    "id": "tender-bid-expected-value",
-    "archetype": "expected-value",
-    "routeChoice": {
-      "chosen": "Probabilistic",
-      "why": "The question is not how big this contract is, it is whether this bid is worth making, and the two have different answers. The contract earns ₹12 crore if the districts fill and loses ₹2.4 crore if they do not, so no single point estimate of its value can tell you whether to spend ₹60 lakh chasing it. Build the outcomes as branches, put a probability on each, and two things become visible that a point estimate hides: the dispersion, and the fact that one branch is negative. Then the bid cost is subtracted once at the root, because it is spent in every branch. Say the structure out loud before any arithmetic — win or lose, then fill or under-fill — and the interviewer knows in fifteen seconds that you understood the question.",
-      "rejectedRoute": "Bottom-up",
-      "rejectedWhyNot": "Bottom-up here means building the contract's economics from the ground up — 60,000 trainees, ₹15,000 each, ₹90 crore of revenue, ₹12 crore of profit — and it is what most candidates produce in four minutes. The arithmetic is right and it answers a question nobody asked. It contains no probability, so there is nothing in it to set against the ₹60 lakh you must spend for a 30% shot; it produces one number where the decision turns on two outcomes of opposite sign; and it makes the loss-making branch invisible, because an average of ₹12 crore and −₹2.4 crore never appears anywhere in it. Bottom-up is the right route for sizing the prize. It is the wrong route for pricing the bet, and this question is a bet."
-    },
-    "sanityChecks": [
-      "The estate and the volume must describe the same thing. Forty centres, four classrooms each, thirty seats a room, four batches a year comes to 19,200 seats a year against a target of 20,000. The ₹8 crore of fixed cost and the 20,000 trainees are two views of one physical operation, and if they had not matched, one of them was invented rather than estimated.",
-      "Margin shape: ₹12 crore on ₹90 crore is 13% across three years, roughly 4% a year on revenue. Government skills contracts are thin-margin, high-volume, slow-paying businesses and that is what 4% looks like. A model returning a 30% margin would be describing corporate training sold to employers, not a state tender, and the error would be in the price, not the arithmetic.",
-      "Bid cost against prize: ₹60 lakh to compete for ₹90 crore is 0.67% of contract value, which is where bid costs on large services tenders sit — somewhere between half a per cent and two per cent. If yours came out near ₹6 crore, you have put the refundable earnest money into it, and the check catches the error in five seconds.",
-      "Loss tolerance, which the expected value never tells you: the worst leaf is a ₹2.4 crore operating loss plus ₹60 lakh of bid cost, and it arrives with probability 0.30 × 0.40, about one in eight. Three crore rupees against a firm turning over ₹40 crore a year is most of a year's profit. A one-in-eight chance of that is a board conversation, not an arithmetic result, and a candidate who reports the ₹1.27 crore without reporting the 12% has answered only half the question.",
-      "Discounting, named rather than skipped: the surplus arrives across three years and the three-year annuity factor at 12% is about 2.4 against an undiscounted 3. That cuts the high branch from ₹12 crore to roughly ₹9.6 crore and the expected value of the bid from ₹1.27 crore to about ₹0.9 crore. Material, not decisive — and saying so takes ten seconds, while quietly ignoring it costs you the marks whichever way the number lands.",
-      "Payment timing, which is what actually kills training companies and appears nowhere in the expected value: the state pays on certification and on verified placement, commonly two to four quarters after the cost is incurred. At 20,000 trainees a year and ₹9,000 of cost each, a two-quarter lag ties up around ₹9 crore of working capital against a ₹1.27 crore expected return. If you say one thing beyond your number, say this one."
-    ],
-    "answerBand": "−₹0.3 crore to +₹2.8 crore on the cost lever alone — a band that contains zero, and that is the finding rather than a weakness in it. At the price you would have to quote to win, the same contract is worth about −₹1.4 crore.",
     "tree": {
-      "root": "Expected value of submitting the bid",
-      "rootFormula": "= P(win) × Expected value of the contract if won − Cost of competing, spent either way",
-      "value": "≈ +₹1.27 crore",
+      "root": "Instant coffee sachets bought in India on an average day",
+      "rootFormula": "= Σ (people in the band × aware × tried × repeat × cups a day × share from sachets), urban and rural separately",
+      "value": "≈ 1.5 crore a day",
       "branches": [
         {
-          "label": "You win the tender — 30%",
-          "formula": "0.30 × ₹6.24 crore",
-          "value": "+₹1.87 crore, weighted",
-          "note": "The only branch with any value in it, and it splits again immediately. A tree that stops at win-or-lose has one layer too few — the interesting uncertainty is not whether you get the contract, it is whether the contract is any good once you have it.",
+          "label": "Urban India — 29 crore people aged 15–60",
+          "formula": "294 Mn × 90% aware × 45% tried × 35% repeat × 4 cups a week ÷ 7 × 50% from sachets",
+          "value": "4.2 crore repeat buyers · 1.19 crore sachets a day",
+          "note": "Four-fifths of the answer from a third of the people. Frequency is the lever that moves it most.",
           "isCriticalPath": true,
           "children": [
             {
-              "label": "Enrolment holds — 60% of this branch",
-              "formula": "(60,000 trainees × ₹6,000 contribution) − ₹24 crore fixed",
-              "value": "+₹12.0 crore",
-              "note": "₹36 crore of contribution against a ₹24 crore fixed base. A 13% margin over three years, which is what a well-run government training contract looks like — not a spectacular outcome, the good one."
+              "label": "Repeat buyers",
+              "formula": "294 Mn × 90% × 45% × 35%",
+              "value": "41.7 Mn",
+              "note": "One urban adult in seven. Most who try instant coffee go back to tea."
             },
             {
-              "label": "Enrolment disappoints — 40% of this branch",
-              "formula": "(36,000 trainees × ₹6,000 contribution) − ₹24 crore fixed",
-              "value": "−₹2.4 crore",
-              "note": "A 40% shortfall in seats does not cut the profit by 40%. It turns ₹12 crore of profit into ₹2.4 crore of loss, because the fixed base does not shrink when a district under-enrols. This is the branch the question exists to make you find."
+              "label": "Cups a day",
+              "formula": "41.7 Mn × 4 ÷ 7",
+              "value": "2.38 crore",
+              "note": "Four a week blends daily desk drinkers with exam-season and weekend ones."
             },
             {
-              "label": "Probability-weighted value of the contract",
-              "formula": "(0.60 × 12.0) + (0.40 × −2.4)",
-              "value": "+₹6.24 crore",
-              "note": "Just over half the upside. A contract you would describe in a meeting as 'worth ₹12 crore' is worth ₹6.24 crore the moment you price the branch where the seats do not fill."
+              "label": "Share from sachets",
+              "formula": "× 50%",
+              "value": "1.19 crore sachets",
+              "note": "Heavy drinkers buy jars. The sachet is the entry and convenience format."
             }
           ]
         },
         {
-          "label": "You lose the tender — 70%",
-          "formula": "0.70 × ₹0",
-          "value": "₹0 from the contract",
-          "note": "Zero, not negative. The bid money has already left and is accounted for at the root, so putting it here as well would charge it twice.",
+          "label": "Rural India — 55 crore people aged 15–60",
+          "formula": "546 Mn × 55% aware × 15% tried × 25% repeat × 2 cups a week ÷ 7 × 90% from sachets",
+          "value": "1.1 crore repeat buyers · 29 lakh sachets a day",
+          "note": "Two-thirds of the people and a fifth of the sachets. Trial, not price, is the binding number.",
+          "isCriticalPath": false,
           "children": [
             {
-              "label": "What comes back",
-              "value": "₹2 crore of earnest money, in full, within about six months of the award",
-              "note": "Refundable. This is the line candidates turn into a ₹2 crore cost, and the error is large enough to reverse the recommendation on its own."
+              "label": "Repeat buyers",
+              "formula": "546 Mn × 55% × 15% × 25%",
+              "value": "11.3 Mn",
+              "note": "The 15% trial rate does most of the damage; awareness is not the constraint."
             },
             {
-              "label": "What does not come back",
-              "value": "₹60 lakh of bid preparation",
-              "note": "Seven times in ten this is the entire outcome of the exercise. Any framing in which the bid cost only appears on the winning branch has understated it by a factor of more than three."
-            }
-          ]
-        },
-        {
-          "label": "Cost of competing — incurred in every branch",
-          "formula": "= Proposal team + Centre readiness + Legal + Travel + Earnest-money carry",
-          "value": "−₹0.60 crore",
-          "note": "Because this money is spent whether you win or lose, it sits outside the probability weighting and is subtracted once at the root. Build it from components rather than asserting a round number — 'bid costs are about ₹50 lakh' is a figure an interviewer cannot argue with and therefore cannot give you credit for.",
-          "children": [
-            {
-              "label": "Proposal team",
-              "formula": "6 people × 8 weeks, loaded",
-              "value": "₹25 lakh",
-              "note": "The largest line, and the one whose true cost is not the salary but what those eight weeks would otherwise have produced."
-            },
-            {
-              "label": "Centre readiness and inspection",
-              "value": "₹14 lakh",
-              "note": "Forty sites documented, photographed and brought to inspection standard before a rupee of revenue exists."
-            },
-            {
-              "label": "Legal, compliance and due diligence",
-              "value": "₹6 lakh",
-              "note": "Cheap relative to the penalty clauses it reads."
-            },
-            {
-              "label": "Travel and pre-bid meetings",
-              "value": "₹5 lakh",
-              "note": "Across the district cluster, over two months."
-            },
-            {
-              "label": "Earnest-money carry",
-              "formula": "₹2 crore × 10% a year × 6 months",
-              "value": "₹10 lakh",
-              "note": "The whole of what the ₹2 crore costs you. Get this line right and the rest of the question becomes arithmetic; get it wrong and no amount of careful weighting downstream will save the answer."
+              "label": "Sachets a day",
+              "formula": "11.3 Mn × 2 ÷ 7 × 90%",
+              "value": "29 lakh",
+              "note": "Almost every rural cup comes from a sachet — it is the rural format."
             }
           ]
         }
       ]
     },
+    "timeboxMinutes": 12,
+    "traps": [
+      {
+        "trap": "Treating everyone in the age band as a coffee drinker.",
+        "whyItHappens": "The population step feels like the hard part, so once it is done the candidate multiplies straight through by a frequency.",
+        "fix": "Gate on awareness, trial and repeat before anyone is allowed to drink. In urban India one adult in seven in the band is a regular buyer; in rural India, one in fifty."
+      },
+      {
+        "trap": "Running one national funnel.",
+        "whyItHappens": "A single set of rates is quicker, and an average feels safe.",
+        "fix": "Split urban and rural before the first gate. Rural trial is a third of urban trial, and a national average hands rural India urban habits it does not have."
+      },
+      {
+        "trap": "Guessing the frequency last, and carelessly.",
+        "whyItHappens": "By the time the funnel is built the frequency feels like a detail, so 'one a day' goes in without a thought.",
+        "fix": "Frequency moves the answer more than any population figure: one a day instead of four a week adds 60%. Blend heavy and light drinkers explicitly and say the number out loud."
+      },
+      {
+        "trap": "Counting every instant coffee cup as a sachet.",
+        "whyItHappens": "The question says instant coffee and sachet in one breath, so the two merge.",
+        "fix": "Heavy urban drinkers buy jars and pouches because they cost less per cup. Apply a sachet share by geography — half in urban India, nearly all in rural — before you finish."
+      },
+      {
+        "trap": "Using trial as the buying base.",
+        "whyItHappens": "'Has tried it' and 'buys it' sound close, and trial rates are the figures people quote.",
+        "fix": "Most triers go back to tea. Multiply by the repeat rate: 35% of urban triers and 25% of rural ones buy at least monthly."
+      },
+      {
+        "trap": "Counting South India's coffee culture as sachet demand.",
+        "whyItHappens": "India's coffee-drinking region is the first thing that comes to mind, and it inflates both awareness and trial.",
+        "fix": "The South's habit is filter coffee, which this question excludes. It raises coffee's share of hot cups, not the sachet count — keep it out of the instant-coffee funnel."
+      }
+    ],
+    "finalAnswerNumeric": 15000000,
+    "number": "10",
+    "sensitivity": {
+      "assumptionId": "a-freq-u",
+      "whyThisLever": "Frequency is the lever candidates most often underweight. They spend their care on the population and the funnel, then write 'one a day' or 'one a week' without noticing the two are seven times apart. Urban frequency moves four-fifths of the answer on its own.",
+      "cases": [
+        {
+          "scenario": "Conservative",
+          "leverValue": "2 cups a week",
+          "answer": "≈ 88 lakh a day",
+          "deltaVsBase": "−40%"
+        },
+        {
+          "scenario": "Base",
+          "leverValue": "4 cups a week",
+          "answer": "≈ 1.48 crore a day",
+          "deltaVsBase": "0%"
+        },
+        {
+          "scenario": "Aggressive",
+          "leverValue": "7 cups a week (daily)",
+          "answer": "≈ 2.37 crore a day",
+          "deltaVsBase": "+60%"
+        }
+      ],
+      "breakpoint": "Doubling urban trial from 45% to 90% — every aware urban adult having tried it — adds 80% to the answer, more than moving urban drinkers from four cups a week to seven (+60%). Trial and frequency decide this question; the population anchor could be 5% out and change nothing that matters.",
+      "oneLiner": "Every extra urban cup a week adds about 30 lakh sachets a day."
+    },
+    "sanityChecks": [
+      "1.48 crore a day is about 540 crore sachets a year — roughly four per Indian per year. A category most Indians never buy, bought steadily by a few, should look exactly like this.",
+      "Across 5.3 crore repeat buyers, that is 0.28 sachets each a day — about two a week. A per-buyer figure above one a day would mean jar cups had been counted as sachet cups.",
+      "Rural India holds 65% of the coffee-age band and buys 20% of the sachets. That gap is trial, not money: at a few rupees, a sachet is already the cheapest way into coffee there is.",
+      "At about ₹3 a sachet, 540 crore sachets is roughly ₹1,600 crore a year at retail — a real category, and about a fifteenth of what urban India spends on packaged water.",
+      "The occasions route puts a coffee sachet at about one hot cup in ninety. An answer implying one in ten would need coffee to have displaced tea across the North, which it plainly has not.",
+      "Skip the funnel and assume every urban adult in the band drinks one sachet a day, and you answer 29 crore — twenty times too high. That error, more than any single assumption, is what the funnel exists to prevent."
+    ],
+    "assumptions": [
+      {
+        "id": "a-pop",
+        "lever": "Population of India",
+        "value": "1.4 bn (140 crore)",
+        "numeric": 1400000000,
+        "unit": "people",
+        "basis": "census-anchor",
+        "defence": "The working anchor in every Indian sizing question; the published figure sits a little above it, and rounding down buys arithmetic you can run in your head.",
+        "confidence": "anchor",
+        "contestedBy": "Some datasheets use 1.45 bn. Every figure below rises about 4% — not enough to change any conclusion here."
+      },
+      {
+        "id": "a-age",
+        "lever": "Share of Indians in the coffee-drinking band, 15–60",
+        "value": "60%",
+        "numeric": 0.6,
+        "unit": "share",
+        "basis": "structural-logic",
+        "defence": "Children rarely drink coffee and the over-60s drink less; the working-age band carries almost all of it. Sixty per cent is the band rounded down.",
+        "confidence": "defensible",
+        "contestedBy": "Official age tables put the 15–64 share nearer two-thirds; widening the band that far adds about a tenth to every line."
+      },
+      {
+        "id": "a-urban-share",
+        "lever": "Urban share of the band",
+        "value": "35%",
+        "numeric": 0.35,
+        "unit": "share",
+        "basis": "census-anchor",
+        "defence": "The same urban share used across the site's India questions; urban and rural are run as two separate funnels from here.",
+        "confidence": "defensible",
+        "contestedBy": "Definitions of 'urban' vary; the split matters far more than its exact position."
+      },
+      {
+        "id": "a-aware-u",
+        "lever": "Urban awareness of instant coffee",
+        "value": "90%",
+        "numeric": 0.9,
+        "unit": "share",
+        "basis": "observed-behaviour",
+        "defence": "Instant coffee sits on every urban kirana shelf and in every office pantry. Not having heard of it is rare.",
+        "confidence": "defensible",
+        "contestedBy": "Awareness is not the binding gate in cities, so its exact value hardly matters."
+      },
+      {
+        "id": "a-trial-u",
+        "lever": "Urban trial — has bought or drunk instant coffee at least once",
+        "value": "45%",
+        "numeric": 0.45,
+        "unit": "share",
+        "basis": "declared-judgement",
+        "defence": "A first cup at a hostel, an office or a friend's house. Tea is the default, so trial is far from universal even where awareness is total.",
+        "confidence": "judgement",
+        "contestedBy": "Younger urban cohorts run well above half; older ones well below. This is one of the two levers that decide the answer."
+      },
+      {
+        "id": "a-repeat-u",
+        "lever": "Urban repeat — triers who buy at least once a month",
+        "value": "35%",
+        "numeric": 0.35,
+        "unit": "share",
+        "basis": "declared-judgement",
+        "defence": "Most people who try instant coffee go back to tea. A third becoming regular buyers is a strong habit for a second-choice drink.",
+        "confidence": "judgement",
+        "contestedBy": "A strong premix launch or an office full of coffee drinkers pushes it higher; it rarely passes half."
+      },
+      {
+        "id": "a-freq-u",
+        "lever": "Cups a week, per urban repeat buyer",
+        "value": "4",
+        "numeric": 4,
+        "unit": "cups a week",
+        "basis": "observed-behaviour",
+        "defence": "A blend of daily desk drinkers and weekend or exam-season ones. Four a week is the blended figure, not the typical heavy user.",
+        "confidence": "shaky",
+        "contestedBy": "Anything from two to seven is defensible, and this lever alone moves the answer by −40% to +60%."
+      },
+      {
+        "id": "a-sachet-u",
+        "lever": "Share of urban repeat buyers' cups made from a sachet",
+        "value": "50%",
+        "numeric": 0.5,
+        "unit": "share",
+        "basis": "structural-logic",
+        "defence": "Heavy urban drinkers trade up to jars and pouches, which cost less per cup; sachets stay in the desk drawer and the travel bag.",
+        "confidence": "judgement",
+        "contestedBy": "Premix drinkers are almost all-sachet; jar loyalists almost none."
+      },
+      {
+        "id": "a-aware-r",
+        "lever": "Rural awareness of instant coffee",
+        "value": "55%",
+        "numeric": 0.55,
+        "unit": "share",
+        "basis": "observed-behaviour",
+        "defence": "Stocked in market towns and larger villages, often absent in smaller ones. Television reach carries awareness past distribution.",
+        "confidence": "judgement",
+        "contestedBy": "Awareness is not rural India's binding gate either — trial is."
+      },
+      {
+        "id": "a-trial-r",
+        "lever": "Rural trial",
+        "value": "15%",
+        "numeric": 0.15,
+        "unit": "share",
+        "basis": "declared-judgement",
+        "defence": "The binding number. Rural India drinks tea by default, and coffee is unfamiliar outside the South, where the habit is filter coffee rather than instant.",
+        "confidence": "shaky",
+        "contestedBy": "Doubling it doubles the rural line — which is exactly why a brand would spend there."
+      },
+      {
+        "id": "a-repeat-r",
+        "lever": "Rural repeat",
+        "value": "25%",
+        "numeric": 0.25,
+        "unit": "share",
+        "basis": "declared-judgement",
+        "defence": "Lower than urban: fewer outlets stock it reliably, and tea is cheaper still.",
+        "confidence": "judgement",
+        "contestedBy": "Distribution depth, not preference, is most of the gap."
+      },
+      {
+        "id": "a-freq-r",
+        "lever": "Cups a week, per rural repeat buyer",
+        "value": "2",
+        "numeric": 2,
+        "unit": "cups a week",
+        "basis": "declared-judgement",
+        "defence": "An occasional treat or a winter habit rather than a daily ritual.",
+        "confidence": "shaky",
+        "contestedBy": "Winter months run higher; a daily rural coffee habit is rare outside the South."
+      },
+      {
+        "id": "a-sachet-r",
+        "lever": "Share of rural repeat buyers' cups made from a sachet",
+        "value": "90%",
+        "numeric": 0.9,
+        "unit": "share",
+        "basis": "structural-logic",
+        "defence": "The sachet is the rural format: a few rupees' outlay, no storage, no waste. Jars barely reach the village shelf.",
+        "confidence": "defensible",
+        "contestedBy": "Some market-town households buy small pouches; the share cannot go much lower."
+      },
+      {
+        "id": "a-days-week",
+        "lever": "Days in a week",
+        "value": "7",
+        "numeric": 7,
+        "unit": "days",
+        "basis": "physical-constant",
+        "defence": "Converts a weekly habit into an average day.",
+        "confidence": "anchor",
+        "contestedBy": "—"
+      },
+      {
+        "id": "a-hot-cups",
+        "lever": "Hot-beverage cups a day, per person in the band",
+        "value": "1.6",
+        "numeric": 1.6,
+        "unit": "cups a day",
+        "basis": "observed-behaviour",
+        "defence": "Tea at home in the morning and evening for most, less for some; one and a half to two cups is the national habit. It puts India's coffee-age band at about 1.3 bn hot cups a day.",
+        "confidence": "judgement",
+        "contestedBy": "Winter and the northern states run higher; summer in the South lower."
+      },
+      {
+        "id": "a-coffee-share",
+        "lever": "Coffee's share of those hot cups",
+        "value": "7%",
+        "numeric": 0.07,
+        "unit": "share",
+        "basis": "declared-judgement",
+        "defence": "India is a tea country. Coffee is concentrated in the South and among young urban drinkers.",
+        "confidence": "shaky",
+        "contestedBy": "Southern states alone run far higher; the national blend is what matters here."
+      },
+      {
+        "id": "a-instant-share",
+        "lever": "Instant's share of coffee cups",
+        "value": "35%",
+        "numeric": 0.35,
+        "unit": "share",
+        "basis": "declared-judgement",
+        "defence": "Most of India's coffee is South Indian filter coffee; instant dominates everywhere else, but everywhere else drinks far less coffee.",
+        "confidence": "judgement",
+        "contestedBy": "Café and vending coffee are outside both sides of this share."
+      },
+      {
+        "id": "a-sachet-share",
+        "lever": "Share of instant cups made from a sachet",
+        "value": "50%",
+        "numeric": 0.5,
+        "unit": "share",
+        "basis": "declared-judgement",
+        "defence": "Taken as a single national figure here, which is the weakness of this route: the funnel derives it by geography.",
+        "confidence": "judgement",
+        "contestedBy": "The funnel implies about 55% nationally — urban half, rural nine-tenths — which is the number to compare against."
+      }
+    ],
+    "finalAnswer": "≈ 1.5 crore sachets a day (about 15 Mn) — roughly 540 crore a year. Urban India buys four in five of them; rural India, with two-thirds of the people in the band, buys one in five, because far fewer rural drinkers have ever tried instant coffee.",
+    "calculation": [
+      {
+        "id": "c1",
+        "label": "People in the coffee-drinking band",
+        "expr": "1400000000 * 0.6",
+        "display": "1,400 Mn × 60%",
+        "result": 840000000,
+        "tolerance": 0,
+        "unit": "people",
+        "carriedForward": "840 Mn (84 crore)",
+        "uses": [
+          "a-pop",
+          "a-age"
+        ],
+        "soWhat": "Every line below is linear in this. Box it and split it once."
+      },
+      {
+        "id": "c2",
+        "label": "Urban, in the band",
+        "expr": "840000000 * 0.35",
+        "display": "840 Mn × 35%",
+        "result": 294000000,
+        "tolerance": 0,
+        "unit": "people",
+        "carriedForward": "294 Mn (29 crore)",
+        "uses": [
+          "a-urban-share"
+        ],
+        "soWhat": "A third of the people and, as it turns out, four-fifths of the sachets."
+      },
+      {
+        "id": "c3",
+        "label": "Rural, in the band",
+        "expr": "840000000 * 0.65",
+        "display": "840 Mn × 65%",
+        "result": 546000000,
+        "tolerance": 0,
+        "unit": "people",
+        "carriedForward": "546 Mn (55 crore)",
+        "uses": [
+          "a-urban-share"
+        ],
+        "soWhat": "Two-thirds of the people. Watch how little of the answer survives the rural funnel."
+      },
+      {
+        "id": "c4",
+        "label": "Urban repeat buyers",
+        "expr": "294000000 * 0.9 * 0.45 * 0.35",
+        "display": "294 Mn × 90% aware × 45% tried × 35% repeat",
+        "result": 41674500,
+        "tolerance": 0,
+        "unit": "buyers",
+        "carriedForward": "41.7 Mn (4.2 crore)",
+        "uses": [
+          "a-aware-u",
+          "a-trial-u",
+          "a-repeat-u"
+        ],
+        "soWhat": "One urban adult in seven is a regular buyer. Most who try instant coffee go back to tea."
+      },
+      {
+        "id": "c5",
+        "label": "Rural repeat buyers",
+        "expr": "546000000 * 0.55 * 0.15 * 0.25",
+        "display": "546 Mn × 55% aware × 15% tried × 25% repeat",
+        "result": 11261250,
+        "tolerance": 0,
+        "unit": "buyers",
+        "carriedForward": "11.3 Mn (1.1 crore)",
+        "uses": [
+          "a-aware-r",
+          "a-trial-r",
+          "a-repeat-r"
+        ],
+        "soWhat": "One rural adult in fifty. Awareness is over half; it is the 15% trial rate that does the damage."
+      },
+      {
+        "id": "c6",
+        "label": "Urban cups a day",
+        "expr": "41674500 * 4 / 7",
+        "display": "41.7 Mn × 4 cups a week ÷ 7",
+        "result": 23814000,
+        "tolerance": 0,
+        "unit": "cups a day",
+        "carriedForward": "2.38 crore cups",
+        "uses": [
+          "a-freq-u",
+          "a-days-week"
+        ],
+        "soWhat": "The frequency line. Replace four a week with one a day and this line rises 75% — more than any population figure could move it."
+      },
+      {
+        "id": "c7",
+        "label": "Urban sachets a day",
+        "expr": "23814000 * 0.5",
+        "display": "2.38 crore cups × 50% from sachets",
+        "result": 11907000,
+        "tolerance": 0,
+        "unit": "sachets a day",
+        "carriedForward": "1.19 crore sachets",
+        "uses": [
+          "a-sachet-u"
+        ],
+        "soWhat": "Half the urban cups come out of jars and pouches. The sachet is the entry and convenience format, not the whole category."
+      },
+      {
+        "id": "c8",
+        "label": "Rural cups a day",
+        "expr": "11261250 * 2 / 7",
+        "display": "11.3 Mn × 2 cups a week ÷ 7",
+        "result": 3217500,
+        "tolerance": 0,
+        "unit": "cups a day",
+        "carriedForward": "32 lakh cups",
+        "uses": [
+          "a-freq-r",
+          "a-days-week"
+        ],
+        "soWhat": "A small base drinking occasionally."
+      },
+      {
+        "id": "c9",
+        "label": "Rural sachets a day",
+        "expr": "3217500 * 0.9",
+        "display": "32 lakh cups × 90% from sachets",
+        "result": 2895750,
+        "tolerance": 0,
+        "unit": "sachets a day",
+        "carriedForward": "29 lakh sachets",
+        "uses": [
+          "a-sachet-r"
+        ],
+        "soWhat": "Almost every rural cup is a sachet — which is why the rural line is limited by trial, not by format or price."
+      },
+      {
+        "id": "c10",
+        "label": "Sachets sold in India on an average day",
+        "expr": "11907000 + 2895750",
+        "display": "1.19 crore urban + 29 lakh rural",
+        "result": 14802750,
+        "tolerance": 0,
+        "unit": "sachets a day",
+        "carriedForward": "≈ 1.5 crore — round it before you say it",
+        "uses": [],
+        "soWhat": "Say 1.5 crore a day, about 540 crore a year. The urban frequency and trial rates could each move it by half; nothing finer than two significant figures is defensible."
+      }
+    ],
+    "id": "coffee-sachets-daily",
+    "tabLabel": "Coffee sachets, India daily",
+    "teachingPoint": "In a habit product, frequency does more work than the user count — and in a tea country, the trial rate is the number that binds. Run the funnel separately for urban and rural India, multiply the small repeat base by how often it actually drinks, and remember that a heavy drinker buys a jar, not sachets. Get the frequency wrong by a factor and no amount of care over the population will rescue the answer.",
+    "orderOfMagnitude": "10^7 sachets a day (1.5 crore); about 5 × 10^9 a year",
+    "routeChoice": {
+      "chosen": "Top-down",
+      "why": "A consumer habit sizes best as a funnel from people: who is old enough, who has heard of it, who has tried it, who comes back, and how often they drink. Every gate is a number you can defend from what you see around you — and each one is a lever a brand can act on, which is what makes the answer useful after it is given.",
+      "rejectedRoute": "Bottom-up",
+      "rejectedWhyNot": "The supply side — instant coffee made in India, the share packed as sachets, sachets per kilo — needs trade figures a candidate cannot see or defend in the room. It is a good check for someone holding the data, and a guess dressed up as a calculation for anyone else."
+    },
+    "archetype": "funnel-conversion-fmcg"
+  },
+  {
+    "answerBand": "−₹0.3 crore to +₹2.8 crore on the cost lever alone — a band that contains zero, and that is the finding rather than a weakness in it. At the price you would have to quote to win, the same contract is worth about −₹1.4 crore.",
+    "scope": {
+      "countingWhat": "The expected value, in rupees, of the decision to submit one bid — the probability-weighted profit from the three-year contract, net of every rupee spent competing for it, assessed at the moment the decision is taken and before anything is known.",
+      "unit": "₹ of expected value on the bid decision",
+      "timeBasis": "stock (point in time)",
+      "geography": "One district cluster tendered by a state skills mission in India. CohortWorks, the mission and every term of the tender are fictional — written for this question, not drawn from any live procurement. The figures are illustrative, built to show the method clearly, not asserted as market data.",
+      "included": [
+        "Contribution from the contract across all three years, in both the high-enrolment and the low-enrolment outcome",
+        "The fixed delivery base — centres, supervision, compliance — which the contract forces you to carry whether the seats fill or not",
+        "Cash spent preparing and submitting the bid, which is gone whichever way the award goes",
+        "The carrying cost of the earnest money for the six months it sits with the state"
+      ],
+      "excluded": [
+        "The ₹2 crore earnest money itself, which is refunded — only its carrying cost is a cost",
+        "The performance bank guarantee principal, on the same reasoning",
+        "The option value of incumbency in the next tender cycle — real, and named rather than guessed at, because a number here would be invented",
+        "Contribution forgone on the corporate pipeline while the proposal team is diverted — sized separately at roughly ₹45 lakh, and held outside the base case so the interviewer can see it move",
+        "Discounting. The surplus arrives across three years and a 12% rate would cut the answer by about a third — stated here rather than quietly skipped, and checked at the end"
+      ],
+      "boundaryTrap": "The earnest money. Two crore rupees leaves the firm's account to accompany the bid, and it comes back within about six months whether you win or lose. It is working capital tied up, not money spent. What it costs you is the carry on ₹2 crore for half a year — roughly ₹10 lakh. Candidates who load the full ₹2 crore into the bid cost arrive at ₹2.6 crore of cost, conclude the bid destroys value, and believe they have found something. They have found a cash outflow and called it a cost. The mirror error sits right next to it: the ₹60 lakh that is genuinely spent is gone in all seven cases out of ten where you lose, and a candidate who quietly assumes it is recoverable has removed the only thing making this a decision."
+    },
+    "question": "CohortWorks, a vocational training firm, can bid for a three-year state skills contract worth ₹90 crore. The bid costs ₹60 lakh to prepare and is lost if the firm does not win. Is the bid worth making?",
+    "difficulty": "Medium",
+    "probes": [
+      {
+        "question": "What would have to be true for you not to bid?",
+        "intent": "Whether you know your own breakpoint or only your own answer. A candidate who worked a template cannot answer this, because the template never asked which number was load-bearing.",
+        "goodAnswer": "Cost per trainee above about ₹9,840 — a 9% overrun on my ₹9,000, which is well inside the error of a forecast for districts I have not operated in. That is the one lever that flips the sign on its own. The win probability cannot do it: the hurdle is 10% and I have assumed 30%, so I would have to be wrong by a factor of three. The other way not to bid is structural rather than numerical — if the state will not move the enrolment target and I cannot variabilise the delivery base, the price I need to win makes the contract negative whatever my costs do.",
+        "weakAnswer": "'If the probability of winning were much lower' — which sounds like sensitivity analysis and is the one lever the answer is robust to, so it tells the interviewer you have not run the grid."
+      },
+      {
+        "question": "Our finance director says the cost of bidding is ₹2.6 crore, not ₹60 lakh. Who is right?",
+        "intent": "Whether you can hold a boundary under pressure from a senior person who is wrong, which is most of consulting.",
+        "goodAnswer": "The difference is the ₹2 crore of earnest money, and it is refundable — it comes back within about six months whether we win or lose. It is working capital tied up, not money spent, so the cost is the carry: ₹2 crore at 10% for half a year, about ₹10 lakh, which is already inside my ₹60 lakh. It matters because at ₹2.6 crore the expected value is −₹0.73 crore and we walk away from a positive-value bid. If he means the cash has to be arranged, that is a real constraint and a separate question from whether it is a cost.",
+        "weakAnswer": "Recomputing with ₹2.6 crore because the finance director said so — or conceding the point without noticing that it reverses the recommendation."
+      },
+      {
+        "question": "Suppose we bid, we lose, and the ₹60 lakh is gone. Was bidding a mistake?",
+        "intent": "Whether you can separate a decision from its outcome. This is the probe that most often exposes a candidate who produced the right number without understanding what a probability is.",
+        "goodAnswer": "No. Seven times in ten that is exactly what happens, and the decision priced it: I needed a 10% chance to justify ₹60 lakh and I judged 30%. Losing tells me nothing about whether the judgement was sound. What I would review is the inputs, not the result — was the discount we quoted consistent with the 30% we claimed, and did the winning rate land where the cross-check said it would. If the winner came in 18% below ceiling rather than 12%, my range was wrong and the next bid needs a different price, not a different attitude.",
+        "weakAnswer": "'In hindsight we should not have bid' — judging a decision by its outcome, which guarantees that the firm stops taking positive-value bets after every ordinary loss."
+      },
+      {
+        "question": "A competitor is expected to quote ₹11,000. Do we match?",
+        "intent": "Whether you treat a rival's price as information or as an instruction. Also whether you can say no to winning.",
+        "goodAnswer": "No. At ₹11,000 the contribution is ₹2,000 a trainee, so even at full enrolment the contract is ₹12 crore of contribution against ₹24 crore of fixed cost — a ₹12 crore loss in the branch where everything goes right. Matching is not a competitive response, it is buying the loss. The useful question is what they know that I do not. Either their centres are already built because they hold the incumbent contract and their fixed base is sunk, or their variable cost is genuinely lower on batch size, or they have mispriced. The first two are reasons I cannot match. The third is a reason I should not want to.",
+        "weakAnswer": "'We match to stay in the game', or matching and then finding savings — which is deciding the price first and discovering the cost afterwards, and it is how training companies fail."
+      },
+      {
+        "question": "The state offers to raise the ceiling to ₹17,000 but halve the contract to 30,000 trainees. Take it?",
+        "intent": "Whether the tree is a live model or a finished sum, and whether you know which of your costs are per-centre and which are per-contract.",
+        "goodAnswer": "Yes, and for the risk rather than the return. Contribution rises to ₹8,000, so the high branch is 30,000 × ₹8,000, ₹24 crore of contribution. Fixed cost does not halve — twenty centres instead of forty, but the state-level compliance team, MIS and audit are per-contract — so call it ₹5 crore a year rather than ₹8, ₹15 crore across the term. The high branch becomes ₹9 crore and the low branch −₹0.6 crore instead of −₹2.4 crore, giving an expected value near ₹0.95 crore. Lower than ₹1.27 crore, but the worst outcome has shrunk by three-quarters. For a firm turning over ₹40 crore, that trade is worth taking.",
+        "weakAnswer": "'Yes, the rate is higher' — or 'no, the contract is smaller'. Both answer on one variable, and both miss that the fixed cost is the thing that does not halve."
+      },
+      {
+        "question": "You are the state. How would you write this tender to get better bids?",
+        "intent": "Whether you understood the mechanism you just modelled well enough to run it backwards. The strongest candidates find this easy and it separates them sharply.",
+        "goodAnswer": "Three changes, each aimed at a specific thing in my model. Publish block-level demand data, because the 40% chance of under-enrolment is the largest uncertainty in my tree and every bidder is pricing it with a padding factor the state pays for. Split the payment so a mobilisation-linked component carries part of the enrolment risk, which turns my −₹2.4 crore branch into something closer to breakeven and lets me bid lower. And score on quality as well as price rather than awarding to the lowest rate, because a pure price auction selects the bidder who has most underestimated the cost — and that bidder is the one who abandons centres in year two.",
+        "weakAnswer": "'Invite more bidders to increase competition' — more draws raises the expected winning discount and sharpens the winner's curse, which lowers the price and lowers the delivery quality the state is actually buying."
+      }
+    ],
     "triangulation": {
       "label": "Price-to-win cross-check — can you win at the price you just assumed?",
       "route": "Top-down",
@@ -5626,67 +6799,302 @@ export const guesstimates: readonly Guesstimate[] = [
       "answer": "≈ −₹1.45 crore at the price that actually wins, against +₹1.27 crore at the ceiling rate — the same contract, opposite signs",
       "verdict": "These two routes do not disagree about arithmetic. They disagree about whether the price is yours to choose, and the whole ₹2.7 crore gap is that one assumption. The first route is what a careful candidate produces when win probability is treated as exogenous — a number sitting on a price you would not get. The second prices the correlation: you win when you have bid low, so the winning branch is structurally the thin-margin branch. Resolve it by solving for the price at which the bid breaks even rather than by splitting the difference. That price is about ₹14,160, a discount of 5.6% to the ceiling. Then ask what that discount buys you against five rivals drawing anywhere up to 14%: the chance all five bid less aggressively is roughly 0.4 to the fifth power, about one in a hundred. There is no price at which both routes are satisfied, and that is the finding — at your price you will not win, and at the winning price you should not want to. The useful move is structural rather than numerical. Convert the fixed base to a variable one: rent classrooms by the batch and contract trainers per cohort instead of holding forty leases for three years, and the ₹24 crore fixed falls to roughly ₹14 crore. Rerun it at the winning price of ₹13,200 and the branches are +₹11.2 crore and +₹1.1 crore — the loss-making branch disappears entirely, the expected value of the bid lands near +₹1.5 crore, and it lands there without assuming you get to charge more than the market will pay. That is the answer: bid, but not with this delivery model."
     },
-    "probes": [
+    "tree": {
+      "root": "Expected value of submitting the bid",
+      "rootFormula": "= P(win) × Expected value of the contract if won − Cost of competing, spent either way",
+      "value": "≈ +₹1.27 crore",
+      "branches": [
+        {
+          "label": "You win the tender — 30%",
+          "formula": "0.30 × ₹6.24 crore",
+          "value": "+₹1.87 crore, weighted",
+          "note": "The only branch with any value in it, and it splits again immediately. A tree that stops at win-or-lose has one layer too few — the interesting uncertainty is not whether you get the contract, it is whether the contract is any good once you have it.",
+          "isCriticalPath": true,
+          "children": [
+            {
+              "label": "Enrolment holds — 60% of this branch",
+              "formula": "(60,000 trainees × ₹6,000 contribution) − ₹24 crore fixed",
+              "value": "+₹12.0 crore",
+              "note": "₹36 crore of contribution against a ₹24 crore fixed base. A 13% margin over three years, which is what a well-run government training contract looks like — not a spectacular outcome, the good one."
+            },
+            {
+              "label": "Enrolment disappoints — 40% of this branch",
+              "formula": "(36,000 trainees × ₹6,000 contribution) − ₹24 crore fixed",
+              "value": "−₹2.4 crore",
+              "note": "A 40% shortfall in seats does not cut the profit by 40%. It turns ₹12 crore of profit into ₹2.4 crore of loss, because the fixed base does not shrink when a district under-enrols. This is the branch the question exists to make you find."
+            },
+            {
+              "label": "Probability-weighted value of the contract",
+              "formula": "(0.60 × 12.0) + (0.40 × −2.4)",
+              "value": "+₹6.24 crore",
+              "note": "Just over half the upside. A contract you would describe in a meeting as 'worth ₹12 crore' is worth ₹6.24 crore the moment you price the branch where the seats do not fill."
+            }
+          ]
+        },
+        {
+          "label": "You lose the tender — 70%",
+          "formula": "0.70 × ₹0",
+          "value": "₹0 from the contract",
+          "note": "Zero, not negative. The bid money has already left and is accounted for at the root, so putting it here as well would charge it twice.",
+          "children": [
+            {
+              "label": "What comes back",
+              "value": "₹2 crore of earnest money, in full, within about six months of the award",
+              "note": "Refundable. This is the line candidates turn into a ₹2 crore cost, and the error is large enough to reverse the recommendation on its own."
+            },
+            {
+              "label": "What does not come back",
+              "value": "₹60 lakh of bid preparation",
+              "note": "Seven times in ten this is the entire outcome of the exercise. Any framing in which the bid cost only appears on the winning branch has understated it by a factor of more than three."
+            }
+          ]
+        },
+        {
+          "label": "Cost of competing — incurred in every branch",
+          "formula": "= Proposal team + Centre readiness + Legal + Travel + Earnest-money carry",
+          "value": "−₹0.60 crore",
+          "note": "Because this money is spent whether you win or lose, it sits outside the probability weighting and is subtracted once at the root. Build it from components rather than asserting a round number — 'bid costs are about ₹50 lakh' is a figure an interviewer cannot argue with and therefore cannot give you credit for.",
+          "children": [
+            {
+              "label": "Proposal team",
+              "formula": "6 people × 8 weeks, loaded",
+              "value": "₹25 lakh",
+              "note": "The largest line, and the one whose true cost is not the salary but what those eight weeks would otherwise have produced."
+            },
+            {
+              "label": "Centre readiness and inspection",
+              "value": "₹14 lakh",
+              "note": "Forty sites documented, photographed and brought to inspection standard before a rupee of revenue exists."
+            },
+            {
+              "label": "Legal, compliance and due diligence",
+              "value": "₹6 lakh",
+              "note": "Cheap relative to the penalty clauses it reads."
+            },
+            {
+              "label": "Travel and pre-bid meetings",
+              "value": "₹5 lakh",
+              "note": "Across the district cluster, over two months."
+            },
+            {
+              "label": "Earnest-money carry",
+              "formula": "₹2 crore × 10% a year × 6 months",
+              "value": "₹10 lakh",
+              "note": "The whole of what the ₹2 crore costs you. Get this line right and the rest of the question becomes arithmetic; get it wrong and no amount of careful weighting downstream will save the answer."
+            }
+          ]
+        }
+      ]
+    },
+    "timeboxMinutes": 12,
+    "traps": [
       {
-        "question": "What would have to be true for you not to bid?",
-        "intent": "Whether you know your own breakpoint or only your own answer. A candidate who worked a template cannot answer this, because the template never asked which number was load-bearing.",
-        "goodAnswer": "Cost per trainee above about ₹9,840 — a 9% overrun on my ₹9,000, which is well inside the error of a forecast for districts I have not operated in. That is the one lever that flips the sign on its own. The win probability cannot do it: the hurdle is 10% and I have assumed 30%, so I would have to be wrong by a factor of three. The other way not to bid is structural rather than numerical — if the state will not move the enrolment target and I cannot variabilise the delivery base, the price I need to win makes the contract negative whatever my costs do.",
-        "weakAnswer": "'If the probability of winning were much lower' — which sounds like sensitivity analysis and is the one lever the answer is robust to, so it tells the interviewer you have not run the grid."
+        "trap": "Putting the ₹2 crore earnest money into the cost of bidding.",
+        "whyItHappens": "The money genuinely leaves the account, and the mind does not distinguish a cash outflow from a cost when both look identical on a bank statement. Under time pressure everything that moves out gets subtracted, and the deposit is the largest number on the page, so it dominates whatever it is added to.",
+        "fix": "Ask of every outflow whether it comes back. Earnest money does, in full, within about six months. What it costs is the carry — ₹2 crore at 10% for half a year, ₹10 lakh. Get this wrong and your bid cost is ₹2.6 crore rather than ₹60 lakh, the expected value swings from +₹1.27 crore to −₹0.73 crore, and you recommend against a bid on the strength of an accounting error."
       },
       {
-        "question": "Our finance director says the cost of bidding is ₹2.6 crore, not ₹60 lakh. Who is right?",
-        "intent": "Whether you can hold a boundary under pressure from a senior person who is wrong, which is most of consulting.",
-        "goodAnswer": "The difference is the ₹2 crore of earnest money, and it is refundable — it comes back within about six months whether we win or lose. It is working capital tied up, not money spent, so the cost is the carry: ₹2 crore at 10% for half a year, about ₹10 lakh, which is already inside my ₹60 lakh. It matters because at ₹2.6 crore the expected value is −₹0.73 crore and we walk away from a positive-value bid. If he means the cash has to be arranged, that is a real constraint and a separate question from whether it is a cost.",
-        "weakAnswer": "Recomputing with ₹2.6 crore because the finance director said so — or conceding the point without noticing that it reverses the recommendation."
+        "trap": "Computing what the contract is worth instead of what the bid is worth.",
+        "whyItHappens": "Sizing is the reflex every guesstimate has trained, and the contract is the object in the prompt with numbers attached to it. So the candidate builds ₹90 crore of revenue, ₹12 crore of profit, and stops — having produced a correct answer to a question that was not asked.",
+        "fix": "Write the decision at the top of the page before any arithmetic: bid, or do not bid. Then every number has to earn its place by changing that decision. The contract's ₹12 crore is an input to the bid's ₹1.27 crore, and the distance between the two is the probability of winning and the branch where you win and wish you had not."
       },
       {
-        "question": "Suppose we bid, we lose, and the ₹60 lakh is gone. Was bidding a mistake?",
-        "intent": "Whether you can separate a decision from its outcome. This is the probe that most often exposes a candidate who produced the right number without understanding what a probability is.",
-        "goodAnswer": "No. Seven times in ten that is exactly what happens, and the decision priced it: I needed a 10% chance to justify ₹60 lakh and I judged 30%. Losing tells me nothing about whether the judgement was sound. What I would review is the inputs, not the result — was the discount we quoted consistent with the 30% we claimed, and did the winning rate land where the cross-check said it would. If the winner came in 18% below ceiling rather than 12%, my range was wrong and the next bid needs a different price, not a different attitude.",
-        "weakAnswer": "'In hindsight we should not have bid' — judging a decision by its outcome, which guarantees that the firm stops taking positive-value bets after every ordinary loss."
+        "trap": "Letting the fixed cost scale with enrolment.",
+        "whyItHappens": "Once you have written a cost per trainee, the mind treats all cost as per-trainee, because that is the shape the first calculation established. Then the low-enrolment branch is computed as 60% of the good branch — a smaller profit rather than a loss — and the branch that makes the question interesting quietly disappears.",
+        "fix": "Split cost into what the trainee triggers and what the contract commits you to, and do it before you compute either branch. Forty leases, forty centre managers and a compliance team are committed for three years. Here that split is the difference between a ₹7 crore low case and a −₹2.4 crore one, and only one of those is the truth."
       },
       {
-        "question": "A competitor is expected to quote ₹11,000. Do we match?",
-        "intent": "Whether you treat a rival's price as information or as an instruction. Also whether you can say no to winning.",
-        "goodAnswer": "No. At ₹11,000 the contribution is ₹2,000 a trainee, so even at full enrolment the contract is ₹12 crore of contribution against ₹24 crore of fixed cost — a ₹12 crore loss in the branch where everything goes right. Matching is not a competitive response, it is buying the loss. The useful question is what they know that I do not. Either their centres are already built because they hold the incumbent contract and their fixed base is sunk, or their variable cost is genuinely lower on batch size, or they have mispriced. The first two are reasons I cannot match. The third is a reason I should not want to.",
-        "weakAnswer": "'We match to stay in the game', or matching and then finding savings — which is deciding the price first and discovering the cost afterwards, and it is how training companies fail."
+        "trap": "Holding your price fixed while treating the win probability as given.",
+        "whyItHappens": "The two numbers arrive from different places — the price from the tender document, the probability from a judgement about the field — so they feel independent. They are not. You win when your bid was the aggressive one, which means the winning branch is systematically the branch where you gave margin away. Any model that fixes one and assumes the other has already answered the question wrongly.",
+        "fix": "Quote a probability and a price as a pair, never separately: 'a 30% chance at ₹13,200, or a 5% chance at ₹14,900.' Then rerun the tree at the price that earns the probability you claimed. Here that moves the answer from +₹1.27 crore to −₹1.45 crore, and finding it is worth more than the original calculation was."
       },
       {
-        "question": "The state offers to raise the ceiling to ₹17,000 but halve the contract to 30,000 trainees. Take it?",
-        "intent": "Whether the tree is a live model or a finished sum, and whether you know which of your costs are per-centre and which are per-contract.",
-        "goodAnswer": "Yes, and for the risk rather than the return. Contribution rises to ₹8,000, so the high branch is 30,000 × ₹8,000, ₹24 crore of contribution. Fixed cost does not halve — twenty centres instead of forty, but the state-level compliance team, MIS and audit are per-contract — so call it ₹5 crore a year rather than ₹8, ₹15 crore across the term. The high branch becomes ₹9 crore and the low branch −₹0.6 crore instead of −₹2.4 crore, giving an expected value near ₹0.95 crore. Lower than ₹1.27 crore, but the worst outcome has shrunk by three-quarters. For a firm turning over ₹40 crore, that trade is worth taking.",
-        "weakAnswer": "'Yes, the rate is higher' — or 'no, the contract is smaller'. Both answer on one variable, and both miss that the fixed cost is the thing that does not halve."
+        "trap": "Subtracting the bid cost only from the winning branch.",
+        "whyItHappens": "The tree is drawn win-first and the costs are written into the branch being worked on. The losing branch gets a zero, because nothing happens on it — except that ₹60 lakh has already been spent, and nothing happening is exactly what makes it a loss.",
+        "fix": "Charge the bid cost once at the root, outside the probability weighting, because it is incurred in every state of the world. Charging it only on the 30% branch prices it at ₹18 lakh instead of ₹60 lakh and overstates the answer by ₹42 lakh — a third of the whole result, lost to a diagram drawn in the wrong order."
       },
       {
-        "question": "You are the state. How would you write this tender to get better bids?",
-        "intent": "Whether you understood the mechanism you just modelled well enough to run it backwards. The strongest candidates find this easy and it separates them sharply.",
-        "goodAnswer": "Three changes, each aimed at a specific thing in my model. Publish block-level demand data, because the 40% chance of under-enrolment is the largest uncertainty in my tree and every bidder is pricing it with a padding factor the state pays for. Split the payment so a mobilisation-linked component carries part of the enrolment risk, which turns my −₹2.4 crore branch into something closer to breakeven and lets me bid lower. And score on quality as well as price rather than awarding to the lowest rate, because a pure price auction selects the bidder who has most underestimated the cost — and that bidder is the one who abandons centres in year two.",
-        "weakAnswer": "'Invite more bidders to increase competition' — more draws raises the expected winning discount and sharpens the winner's curse, which lowers the price and lowers the delivery quality the state is actually buying."
+        "trap": "Stopping at 'the expected value is positive, so we bid.'",
+        "whyItHappens": "Expected value is what the question appeared to ask for, and once a positive number exists the analysis feels complete. But an expected value is an average over outcomes the firm experiences one at a time, and it says nothing about whether the firm survives the bad one.",
+        "fix": "Report the distribution alongside the mean in one sentence: 'Positive expected value of ₹1.27 crore, with a one-in-eight chance of losing ₹3 crore against a firm doing ₹40 crore a year.' Then give the recommendation the risk warrants — bid, with the enrolment target negotiated at the pre-bid meeting and the delivery base variabilised. A number is not a recommendation, and the gap between them is where the marks are."
       }
     ],
     "finalAnswerNumeric": 12720000,
-    "tabLabel": "Tender bid, expected value",
-    "finalAnswer": "≈ +₹1.3 crore of expected value at the ceiling rate — positive, and thin. A 9% overrun on the cost per trainee takes it to zero, and at the discount you would need to actually win the tender it is worth about −₹1.4 crore. So the honest recommendation is conditional rather than yes: bid only after converting the fixed delivery base to a variable one, which holds the expected value near +₹1.5 crore even at the winning price.",
-    "scope": {
-      "countingWhat": "The expected value, in rupees, of the decision to submit one bid — the probability-weighted profit from the three-year contract, net of every rupee spent competing for it, assessed at the moment the decision is taken and before anything is known.",
-      "unit": "₹ of expected value on the bid decision",
-      "timeBasis": "stock (point in time)",
-      "geography": "One district cluster tendered by a state skills mission in India. CohortWorks, the mission and every term of the tender are fictional — written for this question, not drawn from any live procurement. The figures are illustrative, built to show the method clearly, not asserted as market data.",
-      "included": [
-        "Contribution from the contract across all three years, in both the high-enrolment and the low-enrolment outcome",
-        "The fixed delivery base — centres, supervision, compliance — which the contract forces you to carry whether the seats fill or not",
-        "Cash spent preparing and submitting the bid, which is gone whichever way the award goes",
-        "The carrying cost of the earnest money for the six months it sits with the state"
+    "number": "11",
+    "sensitivity": {
+      "assumptionId": "a_var_cost",
+      "whyThisLever": "It is the only number here that is simultaneously large, load-bearing and genuinely unknown. The rate is published. The seat count is printed in the tender. The fixed base you can count — forty centres, forty leases. The probabilities are judgements, but the answer barely notices them: halve the win probability from 30% to 15% and the expected value is still positive at about ₹0.34 crore, because the hurdle is only 10%. Variable cost per trainee is different in kind. It is a forecast of your own operating performance three years out, at a volume you have not run, in districts where you have not mobilised, and it enters the model as a subtraction from a price you cannot move. If this answer is wrong, it is wrong here.",
+      "cases": [
+        {
+          "scenario": "Conservative",
+          "leverValue": "₹10,000 per trainee — mobilisation at ₹3,000 rather than ₹2,000",
+          "answer": "−₹0.24 crore — the bid destroys value",
+          "deltaVsBase": "−119%"
+        },
+        {
+          "scenario": "Base",
+          "leverValue": "₹9,000 per trainee",
+          "answer": "+₹1.27 crore",
+          "deltaVsBase": "0%"
+        },
+        {
+          "scenario": "Aggressive",
+          "leverValue": "₹8,000 per trainee — batches of 30 rather than 25, assessment fees contracted for the full term",
+          "answer": "+₹2.78 crore",
+          "deltaVsBase": "+119%"
+        }
       ],
-      "excluded": [
-        "The ₹2 crore earnest money itself, which is refunded — only its carrying cost is a cost",
-        "The performance bank guarantee principal, on the same reasoning",
-        "The option value of incumbency in the next tender cycle — real, and named rather than guessed at, because a number here would be invented",
-        "Contribution forgone on the corporate pipeline while the proposal team is diverted — sized separately at roughly ₹45 lakh, and held outside the base case so the interviewer can see it move",
-        "Discounting. The surplus arrives across three years and a 12% rate would cut the answer by about a third — stated here rather than quietly skipped, and checked at the end"
-      ],
-      "boundaryTrap": "The earnest money. Two crore rupees leaves the firm's account to accompany the bid, and it comes back within about six months whether you win or lose. It is working capital tied up, not money spent. What it costs you is the carry on ₹2 crore for half a year — roughly ₹10 lakh. Candidates who load the full ₹2 crore into the bid cost arrive at ₹2.6 crore of cost, conclude the bid destroys value, and believe they have found something. They have found a cash outflow and called it a cost. The mirror error sits right next to it: the ₹60 lakh that is genuinely spent is gone in all seven cases out of ten where you lose, and a candidate who quietly assumes it is recoverable has removed the only thing making this a decision."
+      "breakpoint": "The bid stops being worth making at a variable cost of about ₹9,840 per trainee — a contribution of ₹5,160 and an overrun of 9% on the ₹9,000 estimate. Nine per cent is well inside the ordinary error of a cost forecast for an operation you have not yet run, so the honest thing to say is that the sign of this answer is not safe. Hold it against the win probability, where the breakpoint is 10% against an assumed 30%: you would have to be wrong there by a factor of three before it changed anything. Two levers, both judgements, and only one of them can break the decision. Say which one, and the interviewer stops testing whether you understand your own model.",
+      "oneLiner": "It is worth roughly ₹1.3 crore of expected value, and all of that sits on delivering a trainee for ₹9,000 — at ₹9,850 the bid is worth nothing, and I have never run this volume in these districts."
     },
+    "sanityChecks": [
+      "The estate and the volume must describe the same thing. Forty centres, four classrooms each, thirty seats a room, four batches a year comes to 19,200 seats a year against a target of 20,000. The ₹8 crore of fixed cost and the 20,000 trainees are two views of one physical operation, and if they had not matched, one of them was invented rather than estimated.",
+      "Margin shape: ₹12 crore on ₹90 crore is 13% across three years, roughly 4% a year on revenue. Government skills contracts are thin-margin, high-volume, slow-paying businesses and that is what 4% looks like. A model returning a 30% margin would be describing corporate training sold to employers, not a state tender, and the error would be in the price, not the arithmetic.",
+      "Bid cost against prize: ₹60 lakh to compete for ₹90 crore is 0.67% of contract value, which is where bid costs on large services tenders sit — somewhere between half a per cent and two per cent. If yours came out near ₹6 crore, you have put the refundable earnest money into it, and the check catches the error in five seconds.",
+      "Loss tolerance, which the expected value never tells you: the worst leaf is a ₹2.4 crore operating loss plus ₹60 lakh of bid cost, and it arrives with probability 0.30 × 0.40, about one in eight. Three crore rupees against a firm turning over ₹40 crore a year is most of a year's profit. A one-in-eight chance of that is a board conversation, not an arithmetic result, and a candidate who reports the ₹1.27 crore without reporting the 12% has answered only half the question.",
+      "Discounting, named rather than skipped: the surplus arrives across three years and the three-year annuity factor at 12% is about 2.4 against an undiscounted 3. That cuts the high branch from ₹12 crore to roughly ₹9.6 crore and the expected value of the bid from ₹1.27 crore to about ₹0.9 crore. Material, not decisive — and saying so takes ten seconds, while quietly ignoring it costs you the marks whichever way the number lands.",
+      "Payment timing, which is what actually kills training companies and appears nowhere in the expected value: the state pays on certification and on verified placement, commonly two to four quarters after the cost is incurred. At 20,000 trainees a year and ₹9,000 of cost each, a two-quarter lag ties up around ₹9 crore of working capital against a ₹1.27 crore expected return. If you say one thing beyond your number, say this one."
+    ],
+    "assumptions": [
+      {
+        "id": "a_target",
+        "lever": "Sanctioned seats across the three-year term",
+        "value": "60,000 trainees",
+        "numeric": 60000,
+        "unit": "trainees over three years",
+        "basis": "published-benchmark",
+        "defence": "The tender document prints the sanctioned seat count — 20,000 a year for three years — so this is given rather than estimated, and a minute spent defending it is a minute taken from the numbers that are actually contested.",
+        "confidence": "anchor"
+      },
+      {
+        "id": "a_rate",
+        "lever": "Ceiling rate per certified trainee",
+        "value": "₹15,000",
+        "numeric": 15000,
+        "unit": "₹ per trainee",
+        "basis": "published-benchmark",
+        "defence": "Government vocational rates are published per training hour by trade category and sit near ₹40 to ₹50 an hour, so a 300 to 350 hour course prices between ₹12,000 and ₹18,000 — ₹15,000 is the middle of the published band.",
+        "confidence": "defensible",
+        "contestedBy": "An interviewer will point out that this is the ceiling and not the price you will get to charge. That objection is correct, it is the single most important thing anyone can say about this answer, and it is the entire subject of the cross-check below."
+      },
+      {
+        "id": "a_var_cost",
+        "lever": "Variable cost per trainee delivered",
+        "value": "₹9,000",
+        "numeric": 9000,
+        "unit": "₹ per trainee",
+        "basis": "structural-logic",
+        "defence": "Built rather than asserted: ₹4,000 of trainer time spread across a batch of 25, ₹1,500 of assessment and certification fees paid through to the awarding body, ₹1,500 of kit and consumables, and ₹2,000 of mobilisation — the counsellor payment it takes to find a candidate in a rural block and keep them through the course.",
+        "confidence": "judgement",
+        "contestedBy": "Mobilisation is the contested line. Firms who have actually run these contracts will tell you ₹2,000 is optimistic and the working figure is nearer ₹3,500. That correction alone takes the decision through zero, which is why it is the lever the sensitivity grid runs on."
+      },
+      {
+        "id": "a_fixed",
+        "lever": "Fixed delivery cost per year",
+        "value": "₹8 crore",
+        "numeric": 80000000,
+        "unit": "₹ per year",
+        "basis": "structural-logic",
+        "defence": "Forty centres at roughly ₹12 lakh a year each for rent, utilities and a centre manager comes to ₹4.8 crore, plus ₹3.2 crore of regional supervision, MIS, third-party audit and the state-level compliance team the contract obliges you to staff.",
+        "confidence": "defensible",
+        "contestedBy": "A franchise-led model pushes most of this into the variable line — you pay partners per certified trainee instead of holding forty leases. It changes the shape of the whole answer and it is the recommendation the cross-check ends on."
+      },
+      {
+        "id": "a_years",
+        "lever": "Contract term",
+        "value": "3 years",
+        "numeric": 3,
+        "unit": "years",
+        "basis": "structural-logic",
+        "defence": "Stated in the tender. It matters for one reason worth saying out loud: the fixed base is carried for all three years whether the seats fill or not, so the term multiplies the downside as faithfully as it multiplies the upside.",
+        "confidence": "anchor"
+      },
+      {
+        "id": "a_p_win",
+        "lever": "Probability of winning the tender",
+        "value": "30%",
+        "numeric": 0.3,
+        "unit": "probability",
+        "basis": "declared-judgement",
+        "defence": "Six firms typically clear technical prequalification on a contract this size, which makes the naive prior one in six, or 17%. Lift it to 30% because CohortWorks delivered two districts of the previous cycle and scores near the top of the technical gate, so the real contest is three-way rather than six-way.",
+        "confidence": "judgement",
+        "contestedBy": "Anyone who has watched these tenders will say 30% is generous for a firm that is not the incumbent. Halve it to 15% and the expected value is still positive at about ₹0.34 crore — that reply is worth more than defending the 30%."
+      },
+      {
+        "id": "a_p_high",
+        "lever": "Probability that enrolment holds, given you win",
+        "value": "60%",
+        "numeric": 0.6,
+        "unit": "probability",
+        "basis": "declared-judgement",
+        "defence": "Two of the previous cycle's three district clusters filled their sanctioned seats and one did not. That is a sample of three, it is openly a sample of three, and it is precisely why this branch carries a probability rather than a forecast.",
+        "confidence": "judgement"
+      },
+      {
+        "id": "a_low_fill",
+        "lever": "Seat fill in the low-enrolment outcome",
+        "value": "60% of target",
+        "numeric": 0.6,
+        "unit": "share of sanctioned seats",
+        "basis": "observed-behaviour",
+        "defence": "Under-enrolment in rural vocational programmes is a demand problem in the district, not a delivery problem in your centres — candidates enrol, take the stipend, and leave for wage work when sowing starts. A 40% shortfall is the ordinary bad year, not the disaster.",
+        "confidence": "judgement",
+        "contestedBy": "The genuine disaster case is 40% fill, which takes the low branch from a ₹2.4 crore loss to a ₹9.6 crore one and makes the bid a solvency question rather than an investment one."
+      },
+      {
+        "id": "a_bid_cash",
+        "lever": "Cash cost of preparing and submitting the bid",
+        "value": "₹50 lakh",
+        "numeric": 5000000,
+        "unit": "₹",
+        "basis": "declared-judgement",
+        "defence": "Four lines, each separately defensible: ₹25 lakh of loaded senior time for a six-person proposal team over eight weeks, ₹14 lakh to get forty centres documented and inspection-ready, ₹6 lakh of legal and due-diligence review, and ₹5 lakh of travel and pre-bid meetings across the districts.",
+        "confidence": "judgement",
+        "contestedBy": "It excludes what the proposal team would otherwise have done. If those eight weeks would have closed ₹1.5 crore of corporate training at 30% contribution, the true cost of competing is nearer ₹95 lakh and the expected value falls from ₹1.27 crore to about ₹0.82 crore."
+      },
+      {
+        "id": "a_emd",
+        "lever": "Earnest money deposited with the bid",
+        "value": "₹2 crore, refundable",
+        "numeric": 20000000,
+        "unit": "₹",
+        "basis": "structural-logic",
+        "defence": "Earnest money on a services tender runs near 2% of contract value and is returned to unsuccessful bidders once the award is published. It is working capital tied up, not money spent, and that distinction is the whole of this question's boundary.",
+        "confidence": "anchor"
+      },
+      {
+        "id": "a_cost_of_funds",
+        "lever": "Cost of funds",
+        "value": "10% a year",
+        "numeric": 0.1,
+        "unit": "per year",
+        "basis": "published-benchmark",
+        "defence": "A mid-sized services firm borrows working capital somewhere near 10 to 12%; take the low end, because the figure is only carrying ₹2 crore for six months and precision here buys nothing.",
+        "confidence": "defensible"
+      },
+      {
+        "id": "a_bidders",
+        "lever": "Firms clearing the technical gate",
+        "value": "6",
+        "numeric": 6,
+        "unit": "bidders",
+        "basis": "observed-behaviour",
+        "defence": "Prequalification on a contract this size screens on turnover, prior volume delivered and owned centre infrastructure — a filter that leaves five to eight national and regional players, not the thirty firms who collect the tender document.",
+        "confidence": "judgement"
+      },
+      {
+        "id": "a_discount_range",
+        "lever": "Top of the discount-to-ceiling range",
+        "value": "14%",
+        "numeric": 0.14,
+        "unit": "share below the ceiling rate",
+        "basis": "observed-behaviour",
+        "defence": "The previous cycle's published award rates ran from the ceiling down to roughly 14% below it, spread across the range rather than clustered at either end — so treat the spread as flat between zero and 14% and take the expected maximum of six draws, not the average.",
+        "confidence": "judgement",
+        "contestedBy": "If the spread is wider than 14%, the cross-check gets worse rather than better. There is no version of this in which the winner's curse works in your favour, which is what makes it a curse."
+      }
+    ],
+    "finalAnswer": "≈ +₹1.3 crore of expected value at the ceiling rate — positive, and thin. A 9% overrun on the cost per trainee takes it to zero, and at the discount you would need to actually win the tender it is worth about −₹1.4 crore. So the honest recommendation is conditional rather than yes: bid only after converting the fixed delivery base to a variable one, which holds the expected value near +₹1.5 crore even at the winning price.",
     "calculation": [
       {
         "id": "c1",
@@ -5844,303 +7252,79 @@ export const guesstimates: readonly Guesstimate[] = [
         "soWhat": "Positive, so on this arithmetic you bid. Now look at the size rather than the sign: ₹1.27 crore of expected value against ₹90 crore of contract revenue is a 1.4% expected return on the top line, thin enough that one assumption can carry it through zero. Which assumption, and by how much, is the only interesting question left."
       }
     ],
+    "id": "tender-bid-expected-value",
+    "tabLabel": "Tender bid, expected value",
+    "teachingPoint": "An expected-value question is not a sizing question in disguise, and most candidates fail it by answering the wrong one — asked whether to bid, they compute what the contract is worth. The contract is worth ₹12 crore if it goes well. The bid is worth ₹1.3 crore, because you win it three times in ten and you pay to enter whatever happens. Two moves separate a good answer from a competent one. Put probabilities on branches that differ in sign rather than in size — the branch where you win and cannot fill the seats is the reason this question exists at all. Then refuse to hold your price constant while treating your chance of winning as given: in a competitive tender those are the same variable, and a bet priced without its odds has not been priced.",
     "orderOfMagnitude": "10^7 — crores, not tens of crores. The bid is worth roughly a tenth of what the contract is worth, and getting that ratio right matters more than the figure.",
-    "assumptions": [
-      {
-        "id": "a_target",
-        "lever": "Sanctioned seats across the three-year term",
-        "value": "60,000 trainees",
-        "numeric": 60000,
-        "unit": "trainees over three years",
-        "basis": "published-benchmark",
-        "defence": "The tender document prints the sanctioned seat count — 20,000 a year for three years — so this is given rather than estimated, and a minute spent defending it is a minute taken from the numbers that are actually contested.",
-        "confidence": "anchor"
-      },
-      {
-        "id": "a_rate",
-        "lever": "Ceiling rate per certified trainee",
-        "value": "₹15,000",
-        "numeric": 15000,
-        "unit": "₹ per trainee",
-        "basis": "published-benchmark",
-        "defence": "Government vocational rates are published per training hour by trade category and sit near ₹40 to ₹50 an hour, so a 300 to 350 hour course prices between ₹12,000 and ₹18,000 — ₹15,000 is the middle of the published band.",
-        "confidence": "defensible",
-        "contestedBy": "An interviewer will point out that this is the ceiling and not the price you will get to charge. That objection is correct, it is the single most important thing anyone can say about this answer, and it is the entire subject of the cross-check below."
-      },
-      {
-        "id": "a_var_cost",
-        "lever": "Variable cost per trainee delivered",
-        "value": "₹9,000",
-        "numeric": 9000,
-        "unit": "₹ per trainee",
-        "basis": "structural-logic",
-        "defence": "Built rather than asserted: ₹4,000 of trainer time spread across a batch of 25, ₹1,500 of assessment and certification fees paid through to the awarding body, ₹1,500 of kit and consumables, and ₹2,000 of mobilisation — the counsellor payment it takes to find a candidate in a rural block and keep them through the course.",
-        "confidence": "judgement",
-        "contestedBy": "Mobilisation is the contested line. Firms who have actually run these contracts will tell you ₹2,000 is optimistic and the working figure is nearer ₹3,500. That correction alone takes the decision through zero, which is why it is the lever the sensitivity grid runs on."
-      },
-      {
-        "id": "a_fixed",
-        "lever": "Fixed delivery cost per year",
-        "value": "₹8 crore",
-        "numeric": 80000000,
-        "unit": "₹ per year",
-        "basis": "structural-logic",
-        "defence": "Forty centres at roughly ₹12 lakh a year each for rent, utilities and a centre manager comes to ₹4.8 crore, plus ₹3.2 crore of regional supervision, MIS, third-party audit and the state-level compliance team the contract obliges you to staff.",
-        "confidence": "defensible",
-        "contestedBy": "A franchise-led model pushes most of this into the variable line — you pay partners per certified trainee instead of holding forty leases. It changes the shape of the whole answer and it is the recommendation the cross-check ends on."
-      },
-      {
-        "id": "a_years",
-        "lever": "Contract term",
-        "value": "3 years",
-        "numeric": 3,
-        "unit": "years",
-        "basis": "structural-logic",
-        "defence": "Stated in the tender. It matters for one reason worth saying out loud: the fixed base is carried for all three years whether the seats fill or not, so the term multiplies the downside as faithfully as it multiplies the upside.",
-        "confidence": "anchor"
-      },
-      {
-        "id": "a_p_win",
-        "lever": "Probability of winning the tender",
-        "value": "30%",
-        "numeric": 0.3,
-        "unit": "probability",
-        "basis": "declared-judgement",
-        "defence": "Six firms typically clear technical prequalification on a contract this size, which makes the naive prior one in six, or 17%. Lift it to 30% because CohortWorks delivered two districts of the previous cycle and scores near the top of the technical gate, so the real contest is three-way rather than six-way.",
-        "confidence": "judgement",
-        "contestedBy": "Anyone who has watched these tenders will say 30% is generous for a firm that is not the incumbent. Halve it to 15% and the expected value is still positive at about ₹0.34 crore — that reply is worth more than defending the 30%."
-      },
-      {
-        "id": "a_p_high",
-        "lever": "Probability that enrolment holds, given you win",
-        "value": "60%",
-        "numeric": 0.6,
-        "unit": "probability",
-        "basis": "declared-judgement",
-        "defence": "Two of the previous cycle's three district clusters filled their sanctioned seats and one did not. That is a sample of three, it is openly a sample of three, and it is precisely why this branch carries a probability rather than a forecast.",
-        "confidence": "judgement"
-      },
-      {
-        "id": "a_low_fill",
-        "lever": "Seat fill in the low-enrolment outcome",
-        "value": "60% of target",
-        "numeric": 0.6,
-        "unit": "share of sanctioned seats",
-        "basis": "observed-behaviour",
-        "defence": "Under-enrolment in rural vocational programmes is a demand problem in the district, not a delivery problem in your centres — candidates enrol, take the stipend, and leave for wage work when sowing starts. A 40% shortfall is the ordinary bad year, not the disaster.",
-        "confidence": "judgement",
-        "contestedBy": "The genuine disaster case is 40% fill, which takes the low branch from a ₹2.4 crore loss to a ₹9.6 crore one and makes the bid a solvency question rather than an investment one."
-      },
-      {
-        "id": "a_bid_cash",
-        "lever": "Cash cost of preparing and submitting the bid",
-        "value": "₹50 lakh",
-        "numeric": 5000000,
-        "unit": "₹",
-        "basis": "declared-judgement",
-        "defence": "Four lines, each separately defensible: ₹25 lakh of loaded senior time for a six-person proposal team over eight weeks, ₹14 lakh to get forty centres documented and inspection-ready, ₹6 lakh of legal and due-diligence review, and ₹5 lakh of travel and pre-bid meetings across the districts.",
-        "confidence": "judgement",
-        "contestedBy": "It excludes what the proposal team would otherwise have done. If those eight weeks would have closed ₹1.5 crore of corporate training at 30% contribution, the true cost of competing is nearer ₹95 lakh and the expected value falls from ₹1.27 crore to about ₹0.82 crore."
-      },
-      {
-        "id": "a_emd",
-        "lever": "Earnest money deposited with the bid",
-        "value": "₹2 crore, refundable",
-        "numeric": 20000000,
-        "unit": "₹",
-        "basis": "structural-logic",
-        "defence": "Earnest money on a services tender runs near 2% of contract value and is returned to unsuccessful bidders once the award is published. It is working capital tied up, not money spent, and that distinction is the whole of this question's boundary.",
-        "confidence": "anchor"
-      },
-      {
-        "id": "a_cost_of_funds",
-        "lever": "Cost of funds",
-        "value": "10% a year",
-        "numeric": 0.1,
-        "unit": "per year",
-        "basis": "published-benchmark",
-        "defence": "A mid-sized services firm borrows working capital somewhere near 10 to 12%; take the low end, because the figure is only carrying ₹2 crore for six months and precision here buys nothing.",
-        "confidence": "defensible"
-      },
-      {
-        "id": "a_bidders",
-        "lever": "Firms clearing the technical gate",
-        "value": "6",
-        "numeric": 6,
-        "unit": "bidders",
-        "basis": "observed-behaviour",
-        "defence": "Prequalification on a contract this size screens on turnover, prior volume delivered and owned centre infrastructure — a filter that leaves five to eight national and regional players, not the thirty firms who collect the tender document.",
-        "confidence": "judgement"
-      },
-      {
-        "id": "a_discount_range",
-        "lever": "Top of the discount-to-ceiling range",
-        "value": "14%",
-        "numeric": 0.14,
-        "unit": "share below the ceiling rate",
-        "basis": "observed-behaviour",
-        "defence": "The previous cycle's published award rates ran from the ceiling down to roughly 14% below it, spread across the range rather than clustered at either end — so treat the spread as flat between zero and 14% and take the expected maximum of six draws, not the average.",
-        "confidence": "judgement",
-        "contestedBy": "If the spread is wider than 14%, the cross-check gets worse rather than better. There is no version of this in which the winner's curse works in your favour, which is what makes it a curse."
-      }
-    ],
-    "question": "CohortWorks, a vocational training firm, can bid for a three-year state skills contract worth ₹90 crore. The bid costs ₹60 lakh to prepare and is lost if the firm does not win. Is the bid worth making?",
-    "traps": [
-      {
-        "trap": "Putting the ₹2 crore earnest money into the cost of bidding.",
-        "whyItHappens": "The money genuinely leaves the account, and the mind does not distinguish a cash outflow from a cost when both look identical on a bank statement. Under time pressure everything that moves out gets subtracted, and the deposit is the largest number on the page, so it dominates whatever it is added to.",
-        "fix": "Ask of every outflow whether it comes back. Earnest money does, in full, within about six months. What it costs is the carry — ₹2 crore at 10% for half a year, ₹10 lakh. Get this wrong and your bid cost is ₹2.6 crore rather than ₹60 lakh, the expected value swings from +₹1.27 crore to −₹0.73 crore, and you recommend against a bid on the strength of an accounting error."
-      },
-      {
-        "trap": "Computing what the contract is worth instead of what the bid is worth.",
-        "whyItHappens": "Sizing is the reflex every guesstimate has trained, and the contract is the object in the prompt with numbers attached to it. So the candidate builds ₹90 crore of revenue, ₹12 crore of profit, and stops — having produced a correct answer to a question that was not asked.",
-        "fix": "Write the decision at the top of the page before any arithmetic: bid, or do not bid. Then every number has to earn its place by changing that decision. The contract's ₹12 crore is an input to the bid's ₹1.27 crore, and the distance between the two is the probability of winning and the branch where you win and wish you had not."
-      },
-      {
-        "trap": "Letting the fixed cost scale with enrolment.",
-        "whyItHappens": "Once you have written a cost per trainee, the mind treats all cost as per-trainee, because that is the shape the first calculation established. Then the low-enrolment branch is computed as 60% of the good branch — a smaller profit rather than a loss — and the branch that makes the question interesting quietly disappears.",
-        "fix": "Split cost into what the trainee triggers and what the contract commits you to, and do it before you compute either branch. Forty leases, forty centre managers and a compliance team are committed for three years. Here that split is the difference between a ₹7 crore low case and a −₹2.4 crore one, and only one of those is the truth."
-      },
-      {
-        "trap": "Holding your price fixed while treating the win probability as given.",
-        "whyItHappens": "The two numbers arrive from different places — the price from the tender document, the probability from a judgement about the field — so they feel independent. They are not. You win when your bid was the aggressive one, which means the winning branch is systematically the branch where you gave margin away. Any model that fixes one and assumes the other has already answered the question wrongly.",
-        "fix": "Quote a probability and a price as a pair, never separately: 'a 30% chance at ₹13,200, or a 5% chance at ₹14,900.' Then rerun the tree at the price that earns the probability you claimed. Here that moves the answer from +₹1.27 crore to −₹1.45 crore, and finding it is worth more than the original calculation was."
-      },
-      {
-        "trap": "Subtracting the bid cost only from the winning branch.",
-        "whyItHappens": "The tree is drawn win-first and the costs are written into the branch being worked on. The losing branch gets a zero, because nothing happens on it — except that ₹60 lakh has already been spent, and nothing happening is exactly what makes it a loss.",
-        "fix": "Charge the bid cost once at the root, outside the probability weighting, because it is incurred in every state of the world. Charging it only on the 30% branch prices it at ₹18 lakh instead of ₹60 lakh and overstates the answer by ₹42 lakh — a third of the whole result, lost to a diagram drawn in the wrong order."
-      },
-      {
-        "trap": "Stopping at 'the expected value is positive, so we bid.'",
-        "whyItHappens": "Expected value is what the question appeared to ask for, and once a positive number exists the analysis feels complete. But an expected value is an average over outcomes the firm experiences one at a time, and it says nothing about whether the firm survives the bad one.",
-        "fix": "Report the distribution alongside the mean in one sentence: 'Positive expected value of ₹1.27 crore, with a one-in-eight chance of losing ₹3 crore against a firm doing ₹40 crore a year.' Then give the recommendation the risk warrants — bid, with the enrolment target negotiated at the pre-bid meeting and the delivery base variabilised. A number is not a recommendation, and the gap between them is where the marks are."
-      }
-    ],
-    "teachingPoint": "An expected-value question is not a sizing question in disguise, and most candidates fail it by answering the wrong one — asked whether to bid, they compute what the contract is worth. The contract is worth ₹12 crore if it goes well. The bid is worth ₹1.3 crore, because you win it three times in ten and you pay to enter whatever happens. Two moves separate a good answer from a competent one. Put probabilities on branches that differ in sign rather than in size — the branch where you win and cannot fill the seats is the reason this question exists at all. Then refuse to hold your price constant while treating your chance of winning as given: in a competitive tender those are the same variable, and a bet priced without its odds has not been priced."
+    "routeChoice": {
+      "chosen": "Probabilistic",
+      "why": "The question is not how big this contract is, it is whether this bid is worth making, and the two have different answers. The contract earns ₹12 crore if the districts fill and loses ₹2.4 crore if they do not, so no single point estimate of its value can tell you whether to spend ₹60 lakh chasing it. Build the outcomes as branches, put a probability on each, and two things become visible that a point estimate hides: the dispersion, and the fact that one branch is negative. Then the bid cost is subtracted once at the root, because it is spent in every branch. Say the structure out loud before any arithmetic — win or lose, then fill or under-fill — and the interviewer knows in fifteen seconds that you understood the question.",
+      "rejectedRoute": "Bottom-up",
+      "rejectedWhyNot": "Bottom-up here means building the contract's economics from the ground up — 60,000 trainees, ₹15,000 each, ₹90 crore of revenue, ₹12 crore of profit — and it is what most candidates produce in four minutes. The arithmetic is right and it answers a question nobody asked. It contains no probability, so there is nothing in it to set against the ₹60 lakh you must spend for a 30% shot; it produces one number where the decision turns on two outcomes of opposite sign; and it makes the loss-making branch invisible, because an average of ₹12 crore and −₹2.4 crore never appears anywhere in it. Bottom-up is the right route for sizing the prize. It is the wrong route for pricing the bet, and this question is a bet."
+    },
+    "archetype": "expected-value"
   },
   {
-    "timeboxMinutes": 8,
-    "sensitivity": {
-      "assumptionId": "a_heavy_rate",
-      "whyThisLever": "It is the largest single number in the answer and the least observable one. The heavy tier is a quarter of the cohort carrying 8,400 cups — 37% of the total — and four cups a day is a memory of a canteen, not a count of anything. Every other candidate lever is either steadier or smaller: the staff and faculty rates are tied to a shift roster, the headcounts are structural, and the visitor stream cannot move the total by more than a per cent however hard you push it. If this answer is wrong, this is where it went wrong.",
-      "cases": [
-        {
-          "scenario": "Conservative",
-          "leverValue": "3 cups per day",
-          "answer": "≈ 20,800 cups a week",
-          "deltaVsBase": "−9%"
-        },
-        {
-          "scenario": "Base",
-          "leverValue": "4 cups per day",
-          "answer": "≈ 22,900 cups a week",
-          "deltaVsBase": "0%"
-        },
-        {
-          "scenario": "Aggressive",
-          "leverValue": "6 cups per day",
-          "answer": "≈ 27,100 cups a week",
-          "deltaVsBase": "+18%"
-        }
-      ],
-      "breakpoint": "On this lever alone the answer only leaves the 18,000 to 28,000 band if the heavy tier is taking seven or more cups a day — 2,200 cups a day out of 300 people, which describes someone who lives at the counter rather than attends classes. Within any range you could defend out loud, the order of magnitude does not move. That is precisely what multi-stream aggregation buys you, and it is the argument for building it this way: four streams with independent errors, none of which can break the total on its own. A single-average model has no such protection — one wrong number there moves the whole answer proportionally.",
-      "oneLiner": "Call it 23,000 a week, and it hangs mainly on four cups a day for the heaviest quarter of the cohort — three takes it to 21,000, six takes it to 27,000, and nothing else I have assumed moves it by more than a tenth."
-    },
-    "number": "10",
-    "difficulty": "Easy",
-    "id": "campus-chai",
-    "archetype": "closed-population",
-    "routeChoice": {
-      "chosen": "Bottom-up",
-      "why": "The population is closed and countable — 1,200 students in the prompt, a faculty roll, a staff roster — and the whole answer turns on rates that differ sharply between those groups. So build the streams separately, price each at its own rate, and sum. Everything you need is visible by standing in the place for a day, which is precisely the condition under which bottom-up beats every alternative.",
-      "rejectedRoute": "Top-down",
-      "rejectedWhyNot": "The top-down route is national tea consumption per head — roughly 800 g of leaf a year — scaled to 1,490 people on site and divided by 52. It produces a number, and the number is low by about a factor of three, because the national average is built from a population that includes infants, the coffee-drinking South and rural households brewing weak tea at home. An adult residential campus with a subsidised counter and a night stall does not resemble it. Top-down works when your sub-population looks like the whole; here you would import a constant that describes somebody else and then have no honest way to argue the correction factor. When the population is small, closed and unlike the national average, the national average is not data — it is a distraction."
-    },
-    "sanityChecks": [
-      "Per head, the test that matters: 22,920 cups across the 1,490 people on site is 15 cups a head a week, a shade over two a day. Hold that against your own memory of a campus. Three a day and you have built a teahouse; one a day and you have built an office block.",
-      "Physically: 22,920 ÷ 7 is about 3,300 cups a day. At 100 ml a cup that is roughly 330 litres of chai, or one 20-litre urn emptied every hour across a sixteen-hour serving day. A campus with a canteen, a mess counter, a pantry and a night stall clears that without strain. A single kettle could not, and if your answer implied one could, the answer was wrong.",
-      "Against procurement: at roughly 3 g of leaf a cup, 22,920 cups is about 69 kg of tea a week — call it 3.6 tonnes a year, or 2.4 kg per person on site. India's per-capita consumption runs near 800 g a year, so this campus is at three times the national rate. For adults, urban, residential and with a subsidised counter, against a national average that includes infants and the coffee-drinking South, three times is the right direction and a defensible size. Thirty times would have told you something was broken.",
-      "The vacation test: strip out the students and you are left with 5,070 cups, the campus running on staff alone. If your tree cannot produce that second number in ten seconds, it was not built as a tree — it was built as one long multiplication with headings.",
-      "Shape check: students 78%, staff 16%, faculty 6%, visitors under 1%. State the shares, not only the total. An interviewer who disagrees with your answer usually disagrees with one share, and the shares are how they tell you which."
-    ],
     "answerBand": "18,000 – 28,000 cups per week",
-    "tree": {
-      "root": "Cups of chai served on campus in one term-time week",
-      "rootFormula": "= Student stream + Support-staff stream + Faculty stream + Visitor stream",
-      "value": "≈ 22,900 cups",
-      "branches": [
-        {
-          "label": "Student stream",
-          "formula": "= (Tier headcount × cups per day), summed, × 7 days",
-          "value": "17,850 cups — 78% of the answer",
-          "note": "Segmented by drinking intensity, not by year or section. Demographics do not predict tea; habit does.",
-          "isCriticalPath": true,
-          "children": [
-            {
-              "label": "Heavy tier — 25% of the cohort",
-              "formula": "300 students × 4 cups × 7 days",
-              "value": "8,400 cups",
-              "note": "Thirty-seven per cent of the whole answer sits in a quarter of the cohort. Every question the interviewer asks about your number will land here."
-            },
-            {
-              "label": "Moderate tier — 50% of the cohort",
-              "formula": "600 students × 2 cups × 7 days",
-              "value": "8,400 cups",
-              "note": "Two cups is the number of times a day tea is put in front of you on an Indian campus without your having to go and look for it."
-            },
-            {
-              "label": "Light and non-drinking tier — 25% of the cohort",
-              "formula": "300 students × 0.5 cups × 7 days",
-              "value": "1,050 cups",
-              "note": "Coffee drinkers and abstainers still take the courtesy cup. Half a cup a day is the honest way to write 'not zero, but close'."
-            }
-          ]
-        },
-        {
-          "label": "Support-staff stream",
-          "formula": "200 staff × 3 cups × 6 days",
-          "value": "3,600 cups — 16% of the answer",
-          "note": "Bigger than the faculty stream by a factor of nearly three, and the stream candidates are most likely to omit entirely.",
-          "children": [
-            {
-              "label": "Heads on site, not heads on payroll",
-              "value": "200 staff",
-              "note": "Housekeeping, mess, security, grounds, library, IT and administration. Outsourced staff drink the same tea as direct staff — count the people, not the contracts."
-            },
-            {
-              "label": "Chai as the shift break",
-              "value": "3 cups per shift",
-              "note": "For staff the cup is the break itself: the morning one, the afternoon one, and the one that marks the end of the shift. That makes this the steadiest rate in the model."
-            }
-          ]
-        },
-        {
-          "label": "Faculty stream",
-          "formula": "90 faculty × 3 cups × 5 days",
-          "value": "1,350 cups — 6% of the answer",
-          "note": "Small, but it costs ten seconds to include and its absence is visible in your tree.",
-          "children": [
-            {
-              "label": "Faculty headcount at roughly 1:15",
-              "value": "90 faculty",
-              "note": "A regulated postgraduate management programme runs near a 1:15 ratio, which puts 1,200 students at 80 to 100 faculty."
-            },
-            {
-              "label": "Five-day presence",
-              "value": "5 days",
-              "note": "Teaching and office hours cluster Monday to Friday. This is the only stream that genuinely runs on a working week."
-            }
-          ]
-        },
-        {
-          "label": "Visitor stream",
-          "formula": "60 visitor-days × 2 cups",
-          "value": "120 cups — under 1% of the answer",
-          "note": "Named, sized, and then set aside — it sits inside the rounding error on everything above it. Saying that out loud is worth more marks than the cups are worth."
-        }
-      ]
+    "scope": {
+      "countingWhat": "Individual cups of chai — tea brewed with milk, served hot — poured by campus outlets to anyone on site during one ordinary term-time week.",
+      "unit": "cups per week",
+      "timeBasis": "flow (per week)",
+      "geography": "A single residential postgraduate campus in India, 1,200 students living on site, one academic block, one mess, a canteen and a late-night stall. The campus is illustrative — built to show the method clearly, not drawn from any named institution.",
+      "included": [
+        "Students, faculty, support staff and day visitors — everyone physically on site",
+        "The canteen counter, the mess tea urns, the academic-block pantry and the late-night stall",
+        "Tea brewed in hostel rooms on personal kettles",
+        "Tea poured at meetings, guest lectures and recruiter visits in an ordinary week"
+      ],
+      "excluded": [
+        "Chai bought at the stalls outside the gate, even when the drinker lives on campus",
+        "Coffee, green tea, black tea without milk, and packaged cold tea",
+        "Exam week, placement week and festival week — this is a typical week, and the answer says so",
+        "Vacation weeks, when the student stream collapses and the question becomes a different one"
+      ],
+      "boundaryTrap": "The question asks what the campus gets through — that is cups served on campus, not cups drunk by people who belong to the campus. The stall fifty metres outside the gate serves this population all day and falls outside the boundary; the tea poured for a visiting recruiter falls inside it, though the recruiter belongs to nobody here. The two readings differ by something like a fifth. Either is defensible. Answering without naming which one you took is not."
     },
+    "question": "How many cups of chai does a 1,200-student residential campus get through in a week?",
+    "difficulty": "Easy",
+    "probes": [
+      {
+        "question": "Which of your numbers is doing the most work?",
+        "intent": "Whether you know where your own answer comes from, or only how to produce one. Candidates who have followed a template cannot answer this, because the template never told them.",
+        "goodAnswer": "The heavy tier's rate. Three hundred students at four cups a day is 8,400 cups, 37% of the total, and four is a judgement rather than an observation. Take it to three and the answer falls 9%; take it to six and it rises 18%. Nothing else I assumed moves the total by more than a tenth, and the visitor stream cannot move it by more than one per cent however hard you push.",
+        "weakAnswer": "'All of them matter', or naming the 1,200 — which is the one number handed to you and therefore the only one that cannot be wrong."
+      },
+      {
+        "question": "It is placement week. What changes?",
+        "intent": "Whether the tree is a live model or a finished sum. A model answers the second question in seconds; a sum has to be rebuilt.",
+        "goodAnswer": "Three things move together. Visitor-days jump from 60 to maybe 200, the night stall runs longer, and the heavy tier widens as the cohort sleeps less. The visitor jump is worth about 280 cups, barely one per cent — it is the behaviour shift that matters. Push the heavy tier to six cups and the week is nearer 27,500. So placement week is the top of my band, not a different question, and that is the useful thing to say.",
+        "weakAnswer": "'It goes up a lot' — a direction with no magnitude, and no statement of which stream carries the increase."
+      },
+      {
+        "question": "The campus caterer says they pour 30,000 a week. Are you wrong?",
+        "intent": "Whether an external figure makes you abandon your method or interrogate the boundary. This is the probe that separates a candidate who understands their own model from one who was reciting it.",
+        "goodAnswer": "Thirty thousand is 31% above me, which is inside the range I would expect two honest counts to differ by — but I would look at the boundary before I moved a single assumption. A caterer counts cups poured, which includes the ones left half-drunk, the urn dregs and every cup at events I scoped out as non-typical. If the same contractor also runs the stall at the gate, that alone closes most of the gap. I would revise to about 26,000 and say precisely which assumption I moved and why.",
+        "weakAnswer": "'Then I will use their number', which throws away the method for an unexamined figure — or defending 22,920 as though it had been measured."
+      },
+      {
+        "question": "Size this for a 400-student campus instead.",
+        "intent": "Whether the tree scales or has to be rebuilt, and whether you can tell a variable stream from a fixed one. This is the same distinction that decides every cost case you will see later.",
+        "goodAnswer": "The student stream scales with headcount — a third of 17,850 is about 5,950. The other streams do not scale linearly, because a campus needs a security roster, a mess and an administration whatever its size: 200 staff might fall to 90, not to 67. Total lands near 9,000 to 10,000, and the per-head rate rises, because the fixed streams are now spread across fewer people. That last point is the interesting one — smaller campus, more cups per head.",
+        "weakAnswer": "'Divide everything by three', which assumes every stream is proportional to student count when none of the non-student ones is."
+      },
+      {
+        "question": "How would you check this in an afternoon?",
+        "intent": "Whether you can convert an estimate into a measurement plan. In practice this is what a client is paying for — the estimate is only what you do before the data arrives.",
+        "goodAnswer": "Two routes and I would rank them. Read the procurement ledger first: one week of tea-leaf and milk purchases gives the total with no behavioural assumption in it at all, and it takes twenty minutes. If that is not available, count from the supply side — stand at the canteen counter for three fifteen-minute blocks at different times of day and scale, which tests the throughput assumption directly and tells me whether my 80 cups an hour was a peak figure in disguise.",
+        "weakAnswer": "'Run a survey' — self-reported cup counts are the least reliable input available and the slowest to collect, and nobody remembers how many cups they had on Tuesday."
+      },
+      {
+        "question": "Your two routes are 9% apart. Which do you believe?",
+        "intent": "Whether you can reason about the direction of your own error rather than splitting the difference, which is the reflex answer and the wrong one.",
+        "goodAnswer": "The demand route, and for a stated reason: the supply route's error is systematic and upward. Hourly throughput at an outlet is reconstructed from memory, and you only remember the counter when there was a queue, so 80 cups an hour is a peak dressed up as an average. The demand route's errors are more symmetric — I could be wrong about the tier mix in either direction. So I take 23,000 as the point and use the gap to set the band.",
+        "weakAnswer": "'I would average them to 24,000' — which treats a known directional bias as though it were random noise, and quietly bakes the bias into the answer instead of correcting for it."
+      }
+    ],
     "triangulation": {
       "label": "Supply-side cross-check — count the taps, not the drinkers",
       "route": "Bottom-up",
@@ -6241,209 +7425,150 @@ export const guesstimates: readonly Guesstimate[] = [
       "answer": "≈ 25,000 cups a week, against ≈ 23,000 from the demand route — about 9% apart",
       "verdict": "Nine per cent apart on a question this soft is agreement, and you should say so rather than pretending either figure is the truth. The supply route runs high, and it runs high for a reason worth naming: an outlet's average hourly throughput is a number you reconstruct from memory of standing in the queue, and you only stand in the queue when there is one. That bias is systematic, not random, so take the demand route as the point estimate. The more useful output of the cross-check is not the second number but the width of the gap — two honest routes differing by a tenth is the evidence for quoting a band of 18,000 to 28,000 rather than a point. If the two routes had differed by a factor of three, the instruction would be the opposite: stop, and go find the stream one of them is missing."
     },
-    "probes": [
+    "tree": {
+      "root": "Cups of chai served on campus in one term-time week",
+      "rootFormula": "= Student stream + Support-staff stream + Faculty stream + Visitor stream",
+      "value": "≈ 22,900 cups",
+      "branches": [
+        {
+          "label": "Student stream",
+          "formula": "= (Tier headcount × cups per day), summed, × 7 days",
+          "value": "17,850 cups — 78% of the answer",
+          "note": "Segmented by drinking intensity, not by year or section. Demographics do not predict tea; habit does.",
+          "isCriticalPath": true,
+          "children": [
+            {
+              "label": "Heavy tier — 25% of the cohort",
+              "formula": "300 students × 4 cups × 7 days",
+              "value": "8,400 cups",
+              "note": "Thirty-seven per cent of the whole answer sits in a quarter of the cohort. Every question the interviewer asks about your number will land here."
+            },
+            {
+              "label": "Moderate tier — 50% of the cohort",
+              "formula": "600 students × 2 cups × 7 days",
+              "value": "8,400 cups",
+              "note": "Two cups is the number of times a day tea is put in front of you on an Indian campus without your having to go and look for it."
+            },
+            {
+              "label": "Light and non-drinking tier — 25% of the cohort",
+              "formula": "300 students × 0.5 cups × 7 days",
+              "value": "1,050 cups",
+              "note": "Coffee drinkers and abstainers still take the courtesy cup. Half a cup a day is the honest way to write 'not zero, but close'."
+            }
+          ]
+        },
+        {
+          "label": "Support-staff stream",
+          "formula": "200 staff × 3 cups × 6 days",
+          "value": "3,600 cups — 16% of the answer",
+          "note": "Bigger than the faculty stream by a factor of nearly three, and the stream candidates are most likely to omit entirely.",
+          "children": [
+            {
+              "label": "Heads on site, not heads on payroll",
+              "value": "200 staff",
+              "note": "Housekeeping, mess, security, grounds, library, IT and administration. Outsourced staff drink the same tea as direct staff — count the people, not the contracts."
+            },
+            {
+              "label": "Chai as the shift break",
+              "value": "3 cups per shift",
+              "note": "For staff the cup is the break itself: the morning one, the afternoon one, and the one that marks the end of the shift. That makes this the steadiest rate in the model."
+            }
+          ]
+        },
+        {
+          "label": "Faculty stream",
+          "formula": "90 faculty × 3 cups × 5 days",
+          "value": "1,350 cups — 6% of the answer",
+          "note": "Small, but it costs ten seconds to include and its absence is visible in your tree.",
+          "children": [
+            {
+              "label": "Faculty headcount at roughly 1:15",
+              "value": "90 faculty",
+              "note": "A regulated postgraduate management programme runs near a 1:15 ratio, which puts 1,200 students at 80 to 100 faculty."
+            },
+            {
+              "label": "Five-day presence",
+              "value": "5 days",
+              "note": "Teaching and office hours cluster Monday to Friday. This is the only stream that genuinely runs on a working week."
+            }
+          ]
+        },
+        {
+          "label": "Visitor stream",
+          "formula": "60 visitor-days × 2 cups",
+          "value": "120 cups — under 1% of the answer",
+          "note": "Named, sized, and then set aside — it sits inside the rounding error on everything above it. Saying that out loud is worth more marks than the cups are worth."
+        }
+      ]
+    },
+    "timeboxMinutes": 8,
+    "traps": [
       {
-        "question": "Which of your numbers is doing the most work?",
-        "intent": "Whether you know where your own answer comes from, or only how to produce one. Candidates who have followed a template cannot answer this, because the template never told them.",
-        "goodAnswer": "The heavy tier's rate. Three hundred students at four cups a day is 8,400 cups, 37% of the total, and four is a judgement rather than an observation. Take it to three and the answer falls 9%; take it to six and it rises 18%. Nothing else I assumed moves the total by more than a tenth, and the visitor stream cannot move it by more than one per cent however hard you push.",
-        "weakAnswer": "'All of them matter', or naming the 1,200 — which is the one number handed to you and therefore the only one that cannot be wrong."
+        "trap": "Counting the students and calling it the campus.",
+        "whyItHappens": "The prompt hands you 1,200 and the mind treats a supplied number as the complete population — you anchor on the only figure in the question. Staff and faculty are invisible in exactly the way that permanent fixtures are invisible: they are always there, so they never register as a thing to count.",
+        "fix": "Write every headcount line before you write a single rate: students, faculty, staff, visitors. Here the non-students come to 5,070 cups, 22% of the answer. Losing them is not a rounding error, it is a fifth of the number and it is visible in your tree."
       },
       {
-        "question": "It is placement week. What changes?",
-        "intent": "Whether the tree is a live model or a finished sum. A model answers the second question in seconds; a sum has to be rebuilt.",
-        "goodAnswer": "Three things move together. Visitor-days jump from 60 to maybe 200, the night stall runs longer, and the heavy tier widens as the cohort sleeps less. The visitor jump is worth about 280 cups, barely one per cent — it is the behaviour shift that matters. Push the heavy tier to six cups and the week is nearer 27,500. So placement week is the top of my band, not a different question, and that is the useful thing to say.",
-        "weakAnswer": "'It goes up a lot' — a direction with no magnitude, and no statement of which stream carries the increase."
+        "trap": "One average cup rate across the whole cohort.",
+        "whyItHappens": "An average is faster to write and it feels defensible, so the instinct is to pick a middle number — two cups a day — and multiply. It gets to a plausible total by cancelling two errors against each other, and it destroys the information on the way: you can no longer see that a quarter of the cohort carries as much volume as half of it.",
+        "fix": "Segment by drinking intensity, not by year or section or gender. Three tiers is enough. Then when the interviewer pushes, the push lands on one tier's rate, you can move that rate and requote in ten seconds, and the answer survives the challenge."
       },
       {
-        "question": "The campus caterer says they pour 30,000 a week. Are you wrong?",
-        "intent": "Whether an external figure makes you abandon your method or interrogate the boundary. This is the probe that separates a candidate who understands their own model from one who was reciting it.",
-        "goodAnswer": "Thirty thousand is 31% above me, which is inside the range I would expect two honest counts to differ by — but I would look at the boundary before I moved a single assumption. A caterer counts cups poured, which includes the ones left half-drunk, the urn dregs and every cup at events I scoped out as non-typical. If the same contractor also runs the stall at the gate, that alone closes most of the gap. I would revise to about 26,000 and say precisely which assumption I moved and why.",
-        "weakAnswer": "'Then I will use their number', which throws away the method for an unexamined figure — or defending 22,920 as though it had been measured."
+        "trap": "Running the whole campus on a five-day week.",
+        "whyItHappens": "Working-week reflex, imported from every other estimation question you have practised. 'Residential' is the word in the prompt doing the work and it is easy to read past, because it looks like scene-setting rather than an instruction.",
+        "fix": "Give each stream its own day count and say why out loud: students seven, staff six, faculty five, academic-block pantry six. Four streams, four different weeks. Running students on five days alone removes 5,100 cups."
       },
       {
-        "question": "Size this for a 400-student campus instead.",
-        "intent": "Whether the tree scales or has to be rebuilt, and whether you can tell a variable stream from a fixed one. This is the same distinction that decides every cost case you will see later.",
-        "goodAnswer": "The student stream scales with headcount — a third of 17,850 is about 5,950. The other streams do not scale linearly, because a campus needs a security roster, a mess and an administration whatever its size: 200 staff might fall to 90, not to 67. Total lands near 9,000 to 10,000, and the per-head rate rises, because the fixed streams are now spread across fewer people. That last point is the interesting one — smaller campus, more cups per head.",
-        "weakAnswer": "'Divide everything by three', which assumes every stream is proportional to student count when none of the non-student ones is."
+        "trap": "Quoting 22,920.",
+        "whyItHappens": "The arithmetic produces it, and after the effort of getting there the number feels earned. But no chain of judgements each good to one significant figure yields five significant figures of output — the precision is manufactured entirely by the calculator.",
+        "fix": "Say 'roughly 23,000 a week, call it 18,000 to 28,000', then name the lever that sets the width of the band. A guesstimate answered as an exact figure signals that you do not understand what an estimate is, and that impression is expensive to reverse."
       },
       {
-        "question": "How would you check this in an afternoon?",
-        "intent": "Whether you can convert an estimate into a measurement plan. In practice this is what a client is paying for — the estimate is only what you do before the data arrives.",
-        "goodAnswer": "Two routes and I would rank them. Read the procurement ledger first: one week of tea-leaf and milk purchases gives the total with no behavioural assumption in it at all, and it takes twenty minutes. If that is not available, count from the supply side — stand at the canteen counter for three fifteen-minute blocks at different times of day and scale, which tests the throughput assumption directly and tells me whether my 80 cups an hour was a peak figure in disguise.",
-        "weakAnswer": "'Run a survey' — self-reported cup counts are the least reliable input available and the slowest to collect, and nobody remembers how many cups they had on Tuesday."
+        "trap": "Letting the boundary drift halfway through.",
+        "whyItHappens": "You scope it cleanly as cups served on campus, then three minutes later you remember the stall outside the gate and quietly fold it in, because it is obviously part of campus life. Nothing in the arithmetic objects. The tree is now summing two different quantities and neither of them is the one you defined.",
+        "fix": "Fix the boundary in one sentence before the first multiplication, and write it where you can see it. If you want to change it, change it out loud, say what it adds, and restate the answer. Moving a boundary is legitimate; moving it silently is not."
       },
       {
-        "question": "Your two routes are 9% apart. Which do you believe?",
-        "intent": "Whether you can reason about the direction of your own error rather than splitting the difference, which is the reflex answer and the wrong one.",
-        "goodAnswer": "The demand route, and for a stated reason: the supply route's error is systematic and upward. Hourly throughput at an outlet is reconstructed from memory, and you only remember the counter when there was a queue, so 80 cups an hour is a peak dressed up as an average. The demand route's errors are more symmetric — I could be wrong about the tier mix in either direction. So I take 23,000 as the point and use the gap to set the band.",
-        "weakAnswer": "'I would average them to 24,000' — which treats a known directional bias as though it were random noise, and quietly bakes the bias into the answer instead of correcting for it."
+        "trap": "Reaching for a national per-capita figure because it feels more rigorous than looking around.",
+        "whyItHappens": "A cited constant sounds like evidence and a personal observation sounds like a guess, so candidates import the national number to seem better prepared. On a closed population of 1,490 adults the national average is the weaker input, not the stronger one — it describes a population that does not resemble this one.",
+        "fix": "On a closed-population question, say plainly that local observation is the appropriate data and that you will use the national figure only as a back-check at the end. Then do exactly that: three times the national rate, in the direction you would predict, at a size you can argue."
       }
     ],
     "finalAnswerNumeric": 23000,
-    "tabLabel": "Campus chai, weekly",
-    "finalAnswer": "≈ 23,000 cups of chai a week on an ordinary term-time week — call it 18,000 to 28,000, or roughly 3,300 cups a day",
-    "scope": {
-      "countingWhat": "Individual cups of chai — tea brewed with milk, served hot — poured by campus outlets to anyone on site during one ordinary term-time week.",
-      "unit": "cups per week",
-      "timeBasis": "flow (per week)",
-      "geography": "A single residential postgraduate campus in India, 1,200 students living on site, one academic block, one mess, a canteen and a late-night stall. The campus is illustrative — built to show the method clearly, not drawn from any named institution.",
-      "included": [
-        "Students, faculty, support staff and day visitors — everyone physically on site",
-        "The canteen counter, the mess tea urns, the academic-block pantry and the late-night stall",
-        "Tea brewed in hostel rooms on personal kettles",
-        "Tea poured at meetings, guest lectures and recruiter visits in an ordinary week"
+    "number": "12",
+    "sensitivity": {
+      "assumptionId": "a_heavy_rate",
+      "whyThisLever": "It is the largest single number in the answer and the least observable one. The heavy tier is a quarter of the cohort carrying 8,400 cups — 37% of the total — and four cups a day is a memory of a canteen, not a count of anything. Every other candidate lever is either steadier or smaller: the staff and faculty rates are tied to a shift roster, the headcounts are structural, and the visitor stream cannot move the total by more than a per cent however hard you push it. If this answer is wrong, this is where it went wrong.",
+      "cases": [
+        {
+          "scenario": "Conservative",
+          "leverValue": "3 cups per day",
+          "answer": "≈ 20,800 cups a week",
+          "deltaVsBase": "−9%"
+        },
+        {
+          "scenario": "Base",
+          "leverValue": "4 cups per day",
+          "answer": "≈ 22,900 cups a week",
+          "deltaVsBase": "0%"
+        },
+        {
+          "scenario": "Aggressive",
+          "leverValue": "6 cups per day",
+          "answer": "≈ 27,100 cups a week",
+          "deltaVsBase": "+18%"
+        }
       ],
-      "excluded": [
-        "Chai bought at the stalls outside the gate, even when the drinker lives on campus",
-        "Coffee, green tea, black tea without milk, and packaged cold tea",
-        "Exam week, placement week and festival week — this is a typical week, and the answer says so",
-        "Vacation weeks, when the student stream collapses and the question becomes a different one"
-      ],
-      "boundaryTrap": "The question asks what the campus gets through — that is cups served on campus, not cups drunk by people who belong to the campus. The stall fifty metres outside the gate serves this population all day and falls outside the boundary; the tea poured for a visiting recruiter falls inside it, though the recruiter belongs to nobody here. The two readings differ by something like a fifth. Either is defensible. Answering without naming which one you took is not."
+      "breakpoint": "On this lever alone the answer only leaves the 18,000 to 28,000 band if the heavy tier is taking seven or more cups a day — 2,200 cups a day out of 300 people, which describes someone who lives at the counter rather than attends classes. Within any range you could defend out loud, the order of magnitude does not move. That is precisely what multi-stream aggregation buys you, and it is the argument for building it this way: four streams with independent errors, none of which can break the total on its own. A single-average model has no such protection — one wrong number there moves the whole answer proportionally.",
+      "oneLiner": "Call it 23,000 a week, and it hangs mainly on four cups a day for the heaviest quarter of the cohort — three takes it to 21,000, six takes it to 27,000, and nothing else I have assumed moves it by more than a tenth."
     },
-    "calculation": [
-      {
-        "id": "c1",
-        "label": "Heavy-tier students",
-        "expr": "1200 * 0.25",
-        "display": "1,200 students × 25% heavy tier",
-        "result": 300,
-        "unit": "students",
-        "uses": [
-          "a_students",
-          "a_heavy_share"
-        ],
-        "soWhat": "Fix the headcount of each tier before you touch a rate. Doing it in this order means the interviewer's challenge lands on one number rather than on a tangle of two."
-      },
-      {
-        "id": "c2",
-        "label": "Moderate-tier students",
-        "expr": "1200 * 0.5",
-        "display": "1,200 students × 50% moderate tier",
-        "result": 600,
-        "unit": "students",
-        "uses": [
-          "a_students",
-          "a_mod_share"
-        ],
-        "soWhat": "The median student sits here. If your mix put the median in the heavy tier, you have described a canteen queue rather than a cohort."
-      },
-      {
-        "id": "c3",
-        "label": "Light and non-drinking students",
-        "expr": "1200 * 0.25",
-        "display": "1,200 students × 25% light tier",
-        "result": 300,
-        "unit": "students",
-        "uses": [
-          "a_students",
-          "a_light_share"
-        ],
-        "soWhat": "Do not set this tier to zero. Some of them take the courtesy cup, and writing zero is a claim you cannot defend when it costs nothing to write 0.5."
-      },
-      {
-        "id": "c4",
-        "label": "Student cups per day",
-        "expr": "300 * 4 + 600 * 2 + 300 * 0.5",
-        "display": "(300 × 4) + (600 × 2) + (300 × 0.5) = 1,200 + 1,200 + 150",
-        "result": 2550,
-        "unit": "cups per day",
-        "uses": [
-          "a_heavy_rate",
-          "a_mod_rate",
-          "a_light_rate"
-        ],
-        "soWhat": "Read the three terms aloud: a quarter of the cohort drinks as much as half of it. That asymmetry is the whole reason for segmenting, and it is invisible the moment you use one blended rate."
-      },
-      {
-        "id": "c5",
-        "label": "Reverse check on the dominant stream",
-        "expr": "2550 / 1200",
-        "display": "2,550 cups ÷ 1,200 students",
-        "result": 2.125,
-        "unit": "cups per student per day",
-        "carriedForward": "≈ 2.1 cups per student per day",
-        "uses": [],
-        "soWhat": "Run this before you go any further. Two cups a day is a student you can picture. Had the tier mix produced five, you would have built a teahouse with a syllabus attached, and the error would have been buried in the total forever."
-      },
-      {
-        "id": "c6",
-        "label": "Student cups per week",
-        "expr": "2550 * 7",
-        "display": "2,550 cups per day × 7 days",
-        "result": 17850,
-        "unit": "cups per week",
-        "carriedForward": "≈ 17,900 cups",
-        "uses": [
-          "a_days_student"
-        ],
-        "soWhat": "Seven, not five. This is the single most common arithmetic slip on a residential question, and it quietly removes 5,100 cups."
-      },
-      {
-        "id": "c7",
-        "label": "Faculty cups per week",
-        "expr": "90 * 3 * 5",
-        "display": "90 faculty × 3 cups × 5 days",
-        "result": 1350,
-        "unit": "cups per week",
-        "uses": [
-          "a_faculty",
-          "a_faculty_rate",
-          "a_faculty_days"
-        ],
-        "soWhat": "Small in absolute terms. Included because a tree that stops at students is not a tree of the campus, and the interviewer can see the gap."
-      },
-      {
-        "id": "c8",
-        "label": "Support-staff cups per week",
-        "expr": "200 * 3 * 6",
-        "display": "200 staff × 3 cups × 6 days",
-        "result": 3600,
-        "unit": "cups per week",
-        "uses": [
-          "a_staff",
-          "a_staff_rate",
-          "a_staff_days"
-        ],
-        "soWhat": "Nearly three times the faculty stream, and the one most candidates never write down. The people who make the tea also drink it."
-      },
-      {
-        "id": "c9",
-        "label": "Visitor cups per week",
-        "expr": "60 * 2",
-        "display": "60 visitor-days × 2 cups",
-        "result": 120,
-        "unit": "cups per week",
-        "uses": [
-          "a_visitor_days",
-          "a_visitor_rate"
-        ],
-        "soWhat": "Half a per cent of the answer. Size it, say it is inside the rounding error, and move on — that sentence is the point of the line, not the 120."
-      },
-      {
-        "id": "c10",
-        "label": "Non-student streams combined",
-        "expr": "1350 + 3600 + 120",
-        "display": "1,350 faculty + 3,600 staff + 120 visitors",
-        "result": 5070,
-        "unit": "cups per week",
-        "carriedForward": "≈ 5,100 cups",
-        "uses": [],
-        "soWhat": "Say this number out loud: 5,070 cups, 22% of the answer, from the people the prompt never mentioned. It is also the vacation-week answer, which is a second result for no extra work."
-      },
-      {
-        "id": "c11",
-        "label": "Total cups per week",
-        "expr": "17850 + 5070",
-        "display": "17,850 students + 5,070 everyone else",
-        "result": 22920,
-        "unit": "cups per week",
-        "carriedForward": "≈ 23,000 cups a week",
-        "uses": [],
-        "soWhat": "Round it before you say it. Every input was a judgement to one significant figure, so quoting 22,920 claims a precision the chain cannot carry."
-      }
+    "sanityChecks": [
+      "Per head, the test that matters: 22,920 cups across the 1,490 people on site is 15 cups a head a week, a shade over two a day. Hold that against your own memory of a campus. Three a day and you have built a teahouse; one a day and you have built an office block.",
+      "Physically: 22,920 ÷ 7 is about 3,300 cups a day. At 100 ml a cup that is roughly 330 litres of chai, or one 20-litre urn emptied every hour across a sixteen-hour serving day. A campus with a canteen, a mess counter, a pantry and a night stall clears that without strain. A single kettle could not, and if your answer implied one could, the answer was wrong.",
+      "Against procurement: at roughly 3 g of leaf a cup, 22,920 cups is about 69 kg of tea a week — call it 3.6 tonnes a year, or 2.4 kg per person on site. India's per-capita consumption runs near 800 g a year, so this campus is at three times the national rate. For adults, urban, residential and with a subsidised counter, against a national average that includes infants and the coffee-drinking South, three times is the right direction and a defensible size. Thirty times would have told you something was broken.",
+      "The vacation test: strip out the students and you are left with 5,070 cups, the campus running on staff alone. If your tree cannot produce that second number in ten seconds, it was not built as a tree — it was built as one long multiplication with headings.",
+      "Shape check: students 78%, staff 16%, faculty 6%, visitors under 1%. State the shares, not only the total. An interviewer who disagrees with your answer usually disagrees with one share, and the shares are how they tell you which."
     ],
-    "orderOfMagnitude": "10^4",
     "assumptions": [
       {
         "id": "a_students",
@@ -6731,161 +7856,222 @@ export const guesstimates: readonly Guesstimate[] = [
         "confidence": "defensible"
       }
     ],
-    "question": "How many cups of chai does a 1,200-student residential campus get through in a week?",
-    "traps": [
+    "finalAnswer": "≈ 23,000 cups of chai a week on an ordinary term-time week — call it 18,000 to 28,000, or roughly 3,300 cups a day",
+    "calculation": [
       {
-        "trap": "Counting the students and calling it the campus.",
-        "whyItHappens": "The prompt hands you 1,200 and the mind treats a supplied number as the complete population — you anchor on the only figure in the question. Staff and faculty are invisible in exactly the way that permanent fixtures are invisible: they are always there, so they never register as a thing to count.",
-        "fix": "Write every headcount line before you write a single rate: students, faculty, staff, visitors. Here the non-students come to 5,070 cups, 22% of the answer. Losing them is not a rounding error, it is a fifth of the number and it is visible in your tree."
+        "id": "c1",
+        "label": "Heavy-tier students",
+        "expr": "1200 * 0.25",
+        "display": "1,200 students × 25% heavy tier",
+        "result": 300,
+        "unit": "students",
+        "uses": [
+          "a_students",
+          "a_heavy_share"
+        ],
+        "soWhat": "Fix the headcount of each tier before you touch a rate. Doing it in this order means the interviewer's challenge lands on one number rather than on a tangle of two."
       },
       {
-        "trap": "One average cup rate across the whole cohort.",
-        "whyItHappens": "An average is faster to write and it feels defensible, so the instinct is to pick a middle number — two cups a day — and multiply. It gets to a plausible total by cancelling two errors against each other, and it destroys the information on the way: you can no longer see that a quarter of the cohort carries as much volume as half of it.",
-        "fix": "Segment by drinking intensity, not by year or section or gender. Three tiers is enough. Then when the interviewer pushes, the push lands on one tier's rate, you can move that rate and requote in ten seconds, and the answer survives the challenge."
+        "id": "c2",
+        "label": "Moderate-tier students",
+        "expr": "1200 * 0.5",
+        "display": "1,200 students × 50% moderate tier",
+        "result": 600,
+        "unit": "students",
+        "uses": [
+          "a_students",
+          "a_mod_share"
+        ],
+        "soWhat": "The median student sits here. If your mix put the median in the heavy tier, you have described a canteen queue rather than a cohort."
       },
       {
-        "trap": "Running the whole campus on a five-day week.",
-        "whyItHappens": "Working-week reflex, imported from every other estimation question you have practised. 'Residential' is the word in the prompt doing the work and it is easy to read past, because it looks like scene-setting rather than an instruction.",
-        "fix": "Give each stream its own day count and say why out loud: students seven, staff six, faculty five, academic-block pantry six. Four streams, four different weeks. Running students on five days alone removes 5,100 cups."
+        "id": "c3",
+        "label": "Light and non-drinking students",
+        "expr": "1200 * 0.25",
+        "display": "1,200 students × 25% light tier",
+        "result": 300,
+        "unit": "students",
+        "uses": [
+          "a_students",
+          "a_light_share"
+        ],
+        "soWhat": "Do not set this tier to zero. Some of them take the courtesy cup, and writing zero is a claim you cannot defend when it costs nothing to write 0.5."
       },
       {
-        "trap": "Quoting 22,920.",
-        "whyItHappens": "The arithmetic produces it, and after the effort of getting there the number feels earned. But no chain of judgements each good to one significant figure yields five significant figures of output — the precision is manufactured entirely by the calculator.",
-        "fix": "Say 'roughly 23,000 a week, call it 18,000 to 28,000', then name the lever that sets the width of the band. A guesstimate answered as an exact figure signals that you do not understand what an estimate is, and that impression is expensive to reverse."
+        "id": "c4",
+        "label": "Student cups per day",
+        "expr": "300 * 4 + 600 * 2 + 300 * 0.5",
+        "display": "(300 × 4) + (600 × 2) + (300 × 0.5) = 1,200 + 1,200 + 150",
+        "result": 2550,
+        "unit": "cups per day",
+        "uses": [
+          "a_heavy_rate",
+          "a_mod_rate",
+          "a_light_rate"
+        ],
+        "soWhat": "Read the three terms aloud: a quarter of the cohort drinks as much as half of it. That asymmetry is the whole reason for segmenting, and it is invisible the moment you use one blended rate."
       },
       {
-        "trap": "Letting the boundary drift halfway through.",
-        "whyItHappens": "You scope it cleanly as cups served on campus, then three minutes later you remember the stall outside the gate and quietly fold it in, because it is obviously part of campus life. Nothing in the arithmetic objects. The tree is now summing two different quantities and neither of them is the one you defined.",
-        "fix": "Fix the boundary in one sentence before the first multiplication, and write it where you can see it. If you want to change it, change it out loud, say what it adds, and restate the answer. Moving a boundary is legitimate; moving it silently is not."
+        "id": "c5",
+        "label": "Reverse check on the dominant stream",
+        "expr": "2550 / 1200",
+        "display": "2,550 cups ÷ 1,200 students",
+        "result": 2.125,
+        "unit": "cups per student per day",
+        "carriedForward": "≈ 2.1 cups per student per day",
+        "uses": [],
+        "soWhat": "Run this before you go any further. Two cups a day is a student you can picture. Had the tier mix produced five, you would have built a teahouse with a syllabus attached, and the error would have been buried in the total forever."
       },
       {
-        "trap": "Reaching for a national per-capita figure because it feels more rigorous than looking around.",
-        "whyItHappens": "A cited constant sounds like evidence and a personal observation sounds like a guess, so candidates import the national number to seem better prepared. On a closed population of 1,490 adults the national average is the weaker input, not the stronger one — it describes a population that does not resemble this one.",
-        "fix": "On a closed-population question, say plainly that local observation is the appropriate data and that you will use the national figure only as a back-check at the end. Then do exactly that: three times the national rate, in the direction you would predict, at a size you can argue."
+        "id": "c6",
+        "label": "Student cups per week",
+        "expr": "2550 * 7",
+        "display": "2,550 cups per day × 7 days",
+        "result": 17850,
+        "unit": "cups per week",
+        "carriedForward": "≈ 17,900 cups",
+        "uses": [
+          "a_days_student"
+        ],
+        "soWhat": "Seven, not five. This is the single most common arithmetic slip on a residential question, and it quietly removes 5,100 cups."
+      },
+      {
+        "id": "c7",
+        "label": "Faculty cups per week",
+        "expr": "90 * 3 * 5",
+        "display": "90 faculty × 3 cups × 5 days",
+        "result": 1350,
+        "unit": "cups per week",
+        "uses": [
+          "a_faculty",
+          "a_faculty_rate",
+          "a_faculty_days"
+        ],
+        "soWhat": "Small in absolute terms. Included because a tree that stops at students is not a tree of the campus, and the interviewer can see the gap."
+      },
+      {
+        "id": "c8",
+        "label": "Support-staff cups per week",
+        "expr": "200 * 3 * 6",
+        "display": "200 staff × 3 cups × 6 days",
+        "result": 3600,
+        "unit": "cups per week",
+        "uses": [
+          "a_staff",
+          "a_staff_rate",
+          "a_staff_days"
+        ],
+        "soWhat": "Nearly three times the faculty stream, and the one most candidates never write down. The people who make the tea also drink it."
+      },
+      {
+        "id": "c9",
+        "label": "Visitor cups per week",
+        "expr": "60 * 2",
+        "display": "60 visitor-days × 2 cups",
+        "result": 120,
+        "unit": "cups per week",
+        "uses": [
+          "a_visitor_days",
+          "a_visitor_rate"
+        ],
+        "soWhat": "Half a per cent of the answer. Size it, say it is inside the rounding error, and move on — that sentence is the point of the line, not the 120."
+      },
+      {
+        "id": "c10",
+        "label": "Non-student streams combined",
+        "expr": "1350 + 3600 + 120",
+        "display": "1,350 faculty + 3,600 staff + 120 visitors",
+        "result": 5070,
+        "unit": "cups per week",
+        "carriedForward": "≈ 5,100 cups",
+        "uses": [],
+        "soWhat": "Say this number out loud: 5,070 cups, 22% of the answer, from the people the prompt never mentioned. It is also the vacation-week answer, which is a second result for no extra work."
+      },
+      {
+        "id": "c11",
+        "label": "Total cups per week",
+        "expr": "17850 + 5070",
+        "display": "17,850 students + 5,070 everyone else",
+        "result": 22920,
+        "unit": "cups per week",
+        "carriedForward": "≈ 23,000 cups a week",
+        "uses": [],
+        "soWhat": "Round it before you say it. Every input was a judgement to one significant figure, so quoting 22,920 claims a precision the chain cannot carry."
       }
     ],
-    "teachingPoint": "A closed population is the one question where your own eyes are legitimately the data — no national constant helps and nobody expects you to have read a report. What is being tested is whether you split that population into streams that genuinely drink at different rates, and then divide the total back by headcount to see whether you have described a campus you would recognise. Most candidates count the students, multiply by a single average, and stop. The students are only three-quarters of the answer, and the average is the thing hiding all the information."
+    "id": "campus-chai",
+    "tabLabel": "Campus chai, weekly",
+    "teachingPoint": "A closed population is the one question where your own eyes are legitimately the data — no national constant helps and nobody expects you to have read a report. What is being tested is whether you split that population into streams that genuinely drink at different rates, and then divide the total back by headcount to see whether you have described a campus you would recognise. Most candidates count the students, multiply by a single average, and stop. The students are only three-quarters of the answer, and the average is the thing hiding all the information.",
+    "orderOfMagnitude": "10^4",
+    "routeChoice": {
+      "chosen": "Bottom-up",
+      "why": "The population is closed and countable — 1,200 students in the prompt, a faculty roll, a staff roster — and the whole answer turns on rates that differ sharply between those groups. So build the streams separately, price each at its own rate, and sum. Everything you need is visible by standing in the place for a day, which is precisely the condition under which bottom-up beats every alternative.",
+      "rejectedRoute": "Top-down",
+      "rejectedWhyNot": "The top-down route is national tea consumption per head — roughly 800 g of leaf a year — scaled to 1,490 people on site and divided by 52. It produces a number, and the number is low by about a factor of three, because the national average is built from a population that includes infants, the coffee-drinking South and rural households brewing weak tea at home. An adult residential campus with a subsidised counter and a night stall does not resemble it. Top-down works when your sub-population looks like the whole; here you would import a constant that describes somebody else and then have no honest way to argue the correction factor. When the population is small, closed and unlike the national average, the national average is not data — it is a distraction."
+    },
+    "archetype": "closed-population"
   },
   {
-    "timeboxMinutes": 15,
-    "sensitivity": {
-      "assumptionId": "a_small_hours",
-      "whyThisLever": "It is the largest block of hours on the page and the least observable number on it. Four and a half lakh small operating companies at sixty hours each is 2.7 crore hours, 42% of the total, and sixty is a recollection of how a small audit runs rather than a count of anything. The obvious rival lever is the CA share of team hours, and it is deliberately not the one chosen: it multiplies the whole answer and therefore moves the number without touching the structure, so a grid on it teaches nothing you could not do in your head. This lever is different. It does not only move the size of the answer — it moves the shape, because it decides whether the concentrated top of the register or the long tail is the story. A lever that can change your conclusion is worth more of your fifteen minutes than a lever that can only change your arithmetic.",
-      "cases": [
-        {
-          "scenario": "Conservative",
-          "leverValue": "30 hours per small audit",
-          "answer": "≈ 15,800 practitioners",
-          "deltaVsBase": "−21%"
-        },
-        {
-          "scenario": "Base",
-          "leverValue": "60 hours per small audit",
-          "answer": "≈ 20,000 practitioners",
-          "deltaVsBase": "0%"
-        },
-        {
-          "scenario": "Aggressive",
-          "leverValue": "100 hours per small audit",
-          "answer": "≈ 25,500 practitioners",
-          "deltaVsBase": "+28%"
-        }
-      ],
-      "breakpoint": "Two breakpoints, and only one of them is about the number. On size, the answer leaves the 14,000 to 30,000 band below roughly 22 hours or above roughly 120 hours per small audit — and the order of magnitude survives anything from 5 hours to 400, an eightyfold swing, which is the real reason to be confident about 10^4 and not about 20,000. On shape, the breakpoint is exactly 40 hours: below it the top 50,000 companies carry more than half the hours and the concentrated story is right, above it the tail carries more and the story is the opposite. The base case of 60 hours sits on the tail side of that line, which is why the concentration check came back at 43% rather than the 80% the reflex expects. If an interviewer talks you down to 40 hours, do not only requote the number — tell them their assumption has just changed which half of the register your recommendation would be about.",
-      "oneLiner": "Call it 20,000, and it hangs mainly on sixty hours to audit a small operating company — thirty takes it to 15,800, a hundred takes it to 25,500, and at forty the long tail stops being the story and the top of the register takes over."
-    },
-    "number": "11",
-    "difficulty": "Hard",
-    "id": "audit-capacity-cas",
-    "archetype": "occupational-cohort",
-    "routeChoice": {
-      "chosen": "Hybrid",
-      "why": "Take the company population from the top, because the MCA register is a published count and nothing you build from the bottom will beat it. Build the audit hours from the bottom, tier by tier, because the register spans two orders of magnitude in work content and there is no average that survives it. Then convert work into people with a capacity rate. Top for the population, bottom for the workload — say which half of the question you are treating which way, out loud, before you start. That sentence is worth a mark on its own, because it tells the interviewer you chose a route rather than defaulted to one.",
-      "rejectedRoute": "Top-down",
-      "rejectedWhyNot": "The clean top-down route is the money: take India's statutory audit fee pool, divide by fee revenue per practising CA, and read off practitioners. It fails on both terms. Audit fees run from about ten thousand rupees for a dormant private limited to several crore for a large listed group — four orders of magnitude — so a blended fee per audit describes no company that exists, and the pool is dominated by a few thousand engagements while the headcount is dominated by the tail. Worse, fee and effort have come apart at the bottom: the small-company audit is competitively priced near a floor almost regardless of the work it takes, so dividing by a fee measures pricing power rather than labour. Money is the right currency when money varies smoothly with the thing you want. Here it does not, and using it would hand you a number you could not defend for a single one of its inputs."
-    },
-    "sanityChecks": [
-      "Audits per practitioner, the test that matters most: 15 lakh companies across 20,000 practitioners is 75 a year, about one and a half a week. In a book whose median client is a dormant shell signed off in a morning, that is a practice you would recognise. Five hundred a year would describe a rubber stamp, and five would describe a profession ten times larger than the one that exists.",
-      "Against the roll: 20,000 out of roughly 1.4 lakh practising members is one practitioner in seven. Statutory company audit should be a large but not dominant share of what Indian practice does, because tax, GST, certification and ROC work carry more people than audit does. An answer near a lakh would have claimed the profession does almost nothing else, and that claim is visibly false to anyone who has spent a week inside a CA office.",
-      "The statutory floor: the Companies Act caps how many company audits one member may sign, with the dormant and small-company tail carved out of the cap. The cap therefore binds on the 50,000 companies in the top two tiers — at twenty apiece that needs at least 2,500 signing partners, and 20,000 clears it comfortably. This is the rare guesstimate where a statute rather than a judgement sets your floor, and an answer below about 3,000 would have been illegal before it was implausible.",
-      "Hours per company: 6.5 crore hours over 15 lakh companies averages 43 hours, a little over one working week of team time for the average company on the register. Given that two-thirds of the register files nothing of substance, the average ought to feel low — and a model that had produced 400 hours for the average Indian company would have described a register made entirely of listed groups.",
-      "The season test: 20,000 is a full-year equivalent, and the year is not flat. Put half the hours in one quarter, allow that the quarter is worked at a much longer day, and the same work needs roughly 30,000 people in the field in the crunch. Hold that against what a CA firm actually looks like in September. If your tree cannot produce the peak number from the annual one in ten seconds, it was a sum with headings rather than a model.",
-      "Direction of the error: three of the four largest levers — the dormant share, the hours per small audit and the CA share of team hours — would each be pushed up by an interviewer who thinks small audits are more work than you assumed, and down by one who thinks most of the tail is signed off with little fieldwork. The band is wide because both of those views of the Indian small-company audit are held by people who know the market. Say which one you have assumed, and the width stops looking like vagueness."
-    ],
     "answerBand": "14,000 – 30,000 practising chartered accountants",
-    "tree": {
-      "root": "Practising chartered accountants required for one year of statutory company audit",
-      "rootFormula": "= Audit team-hours demanded ÷ Team-hours one practitioner carries in a year",
-      "value": "≈ 20,000 practitioners",
-      "branches": [
-        {
-          "label": "Audit team-hours demanded",
-          "formula": "= Σ (companies in tier × hours per audit)",
-          "value": "6.5 crore team-hours a year",
-          "note": "Four tiers, because the register is not one population. The spread between the top tier and the bottom is 200 to 1 on hours per audit — wider than almost any segmentation you will build in a case, and the reason an average here is not a simplification but an error.",
-          "isCriticalPath": true,
-          "children": [
-            {
-              "label": "Listed and large unlisted — 5,000 companies",
-              "formula": "5,000 companies × 2,000 hours",
-              "value": "1.0 crore hours — 15% of the total",
-              "note": "The tier average hides a tenfold spread inside itself: a large listed group runs into tens of thousands of hours and a newly listed small-cap into a few hundred. Say that the average is doing rough work here, because the interviewer already knows it."
-            },
-            {
-              "label": "Mid-size operating companies — 45,000",
-              "formula": "45,000 companies × 400 hours",
-              "value": "1.8 crore hours — 28% of the total",
-              "note": "Real operations, statutory thresholds crossed, an engagement team rather than one person with a laptop. Ten weeks of a small team, which is what 400 hours buys."
-            },
-            {
-              "label": "Small operating companies — 4.5 lakh",
-              "formula": "450,000 companies × 60 hours",
-              "value": "2.7 crore hours — 42% of the total",
-              "note": "The largest single block of hours on the page, and the softest number. Sixty hours is a fortnight of one article and a day of the partner. This is the tier the whole answer swings on."
-            },
-            {
-              "label": "Dormant and nil-filing companies — 10 lakh",
-              "formula": "1,000,000 companies × 10 hours",
-              "value": "1.0 crore hours — 15% of the total",
-              "note": "Ten hours for a set of accounts with nothing in it. Individually trivial, collectively a crore of hours — which is the whole argument against writing the tail off at zero because it feels negligible."
-            }
-          ]
-        },
-        {
-          "label": "Team-hours one practitioner carries in a year",
-          "formula": "= (Chargeable hours × audit share of the year) ÷ CA share of team hours",
-          "value": "3,250 team-hours per practitioner",
-          "note": "Three haircuts in sequence, and candidates typically apply none of them. This branch is small on the page and carries half the answer, because it is the divisor.",
-          "children": [
-            {
-              "label": "Chargeable hours in a year",
-              "formula": "250 working days × 7 chargeable hours",
-              "value": "1,750 hours",
-              "note": "Not 2,000. Two hundred and fifty days is 260 weekdays less about 25 days of leave and holidays, plus the fifteen or so Saturdays the season takes back. Seven chargeable hours is a nine-hour day with the practice management taken out."
-            },
-            {
-              "label": "Share of the chargeable year on statutory audit",
-              "formula": "1,750 hours × 65%",
-              "value": "1,137.5 CA-hours",
-              "note": "Even a practitioner whose practice is built on audit gives a third of the year to tax audit, certification and running the firm. A model that gives them the whole year has quietly invented a person."
-            },
-            {
-              "label": "Leverage — CA share of team hours",
-              "formula": "1,137.5 CA-hours ÷ 35%",
-              "value": "3,250 team-hours",
-              "note": "The distinctively Indian step. Article assistants deliver roughly two-thirds of audit fieldwork hours under a member's signature, so one practitioner's year puts far more team-hours in the field than their own. Ignore this and you need 57,000 CAs and cannot explain where they are."
-            }
-          ]
-        },
-        {
-          "label": "Season concentration — named, and deliberately not multiplied in",
-          "formula": "Peak headcount ≈ FTE × season factor",
-          "value": "≈ 30,000 bodies in the July–September crunch",
-          "note": "Roughly half the hours fall in one quarter, which is twice the even-spread run rate; the season is also worked at a longer day, so call the headcount multiplier about 1.5 rather than 2. The annual requirement is 20,000 and the peak requirement is near 30,000. Both are correct answers to different questions. Put it in the tree, state it, and leave it out of the headline — folding it in silently would be answering a question nobody asked.",
-          "children": []
-        }
-      ]
+    "scope": {
+      "countingWhat": "Practising chartered accountants whose working year is consumed by the statutory audit of companies on the MCA register — the headcount the annual workload requires, not the number of members the profession happens to have.",
+      "unit": "practising chartered accountants",
+      "timeBasis": "flow (per year)",
+      "geography": "India — every company on the MCA register, and every practice that audits one, from a Nariman Point partnership to a single-room proprietorship in a district town. The tier counts and hour rates below are illustrative — built to show the method clearly, not asserted as verified market data.",
+      "included": [
+        "Statutory audit under the Companies Act of every registered company — private and public, listed and unlisted, operating and dormant",
+        "Chartered accountant hours at every grade on the engagement, from the senior reviewing a bank reconciliation to the partner who signs",
+        "CAs employed inside firms as well as sole practitioners — the work is what is counted, not the shape of the practice",
+        "Consolidation, group reporting and the internal financial controls opinion, where the audit carries them"
+      ],
+      "excluded": [
+        "Tax audit under the Income-tax Act, GST annual return certification, internal audit, ROC filings, valuation and advisory — profitable neighbours of the statutory audit, and not it",
+        "Audits of entities that are not registered companies: LLPs, partnership firms, trusts, societies and co-operatives",
+        "Article assistants and non-CA staff, who appear inside the hours as leverage and never as practitioners",
+        "The roughly two-thirds of ICAI members who work in industry and government and sign nothing"
+      ],
+      "boundaryTrap": "The question sounds like a stock and is a flow divided by a rate — a year of audit work converted into the practitioners it consumes. Two things break here. First, candidates answer with the supply, because four lakh chartered accountants is a number they can recall and the demand is a number they have to build; the supply is precisely what the question is asking you to test, so importing it is assuming the answer. Second, the Indian audit year is not a year. With 31 March year-ends and filing deadlines bunched into the following autumn, roughly half the hours land in a single quarter — so a full-time-equivalent count and a peak-season headcount are different numbers, and you must say which one you are quoting before you quote it."
     },
+    "question": "How many practising chartered accountants does it take to get India's companies through one year of statutory audit?",
+    "difficulty": "Hard",
+    "probes": [
+      {
+        "question": "India has about four lakh chartered accountants. You say the work needs twenty thousand. Is the rest of the profession doing nothing?",
+        "intent": "Whether you can hold a demand-side answer against a supply-side fact without either abandoning your method or dismissing the fact. The question is built so that both reflexes are wrong.",
+        "goodAnswer": "The two numbers are not comparable, and the gap is what I would expect. Of four lakh members, roughly a third hold a Certificate of Practice — the other two-thirds are in industry, banking and government and sign nothing. That leaves about 1.4 lakh in practice, of whom my estimate says one in seven is audit-led. The rest run tax, GST, certification, ROC and advisory practices, which is where the volume of Indian professional work actually sits. So the finding is not that the profession is idle. It is that statutory company audit is a smaller part of what chartered accountants do than the public image of the qualification suggests.",
+        "weakAnswer": "Revising the estimate upward to close the gap, which mistakes a stock of qualified people for a measure of the work, and throws away the only independent check the answer had."
+      },
+      {
+        "question": "Ten hours to audit a dormant company. Defend it.",
+        "intent": "Whether you can defend the softest-looking number without over-claiming or folding, and whether you know which of your numbers is actually fragile. The tier carries a crore of hours, so it is not a throwaway.",
+        "goodAnswer": "A dormant company still has a balance sheet carrying share capital, a bank balance and preliminary expenses, and the report still has to be drafted, reviewed and signed. A morning is about right. What matters more is that the tier's weight comes from its count and not its rate — halve it to five hours and the answer falls about 6%, so this is not where my estimate is fragile. If you want to push on something, push on sixty hours for the four and a half lakh small operating companies. That is 42% of my hours and a number I am genuinely less sure of.",
+        "weakAnswer": "Dropping the tier to zero because the audits are trivial, which loses a crore of hours — as large as the entire listed tier — on the grounds that each individual piece of it is small."
+      },
+      {
+        "question": "Suppose small companies are exempted from statutory audit. What happens to your number?",
+        "intent": "Whether the tree is a live model or a finished sum, and whether you can separate the share of clients lost from the share of work lost. Those come apart sharply here, which is the point of the probe.",
+        "goodAnswer": "It depends where the line is drawn, so let me do two. Exempt the dormant tier only and I lose a crore of hours out of 6.5 — the requirement falls to about 17,000, down 15%, while 67% of the clients disappear. Exempt the small operating tier as well and I lose 3.7 crore hours, the requirement falls to about 8,600, down 57%, and 97% of the clients have gone. The asymmetry is the finding: you can take nearly every company out of the audit net and still leave more than 40% of the profession's audit work standing. For a regulator that is the argument for exemption. For the practices in the tail it is close to the whole business, because their revenue tracks client count rather than hours.",
+        "weakAnswer": "'It falls a lot' — a direction with no magnitude, and no recognition that the share of companies lost and the share of hours lost differ by a factor of two."
+      },
+      {
+        "question": "Your two routes came out 5% apart. Does that mean you are right?",
+        "intent": "Whether you understand what a cross-check can and cannot prove. The reflex is to treat agreement as validation, and the reflex is wrong.",
+        "goodAnswer": "No, and I would not claim it. Neither route is good to better than a factor of two, so five per cent apart is closer than they deserve and partly luck. What the agreement does establish is a negative: two methods sharing almost no inputs failed to contradict each other, and they fail for unrelated reasons — mine breaks if hours per small audit are wrong, the supply route breaks if the practice mix is wrong. So I would quote 20,000 with a band of 14,000 to 30,000, take the demand route as the point estimate because it has more independent terms and averages more of its own error away, and be plain that the band comes from the sensitivity grid rather than from the gap between the routes.",
+        "weakAnswer": "'The two routes confirm each other, so I am confident in 20,500' — which reads agreement as evidence and manufactures a fifth significant figure out of two rough models."
+      },
+      {
+        "question": "It is 15 September and the filings are due. Which number do you give the ministry?",
+        "intent": "Whether you noticed the seasonality you scoped, and whether you can tell which of two correct numbers answers the question actually in front of you.",
+        "goodAnswer": "Not the twenty thousand. That is a full-year equivalent and September is not an average month — roughly half the year's hours fall in this quarter, which is twice the even-spread run rate, and even allowing that the season is worked at a much longer day the field needs about 30,000 people in it rather than 20,000. So the answer to a ministry asking whether the deadline is achievable is 30,000, and the sentence worth saying after it is that India's audit capacity problem is a calendar problem rather than a headcount problem. Staggering year-ends would do more for it than qualifying more chartered accountants.",
+        "weakAnswer": "Repeating 20,000, which is the right answer to the annual question and the wrong answer to this one — and which suggests the seasonality was scoped as a formality rather than understood."
+      },
+      {
+        "question": "You have a week and access to the ICAI and the MCA. How would you replace this with real data?",
+        "intent": "Whether you can turn an estimate into a measurement plan, and whether you can rank that plan by how much uncertainty each step removes. In practice this is what the estimate was for.",
+        "goodAnswer": "Three things, ranked by how much of my band they close. First, the MCA filing data gives me the tier counts and the paid-up capital and turnover distribution directly, which replaces my dormant share and my tier sizes with counts and costs a day. Second, time-sheet data from three firms of different sizes — one large, one mid-tier, one proprietorship — gives me hours per audit by tier and the CA share of those hours, which is where 90% of my remaining uncertainty sits and the only step that needs anyone's cooperation. Third, the ICAI firm register gives me the practice mix for the supply route. I would not survey practitioners on how many hours they work: self-reported hours in a profession with a nine-month season are the least reliable input available.",
+        "weakAnswer": "'Get the ICAI data', with no statement of which assumption it would replace or how much of the band it would close — a plan to collect data rather than a plan to resolve a specific uncertainty."
+      }
+    ],
     "triangulation": {
       "label": "Supply-side cross-check — count the profession, not the work",
       "route": "Top-down",
@@ -6960,226 +8146,148 @@ export const guesstimates: readonly Guesstimate[] = [
       "answer": "≈ 21,000 practitioners, against ≈ 20,000 from the demand route — about 5% apart",
       "verdict": "Five per cent is closer than either route deserves, and saying so is worth more than claiming the match as confirmation. Neither route is good to better than a factor of two, so the honest reading is not that the answer is 20,500 but that two methods built on almost entirely different inputs failed to contradict each other — a weaker statement and a more useful one. What makes the agreement worth anything is that the routes fail in unrelated ways: the demand route breaks if hours per small audit are wrong, the supply route breaks if the practice mix is wrong, and there is no mechanism by which one of those errors would produce the other. Take 20,000 as the point estimate, because the demand route has more independent terms and therefore averages more of its own error away. Then take the finding the demand route could not produce on its own: 20,000 needed out of roughly 1.4 lakh practising members means the capacity exists with room, so the binding constraint on India's audit system is not the size of the profession. It is the calendar."
     },
-    "probes": [
+    "tree": {
+      "root": "Practising chartered accountants required for one year of statutory company audit",
+      "rootFormula": "= Audit team-hours demanded ÷ Team-hours one practitioner carries in a year",
+      "value": "≈ 20,000 practitioners",
+      "branches": [
+        {
+          "label": "Audit team-hours demanded",
+          "formula": "= Σ (companies in tier × hours per audit)",
+          "value": "6.5 crore team-hours a year",
+          "note": "Four tiers, because the register is not one population. The spread between the top tier and the bottom is 200 to 1 on hours per audit — wider than almost any segmentation you will build in a case, and the reason an average here is not a simplification but an error.",
+          "isCriticalPath": true,
+          "children": [
+            {
+              "label": "Listed and large unlisted — 5,000 companies",
+              "formula": "5,000 companies × 2,000 hours",
+              "value": "1.0 crore hours — 15% of the total",
+              "note": "The tier average hides a tenfold spread inside itself: a large listed group runs into tens of thousands of hours and a newly listed small-cap into a few hundred. Say that the average is doing rough work here, because the interviewer already knows it."
+            },
+            {
+              "label": "Mid-size operating companies — 45,000",
+              "formula": "45,000 companies × 400 hours",
+              "value": "1.8 crore hours — 28% of the total",
+              "note": "Real operations, statutory thresholds crossed, an engagement team rather than one person with a laptop. Ten weeks of a small team, which is what 400 hours buys."
+            },
+            {
+              "label": "Small operating companies — 4.5 lakh",
+              "formula": "450,000 companies × 60 hours",
+              "value": "2.7 crore hours — 42% of the total",
+              "note": "The largest single block of hours on the page, and the softest number. Sixty hours is a fortnight of one article and a day of the partner. This is the tier the whole answer swings on."
+            },
+            {
+              "label": "Dormant and nil-filing companies — 10 lakh",
+              "formula": "1,000,000 companies × 10 hours",
+              "value": "1.0 crore hours — 15% of the total",
+              "note": "Ten hours for a set of accounts with nothing in it. Individually trivial, collectively a crore of hours — which is the whole argument against writing the tail off at zero because it feels negligible."
+            }
+          ]
+        },
+        {
+          "label": "Team-hours one practitioner carries in a year",
+          "formula": "= (Chargeable hours × audit share of the year) ÷ CA share of team hours",
+          "value": "3,250 team-hours per practitioner",
+          "note": "Three haircuts in sequence, and candidates typically apply none of them. This branch is small on the page and carries half the answer, because it is the divisor.",
+          "children": [
+            {
+              "label": "Chargeable hours in a year",
+              "formula": "250 working days × 7 chargeable hours",
+              "value": "1,750 hours",
+              "note": "Not 2,000. Two hundred and fifty days is 260 weekdays less about 25 days of leave and holidays, plus the fifteen or so Saturdays the season takes back. Seven chargeable hours is a nine-hour day with the practice management taken out."
+            },
+            {
+              "label": "Share of the chargeable year on statutory audit",
+              "formula": "1,750 hours × 65%",
+              "value": "1,137.5 CA-hours",
+              "note": "Even a practitioner whose practice is built on audit gives a third of the year to tax audit, certification and running the firm. A model that gives them the whole year has quietly invented a person."
+            },
+            {
+              "label": "Leverage — CA share of team hours",
+              "formula": "1,137.5 CA-hours ÷ 35%",
+              "value": "3,250 team-hours",
+              "note": "The distinctively Indian step. Article assistants deliver roughly two-thirds of audit fieldwork hours under a member's signature, so one practitioner's year puts far more team-hours in the field than their own. Ignore this and you need 57,000 CAs and cannot explain where they are."
+            }
+          ]
+        },
+        {
+          "label": "Season concentration — named, and deliberately not multiplied in",
+          "formula": "Peak headcount ≈ FTE × season factor",
+          "value": "≈ 30,000 bodies in the July–September crunch",
+          "note": "Roughly half the hours fall in one quarter, which is twice the even-spread run rate; the season is also worked at a longer day, so call the headcount multiplier about 1.5 rather than 2. The annual requirement is 20,000 and the peak requirement is near 30,000. Both are correct answers to different questions. Put it in the tree, state it, and leave it out of the headline — folding it in silently would be answering a question nobody asked.",
+          "children": []
+        }
+      ]
+    },
+    "timeboxMinutes": 15,
+    "traps": [
       {
-        "question": "India has about four lakh chartered accountants. You say the work needs twenty thousand. Is the rest of the profession doing nothing?",
-        "intent": "Whether you can hold a demand-side answer against a supply-side fact without either abandoning your method or dismissing the fact. The question is built so that both reflexes are wrong.",
-        "goodAnswer": "The two numbers are not comparable, and the gap is what I would expect. Of four lakh members, roughly a third hold a Certificate of Practice — the other two-thirds are in industry, banking and government and sign nothing. That leaves about 1.4 lakh in practice, of whom my estimate says one in seven is audit-led. The rest run tax, GST, certification, ROC and advisory practices, which is where the volume of Indian professional work actually sits. So the finding is not that the profession is idle. It is that statutory company audit is a smaller part of what chartered accountants do than the public image of the qualification suggests.",
-        "weakAnswer": "Revising the estimate upward to close the gap, which mistakes a stock of qualified people for a measure of the work, and throws away the only independent check the answer had."
+        "trap": "Answering with the supply.",
+        "whyItHappens": "Four lakh chartered accountants is a figure the candidate can recall and the audit workload is a figure they would have to build. The mind substitutes the available question for the asked one and rarely notices the swap, because what comes out is a number about chartered accountants and therefore feels responsive. It is not. The question is whether the work needs more or fewer people than the profession has, and you cannot test that with the profession's own headcount as your input.",
+        "fix": "Build the demand chain to the end before the roll is allowed anywhere near the model. Then bring the roll in as the triangulation, where it belongs, and let the comparison do the work it was always going to do — 20,000 needed against 1.4 lakh practising is the finding, and it only exists because the two numbers were produced independently."
       },
       {
-        "question": "Ten hours to audit a dormant company. Defend it.",
-        "intent": "Whether you can defend the softest-looking number without over-claiming or folding, and whether you know which of your numbers is actually fragile. The tier carries a crore of hours, so it is not a throwaway.",
-        "goodAnswer": "A dormant company still has a balance sheet carrying share capital, a bank balance and preliminary expenses, and the report still has to be drafted, reviewed and signed. A morning is about right. What matters more is that the tier's weight comes from its count and not its rate — halve it to five hours and the answer falls about 6%, so this is not where my estimate is fragile. If you want to push on something, push on sixty hours for the four and a half lakh small operating companies. That is 42% of my hours and a number I am genuinely less sure of.",
-        "weakAnswer": "Dropping the tier to zero because the audits are trivial, which loses a crore of hours — as large as the entire listed tier — on the grounds that each individual piece of it is small."
+        "trap": "One average audit across the register.",
+        "whyItHappens": "Averaging is the default move and it feels neutral rather than like a choice. But the register spans 200 to 1 in work content between a dormant shell and a listed group, and the error an average makes across a distribution that wide is neither small nor random — anchor on the large end and you overstate by a factor of ten, anchor on the small end and you lose the top tier's crore of hours entirely.",
+        "fix": "Four tiers, sized before any of them is priced. It costs ninety seconds of the fifteen minutes and it converts the interviewer's hardest challenge into a challenge against one tier's rate, which you can move and requote without rebuilding anything."
       },
       {
-        "question": "Suppose small companies are exempted from statutory audit. What happens to your number?",
-        "intent": "Whether the tree is a live model or a finished sum, and whether you can separate the share of clients lost from the share of work lost. Those come apart sharply here, which is the point of the probe.",
-        "goodAnswer": "It depends where the line is drawn, so let me do two. Exempt the dormant tier only and I lose a crore of hours out of 6.5 — the requirement falls to about 17,000, down 15%, while 67% of the clients disappear. Exempt the small operating tier as well and I lose 3.7 crore hours, the requirement falls to about 8,600, down 57%, and 97% of the clients have gone. The asymmetry is the finding: you can take nearly every company out of the audit net and still leave more than 40% of the profession's audit work standing. For a regulator that is the argument for exemption. For the practices in the tail it is close to the whole business, because their revenue tracks client count rather than hours.",
-        "weakAnswer": "'It falls a lot' — a direction with no magnitude, and no recognition that the share of companies lost and the share of hours lost differ by a factor of two."
+        "trap": "Announcing the 80-20 instead of testing it.",
+        "whyItHappens": "Concentration holds so often in business that candidates state it as a finding before they have computed anything, and the statement then quietly shapes the rest of the answer. Here it does not hold in the usual form. The top 3% of companies carry 43% of the hours, because ten lakh dormant companies at ten hours each are still a crore of hours and cannot be dismissed however trivial any one of them is.",
+        "fix": "Declare the shape you expect, compute the share, and then say whether it held. Correcting your own declaration out loud is one of the strongest things you can do in a case, because it demonstrates that the number moved you rather than the other way round."
       },
       {
-        "question": "Your two routes came out 5% apart. Does that mean you are right?",
-        "intent": "Whether you understand what a cross-check can and cannot prove. The reflex is to treat agreement as validation, and the reflex is wrong.",
-        "goodAnswer": "No, and I would not claim it. Neither route is good to better than a factor of two, so five per cent apart is closer than they deserve and partly luck. What the agreement does establish is a negative: two methods sharing almost no inputs failed to contradict each other, and they fail for unrelated reasons — mine breaks if hours per small audit are wrong, the supply route breaks if the practice mix is wrong. So I would quote 20,000 with a band of 14,000 to 30,000, take the demand route as the point estimate because it has more independent terms and averages more of its own error away, and be plain that the band comes from the sensitivity grid rather than from the gap between the routes.",
-        "weakAnswer": "'The two routes confirm each other, so I am confident in 20,500' — which reads agreement as evidence and manufactures a fifth significant figure out of two rough models."
+        "trap": "Dividing hours by 2,000.",
+        "whyItHappens": "Two thousand hours a year is the most widely repeated figure in professional services, and it is a gross salaried year rather than a chargeable practitioner year. Two separate haircuts go missing behind it: the non-chargeable share of the working day, and the share of the practitioner's year that goes to tax audit, certification and running the firm.",
+        "fix": "Build the divisor in two visible lines — 250 days at 7 chargeable hours, then 65% of that year on statutory audit — and say what each haircut is for. Skipping both lands the answer near 11,000 against 20,000, roughly 40% low, and it lands there while looking rigorous."
       },
       {
-        "question": "It is 15 September and the filings are due. Which number do you give the ministry?",
-        "intent": "Whether you noticed the seasonality you scoped, and whether you can tell which of two correct numbers answers the question actually in front of you.",
-        "goodAnswer": "Not the twenty thousand. That is a full-year equivalent and September is not an average month — roughly half the year's hours fall in this quarter, which is twice the even-spread run rate, and even allowing that the season is worked at a much longer day the field needs about 30,000 people in it rather than 20,000. So the answer to a ministry asking whether the deadline is achievable is 30,000, and the sentence worth saying after it is that India's audit capacity problem is a calendar problem rather than a headcount problem. Staggering year-ends would do more for it than qualifying more chartered accountants.",
-        "weakAnswer": "Repeating 20,000, which is the right answer to the annual question and the wrong answer to this one — and which suggests the seasonality was scoped as a formality rather than understood."
+        "trap": "Converting every audit hour into a chartered accountant hour.",
+        "whyItHappens": "The model asks for CAs, so the instinct is to treat audit hours and CA hours as the same quantity. In India they are further apart than in almost any other profession, because articleship puts a large trained-but-unqualified workforce in the field under a member's signature, and most of the fieldwork hours are theirs.",
+        "fix": "Put leverage in as its own line. It is the single largest correction on the page — at 35% the answer is 20,000, and at 100% it would be 57,000, a number the profession could not supply and which should therefore have told you a step was missing."
       },
       {
-        "question": "You have a week and access to the ICAI and the MCA. How would you replace this with real data?",
-        "intent": "Whether you can turn an estimate into a measurement plan, and whether you can rank that plan by how much uncertainty each step removes. In practice this is what the estimate was for.",
-        "goodAnswer": "Three things, ranked by how much of my band they close. First, the MCA filing data gives me the tier counts and the paid-up capital and turnover distribution directly, which replaces my dormant share and my tier sizes with counts and costs a day. Second, time-sheet data from three firms of different sizes — one large, one mid-tier, one proprietorship — gives me hours per audit by tier and the CA share of those hours, which is where 90% of my remaining uncertainty sits and the only step that needs anyone's cooperation. Third, the ICAI firm register gives me the practice mix for the supply route. I would not survey practitioners on how many hours they work: self-reported hours in a profession with a nine-month season are the least reliable input available.",
-        "weakAnswer": "'Get the ICAI data', with no statement of which assumption it would replace or how much of the band it would close — a plan to collect data rather than a plan to resolve a specific uncertainty."
+        "trap": "Quoting one number when the year has two.",
+        "whyItHappens": "A single figure feels like a finished answer, and the annual full-time equivalent is the one that falls out of the arithmetic. But the Indian audit calendar is bunched into the months before the filing deadlines, so the annual requirement and the peak-season requirement are genuinely different quantities — and for anyone actually deciding something, the peak one is usually the number that matters.",
+        "fix": "Quote both in one sentence, with the basis of each stated: about 20,000 across the year and about 30,000 in the crunch. Then say which question each one answers. A candidate who volunteers the second number has understood that the estimate exists to support a decision rather than to close the conversation."
       }
     ],
     "finalAnswerNumeric": 20000,
-    "tabLabel": "CA audit capacity",
-    "finalAnswer": "≈ 20,000 practising chartered accountants carry India's statutory company audit — call it 14,000 to 30,000, and roughly 30,000 bodies in the field during the autumn filing crunch",
-    "scope": {
-      "countingWhat": "Practising chartered accountants whose working year is consumed by the statutory audit of companies on the MCA register — the headcount the annual workload requires, not the number of members the profession happens to have.",
-      "unit": "practising chartered accountants",
-      "timeBasis": "flow (per year)",
-      "geography": "India — every company on the MCA register, and every practice that audits one, from a Nariman Point partnership to a single-room proprietorship in a district town. The tier counts and hour rates below are illustrative — built to show the method clearly, not asserted as verified market data.",
-      "included": [
-        "Statutory audit under the Companies Act of every registered company — private and public, listed and unlisted, operating and dormant",
-        "Chartered accountant hours at every grade on the engagement, from the senior reviewing a bank reconciliation to the partner who signs",
-        "CAs employed inside firms as well as sole practitioners — the work is what is counted, not the shape of the practice",
-        "Consolidation, group reporting and the internal financial controls opinion, where the audit carries them"
+    "number": "13",
+    "sensitivity": {
+      "assumptionId": "a_small_hours",
+      "whyThisLever": "It is the largest block of hours on the page and the least observable number on it. Four and a half lakh small operating companies at sixty hours each is 2.7 crore hours, 42% of the total, and sixty is a recollection of how a small audit runs rather than a count of anything. The obvious rival lever is the CA share of team hours, and it is deliberately not the one chosen: it multiplies the whole answer and therefore moves the number without touching the structure, so a grid on it teaches nothing you could not do in your head. This lever is different. It does not only move the size of the answer — it moves the shape, because it decides whether the concentrated top of the register or the long tail is the story. A lever that can change your conclusion is worth more of your fifteen minutes than a lever that can only change your arithmetic.",
+      "cases": [
+        {
+          "scenario": "Conservative",
+          "leverValue": "30 hours per small audit",
+          "answer": "≈ 15,800 practitioners",
+          "deltaVsBase": "−21%"
+        },
+        {
+          "scenario": "Base",
+          "leverValue": "60 hours per small audit",
+          "answer": "≈ 20,000 practitioners",
+          "deltaVsBase": "0%"
+        },
+        {
+          "scenario": "Aggressive",
+          "leverValue": "100 hours per small audit",
+          "answer": "≈ 25,500 practitioners",
+          "deltaVsBase": "+28%"
+        }
       ],
-      "excluded": [
-        "Tax audit under the Income-tax Act, GST annual return certification, internal audit, ROC filings, valuation and advisory — profitable neighbours of the statutory audit, and not it",
-        "Audits of entities that are not registered companies: LLPs, partnership firms, trusts, societies and co-operatives",
-        "Article assistants and non-CA staff, who appear inside the hours as leverage and never as practitioners",
-        "The roughly two-thirds of ICAI members who work in industry and government and sign nothing"
-      ],
-      "boundaryTrap": "The question sounds like a stock and is a flow divided by a rate — a year of audit work converted into the practitioners it consumes. Two things break here. First, candidates answer with the supply, because four lakh chartered accountants is a number they can recall and the demand is a number they have to build; the supply is precisely what the question is asking you to test, so importing it is assuming the answer. Second, the Indian audit year is not a year. With 31 March year-ends and filing deadlines bunched into the following autumn, roughly half the hours land in a single quarter — so a full-time-equivalent count and a peak-season headcount are different numbers, and you must say which one you are quoting before you quote it."
+      "breakpoint": "Two breakpoints, and only one of them is about the number. On size, the answer leaves the 14,000 to 30,000 band below roughly 22 hours or above roughly 120 hours per small audit — and the order of magnitude survives anything from 5 hours to 400, an eightyfold swing, which is the real reason to be confident about 10^4 and not about 20,000. On shape, the breakpoint is exactly 40 hours: below it the top 50,000 companies carry more than half the hours and the concentrated story is right, above it the tail carries more and the story is the opposite. The base case of 60 hours sits on the tail side of that line, which is why the concentration check came back at 43% rather than the 80% the reflex expects. If an interviewer talks you down to 40 hours, do not only requote the number — tell them their assumption has just changed which half of the register your recommendation would be about.",
+      "oneLiner": "Call it 20,000, and it hangs mainly on sixty hours to audit a small operating company — thirty takes it to 15,800, a hundred takes it to 25,500, and at forty the long tail stops being the story and the top of the register takes over."
     },
-    "calculation": [
-      {
-        "id": "c1",
-        "label": "Dormant and nil-filing companies",
-        "expr": "1500000 * 2 / 3",
-        "display": "15 lakh active companies × two-thirds dormant or nil-filing",
-        "result": 1000000,
-        "unit": "companies",
-        "carriedForward": "≈ 10 lakh",
-        "uses": [
-          "a_active",
-          "a_dormant_share"
-        ],
-        "soWhat": "Size the tail first, because it is two-thirds of the register and the temptation is to leave it out. Naming it as ten lakh companies makes it impossible to forget and impossible to zero without saying so out loud."
-      },
-      {
-        "id": "c2",
-        "label": "Small operating companies, taken as the residual",
-        "expr": "1500000 - 1000000 - 45000 - 5000",
-        "display": "15 lakh − 10 lakh dormant − 45,000 mid-size − 5,000 large",
-        "result": 450000,
-        "unit": "companies",
-        "carriedForward": "≈ 4.5 lakh",
-        "uses": [
-          "a_active",
-          "a_dormant_share",
-          "a_large_count",
-          "a_mid_count"
-        ],
-        "soWhat": "Take the biggest tier as a residual rather than assuming it directly. The four tiers then sum to the register by construction, which removes one whole class of error and one whole class of interviewer question."
-      },
-      {
-        "id": "c3",
-        "label": "Audit hours, listed and large unlisted",
-        "expr": "5000 * 2000",
-        "display": "5,000 companies × 2,000 hours",
-        "result": 10000000,
-        "unit": "team-hours per year",
-        "carriedForward": "1 crore hours",
-        "uses": [
-          "a_large_count",
-          "a_large_hours"
-        ],
-        "soWhat": "A third of one per cent of the register producing a crore of hours. Compute this tier first: it is the one whose magnitude is most surprising and the one that decides whether your concentration story holds."
-      },
-      {
-        "id": "c4",
-        "label": "Audit hours, mid-size operating companies",
-        "expr": "45000 * 400",
-        "display": "45,000 companies × 400 hours",
-        "result": 18000000,
-        "unit": "team-hours per year",
-        "carriedForward": "1.8 crore hours",
-        "uses": [
-          "a_mid_count",
-          "a_mid_hours"
-        ],
-        "soWhat": "Nine times the count of the top tier at a fifth of the hours each — so it lands nearly twice as large. That crossover is the whole reason a tiered model beats an average."
-      },
-      {
-        "id": "c5",
-        "label": "Audit hours, small operating companies",
-        "expr": "450000 * 60",
-        "display": "4.5 lakh companies × 60 hours",
-        "result": 27000000,
-        "unit": "team-hours per year",
-        "carriedForward": "2.7 crore hours",
-        "uses": [
-          "a_small_hours"
-        ],
-        "soWhat": "The largest single block on the page, from the tier nobody writes about. Mark it now as the number the sensitivity grid will be run on, because it is both the biggest and the least observable."
-      },
-      {
-        "id": "c6",
-        "label": "Audit hours, dormant and nil-filing companies",
-        "expr": "1000000 * 10",
-        "display": "10 lakh companies × 10 hours",
-        "result": 10000000,
-        "unit": "team-hours per year",
-        "carriedForward": "1 crore hours",
-        "uses": [
-          "a_dormant_hours"
-        ],
-        "soWhat": "Equal to the entire listed tier, built out of work that is individually not worth mentioning. This is the line that refutes writing the tail off."
-      },
-      {
-        "id": "c7",
-        "label": "Total audit team-hours demanded",
-        "expr": "10000000 + 18000000 + 27000000 + 10000000",
-        "display": "1.0 + 1.8 + 2.7 + 1.0 crore hours",
-        "result": 65000000,
-        "unit": "team-hours per year",
-        "carriedForward": "≈ 6.5 crore hours",
-        "uses": [],
-        "soWhat": "The demand side is now closed. Everything after this line is a question about people rather than about companies, and keeping the two halves separate is what lets you defend one while the interviewer attacks the other."
-      },
-      {
-        "id": "c8",
-        "label": "Share of hours sitting in the top 50,000 companies",
-        "expr": "(10000000 + 18000000) / 65000000",
-        "display": "(1.0 + 1.8) crore ÷ 6.5 crore",
-        "result": 0.4308,
-        "tolerance": 0.001,
-        "unit": "share of total hours",
-        "carriedForward": "≈ 43%",
-        "uses": [],
-        "soWhat": "Test the concentration rather than announcing it. Three per cent of the companies carry 43% of the hours — concentrated, and not the 80-20 the reflex expects, because ten lakh dormant shells at ten hours each still come to a crore. Say that out loud; a declaration corrected is worth more than a declaration that quietly did not hold."
-      },
-      {
-        "id": "c9",
-        "label": "Hours delivered by qualified chartered accountants",
-        "expr": "65000000 * 0.35",
-        "display": "6.5 crore team-hours × 35% CA share",
-        "result": 22750000,
-        "unit": "CA-hours per year",
-        "carriedForward": "≈ 2.3 crore CA-hours",
-        "uses": [
-          "a_ca_hour_share"
-        ],
-        "soWhat": "The step almost every answer skips. Two-thirds of the fieldwork is done by article assistants under a member's signature, so the profession has to supply a third of the hours, not all of them. Skip this line and the answer comes out near 57,000."
-      },
-      {
-        "id": "c10",
-        "label": "Chargeable hours per practitioner per year",
-        "expr": "250 * 7",
-        "display": "250 working days × 7 chargeable hours",
-        "result": 1750,
-        "unit": "chargeable hours per year",
-        "uses": [
-          "a_working_days",
-          "a_chargeable_hours"
-        ],
-        "soWhat": "Build the divisor rather than reaching for 2,000. Two thousand is a gross year for a salaried employee, and using it here imports a person who does not exist in Indian practice."
-      },
-      {
-        "id": "c11",
-        "label": "Full-time equivalents on statutory audit",
-        "expr": "22750000 / 1750",
-        "display": "2.275 crore CA-hours ÷ 1,750 hours a year",
-        "result": 13000,
-        "unit": "full-time equivalents",
-        "carriedForward": "≈ 13,000 FTE",
-        "uses": [],
-        "soWhat": "This is work expressed in people, and it is not yet a headcount. Quote it as FTE and say so, because the next line is the one candidates leave out and interviewers ask about."
-      },
-      {
-        "id": "c12",
-        "label": "Practising chartered accountants required",
-        "expr": "13000 / 0.65",
-        "display": "13,000 FTE ÷ 65% of the year spent on statutory audit",
-        "result": 20000,
-        "unit": "practising chartered accountants",
-        "carriedForward": "≈ 20,000 practitioners",
-        "uses": [
-          "a_audit_share_of_year"
-        ],
-        "soWhat": "Thirteen thousand full-time equivalents need twenty thousand real practitioners, because no practitioner gives the whole year to statutory audit. FTE and headcount differ by a third here — quote the wrong one and you have answered a question the interviewer did not ask."
-      }
+    "sanityChecks": [
+      "Audits per practitioner, the test that matters most: 15 lakh companies across 20,000 practitioners is 75 a year, about one and a half a week. In a book whose median client is a dormant shell signed off in a morning, that is a practice you would recognise. Five hundred a year would describe a rubber stamp, and five would describe a profession ten times larger than the one that exists.",
+      "Against the roll: 20,000 out of roughly 1.4 lakh practising members is one practitioner in seven. Statutory company audit should be a large but not dominant share of what Indian practice does, because tax, GST, certification and ROC work carry more people than audit does. An answer near a lakh would have claimed the profession does almost nothing else, and that claim is visibly false to anyone who has spent a week inside a CA office.",
+      "The statutory floor: the Companies Act caps how many company audits one member may sign, with the dormant and small-company tail carved out of the cap. The cap therefore binds on the 50,000 companies in the top two tiers — at twenty apiece that needs at least 2,500 signing partners, and 20,000 clears it comfortably. This is the rare guesstimate where a statute rather than a judgement sets your floor, and an answer below about 3,000 would have been illegal before it was implausible.",
+      "Hours per company: 6.5 crore hours over 15 lakh companies averages 43 hours, a little over one working week of team time for the average company on the register. Given that two-thirds of the register files nothing of substance, the average ought to feel low — and a model that had produced 400 hours for the average Indian company would have described a register made entirely of listed groups.",
+      "The season test: 20,000 is a full-year equivalent, and the year is not flat. Put half the hours in one quarter, allow that the quarter is worked at a much longer day, and the same work needs roughly 30,000 people in the field in the crunch. Hold that against what a CA firm actually looks like in September. If your tree cannot produce the peak number from the annual one in ten seconds, it was a sum with headings rather than a model.",
+      "Direction of the error: three of the four largest levers — the dormant share, the hours per small audit and the CA share of team hours — would each be pushed up by an interviewer who thinks small audits are more work than you assumed, and down by one who thinks most of the tail is signed off with little fieldwork. The band is wide because both of those views of the Indian small-company audit are held by people who know the market. Say which one you have assumed, and the width stops looking like vagueness."
     ],
-    "orderOfMagnitude": "10^4",
     "assumptions": [
       {
         "id": "a_active",
@@ -7350,88 +8458,301 @@ export const guesstimates: readonly Guesstimate[] = [
         "contestedBy": "One in two would put the supply route at 31,500 against the demand route's 20,000, and the honest reading would then be that the routes disagree by half rather than agree."
       }
     ],
-    "question": "How many practising chartered accountants does it take to get India's companies through one year of statutory audit?",
-    "traps": [
+    "finalAnswer": "≈ 20,000 practising chartered accountants carry India's statutory company audit — call it 14,000 to 30,000, and roughly 30,000 bodies in the field during the autumn filing crunch",
+    "calculation": [
       {
-        "trap": "Answering with the supply.",
-        "whyItHappens": "Four lakh chartered accountants is a figure the candidate can recall and the audit workload is a figure they would have to build. The mind substitutes the available question for the asked one and rarely notices the swap, because what comes out is a number about chartered accountants and therefore feels responsive. It is not. The question is whether the work needs more or fewer people than the profession has, and you cannot test that with the profession's own headcount as your input.",
-        "fix": "Build the demand chain to the end before the roll is allowed anywhere near the model. Then bring the roll in as the triangulation, where it belongs, and let the comparison do the work it was always going to do — 20,000 needed against 1.4 lakh practising is the finding, and it only exists because the two numbers were produced independently."
+        "id": "c1",
+        "label": "Dormant and nil-filing companies",
+        "expr": "1500000 * 2 / 3",
+        "display": "15 lakh active companies × two-thirds dormant or nil-filing",
+        "result": 1000000,
+        "unit": "companies",
+        "carriedForward": "≈ 10 lakh",
+        "uses": [
+          "a_active",
+          "a_dormant_share"
+        ],
+        "soWhat": "Size the tail first, because it is two-thirds of the register and the temptation is to leave it out. Naming it as ten lakh companies makes it impossible to forget and impossible to zero without saying so out loud."
       },
       {
-        "trap": "One average audit across the register.",
-        "whyItHappens": "Averaging is the default move and it feels neutral rather than like a choice. But the register spans 200 to 1 in work content between a dormant shell and a listed group, and the error an average makes across a distribution that wide is neither small nor random — anchor on the large end and you overstate by a factor of ten, anchor on the small end and you lose the top tier's crore of hours entirely.",
-        "fix": "Four tiers, sized before any of them is priced. It costs ninety seconds of the fifteen minutes and it converts the interviewer's hardest challenge into a challenge against one tier's rate, which you can move and requote without rebuilding anything."
+        "id": "c2",
+        "label": "Small operating companies, taken as the residual",
+        "expr": "1500000 - 1000000 - 45000 - 5000",
+        "display": "15 lakh − 10 lakh dormant − 45,000 mid-size − 5,000 large",
+        "result": 450000,
+        "unit": "companies",
+        "carriedForward": "≈ 4.5 lakh",
+        "uses": [
+          "a_active",
+          "a_dormant_share",
+          "a_large_count",
+          "a_mid_count"
+        ],
+        "soWhat": "Take the biggest tier as a residual rather than assuming it directly. The four tiers then sum to the register by construction, which removes one whole class of error and one whole class of interviewer question."
       },
       {
-        "trap": "Announcing the 80-20 instead of testing it.",
-        "whyItHappens": "Concentration holds so often in business that candidates state it as a finding before they have computed anything, and the statement then quietly shapes the rest of the answer. Here it does not hold in the usual form. The top 3% of companies carry 43% of the hours, because ten lakh dormant companies at ten hours each are still a crore of hours and cannot be dismissed however trivial any one of them is.",
-        "fix": "Declare the shape you expect, compute the share, and then say whether it held. Correcting your own declaration out loud is one of the strongest things you can do in a case, because it demonstrates that the number moved you rather than the other way round."
+        "id": "c3",
+        "label": "Audit hours, listed and large unlisted",
+        "expr": "5000 * 2000",
+        "display": "5,000 companies × 2,000 hours",
+        "result": 10000000,
+        "unit": "team-hours per year",
+        "carriedForward": "1 crore hours",
+        "uses": [
+          "a_large_count",
+          "a_large_hours"
+        ],
+        "soWhat": "A third of one per cent of the register producing a crore of hours. Compute this tier first: it is the one whose magnitude is most surprising and the one that decides whether your concentration story holds."
       },
       {
-        "trap": "Dividing hours by 2,000.",
-        "whyItHappens": "Two thousand hours a year is the most widely repeated figure in professional services, and it is a gross salaried year rather than a chargeable practitioner year. Two separate haircuts go missing behind it: the non-chargeable share of the working day, and the share of the practitioner's year that goes to tax audit, certification and running the firm.",
-        "fix": "Build the divisor in two visible lines — 250 days at 7 chargeable hours, then 65% of that year on statutory audit — and say what each haircut is for. Skipping both lands the answer near 11,000 against 20,000, roughly 40% low, and it lands there while looking rigorous."
+        "id": "c4",
+        "label": "Audit hours, mid-size operating companies",
+        "expr": "45000 * 400",
+        "display": "45,000 companies × 400 hours",
+        "result": 18000000,
+        "unit": "team-hours per year",
+        "carriedForward": "1.8 crore hours",
+        "uses": [
+          "a_mid_count",
+          "a_mid_hours"
+        ],
+        "soWhat": "Nine times the count of the top tier at a fifth of the hours each — so it lands nearly twice as large. That crossover is the whole reason a tiered model beats an average."
       },
       {
-        "trap": "Converting every audit hour into a chartered accountant hour.",
-        "whyItHappens": "The model asks for CAs, so the instinct is to treat audit hours and CA hours as the same quantity. In India they are further apart than in almost any other profession, because articleship puts a large trained-but-unqualified workforce in the field under a member's signature, and most of the fieldwork hours are theirs.",
-        "fix": "Put leverage in as its own line. It is the single largest correction on the page — at 35% the answer is 20,000, and at 100% it would be 57,000, a number the profession could not supply and which should therefore have told you a step was missing."
+        "id": "c5",
+        "label": "Audit hours, small operating companies",
+        "expr": "450000 * 60",
+        "display": "4.5 lakh companies × 60 hours",
+        "result": 27000000,
+        "unit": "team-hours per year",
+        "carriedForward": "2.7 crore hours",
+        "uses": [
+          "a_small_hours"
+        ],
+        "soWhat": "The largest single block on the page, from the tier nobody writes about. Mark it now as the number the sensitivity grid will be run on, because it is both the biggest and the least observable."
       },
       {
-        "trap": "Quoting one number when the year has two.",
-        "whyItHappens": "A single figure feels like a finished answer, and the annual full-time equivalent is the one that falls out of the arithmetic. But the Indian audit calendar is bunched into the months before the filing deadlines, so the annual requirement and the peak-season requirement are genuinely different quantities — and for anyone actually deciding something, the peak one is usually the number that matters.",
-        "fix": "Quote both in one sentence, with the basis of each stated: about 20,000 across the year and about 30,000 in the crunch. Then say which question each one answers. A candidate who volunteers the second number has understood that the estimate exists to support a decision rather than to close the conversation."
+        "id": "c6",
+        "label": "Audit hours, dormant and nil-filing companies",
+        "expr": "1000000 * 10",
+        "display": "10 lakh companies × 10 hours",
+        "result": 10000000,
+        "unit": "team-hours per year",
+        "carriedForward": "1 crore hours",
+        "uses": [
+          "a_dormant_hours"
+        ],
+        "soWhat": "Equal to the entire listed tier, built out of work that is individually not worth mentioning. This is the line that refutes writing the tail off."
+      },
+      {
+        "id": "c7",
+        "label": "Total audit team-hours demanded",
+        "expr": "10000000 + 18000000 + 27000000 + 10000000",
+        "display": "1.0 + 1.8 + 2.7 + 1.0 crore hours",
+        "result": 65000000,
+        "unit": "team-hours per year",
+        "carriedForward": "≈ 6.5 crore hours",
+        "uses": [],
+        "soWhat": "The demand side is now closed. Everything after this line is a question about people rather than about companies, and keeping the two halves separate is what lets you defend one while the interviewer attacks the other."
+      },
+      {
+        "id": "c8",
+        "label": "Share of hours sitting in the top 50,000 companies",
+        "expr": "(10000000 + 18000000) / 65000000",
+        "display": "(1.0 + 1.8) crore ÷ 6.5 crore",
+        "result": 0.4308,
+        "tolerance": 0.001,
+        "unit": "share of total hours",
+        "carriedForward": "≈ 43%",
+        "uses": [],
+        "soWhat": "Test the concentration rather than announcing it. Three per cent of the companies carry 43% of the hours — concentrated, and not the 80-20 the reflex expects, because ten lakh dormant shells at ten hours each still come to a crore. Say that out loud; a declaration corrected is worth more than a declaration that quietly did not hold."
+      },
+      {
+        "id": "c9",
+        "label": "Hours delivered by qualified chartered accountants",
+        "expr": "65000000 * 0.35",
+        "display": "6.5 crore team-hours × 35% CA share",
+        "result": 22750000,
+        "unit": "CA-hours per year",
+        "carriedForward": "≈ 2.3 crore CA-hours",
+        "uses": [
+          "a_ca_hour_share"
+        ],
+        "soWhat": "The step almost every answer skips. Two-thirds of the fieldwork is done by article assistants under a member's signature, so the profession has to supply a third of the hours, not all of them. Skip this line and the answer comes out near 57,000."
+      },
+      {
+        "id": "c10",
+        "label": "Chargeable hours per practitioner per year",
+        "expr": "250 * 7",
+        "display": "250 working days × 7 chargeable hours",
+        "result": 1750,
+        "unit": "chargeable hours per year",
+        "uses": [
+          "a_working_days",
+          "a_chargeable_hours"
+        ],
+        "soWhat": "Build the divisor rather than reaching for 2,000. Two thousand is a gross year for a salaried employee, and using it here imports a person who does not exist in Indian practice."
+      },
+      {
+        "id": "c11",
+        "label": "Full-time equivalents on statutory audit",
+        "expr": "22750000 / 1750",
+        "display": "2.275 crore CA-hours ÷ 1,750 hours a year",
+        "result": 13000,
+        "unit": "full-time equivalents",
+        "carriedForward": "≈ 13,000 FTE",
+        "uses": [],
+        "soWhat": "This is work expressed in people, and it is not yet a headcount. Quote it as FTE and say so, because the next line is the one candidates leave out and interviewers ask about."
+      },
+      {
+        "id": "c12",
+        "label": "Practising chartered accountants required",
+        "expr": "13000 / 0.65",
+        "display": "13,000 FTE ÷ 65% of the year spent on statutory audit",
+        "result": 20000,
+        "unit": "practising chartered accountants",
+        "carriedForward": "≈ 20,000 practitioners",
+        "uses": [
+          "a_audit_share_of_year"
+        ],
+        "soWhat": "Thirteen thousand full-time equivalents need twenty thousand real practitioners, because no practitioner gives the whole year to statutory audit. FTE and headcount differ by a third here — quote the wrong one and you have answered a question the interviewer did not ask."
       }
     ],
-    "teachingPoint": "An occupational-cohort question is a division wearing a headcount costume — work divided by the work one person does. Both halves go wrong, and neither is the half candidates worry about. The work goes wrong because the units are not comparable: a dormant private limited and a listed group are both 'a company', the audit of one takes two hundred times the audit of the other, and an average across the register therefore describes nothing that exists. The rate goes wrong because a person is not a full year of chargeable hours — a practitioner owes part of the year to work that is not statutory audit, and in India most audit hours are not delivered by chartered accountants at all but by article assistants working under a member's signature. Segment the companies correctly and forget the leverage and you land a factor of three out, which is worse than a rough answer because it is a rough answer that looks carefully built."
+    "id": "audit-capacity-cas",
+    "tabLabel": "CA audit capacity",
+    "teachingPoint": "An occupational-cohort question is a division wearing a headcount costume — work divided by the work one person does. Both halves go wrong, and neither is the half candidates worry about. The work goes wrong because the units are not comparable: a dormant private limited and a listed group are both 'a company', the audit of one takes two hundred times the audit of the other, and an average across the register therefore describes nothing that exists. The rate goes wrong because a person is not a full year of chargeable hours — a practitioner owes part of the year to work that is not statutory audit, and in India most audit hours are not delivered by chartered accountants at all but by article assistants working under a member's signature. Segment the companies correctly and forget the leverage and you land a factor of three out, which is worse than a rough answer because it is a rough answer that looks carefully built.",
+    "orderOfMagnitude": "10^4",
+    "routeChoice": {
+      "chosen": "Hybrid",
+      "why": "Take the company population from the top, because the MCA register is a published count and nothing you build from the bottom will beat it. Build the audit hours from the bottom, tier by tier, because the register spans two orders of magnitude in work content and there is no average that survives it. Then convert work into people with a capacity rate. Top for the population, bottom for the workload — say which half of the question you are treating which way, out loud, before you start. That sentence is worth a mark on its own, because it tells the interviewer you chose a route rather than defaulted to one.",
+      "rejectedRoute": "Top-down",
+      "rejectedWhyNot": "The clean top-down route is the money: take India's statutory audit fee pool, divide by fee revenue per practising CA, and read off practitioners. It fails on both terms. Audit fees run from about ten thousand rupees for a dormant private limited to several crore for a large listed group — four orders of magnitude — so a blended fee per audit describes no company that exists, and the pool is dominated by a few thousand engagements while the headcount is dominated by the tail. Worse, fee and effort have come apart at the bottom: the small-company audit is competitively priced near a floor almost regardless of the work it takes, so dividing by a fee measures pricing power rather than labour. Money is the right currency when money varies smoothly with the thing you want. Here it does not, and using it would hand you a number you could not defend for a single one of its inputs."
+    },
+    "archetype": "occupational-cohort"
   },
   {
-    "timeboxMinutes": 15,
-    "sensitivity": {
-      "assumptionId": "platform-funded-discount",
-      "whyThisLever": "Two tests pick the lever, and most candidates run only the first. How badly is the number pinned, and how much of the answer rides on it? The transacting share is softer than it looks, but it moves orders and gross order value together and an interviewer can at least argue about it from her own habits. The platform-funded discount fails both escapes: nothing outside the company reveals it, because the customer sees a discount and never sees who paid for it, and it sits in the last addition before the answer, so it passes straight through one-for-one. It is also the lever that has actually moved in this industry's history — the discount wars swung it by a factor of four while every other number on this page stayed roughly still.",
-      "cases": [
+    "answerBand": "₹9,000 to ₹18,000 crore. Anything in that range is reachable on an honest and different set of levers, mostly depending on what you assume about discounting and about how many people order in a month. Below ₹6,000 crore or above ₹25,000 crore, one of your rates is carrying weight it cannot bear — and if your answer is near ₹60,000 crore you have not made an arithmetic error, you have answered the other question.",
+    "scope": {
+      "countingWhat": "The revenue food-delivery platforms recognise as their own from the food-delivery business in one year, summed across every platform operating in India — commission billed to restaurants, fees collected from customers and advertising sold to restaurants, net of the discounts the platform itself funds. It is not the value of the food ordered.",
+      "unit": "rupees per year",
+      "timeBasis": "flow (per year)",
+      "geography": "India, all cities and towns where delivery actually operates",
+      "included": [
+        "Commission the platform bills the restaurant on the value of the food",
+        "Delivery charges and platform fees collected from the customer",
+        "Advertising, sponsored listings and priority placement sold to restaurants",
+        "Subscription fees for free-delivery programmes, net of the deliveries they buy"
+      ],
+      "excluded": [
+        "The value of the food itself — that is the restaurant's revenue, not the platform's",
+        "GST and other taxes collected on behalf of the government",
+        "Quick commerce and grocery delivery, which run on the same apps and are larger in places",
+        "Dining-out, table booking and events revenue on the same platforms",
+        "Orders a restaurant takes on its own phone line and delivers with its own staff",
+        "The rider's earnings, which are the platform's cost and not anybody's revenue"
+      ],
+      "boundaryTrap": "'How big is food delivery in India' has two readings that differ by roughly a factor of five. Gross order value is the money customers spend, and it is the figure the press prints because it is the larger one. Platform revenue is the slice the platform keeps, and it is what this question asked for. Say which one you are estimating in your first sentence — and while you are drawing the boundary, exclude quick commerce out loud, because the same app now sells groceries in ten minutes and on some platforms that business already moves more money than the food does. A scope error here is not a detail; it is the whole answer."
+    },
+    "question": "What do India's food-delivery platforms earn in a year — not what their customers spend?",
+    "difficulty": "Hard",
+    "probes": [
+      {
+        "question": "You said ₹12,500 crore. I have read that Indian food delivery is a ₹60,000 crore market. Which of us is wrong?",
+        "intent": "Whether you understand that both numbers are right and describe different things, or whether an external anchor makes you abandon your own structure.",
+        "goodAnswer": "Says neither — ₹58,900 crore is gross order value, the money customers spend, and ₹12,500 crore is what the platforms keep, about 21% of it. Points out that the published figure is a useful check on the order count rather than on the answer, so it validates the volume side of the chain and leaves the take rate still to be defended. Asks which reading the interviewer wanted, since the whole question turns on it.",
+        "weakAnswer": "Revises the answer upward to match the remembered figure, trading a defensible structure for a number the candidate cannot explain."
+      },
+      {
+        "question": "Take me through one order. Where do the four hundred rupees end up?",
+        "intent": "Whether the take rate is a real decomposition in your head or a percentage you asserted.",
+        "goodAnswer": "Walks it: about ₹328 to the restaurant after ₹72 of commission, the customer separately paying roughly ₹30 in delivery and platform fees, around ₹8 of advertising attributable to the order, and ₹25 of discount the platform funds — leaving ₹85. Then adds the line that matters: ₹60 of that ₹85 goes to the rider, so the platform keeps about ₹25 to pay for everything else.",
+        "weakAnswer": "Restates twenty per cent in different words, or describes the flows qualitatively without ever making them add up to ₹400."
+      },
+      {
+        "question": "Suppose both large platforms stop funding discounts tomorrow. Does your answer go up by eighteen per cent?",
+        "intent": "Whether you can see that a lever in your arithmetic is also a lever in the market, and that the two do not move independently.",
+        "goodAnswer": "No — revenue per order rises, but the discount was buying orders, so volume falls and the two effects fight. Says which dominates and why: discounting mainly buys the marginal, price-sensitive occasion rather than the habitual dinner order, so the revenue effect probably wins in the short run while the volume effect compounds if a rival keeps discounting. Notes that this is precisely why a disciplined duopoly can hold the line and a fragmented market cannot.",
+        "weakAnswer": "Applies the sensitivity grid mechanically and reports plus eighteen per cent, treating a strategic variable as a constant of nature."
+      },
+      {
+        "question": "Commission is your largest revenue line. What stops a big restaurant chain from delisting and running its own delivery?",
+        "intent": "Whether you can reason about the durability of a revenue pool rather than only its size.",
+        "goodAnswer": "Names what the chain would have to replicate: demand discovery, which is where most orders actually start, and a rider fleet dense enough to deliver in thirty minutes off its own volume alone. Observes that the largest chains already negotiate commission well below the headline rate, which is the pressure valve, and that partial delisting to push regulars onto an own-brand app is the real threat rather than full exit. Concludes that the pool is defensible at the tail and contested at the top, which is why the effective rate sits below the published one.",
+        "weakAnswer": "'Network effects' — a correct phrase that identifies no mechanism and predicts nothing about which restaurants leave."
+      },
+      {
+        "question": "You excluded quick commerce. Defend that, and then tell me what including it would do.",
+        "intent": "Scope discipline, and whether you can extend a structure instead of rebuilding it.",
+        "goodAnswer": "Defends it on economics rather than tidiness — quick commerce is inventory the platform buys and sells, so the revenue is recognised differently and a commission take rate does not describe it at all. Says including it would mean a second structure built on dark stores, orders per store per day and gross margin on goods sold, not a bigger version of this one. Offers the direction: a larger order pool at a smaller basket, on a very different margin profile.",
+        "weakAnswer": "'It is a different business' with no reason given, or agrees to fold it in and carries on multiplying, which quietly changes the unit halfway through the answer."
+      }
+    ],
+    "triangulation": {
+      "label": "Rider-side cross-check",
+      "route": "Bottom-up",
+      "premise": "Come at it from the street instead of the wallet. Riders are the one part of this business anyone can count without access to a company — they are visible, branded and clustered at predictable hours. Count the fleet out on a day, multiply by the drops a rider makes, and you have orders. Then convert orders into revenue through the platform's cost structure rather than its take rate: the rider payout bill is the largest line against food-delivery revenue and runs at roughly two-thirds of it, so dividing gets you back to revenue without touching commission, fees, advertising or discounting. That is what makes this a genuine second opinion rather than the same chain walked backwards.",
+      "lines": [
         {
-          "scenario": "Conservative",
-          "leverValue": "₹40 funded per order — a competitive year",
-          "answer": "≈ ₹10,300 crore",
-          "deltaVsBase": "−18%"
+          "id": "t1",
+          "label": "Orders delivered a day",
+          "expr": "320000 * 13",
+          "display": "3.2 lakh riders on shift × 13 deliveries each",
+          "result": 4160000,
+          "tolerance": 1e-06,
+          "unit": "orders per day",
+          "carriedForward": "≈ 42 lakh a day",
+          "uses": [
+            "riders-on-shift",
+            "deliveries-per-rider-day"
+          ],
+          "soWhat": "Against the 40 lakh a day the demand route implied at line c7. Two independent counts of the same flow, about three per cent apart — that is the check worth having, and it arrives before any money is involved."
         },
         {
-          "scenario": "Base",
-          "leverValue": "₹25 funded per order",
-          "answer": "≈ ₹12,500 crore",
-          "deltaVsBase": "0%"
+          "id": "t2",
+          "label": "Orders a year",
+          "expr": "4160000 * 365",
+          "display": "42 lakh a day × 365 days",
+          "result": 1518400000,
+          "tolerance": 1e-06,
+          "unit": "orders per year",
+          "carriedForward": "≈ 152 crore orders",
+          "uses": [
+            "days-per-year"
+          ],
+          "soWhat": "No seasonality adjustment, and say so — the monsoon peak and the summer trough roughly cancel, and pretending to model them at this precision would be theatre."
         },
         {
-          "scenario": "Aggressive",
-          "leverValue": "₹10 funded per order — a disciplined duopoly",
-          "answer": "≈ ₹14,700 crore",
-          "deltaVsBase": "+18%"
+          "id": "t3",
+          "label": "Total rider payout bill",
+          "expr": "1518400000 * 60",
+          "display": "152 crore deliveries × ₹60 paid to the rider",
+          "result": 91104000000,
+          "tolerance": 1e-06,
+          "unit": "rupees per year",
+          "carriedForward": "≈ ₹9,100 crore",
+          "uses": [
+            "rider-payout-per-delivery"
+          ],
+          "soWhat": "A cost, not a revenue, and the largest number on this page after gross order value. Note that it is already double the ₹30 the customer pays for delivery — the customer has never funded the ride."
+        },
+        {
+          "id": "t4",
+          "label": "Platform revenue implied by the cost structure",
+          "expr": "91104000000 / 0.65",
+          "display": "₹9,100 crore rider cost ÷ 65% of revenue",
+          "result": 140160000000,
+          "tolerance": 1e-06,
+          "unit": "rupees per year",
+          "carriedForward": "≈ ₹14,000 crore",
+          "uses": [
+            "rider-cost-share-of-revenue"
+          ],
+          "soWhat": "Inverting a cost ratio to recover revenue is a move worth naming aloud, because it only works when the cost line is genuinely dominant. Try it on marketing spend and you would get nonsense."
         }
       ],
-      "breakpoint": "Net revenue per order is ₹110 minus the discount, so at about ₹110 funded per order — 27% of the basket — platform revenue from food delivery goes to zero however many orders get delivered. That is not hypothetical; it is roughly where this industry sat during the acquisition war, when growth in orders and growth in losses were the same line. The honest working range is ₹10 to ₹45, the answer inherits a ₹9,600 to ₹14,700 crore range, and the power of ten never moves. Say that last clause and then stop — it is the difference between a candidate who ran a sensitivity and one who understood why.",
-      "oneLiner": "When there is no time for the grid: 'The number I would defend least is how much of the discount the platform funds itself — call it six per cent of the basket. Halve it or double it and the answer swings by about a fifth either way, and it stays in the low tens of thousands of crore.'"
+      "answer": "≈ ₹14,000 crore of platform revenue, against ₹12,500 crore from the demand route",
+      "verdict": "Twelve per cent apart, which is about the right amount of disagreement — close enough to confirm the power of ten, far enough apart to be informative rather than lucky. Both routes agree on the shape of the business: something near 150 crore orders a year and a revenue pool in the low tens of thousands of crore. The gap is worth one sentence of reconciliation, and the place to look is the rider count. A rider logged into two apps at once is one backpack on the street and two entries in the platforms' fleet numbers, so a street count and a company count are not measuring the same thing — correct for that and this route comes down towards the demand answer. Deliveries per rider pulls the same way: thirteen is a metro number, and riders in smaller cities with thinner order density do fewer. What you must not do is average the two and present ₹13,250 crore. Averaging two soft estimates does not halve the error; it only hides which one you believe."
     },
-    "number": "12",
-    "difficulty": "Hard",
-    "id": "food-delivery-revenue-pool",
-    "archetype": "revenue-pool-take-rate",
-    "routeChoice": {
-      "chosen": "Top-down",
-      "why": "Orders are the engine of this business and orders come from people, so start where the people are and narrow: urban India, then the towns where delivery actually runs, then adults, then adults with a phone and a payment method, then the minority who order in a given month. Every step is a rate you can name and defend separately, which means an interviewer who disagrees can point at one step rather than at the answer. Then do the part the question is really about — convert orders into money twice, once at gross order value and once at platform revenue, and say plainly which is which.",
-      "rejectedRoute": "Bottom-up",
-      "rejectedWhyNot": "Bottom-up here means starting from the restaurants: count the outlets listed on the apps, assume orders per outlet per day, bill them. It fails on both levers. The listed base is violently skewed — a dark-kitchen brand in Koramangala may take two hundred orders a day while a listed sweet shop on a Tier-2 market street takes two a week — so your answer is decided by a mean over a distribution nobody can see. And it starts at the wrong unit for this question: billing the restaurant gets you commission and advertising but silently drops the customer-side fees, which are close to a third of platform revenue, so the structure cannot reach the right answer even with perfect levers. A supply-side count is too weak to build on here. It is still strong enough to check with, which is exactly what the triangulation does — but from riders, who are visible on the street, rather than from restaurants, whose order books are not."
-    },
-    "sanityChecks": [
-      "Turn the answer back into daily life. 147 crore orders a year is roughly 40 lakh a day nationally, which at thirteen drops a rider needs about three lakh riders out on the road. If you have stood on a Bengaluru arterial at eight in the evening, that is the right order — a few per cent of the two-wheelers going past, not one in ten and not one in five hundred.",
-      "Check the transacting user against your own city. About 3.1 crore people ordering in a given month, out of 27 crore living in serviced areas, is roughly one person in nine. In an MBA classroom it would be nine in nine, which is the whole problem with estimating a consumer category from inside the consuming class.",
-      "Put the ₹400 basket against the household food budget. A user ordering four times a month is spending about ₹1,600 on delivered food. For an urban household spending ₹12,000 to ₹15,000 a month on food, that is a tenth to an eighth of the food wallet — plausible for the ordering minority, and clearly impossible as a national average, which is another way of seeing why the 25% gate has to be there.",
-      "Size it against eating out generally. India's whole food-service market — restaurants, canteens, street food, everything prepared outside the home — is of the order of ₹5 lakh crore. Gross order value of ₹58,900 crore makes delivery about one rupee in eight of that. High but believable, since delivery is concentrated in exactly the organised urban outlets where spend per head is highest.",
-      "Split it across the players. Two large platforms carry most of this, so each would be earning of the order of ₹5,000 to ₹6,000 crore a year from food delivery, or roughly ₹1,400 crore a quarter. That is the same order of magnitude as the food-delivery segment figures listed Indian platforms report, which is as much confirmation as an estimate built this way deserves.",
-      "Test the answer against the rider bill. Platform revenue of ₹12,500 crore against a rider payout bill of ₹9,100 crore says two-thirds of every rupee earned goes straight back out to the fleet before a single engineer, marketer or support agent is paid. Had your arithmetic produced revenue below the rider bill, the business would be structurally impossible, and you want to find that here rather than in the interviewer's follow-up."
-    ],
-    "answerBand": "₹9,000 to ₹18,000 crore. Anything in that range is reachable on an honest and different set of levers, mostly depending on what you assume about discounting and about how many people order in a month. Below ₹6,000 crore or above ₹25,000 crore, one of your rates is carrying weight it cannot bear — and if your answer is near ₹60,000 crore you have not made an arithmetic error, you have answered the other question.",
     "tree": {
       "root": "Annual food-delivery platform revenue, India",
       "rootFormula": "= Orders a year × Net platform revenue per order",
@@ -7550,299 +8871,75 @@ export const guesstimates: readonly Guesstimate[] = [
         }
       ]
     },
-    "triangulation": {
-      "label": "Rider-side cross-check",
-      "route": "Bottom-up",
-      "premise": "Come at it from the street instead of the wallet. Riders are the one part of this business anyone can count without access to a company — they are visible, branded and clustered at predictable hours. Count the fleet out on a day, multiply by the drops a rider makes, and you have orders. Then convert orders into revenue through the platform's cost structure rather than its take rate: the rider payout bill is the largest line against food-delivery revenue and runs at roughly two-thirds of it, so dividing gets you back to revenue without touching commission, fees, advertising or discounting. That is what makes this a genuine second opinion rather than the same chain walked backwards.",
-      "lines": [
-        {
-          "id": "t1",
-          "label": "Orders delivered a day",
-          "expr": "320000 * 13",
-          "display": "3.2 lakh riders on shift × 13 deliveries each",
-          "result": 4160000,
-          "tolerance": 1e-06,
-          "unit": "orders per day",
-          "carriedForward": "≈ 42 lakh a day",
-          "uses": [
-            "riders-on-shift",
-            "deliveries-per-rider-day"
-          ],
-          "soWhat": "Against the 40 lakh a day the demand route implied at line c7. Two independent counts of the same flow, about three per cent apart — that is the check worth having, and it arrives before any money is involved."
-        },
-        {
-          "id": "t2",
-          "label": "Orders a year",
-          "expr": "4160000 * 365",
-          "display": "42 lakh a day × 365 days",
-          "result": 1518400000,
-          "tolerance": 1e-06,
-          "unit": "orders per year",
-          "carriedForward": "≈ 152 crore orders",
-          "uses": [
-            "days-per-year"
-          ],
-          "soWhat": "No seasonality adjustment, and say so — the monsoon peak and the summer trough roughly cancel, and pretending to model them at this precision would be theatre."
-        },
-        {
-          "id": "t3",
-          "label": "Total rider payout bill",
-          "expr": "1518400000 * 60",
-          "display": "152 crore deliveries × ₹60 paid to the rider",
-          "result": 91104000000,
-          "tolerance": 1e-06,
-          "unit": "rupees per year",
-          "carriedForward": "≈ ₹9,100 crore",
-          "uses": [
-            "rider-payout-per-delivery"
-          ],
-          "soWhat": "A cost, not a revenue, and the largest number on this page after gross order value. Note that it is already double the ₹30 the customer pays for delivery — the customer has never funded the ride."
-        },
-        {
-          "id": "t4",
-          "label": "Platform revenue implied by the cost structure",
-          "expr": "91104000000 / 0.65",
-          "display": "₹9,100 crore rider cost ÷ 65% of revenue",
-          "result": 140160000000,
-          "tolerance": 1e-06,
-          "unit": "rupees per year",
-          "carriedForward": "≈ ₹14,000 crore",
-          "uses": [
-            "rider-cost-share-of-revenue"
-          ],
-          "soWhat": "Inverting a cost ratio to recover revenue is a move worth naming aloud, because it only works when the cost line is genuinely dominant. Try it on marketing spend and you would get nonsense."
-        }
-      ],
-      "answer": "≈ ₹14,000 crore of platform revenue, against ₹12,500 crore from the demand route",
-      "verdict": "Twelve per cent apart, which is about the right amount of disagreement — close enough to confirm the power of ten, far enough apart to be informative rather than lucky. Both routes agree on the shape of the business: something near 150 crore orders a year and a revenue pool in the low tens of thousands of crore. The gap is worth one sentence of reconciliation, and the place to look is the rider count. A rider logged into two apps at once is one backpack on the street and two entries in the platforms' fleet numbers, so a street count and a company count are not measuring the same thing — correct for that and this route comes down towards the demand answer. Deliveries per rider pulls the same way: thirteen is a metro number, and riders in smaller cities with thinner order density do fewer. What you must not do is average the two and present ₹13,250 crore. Averaging two soft estimates does not halve the error; it only hides which one you believe."
-    },
-    "probes": [
+    "timeboxMinutes": 15,
+    "traps": [
       {
-        "question": "You said ₹12,500 crore. I have read that Indian food delivery is a ₹60,000 crore market. Which of us is wrong?",
-        "intent": "Whether you understand that both numbers are right and describe different things, or whether an external anchor makes you abandon your own structure.",
-        "goodAnswer": "Says neither — ₹58,900 crore is gross order value, the money customers spend, and ₹12,500 crore is what the platforms keep, about 21% of it. Points out that the published figure is a useful check on the order count rather than on the answer, so it validates the volume side of the chain and leaves the take rate still to be defended. Asks which reading the interviewer wanted, since the whole question turns on it.",
-        "weakAnswer": "Revises the answer upward to match the remembered figure, trading a defensible structure for a number the candidate cannot explain."
+        "trap": "Handing back gross order value as the answer.",
+        "whyItHappens": "Line c8 produces ₹58,900 crore and it feels finished — it is large, it is in rupees, and it matches the figure the candidate half-remembers from a headline, because gross order value is what platforms lead with and what the press repeats. The chain stops because it produced a quotable number, not because it answered the question. The error is not small: it overstates the answer by roughly a factor of five.",
+        "fix": "Write 'whose money is this?' beside every line as you go. At c8 the answer is 'the restaurant's, mostly', and that sentence forces the next step. Structurally, put the take-rate branch in your opening structure rather than adding it later — if it is in the structure you cannot forget it, and if it is a caveat you meant to mention, you will."
       },
       {
-        "question": "Take me through one order. Where do the four hundred rupees end up?",
-        "intent": "Whether the take rate is a real decomposition in your head or a percentage you asserted.",
-        "goodAnswer": "Walks it: about ₹328 to the restaurant after ₹72 of commission, the customer separately paying roughly ₹30 in delivery and platform fees, around ₹8 of advertising attributable to the order, and ₹25 of discount the platform funds — leaving ₹85. Then adds the line that matters: ₹60 of that ₹85 goes to the rider, so the platform keeps about ₹25 to pay for everything else.",
-        "weakAnswer": "Restates twenty per cent in different words, or describes the flows qualitatively without ever making them add up to ₹400."
+        "trap": "Building the take rate as a single asserted percentage.",
+        "whyItHappens": "'Platforms take about twenty per cent' is a real thing candidates have read, and it is roughly right, so it looks efficient. But an asserted percentage has nothing behind it: when the interviewer asks why twenty and not thirty there is no answer, and when she asks what happens if commission is capped by regulation the structure cannot respond, because commission never appeared as a separate object.",
+        "fix": "Decompose it — commission, customer fees, advertising, minus platform-funded discounts. Four things you can defend, four things you can flex, and a number that arrives in roughly the same place while showing where it came from."
       },
       {
-        "question": "Suppose both large platforms stop funding discounts tomorrow. Does your answer go up by eighteen per cent?",
-        "intent": "Whether you can see that a lever in your arithmetic is also a lever in the market, and that the two do not move independently.",
-        "goodAnswer": "No — revenue per order rises, but the discount was buying orders, so volume falls and the two effects fight. Says which dominates and why: discounting mainly buys the marginal, price-sensitive occasion rather than the habitual dinner order, so the revenue effect probably wins in the short run while the volume effect compounds if a rival keeps discounting. Notes that this is precisely why a disciplined duopoly can hold the line and a fragmented market cannot.",
-        "weakAnswer": "Applies the sensitivity grid mechanically and reports plus eighteen per cent, treating a strategic variable as a constant of nature."
+        "trap": "Forgetting that the platform pays for part of the discount.",
+        "whyItHappens": "Every other term in the chain is money coming in, so the mind builds an addition. The discount is invisible from the customer's side of the transaction — you see fifty rupees off and you cannot see whether the restaurant bought that visibility or the platform funded the acquisition — so nothing reminds you the term exists. Omit it and you overstate revenue by nearly a third.",
+        "fix": "Write the negative term into the formula before you fill in any of the positives, so the shape of the line is commission plus fees plus advertising minus discount from the start."
       },
       {
-        "question": "Commission is your largest revenue line. What stops a big restaurant chain from delisting and running its own delivery?",
-        "intent": "Whether you can reason about the durability of a revenue pool rather than only its size.",
-        "goodAnswer": "Names what the chain would have to replicate: demand discovery, which is where most orders actually start, and a rider fleet dense enough to deliver in thirty minutes off its own volume alone. Observes that the largest chains already negotiate commission well below the headline rate, which is the pressure valve, and that partial delisting to push regulars onto an own-brand app is the real threat rather than full exit. Concludes that the pool is defensible at the tail and contested at the top, which is why the effective rate sits below the published one.",
-        "weakAnswer": "'Network effects' — a correct phrase that identifies no mechanism and predicts nothing about which restaurants leave."
+        "trap": "Letting quick commerce in through the side door.",
+        "whyItHappens": "The same app now delivers groceries in ten minutes, the same riders carry both, and on some platforms that business is already larger than the food. A candidate reaching for orders per user per month will silently include the grocery orders, because that is how they use the app, and the answer inflates with no visible error in the arithmetic.",
+        "fix": "Exclude it out loud in your scoping sentence, and again when you set orders per user — 'four food orders a month, not four app orders a month'. Then offer it as the obvious extension if there is time, which turns a scope discipline into a second structure."
       },
       {
-        "question": "You excluded quick commerce. Defend that, and then tell me what including it would do.",
-        "intent": "Scope discipline, and whether you can extend a structure instead of rebuilding it.",
-        "goodAnswer": "Defends it on economics rather than tidiness — quick commerce is inventory the platform buys and sells, so the revenue is recognised differently and a commission take rate does not describe it at all. Says including it would mean a second structure built on dark stores, orders per store per day and gross margin on goods sold, not a bigger version of this one. Offers the direction: a larger order pool at a smaller basket, on a very different margin profile.",
-        "weakAnswer": "'It is a different business' with no reason given, or agrees to fold it in and carries on multiplying, which quietly changes the unit halfway through the answer."
+        "trap": "Reading a 21% take rate as a 21% margin.",
+        "whyItHappens": "A fifth of every order sounds like a rich business, and the word 'take' invites the reading. But the rider payout alone is about two-thirds of that revenue, which is why the triangulation works at all, and technology, marketing and support come out of what is left. The candidate then answers the inevitable 'is this a good business?' from the wrong number.",
+        "fix": "Say 'revenue, not margin' the moment you state the take rate, and keep the ₹60 rider payout visible next to the ₹85 of revenue. The gap between those two figures is the actual conversation about this industry."
+      },
+      {
+        "trap": "Counting every urban Indian as addressable.",
+        "whyItHappens": "'Urban' is the funnel step everyone remembers, and 49 crore is a satisfying base to start multiplying. But delivery runs where rider density works, and a platform that lists a town has usually lit up a few central pin codes in it. Skip the serviceability gate and you begin the chain nearly twice as wide as it should be.",
+        "fix": "Insert the serviceable-area step explicitly and give it a physical reason rather than a statistical one — a rider needs his next pickup within a few kilometres, and below a density threshold the unit economics stop working at any price."
       }
     ],
     "finalAnswerNumeric": 125074950000,
-    "tabLabel": "Food-delivery revenue, India",
-    "finalAnswer": "≈ ₹12,500 crore of platform revenue a year across all food-delivery platforms in India, on roughly ₹58,900 crore of gross order value — a net take rate of about 21%. Every rate on this page is illustrative, built to show the method clearly, not asserted as verified market data.",
-    "scope": {
-      "countingWhat": "The revenue food-delivery platforms recognise as their own from the food-delivery business in one year, summed across every platform operating in India — commission billed to restaurants, fees collected from customers and advertising sold to restaurants, net of the discounts the platform itself funds. It is not the value of the food ordered.",
-      "unit": "rupees per year",
-      "timeBasis": "flow (per year)",
-      "geography": "India, all cities and towns where delivery actually operates",
-      "included": [
-        "Commission the platform bills the restaurant on the value of the food",
-        "Delivery charges and platform fees collected from the customer",
-        "Advertising, sponsored listings and priority placement sold to restaurants",
-        "Subscription fees for free-delivery programmes, net of the deliveries they buy"
+    "number": "14",
+    "sensitivity": {
+      "assumptionId": "platform-funded-discount",
+      "whyThisLever": "Two tests pick the lever, and most candidates run only the first. How badly is the number pinned, and how much of the answer rides on it? The transacting share is softer than it looks, but it moves orders and gross order value together and an interviewer can at least argue about it from her own habits. The platform-funded discount fails both escapes: nothing outside the company reveals it, because the customer sees a discount and never sees who paid for it, and it sits in the last addition before the answer, so it passes straight through one-for-one. It is also the lever that has actually moved in this industry's history — the discount wars swung it by a factor of four while every other number on this page stayed roughly still.",
+      "cases": [
+        {
+          "scenario": "Conservative",
+          "leverValue": "₹40 funded per order — a competitive year",
+          "answer": "≈ ₹10,300 crore",
+          "deltaVsBase": "−18%"
+        },
+        {
+          "scenario": "Base",
+          "leverValue": "₹25 funded per order",
+          "answer": "≈ ₹12,500 crore",
+          "deltaVsBase": "0%"
+        },
+        {
+          "scenario": "Aggressive",
+          "leverValue": "₹10 funded per order — a disciplined duopoly",
+          "answer": "≈ ₹14,700 crore",
+          "deltaVsBase": "+18%"
+        }
       ],
-      "excluded": [
-        "The value of the food itself — that is the restaurant's revenue, not the platform's",
-        "GST and other taxes collected on behalf of the government",
-        "Quick commerce and grocery delivery, which run on the same apps and are larger in places",
-        "Dining-out, table booking and events revenue on the same platforms",
-        "Orders a restaurant takes on its own phone line and delivers with its own staff",
-        "The rider's earnings, which are the platform's cost and not anybody's revenue"
-      ],
-      "boundaryTrap": "'How big is food delivery in India' has two readings that differ by roughly a factor of five. Gross order value is the money customers spend, and it is the figure the press prints because it is the larger one. Platform revenue is the slice the platform keeps, and it is what this question asked for. Say which one you are estimating in your first sentence — and while you are drawing the boundary, exclude quick commerce out loud, because the same app now sells groceries in ten minutes and on some platforms that business already moves more money than the food does. A scope error here is not a detail; it is the whole answer."
+      "breakpoint": "Net revenue per order is ₹110 minus the discount, so at about ₹110 funded per order — 27% of the basket — platform revenue from food delivery goes to zero however many orders get delivered. That is not hypothetical; it is roughly where this industry sat during the acquisition war, when growth in orders and growth in losses were the same line. The honest working range is ₹10 to ₹45, the answer inherits a ₹9,600 to ₹14,700 crore range, and the power of ten never moves. Say that last clause and then stop — it is the difference between a candidate who ran a sensitivity and one who understood why.",
+      "oneLiner": "When there is no time for the grid: 'The number I would defend least is how much of the discount the platform funds itself — call it six per cent of the basket. Halve it or double it and the answer swings by about a fifth either way, and it stays in the low tens of thousands of crore.'"
     },
-    "calculation": [
-      {
-        "id": "c1",
-        "label": "Urban population",
-        "expr": "1400000000 * 0.35",
-        "display": "140 crore × 35% urban",
-        "result": 490000000,
-        "tolerance": 1e-06,
-        "unit": "people",
-        "carriedForward": "≈ 49 crore",
-        "uses": [
-          "population",
-          "urban-share"
-        ],
-        "soWhat": "Rural India is dropped here in one line and it should be defended in one line: delivery needs a rider to find his next pickup within a few kilometres, and outside towns that density does not exist."
-      },
-      {
-        "id": "c2",
-        "label": "Population where delivery is serviceable",
-        "expr": "490000000 * 0.55",
-        "display": "49 crore urban × 55% in serviced areas",
-        "result": 269500000,
-        "tolerance": 1e-06,
-        "unit": "people",
-        "carriedForward": "≈ 27 crore",
-        "uses": [
-          "served-city-share"
-        ],
-        "soWhat": "The step candidates skip, because 'urban' feels as though it already means 'has apps'. It does not. A platform listing a town usually means it has lit up a few central pin codes, and the difference between listed and serviced is nearly half the urban base."
-      },
-      {
-        "id": "c3",
-        "label": "Adults in serviced areas",
-        "expr": "269500000 * 0.70",
-        "display": "27 crore × 70% aged 18 and over",
-        "result": 188650000,
-        "tolerance": 1e-06,
-        "unit": "adults",
-        "carriedForward": "≈ 18.9 crore",
-        "uses": [
-          "urban-adult-share"
-        ],
-        "soWhat": "Use the urban adult share rather than the national one, and say why — cities are demographically older at the bottom end because the children stayed behind."
-      },
-      {
-        "id": "c4",
-        "label": "Adults with a smartphone and a payment method",
-        "expr": "188650000 * 0.65",
-        "display": "18.9 crore adults × 65% app-and-payment capable",
-        "result": 122622500,
-        "tolerance": 1e-06,
-        "unit": "adults",
-        "carriedForward": "≈ 12.3 crore",
-        "uses": [
-          "app-capable-share"
-        ],
-        "soWhat": "This is the ceiling on the business, not its size. Everything after this line is about habit rather than access, and conflating the two is how candidates arrive at answers three times too large."
-      },
-      {
-        "id": "c5",
-        "label": "Users transacting in a month",
-        "expr": "122622500 * 0.25",
-        "display": "12.3 crore capable × 25% ordering this month",
-        "result": 30655625,
-        "tolerance": 1e-06,
-        "unit": "users",
-        "carriedForward": "≈ 3.1 crore",
-        "uses": [
-          "transacting-share"
-        ],
-        "soWhat": "Three crore people out of a hundred and forty. Say that ratio aloud, because it is the one the room will resist — everyone in a Gurgaon classroom orders in, and the country is not the room."
-      },
-      {
-        "id": "c6",
-        "label": "Orders a month",
-        "expr": "30655625 * 4",
-        "display": "3.07 crore users × 4 orders each",
-        "result": 122622500,
-        "tolerance": 1e-06,
-        "unit": "orders per month",
-        "carriedForward": "≈ 12.3 crore orders",
-        "uses": [
-          "orders-per-user-month"
-        ],
-        "soWhat": "Notice where this lands — exactly back on the app-capable base from c4, because a quarter of people ordering four times each is one order a month per capable adult. That restatement is easier to defend than either lever alone, and it is a free check that the pair is not absurd."
-      },
-      {
-        "id": "c7",
-        "label": "Orders a year",
-        "expr": "122622500 * 12",
-        "display": "12.26 crore a month × 12 months",
-        "result": 1471470000,
-        "tolerance": 1e-06,
-        "unit": "orders per year",
-        "carriedForward": "≈ 147 crore orders",
-        "uses": [
-          "months-per-year"
-        ],
-        "soWhat": "About 40 lakh orders a day across the country. Hold that figure — it is the one the supply-side cross-check has to reproduce from riders, and a daily order count is far easier to sanity-test than a rupee total."
-      },
-      {
-        "id": "c8",
-        "label": "Gross order value",
-        "expr": "1471470000 * 400",
-        "display": "147 crore orders × ₹400 average basket",
-        "result": 588588000000,
-        "tolerance": 1e-06,
-        "unit": "rupees per year",
-        "carriedForward": "≈ ₹58,900 crore",
-        "uses": [
-          "average-order-value"
-        ],
-        "soWhat": "This is the number the headlines call the market, and it is not the answer. Nearly four rupees in five of it belongs to the restaurant. Compute it, name it, and keep going — stopping here is the most expensive mistake available on this question."
-      },
-      {
-        "id": "c9",
-        "label": "Commission per order",
-        "expr": "400 * 0.18",
-        "display": "₹400 basket × 18% commission",
-        "result": 72,
-        "tolerance": 1e-06,
-        "unit": "rupees per order",
-        "uses": [
-          "average-order-value",
-          "commission-rate"
-        ],
-        "soWhat": "The largest revenue line, invisible to the customer, and the one under permanent renegotiation — which is why the take rate is a statement about bargaining power rather than a constant of nature."
-      },
-      {
-        "id": "c10",
-        "label": "Net platform revenue per order",
-        "expr": "72 + 30 + 8 - 25",
-        "display": "₹72 commission + ₹30 customer fees + ₹8 advertising − ₹25 platform-funded discount",
-        "result": 85,
-        "tolerance": 1e-06,
-        "unit": "rupees per order",
-        "uses": [
-          "customer-fee-per-order",
-          "ad-revenue-per-order",
-          "platform-funded-discount"
-        ],
-        "soWhat": "Four named components instead of one asserted percentage. When the interviewer pushes — and on this question she will — you have four separate things to defend rather than one number with nothing behind it."
-      },
-      {
-        "id": "c11",
-        "label": "Implied net take rate",
-        "expr": "85 / 400",
-        "display": "₹85 kept ÷ ₹400 basket",
-        "result": 0.2125,
-        "tolerance": 1e-06,
-        "unit": "share of order value",
-        "carriedForward": "≈ 21%",
-        "uses": [
-          "average-order-value"
-        ],
-        "soWhat": "State this ratio before you state the answer. It is the bridge between the two readings of the question, and it tells the interviewer in one number that you knew there were two."
-      },
-      {
-        "id": "c12",
-        "label": "Annual platform revenue, all players",
-        "expr": "1471470000 * 85",
-        "display": "147 crore orders × ₹85 net revenue each",
-        "result": 125074950000,
-        "tolerance": 1e-06,
-        "unit": "rupees per year",
-        "carriedForward": "≈ ₹12,500 crore",
-        "uses": [],
-        "soWhat": "The answer, and roughly a fifth of the gross order value on line c8. Say both figures in the same breath and label them, because the interviewer is listening for whether you can tell them apart."
-      }
+    "sanityChecks": [
+      "Turn the answer back into daily life. 147 crore orders a year is roughly 40 lakh a day nationally, which at thirteen drops a rider needs about three lakh riders out on the road. If you have stood on a Bengaluru arterial at eight in the evening, that is the right order — a few per cent of the two-wheelers going past, not one in ten and not one in five hundred.",
+      "Check the transacting user against your own city. About 3.1 crore people ordering in a given month, out of 27 crore living in serviced areas, is roughly one person in nine. In an MBA classroom it would be nine in nine, which is the whole problem with estimating a consumer category from inside the consuming class.",
+      "Put the ₹400 basket against the household food budget. A user ordering four times a month is spending about ₹1,600 on delivered food. For an urban household spending ₹12,000 to ₹15,000 a month on food, that is a tenth to an eighth of the food wallet — plausible for the ordering minority, and clearly impossible as a national average, which is another way of seeing why the 25% gate has to be there.",
+      "Size it against eating out generally. India's whole food-service market — restaurants, canteens, street food, everything prepared outside the home — is of the order of ₹5 lakh crore. Gross order value of ₹58,900 crore makes delivery about one rupee in eight of that. High but believable, since delivery is concentrated in exactly the organised urban outlets where spend per head is highest.",
+      "Split it across the players. Two large platforms carry most of this, so each would be earning of the order of ₹5,000 to ₹6,000 crore a year from food delivery, or roughly ₹1,400 crore a quarter. That is the same order of magnitude as the food-delivery segment figures listed Indian platforms report, which is as much confirmation as an estimate built this way deserves.",
+      "Test the answer against the rider bill. Platform revenue of ₹12,500 crore against a rider payout bill of ₹9,100 crore says two-thirds of every rupee earned goes straight back out to the fleet before a single engineer, marketer or support agent is paid. Had your arithmetic produced revenue below the rider bill, the business would be structurally impossible, and you want to find that here rather than in the interviewer's follow-up."
     ],
-    "orderOfMagnitude": "10^11 rupees — ₹12,500 crore, so tens of thousands of crore and not lakhs of crore. Gross order value is 10^11 as well, but at the top of that decade rather than the bottom, so being right to the power of ten does not save you here. That is what makes this one Hard.",
     "assumptions": [
       {
         "id": "population",
@@ -8041,40 +9138,188 @@ export const guesstimates: readonly Guesstimate[] = [
         "contestedBy": "Anywhere from 55% to 75% depending on the year and the batching rate. The whole band keeps this cross-check inside ₹12,000 to ₹16,500 crore."
       }
     ],
-    "question": "What do India's food-delivery platforms earn in a year — not what their customers spend?",
-    "traps": [
+    "finalAnswer": "≈ ₹12,500 crore of platform revenue a year across all food-delivery platforms in India, on roughly ₹58,900 crore of gross order value — a net take rate of about 21%. Every rate on this page is illustrative, built to show the method clearly, not asserted as verified market data.",
+    "calculation": [
       {
-        "trap": "Handing back gross order value as the answer.",
-        "whyItHappens": "Line c8 produces ₹58,900 crore and it feels finished — it is large, it is in rupees, and it matches the figure the candidate half-remembers from a headline, because gross order value is what platforms lead with and what the press repeats. The chain stops because it produced a quotable number, not because it answered the question. The error is not small: it overstates the answer by roughly a factor of five.",
-        "fix": "Write 'whose money is this?' beside every line as you go. At c8 the answer is 'the restaurant's, mostly', and that sentence forces the next step. Structurally, put the take-rate branch in your opening structure rather than adding it later — if it is in the structure you cannot forget it, and if it is a caveat you meant to mention, you will."
+        "id": "c1",
+        "label": "Urban population",
+        "expr": "1400000000 * 0.35",
+        "display": "140 crore × 35% urban",
+        "result": 490000000,
+        "tolerance": 1e-06,
+        "unit": "people",
+        "carriedForward": "≈ 49 crore",
+        "uses": [
+          "population",
+          "urban-share"
+        ],
+        "soWhat": "Rural India is dropped here in one line and it should be defended in one line: delivery needs a rider to find his next pickup within a few kilometres, and outside towns that density does not exist."
       },
       {
-        "trap": "Building the take rate as a single asserted percentage.",
-        "whyItHappens": "'Platforms take about twenty per cent' is a real thing candidates have read, and it is roughly right, so it looks efficient. But an asserted percentage has nothing behind it: when the interviewer asks why twenty and not thirty there is no answer, and when she asks what happens if commission is capped by regulation the structure cannot respond, because commission never appeared as a separate object.",
-        "fix": "Decompose it — commission, customer fees, advertising, minus platform-funded discounts. Four things you can defend, four things you can flex, and a number that arrives in roughly the same place while showing where it came from."
+        "id": "c2",
+        "label": "Population where delivery is serviceable",
+        "expr": "490000000 * 0.55",
+        "display": "49 crore urban × 55% in serviced areas",
+        "result": 269500000,
+        "tolerance": 1e-06,
+        "unit": "people",
+        "carriedForward": "≈ 27 crore",
+        "uses": [
+          "served-city-share"
+        ],
+        "soWhat": "The step candidates skip, because 'urban' feels as though it already means 'has apps'. It does not. A platform listing a town usually means it has lit up a few central pin codes, and the difference between listed and serviced is nearly half the urban base."
       },
       {
-        "trap": "Forgetting that the platform pays for part of the discount.",
-        "whyItHappens": "Every other term in the chain is money coming in, so the mind builds an addition. The discount is invisible from the customer's side of the transaction — you see fifty rupees off and you cannot see whether the restaurant bought that visibility or the platform funded the acquisition — so nothing reminds you the term exists. Omit it and you overstate revenue by nearly a third.",
-        "fix": "Write the negative term into the formula before you fill in any of the positives, so the shape of the line is commission plus fees plus advertising minus discount from the start."
+        "id": "c3",
+        "label": "Adults in serviced areas",
+        "expr": "269500000 * 0.70",
+        "display": "27 crore × 70% aged 18 and over",
+        "result": 188650000,
+        "tolerance": 1e-06,
+        "unit": "adults",
+        "carriedForward": "≈ 18.9 crore",
+        "uses": [
+          "urban-adult-share"
+        ],
+        "soWhat": "Use the urban adult share rather than the national one, and say why — cities are demographically older at the bottom end because the children stayed behind."
       },
       {
-        "trap": "Letting quick commerce in through the side door.",
-        "whyItHappens": "The same app now delivers groceries in ten minutes, the same riders carry both, and on some platforms that business is already larger than the food. A candidate reaching for orders per user per month will silently include the grocery orders, because that is how they use the app, and the answer inflates with no visible error in the arithmetic.",
-        "fix": "Exclude it out loud in your scoping sentence, and again when you set orders per user — 'four food orders a month, not four app orders a month'. Then offer it as the obvious extension if there is time, which turns a scope discipline into a second structure."
+        "id": "c4",
+        "label": "Adults with a smartphone and a payment method",
+        "expr": "188650000 * 0.65",
+        "display": "18.9 crore adults × 65% app-and-payment capable",
+        "result": 122622500,
+        "tolerance": 1e-06,
+        "unit": "adults",
+        "carriedForward": "≈ 12.3 crore",
+        "uses": [
+          "app-capable-share"
+        ],
+        "soWhat": "This is the ceiling on the business, not its size. Everything after this line is about habit rather than access, and conflating the two is how candidates arrive at answers three times too large."
       },
       {
-        "trap": "Reading a 21% take rate as a 21% margin.",
-        "whyItHappens": "A fifth of every order sounds like a rich business, and the word 'take' invites the reading. But the rider payout alone is about two-thirds of that revenue, which is why the triangulation works at all, and technology, marketing and support come out of what is left. The candidate then answers the inevitable 'is this a good business?' from the wrong number.",
-        "fix": "Say 'revenue, not margin' the moment you state the take rate, and keep the ₹60 rider payout visible next to the ₹85 of revenue. The gap between those two figures is the actual conversation about this industry."
+        "id": "c5",
+        "label": "Users transacting in a month",
+        "expr": "122622500 * 0.25",
+        "display": "12.3 crore capable × 25% ordering this month",
+        "result": 30655625,
+        "tolerance": 1e-06,
+        "unit": "users",
+        "carriedForward": "≈ 3.1 crore",
+        "uses": [
+          "transacting-share"
+        ],
+        "soWhat": "Three crore people out of a hundred and forty. Say that ratio aloud, because it is the one the room will resist — everyone in a Gurgaon classroom orders in, and the country is not the room."
       },
       {
-        "trap": "Counting every urban Indian as addressable.",
-        "whyItHappens": "'Urban' is the funnel step everyone remembers, and 49 crore is a satisfying base to start multiplying. But delivery runs where rider density works, and a platform that lists a town has usually lit up a few central pin codes in it. Skip the serviceability gate and you begin the chain nearly twice as wide as it should be.",
-        "fix": "Insert the serviceable-area step explicitly and give it a physical reason rather than a statistical one — a rider needs his next pickup within a few kilometres, and below a density threshold the unit economics stop working at any price."
+        "id": "c6",
+        "label": "Orders a month",
+        "expr": "30655625 * 4",
+        "display": "3.07 crore users × 4 orders each",
+        "result": 122622500,
+        "tolerance": 1e-06,
+        "unit": "orders per month",
+        "carriedForward": "≈ 12.3 crore orders",
+        "uses": [
+          "orders-per-user-month"
+        ],
+        "soWhat": "Notice where this lands — exactly back on the app-capable base from c4, because a quarter of people ordering four times each is one order a month per capable adult. That restatement is easier to defend than either lever alone, and it is a free check that the pair is not absurd."
+      },
+      {
+        "id": "c7",
+        "label": "Orders a year",
+        "expr": "122622500 * 12",
+        "display": "12.26 crore a month × 12 months",
+        "result": 1471470000,
+        "tolerance": 1e-06,
+        "unit": "orders per year",
+        "carriedForward": "≈ 147 crore orders",
+        "uses": [
+          "months-per-year"
+        ],
+        "soWhat": "About 40 lakh orders a day across the country. Hold that figure — it is the one the supply-side cross-check has to reproduce from riders, and a daily order count is far easier to sanity-test than a rupee total."
+      },
+      {
+        "id": "c8",
+        "label": "Gross order value",
+        "expr": "1471470000 * 400",
+        "display": "147 crore orders × ₹400 average basket",
+        "result": 588588000000,
+        "tolerance": 1e-06,
+        "unit": "rupees per year",
+        "carriedForward": "≈ ₹58,900 crore",
+        "uses": [
+          "average-order-value"
+        ],
+        "soWhat": "This is the number the headlines call the market, and it is not the answer. Nearly four rupees in five of it belongs to the restaurant. Compute it, name it, and keep going — stopping here is the most expensive mistake available on this question."
+      },
+      {
+        "id": "c9",
+        "label": "Commission per order",
+        "expr": "400 * 0.18",
+        "display": "₹400 basket × 18% commission",
+        "result": 72,
+        "tolerance": 1e-06,
+        "unit": "rupees per order",
+        "uses": [
+          "average-order-value",
+          "commission-rate"
+        ],
+        "soWhat": "The largest revenue line, invisible to the customer, and the one under permanent renegotiation — which is why the take rate is a statement about bargaining power rather than a constant of nature."
+      },
+      {
+        "id": "c10",
+        "label": "Net platform revenue per order",
+        "expr": "72 + 30 + 8 - 25",
+        "display": "₹72 commission + ₹30 customer fees + ₹8 advertising − ₹25 platform-funded discount",
+        "result": 85,
+        "tolerance": 1e-06,
+        "unit": "rupees per order",
+        "uses": [
+          "customer-fee-per-order",
+          "ad-revenue-per-order",
+          "platform-funded-discount"
+        ],
+        "soWhat": "Four named components instead of one asserted percentage. When the interviewer pushes — and on this question she will — you have four separate things to defend rather than one number with nothing behind it."
+      },
+      {
+        "id": "c11",
+        "label": "Implied net take rate",
+        "expr": "85 / 400",
+        "display": "₹85 kept ÷ ₹400 basket",
+        "result": 0.2125,
+        "tolerance": 1e-06,
+        "unit": "share of order value",
+        "carriedForward": "≈ 21%",
+        "uses": [
+          "average-order-value"
+        ],
+        "soWhat": "State this ratio before you state the answer. It is the bridge between the two readings of the question, and it tells the interviewer in one number that you knew there were two."
+      },
+      {
+        "id": "c12",
+        "label": "Annual platform revenue, all players",
+        "expr": "1471470000 * 85",
+        "display": "147 crore orders × ₹85 net revenue each",
+        "result": 125074950000,
+        "tolerance": 1e-06,
+        "unit": "rupees per year",
+        "carriedForward": "≈ ₹12,500 crore",
+        "uses": [],
+        "soWhat": "The answer, and roughly a fifth of the gross order value on line c8. Say both figures in the same breath and label them, because the interviewer is listening for whether you can tell them apart."
       }
     ],
-    "teachingPoint": "A marketplace question has two answers sitting on top of each other, and only one of them was asked for. The money that moves through the app is the restaurant's; the money the platform keeps is a slice of it, and here the slice is roughly a fifth. Candidates who hand back gross order value are not out by a rounding error — they are out by a factor of about five, and they have answered a different question confidently. The transferable habit is to write 'whose money is this?' beside every line of the chain, and to treat the take rate as something you build from named components rather than assert as a percentage."
+    "id": "food-delivery-revenue-pool",
+    "tabLabel": "Food-delivery revenue, India",
+    "teachingPoint": "A marketplace question has two answers sitting on top of each other, and only one of them was asked for. The money that moves through the app is the restaurant's; the money the platform keeps is a slice of it, and here the slice is roughly a fifth. Candidates who hand back gross order value are not out by a rounding error — they are out by a factor of about five, and they have answered a different question confidently. The transferable habit is to write 'whose money is this?' beside every line of the chain, and to treat the take rate as something you build from named components rather than assert as a percentage.",
+    "orderOfMagnitude": "10^11 rupees — ₹12,500 crore, so tens of thousands of crore and not lakhs of crore. Gross order value is 10^11 as well, but at the top of that decade rather than the bottom, so being right to the power of ten does not save you here. That is what makes this one Hard.",
+    "routeChoice": {
+      "chosen": "Top-down",
+      "why": "Orders are the engine of this business and orders come from people, so start where the people are and narrow: urban India, then the towns where delivery actually runs, then adults, then adults with a phone and a payment method, then the minority who order in a given month. Every step is a rate you can name and defend separately, which means an interviewer who disagrees can point at one step rather than at the answer. Then do the part the question is really about — convert orders into money twice, once at gross order value and once at platform revenue, and say plainly which is which.",
+      "rejectedRoute": "Bottom-up",
+      "rejectedWhyNot": "Bottom-up here means starting from the restaurants: count the outlets listed on the apps, assume orders per outlet per day, bill them. It fails on both levers. The listed base is violently skewed — a dark-kitchen brand in Koramangala may take two hundred orders a day while a listed sweet shop on a Tier-2 market street takes two a week — so your answer is decided by a mean over a distribution nobody can see. And it starts at the wrong unit for this question: billing the restaurant gets you commission and advertising but silently drops the customer-side fees, which are close to a third of platform revenue, so the structure cannot reach the right answer even with perfect levers. A supply-side count is too weak to build on here. It is still strong enough to check with, which is exactly what the triangulation does — but from riders, who are visible on the street, rather than from restaurants, whose order books are not."
+    },
+    "archetype": "revenue-pool-take-rate"
   }
 ] as const;
 

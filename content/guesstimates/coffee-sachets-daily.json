@@ -1,0 +1,602 @@
+{
+  "id": "coffee-sachets-daily",
+  "question": "How many single-serve instant coffee sachets are sold across India on an average day?",
+  "tabLabel": "Coffee sachets, India daily",
+  "archetype": "funnel-conversion-fmcg",
+  "difficulty": "Medium",
+  "timeboxMinutes": 12,
+  "teachingPoint": "In a habit product, frequency does more work than the user count — and in a tea country, the trial rate is the number that binds. Run the funnel separately for urban and rural India, multiply the small repeat base by how often it actually drinks, and remember that a heavy drinker buys a jar, not sachets. Get the frequency wrong by a factor and no amount of care over the population will rescue the answer.",
+  "scope": {
+    "countingWhat": "Single-serve instant coffee sachets bought in India on an average day — the small one-cup packs sold for a few rupees each, including three-in-one premixes. Jars, refill pouches, filter coffee and coffee bought by the cup are out.",
+    "unit": "sachets a day",
+    "timeBasis": "flow (per day)",
+    "geography": "All of India, run as two funnels — urban (35%) and rural (65%).",
+    "included": [
+      "Branded single-serve instant coffee sachets and three-in-one premixes",
+      "Sachets bought for home, office desks, hostels and travel",
+      "Sachets sold in strips at kiranas and paan shops"
+    ],
+    "excluded": [
+      "Instant coffee in jars and refill pouches",
+      "South Indian filter coffee and roast-and-ground powder",
+      "Coffee bought by the cup — cafés, vending machines, office pantries",
+      "Sachets exported"
+    ],
+    "boundaryTrap": "The category figure people half-remember is instant coffee as a whole, in tonnes or rupees — most of it jars and pouches bought by heavy urban drinkers. Sachets are a different, smaller business built on trial and affordability. Size the pack, not the category."
+  },
+  "routeChoice": {
+    "chosen": "Top-down",
+    "why": "A consumer habit sizes best as a funnel from people: who is old enough, who has heard of it, who has tried it, who comes back, and how often they drink. Every gate is a number you can defend from what you see around you — and each one is a lever a brand can act on, which is what makes the answer useful after it is given.",
+    "rejectedRoute": "Bottom-up",
+    "rejectedWhyNot": "The supply side — instant coffee made in India, the share packed as sachets, sachets per kilo — needs trade figures a candidate cannot see or defend in the room. It is a good check for someone holding the data, and a guess dressed up as a calculation for anyone else."
+  },
+  "tree": {
+    "root": "Instant coffee sachets bought in India on an average day",
+    "rootFormula": "= Σ (people in the band × aware × tried × repeat × cups a day × share from sachets), urban and rural separately",
+    "value": "≈ 1.5 crore a day",
+    "branches": [
+      {
+        "label": "Urban India — 29 crore people aged 15–60",
+        "formula": "294 Mn × 90% aware × 45% tried × 35% repeat × 4 cups a week ÷ 7 × 50% from sachets",
+        "value": "4.2 crore repeat buyers · 1.19 crore sachets a day",
+        "note": "Four-fifths of the answer from a third of the people. Frequency is the lever that moves it most.",
+        "isCriticalPath": true,
+        "children": [
+          {
+            "label": "Repeat buyers",
+            "formula": "294 Mn × 90% × 45% × 35%",
+            "value": "41.7 Mn",
+            "note": "One urban adult in seven. Most who try instant coffee go back to tea."
+          },
+          {
+            "label": "Cups a day",
+            "formula": "41.7 Mn × 4 ÷ 7",
+            "value": "2.38 crore",
+            "note": "Four a week blends daily desk drinkers with exam-season and weekend ones."
+          },
+          {
+            "label": "Share from sachets",
+            "formula": "× 50%",
+            "value": "1.19 crore sachets",
+            "note": "Heavy drinkers buy jars. The sachet is the entry and convenience format."
+          }
+        ]
+      },
+      {
+        "label": "Rural India — 55 crore people aged 15–60",
+        "formula": "546 Mn × 55% aware × 15% tried × 25% repeat × 2 cups a week ÷ 7 × 90% from sachets",
+        "value": "1.1 crore repeat buyers · 29 lakh sachets a day",
+        "note": "Two-thirds of the people and a fifth of the sachets. Trial, not price, is the binding number.",
+        "isCriticalPath": false,
+        "children": [
+          {
+            "label": "Repeat buyers",
+            "formula": "546 Mn × 55% × 15% × 25%",
+            "value": "11.3 Mn",
+            "note": "The 15% trial rate does most of the damage; awareness is not the constraint."
+          },
+          {
+            "label": "Sachets a day",
+            "formula": "11.3 Mn × 2 ÷ 7 × 90%",
+            "value": "29 lakh",
+            "note": "Almost every rural cup comes from a sachet — it is the rural format."
+          }
+        ]
+      }
+    ]
+  },
+  "assumptions": [
+    {
+      "id": "a-pop",
+      "lever": "Population of India",
+      "value": "1.4 bn (140 crore)",
+      "numeric": 1400000000,
+      "unit": "people",
+      "basis": "census-anchor",
+      "defence": "The working anchor in every Indian sizing question; the published figure sits a little above it, and rounding down buys arithmetic you can run in your head.",
+      "confidence": "anchor",
+      "contestedBy": "Some datasheets use 1.45 bn. Every figure below rises about 4% — not enough to change any conclusion here."
+    },
+    {
+      "id": "a-age",
+      "lever": "Share of Indians in the coffee-drinking band, 15–60",
+      "value": "60%",
+      "numeric": 0.6,
+      "unit": "share",
+      "basis": "structural-logic",
+      "defence": "Children rarely drink coffee and the over-60s drink less; the working-age band carries almost all of it. Sixty per cent is the band rounded down.",
+      "confidence": "defensible",
+      "contestedBy": "Official age tables put the 15–64 share nearer two-thirds; widening the band that far adds about a tenth to every line."
+    },
+    {
+      "id": "a-urban-share",
+      "lever": "Urban share of the band",
+      "value": "35%",
+      "numeric": 0.35,
+      "unit": "share",
+      "basis": "census-anchor",
+      "defence": "The same urban share used across the site's India questions; urban and rural are run as two separate funnels from here.",
+      "confidence": "defensible",
+      "contestedBy": "Definitions of 'urban' vary; the split matters far more than its exact position."
+    },
+    {
+      "id": "a-aware-u",
+      "lever": "Urban awareness of instant coffee",
+      "value": "90%",
+      "numeric": 0.9,
+      "unit": "share",
+      "basis": "observed-behaviour",
+      "defence": "Instant coffee sits on every urban kirana shelf and in every office pantry. Not having heard of it is rare.",
+      "confidence": "defensible",
+      "contestedBy": "Awareness is not the binding gate in cities, so its exact value hardly matters."
+    },
+    {
+      "id": "a-trial-u",
+      "lever": "Urban trial — has bought or drunk instant coffee at least once",
+      "value": "45%",
+      "numeric": 0.45,
+      "unit": "share",
+      "basis": "declared-judgement",
+      "defence": "A first cup at a hostel, an office or a friend's house. Tea is the default, so trial is far from universal even where awareness is total.",
+      "confidence": "judgement",
+      "contestedBy": "Younger urban cohorts run well above half; older ones well below. This is one of the two levers that decide the answer."
+    },
+    {
+      "id": "a-repeat-u",
+      "lever": "Urban repeat — triers who buy at least once a month",
+      "value": "35%",
+      "numeric": 0.35,
+      "unit": "share",
+      "basis": "declared-judgement",
+      "defence": "Most people who try instant coffee go back to tea. A third becoming regular buyers is a strong habit for a second-choice drink.",
+      "confidence": "judgement",
+      "contestedBy": "A strong premix launch or an office full of coffee drinkers pushes it higher; it rarely passes half."
+    },
+    {
+      "id": "a-freq-u",
+      "lever": "Cups a week, per urban repeat buyer",
+      "value": "4",
+      "numeric": 4,
+      "unit": "cups a week",
+      "basis": "observed-behaviour",
+      "defence": "A blend of daily desk drinkers and weekend or exam-season ones. Four a week is the blended figure, not the typical heavy user.",
+      "confidence": "shaky",
+      "contestedBy": "Anything from two to seven is defensible, and this lever alone moves the answer by −40% to +60%."
+    },
+    {
+      "id": "a-sachet-u",
+      "lever": "Share of urban repeat buyers' cups made from a sachet",
+      "value": "50%",
+      "numeric": 0.5,
+      "unit": "share",
+      "basis": "structural-logic",
+      "defence": "Heavy urban drinkers trade up to jars and pouches, which cost less per cup; sachets stay in the desk drawer and the travel bag.",
+      "confidence": "judgement",
+      "contestedBy": "Premix drinkers are almost all-sachet; jar loyalists almost none."
+    },
+    {
+      "id": "a-aware-r",
+      "lever": "Rural awareness of instant coffee",
+      "value": "55%",
+      "numeric": 0.55,
+      "unit": "share",
+      "basis": "observed-behaviour",
+      "defence": "Stocked in market towns and larger villages, often absent in smaller ones. Television reach carries awareness past distribution.",
+      "confidence": "judgement",
+      "contestedBy": "Awareness is not rural India's binding gate either — trial is."
+    },
+    {
+      "id": "a-trial-r",
+      "lever": "Rural trial",
+      "value": "15%",
+      "numeric": 0.15,
+      "unit": "share",
+      "basis": "declared-judgement",
+      "defence": "The binding number. Rural India drinks tea by default, and coffee is unfamiliar outside the South, where the habit is filter coffee rather than instant.",
+      "confidence": "shaky",
+      "contestedBy": "Doubling it doubles the rural line — which is exactly why a brand would spend there."
+    },
+    {
+      "id": "a-repeat-r",
+      "lever": "Rural repeat",
+      "value": "25%",
+      "numeric": 0.25,
+      "unit": "share",
+      "basis": "declared-judgement",
+      "defence": "Lower than urban: fewer outlets stock it reliably, and tea is cheaper still.",
+      "confidence": "judgement",
+      "contestedBy": "Distribution depth, not preference, is most of the gap."
+    },
+    {
+      "id": "a-freq-r",
+      "lever": "Cups a week, per rural repeat buyer",
+      "value": "2",
+      "numeric": 2,
+      "unit": "cups a week",
+      "basis": "declared-judgement",
+      "defence": "An occasional treat or a winter habit rather than a daily ritual.",
+      "confidence": "shaky",
+      "contestedBy": "Winter months run higher; a daily rural coffee habit is rare outside the South."
+    },
+    {
+      "id": "a-sachet-r",
+      "lever": "Share of rural repeat buyers' cups made from a sachet",
+      "value": "90%",
+      "numeric": 0.9,
+      "unit": "share",
+      "basis": "structural-logic",
+      "defence": "The sachet is the rural format: a few rupees' outlay, no storage, no waste. Jars barely reach the village shelf.",
+      "confidence": "defensible",
+      "contestedBy": "Some market-town households buy small pouches; the share cannot go much lower."
+    },
+    {
+      "id": "a-days-week",
+      "lever": "Days in a week",
+      "value": "7",
+      "numeric": 7,
+      "unit": "days",
+      "basis": "physical-constant",
+      "defence": "Converts a weekly habit into an average day.",
+      "confidence": "anchor",
+      "contestedBy": "—"
+    },
+    {
+      "id": "a-hot-cups",
+      "lever": "Hot-beverage cups a day, per person in the band",
+      "value": "1.6",
+      "numeric": 1.6,
+      "unit": "cups a day",
+      "basis": "observed-behaviour",
+      "defence": "Tea at home in the morning and evening for most, less for some; one and a half to two cups is the national habit. It puts India's coffee-age band at about 1.3 bn hot cups a day.",
+      "confidence": "judgement",
+      "contestedBy": "Winter and the northern states run higher; summer in the South lower."
+    },
+    {
+      "id": "a-coffee-share",
+      "lever": "Coffee's share of those hot cups",
+      "value": "7%",
+      "numeric": 0.07,
+      "unit": "share",
+      "basis": "declared-judgement",
+      "defence": "India is a tea country. Coffee is concentrated in the South and among young urban drinkers.",
+      "confidence": "shaky",
+      "contestedBy": "Southern states alone run far higher; the national blend is what matters here."
+    },
+    {
+      "id": "a-instant-share",
+      "lever": "Instant's share of coffee cups",
+      "value": "35%",
+      "numeric": 0.35,
+      "unit": "share",
+      "basis": "declared-judgement",
+      "defence": "Most of India's coffee is South Indian filter coffee; instant dominates everywhere else, but everywhere else drinks far less coffee.",
+      "confidence": "judgement",
+      "contestedBy": "Café and vending coffee are outside both sides of this share."
+    },
+    {
+      "id": "a-sachet-share",
+      "lever": "Share of instant cups made from a sachet",
+      "value": "50%",
+      "numeric": 0.5,
+      "unit": "share",
+      "basis": "declared-judgement",
+      "defence": "Taken as a single national figure here, which is the weakness of this route: the funnel derives it by geography.",
+      "confidence": "judgement",
+      "contestedBy": "The funnel implies about 55% nationally — urban half, rural nine-tenths — which is the number to compare against."
+    }
+  ],
+  "calculation": [
+    {
+      "id": "c1",
+      "label": "People in the coffee-drinking band",
+      "expr": "1400000000 * 0.6",
+      "display": "1,400 Mn × 60%",
+      "result": 840000000,
+      "tolerance": 0,
+      "unit": "people",
+      "carriedForward": "840 Mn (84 crore)",
+      "uses": [
+        "a-pop",
+        "a-age"
+      ],
+      "soWhat": "Every line below is linear in this. Box it and split it once."
+    },
+    {
+      "id": "c2",
+      "label": "Urban, in the band",
+      "expr": "840000000 * 0.35",
+      "display": "840 Mn × 35%",
+      "result": 294000000,
+      "tolerance": 0,
+      "unit": "people",
+      "carriedForward": "294 Mn (29 crore)",
+      "uses": [
+        "a-urban-share"
+      ],
+      "soWhat": "A third of the people and, as it turns out, four-fifths of the sachets."
+    },
+    {
+      "id": "c3",
+      "label": "Rural, in the band",
+      "expr": "840000000 * 0.65",
+      "display": "840 Mn × 65%",
+      "result": 546000000,
+      "tolerance": 0,
+      "unit": "people",
+      "carriedForward": "546 Mn (55 crore)",
+      "uses": [
+        "a-urban-share"
+      ],
+      "soWhat": "Two-thirds of the people. Watch how little of the answer survives the rural funnel."
+    },
+    {
+      "id": "c4",
+      "label": "Urban repeat buyers",
+      "expr": "294000000 * 0.9 * 0.45 * 0.35",
+      "display": "294 Mn × 90% aware × 45% tried × 35% repeat",
+      "result": 41674500,
+      "tolerance": 0,
+      "unit": "buyers",
+      "carriedForward": "41.7 Mn (4.2 crore)",
+      "uses": [
+        "a-aware-u",
+        "a-trial-u",
+        "a-repeat-u"
+      ],
+      "soWhat": "One urban adult in seven is a regular buyer. Most who try instant coffee go back to tea."
+    },
+    {
+      "id": "c5",
+      "label": "Rural repeat buyers",
+      "expr": "546000000 * 0.55 * 0.15 * 0.25",
+      "display": "546 Mn × 55% aware × 15% tried × 25% repeat",
+      "result": 11261250,
+      "tolerance": 0,
+      "unit": "buyers",
+      "carriedForward": "11.3 Mn (1.1 crore)",
+      "uses": [
+        "a-aware-r",
+        "a-trial-r",
+        "a-repeat-r"
+      ],
+      "soWhat": "One rural adult in fifty. Awareness is over half; it is the 15% trial rate that does the damage."
+    },
+    {
+      "id": "c6",
+      "label": "Urban cups a day",
+      "expr": "41674500 * 4 / 7",
+      "display": "41.7 Mn × 4 cups a week ÷ 7",
+      "result": 23814000,
+      "tolerance": 0,
+      "unit": "cups a day",
+      "carriedForward": "2.38 crore cups",
+      "uses": [
+        "a-freq-u",
+        "a-days-week"
+      ],
+      "soWhat": "The frequency line. Replace four a week with one a day and this line rises 75% — more than any population figure could move it."
+    },
+    {
+      "id": "c7",
+      "label": "Urban sachets a day",
+      "expr": "23814000 * 0.5",
+      "display": "2.38 crore cups × 50% from sachets",
+      "result": 11907000,
+      "tolerance": 0,
+      "unit": "sachets a day",
+      "carriedForward": "1.19 crore sachets",
+      "uses": [
+        "a-sachet-u"
+      ],
+      "soWhat": "Half the urban cups come out of jars and pouches. The sachet is the entry and convenience format, not the whole category."
+    },
+    {
+      "id": "c8",
+      "label": "Rural cups a day",
+      "expr": "11261250 * 2 / 7",
+      "display": "11.3 Mn × 2 cups a week ÷ 7",
+      "result": 3217500,
+      "tolerance": 0,
+      "unit": "cups a day",
+      "carriedForward": "32 lakh cups",
+      "uses": [
+        "a-freq-r",
+        "a-days-week"
+      ],
+      "soWhat": "A small base drinking occasionally."
+    },
+    {
+      "id": "c9",
+      "label": "Rural sachets a day",
+      "expr": "3217500 * 0.9",
+      "display": "32 lakh cups × 90% from sachets",
+      "result": 2895750,
+      "tolerance": 0,
+      "unit": "sachets a day",
+      "carriedForward": "29 lakh sachets",
+      "uses": [
+        "a-sachet-r"
+      ],
+      "soWhat": "Almost every rural cup is a sachet — which is why the rural line is limited by trial, not by format or price."
+    },
+    {
+      "id": "c10",
+      "label": "Sachets sold in India on an average day",
+      "expr": "11907000 + 2895750",
+      "display": "1.19 crore urban + 29 lakh rural",
+      "result": 14802750,
+      "tolerance": 0,
+      "unit": "sachets a day",
+      "carriedForward": "≈ 1.5 crore — round it before you say it",
+      "uses": [],
+      "soWhat": "Say 1.5 crore a day, about 540 crore a year. The urban frequency and trial rates could each move it by half; nothing finer than two significant figures is defensible."
+    }
+  ],
+  "finalAnswer": "≈ 1.5 crore sachets a day (about 15 Mn) — roughly 540 crore a year. Urban India buys four in five of them; rural India, with two-thirds of the people in the band, buys one in five, because far fewer rural drinkers have ever tried instant coffee.",
+  "finalAnswerNumeric": 15000000,
+  "answerBand": "70 lakh – 2.7 crore a day. The band is wide because it inherits roughly ±50% on urban frequency and a third either way on urban trial, and the two multiply. Population and awareness barely matter by comparison.",
+  "orderOfMagnitude": "10^7 sachets a day (1.5 crore); about 5 × 10^9 a year",
+  "triangulation": {
+    "label": "Occasions cross-check — what share of India's hot cups could come out of a sachet?",
+    "route": "Top-down",
+    "premise": "Start from occasions instead of people: how many hot cups India's coffee-age band drinks in a day, what share are coffee, what share of the coffee is instant, and what share of the instant comes out of a sachet. The route shares only the population anchor with the funnel, so agreement is worth something — but it takes the sachet share as an input instead of deriving it, so it cannot explain why the urban and rural lines differ.",
+    "lines": [
+      {
+        "id": "t1",
+        "label": "Hot cups a day in the band",
+        "expr": "840000000 * 1.6",
+        "display": "840 Mn × 1.6 cups a day",
+        "result": 1344000000,
+        "tolerance": 0,
+        "unit": "cups a day",
+        "carriedForward": "134 crore hot cups",
+        "uses": [
+          "a-hot-cups"
+        ],
+        "soWhat": "The occasions base — overwhelmingly tea."
+      },
+      {
+        "id": "t2",
+        "label": "Coffee cups a day",
+        "expr": "1344000000 * 0.07",
+        "display": "134 crore × 7% coffee",
+        "result": 94080000.0,
+        "tolerance": 0,
+        "unit": "cups a day",
+        "carriedForward": "9.4 crore coffee cups",
+        "uses": [
+          "a-coffee-share"
+        ],
+        "soWhat": "Most of these are South Indian filter coffee."
+      },
+      {
+        "id": "t3",
+        "label": "Instant coffee cups a day",
+        "expr": "94080000 * 0.35",
+        "display": "9.4 crore × 35% instant",
+        "result": 32928000.0,
+        "tolerance": 0,
+        "unit": "cups a day",
+        "carriedForward": "3.3 crore instant cups",
+        "uses": [
+          "a-instant-share"
+        ],
+        "soWhat": "Instant is the smaller part of India's coffee, and the part this question is about."
+      },
+      {
+        "id": "t4",
+        "label": "Instant cups from a sachet",
+        "expr": "32928000 * 0.5",
+        "display": "3.3 crore × 50% from sachets",
+        "result": 16464000,
+        "tolerance": 0,
+        "unit": "sachets a day",
+        "carriedForward": "1.65 crore sachets",
+        "uses": [
+          "a-sachet-share"
+        ],
+        "soWhat": "Against 1.48 crore from the funnel."
+      }
+    ],
+    "answer": "≈ 1.65 crore sachets a day, against 1.48 crore from the funnel.",
+    "verdict": "Within about 11%, from two routes that share only the population figure — close enough to defend, not close enough to prove. The funnel stays the headline because its gates are levers a brand can pull: trial, repeat, frequency and format. The occasions route is a plausibility bound: it confirms that a coffee sachet is about one hot cup in ninety in a tea-first country, not that any particular gate is right."
+  },
+  "sensitivity": {
+    "assumptionId": "a-freq-u",
+    "whyThisLever": "Frequency is the lever candidates most often underweight. They spend their care on the population and the funnel, then write 'one a day' or 'one a week' without noticing the two are seven times apart. Urban frequency moves four-fifths of the answer on its own.",
+    "cases": [
+      {
+        "scenario": "Conservative",
+        "leverValue": "2 cups a week",
+        "answer": "≈ 88 lakh a day",
+        "deltaVsBase": "−40%"
+      },
+      {
+        "scenario": "Base",
+        "leverValue": "4 cups a week",
+        "answer": "≈ 1.48 crore a day",
+        "deltaVsBase": "0%"
+      },
+      {
+        "scenario": "Aggressive",
+        "leverValue": "7 cups a week (daily)",
+        "answer": "≈ 2.37 crore a day",
+        "deltaVsBase": "+60%"
+      }
+    ],
+    "breakpoint": "Doubling urban trial from 45% to 90% — every aware urban adult having tried it — adds 80% to the answer, more than moving urban drinkers from four cups a week to seven (+60%). Trial and frequency decide this question; the population anchor could be 5% out and change nothing that matters.",
+    "oneLiner": "Every extra urban cup a week adds about 30 lakh sachets a day."
+  },
+  "sanityChecks": [
+    "1.48 crore a day is about 540 crore sachets a year — roughly four per Indian per year. A category most Indians never buy, bought steadily by a few, should look exactly like this.",
+    "Across 5.3 crore repeat buyers, that is 0.28 sachets each a day — about two a week. A per-buyer figure above one a day would mean jar cups had been counted as sachet cups.",
+    "Rural India holds 65% of the coffee-age band and buys 20% of the sachets. That gap is trial, not money: at a few rupees, a sachet is already the cheapest way into coffee there is.",
+    "At about ₹3 a sachet, 540 crore sachets is roughly ₹1,600 crore a year at retail — a real category, and about a fifteenth of what urban India spends on packaged water.",
+    "The occasions route puts a coffee sachet at about one hot cup in ninety. An answer implying one in ten would need coffee to have displaced tea across the North, which it plainly has not.",
+    "Skip the funnel and assume every urban adult in the band drinks one sachet a day, and you answer 29 crore — twenty times too high. That error, more than any single assumption, is what the funnel exists to prevent."
+  ],
+  "traps": [
+    {
+      "trap": "Treating everyone in the age band as a coffee drinker.",
+      "whyItHappens": "The population step feels like the hard part, so once it is done the candidate multiplies straight through by a frequency.",
+      "fix": "Gate on awareness, trial and repeat before anyone is allowed to drink. In urban India one adult in seven in the band is a regular buyer; in rural India, one in fifty."
+    },
+    {
+      "trap": "Running one national funnel.",
+      "whyItHappens": "A single set of rates is quicker, and an average feels safe.",
+      "fix": "Split urban and rural before the first gate. Rural trial is a third of urban trial, and a national average hands rural India urban habits it does not have."
+    },
+    {
+      "trap": "Guessing the frequency last, and carelessly.",
+      "whyItHappens": "By the time the funnel is built the frequency feels like a detail, so 'one a day' goes in without a thought.",
+      "fix": "Frequency moves the answer more than any population figure: one a day instead of four a week adds 60%. Blend heavy and light drinkers explicitly and say the number out loud."
+    },
+    {
+      "trap": "Counting every instant coffee cup as a sachet.",
+      "whyItHappens": "The question says instant coffee and sachet in one breath, so the two merge.",
+      "fix": "Heavy urban drinkers buy jars and pouches because they cost less per cup. Apply a sachet share by geography — half in urban India, nearly all in rural — before you finish."
+    },
+    {
+      "trap": "Using trial as the buying base.",
+      "whyItHappens": "'Has tried it' and 'buys it' sound close, and trial rates are the figures people quote.",
+      "fix": "Most triers go back to tea. Multiply by the repeat rate: 35% of urban triers and 25% of rural ones buy at least monthly."
+    },
+    {
+      "trap": "Counting South India's coffee culture as sachet demand.",
+      "whyItHappens": "India's coffee-drinking region is the first thing that comes to mind, and it inflates both awareness and trial.",
+      "fix": "The South's habit is filter coffee, which this question excludes. It raises coffee's share of hot cups, not the sachet count — keep it out of the instant-coffee funnel."
+    }
+  ],
+  "probes": [
+    {
+      "question": "Rural India is two-thirds of the people and a fifth of your sachets. As the brand, where do you invest?",
+      "intent": "Whether the candidate reads a growth lever off the funnel instead of stopping at the number.",
+      "goodAnswer": "Trial in rural India. Awareness is already over half and the sachet is already the affordable format, so the constraint is a first cup — sampling at haats and melas, distribution into smaller villages, a lower price point. Raising rural trial from 15% to 30% doubles the rural line; persuading urban drinkers to drink more is the harder and more expensive lever.",
+      "weakAnswer": "Cut prices in rural India to make it affordable."
+    },
+    {
+      "question": "Why does the sachet share fall as a drinker drinks more?",
+      "intent": "Whether the candidate sees the sachet as an acquisition and convenience format, not the whole category.",
+      "goodAnswer": "Because a jar or a pouch costs less per cup. A light drinker will not tie money up in a jar and wants no waste; a heavy drinker does the arithmetic and trades up. The sachet recruits and serves the occasional drinker and loses them to the jar as they become loyal — so a growing sachet line beside a flat jar line would be a warning, not good news.",
+      "weakAnswer": "Sachets are more convenient."
+    },
+    {
+      "question": "You were asked about an average day. What does that hide?",
+      "intent": "Seasonality awareness.",
+      "goodAnswer": "Hot drinks sell more in winter and the monsoon, and exam seasons move hostel demand. An average day hides the peak the supply chain actually has to meet; a brand planning production would want the peak week, not the mean.",
+      "weakAnswer": "Nothing — I averaged it."
+    },
+    {
+      "question": "A rival launches a ₹1 sachet. Which box in your funnel moves?",
+      "intent": "Mapping a commercial move onto a specific gate.",
+      "goodAnswer": "Trial first, especially in rural India, and then repeat among the lightest drinkers. Frequency among heavy drinkers hardly moves — they are on jars already. If the ₹1 sachet mostly takes existing sachet buyers, the sachet count rises while category value can fall.",
+      "weakAnswer": "The whole market grows."
+    },
+    {
+      "question": "Your two routes agree within 11%. Which would you defend to a client?",
+      "intent": "Whether the candidate can separate a plausibility check from a decision model.",
+      "goodAnswer": "The funnel, because every gate is something the client can act on — trial, repeat, frequency, format. The occasions route is a sense check that the answer is a plausible slice of India's hot drinks; it takes the sachet share as given, so it cannot explain the urban–rural gap, which is the most useful finding in the whole exercise.",
+      "weakAnswer": "The one that gives the higher number."
+    }
+  ]
+}

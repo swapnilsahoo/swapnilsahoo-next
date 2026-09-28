@@ -1,0 +1,849 @@
+{
+ "sessionId": "2yr-03",
+ "course": "2-year-mba",
+ "sessionNumber": 3,
+ "title": "Chief Strategy Officer",
+ "questionCount": 60,
+ "questions": [
+  {
+   "set": "A",
+   "stem": "In 2018, both Uber and Lyft heavily subsidized rides to gain market share. If Uber lowered prices by 10%, Lyft immediately matched it. Both companies optimized their apps for speed and reliability (operational improvements), yet neither could achieve sustained profitability. According to Michael Porter’s logic cited in Chapter 1, what strategic trap describes this scenario?",
+   "options": {
+    "A": "The Red Queen Effect (Running hard to stand still).",
+    "B": "Competitive Parity due to lack of differentiation.",
+    "C": "Grandiose Ambition.",
+    "D": "The Innovator’s Dilemma."
+   },
+   "answer": "A",
+   "explanation": "This is the Red Queen Effect (p. 14). When competitors focus on Operational Effectiveness (benchmarking) rather than Strategic Positioning, they run faster (improve absolute performance) but their relative strategic position remains unchanged. It creates a zero-sum competition where value is transferred to customers, destroying industry profit.",
+   "lo": "Fundamentals of strategy",
+   "n": 1
+  },
+  {
+   "set": "A",
+   "stem": "Tata Motors marketed the Nano as \"The World’s Cheapest Car\" (Cost Leadership) but also pitched it as an aspirational family vehicle (Differentiation). The car failed because aspirational buyers didn’t want a \"cheap\" car, and budget buyers feared the \"cheap\" quality tag. Which core strategic concept did Tata violate?",
+   "options": {
+    "A": "The Stakeholder Impact Analysis.",
+    "B": "Strategic Trade-offs (Stuck in the Middle).",
+    "C": "First Mover Advantage.",
+    "D": "The AFI Framework Implementation phase."
+   },
+   "answer": "B",
+   "explanation": "Strategy requires Trade-offs (LO 1-2). You cannot be everything to everyone. By trying to combine low cost with high aspirational value without a unique innovation curve to support it, Tata got \"Stuck in the Middle.\" They failed to clearly define what they would not do.",
+   "lo": "Fundamentals of strategy",
+   "n": 2
+  },
+  {
+   "set": "A",
+   "stem": "Elon Musk’s 2006 blog post stated: \"Build sports car -> Use that money to build an affordable car -> Use that money to build an even more affordable car.\" In the AFI Framework, how is this specific sequence best classified?",
+   "options": {
+    "A": "It is Scenario Planning.",
+    "B": "It is a Mission Statement.",
+    "C": "It is a Guiding Policy (Formulation).",
+    "D": "It is Coherent Action (Implementation)."
+   },
+   "answer": "C",
+   "explanation": "This represents the Guiding Policy (Formulation, LO 1-1). The Diagnosis was \"EVs are too expensive/ugly.\" The Guiding Policy was the approach to solve it (start high, move low). The actual building of the Roadster factory was the Action.",
+   "lo": "Fundamentals of strategy",
+   "n": 3
+  },
+  {
+   "set": "A",
+   "stem": "Before 2022, Twitter executives stated their strategy was \"To have the largest daily active user base in the world.\" Why would a strategic analyst reject this as a valid strategy?",
+   "options": {
+    "A": "It ignores the Red Queen Effect.",
+    "B": "It is not customer-centric.",
+    "C": "It lacks a financial projection.",
+    "D": "It confuses a \"Goal\" with a \"Strategy.\""
+   },
+   "answer": "D",
+   "explanation": "As per \"What Strategy Is Not\" (p. 14), Grandiose statements of desire (\"We will be #1\") are not strategies. They are goals. A strategy must contain the \"How\"—the Diagnosis, Policy, and Action to achieve that goal.",
+   "lo": "Fundamentals of strategy",
+   "n": 4
+  },
+  {
+   "set": "A",
+   "stem": "Nvidia chips are expensive, but they are supported by CUDA, a software platform used by millions of AI developers. A developer cannot easily switch to AMD chips without rewriting code. The CUDA ecosystem creates competitive advantage primarily through:",
+   "options": {
+    "A": "Creating High Switching Costs (Sustainable Advantage).",
+    "B": "Operational Effectiveness.",
+    "C": "Legal Monopolies.",
+    "D": "Lowering the Cost of Goods Sold (Cost Leadership)."
+   },
+   "answer": "A",
+   "explanation": "Sustainable Competitive Advantage (LO 1-2) is often protected by barriers to imitation. Nvidia’s Coherent Action of building the CUDA ecosystem created massive Switching Costs for developers, insulating them from price competition.",
+   "lo": "Fundamentals of strategy",
+   "n": 5
+  },
+  {
+   "set": "A",
+   "stem": "Walmart locates stores in rural areas and focuses on logistics for \"Everyday Low Prices.\" Target focuses on \"Cheap Chic\" design and suburban locations. Because they occupy distinct positions on the efficiency frontier, their relationship is:",
+   "options": {
+    "A": "Competitive Convergence.",
+    "B": "Strategic Trade-offs allowing co-existence.",
+    "C": "Competitive Disadvantage.",
+    "D": "Zero-Sum Game."
+   },
+   "answer": "B",
+   "explanation": "Strategy is not zero-sum. Because Walmart and Target made distinct Strategic Trade-offs (LO 1-2) regarding location, assortment, and service, they can both be profitable within the same industry by serving different customer needs.",
+   "lo": "Fundamentals of strategy",
+   "n": 6
+  },
+  {
+   "set": "A",
+   "stem": "Jet Airways attempted to run a full-service airline (Business Class, Meals) while simultaneously launching \"Jet Konnect\" (Low Cost) to compete with Indigo on the same routes. It went bankrupt. This failure highlights the danger of:",
+   "options": {
+    "A": "Lack of Vision.",
+    "B": "Excessive R&D.",
+    "C": "Straddling inconsistent positions.",
+    "D": "Ignoring External Stakeholders."
+   },
+   "answer": "C",
+   "explanation": "Straddling occurs when a firm tries to match a competitor's features (Low Cost) while maintaining its existing position (Full Service). This dilutes the strategic profile and confuses the organization, leading to competitive disadvantage.",
+   "lo": "Fundamentals of strategy",
+   "n": 7
+  },
+  {
+   "set": "A",
+   "stem": "Apple sells the iPhone at $1000. It costs ~$400 to make. The Consumer’s \"Willingness to Pay\" is often $1200. Apple’s Competitive Advantage is quantitatively defined as:",
+   "options": {
+    "A": "The Market Share volume.",
+    "B": "The Brand Value.",
+    "C": "The $600 Profit Margin.",
+    "D": "The gap between Willingness to Pay ($1200) and Cost ($400)."
+   },
+   "answer": "D",
+   "explanation": "Economic Value Created (Key Term) is defined as (V - C), where V is the value to the consumer (Willingness to Pay) and C is the cost to produce. Advantage goes to the firm with the widest wedge between V and C.",
+   "lo": "Fundamentals of strategy",
+   "n": 8
+  },
+  {
+   "set": "A",
+   "stem": "Southwest uses only Boeing 737s. This simplifies maintenance, pilot training, and spare parts inventory. This illustrates that Strategy is:",
+   "options": {
+    "A": "A set of Coherent Actions (Systemic Fit).",
+    "B": "Dependent on supplier power.",
+    "C": "A single bold decision.",
+    "D": "A collection of independent best practices."
+   },
+   "answer": "A",
+   "explanation": "Strategy requires Coherent Actions (LO 1-1). Using one plane type isn't just a cost decision; it reinforces high aircraft utilization and quick turnarounds. The activities fit together to reinforce the Guiding Policy.",
+   "lo": "Fundamentals of strategy",
+   "n": 9
+  },
+  {
+   "set": "A",
+   "stem": "Kodak invented the digital camera but suppressed it to protect its film business. They defined their industry as \"Chemical Processing\" rather than \"Capturing Memories.\" This is a catastrophic failure of:",
+   "options": {
+    "A": "Operational Efficiency.",
+    "B": "Analysis (Diagnosis of the Competitive Challenge).",
+    "C": "Implementation.",
+    "D": "Stakeholder Management."
+   },
+   "answer": "B",
+   "explanation": "Diagnosis (AFI). Leaders must accurately define the competitive challenge. Kodak misdiagnosed the shift in technology as a niche threat rather than a fundamental substitution, leading to strategy failure.",
+   "lo": "Fundamentals of strategy",
+   "n": 10
+  },
+  {
+   "set": "A",
+   "stem": "Aldi stores display products in original shipping pallets, have few staff, and do not offer bags. These choices are examples of:",
+   "options": {
+    "A": "Temporary tactics.",
+    "B": "Poor Customer Service.",
+    "C": "Strategic choices of \"what NOT to do\" to lower Cost (C).",
+    "D": "Lack of resources."
+   },
+   "answer": "C",
+   "explanation": "Strategic Positioning. Strategy is about choosing what not to do. Aldi deliberately removes services to drive down Cost (C), allowing them to offer lower prices while maintaining margins.",
+   "lo": "Fundamentals of strategy",
+   "n": 11
+  },
+  {
+   "set": "A",
+   "stem": "Google updates its search algorithm 3,000+ times a year. Competitors struggle to keep up. This constant improvement allows Google to maintain:",
+   "options": {
+    "A": "Legal Monopolies.",
+    "B": "Competitive Parity.",
+    "C": "Temporary Competitive Advantage.",
+    "D": "Sustainable Competitive Advantage (Dynamic Capability)."
+   },
+   "answer": "D",
+   "explanation": "While tech moves fast, Google’s ability to continuously improve (Dynamic Capability) creates a Sustainable Competitive Advantage (LO 1-2) because the complexity makes it causally ambiguous and hard to imitate.",
+   "lo": "Fundamentals of strategy",
+   "n": 12
+  },
+  {
+   "set": "A",
+   "stem": "Dollar Shave Club attacked Gillette by offering \"Good Enough\" blades delivered cheaply, ignoring Gillette’s \"Vibrating Handles\" innovation. DSC succeeded by:",
+   "options": {
+    "A": "Changing the Definition of Value (Convenience/Price vs. Tech Specs).",
+    "B": "Increasing costs.",
+    "C": "Lobbying the government.",
+    "D": "Copying Gillette’s strategy."
+   },
+   "answer": "A",
+   "explanation": "Value Creation. Strategy involves defining value from the customer's perspective. DSC diagnosed that men were frustrated by price and complexity, offering a different Value Proposition (Simplicity).",
+   "lo": "Fundamentals of strategy",
+   "n": 13
+  },
+  {
+   "set": "A",
+   "stem": "Intel invests $20 Billion in a new Fabrication Plant (Fab). This plant cannot be easily repurposed. This investment is known as:",
+   "options": {
+    "A": "A Sunk Cost.",
+    "B": "A Strategic Commitment (Credible & Irreversible).",
+    "C": "A Hedge.",
+    "D": "Operational Expense."
+   },
+   "answer": "B",
+   "explanation": "Strategic Commitments (p. 9) are actions that are costly, long-term-oriented, and difficult to reverse. They signal strong intent to competitors and lock the firm into a strategy.",
+   "lo": "Fundamentals of strategy",
+   "n": 14
+  },
+  {
+   "set": "A",
+   "stem": "For decades, Coke and Pepsi have battled for market share without either driving the other out of business. This situation is best described as:",
+   "options": {
+    "A": "Perfect Competition.",
+    "B": "Competitive Disadvantage.",
+    "C": "Competitive Parity.",
+    "D": "A Monopoly."
+   },
+   "answer": "C",
+   "explanation": "Competitive Parity (LO 1-2). When two firms perform at the same level relative to the industry and each other, they have parity. Neither has a decisive, sustainable edge in the core product.",
+   "lo": "Fundamentals of strategy",
+   "n": 15
+  },
+  {
+   "set": "B",
+   "stem": "Zomato delivery partners (External Stakeholders) struck for higher pay. Investors (Internal Stakeholders) demanded cost cuts. Zomato initially ignored the strike, leading to service delays. Which Stakeholder Attribute did Zomato underestimate?",
+   "options": {
+    "A": "Philanthropy.",
+    "B": "Legal Standing.",
+    "C": "Legitimacy.",
+    "D": "Power (Coercive capability to stop operations)."
+   },
+   "answer": "D",
+   "explanation": "Power (LO 1-4). A stakeholder has power if they can get the firm to do something it wouldn't otherwise do. By stopping operations, the delivery partners demonstrated they held the power to halt the firm's revenue generation.",
+   "lo": "Stakeholders & CSR",
+   "n": 16
+  },
+  {
+   "set": "B",
+   "stem": "VW engineered software to cheat emissions tests. This boosted profits (Economic) but violated environmental laws. This represents a collapse of which tiers of the CSR Pyramid?",
+   "options": {
+    "A": "Legal and Ethical.",
+    "B": "Only Ethical.",
+    "C": "Only Philanthropic.",
+    "D": "Economic and Legal."
+   },
+   "answer": "A",
+   "explanation": "CSR Pyramid (Section 1.2). VW failed its Legal Responsibilities (obeying the law) and Ethical Responsibilities (doing what is right). While they succeeded momentarily in Economic responsibility, the failure in lower tiers destroyed the firm's value.",
+   "lo": "Stakeholders & CSR",
+   "n": 17
+  },
+  {
+   "set": "B",
+   "stem": "Microsoft pledged to remove all carbon it has emitted since its founding in 1975. No law requires this. This is an example of:",
+   "options": {
+    "A": "Legal Compliance.",
+    "B": "Strategic Philanthropy (Corporate Citizenship).",
+    "C": "Economic Necessity.",
+    "D": "Greenwashing."
+   },
+   "answer": "B",
+   "explanation": "Philanthropic Responsibility (Top of Pyramid). This is a voluntary action to give back to society and improve the quality of life/environment, going beyond what is required by law or pure economics.",
+   "lo": "Stakeholders & CSR",
+   "n": 18
+  },
+  {
+   "set": "B",
+   "stem": "When lead was alleged in Maggi, Nestle denied it. The Food Safety Regulator (FSSAI) banned the product. In Stakeholder Analysis, the FSSAI possessed:",
+   "options": {
+    "A": "Only Economic interests.",
+    "B": "High Urgency, Low Power.",
+    "C": "High Power, High Legitimacy, High Urgency (Definitive Stakeholder).",
+    "D": "Low Legitimacy."
+   },
+   "answer": "C",
+   "explanation": "The Government/Regulator is a Definitive Stakeholder (LO 1-4). They had Power (to ban), Legitimacy (protecting public health), and Urgency (immediate health risk). Ignoring a Definitive Stakeholder is a fatal strategic error.",
+   "lo": "Stakeholders & CSR",
+   "n": 19
+  },
+  {
+   "set": "B",
+   "stem": "Google employees walked out to protest an AI contract with the US Military. Google cancelled the contract. This proves that:",
+   "options": {
+    "A": "Employees have no say in strategy.",
+    "B": "Strategy is only top-down.",
+    "C": "Shareholders are the only stakeholders that matter.",
+    "D": "Internal Stakeholders can exert influence through Ethical claims."
+   },
+   "answer": "D",
+   "explanation": "Stakeholder Strategy (LO 1-3). Employees (Internal) leveraged their collective power and the ethical values of the firm (\"Don't be evil\") to force a change in corporate strategy, proving strategy involves multiple exchange relationships.",
+   "lo": "Stakeholders & CSR",
+   "n": 20
+  },
+  {
+   "set": "B",
+   "stem": "Banks leveraged heavily on subprime mortgages, assuming housing prices never fall. They collapsed when prices fell. From a Strategic Management view, this highlights the need for:",
+   "options": {
+    "A": "Scenario Planning and Resilience against Black Swans.",
+    "B": "Higher CEO bonuses.",
+    "C": "Faster implementation.",
+    "D": "Just-in-Time efficiency."
+   },
+   "answer": "A",
+   "explanation": "Black Swan Events (p. 20) are high-impact, low-probability events. Strategy requires building resilience and engaging in scenario planning to survive shocks that historical data cannot predict.",
+   "lo": "Stakeholders & CSR",
+   "n": 21
+  },
+  {
+   "set": "B",
+   "stem": "Nike faced boycotts due to labor conditions in supplier factories. Nike argued \"We don't own the factories.\" Nike’s initial defense failed because:",
+   "options": {
+    "A": "It ignored the \"Economic\" responsibility.",
+    "B": "It ignored the \"Extended Enterprise\" and Ethical Responsibility to the supply chain.",
+    "C": "Suppliers are not stakeholders.",
+    "D": "Customers do not care about ethics."
+   },
+   "answer": "B",
+   "explanation": "Stakeholder Strategy includes the entire value chain. Nike learned that consumers hold the brand Ethically Responsible for the actions of its suppliers, even if there is no direct Legal ownership.",
+   "lo": "Stakeholders & CSR",
+   "n": 22
+  },
+  {
+   "set": "B",
+   "stem": "Turing hiked the price of Daraprim by 5000%. It was legal, and profitable (Economic). Why was this a strategic failure?",
+   "options": {
+    "A": "It was a good strategy.",
+    "B": "It wasn't profitable enough.",
+    "C": "It violated the \"Social Contract\" (Legitimacy), inviting destruction by regulators.",
+    "D": "It was an operational error."
+   },
+   "answer": "C",
+   "explanation": "While maximizing Economic and Legal responsibilities, it violated Ethical norms and social legitimacy. This loss of legitimacy turned the public and government into hostile stakeholders who destroyed the firm.",
+   "lo": "Stakeholders & CSR",
+   "n": 23
+  },
+  {
+   "set": "B",
+   "stem": "Amul maximizes payout to farmers (suppliers) rather than corporate profits. This Business Model demonstrates:",
+   "options": {
+    "A": "Competitive Disadvantage.",
+    "B": "A lack of strategy.",
+    "C": "Shareholder Primacy.",
+    "D": "Shared Value Creation."
+   },
+   "answer": "D",
+   "explanation": "Value Creation (LO 1-3). By focusing on the supplier stakeholder (farmer), Amul creates a unique competitive advantage (loyal supply chain) that creates value for both the stakeholder and the cooperative.",
+   "lo": "Stakeholders & CSR",
+   "n": 24
+  },
+  {
+   "set": "B",
+   "stem": "Apple blocked Facebook from tracking users. Facebook claimed this hurt small businesses. This is a conflict between:",
+   "options": {
+    "A": "Two External Stakeholders with conflicting interests (Privacy vs. Ad Targeting).",
+    "B": "Legal and Philanthropic tiers.",
+    "C": "Analysis and Formulation.",
+    "D": "Internal Stakeholders."
+   },
+   "answer": "A",
+   "explanation": "Stakeholder Conflict. Apple prioritized the User (Privacy), while Facebook prioritized the Advertiser (Targeting). Strategy involves navigating these trade-offs between different external groups.",
+   "lo": "Stakeholders & CSR",
+   "n": 25
+  },
+  {
+   "set": "B",
+   "stem": "Boeing bypassed safety checks to rush the 737 MAX to market to compete with Airbus. This decision prioritized:",
+   "options": {
+    "A": "Blue Ocean Strategy.",
+    "B": "Short-term Shareholder Value over Customer Safety (Stakeholders).",
+    "C": "Ethical Responsibility over Economic.",
+    "D": "Engineering excellence."
+   },
+   "answer": "B",
+   "explanation": "A failure of Stakeholder Strategy. By prioritizing speed/profit (Shareholders) over safety (Customers/Regulators), Boeing incurred massive long-term losses, proving that ignoring stakeholders destroys shareholder value eventually.",
+   "lo": "Stakeholders & CSR",
+   "n": 26
+  },
+  {
+   "set": "B",
+   "stem": "Chick-fil-A forfeits 14% of revenue by closing Sundays. This trade-off builds value by:",
+   "options": {
+    "A": "Avoiding legal issues.",
+    "B": "Following the Red Queen.",
+    "C": "Signaling strong Core Values to employees and customers (Legitimacy).",
+    "D": "Reducing costs."
+   },
+   "answer": "C",
+   "explanation": "Strategic Commitment. This action reinforces the firm's values, attracting employees who value work-life balance and customers who respect the ethics, creating a distinct culture that is a source of advantage.",
+   "lo": "Stakeholders & CSR",
+   "n": 27
+  },
+  {
+   "set": "B",
+   "stem": "Hindenburg Research (Short Seller) released a report crashing Adani stocks. Hindenburg gained \"Power\" through:",
+   "options": {
+    "A": "Corporate Social Responsibility.",
+    "B": "Ownership of Adani stock.",
+    "C": "Legal authority.",
+    "D": "Legitimacy (Data) and Urgency (Financial panic)."
+   },
+   "answer": "D",
+   "explanation": "Stakeholders can gain power without ownership. Hindenburg leveraged Legitimacy (research) and Urgency (market timing) to force a massive valuation correction.",
+   "lo": "Stakeholders & CSR",
+   "n": 28
+  },
+  {
+   "set": "B",
+   "stem": "Patagonia marketing discourages consumption. This creates Competitive Advantage by:",
+   "options": {
+    "A": "Aligning with the values of a specific customer segment (Differentiation).",
+    "B": "Cost Leadership.",
+    "C": "Regulatory Capture.",
+    "D": "Reverse Psychology."
+   },
+   "answer": "A",
+   "explanation": "Value Creation. By aligning with the ethical values of their target customer, Patagonia increases the \"Willingness to Pay\" and loyalty, differentiating themselves from commoditized apparel brands.",
+   "lo": "Stakeholders & CSR",
+   "n": 29
+  },
+  {
+   "set": "B",
+   "stem": "Enron had a 64-page Code of Ethics but engaged in massive fraud. This teaches us that:",
+   "options": {
+    "A": "Accounting is not part of strategy.",
+    "B": "Written values are meaningless without \"Coherent Actions\" (Implementation).",
+    "C": "Ethics are bad for business.",
+    "D": "Strategy is just about stock price."
+   },
+   "answer": "B",
+   "explanation": "Organizational Values (Section 1.1). Values must be lived through actions. If the Implementation (incentive structures) contradicts the values, the strategy is incoherent and unethical.",
+   "lo": "Stakeholders & CSR",
+   "n": 30
+  },
+  {
+   "set": "C",
+   "stem": "Elon Musk realized space travel was expensive because rockets were disposable, not because fuel was costly. In the AFI Framework, this insight represents:",
+   "options": {
+    "A": "Stakeholder Analysis.",
+    "B": "Formulation (Policy).",
+    "C": "Analysis (Diagnosis of the Competitive Challenge).",
+    "D": "Implementation (Action)."
+   },
+   "answer": "C",
+   "explanation": "Analysis (A) (LO 1-5). Before building anything, Musk had to diagnose the root cause of the problem. A good strategy begins with a critical diagnosis of the challenge.",
+   "lo": "The AFI framework",
+   "n": 31
+  },
+  {
+   "set": "C",
+   "stem": "Netflix decided: \"We will not just distribute content; we will produce it (Originals).\" This decision is best classified as:",
+   "options": {
+    "A": "A Coherent Action.",
+    "B": "A Vision Statement.",
+    "C": "A Diagnosis.",
+    "D": "A Guiding Policy (Formulation)."
+   },
+   "answer": "D",
+   "explanation": "Formulation (F). This is the Guiding Policy. It is the overall approach chosen to address the challenge of content licensing costs. It sets the direction for subsequent actions.",
+   "lo": "The AFI framework",
+   "n": 32
+  },
+  {
+   "set": "C",
+   "stem": "Amazon built warehouses, bought planes, and created delivery vans. These investments are:",
+   "options": {
+    "A": "Coherent Actions (Implementation).",
+    "B": "Vision Statements.",
+    "C": "Analysis.",
+    "D": "Guiding Policies."
+   },
+   "answer": "A",
+   "explanation": "Implementation (I). These are the specific, resource-heavy Coherent Actions taken to execute the policy of \"Fastest Delivery.\" Strategy is useless without execution.",
+   "lo": "The AFI framework",
+   "n": 33
+  },
+  {
+   "set": "C",
+   "stem": "Intel executives ignored the iPhone, believing consumers wouldn't pay for high-performance mobile chips. This failure occurred in which phase?",
+   "options": {
+    "A": "Operational Efficiency.",
+    "B": "Analysis (Diagnosis).",
+    "C": "Implementation.",
+    "D": "Formulation."
+   },
+   "answer": "B",
+   "explanation": "Analysis Failure. Intel misdiagnosed the market shift (Mobile computing), leading to a failure to formulate a relevant strategy until it was too late.",
+   "lo": "The AFI framework",
+   "n": 34
+  },
+  {
+   "set": "C",
+   "stem": "A laptop maker tries to be the fastest (Gaming) AND the cheapest (Budget) using the same factory. This violates which Formulation principle?",
+   "options": {
+    "A": "Stakeholder Engagement.",
+    "B": "Synergy.",
+    "C": "Strategic Trade-offs.",
+    "D": "Scenario Planning."
+   },
+   "answer": "C",
+   "explanation": "Formulation. Effective formulation requires making Trade-offs (LO 1-2). You cannot pursue incompatible goals (Cost vs. Differentiation) simultaneously without a distinct innovation.",
+   "lo": "The AFI framework",
+   "n": 35
+  },
+  {
+   "set": "C",
+   "stem": "Closing 8,000 stores for training was a costly move. In the AFI Framework, this was a:",
+   "options": {
+    "A": "Vision Statement.",
+    "B": "Diagnosis.",
+    "C": "Cost Analysis.",
+    "D": "Strategic Commitment (Coherent Action)."
+   },
+   "answer": "D",
+   "explanation": "Implementation. It was a Strategic Commitment—an irreversible, costly action that signaled the firm's dedication to its new Guiding Policy of inclusion.",
+   "lo": "The AFI framework",
+   "n": 36
+  },
+  {
+   "set": "C",
+   "stem": "BP rebranded as \"Beyond Petroleum\" (Green) but continued investing 98% in Oil & Gas. This demonstrates a disconnect between:",
+   "options": {
+    "A": "Formulation (Policy) and Implementation (Action).",
+    "B": "Internal and External Stakeholders.",
+    "C": "Price and Cost.",
+    "D": "Analysis and Formulation."
+   },
+   "answer": "A",
+   "explanation": "Incoherent Strategy. The Guiding Policy (Green Energy) was not supported by Coherent Actions (Capital Allocation). A strategy is only good if A, F, and I are consistent.",
+   "lo": "The AFI framework",
+   "n": 37
+  },
+  {
+   "set": "C",
+   "stem": "Jobs cut 70% of the product line to focus on four computers. This decision was:",
+   "options": {
+    "A": "Operational Effectiveness.",
+    "B": "A Guiding Policy of Focus (Formulation).",
+    "C": "Competitive Parity.",
+    "D": "A lack of creativity."
+   },
+   "answer": "B",
+   "explanation": "Formulation. Jobs imposed a Guiding Policy of Focus to stop the bleeding. He chose what not to do (Trade-offs) to concentrate resources.",
+   "lo": "The AFI framework",
+   "n": 38
+  },
+  {
+   "set": "C",
+   "stem": "Disney acquired Pixar to revitalize its animation dominance. This acquisition is:",
+   "options": {
+    "A": "A Goal.",
+    "B": "A Red Queen effect.",
+    "C": "Implementation (Resource Allocation).",
+    "D": "Diagnosis."
+   },
+   "answer": "C",
+   "explanation": "Implementation. Buying a company is a major Coherent Action taken to execute the strategy of content dominance.",
+   "lo": "The AFI framework",
+   "n": 39
+  },
+  {
+   "set": "C",
+   "stem": "Kodak feared digital cameras would kill film sales (their \"blades\"). This is an example of:",
+   "options": {
+    "A": "Successful Formulation.",
+    "B": "Good Implementation.",
+    "C": "Stakeholder Synergy.",
+    "D": "Cognitive Bias in Analysis."
+   },
+   "answer": "D",
+   "explanation": "Analysis. Cognitive bias (Status Quo Bias) prevented leaders from objectively diagnosing the threat. They protected the old model instead of embracing the new.",
+   "lo": "The AFI framework",
+   "n": 40
+  },
+  {
+   "set": "C",
+   "stem": "Satya Nadella declared \"Mobile First, Cloud First,\" shifting resources from Windows to Azure. \"Mobile First, Cloud First\" is:",
+   "options": {
+    "A": "A Guiding Policy.",
+    "B": "An Action.",
+    "C": "A Metric.",
+    "D": "A Vision."
+   },
+   "answer": "A",
+   "explanation": "Guiding Policy. It provided clear guidance to employees on prioritization (Cloud > Windows) to address the competitive challenge.",
+   "lo": "The AFI framework",
+   "n": 41
+  },
+  {
+   "set": "C",
+   "stem": "Toyota bet on Hybrids (Prius) while others bet on Hydrogen or pure EV. This choice represents:",
+   "options": {
+    "A": "Competitive Parity.",
+    "B": "Scenario Planning (Formulation).",
+    "C": "Operational Effectiveness.",
+    "D": "Lack of Analysis."
+   },
+   "answer": "B",
+   "explanation": "Formulation. Toyota formulated a strategy based on a scenario where battery tech would take time to mature, positioning Hybrids as the bridge.",
+   "lo": "The AFI framework",
+   "n": 42
+  },
+  {
+   "set": "C",
+   "stem": "Google restructured into Alphabet to separate \"Search\" from \"Moonshots\" (Waymo). This structural change is:",
+   "options": {
+    "A": "Analysis.",
+    "B": "Formulation.",
+    "C": "Implementation (Organizational Design).",
+    "D": "Stakeholder Management."
+   },
+   "answer": "C",
+   "explanation": "Implementation. Changing structure (Organizational Design) is a key part of executing strategy (Section 1.3). It aligns the organization with the strategy.",
+   "lo": "The AFI framework",
+   "n": 43
+  },
+  {
+   "set": "C",
+   "stem": "Dell sold directly to consumers, bypassing retailers. This Business Model innovation is:",
+   "options": {
+    "A": "Diagnosis.",
+    "B": "Analysis.",
+    "C": "A Goal.",
+    "D": "Formulation."
+   },
+   "answer": "D",
+   "explanation": "Formulation. Dell formulated a unique way to compete (Direct Sales) that bypassed the industry standard (Retail), creating a cost advantage.",
+   "lo": "The AFI framework",
+   "n": 44
+  },
+  {
+   "set": "C",
+   "stem": "CEO Stephen Elop wrote a memo comparing Nokia to a man on a burning oil rig. The purpose of this memo was:",
+   "options": {
+    "A": "To clearly communicate the Diagnosis (Analysis) of the crisis.",
+    "B": "To implement a new phone.",
+    "C": "To appease shareholders.",
+    "D": "To terrify employees."
+   },
+   "answer": "A",
+   "explanation": "Analysis. Before he could change the strategy, Elop had to force the organization to accept the Diagnosis of the existential threat.",
+   "lo": "The AFI framework",
+   "n": 45
+  },
+  {
+   "set": null,
+   "stem": "In 2020, Twitter (now X) executives stated their primary objective was \"to have the largest daily active user base in the world.\" Conversely, in 2006, Elon Musk published a blog post for Tesla detailing a sequence: \"Build sports car -> Use money to build affordable car -> Use money to build mass market car.\" Based on Section 1.1, how would a strategic analyst classify these two approaches?",
+   "options": {
+    "A": "Twitter is displaying \"Strategic Ambition,\" while Tesla is displaying \"Operational Effectiveness.\"",
+    "B": "Twitter is mistaking a \"Goal\" for a \"Strategy,\" while Tesla is demonstrating a \"Guiding Policy\" and \"Coherent Actions.\"",
+    "C": "Tesla is falling into the \"Red Queen Effect\" by telegraphing its moves, while Twitter is maintaining strategic flexibility.",
+    "D": "Both are examples of excellent Guiding Policies, but different in implementation."
+   },
+   "answer": "B",
+   "explanation": "According to Section 1.1 (\"What Strategy Is Not\"), grandiose statements of desire (e.g., \"We will be #1\") are not strategy; they are goals. Strategy requires a diagnosis, a guiding policy, and coherent actions. Musk’s Master Plan provided a specific Guiding Policy (start high-end, move down-market) and Coherent Actions (sequencing models to fund the next), whereas Twitter provided only an ambition without the \"How.\"",
+   "lo": "The Definition of Strategy (Case: Twitter vs. Tesla)",
+   "n": 46
+  },
+  {
+   "set": null,
+   "stem": "In the Indian telecom sector, Reliance Jio launched with free data, disrupting the market. By 2023, Bharti Airtel had matched Jio’s pricing structure and 5G rollout speed. Both firms now hold dominant market shares and return similar profit margins that are slightly above the industry average, while Vodafone-Idea continues to lose market share. How would you classify the relationship between Jio and Airtel as per LO 1-2?",
+   "options": {
+    "A": "Jio has a Sustainable Competitive Advantage because it was the first mover.",
+    "B": "Airtel has a Competitive Disadvantage because it was forced to react to Jio.",
+    "C": "Both firms have achieved Competitive Parity relative to each other.",
+    "D": "Both firms are suffering from the Red Queen Effect and destroying industry value."
+   },
+   "answer": "C",
+   "explanation": "Competitive Parity (LO 1-2) occurs when two or more firms perform at the same level. While both dominate the industry (and thus have an advantage over Vodafone-Idea), relative to each other, they have converged on performance and offerings. Advantage is always relative, not absolute.",
+   "lo": "Competitive Advantage vs. Parity (Case: Jio vs. Airtel)",
+   "n": 47
+  },
+  {
+   "set": null,
+   "stem": "Tata Motors attempted to launch the \"Nano\" as the world's cheapest car (Cost Leadership). However, they also marketed it as a safe, aspirational family vehicle (Differentiation). The car failed to dominate the market, as consumers perceived it as \"cheap\" (low status) rather than \"valuable.\" Meanwhile, Maruti Suzuki maintained a middle-market position. Which strategic concept from Section 1.1 best explains Tata's failure with the Nano?",
+   "options": {
+    "A": "The Red Queen Effect.",
+    "B": "Lack of Corporate Social Responsibility.",
+    "C": "Failure to Identify Stakeholders.",
+    "D": "Stuck in the Middle (Failure to resolve Trade-offs)."
+   },
+   "answer": "D",
+   "explanation": "Strategic Positioning requires trade-offs (Section 1.1). You cannot be everything to everyone. Tata attempted to offer high value (family car/safety) at the absolute lowest cost without a clear strategic profile that balanced these opposing forces. By trying to straddle both without the requisite innovation to support the value proposition, they got \"Stuck in the Middle,\" leading to competitive disadvantage.",
+   "lo": "Strategic Trade-offs (Case: Tata Nano vs. Maruti Suzuki)",
+   "n": 48
+  },
+  {
+   "set": null,
+   "stem": "Two Indian IT giants, Infosys and Wipro, decide to implement the exact same \"Agile\" software development methodology and \"Six Sigma\" quality controls to reduce bugs by 10%. They both succeed in lowering costs by 5%. Does this constitute a strategy?",
+   "options": {
+    "A": "No, this is Operational Effectiveness, which is necessary but not sufficient for advantage.",
+    "B": "Yes, because they implemented a \"Guiding Policy\" of quality control.",
+    "C": "No, because they did not consult external stakeholders.",
+    "D": "Yes, because it improved their profit margins."
+   },
+   "answer": "A",
+   "explanation": "As detailed in \"What Strategy Is Not\" (Section 1.1), Operational Effectiveness (benchmarking, best practices like Six Sigma) is not strategy. If everyone adopts the same tools, the productivity frontier shifts outward, but relative strategic positions remain unchanged. Strategy requires doing different activities, not just doing the same activities better.",
+   "lo": "Strategy vs. Operational Effectiveness (Case: Infosys vs. Wipro)",
+   "n": 49
+  },
+  {
+   "set": null,
+   "stem": "In early 2023, the Hindenburg Research report accused the Adani Group of financial irregularities. This event, unexpected and high-impact, caused a massive stock sell-off. The \"Short Seller\" (Hindenburg) had no formal power over Adani but managed to crash the stock. In the context of Stakeholder Impact Analysis (LO 1-4), which attribute did Hindenburg primarily leverage to gain \"Power\"?",
+   "options": {
+    "A": "Legal Power (They were a government regulator).",
+    "B": "Legitimacy and Urgency.",
+    "C": "Corporate Social Responsibility.",
+    "D": "Economic Power (They held a large equity stake)."
+   },
+   "answer": "B",
+   "explanation": "Hindenburg had no coercive or utilitarian power (they weren't a regulator or a major shareholder). They gained Power through Legitimacy (perceived validity of their research data) and Urgency (the immediate threat to stock value). This demonstrates how stakeholders can acquire power through the other two attributes in the Impact Analysis triangle.",
+   "lo": "The Black Swan & Stakeholders (Case: Adani Group 2023)",
+   "n": 50
+  },
+  {
+   "set": null,
+   "stem": "Zomato faces pressure from investors (Internal) to increase profitability (Unit Economics). Simultaneously, delivery partners (External) strike for higher payouts per delivery. Zomato decides to cut delivery partner pay to satisfy investor margin calls. According to Stakeholder Theory (Section 1.2), what is the long-term risk of this decision?",
+   "options": {
+    "A": "An increase in \"Consumer Surplus.\"",
+    "B": "There is no risk; Shareholder Primacy is the only law.",
+    "C": "Loss of Legitimacy and erosion of Competitive Advantage due to broken exchange relationships.",
+    "D": "Improvement in the \"Red Queen\" position."
+   },
+   "answer": "C",
+   "explanation": "Stakeholder Strategy (LO 1-3) argues that firms are embedded in a web of exchange relationships. While Shareholder Primacy focuses on single-loop profits, Stakeholder Theory warns that damaging the relationship with a key provider of the service (delivery partners) destroys the Value Creation loop, ultimately harming shareholders in the long run through service failure and reputation loss.",
+   "lo": "Stakeholder Trade-offs (Case: Zomato)",
+   "n": 51
+  },
+  {
+   "set": null,
+   "stem": "In 2018, Starbucks closed 8,000 stores for a day to conduct racial bias training after an incident in Philadelphia. This cost them millions in lost revenue and was not mandated by any judge. Where does this action fall on Carroll’s Pyramid of CSR (Section 1.2)?",
+   "options": {
+    "A": "Philanthropic Responsibility.",
+    "B": "Economic Responsibility (The Base).",
+    "C": "Legal Responsibility.",
+    "D": "Ethical Responsibility."
+   },
+   "answer": "D",
+   "explanation": "This falls under Ethical Responsibility. The law (Legal) did not require them to close stores. Economic responsibility would dictate keeping them open to maximize profit. Starbucks chose to do what was \"right, just, and fair\" to restore trust, placing this decision in the Ethical tier of the pyramid.",
+   "lo": "CSR Pyramid (Case: Starbucks)",
+   "n": 52
+  },
+  {
+   "set": null,
+   "stem": "When lead was allegedly found in Maggi noodles in India, Nestle initially denied the claims. Regulators (Govt) banned the product. Consumers (Society) boycotted. Nestle eventually destroyed 30,000 tonnes of product and relaunched with transparency. In the 5-Step Stakeholder Impact Analysis, where did Nestle initially fail?",
+   "options": {
+    "A": "Step 5: Addressing Stakeholder Concerns.",
+    "B": "Step 4: Philanthropy.",
+    "C": "Step 1: Identifying Stakeholders.",
+    "D": "Step 2: Identifying Interests."
+   },
+   "answer": "A",
+   "explanation": "Nestle failed at Step 5: \"What should we do to effectively address the stakeholder concerns?\" By initially denying the claims (ignoring the Legitimacy and Urgency of the Government and Consumers), they allowed the crisis to escalate. A proper analysis would have recognized the high Power of the Food Safety regulator and addressed the concern immediately.",
+   "lo": "Impact Analysis Step 5 (Case: Nestle Maggi Crisis)",
+   "n": 53
+  },
+  {
+   "set": null,
+   "stem": "Before SpaceX, the aerospace industry believed space travel was expensive due to fuel costs. Elon Musk’s \"First Principles\" thinking revealed the problem wasn't fuel, but the fact that rockets were discarded after one use. Which phase of the AFI Framework does this insight represent?",
+   "options": {
+    "A": "Implementation (I).",
+    "B": "Analysis (A).",
+    "C": "Strategic Control.",
+    "D": "Formulation (F)."
+   },
+   "answer": "B",
+   "explanation": "This is Analysis (Diagnosis) (LO 1-5). A good strategy starts with a precise diagnosis of the competitive challenge. Musk identified the root cause of the cost problem (disposable rockets) before formulating a policy (reusability) or implementing it (landing Falcon 9).",
+   "lo": "Diagnosis (Case: SpaceX)",
+   "n": 54
+  },
+  {
+   "set": null,
+   "stem": "In 2011, Netflix realized streaming was the future. They decided to pivot away from DVD-by-mail, split the services (Qwikster debacle), and invest heavily in original content (House of Cards) to differentiate from cable TV. The decision to invest in original content represents:",
+   "options": {
+    "A": "Philanthropic Responsibility.",
+    "B": "A Diagnosis of the challenge.",
+    "C": "A Guiding Policy to address the challenge.",
+    "D": "Competitive Parity."
+   },
+   "answer": "C",
+   "explanation": "This is a Guiding Policy (Formulation). After analyzing the shift to streaming (Diagnosis), Netflix formulated a specific approach: \"We will not just distribute content; we will become a producer of unique content to lock in subscribers.\" This policy guided their subsequent actions.",
+   "lo": "Guiding Policy (Case: Netflix)",
+   "n": 55
+  },
+  {
+   "set": null,
+   "stem": "Apple’s strategy emphasizes premium differentiation. To support this, they build their own chips (M1/M2), control their retail stores, and maintain a closed ecosystem (iOS). These specific activities (Stores, Chips, iOS) are best described as:",
+   "options": {
+    "A": "External Stakeholders.",
+    "B": "Black Swan Events.",
+    "C": "Grandiose Statements.",
+    "D": "Coherent Actions."
+   },
+   "answer": "D",
+   "explanation": "These are Coherent Actions (Implementation) under the AFI framework. A strategy is useless without implementation. Apple aligns its organizational structure, supply chain, and product development (Actions) to support its Guiding Policy of premium differentiation.",
+   "lo": "Implementation (Case: Apple)",
+   "n": 56
+  },
+  {
+   "set": null,
+   "stem": "For decades, Coke and Pepsi have spent billions on advertising. If Coke spends $1B, Pepsi spends $1B. Their market shares remain relatively stable despite the massive spend. Which strategic phenomenon describes this situation?",
+   "options": {
+    "A": "The Red Queen Effect.",
+    "B": "Stakeholder Impact Analysis.",
+    "C": "Strategic Commitments.",
+    "D": "The Blue Ocean Strategy."
+   },
+   "answer": "A",
+   "explanation": "The Red Queen Effect (p. 14) refers to a situation where everyone runs faster just to stay in the same place. Both firms increase spending/effort (running faster), but their relative strategic positions (market share) do not change.",
+   "lo": "The Red Queen Effect (Case: Coca-Cola vs. Pepsi)",
+   "n": 57
+  },
+  {
+   "set": null,
+   "stem": "Aldi (German retailer) offers goods at a much lower price (P) than competitors. However, their Cost (C) to operate is so incredibly low due to no-frills stores that the gap between Value (V) and Cost (C) is actually larger than traditional supermarkets. What does this imply about Aldi's Competitive Advantage?",
+   "options": {
+    "A": "They have a Competitive Disadvantage because their price is low.",
+    "B": "They have a Competitive Advantage because their Economic Value Created (V-C) is higher.",
+    "C": "They have Competitive Parity.",
+    "D": "They are stuck in the middle."
+   },
+   "answer": "B",
+   "explanation": "Competitive Advantage goes to the firm that achieves the largest wedge between Value Creation (V) and Cost (C). Even if the Price (P) is low, if the Cost (C) is driven down sufficiently to maximize the (V-C) gap relative to rivals, the firm has an advantage.",
+   "lo": "Economic Value Creation (Case: Aldi)",
+   "n": 58
+  },
+  {
+   "set": null,
+   "stem": "Kodak invented the digital camera but filed for bankruptcy because its leadership refused to pivot from film, fearing it would cannibalize their existing profits. According to Section 1.4 (Implications for Leaders), what was the primary failure?",
+   "options": {
+    "A": "Too much focus on Stakeholders.",
+    "B": "Failure to execute the Red Queen effect.",
+    "C": "Failure to define the competitive challenge (Diagnosis).",
+    "D": "Lack of capital (Implementation)."
+   },
+   "answer": "C",
+   "explanation": "This is a failure of Diagnosis (Section 1.1/1.4). Leaders must critically assess the status quo. Kodak's leaders failed to honestly diagnose the threat of digital photography as a \"Competitive Challenge,\" viewing it instead as a distraction. Without a correct diagnosis, no valid strategy could be formed.",
+   "lo": "Strategic Leadership (Case: Kodak)",
+   "n": 59
+  },
+  {
+   "set": null,
+   "stem": "In 2016, Elon Musk updated his strategy. He announced goals to \"Expand the EV product line to all major segments\" and \"Develop self-driving capability 10x safer than manual.\" Why was this necessary according to the concept of Strategic Management (LO 1-1)?",
+   "options": {
+    "A": "To distract shareholders from low profits.",
+    "B": "Because the first plan failed.",
+    "C": "Because strategy is static and never changes.",
+    "D": "Because strategy is a continuous process; once the initial diagnosis is solved, new challenges (scaling, autonomy) arise requiring new policies."
+   },
+   "answer": "D",
+   "explanation": "Strategic Management is an integrative, continuous process (p. 6). Once Tesla achieved the first steps (Roadster/Model S), the competitive challenge shifted from \"Proving EVs work\" to \"Scaling and Autonomy.\" A good strategy evolves to address the new diagnosis.",
+   "lo": "Master Plan Part Deux (Case: Tesla 2016)",
+   "n": 60
+  }
+ ]
+}

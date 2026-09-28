@@ -1,0 +1,641 @@
+{
+  "id": "metro-ticketing-revenue",
+  "question": "What does a city metro network collect in fares over a year?",
+  "tabLabel": "Metro fares, one city",
+  "archetype": "network-price-mix",
+  "difficulty": "Medium",
+  "timeboxMinutes": 12,
+  "teachingPoint": "A monthly pass and a token are two different prices for the same ride, and the pass is the one that misleads. Convert it into what a holder actually pays per ride before you multiply anything: ₹1,000 a month across fifty rides is ₹20 a ride, against ₹35 for a token. Split people before you apply a monthly price and journeys before you apply a per-ride one, and the two regimes cannot contaminate each other.",
+  "scope": {
+    "countingWhat": "Fare revenue — money collected at the farebox — over one year by a single large metro rail network in one Indian city. Passes, tokens, QR tickets and stored-value cards count; nothing else does.",
+    "unit": "₹ crore a year",
+    "timeBasis": "flow (per year)",
+    "geography": "One illustrative Indian city of 2 crore people with a mature metro of about eight lines.",
+    "included": [
+      "Monthly passes and trip-packs bought by daily commuters",
+      "Single-journey tokens and QR tickets",
+      "Stored-value smart cards, at their discounted per-ride fare",
+      "Weekend and holiday travel by occasional riders"
+    ],
+    "excluded": [
+      "Advertising, station retail and property development income",
+      "Parking and feeder-bus fares",
+      "Consultancy and other non-transport income",
+      "Fines and penalty fares",
+      "Suburban rail and city buses"
+    ],
+    "boundaryTrap": "An operator's headline revenue usually includes property, advertising and consultancy income, which can be a large share of the total. This question is the farebox alone. Watch the volume side too: published ridership is often counted by line, which counts a passenger who changes lines twice, while a fare is charged once per journey."
+  },
+  "routeChoice": {
+    "chosen": "Hybrid",
+    "why": "The riders come top-down — residents, then the share who ride on a working day — because nobody can count a metro's riders from the bottom in an interview. The money comes bottom-up, product by product, because a pass and a token price the same ride differently and that difference is the question.",
+    "rejectedRoute": "Top-down",
+    "rejectedWhyNot": "A pure top-down route — riders × journeys × one average fare × days — needs a single average fare, and there is no honest single fare when four in ten of the day's riders prepay for the month. Choosing that number is exactly where the answer goes wrong, so the route has to split before it prices."
+  },
+  "tree": {
+    "root": "Annual farebox of one city metro network",
+    "rootFormula": "= (Pass holders × monthly pass price × 12) + (Pay-per-ride journeys a year × average fare)",
+    "value": "≈ ₹2,570 crore",
+    "branches": [
+      {
+        "label": "Pay-per-ride — tokens, QR tickets, stored-value cards",
+        "formula": "9.6 lakh riders × 1.6 journeys × 335.75 day-equivalents × ₹35",
+        "value": "51.6 crore journeys · ₹1,805 crore",
+        "note": "70% of the money. Weekends and holidays belong here: pass-holding commuters vanish on a Sunday, occasional riders do not.",
+        "isCriticalPath": true,
+        "children": [
+          {
+            "label": "Journeys on a working day",
+            "formula": "9.6 lakh × 1.6",
+            "value": "15.4 lakh",
+            "note": "Fewer journeys a head than a commuter, because some occasional riders go one way only."
+          },
+          {
+            "label": "Working-day equivalents a year",
+            "formula": "300 + 65 × 55%",
+            "value": "335.75",
+            "note": "Sundays and holidays count at a little over half a working day."
+          },
+          {
+            "label": "Average fare",
+            "formula": "Middle of a distance-slab table",
+            "value": "₹35 a journey",
+            "note": "The only lever that moves this line and leaves the pass line untouched."
+          }
+        ]
+      },
+      {
+        "label": "Pass holders — daily commuters",
+        "formula": "16 lakh riders × 40% × ₹1,000 × 12 months",
+        "value": "6.4 lakh holders · ₹768 crore",
+        "note": "Priced by the month, not the ride. 45% of working-day journeys and 30% of the money — the gap between those two shares is the whole lesson.",
+        "isCriticalPath": false,
+        "children": [
+          {
+            "label": "Riders on a working day",
+            "formula": "2 crore residents × 8%",
+            "value": "16 lakh",
+            "note": "The shakiest number in the tree; both branches inherit it."
+          },
+          {
+            "label": "Implied fare per pass ride",
+            "formula": "₹1,000 ÷ (2 journeys × 25 days)",
+            "value": "₹20 a ride",
+            "note": "Against ₹35 for a token. The heaviest users pay the least per ride — say it out loud."
+          }
+        ]
+      }
+    ]
+  },
+  "assumptions": [
+    {
+      "id": "a-city-pop",
+      "lever": "Population of the city",
+      "value": "2 crore (20 Mn)",
+      "numeric": 20000000,
+      "unit": "people",
+      "basis": "declared-judgement",
+      "defence": "The scope of the question, not a finding: one large Indian city with a mature, multi-line metro. Fixing it up front keeps every later number tied to a place you can picture.",
+      "confidence": "anchor",
+      "contestedBy": "A smaller city with a younger network changes the rider share far more than it changes the population — carry the city as given and argue about the share."
+    },
+    {
+      "id": "a-rider-share",
+      "lever": "Share of residents who ride on a working day",
+      "value": "8%",
+      "numeric": 0.08,
+      "unit": "share",
+      "basis": "declared-judgement",
+      "defence": "Most residents never touch the metro on a given day: it serves some corridors well and others not at all, and many trips are short, local or by two-wheeler. One resident in twelve on a working day is a mature network, not a new one.",
+      "confidence": "shaky",
+      "contestedBy": "A young network might be 3%; a dense, well-connected one could pass 12%. This is the single shakiest input, and every line below is linear in it."
+    },
+    {
+      "id": "a-pass-share",
+      "lever": "Share of working-day riders on a monthly pass",
+      "value": "40%",
+      "numeric": 0.4,
+      "unit": "share",
+      "basis": "observed-behaviour",
+      "defence": "Passes are bought by people who ride the same route twice a day, five or six days a week. They are a minority of everyone who rides in a month but a large share of the people riding on any one working day — because they are there every day and occasional riders are not.",
+      "confidence": "judgement",
+      "contestedBy": "A network that sells only stored-value cards has no pass regime at all; one with a generous student pass could be above half."
+    },
+    {
+      "id": "a-pass-trips",
+      "lever": "Journeys a pass holder makes on a working day",
+      "value": "2",
+      "numeric": 2,
+      "unit": "journeys a day",
+      "basis": "structural-logic",
+      "defence": "Out and back. Some add a midday trip and some take a lift one way, but two is the number a commuter pass is priced around.",
+      "confidence": "defensible",
+      "contestedBy": "Hybrid working pulls it below two on average; a holder who also rides on Saturdays pushes the monthly count up."
+    },
+    {
+      "id": "a-ppr-trips",
+      "lever": "Journeys a pay-per-ride rider makes on a day they ride",
+      "value": "1.6",
+      "numeric": 1.6,
+      "unit": "journeys a day",
+      "basis": "observed-behaviour",
+      "defence": "Occasional riders often make a return trip, but a meaningful minority ride one way — to a station, then a cab or a lift home.",
+      "confidence": "judgement",
+      "contestedBy": "Tourists and shoppers can make three or four hops in a day; the blend barely moves the answer."
+    },
+    {
+      "id": "a-days-month",
+      "lever": "Working days in a month",
+      "value": "25",
+      "numeric": 25,
+      "unit": "days",
+      "basis": "structural-logic",
+      "defence": "A six-day week less holidays for many workplaces and a five-day week for others; 25 is the working count a monthly pass is bought against.",
+      "confidence": "defensible",
+      "contestedBy": "A strictly five-day workforce gives 22, which raises the implied fare per pass ride to about ₹23."
+    },
+    {
+      "id": "a-pass-price",
+      "lever": "Monthly pass price",
+      "value": "₹1,000",
+      "numeric": 1000,
+      "unit": "₹ a month",
+      "basis": "declared-judgement",
+      "defence": "Priced so a daily commuter saves clearly against paying per ride — the point of a pass is to lock in the heaviest users. ₹1,000 against fifty rides is ₹20 a ride.",
+      "confidence": "judgement",
+      "contestedBy": "Some systems sell trip-packs of 40–50 journeys rather than unlimited months; the per-ride arithmetic is identical."
+    },
+    {
+      "id": "a-months",
+      "lever": "Months of pass sales in a year",
+      "value": "12",
+      "numeric": 12,
+      "unit": "months",
+      "basis": "structural-logic",
+      "defence": "Holders who let a pass lapse in a holiday month are roughly offset by new holders joining; twelve full months is the honest simplification.",
+      "confidence": "anchor",
+      "contestedBy": "A strongly seasonal city — a college town emptying in summer — would take a month or two off."
+    },
+    {
+      "id": "a-fare",
+      "lever": "Average fare per pay-per-ride journey",
+      "value": "₹35",
+      "numeric": 35,
+      "unit": "₹ a journey",
+      "basis": "declared-judgement",
+      "defence": "Indian metro fares are distance-slab tables that start around ₹10; a typical 12–15 km journey falls in the middle of the table, with the small stored-value-card discount taken off.",
+      "confidence": "defensible",
+      "contestedBy": "A network of short feeder trips averages nearer ₹25; long cross-city commutes on a high-slab table push it past ₹45."
+    },
+    {
+      "id": "a-work-days-year",
+      "lever": "Working days in a year",
+      "value": "300",
+      "numeric": 300,
+      "unit": "days",
+      "basis": "structural-logic",
+      "defence": "Twenty-five working days a month, twelve months. It must match the monthly figure used for the pass, or the two regimes are annualised on different calendars.",
+      "confidence": "defensible",
+      "contestedBy": "A five-day-week city is nearer 250; the pay-per-ride line falls by about 7%."
+    },
+    {
+      "id": "a-off-days",
+      "lever": "Sundays and holidays in a year",
+      "value": "65",
+      "numeric": 65,
+      "unit": "days",
+      "basis": "structural-logic",
+      "defence": "Whatever is not a working day: 365 less 300.",
+      "confidence": "anchor",
+      "contestedBy": "Follows mechanically from the working-day count."
+    },
+    {
+      "id": "a-off-factor",
+      "lever": "Pay-per-ride travel on a non-working day, versus a working day",
+      "value": "55%",
+      "numeric": 0.55,
+      "unit": "share",
+      "basis": "observed-behaviour",
+      "defence": "Commuters vanish on a Sunday; shoppers, families and weekend visitors partly replace them. Only pay-per-ride travel counts here — a pass holder's Sunday ride was already paid for with the month.",
+      "confidence": "judgement",
+      "contestedBy": "Cities with a strong weekend leisure economy run close to 70%; industrial ones fall below 40%."
+    },
+    {
+      "id": "a-lines",
+      "lever": "Lines in the network",
+      "value": "8",
+      "numeric": 8,
+      "unit": "lines",
+      "basis": "declared-judgement",
+      "defence": "A mature network in a city of this size — the same picture the population assumption sets up.",
+      "confidence": "judgement",
+      "contestedBy": "Fewer, longer lines carry similar volumes with fewer interchanges."
+    },
+    {
+      "id": "a-runs",
+      "lever": "Train runs per line per direction on a working day",
+      "value": "170",
+      "numeric": 170,
+      "unit": "runs",
+      "basis": "structural-logic",
+      "defence": "A train every five to seven minutes on average over an eighteen-hour operating day is about 150–220 runs each way; rush-hour headways are tighter and late-evening ones wider.",
+      "confidence": "defensible",
+      "contestedBy": "Busy trunk lines run far more; new branch lines far fewer."
+    },
+    {
+      "id": "a-train-cap",
+      "lever": "Passengers a six-coach train carries at a practical full load",
+      "value": "1,500",
+      "numeric": 1500,
+      "unit": "passengers",
+      "basis": "declared-judgement",
+      "defence": "About 250 a coach standing and seated at a practical full load. Crush loads in the rush hour are higher, which is exactly why they are not the average.",
+      "confidence": "defensible",
+      "contestedBy": "Eight-coach trains on trunk lines carry about a third more."
+    },
+    {
+      "id": "a-load",
+      "lever": "Average occupancy across every run of the day",
+      "value": "35%",
+      "numeric": 0.35,
+      "unit": "share",
+      "basis": "observed-behaviour",
+      "defence": "Peak-direction trains in the rush hour run full; counter-peak, midday and late trains run nearly empty. Averaged over every run, about a third of capacity is used.",
+      "confidence": "shaky",
+      "contestedBy": "Anything from 25% to 45% is defensible, which moves the supply figure by about 30% either way."
+    },
+    {
+      "id": "a-turnover",
+      "lever": "Times each place is refilled along a run",
+      "value": "2.5",
+      "numeric": 2.5,
+      "unit": "refills a run",
+      "basis": "structural-logic",
+      "defence": "An average journey covers about 40% of a line's length, so each place is used about two and a half times over one end-to-end run.",
+      "confidence": "judgement",
+      "contestedBy": "Short-hop, dense-station lines turn over faster; airport lines hardly turn over at all."
+    },
+    {
+      "id": "a-interchange",
+      "lever": "Line-boardings per journey",
+      "value": "1.25",
+      "numeric": 1.25,
+      "unit": "boardings a journey",
+      "basis": "observed-behaviour",
+      "defence": "About a quarter of journeys change lines once. A line-level count sees them twice; the farebox charges them once, gate in to gate out.",
+      "confidence": "judgement",
+      "contestedBy": "Radial networks with a single central interchange run higher."
+    }
+  ],
+  "calculation": [
+    {
+      "id": "c1",
+      "label": "Riders on a working day",
+      "expr": "20000000 * 0.08",
+      "display": "2 crore residents × 8%",
+      "result": 1600000,
+      "tolerance": 0,
+      "unit": "riders",
+      "carriedForward": "16 lakh riders",
+      "uses": [
+        "a-city-pop",
+        "a-rider-share"
+      ],
+      "soWhat": "The shakiest number in the tree, and every line below is linear in it. Box it, and argue about it once rather than on every line."
+    },
+    {
+      "id": "c2",
+      "label": "Pass holders",
+      "expr": "1600000 * 0.4",
+      "display": "16 lakh × 40%",
+      "result": 640000,
+      "tolerance": 0,
+      "unit": "holders",
+      "carriedForward": "6.4 lakh holders",
+      "uses": [
+        "a-pass-share"
+      ],
+      "soWhat": "People, not journeys. A monthly price is only ever multiplied by people."
+    },
+    {
+      "id": "c3",
+      "label": "Pay-per-ride riders on a working day",
+      "expr": "1600000 * 0.6",
+      "display": "16 lakh × 60%",
+      "result": 960000,
+      "tolerance": 0,
+      "unit": "riders",
+      "carriedForward": "9.6 lakh riders",
+      "uses": [
+        "a-pass-share"
+      ],
+      "soWhat": "The other 60%. They pay by the ride, so from here they are counted in journeys."
+    },
+    {
+      "id": "c4",
+      "label": "Rides a pass holder takes in a month",
+      "expr": "2 * 25",
+      "display": "2 journeys × 25 working days",
+      "result": 50,
+      "tolerance": 0,
+      "unit": "rides a month",
+      "carriedForward": "50 rides",
+      "uses": [
+        "a-pass-trips",
+        "a-days-month"
+      ],
+      "soWhat": "The denominator for the most important division in the question."
+    },
+    {
+      "id": "c5",
+      "label": "What a pass holder pays per ride",
+      "expr": "1000 / 50",
+      "display": "₹1,000 ÷ 50 rides",
+      "result": 20,
+      "tolerance": 0,
+      "unit": "₹ a ride",
+      "carriedForward": "₹20 a ride",
+      "uses": [
+        "a-pass-price"
+      ],
+      "soWhat": "This is the move the question exists to test. A pass holder pays ₹20 a ride against ₹35 for a token — the heaviest users pay the least. Say it before you multiply anything, and the pass line cannot be double-counted."
+    },
+    {
+      "id": "c6",
+      "label": "Pass revenue in a year",
+      "expr": "640000 * 1000 * 12",
+      "display": "6.4 lakh holders × ₹1,000 × 12 months",
+      "result": 7680000000,
+      "tolerance": 0,
+      "unit": "₹ a year",
+      "carriedForward": "₹768 crore",
+      "uses": [
+        "a-pass-price",
+        "a-months"
+      ],
+      "soWhat": "Annualised by months, because that is how a pass is bought. Multiplying by working days here would price each holder at ₹3 lakh a year."
+    },
+    {
+      "id": "c7",
+      "label": "Pay-per-ride journeys on a working day",
+      "expr": "960000 * 1.6",
+      "display": "9.6 lakh riders × 1.6 journeys",
+      "result": 1536000,
+      "tolerance": 0,
+      "unit": "journeys a day",
+      "carriedForward": "15.4 lakh journeys",
+      "uses": [
+        "a-ppr-trips"
+      ],
+      "soWhat": "Together with the 12.8 lakh pass journeys this is 28.2 lakh journeys on a working day. Pass holders are 40% of the riders but 45% of the journeys."
+    },
+    {
+      "id": "c8",
+      "label": "Working-day equivalents in a year",
+      "expr": "300 + 65 * 0.55",
+      "display": "300 working days + 65 days × 55%",
+      "result": 335.75,
+      "tolerance": 0,
+      "unit": "day-equivalents",
+      "carriedForward": "335.75",
+      "uses": [
+        "a-work-days-year",
+        "a-off-days",
+        "a-off-factor"
+      ],
+      "soWhat": "Weekends belong to the pay-per-ride line only. A pass holder's Sunday ride earns the network nothing extra."
+    },
+    {
+      "id": "c9",
+      "label": "Pay-per-ride journeys in a year",
+      "expr": "1536000 * 335.75",
+      "display": "15.36 lakh × 335.75",
+      "result": 515712000,
+      "tolerance": 0,
+      "unit": "journeys a year",
+      "carriedForward": "51.6 crore journeys",
+      "uses": [],
+      "soWhat": "Over half the year's journeys, and — as the next line shows — over two-thirds of its money."
+    },
+    {
+      "id": "c10",
+      "label": "Pay-per-ride revenue in a year",
+      "expr": "515712000 * 35",
+      "display": "51.6 crore journeys × ₹35",
+      "result": 18049920000,
+      "tolerance": 0,
+      "unit": "₹ a year",
+      "carriedForward": "₹1,805 crore",
+      "uses": [
+        "a-fare"
+      ],
+      "soWhat": "The larger line by far, and the only one the average fare touches."
+    },
+    {
+      "id": "c11",
+      "label": "Total farebox in a year",
+      "expr": "7680000000 + 18049920000",
+      "display": "₹768 crore passes + ₹1,805 crore pay-per-ride",
+      "result": 25729920000,
+      "tolerance": 0,
+      "unit": "₹ a year",
+      "carriedForward": "₹2,573 crore",
+      "uses": [],
+      "soWhat": "Passes are 30% of the money on 45% of the working-day journeys. If your pass line came out with a larger share of revenue than of journeys, you priced it per trip."
+    },
+    {
+      "id": "c12",
+      "label": "Total farebox in crore",
+      "expr": "25729920000 / 10000000",
+      "display": "₹25,730 Mn ÷ 1 crore",
+      "result": 2572.992,
+      "tolerance": 0,
+      "unit": "₹ crore a year",
+      "carriedForward": "≈ ₹2,500 crore — round it before you say it",
+      "uses": [],
+      "soWhat": "Say ₹2,500 crore. The rider share alone could move it by a quarter; four significant figures would claim a precision nothing above supports."
+    }
+  ],
+  "finalAnswer": "≈ ₹2,500 crore a year in fares, for an illustrative network carrying about 28 lakh journeys on a working day. Pass holders make 45% of working-day journeys but pay 30% of the money, because a pass works out at ₹20 a ride against ₹35 for a token.",
+  "finalAnswerNumeric": 2500,
+  "answerBand": "₹1,900 – ₹3,500 crore a year. The band is set mostly by the rider share — 8% of residents on a working day could credibly be 6% or 11% — and secondly by the pay-per-ride fare, which swings the larger revenue line by about a fifth either way.",
+  "orderOfMagnitude": "10^10 rupees (₹2,500 crore ≈ ₹2.6 × 10^10); about 10^9 journeys a year",
+  "triangulation": {
+    "label": "Supply-side cross-check — could the network physically carry this many journeys?",
+    "route": "Bottom-up",
+    "premise": "Count what the trains can carry instead of who rides them: runs a day, places a run, how full the runs actually are, how many times a place is refilled along a run, and how many line-boardings make one journey. The route shares no inputs with the demand route, so agreement on volume is real evidence — but it cannot price anything, so it says nothing about the pass-versus-token split.",
+    "lines": [
+      {
+        "id": "t1",
+        "label": "Train runs on a working day",
+        "expr": "8 * 170 * 2",
+        "display": "8 lines × 170 runs × 2 directions",
+        "result": 2720,
+        "tolerance": 0,
+        "unit": "runs",
+        "carriedForward": "2,720 runs",
+        "uses": [
+          "a-lines",
+          "a-runs"
+        ],
+        "soWhat": "Supply starts from what the timetable can run, not from who wants to ride."
+      },
+      {
+        "id": "t2",
+        "label": "Places offered",
+        "expr": "2720 * 1500",
+        "display": "2,720 runs × 1,500 places",
+        "result": 4080000,
+        "tolerance": 0,
+        "unit": "places",
+        "carriedForward": "40.8 lakh places",
+        "uses": [
+          "a-train-cap"
+        ],
+        "soWhat": "A ceiling, not a count — most of these places run empty."
+      },
+      {
+        "id": "t3",
+        "label": "Places occupied, on average",
+        "expr": "4080000 * 0.35",
+        "display": "40.8 lakh × 35% occupancy",
+        "result": 1428000,
+        "tolerance": 0,
+        "unit": "places",
+        "carriedForward": "14.3 lakh",
+        "uses": [
+          "a-load"
+        ],
+        "soWhat": "The load factor is the shakiest number on this side, and it is shaky in a useful way: full rush-hour trains are a peak fact, not an all-day one."
+      },
+      {
+        "id": "t4",
+        "label": "Line-boardings",
+        "expr": "1428000 * 2.5",
+        "display": "14.28 lakh × 2.5 refills",
+        "result": 3570000,
+        "tolerance": 0,
+        "unit": "boardings",
+        "carriedForward": "35.7 lakh boardings",
+        "uses": [
+          "a-turnover"
+        ],
+        "soWhat": "Each place is used about two and a half times along a run."
+      },
+      {
+        "id": "t5",
+        "label": "Journeys on a working day",
+        "expr": "3570000 / 1.25",
+        "display": "35.7 lakh boardings ÷ 1.25 per journey",
+        "result": 2856000,
+        "tolerance": 0,
+        "unit": "journeys",
+        "carriedForward": "28.6 lakh journeys",
+        "uses": [
+          "a-interchange"
+        ],
+        "soWhat": "Against 28.2 lakh from the demand route. Priced once per journey, gate in to gate out."
+      }
+    ],
+    "answer": "≈ 28.6 lakh journeys on a working day, against 28.2 lakh from the demand route (12.8 lakh on passes, 15.4 lakh pay-per-ride).",
+    "verdict": "Within about 1.5% on volume, from two routes that share no inputs — better agreement than either route deserves, since the load factor alone could move the supply figure by 30%. The claim to make is that the demand funnel is not inventing riders the network could not carry, not that the answer is confirmed. Revenue is untested by this route: it knows how many journeys there are, not what each one paid."
+  },
+  "sensitivity": {
+    "assumptionId": "a-fare",
+    "whyThisLever": "The rider share is shakier, but it scales every line equally and teaches nothing. The pay-per-ride fare earns the grid because it moves only 70% of the answer: the pass line does not move at all, which is exactly what a pass is for — it turns a volatile per-ride income into a fixed monthly one.",
+    "cases": [
+      {
+        "scenario": "Conservative",
+        "leverValue": "₹25 a journey (short feeder trips, low slabs)",
+        "answer": "≈ ₹2,060 crore",
+        "deltaVsBase": "−20%"
+      },
+      {
+        "scenario": "Base",
+        "leverValue": "₹35 a journey",
+        "answer": "≈ ₹2,570 crore",
+        "deltaVsBase": "0%"
+      },
+      {
+        "scenario": "Aggressive",
+        "leverValue": "₹45 a journey (long cross-city commutes)",
+        "answer": "≈ ₹3,090 crore",
+        "deltaVsBase": "+20%"
+      }
+    ],
+    "breakpoint": "The pay-per-ride fare would have to fall to about ₹15 before the two regimes brought in equal money — below any realistic average fare. Passes stay the minority of the revenue in every plausible case, even though they are close to half of the working-day journeys.",
+    "oneLiner": "Every ₹10 on the average fare moves the answer by about ₹515 crore — and moves the pass line by nothing."
+  },
+  "sanityChecks": [
+    "₹2,573 crore across about 90 crore journeys a year is ₹28.6 a journey — between the ₹20 a pass holder pays per ride and the ₹35 a token costs, and closer to the token because pay-per-ride journeys are the majority of the year's trips. A blended fare outside that ₹20–₹35 range would mean a line had been priced twice.",
+    "Per resident, the city spends ₹1,286 a year on metro fares — about ₹107 a month. A single pass holder's month is ₹1,000, so the whole city spends roughly what one resident in ten would if everyone else stayed home.",
+    "Pass holders are 40% of working-day riders, 45% of working-day journeys and 30% of the money. Revenue share below journey share is the signature of a discounted product; the reverse would mean the pass had been priced per journey.",
+    "The supply side needs only a 35% average load to carry the demand figure. An estimate that needed trains 90% full across the whole day would mean the rider share was too high — full trains are a rush-hour, peak-direction fact.",
+    "Twenty-eight lakh journeys on a working day across sixteen lakh riders is 1.76 journeys each — two for pass holders, 1.6 for everyone else. A working-day figure above about 2.5 journeys a rider would mean line changes had been counted as journeys.",
+    "The two common errors land together: pricing pass rides at the token fare gives about ₹3,150 crore, and multiplying journeys by the pass price about ₹3,340 crore. An answer in that range is a flag, not a coincidence."
+  ],
+  "traps": [
+    {
+      "trap": "Pricing every ride at the token fare.",
+      "whyItHappens": "The token price is the only metro fare most candidates can quote, and one price across one ride count feels clean. It ignores that the heaviest users — the ones there every working day — pay the least per ride.",
+      "fix": "Convert the pass into its implied per-ride price first: ₹1,000 ÷ 50 rides is ₹20, not ₹35. Priced at the token fare, the pass line comes out at ₹1,344 crore instead of ₹768 crore — 75% too high — and the total 22% too high."
+    },
+    {
+      "trap": "Multiplying journeys by the monthly pass price.",
+      "whyItHappens": "After journeys are split into pass and token, the pass share of journeys looks like a count of pass holders. It is not: every holder makes two journeys a day. A worked solution to a suburban-rail version of this question in circulation makes exactly this slip.",
+      "fix": "Split people, not journeys, before applying a monthly price. 6.4 lakh holders × ₹1,000 × 12 is ₹768 crore; 12.8 lakh pass journeys × ₹1,000 × 12 would be ₹1,536 crore — double, because each holder was counted once per trip."
+    },
+    {
+      "trap": "Annualising the pass by days.",
+      "whyItHappens": "Every other line in the tree is multiplied up by working days, so the pass line gets the same treatment by momentum.",
+      "fix": "A pass is bought monthly: holders × price × 12. Multiplying by 300 working days prices each holder at ₹3 lakh a year, which is a car, not a metro pass."
+    },
+    {
+      "trap": "Counting line-boardings as journeys.",
+      "whyItHappens": "Line-level ridership is the figure most often reported, and it counts a passenger who changes lines once on each line.",
+      "fix": "Fares are charged once per journey, gate in to gate out. Divide line-boardings by the interchange factor — 1.25 here — before pricing anything."
+    },
+    {
+      "trap": "Adding pass holders' weekend rides to revenue.",
+      "whyItHappens": "The weekend multiplier gets applied to all journeys, the pass holders' included, and their Sunday trips then earn a token fare.",
+      "fix": "A pass holder's extra rides are free at the margin — the month paid for them. Apply the weekend factor to pay-per-ride travel only."
+    },
+    {
+      "trap": "Starting from the whole city and a daily trip rate.",
+      "whyItHappens": "Population × trips per person per day is the reflex for any transport question, and it silently assumes everyone in the city uses the metro.",
+      "fix": "Gate on the share of residents who ride on a working day — 8% here — before counting a single journey. A metro serves corridors, not a whole city."
+    }
+  ],
+  "probes": [
+    {
+      "question": "Pass holders make 45% of working-day journeys and pay 30% of the fares. Should the metro raise the pass price?",
+      "intent": "Whether the candidate can read a pricing decision off the split, rather than treating the gap as underpricing.",
+      "goodAnswer": "Not necessarily. A pass sells a guaranteed base load and cash up front, and it is the product that keeps commuters off the roads at the peak. The sharper question is when pass journeys happen: at the peak, where trains are full and the discount buys nothing, or off-peak, where it fills empty seats. An off-peak or peak-surcharged pass could protect revenue without losing the regulars.",
+      "weakAnswer": "Yes — pass holders pay less per ride, so the metro is leaving money on the table."
+    },
+    {
+      "question": "Where does your ₹20 per pass ride come from, and what would move it?",
+      "intent": "Whether the implied fare is understood as a derived number rather than a posted one.",
+      "goodAnswer": "It is the monthly price divided by the rides a holder actually takes — ₹1,000 ÷ 50. A holder who adds a midday trip and rides on Saturdays pays less per ride; one who works from home two days a week pays more. The realised fare on passes falls as their users ride more, which is why the posted price alone cannot be multiplied through.",
+      "weakAnswer": "It's the pass fare."
+    },
+    {
+      "question": "The city opens two new lines next year. What happens to your answer?",
+      "intent": "Whether the candidate sees network effects rather than scaling by track length.",
+      "goodAnswer": "The rider share rises by more than the added length, because each new line makes new journeys possible on the old lines too. The interchange factor rises, so line-level ridership grows faster than journeys. Pass uptake rises as more commutes become metro end to end. Revenue grows — but the average fare per journey can fall if the new lines mostly carry short feeder trips.",
+      "weakAnswer": "Add a quarter to the answer, because there is a quarter more track."
+    },
+    {
+      "question": "Your supply check agreed within 2%. Should that make you more confident?",
+      "intent": "Triangulation humility.",
+      "goodAnswer": "About the volume, somewhat: the two routes share no inputs. About the revenue, not at all — capacity knows how many journeys there are, not what each paid, so the pass-versus-token split is untouched. And the 35% load factor could as easily be 25% or 45%, which would move the supply figure by about 30%; the tightness of the agreement is partly luck.",
+      "weakAnswer": "Yes — two methods agree, so the number is right."
+    },
+    {
+      "question": "If you could ask the operator for one number, what would it be?",
+      "intent": "Whether the candidate knows which inputs dominate.",
+      "goodAnswer": "Journeys by ticket type, with the average fare on each — how many were made on passes and how many paid per ride. That replaces the rider share, the pass share and the fare in one stroke. Total ridership alone would help much less, because the revenue question is about the mix.",
+      "weakAnswer": "Total daily ridership."
+    }
+  ]
+}
