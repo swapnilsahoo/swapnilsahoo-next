@@ -142,13 +142,18 @@
         /* ---- section rail (desktop) ---- */
         #rail{position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:40;display:none}
         @media (min-width:1380px){#rail{display:block}}
-        #rail a{display:flex;align-items:center;gap:9px;padding:3px 0;color:var(--muted);
+        #rail a{position:relative;display:flex;align-items:center;padding:4px 10px 4px 0;color:var(--muted);
           font-size:11px;text-decoration:none;opacity:.55;transition:opacity .2s}
         #rail a:hover,#rail a.on{opacity:1;color:var(--accent)}
         #rail .dot{width:7px;height:7px;border-radius:99px;background:currentColor;flex:none;transition:transform .2s}
         #rail a.on .dot{transform:scale(1.6)}
-        #rail .lbl{opacity:0;transform:translateX(-4px);transition:.2s;white-space:nowrap}
-        #rail a:hover .lbl,#rail a.on .lbl{opacity:1;transform:none}
+        #rail .lbl{position:absolute;left:18px;top:50%;transform:translate(-4px,-50%);opacity:0;
+          pointer-events:none;white-space:nowrap;transition:opacity .2s,transform .2s;
+          background:var(--card);border:1px solid var(--line);border-radius:6px;padding:1px 7px;
+          box-shadow:0 4px 14px -8px rgba(15,23,42,.35)}
+        #rail a:hover .lbl,#rail a:focus-visible .lbl{opacity:1;transform:translate(0,-50%)}
+        /* the active section keeps its label only where the gutter is wide enough to hold it */
+        @media (min-width:1760px){#rail a.on .lbl{opacity:1;transform:translate(0,-50%)}}
 
         /* ---- nav ---- */
         .nav-link{transition:color .18s,border-color .18s;border-bottom:2px solid transparent;
@@ -358,7 +363,7 @@
         <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-slate-900 text-white font-display text-sm font-semibold">01</span>
         <div class="min-w-0">
           <p class="truncate font-display text-base font-semibold leading-tight text-slate-900">Introduction to Strategy</p>
-          <p class="hidden truncate text-[11px] text-slate-500 sm:block">90 minutes · <span id="progPct">0</span>% read · <span id="doneCount">0</span>/8 activities done</p>
+          <p class="hidden truncate text-[11px] text-slate-500 sm:block">90 minutes · <span id="progPct">0</span>% read · <span id="doneCount">0</span>/9 activities done</p>
         </div>
       </div>
 
@@ -403,7 +408,7 @@
     </div>
     <div class="mt-3 rounded-xl bg-slate-50 p-3">
       <div class="flex items-center justify-between text-xs text-slate-500">
-        <span>Progress</span><span><span id="drawerDone">0</span>/8 activities</span>
+        <span>Progress</span><span><span id="drawerDone">0</span>/9 activities</span>
       </div>
       <div class="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-200">
         <div id="drawerBar" class="h-full rounded-full bg-blue-600 transition-all" style="width:0%"></div>
@@ -485,6 +490,87 @@
         <li>&bull; Preserves difference rather than erasing it</li>
         <li>&bull; Defensible because copying one piece does not work</li>
       </ul>
+    </div>
+  </div>
+
+
+  <!-- Porter's exhibit: the productivity frontier -->
+  <style>
+    .viz-root{--pf-surface:#FFFFFF;--pf-ink:#0F172A;--pf-ink2:#475569;--pf-ink3:#64748B;--pf-axis:#E2E8F0;
+      --pf-you:#4F46E5;--pf-rival:#768399;--pf-wash:rgba(15,23,42,.045);--pf-tip:#FFFFFF;--pf-tipline:#E2E8F0}
+    html.dark .viz-root{--pf-surface:#111A2E;--pf-ink:#E2E8F0;--pf-ink2:#CBD5E1;--pf-ink3:#94A3B8;--pf-axis:#1E293B;
+      --pf-you:#6E72F0;--pf-rival:#5B6B82;--pf-wash:rgba(226,232,240,.05);--pf-tip:#162032;--pf-tipline:#26344F}
+    .viz-root svg text{font-family:Inter,ui-sans-serif,system-ui,sans-serif}
+    .viz-root .pf-axis{stroke:var(--pf-axis);stroke-width:1;shape-rendering:crispEdges}
+    .viz-root .pf-tick{fill:var(--pf-ink3);font-size:11px}
+    .viz-root .pf-axis-title{fill:var(--pf-ink2);font-size:11.5px;font-weight:500}
+    .viz-root .pf-wash{fill:var(--pf-wash)}
+    .viz-root .pf-frontier{fill:none;stroke:var(--pf-ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    .viz-root .pf-ghost{fill:none;stroke:var(--pf-rival);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    .viz-root .pf-flabel{fill:var(--pf-ink);font-size:12px;font-weight:700}
+    .viz-root .pf-fsub{fill:var(--pf-ink2);font-size:11px}
+    .viz-root .pf-rival{fill:var(--pf-rival);stroke:var(--pf-surface);stroke-width:2}
+    .viz-root .pf-you{fill:var(--pf-you);stroke:var(--pf-surface);stroke-width:2;stroke-linejoin:round}
+    .viz-root .pf-lbl{fill:var(--pf-ink);font-size:12px;font-weight:600}
+    .viz-root .pf-glbl{fill:var(--pf-ink2);font-size:11px}
+    .viz-root .pf-leader{stroke:var(--pf-ink3);stroke-width:1}
+    .viz-root .pf-hit{fill:transparent;cursor:pointer;outline:none}
+    .viz-root .pf-ring{fill:none;stroke:var(--pf-you);stroke-width:2}
+    .viz-root .pf-lift{transform-box:fill-box;transform-origin:center;transform:scale(1.35)}
+    .viz-root .pf-tip{position:absolute;z-index:5;pointer-events:none;min-width:9rem;max-width:14rem;background:var(--pf-tip);
+      border:1px solid var(--pf-tipline);border-radius:10px;padding:.5rem .65rem;box-shadow:0 8px 24px -12px rgba(15,23,42,.35)}
+    .viz-root .pf-tip-value{font-size:13px;font-weight:700;color:var(--pf-ink)}
+    .viz-root .pf-tip-name{font-size:12px;color:var(--pf-ink2)}
+    .viz-root .pf-tip-meta{margin-top:2px;font-size:11px;color:var(--pf-ink3)}
+    .viz-root .pf-key{display:inline-flex;align-items:center;gap:.4rem}
+    .viz-root input[type=range]{accent-color:var(--pf-you);width:100%}
+    .viz-root .pf-grid{display:grid;gap:1.25rem;grid-template-columns:minmax(0,1fr);grid-template-areas:"intro" "chart" "side"}
+    .viz-root .pf-intro{grid-area:intro}
+    .viz-root .pf-chart{grid-area:chart}
+    .viz-root .pf-side{grid-area:side}
+    @media (min-width:1024px){
+      .viz-root .pf-grid{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);grid-template-rows:auto 1fr;
+        grid-template-areas:"chart intro" "chart side";align-items:start}
+    }
+    .viz-root .pf-washkey{fill:var(--pf-wash);stroke:var(--pf-axis);stroke-width:1}
+  </style>
+  <div id="frontier" class="viz-root mt-6 card p-5 sm:p-6">
+    <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Porter&rsquo;s exhibit &middot; operational effectiveness versus strategic positioning</p>
+    <h3 class="mt-1 text-xl font-bold text-slate-900">The productivity frontier</h3>
+    <p class="mt-2 max-w-3xl text-sm text-slate-600 leading-relaxed">
+      Porter asks you to &ldquo;imagine for a moment a productivity frontier that constitutes the sum of all existing
+      best practices at any given time&rdquo; &mdash; the maximum value a company can create at a given cost, using the
+      best available technologies, skills, management techniques and purchased inputs (Porter, 1996). Operational
+      effectiveness is how close you are to it. Strategic positioning is where on it you choose to stand.
+    </p>
+
+    <div id="pfSteps" class="mt-4 flex flex-wrap gap-2 no-print" role="group" aria-label="Frontier simulation steps"></div>
+
+    <div class="pf-grid mt-4">
+      <div id="pfIntro" class="pf-intro"></div>
+      <div class="pf-chart min-w-0">
+        <div id="pfLegend" class="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-600"></div>
+        <div id="pfPlot" class="relative mt-2">
+          <svg id="pfSvg" role="img" aria-labelledby="pfTitle pfDesc" class="block w-full"></svg>
+          <div id="pfTip" class="pf-tip" aria-hidden="true" hidden></div>
+        </div>
+        <div id="pfControls" class="mt-3 rounded-xl border border-slate-200 bg-slate-50 p-4"></div>
+        <p class="mt-2 text-[11px] text-slate-500">Porter&rsquo;s exhibit is conceptual and has no units. The positions and
+          0&ndash;100 scores here are illustrative; they exist only to make movement visible.</p>
+        <details class="mt-3">
+          <summary class="cursor-pointer text-xs font-semibold text-slate-700">Show the positions as a table</summary>
+          <div class="mt-2 overflow-x-auto">
+            <table class="w-full text-xs text-left text-slate-600 comparison-table">
+              <thead class="text-[10px] uppercase tracking-wider text-slate-500">
+                <tr><th scope="col">Firm</th><th scope="col" class="text-right">Low-cost score</th>
+                  <th scope="col" class="text-right">Buyer-value score</th><th scope="col" class="text-right">Behind the frontier</th></tr>
+              </thead>
+              <tbody id="pfTable" class="divide-y divide-slate-100"></tbody>
+            </table>
+          </div>
+        </details>
+      </div>
+      <div id="pfSide" class="pf-side"></div>
     </div>
   </div>
 
@@ -2860,7 +2946,7 @@ QUIZ.forEach((item,i)=>{
     ["studio", "Studio"], ["quiz", "Quiz"], ["check", "Concept check"], ["readings", "Readings"]
   ];
   var KEY = "s1-progress-v1";
-  var ACTIVITIES = ["sorter", "classifier", "exhibits", "porter", "collis", "quiz", "video", "autopsy"];
+  var ACTIVITIES = ["sorter", "classifier", "exhibits", "porter", "collis", "quiz", "video", "autopsy", "frontier"];
 
   // ---------- theme ----------
   var root = document.documentElement;
@@ -2994,6 +3080,7 @@ QUIZ.forEach((item,i)=>{
   onClickWithin("#oeSorter", "sorter");
   onClickWithin("#porterVideoBtn", "video");
   onClickWithin("#autopsy", "autopsy");
+  onClickWithin("#frontier", "frontier");
   onClickWithin("#emClassifier", "classifier");
   onClickWithin("#revealMargins", "exhibits");
   onClickWithin("#porterNodes", "porter");
@@ -3262,6 +3349,434 @@ QUIZ.forEach((item,i)=>{
     out.innerHTML = html;
   }
   show(M[0]);
+})();
+</script>
+
+<script>
+/* Porter's productivity frontier: a four-step simulator of his exhibit */
+(function () {
+  var root = document.getElementById("frontier");
+  if (!root) return;
+  var plot = document.getElementById("pfPlot"), svg = document.getElementById("pfSvg");
+  var tip = document.getElementById("pfTip"), intro = document.getElementById("pfIntro");
+  var controls = document.getElementById("pfControls"), side = document.getElementById("pfSide");
+  var stepsEl = document.getElementById("pfSteps"), legend = document.getElementById("pfLegend");
+  var tbody = document.getElementById("pfTable");
+  var NS = "http://www.w3.org/2000/svg";
+  var reduce = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+
+  /* The frontier is a quarter superellipse bowing toward low cost and high value, as in
+     Porter's exhibit. t runs from 0 (low-cost end) to PI/2 (high-value end); e is the share
+     of best practice a firm reaches; sref is the frontier its practices were built against. */
+  var CX = .10, CY = .06, A = .72, B = .74, N = 2.6, HALF = Math.PI / 2, SHIFT = 1.18;
+  function pt(t, e, s) {
+    var c = Math.pow(Math.max(0, Math.cos(t)), 2 / N), d = Math.pow(Math.max(0, Math.sin(t)), 2 / N);
+    return { u: CX + e * s * A * c, v: CY + e * s * B * d };
+  }
+  function gap(f, s) { return Math.max(0, 1 - (f.e * f.sref) / s); }
+  var NAMES = ["R.R. Donnelley", "Quebecor", "World Color Press", "Big Flower Press"];
+  var LEADER_T = .80;
+
+  function copy(o) { return JSON.parse(JSON.stringify(o)); }
+  function flat(st) {
+    var a = [st.s, st.ghost, st.you.t, st.you.e, st.you.sref];
+    st.rivals.forEach(function (r) { a.push(r.t, r.e, r.sref); });
+    return a;
+  }
+  function unflat(a, like) {
+    var st = copy(like);
+    st.s = a[0]; st.ghost = a[1]; st.you.t = a[2]; st.you.e = a[3]; st.you.sref = a[4];
+    st.rivals.forEach(function (r, i) { r.t = a[5 + 3 * i]; r.e = a[6 + 3 * i]; r.sref = a[7 + 3 * i]; });
+    return st;
+  }
+
+  function base(step) {
+    var st = { s: 1, ghost: 0, you: { t: .78, e: .55, sref: 1 }, rivals: [] };
+    var spread = [[.95, .93], [.62, .86], [1.10, .80], [.40, .74]];
+    if (step === 0) spread.forEach(function (r) { st.rivals.push({ t: r[0], e: r[1], sref: 1 }); });
+    if (step === 1) {
+      st.you.e = 1;
+      [[.95, .97], [.62, .96], [1.10, .95], [.40, .94]].forEach(function (r) { st.rivals.push({ t: r[0], e: r[1], sref: 1 }); });
+    }
+    if (step === 2) {
+      st.you = { t: .50, e: 1, sref: 1 };
+      [.66, .74, .82, .90].forEach(function (t) { st.rivals.push({ t: t, e: 1, sref: 1 }); });
+    }
+    if (step === 3) {
+      st.s = SHIFT;
+      st.you = { t: .66, e: 1, sref: SHIFT };
+      [LEADER_T, .58, .96, 1.10].forEach(function (t) { st.rivals.push({ t: t, e: 1, sref: SHIFT }); });
+    }
+    return st;
+  }
+
+  /* ---------------- geometry and drawing ---------------- */
+  var G = {}, cur = null, anim = 0, focusKey = null, kbdKey = null, lastW = 0;
+  function el(name, attrs, parent) {
+    var n = document.createElementNS(NS, name);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    (parent || svg).appendChild(n);
+    return n;
+  }
+  function txt(x, y, s, anchor, cls) {
+    var n = el("text", { x: x, y: y, "text-anchor": anchor, "class": cls });
+    n.textContent = s;
+    return n;
+  }
+
+  function build() {
+    var W = Math.max(260, Math.round(plot.clientWidth));
+    lastW = W;
+    var narrow = W < 440;
+    var H = Math.round(Math.min(460, Math.max(300, W * .72)));
+    var L = narrow ? 40 : 60, R = 12, T = 12, Bm = narrow ? 44 : 50;
+    G = { W: W, H: H, narrow: narrow, x0: L, x1: W - R, y0: T, y1: H - Bm };
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+    svg.setAttribute("width", W);
+    svg.setAttribute("height", H);
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    el("title", { id: "pfTitle" }).textContent = "Porter's productivity frontier";
+    G.desc = el("desc", { id: "pfDesc" });
+
+    G.wash = el("polygon", { "class": "pf-wash" });
+    el("line", { x1: G.x0, y1: G.y0, x2: G.x0, y2: G.y1, "class": "pf-axis" });
+    el("line", { x1: G.x0, y1: G.y1, x2: G.x1, y2: G.y1, "class": "pf-axis" });
+    txt(G.x0 - 6, G.y0 + 9, "high", "end", "pf-tick");
+    txt(G.x0 - 6, G.y1, "low", "end", "pf-tick");
+    txt(G.x0, G.y1 + 16, "high", "start", "pf-tick");
+    txt(G.x1, G.y1 + 16, "low", "end", "pf-tick");
+    txt((G.x0 + G.x1) / 2, H - 8, "Relative cost position", "middle", "pf-axis-title");
+    var my = (G.y0 + G.y1) / 2;
+    txt(13, my, "Nonprice buyer value delivered", "middle", "pf-axis-title")
+      .setAttribute("transform", "rotate(-90 13 " + my + ")");
+
+    G.ghost = el("polyline", { "class": "pf-ghost" });
+    G.frontier = el("polyline", { "class": "pf-frontier" });
+    txt(G.x1 - 4, G.y0 + 14, "Productivity frontier", "end", "pf-flabel");
+    if (!narrow) txt(G.x1 - 4, G.y0 + 29, "(state of best practice)", "end", "pf-fsub");
+
+    G.leader = el("line", { "class": "pf-leader" });
+    G.glbl = txt(0, 0, "", "end", "pf-glbl");
+    G.rivals = NAMES.map(function () { return el("circle", { r: 6, "class": "pf-rival" }); });
+    G.you = el("path", { "class": "pf-you" });
+    G.ylbl = txt(0, 0, "You", "start", "pf-lbl");
+    G.ring = el("circle", { r: 13, "class": "pf-ring", visibility: "hidden" });
+
+    G.hits = {};
+    ["0", "1", "2", "3", "you"].forEach(function (k) {
+      var h = el("circle", { r: 14, "class": "pf-hit", tabindex: "0", role: "img" });
+      h.addEventListener("pointerenter", function () { kbdKey = null; showTip(k); });
+      h.addEventListener("pointerleave", function () { if (!kbdKey) hideTip(); });
+      h.addEventListener("focus", function () { kbdKey = k; showTip(k); });
+      h.addEventListener("blur", function () { kbdKey = null; hideTip(); });
+      G.hits[k] = h;
+    });
+  }
+
+  function px(u) { return G.x0 + u * (G.x1 - G.x0); }
+  function py(v) { return G.y1 - v * (G.y1 - G.y0); }
+  function posOf(f) { var q = pt(f.t, f.e, f.sref); return { x: px(q.u), y: py(q.v), u: q.u, v: q.v }; }
+  function curvePts(s) {
+    var a = [];
+    for (var i = 0; i <= 64; i++) { var q = pt(HALF * i / 64, 1, s); a.push(px(q.u).toFixed(1) + "," + py(q.v).toFixed(1)); }
+    return a;
+  }
+  function firm(k) { return k === "you" ? cur.you : cur.rivals[+k]; }
+  function nameOf(k) { return k === "you" ? "Your firm" : NAMES[+k]; }
+  function gapText(g) { return g < .005 ? "On the frontier" : Math.round(g * 100) + "% behind the frontier"; }
+
+  function update() {
+    if (!cur) return;
+    var front = curvePts(cur.s);
+    G.frontier.setAttribute("points", front.join(" "));
+    var wash = front.slice();
+    wash.push(px(CX).toFixed(1) + "," + py(1).toFixed(1), px(1).toFixed(1) + "," + py(1).toFixed(1),
+      px(1).toFixed(1) + "," + py(CY).toFixed(1));
+    G.wash.setAttribute("points", wash.join(" "));
+    G.ghost.setAttribute("points", curvePts(1).join(" "));
+    G.ghost.setAttribute("stroke-opacity", cur.ghost.toFixed(2));
+    G.ghost.style.display = cur.ghost < .02 ? "none" : "";
+
+    cur.rivals.forEach(function (r, i) {
+      var q = posOf(r);
+      G.rivals[i].setAttribute("cx", q.x.toFixed(1));
+      G.rivals[i].setAttribute("cy", q.y.toFixed(1));
+      place(G.hits[String(i)], q, NAMES[i], gap(r, cur.s));
+    });
+    var y = posOf(cur.you), D = 8;
+    G.you.setAttribute("d", "M" + y.x + " " + (y.y - D) + " L" + (y.x + D) + " " + y.y + " L" + y.x + " " +
+      (y.y + D) + " L" + (y.x - D) + " " + y.y + " Z");
+    var right = y.x > G.x1 - 48;
+    G.ylbl.setAttribute("x", (right ? y.x - 13 : y.x + 13).toFixed(1));
+    G.ylbl.setAttribute("y", (y.y - 9).toFixed(1));
+    G.ylbl.setAttribute("text-anchor", right ? "end" : "start");
+    place(G.hits.you, y, "Your firm", gap(cur.you, cur.s));
+
+    // when the printers have converged, one group label with a leader replaces four
+    var t0 = cur.rivals[0].t, together = cur.rivals.every(function (r) { return Math.abs(r.t - t0) < .02; });
+    if (together) {
+      var c = posOf(cur.rivals[0]);
+      var youIn = Math.abs(cur.you.t - t0) < .02;
+      var words = youIn ? ["Five firms, ", "one position"] : ["The four printers, ", "one position"];
+      var lx = c.x - 22, ly = c.y + 30;
+      G.glbl.setAttribute("x", lx.toFixed(1));
+      G.glbl.setAttribute("y", ly.toFixed(1));
+      G.glbl.style.display = "";
+      while (G.glbl.firstChild) G.glbl.removeChild(G.glbl.firstChild);
+      G.glbl.textContent = words.join("");
+      // measure; if one line would run into the y-axis title, break it onto two
+      if (lx - G.glbl.getComputedTextLength() < G.x0 + 6) {
+        G.glbl.textContent = "";
+        words.forEach(function (w, i) {
+          var ts = document.createElementNS(NS, "tspan");
+          ts.setAttribute("x", lx.toFixed(1));
+          ts.setAttribute("dy", i ? "1.25em" : "0");
+          ts.textContent = w;
+          G.glbl.appendChild(ts);
+        });
+      }
+      G.leader.setAttribute("x1", (c.x - 5).toFixed(1)); G.leader.setAttribute("y1", (c.y + 5).toFixed(1));
+      G.leader.setAttribute("x2", (lx + 2).toFixed(1)); G.leader.setAttribute("y2", (ly - 11).toFixed(1));
+      G.glbl.style.display = G.leader.style.display = "";
+    } else {
+      G.glbl.style.display = G.leader.style.display = "none";
+    }
+
+    var ghostKey = document.getElementById("pfGhostKey");
+    if (ghostKey) ghostKey.hidden = cur.ghost < .5;
+    G.desc.textContent = "Relative cost position runs from high on the left to low on the right; nonprice buyer value " +
+      "delivered runs from low to high. Your firm is " + gapText(gap(cur.you, cur.s)).toLowerCase() + ".";
+    if (focusKey) showTip(focusKey);
+    table();
+    readout();
+  }
+  function place(h, q, name, g) {
+    h.setAttribute("cx", q.x.toFixed(1));
+    h.setAttribute("cy", q.y.toFixed(1));
+    h.setAttribute("aria-label", name + ": " + gapText(g) + ", low-cost score " + Math.round(q.u * 100) +
+      ", buyer-value score " + Math.round(q.v * 100));
+  }
+
+  function showTip(k) {
+    focusKey = k;
+    var f = firm(k), q = posOf(f);
+    // firms that share this spot (after convergence they sit on one point) share one tooltip
+    var here = ["you", "0", "1", "2", "3"].filter(function (key) {
+      var o = posOf(firm(key));
+      return Math.abs(o.x - q.x) < 6 && Math.abs(o.y - q.y) < 6;
+    });
+    if (here.indexOf(k) < 0) here = [k];
+    while (tip.firstChild) tip.removeChild(tip.firstChild);
+    var a = document.createElement("p"); a.className = "pf-tip-value"; a.textContent = gapText(gap(f, cur.s));
+    var b = document.createElement("p"); b.className = "pf-tip-name";
+    b.textContent = here.map(nameOf).join(", ");
+    var c = document.createElement("p"); c.className = "pf-tip-meta";
+    c.textContent = "Low-cost " + Math.round(q.u * 100) + " · Buyer value " + Math.round(q.v * 100);
+    tip.appendChild(a); tip.appendChild(b); tip.appendChild(c);
+    tip.hidden = false;
+    var tw = tip.offsetWidth, th = tip.offsetHeight;
+    var left = q.x + 16, top = q.y - th - 10;
+    if (left + tw > G.W) left = q.x - tw - 16;
+    if (top < 0) top = q.y + 14;
+    tip.style.left = Math.max(0, left) + "px";
+    tip.style.top = Math.max(0, top) + "px";
+    Object.keys(G.hits).forEach(function (key) {
+      var mark = key === "you" ? G.you : G.rivals[+key];
+      mark.classList.toggle("pf-lift", key === k);
+    });
+    if (kbdKey) {
+      G.ring.setAttribute("cx", q.x.toFixed(1)); G.ring.setAttribute("cy", q.y.toFixed(1));
+      G.ring.setAttribute("visibility", "visible");
+    }
+  }
+  function hideTip() {
+    focusKey = null;
+    tip.hidden = true;
+    G.ring.setAttribute("visibility", "hidden");
+    G.you.classList.remove("pf-lift");
+    G.rivals.forEach(function (m) { m.classList.remove("pf-lift"); });
+  }
+
+  function table() {
+    while (tbody.firstChild) tbody.removeChild(tbody.firstChild);
+    ["you", "0", "1", "2", "3"].forEach(function (k) {
+      var f = firm(k), q = posOf(f), tr = document.createElement("tr");
+      [nameOf(k), Math.round(q.u * 100), Math.round(q.v * 100), gapText(gap(f, cur.s))].forEach(function (v, i) {
+        var td = document.createElement("td");
+        td.className = "px-4 py-2" + (i ? " text-right tabular-nums" : " font-medium");
+        td.textContent = String(v);
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+  }
+
+  function animateTo(target, ms) {
+    var id = ++anim;
+    if (reduce || !cur || !ms) { cur = copy(target); update(); return; }
+    var from = flat(cur), to = flat(target), like = copy(target), t0 = performance.now();
+    (function tick(now) {
+      if (id !== anim) return;
+      var k = Math.min(1, (now - t0) / ms);
+      var e = k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
+      cur = unflat(from.map(function (f, i) { return f + (to[i] - f) * e; }), like);
+      update();
+      if (k < 1) requestAnimationFrame(tick);
+    })(t0);
+  }
+
+  /* ---------------- the four steps ---------------- */
+  var STEPS = [
+    { tab: "Behind the frontier", title: "Improve how you run your activities",
+      body: "You are a fifth commercial printer, up against the four Porter names: R.R. Donnelley, Quebecor, World Color Press and Big Flower Press. You sit well behind the frontier — others already run the same activities better. Improve your operational effectiveness and watch both axes.",
+      quote: "Simultaneous improvement of cost and differentiation is possible only when a company begins far behind the productivity frontier or when the frontier shifts outward." },
+    { tab: "At the frontier", title: "Now try to improve both at once",
+      body: "You now run at best practice. Slide along the frontier toward lower cost or toward more buyer value, and watch what happens on the other axis.",
+      note: "Honda and Toyota met exactly this in 1995. To make a less expensive car, Honda replaced the rear disk brakes on the U.S. Civic with lower-cost drum brakes and used cheaper fabric for the back seat; Toyota tried to sell a version of the Corolla in Japan with unpainted bumpers.",
+      quote: "At the frontier, where companies have achieved current best practice, the trade-off between cost and differentiation is very real indeed." },
+    { tab: "The frontier moves", title: "New equipment arrives",
+      body: "The four printers invest heavily in the same new equipment, run their presses faster and reduce crew sizes. Best practice itself moves outward. What do you do?",
+      quote: "OE competition shifts the productivity frontier outward, effectively raising the bar for everyone. But although such competition produces absolute improvement in operational effectiveness, it leads to relative improvement for no one." },
+    { tab: "Convergence", title: "Everyone benchmarks everyone",
+      body: "Each printer studies the others and matches every improvement in quality, speed and cost. Watch where they end up — and then find the way out.",
+      quote: "The more benchmarking companies do, the more they look alike. … As rivals imitate one another’s improvements in quality, cycle times, or supplier partnerships, strategies converge and competition becomes a series of races down identical paths that no one can win." }
+  ];
+  var step = 0, phase = "";
+  var P1_BASE = pt(.78, .55, 1), P2_BASE = pt(.78, 1, 1), T_MIN = .14, T_MAX = HALF - .14;
+
+  function renderSteps() {
+    while (stepsEl.firstChild) stepsEl.removeChild(stepsEl.firstChild);
+    STEPS.forEach(function (st, i) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("aria-pressed", i === step ? "true" : "false");
+      b.className = "rounded-lg border px-3 py-1.5 text-xs font-semibold " +
+        (i === step ? "border-blue-600 bg-blue-50 text-blue-800" : "border-slate-300 text-slate-700 hover:bg-slate-50");
+      b.textContent = (i + 1) + ". " + st.tab;
+      b.addEventListener("click", function () { go(i); });
+      stepsEl.appendChild(b);
+    });
+  }
+
+  function btn(id, label, primary) {
+    return '<button type="button" id="' + id + '" class="rounded-lg px-3 py-2 text-xs font-semibold ' +
+      (primary ? 'bg-slate-900 text-white hover:bg-slate-800' : 'border border-slate-300 text-slate-700 hover:bg-slate-50') +
+      '">' + label + '</button>';
+  }
+
+  function renderPanel() {
+    var st = STEPS[step], c = "";
+    if (step === 0) {
+      c = '<label for="pfOE" class="text-xs font-semibold text-slate-700">Operational effectiveness</label>' +
+        '<input id="pfOE" type="range" min="0" max="100" value="0" class="mt-2">' +
+        '<div class="flex justify-between text-[11px] text-slate-500"><span>Where you are today</span><span>Best practice</span></div>';
+    } else if (step === 1) {
+      c = '<label for="pfPos" class="text-xs font-semibold text-slate-700">Where on the frontier you stand</label>' +
+        '<input id="pfPos" type="range" min="0" max="100" value="' + Math.round(100 * (.78 - T_MIN) / (T_MAX - T_MIN)) + '" class="mt-2">' +
+        '<div class="flex justify-between text-[11px] text-slate-500"><span>Lower cost</span><span>More buyer value</span></div>';
+    } else if (step === 2) {
+      c = phase === "" ? btn("pfShift", "Shift the frontier outward", true)
+        : '<div class="flex flex-wrap gap-2">' + btn("pfAdopt", "Adopt the new practice", phase !== "adopt") +
+          btn("pfStay", "Stay where you are", false) + '</div>';
+    } else {
+      c = phase === "" ? btn("pfBench", "Everyone benchmarks the leader", true)
+        : phase === "converged" ? btn("pfChoose", "Choose a different position", true) : "";
+    }
+    intro.innerHTML =
+      '<div class="rounded-xl border border-slate-200 bg-slate-50 p-5">' +
+        '<p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Step ' + (step + 1) + ' of 4</p>' +
+        '<h4 class="mt-1 font-bold text-slate-900">' + st.title + '</h4>' +
+        '<p class="mt-2 text-sm text-slate-600 leading-relaxed">' + st.body + '</p>' +
+      '</div>';
+    controls.innerHTML =
+      '<div class="no-print">' + c + '</div>' +
+      '<div class="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">' +
+        '<p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Your firm</p>' +
+        '<p id="pfGap" class="text-2xl font-semibold text-slate-900"></p>' +
+      '</div>' +
+      '<p id="pfMove" class="mt-1 text-sm text-slate-700 leading-relaxed" aria-live="polite"></p>';
+    side.innerHTML =
+      (st.note ? '<p class="rounded-lg border border-amber-200 bg-amber-50 p-3 text-xs text-slate-700 leading-relaxed">' + st.note + '</p>' : '') +
+      '<blockquote class="' + (st.note ? 'mt-4 ' : '') + 'border-l-2 border-blue-600 pl-3 text-sm italic text-slate-700 leading-relaxed">\u201c' + st.quote +
+        '\u201d<span class="mt-1 block not-italic text-xs text-slate-500">Porter (1996)</span></blockquote>' +
+      '<div class="mt-4 flex items-center justify-between gap-2 no-print">' +
+        (step > 0 ? btn("pfPrev", "\u2190 Back", false) : '<span></span>') +
+        (step < 3 ? btn("pfNext", "Next step \u2192", false) : '<span></span>') +
+      '</div>';
+    wire();
+  }
+
+  function on(id, ev, fn) { var n = document.getElementById(id); if (n) n.addEventListener(ev, fn); }
+  function wire() {
+    on("pfPrev", "click", function () { go(step - 1); });
+    on("pfNext", "click", function () { go(step + 1); });
+    on("pfOE", "input", function () { anim++; cur.you.e = .55 + .45 * (+this.value) / 100; update(); });
+    on("pfPos", "input", function () { anim++; cur.you.t = T_MIN + (T_MAX - T_MIN) * (+this.value) / 100; update(); });
+    on("pfShift", "click", function () {
+      var t = copy(cur); t.s = SHIFT; t.ghost = 1;
+      t.rivals.forEach(function (r) { r.sref = SHIFT; });
+      phase = "shifted"; renderPanel(); animateTo(t, 900);
+    });
+    on("pfAdopt", "click", function () { var t = copy(cur); t.you.sref = SHIFT; phase = "adopt"; renderPanel(); animateTo(t, 700); });
+    on("pfStay", "click", function () { phase = "stay"; renderPanel(); update(); });
+    on("pfBench", "click", function () {
+      var t = copy(cur); t.rivals.forEach(function (r) { r.t = LEADER_T; }); t.you.t = LEADER_T;
+      phase = "converged"; renderPanel(); animateTo(t, 900);
+    });
+    on("pfChoose", "click", function () { var t = copy(cur); t.you.t = .16; phase = "chose"; renderPanel(); animateTo(t, 900); });
+  }
+
+  function sign(n) { return (n > 0 ? "+" : n < 0 ? "−" : "±") + Math.abs(n); }
+  function readout() {
+    var g = document.getElementById("pfGap"), m = document.getElementById("pfMove");
+    if (!g || !m) return;
+    var yg = gap(cur.you, cur.s), q = pt(cur.you.t, cur.you.e, cur.you.sref);
+    g.textContent = yg < .005 ? "On the frontier" : Math.round(yg * 100) + "% behind";
+    var dc, dv;
+    if (step === 0) {
+      dc = Math.round(100 * (q.u - P1_BASE.u)); dv = Math.round(100 * (q.v - P1_BASE.v));
+      m.textContent = (dc === 0 && dv === 0) ? "Move the slider and watch both scores."
+        : yg < .005 ? "Low-cost score " + sign(dc) + ", buyer-value score " + sign(dv) + ". You have reached best practice — and the free improvements are used up. Go to step 2."
+        : "Low-cost score " + sign(dc) + ", buyer-value score " + sign(dv) + ". Both improve at once: no trade-off yet, because you started behind the frontier.";
+    } else if (step === 1) {
+      dc = Math.round(100 * (q.u - P2_BASE.u)); dv = Math.round(100 * (q.v - P2_BASE.v));
+      m.textContent = (Math.abs(dc) < 1 && Math.abs(dv) < 1) ? "This is where you reached the frontier. Slide either way."
+        : "Buyer-value score " + sign(dv) + ", low-cost score " + sign(dc) + ". On the frontier, every gain on one axis is paid for on the other.";
+    } else if (step === 2) {
+      var pct = Math.round(100 * (1 - 1 / SHIFT));
+      m.textContent = phase === "" ? "Press the button to move best practice outward."
+        : phase === "shifted" ? "Your rivals adopted the new practice. You have not — and you are now " + pct + "% behind the frontier without having got any worse. Decide."
+        : phase === "adopt" ? "You moved with them. Every printer improved in absolute terms; relative to one another, nothing changed. The gains went to customers and equipment suppliers: Donnelley’s profit margin, consistently higher than 7% in the 1980s, fell to less than 4.6% in 1995."
+        : "You held still and fell " + pct + "% behind best practice. This is why operational effectiveness is necessary — you cannot opt out of it. It is simply not sufficient.";
+    } else {
+      m.textContent = phase === "" ? "Five firms on the frontier, still in different places."
+        : phase === "converged" ? "Five firms, one point on the frontier. Copying the same best practices produces the same offer, and the only thing left to compete on is price."
+        : "You have left the race: a different point on the frontier, reached by performing different activities. That is strategic positioning — and it lasts only if rivals would have to give something up to copy it, which is where this session goes next.";
+    }
+  }
+
+  function go(i) {
+    step = Math.max(0, Math.min(3, i)); phase = "";
+    hideTip();
+    renderSteps(); renderPanel();
+    animateTo(base(step), cur ? 650 : 0);
+  }
+
+  legend.innerHTML =
+    '<span class="pf-key"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1.5 L12.5 7 L7 12.5 L1.5 7 Z" class="pf-you"/></svg>Your firm</span>' +
+    '<span class="pf-key"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="4.5" class="pf-rival"/></svg>The four printers</span>' +
+    '<span class="pf-key"><svg width="18" height="10" viewBox="0 0 18 10" aria-hidden="true"><line x1="1" y1="5" x2="17" y2="5" class="pf-frontier"/></svg>Productivity frontier (state of best practice)</span>' +
+    '<span class="pf-key"><svg width="14" height="12" viewBox="0 0 14 12" aria-hidden="true"><rect x="1" y="1" width="12" height="10" rx="2" class="pf-washkey"/></svg>Beyond today&rsquo;s best practice</span>' +
+    '<span class="pf-key" id="pfGhostKey" hidden><svg width="18" height="10" viewBox="0 0 18 10" aria-hidden="true"><line x1="1" y1="5" x2="17" y2="5" class="pf-ghost"/></svg>Frontier before the shift</span>';
+
+  build();
+  go(0);
+  if (window.ResizeObserver) {
+    new ResizeObserver(function () {
+      var w = Math.round(plot.clientWidth);
+      if (w && Math.abs(w - lastW) >= 1) { build(); update(); }
+    }).observe(plot);
+  }
 })();
 </script>
 </body>

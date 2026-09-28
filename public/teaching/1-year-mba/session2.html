@@ -142,13 +142,18 @@
         /* ---- section rail (desktop) ---- */
         #rail{position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:40;display:none}
         @media (min-width:1380px){#rail{display:block}}
-        #rail a{display:flex;align-items:center;gap:9px;padding:3px 0;color:var(--muted);
+        #rail a{position:relative;display:flex;align-items:center;padding:4px 10px 4px 0;color:var(--muted);
           font-size:11px;text-decoration:none;opacity:.55;transition:opacity .2s}
         #rail a:hover,#rail a.on{opacity:1;color:var(--accent)}
         #rail .dot{width:7px;height:7px;border-radius:99px;background:currentColor;flex:none;transition:transform .2s}
         #rail a.on .dot{transform:scale(1.6)}
-        #rail .lbl{opacity:0;transform:translateX(-4px);transition:.2s;white-space:nowrap}
-        #rail a:hover .lbl,#rail a.on .lbl{opacity:1;transform:none}
+        #rail .lbl{position:absolute;left:18px;top:50%;transform:translate(-4px,-50%);opacity:0;
+          pointer-events:none;white-space:nowrap;transition:opacity .2s,transform .2s;
+          background:var(--card);border:1px solid var(--line);border-radius:6px;padding:1px 7px;
+          box-shadow:0 4px 14px -8px rgba(15,23,42,.35)}
+        #rail a:hover .lbl,#rail a:focus-visible .lbl{opacity:1;transform:translate(0,-50%)}
+        /* the active section keeps its label only where the gutter is wide enough to hold it */
+        @media (min-width:1760px){#rail a.on .lbl{opacity:1;transform:translate(0,-50%)}}
 
         /* ---- nav ---- */
         .nav-link{transition:color .18s,border-color .18s;border-bottom:2px solid transparent;
