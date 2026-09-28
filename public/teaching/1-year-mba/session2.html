@@ -362,12 +362,13 @@
         <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-slate-900 text-white font-display text-sm font-semibold">02</span>
         <div class="min-w-0">
           <p class="truncate font-display text-base font-semibold leading-tight text-slate-900">Elon Musk at Tesla</p>
-          <p class="hidden truncate text-[11px] text-slate-500 sm:block">90 minutes · <span id="progPct">0</span>% read · <span id="doneCount">0</span>/6 activities done</p>
+          <p class="hidden truncate text-[11px] text-slate-500 sm:block">90 minutes · <span id="progPct">0</span>% read · <span id="doneCount">0</span>/7 activities done</p>
         </div>
       </div>
 
       <div class="hidden xl:flex items-center gap-5 text-sm">
         <a href="#recap" class="nav-link">Recap</a>
+        <a href="#value" class="nav-link">Vision &amp; Value</a>
         <a href="#forces" class="nav-link">Five Forces</a>
         <a href="#paradox" class="nav-link">The Paradox</a>
         <a href="#exhibit" class="nav-link">Exhibits</a>
@@ -407,7 +408,7 @@
     </div>
     <div class="mt-3 rounded-xl bg-slate-50 p-3">
       <div class="flex items-center justify-between text-xs text-slate-500">
-        <span>Progress</span><span><span id="drawerDone">0</span>/6 activities</span>
+        <span>Progress</span><span><span id="drawerDone">0</span>/7 activities</span>
       </div>
       <div class="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-200">
         <div id="drawerBar" class="h-full rounded-full bg-blue-600 transition-all" style="width:0%"></div>
@@ -533,6 +534,268 @@
     </div>
   </div>
 </section>
+
+<style>
+  .vg-root{--vg-surface:#FFFFFF;--vg-ink:#0F172A;--vg-ink2:#475569;--vg-ink3:#64748B;--vg-grid:#EEF2F6;--vg-axis:#CBD5E1;--vg-line:#4F46E5;--vg-target:#768399;--vg-gap:rgba(79,70,229,.10)}
+  html.dark .vg-root{--vg-surface:#111A2E;--vg-ink:#E2E8F0;--vg-ink2:#CBD5E1;--vg-ink3:#94A3B8;--vg-grid:#18233A;--vg-axis:#2B3A55;--vg-line:#6E72F0;--vg-target:#5B6B82;--vg-gap:rgba(110,114,240,.16)}
+  .vg-root svg text{font-family:Inter,ui-sans-serif,system-ui,sans-serif}
+  .vg-grid line{stroke:var(--vg-grid);shape-rendering:crispEdges}
+  .vg-axis{stroke:var(--vg-axis);shape-rendering:crispEdges}
+  .vg-tick{fill:var(--vg-ink3);font-size:11px;font-variant-numeric:tabular-nums}
+  .vg-title{fill:var(--vg-ink2);font-size:11.5px;font-weight:500}
+  .vg-path{fill:none;stroke:var(--vg-line);stroke-width:2;stroke-linejoin:round}
+  .vg-dot{fill:var(--vg-line);stroke:var(--vg-surface);stroke-width:2}
+  .vg-target{stroke:var(--vg-target);stroke-width:2}
+  .vg-gapfill{fill:var(--vg-gap)}
+  .vg-lbl{fill:var(--vg-ink);font-size:11.5px;font-weight:600;paint-order:stroke;stroke:var(--vg-surface);stroke-width:3.5px}
+  .vg-lbl2{fill:var(--vg-ink2);font-size:11px;paint-order:stroke;stroke:var(--vg-surface);stroke-width:3.5px}
+  .vg-theme[aria-pressed="true"]{background:#4F46E5;border-color:#4F46E5;color:#fff}
+  .vg-theme[aria-pressed="true"] span{color:#E0E5FF}
+  html.dark .vg-theme[aria-pressed="true"]{background:#4F46E5;border-color:#6E72F0}
+  .vs-opt[aria-pressed="true"]{background:#EEF1FF;border-color:#4F46E5;color:#2E2A82}
+  html.dark .vs-opt[aria-pressed="true"]{background:#1F2552;border-color:#6E72F0;color:#E0E5FF}
+  .vs-ok{color:#166534}.vs-no{color:#B91C1C}
+  html.dark .vs-ok{color:#6EE7A8}html.dark .vs-no{color:#FCA5A5}
+</style>
+<section id="value" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Framework for strategic analysis &middot; Kaplan &amp; Norton (2008)</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Strategy as a quest for value</h2>
+  <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+    Session 1 asked what strategy is. Kaplan and Norton ask where it comes from. In their reading, successful
+    companies do not start with analysis. They start with purpose and an ambition precise enough to measure, and the
+    distance between that ambition and where the current strategy would take them is the job the new strategy has to do.
+    They call that distance the <strong>value gap</strong> (Kaplan &amp; Norton, 2008).
+  </p>
+
+  <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="rounded-xl border border-blue-200 bg-blue-50 p-4"><p class="font-mono text-xs text-blue-700">STEP 1 &middot; THIS SESSION</p><p class="mt-1 text-sm font-semibold text-slate-900">&ldquo;What business are we in and why?&rdquo;</p><p class="mt-1 text-xs text-slate-600">Mission, vision and values.</p></div>
+    <div class="rounded-xl border border-blue-200 bg-blue-50 p-4"><p class="font-mono text-xs text-blue-700">STEP 2 &middot; THIS SESSION</p><p class="mt-1 text-sm font-semibold text-slate-900">&ldquo;Where are we going?&rdquo;</p><p class="mt-1 text-xs text-slate-600">Strategic goals: define and decompose the value gap.</p></div>
+    <div class="rounded-xl border border-slate-200 p-4"><p class="font-mono text-xs text-slate-500">STEP 3 &middot; SESSIONS 3&ndash;5</p><p class="mt-1 text-sm font-semibold text-slate-900">&ldquo;What are the key issues that our strategy must address?&rdquo;</p><p class="mt-1 text-xs text-slate-600">External analysis (PESTEL, Porter&rsquo;s five forces), internal analysis (value chain), SWOT.</p></div>
+    <div class="rounded-xl border border-slate-200 p-4"><p class="font-mono text-xs text-slate-500">STEP 4 &middot; LATER</p><p class="mt-1 text-sm font-semibold text-slate-900">&ldquo;How can we best compete?&rdquo;</p><p class="mt-1 text-xs text-slate-600">Strategy formulation: where and how to compete.</p></div>
+  </div>
+
+  <div class="mt-6 grid gap-4 md:grid-cols-3">
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Mission &middot; stable</p>
+      <h3 class="mt-1 font-bold text-slate-900">Why the organisation exists</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">A brief statement, usually one sentence, of the organisation&rsquo;s
+        fundamental purpose: what it provides and the goal its people have come together to pursue. Google&rsquo;s:
+        &ldquo;To organize the world&rsquo;s information and make it universally accessible and useful.&rdquo;</p>
+    </div>
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Values &middot; stable</p>
+      <h3 class="mt-1 font-bold text-slate-900">How it will behave</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Core values prescribe the behaviour, character and culture the
+        company wants. Whole Foods calls its values &ldquo;the soul of our company&rdquo; and argues they must survive
+        however large the company grows.</p>
+    </div>
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Vision &middot; three to ten years</p>
+      <h3 class="mt-1 font-bold text-slate-900">Where it intends to be</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">A concise, external, market-facing statement of mid- to long-term
+        goals. To guide strategy it must be measurable as well as inspiring. &ldquo;To be our customers&rsquo; preferred
+        provider&rdquo; is laudable and, in Kaplan and Norton&rsquo;s view, no guidance at all.</p>
+    </div>
+  </div>
+
+  <!-- activity 1: score the statement -->
+  <div id="visionScorer" class="mt-8 card p-5 sm:p-6">
+    <div class="flex flex-wrap items-baseline justify-between gap-2">
+      <div>
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Activity &middot; score the statement</p>
+        <h3 class="mt-1 text-xl font-bold text-slate-900">Does it pass the three-part test?</h3>
+      </div>
+      <span class="done-badge" data-done-for="value" hidden>Done</span>
+    </div>
+    <p class="mt-2 max-w-4xl text-sm text-slate-600 leading-relaxed">A quantified vision has three components:
+      <strong>a success indicator</strong> you can measure, <strong>a niche</strong> that says where the organisation will
+      compete, and <strong>a time line</strong>. CIGNA Property &amp; Casualty&rsquo;s nine words, &ldquo;To be a top-quartile
+      specialist within five years,&rdquo; contain all three. Mark what each statement below contains, then check.</p>
+    <div id="vsList" class="mt-4 grid gap-3 lg:grid-cols-2"></div>
+    <p id="vsScore" class="mt-3 text-sm font-semibold text-slate-800" aria-live="polite"></p>
+  </div>
+
+  <!-- activity 2: decompose the value gap -->
+  <div id="valueGap" class="vg-root mt-6 card p-5 sm:p-6">
+    <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Worked example &middot; CIGNA Property &amp; Casualty</p>
+    <h3 class="mt-1 text-xl font-bold text-slate-900">Closing a 37-point value gap</h3>
+    <div class="mt-3 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)]">
+      <div class="text-sm text-slate-600 leading-relaxed">
+        <p>An insurer&rsquo;s combined ratio is what it pays out in claims and expenses for every 100 it collects in premiums,
+          so lower is better. When CIGNA set its vision, a top-quartile insurer ran at <strong>103</strong>. CIGNA ran at
+          <strong>140</strong>. The new strategy had to close a gap of <strong>37 points</strong> within five years.</p>
+        <p class="mt-3">The executive team split that gap across four strategic themes, and estimated how much each could
+          close and how fast, before any detailed strategy existed. Switch the themes on and off to see which parts of the
+          gap each one carries.</p>
+        <div id="vgThemes" class="mt-4 grid gap-2 sm:grid-cols-2" role="group" aria-label="Strategic themes"></div>
+        <blockquote class="mt-5 border-l-2 border-blue-600 pl-3 italic text-slate-700">&ldquo;The value gap represents the
+          difference between aspiration and reality; it becomes the goal for the new strategy to fulfill.&rdquo;
+          <span class="mt-1 block not-italic text-xs text-slate-500">Kaplan &amp; Norton (2008)</span></blockquote>
+      </div>
+      <div class="min-w-0">
+        <div id="vgPlot" class="relative"><svg id="vgSvg" class="block w-full" role="img" aria-labelledby="vgT vgD"></svg></div>
+        <p id="vgRead" class="mt-2 text-sm text-slate-700 leading-relaxed" aria-live="polite"></p>
+        <details class="mt-3">
+          <summary class="cursor-pointer text-xs font-semibold text-slate-700">Show the decomposition as a table</summary>
+          <div class="mt-2 overflow-x-auto">
+            <table class="w-full text-xs text-left text-slate-600 comparison-table">
+              <thead class="text-[10px] uppercase tracking-wider text-slate-500"><tr><th scope="col">Theme</th><th scope="col">Initiative</th>
+                <th scope="col" class="text-right">Y2</th><th scope="col" class="text-right">Y3</th><th scope="col" class="text-right">Y4</th><th scope="col" class="text-right">Y5</th><th scope="col" class="text-right">Total</th></tr></thead>
+              <tbody id="vgTable"></tbody>
+            </table>
+          </div>
+          <p class="mt-1 text-[11px] text-slate-500">Points of combined ratio closed in each year; nothing was planned for year 1. Source: Kaplan &amp; Norton (2008), Figure 2.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-6 grid gap-5 md:grid-cols-2">
+    <div class="rounded-2xl border border-slate-200 p-5">
+      <h3 class="font-bold text-slate-900">Now do it for Tesla</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Tesla&rsquo;s 2006 purpose is a mission: it says why, not how much
+        or by when. Its plan &ldquo;to sell 500,000 cars a year by 2020&rdquo; (Sull &amp; Reavis, 2019) is closer to a
+        quantified vision. Write Tesla&rsquo;s vision with all three components. Then state its value gap as it stood at the
+        end of 2018: what annual run rate had Tesla reached, and how far was that from 500,000 cars a year? The quarterly
+        deliveries further down this page give you the numbers.</p>
+    </div>
+    <div class="rounded-2xl border border-slate-200 p-5">
+      <h3 class="font-bold text-slate-900">Why this sits before the five forces</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Kaplan and Norton put analysis third, after purpose and goals.
+        You cannot judge whether an industry is hostile until you know what you are trying to achieve in it. The five forces
+        below are their Step 3: the test of whether Tesla&rsquo;s gap could be closed in the industry it chose.</p>
+    </div>
+  </div>
+</section>
+<script>
+(function () {
+  /* ---------- activity 1: the three-part test ---------- */
+  var ITEMS = [
+    { who: "CIGNA Property & Casualty", s: "To be a top-quartile specialist within five years.", a: [1, 1, 1],
+      why: "All three, as Kaplan and Norton read it: “top quartile” in profitability, “a specialist” rather than a general-purpose underwriter, and “five years”." },
+    { who: "Leeds University", s: "By 2015, our distinctive ability to integrate world-class research, scholarship, and education will have secured us a place among the top 50 universities in the world.", a: [1, 1, 1],
+      why: "All three: a top-50 ranking, a niche of integrating research, scholarship and education, and 2015." },
+    { who: "President John F. Kennedy, 1961", s: "To land a man on the moon and return him safely to earth before the end of the decade.", a: [1, 0, 1],
+      why: "Kaplan and Norton credit it with a clear measure of success and a specific time frame. In a public-sector vision the mission takes the place of a market niche." },
+    { who: "A typical vision statement", s: "To be our customers’ preferred provider.", a: [0, 0, 0],
+      why: "None. Kaplan and Norton’s own example of a laudable objective that “provides no guidance for developing strategy”." },
+    { who: "Tesla, 2006 master plan", s: "To help expedite the move from a mine-and-burn hydrocarbon economy towards a solar electric economy.", a: [0, 0, 0],
+      why: "None by this test. It is a mission, a statement of purpose: powerful for recruiting people and capital, but with no measure and no deadline." },
+    { who: "Tesla’s plan, as the case reports it", s: "To sell 500,000 cars a year by 2020.", a: [1, 0, 1],
+      why: "A success indicator (500,000 cars a year) and a time line (2020). The target itself names no niche; the master plan supplies that separately." }
+  ];
+  var PARTS = ["Success indicator", "Niche", "Time line"];
+  var list = document.getElementById("vsList"), score = document.getElementById("vsScore");
+  if (!list) return;
+  var checked = 0, right = 0;
+  ITEMS.forEach(function (it, i) {
+    var card = document.createElement("div");
+    card.className = "rounded-xl border border-slate-200 p-4";
+    var who = document.createElement("p"); who.className = "text-[11px] font-semibold uppercase tracking-wider text-slate-500"; who.textContent = it.who;
+    var st = document.createElement("p"); st.className = "mt-1 text-sm font-medium text-slate-900 leading-relaxed"; st.textContent = "“" + it.s + "”";
+    var row = document.createElement("div"); row.className = "mt-3 flex flex-wrap gap-2";
+    var picks = [0, 0, 0], btns = [];
+    PARTS.forEach(function (p, k) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "vs-opt rounded-full border border-slate-300 px-3 py-1 text-xs font-semibold text-slate-700";
+      b.setAttribute("aria-pressed", "false"); b.textContent = p;
+      b.addEventListener("click", function () { if (done) return; picks[k] = 1 - picks[k]; b.setAttribute("aria-pressed", picks[k] ? "true" : "false"); });
+      btns.push(b); row.appendChild(b);
+    });
+    var go = document.createElement("button");
+    go.type = "button"; go.className = "rounded-full bg-slate-900 px-3 py-1 text-xs font-semibold text-white hover:bg-slate-800"; go.textContent = "Check";
+    row.appendChild(go);
+    var out = document.createElement("p"); out.className = "mt-3 text-sm leading-relaxed"; out.hidden = true;
+    var done = false;
+    go.addEventListener("click", function () {
+      if (done) return;
+      done = true; go.disabled = true; go.textContent = "Checked";
+      var ok = picks.every(function (v, k) { return v === it.a[k]; });
+      checked++; if (ok) right++;
+      btns.forEach(function (b, k) {
+        var mark = document.createElement("span");
+        mark.className = it.a[k] ? "vs-ok" : "vs-no"; mark.textContent = it.a[k] ? " ✓" : " ✗";
+        mark.setAttribute("aria-label", it.a[k] ? "present" : "absent");
+        b.appendChild(mark);
+      });
+      out.hidden = false;
+      out.className = "mt-3 text-sm leading-relaxed text-slate-700";
+      var lead = document.createElement("strong"); lead.className = ok ? "vs-ok" : "vs-no"; lead.textContent = ok ? "Right. " : "Not quite. ";
+      out.appendChild(lead); out.appendChild(document.createTextNode(it.why));
+      score.textContent = right + " of " + checked + " right so far" + (checked === ITEMS.length ? ". All six scored." : ".");
+    });
+    card.appendChild(who); card.appendChild(st); card.appendChild(row); card.appendChild(out);
+    list.appendChild(card);
+  });
+
+  /* ---------- activity 2: CIGNA's value gap, from Kaplan & Norton (2008), Figure 2 ---------- */
+  var START = 140, TARGET = 103;
+  var THEMES = [   // points of combined ratio closed in years 2..5
+    { theme: "Operational effectiveness", name: "Improve agents’ productivity", y: [11, 0, 0, 0] },
+    { theme: "Customer management", name: "Focus on target markets", y: [6, 0, 0, 0] },
+    { theme: "Innovation", name: "Align underwriting and claims", y: [0, 4, 4, 2] },
+    { theme: "Innovation", name: "Upgrade underwriting", y: [0, 2, 5, 3] }
+  ];
+  var on = [true, true, true, true];
+  var box = document.getElementById("vgThemes"), svg = document.getElementById("vgSvg"), plot = document.getElementById("vgPlot");
+  var NS = "http://www.w3.org/2000/svg";
+  THEMES.forEach(function (t, i) {
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "vg-theme rounded-xl border border-slate-300 px-3 py-2 text-left text-xs font-semibold text-slate-800";
+    b.setAttribute("aria-pressed", "true");
+    var total = t.y.reduce(function (a, v) { return a + v; }, 0);
+    b.textContent = t.name + " · −" + total;
+    var sub = document.createElement("span"); sub.className = "block font-normal text-slate-500"; sub.textContent = t.theme;
+    b.appendChild(sub);
+    b.addEventListener("click", function () { on[i] = !on[i]; b.setAttribute("aria-pressed", on[i] ? "true" : "false"); draw(); });
+    box.appendChild(b);
+  });
+  var tb = document.getElementById("vgTable");
+  THEMES.concat([{ theme: "", name: "Total", y: [0, 1, 2, 3].map(function (k) { return THEMES.reduce(function (a, t) { return a + t.y[k]; }, 0); }) }]).forEach(function (t) {
+    var tr = document.createElement("tr");
+    [t.theme, t.name].concat(t.y.map(function (v) { return v ? "−" + v : "–"; }), ["−" + t.y.reduce(function (a, v) { return a + v; }, 0)]).forEach(function (v, i) {
+      var td = document.createElement("td"); td.className = i > 1 ? "text-right tabular-nums" : (t.name === "Total" ? "font-semibold" : ""); td.textContent = v; tr.appendChild(td);
+    });
+    tb.appendChild(tr);
+  });
+  function el(n, a, p) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); (p || svg).appendChild(e); return e; }
+  function tx(x, y, s, anchor, cls) { var e = el("text", { x: x, y: y, "text-anchor": anchor, "class": cls }); e.textContent = s; return e; }
+  function series() {
+    var v = [START, START], cr = START;       // start, year 1
+    for (var k = 0; k < 4; k++) { THEMES.forEach(function (t, i) { if (on[i]) cr -= t.y[k]; }); v.push(cr); }
+    return v;                                   // start, Y1..Y5
+  }
+  function draw() {
+    var W = Math.max(280, Math.round(plot.clientWidth)), H = Math.round(Math.max(260, Math.min(360, W * .6)));
+    var L = 40, R = 16, T = 14, B = 42, x0 = L, x1 = W - R, y0 = T, y1 = H - B, lo = 95, hi = 145;
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H); svg.setAttribute("width", W); svg.setAttribute("height", H);
+    el("title", { id: "vgT" }).textContent = "CIGNA P&C's combined ratio, year by year, as the strategic themes close the value gap";
+    var d = el("desc", { id: "vgD" });
+    var X = function (i) { return x0 + i * (x1 - x0) / 5; }, Y = function (v) { return y1 - (v - lo) / (hi - lo) * (y1 - y0); };
+    var g = el("g", { "class": "vg-grid" });
+    [100, 110, 120, 130, 140].forEach(function (v) { el("line", { x1: x0, x2: x1, y1: Y(v), y2: Y(v) }, g); tx(x0 - 7, Y(v) + 4, String(v), "end", "vg-tick"); });
+    el("line", { x1: x0, x2: x1, y1: y1, y2: y1, "class": "vg-axis" });
+    ["Start", "Y1", "Y2", "Y3", "Y4", "Y5"].forEach(function (s, i) { tx(X(i), y1 + 16, s, i === 0 ? "start" : i === 5 ? "end" : "middle", "vg-tick"); });
+    tx((x0 + x1) / 2, H - 6, "Combined ratio (lower is better), by year of the five-year plan", "middle", "vg-title");
+    var v = series(), end = v[5];
+    if (end > TARGET) el("rect", { x: X(5) - 10, y: Y(end), width: 10, height: Y(TARGET) - Y(end), "class": "vg-gapfill" });
+    el("line", { x1: x0, x2: x1, y1: Y(TARGET), y2: Y(TARGET), "class": "vg-target" });
+    tx(x0 + 6, Y(TARGET) + 16, "Target: top quartile, 103", "start", "vg-lbl2");
+    el("path", { d: "M" + v.map(function (c, i) { return X(i) + " " + Y(c); }).join("L"), "class": "vg-path" });
+    v.forEach(function (c, i) { el("circle", { cx: X(i), cy: Y(c), r: 4.5, "class": "vg-dot" }); });
+    tx(X(0) + 8, Y(START) - 9, "140 today", "start", "vg-lbl");
+    tx(X(5) - 8, Y(end) - 9, "Year 5: " + end, "end", "vg-lbl");
+    var closed = START - end, open = end - TARGET;
+    d.textContent = "The combined ratio falls from 140 to " + end + " with the selected themes; the target is 103.";
+    document.getElementById("vgRead").innerHTML = open <= 0
+      ? "<strong>Gap closed.</strong> All four themes together take the combined ratio from 140 to 103 by year 5: 17 points in year 2, then 6, 9 and 5."
+      : "<strong>" + closed + " of 37 points closed.</strong> The strategy ends year 5 at " + end + ", " + open + " points short of top quartile. Every theme is load-bearing.";
+  }
+  draw();
+  if (window.ResizeObserver) { var lw = 0; new ResizeObserver(function () { var w = Math.round(plot.clientWidth); if (w && w !== lw) { lw = w; draw(); } }).observe(plot); }
+})();
+</script>
 
 <section id="forces" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
   <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Porter&rsquo;s five forces</p>
@@ -789,6 +1052,11 @@
       <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Required &middot; the industry</p>
       <p class="mt-2 text-sm text-slate-700 ref">Sull, D., &amp; Reavis, C. (2019). <em>Tesla&rsquo;s entry into the U.S. auto industry</em> (No. 18-186). MIT Sloan School of Management.</p>
       <p class="mt-2 text-xs text-slate-500">Licensed CC&nbsp;BY-NC-ND&nbsp;3.0. The exhibits used throughout this page come from this case.</p>
+    </div>
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Required &middot; the framework</p>
+      <p class="mt-2 text-sm text-slate-700 ref">Kaplan, R. S., &amp; Norton, D. P., with Barrows, E. A., Jr. (2008). Developing the strategy: Vision, value gaps, and analysis. <em>Balanced Scorecard Report, 10</em>(1), 3&ndash;7. Harvard Business School Publishing (Reprint B0801A).</p>
+      <p class="mt-2 text-xs text-slate-500">Read Steps 1 and 2 closely: mission, vision and values, and how CIGNA decomposed its value gap.</p>
     </div>
     <div class="card p-5">
       <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Carried forward</p>
@@ -1535,6 +1803,7 @@ window.S2DATA = {
   var SECTIONS = [
     ["recap", "Session 1 recap"],
     ["masterplan", "The master plan"],
+    ["value", "Quest for value"],
     ["forces", "Five forces"],
     ["paradox", "The valuation paradox"],
     ["exhibit", "Exhibit workshop"],
@@ -1547,7 +1816,7 @@ window.S2DATA = {
     ["readings", "Readings"]
   ];
   var KEY = "s2-progress-v1";
-  var ACTIVITIES = ["forces", "paradox", "exhibit", "pricing", "governance", "quiz"];
+  var ACTIVITIES = ["value", "forces", "paradox", "exhibit", "pricing", "governance", "quiz"];
 
   // ---------- theme ----------
   var root = document.documentElement;
@@ -1678,6 +1947,8 @@ window.S2DATA = {
     var el = document.querySelector(sel);
     if (el) el.addEventListener("click", function () { mark(key); });
   }
+  onClickWithin("#visionScorer", "value");
+  onClickWithin("#valueGap", "value");
   onClickWithin("#forceGrid", "forces");
   onClickWithin("#revealParadox", "paradox");
   onClickWithin("#revealExhibit", "exhibit");
