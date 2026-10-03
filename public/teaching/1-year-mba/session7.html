@@ -1,0 +1,2073 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 7: Sustaining Competitive Advantage | STRAMGT 221 — Dr. Swapnil Sahoo</title>
+    <meta name="description" content="Why most competitive advantage erodes, how isolating mechanisms, deterrence and preemption slow it, and why Patagonia's 2022 ownership change is best read as an irreversible commitment.">
+    <link rel="canonical" href="https://www.swapnilsahoo.com/teaching/1-year-mba/session7.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Session 7: Sustaining Competitive Advantage">
+    <meta property="og:description" content="Why most competitive advantage erodes, how isolating mechanisms, deterrence and preemption slow it, and why Patagonia's 2022 ownership change is best read as an irreversible commitment.">
+    <meta property="og:url" content="https://www.swapnilsahoo.com/teaching/1-year-mba/session7.html">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter','ui-sans-serif','system-ui','sans-serif'],
+              display: ['Fraunces','ui-serif','Georgia','serif']
+            },
+            colors: {
+              slate: {
+                50:'#F8FAFC',100:'#F1F5F9',200:'#E2E8F0',300:'#CBD5E1',
+                400:'#94A3B8',500:'#64748B',600:'#475569',700:'#334155',
+                800:'#1E293B',900:'#0F172A',950:'#020617'
+              },
+              gray: {
+                50:'#F8FAFC',100:'#F1F5F9',200:'#E2E8F0',300:'#CBD5E1',
+                400:'#94A3B8',500:'#64748B',600:'#475569',700:'#334155',
+                800:'#1E293B',900:'#0F172A'
+              },
+              blue: {
+                50:'#EEF1FF',100:'#E0E5FF',200:'#C6CEFE',300:'#A3AEFB',
+                400:'#818CF8',500:'#6366F1',600:'#4F46E5',700:'#4338CA',
+                800:'#372FA8',900:'#2E2A82',950:'#1B1850'
+              }
+            },
+            boxShadow: {
+              lift: '0 1px 2px rgba(15,23,42,.04), 0 8px 24px -12px rgba(15,23,42,.18)',
+              liftmd: '0 2px 4px rgba(15,23,42,.05), 0 18px 40px -18px rgba(15,23,42,.28)'
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root{
+          --sticky-offset:100px;
+          --paper:#FFFFFF; --ink:#0F172A; --muted:#475569; --line:#E2E8F0;
+          --card:#FFFFFF; --accent:#4F46E5; --accent-soft:#EEF2FF;
+        }
+        html.dark{
+          --paper:#0B1120; --ink:#E2E8F0; --muted:#94A3B8; --line:#1E293B;
+          --card:#111A2E; --accent:#818CF8; --accent-soft:#1E1B4B;
+        }
+        html{scroll-padding-top:120px}
+        body{
+          font-family:'Inter',sans-serif;
+          background:var(--paper); color:var(--ink);
+          -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+        }
+        h1,h2,h3,.display{font-family:'Fraunces',ui-serif,Georgia,serif; letter-spacing:-.02em}
+        h1{font-optical-sizing:auto}
+
+        /* ---- dark-mode repaint of the utility classes already in the markup ---- */
+        html.dark .bg-white{background:var(--card)!important}
+        html.dark .bg-slate-50,html.dark .bg-slate-100,html.dark .bg-gray-50{background:#0F172A!important}
+        html.dark .border-slate-200,html.dark .border-slate-300,html.dark .border-gray-200{border-color:var(--line)!important}
+        html.dark .text-slate-900,html.dark .text-gray-900,html.dark .text-slate-800{color:var(--ink)!important}
+        html.dark .text-slate-600,html.dark .text-slate-700,html.dark .text-gray-600,html.dark .text-gray-700{color:#CBD5E1!important}
+        html.dark .text-slate-500,html.dark .text-slate-400{color:var(--muted)!important}
+        html.dark .divide-slate-100>*+*{border-color:var(--line)!important}
+        html.dark table thead{background:#162032!important}
+
+
+        /* ---- dark: translucent + tinted surfaces ---- */
+        html.dark .bg-white\/85,html.dark .bg-white\/80,html.dark .bg-white\/90{background:rgba(11,17,32,.90)!important}
+        html.dark .bg-blue-50,html.dark .bg-indigo-50{background:#171C3C!important}
+        html.dark .bg-blue-100,html.dark .bg-indigo-100{background:#1F2552!important}
+        html.dark .bg-blue-200{background:#272E60!important}
+        html.dark .bg-amber-50{background:#2A2110!important}
+        html.dark .bg-amber-100{background:#382C14!important}
+        html.dark .bg-rose-50{background:#2C1418!important}
+        html.dark .bg-rose-100,html.dark .bg-red-100{background:#3A181E!important}
+        html.dark .bg-emerald-50{background:#0F261A!important}
+        html.dark .bg-emerald-100{background:#143324!important}
+        html.dark .bg-teal-50{background:#0E2624!important}
+        html.dark .bg-teal-100{background:#12302E!important}
+        html.dark .bg-teal-200{background:#173B38!important}
+        html.dark .bg-cyan-100{background:#102A33!important}
+        html.dark .bg-slate-200{background:#1E293B!important}
+
+        /* dark surfaces: keep bars/cards as raised panels, turn actions into the accent */
+        html.dark div.bg-slate-900,html.dark footer.bg-gray-800{background:#111A2E!important}
+        html.dark a.bg-slate-900,html.dark button.bg-slate-900,html.dark span.bg-slate-900{background:#4F46E5!important;color:#fff!important}
+        html.dark a.bg-slate-900:hover,html.dark button.bg-slate-900:hover{background:#6366F1!important}
+        html.dark .border-gray-700{border-color:var(--line)!important}
+        html.dark .text-slate-100,html.dark .text-slate-200,html.dark .text-slate-300{color:#E2E8F0!important}
+
+        /* dark: tinted text has to lighten to stay legible */
+        html.dark .text-blue-600,html.dark .text-blue-700,html.dark .text-blue-800{color:#A3AEFB!important}
+        html.dark .text-rose-600,html.dark .text-rose-700,html.dark .text-red-600,html.dark .text-red-700{color:#FCA5A5!important}
+        html.dark .text-emerald-600,html.dark .text-emerald-700,html.dark .text-emerald-800{color:#6EE7A8!important}
+        html.dark .text-amber-600,html.dark .text-amber-700,html.dark .text-amber-800{color:#FCD34D!important}
+        html.dark .text-teal-600,html.dark .text-teal-700,html.dark .text-teal-800{color:#5EEAD4!important}
+
+        /* dark: tinted borders */
+        html.dark .border-blue-200,html.dark .border-blue-300,html.dark .border-blue-400{border-color:#2F3670!important}
+        html.dark .border-amber-200,html.dark .border-amber-500{border-color:#4A3A1A!important}
+        html.dark .border-rose-200,html.dark .border-rose-400{border-color:#4A2028!important}
+        html.dark .border-teal-200,html.dark .border-teal-300{border-color:#1C4B47!important}
+
+
+        /* dark: remaining tinted text families + form controls */
+        html.dark .text-blue-900,html.dark .text-indigo-600,html.dark .text-indigo-700,
+        html.dark .text-indigo-800,html.dark .text-purple-800{color:#B4BCFC!important}
+        html.dark .text-red-800,html.dark .text-rose-800{color:#FCA5A5!important}
+        html.dark .text-emerald-900{color:#6EE7A8!important}
+        html.dark .text-amber-900,html.dark .text-orange-600{color:#FBBF24!important}
+        html.dark .text-cyan-700,html.dark .text-cyan-800,html.dark .text-sky-700{color:#67E8F9!important}
+        html.dark input,html.dark textarea,html.dark select{
+          background:#111A2E!important;color:var(--ink)!important;border-color:var(--line)!important}
+        html.dark input::placeholder,html.dark textarea::placeholder{color:#64748B!important}
+
+
+        /* light: lift the few tinted headings that sat under 4.5:1 */
+        html:not(.dark) .text-amber-600{color:#B45309}
+        html:not(.dark) .text-orange-600{color:#C2410C}
+        html:not(.dark) .text-teal-600{color:#0F766E}
+
+
+        /* dark: hover states must not flash a light surface */
+        html.dark .hover\:bg-slate-50:hover,html.dark .hover\:bg-slate-100:hover{background:#1E293B!important}
+        html.dark .hover\:bg-blue-200:hover{background:#2B3268!important}
+        html.dark .hover\:bg-teal-200:hover{background:#17403C!important}
+        html.dark .hover\:bg-rose-100:hover{background:#421C23!important}
+
+        /* ---- reading progress ---- */
+        #readbar{position:fixed;top:0;left:0;height:3px;width:0;z-index:70;
+          background:linear-gradient(90deg,#4F46E5,#818CF8);transition:width .12s linear}
+
+        /* ---- section rail (desktop) ---- */
+        #rail{position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:40;display:none}
+        @media (min-width:1380px){#rail{display:block}}
+        #rail a{position:relative;display:flex;align-items:center;padding:4px 10px 4px 0;color:var(--muted);
+          font-size:11px;text-decoration:none;opacity:.55;transition:opacity .2s}
+        #rail a:hover,#rail a.on{opacity:1;color:var(--accent)}
+        #rail .dot{width:7px;height:7px;border-radius:99px;background:currentColor;flex:none;transition:transform .2s}
+        #rail a.on .dot{transform:scale(1.6)}
+        #rail .lbl{position:absolute;left:18px;top:50%;transform:translate(-4px,-50%);opacity:0;
+          pointer-events:none;white-space:nowrap;transition:opacity .2s,transform .2s;
+          background:var(--card);border:1px solid var(--line);border-radius:6px;padding:1px 7px;
+          box-shadow:0 4px 14px -8px rgba(15,23,42,.35)}
+        #rail a:hover .lbl,#rail a:focus-visible .lbl{opacity:1;transform:translate(0,-50%)}
+        /* the active section keeps its label only where the gutter is wide enough to hold it */
+        @media (min-width:1760px){#rail a.on .lbl{opacity:1;transform:translate(0,-50%)}}
+
+        /* ---- nav ---- */
+        .nav-link{transition:color .18s,border-color .18s;border-bottom:2px solid transparent;
+          padding-bottom:4px;color:var(--muted)}
+        .nav-link:hover,.active-nav{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+
+        /* ---- cards get real depth ---- */
+        .rounded-xl,.rounded-2xl{transition:box-shadow .22s ease,transform .22s ease,border-color .22s}
+        section .bg-white.rounded-2xl,section .bg-white.rounded-xl{box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -14px rgba(15,23,42,.16)}
+        section .bg-white.rounded-2xl:hover,section .bg-white.rounded-xl:hover{
+          box-shadow:0 2px 6px rgba(15,23,42,.06),0 20px 44px -20px rgba(15,23,42,.26);transform:translateY(-2px)}
+
+        /* ---- scroll reveal ---- */
+        .rv{opacity:0;transform:translateY(14px)}
+        .rv.in{opacity:1;transform:none;transition:opacity .55s cubic-bezier(.2,.7,.3,1),transform .55s cubic-bezier(.2,.7,.3,1)}
+
+        /* ---- completion ---- */
+        .done-badge{display:inline-flex;align-items:center;gap:5px;border-radius:99px;
+          background:#DCFCE7;color:#166534;padding:2px 9px;font-size:10px;font-weight:700;
+          text-transform:uppercase;letter-spacing:.06em}
+        html.dark .done-badge{background:#14321F;color:#6EE7A8}
+
+        /* ---- focus, motion, print ---- */
+        a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,[tabindex]:focus-visible{
+          outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+        @media (prefers-reduced-motion:reduce){
+          *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+          .rv{opacity:1;transform:none}
+          html{scroll-behavior:auto}
+        }
+        @media print{#readbar,#rail,#top-bar,#main-header,#drawer,#drawerBtn{display:none!important}}
+
+
+        /* ---- one shell width for every section (no stranded gutters) ---- */
+        body .container,
+        body section.max-w-6xl,
+        body div.max-w-6xl{
+          width:100%;
+          max-width:88rem!important;
+          margin-left:auto;margin-right:auto;
+          padding-left:clamp(1.25rem,3.5vw,2.75rem);
+          padding-right:clamp(1.25rem,3.5vw,2.75rem);
+        }
+        @media (min-width:1700px){
+          body .container,body section.max-w-6xl,body div.max-w-6xl{max-width:96rem!important}
+        }
+
+
+        /* ============ restored component styles (were defined in the original head) ============ */
+        [hidden]{display:none!important}
+        section[id]{scroll-margin-top:var(--sticky-offset)}
+        @media (min-width:768px){.chart-container{height:350px;max-height:400px}}
+
+        .analysis-content{max-height:0;overflow:hidden;opacity:0;margin-top:0;
+          padding-top:0!important;padding-bottom:0!important;border-top-width:0!important;border-bottom-width:0!important;
+          transition:max-height .5s ease-out,opacity .3s ease-out,margin-top .5s ease-out,padding .5s ease-out}
+        .analysis-content.visible{max-height:500px;opacity:1;margin-top:1rem;
+          padding-top:1rem!important;padding-bottom:1rem!important;border-top-width:1px!important;border-bottom-width:1px!important}
+        .analysis-button{transition:background-color .2s ease}
+
+        .quiz-option{cursor:pointer;transition:all .2s ease-in-out}
+        .quiz-option.correct{background-color:#dcfce7!important;border-color:#22c55e!important;color:#15803d!important;font-weight:500}
+        .quiz-option.incorrect{background-color:#fee2e2!important;border-color:#ef4444!important;color:#b91c1c!important;font-weight:500}
+        .quiz-option:disabled{opacity:.8;cursor:default}
+        .quiz-explanation{max-height:0;overflow:hidden;margin-top:0;opacity:0;
+          transition:max-height .5s ease-in-out,margin-top .5s ease-in-out,opacity .5s ease-in-out}
+        .quiz-explanation.visible{opacity:1;margin-top:1rem;max-height:500px}
+
+        .top-bar-link svg,.footer-link svg{width:1.125rem;height:1.125rem;fill:currentColor;transition:color .2s ease-in-out}
+        .hexagon-icon{position:relative;width:28px;height:28px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.3));display:inline-block;vertical-align:middle}
+        .hexagon-icon svg{width:100%;height:100%;animation:glow 2.5s infinite ease-in-out}
+        .hexagon-path{stroke:#B91C1C;stroke-width:1}
+        .hexagon-s{font-family:Georgia,serif;font-weight:bold;font-size:48px;fill:#facc15;text-anchor:middle;dominant-baseline:central}
+        @keyframes glow{0%,100%{filter:drop-shadow(0 0 4px rgba(239,68,68,.7))}50%{filter:drop-shadow(0 0 10px rgba(239,68,68,1))}}
+        #main-header.sticky-nav{position:sticky;z-index:40}
+        #top-bar.sticky-top{position:sticky;top:0;z-index:50}
+        #modal{background-color:rgba(0,0,0,.7)}
+        #modal-content{max-height:calc(100vh - 4rem)}
+
+        .concept-card{background:#fff;border-radius:.75rem;padding:1.5rem;margin-bottom:1.5rem;border-left:4px solid;
+          box-shadow:0 4px 6px -1px rgba(0,0,0,.05),0 2px 4px -2px rgba(0,0,0,.05);
+          transition:transform .3s ease,box-shadow .3s ease;display:flex;flex-direction:column;height:100%}
+        .concept-card:hover{transform:translateY(-4px);box-shadow:0 10px 15px -3px rgba(0,0,0,.07),0 4px 6px -4px rgba(0,0,0,.07)}
+        .concept-card h4{font-size:1.125rem;font-weight:600;margin-bottom:.75rem}
+        .concept-card p.definition{font-style:italic;color:#6b7280;margin-bottom:1rem;font-size:.875rem;flex-grow:1}
+        .concept-card .example{margin-top:1rem;padding-top:1rem;border-top:1px solid #e5e7eb}
+        .concept-card .example:first-of-type{margin-top:0;padding-top:0;border-top:none}
+        .concept-card .example h5{font-weight:600;color:#374151;margin-bottom:.5rem;font-size:.875rem}
+        .concept-card .example p{font-size:.875rem;color:#4b5563;margin-bottom:.25rem;line-height:1.5}
+        .concept-card .example strong{color:#1f2937}
+        .border-needs{border-left-color:#f43f5e}.border-variety{border-left-color:#0ea5e9}.border-access{border-left-color:#10b981}
+        .border-fit1{border-left-color:#fbbf24}.border-fit2{border-left-color:#f97316}.border-fit3{border-left-color:#ef4444}
+
+        .prose-custom p,.prose-custom ul,.prose-custom li{font-size:.875rem;line-height:1.6;color:#374151}
+        .prose-custom p{margin-bottom:1em}
+        .prose-custom ul{margin-top:.5em;margin-bottom:1em;padding-left:1.25em;list-style-type:disc}
+        .prose-custom li{margin-bottom:.25em}
+        .prose-custom strong{font-weight:600;color:#111827}
+
+        .comparison-table th,.comparison-table td{padding:.75rem 1rem;vertical-align:top;font-size:.75rem}
+        .comparison-table thead th{background-color:#f3f4f6;border-bottom:2px solid #e5e7eb}
+        .comparison-table tbody tr:nth-child(even){background-color:#f9fafb}
+        .comparison-table tbody tr:hover{background-color:#eff6ff}
+        .comparison-table th[scope="row"]{white-space:nowrap}
+
+        .activity-button{padding:.75rem 1rem;border-radius:.5rem;text-align:left;transition:all .2s ease-in-out;
+          font-size:.875rem;border-width:1px;display:block;width:100%;height:100%}
+        .activity-button strong{display:block;margin-bottom:.25rem;font-weight:600}
+        .activity-button:focus{outline:none;box-shadow:0 0 0 2px var(--tw-ring-color)}
+        .activity-button:focus-visible{box-shadow:0 0 0 2px var(--tw-ring-color)}
+        .workshop-button{background:#f3e8ff;border-color:#e9d5ff;--tw-ring-color:#c084fc;color:#581c87}
+        .workshop-button:hover{background:#e9d5ff;border-color:#d8b4fe}
+        .workshop-button strong{color:#7e22ce}.workshop-button:hover strong{color:#6b21a8}
+        .news-button{background:#dbeafe;border-color:#bfdbfe;--tw-ring-color:#60a5fa;color:#1e40af}
+        .news-button:hover{background:#bfdbfe;border-color:#93c5fd}
+        .news-button strong{color:#1d4ed8}.news-button:hover strong{color:#1e3a8a}
+        .tradeoff-button{background:#fef3c7;border-color:#fde68a;--tw-ring-color:#fbbf24;color:#78350f}
+        .tradeoff-button:hover{background:#fde68a;border-color:#fcd34d}
+        .tradeoff-button strong{color:#b45309}.tradeoff-button:hover strong{color:#92400e}
+        .simulation-button{background:#ffe4e6;border-color:#fecdd3;--tw-ring-color:#fb7185;color:#881337}
+        .simulation-button:hover{background:#fecdd3;border-color:#fda4af}
+        .simulation-button strong{color:#be123c}.simulation-button:hover strong{color:#9f1239}
+
+        .card{background:#fff;border:1px solid #e2e8f0;border-radius:14px}
+        .pill{display:inline-flex;align-items:center;gap:.4rem;border-radius:9999px;padding:.2rem .7rem;
+          font-size:.7rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+        .opt:disabled{cursor:default}
+        .ref{padding-left:1.6rem;text-indent:-1.6rem}
+        @media print{.no-print{display:none!important}}
+
+        /* ---- dark variants for the restored components ---- */
+        html.dark .card,html.dark .concept-card{background:var(--card)!important;border-color:var(--line)!important}
+        html.dark .concept-card p.definition{color:#94A3B8}
+        html.dark .concept-card .example{border-top-color:var(--line)}
+        html.dark .concept-card .example h5,html.dark .concept-card .example strong{color:#E2E8F0}
+        html.dark .concept-card .example p{color:#CBD5E1}
+        html.dark .prose-custom p,html.dark .prose-custom ul,html.dark .prose-custom li{color:#CBD5E1}
+        html.dark .prose-custom strong{color:var(--ink)}
+        html.dark .comparison-table thead th{background:#162032;border-bottom-color:var(--line)}
+        html.dark .comparison-table tbody tr:nth-child(even){background:#0F172A}
+        html.dark .comparison-table tbody tr:hover{background:#1E2749}
+        html.dark .quiz-option.correct{background-color:#14321F!important;border-color:#2F7D52!important;color:#6EE7A8!important}
+        html.dark .quiz-option.incorrect{background-color:#3A181E!important;border-color:#9B3540!important;color:#FCA5A5!important}
+        html.dark .workshop-button{background:#2A1B3D;border-color:#3D2A55;color:#DCC7F5}
+        html.dark .workshop-button:hover{background:#3D2A55}
+        html.dark .workshop-button strong{color:#C9A7F0}
+        html.dark .news-button{background:#1A2244;border-color:#2B3668;color:#BCC7FA}
+        html.dark .news-button:hover{background:#2B3668}
+        html.dark .news-button strong{color:#A3AEFB}
+        html.dark .tradeoff-button{background:#312512;border-color:#4A3A1A;color:#F3D9A4}
+        html.dark .tradeoff-button:hover{background:#4A3A1A}
+        html.dark .tradeoff-button strong{color:#FBBF24}
+        html.dark .simulation-button{background:#331419;border-color:#4A2028;color:#F6BEC5}
+        html.dark .simulation-button:hover{background:#4A2028}
+        html.dark .simulation-button strong{color:#FCA5A5}
+
+        .chart-container{position:relative;width:100%;max-width:600px;margin-inline:auto;height:300px;max-height:350px}
+        .tabular-nums{font-variant-numeric:tabular-nums}
+    </style>
+    <script>
+      /* theme, resolved before first paint: light unless this visitor chose dark */
+      (function () {
+        try {
+          if (localStorage.getItem("s7-theme") === "dark") {
+            document.documentElement.classList.add("dark");
+          }
+        } catch (e) {}
+      })();
+    </script>
+</head>
+
+<body class="text-slate-700">
+
+<div id="readbar" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+<nav id="rail" aria-label="Section navigation"></nav>
+
+<!-- Top Bar -->
+<div id="top-bar" class="bg-slate-900 text-slate-300 hidden sm:block">
+  <div class="container mx-auto px-6 flex justify-between items-center h-11 text-xs">
+    <div class="flex items-center gap-3 min-w-0">
+      <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="group shrink-0" title="swapnilsahoo.com">
+        <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
+          <svg viewBox="0 0 52 60" aria-label="Swapnil Sahoo" role="img">
+            <defs><linearGradient id="topRedGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
+            <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#topRedGradient)"/><text class="hexagon-s" x="26" y="32">S</text>
+          </svg>
+        </div>
+      </a>
+      <p class="truncate font-medium text-slate-400">&copy; Dr. Swapnil Sahoo 2026 &middot; Great Lakes Institute of Management, Gurgaon</p>
+    </div>
+    <div class="flex items-center gap-4 shrink-0">
+      <a href="https://www.swapnilsahoo.com/teaching/1-year-mba" class="hidden md:inline text-slate-400 hover:text-white transition">STRAMGT 221</a>
+      <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="X/Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.575 2h.093zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" clip-rule="evenodd"/></svg></a>
+      <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- Main Navigation -->
+<nav id="main-header" class="sticky top-0 z-50 border-b border-slate-200 bg-white/85 backdrop-blur-md">
+  <div class="container mx-auto px-6">
+    <div class="flex h-16 items-center justify-between gap-4">
+
+      <div class="flex items-center gap-3 min-w-0">
+        <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-slate-900 text-white font-display text-sm font-semibold">07</span>
+        <div class="min-w-0">
+          <p class="truncate font-display text-base font-semibold leading-tight text-slate-900">Sustaining Competitive Advantage</p>
+          <p class="hidden truncate text-[11px] text-slate-500 sm:block">90 minutes · <span id="progPct">0</span>% read · <span id="doneCount">0</span>/7 activities done</p>
+        </div>
+      </div>
+
+      <div class="hidden xl:flex items-center gap-5 text-sm">
+        <a href="#leak" class="nav-link">Leakage</a>
+        <a href="#isolating" class="nav-link">Isolating</a>
+        <a href="#deterrence" class="nav-link">Deter & preempt</a>
+        <a href="#commitments" class="nav-link">Commitments</a>
+        <a href="#chacabuco" class="nav-link">Chacabuco</a>
+        <a href="#structure" class="nav-link">Patagonia</a>
+        <a href="#quiz" class="nav-link">Quiz</a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button id="themeBtn" type="button" aria-label="Toggle dark mode"
+          class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 transition">
+          <svg class="h-4 w-4 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="hidden h-4 w-4 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <button id="drawerBtn" type="button" aria-label="Open section menu" aria-expanded="false"
+          class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 transition xl:hidden">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <select id="mobile-nav" class="sr-only" tabindex="-1" aria-hidden="true">
+          <option value="#top">Top</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Slide-out drawer -->
+<div id="drawer" class="fixed inset-0 z-[60] hidden">
+  <div id="drawerScrim" class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"></div>
+  <aside class="absolute right-0 top-0 h-full w-[min(88vw,20rem)] overflow-y-auto bg-white p-5 shadow-2xl">
+    <div class="flex items-center justify-between">
+      <p class="font-display text-lg font-semibold text-slate-900">Session 7</p>
+      <button id="drawerClose" type="button" aria-label="Close menu"
+        class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="mt-3 rounded-xl bg-slate-50 p-3">
+      <div class="flex items-center justify-between text-xs text-slate-500">
+        <span>Progress</span><span><span id="drawerDone">0</span>/7 activities</span>
+      </div>
+      <div class="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-200">
+        <div id="drawerBar" class="h-full rounded-full bg-blue-600 transition-all" style="width:0%"></div>
+      </div>
+    </div>
+    <nav id="drawerNav" class="mt-4 grid gap-0.5" aria-label="Sections"></nav>
+  </aside>
+</div>
+
+<section id="top" class="bg-white border-b border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-10 md:py-12 grid gap-8 md:grid-cols-[1.25fr_.75fr] md:items-center">
+    <div>
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span class="pill bg-blue-50 text-blue-700">Session 07</span>
+        <span class="pill bg-slate-100 text-slate-600">1.5 hours</span>
+        <span class="pill bg-slate-100 text-slate-600">Business &amp; competitive strategy</span>
+      </div>
+      <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-slate-900">Sustaining Competitive Advantage</h1>
+      <p class="mt-2 font-display text-lg md:text-xl italic text-blue-700">Deterrence, preemption, and a company handed to the planet</p>
+      <p class="mt-3 text-slate-600 md:text-lg leading-relaxed max-w-2xl">
+        Session 6 asked how a firm opens a gap between what customers will pay and what it costs to serve them. This
+        session asks what keeps that gap open once rivals have seen it. The evidence is unkind: in one large sample of
+        businesses, more than nine-tenths of the profit gap between the best and the worst had closed within ten years.
+      </p>
+      <p class="mt-3 text-slate-600 leading-relaxed max-w-2xl">
+        Ghemawat and Pisano&rsquo;s answer is that advantage survives only behind barriers, and that the barriers which
+        last are built from commitments that are hard to undo and capabilities that are slow to copy. Patagonia&rsquo;s
+        2022 decision to give its voting stock to a trust and the rest to a nonprofit is the test case: the least
+        reversible move the company has made, read here as strategy rather than as philanthropy.
+      </p>
+      <div class="mt-6 flex flex-wrap gap-3 text-sm">
+        <a href="#recap" class="rounded-lg bg-slate-900 px-4 py-2.5 font-semibold text-white hover:bg-slate-800">Start with the recap</a>
+        <a href="#readings" class="rounded-lg border border-slate-300 px-4 py-2.5 font-semibold text-slate-700 hover:bg-slate-50">Readings &amp; preparation</a>
+      </div>
+    </div>
+    <div class="card p-5">
+      <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">What this session answers</p>
+      <ol class="mt-3 space-y-3">
+        <li class="flex gap-3"><span class="font-mono text-xs text-blue-600 pt-0.5">01</span><span class="text-sm font-semibold text-slate-800">How is competitive advantage sustained once rivals can see it?</span></li>
+        <li class="flex gap-3"><span class="font-mono text-xs text-blue-600 pt-0.5">02</span><span class="text-sm font-semibold text-slate-800">When do deterrence and preemption work, and when are they cheap talk?</span></li>
+        <li class="flex gap-3"><span class="font-mono text-xs text-blue-600 pt-0.5">03</span><span class="text-sm font-semibold text-slate-800">Did Patagonia&rsquo;s new ownership make its advantage harder to copy, and what did it cost?</span></li>
+      </ol>
+      <p class="mt-4 pt-4 border-t border-slate-200 text-xs text-slate-500 leading-relaxed">
+        The case was written for Harvard&rsquo;s first-year course on leadership and corporate accountability, not for a
+        strategy course (teaching note, p.&nbsp;2). Facts from the case are marked
+        <span class="pill bg-teal-50 text-teal-800">Case</span>; where this page reads the case as strategy, the card is
+        marked <span class="pill bg-amber-50 text-amber-800">Analysis</span>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="recap" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Carried forward &middot; Sessions 1, 5 and 6</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">What you bring into this session</h2>
+  <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+    You already know how to find an advantage and how to test whether it is valuable, rare and hard to copy. Today the
+    question changes from <em>is there an advantage?</em> to <em>what stops it being competed away, and for how long?</em>
+  </p>
+  <div class="mt-6 grid gap-4 md:grid-cols-3">
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Session 6 &middot; Creating advantage</p>
+      <h3 class="mt-1 font-bold text-slate-900">An advantage is a wider wedge</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Ghemawat and Pisano open their note with the standard view
+        of advantage: open the widest possible gap between the benefits delivered to customers and the costs the
+        organisation incurs (1997, p.&nbsp;1).
+        <a href="/teaching/1-year-mba/session6.html" class="font-semibold text-blue-700 hover:underline">Session 6</a>
+        built that wedge for Patagonia. This session asks why wedges so rarely stay wide.</p>
+    </div>
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Session 5 &middot; Resources and VRIO</p>
+      <h3 class="mt-1 font-bold text-slate-900">&ldquo;Costly to imitate&rdquo; becomes the whole subject</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">In
+        <a href="/teaching/1-year-mba/session5.html" class="font-semibold text-blue-700 hover:underline">Session 5</a>
+        the I in VRIO was one test among four, and isolating mechanisms were the reasons a resource might pass it. Here
+        we ask what makes imitation costly, who pays to keep it costly, and what happens to the value even when nobody
+        imitates.</p>
+    </div>
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Session 1 &middot; Porter (1996)</p>
+      <h3 class="mt-1 font-bold text-slate-900">Best practice gets copied; fit is harder</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Operational effectiveness diffuses quickly, and fit among many
+        activities is harder to match than any one of them. Ghemawat and Pisano accept that argument (p.&nbsp;12) and
+        push past it: commitments and capabilities mean rivals do not all face the same productivity frontier
+        (p.&nbsp;13). <a href="/teaching/1-year-mba/session1.html" class="whitespace-nowrap font-semibold text-blue-700 hover:underline">Revisit Session 1</a></p>
+    </div>
+  </div>
+  <div class="mt-6 rounded-2xl bg-amber-50 border border-amber-200 p-5">
+    <p class="text-[10px] font-semibold uppercase tracking-wider text-amber-800">The trap this session sets</p>
+    <p class="mt-1 text-sm text-slate-700 leading-relaxed">
+      &ldquo;Hard to copy&rdquo; is not the same as &ldquo;lasting&rdquo;. An advantage nobody can imitate can still be
+      drained by the people who supply it or wasted inside the firm that owns it. For every barrier on this page, ask two
+      questions: who pays to keep it up, and who could take the value it protects?
+    </p>
+  </div>
+</section>
+
+
+<section id="leak" class="bg-white border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">The problem &middot; Ghemawat &amp; Pisano (1997), pp.&nbsp;1&ndash;11</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Why most advantage does not last</h2>
+    <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+      An advantage is necessary for superior performance, but far from sufficient. Ghemawat and Pisano&rsquo;s first
+      example is the real mousetrap industry: spring traps, repeating traps and glueboards all succeeded in the market
+      without making their inventors rich, because they attracted imitators as well as mice (p.&nbsp;1). Before you read
+      on, commit to a number.
+    </p>
+
+    <div id="decayBox" class="dc-root mt-6 card p-5 sm:p-6">
+      <div class="flex flex-wrap items-baseline justify-between gap-2">
+        <div>
+          <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Activity &middot; predict, then reveal</p>
+          <h3 class="mt-1 text-xl font-bold text-slate-900">What happened to the 36-point spread?</h3>
+        </div>
+        <span class="done-badge" data-done-for="decay" hidden>Done</span>
+      </div>
+      <div class="mt-3 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)]">
+        <div class="text-sm text-slate-600 leading-relaxed">
+          <p>The PIMS database held a complete ten-year record, 1971 to 1980, for 692 business units. Split them into two
+            equal groups by 1971 return on investment: the top group averaged <strong>39%</strong>, the bottom group
+            <strong>3%</strong>. Keep every business in the group it started in. By 1980, how much of the 36-point gap
+            between the two averages had closed (Ghemawat &amp; Pisano, 1997, p.&nbsp;1)?</p>
+          <label for="dcRange" class="mt-4 block text-xs font-semibold uppercase tracking-wider text-slate-500">Your estimate: <span id="dcVal" class="text-slate-900">30%</span> of the gap closed</label>
+          <input id="dcRange" type="range" min="0" max="100" step="5" value="30" class="mt-2 w-full">
+          <div class="mt-4 flex flex-wrap gap-3">
+            <button id="dcReveal" type="button" class="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800">Reveal what happened</button>
+          </div>
+          <p id="dcRead" class="mt-4 text-sm text-slate-700 leading-relaxed" aria-live="polite"></p>
+        </div>
+        <div class="min-w-0">
+          <div id="dcPlot"><svg id="dcSvg" class="block w-full" role="img" aria-labelledby="dcT dcD"></svg></div>
+          <details class="mt-3">
+            <summary class="cursor-pointer text-xs font-semibold text-slate-700">Show the figures as a table</summary>
+            <div class="mt-2 overflow-x-auto">
+              <table class="w-full text-xs text-left text-slate-600 comparison-table">
+                <thead class="text-[10px] uppercase tracking-wider text-slate-500"><tr><th scope="col">Measure</th><th scope="col">Value</th><th scope="col">Source</th></tr></thead>
+                <tbody>
+                  <tr><td>Business units with a complete 1971&ndash;80 record</td><td>692</td><td>p.&nbsp;1</td></tr>
+                  <tr><td>1971 ROI, top half / bottom half</td><td>39% / 3%</td><td>p.&nbsp;1</td></tr>
+                  <tr><td>Share of the spread managers usually guess had closed</td><td>one-third to one-half</td><td>p.&nbsp;1</td></tr>
+                  <tr><td>Share that actually closed by 1980</td><td>more than nine-tenths</td><td>p.&nbsp;1</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="mt-1 text-[11px] text-slate-500">The note&rsquo;s Exhibit 1 plots the yearly values; this page shows only the figures stated in its text.</p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 grid gap-4 md:grid-cols-2">
+      <div class="rounded-2xl border border-slate-200 p-5">
+        <h3 class="font-bold text-slate-900">It is not one study</h3>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Fruhan followed large companies whose return on equity
+          averaged more than 25% in 1976&ndash;82. Their median ROE ran 21% above the S&amp;P 400 average in that period,
+          but only 2% above it in 1989&ndash;93 (Ghemawat &amp; Pisano, 1997, p.&nbsp;2). A McKinsey study that defined
+          excellence as ROE plus sales growth reached the same verdict about its impermanence.</p>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-5">
+        <h3 class="font-bold text-slate-900">Some convergence is sensible; most is not</h3>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">A business earning 39% would be unwise to demand 39% from
+          every new investment, so part of the fall is value-maximising choice. Ghemawat and Pisano argue that by far the
+          larger part is unwanted and even unanticipated (p.&nbsp;2). Managers understand regression to the mean; they
+          misjudge how far and how fast it runs (p.&nbsp;1).</p>
+      </div>
+    </div>
+
+    <h3 class="mt-10 text-xl font-bold text-slate-900">Four ways an advantage leaks</h3>
+    <p class="mt-2 text-sm text-slate-600 max-w-4xl leading-relaxed">A superior position pays off over time only if it
+      keeps two properties: <strong>scarcity</strong> (rivals cannot simply have the same thing) and
+      <strong>appropriability</strong> (the owners, not someone else, pocket the value). Each is threatened twice
+      (pp.&nbsp;2&ndash;3).</p>
+    <div class="mt-4 grid gap-5 lg:grid-cols-2">
+      <div class="rounded-2xl border border-blue-200 bg-blue-50 p-4 sm:p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Scarcity &middot; threatened from outside</p>
+        <div class="mt-3 grid gap-3 sm:grid-cols-2">
+          <div class="card p-4">
+            <h4 class="font-bold text-slate-900">Imitation</h4>
+            <p class="mt-1 text-xs text-slate-500">Rivals copy the position.</p>
+            <p class="mt-2 text-sm text-slate-600 leading-relaxed">Competitors learn the details of most new products within
+              a year; imitation tends to cost about a third less than innovation and to be about a third quicker
+              (p.&nbsp;3). As filters took over 80% of the US cigarette market, varieties rose from 18 in 1951 to more than
+              80 by 1967, and the advertising-to-sales ratio from 3.8% to 8.7% (p.&nbsp;4).</p>
+          </div>
+          <div class="card p-4">
+            <h4 class="font-bold text-slate-900">Substitution</h4>
+            <p class="mt-1 text-xs text-slate-500">Rivals go around the position.</p>
+            <p class="mt-2 text-sm text-slate-600 leading-relaxed">Changes in technology, demand and input prices, in that
+              order, open the way (p.&nbsp;6). In PBX switches AT&amp;T harvested its old base, Rolm spent to defend its
+              position, and InteCom skimmed the market and recouped ten to a hundred times its investment (p.&nbsp;7).
+              Sometimes the right move is to take the money and run.</p>
+          </div>
+        </div>
+      </div>
+      <div class="rounded-2xl border border-rose-200 bg-rose-50 p-4 sm:p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">Appropriability &middot; threatened from inside the value chain</p>
+        <div class="mt-3 grid gap-3 sm:grid-cols-2">
+          <div class="card p-4">
+            <h4 class="font-bold text-slate-900">Holdup</h4>
+            <p class="mt-1 text-xs text-slate-500">Non-owners divert the value.</p>
+            <p class="mt-2 text-sm text-slate-600 leading-relaxed">How complementary a party is sets the ceiling; its best
+              alternative to a deal sets the floor (p.&nbsp;8). NFL team revenue rose 77% in real terms in 1970&ndash;84,
+              yet operating income fell by a third: players&rsquo; share of revenue went from 35% to nearly 55%
+              (pp.&nbsp;8&ndash;9).</p>
+          </div>
+          <div class="card p-4">
+            <h4 class="font-bold text-slate-900">Slack</h4>
+            <p class="mt-1 text-xs text-slate-500">The value is wasted inside.</p>
+            <p class="mt-2 text-sm text-slate-600 leading-relaxed">Estimates put it at 10% to 40% of revenues, and the
+              richest positions leave the most room for it (p.&nbsp;10). By the late 1970s Xerox was dissipating at least
+              20% of its sales: about $5&nbsp;billion over five years, more than its operating income for the period
+              (p.&nbsp;10).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-5 grid gap-4 md:grid-cols-[1fr_1fr]">
+      <p class="text-sm text-slate-600 leading-relaxed">All four threats grow with the value a position creates, and all
+        four take time to bite (p.&nbsp;3). That is why a fat margin is not evidence of a durable one.</p>
+      <p class="text-sm text-slate-600 leading-relaxed"><span class="pill bg-amber-50 text-amber-800">Analysis</span>
+        Keep the four for the case. Patagonia&rsquo;s 2022 ownership change says little about imitation or substitution,
+        and a great deal about who can divert or dissipate the value Patagonia creates.</p>
+    </div>
+  </div>
+</section>
+
+
+<section id="isolating" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">The outline&rsquo;s question &middot; Grant (2019), ch.&nbsp;7, pp.&nbsp;162&ndash;165</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">How is competitive advantage sustained?</h2>
+  <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+    Grant borrows Richard Rumelt&rsquo;s term <strong>isolating mechanisms</strong> for the barriers that stop superior
+    profitability being competed away, and organises them around the steps an imitator must take. To copy a rival, a firm
+    must identify the advantage, have an incentive to imitate, diagnose what causes it, and acquire the resources and
+    capabilities to reproduce it. At each step the incumbent can put a barrier in the way (Grant, 2019, p.&nbsp;162).
+  </p>
+  <ol class="s7-gates mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <li class="card p-5">
+      <p class="font-mono text-xs text-blue-700">STEP 1 &middot; IDENTIFY</p>
+      <p class="mt-1 text-sm font-semibold text-slate-900">Barrier: obscure superior performance</p>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">A private company need not disclose its results. Few food
+        processors saw how profitable pet food was until the UK Monopolies Commission revealed that Mars&rsquo;s Pedigree
+        Petfoods earned a 47% return on capital employed (p.&nbsp;162). Limit pricing, setting price just below the level
+        that attracts entry, gives up short-term profit for the same end (p.&nbsp;163).</p>
+    </li>
+    <li class="card p-5">
+      <p class="font-mono text-xs text-blue-700">STEP 2 &middot; INCENTIVE</p>
+      <p class="mt-1 text-sm font-semibold text-slate-900">Barrier: deterrence and preemption</p>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Persuade rivals that imitation will not pay, or occupy the
+        niches before they arrive (p.&nbsp;163). Both work on the rival&rsquo;s expected payoff rather than its ability to
+        copy, and both are taken apart in the next section.</p>
+    </li>
+    <li class="card p-5">
+      <p class="font-mono text-xs text-blue-700">STEP 3 &middot; DIAGNOSE</p>
+      <p class="mt-1 text-sm font-semibold text-slate-900">Barrier: causal ambiguity</p>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">When advantage rests on a complex bundle of resources and
+        capabilities, rivals cannot tell which part matters, so imitation is uncertain (Lippman and Rumelt). Where
+        activities are tightly linked, an imitator that gets the configuration slightly wrong can land in the valley next
+        to the peak (pp.&nbsp;163&ndash;164).</p>
+    </li>
+    <li class="card p-5">
+      <p class="font-mono text-xs text-blue-700">STEP 4 &middot; ACQUIRE</p>
+      <p class="mt-1 text-sm font-semibold text-slate-900">Barrier: immobile, hard-to-replicate resources</p>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Having diagnosed the advantage, the imitator must buy or
+        build what it needs. Limits on transferring and replicating resources are the barrier here
+        (pp.&nbsp;164&ndash;165). Session 5&rsquo;s costly-to-imitate test lives at this gate.</p>
+    </li>
+  </ol>
+
+  <div class="mt-6 grid gap-5 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,.7fr)]">
+    <div class="card p-5 min-w-0">
+      <div class="flex flex-wrap items-baseline justify-between gap-2">
+        <h3 class="font-bold text-slate-900">Two vocabularies, one problem</h3>
+        <span class="pill bg-amber-50 text-amber-800">Our mapping</span>
+      </div>
+      <p class="mt-1 text-sm text-slate-600">Ghemawat and Pisano list five early-mover advantages that impede imitation
+        (pp.&nbsp;3&ndash;4). Each one works at one or more of Grant&rsquo;s gates.</p>
+      <div class="mt-3 overflow-x-auto">
+        <table class="w-full text-xs text-left text-slate-600 comparison-table">
+          <thead class="text-[10px] uppercase tracking-wider text-slate-500"><tr><th scope="col">Early-mover advantage</th><th scope="col">How it impedes imitation</th><th scope="col">Grant&rsquo;s gate</th></tr></thead>
+          <tbody>
+            <tr><td class="font-semibold text-slate-800">Private information</td><td>Knowledge that is tacit, and that no single person can carry out of the firm</td><td>Diagnose</td></tr>
+            <tr><td class="font-semibold text-slate-800">Size economies</td><td>Scale, learning or scope; a rival that matches your size fears supply will outrun demand</td><td>Incentive</td></tr>
+            <tr><td class="font-semibold text-slate-800">Contracts and relationships</td><td>Early movers lock in better terms with suppliers, buyers and channels</td><td>Acquire</td></tr>
+            <tr><td class="font-semibold text-slate-800">Threats of retaliation</td><td>Credible only with both the ability and the willingness to retaliate</td><td>Incentive</td></tr>
+            <tr><td class="font-semibold text-slate-800">Response lags</td><td>Time to observe and to implement; they defer imitation without stopping it</td><td>All four, slowed</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="rounded-2xl border border-blue-200 bg-blue-50 p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">The logic worth remembering</p>
+      <p class="mt-2 text-sm text-slate-700 leading-relaxed">An imitator must clear <strong>all four</strong> gates. The
+        incumbent therefore needs only <strong>one</strong> gate that genuinely holds. That is the same arithmetic Porter
+        applies to fit in Session 1: a rival copying a system must match every piece, so the defence is as strong as its
+        strongest link, not its weakest.</p>
+      <p class="mt-3 text-sm text-slate-700 leading-relaxed">Set that against the PIMS evidence. Grant reads the other
+        side of the record: profit differences between competitors often persist for a decade or more, which suggests
+        isolating mechanisms can be very effective (2019, p.&nbsp;162). Both are true; the question is which barriers
+        you have.</p>
+    </div>
+  </div>
+
+  <div id="chainBox" class="mt-8 card p-5 sm:p-6">
+    <div class="flex flex-wrap items-baseline justify-between gap-2">
+      <div>
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Activity &middot; the imitation chain</p>
+        <h3 class="mt-1 text-xl font-bold text-slate-900">A rival sets out to copy Patagonia</h3>
+      </div>
+      <span class="done-badge" data-done-for="chain" hidden>Done</span>
+    </div>
+    <p class="mt-2 max-w-4xl text-sm text-slate-600 leading-relaxed">Imagine a well-funded, shareholder-owned
+      outdoor-apparel company (hypothetical) that wants Patagonia&rsquo;s position. For each gate, decide whether
+      Patagonia&rsquo;s barrier <strong>holds</strong>, <strong>leaks</strong> or is <strong>open</strong>. Your rating
+      unlocks our reading, with the evidence marked as case fact or analysis.</p>
+    <div id="chainGates" class="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-4"></div>
+    <p id="chainSum" class="mt-5 text-sm text-slate-700 leading-relaxed" aria-live="polite"></p>
+  </div>
+</section>
+
+
+<section id="deterrence" class="bg-white border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Deterrence and preemption &middot; the incentive gate</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Making imitation look like a bad bet</h2>
+    <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+      Both work on the second of Grant&rsquo;s conditions. Deterrence changes what the rival expects will happen if it
+      moves; preemption removes the opportunity before it can move (Grant, 2019, p.&nbsp;163). Neither stops a rival that
+      is able to imitate. Both try to make it unwilling.
+    </p>
+    <div class="mt-6 grid gap-5 lg:grid-cols-2">
+      <div class="card p-5 sm:p-6">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Deterrence</p>
+        <h3 class="mt-1 text-lg font-bold text-slate-900">Threaten, and be believed</h3>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Grant&rsquo;s three tests: &ldquo;For deterrence to work,
+          threats must be clearly signaled, backed by commitment, and credible&rdquo; (2019, p.&nbsp;163).</p>
+        <div class="mt-3 grid gap-2 sm:grid-cols-3">
+          <div class="rounded-xl border border-blue-200 bg-blue-50 p-3"><p class="font-mono text-[11px] text-blue-700">1 &middot; SIGNALLED</p><p class="mt-1 text-xs text-slate-700">The rival knows what will happen if it moves.</p></div>
+          <div class="rounded-xl border border-blue-200 bg-blue-50 p-3"><p class="font-mono text-[11px] text-blue-700">2 &middot; COMMITTED</p><p class="mt-1 text-xs text-slate-700">Something already done makes backing down costly.</p></div>
+          <div class="rounded-xl border border-blue-200 bg-blue-50 p-3"><p class="font-mono text-[11px] text-blue-700">3 &middot; CREDIBLE</p><p class="mt-1 text-xs text-slate-700">Carrying it out would not hurt you more than the rival.</p></div>
+        </div>
+        <p class="mt-3 text-sm text-slate-600 leading-relaxed">A threatened price war usually fails the third test, because
+          it would damage the incumbent more than the entrant; capacity already built is more persuasive (Grant, 2019,
+          p.&nbsp;92). Ghemawat and Pisano are blunter: &ldquo;Talk of retaliation is, however, cheap&rdquo; (1997,
+          p.&nbsp;4). A threat needs both the ability and the willingness to retaliate, shown either because retaliation
+          pays directly or because the firm has already been tough at a loss.</p>
+        <ul class="mt-3 space-y-2 text-sm text-slate-600">
+          <li class="flex gap-2"><span class="text-blue-700">&bull;</span><span><strong class="text-slate-800">Reputation.</strong> Monsanto&rsquo;s costly price war against the Holland Sweetener Company, after its NutraSweet patents expired, gave it a reputation for aggression that deterred other entrants (Grant, 2019, p.&nbsp;163). Procter &amp; Gamble&rsquo;s long share wars in diapers and detergents protect it in other markets too (p.&nbsp;94).</span></li>
+          <li class="flex gap-2"><span class="text-blue-700">&bull;</span><span><strong class="text-slate-800">Size.</strong> Scale deters only through the rival&rsquo;s fear that matching it would leave supply well above demand (Ghemawat &amp; Pisano, 1997, pp.&nbsp;3&ndash;4).</span></li>
+        </ul>
+      </div>
+      <div class="card p-5 sm:p-6">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-teal-700">Preemption</p>
+        <h3 class="mt-1 text-lg font-bold text-slate-900">Be there first, and leave no room</h3>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Occupy existing and potential niches so the challenger has
+          fewer places to invest (Grant, 2019, p.&nbsp;163). Grant names three forms:</p>
+        <ul class="mt-3 space-y-2 text-sm text-slate-600">
+          <li class="flex gap-2"><span class="text-teal-700">&bull;</span><span><strong class="text-slate-800">Product proliferation.</strong> Between 1950 and 1972 the six leading US breakfast-cereal makers introduced 80 new brands.</span></li>
+          <li class="flex gap-2"><span class="text-teal-700">&bull;</span><span><strong class="text-slate-800">Underused capacity.</strong> Monsanto invested heavily in aspartame plants to protect NutraSweet.</span></li>
+          <li class="flex gap-2"><span class="text-teal-700">&bull;</span><span><strong class="text-slate-800">Patent proliferation.</strong> In 1974 Xerox held a wall of more than 2,000 copier patents, most unused; when IBM launched its first copier, Xerox sued it over 22 of them.</span></li>
+        </ul>
+        <div class="mt-4 rounded-xl border border-teal-200 bg-teal-50 p-4">
+          <p class="text-[10px] font-semibold uppercase tracking-wider text-teal-800">The cleanest case in the reading &middot; Du Pont</p>
+          <p class="mt-1 text-sm text-slate-700 leading-relaxed">Du Pont&rsquo;s titanium dioxide process used cheaper
+            feedstock and gave it a 20% cost advantage. Mastering it took $50&ndash;100&nbsp;million and several years of
+            testing in an efficiently scaled plant. Du Pont also built a large new plant that crowded out rivals&rsquo;
+            large-scale expansion, and twenty years later it was still the only firm in the world running the low-cost
+            process (Ghemawat &amp; Pisano, 1997, p.&nbsp;14).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-5 grid gap-5 md:grid-cols-2">
+      <div class="rounded-2xl bg-amber-50 border border-amber-200 p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-amber-800">Moving first is no panacea</p>
+        <p class="mt-1 text-sm text-slate-700 leading-relaxed">In four of the five filtered-cigarette segments, a top
+          brand&rsquo;s order of entry matched its share rank; the odds of that by chance are under 1 in 250. But in plain
+          filters, the largest segment, first-mover Viceroy was overtaken by Winston and then by third-mover Marlboro,
+          repositioned with a cowboy image and a flip-top box (Ghemawat &amp; Pisano, 1997, pp.&nbsp;4&ndash;5). Their
+          conclusion borrows Alfred P. Sloan: &ldquo;If you are late, you have to be better&rdquo; (p.&nbsp;5).</p>
+      </div>
+      <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">What makes both work</p>
+        <p class="mt-1 text-sm text-slate-700 leading-relaxed"><strong>Commitment.</strong> A deterrent is credible only
+          if it is backed by commitment, and commitment means eliminating your own options. Grant&rsquo;s example is
+          Cort&eacute;s destroying his ships on arriving in Mexico in 1519: there was no going back (2019, p.&nbsp;92).
+          Preemption is a commitment too: Ghemawat and Pisano credit Du Pont&rsquo;s position to its aggressive capacity
+          commitments (1997, p.&nbsp;14). That is the bridge to Ghemawat and Pisano&rsquo;s main argument, below.</p>
+      </div>
+    </div>
+
+    <div id="dpBox" class="mt-8 card p-5 sm:p-6">
+      <div class="flex flex-wrap items-baseline justify-between gap-2">
+        <div>
+          <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Activity &middot; classify</p>
+          <h3 class="mt-1 text-xl font-bold text-slate-900">Deterrence, preemption, or both?</h3>
+        </div>
+        <span class="done-badge" data-done-for="classify" hidden>Done</span>
+      </div>
+      <p class="mt-2 max-w-4xl text-sm text-slate-600 leading-relaxed">Eight real moves from the readings. Does each one
+        work mainly by threatening the rival, by occupying the space first, or by doing both at once? Two of them are
+        genuinely both.</p>
+      <div id="dpList" class="mt-4 grid gap-3 lg:grid-cols-2"></div>
+      <p id="dpScore" class="mt-4 text-sm font-semibold text-slate-800" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+
+<section id="commitments" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Building the barriers &middot; Ghemawat &amp; Pisano (1997), pp.&nbsp;12&ndash;18</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Commitments and capabilities</h2>
+  <div class="mt-3 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center">
+    <p class="text-slate-600 leading-relaxed">
+      The resource view and the activity view both explain why returns might stop converging. Neither, Ghemawat and
+      Pisano argue, explains how a firm gets ahead in the first place (p.&nbsp;12). Their dynamic view joins them up: the
+      resources a firm has today limit what it can commit to; its commitments shape the activities it performs; and both
+      feed back into the resources it will have tomorrow (pp.&nbsp;12&ndash;13). That gives two ways to build a lasting
+      lead, and both mean rivals no longer face the same efficiency frontier (p.&nbsp;13).
+    </p>
+    <figure class="rounded-2xl border border-slate-200 bg-white p-4 sm:p-5">
+      <div class="grid gap-2 sm:grid-cols-[1fr_auto_1fr_auto_1fr] sm:items-center text-center">
+        <div class="rounded-xl border border-slate-300 bg-slate-50 p-3"><p class="text-sm font-semibold text-slate-900">Resource endowment</p><p class="mt-1 text-[11px] text-slate-500">fixed in the short run</p></div>
+        <p class="text-blue-700 font-semibold" aria-hidden="true"><span class="hidden sm:inline">&rarr;</span><span class="sm:hidden">&darr;</span></p>
+        <div class="rounded-xl border border-blue-300 bg-blue-50 p-3"><p class="text-sm font-semibold text-slate-900">Resource commitments</p><p class="mt-1 text-[11px] text-slate-500">route 1: lumpy</p></div>
+        <p class="text-blue-700 font-semibold" aria-hidden="true"><span class="hidden sm:inline">&rarr;</span><span class="sm:hidden">&darr;</span></p>
+        <div class="rounded-xl border border-teal-200 bg-teal-50 p-3"><p class="text-sm font-semibold text-slate-900">Product-market activities</p><p class="mt-1 text-[11px] text-slate-500">route 2: capabilities</p></div>
+      </div>
+      <p class="mt-3 rounded-lg border border-dashed border-slate-300 px-3 py-2 text-center text-xs text-slate-600">&larr; feedback: what the firm commits to and does today rebuilds the endowment it starts from tomorrow</p>
+      <figcaption class="mt-2 text-[11px] text-slate-500">Our sketch of the idea in Ghemawat &amp; Pisano&rsquo;s Exhibit 6 (p.&nbsp;13), not a copy of it.</figcaption>
+    </figure>
+  </div>
+
+  <div class="mt-8 grid gap-5 lg:grid-cols-2">
+    <div class="card p-5 sm:p-6">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Route 1 &middot; commitments</p>
+      <h3 class="mt-1 text-lg font-bold text-slate-900">A few large, lumpy, hard-to-reverse decisions</h3>
+      <blockquote class="mt-3 border-l-2 border-blue-600 pl-3 italic text-slate-700">&ldquo;Irreversibility, not the amount
+        of money involved, is the correct measure of whether a particular decision is commitment-intensive or
+        not.&rdquo;<span class="mt-1 block not-italic text-xs text-slate-500">Ghemawat &amp; Pisano (1997, p.&nbsp;13)</span></blockquote>
+      <div class="mt-4 grid gap-3 sm:grid-cols-3">
+        <div class="rounded-xl border border-slate-200 p-3"><p class="font-mono text-[11px] text-blue-700">SUNK COST &rarr; LOCK-IN</p><p class="mt-1 text-xs text-slate-600 leading-relaxed">Specialised money that cannot be recovered. At one point Boeing&rsquo;s net investment in the 747 exceeded its net worth (p.&nbsp;13).</p></div>
+        <div class="rounded-xl border border-slate-200 p-3"><p class="font-mono text-[11px] text-blue-700">OPPORTUNITY COST &rarr; LOCK-OUT</p><p class="mt-1 text-xs text-slate-600 leading-relaxed">Options that are costly to revive. Reynolds closed a refinery for good; Pepsi&rsquo;s late move abroad shows that not investing commits you too (pp.&nbsp;13&ndash;14).</p></div>
+        <div class="rounded-xl border border-slate-200 p-3"><p class="font-mono text-[11px] text-blue-700">TIME LAG</p><p class="mt-1 text-xs text-slate-600 leading-relaxed">Years to change course. Coors&rsquo;s national roll-out needed the better part of a decade (p.&nbsp;14).</p></div>
+      </div>
+      <p class="mt-4 text-sm text-slate-600 leading-relaxed">Against the four threats, commitments preempt imitation (Du
+        Pont); they can fight substitution or fund a switch around it (Intel&rsquo;s commitment to CISC had so far held
+        off RISC); and they move bargaining power against holdup. The American who imported Cuisinart food processors
+        owned the brand, so he could take manufacturing to East Asia and keep most of the value (pp.&nbsp;14&ndash;15).
+        They do least against slack.</p>
+      <p class="mt-3 text-sm text-slate-600 leading-relaxed"><strong class="text-slate-800">Under uncertainty</strong>,
+        build scenarios rather than raising the hurdle rate; do not try to stay totally flexible, which brings lock-out
+        and mediocre results; and prefer commitments with a high <strong>learn-to-burn ratio</strong>, the rate at which
+        you learn whether the commitment is a plum or a lemon divided by the rate at which you sink costs into it. Pilots,
+        staging, milestones and kill triggers raise it (p.&nbsp;15).</p>
+    </div>
+    <div class="card p-5 sm:p-6">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-teal-700">Route 2 &middot; capabilities</p>
+      <h3 class="mt-1 text-lg font-bold text-slate-900">Many small investments that compound</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">A capability is what an organisation can do within a
+        predictable range of proficiency, built over many projects and many years (p.&nbsp;16). Honda and Toyota in the
+        1980s aimed the Accord and the Camry squarely at Detroit&rsquo;s core, at similar prices: no creative positioning.
+        Their edge was developing a comparable model in about half the time with half the engineering resources, and
+        building it for about $2,000 less per car (pp.&nbsp;16&ndash;17).</p>
+      <ul class="mt-3 space-y-2 text-sm text-slate-600">
+        <li class="flex gap-2"><span class="text-teal-700">&bull;</span><span><strong class="text-slate-800">Against imitation:</strong> the knowledge is tacit, learned by doing and slow to accumulate (p.&nbsp;17).</span></li>
+        <li class="flex gap-2"><span class="text-teal-700">&bull;</span><span><strong class="text-slate-800">Against substitution:</strong> upstream capabilities let Microsoft move fast into internet software, within limits; it did far less well in internet content (p.&nbsp;17).</span></li>
+        <li class="flex gap-2"><span class="text-teal-700">&bull;</span><span><strong class="text-slate-800">Against holdup:</strong> capabilities spread across many people cannot walk out with one of them. A start-up the note calls Genes&rsquo;R&rsquo;Us was left with rights worth almost nothing when its lead scientist left; Amgen and Genentech lose talented scientists routinely and carry on (pp.&nbsp;17&ndash;18).</span></li>
+      </ul>
+      <p class="mt-3 text-sm text-slate-600 leading-relaxed"><strong class="text-slate-800">The catch:</strong> superiority
+        is hard to demonstrate, so managers call everything they care about a core capability; coherence is nibbled away
+        by drop-in-the-bucket choices; and specific capabilities bring specific rigidities (p.&nbsp;18).</p>
+      <div class="mt-4 rounded-2xl bg-slate-900 p-4 text-slate-100">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-300">The impossibility theorem</p>
+        <p class="mt-1 text-sm leading-relaxed text-slate-200">No firm can sustain an advantage without superior specialised
+          resources or knowledge. Commitments and capabilities are therefore necessary for sustained success, and not
+          sufficient (p.&nbsp;18).</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="irrevBox" class="mt-8 card p-5 sm:p-6">
+    <div class="flex flex-wrap items-baseline justify-between gap-2">
+      <div>
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Activity &middot; the irreversibility test</p>
+        <h3 class="mt-1 text-xl font-bold text-slate-900">How committed is each move, really?</h3>
+      </div>
+      <span class="done-badge" data-done-for="irrev" hidden>Done</span>
+    </div>
+    <p class="mt-2 max-w-4xl text-sm text-slate-600 leading-relaxed">Mark which indicators of irreversibility each move
+      shows, then compare with our reading. The first four are the reading&rsquo;s own examples; the Patagonia decisions
+      are this page&rsquo;s analysis of case facts; the last is a hypothetical. Where an indicator is not the point of
+      the example, either answer counts.</p>
+    <div id="irrevList" class="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-4"></div>
+    <p id="irrevScore" class="mt-4 text-sm font-semibold text-slate-800" aria-live="polite"></p>
+  </div>
+</section>
+
+
+<section id="chacabuco" class="bg-white border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">In-class simulation &middot; Project Chacabuco</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Who should own Patagonia?</h2>
+    <div class="mt-3 grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,.9fr)]">
+      <div class="text-slate-600 leading-relaxed">
+        <p>It is late 2021 in the role-play. In the winter of 2019 Charles Conn and Kris Tompkins concluded that Chouinard
+          was serious about succession and set up a working group, named after Douglas Tompkins National Park in
+          Chacabuco, Chile (case pp.&nbsp;6&ndash;7). By 2020 Ryan Gellert, Hilary Dessouky and Greg Curtis were on the
+          team, and it met every two weeks for nearly two years (pp.&nbsp;1, 7). The family has now called the meeting
+          that decides.</p>
+        <p class="mt-3">A transfer of the stock could trigger a tax of about 40% of the company&rsquo;s value, easily over
+          $1&nbsp;billion. With almost all their wealth in Patagonia shares, the Chouinards would have to sell stock to
+          pay it, bringing in outside owners who could dilute the mission (p.&nbsp;7). The family also wanted to stay
+          involved: Yvon and Malinda were in every day, and both children worked at the company (p.&nbsp;7).</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-teal-800">The goals, as the team understood them &middot; case p.&nbsp;7</p>
+        <ol class="mt-3 space-y-2 text-sm text-slate-700">
+          <li class="flex gap-3"><span class="font-mono text-xs text-blue-600 pt-0.5">1</span><span>Release significant value to fight the climate crisis now.</span></li>
+          <li class="flex gap-3"><span class="font-mono text-xs text-blue-600 pt-0.5">2</span><span>Steward Patagonia&rsquo;s mission for the next fifty years and beyond.</span></li>
+          <li class="flex gap-3"><span class="font-mono text-xs text-blue-600 pt-0.5">3</span><span>Reduce the leadership burden and risk on the family and future generations.</span></li>
+          <li class="flex gap-3"><span class="font-mono text-xs text-blue-600 pt-0.5">4</span><span>Emerged later: provide a new model for capitalism, an alternative to building a company and selling it.</span></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+      <div class="rounded-xl border border-blue-200 bg-blue-50 p-4"><p class="font-mono text-xs text-blue-700">PHASE 1 &middot; 10 MIN</p><p class="mt-1 text-sm font-semibold text-slate-900">Setting the stage</p><p class="mt-1 text-xs text-slate-600">Read your role card below and fix your character&rsquo;s priorities.</p></div>
+      <div class="rounded-xl border border-blue-200 bg-blue-50 p-4"><p class="font-mono text-xs text-blue-700">PHASE 2 &middot; 25 MIN</p><p class="mt-1 text-sm font-semibold text-slate-900">Proposals and challenges</p><p class="mt-1 text-xs text-slate-600">Conn summarises the options; the family, Tompkins and the lawyers respond.</p></div>
+      <div class="rounded-xl border border-blue-200 bg-blue-50 p-4"><p class="font-mono text-xs text-blue-700">PHASE 3 &middot; 20 MIN</p><p class="mt-1 text-sm font-semibold text-slate-900">The breakthrough</p><p class="mt-1 text-xs text-slate-600">Conn names the impasse; Mosley presents; Gellert tests it against operations.</p></div>
+      <div class="rounded-xl border border-blue-200 bg-blue-50 p-4"><p class="font-mono text-xs text-blue-700">PHASE 4 &middot; 25 MIN</p><p class="mt-1 text-sm font-semibold text-slate-900">Debate and decision</p><p class="mt-1 text-xs text-slate-600">Argue in role; the family chooses a path below, then reveals.</p></div>
+      <div class="rounded-xl border border-slate-200 p-4"><p class="font-mono text-xs text-slate-500">DEBRIEF</p><p class="mt-1 text-sm font-semibold text-slate-900">Out of role</p><p class="mt-1 text-xs text-slate-600">Trade-offs, the least-bad option, and what Gellert&rsquo;s job becomes.</p></div>
+    </div>
+
+    <h3 class="mt-8 font-bold text-slate-900">Roles and briefings</h3>
+    <p class="mt-1 text-sm text-slate-600">Ten roles plus the facilitator. Open yours; keep the others closed until Phase 2.</p>
+    <div class="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+      <details class="rounded-xl border border-slate-200 p-3"><summary class="cursor-pointer text-sm font-semibold text-slate-900">Yvon Chouinard<span class="block text-[11px] font-normal text-slate-500">Founder</span></summary><p class="mt-2 text-xs text-slate-600 leading-relaxed">Wants serious money for the climate fight, the mission kept beyond your lifetime, and to stay involved. Opposed to a sale or a listing, and to any tax bill that forces a share sale. Wants a model others can follow. Your fear: people saying Patagonia tried this and it did not work (case p.&nbsp;12).</p></details>
+      <details class="rounded-xl border border-slate-200 p-3"><summary class="cursor-pointer text-sm font-semibold text-slate-900">Malinda Chouinard<span class="block text-[11px] font-normal text-slate-500">Co-owner</span></summary><p class="mt-2 text-xs text-slate-600 leading-relaxed">Shares the mission. Wants the values preserved indefinitely and Yvon kept involved, and worries about the financial stability of the company and its employees under any new structure.</p></details>
+      <details class="rounded-xl border border-slate-200 p-3"><summary class="cursor-pointer text-sm font-semibold text-slate-900">Fletcher Chouinard<span class="block text-[11px] font-normal text-slate-500">Son &middot; runs the surfboard business</span></summary><p class="mt-2 text-xs text-slate-600 leading-relaxed">Wants the mission to continue, but not the burden of controlling the company, or of owning assets that large, passed to future generations (case p.&nbsp;8). Watches the effect on employees.</p></details>
+      <details class="rounded-xl border border-slate-200 p-3"><summary class="cursor-pointer text-sm font-semibold text-slate-900">Claire Chouinard<span class="block text-[11px] font-normal text-slate-500">Daughter &middot; leads design</span></summary><p class="mt-2 text-xs text-slate-600 leading-relaxed">Wants independence, authenticity and Earth-paced growth, and as much money as possible for environmental work. Does not want the burden of control or of large assets.</p></details>
+      <details class="rounded-xl border border-slate-200 p-3"><summary class="cursor-pointer text-sm font-semibold text-slate-900">Ryan Gellert<span class="block text-[11px] font-normal text-slate-500">CEO</span></summary><p class="mt-2 text-xs text-slate-600 leading-relaxed">Must keep Patagonia profitable enough to fund the mission. Needs to know how dividends will be balanced against reinvestment and pay. Feels &ldquo;a ton of additional pressure&rdquo; (case p.&nbsp;1).</p></details>
+      <details class="rounded-xl border border-slate-200 p-3"><summary class="cursor-pointer text-sm font-semibold text-slate-900">Charles Conn<span class="block text-[11px] font-normal text-slate-500">Board chair &middot; team lead</span></summary><p class="mt-2 text-xs text-slate-600 leading-relaxed">Wants a design for the next fifty years and beyond that releases real money and lightens the family&rsquo;s load, without selling the company&rsquo;s soul for a quick cash injection. Opens Phase 2 by summarising the options.</p></details>
+      <details class="rounded-xl border border-slate-200 p-3"><summary class="cursor-pointer text-sm font-semibold text-slate-900">Kris Tompkins<span class="block text-[11px] font-normal text-slate-500">Board member &middot; CEO 1979&ndash;93</span></summary><p class="mt-2 text-xs text-slate-600 leading-relaxed">With Doug Tompkins you put the proceeds of The North Face and Esprit into buying and protecting land (case pp.&nbsp;6&ndash;7). Make the team prove that running Patagonia does more for the planet than selling it.</p></details>
+      <details class="rounded-xl border border-slate-200 p-3"><summary class="cursor-pointer text-sm font-semibold text-slate-900">Hilary Dessouky<span class="block text-[11px] font-normal text-slate-500">General counsel</span></summary><p class="mt-2 text-xs text-slate-600 leading-relaxed">Cares about legal robustness and permanence. Protect the commitments already in the charter, which since 2011 can change only by unanimous shareholder vote (case p.&nbsp;5).</p></details>
+      <details class="rounded-xl border border-slate-200 p-3"><summary class="cursor-pointer text-sm font-semibold text-slate-900">Greg Curtis<span class="block text-[11px] font-normal text-slate-500">Deputy general counsel</span></summary><p class="mt-2 text-xs text-slate-600 leading-relaxed">Owns the tax problem. Find a route that avoids a forced share sale and does not push the family away from the business. Raise the 5% payout rule on foundations in Phase 2.</p></details>
+      <details class="rounded-xl border border-slate-200 p-3"><summary class="cursor-pointer text-sm font-semibold text-slate-900">Dan Mosley<span class="block text-[11px] font-normal text-slate-500">BDT Capital Partners &middot; advisor</span></summary><p class="mt-2 text-xs text-slate-600 leading-relaxed">Expert on large family businesses and foundations (case p.&nbsp;10). Say nothing about your proposal until the facilitator calls Phase 3, then unlock it below.</p></details>
+    </div>
+
+    <div id="chacaBox" class="mt-8 card p-5 sm:p-6">
+      <div class="flex flex-wrap items-baseline justify-between gap-2">
+        <div>
+          <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Activity &middot; the ownership options</p>
+          <h3 class="mt-1 text-xl font-bold text-slate-900">Test each path against the family&rsquo;s goals</h3>
+        </div>
+        <span class="done-badge" data-done-for="chacabuco" hidden>Done</span>
+      </div>
+      <p class="mt-2 max-w-4xl text-sm text-slate-600 leading-relaxed">Select an option to see what the case says about it.
+        Argue its score before you show ours. The family then chooses a path and reveals what Patagonia did.</p>
+      <div id="chacaOpts" class="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4" role="group" aria-label="Ownership options"></div>
+      <div id="chacaDetail" class="mt-4 rounded-2xl border border-slate-200 p-5 min-h-[8rem]" aria-live="polite">
+        <p class="text-sm text-slate-500">Select an option above.</p>
+      </div>
+      <div class="mt-4 flex flex-wrap items-center gap-3">
+        <button id="chacaReveal" type="button" class="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800" disabled>Reveal Patagonia&rsquo;s actual choice</button>
+        <span id="chacaChoice" class="text-sm text-slate-600" aria-live="polite">No path chosen yet.</span>
+      </div>
+      <div id="chacaOut" class="mt-4" hidden></div>
+    </div>
+  </div>
+</section>
+
+
+<section id="structure" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Patagonia &middot; the 2022 structure as a commitment</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Earth as shareholder, read as strategy</h2>
+  <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+    On 14 September 2022 Chouinard told an all-staff meeting in Ventura that he was no longer Patagonia&rsquo;s owner
+    (case p.&nbsp;1). The structure works because votes and money go to different places. Follow each one.
+  </p>
+
+  <div id="structBox" class="st-root mt-6 card p-5 sm:p-6" data-mode="both">
+    <div class="flex flex-wrap items-baseline justify-between gap-3">
+      <div>
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Activity &middot; follow the flows</p>
+        <h3 class="mt-1 text-xl font-bold text-slate-900">Who decides, and who gets paid</h3>
+      </div>
+      <span class="done-badge" data-done-for="structure" hidden>Done</span>
+    </div>
+    <div class="mt-3 flex flex-wrap gap-2" role="group" aria-label="Show flows">
+      <button type="button" class="st-mode s7-opt rounded-full border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700" data-mode="votes" aria-pressed="false">Follow the votes</button>
+      <button type="button" class="st-mode s7-opt rounded-full border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700" data-mode="money" aria-pressed="false">Follow the money</button>
+      <button type="button" class="st-mode s7-opt rounded-full border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700" data-mode="both" aria-pressed="true">Both</button>
+    </div>
+    <div class="mt-5 grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(0,.8fr)_minmax(0,1fr)_minmax(0,.8fr)_minmax(0,1fr)] lg:items-stretch">
+      <div class="st-entity rounded-2xl border border-blue-300 bg-blue-50 p-4">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Perpetual purpose trust</p>
+        <p class="mt-1 font-bold text-slate-900">Patagonia Purpose Trust</p>
+        <p class="st-votes st-txt mt-2 text-xs leading-relaxed">Owns 100% of the voting stock, equal to 2% of all shares. Elects the board, approves material transactions and oversees adherence to the company&rsquo;s philosophy (p.&nbsp;11).</p>
+        <p class="st-money st-txt mt-2 text-xs leading-relaxed">Receives 2% of dividends, usable only to protect the purpose; no personal use (p.&nbsp;12).</p>
+        <p class="mt-2 text-[11px] text-slate-500">Irrevocable and in perpetuity; trustees can enforce the purpose but not change it (pp.&nbsp;10&ndash;11).</p>
+      </div>
+      <div class="flex flex-col justify-center gap-2">
+        <p class="st-flow st-votes rounded-lg px-3 py-2 text-xs font-semibold"><span aria-hidden="true">&larr; </span>votes: 100% of voting stock</p>
+        <p class="st-flow st-votes rounded-lg px-3 py-2 text-xs font-semibold">board elected by the trust <span aria-hidden="true">&rarr;</span></p>
+        <p class="st-flow st-money rounded-lg px-3 py-2 text-xs font-semibold"><span aria-hidden="true">&larr; </span>money: 2% of dividends</p>
+      </div>
+      <div class="st-entity rounded-2xl border border-slate-300 bg-white p-4">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">For-profit company</p>
+        <p class="mt-1 font-bold text-slate-900">Patagonia</p>
+        <p class="mt-2 text-xs text-slate-600 leading-relaxed">Existing board and management stay in their roles and the business runs as before (p.&nbsp;11).</p>
+        <p class="st-money st-txt mt-2 text-xs leading-relaxed">Leadership recommends the dividend from profit left after reinvesting in the business; the board approves it (p.&nbsp;11). Patagonia estimated $100&nbsp;million or more a year (p.&nbsp;12).</p>
+      </div>
+      <div class="flex flex-col justify-center gap-2">
+        <p class="st-flow st-money rounded-lg px-3 py-2 text-xs font-semibold">money: 98% of dividends <span aria-hidden="true">&rarr;</span></p>
+        <p class="st-flow st-votes rounded-lg px-3 py-2 text-xs font-semibold">votes: none <span aria-hidden="true">&times;</span></p>
+      </div>
+      <div class="st-entity rounded-2xl border border-teal-200 bg-teal-50 p-4">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-teal-800">501(c)(4) nonprofit</p>
+        <p class="mt-1 font-bold text-slate-900">Holdfast Collective</p>
+        <p class="st-money st-txt mt-2 text-xs leading-relaxed">Owns 100% of the non-voting stock, 98% of all shares, and so most of the financial value. Uses its 98% of dividends on the root causes of climate change, through grants and political donations (pp.&nbsp;11&ndash;12).</p>
+        <p class="st-votes st-txt mt-2 text-xs leading-relaxed">No voting control (p.&nbsp;12). Its board includes the four Chouinards (p.&nbsp;11).</p>
+      </div>
+    </div>
+    <p id="structRead" class="mt-5 text-sm text-slate-700 leading-relaxed" aria-live="polite"></p>
+    <p class="mt-2 text-[11px] text-slate-500">Drawn from the case text, pp.&nbsp;10&ndash;12; the case&rsquo;s own diagram (Exhibit 7) is not reproduced.</p>
+  </div>
+
+  <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="rounded-xl border border-slate-200 p-4"><p class="text-2xl font-bold text-slate-900 tabular-nums">2% / 98%</p><p class="mt-1 text-xs text-slate-600">Voting stock to the trust, non-voting stock to Holdfast (case p.&nbsp;11).</p></div>
+    <div class="rounded-xl border border-slate-200 p-4"><p class="text-2xl font-bold text-slate-900 tabular-nums">$17.5M</p><p class="mt-1 text-xs text-slate-600">One-time gift tax on the voting shares, paid by the family (p.&nbsp;12).</p></div>
+    <div class="rounded-xl border border-slate-200 p-4"><p class="text-2xl font-bold text-slate-900 tabular-nums">$100M+</p><p class="mt-1 text-xs text-slate-600">Patagonia&rsquo;s own estimate of annual dividends; an estimate, not a result (p.&nbsp;12).</p></div>
+    <div class="rounded-xl border border-slate-200 p-4"><p class="text-2xl font-bold text-slate-900 tabular-nums">$2&ndash;8B</p><p class="mt-1 text-xs text-slate-600">Estimated value of a company that did not share its financial data (p.&nbsp;2).</p></div>
+  </div>
+
+  <blockquote class="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm italic text-slate-700 leading-relaxed">
+    &ldquo;While this doesn&rsquo;t release a large chunk of money up front, just the free cash flow from the dividends over
+    time, it is a better solution than releasing a lot more through a sale of stock or assets and, as a result, selling
+    your soul.&rdquo;
+    <span class="mt-1 block not-italic text-xs text-slate-500">Charles Conn, board chair (case p.&nbsp;12)</span>
+  </blockquote>
+
+  <div class="mt-6 grid gap-5 md:grid-cols-2">
+    <div class="card p-5">
+      <div class="flex flex-wrap items-center justify-between gap-2"><h3 class="font-bold text-slate-900">Irreversible, in Ghemawat and Pisano&rsquo;s sense</h3><span class="pill bg-amber-50 text-amber-800">Analysis</span></div>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed"><strong class="text-slate-800">Sunk:</strong> the family gave
+        away the economic value of the company and paid $17.5&nbsp;million to do it. <strong class="text-slate-800">Lock-out:</strong>
+        the stock &ldquo;would not be transferred again&rdquo; (p.&nbsp;12), so the sale, the listing and the heir who
+        wants the cash are gone as options. Compare 2011: charter commitments that only a unanimous shareholder vote could
+        change (p.&nbsp;5) bound a family that held every share (p.&nbsp;6) only to itself. The limit: the trust could
+        still direct Holdfast to sell some or all of its stock if that served the purpose (p.&nbsp;12). Hard to reverse,
+        then, not impossible.</p>
+    </div>
+    <div class="card p-5">
+      <div class="flex flex-wrap items-center justify-between gap-2"><h3 class="font-bold text-slate-900">What it does to imitation</h3><span class="pill bg-amber-50 text-amber-800">Analysis</span></div>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Rivals can copy the materials, the repairs and the giving, and
+        Patagonia wants them to: sharing best practice is in its charter (p.&nbsp;5). What a shareholder-owned rival cannot
+        copy cheaply is an owner that takes nothing out. For that firm it is not an operating decision; its owners would
+        have to give away their claim on the business. The structure blocks Grant&rsquo;s fourth gate. It is not
+        deterrence: nothing in it threatens a rival.</p>
+    </div>
+    <div class="card p-5">
+      <div class="flex flex-wrap items-center justify-between gap-2"><h3 class="font-bold text-slate-900">The first gate, kept half shut</h3><span class="pill bg-amber-50 text-amber-800">Analysis</span></div>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Grant: &ldquo;One of the attractions of private company status
+        is avoiding disclosure of financial performance&rdquo; (2019, p.&nbsp;162). Patagonia did not publicly share its
+        financial data (case p.&nbsp;2), and an IPO would have made disclosure a legal requirement (teaching note,
+        p.&nbsp;8). With the stock settled for good in a trust and a nonprofit, a listing is now unlikely, so the opacity is
+        locked in as well. The price: customers, staff and the Holdfast Collective also see only what Patagonia chooses
+        to show.</p>
+    </div>
+    <div class="card p-5">
+      <div class="flex flex-wrap items-center justify-between gap-2"><h3 class="font-bold text-slate-900">Holdup and slack after 2022</h3><span class="pill bg-amber-50 text-amber-800">Analysis</span></div>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Holdup and slack live in the gap between ownership and control
+        (Ghemawat &amp; Pisano, 1997, p.&nbsp;8). The new owners cannot take value for themselves: &ldquo;The purpose trust
+        is the decision-maker, but it doesn&rsquo;t get any of the financial benefits&rdquo; (Dessouky, case p.&nbsp;12).
+        That closes the classic routes of extraction. But the dividend is whatever is left after management&rsquo;s own
+        reinvestment recommendation (p.&nbsp;11), and no outside shareholder now prices the firm. Rich positions that are
+        hard to monitor are where slack grows (Xerox, pp.&nbsp;10&ndash;11). The teaching note lists the pressures on
+        Gellert: dividends against reinvestment, prices that may stay high, hard access to equity capital and little
+        room for employee wealth (pp.&nbsp;13&ndash;14).</p>
+    </div>
+  </div>
+  <div class="mt-5 rounded-2xl bg-amber-50 border border-amber-200 p-5">
+    <p class="text-[10px] font-semibold uppercase tracking-wider text-amber-800">Deterrence, preemption, or neither? &middot; Analysis</p>
+    <p class="mt-1 text-sm text-slate-700 leading-relaxed">Read strictly, neither. Nothing in the structure threatens a
+      rival or occupies a niche a rival wanted. It is a commitment aimed inward and forward: at future owners, and at
+      Patagonia&rsquo;s own managers. If it preempts anything, it preempts Patagonia&rsquo;s own future options. Argue
+      the other side in the discussion.</p>
+  </div>
+</section>
+
+
+<section id="decks" class="bg-white border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Go deeper</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Two earlier decks on the same ground</h2>
+    <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">Both were built for the 2-year MBA course. Where their facts
+      differ from this page, this page has been checked against the case and the reading; trust it.</p>
+    <div class="mt-6 grid gap-5 md:grid-cols-2">
+      <a href="/teaching/2-year-mba/session-10-resources-capabilities-and-core-competencies.html" class="flex flex-col justify-between gap-3 rounded-2xl border border-blue-200 bg-blue-50 p-5 hover:bg-blue-200 transition">
+        <span>
+          <span class="block text-[10px] font-semibold uppercase tracking-wider text-blue-700">Interactive deck &middot; 2-year MBA</span>
+          <span class="mt-1 block font-bold text-slate-900">Sustaining Competitive Advantage: commitments, capabilities and a moat tester</span>
+          <span class="mt-1 block text-sm text-slate-600">A short deck: the session question, a summary of Ghemawat and Pisano, the Patagonia commitment argument and a three-question check. Its title reads &ldquo;Official Session 07&rdquo;, which is the 2-year course&rsquo;s numbering. It calls Holdfast a trust and gives a single $3&nbsp;billion value; use this page&rsquo;s figures.</span>
+        </span>
+        <span class="text-sm font-semibold text-blue-700">Open the deck &rarr;</span>
+      </a>
+      <a href="/teaching/2-year-mba/session-11-firm-performance-and-business-models.html" class="flex flex-col justify-between gap-3 rounded-2xl border border-blue-200 bg-blue-50 p-5 hover:bg-blue-200 transition">
+        <span>
+          <span class="block text-[10px] font-semibold uppercase tracking-wider text-blue-700">Interactive deck &middot; built for an earlier numbering</span>
+          <span class="mt-1 block font-bold text-slate-900">Creating Competitive Advantage: the Patagonia case</span>
+          <span class="mt-1 block text-sm text-slate-600">Built for an earlier course numbering, where it was Session 11, and mostly about creating advantage and firm performance. For today, use its Governance Lab: the voting-versus-economic-rights split and the &ldquo;Founder&rsquo;s Fortress&rdquo; stress tests, whose outcomes are illustrations rather than case facts. Its revenue chart and impact figures come from outside the course material and have not been checked against the case.</span>
+        </span>
+        <span class="text-sm font-semibold text-blue-700">Open the deck &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="discussion" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">For class</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Six questions to argue</h2>
+  <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">Prepare a position on each, with the page of the case or the
+    reading you would cite. The first five use today&rsquo;s tools; the last asks what they leave out.</p>
+  <ol class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+    <li class="card p-5"><p class="font-mono text-xs text-blue-700">01</p><p class="mt-1 text-sm text-slate-700 leading-relaxed">An imitator must clear all four of Grant&rsquo;s gates. At which gate is Patagonia&rsquo;s defence strongest, and did Patagonia build that barrier on purpose or inherit it?</p></li>
+    <li class="card p-5"><p class="font-mono text-xs text-blue-700">02</p><p class="mt-1 text-sm text-slate-700 leading-relaxed">Patagonia writes the sharing of best practice into its charter and co-founded an alliance for others to copy its giving. Can a firm invite imitation and still sustain an advantage? Name exactly what is left that a rival cannot copy.</p></li>
+    <li class="card p-5"><p class="font-mono text-xs text-blue-700">03</p><p class="mt-1 text-sm text-slate-700 leading-relaxed">Rank the 1994 cotton switch, the 2011 benefit-corporation charter and the 2022 transfer by sunk cost, lock-out and time lag. Which one changed what Patagonia <em>can</em> do, rather than what it promises to do?</p></li>
+    <li class="card p-5"><p class="font-mono text-xs text-blue-700">04</p><p class="mt-1 text-sm text-slate-700 leading-relaxed">This page reads the 2022 structure as neither deterrence nor preemption. Make the strongest case that it is one of them. If it is aimed at anyone, who?</p></li>
+    <li class="card p-5"><p class="font-mono text-xs text-blue-700">05</p><p class="mt-1 text-sm text-slate-700 leading-relaxed">With no owner able to take money out, who can now divert or dissipate Patagonia&rsquo;s value? Describe what slack at Patagonia would look like in 2030, and who would notice it.</p></li>
+    <li class="card p-5"><p class="font-mono text-xs text-blue-700">06</p><p class="mt-1 text-sm text-slate-700 leading-relaxed">The Tompkinses sold their companies and put the proceeds straight into conservation; Chouinard kept the company and funds the cause from its dividends. &ldquo;Doug and I argued about this&rdquo; (case p.&nbsp;7). Which path fits your own purpose, and why?</p></li>
+  </ol>
+</section>
+
+<section id="quiz" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Knowledge check</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Twelve questions</h2>
+  <p class="mt-3 text-slate-600 max-w-3xl leading-relaxed">
+    Answer before you look. Each answer explains itself, and the explanation matters more than the score.
+  </p>
+  <div class="mt-4 flex flex-wrap items-center gap-3 text-sm">
+    <span class="text-slate-500"><span id="sQuizScore">0</span> / <span id="sQuizTotal">0</span> correct</span>
+    <button id="sQuizReset" type="button" class="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50">Start again</button>
+  </div>
+  <div id="sQuiz" class="mt-6 grid gap-4"></div>
+</section>
+
+
+<section id="readings" class="bg-white border-y border-slate-200">
+  <div class="container mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Preparation</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Readings for Session 7</h2>
+    <p class="mt-3 text-sm text-slate-600 max-w-4xl leading-relaxed">The reading and the case are copyrighted Harvard
+      Business School Publishing materials. Get them through the licensed course pack; this page does not host or link
+      them.</p>
+    <div class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Required &middot; the reading</p>
+        <p class="mt-2 text-sm text-slate-700 ref">Ghemawat, P., &amp; Pisano, G. P. (1997). <em>Sustaining superior performance: Commitments and capabilities</em> (HBS No. 9-798-008). Harvard Business School Publishing.</p>
+        <p class="mt-2 text-xs text-slate-500">Read all twenty pages. Pages 12&ndash;18, on commitments and capabilities, carry the session.</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Required &middot; the case</p>
+        <p class="mt-2 text-sm text-slate-700 ref">Trelstad, B., Hsieh, N., Norris, M., &amp; Pinckney, S. (2023). <em>Patagonia: &ldquo;Earth is now our only shareholder&rdquo;</em> (HBS No. 9-323-057, rev. September 21, 2023). Harvard Business School Publishing.</p>
+        <p class="mt-2 text-xs text-slate-500">Pages 6&ndash;12 and Exhibits 7&ndash;10 matter most today. Patagonia is also the case for Sessions 5, 6 and 8.</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Further &middot; the outline&rsquo;s framing</p>
+        <p class="mt-2 text-sm text-slate-700 ref">Grant, R. M. (2019). <em>Contemporary strategy analysis</em> (10th ed.). Wiley.</p>
+        <p class="mt-2 text-xs text-slate-500">Chapter 7, &ldquo;How is competitive advantage sustained?&rdquo;, pp.&nbsp;162&ndash;165; chapter 4 on deterrence, commitment and signalling, pp.&nbsp;91&ndash;94.</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Further &middot; course textbook</p>
+        <p class="mt-2 text-sm text-slate-700 ref">Rothaermel, F. T. (2024). <em>Strategic management</em> (6th ed.). McGraw Hill.</p>
+        <p class="mt-2 text-xs text-slate-500">Chapter 4, &ldquo;Isolating mechanisms: How to sustain a competitive advantage&rdquo;, pp.&nbsp;146&ndash;151: the Session 5 treatment, worth rereading before class.</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Carried forward</p>
+        <p class="mt-2 text-sm text-slate-700 ref">Porter, M. E. (1996). What is strategy? <em>Harvard Business Review, 74</em>(6), 61&ndash;78.</p>
+        <p class="mt-2 text-xs text-slate-500">The fit argument that Ghemawat and Pisano build on.</p>
+      </div>
+      <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+        <h3 class="font-bold text-slate-900">A note on the figures on this page</h3>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Patagonia does not publish its accounts. Its revenue (about
+          $1&nbsp;billion), net income (about $100&nbsp;million) and headcount (about 3,600) are media estimates reported
+          in the case (p.&nbsp;2); the $2&ndash;8&nbsp;billion value is an estimated range; the $100&nbsp;million-plus
+          dividend was Patagonia&rsquo;s own estimate at the time of the transfer (p.&nbsp;12). Nothing here reports
+          Patagonia&rsquo;s performance after 2022, because the course material holds no source for it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-gray-800 mt-16 sm:mt-24 border-t border-gray-700">
+  <div class="container mx-auto px-6 py-8 text-center">
+    <p class="text-sm text-slate-400">&copy; Dr. Swapnil Sahoo 2026 &middot; Great Lakes Institute of Management, Gurgaon</p>
+    <p class="mt-2 text-xs text-slate-500">STRAMGT 221 &middot; Strategic Management (PGPM) &middot; Session 7</p>
+    <div class="mt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+      <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-400 hover:text-white">swapnilsahoo.com</a>
+      <a href="/teaching/1-year-mba/session6.html" class="text-sm text-slate-400 hover:text-white">&larr; Session 6</a> <a href="/teaching/1-year-mba" class="text-sm text-slate-400 hover:text-white">All sessions</a> <a href="/teaching/1-year-mba/session8.html" class="text-sm text-slate-400 hover:text-white">Session 8 &rarr;</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* ---- session 7: shared states ---- */
+  .s7-opt[aria-pressed="true"]{background:#EEF1FF;border-color:#4F46E5;color:#2E2A82}
+  html.dark .s7-opt[aria-pressed="true"]{background:#1F2552;border-color:#6E72F0;color:#E0E5FF}
+  .s7-opt:disabled{cursor:default;opacity:.85}
+  .s7-ok{color:#166534}.s7-no{color:#B91C1C}.s7-mid{color:#92400E}
+  html.dark .s7-ok{color:#6EE7A8}html.dark .s7-no{color:#FCA5A5}html.dark .s7-mid{color:#FCD34D}
+  .s7-chip{display:inline-flex;align-items:center;border-radius:9999px;padding:1px 8px;font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
+  .s7-y{background:#DCFCE7;color:#166534}.s7-p{background:#FEF3C7;color:#92400E}.s7-n{background:#FEE2E2;color:#991B1B}.s7-u{background:#F1F5F9;color:#475569}
+  html.dark .s7-y{background:#14321F;color:#6EE7A8}html.dark .s7-p{background:#382C14;color:#FCD34D}
+  html.dark .s7-n{background:#3A181E;color:#FCA5A5}html.dark .s7-u{background:#1E293B;color:#CBD5E1}
+  html.dark .border-blue-600{border-color:#818CF8!important}
+  html.dark .border-dashed.border-slate-300{border-color:#2B3A55!important}
+  #chacaReveal:disabled{opacity:.45;cursor:not-allowed}
+  /* four footer links do not fit one row at 320px */
+  footer .flex.justify-center{flex-wrap:wrap;row-gap:.5rem}
+
+  /* gate arrows on wide screens */
+  @media (min-width:1024px){
+    .s7-gates>li{position:relative}
+    .s7-gates>li:not(:last-child)::after{content:"\2192";position:absolute;right:-13px;top:50%;transform:translateY(-50%);
+      color:#4F46E5;font-weight:700;font-size:14px;z-index:1}
+    html.dark .s7-gates>li:not(:last-child)::after{color:#A3AEFB}
+  }
+
+  /* ---- decay chart ---- */
+  .dc-root{--dc-ink:#0F172A;--dc-ink2:#475569;--dc-grid:#E2E8F0;--dc-axis:#CBD5E1;--dc-you:#4F46E5;--dc-mgr:#B45309;--dc-real:#0F766E;--dc-surface:#FFFFFF}
+  html.dark .dc-root{--dc-ink:#E2E8F0;--dc-ink2:#94A3B8;--dc-grid:#1E293B;--dc-axis:#2B3A55;--dc-you:#818CF8;--dc-mgr:#FBBF24;--dc-real:#5EEAD4;--dc-surface:#111A2E}
+  .dc-root svg text{font-family:Inter,ui-sans-serif,system-ui,sans-serif}
+  .dc-grid{stroke:var(--dc-grid);shape-rendering:crispEdges}
+  .dc-axis{stroke:var(--dc-axis);shape-rendering:crispEdges}
+  .dc-tick{fill:var(--dc-ink2);font-size:11px;font-variant-numeric:tabular-nums}
+  .dc-lbl{fill:var(--dc-ink);font-size:12px;font-weight:600}
+  .dc-val{fill:var(--dc-ink2);font-size:11.5px;font-weight:600;font-variant-numeric:tabular-nums}
+  .dc-val-in{fill:var(--dc-surface);font-size:11.5px;font-weight:700}
+  .dc-you{fill:var(--dc-you)}.dc-mgr{fill:var(--dc-mgr)}.dc-real{fill:var(--dc-real)}
+  .dc-hid{fill:none;stroke:var(--dc-axis);stroke-dasharray:4 3}
+  #dcRange{accent-color:#4F46E5}
+  html.dark #dcRange{accent-color:#818CF8;background:transparent!important}
+
+  /* ---- structure flows ---- */
+  .st-root{--st-votes:#4338CA;--st-money:#0F766E;--st-votes-bg:#EEF1FF;--st-money-bg:#E6F6F3}
+  html.dark .st-root{--st-votes:#A3AEFB;--st-money:#5EEAD4;--st-votes-bg:#1A2044;--st-money-bg:#0E2624}
+  .st-votes.st-txt{color:var(--st-votes)}.st-money.st-txt{color:var(--st-money)}
+  .st-flow{border:1px solid currentColor;transition:opacity .25s}
+  .st-flow.st-votes{color:var(--st-votes);background:var(--st-votes-bg)}
+  .st-flow.st-money{color:var(--st-money);background:var(--st-money-bg)}
+  .st-txt{transition:opacity .25s}
+  #structBox[data-mode="votes"] .st-money,#structBox[data-mode="money"] .st-votes{opacity:.22}
+</style>
+
+<script>
+(function () {
+  /* ---------- activity: what happened to the 36-point spread (Ghemawat & Pisano, 1997, p. 1) ---------- */
+  var range = document.getElementById("dcRange"), val = document.getElementById("dcVal");
+  var btn = document.getElementById("dcReveal"), read = document.getElementById("dcRead");
+  var svg = document.getElementById("dcSvg"), plot = document.getElementById("dcPlot");
+  if (!range || !svg) return;
+  var NS = "http://www.w3.org/2000/svg", revealed = false;
+  function el(n, a, p) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); (p || svg).appendChild(e); return e; }
+  function tx(x, y, s, anchor, cls) { var e = el("text", { x: x, y: y, "text-anchor": anchor, "class": cls }); e.textContent = s; return e; }
+  function guess() { return parseInt(range.value, 10) || 0; }
+  function draw() {
+    var W = Math.max(220, Math.round(plot.clientWidth || 300)), L = 4, R = 10, rowH = 52, T = 4;
+    var rows = [
+      { lab: "Your guess", lo: 0, hi: guess(), cls: "dc-you", v: guess() + "% closed", show: true },
+      { lab: "Managers’ usual guess", lo: 100 / 3, hi: 50, cls: "dc-mgr", v: "a third to a half", show: revealed },
+      { lab: "What happened, 1971–80", lo: 90, hi: 100, cls: "dc-real", v: "more than 90%", show: revealed }
+    ];
+    var H = T + rows.length * rowH + 44;
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H); svg.setAttribute("width", W); svg.setAttribute("height", H);
+    el("title", { id: "dcT" }).textContent = "Share of the 36-point ROI spread closed by 1980: your guess, managers' usual guess and the outcome";
+    el("desc", { id: "dcD" }).textContent = revealed
+      ? "Your guess " + guess() + "%. Managers usually guess one-third to one-half. More than nine-tenths actually closed."
+      : "Your guess " + guess() + "%. The other two rows are hidden until you reveal them.";
+    var X = function (v) { return L + v / 100 * (W - L - R); };
+    var axisY = T + rows.length * rowH + 4;
+    [0, 25, 50, 75, 100].forEach(function (v) {
+      el("line", { x1: X(v), x2: X(v), y1: T, y2: axisY, "class": "dc-grid" });
+      tx(X(v), axisY + 15, v + "%", v === 0 ? "start" : v === 100 ? "end" : "middle", "dc-tick");
+    });
+    el("line", { x1: L, x2: W - R, y1: axisY, y2: axisY, "class": "dc-axis" });
+    tx((L + W - R) / 2, axisY + 34, "Share of the 36-point spread closed by 1980", "middle", "dc-tick");
+    rows.forEach(function (r, i) {
+      var y0 = T + i * rowH;
+      tx(L, y0 + 14, r.lab, "start", "dc-lbl");
+      var by = y0 + 22, bh = 16;
+      if (!r.show) {
+        el("rect", { x: X(0) + 0.5, y: by, width: X(100) - X(0) - 1, height: bh, rx: 3, "class": "dc-hid" });
+        tx(X(50), by + 12, "reveal to see", "middle", "dc-val");
+        return;
+      }
+      var w = Math.max(2, X(r.hi) - X(r.lo));
+      el("rect", { x: X(r.lo), y: by, width: w, height: bh, rx: 3, "class": r.cls });
+      var t = tx(X(r.hi) + 6, by + 12, r.v, "start", "dc-val");
+      var tw = t.getComputedTextLength ? t.getComputedTextLength() : 80;
+      if (X(r.hi) + 6 + tw > W - R) {
+        if (X(r.lo) - 6 - tw >= L) { t.setAttribute("x", X(r.lo) - 6); t.setAttribute("text-anchor", "end"); }
+        else { t.setAttribute("x", X(r.hi) - 6); t.setAttribute("text-anchor", "end"); t.setAttribute("class", "dc-val-in"); }
+      }
+    });
+  }
+  function update() { val.textContent = guess() + "%"; draw(); if (revealed) explain(); }
+  function explain() {
+    var g = guess(), msg;
+    if (g >= 90) msg = "You were right: more than nine-tenths of the spread closed. Most managers are not.";
+    else if (g >= 33 && g <= 50) msg = "Your guess sits where most managers’ does, between a third and a half. The real figure was more than nine-tenths.";
+    else if (g < 33) msg = "You expected advantage to be stickier than most managers do. The real figure was more than nine-tenths.";
+    else msg = "Closer than most managers, who guess a third to a half. The real figure was more than nine-tenths.";
+    read.textContent = msg + " A 36-point gap shrank to less than 3.6 points in a decade (Ghemawat & Pisano, 1997, p. 1). Regression to the mean is familiar; its speed and scope are what managers misjudge.";
+  }
+  range.addEventListener("input", update);
+  btn.addEventListener("click", function () { revealed = true; btn.textContent = "Revealed"; draw(); explain(); });
+  draw();
+  if (window.ResizeObserver) { var lw = 0; new ResizeObserver(function () { var w = Math.round(plot.clientWidth); if (w && w !== lw) { lw = w; draw(); } }).observe(plot); }
+})();
+
+(function () {
+  /* ---------- activity: the imitation chain applied to Patagonia (Grant, 2019, p. 162) ---------- */
+  var box = document.getElementById("chainGates"), sum = document.getElementById("chainSum");
+  if (!box) return;
+  var LABELS = { holds: "Holds", leaks: "Leaks", open: "Open" };
+  var GATES = [
+    { n: "Gate 1 · Identify", need: "Can the rival see the superior returns?", mech: "Obscure superior performance", read: "leaks",
+      why: "Rivals can see that Patagonia wins, but not how much it earns.",
+      ev: [["Case p. 2", "Privately held, and did not publicly share its financial data; its 2022 value was estimated anywhere from $2 billion to $8 billion."],
+           ["Case p. 2", "Revenue of about $1 billion and net income of about $100 million are media estimates, not reported figures."],
+           ["Case p. 2", "Success itself is visible: the largest share of US outdoor apparel, at nearly 10%."],
+           ["Analysis", "A fourfold range in estimated value measures how little outsiders know. The gate leaks on whether to imitate and holds on how much there is to gain."]] },
+    { n: "Gate 2 · Incentive", need: "Would imitation look profitable?", mech: "Deterrence and preemption", read: "open",
+      why: "Patagonia lowers this barrier on purpose for the practices it wants copied.",
+      ev: [["Case p. 5", "Its 2011 charter committed it to sharing best practices with other companies."],
+           ["Case pp. 4, 6", "It co-founded 1% for the Planet in 2002; by fall 2020 the alliance had more than 5,000 business members."],
+           ["Case p. 5", "Chouinard hoped that showing a better way would lead other companies to follow."],
+           ["Analysis", "No threat of retaliation appears anywhere in the case. For its environmental practices, Patagonia invites imitation rather than deterring it."]] },
+    { n: "Gate 3 · Diagnose", need: "Can the rival tell what causes the advantage?", mech: "Causal ambiguity", read: "holds",
+      why: "Too many elements reinforce each other for a rival to know which one matters.",
+      ev: [["Case pp. 3–5", "Durable products, free repairs (the Reno facility repaired 100,000 items a year), a family- and outdoor-friendly culture since the 1980s, growth deliberately capped since 1991, and lawsuits in defence of public land."],
+           ["Teaching note p. 4", "The note’s opening question is whether Patagonia succeeded because of its commitment to sustainability or despite it."],
+           ["Analysis", "If the case’s own readers argue about the cause, a rival cannot be sure which piece to copy. Copy most of it and you may land in Grant’s valley next to the peak."]] },
+    { n: "Gate 4 · Acquire", need: "Can the rival buy or build what it needs?", mech: "Immobile, hard-to-replicate resources", read: "holds",
+      why: "The inputs can be bought; the record and the owner cannot.",
+      ev: [["Case p. 4", "Inputs can be bought: Patagonia switched all 166 cotton products to organic cotton within eighteen months."],
+           ["Case p. 13", "A record cannot: Chouinard described nearly 50 years of an experiment in responsible business."],
+           ["Case p. 12", "Since 2022 the owners cannot take money out for themselves."],
+           ["Analysis", "For a shareholder-owned rival, matching that is not an operating decision. Its owners would have to give away their claim on the firm."]] }
+  ];
+  var picks = [null, null, null, null];
+  GATES.forEach(function (g, i) {
+    var card = document.createElement("div");
+    card.className = "rounded-xl border border-slate-200 p-4 flex flex-col";
+    var h = document.createElement("p"); h.className = "font-mono text-xs text-blue-700"; h.textContent = g.n.toUpperCase();
+    var q = document.createElement("p"); q.className = "mt-1 text-sm font-semibold text-slate-900"; q.textContent = g.need;
+    var m = document.createElement("p"); m.className = "mt-1 text-xs text-slate-500"; m.textContent = "Barrier: " + g.mech;
+    var row = document.createElement("div"); row.className = "mt-3 flex flex-wrap gap-2";
+    var out = document.createElement("div"); out.className = "mt-3 border-t border-slate-200 pt-3"; out.hidden = true;
+    var btns = [];
+    ["holds", "leaks", "open"].forEach(function (k) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "s7-opt rounded-full border border-slate-300 px-3 py-1 text-xs font-semibold text-slate-700";
+      b.setAttribute("aria-pressed", "false"); b.textContent = LABELS[k];
+      b.addEventListener("click", function () {
+        picks[i] = k;
+        btns.forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+        paintReading(out, g, k); summary();
+      });
+      btns.push(b); row.appendChild(b);
+    });
+    card.appendChild(h); card.appendChild(q); card.appendChild(m); card.appendChild(row); card.appendChild(out);
+    box.appendChild(card);
+  });
+  function paintReading(out, g, k) {
+    while (out.firstChild) out.removeChild(out.firstChild);
+    out.hidden = false;
+    var top = document.createElement("p"); top.className = "text-sm leading-relaxed text-slate-700";
+    var lead = document.createElement("strong");
+    lead.className = k === g.read ? "s7-ok" : "s7-mid";
+    lead.textContent = (k === g.read ? "Same as our reading: " : "Our reading: ") + LABELS[g.read] + ". ";
+    top.appendChild(lead); top.appendChild(document.createTextNode(g.why));
+    out.appendChild(top);
+    var ul = document.createElement("ul"); ul.className = "mt-2 space-y-2";
+    g.ev.forEach(function (e) {
+      var li = document.createElement("li"); li.className = "text-xs text-slate-600 leading-relaxed";
+      var tag = document.createElement("span");
+      tag.className = "pill mr-1 " + (e[0] === "Analysis" ? "bg-amber-50 text-amber-800" : "bg-teal-50 text-teal-800");
+      tag.textContent = e[0];
+      li.appendChild(tag); li.appendChild(document.createTextNode(e[1]));
+      ul.appendChild(li);
+    });
+    out.appendChild(ul);
+  }
+  function summary() {
+    var done = picks.filter(function (p) { return p; }).length;
+    if (done < 4) { sum.textContent = done + " of 4 gates rated."; return; }
+    var holds = picks.filter(function (p) { return p === "holds"; }).length;
+    var match = picks.filter(function (p, i) { return p === GATES[i].read; }).length;
+    sum.textContent = "You rated " + holds + " of 4 gates as holding and matched our reading on " + match + ". Our reading has two holding gates, diagnosis and acquisition. " +
+      "Because an imitator must clear all four, one gate that genuinely holds is enough. Patagonia’s defence does not rest on deterring anyone: it sits at the last two gates, and since 2022 the fourth is the hardest to pass.";
+  }
+})();
+</script>
+
+<script>
+(function () {
+  /* ---------- activity: deterrence, preemption or both (Grant, 2019; Ghemawat & Pisano, 1997) ---------- */
+  var list = document.getElementById("dpList"), score = document.getElementById("dpScore");
+  if (!list) return;
+  var NAMES = { d: "Deterrence", p: "Preemption", b: "Both" };
+  var ITEMS = [
+    { s: "After its NutraSweet patents expired, Monsanto fought a costly price war against the Holland Sweetener Company.", src: "Grant (2019), p. 163", a: "d",
+      why: "Deterrence. The war was expensive, but it bought Monsanto a reputation for aggression that put off other would-be entrants to aspartame." },
+    { s: "Between 1950 and 1972 the six leading US breakfast-cereal makers introduced 80 new brands.", src: "Grant (2019), p. 163", a: "p",
+      why: "Preemption by product proliferation: a full shelf leaves few niches for new entrants or smaller rivals." },
+    { s: "Before its NutraSweet patents expired, Monsanto invested heavily in aspartame plant capacity it did not need.", src: "Grant (2019), pp. 92, 163", a: "b",
+      why: "Both. Grant files the same move under deterrence in chapter 4 (capacity already built makes a threat credible) and under preemption in chapter 7 (it occupies the capacity a rival would need). Capacity is where the two ideas meet." },
+    { s: "Procter & Gamble fought long market-share wars in disposable diapers and household detergents.", src: "Grant (2019), p. 94", a: "d",
+      why: "Deterrence by reputation. Grant notes that the toughness it showed protects P&G from attack in its other markets too." },
+    { s: "Du Pont built a large new titanium dioxide plant that crowded out large-scale expansion by its competitors.", src: "Ghemawat & Pisano (1997), p. 14", a: "p",
+      why: "Preemption of capacity. Twenty years later Du Pont was still the only firm in the world running its low-cost process." },
+    { s: "In filtered cigarettes, pioneer brands held their segments through scale economies in brand marketing, brand loyalty, response lags and credible threats of retaliation.", src: "Ghemawat & Pisano (1997), p. 5", a: "b",
+      why: "Both. Arriving first occupied each new segment; the scale behind the pioneers and their threat of retaliation made imitation look unprofitable. Order of entry matched share rank in four of the five segments." },
+    { s: "In 2000–02 Airbus advertised its A380 superjumbo heavily, before it had finished designing it.", src: "Grant (2019), p. 92", a: "d",
+      why: "Deterrence through a signalled commitment. Airbus wanted airlines to order, and wanted to discourage Boeing from developing a rival plane." },
+    { s: "In 1974 Xerox protected its plain-paper copiers with more than 2,000 patents, most of them unused.", src: "Grant (2019), p. 163", a: "p",
+      why: "Preemption by patent proliferation: the wall narrows the routes a rival can innovate along. Suing IBM over 22 of the patents showed it was not decorative." }
+  ];
+  var answered = 0, right = 0;
+  ITEMS.forEach(function (it) {
+    var card = document.createElement("div");
+    card.className = "rounded-xl border border-slate-200 p-4";
+    var s = document.createElement("p"); s.className = "text-sm font-medium text-slate-900 leading-relaxed"; s.textContent = it.s;
+    var src = document.createElement("p"); src.className = "mt-1 text-[11px] text-slate-500"; src.textContent = it.src;
+    var row = document.createElement("div"); row.className = "mt-3 flex flex-wrap gap-2";
+    var out = document.createElement("p"); out.className = "mt-3 text-sm leading-relaxed text-slate-700"; out.hidden = true;
+    var done = false, btns = [];
+    ["d", "p", "b"].forEach(function (k) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "s7-opt rounded-full border border-slate-300 px-3 py-1 text-xs font-semibold text-slate-700";
+      b.setAttribute("aria-pressed", "false"); b.textContent = NAMES[k];
+      b.addEventListener("click", function () {
+        if (done) return;
+        done = true; answered++;
+        var ok = k === it.a; if (ok) right++;
+        btns.forEach(function (x) { x.disabled = true; x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+        out.hidden = false;
+        var lead = document.createElement("strong"); lead.className = ok ? "s7-ok" : "s7-no";
+        lead.textContent = ok ? "Right. " : "Not quite: " + NAMES[it.a] + ". ";
+        out.appendChild(lead); out.appendChild(document.createTextNode(it.why));
+        score.textContent = right + " of " + answered + " right" + (answered === ITEMS.length ? ". All eight classified. The pattern: deterrence changes the rival’s expected payoff, preemption removes its opportunity, and committed capacity does both." : " so far.");
+      });
+      btns.push(b); row.appendChild(b);
+    });
+    card.appendChild(s); card.appendChild(src); card.appendChild(row); card.appendChild(out);
+    list.appendChild(card);
+  });
+  score.textContent = "0 of 8 classified.";
+})();
+
+(function () {
+  /* ---------- activity: the irreversibility test (Ghemawat & Pisano, 1997, pp. 13-14) ---------- */
+  var list = document.getElementById("irrevList"), score = document.getElementById("irrevScore");
+  if (!list) return;
+  var IND = ["Sunk cost", "Lock-out", "Time lag"];
+  var HINT = ["money specialised to this course that cannot be recovered", "options closed that would be costly to reopen", "years needed to build or change course"];
+  var IR = [
+    { who: "Boeing · the 747", tag: "Reading", src: "Ghemawat & Pisano (1997), p. 13", s: "Develop a new wide-bodied airframe.", r: [1, null, null],
+      v: "The reading’s example of lock-in. At one point Boeing’s net investment in the project exceeded its net worth, so the money was lost unless the plane flew." },
+    { who: "Reynolds Metals · Hurricane Creek", tag: "Reading", src: "Ghemawat & Pisano (1997), pp. 13–14", s: "Shut an alumina refinery after years of losses.", r: [null, 1, null],
+      v: "Lock-out. Reopening would cost too much and take too long, so closing the refinery committed Reynolds to keeping it closed, even if aluminium prices recovered." },
+    { who: "Pepsi-Cola · abroad", tag: "Reading", src: "Ghemawat & Pisano (1997), p. 14", s: "Lag Coca-Cola in expanding outside the US.", r: [0, 1, null],
+      v: "Lock-out with nothing spent. Not investing can be as commitment-intensive as investing: Pepsi earns less than a tenth of what Coke earns from soft drinks outside the US." },
+    { who: "Coors · going national", tag: "Reading", src: "Ghemawat & Pisano (1997), p. 14", s: "Take a regional beer national from the late 1970s.", r: [null, null, 1],
+      v: "Time lag. The switch needed the better part of a decade: new marketing know-how, distributors in 39 new states and the first new plant since 1873. Coors had to stay the course for the advertising economies to show." },
+    { who: "Patagonia · 1994 cotton", tag: "Analysis", src: "Case p. 4", s: "Move all 166 cotton products to organic cotton within eighteen months, or stop selling sportswear (30% of the business).", r: [null, null, 1],
+      v: "A long lag: eighteen months to switch, two years to regain previous sales. The case reports no sunk cost and nothing stopped a later reversal except reputation, so the move was serious but reversible." },
+    { who: "Patagonia · 2011 charter", tag: "Analysis", src: "Case pp. 5–6", s: "Write 1% for the Planet, the best product and no unnecessary harm into the charter; changes need a unanimous shareholder vote.", r: [0, null, 0],
+      v: "A binding promise more than an irreversible commitment. The company was wholly owned by the Chouinard family, so the shareholders who could unanimously undo it were the people who made it." },
+    { who: "Patagonia · 2022 transfer", tag: "Analysis", src: "Case pp. 10–12", s: "Give the voting stock to an irrevocable purpose trust and the rest to a 501(c)(4) nonprofit.", r: [1, 1, null],
+      v: "Sunk: the family gave away the economic value and paid a $17.5 million gift tax. Lock-out: the stock would not be transferred again, closing off a sale or a listing. Not absolute: the trust could direct Holdfast to sell some or all of its shares (p. 12)." },
+    { who: "Hypothetical · a rival’s promise", tag: "Hypothetical", src: "Illustration", s: "A rival’s chief executive tells a conference that the firm will ‘match anything Patagonia does on sustainability’.", r: [0, 0, 0],
+      v: "None of the three. Nothing is sunk, no option is closed and nothing takes time to undo. Talk of retaliation, or of matching, is cheap (Ghemawat & Pisano, 1997, p. 4)." }
+  ];
+  var checked = 0;
+  IR.forEach(function (it) {
+    var card = document.createElement("div");
+    card.className = "rounded-xl border border-slate-200 p-4 flex flex-col";
+    var head = document.createElement("div"); head.className = "flex flex-wrap items-center justify-between gap-2";
+    var who = document.createElement("p"); who.className = "text-[11px] font-semibold uppercase tracking-wider text-slate-500"; who.textContent = it.who;
+    var tag = document.createElement("span");
+    tag.className = "pill " + (it.tag === "Reading" ? "bg-blue-50 text-blue-700" : it.tag === "Analysis" ? "bg-amber-50 text-amber-800" : "bg-slate-100 text-slate-600");
+    tag.textContent = it.tag;
+    head.appendChild(who); head.appendChild(tag);
+    var s = document.createElement("p"); s.className = "mt-2 text-sm font-medium text-slate-900 leading-relaxed"; s.textContent = it.s;
+    var src = document.createElement("p"); src.className = "mt-1 text-[11px] text-slate-500"; src.textContent = it.src;
+    var row = document.createElement("div"); row.className = "mt-3 flex flex-wrap gap-2";
+    var picks = [0, 0, 0], btns = [], done = false;
+    IND.forEach(function (name, k) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "s7-opt rounded-full border border-slate-300 px-3 py-1 text-xs font-semibold text-slate-700";
+      b.setAttribute("aria-pressed", "false"); b.title = HINT[k]; b.textContent = name;
+      b.addEventListener("click", function () { if (done) return; picks[k] = 1 - picks[k]; b.setAttribute("aria-pressed", picks[k] ? "true" : "false"); });
+      btns.push(b); row.appendChild(b);
+    });
+    var go = document.createElement("button");
+    go.type = "button"; go.className = "mt-3 self-start rounded-full bg-slate-900 px-3 py-1 text-xs font-semibold text-white hover:bg-slate-800"; go.textContent = "Compare";
+    var out = document.createElement("div"); out.className = "mt-3 text-sm leading-relaxed text-slate-700"; out.hidden = true;
+    go.addEventListener("click", function () {
+      if (done) return;
+      done = true; go.disabled = true; go.textContent = "Compared"; checked++;
+      var scored = 0, match = 0;
+      var marks = document.createElement("ul"); marks.className = "space-y-1 text-xs";
+      IND.forEach(function (name, k) {
+        btns[k].disabled = true;
+        var li = document.createElement("li"), r = it.r[k], m = document.createElement("strong");
+        if (r === null) { m.className = "s7-mid"; m.textContent = name + ": "; li.appendChild(m); li.appendChild(document.createTextNode(it.tag === "Reading" ? "not the point of the example; either answer counts." : "arguable from the case; either answer counts.")); }
+        else {
+          scored++; var ok = picks[k] === r; if (ok) match++;
+          m.className = ok ? "s7-ok" : "s7-no"; m.textContent = name + ": " + (r ? "present" : "absent") + (ok ? " ✓ " : " ✗ ");
+          li.appendChild(m); li.appendChild(document.createTextNode(ok ? "" : "you marked it " + (picks[k] ? "present." : "absent.")));
+        }
+        marks.appendChild(li);
+      });
+      out.hidden = false;
+      var p = document.createElement("p"); p.className = "mt-2"; p.textContent = it.v;
+      var tally = document.createElement("p"); tally.className = "mt-2 text-xs font-semibold text-slate-600";
+      tally.textContent = "Matched our reading on " + match + " of " + scored + " scored indicator" + (scored === 1 ? "" : "s") + ".";
+      out.appendChild(marks); out.appendChild(p); out.appendChild(tally);
+      score.textContent = checked + " of " + IR.length + " compared" + (checked === IR.length ? ". The lesson: the 2022 transfer is the only Patagonia move that both sinks value and closes options, and the cheapest item on the list commits no one." : ".");
+    });
+    card.appendChild(head); card.appendChild(s); card.appendChild(src); card.appendChild(row); card.appendChild(go); card.appendChild(out);
+    list.appendChild(card);
+  });
+  score.textContent = "0 of " + IR.length + " compared.";
+})();
+</script>
+
+<script>
+(function () {
+  /* ---------- activity: Project Chacabuco option explorer (case pp. 7-12; teaching script, Module 5) ---------- */
+  var opts = document.getElementById("chacaOpts"), detail = document.getElementById("chacaDetail");
+  var reveal = document.getElementById("chacaReveal"), choiceEl = document.getElementById("chacaChoice"), out = document.getElementById("chacaOut");
+  if (!opts) return;
+  var CRIT = ["Release significant value now", "Steward the mission 50+ years", "Lift the burden from the family", "Limit the tax bill", "Keep the family involved", "A new model others can follow"];
+  var VL = { y: "Yes", p: "Partly", n: "No", u: "Not stated" };
+  var OPTIONS = [
+    { k: "heirs", name: "Pass it to the next generation", short: "Intergenerational transfer",
+      facts: ["About 30% of US private companies pass from founders to their children; about 13% stay family-held through later generations (case p. 8).", "Fletcher and Claire did not want the burden of control, or to own assets that large (p. 8).", "It releases no cash, and the estate tax would force a sale of stock (p. 8)."],
+      v: ["n", "p", "n", "n", "y", "n"], why: ["Releases no cash (p. 8).", "Family control keeps the mission aligned for now; few families keep control for long (p. 8).", "The children did not want it (p. 8).", "The estate tax would force a share sale (p. 8).", "The family stays in charge.", "The standard founder’s path."] },
+    { k: "ipo", name: "Go public", short: "IPO, direct listing or SPAC",
+      facts: ["Patagonia estimated a listing could release $2 billion to $10 billion, depending on how much stock was sold (p. 8).", "Chouinard believed public markets drive short-term thinking and growth at all costs (p. 8).", "As shares changed hands and family control diluted, mission alignment could degrade; the team judged the risk too great (p. 8).", "Gains on the sale would be taxed at 20% federal plus 13.3% California (p. 8)."],
+      v: ["y", "n", "p", "n", "p", "p"], why: ["$2–10 billion estimated (p. 8).", "The team feared a slow erosion of the mission (p. 8).", "Control passes to outside owners over time.", "Capital-gains tax on the sale (p. 8).", "Family influence dilutes as shares change hands (p. 8).", "The team thought a purpose-led listing might shift the market (p. 8)."] },
+    { k: "pe", name: "Sell to private equity or a competitor", short: "A sale, with conditions",
+      facts: ["A full sale could raise $6 billion to $10 billion immediately (p. 8).", "Conditions protecting the purpose, benefit-corporation status and employees would lower the price (p. 8).", "Gellert: “Everybody who had the means made it clear they wanted control over Patagonia’s future direction” (p. 9).", "The same capital-gains rates apply (p. 9)."],
+      v: ["y", "n", "y", "n", "n", "n"], why: ["$6–10 billion estimated (p. 8).", "Buyers wanted control in the end (p. 9).", "The family exits.", "Capital-gains tax on the sale (p. 9).", "Patagonia would give up the freedom to act independently (p. 9).", "A conventional exit."] },
+    { k: "esop", name: "Sell to the employees", short: "Employee stock ownership plan",
+      facts: ["About 6,500 US ESOPs had 14 million owners in 2022 (p. 9).", "A founder selling more than a third of the shares to an ESOP could defer capital-gains tax by reinvesting (p. 9).", "It released little cash, left out employees outside the US, and would have loaded the company with debt (p. 9).", "Employee-owners could face choices that set their own finances against the mission (p. 9)."],
+      v: ["n", "p", "y", "y", "p", "n"], why: ["Did not release much cash (p. 9).", "Debt and employee self-interest could compromise the mission (p. 9).", "Ownership passes to employees.", "Tax could be deferred (p. 9).", "The family could weigh in on choosing the trustee (p. 9).", "Thousands already exist (p. 9)."] },
+    { k: "fdn", name: "Give it to a charitable foundation", short: "US 501(c)(3), or move abroad",
+      facts: ["The European model: Carlsberg, Heineken, IKEA, Bosch and Rolex are foundation-owned (p. 9).", "US law let a charitable foundation own only 20% of a company’s voting stock (35% in some cases for five years), with a 200% tax on excess holdings (p. 10).", "Moving Patagonia to Denmark or Switzerland was judged prohibitively complex and not in employees’ interest (p. 10)."],
+      v: ["p", "n", "y", "y", "u", "n"], why: ["Grants from income; nothing up front.", "US holding limits would force the foundation to sell down (p. 10).", "The family gives the company away.", "Donations to a charitable foundation are deductible (Exhibit 8).", "The case does not say.", "Common in Europe (p. 9)."] },
+    { k: "newman", name: "Copy Newman’s Own", short: "A foundation owning 100%",
+      facts: ["Congress created a law letting a private foundation own all of Newman’s Own, provided all net profits went to the foundation and the two boards were independent (p. 10).", "The Chouinards would have to leave either Patagonia’s board or the foundation’s (p. 10).", "A 5% annual payout rule could, in a weak year, force the sale of assets, possibly Patagonia stock (p. 10)."],
+      v: ["p", "p", "y", "u", "n", "n"], why: ["All net profits go to the foundation, over time.", "The 5% payout could force a share sale in a weak year (p. 10).", "The family gives the company away.", "The case does not say.", "Independence rules would push the family away (p. 10).", "The model already existed."] },
+    { k: "ppt", locked: true, name: "Purpose trust plus 501(c)(4)", short: "The advisor’s proposal",
+      facts: ["Dan Mosley of BDT Capital Partners suggested a perpetual purpose trust: irrevocable, unlimited in time, with a purpose rather than a person as beneficiary (pp. 10–11).", "Donating the stock to a 501(c)(4) avoided the excess-holdings and 5% payout rules. Donations are not deductible, which did not matter: nothing was being sold, so there was no gain to offset (p. 11).", "The trust takes 100% of the votes (2% of the stock); the Holdfast Collective takes the non-voting stock (98%) and 98% of the dividends (pp. 11–12)."],
+      v: ["p", "y", "y", "y", "y", "y"], why: ["Only free cash flow over time; Patagonia estimated $100 million or more a year (p. 12).", "The trust is perpetual and its trustees cannot change the purpose (pp. 10–11).", "The family no longer owns the stock, and it will not be transferred again (p. 12).", "A one-time $17.5 million gift tax, paid by the family (p. 12).", "The family stays in control of decision-making (p. 12).", "It brought the fourth goal to light (p. 11)."] }
+  ];
+  var current = null, chosen = null, unlocked = false, btns = {};
+  function count(o) { var c = { y: 0, p: 0, n: 0, u: 0 }; o.v.forEach(function (x) { c[x]++; }); return c; }
+  function mkBtn(o) {
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "s7-opt rounded-xl border border-slate-300 px-3 py-2.5 text-left text-xs font-semibold text-slate-800 hover:bg-slate-50";
+    b.setAttribute("aria-pressed", "false");
+    b.textContent = o.name;
+    var sub = document.createElement("span"); sub.className = "block font-normal text-slate-500"; sub.textContent = o.short;
+    b.appendChild(sub);
+    b.addEventListener("click", function () { show(o); });
+    return b;
+  }
+  OPTIONS.forEach(function (o) {
+    if (o.locked) {
+      var lock = document.createElement("button");
+      lock.type = "button"; lock.className = "rounded-xl border border-dashed border-slate-300 px-3 py-2.5 text-left text-xs font-semibold text-slate-600 hover:bg-slate-50";
+      lock.textContent = "Phase 3: hear the advisor";
+      var sub = document.createElement("span"); sub.className = "block font-normal text-slate-500"; sub.textContent = "Unlocks the eighth path";
+      lock.appendChild(sub);
+      lock.addEventListener("click", function () { unlock(); show(o); });
+      btns[o.k] = lock; opts.appendChild(lock);
+    } else { btns[o.k] = mkBtn(o); opts.appendChild(btns[o.k]); }
+  });
+  function unlock() {
+    if (unlocked) return; unlocked = true;
+    var o = OPTIONS[OPTIONS.length - 1], nb = mkBtn(o);
+    opts.replaceChild(nb, btns[o.k]); btns[o.k] = nb;
+  }
+  function show(o) {
+    current = o;
+    Object.keys(btns).forEach(function (k) { if (btns[k].hasAttribute("aria-pressed")) btns[k].setAttribute("aria-pressed", k === o.k ? "true" : "false"); });
+    while (detail.firstChild) detail.removeChild(detail.firstChild);
+    var h = document.createElement("h4"); h.className = "font-bold text-slate-900"; h.textContent = o.name;
+    var tag = document.createElement("p"); tag.className = "mt-1 text-[10px] font-semibold uppercase tracking-wider text-teal-800"; tag.textContent = "What the case says";
+    var ul = document.createElement("ul"); ul.className = "mt-2 space-y-1.5 text-sm text-slate-600 leading-relaxed";
+    o.facts.forEach(function (f) { var li = document.createElement("li"); li.className = "flex gap-2"; var d = document.createElement("span"); d.className = "text-teal-700"; d.textContent = "•"; var t = document.createElement("span"); t.textContent = f; li.appendChild(d); li.appendChild(t); ul.appendChild(li); });
+    var row = document.createElement("div"); row.className = "mt-4 flex flex-wrap gap-2";
+    var sc = document.createElement("button"); sc.type = "button"; sc.className = "rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-100"; sc.textContent = "Show how it scores";
+    var ch = document.createElement("button"); ch.type = "button"; ch.className = "s7-opt rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700";
+    ch.setAttribute("aria-pressed", chosen === o ? "true" : "false"); ch.textContent = chosen === o ? "Your chosen path" : "Choose this path";
+    var grid = document.createElement("div"); grid.className = "mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-3"; grid.hidden = true;
+    o.v.forEach(function (x, i) {
+      var c = document.createElement("div"); c.className = "rounded-lg border border-slate-200 p-3";
+      var top = document.createElement("div"); top.className = "flex items-start justify-between gap-2";
+      var n = document.createElement("p"); n.className = "text-xs font-semibold text-slate-800"; n.textContent = CRIT[i];
+      var chip = document.createElement("span"); chip.className = "s7-chip s7-" + x; chip.textContent = VL[x];
+      top.appendChild(n); top.appendChild(chip);
+      var w = document.createElement("p"); w.className = "mt-1 text-xs text-slate-600"; w.textContent = o.why[i];
+      c.appendChild(top); c.appendChild(w); grid.appendChild(c);
+    });
+    var note = document.createElement("p"); note.className = "mt-2 text-[11px] text-slate-500"; note.hidden = true;
+    note.textContent = "Goals 1–3 and 6 are the team’s (case p. 7); tax and family involvement are the constraints the case describes (p. 7). The scores are our reading of the case, not the case’s own.";
+    sc.addEventListener("click", function () { grid.hidden = false; note.hidden = false; sc.disabled = true; sc.textContent = "Scored"; });
+    ch.addEventListener("click", function () {
+      chosen = o; ch.setAttribute("aria-pressed", "true"); ch.textContent = "Your chosen path";
+      choiceEl.textContent = "Your group’s path: " + o.name + ".";
+      reveal.disabled = false;
+    });
+    row.appendChild(sc); row.appendChild(ch);
+    detail.appendChild(h); detail.appendChild(tag); detail.appendChild(ul); detail.appendChild(row); detail.appendChild(grid); detail.appendChild(note);
+  }
+  reveal.addEventListener("click", function () {
+    if (!chosen) return;
+    unlock();
+    var ppt = OPTIONS[OPTIONS.length - 1], cc = count(chosen);
+    while (out.firstChild) out.removeChild(out.firstChild);
+    out.hidden = false;
+    var box = document.createElement("div"); box.className = "rounded-2xl border border-teal-200 bg-teal-50 p-5";
+    var k = document.createElement("p"); k.className = "text-[10px] font-semibold uppercase tracking-wider text-teal-800"; k.textContent = "What Patagonia did · 14 September 2022";
+    var p1 = document.createElement("p"); p1.className = "mt-1 text-sm text-slate-700 leading-relaxed";
+    p1.textContent = "The purpose trust plus 501(c)(4): all voting stock to the Patagonia Purpose Trust, all non-voting stock to the Holdfast Collective (case pp. 11–12). In our reading it scores yes on five criteria and partly on one, and the partial one is the first goal: money now.";
+    var p2 = document.createElement("p"); p2.className = "mt-2 text-sm text-slate-700 leading-relaxed";
+    p2.textContent = chosen === ppt
+      ? "Your group reached the same answer as the Chacabuco team, and accepted the same trade: less money up front in exchange for a structure that cannot easily be sold."
+      : "Your group chose “" + chosen.name + "”, which our reading scores yes on " + cc.y + ", partly on " + cc.p + " and no on " + cc.n + ". Ask what your choice buys that the actual one does not; for a sale or a listing, the answer is billions now (case p. 8).";
+    var p3 = document.createElement("p"); p3.className = "mt-2 text-sm text-slate-700 leading-relaxed";
+    p3.textContent = "The teaching note’s verdict is that no option could meet every goal at once (teaching note, p. 12). For this session, notice what the family paid for irreversibility: the money now that a sale or a listing would have released.";
+    box.appendChild(k); box.appendChild(p1); box.appendChild(p2); box.appendChild(p3);
+    out.appendChild(box);
+  });
+})();
+
+(function () {
+  /* ---------- activity: follow the votes and the money (case pp. 10-12) ---------- */
+  var root = document.getElementById("structBox"), read = document.getElementById("structRead");
+  if (!root) return;
+  var TXT = {
+    votes: "Votes: all of them sit with the Patagonia Purpose Trust, which elects the board and must approve material transactions. The Holdfast Collective, which owns 98% of the shares, has none. Control and economic value have been separated on purpose.",
+    money: "Money: Patagonia’s leadership recommends a dividend from profit left after reinvestment, and the board approves it. 98% goes to the Holdfast Collective for climate work; the trust’s 2% can only be used to protect the purpose. Nobody who decides receives the cash.",
+    both: "Both flows together: the decision-maker gets no financial benefit, and the beneficiary gets no vote. Dessouky called this decoupling of any financial windfall from the decision-maker the reason the team liked the structure (case p. 12)."
+  };
+  var btns = root.querySelectorAll(".st-mode");
+  function set(m) {
+    root.setAttribute("data-mode", m);
+    btns.forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-mode") === m ? "true" : "false"); });
+    read.textContent = TXT[m];
+  }
+  btns.forEach(function (b) { b.addEventListener("click", function () { set(b.getAttribute("data-mode")); }); });
+  set("both");
+})();
+</script>
+
+<script>window.SQUIZ = [
+ {
+  "q": "In the PIMS data Ghemawat and Pisano report, the top half of 692 business units started 1971 at 39% ROI and the bottom half at 3%. By 1980, how much of the 36-point spread had closed?",
+  "o": [
+   "About a third",
+   "About half",
+   "More than nine-tenths",
+   "None: the spread widened"
+  ],
+  "a": 2,
+  "e": "More than nine-tenths (Ghemawat & Pisano, 1997, p. 1). Managers typically guess a third to a half: they understand regression to the mean but underestimate how far and how fast it runs."
+ },
+ {
+  "q": "Which pair are the two threats to appropriability, rather than to scarcity?",
+  "o": [
+   "Holdup and slack",
+   "Imitation and substitution",
+   "Imitation and holdup",
+   "Substitution and slack"
+  ],
+  "a": 0,
+  "e": "Scarcity is threatened from outside, by imitation and substitution. Appropriability is threatened from within the value chain: holdup diverts value to non-owners, and slack dissipates it inside the firm (pp. 2–3)."
+ },
+ {
+  "q": "NFL team revenue rose 77% in real terms between 1970 and 1984, yet the average team's operating income fell by a third. In Ghemawat and Pisano's account, which threat explains this?",
+  "o": [
+   "Imitation by rival leagues",
+   "Substitution by other sports",
+   "Slack among team staff",
+   "Holdup by the players"
+  ],
+  "a": 3,
+  "e": "Holdup. The NFL saw off rival leagues and kept its ratings, so scarcity held. But the players' share of revenue rose from 35% to nearly 55%, and they captured about four-fifths of the increase (pp. 8–9)."
+ },
+ {
+  "q": "Grant says a firm must meet four conditions to imitate a rival's strategy. Which of these is NOT one of them?",
+  "o": [
+   "Identify the rival's competitive advantage",
+   "Reach the same scale as the rival",
+   "Diagnose the sources of the advantage",
+   "Acquire the resources and capabilities needed"
+  ],
+  "a": 1,
+  "e": "The four are identification, incentive, diagnosis and resource acquisition (Grant, 2019, p. 162). Scale can matter, as one of the size economies Ghemawat and Pisano list, but it is not one of Grant's four steps."
+ },
+ {
+  "q": "Patagonia did not publicly share its financial data, and its 2022 value was estimated anywhere between $2 billion and $8 billion. Which of Grant's isolating mechanisms does that resemble?",
+  "o": [
+   "Obscuring superior performance",
+   "Causal ambiguity",
+   "Preemption",
+   "Patent proliferation"
+  ],
+  "a": 0,
+  "e": "Grant notes that one attraction of private status is avoiding disclosure of financial performance (2019, p. 162). A rival that cannot see how profitable a position is has less reason to attack it. The case states the fact (p. 2); the strategic reading is this session's analysis."
+ },
+ {
+  "q": "Grant says a deterrent threat must be clearly signalled, backed by commitment and credible. Why does a threatened price war often fail the last test?",
+  "o": [
+   "Price wars are illegal in most markets",
+   "Entrants rarely watch incumbents' prices",
+   "Carrying it out would often hurt the incumbent more than the entrant",
+   "A price war cannot be announced in advance"
+  ],
+  "a": 2,
+  "e": "If carrying out the threat is costly for the threatener, it lacks credibility, and a price war usually damages the incumbent more than a new entrant. Capacity already built is more persuasive (Grant, 2019, p. 92). Ghemawat and Pisano agree: talk of retaliation is cheap (1997, p. 4)."
+ },
+ {
+  "q": "Which of these is preemption rather than deterrence?",
+  "o": [
+   "Monsanto's price war against Holland Sweetener after its NutraSweet patents expired",
+   "Du Pont's large titanium dioxide plant, which crowded out rivals' expansion",
+   "Procter & Gamble's long market-share wars in diapers and detergents",
+   "A public warning that any entrant will face retaliation"
+  ],
+  "a": 1,
+  "e": "Preemption takes the opportunity before a rival can. Du Pont's capacity left no room for large-scale expansion by competitors, and twenty years later it was still the only operator of the low-cost process (Ghemawat & Pisano, 1997, p. 14). The others work by threatening, or proving willingness, to punish."
+ },
+ {
+  "q": "According to Ghemawat and Pisano, what is the correct measure of whether a decision is commitment-intensive?",
+  "o": [
+   "The amount of money involved",
+   "Whether the board approved it",
+   "Whether rivals noticed it",
+   "How hard it is to reverse"
+  ],
+  "a": 3,
+  "e": "Irreversibility, not the amount of money involved (p. 13), shown by sunk costs (lock-in), opportunity costs (lock-out) and time lags. A decision that spends nothing can still be a heavy commitment, as Pepsi's slow move abroad shows (p. 14)."
+ },
+ {
+  "q": "Reynolds Metals shut its Hurricane Creek alumina refinery after years of losses. Which indicator of irreversibility does this illustrate?",
+  "o": [
+   "A time lag in building resources",
+   "Sunk cost and lock-in",
+   "A high learn-to-burn ratio",
+   "Opportunity cost and lock-out"
+  ],
+  "a": 3,
+  "e": "Lock-out, the mirror image of lock-in. Reopening would cost too much and take too long, so closing the refinery committed Reynolds to keeping it closed even if aluminium prices recovered (pp. 13–14)."
+ },
+ {
+  "q": "In Patagonia's 2022 structure, who holds the voting stock, and who receives most of the dividends?",
+  "o": [
+   "The Holdfast Collective votes; the Purpose Trust receives 98% of dividends",
+   "The Chouinard family votes; the Holdfast Collective receives the dividends",
+   "The Purpose Trust holds all voting stock (2% of shares); the Holdfast Collective receives 98% of dividends",
+   "Both entities vote in proportion to their shareholdings"
+  ],
+  "a": 2,
+  "e": "The Patagonia Purpose Trust owns 100% of the voting stock, equal to 2% of the total, and so controls the company. The Holdfast Collective, a 501(c)(4), owns all the non-voting stock, 98% of the total, and receives 98% of the dividends (case pp. 11–12)."
+ },
+ {
+  "q": "Which statement about Patagonia's 2022 structure matches the case?",
+  "o": [
+   "The Purpose Trust could direct the Holdfast Collective to sell some or all of its Patagonia stock",
+   "No Patagonia share can ever be sold, by law",
+   "The structure released a large sum of money up front",
+   "Donations to the Holdfast Collective are tax-deductible"
+  ],
+  "a": 0,
+  "e": "The case says the trust could direct Holdfast to sell stock if that served Patagonia's purpose (p. 12), so 'irrevocable trust' does not mean 'never sold'. Conn says the model releases only free cash flow over time, not a large sum up front (p. 12), and donations to a 501(c)(4) are not deductible (p. 11)."
+ },
+ {
+  "q": "Why, according to Ghemawat and Pisano, are capabilities spread across many people less exposed to holdup?",
+  "o": [
+   "They are protected by patents",
+   "No single individual or partner can walk away with them",
+   "They are cheaper to build than commitments",
+   "Employees prefer to work for stable firms"
+  ],
+  "a": 1,
+  "e": "Where an advantage rests on one person or one supplier, it is open to holdup. When its lead scientist left, Genes'R'Us was left with rights worth almost nothing; Amgen and Genentech carry on when talented scientists leave, because their capabilities span many people's experience (pp. 17–18)."
+ }
+];</script>
+<script>
+(function () {
+  /* ---------------- quiz ---------------- */
+  var QUIZ = window.SQUIZ || [];
+  var qw = document.getElementById("sQuiz");
+  if (qw && QUIZ.length) {
+    var score = 0;
+    document.getElementById("sQuizTotal").textContent = QUIZ.length;
+    function build() {
+      qw.innerHTML = ""; score = 0;
+      document.getElementById("sQuizScore").textContent = "0";
+      QUIZ.forEach(function (item, n) {
+        var d = document.createElement("div");
+        d.className = "card p-5";
+        var opts = item.o.map(function (t, k) {
+          return '<button type="button" class="quiz-option w-full rounded-lg border border-slate-300 px-3 py-2 text-left text-sm text-slate-700" data-k="' + k + '">' +
+            String.fromCharCode(65 + k) + ". " + t + '</button>';
+        }).join("");
+        d.innerHTML = '<p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Question ' + (n + 1) + '</p>' +
+          '<p class="mt-1 text-sm font-semibold text-slate-900">' + item.q + '</p>' +
+          '<div class="mt-3 grid gap-2">' + opts + '</div>' +
+          '<p class="quiz-explanation text-xs text-slate-600 bg-slate-100 p-3 rounded-md border border-slate-200"></p>';
+        var expl = d.querySelector(".quiz-explanation");
+        d.querySelectorAll(".quiz-option").forEach(function (b) {
+          b.addEventListener("click", function () {
+            if (d.dataset.answered) return;
+            d.dataset.answered = "1";
+            var k = parseInt(b.dataset.k, 10);
+            if (k === item.a) { score++; document.getElementById("sQuizScore").textContent = score; }
+            d.querySelectorAll(".quiz-option").forEach(function (x) {
+              x.disabled = true;
+              var xi = parseInt(x.dataset.k, 10);
+              if (xi === item.a) x.classList.add("correct");
+              else if (x === b) x.classList.add("incorrect");
+            });
+            expl.textContent = item.e;
+            expl.classList.add("visible");
+          });
+        });
+        qw.appendChild(d);
+      });
+    }
+    build();
+    var rb = document.getElementById("sQuizReset");
+    if (rb) rb.addEventListener("click", build);
+  }
+})();
+</script>
+
+<script>
+(function () {
+  var SECTIONS = [["recap", "Carried forward"], ["leak", "Why advantage leaks"], ["isolating", "Isolating mechanisms"], ["deterrence", "Deterrence & preemption"], ["commitments", "Commitments & capabilities"], ["chacabuco", "Project Chacabuco"], ["structure", "Earth as shareholder"], ["decks", "Go deeper"], ["discussion", "Discussion"], ["quiz", "Quiz"], ["readings", "Readings"]];
+  var KEY = "s7-progress-v1";
+  var ACTIVITIES = ["decay", "chain", "classify", "irrev", "chacabuco", "structure", "quiz"];
+
+  // ---------- theme ----------
+  var root = document.documentElement;
+  try {
+    // light is the default; dark only when the visitor has asked for it
+    if (localStorage.getItem("s7-theme") === "dark") root.classList.add("dark");
+  } catch (e) {}
+  var themeBtn = document.getElementById("themeBtn");
+  if (themeBtn) {
+    themeBtn.addEventListener("click", function () {
+      root.classList.toggle("dark");
+      try { localStorage.setItem("s7-theme", root.classList.contains("dark") ? "dark" : "light"); } catch (e) {}
+    });
+  }
+
+  // ---------- reading progress ----------
+  var bar = document.getElementById("readbar");
+  var pctEl = document.getElementById("progPct");
+  function onScroll() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? Math.min(100, Math.max(0, (h.scrollTop / max) * 100)) : 0;
+    if (bar) { bar.style.width = p + "%"; bar.setAttribute("aria-valuenow", Math.round(p)); }
+    if (pctEl) pctEl.textContent = Math.round(p);
+  }
+  var ticking = false;
+  window.addEventListener("scroll", function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () { onScroll(); ticking = false; });
+  }, { passive: true });
+  onScroll();
+
+  // ---------- rail + drawer nav ----------
+  var rail = document.getElementById("rail");
+  var dnav = document.getElementById("drawerNav");
+  SECTIONS.forEach(function (s) {
+    if (!document.getElementById(s[0])) return;
+    if (rail) {
+      var a = document.createElement("a");
+      a.href = "#" + s[0];
+      a.dataset.sec = s[0];
+      a.innerHTML = '<span class="dot"></span><span class="lbl">' + s[1] + "</span>";
+      rail.appendChild(a);
+    }
+    if (dnav) {
+      var d = document.createElement("a");
+      d.href = "#" + s[0];
+      d.className = "rounded-lg px-3 py-2.5 text-sm text-slate-700 hover:bg-slate-100";
+      d.textContent = s[1];
+      d.addEventListener("click", closeDrawer);
+      dnav.appendChild(d);
+    }
+  });
+
+  var drawer = document.getElementById("drawer");
+  var drawerBtn = document.getElementById("drawerBtn");
+  function openDrawer() {
+    if (!drawer) return;
+    drawer.classList.remove("hidden");
+    if (drawerBtn) drawerBtn.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  }
+  function closeDrawer() {
+    if (!drawer) return;
+    drawer.classList.add("hidden");
+    if (drawerBtn) drawerBtn.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
+  if (drawerBtn) drawerBtn.addEventListener("click", openDrawer);
+  var dc = document.getElementById("drawerClose");
+  var ds = document.getElementById("drawerScrim");
+  if (dc) dc.addEventListener("click", closeDrawer);
+  if (ds) ds.addEventListener("click", closeDrawer);
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeDrawer(); });
+
+  // ---------- scrollspy for the rail ----------
+  var spy = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting || !rail) return;
+      rail.querySelectorAll("a").forEach(function (a) {
+        a.classList.toggle("on", a.dataset.sec === en.target.id);
+      });
+    });
+  }, { rootMargin: "-45% 0px -50% 0px" });
+  SECTIONS.forEach(function (s) {
+    var el = document.getElementById(s[0]);
+    if (el) spy.observe(el);
+  });
+
+  // ---------- scroll reveal ----------
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduce) {
+    var targets = document.querySelectorAll("section > .container > *");
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.06, rootMargin: "0px 0px -8% 0px" });
+    targets.forEach(function (t, i) {
+      // never hide anything already on screen at load
+      if (t.getBoundingClientRect().top < window.innerHeight) return;
+      t.classList.add("rv");
+      io.observe(t);
+    });
+  }
+
+  // ---------- completion tracking ----------
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { state = {}; }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  function count() { return ACTIVITIES.filter(function (k) { return state[k]; }).length; }
+  function paint() {
+    var n = count(), total = ACTIVITIES.length;
+    var a = document.getElementById("doneCount"); if (a) a.textContent = n;
+    var b = document.getElementById("drawerDone"); if (b) b.textContent = n;
+    var c = document.getElementById("drawerBar"); if (c) c.style.width = (100 * n / total) + "%";
+    ACTIVITIES.forEach(function (k) {
+      var badge = document.querySelector('[data-done-for="' + k + '"]');
+      if (badge) badge.hidden = !state[k];
+    });
+  }
+  function mark(k) { if (!state[k]) { state[k] = true; save(); paint(); } }
+  paint();
+
+  // wire completion to the real interactions already on the page
+  function onClickWithin(sel, key) {
+    var el = document.querySelector(sel);
+    if (el) el.addEventListener("click", function () { mark(key); });
+  }
+  onClickWithin("#decayBox", "decay");
+  onClickWithin("#chainBox", "chain");
+  onClickWithin("#dpBox", "classify");
+  onClickWithin("#irrevBox", "irrev");
+  onClickWithin("#chacaBox", "chacabuco");
+  onClickWithin("#structBox", "structure");
+  onClickWithin("#sQuiz", "quiz");
+
+  // reset control, appended to the readings section if present
+  var readings = document.getElementById("readings");
+  if (readings) {
+    var wrap = readings.querySelector(".container");
+    if (wrap) {
+      var p = document.createElement("div");
+      p.className = "mt-8 flex flex-wrap items-center gap-3 border-t border-slate-200 pt-6 text-sm";
+      p.innerHTML = '<span class="text-slate-500">Your progress on this page is saved in this browser only.</span>' +
+        '<button type="button" id="resetProg" class="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-100">Reset my progress</button>';
+      wrap.appendChild(p);
+      var rp = document.getElementById("resetProg");
+      if (rp) rp.addEventListener("click", function () {
+        state = {}; save(); paint();
+        rp.textContent = "Reset";
+        setTimeout(function () { rp.textContent = "Reset my progress"; }, 1400);
+      });
+    }
+  }
+})();
+
+</script>
+
+<script>
+/* keep the Chart.js canvases legible in both themes */
+(function(){
+  function chartTheme(){
+    if(!window.Chart||!Chart.getChart) return;
+    var dark=document.documentElement.classList.contains("dark");
+    var tick=dark?"#94A3B8":"#475569";
+    var grid=dark?"rgba(226,232,240,.12)":"rgba(15,23,42,.08)";
+    Chart.defaults.color=tick;
+    document.querySelectorAll("canvas").forEach(function(c){
+      var ch=Chart.getChart(c); if(!ch||!ch.config) return;
+      // Chart.js v4 rebuilds chart.options on update(), so mutate the config
+      var o=ch.config.options=ch.config.options||{};
+      var sc=o.scales=o.scales||{};
+      Object.keys(sc).forEach(function(k){
+        if(!sc[k]) return;
+        sc[k].ticks=sc[k].ticks||{}; sc[k].ticks.color=tick;
+        if(sc[k].grid&&sc[k].grid.display===false) return;
+        sc[k].grid=sc[k].grid||{}; sc[k].grid.color=grid;
+      });
+      var pl=o.plugins=o.plugins||{};
+      if(pl.legend){ pl.legend.labels=pl.legend.labels||{}; pl.legend.labels.color=tick; }
+      ch.update("none");
+    });
+  }
+  var btn=document.getElementById("themeBtn");
+  if(btn) btn.addEventListener("click",function(){ setTimeout(chartTheme,60); });
+
+  var n=0, iv=setInterval(function(){ chartTheme(); if(++n>20) clearInterval(iv); },400);
+})();
+</script>
+</body>
+</html>

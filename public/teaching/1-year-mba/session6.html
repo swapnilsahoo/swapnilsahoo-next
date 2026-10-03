@@ -1,0 +1,1827 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 6: Creating Competitive Advantage | STRAMGT 221 — Dr. Swapnil Sahoo</title>
+    <meta name="description" content="How a firm creates competitive advantage: the value stick (willingness to pay, price, cost, supplier opportunity cost), external and internal sources of advantage, and how Patagonia widened its wedge.">
+    <link rel="canonical" href="https://www.swapnilsahoo.com/teaching/1-year-mba/session6.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Session 6: Creating Competitive Advantage">
+    <meta property="og:description" content="How a firm creates competitive advantage: the value stick (willingness to pay, price, cost, supplier opportunity cost), external and internal sources of advantage, and how Patagonia widened its wedge.">
+    <meta property="og:url" content="https://www.swapnilsahoo.com/teaching/1-year-mba/session6.html">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter','ui-sans-serif','system-ui','sans-serif'],
+              display: ['Fraunces','ui-serif','Georgia','serif']
+            },
+            colors: {
+              slate: {
+                50:'#F8FAFC',100:'#F1F5F9',200:'#E2E8F0',300:'#CBD5E1',
+                400:'#94A3B8',500:'#64748B',600:'#475569',700:'#334155',
+                800:'#1E293B',900:'#0F172A',950:'#020617'
+              },
+              gray: {
+                50:'#F8FAFC',100:'#F1F5F9',200:'#E2E8F0',300:'#CBD5E1',
+                400:'#94A3B8',500:'#64748B',600:'#475569',700:'#334155',
+                800:'#1E293B',900:'#0F172A'
+              },
+              blue: {
+                50:'#EEF1FF',100:'#E0E5FF',200:'#C6CEFE',300:'#A3AEFB',
+                400:'#818CF8',500:'#6366F1',600:'#4F46E5',700:'#4338CA',
+                800:'#372FA8',900:'#2E2A82',950:'#1B1850'
+              }
+            },
+            boxShadow: {
+              lift: '0 1px 2px rgba(15,23,42,.04), 0 8px 24px -12px rgba(15,23,42,.18)',
+              liftmd: '0 2px 4px rgba(15,23,42,.05), 0 18px 40px -18px rgba(15,23,42,.28)'
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root{
+          --sticky-offset:100px;
+          --paper:#FFFFFF; --ink:#0F172A; --muted:#475569; --line:#E2E8F0;
+          --card:#FFFFFF; --accent:#4F46E5; --accent-soft:#EEF2FF;
+        }
+        html.dark{
+          --paper:#0B1120; --ink:#E2E8F0; --muted:#94A3B8; --line:#1E293B;
+          --card:#111A2E; --accent:#818CF8; --accent-soft:#1E1B4B;
+        }
+        html{scroll-padding-top:120px}
+        body{
+          font-family:'Inter',sans-serif;
+          background:var(--paper); color:var(--ink);
+          -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+        }
+        h1,h2,h3,.display{font-family:'Fraunces',ui-serif,Georgia,serif; letter-spacing:-.02em}
+        h1{font-optical-sizing:auto}
+
+        /* ---- dark-mode repaint of the utility classes already in the markup ---- */
+        html.dark .bg-white{background:var(--card)!important}
+        html.dark .bg-slate-50,html.dark .bg-slate-100,html.dark .bg-gray-50{background:#0F172A!important}
+        html.dark .border-slate-200,html.dark .border-slate-300,html.dark .border-gray-200{border-color:var(--line)!important}
+        html.dark .text-slate-900,html.dark .text-gray-900,html.dark .text-slate-800{color:var(--ink)!important}
+        html.dark .text-slate-600,html.dark .text-slate-700,html.dark .text-gray-600,html.dark .text-gray-700{color:#CBD5E1!important}
+        html.dark .text-slate-500,html.dark .text-slate-400{color:var(--muted)!important}
+        html.dark .divide-slate-100>*+*{border-color:var(--line)!important}
+        html.dark table thead{background:#162032!important}
+
+
+        /* ---- dark: translucent + tinted surfaces ---- */
+        html.dark .bg-white\/85,html.dark .bg-white\/80,html.dark .bg-white\/90{background:rgba(11,17,32,.90)!important}
+        html.dark .bg-blue-50,html.dark .bg-indigo-50{background:#171C3C!important}
+        html.dark .bg-blue-100,html.dark .bg-indigo-100{background:#1F2552!important}
+        html.dark .bg-blue-200{background:#272E60!important}
+        html.dark .bg-amber-50{background:#2A2110!important}
+        html.dark .bg-amber-100{background:#382C14!important}
+        html.dark .bg-rose-50{background:#2C1418!important}
+        html.dark .bg-rose-100,html.dark .bg-red-100{background:#3A181E!important}
+        html.dark .bg-emerald-50{background:#0F261A!important}
+        html.dark .bg-emerald-100{background:#143324!important}
+        html.dark .bg-teal-50{background:#0E2624!important}
+        html.dark .bg-teal-100{background:#12302E!important}
+        html.dark .bg-teal-200{background:#173B38!important}
+        html.dark .bg-cyan-100{background:#102A33!important}
+        html.dark .bg-slate-200{background:#1E293B!important}
+
+        /* dark surfaces: keep bars/cards as raised panels, turn actions into the accent */
+        html.dark div.bg-slate-900,html.dark footer.bg-gray-800{background:#111A2E!important}
+        html.dark a.bg-slate-900,html.dark button.bg-slate-900,html.dark span.bg-slate-900{background:#4F46E5!important;color:#fff!important}
+        html.dark a.bg-slate-900:hover,html.dark button.bg-slate-900:hover{background:#6366F1!important}
+        html.dark .border-gray-700{border-color:var(--line)!important}
+        html.dark .text-slate-100,html.dark .text-slate-200,html.dark .text-slate-300{color:#E2E8F0!important}
+
+        /* dark: tinted text has to lighten to stay legible */
+        html.dark .text-blue-600,html.dark .text-blue-700,html.dark .text-blue-800{color:#A3AEFB!important}
+        html.dark .text-rose-600,html.dark .text-rose-700,html.dark .text-red-600,html.dark .text-red-700{color:#FCA5A5!important}
+        html.dark .text-emerald-600,html.dark .text-emerald-700,html.dark .text-emerald-800{color:#6EE7A8!important}
+        html.dark .text-amber-600,html.dark .text-amber-700,html.dark .text-amber-800{color:#FCD34D!important}
+        html.dark .text-teal-600,html.dark .text-teal-700,html.dark .text-teal-800{color:#5EEAD4!important}
+
+        /* dark: tinted borders */
+        html.dark .border-blue-200,html.dark .border-blue-300,html.dark .border-blue-400{border-color:#2F3670!important}
+        html.dark .border-amber-200,html.dark .border-amber-500{border-color:#4A3A1A!important}
+        html.dark .border-rose-200,html.dark .border-rose-400{border-color:#4A2028!important}
+        html.dark .border-teal-200,html.dark .border-teal-300{border-color:#1C4B47!important}
+
+
+        /* dark: remaining tinted text families + form controls */
+        html.dark .text-blue-900,html.dark .text-indigo-600,html.dark .text-indigo-700,
+        html.dark .text-indigo-800,html.dark .text-purple-800{color:#B4BCFC!important}
+        html.dark .text-red-800,html.dark .text-rose-800{color:#FCA5A5!important}
+        html.dark .text-emerald-900{color:#6EE7A8!important}
+        html.dark .text-amber-900,html.dark .text-orange-600{color:#FBBF24!important}
+        html.dark .text-cyan-700,html.dark .text-cyan-800,html.dark .text-sky-700{color:#67E8F9!important}
+        html.dark input,html.dark textarea,html.dark select{
+          background:#111A2E!important;color:var(--ink)!important;border-color:var(--line)!important}
+        html.dark input::placeholder,html.dark textarea::placeholder{color:#64748B!important}
+
+
+        /* light: lift the few tinted headings that sat under 4.5:1 */
+        html:not(.dark) .text-amber-600{color:#B45309}
+        html:not(.dark) .text-orange-600{color:#C2410C}
+        html:not(.dark) .text-teal-600{color:#0F766E}
+
+
+        /* dark: hover states must not flash a light surface */
+        html.dark .hover\:bg-slate-50:hover,html.dark .hover\:bg-slate-100:hover{background:#1E293B!important}
+        html.dark .hover\:bg-blue-200:hover{background:#2B3268!important}
+        html.dark .hover\:bg-teal-200:hover{background:#17403C!important}
+        html.dark .hover\:bg-rose-100:hover{background:#421C23!important}
+
+        /* ---- reading progress ---- */
+        #readbar{position:fixed;top:0;left:0;height:3px;width:0;z-index:70;
+          background:linear-gradient(90deg,#4F46E5,#818CF8);transition:width .12s linear}
+
+        /* ---- section rail (desktop) ---- */
+        #rail{position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:40;display:none}
+        @media (min-width:1380px){#rail{display:block}}
+        #rail a{position:relative;display:flex;align-items:center;padding:4px 10px 4px 0;color:var(--muted);
+          font-size:11px;text-decoration:none;opacity:.55;transition:opacity .2s}
+        #rail a:hover,#rail a.on{opacity:1;color:var(--accent)}
+        #rail .dot{width:7px;height:7px;border-radius:99px;background:currentColor;flex:none;transition:transform .2s}
+        #rail a.on .dot{transform:scale(1.6)}
+        #rail .lbl{position:absolute;left:18px;top:50%;transform:translate(-4px,-50%);opacity:0;
+          pointer-events:none;white-space:nowrap;transition:opacity .2s,transform .2s;
+          background:var(--card);border:1px solid var(--line);border-radius:6px;padding:1px 7px;
+          box-shadow:0 4px 14px -8px rgba(15,23,42,.35)}
+        #rail a:hover .lbl,#rail a:focus-visible .lbl{opacity:1;transform:translate(0,-50%)}
+        /* the active section keeps its label only where the gutter is wide enough to hold it */
+        @media (min-width:1760px){#rail a.on .lbl{opacity:1;transform:translate(0,-50%)}}
+
+        /* ---- nav ---- */
+        .nav-link{transition:color .18s,border-color .18s;border-bottom:2px solid transparent;
+          padding-bottom:4px;color:var(--muted)}
+        .nav-link:hover,.active-nav{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+
+        /* ---- cards get real depth ---- */
+        .rounded-xl,.rounded-2xl{transition:box-shadow .22s ease,transform .22s ease,border-color .22s}
+        section .bg-white.rounded-2xl,section .bg-white.rounded-xl{box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -14px rgba(15,23,42,.16)}
+        section .bg-white.rounded-2xl:hover,section .bg-white.rounded-xl:hover{
+          box-shadow:0 2px 6px rgba(15,23,42,.06),0 20px 44px -20px rgba(15,23,42,.26);transform:translateY(-2px)}
+
+        /* ---- scroll reveal ---- */
+        .rv{opacity:0;transform:translateY(14px)}
+        .rv.in{opacity:1;transform:none;transition:opacity .55s cubic-bezier(.2,.7,.3,1),transform .55s cubic-bezier(.2,.7,.3,1)}
+
+        /* ---- completion ---- */
+        .done-badge{display:inline-flex;align-items:center;gap:5px;border-radius:99px;
+          background:#DCFCE7;color:#166534;padding:2px 9px;font-size:10px;font-weight:700;
+          text-transform:uppercase;letter-spacing:.06em}
+        html.dark .done-badge{background:#14321F;color:#6EE7A8}
+
+        /* ---- focus, motion, print ---- */
+        a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,[tabindex]:focus-visible{
+          outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+        @media (prefers-reduced-motion:reduce){
+          *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+          .rv{opacity:1;transform:none}
+          html{scroll-behavior:auto}
+        }
+        @media print{#readbar,#rail,#top-bar,#main-header,#drawer,#drawerBtn{display:none!important}}
+
+
+        /* ---- one shell width for every section (no stranded gutters) ---- */
+        body .container,
+        body section.max-w-6xl,
+        body div.max-w-6xl{
+          width:100%;
+          max-width:88rem!important;
+          margin-left:auto;margin-right:auto;
+          padding-left:clamp(1.25rem,3.5vw,2.75rem);
+          padding-right:clamp(1.25rem,3.5vw,2.75rem);
+        }
+        @media (min-width:1700px){
+          body .container,body section.max-w-6xl,body div.max-w-6xl{max-width:96rem!important}
+        }
+
+
+        /* ============ restored component styles (were defined in the original head) ============ */
+        [hidden]{display:none!important}
+        section[id]{scroll-margin-top:var(--sticky-offset)}
+        @media (min-width:768px){.chart-container{height:350px;max-height:400px}}
+
+        .analysis-content{max-height:0;overflow:hidden;opacity:0;margin-top:0;
+          padding-top:0!important;padding-bottom:0!important;border-top-width:0!important;border-bottom-width:0!important;
+          transition:max-height .5s ease-out,opacity .3s ease-out,margin-top .5s ease-out,padding .5s ease-out}
+        .analysis-content.visible{max-height:500px;opacity:1;margin-top:1rem;
+          padding-top:1rem!important;padding-bottom:1rem!important;border-top-width:1px!important;border-bottom-width:1px!important}
+        .analysis-button{transition:background-color .2s ease}
+
+        .quiz-option{cursor:pointer;transition:all .2s ease-in-out}
+        .quiz-option.correct{background-color:#dcfce7!important;border-color:#22c55e!important;color:#15803d!important;font-weight:500}
+        .quiz-option.incorrect{background-color:#fee2e2!important;border-color:#ef4444!important;color:#b91c1c!important;font-weight:500}
+        .quiz-option:disabled{opacity:.8;cursor:default}
+        .quiz-explanation{max-height:0;overflow:hidden;margin-top:0;opacity:0;
+          transition:max-height .5s ease-in-out,margin-top .5s ease-in-out,opacity .5s ease-in-out}
+        .quiz-explanation.visible{opacity:1;margin-top:1rem;max-height:500px}
+
+        .top-bar-link svg,.footer-link svg{width:1.125rem;height:1.125rem;fill:currentColor;transition:color .2s ease-in-out}
+        .hexagon-icon{position:relative;width:28px;height:28px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.3));display:inline-block;vertical-align:middle}
+        .hexagon-icon svg{width:100%;height:100%;animation:glow 2.5s infinite ease-in-out}
+        .hexagon-path{stroke:#B91C1C;stroke-width:1}
+        .hexagon-s{font-family:Georgia,serif;font-weight:bold;font-size:48px;fill:#facc15;text-anchor:middle;dominant-baseline:central}
+        @keyframes glow{0%,100%{filter:drop-shadow(0 0 4px rgba(239,68,68,.7))}50%{filter:drop-shadow(0 0 10px rgba(239,68,68,1))}}
+        #main-header.sticky-nav{position:sticky;z-index:40}
+        #top-bar.sticky-top{position:sticky;top:0;z-index:50}
+        #modal{background-color:rgba(0,0,0,.7)}
+        #modal-content{max-height:calc(100vh - 4rem)}
+
+        .concept-card{background:#fff;border-radius:.75rem;padding:1.5rem;margin-bottom:1.5rem;border-left:4px solid;
+          box-shadow:0 4px 6px -1px rgba(0,0,0,.05),0 2px 4px -2px rgba(0,0,0,.05);
+          transition:transform .3s ease,box-shadow .3s ease;display:flex;flex-direction:column;height:100%}
+        .concept-card:hover{transform:translateY(-4px);box-shadow:0 10px 15px -3px rgba(0,0,0,.07),0 4px 6px -4px rgba(0,0,0,.07)}
+        .concept-card h4{font-size:1.125rem;font-weight:600;margin-bottom:.75rem}
+        .concept-card p.definition{font-style:italic;color:#6b7280;margin-bottom:1rem;font-size:.875rem;flex-grow:1}
+        .concept-card .example{margin-top:1rem;padding-top:1rem;border-top:1px solid #e5e7eb}
+        .concept-card .example:first-of-type{margin-top:0;padding-top:0;border-top:none}
+        .concept-card .example h5{font-weight:600;color:#374151;margin-bottom:.5rem;font-size:.875rem}
+        .concept-card .example p{font-size:.875rem;color:#4b5563;margin-bottom:.25rem;line-height:1.5}
+        .concept-card .example strong{color:#1f2937}
+        .border-needs{border-left-color:#f43f5e}.border-variety{border-left-color:#0ea5e9}.border-access{border-left-color:#10b981}
+        .border-fit1{border-left-color:#fbbf24}.border-fit2{border-left-color:#f97316}.border-fit3{border-left-color:#ef4444}
+
+        .prose-custom p,.prose-custom ul,.prose-custom li{font-size:.875rem;line-height:1.6;color:#374151}
+        .prose-custom p{margin-bottom:1em}
+        .prose-custom ul{margin-top:.5em;margin-bottom:1em;padding-left:1.25em;list-style-type:disc}
+        .prose-custom li{margin-bottom:.25em}
+        .prose-custom strong{font-weight:600;color:#111827}
+
+        .comparison-table th,.comparison-table td{padding:.75rem 1rem;vertical-align:top;font-size:.75rem}
+        .comparison-table thead th{background-color:#f3f4f6;border-bottom:2px solid #e5e7eb}
+        .comparison-table tbody tr:nth-child(even){background-color:#f9fafb}
+        .comparison-table tbody tr:hover{background-color:#eff6ff}
+        .comparison-table th[scope="row"]{white-space:nowrap}
+
+        .activity-button{padding:.75rem 1rem;border-radius:.5rem;text-align:left;transition:all .2s ease-in-out;
+          font-size:.875rem;border-width:1px;display:block;width:100%;height:100%}
+        .activity-button strong{display:block;margin-bottom:.25rem;font-weight:600}
+        .activity-button:focus{outline:none;box-shadow:0 0 0 2px var(--tw-ring-color)}
+        .activity-button:focus-visible{box-shadow:0 0 0 2px var(--tw-ring-color)}
+        .workshop-button{background:#f3e8ff;border-color:#e9d5ff;--tw-ring-color:#c084fc;color:#581c87}
+        .workshop-button:hover{background:#e9d5ff;border-color:#d8b4fe}
+        .workshop-button strong{color:#7e22ce}.workshop-button:hover strong{color:#6b21a8}
+        .news-button{background:#dbeafe;border-color:#bfdbfe;--tw-ring-color:#60a5fa;color:#1e40af}
+        .news-button:hover{background:#bfdbfe;border-color:#93c5fd}
+        .news-button strong{color:#1d4ed8}.news-button:hover strong{color:#1e3a8a}
+        .tradeoff-button{background:#fef3c7;border-color:#fde68a;--tw-ring-color:#fbbf24;color:#78350f}
+        .tradeoff-button:hover{background:#fde68a;border-color:#fcd34d}
+        .tradeoff-button strong{color:#b45309}.tradeoff-button:hover strong{color:#92400e}
+        .simulation-button{background:#ffe4e6;border-color:#fecdd3;--tw-ring-color:#fb7185;color:#881337}
+        .simulation-button:hover{background:#fecdd3;border-color:#fda4af}
+        .simulation-button strong{color:#be123c}.simulation-button:hover strong{color:#9f1239}
+
+        .card{background:#fff;border:1px solid #e2e8f0;border-radius:14px}
+        .pill{display:inline-flex;align-items:center;gap:.4rem;border-radius:9999px;padding:.2rem .7rem;
+          font-size:.7rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+        .opt:disabled{cursor:default}
+        .ref{padding-left:1.6rem;text-indent:-1.6rem}
+        @media print{.no-print{display:none!important}}
+
+        /* ---- dark variants for the restored components ---- */
+        html.dark .card,html.dark .concept-card{background:var(--card)!important;border-color:var(--line)!important}
+        html.dark .concept-card p.definition{color:#94A3B8}
+        html.dark .concept-card .example{border-top-color:var(--line)}
+        html.dark .concept-card .example h5,html.dark .concept-card .example strong{color:#E2E8F0}
+        html.dark .concept-card .example p{color:#CBD5E1}
+        html.dark .prose-custom p,html.dark .prose-custom ul,html.dark .prose-custom li{color:#CBD5E1}
+        html.dark .prose-custom strong{color:var(--ink)}
+        html.dark .comparison-table thead th{background:#162032;border-bottom-color:var(--line)}
+        html.dark .comparison-table tbody tr:nth-child(even){background:#0F172A}
+        html.dark .comparison-table tbody tr:hover{background:#1E2749}
+        html.dark .quiz-option.correct{background-color:#14321F!important;border-color:#2F7D52!important;color:#6EE7A8!important}
+        html.dark .quiz-option.incorrect{background-color:#3A181E!important;border-color:#9B3540!important;color:#FCA5A5!important}
+        html.dark .workshop-button{background:#2A1B3D;border-color:#3D2A55;color:#DCC7F5}
+        html.dark .workshop-button:hover{background:#3D2A55}
+        html.dark .workshop-button strong{color:#C9A7F0}
+        html.dark .news-button{background:#1A2244;border-color:#2B3668;color:#BCC7FA}
+        html.dark .news-button:hover{background:#2B3668}
+        html.dark .news-button strong{color:#A3AEFB}
+        html.dark .tradeoff-button{background:#312512;border-color:#4A3A1A;color:#F3D9A4}
+        html.dark .tradeoff-button:hover{background:#4A3A1A}
+        html.dark .tradeoff-button strong{color:#FBBF24}
+        html.dark .simulation-button{background:#331419;border-color:#4A2028;color:#F6BEC5}
+        html.dark .simulation-button:hover{background:#4A2028}
+        html.dark .simulation-button strong{color:#FCA5A5}
+
+        .chart-container{position:relative;width:100%;max-width:600px;margin-inline:auto;height:300px;max-height:350px}
+        .tabular-nums{font-variant-numeric:tabular-nums}
+    </style>
+    <script>
+      /* theme, resolved before first paint: light unless this visitor chose dark */
+      (function () {
+        try {
+          if (localStorage.getItem("s6-theme") === "dark") {
+            document.documentElement.classList.add("dark");
+          }
+        } catch (e) {}
+      })();
+    </script>
+</head>
+
+<body class="text-slate-700">
+
+<div id="readbar" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+<nav id="rail" aria-label="Section navigation"></nav>
+
+<!-- Top Bar -->
+<div id="top-bar" class="bg-slate-900 text-slate-300 hidden sm:block">
+  <div class="container mx-auto px-6 flex justify-between items-center h-11 text-xs">
+    <div class="flex items-center gap-3 min-w-0">
+      <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="group shrink-0" title="swapnilsahoo.com">
+        <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
+          <svg viewBox="0 0 52 60" aria-label="Swapnil Sahoo" role="img">
+            <defs><linearGradient id="topRedGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
+            <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#topRedGradient)"/><text class="hexagon-s" x="26" y="32">S</text>
+          </svg>
+        </div>
+      </a>
+      <p class="truncate font-medium text-slate-400">&copy; Dr. Swapnil Sahoo 2026 &middot; Great Lakes Institute of Management, Gurgaon</p>
+    </div>
+    <div class="flex items-center gap-4 shrink-0">
+      <a href="https://www.swapnilsahoo.com/teaching/1-year-mba" class="hidden md:inline text-slate-400 hover:text-white transition">STRAMGT 221</a>
+      <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="X/Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.575 2h.093zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" clip-rule="evenodd"/></svg></a>
+      <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- Main Navigation -->
+<nav id="main-header" class="sticky top-0 z-50 border-b border-slate-200 bg-white/85 backdrop-blur-md">
+  <div class="container mx-auto px-6">
+    <div class="flex h-16 items-center justify-between gap-4">
+
+      <div class="flex items-center gap-3 min-w-0">
+        <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-slate-900 text-white font-display text-sm font-semibold">06</span>
+        <div class="min-w-0">
+          <p class="truncate font-display text-base font-semibold leading-tight text-slate-900">Creating Competitive Advantage</p>
+          <p class="hidden truncate text-[11px] text-slate-500 sm:block">90 minutes · <span id="progPct">0</span>% read · <span id="doneCount">0</span>/4 activities done</p>
+        </div>
+      </div>
+
+      <div class="hidden xl:flex items-center gap-5 text-sm">
+        <a href="#value" class="nav-link">Value wedge</a>
+        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#scenario" class="nav-link">Scenarios</a>
+        <a href="#case" class="nav-link">Patagonia</a>
+        <a href="#discussion" class="nav-link">Discussion</a>
+        <a href="#quiz" class="nav-link">Quiz</a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button id="themeBtn" type="button" aria-label="Toggle dark mode"
+          class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 transition">
+          <svg class="h-4 w-4 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="hidden h-4 w-4 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <button id="drawerBtn" type="button" aria-label="Open section menu" aria-expanded="false"
+          class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 transition xl:hidden">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <select id="mobile-nav" class="sr-only" tabindex="-1" aria-hidden="true">
+          <option value="#top">Top</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Slide-out drawer -->
+<div id="drawer" class="fixed inset-0 z-[60] hidden">
+  <div id="drawerScrim" class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"></div>
+  <aside class="absolute right-0 top-0 h-full w-[min(88vw,20rem)] overflow-y-auto bg-white p-5 shadow-2xl">
+    <div class="flex items-center justify-between">
+      <p class="font-display text-lg font-semibold text-slate-900">Session 6</p>
+      <button id="drawerClose" type="button" aria-label="Close menu"
+        class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="mt-3 rounded-xl bg-slate-50 p-3">
+      <div class="flex items-center justify-between text-xs text-slate-500">
+        <span>Progress</span><span><span id="drawerDone">0</span>/4 activities</span>
+      </div>
+      <div class="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-200">
+        <div id="drawerBar" class="h-full rounded-full bg-blue-600 transition-all" style="width:0%"></div>
+      </div>
+    </div>
+    <nav id="drawerNav" class="mt-4 grid gap-0.5" aria-label="Sections"></nav>
+  </aside>
+</div>
+
+<section id="top" class="bg-white border-b border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-10 md:py-12 grid gap-8 md:grid-cols-[1.25fr_.75fr] md:items-center">
+    <div>
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span class="pill bg-blue-50 text-blue-700">Session 06</span>
+        <span class="pill bg-slate-100 text-slate-600">1.5 hours</span>
+        <span class="pill bg-slate-100 text-slate-600">Business &amp; competitive strategy</span>
+      </div>
+      <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-slate-900">Creating Competitive Advantage</h1>
+      <p class="mt-2 font-display text-lg md:text-xl italic text-blue-700">Why some firms open a wider gap between what buyers will pay and what it costs to serve them</p>
+      <p class="mt-3 text-slate-600 md:text-lg leading-relaxed max-w-2xl">
+        Session 5 took stock of what Patagonia has: its resources, its activities, a culture rivals find hard to copy.
+        This session asks what those things are worth. A firm has a competitive advantage when it creates more value
+        than its rivals: a wider wedge between what its customers are willing to pay and what its suppliers and
+        employees need to be paid.
+      </p>
+      <p class="mt-3 text-slate-600 leading-relaxed max-w-2xl">
+        Patagonia is a hard test. For decades it made choices that looked expensive, from organic cotton to free repairs
+        to giving away part of every sale, and it came to hold the largest share of US outdoor apparel. Your job is to say
+        where on the wedge each choice landed, and whether it came from a change in the world or from Patagonia itself.
+      </p>
+      <div class="mt-6 flex flex-wrap gap-3 text-sm">
+        <a href="#recap" class="rounded-lg bg-slate-900 px-4 py-2.5 font-semibold text-white hover:bg-slate-800">Start with the recap</a>
+        <a href="#readings" class="rounded-lg border border-slate-300 px-4 py-2.5 font-semibold text-slate-700 hover:bg-slate-50">Readings &amp; preparation</a>
+      </div>
+    </div>
+    <div class="card p-5">
+      <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">What this session answers</p>
+      <ol class="mt-3 space-y-3">
+        <li class="flex gap-3"><span class="font-mono text-xs text-blue-600 pt-0.5">01</span><span class="text-sm font-semibold text-slate-800">How does a firm create a competitive advantage, and how would you know it had one?</span></li>
+        <li class="flex gap-3"><span class="font-mono text-xs text-blue-600 pt-0.5">02</span><span class="text-sm font-semibold text-slate-800">Which changes outside the firm create advantage, and why do only some firms exploit them?</span></li>
+        <li class="flex gap-3"><span class="font-mono text-xs text-blue-600 pt-0.5">03</span><span class="text-sm font-semibold text-slate-800">What did Patagonia build inside itself that widened its wedge?</span></li>
+      </ol>
+      <p class="mt-4 pt-4 border-t border-slate-200 text-xs text-slate-500 leading-relaxed">
+        Bring one number the case does not give you that you would need to prove Patagonia&rsquo;s advantage, and say
+        which point on the value stick it measures.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="recap" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Carried forward &middot; Sessions 3 and 5</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">What you bring to this session</h2>
+  <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+    <a href="/teaching/1-year-mba/session3.html" class="font-semibold text-blue-700 hover:underline">Session 3</a> sized the
+    industry. <a href="/teaching/1-year-mba/session5.html" class="font-semibold text-blue-700 hover:underline">Session 5</a>
+    took stock of Patagonia&rsquo;s resources, value chain and VRIO profile. This session puts a value on them, so revisit
+    Session 5 first if those tools are hazy.
+  </p>
+  <div class="mt-6 grid gap-4 md:grid-cols-3">
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Five forces &middot; Session 3</p>
+      <h3 class="mt-1 font-bold text-slate-900">Industry structure decides who keeps the value</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Porter&rsquo;s forces are a theory of value capture. Powerful
+        buyers keep more of the value an industry creates, powerful suppliers take more of it, rivalry and entry compete it
+        away, and substitutes cap what buyers will pay (Porter, 1985/2004, p. 9). Today the question moves inside
+        the industry: why does one firm open a wider wedge than its neighbours?</p>
+    </div>
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Resources &middot; Session 5</p>
+      <h3 class="mt-1 font-bold text-slate-900">An asset counts only if it moves a number</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">A culture, a brand or a supplier relationship is a source of
+        advantage only if it raises customers&rsquo; willingness to pay, or lowers what it costs to serve them, by more than
+        rivals manage. Session 5 asked whether Patagonia&rsquo;s resources are rare and hard to copy. This session asks what
+        they do to the wedge.</p>
+    </div>
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Value chain &middot; Session 5</p>
+      <h3 class="mt-1 font-bold text-slate-900">Activities are where the wedge is made</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Willingness to pay and cost are both outputs of activities.
+        As you read the case, trace each Patagonia choice to the activity it changed: procurement (organic cotton), service
+        (free repairs), human resources (daycare and parental leave), firm infrastructure (the benefit-corporation charter).</p>
+    </div>
+  </div>
+  <div class="mt-6 rounded-2xl bg-amber-50 border border-amber-200 p-5">
+    <p class="text-[10px] font-semibold uppercase tracking-wider text-amber-800">The trap this session sets</p>
+    <p class="mt-1 text-sm text-slate-700 leading-relaxed">
+      Listing virtues is not analysis. &ldquo;Patagonia has a strong brand and cares about the planet&rdquo; says nothing
+      until you say which point on the value stick it moves, against which rival, and what it cost to move it.
+    </p>
+  </div>
+</section>
+
+<section id="value" class="bg-white border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Identifying competitive advantage &middot; the value stick</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Competitive advantage is a wider wedge</h2>
+    <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+      Strategy writers define competitive advantage in three ways: by the profits it produces, by the profits it could
+      produce, and by the value it creates. The three are compatible. The third is the one you can work with, because it
+      tells you where the profits come from.
+    </p>
+
+    <div class="mt-6 grid gap-4 md:grid-cols-3">
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">By outcome &middot; Ghemawat &amp; Rivkin</p>
+        <blockquote class="mt-2 border-l-2 border-blue-400 pl-3 text-sm italic text-slate-700 leading-relaxed">&ldquo;A firm such as
+          Nucor that earns superior financial returns within its industry (or its strategic group) over the long run is said
+          to enjoy a competitive advantage over its rivals.&rdquo;</blockquote>
+        <p class="mt-2 text-xs text-slate-500">Ghemawat &amp; Rivkin (1999, p. 49), as quoted in Rumelt (2003, p. 2)</p>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Note the qualifiers: within the industry, not against the
+          economy; over the long run, not in one good year; and against rivals.</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">By potential &middot; Grant</p>
+        <h3 class="mt-1 font-bold text-slate-900">The potential to out-earn direct rivals</h3>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Grant defines it as a firm&rsquo;s potential to earn a higher
+          rate of profit than its direct competitors. He says <em>potential</em> because a firm may spend its advantage on
+          market share, technology or customer loyalty instead of reporting it: Amazon made a net loss over 1998&ndash;2007
+          despite an obvious advantage in online retailing (Grant, 2019, p. 157).</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">By value created &middot; Porter, Rothaermel</p>
+        <h3 class="mt-1 font-bold text-slate-900">More value than rivals create</h3>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Porter roots advantage in value a firm creates for buyers that
+          exceeds the cost of creating it, where value is what buyers are willing to pay (Porter, 1985/2004, p. 3). The course
+          textbook compresses it to one line: a firm has a competitive advantage when it creates more economic value than its
+          rivals do (Rothaermel, 2023, p. 186).</p>
+      </div>
+    </div>
+
+    <h3 class="mt-10 text-xl font-bold text-slate-900">Four numbers on one stick</h3>
+    <p class="mt-2 text-sm text-slate-600 max-w-4xl leading-relaxed">Hold a single jacket up against four numbers, from the
+      top down. The distance from the top to the bottom is the value the transaction creates. Every party to it takes a slice.</p>
+    <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="rounded-xl border border-blue-200 bg-blue-50 p-4"><p class="font-mono text-xs text-blue-700">TOP</p><p class="mt-1 text-sm font-semibold text-slate-900">Willingness to pay</p><p class="mt-1 text-xs text-slate-600 leading-relaxed">The most a customer would pay for it. Rothaermel calls it the reservation price, set by the benefits the buyer perceives.</p></div>
+      <div class="rounded-xl border border-blue-200 bg-blue-50 p-4"><p class="font-mono text-xs text-blue-700">SECOND</p><p class="mt-1 text-sm font-semibold text-slate-900">Price</p><p class="mt-1 text-xs text-slate-600 leading-relaxed">What the customer actually pays. It sits between cost and willingness to pay, or the sale does not happen.</p></div>
+      <div class="rounded-xl border border-blue-200 bg-blue-50 p-4"><p class="font-mono text-xs text-blue-700">THIRD</p><p class="mt-1 text-sm font-semibold text-slate-900">Cost</p><p class="mt-1 text-xs text-slate-600 leading-relaxed">What the firm pays its suppliers and employees to make and sell the jacket.</p></div>
+      <div class="rounded-xl border border-blue-200 bg-blue-50 p-4"><p class="font-mono text-xs text-blue-700">BOTTOM</p><p class="mt-1 text-sm font-semibold text-slate-900">Supplier opportunity cost</p><p class="mt-1 text-xs text-slate-600 leading-relaxed">The least those suppliers and employees would accept, given what else they could do with their materials, capacity and time.</p></div>
+    </div>
+    <div class="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+      <p class="text-sm text-slate-700 leading-relaxed"><strong>Value created = willingness to pay &minus; supplier
+        opportunity cost.</strong> It splits three ways: customers keep willingness to pay minus price, the firm keeps price
+        minus cost, and suppliers and employees keep cost minus their opportunity cost. A firm has a competitive advantage
+        when its stick is longer than its rivals&rsquo;. Rothaermel&rsquo;s textbook version folds suppliers into cost and
+        writes the same idea as value created = V &minus; C, split into consumer surplus (V &minus; P) and the firm&rsquo;s
+        profit (P &minus; C) (2023, pp. 186&ndash;190).</p>
+    </div>
+
+    <!-- activity 1: value stick -->
+    <div id="valueStick" class="vs-root mt-8 card p-5 sm:p-6">
+      <div class="flex flex-wrap items-baseline justify-between gap-2">
+        <div>
+          <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Activity &middot; slider model &middot; illustrative numbers</p>
+          <h3 class="mt-1 text-xl font-bold text-slate-900">Build Patagonia&rsquo;s value stick against a rival&rsquo;s</h3>
+        </div>
+        <span class="done-badge" data-done-for="stick" hidden>Done</span>
+      </div>
+      <p class="mt-2 max-w-4xl text-sm text-slate-600 leading-relaxed">The case gives no prices or unit costs for any
+        product, so every number here is <strong>illustrative</strong>: a jacket from Patagonia against a comparable jacket
+        from an unnamed rival, in dollars. The rival&rsquo;s stick is fixed. Move Patagonia&rsquo;s four points, or try one
+        of the moves below, and watch which slices change. Each move starts from the baseline.</p>
+      <div id="vsPresets" class="mt-4 flex flex-wrap gap-2" role="group" aria-label="Illustrative moves"></div>
+      <p id="vsPresetNote" class="mt-3 rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm text-slate-700 leading-relaxed" aria-live="polite"></p>
+      <div class="mt-5 grid gap-6 lg:grid-cols-[minmax(0,.9fr)_minmax(0,1.1fr)]">
+        <div>
+          <div id="vsSliders" class="grid gap-4"></div>
+          <p id="vsHint" class="mt-3 min-h-[1.25rem] text-xs text-slate-500" aria-live="polite"></p>
+        </div>
+        <div class="min-w-0">
+          <ul class="vs-legend flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-slate-600" aria-label="Legend">
+            <li class="flex items-center gap-1.5"><span class="vs-sw vs-sw-cust"></span>Customers keep (WTP &minus; price)</li>
+            <li class="flex items-center gap-1.5"><span class="vs-sw vs-sw-firm"></span>Firm keeps (price &minus; cost)</li>
+            <li class="flex items-center gap-1.5"><span class="vs-sw vs-sw-sup"></span>Suppliers and staff keep (cost &minus; opp. cost)</li>
+            <li class="flex items-center gap-1.5"><span class="vs-sw vs-sw-base"></span>Opportunity cost (not value created)</li>
+          </ul>
+          <div id="vsPlot" class="relative mt-3"><svg id="vsSvg" class="block w-full" role="img" aria-labelledby="vsT vsD"></svg><div id="vsTip" class="vs-tip" hidden></div></div>
+        </div>
+      </div>
+      <p id="vsRead" class="mt-4 text-sm text-slate-700 leading-relaxed" aria-live="polite"></p>
+      <details class="mt-3">
+        <summary class="cursor-pointer text-xs font-semibold text-slate-700">Show both sticks as a table</summary>
+        <div class="mt-2 overflow-x-auto">
+          <table class="w-full text-xs text-left text-slate-600 comparison-table">
+            <thead class="text-[10px] uppercase tracking-wider text-slate-500"><tr><th scope="col">Point or slice</th><th scope="col" class="text-right">Patagonia</th><th scope="col" class="text-right">Rival</th></tr></thead>
+            <tbody id="vsTable"></tbody>
+          </table>
+        </div>
+        <p class="mt-1 text-[11px] text-slate-500">Illustrative dollars per jacket. Not from the case.</p>
+      </details>
+    </div>
+
+    <div class="mt-6 grid gap-4 md:grid-cols-3">
+      <div class="rounded-2xl border border-slate-200 p-5">
+        <h3 class="font-bold text-slate-900">Added value: the obituary test</h3>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">What would disappear if the firm ceased to exist? Casadesus-Masanell,
+          following Brandenburger and Nalebuff, suggests reading the newspaper a year after your death to see how the world has
+          managed without you (2022, p. 9). A firm that customers, suppliers and complementors could replace easily has little
+          added value, however large its sales. Brandenburger and Stuart (1996) show that what a firm can capture is limited by
+          that added value (as summarised by Rumelt, 2003, p. 2).</p>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-5">
+        <h3 class="font-bold text-slate-900">Two ways to widen the wedge</h3>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Raise willingness to pay by more than you raise cost, or lower
+          cost by more than you lower willingness to pay. Grant states the first condition plainly: the price premium a customer
+          will pay must exceed the extra cost of being different (2019, p. 166). Session 8 develops both routes as generic
+          strategies. Here you need only see that they are moves on the same stick.</p>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-5">
+        <h3 class="font-bold text-slate-900">Creating is not capturing</h3>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">A firm can create a great deal of value and keep little of it.
+          The key to capture is scarcity, and imitation and substitution erode scarcity (Casadesus-Masanell, 2022, p. 5). Price
+          only moves value between customer and firm; it does not make the stick longer. Whether Patagonia can keep its slice
+          once rivals notice is Session 7&rsquo;s question.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sources" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">External and internal sources &middot; Grant (2019), ch. 7</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Where the wedge comes from: change outside, innovation inside</h2>
+  <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+    Grant calls competitive advantage a disequilibrium phenomenon. It is created by change, and once it exists it sets off
+    the competition that will wear it down (2019, p. 157). The change can start outside the firm or inside it. The figure
+    below redraws his model of how advantage emerges.
+  </p>
+
+  <div class="mt-6 grid gap-3 md:grid-cols-[1fr_auto_1fr_auto_1fr] md:items-stretch" role="figure" aria-label="How competitive advantage emerges, adapted from Grant (2019), Figure 7.1">
+    <div class="grid gap-3">
+      <div class="rounded-2xl border border-teal-200 bg-teal-50 p-4">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-teal-800">External sources of change</p>
+        <ul class="mt-2 space-y-1 text-sm text-slate-700">
+          <li>Changing customer demand</li>
+          <li>Changing prices of inputs</li>
+          <li>Technological change</li>
+          <li>Regulation and policy, as in Grant&rsquo;s example below</li>
+        </ul>
+      </div>
+      <div class="rounded-2xl border border-slate-200 bg-white p-4">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Which firms win?</p>
+        <p class="mt-1 text-sm text-slate-700 leading-relaxed">Those whose different resources and positions mean the change
+          helps them more, and those faster and more effective at exploiting it.</p>
+      </div>
+    </div>
+    <div class="flex items-center justify-center text-2xl text-slate-400" aria-hidden="true"><span class="md:hidden">&darr;</span><span class="hidden md:inline">&rarr;</span></div>
+    <div class="flex items-center">
+      <div class="w-full rounded-2xl border border-blue-300 bg-blue-50 p-5 text-center">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Outcome</p>
+        <p class="mt-1 font-display text-lg font-semibold text-slate-900">Competitive advantage emerges</p>
+        <p class="mt-1 text-xs text-slate-600">until imitation or the next change erodes it</p>
+      </div>
+    </div>
+    <div class="flex items-center justify-center text-2xl text-slate-400" aria-hidden="true"><span class="md:hidden">&uarr;</span><span class="hidden md:inline">&larr;</span></div>
+    <div class="grid gap-3">
+      <div class="rounded-2xl border border-amber-200 bg-amber-50 p-4">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-amber-800">Internal sources of change</p>
+        <ul class="mt-2 space-y-1 text-sm text-slate-700">
+          <li>Innovation: new products and processes</li>
+          <li>Strategic innovation: new ways to serve customers and compete</li>
+          <li>Business model innovation</li>
+        </ul>
+      </div>
+      <div class="rounded-2xl border border-slate-200 bg-white p-4">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Which firms win?</p>
+        <p class="mt-1 text-sm text-slate-700 leading-relaxed">Those capable of strategic innovation, which creates advantage
+          for the innovator while undermining the advantages rivals had built.</p>
+      </div>
+    </div>
+  </div>
+  <p class="mt-2 text-[11px] text-slate-500">Adapted from Grant (2019), Figure 7.1, &ldquo;The emergence of competitive advantage&rdquo;, p. 157.</p>
+
+  <div class="mt-8 grid gap-4 lg:grid-cols-3">
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-teal-800">External &middot; the differential effect</p>
+      <h3 class="mt-1 font-bold text-slate-900">A change creates advantage only if it hits firms differently</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">External change matters because firms differ. Grant&rsquo;s
+        example: by cutting subsidies for renewable energy, the US tax bill of December 2017 favoured fossil-fuel generators
+        such as Duke Energy over wind and solar producers. The bigger the change and the more firms differ, the wider the spread
+        of profits. The leading brewers face a stable market with similar resources, and their profits differ little. Toy
+        companies are a mixed group facing unpredictable tastes, and their profits differ widely (2019, pp. 157&ndash;158).</p>
+    </div>
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-teal-800">External &middot; responsiveness</p>
+      <h3 class="mt-1 font-bold text-slate-900">Anticipation and agility</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Every change creates an opportunity that goes to whoever exploits
+        it best. Grant names two capabilities. <strong>Anticipation</strong>: IBM renewed its advantage by seeing major shifts
+        in computing coming, where Hewlett-Packard was less adept. <strong>Agility</strong>: Zara&rsquo;s integrated supply chain
+        takes a garment from design to store in under three weeks, against an industry norm of three to six months
+        (2019, p. 158).</p>
+    </div>
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-amber-800">Internal &middot; innovation</p>
+      <h3 class="mt-1 font-bold text-slate-900">New ways of creating and capturing value</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Grant stresses strategic innovation over technology alone. He
+        cites an IBM study&rsquo;s three types of business model innovation: new industry models such as Dell&rsquo;s direct
+        sales, new revenue models such as Rolls-Royce&rsquo;s &ldquo;Power by the Hour&rdquo; engine contracts, and new enterprise
+        models such as the iPhone&rsquo;s outsourced manufacture and network of app developers (2019, pp. 158&ndash;159).</p>
+    </div>
+  </div>
+
+  <!-- activity 2: classifier -->
+  <div id="sourceSorter" class="mt-8 card p-5 sm:p-6">
+    <div class="flex flex-wrap items-baseline justify-between gap-2">
+      <div>
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Activity &middot; classify</p>
+        <h3 class="mt-1 text-xl font-bold text-slate-900">External or internal? Sort ten sources from the case</h3>
+      </div>
+      <span class="done-badge" data-done-for="sort" hidden>Done</span>
+    </div>
+    <p class="mt-2 max-w-4xl text-sm text-slate-600 leading-relaxed">External means a change in the environment that Patagonia
+      did not create: demand, input markets, technology, regulation. Internal means something Patagonia created: a product, a
+      process, a policy, a way of working. One item can be argued either way; the feedback says which.</p>
+    <div id="srtList" class="mt-4 grid gap-3 lg:grid-cols-2"></div>
+    <p id="srtScore" class="mt-3 text-sm font-semibold text-slate-800" aria-live="polite">0 of 10 sorted.</p>
+  </div>
+
+  <div class="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+    <h3 class="font-bold text-slate-900">What the sort should leave you with</h3>
+    <p class="mt-2 text-sm text-slate-600 leading-relaxed">Patagonia&rsquo;s internal moves were mostly responses to external
+      facts: damaged rock, the footprint of conventional cotton, rising textile waste. External change opened the door; an
+      internal choice walked through it. That pairing is what the next activity asks you to trace.</p>
+  </div>
+</section>
+
+<section id="scenario" class="bg-white border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Activity &middot; change and readiness</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Which change opened the door, and who was ready?</h2>
+    <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+      Five episodes from the case, from the early 1970s to 2011. For each, decide which change created the opportunity, then
+      what made Patagonia (or Chouinard Equipment before it) ready to exploit it. The wrong options are plausible on purpose:
+      several describe advantages a firm might have, but not ones the case gives Patagonia.
+    </p>
+    <div id="scenarioBox" class="mt-6 card p-5 sm:p-6">
+      <div class="flex flex-wrap items-baseline justify-between gap-2">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Choose an episode</p>
+        <span class="done-badge" data-done-for="scenario" hidden>Done</span>
+      </div>
+      <div id="scnTabs" class="mt-3 grid gap-2 sm:grid-cols-3 lg:grid-cols-5" role="group" aria-label="Episodes"></div>
+      <div id="scnPanel" class="mt-5"></div>
+      <p id="scnScore" class="mt-4 text-sm font-semibold text-slate-800" aria-live="polite">0 of 5 episodes worked through.</p>
+    </div>
+  </div>
+</section>
+
+<section id="case" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">The case &middot; Patagonia: &ldquo;Earth Is Now Our Only Shareholder&rdquo;</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">How Patagonia created value</h2>
+  <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+    The case ends with the 2022 ownership change, which Session 7 takes up. This session uses its first half: nearly fifty years of
+    choices, each of which moved Patagonia&rsquo;s value stick. Every figure below is from the case. Patagonia is private and
+    did not publish its financial data, so most of them are estimates (Trelstad et al., 2023, p. 2).
+  </p>
+
+  <div class="mt-6 grid gap-3 grid-cols-2 lg:grid-cols-6">
+    <div class="card p-4"><p class="text-xl sm:text-2xl font-semibold text-slate-900 tabular-nums break-words">$20m &rarr; $100m</p><p class="mt-1 text-xs text-slate-600 leading-snug">Estimated annual sales, start and end of the 1980s (p. 3)</p></div>
+    <div class="card p-4"><p class="text-xl sm:text-2xl font-semibold text-slate-900 tabular-nums break-words">30&ndash;50%</p><p class="mt-1 text-xs text-slate-600 leading-snug">Average compound annual growth in that period (p. 3)</p></div>
+    <div class="card p-4"><p class="text-xl sm:text-2xl font-semibold text-slate-900 tabular-nums break-words">~$200m</p><p class="mt-1 text-xs text-slate-600 leading-snug">Estimated annual net sales by 2005 (p. 4)</p></div>
+    <div class="card p-4"><p class="text-xl sm:text-2xl font-semibold text-slate-900 tabular-nums break-words">~$1bn</p><p class="mt-1 text-xs text-slate-600 leading-snug">Annual revenue in media estimates, with about $100m net income, 2022 (p. 2)</p></div>
+    <div class="card p-4"><p class="text-xl sm:text-2xl font-semibold text-slate-900 tabular-nums break-words">~10%</p><p class="mt-1 text-xs text-slate-600 leading-snug">Share of US outdoor apparel, the largest of any firm (p. 2)</p></div>
+    <div class="card p-4"><p class="text-xl sm:text-2xl font-semibold text-slate-900 tabular-nums break-words">151.4</p><p class="mt-1 text-xs text-slate-600 leading-snug">B Corp impact score by fall 2020, against 80 needed to certify (p. 6)</p></div>
+  </div>
+
+  <div class="mt-8 grid gap-4 lg:grid-cols-3">
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Top of the stick &middot; customers</p>
+      <h3 class="mt-1 font-bold text-slate-900">Raising willingness to pay</h3>
+      <ul class="mt-3 space-y-2 text-sm text-slate-600 leading-relaxed">
+        <li><strong class="text-slate-800">A better product for the same need.</strong> The 1977 pile fleece was as warm as wool,
+          lighter and more weather-resistant, and became iconic (p. 3).</li>
+        <li><strong class="text-slate-800">Durability as a stated value.</strong> Patagonia defines its best product as useful,
+          versatile, long-lasting, repairable and recyclable (Exhibit 2).</li>
+        <li><strong class="text-slate-800">A product that is repaired, not replaced.</strong> Worn Wear repairs Patagonia clothing
+          free; the Reno facility repaired 100,000 items a year, and returned items were resold or recycled (p. 4).</li>
+        <li><strong class="text-slate-800">Values customers can see.</strong> From 1986 it gave the greater of 1% of sales or 10%
+          of profit to environmental causes, nearly $200 million by fall 2020 (pp. 3, 6).</li>
+      </ul>
+    </div>
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Middle of the stick &middot; Patagonia</p>
+      <h3 class="mt-1 font-bold text-slate-900">Choices that raised cost and risk</h3>
+      <ul class="mt-3 space-y-2 text-sm text-slate-600 leading-relaxed">
+        <li><strong class="text-slate-800">Organic cotton.</strong> A 1994 assessment found conventional cotton, grown on 2.5% of
+          the world&rsquo;s cultivated land, used 22.5% of chemical insecticides and 10% of agricultural pesticides. Chouinard moved
+          all 166 cotton products to organic within eighteen months or would have stopped selling sportswear, then 30% of the
+          business. Sales were back to their previous level within two years (p. 4).</li>
+        <li><strong class="text-slate-800">Giving on every sale.</strong> The 1986 pledge meant at least 1% of sales went to
+          environmental causes whatever the year&rsquo;s profit (p. 3).</li>
+        <li><strong class="text-slate-800">Growth held back.</strong> After laying off 20% of its 600 staff in the 1991 recession,
+          Patagonia capped growth at pre-set targets (p. 3).</li>
+      </ul>
+    </div>
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Bottom of the stick &middot; employees and suppliers</p>
+      <h3 class="mt-1 font-bold text-slate-900">Lowering the price of working with Patagonia</h3>
+      <ul class="mt-3 space-y-2 text-sm text-slate-600 leading-relaxed">
+        <li><strong class="text-slate-800">A job worth more than its pay.</strong> One of the first onsite corporate daycare
+          centres in the US, paid maternity and paternity leave before they were common, daily surf forecasts and training in
+          Yosemite (p. 3).</li>
+        <li><strong class="text-slate-800">Stability.</strong> The growth cap of 1991 was meant to keep the workplace stable
+          (p. 3), and a supportive work environment became a charter commitment in 2011 (p. 5).</li>
+        <li><strong class="text-slate-800">Suppliers: the open question.</strong> Most products came from 45 suppliers in 40
+          factories in 16 countries (p. 2). The case does not say whether they deal with Patagonia on different terms from other
+          brands.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mt-8 card p-5">
+    <h3 class="font-bold text-slate-900">Where each choice lands on the stick</h3>
+    <p class="mt-1 text-sm text-slate-600">The third column is analysis, not case fact. Argue with it.</p>
+    <div class="mt-4 overflow-x-auto">
+      <table class="w-full text-xs text-left text-slate-600 comparison-table">
+        <thead class="text-[10px] uppercase tracking-wider text-slate-500">
+          <tr><th scope="col">Choice</th><th scope="col">Evidence in the case</th><th scope="col">Where it plausibly lands</th><th scope="col">What the case does not tell you</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row" class="font-semibold text-slate-800">Pile fleece (1977)</th><td>As warm as wool, lighter and more weather-resistant than the wool sweater it replaced, which got heavy when wet; became iconic (p. 3)</td><td>Willingness to pay up: a better answer to the same need</td><td>Its price against wool sweaters</td></tr>
+          <tr><th scope="row" class="font-semibold text-slate-800">Organic cotton (from 1994)</th><td>166 products in eighteen months; sportswear 30% of the business; sales recovered within two years (p. 4)</td><td>Supplier opportunity cost and cost up; willingness to pay up for buyers who care how cotton is grown</td><td>The change in unit cost, and whether prices rose</td></tr>
+          <tr><th scope="row" class="font-semibold text-slate-800">Worn Wear repairs and buyback</th><td>Free repairs, 100,000 items a year at Reno; buyback for store credit (p. 4)</td><td>Willingness to pay up (longer life, resale value); cost up (a repair operation)</td><td>What the programme costs or earns</td></tr>
+          <tr><th scope="row" class="font-semibold text-slate-800">Giving (from 1985)</th><td>10% of profits from 1985; the greater of 1% of sales or 10% of profit from 1986; nearly $200m by 2020 (pp. 3, 6)</td><td>A cost on every sale; willingness to pay up only for customers who value it</td><td>Whether buyers pay more because of it</td></tr>
+          <tr><th scope="row" class="font-semibold text-slate-800">Family- and outdoor-friendly workplace</th><td>Daycare, paid parental leave, surf forecasts, Yosemite training (p. 3)</td><td>Employees&rsquo; opportunity cost down; perhaps cost down through retention</td><td>Pay and staff turnover against rivals</td></tr>
+          <tr><th scope="row" class="font-semibold text-slate-800">Benefit corporation (2011)</th><td>First in California; commitments in the charter, changeable only by unanimous shareholder vote (p. 5)</td><td>Willingness to pay up if it makes the promises credible; some freedom of action given up</td><td>Any measured effect on sales</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="mt-6 grid gap-4 md:grid-cols-2">
+    <div class="rounded-2xl border border-slate-200 p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Founder&rsquo;s claim</p>
+      <blockquote class="mt-2 border-l-2 border-blue-600 pl-3 italic text-slate-700">&ldquo;I know it sounds crazy, but every time
+        I have made a decision that&rsquo;s best for the planet, [Patagonia has] made money.&rdquo;
+        <span class="mt-1 block not-italic text-xs text-slate-500">Yvon Chouinard, quoted in Trelstad et al. (2023, p. 3)</span></blockquote>
+      <p class="mt-3 text-sm text-slate-600 leading-relaxed">On the value stick this is a claim that each move raised
+        willingness to pay, or lowered opportunity cost, by more than it raised cost. It is a founder&rsquo;s summary, not a test.
+        Ask which decisions it leaves out.</p>
+    </div>
+    <div class="rounded-2xl border border-slate-200 p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">The other half of the bargain</p>
+      <blockquote class="mt-2 border-l-2 border-blue-600 pl-3 italic text-slate-700">&ldquo;Because if you&rsquo;re not successful
+        financially, the experiment&rsquo;s over.&rdquo;
+        <span class="mt-1 block not-italic text-xs text-slate-500">Kris Tompkins, CEO from 1979, quoted in Trelstad et al. (2023, p. 3)</span></blockquote>
+      <p class="mt-3 text-sm text-slate-600 leading-relaxed">Creating value was never enough. Patagonia also had to capture a
+        slice large enough to fund the giving, the repairs and the growth caps, which is why price and margin still matter in a
+        purpose-led firm.</p>
+    </div>
+  </div>
+
+  <div class="mt-6 rounded-2xl bg-slate-900 p-6 text-slate-100">
+    <h3 class="font-bold text-white">What the case cannot prove</h3>
+    <p class="mt-2 text-sm leading-relaxed text-slate-300">
+      There are no prices, unit costs, rival margins or turnover figures in the case. What it offers is a pattern: choices that
+      looked costly, followed by growth from about $20 million in sales to about $1 billion and the largest share of its US
+      market. A pattern is not proof that the wedge widened. Decide what data would convince a sceptic, and which part of the
+      stick each item would measure.
+    </p>
+  </div>
+</section>
+
+<section id="decks" class="bg-white border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Go deeper</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Interactive decks on this topic</h2>
+    <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">Two earlier decks use Patagonia for the same questions. Both were
+      built for other course numberings, so their session numbers differ from this page&rsquo;s.</p>
+    <div class="mt-6 grid gap-4 md:grid-cols-2">
+      <a href="/teaching/2-year-mba/session-11-firm-performance-and-business-models.html" class="flex flex-col justify-between gap-3 rounded-2xl border border-blue-200 bg-blue-50 p-5 hover:bg-blue-100 transition">
+        <span>
+          <span class="block text-[10px] font-semibold uppercase tracking-wider text-blue-700">Interactive deck &middot; creating advantage</span>
+          <span class="mt-1 block font-bold text-slate-900">Creating Competitive Advantage: The Patagonia Case</span>
+          <span class="mt-1 block text-sm text-slate-600">A value-wedge simulator, a lab on the purpose-trust structure, and
+            sections on accounting and shareholder measures of advantage. Built for the 2-year MBA, where it was Session 11.
+            Several of its figures, including post-2022 impact numbers and the sales effect of the 2011 advertisement, are not in
+            the case, so check them before you cite them.</span>
+        </span>
+        <span class="text-sm font-semibold text-blue-700">Open the deck &rarr;</span>
+      </a>
+      <a href="/teaching/2-year-mba/session-10-resources-capabilities-and-core-competencies.html" class="flex flex-col justify-between gap-3 rounded-2xl border border-blue-200 bg-blue-50 p-5 hover:bg-blue-100 transition">
+        <span>
+          <span class="block text-[10px] font-semibold uppercase tracking-wider text-blue-700">Interactive deck &middot; looking ahead</span>
+          <span class="mt-1 block font-bold text-slate-900">Sustaining Competitive Advantage</span>
+          <span class="mt-1 block text-sm text-slate-600">What stops a rival copying an advantage once it is visible: deterrence,
+            preemption, commitments and capabilities, with a moat self-test. Built for an earlier course numbering, where it was
+            Session 7. It previews next session; open it after class.</span>
+        </span>
+        <span class="text-sm font-semibold text-blue-700">Open the deck &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="discussion" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">For class</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Discussion questions</h2>
+  <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">Come with a written answer to the first two. The others are for
+    the room.</p>
+  <ol class="mt-6 grid gap-4 md:grid-cols-2">
+    <li class="card p-5"><p class="font-mono text-xs text-blue-600">01</p><p class="mt-1 text-sm font-semibold text-slate-900 leading-relaxed">In 1994 Chouinard put sportswear, 30% of the business, at risk to move to organic cotton. State, on the value stick, the condition under which the switch created advantage. What in the case suggests the condition was met, and what would you need to confirm it?</p></li>
+    <li class="card p-5"><p class="font-mono text-xs text-blue-600">02</p><p class="mt-1 text-sm font-semibold text-slate-900 leading-relaxed">Grant says external change creates advantage only when it hits firms differently. Which of Patagonia&rsquo;s resources made the shift towards sustainability help it more than it helped a fast-fashion retailer?</p></li>
+    <li class="card p-5"><p class="font-mono text-xs text-blue-600">03</p><p class="mt-1 text-sm font-semibold text-slate-900 leading-relaxed">&ldquo;Every time I have made a decision that&rsquo;s best for the planet, [Patagonia has] made money.&rdquo; Is that evidence of a wider wedge, or of survivorship? What observation would falsify it?</p></li>
+    <li class="card p-5"><p class="font-mono text-xs text-blue-600">04</p><p class="mt-1 text-sm font-semibold text-slate-900 leading-relaxed">Does Patagonia&rsquo;s workplace lower the opportunity cost of working there, or raise the cost of employing people? If both, who captures the difference: the employee or the firm?</p></li>
+    <li class="card p-5"><p class="font-mono text-xs text-blue-600">05</p><p class="mt-1 text-sm font-semibold text-slate-900 leading-relaxed">Apply the obituary test. If Patagonia disappeared tomorrow, what would its customers, employees and suppliers lose that another brand could not replace?</p></li>
+    <li class="card p-5"><p class="font-mono text-xs text-blue-600">06</p><p class="mt-1 text-sm font-semibold text-slate-900 leading-relaxed">If a large rival matched organic cotton, free repairs and 1% giving next year, how much of Patagonia&rsquo;s wedge would survive? Write your answer down and keep it for Session 7.</p></li>
+  </ol>
+</section>
+
+<section id="quiz" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Knowledge check</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Ten questions</h2>
+  <p class="mt-3 text-slate-600 max-w-3xl leading-relaxed">
+    Answer before you look. Each answer explains itself, and the explanation matters more than the score.
+  </p>
+  <div class="mt-4 flex flex-wrap items-center gap-3 text-sm">
+    <span class="text-slate-500"><span id="sQuizScore">0</span> / <span id="sQuizTotal">0</span> correct</span>
+    <button id="sQuizReset" type="button" class="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50">Start again</button>
+  </div>
+  <div id="sQuiz" class="mt-6 grid gap-4"></div>
+</section>
+
+
+<section id="readings" class="bg-white border-y border-slate-200">
+  <div class="container mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Preparation</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Readings for Session 6</h2>
+    <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">The reading and the case are in the course pack. They are
+      copyrighted, so they are not linked or hosted here.</p>
+    <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Required &middot; the reading</p>
+        <p class="mt-2 text-sm text-slate-700 ref">Ghemawat, P., &amp; Rivkin, J. W. (1998). <em>Creating competitive advantage</em> (Harvard Business School Note No. 798-062). Harvard Business School Publishing.</p>
+        <p class="mt-2 text-xs text-slate-500">The outline&rsquo;s reading for this session. Read it with the value stick in mind.</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Required &middot; the case</p>
+        <p class="mt-2 text-sm text-slate-700 ref">Trelstad, B., Hsieh, N.-H., Norris, M., &amp; Pinckney, S. (2023). <em>Patagonia: &ldquo;Earth is now our only shareholder&rdquo;</em> (HBS No. 9-323-057, rev. September 21, 2023). Harvard Business School Publishing.</p>
+        <p class="mt-2 text-xs text-slate-500">For this session read pp. 1&ndash;6 and Exhibit 2 closely. The ownership material is for Session 7.</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Further &middot; external and internal sources</p>
+        <p class="mt-2 text-sm text-slate-700 ref">Grant, R. M. (2019). <em>Contemporary strategy analysis</em> (10th ed.). Wiley. Chapter 7, &ldquo;The sources and dimensions of competitive advantage&rdquo;, pp. 156&ndash;161.</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Further &middot; course textbook</p>
+        <p class="mt-2 text-sm text-slate-700 ref">Rothaermel, F. T. (2023). <em>Strategic management</em> (6th ed.). McGraw Hill. Chapter 5, &ldquo;Economic value creation&rdquo;, pp. 186&ndash;191.</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Further &middot; the classic statement</p>
+        <p class="mt-2 text-sm text-slate-700 ref">Porter, M. E. (2004). <em>Competitive advantage: Creating and sustaining superior performance</em> (Free Press export ed.). Free Press. (Original work published 1985). Chapter 1.</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Further &middot; added value and capture</p>
+        <p class="mt-2 text-sm text-slate-700 ref">Casadesus-Masanell, R. (2022). <em>Competitive and cooperative dynamics</em> (Core Reading No. 8131, rev. June 30, 2022). Harvard Business Publishing.</p>
+        <p class="mt-2 text-sm text-slate-700 ref">Rumelt, R. P. (2003). <em>What in the world is competitive advantage?</em> (Policy Working Paper 2003-105). The Anderson School at UCLA.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-gray-800 mt-16 sm:mt-24 border-t border-gray-700">
+  <div class="container mx-auto px-6 py-8 text-center">
+    <p class="text-sm text-slate-400">&copy; Dr. Swapnil Sahoo 2026 &middot; Great Lakes Institute of Management, Gurgaon</p>
+    <p class="mt-2 text-xs text-slate-500">STRAMGT 221 &middot; Strategic Management (PGPM) &middot; Session 6</p>
+    <div class="mt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+      <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-400 hover:text-white">swapnilsahoo.com</a>
+      <a href="/teaching/1-year-mba/session5.html" class="text-sm text-slate-400 hover:text-white">&larr; Session 5</a> <a href="/teaching/1-year-mba" class="text-sm text-slate-400 hover:text-white">All sessions</a> <a href="/teaching/1-year-mba/session7.html" class="text-sm text-slate-400 hover:text-white">Session 7 &rarr;</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* ---------- value stick (activity 1) ---------- */
+  .vs-root{--vs-surface:#FFFFFF;--vs-ink:#0F172A;--vs-ink2:#475569;--vs-axis:#CBD5E1;--vs-base:#E2E8F0;--vs-sup:#1baf7a;--vs-firm:#2a78d6;--vs-cust:#eb6834}
+  html.dark .vs-root{--vs-surface:#111A2E;--vs-ink:#E2E8F0;--vs-ink2:#CBD5E1;--vs-axis:#2B3A55;--vs-base:#24324A;--vs-sup:#199e70;--vs-firm:#3987e5;--vs-cust:#d95926}
+  .vs-root svg text{font-family:Inter,ui-sans-serif,system-ui,sans-serif}
+  .vs-lbl{fill:var(--vs-ink);font-size:11px;font-weight:600;font-variant-numeric:tabular-nums}
+  .vs-lbl2{fill:var(--vs-ink2);font-size:11px;font-variant-numeric:tabular-nums}
+  .vs-name{fill:var(--vs-ink);font-size:12px;font-weight:700}
+  .vs-lead{stroke:var(--vs-axis);stroke-width:1;fill:none}
+  .vs-baseline{stroke:var(--vs-axis);stroke-width:1;shape-rendering:crispEdges}
+  .vs-seg-base{fill:var(--vs-base)}
+  .vs-seg-sup{fill:var(--vs-sup)}
+  .vs-seg-firm{fill:var(--vs-firm)}
+  .vs-seg-cust{fill:var(--vs-cust)}
+  .vs-seg{transition:opacity .15s}
+  .vs-seg.is-hot{opacity:.78}
+  .vs-hit{fill:transparent;cursor:pointer;outline:none}
+  .vs-sw{display:inline-block;width:10px;height:10px;border-radius:2px;flex:none}
+  .vs-sw-cust{background:var(--vs-cust)}.vs-sw-firm{background:var(--vs-firm)}
+  .vs-sw-sup{background:var(--vs-sup)}.vs-sw-base{background:var(--vs-base);box-shadow:inset 0 0 0 1px var(--vs-axis)}
+  .vs-tip{position:absolute;pointer-events:none;z-index:5;background:var(--vs-surface);border:1px solid var(--vs-axis);
+    border-radius:8px;padding:6px 9px;font-size:12px;line-height:1.35;color:var(--vs-ink2);white-space:nowrap;
+    box-shadow:0 6px 18px -8px rgba(15,23,42,.35)}
+  .vs-tip strong{display:block;color:var(--vs-ink);font-size:13px;font-variant-numeric:tabular-nums}
+  .vs-range{width:100%;accent-color:#4F46E5}
+  html.dark .vs-range{accent-color:#818CF8;background:transparent!important;border:0!important}
+
+  /* the shared footer row has four links; let it wrap on the narrowest phones */
+  footer .mt-4.flex{flex-wrap:wrap;row-gap:.5rem}
+
+  /* ---------- shared option / toggle states ---------- */
+  .s6-opt{background:transparent}
+  .s6-opt[aria-pressed="true"]{background:#EEF1FF;border-color:#4F46E5;color:#2E2A82}
+  html.dark .s6-opt[aria-pressed="true"]{background:#1F2552;border-color:#6E72F0;color:#E0E5FF}
+  .s6-opt:disabled{cursor:default}
+  .s6-right{border-color:#16A34A!important;background:#F0FDF4!important;color:#14532D!important}
+  .s6-wrong{border-color:#DC2626!important;background:#FEF2F2!important;color:#7F1D1D!important}
+  html.dark .s6-right{border-color:#2F7D52!important;background:#0F261A!important;color:#BBF7D0!important}
+  html.dark .s6-wrong{border-color:#9B3540!important;background:#2C1418!important;color:#FECACA!important}
+  .s6-ok{color:#166534}.s6-no{color:#B91C1C}.s6-either{color:#92400E}
+  html.dark .s6-ok{color:#6EE7A8}html.dark .s6-no{color:#FCA5A5}html.dark .s6-either{color:#FCD34D}
+  .s6-tab[aria-pressed="true"]{background:#EEF1FF;border-color:#4F46E5}
+  html.dark .s6-tab[aria-pressed="true"]{background:#1F2552;border-color:#6E72F0}
+  .s6-tab .s6-tick{color:#166534}
+  html.dark .s6-tab .s6-tick{color:#6EE7A8}
+</style>
+
+<script>
+(function () {
+  /* ---------- activity 1: the value stick (illustrative numbers, not from the case) ---------- */
+  var root = document.getElementById("valueStick");
+  if (!root) return;
+  var RIVAL = { wtp: 200, p: 160, c: 100, oc: 80 };
+  var BASE = { wtp: 300, p: 230, c: 120, oc: 90 };
+  var PRESETS = [
+    { label: "Baseline", d: {},
+      note: "Baseline. Patagonia’s jacket is worth more to its buyers than the rival’s ($300 against $200) and costs a little more to make. All numbers are illustrative: the case gives no prices or unit costs." },
+    { label: "Switch to organic cotton", d: { oc: 15, c: 15, wtp: 30 },
+      note: "Organic cotton costs more to grow, so suppliers’ opportunity cost and Patagonia’s cost both rise. The switch widens the stick only if willingness to pay rises by more. In the case Patagonia moved all 166 cotton products within eighteen months and regained its previous sales within two years (p. 4). It reports no prices or costs, so the size of each move here is a guess." },
+    { label: "Offer free repairs", d: { c: 10, wtp: 25 },
+      note: "A jacket that will be repaired free is worth more to a buyer who wants it to last, and a repair operation costs money to run. The Reno facility repaired 100,000 items a year (p. 4). Here willingness to pay rises by more than cost; reverse that and the programme narrows the wedge." },
+    { label: "Mission-aligned staff", d: { oc: -20 },
+      note: "Daycare, paid parental leave and a stable workplace (p. 3) can make a Patagonia job worth more to people than its pay, which lowers the least they would accept. With pay unchanged, the extra value goes to employees: the stick lengthens but Patagonia’s own slice does not. The case gives no pay or turnover figures." },
+    { label: "Raise the price", d: { p: 30 },
+      note: "A higher price moves value from customers to Patagonia. The stick is the same length, so the competitive advantage is unchanged; only its division moves. Push the price too close to willingness to pay and buyers start to choose the rival." }
+  ];
+  var FIELDS = [
+    { k: "wtp", label: "Willingness to pay" },
+    { k: "p", label: "Price" },
+    { k: "c", label: "Cost" },
+    { k: "oc", label: "Supplier opportunity cost" }
+  ];
+  var HINTS = {
+    wtpLow: "Willingness to pay cannot fall below the price: customers would stop buying. Lower the price first.",
+    pHigh: "Price cannot rise above willingness to pay: no one would buy.",
+    pLow: "Below cost, Patagonia would lose money on every jacket. Lower the cost first.",
+    cHigh: "Cost cannot exceed the price in this model: the jacket would be sold at a loss.",
+    cLow: "Cost cannot fall below suppliers’ opportunity cost: they would sell elsewhere.",
+    ocHigh: "Above cost, suppliers and staff would walk away. Raise cost first."
+  };
+  var MIN = 20, MAX = 400, TOP = 420;
+  var cur = {};
+  function setFrom(base, d) { ["wtp", "p", "c", "oc"].forEach(function (k) { cur[k] = base[k] + (d[k] || 0); }); }
+  setFrom(BASE, {});
+
+  var NS = "http://www.w3.org/2000/svg";
+  var svg = document.getElementById("vsSvg"), plot = document.getElementById("vsPlot"), tip = document.getElementById("vsTip");
+  var note = document.getElementById("vsPresetNote"), hint = document.getElementById("vsHint");
+  var sliders = {}, outs = {};
+
+  // presets
+  var pbox = document.getElementById("vsPresets"), pbtns = [];
+  PRESETS.forEach(function (pr, i) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "s6-opt rounded-full border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50";
+    b.textContent = pr.label;
+    b.setAttribute("aria-pressed", i === 0 ? "true" : "false");
+    b.addEventListener("click", function () {
+      setFrom(BASE, pr.d);
+      pbtns.forEach(function (x, j) { x.setAttribute("aria-pressed", j === i ? "true" : "false"); });
+      note.textContent = pr.note; hint.textContent = "";
+      syncSliders(); draw();
+    });
+    pbtns.push(b); pbox.appendChild(b);
+  });
+  note.textContent = PRESETS[0].note;
+
+  // sliders
+  var sbox = document.getElementById("vsSliders");
+  FIELDS.forEach(function (f) {
+    var wrap = document.createElement("div");
+    var top = document.createElement("div"); top.className = "flex items-baseline justify-between gap-3 text-xs";
+    var lab = document.createElement("label"); lab.htmlFor = "vs-" + f.k; lab.className = "font-semibold text-slate-700"; lab.textContent = f.label;
+    var out = document.createElement("output"); out.id = "vs-" + f.k + "-o"; out.className = "font-semibold text-slate-900 tabular-nums"; out.htmlFor = "vs-" + f.k;
+    top.appendChild(lab); top.appendChild(out);
+    var inp = document.createElement("input");
+    inp.type = "range"; inp.id = "vs-" + f.k; inp.min = MIN; inp.max = MAX; inp.step = 5; inp.className = "vs-range mt-1";
+    inp.addEventListener("input", function () { onSlide(f.k, +inp.value); });
+    wrap.appendChild(top); wrap.appendChild(inp); sbox.appendChild(wrap);
+    sliders[f.k] = inp; outs[f.k] = out;
+  });
+  function syncSliders() {
+    FIELDS.forEach(function (f) { sliders[f.k].value = cur[f.k]; outs[f.k].textContent = "$" + cur[f.k]; sliders[f.k].setAttribute("aria-valuetext", "$" + cur[f.k]); });
+  }
+  function onSlide(k, v) {
+    var msg = "";
+    if (k === "wtp" && v < cur.p) { v = cur.p; msg = HINTS.wtpLow; }
+    if (k === "p" && v > cur.wtp) { v = cur.wtp; msg = HINTS.pHigh; }
+    if (k === "p" && v < cur.c) { v = cur.c; msg = HINTS.pLow; }
+    if (k === "c" && v > cur.p) { v = cur.p; msg = HINTS.cHigh; }
+    if (k === "c" && v < cur.oc) { v = cur.oc; msg = HINTS.cLow; }
+    if (k === "oc" && v > cur.c) { v = cur.c; msg = HINTS.ocHigh; }
+    cur[k] = v; hint.textContent = msg;
+    pbtns.forEach(function (x) { x.setAttribute("aria-pressed", "false"); });
+    note.textContent = "Your own numbers. Value created moves only when willingness to pay or supplier opportunity cost moves; price and cost only move value between the parties.";
+    syncSliders(); draw();
+  }
+
+  function el(n, a, p) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); (p || svg).appendChild(e); return e; }
+  function tx(x, y, s, cls, anchor) { var e = el("text", { x: x, y: y, "class": cls, "text-anchor": anchor || "start" }); e.textContent = s; return e; }
+  function segPath(x, y, w, h, r) {
+    if (r <= 0) return "M" + x + " " + y + "h" + w + "v" + h + "h" + (-w) + "Z";
+    r = Math.min(r, h, w / 2);
+    return "M" + x + " " + (y + h) + "V" + (y + r) + "Q" + x + " " + y + " " + (x + r) + " " + y + "H" + (x + w - r) +
+      "Q" + (x + w) + " " + y + " " + (x + w) + " " + (y + r) + "V" + (y + h) + "Z";
+  }
+  var SEGNAME = { base: "Opportunity cost (not value created)", sup: "Suppliers and staff keep", firm: "Firm keeps", cust: "Customers keep" };
+  function showTip(evt, who, name, val, seg) {
+    while (tip.firstChild) tip.removeChild(tip.firstChild);
+    var s = document.createElement("strong"); s.textContent = "$" + val; tip.appendChild(s);
+    tip.appendChild(document.createTextNode(who + " · " + name));
+    tip.hidden = false;
+    var r = plot.getBoundingClientRect(), bx, by;
+    if (evt && evt.clientX !== undefined && evt.type !== "focus") { bx = evt.clientX - r.left; by = evt.clientY - r.top; }
+    else { var b = seg.getBoundingClientRect(); bx = b.right - r.left; by = b.top - r.top + b.height / 2; }
+    var tw = tip.offsetWidth, left = bx + 14;
+    if (left + tw > r.width) left = Math.max(0, bx - tw - 14);
+    tip.style.left = left + "px"; tip.style.top = Math.max(0, by - 20) + "px";
+    seg.classList.add("is-hot");
+  }
+  function hideTip(seg) { tip.hidden = true; if (seg) seg.classList.remove("is-hot"); }
+
+  function stick(s, who, x0, y0, y1, W) {
+    var Y = function (v) { return y1 - v / TOP * (y1 - y0); };
+    var sw = 24, sx = x0;
+    var segs = [["base", 0, s.oc], ["sup", s.oc, s.c], ["firm", s.c, s.p], ["cust", s.p, s.wtp]];
+    var topIdx = -1; segs.forEach(function (g, i) { if (g[2] > g[1]) topIdx = i; });
+    segs.forEach(function (g, i) {
+      if (g[2] <= g[1]) return;
+      var yt = Y(g[2]) + 1, yb = Y(g[1]) - (i === 0 ? 0 : 1), h = yb - yt;
+      if (h < 0.5) return;
+      var seg = el("path", { d: segPath(sx, yt, sw, h, i === topIdx ? 4 : 0), "class": "vs-seg vs-seg-" + g[0] });
+      var val = g[2] - g[1];
+      var hit = el("rect", { x: sx - 8, y: Y(g[2]), width: sw + 16, height: Math.max(6, Y(g[1]) - Y(g[2])), "class": "vs-hit", tabindex: "0", role: "img",
+        "aria-label": who + ": " + SEGNAME[g[0]] + ", $" + val });
+      hit.addEventListener("pointermove", function (e) { showTip(e, who, SEGNAME[g[0]], val, seg); });
+      hit.addEventListener("pointerleave", function () { hideTip(seg); });
+      hit.addEventListener("focus", function (e) { showTip(e, who, SEGNAME[g[0]], val, seg); });
+      hit.addEventListener("blur", function () { hideTip(seg); });
+    });
+    // boundary labels, spread so they never collide
+    var compact = W < 300;
+    var pts = [["WTP", s.wtp], ["Price", s.p], ["Cost", s.c], [compact ? "Opp." : "Opp. cost", s.oc]];
+    var lx = sx + sw + 14, gap = 14, ys = pts.map(function (p) { return Y(p[1]) + 4; });
+    for (var i = 1; i < ys.length; i++) if (ys[i] < ys[i - 1] + gap) ys[i] = ys[i - 1] + gap;
+    var floor = y1 + 4;
+    if (ys[ys.length - 1] > floor) { ys[ys.length - 1] = floor; for (var j = ys.length - 2; j >= 0; j--) if (ys[j] > ys[j + 1] - gap) ys[j] = ys[j + 1] - gap; }
+    pts.forEach(function (p, i) {
+      var yv = Y(p[1]);
+      el("path", { d: "M" + (sx + sw + 2) + " " + yv + "L" + (lx - 8) + " " + yv + "L" + (lx - 3) + " " + (ys[i] - 4), "class": "vs-lead" });
+      tx(lx, ys[i], p[0] + " $" + p[1], i === 0 ? "vs-lbl" : "vs-lbl2");
+    });
+    tx(sx, y1 + 22, who, "vs-name");
+    tx(sx, y1 + 38, (compact ? "Created $" : "Value created $") + (s.wtp - s.oc), "vs-lbl2");
+  }
+
+  function draw() {
+    var W = Math.max(240, Math.round(plot.clientWidth)), H = W < 420 ? 310 : 340;
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H); svg.setAttribute("width", W); svg.setAttribute("height", H);
+    el("title", { id: "vsT" }).textContent = "Value sticks for Patagonia and a rival, illustrative numbers";
+    var vc = cur.wtp - cur.oc, rvc = RIVAL.wtp - RIVAL.oc;
+    el("desc", { id: "vsD" }).textContent = "Patagonia creates $" + vc + " of value per jacket and the rival $" + rvc + ".";
+    var y0 = 14, y1 = H - 46, colW = (W - 8) / 2;
+    el("line", { x1: 4, x2: W - 4, y1: y1, y2: y1, "class": "vs-baseline" });
+    stick(cur, "Patagonia", 14, y0, y1, W);
+    stick(RIVAL, "Rival", 14 + colW, y0, y1, W);
+    readout(vc, rvc);
+  }
+
+  function readout(vc, rvc) {
+    var adv = vc - rvc, out = document.getElementById("vsRead");
+    while (out.firstChild) out.removeChild(out.firstChild);
+    var lead = document.createElement("strong");
+    lead.textContent = adv > 0 ? "Competitive advantage: $" + adv + " per jacket. " : "No competitive advantage at these numbers. ";
+    out.appendChild(lead);
+    out.appendChild(document.createTextNode("Patagonia creates $" + vc + " of value against the rival’s $" + rvc +
+      ". Of Patagonia’s $" + vc + ", customers keep $" + (cur.wtp - cur.p) + ", Patagonia keeps $" + (cur.p - cur.c) +
+      " and suppliers and staff keep $" + (cur.c - cur.oc) + ". Patagonia’s margin is $" + (cur.p - cur.c) +
+      " against the rival’s $" + (RIVAL.p - RIVAL.c) + ": the advantage is in the length of the stick, not the size of the margin."));
+    var rows = [["Willingness to pay", cur.wtp, RIVAL.wtp], ["Price", cur.p, RIVAL.p], ["Cost", cur.c, RIVAL.c], ["Supplier opportunity cost", cur.oc, RIVAL.oc],
+      ["Value created (WTP − opp. cost)", vc, rvc], ["Customers keep (WTP − price)", cur.wtp - cur.p, RIVAL.wtp - RIVAL.p],
+      ["Firm keeps (price − cost)", cur.p - cur.c, RIVAL.p - RIVAL.c], ["Suppliers and staff keep (cost − opp. cost)", cur.c - cur.oc, RIVAL.c - RIVAL.oc]];
+    var tb = document.getElementById("vsTable");
+    while (tb.firstChild) tb.removeChild(tb.firstChild);
+    rows.forEach(function (r, i) {
+      var tr = document.createElement("tr");
+      r.forEach(function (v, j) {
+        var td = document.createElement(j === 0 ? "th" : "td");
+        if (j === 0) td.setAttribute("scope", "row");
+        td.className = j ? "text-right tabular-nums" : (i === 4 ? "font-semibold" : "");
+        td.textContent = j ? "$" + v : v; tr.appendChild(td);
+      });
+      tb.appendChild(tr);
+    });
+  }
+
+  syncSliders(); draw();
+  if (window.ResizeObserver) { var lw = 0; new ResizeObserver(function () { var w = Math.round(plot.clientWidth); if (w && w !== lw) { lw = w; draw(); } }).observe(plot); }
+})();
+</script>
+
+<script>
+(function () {
+  /* ---------- activity 2: external or internal? (facts from Trelstad et al., 2023) ---------- */
+  var list = document.getElementById("srtList"), score = document.getElementById("srtScore");
+  if (!list) return;
+  var ITEMS = [
+    { t: "Garment demand rose between 2000 and 2014 as the middle class grew in the developing world.", src: "Case p. 4", a: "ext",
+      why: "External: a shift in demand that no single firm created. It also raised the fashion industry’s emissions and waste, which is what made durability a distinctive promise." },
+    { t: "Chouinard Equipment designed aluminium chocks that could be placed by hand and removed without damaging the rock.", src: "Case p. 2", a: "int",
+      why: "Internal: a product innovation. The trigger was external, routes scarred by hammered pitons, but the chock was the firm’s own answer, and its catalogue explanation moved the US market within months." },
+    { t: "California passed a law in 2011 creating benefit corporations.", src: "Case p. 5", a: "ext",
+      why: "External: regulation. Patagonia’s response, registering as the state’s first benefit corporation on the day the law was signed, was internal, and possible because its practices already met the standard." },
+    { t: "All 166 cotton products moved to organic cotton within eighteen months.", src: "Case p. 4", a: "int",
+      why: "Internal: a sourcing decision Patagonia made and could have declined. It put sportswear, then 30% of the business, at risk." },
+    { t: "Greenhouse-gas levels kept rising, and the effects of climate change were felt by people around the world.", src: "Case p. 4, Exhibit 3", a: "ext",
+      why: "External: the backdrop to Patagonia’s 2018 mission, “We’re in business to save our home planet” (p. 6). It is an opportunity only for a firm whose products and reputation already fit it." },
+    { t: "Worn Wear: free repairs, plus a buyback scheme that resold or recycled returned clothing.", src: "Case p. 4", a: "int",
+      why: "Internal: a service Patagonia built. It turns durability, a product claim, into a promise customers can use." },
+    { t: "Fast-fashion retailers multiplied, turning over their entire inventory several times a year.", src: "Case p. 4", a: "ext",
+      why: "External: a change in the industry around Patagonia. By contrast, it made clothing that lasts and gets repaired more distinctive." },
+    { t: "One of the first onsite corporate daycare centres in the US, and paid parental leave before it was common.", src: "Case p. 3", a: "int",
+      why: "Internal: culture and HR policy. On the value stick it works at the bottom, on what it takes for people to choose to work at Patagonia." },
+    { t: "The 1994 finding that conventional cotton, grown on 2.5% of the world’s cultivated land, used 22.5% of its chemical insecticides.", src: "Case pp. 3–4", a: "both",
+      why: "Either can be argued. The fact describes the world outside the firm, so it is external. But Patagonia commissioned the independent assessment that surfaced it, so finding it was an internal act of sensing. Most firms never looked." },
+    { t: "From 1991, growth capped at pre-set targets to keep the workplace stable.", src: "Case p. 3", a: "int",
+      why: "Internal: a policy choice. It followed an external shock: in the 1991 recession a lender cut Patagonia’s credit line and it laid off 20% of its 600 staff." }
+  ];
+  var done = 0, right = 0;
+  ITEMS.forEach(function (it) {
+    var card = document.createElement("div");
+    card.className = "rounded-xl border border-slate-200 p-4";
+    var src = document.createElement("p"); src.className = "text-[11px] font-semibold uppercase tracking-wider text-slate-500"; src.textContent = it.src;
+    var st = document.createElement("p"); st.className = "mt-1 text-sm font-medium text-slate-900 leading-relaxed"; st.textContent = it.t;
+    var row = document.createElement("div"); row.className = "mt-3 flex flex-wrap gap-2";
+    var out = document.createElement("p"); out.className = "mt-3 text-sm leading-relaxed text-slate-700"; out.hidden = true;
+    out.setAttribute("aria-live", "polite");
+    var btns = [];
+    [["ext", "External"], ["int", "Internal"]].forEach(function (o) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "s6-opt rounded-full border border-slate-300 px-4 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50";
+      b.textContent = o[1]; b.setAttribute("aria-pressed", "false");
+      b.addEventListener("click", function () {
+        if (card.dataset.done) return;
+        card.dataset.done = "1";
+        var ok = it.a === "both" || it.a === o[0];
+        done++; if (ok) right++;
+        btns.forEach(function (x) { x.disabled = true; });
+        b.setAttribute("aria-pressed", "true");
+        btns.forEach(function (x) {
+          var isAns = it.a === "both" || x.dataset.k === it.a;
+          if (isAns) x.classList.add("s6-right"); else if (x === b) x.classList.add("s6-wrong");
+        });
+        var lead = document.createElement("strong");
+        lead.className = it.a === "both" ? "s6-either" : (ok ? "s6-ok" : "s6-no");
+        lead.textContent = it.a === "both" ? "Debatable. " : (ok ? "Right. " : "Not quite. ");
+        out.appendChild(lead); out.appendChild(document.createTextNode(it.why));
+        out.hidden = false;
+        score.textContent = done + " of " + ITEMS.length + " sorted, " + right + " defensible." +
+          (done === ITEMS.length ? " All ten sorted: count how many internal moves had an external trigger." : "");
+      });
+      b.dataset.k = o[0];
+      btns.push(b); row.appendChild(b);
+    });
+    card.appendChild(src); card.appendChild(st); card.appendChild(row); card.appendChild(out);
+    list.appendChild(card);
+  });
+})();
+</script>
+
+<script>
+/* ---------- activity 3 data: five episodes, facts from Trelstad et al. (2023) ---------- */
+window.S6SCN = [
+  { year: "Early 1970s", title: "Pitons and chocks",
+    sit: "By 1970 Chouinard Equipment was the largest supplier of climbing hardware in the US, on modest margins in a small specialty market. Its pitons were hammered into the rock and either left behind or pulled out, leaving cracks and holes in popular climbs (p. 2).",
+    q: [
+      { p: "Which change created the opportunity?", o: [
+        ["Damage to the rock from pitons, which climbers who cared about their routes would want to avoid", 1, "Right. The problem sat in the environment, literally: scarred rock. Gear that left routes intact was worth more to climbers who saw the damage."],
+        ["A new aluminium technology that made chocks cheaper than pitons", 0, "The case says nothing about the cost of chocks against pitons. It describes a change in what the product did to the rock, not in what it cost."],
+        ["A ban on pitons in US national parks", 0, "No regulation appears in this episode. The shift came from climbers, once the problem was explained to them."]] },
+      { p: "What made the firm ready to exploit it?", o: [
+        ["A patent on chocks that kept rivals out", 0, "The case mentions no patent. Readiness here came from knowledge and a direct line to customers, not legal protection."],
+        ["Founders who climbed and saw the damage first-hand, and a catalogue that reached climbers directly", 1, "Right. Chouinard recognised the damage, the firm designed and sold aluminium chocks, and it ran an explanation in its catalogue (p. 2)."],
+        ["The lowest production cost in the industry", 0, "Modest margins in a small market do not suggest a cost advantage (p. 2). The chocks won on what they did, not on price."]] }
+    ],
+    out: "Within months of the catalogue explanation the US market had shifted to the new, more environmentally friendly technology (p. 2). Grant’s two sources meet here: the change was external (damaged routes), the answer internal (a new product), and closeness to climbers let the firm move first." },
+  { year: "1977", title: "Pile fleece",
+    sit: "Chouinard’s favourite wool sweater got heavy when it was wet on climbs, was slow to dry and was hard to clean (p. 3). The firm had entered apparel by importing sturdy rugby shirts for climbers, and by 1973 demand for them outran production (pp. 2–3).",
+    q: [
+      { p: "Which change created the opportunity?", o: [
+        ["None outside the firm: a product problem the founders lived with on every climb", 1, "Right. This one is internal. The case reports no shift in demand, prices or rules; the opportunity was a better answer to a need climbers already had."],
+        ["A shortage of wool that raised the price of sweaters", 0, "The case reports no wool shortage and no price change."],
+        ["A rival’s launch of synthetic jackets", 0, "No rival appears in this episode."]] },
+      { p: "What made the firm ready to exploit it?", o: [
+        ["A large retail network", 0, "Patagonia was not yet an independent company; it was set up as one in 1979 (p. 3)."],
+        ["A cost advantage in synthetic fabrics", 0, "The case says nothing about the cost of the fleece. It describes what the material did better."],
+        ["Designers who used the product in the conditions it had to survive", 1, "Right. The fleece was an attempt to improve on Chouinard’s own sweater: as warm as wool, lighter and more weather-resistant (p. 3)."]] }
+    ],
+    out: "The pile fleece became an iconic Patagonia product (p. 3). Not every advantage needs an external trigger: innovation, Grant’s internal source, can create one on its own." },
+  { year: "1994", title: "Organic cotton",
+    sit: "Patagonia commissioned an independent assessment of its products’ environmental impact. Cotton came out worst: conventional cotton fields covered 2.5% of the world’s cultivated land but used 22.5% of chemical insecticides and 10% of agricultural pesticides (pp. 3–4).",
+    q: [
+      { p: "Which change created the opportunity?", o: [
+        ["A new law requiring organic cotton in clothing", 0, "No law is mentioned. The pressure came from information, not regulation."],
+        ["Organic cotton becoming cheaper than conventional cotton", 0, "The case gives no input prices, and it treats the switch as a risk to the business, not a saving."],
+        ["Information about the hidden environmental cost of an input Patagonia already used", 1, "Right. The fact was external, the damage conventional cotton does, but Patagonia went looking for it."]] },
+      { p: "What made Patagonia ready to exploit it?", o: [
+        ["A founder willing to stake a large part of the business, and customers who stayed with it", 1, "Right. Chouinard gave the company eighteen months to move all 166 cotton products or it would stop selling sportswear, then 30% of the business (p. 4)."],
+        ["Its own cotton farms", 0, "The case reports no farms; Patagonia bought from suppliers."],
+        ["Buying power as the largest cotton buyer in apparel", 0, "The case makes no claim about buying power, and a decade later its annual sales were still estimated at about $200 million (p. 4)."]] }
+    ],
+    out: "Patagonia made the swap and regained its previous sales within two years (p. 4). On the value stick the move raised suppliers’ opportunity cost and Patagonia’s cost, and it paid only if willingness to pay rose by more. The case suggests it did; it does not show the numbers." },
+  { year: "2000–2014", title: "Fast fashion and waste",
+    sit: "As the developing world’s middle class grew, the average consumer bought 60% more garments a year and discarded textiles rose steeply. Fast-fashion retailers multiplied and unsold stock grew. The fashion industry produced 10% of human greenhouse-gas emissions (p. 4).",
+    q: [
+      { p: "Which change created the opportunity?", o: [
+        ["Falling demand for outdoor clothing", 0, "Demand for clothing was rising in this period, not falling (p. 4)."],
+        ["Fast-fashion firms leaving the industry", 0, "The opposite: they proliferated (p. 4)."],
+        ["Rising consumption and waste, which made a product that lasts and gets repaired stand out", 1, "Right. The move towards more, cheaper, shorter-lived clothing widened the contrast with a durable product."]] },
+      { p: "What made Patagonia ready to exploit it?", o: [
+        ["A supply chain fast enough to match fast fashion", 0, "That is Zara’s advantage in Grant’s example (2019, p. 158), not Patagonia’s. Patagonia’s answer ran the other way."],
+        ["Products built to last, and a repair operation already in place", 1, "Right. The Reno building opened in 1996 later housed Worn Wear, which repaired 100,000 items a year, and a buyback scheme resold or recycled used clothing (p. 4)."],
+        ["Lower prices than fast-fashion retailers", 0, "The case gives no prices, and nothing in it suggests Patagonia competed on price."]] }
+    ],
+    out: "In 2011 Patagonia launched its Common Threads Initiative, asking customers to reduce, repair, reuse, recycle and reimagine its products (p. 5). The case says it grew significantly in the 2010s while wrestling with the fact that more sales meant more environmental impact (p. 4). Session 5 analysed the advertisement that launched the initiative; here, notice what it was built on." },
+  { year: "2011", title: "Benefit corporations",
+    sit: "B Corp certification had existed since 2006. In 2011 California passed a law creating legal benefit corporations, which must write their social, environmental and stakeholder commitments into their articles and bylaws (p. 5).",
+    q: [
+      { p: "Which change created the opportunity?", o: [
+        ["A new legal form that lets a firm make its commitments binding", 1, "Right. Regulation created a way to turn practices into obligations that customers, staff and partners could rely on."],
+        ["Tax breaks for certified companies", 0, "The case mentions none."],
+        ["Investor pressure on public companies to report on ESG", 0, "Patagonia was a private company owned by the Chouinard family; no outside investors were pressing it (p. 6)."]] },
+      { p: "What made Patagonia ready to exploit it?", o: [
+        ["A large legal department", 0, "The case points the other way: the practices already existed and needed only to be written into the charter."],
+        ["Practices it already ran, ready to become commitments the day the law passed", 1, "Right. It registered as California’s first benefit corporation on the day the law was signed. Its 1% for the Planet giving, best product with no unnecessary harm, sharing of best practices and supportive workplace became commitments changeable only by a unanimous shareholder vote (p. 5)."],
+        ["Early access to government contracts", 0, "No contracts are mentioned."]] }
+    ],
+    out: "B Lab’s co-founder credits Patagonia with leading thousands of companies to make themselves legally accountable to stakeholders (p. 5). By fall 2020 its B Corp impact score was 151.4, against 80 needed to certify (p. 6). Regulation created the option; years of internal practice made Patagonia first to take it." }
+];
+</script>
+
+<script>
+(function () {
+  /* ---------- activity 3: which change, and who was ready? ---------- */
+  var EP = window.S6SCN || [];
+  var tabs = document.getElementById("scnTabs"), panel = document.getElementById("scnPanel"), score = document.getElementById("scnScore");
+  if (!tabs || !panel || !EP.length) return;
+  var state = EP.map(function () { return [null, null]; });
+  var cur = 0, tbtns = [];
+
+  function completed() { return state.filter(function (s) { return s[0] !== null && s[1] !== null; }).length; }
+  function paintTabs() {
+    tbtns.forEach(function (b, i) {
+      b.setAttribute("aria-pressed", i === cur ? "true" : "false");
+      var t = b.querySelector(".s6-tick");
+      t.hidden = !(state[i][0] !== null && state[i][1] !== null);
+    });
+    var n = completed();
+    score.textContent = n + " of " + EP.length + " episodes worked through." + (n === EP.length ? " In how many was the trigger external and the response internal?" : "");
+  }
+
+  EP.forEach(function (e, i) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "s6-tab rounded-xl border border-slate-300 px-3 py-2 text-left hover:bg-slate-50";
+    var y = document.createElement("span"); y.className = "block font-mono text-[11px] text-blue-700"; y.textContent = e.year;
+    var t = document.createElement("span"); t.className = "block text-sm font-semibold text-slate-900"; t.textContent = e.title;
+    var k = document.createElement("span"); k.className = "s6-tick ml-1 text-xs font-bold"; k.textContent = "✓ done"; k.hidden = true;
+    t.appendChild(k);
+    b.appendChild(y); b.appendChild(t);
+    b.addEventListener("click", function () { cur = i; render(); });
+    tbtns.push(b); tabs.appendChild(b);
+  });
+
+  function render() {
+    var e = EP[cur];
+    while (panel.firstChild) panel.removeChild(panel.firstChild);
+    var head = document.createElement("div"); head.className = "rounded-xl border border-slate-200 bg-slate-50 p-4";
+    var hy = document.createElement("p"); hy.className = "text-[10px] font-semibold uppercase tracking-wider text-slate-500"; hy.textContent = e.year + " · " + e.title;
+    var hs = document.createElement("p"); hs.className = "mt-1 text-sm text-slate-700 leading-relaxed"; hs.textContent = e.sit;
+    head.appendChild(hy); head.appendChild(hs); panel.appendChild(head);
+
+    var grid = document.createElement("div"); grid.className = "mt-4 grid gap-4 lg:grid-cols-2";
+    e.q.forEach(function (q, qi) {
+      var box = document.createElement("div"); box.className = "rounded-xl border border-slate-200 p-4";
+      var qp = document.createElement("p"); qp.className = "text-sm font-semibold text-slate-900";
+      qp.textContent = (qi + 1) + ". " + q.p;
+      var opts = document.createElement("div"); opts.className = "mt-3 grid gap-2";
+      var fb = document.createElement("p"); fb.className = "mt-3 text-sm leading-relaxed text-slate-700"; fb.setAttribute("aria-live", "polite");
+      var chosen = state[cur][qi], btns = [];
+      q.o.forEach(function (o, oi) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "s6-opt w-full rounded-lg border border-slate-300 px-3 py-2 text-left text-sm text-slate-700 hover:bg-slate-50";
+        b.textContent = o[0];
+        b.setAttribute("aria-pressed", chosen === oi ? "true" : "false");
+        b.addEventListener("click", function () {
+          if (state[cur][qi] !== null) return;
+          state[cur][qi] = oi; render(); paintTabs();
+        });
+        btns.push(b); opts.appendChild(b);
+      });
+      if (chosen !== null) {
+        btns.forEach(function (b, oi) {
+          b.disabled = true;
+          if (q.o[oi][1]) b.classList.add("s6-right"); else if (oi === chosen) b.classList.add("s6-wrong");
+        });
+        var ok = !!q.o[chosen][1];
+        var lead = document.createElement("strong"); lead.className = ok ? "s6-ok" : "s6-no"; lead.textContent = ok ? "" : "Not quite. ";
+        if (!ok) fb.appendChild(lead);
+        fb.appendChild(document.createTextNode(q.o[chosen][2]));
+        if (!ok) {
+          var right = q.o.filter(function (o) { return o[1]; })[0];
+          fb.appendChild(document.createTextNode(" The case’s answer: " + right[0].charAt(0).toLowerCase() + right[0].slice(1) + "."));
+        }
+      } else { fb.hidden = true; }
+      box.appendChild(qp); box.appendChild(opts); box.appendChild(fb);
+      grid.appendChild(box);
+    });
+    panel.appendChild(grid);
+
+    if (state[cur][0] !== null && state[cur][1] !== null) {
+      var out = document.createElement("div"); out.className = "mt-4 rounded-xl border border-blue-200 bg-blue-50 p-4";
+      var oh = document.createElement("p"); oh.className = "text-[10px] font-semibold uppercase tracking-wider text-blue-700"; oh.textContent = "What happened, and the lens";
+      var ot = document.createElement("p"); ot.className = "mt-1 text-sm text-slate-700 leading-relaxed"; ot.textContent = e.out;
+      out.appendChild(oh); out.appendChild(ot);
+      if (cur < EP.length - 1) {
+        var nx = document.createElement("button"); nx.type = "button";
+        nx.className = "mt-3 rounded-lg bg-slate-900 px-3 py-1.5 text-xs font-semibold text-white hover:bg-slate-800";
+        nx.textContent = "Next episode →";
+        nx.addEventListener("click", function () { cur += 1; render(); paintTabs(); });
+        out.appendChild(nx);
+      }
+      panel.appendChild(out);
+    }
+    paintTabs();
+  }
+  render();
+})();
+</script>
+
+<script>window.SQUIZ = [
+ {
+  "q": "On the value stick, the value a transaction creates equals:",
+  "o": [
+   "Price minus cost",
+   "Willingness to pay minus supplier opportunity cost",
+   "Willingness to pay minus price",
+   "Cost minus supplier opportunity cost"
+  ],
+  "a": 1,
+  "e": "Value created runs from the top of the stick to the bottom. Price minus cost is only the firm’s slice, willingness to pay minus price is the customer’s, and cost minus opportunity cost belongs to suppliers and employees."
+ },
+ {
+  "q": "Patagonia raises the price of a jacket by $20, and willingness to pay, cost and supplier opportunity cost stay the same. What happens to the value created?",
+  "o": [
+   "It rises by $20",
+   "It falls by $20",
+   "It is unchanged; $20 moves from customers to Patagonia",
+   "It is unchanged; $20 moves from suppliers to Patagonia"
+  ],
+  "a": 2,
+  "e": "Price sits inside the stick, so moving it only divides the value differently: customers keep $20 less and Patagonia $20 more. Only willingness to pay and supplier opportunity cost change the length of the stick."
+ },
+ {
+  "q": "According to Grant (2019), when does an external change create competitive advantage?",
+  "o": [
+   "When it raises demand for the whole industry",
+   "When industry analysts predict it in advance",
+   "When it affects every firm equally, so the best-run firm wins",
+   "When it affects firms differently because their resources, capabilities or positions differ"
+  ],
+  "a": 3,
+  "e": "External changes create advantage when they have differential effects on firms. The bigger the change and the more the firms differ, the wider the spread of profits: compare the toy makers with the brewers (Grant, 2019, pp. 157–158)."
+ },
+ {
+  "q": "Grant names two capabilities that decide which firms profit most from an external change. They are:",
+  "o": [
+   "Anticipation and agility",
+   "Scale and scope",
+   "Deterrence and preemption",
+   "Imitation and substitution"
+  ],
+  "a": 0,
+  "e": "Anticipation (IBM seeing shifts in computing coming) and agility (Zara’s design-to-store cycle of under three weeks). Deterrence and preemption are ways to sustain an advantage, which is Session 7’s topic."
+ },
+ {
+  "q": "Patagonia’s 1994 decision to move all 166 cotton products to organic cotton is best classified as:",
+  "o": [
+   "An external source: a regulation that required organic cotton",
+   "An internal source: a sourcing innovation prompted by information Patagonia itself commissioned",
+   "Operational effectiveness: a practice rivals had already adopted",
+   "A move with no effect on the value stick"
+  ],
+  "a": 1,
+  "e": "No law required it, and the case does not say rivals had already switched. It was Patagonia’s own choice, prompted by an independent assessment it commissioned, and it moved cost and, the case suggests, willingness to pay."
+ },
+ {
+  "q": "What does the case report about the organic cotton switch?",
+  "o": [
+   "Sales fell by 30% and never recovered",
+   "Patagonia stopped selling sportswear",
+   "Patagonia regained its previous sales levels within two years",
+   "Organic cotton turned out cheaper than conventional cotton"
+  ],
+  "a": 2,
+  "e": "Chouinard gave the company eighteen months to switch, or it would stop selling sportswear, then 30% of the business. Patagonia made the swap and regained its previous sales within two years (Trelstad et al., 2023, p. 4). The case gives no input prices."
+ },
+ {
+  "q": "A firm’s added value is:",
+  "o": [
+   "Its profit margin on each sale",
+   "The price premium it charges over rivals",
+   "The value its suppliers create",
+   "The value that would disappear from the game if the firm ceased to exist"
+  ],
+  "a": 3,
+  "e": "Added value is what the game would lose without the firm, the obituary test in Casadesus-Masanell (2022, p. 9). What a firm can capture is limited by its added value."
+ },
+ {
+  "q": "Ghemawat and Rivkin say a firm enjoys a competitive advantage over its rivals when it:",
+  "o": [
+   "Earns superior financial returns within its industry or strategic group over the long run",
+   "Has the largest market share in its industry",
+   "Earns returns above the average for the whole economy",
+   "Sells a product no rival offers"
+  ],
+  "a": 0,
+  "e": "Their definition, as quoted by Rumelt (2003, p. 2), compares the firm with its own industry or strategic group, not with the economy, and asks for the long run, not one good year."
+ },
+ {
+  "q": "Suppose Patagonia’s daycare and paid parental leave make a job there worth more to employees than its pay alone, and wages and other costs stay the same. On the value stick, this:",
+  "o": [
+   "Raises customers’ willingness to pay",
+   "Raises Patagonia’s margin",
+   "Lowers supplier opportunity cost, so value created rises and employees keep the extra",
+   "Has no effect, because the stick only measures customers"
+  ],
+  "a": 2,
+  "e": "The least people would accept to work at Patagonia falls, so the stick lengthens at the bottom. With pay unchanged, the gain lands in the employees’ slice. Patagonia captures part of it only through lower pay or lower turnover, which the case does not measure."
+ },
+ {
+  "q": "Why can the case not prove that Patagonia created more value than its rivals?",
+  "o": [
+   "Patagonia is a public company whose share price is too volatile",
+   "Patagonia is private, did not share its financial data, and the case gives no prices, costs or rival margins",
+   "The case covers only the years before 1991",
+   "Patagonia has no direct rivals"
+  ],
+  "a": 1,
+  "e": "Revenue and net income are media estimates (Trelstad et al., 2023, p. 2), and there are no unit prices, costs or rival figures. The case offers a pattern of costly choices followed by growth: suggestive, not proof."
+ }
+];</script>
+<script>
+(function () {
+  /* ---------------- quiz ---------------- */
+  var QUIZ = window.SQUIZ || [];
+  var qw = document.getElementById("sQuiz");
+  if (qw && QUIZ.length) {
+    var score = 0;
+    document.getElementById("sQuizTotal").textContent = QUIZ.length;
+    function build() {
+      qw.innerHTML = ""; score = 0;
+      document.getElementById("sQuizScore").textContent = "0";
+      QUIZ.forEach(function (item, n) {
+        var d = document.createElement("div");
+        d.className = "card p-5";
+        var opts = item.o.map(function (t, k) {
+          return '<button type="button" class="quiz-option w-full rounded-lg border border-slate-300 px-3 py-2 text-left text-sm text-slate-700" data-k="' + k + '">' +
+            String.fromCharCode(65 + k) + ". " + t + '</button>';
+        }).join("");
+        d.innerHTML = '<p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Question ' + (n + 1) + '</p>' +
+          '<p class="mt-1 text-sm font-semibold text-slate-900">' + item.q + '</p>' +
+          '<div class="mt-3 grid gap-2">' + opts + '</div>' +
+          '<p class="quiz-explanation text-xs text-slate-600 bg-slate-100 p-3 rounded-md border border-slate-200"></p>';
+        var expl = d.querySelector(".quiz-explanation");
+        d.querySelectorAll(".quiz-option").forEach(function (b) {
+          b.addEventListener("click", function () {
+            if (d.dataset.answered) return;
+            d.dataset.answered = "1";
+            var k = parseInt(b.dataset.k, 10);
+            if (k === item.a) { score++; document.getElementById("sQuizScore").textContent = score; }
+            d.querySelectorAll(".quiz-option").forEach(function (x) {
+              x.disabled = true;
+              var xi = parseInt(x.dataset.k, 10);
+              if (xi === item.a) x.classList.add("correct");
+              else if (x === b) x.classList.add("incorrect");
+            });
+            expl.textContent = item.e;
+            expl.classList.add("visible");
+          });
+        });
+        qw.appendChild(d);
+      });
+    }
+    build();
+    var rb = document.getElementById("sQuizReset");
+    if (rb) rb.addEventListener("click", build);
+  }
+})();
+</script>
+
+<script>
+(function () {
+  var SECTIONS = [["recap", "Recap"], ["value", "The value wedge"], ["sources", "Sources of advantage"], ["scenario", "Change and readiness"], ["case", "Patagonia's wedge"], ["decks", "Go deeper"], ["discussion", "Discussion"], ["quiz", "Quiz"], ["readings", "Readings"]];
+  var KEY = "s6-progress-v1";
+  var ACTIVITIES = ["stick", "sort", "scenario", "quiz"];
+
+  // ---------- theme ----------
+  var root = document.documentElement;
+  try {
+    // light is the default; dark only when the visitor has asked for it
+    if (localStorage.getItem("s6-theme") === "dark") root.classList.add("dark");
+  } catch (e) {}
+  var themeBtn = document.getElementById("themeBtn");
+  if (themeBtn) {
+    themeBtn.addEventListener("click", function () {
+      root.classList.toggle("dark");
+      try { localStorage.setItem("s6-theme", root.classList.contains("dark") ? "dark" : "light"); } catch (e) {}
+    });
+  }
+
+  // ---------- reading progress ----------
+  var bar = document.getElementById("readbar");
+  var pctEl = document.getElementById("progPct");
+  function onScroll() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? Math.min(100, Math.max(0, (h.scrollTop / max) * 100)) : 0;
+    if (bar) { bar.style.width = p + "%"; bar.setAttribute("aria-valuenow", Math.round(p)); }
+    if (pctEl) pctEl.textContent = Math.round(p);
+  }
+  var ticking = false;
+  window.addEventListener("scroll", function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () { onScroll(); ticking = false; });
+  }, { passive: true });
+  onScroll();
+
+  // ---------- rail + drawer nav ----------
+  var rail = document.getElementById("rail");
+  var dnav = document.getElementById("drawerNav");
+  SECTIONS.forEach(function (s) {
+    if (!document.getElementById(s[0])) return;
+    if (rail) {
+      var a = document.createElement("a");
+      a.href = "#" + s[0];
+      a.dataset.sec = s[0];
+      a.innerHTML = '<span class="dot"></span><span class="lbl">' + s[1] + "</span>";
+      rail.appendChild(a);
+    }
+    if (dnav) {
+      var d = document.createElement("a");
+      d.href = "#" + s[0];
+      d.className = "rounded-lg px-3 py-2.5 text-sm text-slate-700 hover:bg-slate-100";
+      d.textContent = s[1];
+      d.addEventListener("click", closeDrawer);
+      dnav.appendChild(d);
+    }
+  });
+
+  var drawer = document.getElementById("drawer");
+  var drawerBtn = document.getElementById("drawerBtn");
+  function openDrawer() {
+    if (!drawer) return;
+    drawer.classList.remove("hidden");
+    if (drawerBtn) drawerBtn.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  }
+  function closeDrawer() {
+    if (!drawer) return;
+    drawer.classList.add("hidden");
+    if (drawerBtn) drawerBtn.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
+  if (drawerBtn) drawerBtn.addEventListener("click", openDrawer);
+  var dc = document.getElementById("drawerClose");
+  var ds = document.getElementById("drawerScrim");
+  if (dc) dc.addEventListener("click", closeDrawer);
+  if (ds) ds.addEventListener("click", closeDrawer);
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeDrawer(); });
+
+  // ---------- scrollspy for the rail ----------
+  var spy = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting || !rail) return;
+      rail.querySelectorAll("a").forEach(function (a) {
+        a.classList.toggle("on", a.dataset.sec === en.target.id);
+      });
+    });
+  }, { rootMargin: "-45% 0px -50% 0px" });
+  SECTIONS.forEach(function (s) {
+    var el = document.getElementById(s[0]);
+    if (el) spy.observe(el);
+  });
+
+  // ---------- scroll reveal ----------
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduce) {
+    var targets = document.querySelectorAll("section > .container > *");
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.06, rootMargin: "0px 0px -8% 0px" });
+    targets.forEach(function (t, i) {
+      // never hide anything already on screen at load
+      if (t.getBoundingClientRect().top < window.innerHeight) return;
+      t.classList.add("rv");
+      io.observe(t);
+    });
+  }
+
+  // ---------- completion tracking ----------
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { state = {}; }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  function count() { return ACTIVITIES.filter(function (k) { return state[k]; }).length; }
+  function paint() {
+    var n = count(), total = ACTIVITIES.length;
+    var a = document.getElementById("doneCount"); if (a) a.textContent = n;
+    var b = document.getElementById("drawerDone"); if (b) b.textContent = n;
+    var c = document.getElementById("drawerBar"); if (c) c.style.width = (100 * n / total) + "%";
+    ACTIVITIES.forEach(function (k) {
+      var badge = document.querySelector('[data-done-for="' + k + '"]');
+      if (badge) badge.hidden = !state[k];
+    });
+  }
+  function mark(k) { if (!state[k]) { state[k] = true; save(); paint(); } }
+  paint();
+
+  // wire completion to the real interactions already on the page
+  function onClickWithin(sel, key) {
+    var el = document.querySelector(sel);
+    if (el) el.addEventListener("click", function () { mark(key); });
+  }
+  onClickWithin("#valueStick", "stick");
+  onClickWithin("#sourceSorter", "sort");
+  onClickWithin("#scenarioBox", "scenario");
+  onClickWithin("#sQuiz", "quiz");
+
+  // reset control, appended to the readings section if present
+  var readings = document.getElementById("readings");
+  if (readings) {
+    var wrap = readings.querySelector(".container");
+    if (wrap) {
+      var p = document.createElement("div");
+      p.className = "mt-8 flex flex-wrap items-center gap-3 border-t border-slate-200 pt-6 text-sm";
+      p.innerHTML = '<span class="text-slate-500">Your progress on this page is saved in this browser only.</span>' +
+        '<button type="button" id="resetProg" class="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-100">Reset my progress</button>';
+      wrap.appendChild(p);
+      var rp = document.getElementById("resetProg");
+      if (rp) rp.addEventListener("click", function () {
+        state = {}; save(); paint();
+        rp.textContent = "Reset";
+        setTimeout(function () { rp.textContent = "Reset my progress"; }, 1400);
+      });
+    }
+  }
+})();
+
+</script>
+
+<script>
+/* keep the Chart.js canvases legible in both themes */
+(function(){
+  function chartTheme(){
+    if(!window.Chart||!Chart.getChart) return;
+    var dark=document.documentElement.classList.contains("dark");
+    var tick=dark?"#94A3B8":"#475569";
+    var grid=dark?"rgba(226,232,240,.12)":"rgba(15,23,42,.08)";
+    Chart.defaults.color=tick;
+    document.querySelectorAll("canvas").forEach(function(c){
+      var ch=Chart.getChart(c); if(!ch||!ch.config) return;
+      // Chart.js v4 rebuilds chart.options on update(), so mutate the config
+      var o=ch.config.options=ch.config.options||{};
+      var sc=o.scales=o.scales||{};
+      Object.keys(sc).forEach(function(k){
+        if(!sc[k]) return;
+        sc[k].ticks=sc[k].ticks||{}; sc[k].ticks.color=tick;
+        if(sc[k].grid&&sc[k].grid.display===false) return;
+        sc[k].grid=sc[k].grid||{}; sc[k].grid.color=grid;
+      });
+      var pl=o.plugins=o.plugins||{};
+      if(pl.legend){ pl.legend.labels=pl.legend.labels||{}; pl.legend.labels.color=tick; }
+      ch.update("none");
+    });
+  }
+  var btn=document.getElementById("themeBtn");
+  if(btn) btn.addEventListener("click",function(){ setTimeout(chartTheme,60); });
+
+  var n=0, iv=setInterval(function(){ chartTheme(); if(++n>20) clearInterval(iv); },400);
+})();
+</script>
+</body>
+</html>
