@@ -104,7 +104,7 @@ const sessionPlan: readonly OneYearSession[] = [
       "Article · Porter, M. E. (1996). What Is Strategy? Harvard Business Review.",
       "Textbook · Chapter 2",
     ],
-    interactiveHref: interactive("session3.html"),
+    interactiveHref: interactive("session2.html"),
     quizId: "1yr-03",
   },
   {
@@ -116,7 +116,7 @@ const sessionPlan: readonly OneYearSession[] = [
       "Article · Porter, M. E. (2008). The Five Competitive Forces That Shape Strategy. Harvard Business Review.",
       "Textbook · Chapter 3",
     ],
-    interactiveHref: interactive("session4.html"),
+    interactiveHref: "/teaching/1-year-mba/session3/five-forces-tesla.html",
     quizId: "1yr-04",
   },
   {
@@ -145,7 +145,7 @@ const sessionPlan: readonly OneYearSession[] = [
       "Article · Porter, M. E. (2008). The Five Competitive Forces That Shape Strategy. Harvard Business Review.",
       "Textbook · Chapter 5",
     ],
-    interactiveHref: interactive("Session_5_Internal_Firm_Analysis_v0.91.html"),
+    interactiveHref: interactive("session5.html"),
   },
   {
     number: "06",
@@ -160,7 +160,7 @@ const sessionPlan: readonly OneYearSession[] = [
       "Article · Ghemawat, P., & Rivkin, J. W. (1998). Creating Competitive Advantage.",
       "Textbook · Chapter 6",
     ],
-    interactiveHref: undefined,
+    interactiveHref: interactive("session6.html"),
   },
   {
     number: "07",
@@ -171,7 +171,7 @@ const sessionPlan: readonly OneYearSession[] = [
       "Article · Ghemawat, P., & Pisano, G. P. (1997). Sustaining Superior Performance: Commitments and Capabilities.",
       "Textbook · Chapter 7",
     ],
-    interactiveHref: undefined,
+    interactiveHref: interactive("session7.html"),
   },
   {
     number: "08",
