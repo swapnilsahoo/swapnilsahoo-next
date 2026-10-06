@@ -1,0 +1,1907 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 8: Differentiation & Cost Leadership | STRAMGT 221 — Dr. Swapnil Sahoo</title>
+    <meta name="description" content="Porter's generic strategies (cost leadership, differentiation and focus), the drivers of cost and uniqueness, the risk of being stuck in the middle, and whether Patagonia is a differentiator or a differentiation focuser.">
+    <link rel="canonical" href="https://www.swapnilsahoo.com/teaching/1-year-mba/session8.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Session 8: Differentiation & Cost Leadership">
+    <meta property="og:description" content="Porter's generic strategies (cost leadership, differentiation and focus), the drivers of cost and uniqueness, the risk of being stuck in the middle, and whether Patagonia is a differentiator or a differentiation focuser.">
+    <meta property="og:url" content="https://www.swapnilsahoo.com/teaching/1-year-mba/session8.html">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter','ui-sans-serif','system-ui','sans-serif'],
+              display: ['Fraunces','ui-serif','Georgia','serif']
+            },
+            colors: {
+              slate: {
+                50:'#F8FAFC',100:'#F1F5F9',200:'#E2E8F0',300:'#CBD5E1',
+                400:'#94A3B8',500:'#64748B',600:'#475569',700:'#334155',
+                800:'#1E293B',900:'#0F172A',950:'#020617'
+              },
+              gray: {
+                50:'#F8FAFC',100:'#F1F5F9',200:'#E2E8F0',300:'#CBD5E1',
+                400:'#94A3B8',500:'#64748B',600:'#475569',700:'#334155',
+                800:'#1E293B',900:'#0F172A'
+              },
+              blue: {
+                50:'#EEF1FF',100:'#E0E5FF',200:'#C6CEFE',300:'#A3AEFB',
+                400:'#818CF8',500:'#6366F1',600:'#4F46E5',700:'#4338CA',
+                800:'#372FA8',900:'#2E2A82',950:'#1B1850'
+              }
+            },
+            boxShadow: {
+              lift: '0 1px 2px rgba(15,23,42,.04), 0 8px 24px -12px rgba(15,23,42,.18)',
+              liftmd: '0 2px 4px rgba(15,23,42,.05), 0 18px 40px -18px rgba(15,23,42,.28)'
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root{
+          --sticky-offset:100px;
+          --paper:#FFFFFF; --ink:#0F172A; --muted:#475569; --line:#E2E8F0;
+          --card:#FFFFFF; --accent:#4F46E5; --accent-soft:#EEF2FF;
+        }
+        html.dark{
+          --paper:#0B1120; --ink:#E2E8F0; --muted:#94A3B8; --line:#1E293B;
+          --card:#111A2E; --accent:#818CF8; --accent-soft:#1E1B4B;
+        }
+        html{scroll-padding-top:120px}
+        body{
+          font-family:'Inter',sans-serif;
+          background:var(--paper); color:var(--ink);
+          -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+        }
+        h1,h2,h3,.display{font-family:'Fraunces',ui-serif,Georgia,serif; letter-spacing:-.02em}
+        h1{font-optical-sizing:auto}
+
+        /* ---- dark-mode repaint of the utility classes already in the markup ---- */
+        html.dark .bg-white{background:var(--card)!important}
+        html.dark .bg-slate-50,html.dark .bg-slate-100,html.dark .bg-gray-50{background:#0F172A!important}
+        html.dark .border-slate-200,html.dark .border-slate-300,html.dark .border-gray-200{border-color:var(--line)!important}
+        html.dark .text-slate-900,html.dark .text-gray-900,html.dark .text-slate-800{color:var(--ink)!important}
+        html.dark .text-slate-600,html.dark .text-slate-700,html.dark .text-gray-600,html.dark .text-gray-700{color:#CBD5E1!important}
+        html.dark .text-slate-500,html.dark .text-slate-400{color:var(--muted)!important}
+        html.dark .divide-slate-100>*+*{border-color:var(--line)!important}
+        html.dark table thead{background:#162032!important}
+
+
+        /* ---- dark: translucent + tinted surfaces ---- */
+        html.dark .bg-white\/85,html.dark .bg-white\/80,html.dark .bg-white\/90{background:rgba(11,17,32,.90)!important}
+        html.dark .bg-blue-50,html.dark .bg-indigo-50{background:#171C3C!important}
+        html.dark .bg-blue-100,html.dark .bg-indigo-100{background:#1F2552!important}
+        html.dark .bg-blue-200{background:#272E60!important}
+        html.dark .bg-amber-50{background:#2A2110!important}
+        html.dark .bg-amber-100{background:#382C14!important}
+        html.dark .bg-rose-50{background:#2C1418!important}
+        html.dark .bg-rose-100,html.dark .bg-red-100{background:#3A181E!important}
+        html.dark .bg-emerald-50{background:#0F261A!important}
+        html.dark .bg-emerald-100{background:#143324!important}
+        html.dark .bg-teal-50{background:#0E2624!important}
+        html.dark .bg-teal-100{background:#12302E!important}
+        html.dark .bg-teal-200{background:#173B38!important}
+        html.dark .bg-cyan-100{background:#102A33!important}
+        html.dark .bg-slate-200{background:#1E293B!important}
+
+        /* dark surfaces: keep bars/cards as raised panels, turn actions into the accent */
+        html.dark div.bg-slate-900,html.dark footer.bg-gray-800{background:#111A2E!important}
+        html.dark a.bg-slate-900,html.dark button.bg-slate-900,html.dark span.bg-slate-900{background:#4F46E5!important;color:#fff!important}
+        html.dark a.bg-slate-900:hover,html.dark button.bg-slate-900:hover{background:#6366F1!important}
+        html.dark .border-gray-700{border-color:var(--line)!important}
+        html.dark .text-slate-100,html.dark .text-slate-200,html.dark .text-slate-300{color:#E2E8F0!important}
+
+        /* dark: tinted text has to lighten to stay legible */
+        html.dark .text-blue-600,html.dark .text-blue-700,html.dark .text-blue-800{color:#A3AEFB!important}
+        html.dark .text-rose-600,html.dark .text-rose-700,html.dark .text-red-600,html.dark .text-red-700{color:#FCA5A5!important}
+        html.dark .text-emerald-600,html.dark .text-emerald-700,html.dark .text-emerald-800{color:#6EE7A8!important}
+        html.dark .text-amber-600,html.dark .text-amber-700,html.dark .text-amber-800{color:#FCD34D!important}
+        html.dark .text-teal-600,html.dark .text-teal-700,html.dark .text-teal-800{color:#5EEAD4!important}
+
+        /* dark: tinted borders */
+        html.dark .border-blue-200,html.dark .border-blue-300,html.dark .border-blue-400{border-color:#2F3670!important}
+        html.dark .border-amber-200,html.dark .border-amber-500{border-color:#4A3A1A!important}
+        html.dark .border-rose-200,html.dark .border-rose-400{border-color:#4A2028!important}
+        html.dark .border-teal-200,html.dark .border-teal-300{border-color:#1C4B47!important}
+
+
+        /* dark: remaining tinted text families + form controls */
+        html.dark .text-blue-900,html.dark .text-indigo-600,html.dark .text-indigo-700,
+        html.dark .text-indigo-800,html.dark .text-purple-800{color:#B4BCFC!important}
+        html.dark .text-red-800,html.dark .text-rose-800{color:#FCA5A5!important}
+        html.dark .text-emerald-900{color:#6EE7A8!important}
+        html.dark .text-amber-900,html.dark .text-orange-600{color:#FBBF24!important}
+        html.dark .text-cyan-700,html.dark .text-cyan-800,html.dark .text-sky-700{color:#67E8F9!important}
+        html.dark input,html.dark textarea,html.dark select{
+          background:#111A2E!important;color:var(--ink)!important;border-color:var(--line)!important}
+        html.dark input::placeholder,html.dark textarea::placeholder{color:#64748B!important}
+
+
+        /* light: lift the few tinted headings that sat under 4.5:1 */
+        html:not(.dark) .text-amber-600{color:#B45309}
+        html:not(.dark) .text-orange-600{color:#C2410C}
+        html:not(.dark) .text-teal-600{color:#0F766E}
+
+
+        /* dark: hover states must not flash a light surface */
+        html.dark .hover\:bg-slate-50:hover,html.dark .hover\:bg-slate-100:hover{background:#1E293B!important}
+        html.dark .hover\:bg-blue-200:hover{background:#2B3268!important}
+        html.dark .hover\:bg-teal-200:hover{background:#17403C!important}
+        html.dark .hover\:bg-rose-100:hover{background:#421C23!important}
+
+        /* ---- reading progress ---- */
+        #readbar{position:fixed;top:0;left:0;height:3px;width:0;z-index:70;
+          background:linear-gradient(90deg,#4F46E5,#818CF8);transition:width .12s linear}
+
+        /* ---- section rail (desktop) ---- */
+        #rail{position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:40;display:none}
+        @media (min-width:1380px){#rail{display:block}}
+        #rail a{position:relative;display:flex;align-items:center;padding:4px 10px 4px 0;color:var(--muted);
+          font-size:11px;text-decoration:none;opacity:.55;transition:opacity .2s}
+        #rail a:hover,#rail a.on{opacity:1;color:var(--accent)}
+        #rail .dot{width:7px;height:7px;border-radius:99px;background:currentColor;flex:none;transition:transform .2s}
+        #rail a.on .dot{transform:scale(1.6)}
+        #rail .lbl{position:absolute;left:18px;top:50%;transform:translate(-4px,-50%);opacity:0;
+          pointer-events:none;white-space:nowrap;transition:opacity .2s,transform .2s;
+          background:var(--card);border:1px solid var(--line);border-radius:6px;padding:1px 7px;
+          box-shadow:0 4px 14px -8px rgba(15,23,42,.35)}
+        #rail a:hover .lbl,#rail a:focus-visible .lbl{opacity:1;transform:translate(0,-50%)}
+        /* the active section keeps its label only where the gutter is wide enough to hold it */
+        @media (min-width:1760px){#rail a.on .lbl{opacity:1;transform:translate(0,-50%)}}
+
+        /* ---- nav ---- */
+        .nav-link{transition:color .18s,border-color .18s;border-bottom:2px solid transparent;
+          padding-bottom:4px;color:var(--muted)}
+        .nav-link:hover,.active-nav{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+
+        /* ---- cards get real depth ---- */
+        .rounded-xl,.rounded-2xl{transition:box-shadow .22s ease,transform .22s ease,border-color .22s}
+        section .bg-white.rounded-2xl,section .bg-white.rounded-xl{box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -14px rgba(15,23,42,.16)}
+        section .bg-white.rounded-2xl:hover,section .bg-white.rounded-xl:hover{
+          box-shadow:0 2px 6px rgba(15,23,42,.06),0 20px 44px -20px rgba(15,23,42,.26);transform:translateY(-2px)}
+
+        /* ---- scroll reveal ---- */
+        .rv{opacity:0;transform:translateY(14px)}
+        .rv.in{opacity:1;transform:none;transition:opacity .55s cubic-bezier(.2,.7,.3,1),transform .55s cubic-bezier(.2,.7,.3,1)}
+
+        /* ---- completion ---- */
+        .done-badge{display:inline-flex;align-items:center;gap:5px;border-radius:99px;
+          background:#DCFCE7;color:#166534;padding:2px 9px;font-size:10px;font-weight:700;
+          text-transform:uppercase;letter-spacing:.06em}
+        html.dark .done-badge{background:#14321F;color:#6EE7A8}
+
+        /* ---- focus, motion, print ---- */
+        a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,[tabindex]:focus-visible{
+          outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+        @media (prefers-reduced-motion:reduce){
+          *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+          .rv{opacity:1;transform:none}
+          html{scroll-behavior:auto}
+        }
+        @media print{#readbar,#rail,#top-bar,#main-header,#drawer,#drawerBtn{display:none!important}}
+
+
+        /* ---- one shell width for every section (no stranded gutters) ---- */
+        body .container,
+        body section.max-w-6xl,
+        body div.max-w-6xl{
+          width:100%;
+          max-width:88rem!important;
+          margin-left:auto;margin-right:auto;
+          padding-left:clamp(1.25rem,3.5vw,2.75rem);
+          padding-right:clamp(1.25rem,3.5vw,2.75rem);
+        }
+        @media (min-width:1700px){
+          body .container,body section.max-w-6xl,body div.max-w-6xl{max-width:96rem!important}
+        }
+
+
+        /* ============ restored component styles (were defined in the original head) ============ */
+        [hidden]{display:none!important}
+        section[id]{scroll-margin-top:var(--sticky-offset)}
+        @media (min-width:768px){.chart-container{height:350px;max-height:400px}}
+
+        .analysis-content{max-height:0;overflow:hidden;opacity:0;margin-top:0;
+          padding-top:0!important;padding-bottom:0!important;border-top-width:0!important;border-bottom-width:0!important;
+          transition:max-height .5s ease-out,opacity .3s ease-out,margin-top .5s ease-out,padding .5s ease-out}
+        .analysis-content.visible{max-height:500px;opacity:1;margin-top:1rem;
+          padding-top:1rem!important;padding-bottom:1rem!important;border-top-width:1px!important;border-bottom-width:1px!important}
+        .analysis-button{transition:background-color .2s ease}
+
+        .quiz-option{cursor:pointer;transition:all .2s ease-in-out}
+        .quiz-option.correct{background-color:#dcfce7!important;border-color:#22c55e!important;color:#15803d!important;font-weight:500}
+        .quiz-option.incorrect{background-color:#fee2e2!important;border-color:#ef4444!important;color:#b91c1c!important;font-weight:500}
+        .quiz-option:disabled{opacity:.8;cursor:default}
+        .quiz-explanation{max-height:0;overflow:hidden;margin-top:0;opacity:0;
+          transition:max-height .5s ease-in-out,margin-top .5s ease-in-out,opacity .5s ease-in-out}
+        .quiz-explanation.visible{opacity:1;margin-top:1rem;max-height:500px}
+
+        .top-bar-link svg,.footer-link svg{width:1.125rem;height:1.125rem;fill:currentColor;transition:color .2s ease-in-out}
+        .hexagon-icon{position:relative;width:28px;height:28px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.3));display:inline-block;vertical-align:middle}
+        .hexagon-icon svg{width:100%;height:100%;animation:glow 2.5s infinite ease-in-out}
+        .hexagon-path{stroke:#B91C1C;stroke-width:1}
+        .hexagon-s{font-family:Georgia,serif;font-weight:bold;font-size:48px;fill:#facc15;text-anchor:middle;dominant-baseline:central}
+        @keyframes glow{0%,100%{filter:drop-shadow(0 0 4px rgba(239,68,68,.7))}50%{filter:drop-shadow(0 0 10px rgba(239,68,68,1))}}
+        #main-header.sticky-nav{position:sticky;z-index:40}
+        #top-bar.sticky-top{position:sticky;top:0;z-index:50}
+        #modal{background-color:rgba(0,0,0,.7)}
+        #modal-content{max-height:calc(100vh - 4rem)}
+
+        .concept-card{background:#fff;border-radius:.75rem;padding:1.5rem;margin-bottom:1.5rem;border-left:4px solid;
+          box-shadow:0 4px 6px -1px rgba(0,0,0,.05),0 2px 4px -2px rgba(0,0,0,.05);
+          transition:transform .3s ease,box-shadow .3s ease;display:flex;flex-direction:column;height:100%}
+        .concept-card:hover{transform:translateY(-4px);box-shadow:0 10px 15px -3px rgba(0,0,0,.07),0 4px 6px -4px rgba(0,0,0,.07)}
+        .concept-card h4{font-size:1.125rem;font-weight:600;margin-bottom:.75rem}
+        .concept-card p.definition{font-style:italic;color:#6b7280;margin-bottom:1rem;font-size:.875rem;flex-grow:1}
+        .concept-card .example{margin-top:1rem;padding-top:1rem;border-top:1px solid #e5e7eb}
+        .concept-card .example:first-of-type{margin-top:0;padding-top:0;border-top:none}
+        .concept-card .example h5{font-weight:600;color:#374151;margin-bottom:.5rem;font-size:.875rem}
+        .concept-card .example p{font-size:.875rem;color:#4b5563;margin-bottom:.25rem;line-height:1.5}
+        .concept-card .example strong{color:#1f2937}
+        .border-needs{border-left-color:#f43f5e}.border-variety{border-left-color:#0ea5e9}.border-access{border-left-color:#10b981}
+        .border-fit1{border-left-color:#fbbf24}.border-fit2{border-left-color:#f97316}.border-fit3{border-left-color:#ef4444}
+
+        .prose-custom p,.prose-custom ul,.prose-custom li{font-size:.875rem;line-height:1.6;color:#374151}
+        .prose-custom p{margin-bottom:1em}
+        .prose-custom ul{margin-top:.5em;margin-bottom:1em;padding-left:1.25em;list-style-type:disc}
+        .prose-custom li{margin-bottom:.25em}
+        .prose-custom strong{font-weight:600;color:#111827}
+
+        .comparison-table th,.comparison-table td{padding:.75rem 1rem;vertical-align:top;font-size:.75rem}
+        .comparison-table thead th{background-color:#f3f4f6;border-bottom:2px solid #e5e7eb}
+        .comparison-table tbody tr:nth-child(even){background-color:#f9fafb}
+        .comparison-table tbody tr:hover{background-color:#eff6ff}
+        .comparison-table th[scope="row"]{white-space:nowrap}
+
+        .activity-button{padding:.75rem 1rem;border-radius:.5rem;text-align:left;transition:all .2s ease-in-out;
+          font-size:.875rem;border-width:1px;display:block;width:100%;height:100%}
+        .activity-button strong{display:block;margin-bottom:.25rem;font-weight:600}
+        .activity-button:focus{outline:none;box-shadow:0 0 0 2px var(--tw-ring-color)}
+        .activity-button:focus-visible{box-shadow:0 0 0 2px var(--tw-ring-color)}
+        .workshop-button{background:#f3e8ff;border-color:#e9d5ff;--tw-ring-color:#c084fc;color:#581c87}
+        .workshop-button:hover{background:#e9d5ff;border-color:#d8b4fe}
+        .workshop-button strong{color:#7e22ce}.workshop-button:hover strong{color:#6b21a8}
+        .news-button{background:#dbeafe;border-color:#bfdbfe;--tw-ring-color:#60a5fa;color:#1e40af}
+        .news-button:hover{background:#bfdbfe;border-color:#93c5fd}
+        .news-button strong{color:#1d4ed8}.news-button:hover strong{color:#1e3a8a}
+        .tradeoff-button{background:#fef3c7;border-color:#fde68a;--tw-ring-color:#fbbf24;color:#78350f}
+        .tradeoff-button:hover{background:#fde68a;border-color:#fcd34d}
+        .tradeoff-button strong{color:#b45309}.tradeoff-button:hover strong{color:#92400e}
+        .simulation-button{background:#ffe4e6;border-color:#fecdd3;--tw-ring-color:#fb7185;color:#881337}
+        .simulation-button:hover{background:#fecdd3;border-color:#fda4af}
+        .simulation-button strong{color:#be123c}.simulation-button:hover strong{color:#9f1239}
+
+        .card{background:#fff;border:1px solid #e2e8f0;border-radius:14px}
+        .pill{display:inline-flex;align-items:center;gap:.4rem;border-radius:9999px;padding:.2rem .7rem;
+          font-size:.7rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+        .opt:disabled{cursor:default}
+        .ref{padding-left:1.6rem;text-indent:-1.6rem}
+        @media print{.no-print{display:none!important}}
+
+        /* ---- dark variants for the restored components ---- */
+        html.dark .card,html.dark .concept-card{background:var(--card)!important;border-color:var(--line)!important}
+        html.dark .concept-card p.definition{color:#94A3B8}
+        html.dark .concept-card .example{border-top-color:var(--line)}
+        html.dark .concept-card .example h5,html.dark .concept-card .example strong{color:#E2E8F0}
+        html.dark .concept-card .example p{color:#CBD5E1}
+        html.dark .prose-custom p,html.dark .prose-custom ul,html.dark .prose-custom li{color:#CBD5E1}
+        html.dark .prose-custom strong{color:var(--ink)}
+        html.dark .comparison-table thead th{background:#162032;border-bottom-color:var(--line)}
+        html.dark .comparison-table tbody tr:nth-child(even){background:#0F172A}
+        html.dark .comparison-table tbody tr:hover{background:#1E2749}
+        html.dark .quiz-option.correct{background-color:#14321F!important;border-color:#2F7D52!important;color:#6EE7A8!important}
+        html.dark .quiz-option.incorrect{background-color:#3A181E!important;border-color:#9B3540!important;color:#FCA5A5!important}
+        html.dark .workshop-button{background:#2A1B3D;border-color:#3D2A55;color:#DCC7F5}
+        html.dark .workshop-button:hover{background:#3D2A55}
+        html.dark .workshop-button strong{color:#C9A7F0}
+        html.dark .news-button{background:#1A2244;border-color:#2B3668;color:#BCC7FA}
+        html.dark .news-button:hover{background:#2B3668}
+        html.dark .news-button strong{color:#A3AEFB}
+        html.dark .tradeoff-button{background:#312512;border-color:#4A3A1A;color:#F3D9A4}
+        html.dark .tradeoff-button:hover{background:#4A3A1A}
+        html.dark .tradeoff-button strong{color:#FBBF24}
+        html.dark .simulation-button{background:#331419;border-color:#4A2028;color:#F6BEC5}
+        html.dark .simulation-button:hover{background:#4A2028}
+        html.dark .simulation-button strong{color:#FCA5A5}
+
+        .chart-container{position:relative;width:100%;max-width:600px;margin-inline:auto;height:300px;max-height:350px}
+        .tabular-nums{font-variant-numeric:tabular-nums}
+    </style>
+    <script>
+      /* theme, resolved before first paint: light unless this visitor chose dark */
+      (function () {
+        try {
+          if (localStorage.getItem("s8-theme") === "dark") {
+            document.documentElement.classList.add("dark");
+          }
+        } catch (e) {}
+      })();
+    </script>
+</head>
+
+<body class="text-slate-700">
+
+<div id="readbar" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+<nav id="rail" aria-label="Section navigation"></nav>
+
+<!-- Top Bar -->
+<div id="top-bar" class="bg-slate-900 text-slate-300 hidden sm:block">
+  <div class="container mx-auto px-6 flex justify-between items-center h-11 text-xs">
+    <div class="flex items-center gap-3 min-w-0">
+      <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="group shrink-0" title="swapnilsahoo.com">
+        <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
+          <svg viewBox="0 0 52 60" aria-label="Swapnil Sahoo" role="img">
+            <defs><linearGradient id="topRedGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
+            <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#topRedGradient)"/><text class="hexagon-s" x="26" y="32">S</text>
+          </svg>
+        </div>
+      </a>
+      <p class="truncate font-medium text-slate-400">&copy; Dr. Swapnil Sahoo 2026 &middot; Great Lakes Institute of Management, Gurgaon</p>
+    </div>
+    <div class="flex items-center gap-4 shrink-0">
+      <a href="https://www.swapnilsahoo.com/teaching/1-year-mba" class="hidden md:inline text-slate-400 hover:text-white transition">STRAMGT 221</a>
+      <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="X/Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.575 2h.093zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" clip-rule="evenodd"/></svg></a>
+      <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- Main Navigation -->
+<nav id="main-header" class="sticky top-0 z-50 border-b border-slate-200 bg-white/85 backdrop-blur-md">
+  <div class="container mx-auto px-6">
+    <div class="flex h-16 items-center justify-between gap-4">
+
+      <div class="flex items-center gap-3 min-w-0">
+        <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-slate-900 text-white font-display text-sm font-semibold">08</span>
+        <div class="min-w-0">
+          <p class="truncate font-display text-base font-semibold leading-tight text-slate-900">Differentiation & Cost Leadership</p>
+          <p class="hidden truncate text-[11px] text-slate-500 sm:block">90 minutes · <span id="progPct">0</span>% read · <span id="doneCount">0</span>/4 activities done</p>
+        </div>
+      </div>
+
+      <div class="hidden xl:flex items-center gap-5 text-sm">
+        <a href="#generic" class="nav-link">Generic strategies</a>
+        <a href="#drivers" class="nav-link">Drivers</a>
+        <a href="#middle" class="nav-link">Stuck in the middle</a>
+        <a href="#case" class="nav-link">Patagonia</a>
+        <a href="#discussion" class="nav-link">Discussion</a>
+        <a href="#quiz" class="nav-link">Quiz</a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button id="themeBtn" type="button" aria-label="Toggle dark mode"
+          class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 transition">
+          <svg class="h-4 w-4 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="hidden h-4 w-4 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <button id="drawerBtn" type="button" aria-label="Open section menu" aria-expanded="false"
+          class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 transition xl:hidden">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <select id="mobile-nav" class="sr-only" tabindex="-1" aria-hidden="true">
+          <option value="#top">Top</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Slide-out drawer -->
+<div id="drawer" class="fixed inset-0 z-[60] hidden">
+  <div id="drawerScrim" class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"></div>
+  <aside class="absolute right-0 top-0 h-full w-[min(88vw,20rem)] overflow-y-auto bg-white p-5 shadow-2xl">
+    <div class="flex items-center justify-between">
+      <p class="font-display text-lg font-semibold text-slate-900">Session 8</p>
+      <button id="drawerClose" type="button" aria-label="Close menu"
+        class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="mt-3 rounded-xl bg-slate-50 p-3">
+      <div class="flex items-center justify-between text-xs text-slate-500">
+        <span>Progress</span><span><span id="drawerDone">0</span>/4 activities</span>
+      </div>
+      <div class="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-200">
+        <div id="drawerBar" class="h-full rounded-full bg-blue-600 transition-all" style="width:0%"></div>
+      </div>
+    </div>
+    <nav id="drawerNav" class="mt-4 grid gap-0.5" aria-label="Sections"></nav>
+  </aside>
+</div>
+
+<section id="top" class="bg-white border-b border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-10 md:py-12 grid gap-8 md:grid-cols-[1.25fr_.75fr] md:items-center">
+    <div>
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span class="pill bg-blue-50 text-blue-700">Session 08</span>
+        <span class="pill bg-slate-100 text-slate-600">1.5 hours</span>
+        <span class="pill bg-slate-100 text-slate-600">Business &amp; competitive strategy</span>
+      </div>
+      <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-slate-900">Differentiation &amp; Cost Leadership</h1>
+      <p class="mt-2 font-display text-lg md:text-xl italic text-blue-700">Two ways to win, one way to lose, and a company that keeps saying no</p>
+      <p class="mt-3 text-slate-600 md:text-lg leading-relaxed max-w-2xl">
+        In a world of rivals, why can&rsquo;t a business just be good at everything? Porter&rsquo;s answer is that there
+        are only two basic types of competitive advantage, lower cost and differentiation, and that each can be pursued
+        across a whole industry or in a narrow part of it. A firm that tries for every kind of advantage usually ends up
+        with none: it is stuck in the middle.
+      </p>
+      <p class="mt-3 text-slate-600 leading-relaxed max-w-2xl">
+        Patagonia sells about 1,400 products, from casual T-shirts to wetsuits, and holds the largest share of US outdoor
+        apparel. It also caps its own growth and once ran a full-page advertisement telling customers not to buy its jacket.
+        Today you decide which generic strategy that is, and what the company has had to refuse to keep it.
+      </p>
+      <div class="mt-6 flex flex-wrap gap-3 text-sm">
+        <a href="#recap" class="rounded-lg bg-slate-900 px-4 py-2.5 font-semibold text-white hover:bg-slate-800">Start with the recap</a>
+        <a href="#readings" class="rounded-lg border border-slate-300 px-4 py-2.5 font-semibold text-slate-700 hover:bg-slate-50">Readings &amp; preparation</a>
+      </div>
+    </div>
+    <div class="card p-5">
+      <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">What this session answers</p>
+      <ol class="mt-3 space-y-3">
+        <li class="flex gap-3"><span class="font-mono text-xs text-blue-600 pt-0.5">01</span><span class="text-sm font-semibold text-slate-800">What are the generic strategies, and what must each get right besides its own source of advantage?</span></li>
+        <li class="flex gap-3"><span class="font-mono text-xs text-blue-600 pt-0.5">02</span><span class="text-sm font-semibold text-slate-800">Where do cost and uniqueness come from, and when does reaching for both leave a firm stuck in the middle?</span></li>
+        <li class="flex gap-3"><span class="font-mono text-xs text-blue-600 pt-0.5">03</span><span class="text-sm font-semibold text-slate-800">Is Patagonia a broad differentiator or a differentiation focuser, and what has it refused in order to stay there?</span></li>
+      </ol>
+      <p class="mt-4 pt-4 border-t border-slate-200 text-xs text-slate-500 leading-relaxed">
+        Facts from the case are marked <span class="pill bg-teal-50 text-teal-800">Case</span>; where this page reads the
+        case through Porter or Ghemawat and Pisano, the card is marked <span class="pill bg-amber-50 text-amber-800">Analysis</span>.
+        Page numbers for Porter refer to <em>Competitive Advantage</em> (1985).
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="recap" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Carried forward &middot; Sessions 5, 6 and 7</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">You have the wedge. Now choose how to widen it.</h2>
+  <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+    The last three sessions built the pieces. This one asks you to commit to a route. Read the three cards as the
+    questions this session closes, not as revision.
+  </p>
+  <div class="mt-6 grid gap-4 md:grid-cols-3">
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Session 6 &middot; creating advantage</p>
+      <h3 class="mt-1 font-bold text-slate-900">Two ways to widen the wedge</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Raise willingness to pay by more than you raise cost, or lower
+        cost by more than you lower willingness to pay. <a href="/teaching/1-year-mba/session6.html" class="font-semibold text-blue-700 hover:underline">Session 6</a>
+        showed both as moves on the same value stick. Porter turns them into the two basic types of advantage and asks you to
+        pick one.</p>
+    </div>
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Session 5 &middot; the value chain</p>
+      <h3 class="mt-1 font-bold text-slate-900">Advantage is made activity by activity</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">In <a href="/teaching/1-year-mba/session5.html" class="font-semibold text-blue-700 hover:underline">Session 5</a>
+        you tagged Patagonia&rsquo;s activities and left open which of the two it should compete on. Porter answers with
+        drivers: the structural reasons an activity is cheap, or unique, or both. You will sort Patagonia&rsquo;s
+        activities by driver below.</p>
+    </div>
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Session 7 &middot; Ghemawat &amp; Pisano (1997)</p>
+      <h3 class="mt-1 font-bold text-slate-900">A position is a bundle of commitments</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">If positions were easy to reverse, a firm could try one and
+        switch for free. They are not: each involves many hard-to-reverse commitments to doing particular activities in
+        particular ways (Ghemawat &amp; Pisano, 1997, p.&nbsp;14). <a href="/teaching/1-year-mba/session7.html" class="font-semibold text-blue-700 hover:underline">Session 7</a>
+        used that to explain why advantage lasts; here it explains why choosing is hard.</p>
+    </div>
+  </div>
+  <div class="mt-6 rounded-2xl bg-amber-50 border border-amber-200 p-5">
+    <p class="text-[10px] font-semibold uppercase tracking-wider text-amber-800">The trap this session sets</p>
+    <p class="mt-1 text-sm text-slate-700 leading-relaxed">
+      Different is not the same as differentiated. Porter warns that firms are often different without being differentiated,
+      because they are unique at things buyers do not value (1985, p.&nbsp;119). Equally, a high price is not a strategy and a
+      low price is not a cost advantage. For every claim on this page, ask which driver makes it true and what it costs.
+    </p>
+  </div>
+</section>
+
+<section id="generic" class="bg-white border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Generic strategies &middot; Porter (1985), chapter 1</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Two types of advantage, two kinds of scope</h2>
+    <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+      A firm may have many strengths and weaknesses against its rivals, but Porter argues that each one matters only through
+      its effect on relative cost or on differentiation. Combine those two types of advantage with the scope of the target,
+      the whole industry or a narrow segment of it, and you get three generic strategies, the third of which has two variants
+      (1985, pp.&nbsp;11&ndash;12). The word &ldquo;generic&rdquo; is the point: the specific actions differ by industry,
+      but these are the routes to advantage that must be probed in any industry.
+    </p>
+    <div class="mt-6 grid gap-6 lg:grid-cols-[minmax(0,.9fr)_minmax(0,1.1fr)]">
+      <figure class="card p-5">
+        <figcaption class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">The generic strategies, redrawn from Porter (1985, p.&nbsp;12)</figcaption>
+        <div class="mt-4 grid grid-cols-[2.2rem_minmax(0,1fr)_minmax(0,1fr)] gap-2 text-sm">
+          <div></div>
+          <div class="text-center text-[11px] font-semibold uppercase tracking-wider text-slate-500">Lower cost</div>
+          <div class="text-center text-[11px] font-semibold uppercase tracking-wider text-slate-500">Differentiation</div>
+          <div class="s8-axis text-[11px] font-semibold uppercase tracking-wider text-slate-500">Broad</div>
+          <div class="rounded-xl border border-blue-200 bg-blue-50 p-3"><p class="font-mono text-xs text-blue-700">1</p><p class="font-semibold text-slate-900">Cost leadership</p><p class="mt-1 text-xs text-slate-600">The low-cost producer in the industry</p></div>
+          <div class="rounded-xl border border-blue-200 bg-blue-50 p-3"><p class="font-mono text-xs text-blue-700">2</p><p class="font-semibold text-slate-900">Differentiation</p><p class="mt-1 text-xs text-slate-600">Unique on attributes many buyers value</p></div>
+          <div class="s8-axis text-[11px] font-semibold uppercase tracking-wider text-slate-500">Narrow</div>
+          <div class="rounded-xl border border-teal-200 bg-teal-50 p-3"><p class="font-mono text-xs text-teal-700">3A</p><p class="font-semibold text-slate-900">Cost focus</p><p class="mt-1 text-xs text-slate-600">Lowest cost in a segment whose costs behave differently</p></div>
+          <div class="rounded-xl border border-teal-200 bg-teal-50 p-3"><p class="font-mono text-xs text-teal-700">3B</p><p class="font-semibold text-slate-900">Differentiation focus</p><p class="mt-1 text-xs text-slate-600">Unique for a segment with special needs</p></div>
+        </div>
+        <p class="mt-4 text-xs text-slate-500 leading-relaxed">Columns: competitive advantage. Rows: competitive scope. The firm that
+          fails to achieve any of the four is &ldquo;stuck in the middle&rdquo; (p.&nbsp;16).</p>
+        <blockquote class="mt-4 border-l-2 border-blue-600 pl-3 italic text-slate-700 text-sm">&ldquo;Being &lsquo;all things to all
+          people&rsquo; is a recipe for strategic mediocrity and below-average performance, because it often means that a firm has
+          no competitive advantage at all.&rdquo;
+          <span class="mt-1 block not-italic text-xs text-slate-500">Porter (1985, p.&nbsp;12)</span></blockquote>
+      </figure>
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div class="card p-5">
+          <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Cost leadership &middot; pp.&nbsp;12&ndash;14</p>
+          <h3 class="mt-1 font-bold text-slate-900">Be <em>the</em> low-cost producer</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">Broad scope, often across many segments, because breadth itself
+            feeds the cost advantage. Sources include scale, proprietary technology and preferential access to raw materials.
+            The product is usually standard or no-frills. It is more than going down the learning curve: the leader must find
+            and exploit all sources of cost advantage.</p>
+        </div>
+        <div class="card p-5">
+          <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Differentiation &middot; p.&nbsp;14</p>
+          <h3 class="mt-1 font-bold text-slate-900">Be unique where buyers care</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">Choose one or more attributes that many buyers see as important
+            and position uniquely to meet them; the reward is a premium price. Caterpillar built its position in construction
+            equipment on durability, service, spare-parts availability and its dealer network. The means differ in every
+            industry.</p>
+        </div>
+        <div class="card p-5">
+          <p class="text-[10px] font-semibold uppercase tracking-wider text-teal-700">Focus &middot; pp.&nbsp;15&ndash;16</p>
+          <h3 class="mt-1 font-bold text-slate-900">Serve a segment to the exclusion of others</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">The focuser optimises for its target and wins there even without
+            an advantage overall. It works only if the segment is genuinely different: buyers with unusual needs, or a production
+            and delivery system unlike the rest of the industry&rsquo;s. Narrowness alone is not enough.</p>
+        </div>
+        <div class="card p-5">
+          <p class="text-[10px] font-semibold uppercase tracking-wider text-teal-700">The confusion Porter flags &middot; p.&nbsp;15, n.&nbsp;8</p>
+          <h3 class="mt-1 font-bold text-slate-900">Broad differentiation or differentiation focus?</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">These are the two strategies most often confused in practice. The
+            broad differentiator builds on attributes valued widely across the industry (his example: IBM in computers); the
+            focuser finds segments with special needs and meets them better (Cray Research). Hold this distinction: it is
+            the Patagonia question.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="mt-10 text-xl font-bold text-slate-900">What each strategy must also get right</h3>
+    <p class="mt-2 text-sm text-slate-600 max-w-4xl leading-relaxed">Every generic strategy has a second condition, on the
+      dimension it does not compete on. Most failures in Porter&rsquo;s examples come from that second condition, not the first.</p>
+    <div class="mt-4 grid gap-4 md:grid-cols-3">
+      <div class="rounded-2xl border border-slate-200 p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Cost leader</p>
+        <p class="mt-1 font-semibold text-slate-900">Parity or proximity in differentiation</p>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">If buyers do not see the product as comparable, the leader must
+          discount below rivals and the cost advantage drains away. Texas Instruments in watches never closed the gap and left
+          the industry; Northwest Airlines caught the problem and invested in marketing and service. There is also room for only
+          one cost leader: several aspirants fight over every point of share (pp.&nbsp;13&ndash;14).</p>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Differentiator</p>
+        <p class="mt-1 font-semibold text-slate-900">Parity or proximity in cost</p>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">The premium must exceed the extra cost of being unique, and a
+          markedly inferior cost position will cancel the premium. So the differentiator cuts cost in every area that does not
+          affect its uniqueness. Unlike cost leadership, several differentiators can prosper in one industry if buyers value
+          several different attributes (p.&nbsp;14).</p>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Focuser</p>
+        <p class="mt-1 font-semibold text-slate-900">A segment that is different, and attractive</p>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Royal Crown focused on cola, but Coca-Cola and Pepsi could serve
+          cola drinkers while serving everyone else, and their broader lines gave them the advantage. The segment must also be
+          structurally attractive: some are much less profitable than others (p.&nbsp;16).</p>
+      </div>
+    </div>
+
+    <!-- activity 1: positioning map -->
+    <div id="mapBox" class="mt-8 card p-5 sm:p-6">
+      <div class="flex flex-wrap items-baseline justify-between gap-2">
+        <div>
+          <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Activity &middot; place the firm</p>
+          <h3 class="mt-1 text-xl font-bold text-slate-900">Nine firms, five places to put them</h3>
+        </div>
+        <span class="done-badge" data-done-for="map" hidden>Done</span>
+      </div>
+      <p class="mt-2 max-w-4xl text-sm text-slate-600 leading-relaxed">Eight of these come from Porter&rsquo;s own chapter; the
+        ninth is today&rsquo;s case. Read each description and choose where the firm sits. The map fills as you go. Patagonia has
+        no single right answer: the feedback tells you what your choice commits you to defend.</p>
+      <div class="mt-5 grid gap-6 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,.75fr)]">
+        <div id="mapList" class="grid gap-3"></div>
+        <div class="lg:sticky lg:top-28 self-start">
+          <div class="grid grid-cols-2 gap-2" aria-label="Positioning map">
+            <div class="text-center text-[10px] font-semibold uppercase tracking-wider text-slate-500">Lower cost</div>
+            <div class="text-center text-[10px] font-semibold uppercase tracking-wider text-slate-500">Differentiation</div>
+            <div class="s8-cell rounded-xl border border-blue-200 bg-blue-50 p-3"><p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Broad &middot; cost leadership</p><div data-cell="cl" class="mt-2 flex flex-wrap gap-1.5"></div></div>
+            <div class="s8-cell rounded-xl border border-blue-200 bg-blue-50 p-3"><p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Broad &middot; differentiation</p><div data-cell="diff" class="mt-2 flex flex-wrap gap-1.5"></div></div>
+            <div class="s8-cell rounded-xl border border-teal-200 bg-teal-50 p-3"><p class="text-[10px] font-semibold uppercase tracking-wider text-teal-700">Narrow &middot; cost focus</p><div data-cell="cfocus" class="mt-2 flex flex-wrap gap-1.5"></div></div>
+            <div class="s8-cell rounded-xl border border-teal-200 bg-teal-50 p-3"><p class="text-[10px] font-semibold uppercase tracking-wider text-teal-700">Narrow &middot; differentiation focus</p><div data-cell="dfocus" class="mt-2 flex flex-wrap gap-1.5"></div></div>
+            <div class="s8-cell col-span-2 rounded-xl border border-rose-200 bg-rose-50 p-3"><p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">Stuck in the middle</p><div data-cell="stuck" class="mt-2 flex flex-wrap gap-1.5"></div></div>
+          </div>
+          <p id="mapScore" class="mt-3 text-sm font-semibold text-slate-800" aria-live="polite">0 of 8 placed (Patagonia is not scored).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="drivers" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Low cost and uniqueness &middot; Porter (1985), chapters 3 and 4</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Where cost and uniqueness come from</h2>
+  <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+    &ldquo;We have economies of scale&rdquo; and &ldquo;we have a great brand&rdquo; are conclusions, not explanations. Porter
+    pushes the analysis down to the value activity and asks what structural factor makes that activity cheap or unique. He
+    calls these factors <strong>drivers</strong>. The same list appears on both sides, which is why cost and differentiation
+    are so hard to pull apart.
+  </p>
+  <div class="mt-6 grid gap-5 lg:grid-cols-2">
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Cost drivers &middot; p.&nbsp;70</p>
+      <h3 class="mt-1 font-bold text-slate-900">Ten structural causes of cost</h3>
+      <div class="mt-3 flex flex-wrap gap-2 text-xs">
+        <span class="s8-chip">Economies of scale</span><span class="s8-chip">Learning</span><span class="s8-chip">Capacity utilisation</span>
+        <span class="s8-chip">Linkages</span><span class="s8-chip">Interrelationships</span><span class="s8-chip">Integration</span>
+        <span class="s8-chip">Timing</span><span class="s8-chip">Discretionary policies</span><span class="s8-chip">Location</span>
+        <span class="s8-chip">Institutional factors</span>
+      </div>
+      <p class="mt-3 text-sm text-slate-600 leading-relaxed">Drivers interact, and their weight differs from one activity to
+        the next, so no single driver, whether scale or the learning curve, is ever the whole explanation of a firm&rsquo;s cost
+        position (p.&nbsp;70). Policies are the driver managers forget they control: a no-frills airline lowers cost by dropping
+        free meals and baggage allowances, flying from secondary airports with spartan terminals and ticketing on board
+        (pp.&nbsp;80&ndash;81).</p>
+    </div>
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Uniqueness drivers &middot; pp.&nbsp;124&ndash;127</p>
+      <h3 class="mt-1 font-bold text-slate-900">Nine reasons an activity is unique</h3>
+      <div class="mt-3 flex flex-wrap gap-2 text-xs">
+        <span class="s8-chip s8-chip-u">Policy choices</span><span class="s8-chip s8-chip-u">Linkages</span><span class="s8-chip s8-chip-u">Timing</span>
+        <span class="s8-chip s8-chip-u">Location</span><span class="s8-chip s8-chip-u">Interrelationships</span><span class="s8-chip s8-chip-u">Learning and spillovers</span>
+        <span class="s8-chip s8-chip-u">Integration</span><span class="s8-chip s8-chip-u">Scale</span><span class="s8-chip s8-chip-u">Institutional factors</span>
+      </div>
+      <p class="mt-3 text-sm text-slate-600 leading-relaxed">Listed roughly in order of prominence. Policy choices come first:
+        what features to offer, what service, how intensely to advertise, what quality of inputs to buy. Porter concludes that
+        much uniqueness is therefore discretionary (p.&nbsp;124), which cuts both ways, because a policy is also easy to copy.</p>
+    </div>
+  </div>
+  <div class="mt-5 grid gap-4 md:grid-cols-3">
+    <div class="rounded-2xl border border-slate-200 p-5">
+      <h3 class="font-bold text-slate-900">Some drivers last longer</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Policy choices may be easier for rivals to imitate than uniqueness
+        that stems from interrelationships or from exploiting linkages (p.&nbsp;127). Learning helps only while it stays
+        proprietary; once it spills over to competitors it stops differentiating (p.&nbsp;126).</p>
+    </div>
+    <div class="rounded-2xl border border-slate-200 p-5">
+      <h3 class="font-bold text-slate-900">Uniqueness usually costs money</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Greater durability may need more or dearer material: Rockwell&rsquo;s
+        water meters outlast rivals&rsquo; because they use more bronze (pp.&nbsp;127&ndash;128). Some uniqueness is cheap, such as
+        better coordination of linked activities. Having <em>different but more desired</em> features usually costs less than
+        having <em>more</em> features (p.&nbsp;128).</p>
+    </div>
+    <div class="rounded-2xl border border-slate-200 p-5">
+      <h3 class="font-bold text-slate-900">A driver can switch sides</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Scale lets Hertz offer more pick-up points and faster field service,
+        a source of uniqueness. Yet Porter notes that scale can also reduce how flexibly fashion-related firms respond to buyers
+        (p.&nbsp;127). Keep that in mind when you compare Patagonia with firms built for volume.</p>
+    </div>
+  </div>
+
+  <!-- activity 2: driver sorter -->
+  <div id="driverBox" class="mt-8 card p-5 sm:p-6">
+    <div class="flex flex-wrap items-baseline justify-between gap-2">
+      <div>
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Activity &middot; sort by driver</p>
+        <h3 class="mt-1 text-xl font-bold text-slate-900">Which side of the ledger does each Patagonia activity work on?</h3>
+      </div>
+      <span class="done-badge" data-done-for="drivers" hidden>Done</span>
+    </div>
+    <p class="mt-2 max-w-4xl text-sm text-slate-600 leading-relaxed">Ten activities, each from the case. Decide whether it mainly
+      creates uniqueness (and so usually adds cost), mainly lowers cost, or plausibly does both. The feedback names the Porter
+      driver at work and says what it costs. Session 5 asked whether these activities differentiate; here the question is
+      <em>how</em>, and at what price.</p>
+    <div class="mt-4 flex flex-wrap gap-2 text-xs" aria-hidden="true">
+      <span class="s8-key s8-key-u">Creates uniqueness</span><span class="s8-key s8-key-c">Lowers cost</span><span class="s8-key s8-key-b">Does both</span>
+    </div>
+    <div id="drvList" class="mt-4 grid gap-3 lg:grid-cols-2"></div>
+    <div class="mt-4 grid gap-3 sm:grid-cols-3" aria-live="polite">
+      <div class="rounded-xl border border-slate-200 p-3"><p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Uniqueness</p><p id="drvU" class="mt-1 text-2xl font-bold text-slate-900 tabular-nums">0</p></div>
+      <div class="rounded-xl border border-slate-200 p-3"><p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Cost</p><p id="drvC" class="mt-1 text-2xl font-bold text-slate-900 tabular-nums">0</p></div>
+      <div class="rounded-xl border border-slate-200 p-3"><p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Both</p><p id="drvB" class="mt-1 text-2xl font-bold text-slate-900 tabular-nums">0</p></div>
+    </div>
+    <p id="drvScore" class="mt-3 text-sm font-semibold text-slate-800" aria-live="polite"></p>
+    <p id="drvRead" class="mt-2 text-sm text-slate-600 leading-relaxed" hidden>On this page&rsquo;s reading, seven of the ten
+      activities create uniqueness, two do both, and only one, the 1991 layoffs, lowers cost, and that was a one-off
+      retrenchment rather than a cost advantage. Compare your own tally above. Porter separates the two: cutting cost is not the same as achieving a cost
+      advantage (1985, p.&nbsp;18). The case shows a firm whose activities line up on the uniqueness side. What it does not
+      show is whether Patagonia keeps cost proximity, because the company does not publish its accounts (case, p.&nbsp;2).</p>
+  </div>
+</section>
+
+<section id="middle" class="bg-white border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Stuck in the middle &middot; Porter (1985), pp.&nbsp;16&ndash;20</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Stuck in the middle, and the case for doing both</h2>
+    <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+      A firm that engages in each generic strategy but achieves none of them has no competitive advantage. In any segment, a
+      cost leader, a differentiator or a focuser is better placed, and if the stuck firm stumbles on a profitable product or
+      buyer, rivals with a real advantage soon take it away. Porter adds that in most industries quite a few competitors are
+      in this position (p.&nbsp;16).
+    </p>
+    <div class="mt-6 grid gap-4 md:grid-cols-3">
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">How firms get stuck &middot; p.&nbsp;17</p>
+        <h3 class="mt-1 font-bold text-slate-900">An unwillingness to choose</h3>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">The firm seeks advantage by every means and gets none, because the
+          different types require inconsistent actions. Successful firms get stuck too, when they compromise their strategy for
+          growth or prestige. Laker Airways began as a no-frills cost focuser on the North Atlantic, then added frills, services
+          and routes, blurred its image and went bankrupt.</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">The focuser&rsquo;s temptation &middot; p.&nbsp;17</p>
+        <h3 class="mt-1 font-bold text-slate-900">Success invites blurring</h3>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Focus means deliberately limiting potential sales volume. Once a
+          focuser dominates its segment, it is most tempted to trade the focus for growth. Porter&rsquo;s advice: grow by taking the
+          same generic strategy into new industries, not by diluting it in the old one. Keep this card in mind for Patagonia.</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">When being stuck pays &middot; pp.&nbsp;17&ndash;18</p>
+        <h3 class="mt-1 font-bold text-slate-900">Only with luck, or separation</h3>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">A stuck firm earns attractive profits only if its industry is highly
+          favourable or its rivals are stuck too, and industry maturity widens the gap. A firm can run two generic strategies
+          only in strictly separate units, as Trusthouse Forte did with five hotel chains aimed at different segments.</p>
+      </div>
+    </div>
+
+    <h3 class="mt-10 text-xl font-bold text-slate-900">Can a firm be low-cost and differentiated at once?</h3>
+    <p class="mt-2 text-sm text-slate-600 max-w-4xl leading-relaxed">Porter does not say never. Differentiation is usually costly,
+      so the two usually conflict, but if a firm achieves both the rewards add up: a premium price on a lower cost base. Crown Cork
+      &amp; Seal did it in the &ldquo;hard to hold&rdquo; segments for steel cans, with service and technical help on one side
+      and dedicated, modern plants on the other (pp.&nbsp;18&ndash;19). He names three conditions, and each one is temporary.</p>
+    <div class="mt-4 grid gap-4 md:grid-cols-3">
+      <div class="rounded-xl border border-blue-200 bg-blue-50 p-4"><p class="font-mono text-xs text-blue-700">CONDITION 1 &middot; p.&nbsp;19</p><p class="mt-1 text-sm font-semibold text-slate-900">Rivals are stuck in the middle</p><p class="mt-1 text-xs text-slate-600 leading-relaxed">No one pushes the firm to the point where cost and uniqueness conflict. It lasts until a competitor chooses one strategy and executes it well.</p></div>
+      <div class="rounded-xl border border-blue-200 bg-blue-50 p-4"><p class="font-mono text-xs text-blue-700">CONDITION 2 &middot; p.&nbsp;19</p><p class="mt-1 text-sm font-semibold text-slate-900">Cost depends on share or interrelationships</p><p class="mt-1 text-xs text-slate-600 leading-relaxed">A big share lead lowers cost enough to pay for extra uniqueness. It lasts until a capable rival matches the share or the interrelationship.</p></div>
+      <div class="rounded-xl border border-blue-200 bg-blue-50 p-4"><p class="font-mono text-xs text-blue-700">CONDITION 3 &middot; p.&nbsp;20</p><p class="mt-1 text-sm font-semibold text-slate-900">The firm pioneers a major innovation</p><p class="mt-1 text-xs text-slate-600 leading-relaxed">A new technology or practice lowers cost and lifts quality together, but only while the firm is the only one with it.</p></div>
+    </div>
+    <blockquote class="mt-5 border-l-2 border-blue-600 pl-3 italic text-slate-700 max-w-4xl">&ldquo;A firm should always aggressively
+      pursue all cost reduction opportunities that do not sacrifice differentiation.&rdquo;
+      <span class="mt-1 block not-italic text-xs text-slate-500">Porter (1985, p.&nbsp;20). He adds the mirror rule, to pursue every differentiation that is not costly, and then insists the firm must choose.</span></blockquote>
+
+    <h3 class="mt-10 text-xl font-bold text-slate-900">The debate: integration, or &ldquo;best cost&rdquo;</h3>
+    <div class="mt-4 grid gap-5 lg:grid-cols-2">
+      <div class="rounded-2xl border border-slate-200 p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Porter&rsquo;s position</p>
+        <h4 class="mt-1 font-bold text-slate-900">Cost reduction is not cost advantage</h4>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Porter grants that many firms cut cost while raising differentiation,
+          and that a firm which has never tried can find large savings with no loss of uniqueness. But a firm facing capable rivals
+          who are also chasing cost will eventually reach the point where the next saving costs some differentiation. That is
+          where the strategies become inconsistent and the firm must choose (p.&nbsp;18).</p>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Ghemawat &amp; Pisano&rsquo;s challenge</p>
+        <h4 class="mt-1 font-bold text-slate-900">Not every firm faces the same frontier</h4>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Honda&rsquo;s Accord and Toyota&rsquo;s Camry sat squarely in the mass
+          market of GM, Ford and Chrysler, at similar prices: &ldquo;No creative positioning here&rdquo; (1997, p.&nbsp;16). Yet
+          they were developed in about half the time with half the engineering resources, cost about $2,000 less per comparable
+          car and had higher quality (pp.&nbsp;16&ndash;17). Capabilities built over years meant rivals did not share one
+          efficiency frontier (p.&nbsp;13).</p>
+      </div>
+    </div>
+    <div class="mt-5 grid gap-4 md:grid-cols-2">
+      <div class="rounded-2xl border border-amber-200 bg-amber-50 p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-amber-800">Where they agree</p>
+        <p class="mt-1 text-sm text-slate-700 leading-relaxed">Both readings tie a cost position to commitment. Porter calls cost
+          leadership a strategy particularly dependent on preemption (p.&nbsp;14). Ghemawat and Pisano&rsquo;s Du Pont example
+          shows how: a low-cost process gave it a 20% cost advantage in titanium dioxide, and a large new plant crowded out
+          rivals&rsquo; big expansions. Twenty years later it was still the only firm running that process (1997, p.&nbsp;14).</p>
+      </div>
+      <div class="rounded-2xl border border-amber-200 bg-amber-50 p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-amber-800">Stuck in the middle, in commitment language</p>
+        <p class="mt-1 text-sm text-slate-700 leading-relaxed">Ghemawat and Pisano warn that trying to stay totally flexible rarely
+          pays: it risks lock-out and yields, at best, mediocre performance (1997, p.&nbsp;15). A firm that will not commit to one
+          set of activities is Porter&rsquo;s stuck firm seen from the other side. The question for class: is a capability lead
+          like Toyota&rsquo;s a lasting position, or Porter&rsquo;s third condition, which ends when rivals catch up?</p>
+      </div>
+    </div>
+    <p class="mt-5 text-sm text-slate-600 max-w-4xl leading-relaxed">Kim and Mauborgne&rsquo;s claim that value innovation can break
+      the trade-off altogether is the subject of <a href="/teaching/1-year-mba/session9.html" class="font-semibold text-blue-700 hover:underline">Session 9</a>; hold it until then.</p>
+
+    <!-- activity 3: stuck-in-the-middle diagnostic -->
+    <div id="stuckBox" class="mt-8 card p-5 sm:p-6">
+      <div class="flex flex-wrap items-baseline justify-between gap-2">
+        <div>
+          <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Activity &middot; diagnose</p>
+          <h3 class="mt-1 text-xl font-bold text-slate-900">Is the firm stuck in the middle?</h3>
+        </div>
+        <span class="done-badge" data-done-for="stuck" hidden>Done</span>
+      </div>
+      <p class="mt-2 max-w-4xl text-sm text-slate-600 leading-relaxed">Six questions, each built from Porter&rsquo;s chapter. Load one
+        of his two examples to see how the diagnostic reads them, then clear it and answer for Patagonia from the case. Answer only
+        what you can support; an unanswered question is better than a guess.</p>
+      <div class="mt-4 flex flex-wrap gap-2" role="group" aria-label="Load an example">
+        <button type="button" data-preset="laker" class="s8-pre rounded-full border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50" aria-pressed="false">Laker Airways, later years</button>
+        <button type="button" data-preset="crown" class="s8-pre rounded-full border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50" aria-pressed="false">Crown Cork &amp; Seal</button>
+        <button type="button" data-preset="blank" class="s8-pre rounded-full border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50" aria-pressed="false">Clear: answer for Patagonia</button>
+      </div>
+      <div class="mt-5 grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,.8fr)]">
+        <div id="stkList" class="grid gap-3"></div>
+        <div class="lg:sticky lg:top-28 self-start">
+          <div id="stkVerdict" class="rounded-2xl border border-slate-200 bg-slate-50 p-5" aria-live="polite">
+            <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Verdict</p>
+            <p id="stkHead" class="mt-1 text-lg font-bold text-slate-900">Answer at least two questions</p>
+            <p id="stkBody" class="mt-2 text-sm text-slate-600 leading-relaxed">The verdict counts the warning signs among the answers you give.</p>
+            <ul id="stkFlags" class="mt-3 space-y-1.5 text-sm text-slate-700"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="case" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">The case &middot; Trelstad, Hsieh, Norris &amp; Pinckney (2023)</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Patagonia&rsquo;s generic strategy: what it chose, and what it refused</h2>
+  <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+    The case never names a generic strategy. It does supply the facts Porter&rsquo;s tests need: how broad the target is, which attributes customers pay
+    for, and which activities the company declined to perform. Nobody serious argues that Patagonia is a cost leader. The live
+    question is the one Porter says practitioners most often get wrong.
+  </p>
+
+  <div class="mt-6 grid gap-5 lg:grid-cols-2">
+    <div class="card p-5">
+      <div class="flex flex-wrap items-center gap-2"><span class="pill bg-teal-50 text-teal-800">Case</span><span class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Reading 1 &middot; broad differentiation</span></div>
+      <h3 class="mt-2 font-bold text-slate-900">A wide line, sold widely, on widely valued attributes</h3>
+      <ul class="mt-3 space-y-2 text-sm text-slate-600 leading-relaxed list-disc pl-5">
+        <li>About 1,400 products, from fleece jackets and casual T-shirts to high-performance athletic and outdoor wear, camping gear, backpacks and wetsuits (p.&nbsp;2).</li>
+        <li>36 stores in the US and 55 abroad, a website shipping to 38 countries, and a large wholesale business through Dick&rsquo;s Sporting Goods, REI and independent specialty retailers (p.&nbsp;2).</li>
+        <li>About half of sales outside the US, and the largest share of US outdoor apparel, at nearly 10% (p.&nbsp;2).</li>
+        <li>Its first stated value is quality: products that are useful, versatile, long-lasting, repairable and recyclable (Exhibit 2, p.&nbsp;14). Durability is something most buyers of clothing can value.</li>
+      </ul>
+    </div>
+    <div class="card p-5">
+      <div class="flex flex-wrap items-center gap-2"><span class="pill bg-teal-50 text-teal-800">Case</span><span class="text-[10px] font-semibold uppercase tracking-wider text-teal-700">Reading 2 &middot; differentiation focus</span></div>
+      <h3 class="mt-2 font-bold text-slate-900">A segment with special needs, and a cap on volume</h3>
+      <ul class="mt-3 space-y-2 text-sm text-slate-600 leading-relaxed list-disc pl-5">
+        <li>The apparel began as gear for climbers: rugby shirts imported because they stood up to abrasion from rock, then a pile fleece meant to beat a wool sweater that grew heavy and slow to dry on climbs (pp.&nbsp;2&ndash;3).</li>
+        <li>Since 1991, growth has been limited to pre-set targets (p.&nbsp;3). Porter: focus means deliberately limiting potential sales volume (1985, p.&nbsp;17).</li>
+        <li>The 2022 philosophy says growth must never outpace the ability to make products with intention and quality, and that Patagonia should not encourage consumption (Exhibit 9, p.&nbsp;19).</li>
+      </ul>
+    </div>
+  </div>
+  <div class="mt-5 rounded-2xl border border-amber-200 bg-amber-50 p-5">
+    <div class="flex flex-wrap items-center gap-2"><span class="pill bg-amber-100 text-amber-800">Analysis</span><span class="text-[10px] font-semibold uppercase tracking-wider text-amber-800">It depends where you draw the industry</span></div>
+    <div class="mt-2 grid gap-4 md:grid-cols-2 text-sm text-slate-700 leading-relaxed">
+      <p>Porter says breadth of target is a matter of degree; what makes a focus strategy is that the target differs from the rest
+        of the industry, so that broadly targeted rivals serve it badly (1985, p.&nbsp;15). Inside <em>US outdoor apparel</em>, where
+        the case measures its share, Patagonia looks like a broad differentiator. Inside <em>apparel</em> as a whole, the fashion
+        industry the case describes on page&nbsp;4, it serves the buyers who want clothes that last, get repaired and come from a firm
+        they trust on the environment.</p>
+      <p><strong>Your answer commits you.</strong> Call it broad differentiation and you must show that its attributes are valued
+        across the industry and that it keeps cost close to rivals&rsquo; outside them. Call it differentiation focus and you must
+        show that its buyers&rsquo; needs really differ, and then face Porter&rsquo;s warning that a dominant focuser is the firm most
+        tempted to blur its strategy for growth (p.&nbsp;17).</p>
+    </div>
+  </div>
+
+  <h3 class="mt-10 text-xl font-bold text-slate-900">What Patagonia refused</h3>
+  <p class="mt-2 text-sm text-slate-600 max-w-4xl leading-relaxed">A position is defined as much by what a firm will not do. Each
+    card states a refusal from the case, with its page; the grey line under it is this page&rsquo;s reading of what was kept
+    and what it cost.</p>
+  <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="rounded-2xl border border-slate-200 p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">Refused &middot; growth for its own sake</p>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">In the 1991 recession a lender cut its credit line and it laid off 20%
+        of its 600 staff. Chouinard concluded the company had been growing for the sake of growing; from then on growth was held to
+        pre-set targets (p.&nbsp;3).</p>
+      <p class="mt-2 text-xs text-slate-500">Kept: a stable workplace. Cost: scale it chose not to have.</p>
+    </div>
+    <div class="rounded-2xl border border-slate-200 p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">Refused &middot; conventional cotton</p>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">After a 1994 impact study, Chouinard gave the company eighteen months to
+        move all 166 cotton products to organic cotton or stop selling sportswear, then 30% of the business. Sales were back to
+        their previous level within two years (pp.&nbsp;3&ndash;4).</p>
+      <p class="mt-2 text-xs text-slate-500">Kept: product integrity. Cost: a bet with 30% of the business on it, and up to two years to win back sales.</p>
+    </div>
+    <div class="rounded-2xl border border-slate-200 p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">Refused &middot; selling more units</p>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">On Black Friday 2011 a full-page <em>New York Times</em> ad showed its
+        fleece with the words &ldquo;DON&rsquo;T BUY THIS JACKET&rdquo; and launched Common Threads: reduce, repair, reuse, recycle,
+        reimagine (p.&nbsp;5).</p>
+      <p class="mt-2 text-xs text-slate-500">Kept: credibility on its claims. Cost: some sales it asked customers not to make.</p>
+    </div>
+    <div class="rounded-2xl border border-slate-200 p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">Refused &middot; the disposable garment</p>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Worn Wear repairs Patagonia clothing free of charge, and a buyback scheme
+        resells or recycles used items for store credit. The Reno facility repaired 100,000 items a year (p.&nbsp;4).</p>
+      <p class="mt-2 text-xs text-slate-500">Kept: the durability promise, made usable. Cost: free repairs.</p>
+    </div>
+    <div class="rounded-2xl border border-slate-200 p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">Refused &middot; wholesale on any terms</p>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">It has a large wholesale business (p.&nbsp;2), but the 2022 philosophy
+        says partners, wholesale included, should mirror Patagonia&rsquo;s values and complement its direct business rather than
+        compete with it (Exhibit 9, p.&nbsp;19).</p>
+      <p class="mt-2 text-xs text-slate-500">Kept: control of how the brand reaches buyers. Cost: reach it could buy elsewhere.</p>
+    </div>
+    <div class="rounded-2xl border border-slate-200 p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">Refused &middot; profit as the scorecard</p>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Since 1986 it has given the greater of 1% of sales or 10% of profit to
+        environmental causes (p.&nbsp;3). The 2022 philosophy adds that financial success should enable good but does not equal
+        success, and that marketing should not be judged on ROI (Exhibit 9, p.&nbsp;19).</p>
+      <p class="mt-2 text-xs text-slate-500">Kept: a purpose buyers can check. Cost: a slice of every year&rsquo;s sales.</p>
+    </div>
+  </div>
+
+
+  <h3 class="mt-10 text-xl font-bold text-slate-900">Against fast fashion and low-cost rivals: what the case can and cannot show</h3>
+  <p class="mt-2 text-sm text-slate-600 max-w-4xl leading-relaxed">The case describes fast fashion as an industry model, not as named
+    competitors, and gives no prices or costs for anyone. So the comparison it supports is a comparison of activities, not of margins.</p>
+  <div class="mt-4 overflow-x-auto rounded-2xl border border-slate-200">
+    <table class="w-full text-left text-slate-600 comparison-table">
+      <thead class="text-[10px] uppercase tracking-wider text-slate-500">
+        <tr><th scope="col">Dimension</th><th scope="col">The fast-fashion model, as the case describes it</th><th scope="col">Patagonia</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row" class="font-semibold text-slate-800">Inventory</th><td>Retailers turned over their entire inventory several times a year, and unsold products increased significantly (p.&nbsp;4).</td><td>Product meant to be timeless, essential and multifunctional where possible (Exhibit 9, p.&nbsp;19).</td></tr>
+        <tr><th scope="row" class="font-semibold text-slate-800">Volume</th><td>Between 2000 and 2014 the average consumer bought 60% more garments a year (p.&nbsp;4).</td><td>Growth held to pre-set targets (p.&nbsp;3); customers asked not to buy the jacket (p.&nbsp;5).</td></tr>
+        <tr><th scope="row" class="font-semibold text-slate-800">After the sale</th><td>The case reports an 85% annual increase in discarded textiles over the same period (p.&nbsp;4).</td><td>Free repair, buyback, resale or recycling (p.&nbsp;4).</td></tr>
+        <tr><th scope="row" class="font-semibold text-slate-800">Price</th><td>Not given.</td><td>Not given either: the case names no Patagonia price.</td></tr>
+        <tr><th scope="row" class="font-semibold text-slate-800">Cost and profit</th><td>Not given.</td><td>Not published. Media estimates: about $1&nbsp;billion revenue and $100&nbsp;million net income (p.&nbsp;2).</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="mt-2 text-xs text-slate-500">Industry context from the case: fashion created 10% of human greenhouse-gas emissions and was the
+    second-largest industrial user of water (p.&nbsp;4).</p>
+
+  <div class="mt-8 grid gap-5 lg:grid-cols-3">
+    <div class="card p-5">
+      <span class="pill bg-amber-50 text-amber-800">Analysis</span>
+      <h3 class="mt-2 font-bold text-slate-900">The proximity test the case cannot settle</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Porter&rsquo;s differentiator must keep cost close to rivals&rsquo; in
+        everything that does not create its uniqueness (1985, p.&nbsp;14). The case shows activities that add cost on purpose:
+        organic cotton, free repairs, giving away 1% of sales. It shows none that hold cost down outside them, because Patagonia
+        does not publish its accounts. The media estimates imply a net margin of roughly 10%, but two estimates divided give only
+        a rough figure.</p>
+    </div>
+    <div class="card p-5">
+      <span class="pill bg-amber-50 text-amber-800">Analysis</span>
+      <h3 class="mt-2 font-bold text-slate-900">Commitments behind the position</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Ghemawat and Pisano say positions are commitment-intensive (1997,
+        p.&nbsp;14). Patagonia&rsquo;s are unusually hard to undo: since 2011 its environmental and stakeholder commitments sit in
+        its articles and bylaws and could not be changed without a unanimous shareholder vote (case, p.&nbsp;5). Session 7 showed how
+        the 2022 ownership change made them harder still. A rival copying the products would not be copying these.</p>
+    </div>
+    <div class="card p-5">
+      <span class="pill bg-amber-50 text-amber-800">Analysis</span>
+      <h3 class="mt-2 font-bold text-slate-900">Where the position could crack</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Porter lists &ldquo;too big a price premium&rdquo; among the pitfalls:
+        buyers abandon a differentiator whose premium outruns its value, and the premium drifts up when cost is not kept close to
+        rivals&rsquo; (1985, pp.&nbsp;160&ndash;161). Patagonia adds cost on purpose: organic cotton, free repairs, 1% of sales
+        given away (case, pp.&nbsp;3&ndash;4). Each one widens the gap its prices must cover, so the test is whether buyers go on
+        valuing what the extra cost buys. That is the risk to watch.</p>
+    </div>
+  </div>
+</section>
+
+
+<section id="decks" class="bg-white border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Go deeper</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Two earlier decks on the same ground</h2>
+    <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">Both decks pair generic strategies with Blue Ocean strategy, which this
+      course now teaches in Session 9. Both use the textbook&rsquo;s shorter list of cost drivers rather than Porter&rsquo;s ten, and
+      their company examples and figures were not checked against this session&rsquo;s readings. Use them for practice and
+      simulation; use this page for the framework.</p>
+    <div class="mt-6 grid gap-5 md:grid-cols-2">
+      <a href="/teaching/1-year-mba/Session6_Business%20Strategy_Differentiation,%20CostLeadership_BlueOceans_v0.8.html" class="flex flex-col justify-between gap-3 rounded-2xl border border-blue-200 bg-blue-50 p-5 hover:bg-blue-200 transition">
+        <span>
+          <span class="block text-[10px] font-semibold uppercase tracking-wider text-blue-700">Interactive deck &middot; built for an earlier numbering</span>
+          <span class="mt-1 block font-bold text-slate-900 break-words">Business Strategy Explorer: differentiation, cost leadership and blue oceans</span>
+          <span class="mt-1 block text-sm text-slate-600">Built for an earlier course numbering, where it was Session 6. Value and cost drivers, the four-box strategy map with Indian and global examples, strategy against the five forces, three short cases (JetBlue, JCPenney, Tesla and SpaceX) and an airline simulation that penalises inconsistent choices. Its Blue Ocean half belongs to Session 9.</span>
+        </span>
+        <span class="text-sm font-semibold text-blue-700">Open the deck &rarr;</span>
+      </a>
+      <a href="/teaching/2-year-mba/session-12-generic-strategies-and-blue-ocean-strategy.html" class="flex flex-col justify-between gap-3 rounded-2xl border border-blue-200 bg-blue-50 p-5 hover:bg-blue-200 transition">
+        <span>
+          <span class="block text-[10px] font-semibold uppercase tracking-wider text-blue-700">Interactive deck &middot; 2-year MBA</span>
+          <span class="mt-1 block font-bold text-slate-900 break-words">Generic Strategies &amp; Blue Ocean Strategy</span>
+          <span class="mt-1 block text-sm text-slate-600">Session 12 of the 2-year MBA course; its inner header still reads Session 08. A value-and-cost &ldquo;wedge&rdquo; laboratory, a trade-off simulator with a stuck-in-the-middle setting, the generic-strategy matrix, the five forces, then Blue Ocean with NVIDIA. Its airline, apparel and broker comparisons come from outside the course readings.</span>
+        </span>
+        <span class="text-sm font-semibold text-blue-700">Open the deck &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="discussion" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">For class</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Six questions to argue</h2>
+  <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">Come with a position on each and the page of the case or reading that
+    supports it.</p>
+  <div class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+    <div class="card p-5"><p class="font-mono text-xs text-blue-600">01</p><p class="mt-1 text-sm font-semibold text-slate-800 leading-relaxed">Is Patagonia a broad differentiator or a differentiation focuser? Define the industry first, then defend the answer with Porter&rsquo;s test of whether its buyers&rsquo; needs really differ.</p></div>
+    <div class="card p-5"><p class="font-mono text-xs text-blue-600">02</p><p class="mt-1 text-sm font-semibold text-slate-800 leading-relaxed">Which of Patagonia&rsquo;s sources of uniqueness rest on policy choices a rival could copy next year, and which on linkages, timing or institutional commitments that it could not?</p></div>
+    <div class="card p-5"><p class="font-mono text-xs text-blue-600">03</p><p class="mt-1 text-sm font-semibold text-slate-800 leading-relaxed">Porter says a dominant focuser is most tempted to blur its strategy for growth. With nearly 10% of US outdoor apparel and 1,400 products, is Patagonia already blurring, or is the growth cap the safeguard?</p></div>
+    <div class="card p-5"><p class="font-mono text-xs text-blue-600">04</p><p class="mt-1 text-sm font-semibold text-slate-800 leading-relaxed">&ldquo;Every time I have made a decision that&rsquo;s best for the planet, [Patagonia has] made money&rdquo; (case, p.&nbsp;3). Is Chouinard describing a firm that escapes the cost&ndash;differentiation trade-off, or one whose buyers pay for the cost of its uniqueness?</p></div>
+    <div class="card p-5"><p class="font-mono text-xs text-blue-600">05</p><p class="mt-1 text-sm font-semibold text-slate-800 leading-relaxed">Toyota beat Detroit without a distinctive position. Is that evidence against &ldquo;stuck in the middle&rdquo;, or an example of Porter&rsquo;s third condition, a lead that lasts only until rivals catch up?</p></div>
+    <div class="card p-5"><p class="font-mono text-xs text-blue-600">06</p><p class="mt-1 text-sm font-semibold text-slate-800 leading-relaxed">If a well-funded rival launched durable, repairable outdoor clothing at a lower price, which of Porter&rsquo;s risks of differentiation would Patagonia face, and which of its refusals would protect it?</p></div>
+  </div>
+</section>
+
+<section id="quiz" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Knowledge check</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Ten questions</h2>
+  <p class="mt-3 text-slate-600 max-w-3xl leading-relaxed">
+    Answer before you look. Each answer explains itself, and the explanation matters more than the score.
+  </p>
+  <div class="mt-4 flex flex-wrap items-center gap-3 text-sm">
+    <span class="text-slate-500"><span id="sQuizScore">0</span> / <span id="sQuizTotal">0</span> correct</span>
+    <button id="sQuizReset" type="button" class="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50">Start again</button>
+  </div>
+  <div id="sQuiz" class="mt-6 grid gap-4"></div>
+</section>
+
+
+<section id="readings" class="bg-white border-y border-slate-200">
+  <div class="container mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Preparation</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Readings for Session 8</h2>
+    <p class="mt-3 text-sm text-slate-600 max-w-4xl leading-relaxed">The case and the reading are copyrighted Harvard Business School
+      Publishing materials, and Porter&rsquo;s book is in copyright. Get them through the course pack or the library; this page does
+      not host or link them.</p>
+    <div class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Required &middot; the case</p>
+        <p class="mt-2 text-sm text-slate-700 ref">Trelstad, B., Hsieh, N., Norris, M., &amp; Pinckney, S. (2023). <em>Patagonia: &ldquo;Earth is now our only shareholder&rdquo;</em> (HBS No. 9-323-057, rev. September 21, 2023). Harvard Business School Publishing.</p>
+        <p class="mt-2 text-xs text-slate-500">Pages 2&ndash;5 and Exhibits 2 and 9 matter most today. Patagonia is also the case for Sessions 5, 6 and 7.</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Required &middot; the outline&rsquo;s reading</p>
+        <p class="mt-2 text-sm text-slate-700 ref">Ghemawat, P., &amp; Pisano, G. P. (1997). <em>Sustaining superior performance: Commitments and capabilities</em> (HBS No. 9-798-008). Harvard Business School Publishing.</p>
+        <p class="mt-2 text-xs text-slate-500">Also the Session 7 reading. Reread pages 13&ndash;17: commitments behind a position, and the Honda and Toyota example of capability.</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Further &middot; the framework</p>
+        <p class="mt-2 text-sm text-slate-700 ref">Porter, M. E. (1985). <em>Competitive advantage: Creating and sustaining superior performance</em>. Free Press.</p>
+        <p class="mt-2 text-xs text-slate-500">Chapter 1, pp.&nbsp;11&ndash;26, on the generic strategies, stuck in the middle and the risks of each. For the drivers: chapter 3, pp.&nbsp;70&ndash;84, and chapter 4, pp.&nbsp;124&ndash;128.</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Further &middot; course textbook</p>
+        <p class="mt-2 text-sm text-slate-700 ref">Rothaermel, F. T. (2024). <em>Strategic management</em> (6th ed.). McGraw Hill.</p>
+        <p class="mt-2 text-xs text-slate-500">Chapter 6, &ldquo;Business strategy: Differentiation, cost leadership, and blue oceans&rdquo;. Read the first half now; the blue-ocean half is for Session 9.</p>
+      </div>
+      <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+        <h3 class="font-bold text-slate-900">A note on the figures on this page</h3>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Patagonia does not publish its accounts. Its revenue (about
+          $1&nbsp;billion) and net income (about $100&nbsp;million) are media estimates reported in the case (p.&nbsp;2), and the 10%
+          margin above is those two estimates divided. Porter&rsquo;s examples date from 1985 and are his, not current
+          descriptions of those firms.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-gray-800 mt-16 sm:mt-24 border-t border-gray-700">
+  <div class="container mx-auto px-6 py-8 text-center">
+    <p class="text-sm text-slate-400">&copy; Dr. Swapnil Sahoo 2026 &middot; Great Lakes Institute of Management, Gurgaon</p>
+    <p class="mt-2 text-xs text-slate-500">STRAMGT 221 &middot; Strategic Management (PGPM) &middot; Session 8</p>
+    <div class="mt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+      <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-400 hover:text-white">swapnilsahoo.com</a>
+      <a href="/teaching/1-year-mba/session7.html" class="text-sm text-slate-400 hover:text-white">&larr; Session 7</a> <a href="/teaching/1-year-mba" class="text-sm text-slate-400 hover:text-white">All sessions</a> <a href="/teaching/1-year-mba/session9.html" class="text-sm text-slate-400 hover:text-white">Session 9 &rarr;</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* Session 8 components; every colour has an html.dark twin */
+  .s8-axis{writing-mode:vertical-rl;transform:rotate(180deg);display:flex;align-items:center;justify-content:center}
+  .s8-chip{display:inline-flex;align-items:center;border-radius:9999px;border:1px solid #CBD5E1;background:#F8FAFC;color:#334155;padding:.2rem .65rem;font-weight:600}
+  .s8-chip-u{border-color:#C6CEFE;background:#EEF1FF;color:#372FA8}
+  html.dark .s8-chip{border-color:#2B3A55;background:#0F172A;color:#CBD5E1}
+  html.dark .s8-chip-u{border-color:#2F3670;background:#171C3C;color:#A3AEFB}
+
+  .s8-key{display:inline-flex;align-items:center;gap:.4rem;font-weight:600;color:#475569}
+  .s8-key::before{content:"";width:.65rem;height:.65rem;border-radius:9999px;background:var(--s8k)}
+  .s8-key-u{--s8k:#4F46E5}.s8-key-c{--s8k:#0F766E}.s8-key-b{--s8k:#B45309}
+  html.dark .s8-key{color:#CBD5E1}
+  html.dark .s8-key-u{--s8k:#818CF8}html.dark .s8-key-c{--s8k:#2DD4BF}html.dark .s8-key-b{--s8k:#FBBF24}
+
+  /* option buttons */
+  .s8-opt{background:transparent}
+  .s8-opt[aria-pressed="true"]{background:#EEF1FF;border-color:#4F46E5;color:#2E2A82}
+  html.dark .s8-opt[aria-pressed="true"]{background:#1F2552;border-color:#6E72F0;color:#E0E5FF}
+  .s8-opt.s8-right{background:#DCFCE7;border-color:#22C55E;color:#166534}
+  .s8-opt.s8-wrong{background:#FEE2E2;border-color:#EF4444;color:#B91C1C}
+  html.dark .s8-opt.s8-right{background:#14321F;border-color:#2F7D52;color:#6EE7A8}
+  html.dark .s8-opt.s8-wrong{background:#3A181E;border-color:#9B3540;color:#FCA5A5}
+  .s8-opt:disabled{cursor:default}
+  .s8-pre[aria-pressed="true"]{background:#0F172A;border-color:#0F172A;color:#fff}
+  html.dark .s8-pre[aria-pressed="true"]{background:#4F46E5;border-color:#6E72F0;color:#fff}
+
+  .s8-ok{color:#166534}.s8-no{color:#B91C1C}.s8-open{color:#92400E}
+  html.dark .s8-ok{color:#6EE7A8}html.dark .s8-no{color:#FCA5A5}html.dark .s8-open{color:#FCD34D}
+
+  /* pins on the positioning map */
+  .s8-cell{min-height:5.25rem}
+  .s8-pin{display:inline-flex;align-items:center;border-radius:9999px;border:1px solid #CBD5E1;background:#fff;color:#0F172A;font-size:11px;font-weight:600;padding:.15rem .55rem;line-height:1.3}
+  .s8-pin-ok{border-color:#22C55E;color:#166534}
+  .s8-pin-no{border-color:#EF4444;color:#B91C1C}
+  .s8-pin-open{border-color:#D97706;color:#92400E;background:#FFFBEB}
+  html.dark .s8-pin{background:#0B1120;border-color:#2B3A55;color:#E2E8F0}
+  html.dark .s8-pin-ok{border-color:#2F7D52;color:#6EE7A8}
+  html.dark .s8-pin-no{border-color:#9B3540;color:#FCA5A5}
+  html.dark .s8-pin-open{border-color:#B45309;color:#FCD34D;background:#2A2110}
+
+  /* sorter cards: coloured edge once answered */
+  .s8-card{border-left-width:4px}
+  .s8-card[data-pick="u"]{border-left-color:#4F46E5}
+  .s8-card[data-pick="c"]{border-left-color:#0F766E}
+  .s8-card[data-pick="b"]{border-left-color:#B45309}
+  html.dark .s8-card[data-pick="u"]{border-left-color:#818CF8!important}
+  html.dark .s8-card[data-pick="c"]{border-left-color:#2DD4BF!important}
+  html.dark .s8-card[data-pick="b"]{border-left-color:#FBBF24!important}
+
+  /* diagnostic verdict states */
+  #stkVerdict.s8-v-ok{border-color:#86EFAC;background:#F0FDF4}
+  #stkVerdict.s8-v-risk{border-color:#FCD34D;background:#FFFBEB}
+  #stkVerdict.s8-v-stuck{border-color:#FCA5A5;background:#FEF2F2}
+  html.dark #stkVerdict.s8-v-ok{border-color:#2F7D52!important;background:#0F261A!important}
+  html.dark #stkVerdict.s8-v-risk{border-color:#4A3A1A!important;background:#2A2110!important}
+  html.dark #stkVerdict.s8-v-stuck{border-color:#4A2028!important;background:#2C1418!important}
+</style>
+
+<script>
+(function () {
+  /* ---------- activity 1: positioning map (Porter, 1985, ch. 1; Patagonia from the case) ---------- */
+  var list = document.getElementById("mapList"), score = document.getElementById("mapScore");
+  if (!list) return;
+  var OPTS = [["cl", "Cost leadership"], ["diff", "Differentiation"], ["cfocus", "Cost focus"], ["dfocus", "Differentiation focus"], ["stuck", "Stuck in the middle"]];
+  var ITEMS = [
+    { n: "Caterpillar Tractor", pin: "Caterpillar", src: "Construction equipment · Porter, p. 14",
+      d: "Wins on product durability, service, spare-parts availability and an excellent dealer network, and accepts higher cost to do it.", a: "diff",
+      why: "Broad differentiation. Buyers across the industry value durability and service, and Porter notes that Caterpillar deliberately elevates its costs to be unique (p. 18)." },
+    { n: "Ford, in the early car industry", pin: "Ford", src: "Automobiles · Porter, p. 22",
+      d: "Low-cost production of a standard model sold at low prices, against makers of expensive touring cars.", a: "cl",
+      why: "Overall cost leadership. Technological and market change let Ford rewrite the rules with a standard model at low prices, and it rapidly dominated the industry worldwide (p. 22)." },
+    { n: "General Motors, late 1920s", pin: "GM 1920s", src: "Automobiles · Porter, p. 23",
+      d: "A wide line of cars, more features and premium prices, sold across the market.", a: "diff",
+      why: "Differentiation. Growth, familiarity with cars and new technology let GM change the rules again (p. 23). The same industry rewarded opposite generic strategies a few years apart." },
+    { n: "Cray Research", pin: "Cray", src: "Computers · Porter, p. 15, note 8",
+      d: "Looks for the computer buyers with special needs and serves them better than broad rivals do.", a: "dfocus",
+      why: "Differentiation focus. Porter sets it against IBM, the broad differentiator that built on widely valued attributes (p. 15, note 8)." },
+    { n: "Laker Airways, at launch", pin: "Laker (launch)", src: "Airlines · Porter, p. 17",
+      d: "No-frills flights on the North Atlantic, aimed at an extremely price-sensitive slice of travellers.", a: "cfocus",
+      why: "Cost focus: a no-frills operation in one market, for one price-sensitive segment (p. 17)." },
+    { n: "Laker Airways, later", pin: "Laker (later)", src: "Airlines · Porter, p. 17",
+      d: "Adds frills, new services and new routes on top of the no-frills model.", a: "stuck",
+      why: "Stuck in the middle. The additions blurred its image and suboptimised its service and delivery system; Laker went bankrupt (p. 17)." },
+    { n: "Stolichnaya (PepsiCo)", pin: "Stolichnaya", src: "Vodka · Porter, p. 23",
+      d: "Positioned above Smirnoff, the long-established high-class brand, by serving a narrower set of buyers.", a: "dfocus",
+      why: "Differentiation focus: an even more differentiated position than Smirnoff, reached through focus, while private labels attacked Smirnoff from below (p. 23)." },
+    { n: "Texas Instruments, watches", pin: "TI watches", src: "Watches · Porter, p. 13",
+      d: "A low-cost producer whose watches buyers did not see as comparable to rivals’.", a: "cl",
+      why: "Cost leadership that failed on its second condition. Without proximity in differentiation it had to discount, which nullified the cost advantage, and it left the watch industry (p. 13)." },
+    { n: "Patagonia", pin: "Patagonia", src: "Outdoor apparel · case, pp. 2–5", open: true,
+      d: "About 1,400 products sold in its own stores, online and through wholesale; growth capped since 1991; durable, repairable products, with free repair through Worn Wear." }
+  ];
+  var PATA = {
+    diff: "Defensible. A wide line, own stores at home and abroad, wholesale through Dick’s and REI, half of sales outside the US and the largest share of US outdoor apparel (case p. 2). Your answer commits you to showing that durability and environmental credibility are valued across the industry, and that Patagonia keeps cost close to rivals’ outside them.",
+    dfocus: "Defensible. Origins in climbing gear, a cap on growth since 1991 (p. 3) and a philosophy of not encouraging consumption (Exhibit 9). Your answer commits you to defining the industry as apparel as a whole, and to showing that its buyers’ needs differ enough that broad rivals serve them badly (Porter, p. 15).",
+    cl: "Not on the evidence. Nothing in the case suggests Patagonia seeks to be the low-cost producer: it adds cost on purpose, for organic cotton, free repairs and 1% of sales (pp. 3–4).",
+    cfocus: "Not on the evidence. A cost focuser seeks the lowest cost in its segment. Patagonia adds cost in its segment, for organic cotton, free repairs and 1% of sales.",
+    stuck: "Not yet. It names one type of advantage and refuses activities that would blur it. But Porter warns that a dominant focuser is the firm most tempted to blur for growth (p. 17): test that risk in the diagnostic below."
+  };
+  var cells = {};
+  document.querySelectorAll("#mapBox [data-cell]").forEach(function (c) { cells[c.getAttribute("data-cell")] = c; });
+  var placed = 0, right = 0;
+  function pinTo(key, label, cls, old) {
+    if (old && old.parentNode) old.parentNode.removeChild(old);
+    var p = document.createElement("span");
+    p.className = "s8-pin " + cls; p.textContent = label;
+    if (cells[key]) cells[key].appendChild(p);
+    return p;
+  }
+  function report() {
+    score.textContent = placed + " of 8 placed, " + right + " where Porter puts them (Patagonia is not scored).";
+  }
+  ITEMS.forEach(function (it) {
+    var card = document.createElement("div");
+    card.className = "rounded-xl border border-slate-200 p-4";
+    var src = document.createElement("p"); src.className = "text-[11px] font-semibold uppercase tracking-wider text-slate-500"; src.textContent = it.src;
+    var nm = document.createElement("p"); nm.className = "mt-1 font-bold text-slate-900"; nm.textContent = it.n;
+    var ds = document.createElement("p"); ds.className = "mt-1 text-sm text-slate-600 leading-relaxed"; ds.textContent = it.d;
+    var row = document.createElement("div"); row.className = "mt-3 flex flex-wrap gap-2"; row.setAttribute("role", "group"); row.setAttribute("aria-label", "Place " + it.n);
+    var out = document.createElement("p"); out.className = "mt-3 text-sm leading-relaxed text-slate-700"; out.hidden = true; out.setAttribute("aria-live", "polite");
+    var btns = [], pin = null, locked = false;
+    OPTS.forEach(function (o) {
+      var b = document.createElement("button");
+      b.type = "button"; b.dataset.k = o[0];
+      b.className = "s8-opt rounded-full border border-slate-300 px-3 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-50";
+      b.textContent = o[1]; b.setAttribute("aria-pressed", "false");
+      b.addEventListener("click", function () {
+        if (locked) return;
+        btns.forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+        out.hidden = false; out.textContent = "";
+        var lead = document.createElement("strong");
+        if (it.open) {
+          var good = o[0] === "diff" || o[0] === "dfocus";
+          lead.className = good ? "s8-open" : "s8-no"; lead.textContent = good ? "Arguable. " : "Hard to defend. ";
+          out.appendChild(lead); out.appendChild(document.createTextNode(PATA[o[0]]));
+          pin = pinTo(o[0], it.pin, "s8-pin-open", pin);
+          return;
+        }
+        locked = true;
+        var ok = o[0] === it.a;
+        placed++; if (ok) right++;
+        btns.forEach(function (x) { x.disabled = true; if (x.dataset.k === it.a) x.classList.add("s8-right"); else if (x === b) x.classList.add("s8-wrong"); });
+        lead.className = ok ? "s8-ok" : "s8-no";
+        lead.textContent = ok ? "Yes. " : "Porter places it elsewhere. ";
+        out.appendChild(lead); out.appendChild(document.createTextNode(it.why));
+        pin = pinTo(o[0], it.pin, ok ? "s8-pin-ok" : "s8-pin-no", pin);
+        report();
+      });
+      btns.push(b); row.appendChild(b);
+    });
+    card.appendChild(src); card.appendChild(nm); card.appendChild(ds); card.appendChild(row); card.appendChild(out);
+    list.appendChild(card);
+  });
+})();
+</script>
+
+<script>
+(function () {
+  /* ---------- activity 2: cost or uniqueness driver? (facts: Trelstad et al., 2023; drivers: Porter, 1985) ---------- */
+  var list = document.getElementById("drvList");
+  if (!list) return;
+  var OPTS = [["u", "Creates uniqueness"], ["c", "Lowers cost"], ["b", "Does both"]];
+  var NAME = { u: "creates uniqueness", c: "lowers cost", b: "does both" };
+  var ITEMS = [
+    { t: "Moved all 166 cotton products to organic cotton within eighteen months, or it would have stopped selling sportswear, then 30% of the business.", src: "Case pp. 3–4", a: "u", ok: ["u"],
+      drv: "Policy choice: the quality of inputs procured (Porter, p. 124).",
+      why: "It changed what goes into the product. Sales were back to their earlier level within two years (case p. 4), so buyers stayed with the changed product." },
+    { t: "Worn Wear repairs Patagonia clothing free of charge; a buyback scheme resells or recycles used items for store credit.", src: "Case p. 4", a: "u", ok: ["u"],
+      drv: "Policy choice on services provided, such as repair; and integration, since doing service in-house can make a firm the only one offering it (pp. 124, 126).",
+      why: "Free repair is a cost on every item, and Reno repaired 100,000 a year. It turns durability from a claim into something a buyer can use." },
+    { t: "Since 1991, growth limited to pre-set targets, to keep the workplace stable and reject growth at all costs.", src: "Case p. 3", a: "u", ok: ["u"],
+      drv: "Policy choice. On the cost side it gives up scale, the first of Porter’s ten cost drivers (p. 70).",
+      why: "It does not lower cost: holding volume down forgoes scale. Porter notes that focus means deliberately limiting potential sales (p. 17), and the 2022 philosophy ties growth to making products with intention and quality (Exhibit 9)." },
+    { t: "One of the first onsite corporate daycare centres in the US, and paid maternity and paternity leave before they were common.", src: "Case p. 3", a: "b", ok: ["b", "u"],
+      drv: "Policy choice on human resources, which Porter lists among the policies with the greatest effect on cost (p. 81).",
+      why: "It costs money. This page reads it as both: it builds the culture Porter says can reinforce a generic strategy (p. 24), and if it keeps people longer it saves hiring and training cost. The case gives no turnover figures, so treat the cost side as a hypothesis to test." },
+    { t: "A full-page Black Friday ad in The New York Times: “DON’T BUY THIS JACKET”.", src: "Case p. 5", a: "u", ok: ["u"],
+      drv: "Policy choice on the content of marketing (p. 124), and a signal of value (pp. 160–161).",
+      why: "Porter warns that differentiators who ignore signalling lose to rivals who understand how buyers judge. Asking customers to buy less is a costly signal that the durability claim is meant." },
+    { t: "Since 1986, the greater of 1% of sales or 10% of profit given to environmental causes each year.", src: "Case p. 3", a: "u", ok: ["u"],
+      drv: "Policy choice.",
+      why: "A pure cost that buys credibility with buyers who care about the environment. In 2011 it became a legal commitment in the company’s charter (p. 5)." },
+    { t: "Incorporated as California’s first benefit corporation, on the day the law allowed it, with commitments that only a unanimous shareholder vote could change.", src: "Case p. 5", a: "u", ok: ["u"],
+      drv: "Timing and institutional factors (pp. 126–127).",
+      why: "Being first to adopt an image can pre-empt others, Porter says, and institutional factors can make a firm unique. Writing the commitments into the charter also makes them hard to reverse, a commitment in Ghemawat and Pisano’s sense." },
+    { t: "A building in Reno certified LEED Gold, Nevada’s first, which later housed the Worn Wear repair programme.", src: "Case p. 4", a: "b", ok: ["b", "c"],
+      drv: "Policy choice on facilities. The case’s footnote says LEED buildings are designed to save money, improve efficiency and lower carbon emissions (p. 4).",
+      why: "One of the few activities in the case that clearly works on both sides: lower running cost, and a building that supports the environmental claim and the repair service." },
+    { t: "In 1991, after a lender cut its credit line, Patagonia laid off 20% of its 600 staff.", src: "Case p. 3", a: "c", ok: ["c"],
+      drv: "A cost cut, not a change in a cost driver.",
+      why: "The case says the layoffs were made to reduce costs. Porter separates cost reduction from cost advantage (p. 18): a one-off cut leaves the structural drivers where they were. The lasting response was the growth cap, a policy on the uniqueness side." },
+    { t: "The 1977 pile fleece: as warm as wool, lighter, more weather-resistant, and an attempt to beat a sweater that grew heavy when wet.", src: "Case p. 3", a: "u", ok: ["u"],
+      drv: "Policy choice on product features and performance, from technology development (pp. 121, 124).",
+      why: "A better product for a specific use, which became iconic. Porter: technology development can give a product unique performance (p. 121)." }
+  ];
+  var tally = { u: 0, c: 0, b: 0 }, done = 0, right = 0;
+  var T = { u: document.getElementById("drvU"), c: document.getElementById("drvC"), b: document.getElementById("drvB") };
+  var sc = document.getElementById("drvScore"), rd = document.getElementById("drvRead");
+  ITEMS.forEach(function (it) {
+    var card = document.createElement("div");
+    card.className = "s8-card rounded-xl border border-slate-200 p-4";
+    var src = document.createElement("p"); src.className = "text-[11px] font-semibold uppercase tracking-wider text-slate-500"; src.textContent = it.src;
+    var st = document.createElement("p"); st.className = "mt-1 text-sm font-medium text-slate-900 leading-relaxed"; st.textContent = it.t;
+    var row = document.createElement("div"); row.className = "mt-3 flex flex-wrap gap-2"; row.setAttribute("role", "group"); row.setAttribute("aria-label", "Classify");
+    var out = document.createElement("div"); out.className = "mt-3 text-sm leading-relaxed text-slate-700"; out.hidden = true; out.setAttribute("aria-live", "polite");
+    var btns = [];
+    OPTS.forEach(function (o) {
+      var b = document.createElement("button");
+      b.type = "button"; b.dataset.k = o[0];
+      b.className = "s8-opt rounded-full border border-slate-300 px-3 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-50";
+      b.textContent = o[1]; b.setAttribute("aria-pressed", "false");
+      b.addEventListener("click", function () {
+        if (card.dataset.pick) return;
+        card.dataset.pick = o[0];
+        var ok = it.ok.indexOf(o[0]) > -1;
+        done++; if (ok) right++;
+        tally[o[0]]++; T[o[0]].textContent = String(tally[o[0]]);
+        b.setAttribute("aria-pressed", "true");
+        btns.forEach(function (x) { x.disabled = true; if (x.dataset.k === it.a) x.classList.add("s8-right"); else if (x === b && !ok) x.classList.add("s8-wrong"); });
+        var p1 = document.createElement("p");
+        var lead = document.createElement("strong"); lead.className = ok ? "s8-ok" : "s8-no";
+        lead.textContent = ok ? (o[0] === it.a ? "Yes. " : "Arguable. ") : "Read it again. ";
+        p1.appendChild(lead);
+        p1.appendChild(document.createTextNode("This page’s reading: it " + NAME[it.a] + ". " + it.why));
+        var p2 = document.createElement("p"); p2.className = "mt-1 text-xs text-slate-500"; p2.textContent = "Driver: " + it.drv;
+        out.appendChild(p1); out.appendChild(p2); out.hidden = false;
+        sc.textContent = done + " of " + ITEMS.length + " sorted; " + right + " match this page’s reading.";
+        if (done === ITEMS.length) rd.hidden = false;
+      });
+      btns.push(b); row.appendChild(b);
+    });
+    card.appendChild(src); card.appendChild(st); card.appendChild(row); card.appendChild(out);
+    list.appendChild(card);
+  });
+})();
+</script>
+
+<script>
+(function () {
+  /* ---------- activity 3: stuck-in-the-middle diagnostic (questions from Porter, 1985, pp. 13-20) ---------- */
+  var list = document.getElementById("stkList");
+  if (!list) return;
+  var YN = [["yes", "Yes"], ["no", "No"]];
+  var QS = [
+    { id: "q1", t: "Can you name the one type of advantage the firm seeks: lower cost, or uniqueness that buyers pay for?", o: YN,
+      flag: "no", flagText: "No chosen type of advantage (p. 16)." },
+    { id: "q2", t: "Has it added frills, services, segments or routes mainly for growth or prestige?", o: YN,
+      flag: "yes", flagText: "Blurring the strategy for growth or prestige (p. 17)." },
+    { id: "q3", t: "Does it keep proximity on the other dimension: costs close to rivals’ if it differentiates, or an offer buyers see as comparable if it leads on cost?", o: YN,
+      flag: "no", flagText: "Proximity lost on the dimension it does not compete on (pp. 13–14)." },
+    { id: "q4", t: "Is it one of several firms trying to be the lowest-cost producer?", o: YN,
+      flag: "yes", flagText: "Several aspiring cost leaders, so rivalry over every point of share (p. 13)." },
+    { id: "q5", t: "If it claims low cost and differentiation together, does one of Porter’s three conditions hold (rivals stuck, share-driven cost, or a unique innovation)?", o: [["yes", "Yes"], ["no", "No"], ["na", "Not claimed"]],
+      flag: "no", flagText: "Claims both without a condition that allows it (pp. 18–20).",
+      warn: "yes", warnText: "Both, for now: each of Porter’s conditions is temporary (pp. 19–20)." },
+    { id: "q6", t: "Would a capable rival that picked one strategy and invested hard expose a trade-off the firm is avoiding?", o: YN,
+      flag: "yes", flagText: "Exposed to a rival who chooses (p. 19)." }
+  ];
+  var PRESETS = {
+    laker: { a: { q1: "no", q2: "yes" },
+      note: "Porter, p. 17: Laker began as a no-frills cost focuser on the North Atlantic, then added frills, new services and new routes, blurred its image and went bankrupt. He says nothing about the other four questions, so they stay blank." },
+    crown: { a: { q1: "yes", q2: "no", q5: "yes", q6: "yes" },
+      note: "Porter, pp. 18–19: Crown targeted the “hard to hold” can segments, differentiated on service, technical help and a full line, and dedicated modern plants to those segments. Its rivals were not investing in low-cost steel-can technology. Had they pursued cost leadership aggressively, he says, Crown might have been stuck in the middle." },
+    blank: { a: {}, note: "Now Patagonia. Answer from the case and cite the page. Questions 3 and 4 need evidence on cost that the case may not give: leave them blank if so." }
+  };
+  var ans = {}, groups = {};
+  var head = document.getElementById("stkHead"), body = document.getElementById("stkBody"), flags = document.getElementById("stkFlags"), box = document.getElementById("stkVerdict");
+  var noteP = document.createElement("p"); noteP.className = "text-sm text-slate-600 leading-relaxed"; noteP.hidden = true;
+  list.appendChild(noteP);
+  QS.forEach(function (q, i) {
+    var card = document.createElement("div"); card.className = "rounded-xl border border-slate-200 p-4";
+    var t = document.createElement("p"); t.className = "text-sm font-medium text-slate-900 leading-relaxed";
+    var num = document.createElement("span"); num.className = "font-mono text-xs text-blue-600 mr-2"; num.textContent = "0" + (i + 1);
+    t.appendChild(num); t.appendChild(document.createTextNode(q.t));
+    var row = document.createElement("div"); row.className = "mt-3 flex flex-wrap gap-2"; row.setAttribute("role", "group"); row.setAttribute("aria-label", "Question " + (i + 1));
+    groups[q.id] = [];
+    q.o.forEach(function (o) {
+      var b = document.createElement("button");
+      b.type = "button"; b.dataset.v = o[0];
+      b.className = "s8-opt rounded-full border border-slate-300 px-4 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-50";
+      b.textContent = o[1]; b.setAttribute("aria-pressed", "false");
+      b.addEventListener("click", function () {
+        ans[q.id] = ans[q.id] === o[0] ? undefined : o[0];
+        sync(); verdict();
+      });
+      groups[q.id].push(b); row.appendChild(b);
+    });
+    card.appendChild(t); card.appendChild(row); list.appendChild(card);
+  });
+  function sync() {
+    QS.forEach(function (q) { groups[q.id].forEach(function (b) { b.setAttribute("aria-pressed", ans[q.id] === b.dataset.v ? "true" : "false"); }); });
+  }
+  function verdict() {
+    var n = 0, f = [], w = [];
+    QS.forEach(function (q) {
+      var v = ans[q.id]; if (!v) return; n++;
+      if (v === q.flag) f.push(q.flagText);
+      if (q.warn && v === q.warn) w.push(q.warnText);
+    });
+    flags.textContent = "";
+    box.classList.remove("s8-v-ok", "s8-v-risk", "s8-v-stuck");
+    if (n < 2) { head.textContent = "Answer at least two questions"; body.textContent = "The verdict counts the warning signs among the answers you give."; return; }
+    if (f.length >= 2) { head.textContent = "Stuck in the middle"; box.classList.add("s8-v-stuck");
+      body.textContent = "Two or more of Porter’s warning signs. Such a firm usually earns below-average returns unless its industry is highly favourable or its rivals are stuck too (p. 17)."; }
+    else if (f.length === 1 || w.length) { head.textContent = "At risk"; box.classList.add("s8-v-risk");
+      body.textContent = "A position, but a fragile one. Name the trade-off the firm is postponing and the rival who could force it."; }
+    else { head.textContent = "A clear position, on these answers"; box.classList.add("s8-v-ok");
+      body.textContent = "No warning signs among the " + n + " questions answered. Check the blanks before you trust it."; }
+    f.concat(w).forEach(function (s, i) {
+      var li = document.createElement("li"); li.className = i < f.length ? "s8-no" : "s8-open"; li.textContent = (i < f.length ? "✗ " : "! ") + s; flags.appendChild(li);
+    });
+  }
+  document.querySelectorAll("#stuckBox .s8-pre").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var p = PRESETS[b.dataset.preset]; ans = {};
+      Object.keys(p.a).forEach(function (k) { ans[k] = p.a[k]; });
+      document.querySelectorAll("#stuckBox .s8-pre").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      noteP.textContent = p.note; noteP.hidden = false;
+      sync(); verdict();
+    });
+  });
+})();
+</script>
+
+<script>window.SQUIZ = [
+ {
+  "q": "Porter’s generic strategies come from combining which two choices?",
+  "o": [
+   "The price level and the quality level of the product",
+   "The type of competitive advantage sought (lower cost or differentiation) and the competitive scope (broad or narrow)",
+   "Market share and the industry’s growth rate",
+   "Industry attractiveness and the firm’s resources"
+  ],
+  "a": 1,
+  "e": "Two basic types of advantage, low cost or differentiation, combined with the scope of the target give cost leadership, differentiation and focus, with focus split into cost focus and differentiation focus (Porter, 1985, pp. 11–12). Price and quality are outcomes of the choice, not the choice itself."
+ },
+ {
+  "q": "A cost leader’s product is not seen by buyers as comparable to rivals’. What does Porter predict?",
+  "o": [
+   "Nothing changes: a cost leader competes on cost alone",
+   "It becomes a differentiation focuser by default",
+   "It must discount well below rivals to sell, which can wipe out its cost advantage",
+   "It earns above-average returns as long as it has the largest market share"
+  ],
+  "a": 2,
+  "e": "A cost leader needs parity or proximity in the bases of differentiation. Texas Instruments in watches could not close the gap and left the industry (Porter, 1985, p. 13)."
+ },
+ {
+  "q": "Why can an industry hold several successful differentiators but usually only one cost leader?",
+  "o": [
+   "Buyers value several different attributes, while aspiring cost leaders all fight on the same basis for every point of share",
+   "Differentiators always have smaller market shares",
+   "Cost leadership is illegal in concentrated industries",
+   "Differentiators never compete with each other on price"
+  ],
+  "a": 0,
+  "e": "Several differentiators can prosper if they choose different widely valued attributes. Where several firms vie for cost leadership, rivalry is fierce and the result can be disastrous for profits (Porter, 1985, pp. 13–14, 21–22)."
+ },
+ {
+  "q": "Royal Crown focused on cola while Coca-Cola and Pepsi sold broad lines. Why did Porter judge the focus strategy weak?",
+  "o": [
+   "Cola was too small a segment to be profitable",
+   "Royal Crown’s costs were higher than its rivals’",
+   "Cola drinkers were extremely price-sensitive",
+   "The cola segment was not different enough: the broad rivals could serve it while serving everyone else, and their broader lines gave them an advantage"
+  ],
+  "a": 3,
+  "e": "A focus strategy works only if the target segment differs from the rest of the industry, through unusual buyer needs or a different best production and delivery system. Royal Crown’s did not (Porter, 1985, p. 16)."
+ },
+ {
+  "q": "Which driver of uniqueness does Porter call perhaps the single most prevalent?",
+  "o": [
+   "Economies of scale",
+   "Policy choices about which activities to perform and how",
+   "Location",
+   "Institutional factors"
+  ],
+  "a": 1,
+  "e": "Policy choices, such as the features offered, the services provided, the intensity of advertising and the quality of inputs, lead the list. Porter concludes that much uniqueness is therefore discretionary (1985, p. 124)."
+ },
+ {
+  "q": "Which source of uniqueness does Porter suggest is likely to be hardest for rivals to imitate?",
+  "o": [
+   "A decision to spend more on advertising",
+   "Uniqueness that stems from exploiting linkages among activities",
+   "Learning that has spilled over to competitors",
+   "A product feature competitors can see and specify"
+  ],
+  "a": 1,
+  "e": "Policy choices may be easier to imitate than uniqueness stemming from interrelationships or exploited linkages (Porter, 1985, p. 127). Learning differentiates only while it stays proprietary (p. 126)."
+ },
+ {
+  "q": "What turned Laker Airways from a clear strategy into a firm stuck in the middle?",
+  "o": [
+   "It cut prices below cost",
+   "It merged with a full-service carrier",
+   "It added frills, new services and new routes to a no-frills cost focus, blurring its image",
+   "It refused to grow beyond the North Atlantic"
+  ],
+  "a": 2,
+  "e": "Laker began with a clear cost focus on the North Atlantic, then compromised it for growth. Porter notes that the temptation to blur is greatest for a focuser that already dominates its segment (1985, p. 17)."
+ },
+ {
+  "q": "Which of these is NOT one of Porter’s three conditions for achieving cost leadership and differentiation at the same time?",
+  "o": [
+   "Competitors are stuck in the middle",
+   "Cost is strongly affected by market share or interrelationships",
+   "The firm pioneers a major innovation",
+   "The firm serves every segment of the industry"
+  ],
+  "a": 3,
+  "e": "The three conditions are stuck-in-the-middle rivals, cost driven by share or interrelationships, and a pioneering innovation, and each is temporary (Porter, 1985, pp. 19–20). Serving every segment is closer to his description of being stuck."
+ },
+ {
+  "q": "How does Ghemawat and Pisano’s Honda and Toyota example challenge the idea of being stuck in the middle?",
+  "o": [
+   "Superior capabilities gave them lower cost and higher quality from a conventional position, because firms do not all face the same efficiency frontier",
+   "It shows that Japanese firms always choose cost leadership",
+   "It proves that positioning never matters",
+   "It shows that focus strategies beat broad ones"
+  ],
+  "a": 0,
+  "e": "The Accord and Camry were positioned squarely in Detroit’s mass market at similar prices, yet cost about $2,000 less per comparable car and had higher quality, thanks to development and manufacturing capabilities (Ghemawat & Pisano, 1997, pp. 13, 16–17)."
+ },
+ {
+  "q": "Which case fact best supports reading Patagonia as a differentiation focuser rather than a broad differentiator?",
+  "o": [
+   "It sells about 1,400 products",
+   "It holds nearly 10% of US outdoor apparel",
+   "Since 1991 it has limited growth to pre-set targets",
+   "Its products are sold through Dick’s Sporting Goods and REI"
+  ],
+  "a": 2,
+  "e": "Porter says focus means deliberately limiting potential sales volume (1985, p. 17), and Patagonia has held growth to pre-set targets since 1991 (case, p. 3). The other three facts describe a wide line, a wide reach and a leading share, which point towards broad differentiation."
+ }
+];</script>
+<script>
+(function () {
+  /* ---------------- quiz ---------------- */
+  var QUIZ = window.SQUIZ || [];
+  var qw = document.getElementById("sQuiz");
+  if (qw && QUIZ.length) {
+    var score = 0;
+    document.getElementById("sQuizTotal").textContent = QUIZ.length;
+    function build() {
+      qw.innerHTML = ""; score = 0;
+      document.getElementById("sQuizScore").textContent = "0";
+      QUIZ.forEach(function (item, n) {
+        var d = document.createElement("div");
+        d.className = "card p-5";
+        var opts = item.o.map(function (t, k) {
+          return '<button type="button" class="quiz-option w-full rounded-lg border border-slate-300 px-3 py-2 text-left text-sm text-slate-700" data-k="' + k + '">' +
+            String.fromCharCode(65 + k) + ". " + t + '</button>';
+        }).join("");
+        d.innerHTML = '<p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Question ' + (n + 1) + '</p>' +
+          '<p class="mt-1 text-sm font-semibold text-slate-900">' + item.q + '</p>' +
+          '<div class="mt-3 grid gap-2">' + opts + '</div>' +
+          '<p class="quiz-explanation text-xs text-slate-600 bg-slate-100 p-3 rounded-md border border-slate-200"></p>';
+        var expl = d.querySelector(".quiz-explanation");
+        d.querySelectorAll(".quiz-option").forEach(function (b) {
+          b.addEventListener("click", function () {
+            if (d.dataset.answered) return;
+            d.dataset.answered = "1";
+            var k = parseInt(b.dataset.k, 10);
+            if (k === item.a) { score++; document.getElementById("sQuizScore").textContent = score; }
+            d.querySelectorAll(".quiz-option").forEach(function (x) {
+              x.disabled = true;
+              var xi = parseInt(x.dataset.k, 10);
+              if (xi === item.a) x.classList.add("correct");
+              else if (x === b) x.classList.add("incorrect");
+            });
+            expl.textContent = item.e;
+            expl.classList.add("visible");
+          });
+        });
+        qw.appendChild(d);
+      });
+    }
+    build();
+    var rb = document.getElementById("sQuizReset");
+    if (rb) rb.addEventListener("click", build);
+  }
+})();
+</script>
+
+<style>
+  html.dark [data-workshop]{border-top-color:#a855f7!important}
+  html.dark [data-workshop].border-t-blue-500{border-top-color:#6E72F0!important}
+  html.dark [data-workshop].border-t-teal-500{border-top-color:#2DD4BF!important}
+  html.dark [data-sim]{border-top-color:#f43f5e!important}
+  .ws-body p+p{margin-top:.5rem}
+</style>
+<script>
+/* Shared Session-1 components: tabbed panels, workshops, simulations, reveal buttons.
+   Data comes from window.S_WORKSHOPS and window.S_SIMS (set in a page's scripts.html);
+   markup placeholders live in the body: <div id="ws-x" data-workshop></div>, <div id="sim-x" data-sim></div>. */
+(function () {
+  function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
+
+  /* ---------- tabs: .author-tab[data-author] + .author-panel[data-panel], scoped by [data-tabs] ---------- */
+  var groups = document.querySelectorAll("[data-tabs]");
+  (groups.length ? Array.prototype.slice.call(groups) : [document]).forEach(function (g) {
+    var tabs = g.querySelectorAll(".author-tab"), panels = g.querySelectorAll(".author-panel");
+    if (!tabs.length) return;
+    tabs.forEach(function (t) {
+      t.addEventListener("click", function () {
+        var key = t.getAttribute("data-author");
+        tabs.forEach(function (x) {
+          var on = x === t;
+          x.setAttribute("aria-selected", on ? "true" : "false");
+          x.className = "author-tab -mb-px border-b-2 px-4 py-2.5 text-sm font-semibold " +
+            (on ? "border-blue-600 text-blue-700" : "border-transparent text-slate-500 hover:text-slate-800");
+        });
+        panels.forEach(function (p) { p.classList.toggle("hidden", p.getAttribute("data-panel") !== key); });
+      });
+    });
+  });
+
+  /* ---------- reveal buttons: <button data-reveal="targetId" data-reveal-label="Hide…">Show…</button> ---------- */
+  document.querySelectorAll("[data-reveal]").forEach(function (b) {
+    var target = document.getElementById(b.getAttribute("data-reveal"));
+    if (!target) return;
+    var showLabel = b.textContent, hideLabel = b.getAttribute("data-reveal-label");
+    b.setAttribute("aria-expanded", target.hidden ? "false" : "true");
+    b.addEventListener("click", function () {
+      target.hidden = !target.hidden;
+      b.setAttribute("aria-expanded", target.hidden ? "false" : "true");
+      if (hideLabel) b.textContent = target.hidden ? showLabel : hideLabel;
+    });
+  });
+
+  /* ---------- workshops: one decision, outcome revealed in place ---------- */
+  var WS = window.S_WORKSHOPS || [];
+  WS.forEach(function (w) {
+    var host = document.getElementById(w.id);
+    if (!host) return;
+    host.className = "bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200 border-t-4 " + (w.accent === "blue" ? "border-t-blue-500" : w.accent === "teal" ? "border-t-teal-500" : "border-t-purple-500");
+    if (w.kicker) host.appendChild(el("p", "text-[10px] font-semibold uppercase tracking-wider text-slate-500", w.kicker));
+    host.appendChild(el("h3", "mt-1 text-xl sm:text-2xl font-bold text-slate-800 mb-2", w.title));
+    if (w.setup) host.appendChild(el("div", "text-slate-600 mb-6 text-sm leading-relaxed", w.setup));
+    var grid = el("div", "grid gap-4 " + (w.options.length >= 3 ? "md:grid-cols-3" : "md:grid-cols-2"));
+    var out = el("div", "mt-5 rounded-lg border border-slate-200 bg-slate-50 p-5");
+    out.hidden = true; out.setAttribute("aria-live", "polite");
+    w.options.forEach(function (o) {
+      var b = el("button", "activity-button workshop-button text-left", "<strong>" + o.key + ") " + o.label + ":</strong> " + o.text);
+      b.type = "button"; b.setAttribute("aria-pressed", "false");
+      b.addEventListener("click", function () {
+        grid.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); x.classList.toggle("ring-2", x === b); });
+        out.innerHTML = "";
+        out.appendChild(el("h4", "text-base font-semibold text-slate-900", o.outcome.title));
+        out.appendChild(el("div", "mt-2 text-sm text-slate-700 leading-relaxed ws-body", o.outcome.body));
+        out.hidden = false;
+      });
+      grid.appendChild(b);
+    });
+    host.appendChild(grid);
+    host.appendChild(out);
+    if (w.debrief) { var d = el("p", "mt-4 text-xs text-slate-500 leading-relaxed", w.debrief); host.appendChild(d); }
+  });
+
+  /* ---------- simulations: branching steps with end states ---------- */
+  var SIMS = window.S_SIMS || [];
+  SIMS.forEach(function (s) {
+    var host = document.getElementById(s.id);
+    if (!host) return;
+    host.className = "bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200 border-t-4 border-t-rose-500";
+    if (s.kicker) host.appendChild(el("p", "text-[10px] font-semibold uppercase tracking-wider text-slate-500", s.kicker));
+    host.appendChild(el("h3", "mt-1 text-xl sm:text-2xl font-bold text-slate-800 mb-2", s.title));
+    if (s.setup) host.appendChild(el("div", "text-slate-600 mb-6 text-sm leading-relaxed", s.setup));
+    var box = el("div", "space-y-6");
+    box.setAttribute("aria-live", "polite");
+    host.appendChild(box);
+    var path = [];
+    function step(id) {
+      var st = null;
+      s.steps.forEach(function (x) { if (x.id === id) st = x; });
+      if (!st) return;
+      box.innerHTML = "";
+      if (path.length) {
+        var trail = el("p", "text-xs text-slate-500", "Your path: " + path.map(function (p) { return p; }).join(" &rarr; "));
+        box.appendChild(trail);
+      }
+      if (st.end) {
+        var end = el("div", "p-6 bg-rose-50 rounded-lg border border-rose-200");
+        end.appendChild(el("h4", "text-lg font-semibold text-rose-700 mb-3", st.title));
+        end.appendChild(el("div", "text-sm text-slate-700 leading-relaxed ws-body", st.body));
+        var again = el("button", "mt-4 rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800", "Start again");
+        again.type = "button";
+        again.addEventListener("click", function () { path = []; step(s.start || s.steps[0].id); });
+        end.appendChild(again);
+        box.appendChild(end);
+        return;
+      }
+      var q = el("div", "p-6 bg-slate-100 rounded-lg border border-slate-200");
+      q.appendChild(el("h4", "text-base font-semibold text-slate-800 mb-4", st.q));
+      if (st.context) q.appendChild(el("div", "mb-4 text-sm text-slate-600 leading-relaxed", st.context));
+      var g = el("div", "grid sm:grid-cols-2 gap-4");
+      st.options.forEach(function (o) {
+        var b = el("button", "activity-button simulation-button text-left", o.text);
+        b.type = "button";
+        b.addEventListener("click", function () { path.push(o.short || o.text.replace(/<[^>]+>/g, "").split(":")[0]); step(o.next); });
+        g.appendChild(b);
+      });
+      q.appendChild(g);
+      box.appendChild(q);
+    }
+    step(s.start || s.steps[0].id);
+  });
+})();
+</script>
+
+<script>
+(function () {
+  var SECTIONS = [["recap", "Carried forward"], ["generic", "Generic strategies"], ["drivers", "Cost & uniqueness drivers"], ["middle", "Stuck in the middle"], ["case", "Patagonia's position"], ["decks", "Go deeper"], ["discussion", "Discussion"], ["quiz", "Quiz"], ["readings", "Readings"]];
+  var KEY = "s8-progress-v1";
+  var ACTIVITIES = ["map", "drivers", "stuck", "quiz"];
+
+  // ---------- theme ----------
+  var root = document.documentElement;
+  try {
+    // light is the default; dark only when the visitor has asked for it
+    if (localStorage.getItem("s8-theme") === "dark") root.classList.add("dark");
+  } catch (e) {}
+  var themeBtn = document.getElementById("themeBtn");
+  if (themeBtn) {
+    themeBtn.addEventListener("click", function () {
+      root.classList.toggle("dark");
+      try { localStorage.setItem("s8-theme", root.classList.contains("dark") ? "dark" : "light"); } catch (e) {}
+    });
+  }
+
+  // ---------- reading progress ----------
+  var bar = document.getElementById("readbar");
+  var pctEl = document.getElementById("progPct");
+  function onScroll() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? Math.min(100, Math.max(0, (h.scrollTop / max) * 100)) : 0;
+    if (bar) { bar.style.width = p + "%"; bar.setAttribute("aria-valuenow", Math.round(p)); }
+    if (pctEl) pctEl.textContent = Math.round(p);
+  }
+  var ticking = false;
+  window.addEventListener("scroll", function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () { onScroll(); ticking = false; });
+  }, { passive: true });
+  onScroll();
+
+  // ---------- rail + drawer nav ----------
+  var rail = document.getElementById("rail");
+  var dnav = document.getElementById("drawerNav");
+  SECTIONS.forEach(function (s) {
+    if (!document.getElementById(s[0])) return;
+    if (rail) {
+      var a = document.createElement("a");
+      a.href = "#" + s[0];
+      a.dataset.sec = s[0];
+      a.innerHTML = '<span class="dot"></span><span class="lbl">' + s[1] + "</span>";
+      rail.appendChild(a);
+    }
+    if (dnav) {
+      var d = document.createElement("a");
+      d.href = "#" + s[0];
+      d.className = "rounded-lg px-3 py-2.5 text-sm text-slate-700 hover:bg-slate-100";
+      d.textContent = s[1];
+      d.addEventListener("click", closeDrawer);
+      dnav.appendChild(d);
+    }
+  });
+
+  var drawer = document.getElementById("drawer");
+  var drawerBtn = document.getElementById("drawerBtn");
+  function openDrawer() {
+    if (!drawer) return;
+    drawer.classList.remove("hidden");
+    if (drawerBtn) drawerBtn.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  }
+  function closeDrawer() {
+    if (!drawer) return;
+    drawer.classList.add("hidden");
+    if (drawerBtn) drawerBtn.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
+  if (drawerBtn) drawerBtn.addEventListener("click", openDrawer);
+  var dc = document.getElementById("drawerClose");
+  var ds = document.getElementById("drawerScrim");
+  if (dc) dc.addEventListener("click", closeDrawer);
+  if (ds) ds.addEventListener("click", closeDrawer);
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeDrawer(); });
+
+  // ---------- scrollspy for the rail ----------
+  var spy = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting || !rail) return;
+      rail.querySelectorAll("a").forEach(function (a) {
+        a.classList.toggle("on", a.dataset.sec === en.target.id);
+      });
+    });
+  }, { rootMargin: "-45% 0px -50% 0px" });
+  SECTIONS.forEach(function (s) {
+    var el = document.getElementById(s[0]);
+    if (el) spy.observe(el);
+  });
+
+  // ---------- scroll reveal ----------
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduce) {
+    var targets = document.querySelectorAll("section > .container > *");
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.06, rootMargin: "0px 0px -8% 0px" });
+    targets.forEach(function (t, i) {
+      // never hide anything already on screen at load
+      if (t.getBoundingClientRect().top < window.innerHeight) return;
+      t.classList.add("rv");
+      io.observe(t);
+    });
+  }
+
+  // ---------- completion tracking ----------
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { state = {}; }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  function count() { return ACTIVITIES.filter(function (k) { return state[k]; }).length; }
+  function paint() {
+    var n = count(), total = ACTIVITIES.length;
+    var a = document.getElementById("doneCount"); if (a) a.textContent = n;
+    var b = document.getElementById("drawerDone"); if (b) b.textContent = n;
+    var c = document.getElementById("drawerBar"); if (c) c.style.width = (100 * n / total) + "%";
+    ACTIVITIES.forEach(function (k) {
+      var badge = document.querySelector('[data-done-for="' + k + '"]');
+      if (badge) badge.hidden = !state[k];
+    });
+  }
+  function mark(k) { if (!state[k]) { state[k] = true; save(); paint(); } }
+  paint();
+
+  // wire completion to the real interactions already on the page
+  function onClickWithin(sel, key) {
+    var el = document.querySelector(sel);
+    if (el) el.addEventListener("click", function () { mark(key); });
+  }
+  onClickWithin("#mapBox", "map");
+  onClickWithin("#driverBox", "drivers");
+  onClickWithin("#stuckBox", "stuck");
+  onClickWithin("#sQuiz", "quiz");
+
+  // reset control, appended to the readings section if present
+  var readings = document.getElementById("readings");
+  if (readings) {
+    var wrap = readings.querySelector(".container") || readings.querySelector(".max-w-6xl") || readings;
+    if (wrap) {
+      var p = document.createElement("div");
+      p.className = "mt-8 flex flex-wrap items-center gap-3 border-t border-slate-200 pt-6 text-sm";
+      p.innerHTML = '<span class="text-slate-500">Your progress on this page is saved in this browser only.</span>' +
+        '<button type="button" id="resetProg" class="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-100">Reset my progress</button>';
+      wrap.appendChild(p);
+      var rp = document.getElementById("resetProg");
+      if (rp) rp.addEventListener("click", function () {
+        state = {}; save(); paint();
+        rp.textContent = "Reset";
+        setTimeout(function () { rp.textContent = "Reset my progress"; }, 1400);
+      });
+    }
+  }
+})();
+
+</script>
+
+<script>
+/* keep the Chart.js canvases legible in both themes */
+(function(){
+  function chartTheme(){
+    if(!window.Chart||!Chart.getChart) return;
+    var dark=document.documentElement.classList.contains("dark");
+    var tick=dark?"#94A3B8":"#475569";
+    var grid=dark?"rgba(226,232,240,.12)":"rgba(15,23,42,.08)";
+    Chart.defaults.color=tick;
+    document.querySelectorAll("canvas").forEach(function(c){
+      var ch=Chart.getChart(c); if(!ch||!ch.config) return;
+      // Chart.js v4 rebuilds chart.options on update(), so mutate the config
+      var o=ch.config.options=ch.config.options||{};
+      var sc=o.scales=o.scales||{};
+      Object.keys(sc).forEach(function(k){
+        if(!sc[k]) return;
+        sc[k].ticks=sc[k].ticks||{}; sc[k].ticks.color=tick;
+        if(sc[k].grid&&sc[k].grid.display===false) return;
+        sc[k].grid=sc[k].grid||{}; sc[k].grid.color=grid;
+      });
+      var pl=o.plugins=o.plugins||{};
+      if(pl.legend){ pl.legend.labels=pl.legend.labels||{}; pl.legend.labels.color=tick; }
+      ch.update("none");
+    });
+  }
+  var btn=document.getElementById("themeBtn");
+  if(btn) btn.addEventListener("click",function(){ setTimeout(chartTheme,60); });
+
+  var n=0, iv=setInterval(function(){ chartTheme(); if(++n>20) clearInterval(iv); },400);
+})();
+</script>
+</body>
+</html>

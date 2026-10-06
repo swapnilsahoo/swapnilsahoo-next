@@ -1,0 +1,2146 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 9: Managing Technology & Innovation | STRAMGT 221 — Dr. Swapnil Sahoo</title>
+    <meta name="description" content="Red and blue oceans, value innovation and the strategy canvas, the four types of innovation and platform strategy, applied to NVIDIA's path from graphics chips to CUDA and AI, and whether its blue ocean is turning red.">
+    <link rel="canonical" href="https://www.swapnilsahoo.com/teaching/1-year-mba/session9.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Session 9: Managing Technology & Innovation">
+    <meta property="og:description" content="Red and blue oceans, value innovation and the strategy canvas, the four types of innovation and platform strategy, applied to NVIDIA's path from graphics chips to CUDA and AI, and whether its blue ocean is turning red.">
+    <meta property="og:url" content="https://www.swapnilsahoo.com/teaching/1-year-mba/session9.html">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter','ui-sans-serif','system-ui','sans-serif'],
+              display: ['Fraunces','ui-serif','Georgia','serif']
+            },
+            colors: {
+              slate: {
+                50:'#F8FAFC',100:'#F1F5F9',200:'#E2E8F0',300:'#CBD5E1',
+                400:'#94A3B8',500:'#64748B',600:'#475569',700:'#334155',
+                800:'#1E293B',900:'#0F172A',950:'#020617'
+              },
+              gray: {
+                50:'#F8FAFC',100:'#F1F5F9',200:'#E2E8F0',300:'#CBD5E1',
+                400:'#94A3B8',500:'#64748B',600:'#475569',700:'#334155',
+                800:'#1E293B',900:'#0F172A'
+              },
+              blue: {
+                50:'#EEF1FF',100:'#E0E5FF',200:'#C6CEFE',300:'#A3AEFB',
+                400:'#818CF8',500:'#6366F1',600:'#4F46E5',700:'#4338CA',
+                800:'#372FA8',900:'#2E2A82',950:'#1B1850'
+              }
+            },
+            boxShadow: {
+              lift: '0 1px 2px rgba(15,23,42,.04), 0 8px 24px -12px rgba(15,23,42,.18)',
+              liftmd: '0 2px 4px rgba(15,23,42,.05), 0 18px 40px -18px rgba(15,23,42,.28)'
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root{
+          --sticky-offset:100px;
+          --paper:#FFFFFF; --ink:#0F172A; --muted:#475569; --line:#E2E8F0;
+          --card:#FFFFFF; --accent:#4F46E5; --accent-soft:#EEF2FF;
+        }
+        html.dark{
+          --paper:#0B1120; --ink:#E2E8F0; --muted:#94A3B8; --line:#1E293B;
+          --card:#111A2E; --accent:#818CF8; --accent-soft:#1E1B4B;
+        }
+        html{scroll-padding-top:120px}
+        body{
+          font-family:'Inter',sans-serif;
+          background:var(--paper); color:var(--ink);
+          -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+        }
+        h1,h2,h3,.display{font-family:'Fraunces',ui-serif,Georgia,serif; letter-spacing:-.02em}
+        h1{font-optical-sizing:auto}
+
+        /* ---- dark-mode repaint of the utility classes already in the markup ---- */
+        html.dark .bg-white{background:var(--card)!important}
+        html.dark .bg-slate-50,html.dark .bg-slate-100,html.dark .bg-gray-50{background:#0F172A!important}
+        html.dark .border-slate-200,html.dark .border-slate-300,html.dark .border-gray-200{border-color:var(--line)!important}
+        html.dark .text-slate-900,html.dark .text-gray-900,html.dark .text-slate-800{color:var(--ink)!important}
+        html.dark .text-slate-600,html.dark .text-slate-700,html.dark .text-gray-600,html.dark .text-gray-700{color:#CBD5E1!important}
+        html.dark .text-slate-500,html.dark .text-slate-400{color:var(--muted)!important}
+        html.dark .divide-slate-100>*+*{border-color:var(--line)!important}
+        html.dark table thead{background:#162032!important}
+
+
+        /* ---- dark: translucent + tinted surfaces ---- */
+        html.dark .bg-white\/85,html.dark .bg-white\/80,html.dark .bg-white\/90{background:rgba(11,17,32,.90)!important}
+        html.dark .bg-blue-50,html.dark .bg-indigo-50{background:#171C3C!important}
+        html.dark .bg-blue-100,html.dark .bg-indigo-100{background:#1F2552!important}
+        html.dark .bg-blue-200{background:#272E60!important}
+        html.dark .bg-amber-50{background:#2A2110!important}
+        html.dark .bg-amber-100{background:#382C14!important}
+        html.dark .bg-rose-50{background:#2C1418!important}
+        html.dark .bg-rose-100,html.dark .bg-red-100{background:#3A181E!important}
+        html.dark .bg-emerald-50{background:#0F261A!important}
+        html.dark .bg-emerald-100{background:#143324!important}
+        html.dark .bg-teal-50{background:#0E2624!important}
+        html.dark .bg-teal-100{background:#12302E!important}
+        html.dark .bg-teal-200{background:#173B38!important}
+        html.dark .bg-cyan-100{background:#102A33!important}
+        html.dark .bg-slate-200{background:#1E293B!important}
+
+        /* dark surfaces: keep bars/cards as raised panels, turn actions into the accent */
+        html.dark div.bg-slate-900,html.dark footer.bg-gray-800{background:#111A2E!important}
+        html.dark a.bg-slate-900,html.dark button.bg-slate-900,html.dark span.bg-slate-900{background:#4F46E5!important;color:#fff!important}
+        html.dark a.bg-slate-900:hover,html.dark button.bg-slate-900:hover{background:#6366F1!important}
+        html.dark .border-gray-700{border-color:var(--line)!important}
+        html.dark .text-slate-100,html.dark .text-slate-200,html.dark .text-slate-300{color:#E2E8F0!important}
+
+        /* dark: tinted text has to lighten to stay legible */
+        html.dark .text-blue-600,html.dark .text-blue-700,html.dark .text-blue-800{color:#A3AEFB!important}
+        html.dark .text-rose-600,html.dark .text-rose-700,html.dark .text-red-600,html.dark .text-red-700{color:#FCA5A5!important}
+        html.dark .text-emerald-600,html.dark .text-emerald-700,html.dark .text-emerald-800{color:#6EE7A8!important}
+        html.dark .text-amber-600,html.dark .text-amber-700,html.dark .text-amber-800{color:#FCD34D!important}
+        html.dark .text-teal-600,html.dark .text-teal-700,html.dark .text-teal-800{color:#5EEAD4!important}
+
+        /* dark: tinted borders */
+        html.dark .border-blue-200,html.dark .border-blue-300,html.dark .border-blue-400{border-color:#2F3670!important}
+        html.dark .border-amber-200,html.dark .border-amber-500{border-color:#4A3A1A!important}
+        html.dark .border-rose-200,html.dark .border-rose-400{border-color:#4A2028!important}
+        html.dark .border-teal-200,html.dark .border-teal-300{border-color:#1C4B47!important}
+
+
+        /* dark: remaining tinted text families + form controls */
+        html.dark .text-blue-900,html.dark .text-indigo-600,html.dark .text-indigo-700,
+        html.dark .text-indigo-800,html.dark .text-purple-800{color:#B4BCFC!important}
+        html.dark .text-red-800,html.dark .text-rose-800{color:#FCA5A5!important}
+        html.dark .text-emerald-900{color:#6EE7A8!important}
+        html.dark .text-amber-900,html.dark .text-orange-600{color:#FBBF24!important}
+        html.dark .text-cyan-700,html.dark .text-cyan-800,html.dark .text-sky-700{color:#67E8F9!important}
+        html.dark input,html.dark textarea,html.dark select{
+          background:#111A2E!important;color:var(--ink)!important;border-color:var(--line)!important}
+        html.dark input::placeholder,html.dark textarea::placeholder{color:#64748B!important}
+
+
+        /* light: lift the few tinted headings that sat under 4.5:1 */
+        html:not(.dark) .text-amber-600{color:#B45309}
+        html:not(.dark) .text-orange-600{color:#C2410C}
+        html:not(.dark) .text-teal-600{color:#0F766E}
+
+
+        /* dark: hover states must not flash a light surface */
+        html.dark .hover\:bg-slate-50:hover,html.dark .hover\:bg-slate-100:hover{background:#1E293B!important}
+        html.dark .hover\:bg-blue-200:hover{background:#2B3268!important}
+        html.dark .hover\:bg-teal-200:hover{background:#17403C!important}
+        html.dark .hover\:bg-rose-100:hover{background:#421C23!important}
+
+        /* ---- reading progress ---- */
+        #readbar{position:fixed;top:0;left:0;height:3px;width:0;z-index:70;
+          background:linear-gradient(90deg,#4F46E5,#818CF8);transition:width .12s linear}
+
+        /* ---- section rail (desktop) ---- */
+        #rail{position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:40;display:none}
+        @media (min-width:1380px){#rail{display:block}}
+        #rail a{position:relative;display:flex;align-items:center;padding:4px 10px 4px 0;color:var(--muted);
+          font-size:11px;text-decoration:none;opacity:.55;transition:opacity .2s}
+        #rail a:hover,#rail a.on{opacity:1;color:var(--accent)}
+        #rail .dot{width:7px;height:7px;border-radius:99px;background:currentColor;flex:none;transition:transform .2s}
+        #rail a.on .dot{transform:scale(1.6)}
+        #rail .lbl{position:absolute;left:18px;top:50%;transform:translate(-4px,-50%);opacity:0;
+          pointer-events:none;white-space:nowrap;transition:opacity .2s,transform .2s;
+          background:var(--card);border:1px solid var(--line);border-radius:6px;padding:1px 7px;
+          box-shadow:0 4px 14px -8px rgba(15,23,42,.35)}
+        #rail a:hover .lbl,#rail a:focus-visible .lbl{opacity:1;transform:translate(0,-50%)}
+        /* the active section keeps its label only where the gutter is wide enough to hold it */
+        @media (min-width:1760px){#rail a.on .lbl{opacity:1;transform:translate(0,-50%)}}
+
+        /* ---- nav ---- */
+        .nav-link{transition:color .18s,border-color .18s;border-bottom:2px solid transparent;
+          padding-bottom:4px;color:var(--muted)}
+        .nav-link:hover,.active-nav{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+
+        /* ---- cards get real depth ---- */
+        .rounded-xl,.rounded-2xl{transition:box-shadow .22s ease,transform .22s ease,border-color .22s}
+        section .bg-white.rounded-2xl,section .bg-white.rounded-xl{box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -14px rgba(15,23,42,.16)}
+        section .bg-white.rounded-2xl:hover,section .bg-white.rounded-xl:hover{
+          box-shadow:0 2px 6px rgba(15,23,42,.06),0 20px 44px -20px rgba(15,23,42,.26);transform:translateY(-2px)}
+
+        /* ---- scroll reveal ---- */
+        .rv{opacity:0;transform:translateY(14px)}
+        .rv.in{opacity:1;transform:none;transition:opacity .55s cubic-bezier(.2,.7,.3,1),transform .55s cubic-bezier(.2,.7,.3,1)}
+
+        /* ---- completion ---- */
+        .done-badge{display:inline-flex;align-items:center;gap:5px;border-radius:99px;
+          background:#DCFCE7;color:#166534;padding:2px 9px;font-size:10px;font-weight:700;
+          text-transform:uppercase;letter-spacing:.06em}
+        html.dark .done-badge{background:#14321F;color:#6EE7A8}
+
+        /* ---- focus, motion, print ---- */
+        a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,[tabindex]:focus-visible{
+          outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+        @media (prefers-reduced-motion:reduce){
+          *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+          .rv{opacity:1;transform:none}
+          html{scroll-behavior:auto}
+        }
+        @media print{#readbar,#rail,#top-bar,#main-header,#drawer,#drawerBtn{display:none!important}}
+
+
+        /* ---- one shell width for every section (no stranded gutters) ---- */
+        body .container,
+        body section.max-w-6xl,
+        body div.max-w-6xl{
+          width:100%;
+          max-width:88rem!important;
+          margin-left:auto;margin-right:auto;
+          padding-left:clamp(1.25rem,3.5vw,2.75rem);
+          padding-right:clamp(1.25rem,3.5vw,2.75rem);
+        }
+        @media (min-width:1700px){
+          body .container,body section.max-w-6xl,body div.max-w-6xl{max-width:96rem!important}
+        }
+
+
+        /* ============ restored component styles (were defined in the original head) ============ */
+        [hidden]{display:none!important}
+        section[id]{scroll-margin-top:var(--sticky-offset)}
+        @media (min-width:768px){.chart-container{height:350px;max-height:400px}}
+
+        .analysis-content{max-height:0;overflow:hidden;opacity:0;margin-top:0;
+          padding-top:0!important;padding-bottom:0!important;border-top-width:0!important;border-bottom-width:0!important;
+          transition:max-height .5s ease-out,opacity .3s ease-out,margin-top .5s ease-out,padding .5s ease-out}
+        .analysis-content.visible{max-height:500px;opacity:1;margin-top:1rem;
+          padding-top:1rem!important;padding-bottom:1rem!important;border-top-width:1px!important;border-bottom-width:1px!important}
+        .analysis-button{transition:background-color .2s ease}
+
+        .quiz-option{cursor:pointer;transition:all .2s ease-in-out}
+        .quiz-option.correct{background-color:#dcfce7!important;border-color:#22c55e!important;color:#15803d!important;font-weight:500}
+        .quiz-option.incorrect{background-color:#fee2e2!important;border-color:#ef4444!important;color:#b91c1c!important;font-weight:500}
+        .quiz-option:disabled{opacity:.8;cursor:default}
+        .quiz-explanation{max-height:0;overflow:hidden;margin-top:0;opacity:0;
+          transition:max-height .5s ease-in-out,margin-top .5s ease-in-out,opacity .5s ease-in-out}
+        .quiz-explanation.visible{opacity:1;margin-top:1rem;max-height:500px}
+
+        .top-bar-link svg,.footer-link svg{width:1.125rem;height:1.125rem;fill:currentColor;transition:color .2s ease-in-out}
+        .hexagon-icon{position:relative;width:28px;height:28px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.3));display:inline-block;vertical-align:middle}
+        .hexagon-icon svg{width:100%;height:100%;animation:glow 2.5s infinite ease-in-out}
+        .hexagon-path{stroke:#B91C1C;stroke-width:1}
+        .hexagon-s{font-family:Georgia,serif;font-weight:bold;font-size:48px;fill:#facc15;text-anchor:middle;dominant-baseline:central}
+        @keyframes glow{0%,100%{filter:drop-shadow(0 0 4px rgba(239,68,68,.7))}50%{filter:drop-shadow(0 0 10px rgba(239,68,68,1))}}
+        #main-header.sticky-nav{position:sticky;z-index:40}
+        #top-bar.sticky-top{position:sticky;top:0;z-index:50}
+        #modal{background-color:rgba(0,0,0,.7)}
+        #modal-content{max-height:calc(100vh - 4rem)}
+
+        .concept-card{background:#fff;border-radius:.75rem;padding:1.5rem;margin-bottom:1.5rem;border-left:4px solid;
+          box-shadow:0 4px 6px -1px rgba(0,0,0,.05),0 2px 4px -2px rgba(0,0,0,.05);
+          transition:transform .3s ease,box-shadow .3s ease;display:flex;flex-direction:column;height:100%}
+        .concept-card:hover{transform:translateY(-4px);box-shadow:0 10px 15px -3px rgba(0,0,0,.07),0 4px 6px -4px rgba(0,0,0,.07)}
+        .concept-card h4{font-size:1.125rem;font-weight:600;margin-bottom:.75rem}
+        .concept-card p.definition{font-style:italic;color:#6b7280;margin-bottom:1rem;font-size:.875rem;flex-grow:1}
+        .concept-card .example{margin-top:1rem;padding-top:1rem;border-top:1px solid #e5e7eb}
+        .concept-card .example:first-of-type{margin-top:0;padding-top:0;border-top:none}
+        .concept-card .example h5{font-weight:600;color:#374151;margin-bottom:.5rem;font-size:.875rem}
+        .concept-card .example p{font-size:.875rem;color:#4b5563;margin-bottom:.25rem;line-height:1.5}
+        .concept-card .example strong{color:#1f2937}
+        .border-needs{border-left-color:#f43f5e}.border-variety{border-left-color:#0ea5e9}.border-access{border-left-color:#10b981}
+        .border-fit1{border-left-color:#fbbf24}.border-fit2{border-left-color:#f97316}.border-fit3{border-left-color:#ef4444}
+
+        .prose-custom p,.prose-custom ul,.prose-custom li{font-size:.875rem;line-height:1.6;color:#374151}
+        .prose-custom p{margin-bottom:1em}
+        .prose-custom ul{margin-top:.5em;margin-bottom:1em;padding-left:1.25em;list-style-type:disc}
+        .prose-custom li{margin-bottom:.25em}
+        .prose-custom strong{font-weight:600;color:#111827}
+
+        .comparison-table th,.comparison-table td{padding:.75rem 1rem;vertical-align:top;font-size:.75rem}
+        .comparison-table thead th{background-color:#f3f4f6;border-bottom:2px solid #e5e7eb}
+        .comparison-table tbody tr:nth-child(even){background-color:#f9fafb}
+        .comparison-table tbody tr:hover{background-color:#eff6ff}
+        .comparison-table th[scope="row"]{white-space:nowrap}
+
+        .activity-button{padding:.75rem 1rem;border-radius:.5rem;text-align:left;transition:all .2s ease-in-out;
+          font-size:.875rem;border-width:1px;display:block;width:100%;height:100%}
+        .activity-button strong{display:block;margin-bottom:.25rem;font-weight:600}
+        .activity-button:focus{outline:none;box-shadow:0 0 0 2px var(--tw-ring-color)}
+        .activity-button:focus-visible{box-shadow:0 0 0 2px var(--tw-ring-color)}
+        .workshop-button{background:#f3e8ff;border-color:#e9d5ff;--tw-ring-color:#c084fc;color:#581c87}
+        .workshop-button:hover{background:#e9d5ff;border-color:#d8b4fe}
+        .workshop-button strong{color:#7e22ce}.workshop-button:hover strong{color:#6b21a8}
+        .news-button{background:#dbeafe;border-color:#bfdbfe;--tw-ring-color:#60a5fa;color:#1e40af}
+        .news-button:hover{background:#bfdbfe;border-color:#93c5fd}
+        .news-button strong{color:#1d4ed8}.news-button:hover strong{color:#1e3a8a}
+        .tradeoff-button{background:#fef3c7;border-color:#fde68a;--tw-ring-color:#fbbf24;color:#78350f}
+        .tradeoff-button:hover{background:#fde68a;border-color:#fcd34d}
+        .tradeoff-button strong{color:#b45309}.tradeoff-button:hover strong{color:#92400e}
+        .simulation-button{background:#ffe4e6;border-color:#fecdd3;--tw-ring-color:#fb7185;color:#881337}
+        .simulation-button:hover{background:#fecdd3;border-color:#fda4af}
+        .simulation-button strong{color:#be123c}.simulation-button:hover strong{color:#9f1239}
+
+        .card{background:#fff;border:1px solid #e2e8f0;border-radius:14px}
+        .pill{display:inline-flex;align-items:center;gap:.4rem;border-radius:9999px;padding:.2rem .7rem;
+          font-size:.7rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+        .opt:disabled{cursor:default}
+        .ref{padding-left:1.6rem;text-indent:-1.6rem}
+        @media print{.no-print{display:none!important}}
+
+        /* ---- dark variants for the restored components ---- */
+        html.dark .card,html.dark .concept-card{background:var(--card)!important;border-color:var(--line)!important}
+        html.dark .concept-card p.definition{color:#94A3B8}
+        html.dark .concept-card .example{border-top-color:var(--line)}
+        html.dark .concept-card .example h5,html.dark .concept-card .example strong{color:#E2E8F0}
+        html.dark .concept-card .example p{color:#CBD5E1}
+        html.dark .prose-custom p,html.dark .prose-custom ul,html.dark .prose-custom li{color:#CBD5E1}
+        html.dark .prose-custom strong{color:var(--ink)}
+        html.dark .comparison-table thead th{background:#162032;border-bottom-color:var(--line)}
+        html.dark .comparison-table tbody tr:nth-child(even){background:#0F172A}
+        html.dark .comparison-table tbody tr:hover{background:#1E2749}
+        html.dark .quiz-option.correct{background-color:#14321F!important;border-color:#2F7D52!important;color:#6EE7A8!important}
+        html.dark .quiz-option.incorrect{background-color:#3A181E!important;border-color:#9B3540!important;color:#FCA5A5!important}
+        html.dark .workshop-button{background:#2A1B3D;border-color:#3D2A55;color:#DCC7F5}
+        html.dark .workshop-button:hover{background:#3D2A55}
+        html.dark .workshop-button strong{color:#C9A7F0}
+        html.dark .news-button{background:#1A2244;border-color:#2B3668;color:#BCC7FA}
+        html.dark .news-button:hover{background:#2B3668}
+        html.dark .news-button strong{color:#A3AEFB}
+        html.dark .tradeoff-button{background:#312512;border-color:#4A3A1A;color:#F3D9A4}
+        html.dark .tradeoff-button:hover{background:#4A3A1A}
+        html.dark .tradeoff-button strong{color:#FBBF24}
+        html.dark .simulation-button{background:#331419;border-color:#4A2028;color:#F6BEC5}
+        html.dark .simulation-button:hover{background:#4A2028}
+        html.dark .simulation-button strong{color:#FCA5A5}
+
+        .chart-container{position:relative;width:100%;max-width:600px;margin-inline:auto;height:300px;max-height:350px}
+        .tabular-nums{font-variant-numeric:tabular-nums}
+    </style>
+    <script>
+      /* theme, resolved before first paint: light unless this visitor chose dark */
+      (function () {
+        try {
+          if (localStorage.getItem("s9-theme") === "dark") {
+            document.documentElement.classList.add("dark");
+          }
+        } catch (e) {}
+      })();
+    </script>
+</head>
+
+<body class="text-slate-700">
+
+<div id="readbar" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+<nav id="rail" aria-label="Section navigation"></nav>
+
+<!-- Top Bar -->
+<div id="top-bar" class="bg-slate-900 text-slate-300 hidden sm:block">
+  <div class="container mx-auto px-6 flex justify-between items-center h-11 text-xs">
+    <div class="flex items-center gap-3 min-w-0">
+      <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="group shrink-0" title="swapnilsahoo.com">
+        <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
+          <svg viewBox="0 0 52 60" aria-label="Swapnil Sahoo" role="img">
+            <defs><linearGradient id="topRedGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
+            <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#topRedGradient)"/><text class="hexagon-s" x="26" y="32">S</text>
+          </svg>
+        </div>
+      </a>
+      <p class="truncate font-medium text-slate-400">&copy; Dr. Swapnil Sahoo 2026 &middot; Great Lakes Institute of Management, Gurgaon</p>
+    </div>
+    <div class="flex items-center gap-4 shrink-0">
+      <a href="https://www.swapnilsahoo.com/teaching/1-year-mba" class="hidden md:inline text-slate-400 hover:text-white transition">STRAMGT 221</a>
+      <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="X/Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.575 2h.093zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" clip-rule="evenodd"/></svg></a>
+      <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- Main Navigation -->
+<nav id="main-header" class="sticky top-0 z-50 border-b border-slate-200 bg-white/85 backdrop-blur-md">
+  <div class="container mx-auto px-6">
+    <div class="flex h-16 items-center justify-between gap-4">
+
+      <div class="flex items-center gap-3 min-w-0">
+        <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-slate-900 text-white font-display text-sm font-semibold">09</span>
+        <div class="min-w-0">
+          <p class="truncate font-display text-base font-semibold leading-tight text-slate-900">Managing Technology & Innovation</p>
+          <p class="hidden truncate text-[11px] text-slate-500 sm:block">90 minutes · <span id="progPct">0</span>% read · <span id="doneCount">0</span>/5 activities done</p>
+        </div>
+      </div>
+
+      <div class="hidden xl:flex items-center gap-5 text-sm">
+        <a href="#oceans" class="nav-link">Blue oceans</a>
+        <a href="#canvas" class="nav-link">Canvas</a>
+        <a href="#innovation" class="nav-link">Innovation</a>
+        <a href="#nvidia" class="nav-link">NVIDIA</a>
+        <a href="#cuda" class="nav-link">CUDA</a>
+        <a href="#redblue" class="nav-link">Red or blue?</a>
+        <a href="#quiz" class="nav-link">Quiz</a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button id="themeBtn" type="button" aria-label="Toggle dark mode"
+          class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 transition">
+          <svg class="h-4 w-4 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="hidden h-4 w-4 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <button id="drawerBtn" type="button" aria-label="Open section menu" aria-expanded="false"
+          class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 transition xl:hidden">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <select id="mobile-nav" class="sr-only" tabindex="-1" aria-hidden="true">
+          <option value="#top">Top</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Slide-out drawer -->
+<div id="drawer" class="fixed inset-0 z-[60] hidden">
+  <div id="drawerScrim" class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"></div>
+  <aside class="absolute right-0 top-0 h-full w-[min(88vw,20rem)] overflow-y-auto bg-white p-5 shadow-2xl">
+    <div class="flex items-center justify-between">
+      <p class="font-display text-lg font-semibold text-slate-900">Session 9</p>
+      <button id="drawerClose" type="button" aria-label="Close menu"
+        class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="mt-3 rounded-xl bg-slate-50 p-3">
+      <div class="flex items-center justify-between text-xs text-slate-500">
+        <span>Progress</span><span><span id="drawerDone">0</span>/5 activities</span>
+      </div>
+      <div class="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-200">
+        <div id="drawerBar" class="h-full rounded-full bg-blue-600 transition-all" style="width:0%"></div>
+      </div>
+    </div>
+    <nav id="drawerNav" class="mt-4 grid gap-0.5" aria-label="Sections"></nav>
+  </aside>
+</div>
+
+<section id="top" class="bg-white border-b border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-10 md:py-12 grid gap-8 md:grid-cols-[1.25fr_.75fr] md:items-center">
+    <div>
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span class="pill bg-blue-50 text-blue-700">Session 09</span>
+        <span class="pill bg-slate-100 text-slate-600">1.5 hours</span>
+        <span class="pill bg-slate-100 text-slate-600">Business &amp; competitive strategy</span>
+      </div>
+      <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-slate-900">Managing Technology &amp; Innovation</h1>
+      <p class="mt-2 font-display text-lg md:text-xl italic text-blue-700">Blue oceans, platforms, and a graphics-chip company that became an AI company</p>
+      <p class="mt-3 text-slate-600 md:text-lg leading-relaxed max-w-2xl">
+        Session 8 ended on a claim Porter will not grant: that a firm can be low-cost and differentiated at once if it changes
+        the game instead of playing it better. Kim and Mauborgne call the changed game a blue ocean. This session tests the
+        claim on the hardest kind of strategy to plan, one built on a technology whose main use had not yet been found.
+      </p>
+      <p class="mt-3 text-slate-600 leading-relaxed max-w-2xl">
+        NVIDIA sold graphics cards to gamers. In 2006 it launched CUDA, a way to program those chips for other work, and for
+        years few people needed it. By the second quarter of 2024 data centres brought in almost 90% of its revenue, and
+        analysts put its 2023 share of the data-centre market at 98% (case, p.&nbsp;6). Did NVIDIA create a blue ocean, and how long before rivals turn it red?
+      </p>
+      <div class="mt-6 flex flex-wrap gap-3 text-sm">
+        <a href="#recap" class="rounded-lg bg-slate-900 px-4 py-2.5 font-semibold text-white hover:bg-slate-800">Start with the recap</a>
+        <a href="#readings" class="rounded-lg border border-slate-300 px-4 py-2.5 font-semibold text-slate-700 hover:bg-slate-50">Readings &amp; preparation</a>
+      </div>
+    </div>
+    <div class="card p-5">
+      <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">What this session answers</p>
+      <ol class="mt-3 space-y-3">
+        <li class="flex gap-3"><span class="font-mono text-xs text-blue-600 pt-0.5">01</span><span class="text-sm font-semibold text-slate-800">When does a new technology create a new market, and when does it only sharpen competition in an old one?</span></li>
+        <li class="flex gap-3"><span class="font-mono text-xs text-blue-600 pt-0.5">02</span><span class="text-sm font-semibold text-slate-800">How did NVIDIA turn a graphics chip into a platform, and which part of its advantage is not the chip?</span></li>
+        <li class="flex gap-3"><span class="font-mono text-xs text-blue-600 pt-0.5">03</span><span class="text-sm font-semibold text-slate-800">Did NVIDIA create a blue ocean, and is the water now turning red?</span></li>
+      </ol>
+      <p class="mt-4 pt-4 border-t border-slate-200 text-xs text-slate-500 leading-relaxed">
+        NVIDIA facts on this page come from the Yoffie and von Bargen case, set in late 2024, with page numbers. Where the
+        page reads the case through a framework, it says so. Nothing here reports events after the case was written.
+        NVIDIA returns in <a href="/teaching/1-year-mba/session10.html" class="font-semibold text-blue-700 hover:underline">Session 10</a>
+        for its corporate scope.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="recap" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Carried forward &middot; Sessions 7 and 8</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Where Session 8 left the argument</h2>
+  <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+    <a href="/teaching/1-year-mba/session8.html" class="font-semibold text-blue-700 hover:underline">Session 8</a> closed with
+    Porter&rsquo;s three conditions under which a firm can be both low-cost and differentiated, each of them temporary. The
+    third is today&rsquo;s starting point: a firm that pioneers a major innovation can lower cost and raise quality together,
+    but only while nobody else has the innovation.
+  </p>
+  <div class="mt-6 grid gap-4 md:grid-cols-3">
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Session 8 &middot; Porter (1985)</p>
+      <h3 class="mt-1 font-bold text-slate-900">Choose, or be stuck in the middle</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Uniqueness usually costs money, so cost and differentiation pull
+        against each other, and the firm that will not choose gets neither. Kim and Mauborgne attack the premise: the trade-off
+        binds firms that compete on the factors their industry already competes on, and breaks for firms that redraw them
+        (2004, pp.&nbsp;14&ndash;15).</p>
+    </div>
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Session 8 &middot; Porter&rsquo;s third condition</p>
+      <h3 class="mt-1 font-bold text-slate-900">Innovation buys a temporary exemption</h3>
+      <blockquote class="mt-2 border-l-2 border-blue-600 pl-3 text-sm italic text-slate-700">&ldquo;The ability to be both low
+        cost and differentiated is a function of being the <em>only</em> firm with the new innovation.&rdquo;
+        <span class="mt-1 block not-italic text-xs text-slate-500">Porter (1985, p.&nbsp;20)</span></blockquote>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Keep both readings open: is NVIDIA in a new market space with its
+        own barriers, or in Porter&rsquo;s temporary exemption?</p>
+    </div>
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Session 7 &middot; Sustaining advantage</p>
+      <h3 class="mt-1 font-bold text-slate-900">Every advantage leaks; ask what slows it</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">In
+        <a href="/teaching/1-year-mba/session7.html" class="font-semibold text-blue-700 hover:underline">Session 7</a> the
+        barriers were commitments and capabilities. Kim and Mauborgne give blue oceans their own list: scale economies, network
+        externalities, whole-system change and brand (2004, pp.&nbsp;19&ndash;21). CUDA will test the second.</p>
+    </div>
+  </div>
+  <div class="mt-6 rounded-2xl bg-amber-50 border border-amber-200 p-5">
+    <p class="text-[10px] font-semibold uppercase tracking-wider text-amber-800">The trap this session sets</p>
+    <p class="mt-1 text-sm text-slate-700 leading-relaxed">
+      It is easy to call any spectacularly profitable new technology a blue ocean. Kim and Mauborgne say nearly the opposite:
+      across a century of examples, blue oceans were seldom the product of technological innovation as such. They came from
+      linking technology to what buyers valued, often by simplifying it (2004, pp.&nbsp;11&ndash;12). Hold NVIDIA to that
+      test. Was its blue ocean the GPU, or what CUDA let buyers do with the GPU?
+    </p>
+  </div>
+</section>
+
+
+<section id="oceans" class="bg-white border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Kim &amp; Mauborgne (2004) &middot; Blue ocean strategy</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Red oceans, blue oceans and value innovation</h2>
+    <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+      Kim and Mauborgne split the business universe in two. Red oceans are the industries that exist today: boundaries are
+      accepted, the rules are known, and firms fight for a bigger share of existing demand until products turn into
+      commodities (pp.&nbsp;2&ndash;3). Blue oceans are the industries not yet in existence, where demand is created rather
+      than fought over (p.&nbsp;3). A few are wholly new industries, as eBay&rsquo;s online auctions were. Most are carved out
+      of a red ocean when a firm moves an industry boundary, as Cirque du Soleil did between circus and theatre (p.&nbsp;3).
+    </p>
+
+    <div class="mt-6 grid gap-6 lg:grid-cols-[1.15fr_.85fr]">
+      <div class="card p-5 min-w-0">
+        <h3 class="font-bold text-slate-900">Two logics of strategy</h3>
+        <p class="mt-1 text-xs text-slate-500">Rewritten in this page&rsquo;s words from Kim &amp; Mauborgne (2004, p.&nbsp;14).</p>
+        <div class="mt-4 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-slate-200 bg-slate-200 text-sm">
+          <div class="bg-rose-50 p-3 text-[10px] font-semibold uppercase tracking-wider text-rose-700">Red ocean</div>
+          <div class="bg-blue-50 p-3 text-[10px] font-semibold uppercase tracking-wider text-blue-700">Blue ocean</div>
+          <div class="bg-white p-3 text-slate-700">Fight inside the market space that already exists</div>
+          <div class="bg-white p-3 text-slate-700">Open market space that nobody contests</div>
+          <div class="bg-white p-3 text-slate-700">Set out to beat rivals</div>
+          <div class="bg-white p-3 text-slate-700">Make rivals irrelevant</div>
+          <div class="bg-white p-3 text-slate-700">Win a larger share of today&rsquo;s demand</div>
+          <div class="bg-white p-3 text-slate-700">Create demand and capture it</div>
+          <div class="bg-white p-3 text-slate-700">Accept that more value costs more</div>
+          <div class="bg-white p-3 text-slate-700">Break the value&ndash;cost trade-off</div>
+          <div class="bg-white p-3 text-slate-700">Line up every activity behind differentiation <em>or</em> low cost</div>
+          <div class="bg-white p-3 text-slate-700">Line up every activity behind differentiation <em>and</em> low cost</div>
+        </div>
+      </div>
+      <div class="card p-5 min-w-0">
+        <h3 class="font-bold text-slate-900">The evidence they offer</h3>
+        <p class="mt-1 text-xs text-slate-500">Business launches at 108 companies (Kim &amp; Mauborgne, 2004, p.&nbsp;6).</p>
+        <div class="mt-4 space-y-4 text-sm">
+          <div>
+            <div class="flex justify-between gap-2"><span class="font-semibold text-slate-800">Line extensions</span><span class="tabular-nums text-slate-500">86% of launches</span></div>
+            <div class="mt-1.5 grid grid-cols-[5.5rem_1fr_2.5rem] items-center gap-2 text-xs"><span class="text-slate-500">Revenue</span><span class="h-2.5 rounded-full bg-slate-100"><span class="block h-2.5 rounded-full s9-bar-red" style="width:62%"></span></span><span class="tabular-nums text-slate-700">62%</span></div>
+            <div class="mt-1 grid grid-cols-[5.5rem_1fr_2.5rem] items-center gap-2 text-xs"><span class="text-slate-500">Profit</span><span class="h-2.5 rounded-full bg-slate-100"><span class="block h-2.5 rounded-full s9-bar-red" style="width:39%"></span></span><span class="tabular-nums text-slate-700">39%</span></div>
+          </div>
+          <div>
+            <div class="flex justify-between gap-2"><span class="font-semibold text-slate-800">New markets or industries</span><span class="tabular-nums text-slate-500">14% of launches</span></div>
+            <div class="mt-1.5 grid grid-cols-[5.5rem_1fr_2.5rem] items-center gap-2 text-xs"><span class="text-slate-500">Revenue</span><span class="h-2.5 rounded-full bg-slate-100"><span class="block h-2.5 rounded-full s9-bar-blue" style="width:38%"></span></span><span class="tabular-nums text-slate-700">38%</span></div>
+            <div class="mt-1 grid grid-cols-[5.5rem_1fr_2.5rem] items-center gap-2 text-xs"><span class="text-slate-500">Profit</span><span class="h-2.5 rounded-full bg-slate-100"><span class="block h-2.5 rounded-full s9-bar-blue" style="width:61%"></span></span><span class="tabular-nums text-slate-700">61%</span></div>
+          </div>
+        </div>
+        <p class="mt-4 text-xs text-slate-500 leading-relaxed">Read it carefully: the authors decided which launches counted as
+          market-creating, and the article does not say how many such launches lost money.</p>
+      </div>
+    </div>
+
+    <div class="mt-6 grid gap-4 md:grid-cols-2">
+      <div class="rounded-2xl border border-blue-200 bg-blue-50 p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">The defining move</p>
+        <h3 class="mt-1 font-bold text-slate-900">Value innovation</h3>
+        <p class="mt-2 text-sm text-slate-700 leading-relaxed">Conventional strategy says a firm can offer more value at higher
+          cost or reasonable value at lower cost. Blue-ocean creators reject that tenet and pursue both at once (pp.&nbsp;14&ndash;15).
+          Buyers get value from utility and price; the firm gets value from price and its cost structure, so the leap happens
+          only when utility, price and cost are aligned as one system (p.&nbsp;18).</p>
+        <blockquote class="mt-3 border-l-2 border-blue-600 pl-3 text-sm italic text-slate-700">&ldquo;Value innovation is the
+          simultaneous pursuit of radically superior value for buyers and lower costs for companies.&rdquo;
+          <span class="mt-1 block not-italic text-xs text-slate-500">Kim &amp; Mauborgne (2017, p.&nbsp;21; first published 1997)</span></blockquote>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Worked example &middot; pp.&nbsp;21&ndash;22</p>
+        <h3 class="mt-1 font-bold text-slate-900">Ford&rsquo;s Model T priced against the horse</h3>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Over 500 American carmakers built handmade luxury cars at about
+          $1,500. Ford looked outside the industry for its price point, at the $400 horse-drawn carriage, and built a car for
+          everyday use: one colour, few options, easy to drive and fix. Standard parts and the assembly line cut build time to
+          four days against the industry&rsquo;s 21.</p>
+        <div class="mt-3 grid grid-cols-3 gap-2 text-center">
+          <div class="rounded-lg bg-slate-50 p-2"><p class="text-lg font-bold text-slate-900 tabular-nums">$850 &rarr; $290</p><p class="text-[11px] text-slate-500">price, 1908 to 1924</p></div>
+          <div class="rounded-lg bg-slate-50 p-2"><p class="text-lg font-bold text-slate-900 tabular-nums">9% &rarr; 61%</p><p class="text-[11px] text-slate-500">share, 1908 to 1921</p></div>
+          <div class="rounded-lg bg-slate-50 p-2"><p class="text-lg font-bold text-slate-900 tabular-nums">4 days</p><p class="text-[11px] text-slate-500">per car, vs 21</p></div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="mt-10 text-xl font-bold text-slate-900">Four findings that matter for a technology company</h3>
+    <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="card p-5"><p class="font-mono text-xs text-blue-600">pp.&nbsp;11&ndash;12</p><h4 class="mt-1 font-bold text-slate-900">Not about technology as such</h4><p class="mt-2 text-sm text-slate-600 leading-relaxed">The underlying technology usually existed already; Ford&rsquo;s line came from meatpacking. In computers, blue oceans came from linking technology to what buyers valued, often by simplifying it.</p></div>
+      <div class="card p-5"><p class="font-mono text-xs text-blue-600">p.&nbsp;12</p><h4 class="mt-1 font-bold text-slate-900">Incumbents make them too</h4><p class="mt-2 text-sm text-slate-600 leading-relaxed">GM, Chrysler, IBM and Compaq were established players when they opened theirs, usually inside their core business. Blue oceans are often right next to you.</p></div>
+      <div class="card p-5"><p class="font-mono text-xs text-blue-600">pp.&nbsp;12&ndash;13</p><h4 class="mt-1 font-bold text-slate-900">Study the move, not the firm</h4><p class="mt-2 text-sm text-slate-600 leading-relaxed">The same company can be brilliant at one time and wrong-headed at another. Compaq vanished into HP in 2001, yet its PC-server move created a multibillion-dollar market.</p></div>
+      <div class="card p-5"><p class="font-mono text-xs text-blue-600">p.&nbsp;19</p><h4 class="mt-1 font-bold text-slate-900">Structure is not destiny</h4><p class="mt-2 text-sm text-slate-600 leading-relaxed">Red-ocean thinking treats industry structure as given, the structuralist view. Blue-ocean thinking assumes players can redraw it, the reconstructionist view.</p></div>
+    </div>
+
+    <div class="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+      <h3 class="font-bold text-slate-900">Why blue oceans stay blue for a while</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Creators usually go 10 to 15 years without a credible challenge,
+        as Cirque, Home Depot, FedEx, Southwest and CNN did (p.&nbsp;19). The barriers are economic and cognitive (pp.&nbsp;19&ndash;21):
+        <strong>scale</strong> that new volume brings fast (Walmart&rsquo;s purchasing); <strong>network externalities</strong>,
+        where more users make the offer more attractive (eBay); <strong>whole-system change</strong> that rivals&rsquo; internal
+        politics resist (airlines copying Southwest); and <strong>brand</strong>, from the loyalty a leap in value earns
+        (Intuit&rsquo;s Quicken held off Microsoft for over ten years) to imitations that would contradict the copier&rsquo;s own
+        image (The Body Shop). Network externalities are the barrier to watch when we reach CUDA.</p>
+    </div>
+  </div>
+</section>
+
+
+<section id="canvas" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">The tools &middot; Kim &amp; Mauborgne (2004, 2017)</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">The strategy canvas and the four actions</h2>
+  <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+    The 2004 article names the four moves behind value innovation: eliminate and reduce to cut cost, raise and create to lift
+    buyer value (pp.&nbsp;18&ndash;19). The tools that put those moves on one page come from two earlier articles by the same
+    authors, reprinted in their <em>Blue Ocean Strategy Reader</em> (2017): the value curve and the four questions
+    (pp.&nbsp;10&ndash;12), and the strategy canvas (pp.&nbsp;93&ndash;96).
+  </p>
+
+  <div class="mt-6 grid gap-5 lg:grid-cols-2">
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Tool 1 &middot; Reader, pp.&nbsp;94&ndash;96</p>
+      <h3 class="mt-1 text-lg font-bold text-slate-900">The strategy canvas</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">List the factors an industry competes on along the horizontal axis.
+        On the vertical axis, mark how much each player offers on each factor, or, for price, how much it asks. Join the dots
+        and you have each player&rsquo;s value curve. One picture shows the industry&rsquo;s factors, the rivals&rsquo; profiles
+        and your own.</p>
+      <p class="mt-3 text-sm font-semibold text-slate-800">Three tests of a good curve</p>
+      <ul class="mt-2 space-y-2 text-sm text-slate-600">
+        <li class="flex gap-2"><span class="font-mono text-xs text-blue-600 pt-0.5">1</span><span><strong class="text-slate-800">Focus.</strong> Southwest stresses three factors (friendly service, speed and frequent point-to-point flights) and prices against the car, not other airlines.</span></li>
+        <li class="flex gap-2"><span class="font-mono text-xs text-blue-600 pt-0.5">2</span><span><strong class="text-slate-800">Divergence.</strong> Reactive rivals share one curve; Southwest&rsquo;s competitors were so alike that the authors drew them as one line.</span></li>
+        <li class="flex gap-2"><span class="font-mono text-xs text-blue-600 pt-0.5">3</span><span><strong class="text-slate-800">A tag line that is true.</strong> &ldquo;The speed of the plane at the price of the car&mdash;whenever you need it&rdquo; (p.&nbsp;96). If you cannot write one, you probably lack a strategy.</span></li>
+      </ul>
+    </div>
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Tool 2 &middot; Reader, pp.&nbsp;11 and 21</p>
+      <h3 class="mt-1 text-lg font-bold text-slate-900">The four actions</h3>
+      <div class="mt-3 grid sm:grid-cols-2 gap-3 text-sm">
+        <div class="rounded-xl border border-rose-200 bg-rose-50 p-3"><p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">Eliminate &middot; cuts cost</p><p class="mt-1 text-slate-700">Which factors the industry takes for granted should go? Tests whether they still deliver any value.</p></div>
+        <div class="rounded-xl border border-amber-200 bg-amber-50 p-3"><p class="text-[10px] font-semibold uppercase tracking-wider text-amber-800">Reduce &middot; cuts cost</p><p class="mt-1 text-slate-700">Which should fall well below the industry standard? Finds what was over-designed in the race to match rivals.</p></div>
+        <div class="rounded-xl border border-blue-200 bg-blue-50 p-3"><p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Raise &middot; lifts value</p><p class="mt-1 text-slate-700">Which should rise well above the standard? Removes compromises the industry forces on buyers.</p></div>
+        <div class="rounded-xl border border-teal-200 bg-teal-50 p-3"><p class="text-[10px] font-semibold uppercase tracking-wider text-teal-800">Create &middot; lifts value</p><p class="mt-1 text-slate-700">Which should exist that the industry has never offered? Breaks the industry&rsquo;s boundaries.</p></div>
+      </div>
+      <p class="mt-3 text-sm text-slate-600 leading-relaxed">Asking all four, not one or two, is what makes growth profitable
+        (p.&nbsp;21). A curve that keeps the industry&rsquo;s shape at a slightly different level is still a red-ocean curve:
+        rivals offering &ldquo;a little more for a little less&rdquo; rarely challenge the shape (p.&nbsp;12).</p>
+    </div>
+  </div>
+
+  <div class="mt-6 card p-5">
+    <div class="flex flex-wrap items-baseline justify-between gap-2">
+      <h3 class="font-bold text-slate-900">Cirque du Soleil through the four actions</h3>
+      <p class="text-xs text-slate-500">Assembled from the article&rsquo;s text, Kim &amp; Mauborgne (2004, pp.&nbsp;15&ndash;17)</p>
+    </div>
+    <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4 text-sm">
+      <div class="rounded-xl border border-rose-200 bg-rose-50 p-4">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">Eliminate</p>
+        <ul class="mt-2 list-disc space-y-1 pl-4 text-slate-700"><li>Animal acts, costly to keep and losing public favour</li><li>Star performers</li><li>Three-ring shows</li><li>Aisle concession sales</li></ul>
+      </div>
+      <div class="rounded-xl border border-amber-200 bg-amber-50 p-4">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-amber-800">Reduce</p>
+        <ul class="mt-2 list-disc space-y-1 pl-4 text-slate-700"><li>The role of acrobats and thrill acts: kept, but shorter and more artistic</li></ul>
+      </div>
+      <div class="rounded-xl border border-blue-200 bg-blue-50 p-4">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Raise</p>
+        <ul class="mt-2 list-disc space-y-1 pl-4 text-slate-700"><li>The tent: a glamorous exterior and real audience comfort, no sawdust or hard benches</li><li>Clowns kept, their humour made more sophisticated</li></ul>
+      </div>
+      <div class="rounded-xl border border-teal-200 bg-teal-50 p-4">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-teal-800">Create</p>
+        <ul class="mt-2 list-disc space-y-1 pl-4 text-slate-700"><li>A theme and storyline</li><li>Several productions, so people come back</li><li>An original score that drives the show</li><li>Abstract dance borrowed from theatre and ballet</li></ul>
+      </div>
+    </div>
+    <p class="mt-4 text-sm text-slate-600 leading-relaxed">The result pulled in adults and corporate clients who had been
+      going to the theatre and would pay several times a circus ticket (p.&nbsp;2), while dropping the most expensive parts of
+      a circus (p.&nbsp;17). That is the test for every curve on this page: new buyers, and a lower cost base, at once.</p>
+  </div>
+
+  <div class="mt-6 grid gap-4 md:grid-cols-2">
+    <div class="rounded-2xl bg-amber-50 border border-amber-200 p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-amber-800">When it goes wrong &middot; Rothaermel (2024, p.&nbsp;234)</p>
+      <p class="mt-1 text-sm text-slate-700 leading-relaxed">A blue ocean attempt that fails to reconcile value and cost leaves
+        the firm with neither a clear differentiation nor a clear cost profile: Session 8&rsquo;s stuck in the middle.
+        Rothaermel&rsquo;s example is JCPenney, which tried to move upmarket and sailed into a red ocean instead (pp.&nbsp;234&ndash;235).</p>
+    </div>
+    <div class="rounded-2xl bg-slate-50 border border-slate-200 p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">After the leap &middot; Reader, pp.&nbsp;14&ndash;15</p>
+      <p class="mt-1 text-sm text-slate-700 leading-relaxed">Imitators arrive eventually. Compaq&rsquo;s first PC was a new value
+        curve; then it spent years trying to beat IBM feature for feature, and by the late 1980s the two curves were nearly
+        identical. The authors&rsquo; advice is to watch for converging curves and value-innovate again. Keep Compaq in mind
+        for NVIDIA&rsquo;s product cadence.</p>
+    </div>
+  </div>
+</section>
+
+
+<section id="innovation" class="bg-white border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Innovation as strategy formulation &middot; Rothaermel (2024), Grant (2019)</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Types of innovation: what is new, the technology or the market?</h2>
+    <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+      A blue ocean describes a market outcome. To choose a technology strategy you also need to say what kind of innovation you
+      are making. Rothaermel sorts innovations with two questions: does it build on existing technology or a new one, and does
+      it target an existing market or a new one (pp.&nbsp;274&ndash;275)? Four types follow, in two diagonal pairs.
+    </p>
+
+    <div class="mt-6 grid gap-6 lg:grid-cols-[1fr_1fr]">
+      <div class="min-w-0">
+        <div class="grid grid-cols-[1.6rem_1fr_1fr] grid-rows-[auto_auto_auto] gap-2 text-sm">
+          <div class="row-span-2 flex items-center justify-center"><span class="s9-vert text-[10px] font-semibold uppercase tracking-wider text-slate-500">Market</span></div>
+          <div class="rounded-xl border border-teal-200 bg-teal-50 p-4">
+            <p class="text-[10px] font-semibold uppercase tracking-wider text-teal-800">New market &middot; existing technology</p>
+            <p class="mt-1 font-bold text-slate-900">Architectural</p>
+            <p class="mt-1 text-xs text-slate-600 leading-relaxed">Known components reconfigured to attack a new market. Canon redesigned the copier so small offices could run it without a service contract, a segment Xerox ignored (pp.&nbsp;276&ndash;277).</p>
+          </div>
+          <div class="rounded-xl border border-blue-200 bg-blue-50 p-4">
+            <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">New market &middot; new technology</p>
+            <p class="mt-1 font-bold text-slate-900">Radical</p>
+            <p class="mt-1 text-xs text-slate-600 leading-relaxed">Novel methods or materials, often a new knowledge base. The jet airliner: de Havilland commercialised it first, Boeing rode it to dominance (p.&nbsp;275).</p>
+          </div>
+          <div class="rounded-xl border border-slate-200 bg-slate-50 p-4">
+            <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Existing market &middot; existing technology</p>
+            <p class="mt-1 font-bold text-slate-900">Incremental</p>
+            <p class="mt-1 text-xs text-slate-600 leading-relaxed">Steady improvement on an established knowledge base; most innovation is of this kind. Gillette added blades, one at a time, from one to six (p.&nbsp;275).</p>
+          </div>
+          <div class="rounded-xl border border-rose-200 bg-rose-50 p-4">
+            <p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">Existing market &middot; new technology</p>
+            <p class="mt-1 font-bold text-slate-900">Disruptive</p>
+            <p class="mt-1 text-xs text-slate-600 leading-relaxed">Starts as a cheaper, initially inferior answer to an existing need, improves faster than buyers need, and invades from the bottom up. Netflix streaming against the cable bundle (pp.&nbsp;277&ndash;278).</p>
+          </div>
+          <div></div>
+          <div class="col-span-2 text-center text-[10px] font-semibold uppercase tracking-wider text-slate-500">Technology &rarr; existing &middot; new</div>
+        </div>
+      </div>
+      <div class="grid gap-4 min-w-0">
+        <div class="card p-5">
+          <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Rothaermel, pp.&nbsp;275&ndash;276</p>
+          <h3 class="mt-1 font-bold text-slate-900">Why leaders drift to incremental</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">Three forces: <strong>economic incentives</strong> (a leader
+            protects the position radical change would threaten), <strong>organisational inertia</strong> (processes and power
+            built around the current product) and the <strong>innovation ecosystem</strong> (suppliers, buyers and complementors
+            that incremental change keeps happy and radical change disrupts). New entrants carry none of this.</p>
+        </div>
+        <div class="card p-5">
+          <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Grant, pp.&nbsp;222&ndash;225</p>
+          <h3 class="mt-1 font-bold text-slate-900">Creating value is not capturing it</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">An innovation pays the innovator only if it keeps a share of the
+            value it creates, its <strong>regime of appropriability</strong>. Four things decide that share: property rights,
+            the tacitness and complexity of the technology, lead time, and control of complementary resources. Grant names
+            Nvidia in graphics chips among the firms &ldquo;brilliant at exploiting lead time&rdquo; (p.&nbsp;225).</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- activity 1: innovation-type classifier -->
+    <div id="classBox" class="mt-8 card p-5 sm:p-6">
+      <div class="flex flex-wrap items-baseline justify-between gap-2">
+        <div>
+          <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Activity &middot; classify the innovation</p>
+          <h3 class="mt-1 text-xl font-bold text-slate-900">Ten innovations, four types</h3>
+        </div>
+        <span class="done-badge" data-done-for="classify" hidden>Done</span>
+      </div>
+      <p class="mt-2 max-w-4xl text-sm text-slate-600 leading-relaxed">Six NVIDIA-era moves from the case and four textbook
+        examples. Pick the type before you read the explanation. Where a second answer is defensible, the page says so and
+        shows it in amber: the argument matters more than the label.</p>
+      <div id="clsList" class="mt-4 grid gap-3 lg:grid-cols-2"></div>
+      <p id="clsScore" class="mt-4 text-sm font-semibold text-slate-800" aria-live="polite">0 of 10 classified.</p>
+    </div>
+  </div>
+</section>
+
+
+<section id="nvidia" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">The case &middot; Yoffie &amp; von Bargen (2024), pp.&nbsp;1&ndash;6</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Application of technology: from graphics chips to AI</h2>
+  <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+    On 18 June 2024 NVIDIA was briefly the world&rsquo;s most valuable company, worth $3.4&nbsp;trillion (p.&nbsp;1). Its revenue
+    had grown from $159&nbsp;million in FY2000 to $60.9&nbsp;billion in FY2024 (p.&nbsp;2). The route was not planned in
+    advance. Read it as one technology, parallel processing, looking for the applications that would pay for it.
+  </p>
+
+  <ol class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+    <li class="rounded-xl border border-slate-200 bg-white p-4"><p class="font-mono text-xs text-blue-700">1993 &middot; p.&nbsp;2</p><p class="mt-1 text-sm font-semibold text-slate-900">Gaming as the killer app</p><p class="mt-1 text-xs text-slate-600 leading-relaxed">Games were among the hardest computing problems and sold in huge volume. Huang: &ldquo;&lsquo;Video games&rsquo; was our killer app.&rdquo;</p></li>
+    <li class="rounded-xl border border-slate-200 bg-white p-4"><p class="font-mono text-xs text-blue-700">1996&ndash;99 &middot; p.&nbsp;3</p><p class="mt-1 text-sm font-semibold text-slate-900">RIVA 128, then the GPU</p><p class="mt-1 text-xs text-slate-600 leading-relaxed">With nine months of cash, NVIDIA cut an 18&ndash;24-month chip cycle to under six using software prototypes and sold a million RIVA 128s in four months. GeForce 256 (1999) was marketed as the first GPU.</p></li>
+    <li class="rounded-xl border border-slate-200 bg-white p-4"><p class="font-mono text-xs text-blue-700">2000s &middot; p.&nbsp;3</p><p class="mt-1 text-sm font-semibold text-slate-900">Parallel, and fabless</p><p class="mt-1 text-xs text-slate-600 leading-relaxed">GPUs run many computations at once where CPUs work sequentially. NVIDIA designed the chips and left fabrication mostly to TSMC, escaping the capital a fab needs: up to $25&nbsp;billion for one by 2024.</p></li>
+    <li class="rounded-xl border border-blue-200 bg-blue-50 p-4"><p class="font-mono text-xs text-blue-700">2006 &middot; p.&nbsp;4</p><p class="mt-1 text-sm font-semibold text-slate-900">CUDA</p><p class="mt-1 text-xs text-slate-600 leading-relaxed">A C++-like language that became a platform for programming GPUs beyond graphics. Proprietary to NVIDIA hardware; free development kits for everyone.</p></li>
+    <li class="rounded-xl border border-slate-200 bg-white p-4"><p class="font-mono text-xs text-blue-700">2010&ndash;13 &middot; p.&nbsp;5</p><p class="mt-1 text-sm font-semibold text-slate-900">The lean years</p><p class="mt-1 text-xs text-slate-600 leading-relaxed">CUDA downloads fell and, with the stock depressed, the board worried about raiders. Machine learning rescued CUDA.</p></li>
+    <li class="rounded-xl border border-blue-200 bg-blue-50 p-4"><p class="font-mono text-xs text-blue-700">2012&ndash;13 &middot; p.&nbsp;5</p><p class="mt-1 text-sm font-semibold text-slate-900">AlexNet and the bet</p><p class="mt-1 text-xs text-slate-600 leading-relaxed">Three academics broke the ImageNet record using CUDA on NVIDIA GPUs. Huang then bet on deep learning while AI revenue was small: &ldquo;we were no longer a graphics company,&rdquo; one VP recalled.</p></li>
+    <li class="rounded-xl border border-slate-200 bg-white p-4"><p class="font-mono text-xs text-blue-700">2017&ndash;22 &middot; p.&nbsp;5</p><p class="mt-1 text-sm font-semibold text-slate-900">The crypto bridge</p><p class="mt-1 text-xs text-slate-600 leading-relaxed">Miners bought GPUs by the millions; NVIDIA launched a mining line in 2017 to protect gaming supply. Mining revenue halved in the Q4 2018 crypto winter.</p></li>
+    <li class="rounded-xl border border-blue-200 bg-blue-50 p-4"><p class="font-mono text-xs text-blue-700">2022&ndash;24 &middot; p.&nbsp;6</p><p class="mt-1 text-sm font-semibold text-slate-900">Generative AI</p><p class="mt-1 text-xs text-slate-600 leading-relaxed">ChatGPT launched in November 2022. OpenAI said training GPT-4 took 25,000 NVIDIA GPUs and $100&nbsp;million; NVIDIA&rsquo;s were the only chips able to train such models, and most developers used CUDA.</p></li>
+  </ol>
+
+  <!-- activity 2: revenue-mix chart -->
+  <div id="mixBox" class="s9-mix mt-8 card p-5 sm:p-6">
+    <div class="flex flex-wrap items-start justify-between gap-3">
+      <div>
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Exhibit workshop &middot; case Exhibit 1a, p.&nbsp;14</p>
+        <h3 class="mt-1 text-xl font-bold text-slate-900">The revenue mix tells you when the bet paid</h3>
+      </div>
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="done-badge" data-done-for="mix" hidden>Done</span>
+        <div class="inline-flex rounded-lg border border-slate-300 p-0.5 text-xs font-semibold" role="group" aria-label="Chart units">
+          <button type="button" class="s9-seg rounded-md px-3 py-1.5" data-mix="pct" aria-pressed="true">% of revenue</button>
+          <button type="button" class="s9-seg rounded-md px-3 py-1.5" data-mix="abs" aria-pressed="false">$ billions</button>
+        </div>
+      </div>
+    </div>
+    <div class="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-xs" aria-hidden="true">
+      <span class="s9-key s9-key-dc">Data centre</span><span class="s9-key s9-key-gm">Gaming</span><span class="s9-key s9-key-ot">Everything else</span>
+    </div>
+    <div class="mt-4 grid gap-6 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,.7fr)]">
+      <div id="mixPlot" class="min-w-0" role="img" aria-label="Stacked columns of NVIDIA revenue by segment, fiscal 2020 to 2024"></div>
+      <div class="min-w-0 text-sm text-slate-600 leading-relaxed">
+        <p id="mixRead" aria-live="polite"></p>
+        <div class="mt-3 grid grid-cols-2 gap-2">
+          <div class="rounded-lg bg-slate-50 p-3"><p class="text-lg font-bold text-slate-900 tabular-nums">62% &rarr; 73%</p><p class="text-[11px] text-slate-500">gross margin, FY2020 to FY2024 (Exh. 1a)</p></div>
+          <div class="rounded-lg bg-slate-50 p-3"><p class="text-lg font-bold text-slate-900 tabular-nums">$3,100</p><p class="text-[11px] text-slate-500">estimated cost of an H100 sold for $25,000&ndash;40,000 (Exh. 3)</p></div>
+          <div class="rounded-lg bg-slate-50 p-3"><p class="text-lg font-bold text-slate-900 tabular-nums">$8.6B</p><p class="text-[11px] text-slate-500">R&amp;D in 2023, up 17% but only 14% of sales vs AMD&rsquo;s 20% (p.&nbsp;6)</p></div>
+          <div class="rounded-lg bg-slate-50 p-3"><p class="text-lg font-bold text-slate-900 tabular-nums">~3.7M</p><p class="text-[11px] text-slate-500">GPUs sold in 2023 and a 98% data-centre share, analysts&rsquo; estimates (p.&nbsp;6)</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-5 overflow-x-auto">
+      <table class="w-full text-left comparison-table">
+        <caption class="pb-2 text-left text-xs text-slate-500">Exhibit 1a, $ millions, fiscal years ending January. &ldquo;Everything else&rdquo; is revenue minus the two named segments, computed here.</caption>
+        <thead><tr><th scope="col">Fiscal year</th><th scope="col" class="text-right">Revenue</th><th scope="col" class="text-right">Data centre</th><th scope="col" class="text-right">Gaming</th><th scope="col" class="text-right">Everything else</th><th scope="col" class="text-right">Data centre share</th></tr></thead>
+        <tbody id="mixTable" class="text-slate-700"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <h3 class="mt-10 text-xl font-bold text-slate-900">What the path teaches about applying technology</h3>
+  <div class="mt-4 grid gap-4 md:grid-cols-3">
+    <div class="card p-5"><p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Hardware arrives first</p><p class="mt-2 text-sm text-slate-600 leading-relaxed">Chip performance often arrives before the applications that can use it, and NVIDIA&rsquo;s chips were among the most expensive to make (case, p.&nbsp;4). CUDA was Huang&rsquo;s answer: hand developers the tools to invent the uses. The technology choice was a market-creation choice.</p></div>
+    <div class="card p-5"><p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Strategic patience</p><p class="mt-2 text-sm text-slate-600 leading-relaxed">The professor&rsquo;s teaching script calls innovation a marathon: invest in foundations before the killer app is obvious. CUDA had falling downloads for three years, and customers adopted deep learning slowly from 2012 to 2020 (p.&nbsp;5). The bet survived on gaming and crypto revenue.</p></div>
+    <div class="card p-5"><p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Serendipity, then commitment</p><p class="mt-2 text-sm text-slate-600 leading-relaxed">AlexNet came from academics and crypto from miners; neither was NVIDIA&rsquo;s plan. What NVIDIA chose was to commit once the signal came, which Session 1&rsquo;s Mintzberg would call an emergent strategy made deliberate.</p></div>
+  </div>
+  <p class="mt-5 text-sm text-slate-600 max-w-4xl leading-relaxed">Where NVIDIA should sit in the value chain (complete DGX
+    systems, the DGX Cloud rental business, the Mellanox purchase, the abandoned Arm deal and its dependence on TSMC) is a
+    question of corporate scope, and it belongs to
+    <a href="/teaching/1-year-mba/session10.html" class="font-semibold text-blue-700 hover:underline">Session 10</a>.</p>
+</section>
+
+
+<section id="cuda" class="bg-white border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Platforms and ecosystems &middot; case pp.&nbsp;4, 11&ndash;12 &middot; Rothaermel, Grant</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">CUDA: how a chip became a platform</h2>
+    <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+      A chip on its own is a pipeline product: design it, have it made, sell it. A platform, in Rothaermel&rsquo;s definition,
+      creates value by matching external producers and consumers on infrastructure the platform owner manages
+      (p.&nbsp;282). CUDA moved NVIDIA from the first to the second. It began in 2006 as a programming language, then NVIDIA let
+      outside developers write programs for it and share them with other developers, with the development kits free
+      (case, p.&nbsp;4). By 2022 Huang counted over 150 kits serving fields from gaming and design to life sciences, quantum
+      computing, AI, cybersecurity, 5G and robotics (p.&nbsp;4).
+    </p>
+
+    <div class="mt-6 grid gap-6 lg:grid-cols-[1.1fr_.9fr]">
+      <div class="min-w-0">
+        <h3 class="font-bold text-slate-900">The CUDA ecosystem, mapped onto Rothaermel&rsquo;s four roles (p.&nbsp;283)</h3>
+        <div class="mt-3 grid gap-3 sm:grid-cols-2 text-sm">
+          <div class="rounded-xl border border-blue-200 bg-blue-50 p-4"><p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Owner</p><p class="mt-1 text-slate-700">NVIDIA. CUDA is proprietary: software written in it runs only on NVIDIA GPUs (case, p.&nbsp;4).</p></div>
+          <div class="rounded-xl border border-teal-200 bg-teal-50 p-4"><p class="text-[10px] font-semibold uppercase tracking-wider text-teal-800">Producers</p><p class="mt-1 text-slate-700">Developers and researchers who write and share CUDA programs, like the AlexNet team (pp.&nbsp;4&ndash;5).</p></div>
+          <div class="rounded-xl border border-slate-200 bg-slate-50 p-4"><p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Consumers</p><p class="mt-1 text-slate-700">Buyers of accelerated computing: gamers, scientists, miners, then AI labs and data centres (pp.&nbsp;3&ndash;6).</p></div>
+          <div class="rounded-xl border border-amber-200 bg-amber-50 p-4"><p class="text-[10px] font-semibold uppercase tracking-wider text-amber-800">Providers</p><p class="mt-1 text-slate-700">The cloud companies that rent NVIDIA GPUs to others, profitably, while designing their own chips (p.&nbsp;1).</p></div>
+        </div>
+      </div>
+      <div class="card p-5 min-w-0">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">The professor&rsquo;s flywheel, checked against the case</p>
+        <ol class="mt-3 space-y-2 text-sm text-slate-700">
+          <li class="flex gap-3"><span class="font-mono text-xs text-blue-600 pt-0.5">1</span><span>GPUs process in parallel, which suits graphics and, it turned out, neural networks (pp.&nbsp;3, 5).</span></li>
+          <li class="flex gap-3"><span class="font-mono text-xs text-blue-600 pt-0.5">2</span><span>CUDA and its free kits make that power usable by developers (p.&nbsp;4).</span></li>
+          <li class="flex gap-3"><span class="font-mono text-xs text-blue-600 pt-0.5">3</span><span>Shared programs and libraries give the next developer more reason to build on NVIDIA (p.&nbsp;4).</span></li>
+          <li class="flex gap-3"><span class="font-mono text-xs text-blue-600 pt-0.5">4</span><span>Demand and premium prices fund R&amp;D for the next GPU: $8.6&nbsp;billion in 2023 (p.&nbsp;6). Back to 1.</span></li>
+        </ol>
+        <p class="mt-3 text-xs text-slate-500 leading-relaxed">The teaching script calls this a walled garden. The case gives no
+          count of CUDA developers, so this page does not either.</p>
+      </div>
+    </div>
+
+    <div class="mt-6 grid gap-4 md:grid-cols-3">
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Grant, p.&nbsp;234</p>
+        <h3 class="mt-1 font-bold text-slate-900">Network externalities</h3>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">A product is worth more to each user as more people use it. Two
+          sources fit CUDA: complementary products (the libraries others write) and saved switching costs (code and skills that
+          already work). Positive feedback can tip a market to one winner, and collective lock-in keeps a standard in place
+          even after better ones appear.</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Grant, p.&nbsp;236</p>
+        <h3 class="mt-1 font-bold text-slate-900">Open to grow, closed to earn</h3>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Platform owners trade market penetration against appropriation.
+          JVC licensed VHS and beat Sony&rsquo;s closed Betamax; IBM&rsquo;s open PC won the market while Intel and Microsoft
+          took the value. NVIDIA&rsquo;s answer was to give the software away and lock it to the hardware it sells.</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Kim &amp; Mauborgne, p.&nbsp;20</p>
+        <h3 class="mt-1 font-bold text-slate-900">The eBay barrier</h3>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">The more customers eBay had, the more attractive it became to buyers
+          and sellers alike, leaving users little reason to go elsewhere. That is the blue-ocean barrier CUDA most resembles,
+          and the one rivals in 2024 were spending most to break.</p>
+      </div>
+    </div>
+
+    <h3 class="mt-10 text-xl font-bold text-slate-900">Moat or swamp? The 2024 attack on CUDA</h3>
+    <div class="mt-4 grid gap-5 lg:grid-cols-2">
+      <div class="rounded-2xl border border-blue-200 bg-blue-50 p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">The moat</p>
+        <p class="mt-2 text-sm text-slate-700 leading-relaxed">Customers worried that code written in CUDA could not move to other
+          chips. An AWS vice-president put the problem plainly: &ldquo;Nvidia&rsquo;s got great chips, and more importantly, they
+          have an incredible ecosystem,&rdquo; which made it very hard to get customers onto other chips (p.&nbsp;11). AMD&rsquo;s
+          open alternative, ROCm, launched in 2016, never matched CUDA&rsquo;s popularity (pp.&nbsp;11&ndash;12).</p>
+      </div>
+      <div class="rounded-2xl border border-rose-200 bg-rose-50 p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">The swamp</p>
+        <p class="mt-2 text-sm text-slate-700 leading-relaxed">OpenAI&rsquo;s open-source Triton (2021) lets researchers without
+          CUDA experience write efficient GPU code that runs on many makers&rsquo; chips; by 2024 Microsoft, Meta and Google were
+          investing in it. Intel&rsquo;s CTO: &ldquo;Essentially it breaks the CUDA lock-in.&rdquo; Tenstorrent&rsquo;s Jim
+          Keller called CUDA &ldquo;a swamp, not a moat,&rdquo; too complicated, and predicted a UNIX-to-Linux ending (p.&nbsp;11).</p>
+      </div>
+    </div>
+    <p class="mt-4 text-sm text-slate-600 max-w-4xl leading-relaxed">Notice who is backing Triton: three of NVIDIA&rsquo;s largest
+      customers. A platform&rsquo;s complementors and buyers can also be its most motivated attackers, which is
+      Rothaermel&rsquo;s innovation-ecosystem point seen from the other side.</p>
+  </div>
+</section>
+
+
+<section id="rivals" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">The case &middot; demand and competition, pp.&nbsp;4&ndash;12</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">AI demand, rivals and custom chips</h2>
+  <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+    Kim and Mauborgne expect a blue-ocean creator to go 10 to 15 years before a credible challenge (2004, p.&nbsp;19). CUDA
+    launched in 2006 (case, p.&nbsp;4). By 2024 the challengers had arrived, and they were not all attacking the same thing.
+  </p>
+
+  <div class="mt-6 grid gap-4 lg:grid-cols-3">
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-amber-800">Demand: how big, and for what?</p>
+      <ul class="mt-3 space-y-2 text-sm text-slate-600 leading-relaxed">
+        <li><strong class="text-slate-800">Size.</strong> Some analysts saw a $1&nbsp;trillion opportunity for chip makers over a decade; others feared a telecom-style overbuild, with no killer app yet and a query costing up to seven times a Google search (pp.&nbsp;7&ndash;8).</li>
+        <li><strong class="text-slate-800">Training or inference.</strong> GPUs were essential for training, with no good alternative in 2024. For inference there were several, often with lower total cost of ownership (p.&nbsp;8).</li>
+        <li><strong class="text-slate-800">Smaller models.</strong> Meta&rsquo;s open-source Llama came in sizes from 8 billion parameters; Apple ran a small model on the iPhone and trained on Google&rsquo;s TPUs, not NVIDIA&rsquo;s GPUs (p.&nbsp;8).</li>
+        <li><strong class="text-slate-800">Power.</strong> One NVIDIA GPU could draw 1,000 watts or more, and analysts called power &ldquo;the ultimate constraint&rdquo; (p.&nbsp;4).</li>
+      </ul>
+    </div>
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">Direct rivals: AMD and Intel</p>
+      <ul class="mt-3 space-y-2 text-sm text-slate-600 leading-relaxed">
+        <li><strong class="text-slate-800">AMD.</strong> Its MI250X delivered about 380 teraflops against up to 1,000 for the H100, and sold for $8,000&ndash;10,000 against $25,000&ndash;40,000. It raised its 2024 data-centre GPU forecast from $4.0 to $4.5&nbsp;billion but could get only a few hundred thousand GPUs from TSMC (p.&nbsp;9).</li>
+        <li><strong class="text-slate-800">Intel.</strong> Habana&rsquo;s Gaudi2, bought for $2&nbsp;billion in 2019, was priced near half an H100, but trailed on performance and its software was less mature than CUDA (p.&nbsp;9).</li>
+        <li><strong class="text-slate-800">Start-ups.</strong> Cerebras claimed inference 20 times faster at a fifth of the cost per token; Groq&rsquo;s chips were fast but specialised. Venture capital put $6&nbsp;billion into AI chip firms in 2023 (pp.&nbsp;10&ndash;11).</li>
+      </ul>
+    </div>
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-teal-800">Customer-competitors</p>
+      <ul class="mt-3 space-y-2 text-sm text-slate-600 leading-relaxed">
+        <li><strong class="text-slate-800">Google.</strong> TPUs are chips designed specifically for neural networks. TPU v4 drew 200&ndash;250 watts against 250&ndash;400 for NVIDIA&rsquo;s V100 and A100, and cost Google $2,000&ndash;3,000 each against about $15,000 for an NVIDIA chip (p.&nbsp;10).</li>
+        <li><strong class="text-slate-800">Amazon.</strong> Trainium trains models for firms such as Anthropic; Inferentia runs inference for Airbnb and ByteDance. Amazon claims up to 40&ndash;50% better price-performance and wants to cut the &ldquo;Nvidia tax&rdquo; (p.&nbsp;10).</li>
+        <li><strong class="text-slate-800">Concentration.</strong> Nearly half of NVIDIA&rsquo;s revenue came from four large data-centre customers (p.&nbsp;6).</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- activity 3: strategy-canvas builder -->
+  <div id="canvasBox" class="s9-cv mt-8 card p-5 sm:p-6">
+    <div class="flex flex-wrap items-baseline justify-between gap-2">
+      <div>
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Activity &middot; strategy-canvas builder</p>
+        <h3 class="mt-1 text-xl font-bold text-slate-900">Draw the challenger&rsquo;s value curve against NVIDIA&rsquo;s</h3>
+      </div>
+      <span class="done-badge" data-done-for="canvas" hidden>Done</span>
+    </div>
+    <p class="mt-2 max-w-4xl text-sm text-slate-600 leading-relaxed">NVIDIA&rsquo;s 2024 curve is fixed. Load a challenger, then
+      move its scores with the &minus; and + buttons, or add a factor NVIDIA does not offer. The four-actions grid and the verdict
+      update as you go. Scores are this page&rsquo;s reading of the case on a 0&ndash;10 scale, not case data; each row shows its
+      evidence. For price, higher means the buyer pays more.</p>
+    <div class="mt-4 flex flex-wrap gap-2" role="group" aria-label="Load a challenger">
+      <button type="button" class="s9-pre rounded-lg border border-slate-300 px-3 py-2 text-sm font-semibold text-slate-700" data-preset="cpu" aria-pressed="true">CPU incumbent + inference accelerators</button>
+      <button type="button" class="s9-pre rounded-lg border border-slate-300 px-3 py-2 text-sm font-semibold text-slate-700" data-preset="asic" aria-pressed="false">Custom chip: Google TPU, AWS Trainium</button>
+      <button type="button" class="s9-pre rounded-lg border border-slate-300 px-3 py-2 text-sm font-semibold text-slate-700" data-preset="own" aria-pressed="false">Blank: copy NVIDIA, then diverge</button>
+    </div>
+    <div class="mt-4 flex flex-wrap gap-x-5 gap-y-1 text-xs" aria-hidden="true"><span class="s9-key s9-key-nv">NVIDIA, 2024</span><span id="cvRivalKey" class="s9-key s9-key-rv">Challenger</span></div>
+    <div id="cvPlot" class="mt-2 min-w-0" role="img" aria-label="Strategy canvas comparing NVIDIA with the challenger"></div>
+    <div class="mt-5 grid gap-6 xl:grid-cols-[minmax(0,1.15fr)_minmax(0,.85fr)]">
+      <div class="min-w-0">
+        <div id="cvRows" class="grid gap-2"></div>
+        <div class="mt-3 flex flex-wrap items-center gap-2 text-sm">
+          <label for="cvCreate" class="font-semibold text-slate-700">Create a factor NVIDIA does not offer:</label>
+          <select id="cvCreate" class="w-full sm:w-auto max-w-full min-w-0 rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-sm text-slate-700"></select>
+        </div>
+      </div>
+      <div class="min-w-0">
+        <div class="grid sm:grid-cols-2 gap-2 text-sm">
+          <div class="rounded-xl border border-rose-200 bg-rose-50 p-3"><p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">Eliminate</p><ul id="cvE" class="mt-1 space-y-0.5 text-slate-700"></ul></div>
+          <div class="rounded-xl border border-amber-200 bg-amber-50 p-3"><p class="text-[10px] font-semibold uppercase tracking-wider text-amber-800">Reduce</p><ul id="cvR" class="mt-1 space-y-0.5 text-slate-700"></ul></div>
+          <div class="rounded-xl border border-blue-200 bg-blue-50 p-3"><p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Raise</p><ul id="cvU" class="mt-1 space-y-0.5 text-slate-700"></ul></div>
+          <div class="rounded-xl border border-teal-200 bg-teal-50 p-3"><p class="text-[10px] font-semibold uppercase tracking-wider text-teal-800">Create</p><ul id="cvC" class="mt-1 space-y-0.5 text-slate-700"></ul></div>
+        </div>
+        <div id="cvVerdict" class="mt-3 rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700 leading-relaxed" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="redblue" class="bg-white border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">The verdict &middot; Kim &amp; Mauborgne against the case</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Did NVIDIA create a blue ocean, and is it turning red?</h2>
+    <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+      Apply the reading&rsquo;s tests, not the share price. A blue ocean creates new demand, makes rivals irrelevant and breaks
+      the value&ndash;cost trade-off for buyers and the firm together. The case supports both sides.
+    </p>
+    <div class="mt-6 grid gap-5 lg:grid-cols-2">
+      <div class="rounded-2xl border border-blue-200 bg-blue-50 p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">The case for a blue ocean</p>
+        <ul class="mt-3 space-y-2 text-sm text-slate-700 leading-relaxed">
+          <li><strong>New buyers, not stolen ones.</strong> Scientists in the biosciences, computing and chemistry found NVIDIA GPUs did calculations in a fraction of the time of standard scientific computers (case, p.&nbsp;5). They were not graphics customers. Cirque, too, won people who had never bought circus tickets (2004, p.&nbsp;2).</li>
+          <li><strong>Technology linked to value.</strong> Parallel processing already existed in gaming GPUs (p.&nbsp;3). CUDA was what let buyers use it for their own problems (p.&nbsp;4): value pioneering in the authors&rsquo; sense, not technology for its own sake (2004, pp.&nbsp;11&ndash;12).</li>
+          <li><strong>Uncontested for years.</strong> Rivals were slow to follow: Intel cancelled its high-end graphics chip after four years of work, and AMD&rsquo;s answer to CUDA arrived only in 2016 (pp.&nbsp;9, 11). In 2023 NVIDIA held an estimated 98% of the data-centre market (p.&nbsp;6).</li>
+        </ul>
+      </div>
+      <div class="rounded-2xl border border-rose-200 bg-rose-50 p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">The case against</p>
+        <ul class="mt-3 space-y-2 text-sm text-slate-700 leading-relaxed">
+          <li><strong>No low-cost half.</strong> Buyers got a leap in performance at &ldquo;outsized premiums&rdquo; (p.&nbsp;1): an H100 estimated to cost $3,100 sold for $25,000&ndash;40,000 (Exhibit 3). Customers call the difference the &ldquo;Nvidia tax&rdquo; (p.&nbsp;10). The Model T took share by pricing against the horse.</li>
+          <li><strong>Porter&rsquo;s exemption, not a new logic.</strong> Being low-cost and differentiated at once lasts only while a firm is the sole owner of the innovation (Porter, 1985, p.&nbsp;20). By 2024 rivals had chips, and Triton was going after the software (pp.&nbsp;9&ndash;11).</li>
+          <li><strong>Racing on the old factors.</strong> NVIDIA was moving to annual launches; Blackwell promised 2.5 times the performance for 25% more cost (p.&nbsp;6). That is Compaq racing IBM on features, the convergence trap (Reader, pp.&nbsp;14&ndash;15).</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- activity 4: red or blue scenario chooser -->
+    <div id="oceanBox" class="mt-8 card p-5 sm:p-6">
+      <div class="flex flex-wrap items-baseline justify-between gap-2">
+        <div>
+          <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Activity &middot; red or blue?</p>
+          <h3 class="mt-1 text-xl font-bold text-slate-900">Eight moves from the case. Which ones create demand?</h3>
+        </div>
+        <span class="done-badge" data-done-for="ocean" hidden>Done</span>
+      </div>
+      <p class="mt-2 max-w-4xl text-sm text-slate-600 leading-relaxed">For each move, decide whether it creates new demand (blue)
+        or fights for demand that already exists (red). The test is Kim and Mauborgne&rsquo;s, not whether the move is clever or
+        profitable. When you have judged all eight, the page sums up what you have said about NVIDIA&rsquo;s ocean.</p>
+      <div id="ocList" class="mt-4 grid gap-3 lg:grid-cols-2"></div>
+      <div id="ocSummary" class="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700 leading-relaxed" aria-live="polite">0 of 8 judged.</div>
+    </div>
+
+    <div class="mt-6 rounded-2xl bg-slate-900 p-6 text-slate-100">
+      <h3 class="font-bold text-white">Where this leaves NVIDIA</h3>
+      <p class="mt-2 text-sm leading-relaxed text-slate-300">The fairest reading of the case is that NVIDIA opened a blue ocean
+        with CUDA and the deep-learning bet, priced it as the only supplier, and by 2024 was defending it with red-ocean
+        weapons: speed, performance per dollar and lock-in. The authors would say the signal to value-innovate again is a curve
+        that rivals are starting to copy. &ldquo;Value innovation is about offering unprecedented value, not technology or
+        competencies&rdquo; (Kim &amp; Mauborgne, 2017, p.&nbsp;15). What the next move should be, and how far up the value
+        chain NVIDIA should go to find it, is where
+        <a href="/teaching/1-year-mba/session10.html" class="font-semibold text-white underline">Session 10</a> begins.</p>
+    </div>
+  </div>
+</section>
+
+
+<section id="decks" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Go deeper</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Five earlier decks on the same ground</h2>
+  <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">Each was built for another course or an earlier numbering, and the
+    NVIDIA decks draw on sources outside this session&rsquo;s case. Where their figures differ from this page, this page has
+    been checked against the case and the reading. Use the decks for practice and simulation.</p>
+  <div class="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-6">
+    <a href="/teaching/2-year-mba/session-19-managing-technology-and-innovation-nvidia.html" class="lg:col-span-3 flex flex-col justify-between gap-3 rounded-2xl border border-blue-200 bg-blue-50 p-5 hover:bg-blue-200 transition">
+      <span>
+        <span class="block text-[10px] font-semibold uppercase tracking-wider text-blue-700">Interactive deck &middot; 2-year MBA, Session 19</span>
+        <span class="mt-1 block font-bold text-slate-900 break-words">Managing Technology &amp; Innovation: Nvidia</span>
+        <span class="mt-1 block text-sm text-slate-600">A short deck on the same case: the opening question, CUDA as the moat nobody sees on a spec sheet, customer concentration and a three-question check. Its developer count and its January 2025 DeepSeek material come from outside the case, and its case citation gives the second author&rsquo;s initial wrongly.</span>
+      </span>
+      <span class="text-sm font-semibold text-blue-700">Open the deck &rarr;</span>
+    </a>
+    <a href="/teaching/2-year-mba/session-13-business-strategy-innovation-entrepreneurship-platforms.html" class="lg:col-span-3 flex flex-col justify-between gap-3 rounded-2xl border border-blue-200 bg-blue-50 p-5 hover:bg-blue-200 transition">
+      <span>
+        <span class="block text-[10px] font-semibold uppercase tracking-wider text-blue-700">Interactive deck &middot; 2-year MBA, Session 13</span>
+        <span class="mt-1 block font-bold text-slate-900 break-words">Business Strategy, Innovation &amp; Platforms</span>
+        <span class="mt-1 block text-sm text-slate-600">Session 13 of the 2-year course; its inner header reads Session 09. Creative destruction, the industry life cycle, crossing the chasm, the four types, a strategy-canvas builder, platforms and a long NVIDIA section. That section rests on a different case (INSEAD, 2025) and press reports up to 2026, none checked against this case.</span>
+      </span>
+      <span class="text-sm font-semibold text-blue-700">Open the deck &rarr;</span>
+    </a>
+    <a href="/teaching/1-year-mba/Session_7_Business_Strategy_Innovation_Entrepreneurship_Platforms_V0.003.html" class="lg:col-span-2 flex flex-col justify-between gap-3 rounded-2xl border border-blue-200 bg-blue-50 p-5 hover:bg-blue-200 transition">
+      <span>
+        <span class="block text-[10px] font-semibold uppercase tracking-wider text-blue-700">Interactive deck &middot; built for an earlier numbering</span>
+        <span class="mt-1 block font-bold text-slate-900 break-words">Business Strategy, Innovation &amp; Platforms</span>
+        <span class="mt-1 block text-sm text-slate-600">Built for an earlier course numbering, where it was Session 7. Netflix and Reliance Jio, Schumpeter&rsquo;s creative destruction, the four I&rsquo;s, the four types with Indian examples, pipelines versus platforms and a CEO simulator. It calls Jio architectural in one panel and disruptive in another: decide for yourself with today&rsquo;s grid.</span>
+      </span>
+      <span class="text-sm font-semibold text-blue-700">Open the deck &rarr;</span>
+    </a>
+    <a href="/teaching/2-year-mba/session-12-generic-strategies-and-blue-ocean-strategy.html" class="lg:col-span-2 flex flex-col justify-between gap-3 rounded-2xl border border-blue-200 bg-blue-50 p-5 hover:bg-blue-200 transition">
+      <span>
+        <span class="block text-[10px] font-semibold uppercase tracking-wider text-blue-700">Interactive deck &middot; 2-year MBA, Session 12</span>
+        <span class="mt-1 block font-bold text-slate-900 break-words">Generic Strategies &amp; Blue Ocean Strategy</span>
+        <span class="mt-1 block text-sm text-slate-600">Use its Blue Ocean half: the ERRC toggles for Cirque, the strategy canvas, the IPL example and an NVIDIA deep dive. Its NVIDIA figures come from the INSEAD case and NVIDIA&rsquo;s annual report; it says about 40% of revenue came from four buyers, where this case says nearly half (p.&nbsp;6).</span>
+      </span>
+      <span class="text-sm font-semibold text-blue-700">Open the deck &rarr;</span>
+    </a>
+    <a href="/teaching/1-year-mba/Session6_Business%20Strategy_Differentiation,%20CostLeadership_BlueOceans_v0.8.html" class="md:col-span-2 lg:col-span-2 flex flex-col justify-between gap-3 rounded-2xl border border-blue-200 bg-blue-50 p-5 hover:bg-blue-200 transition">
+      <span>
+        <span class="block text-[10px] font-semibold uppercase tracking-wider text-blue-700">Interactive deck &middot; built for an earlier numbering</span>
+        <span class="mt-1 block font-bold text-slate-900 break-words">Business Strategy Explorer: differentiation, cost leadership and blue oceans</span>
+        <span class="mt-1 block text-sm text-slate-600">Built for an earlier course numbering, where it was Session 6. Its second half is today&rsquo;s topic: value innovation, the ERRC framework with Indian examples, Cirque du Soleil, and JetBlue and JCPenney as blue oceans gone bad.</span>
+      </span>
+      <span class="text-sm font-semibold text-blue-700">Open the deck &rarr;</span>
+    </a>
+  </div>
+</section>
+
+<section id="discussion" class="bg-white border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">For class</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Six questions to argue</h2>
+    <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">Come with a position on each and the page of the case or reading
+      that supports it.</p>
+    <div class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <div class="card p-5"><p class="font-mono text-xs text-blue-600">01</p><p class="mt-1 text-sm font-semibold text-slate-800 leading-relaxed">Kim and Mauborgne say blue oceans are seldom about technology. Was NVIDIA&rsquo;s blue ocean the GPU, CUDA or the 2013 deep-learning bet? Defend one with a page of the case.</p></div>
+      <div class="card p-5"><p class="font-mono text-xs text-blue-600">02</p><p class="mt-1 text-sm font-semibold text-slate-800 leading-relaxed">An H100 estimated to cost $3,100 sold for $25,000&ndash;40,000 (Exhibit 3). Is that the reward for value innovation, or evidence that NVIDIA never pursued the low-cost half? What would a Model T price have done to its blue ocean?</p></div>
+      <div class="card p-5"><p class="font-mono text-xs text-blue-600">03</p><p class="mt-1 text-sm font-semibold text-slate-800 leading-relaxed">CUDA is free to developers and locked to NVIDIA&rsquo;s hardware. Using Grant&rsquo;s trade-off between penetration and appropriation, should NVIDIA open CUDA to other chips before Triton does it for its customers?</p></div>
+      <div class="card p-5"><p class="font-mono text-xs text-blue-600">04</p><p class="mt-1 text-sm font-semibold text-slate-800 leading-relaxed">Classify Google&rsquo;s TPU twice: by type of innovation, then as a red or blue move. Do the two lenses agree, and what does any disagreement teach you about using them?</p></div>
+      <div class="card p-5"><p class="font-mono text-xs text-blue-600">05</p><p class="mt-1 text-sm font-semibold text-slate-800 leading-relaxed">Jim Keller calls CUDA &ldquo;a swamp, not a moat&rdquo; (p.&nbsp;11). Under what conditions is he right, and which fact in the case would most change your mind?</p></div>
+      <div class="card p-5"><p class="font-mono text-xs text-blue-600">06</p><p class="mt-1 text-sm font-semibold text-slate-800 leading-relaxed">Draw the value curve you would want NVIDIA to have in three years. What would it eliminate or reduce, when every factor it leads on is now contested? Keep systems, cloud and acquisitions for Session 10.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Knowledge check</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Eleven questions</h2>
+  <p class="mt-3 text-slate-600 max-w-3xl leading-relaxed">
+    Answer before you look. Each answer explains itself, and the explanation matters more than the score.
+  </p>
+  <div class="mt-4 flex flex-wrap items-center gap-3 text-sm">
+    <span class="text-slate-500"><span id="sQuizScore">0</span> / <span id="sQuizTotal">0</span> correct</span>
+    <button id="sQuizReset" type="button" class="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50">Start again</button>
+  </div>
+  <div id="sQuiz" class="mt-6 grid gap-4"></div>
+</section>
+
+
+
+<section id="readings" class="bg-white border-y border-slate-200">
+  <div class="container mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Preparation</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Readings for Session 9</h2>
+    <p class="mt-3 text-sm text-slate-600 max-w-4xl leading-relaxed">The reading and the case are copyrighted Harvard Business
+      School Publishing materials, and the textbooks are in copyright. Get them through the licensed course pack or the library;
+      this page does not host or link them.</p>
+    <div class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Required &middot; the reading</p>
+        <p class="mt-2 text-sm text-slate-700 ref">Kim, W. C., &amp; Mauborgne, R. (2004, October). Blue ocean strategy. <em>Harvard Business Review</em> (Reprint R0410D).</p>
+        <p class="mt-2 text-xs text-slate-500">Page numbers on this page follow the 23-page reprint in the course pack. Read it all; pages 11&ndash;21 carry the session.</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Required &middot; the case</p>
+        <p class="mt-2 text-sm text-slate-700 ref">Yoffie, D. B., &amp; von Bargen, S. (2024). <em>Nvidia, Inc. in 2024 and the future of AI</em> (HBS No. 9-725-360). Harvard Business School Publishing.</p>
+        <p class="mt-2 text-xs text-slate-500">Pages 1&ndash;12 and Exhibits 1a, 3 and 7. The same case returns in Session 10 for NVIDIA&rsquo;s corporate scope.</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Further &middot; the tools</p>
+        <p class="mt-2 text-sm text-slate-700 ref">Kim, W. C., &amp; Mauborgne, R. (2017). <em>The W. Chan Kim and Ren&eacute;e Mauborgne blue ocean strategy reader</em>. Harvard Business Review Press.</p>
+        <p class="mt-2 text-xs text-slate-500">&ldquo;Value innovation: The strategic logic of high growth&rdquo; (first published 1997), pp.&nbsp;1&ndash;21, for the value curve and the four questions; &ldquo;Charting your company&rsquo;s future&rdquo; (2002), pp.&nbsp;93&ndash;107, for the strategy canvas.</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Further &middot; course textbook</p>
+        <p class="mt-2 text-sm text-slate-700 ref">Rothaermel, F. T. (2024). <em>Strategic management</em> (6th ed.). McGraw Hill.</p>
+        <p class="mt-2 text-xs text-slate-500">Chapter 7, sections 7.4&ndash;7.5, pp.&nbsp;274&ndash;286, on types of innovation and platform strategy; chapter 6, section 6.5, pp.&nbsp;231&ndash;235, on blue oceans and how they go wrong.</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Further &middot; course textbook</p>
+        <p class="mt-2 text-sm text-slate-700 ref">Grant, R. M. (2019). <em>Contemporary strategy analysis</em> (10th ed.). Wiley.</p>
+        <p class="mt-2 text-xs text-slate-500">Chapter 9, &ldquo;Technology-based industries and the management of innovation&rdquo;: capturing value from innovation, pp.&nbsp;222&ndash;225, and standards, platforms and network externalities, pp.&nbsp;232&ndash;236.</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Carried forward</p>
+        <p class="mt-2 text-sm text-slate-700 ref">Porter, M. E. (1985). <em>Competitive advantage: Creating and sustaining superior performance</em>. Free Press.</p>
+        <p class="mt-2 text-xs text-slate-500">Chapter 1, p.&nbsp;20: the passage on pioneering a major innovation, which Session 8 read with the rest of the chapter.</p>
+      </div>
+    </div>
+    <div class="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+      <h3 class="font-bold text-slate-900">A note on the figures on this page</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Every NVIDIA figure comes from the case, with its page or exhibit.
+        The revenue-mix chart computes segment shares in the browser from Exhibit 1a; &ldquo;everything else&rdquo; is revenue less
+        data centre and gaming. Prices, market shares and performance numbers are the analysts&rsquo; and companies&rsquo;
+        estimates and claims that the case reports, not audited data. The canvas scores are this page&rsquo;s reading of the case
+        and are there to be argued with. Nothing here covers events after the case&rsquo;s September 2024 date.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-gray-800 mt-16 sm:mt-24 border-t border-gray-700">
+  <div class="container mx-auto px-6 py-8 text-center">
+    <p class="text-sm text-slate-400">&copy; Dr. Swapnil Sahoo 2026 &middot; Great Lakes Institute of Management, Gurgaon</p>
+    <p class="mt-2 text-xs text-slate-500">STRAMGT 221 &middot; Strategic Management (PGPM) &middot; Session 9</p>
+    <div class="mt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+      <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-400 hover:text-white">swapnilsahoo.com</a>
+      <a href="/teaching/1-year-mba/session8.html" class="text-sm text-slate-400 hover:text-white">&larr; Session 8</a> <a href="/teaching/1-year-mba" class="text-sm text-slate-400 hover:text-white">All sessions</a> <a href="/teaching/1-year-mba/session10.html" class="text-sm text-slate-400 hover:text-white">Session 10 &rarr;</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* Session 9 components; every colour has an html.dark twin */
+  .s9-vert{writing-mode:vertical-rl;transform:rotate(180deg)}
+  .s9-bar-red{background:#E11D48}.s9-bar-blue{background:#4F46E5}
+  html.dark .s9-bar-red{background:#FB7185}html.dark .s9-bar-blue{background:#818CF8}
+
+  /* chart palettes */
+  .s9-mix,.s9-cv{--s9-dc:#4F46E5;--s9-gm:#0F766E;--s9-ot:#94A3B8;--s9-nv:#4F46E5;--s9-rv:#B45309;
+    --s9-ink:#0F172A;--s9-ink2:#475569;--s9-grid:#E2E8F0;--s9-axis:#CBD5E1;--s9-onbar:#FFFFFF;--s9-surface:#FFFFFF}
+  html.dark .s9-mix,html.dark .s9-cv{--s9-dc:#818CF8;--s9-gm:#2DD4BF;--s9-ot:#64748B;--s9-nv:#818CF8;--s9-rv:#FBBF24;
+    --s9-ink:#E2E8F0;--s9-ink2:#94A3B8;--s9-grid:#1E293B;--s9-axis:#2B3A55;--s9-onbar:#0B1120;--s9-surface:#111A2E}
+  .s9-mix svg text,.s9-cv svg text{font-family:Inter,ui-sans-serif,system-ui,sans-serif}
+  .s9-grid line{stroke:var(--s9-grid);shape-rendering:crispEdges}
+  .s9-axis{stroke:var(--s9-axis);shape-rendering:crispEdges}
+  .s9-tick{fill:var(--s9-ink2);font-size:11px;font-variant-numeric:tabular-nums}
+  .s9-xl{fill:var(--s9-ink);font-size:11px;font-weight:600}
+  .s9-tot{fill:var(--s9-ink);font-size:11px;font-weight:600;font-variant-numeric:tabular-nums}
+  .s9-in{fill:var(--s9-onbar);font-size:11px;font-weight:700;font-variant-numeric:tabular-nums}
+  .s9-f-dc{fill:var(--s9-dc)}.s9-f-gm{fill:var(--s9-gm)}.s9-f-ot{fill:var(--s9-ot)}
+  .s9-l-nv{fill:none;stroke:var(--s9-nv);stroke-width:2;stroke-linejoin:round}
+  .s9-l-rv{fill:none;stroke:var(--s9-rv);stroke-width:2;stroke-linejoin:round;stroke-dasharray:6 4}
+  .s9-d-nv{fill:var(--s9-nv);stroke:var(--s9-surface);stroke-width:2}
+  .s9-d-rv{fill:var(--s9-surface);stroke:var(--s9-rv);stroke-width:2}
+  .s9-new{fill:var(--s9-rv);opacity:.08}
+
+  /* legend keys */
+  .s9-key{display:inline-flex;align-items:center;gap:.4rem;font-weight:600;color:#475569}
+  .s9-key::before{content:"";width:.9rem;height:.6rem;border-radius:3px;background:var(--s9k)}
+  .s9-key-dc{--s9k:var(--s9-dc)}.s9-key-gm{--s9k:var(--s9-gm)}.s9-key-ot{--s9k:var(--s9-ot)}
+  .s9-key-nv{--s9k:var(--s9-nv)}
+  .s9-key-rv::before{height:0;border-radius:0;border-top:2px dashed var(--s9-rv);background:none}
+  html.dark .s9-key{color:#CBD5E1}
+
+  /* toggles and presets */
+  .s9-seg{color:#475569}
+  .s9-seg[aria-pressed="true"]{background:#0F172A;color:#fff}
+  html.dark .s9-seg{color:#CBD5E1}
+  html.dark .s9-seg[aria-pressed="true"]{background:#4F46E5;color:#fff}
+  .s9-pre[aria-pressed="true"]{background:#0F172A;border-color:#0F172A;color:#fff}
+  html.dark .s9-pre[aria-pressed="true"]{background:#4F46E5;border-color:#6E72F0;color:#fff}
+  .s9-step{width:2rem;height:2rem;border-radius:.5rem;border:1px solid #CBD5E1;color:#334155;font-weight:700;line-height:1}
+  .s9-step:hover{background:#F1F5F9}
+  .s9-step:disabled{opacity:.35;cursor:default}
+  html.dark .s9-step{border-color:#2B3A55;color:#E2E8F0}
+  html.dark .s9-step:hover{background:#1E293B}
+
+  /* answer options: chosen, matches, defensible, differs */
+  .s9-opt{background:transparent;border:1px solid #CBD5E1;color:#334155}
+  .s9-opt:hover{background:#F8FAFC}
+  html.dark .s9-opt{border-color:#2B3A55;color:#CBD5E1}
+  html.dark .s9-opt:hover{background:#1E293B}
+  .s9-opt.s9-right{background:#DCFCE7;border-color:#22C55E;color:#166534}
+  .s9-opt.s9-alt{background:#FEF3C7;border-color:#D97706;color:#92400E}
+  .s9-opt.s9-wrong{background:#FEE2E2;border-color:#EF4444;color:#B91C1C}
+  .s9-opt.s9-key-ans{border-color:#22C55E;border-style:dashed}
+  html.dark .s9-opt.s9-right{background:#14321F;border-color:#2F7D52;color:#6EE7A8}
+  html.dark .s9-opt.s9-alt{background:#2A2110;border-color:#B45309;color:#FCD34D}
+  html.dark .s9-opt.s9-wrong{background:#3A181E;border-color:#9B3540;color:#FCA5A5}
+  html.dark .s9-opt.s9-key-ans{border-color:#2F7D52}
+  .s9-ok{color:#166534}.s9-no{color:#B91C1C}.s9-mid{color:#92400E}
+  html.dark .s9-ok{color:#6EE7A8}html.dark .s9-no{color:#FCA5A5}html.dark .s9-mid{color:#FCD34D}
+
+  /* sorter cards get a coloured edge once judged */
+  .s9-item{border-left-width:4px}
+  .s9-item[data-state="right"]{border-left-color:#22C55E}
+  .s9-item[data-state="alt"]{border-left-color:#D97706}
+  .s9-item[data-state="wrong"]{border-left-color:#EF4444}
+  html.dark .s9-item[data-state="right"]{border-left-color:#2F7D52!important}
+  html.dark .s9-item[data-state="alt"]{border-left-color:#B45309!important}
+  html.dark .s9-item[data-state="wrong"]{border-left-color:#9B3540!important}
+</style>
+
+<script>
+/* activity 1: innovation-type classifier */
+(function () {
+  var list = document.getElementById("clsList"), score = document.getElementById("clsScore");
+  if (!list) return;
+  var TYPES = [["inc", "Incremental"], ["rad", "Radical"], ["arc", "Architectural"], ["dis", "Disruptive"]];
+  var NAME = {}; TYPES.forEach(function (t) { NAME[t[0]] = t[1]; });
+  var ITEMS = [
+    { t: "Gillette adds a blade with each new razor, from one blade to six", s: "Rothaermel, p. 275", a: "inc",
+      e: "Same market, same knowledge base, steady improvement: Rothaermel's example of a radical start followed by a long string of incremental steps." },
+    { t: "Canon redesigns the copier so small offices can look after it themselves, a segment Xerox ignored", s: "Rothaermel, pp. 276–277", a: "arc",
+      e: "Known copier technology reconfigured, with reliability built in and cartridges the user replaces, to reach a new market." },
+    { t: "Netflix streaming starts cheaper and thinner than the cable bundle, then climbs to premium originals", s: "Rothaermel, pp. 277–278", a: "dis",
+      e: "New technology attacking an existing market from the bottom up: lower price and less content at first, then improvement faster than viewers needed." },
+    { t: "The jet-powered passenger airliner", s: "Rothaermel, p. 275", a: "rad",
+      e: "New technology creating a new market. De Havilland commercialised it first; Boeing rode it to dominance." },
+    { t: "NVIDIA adds cores and memory each GPU generation; Blackwell promises 2.5 times the performance for 25% more cost", s: "case, pp. 4, 6", a: "inc",
+      e: "A better version of the same product for the same buyers. Valuable and costly to do, but incremental, and exactly the kind of progress rivals can benchmark against." },
+    { t: "CUDA (2006) makes GPUs programmable for scientists and AI researchers who had never bought graphics chips", s: "case, pp. 4–5", a: "arc", alt: "rad",
+      e: "The parallel hardware already existed in gaming GPUs; CUDA changed how it could be used and opened new markets, scientific computing and then deep learning. If you count CUDA itself as new technology, radical is defensible." },
+    { t: "A GPU line designed for crypto miners (2017), to keep gaming cards on the shelves", s: "case, p. 5", a: "arc", alt: "inc",
+      e: "Existing GPU technology packaged for a new group of buyers. If you treat miners as simply more GPU demand, incremental is arguable." },
+    { t: "OpenAI's ChatGPT (2022) reaches 100 million users faster than any consumer application before it", s: "case, p. 6", a: "rad",
+      e: "New technology, large pre-trained language models, creating a new consumer market. For NVIDIA it was a demand shock, not its own innovation." },
+    { t: "Intel, AMD and Qualcomm pitch CPUs plus inference accelerators to data centres at a lower total cost than NVIDIA GPUs", s: "case, p. 8", a: "dis", alt: "inc",
+      e: "A cheaper answer to an existing need, running trained models, weaker on the most demanding work and aimed at the low end of NVIDIA's market: the shape of a disruptive attack. Incremental is defensible if you see CPU makers improving their own products." },
+    { t: "Microsoft's AI PC runs AI on an Arm CPU and accelerator with no GPU; Apple runs a small model on the iPhone", s: "case, p. 8", a: "dis", alt: "arc",
+      e: "Smaller models and on-device chips serve an existing need, AI answers, at lower cost and power: a bottom-up threat to data-centre GPUs. Architectural is arguable if you stress known parts reconfigured for a new device market." }
+  ];
+  var picks = {};
+  function tally() {
+    var n = 0, hit = 0, alt = 0;
+    ITEMS.forEach(function (it, i) { var p = picks[i]; if (!p) return; n++; if (p === it.a) hit++; else if (p === it.alt) alt++; });
+    score.textContent = n + " of " + ITEMS.length + " classified" + (n ? ": " + hit + " match the page's reading" + (alt ? ", " + alt + " defensible alternative" + (alt > 1 ? "s" : "") : "") + "." : ".");
+  }
+  ITEMS.forEach(function (it, i) {
+    var card = document.createElement("div");
+    card.className = "s9-item rounded-xl border border-slate-200 p-4";
+    var p = document.createElement("p"); p.className = "text-sm font-semibold text-slate-800"; p.textContent = (i + 1) + ". " + it.t;
+    var src = document.createElement("p"); src.className = "mt-0.5 text-xs text-slate-500"; src.textContent = it.s;
+    var row = document.createElement("div"); row.className = "mt-3 grid grid-cols-2 sm:grid-cols-4 gap-1.5";
+    var out = document.createElement("p"); out.className = "mt-3 text-sm text-slate-600 leading-relaxed"; out.hidden = true;
+    var btns = TYPES.map(function (t) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "s9-opt rounded-lg px-2 py-1.5 text-xs font-semibold";
+      b.textContent = t[1]; b.setAttribute("aria-pressed", "false");
+      b.addEventListener("click", function () {
+        picks[i] = t[0];
+        btns.forEach(function (x, j) {
+          var k = TYPES[j][0];
+          x.setAttribute("aria-pressed", k === t[0] ? "true" : "false");
+          x.classList.remove("s9-right", "s9-alt", "s9-wrong", "s9-key-ans");
+          if (k === t[0]) x.classList.add(k === it.a ? "s9-right" : (k === it.alt ? "s9-alt" : "s9-wrong"));
+          else if (k === it.a) x.classList.add("s9-key-ans");
+        });
+        var st = t[0] === it.a ? "right" : (t[0] === it.alt ? "alt" : "wrong");
+        card.setAttribute("data-state", st);
+        out.hidden = false; out.textContent = "";
+        var lead = document.createElement("strong");
+        lead.className = st === "right" ? "s9-ok" : (st === "alt" ? "s9-mid" : "s9-no");
+        lead.textContent = st === "right" ? "Matches the page's reading. " : (st === "alt" ? "Defensible; the page reads it as " + NAME[it.a] + ". " : "The page reads it as " + NAME[it.a] + ". ");
+        out.appendChild(lead); out.appendChild(document.createTextNode(it.e));
+        tally();
+      });
+      row.appendChild(b); return b;
+    });
+    card.appendChild(p); card.appendChild(src); card.appendChild(row); card.appendChild(out);
+    list.appendChild(card);
+  });
+  tally();
+})();
+
+/* activity 4: red or blue scenario chooser */
+(function () {
+  var list = document.getElementById("ocList"), sum = document.getElementById("ocSummary");
+  if (!list) return;
+  var ITEMS = [
+    { t: "NVIDIA, 2006–2013: CUDA, then a bet on deep learning while AI revenue was small", s: "case, pp. 4–5", a: "blue", nv: true,
+      e: "New demand from people who were not GPU buyers, scientists and AI researchers, by linking an existing technology to what they valued." },
+    { t: "OpenAI launches ChatGPT in November 2022", s: "case, p. 6", a: "blue",
+      e: "A consumer market that did not exist, reaching 100 million users faster than any consumer app. It also poured demand into NVIDIA's ocean." },
+    { t: "AMD sells its GPU for $8,000–10,000 against NVIDIA's $25,000–40,000, with lower performance", s: "case, p. 9", a: "red",
+      e: "Same factors at a lower level: less performance for less money, aimed at buyers NVIDIA already serves. The value–cost trade-off is accepted, not broken." },
+    { t: "Google designs its own TPUs for neural networks at $2,000–3,000 a chip", s: "case, p. 10", a: "red",
+      e: "Its curve diverges (cheaper, lower power, narrower), but it serves demand that already exists, Google's own, and takes it from NVIDIA: a buyer integrating backward to escape a supplier." },
+    { t: "Amazon's Trainium and Inferentia promise up to 40–50% better price-performance, to cut the \"Nvidia tax\"", s: "case, p. 10", a: "red",
+      e: "Priced and pitched against NVIDIA on NVIDIA's own factors. It fights over AI compute demand that already exists." },
+    { t: "Smaller models run on the device: open-source Llama from 8 billion parameters, Apple Intelligence on the iPhone", s: "case, p. 8", a: "blue",
+      e: "AI where data-centre GPUs never sold, on phones and PCs: new demand for someone else. For NVIDIA this is substitution, not imitation; another firm's blue ocean can drain yours." },
+    { t: "OpenAI's Triton lets GPU code run on many makers' chips; Microsoft, Meta and Google invest in it", s: "case, p. 11", a: "red",
+      e: "It creates no new demand. It lowers the switching cost that kept existing demand with NVIDIA, which is how a blue ocean's barrier drains and the water turns red." },
+    { t: "NVIDIA moves to annual launches; Blackwell offers 2.5 times the performance for 25% more cost", s: "case, p. 6", a: "red", nv: true,
+      e: "NVIDIA competing on the industry's established factor, performance per dollar, against rivals on the same cadence. A strong defence, but red-ocean logic: Compaq racing IBM." }
+  ];
+  var LBL = { blue: "Creates new demand (blue)", red: "Fights for existing demand (red)" };
+  var picks = {};
+  function summary() {
+    var n = 0, hit = 0, blue = 0;
+    ITEMS.forEach(function (it, i) { if (!picks[i]) return; n++; if (picks[i] === it.a) hit++; if (picks[i] === "blue") blue++; });
+    sum.textContent = "";
+    var head = document.createElement("p"); head.className = "font-semibold text-slate-800";
+    head.textContent = n + " of " + ITEMS.length + " judged" + (n ? "; " + hit + " match the page's reading." : ".");
+    sum.appendChild(head);
+    if (n < ITEMS.length) return;
+    var p = document.createElement("p"); p.className = "mt-2";
+    p.textContent = "You called " + blue + " of the " + ITEMS.length + " moves blue; the page calls 3 of them blue. Look at which ones: NVIDIA's own blue move is from 2006 to 2013, " +
+      "ChatGPT poured demand into its ocean, and on-device AI may drain demand from it. Every move aimed straight at NVIDIA is red, and so is NVIDIA's own 2024 response. " +
+      "That is the pattern Kim and Mauborgne predict once a value curve is copied: the creator ends up defending it with red-ocean weapons.";
+    sum.appendChild(p);
+  }
+  ITEMS.forEach(function (it, i) {
+    var card = document.createElement("div");
+    card.className = "s9-item rounded-xl border border-slate-200 p-4";
+    var p = document.createElement("p"); p.className = "text-sm font-semibold text-slate-800"; p.textContent = (i + 1) + ". " + it.t;
+    var src = document.createElement("p"); src.className = "mt-0.5 text-xs text-slate-500"; src.textContent = it.s + (it.nv ? " · NVIDIA's own move" : "");
+    var row = document.createElement("div"); row.className = "mt-3 grid gap-1.5 sm:grid-cols-2";
+    var out = document.createElement("p"); out.className = "mt-3 text-sm text-slate-600 leading-relaxed"; out.hidden = true;
+    var btns = ["blue", "red"].map(function (k) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "s9-opt rounded-lg px-3 py-2 text-xs font-semibold text-left";
+      b.textContent = LBL[k]; b.setAttribute("aria-pressed", "false");
+      b.addEventListener("click", function () {
+        picks[i] = k;
+        btns.forEach(function (x, j) {
+          var kk = j === 0 ? "blue" : "red";
+          x.setAttribute("aria-pressed", kk === k ? "true" : "false");
+          x.classList.remove("s9-right", "s9-wrong", "s9-key-ans");
+          if (kk === k) x.classList.add(kk === it.a ? "s9-right" : "s9-wrong");
+          else if (kk === it.a) x.classList.add("s9-key-ans");
+        });
+        var ok = k === it.a;
+        card.setAttribute("data-state", ok ? "right" : "wrong");
+        out.hidden = false; out.textContent = "";
+        var lead = document.createElement("strong"); lead.className = ok ? "s9-ok" : "s9-no";
+        lead.textContent = ok ? "Matches the page's reading. " : "The page reads it as " + (it.a === "blue" ? "blue" : "red") + ". ";
+        out.appendChild(lead); out.appendChild(document.createTextNode(it.e));
+        summary();
+      });
+      row.appendChild(b); return b;
+    });
+    card.appendChild(p); card.appendChild(src); card.appendChild(row); card.appendChild(out);
+    list.appendChild(card);
+  });
+  summary();
+})();
+</script>
+
+<script>
+/* activity 2: revenue mix from case Exhibit 1a ($ millions, fiscal years ending January) */
+(function () {
+  var box = document.getElementById("mixBox"), plot = document.getElementById("mixPlot");
+  if (!box || !plot) return;
+  var D = [
+    { fy: 2020, rev: 10918, dc: 2983, gm: 5518 },
+    { fy: 2021, rev: 16675, dc: 6696, gm: 7759 },
+    { fy: 2022, rev: 26914, dc: 10613, gm: 12462 },
+    { fy: 2023, rev: 26974, dc: 15005, gm: 9067 },
+    { fy: 2024, rev: 60922, dc: 47525, gm: 10447 }
+  ];
+  D.forEach(function (d) { d.ot = d.rev - d.dc - d.gm; });
+  var mode = "pct", NS = "http://www.w3.org/2000/svg";
+  function pct(a, b) { return Math.round(1000 * a / b) / 10; }
+  function bn(m) { return "$" + (m / 1000).toFixed(1) + "B"; }
+  function el(tag, at, txt) { var e = document.createElementNS(NS, tag); for (var k in at) e.setAttribute(k, at[k]); if (txt != null) e.textContent = txt; return e; }
+
+  // table alternative
+  var tb = document.getElementById("mixTable");
+  D.forEach(function (d) {
+    var tr = document.createElement("tr");
+    [["FY" + d.fy, ""], [d.rev.toLocaleString("en-US"), "text-right tabular-nums"], [d.dc.toLocaleString("en-US"), "text-right tabular-nums"],
+     [d.gm.toLocaleString("en-US"), "text-right tabular-nums"], [d.ot.toLocaleString("en-US"), "text-right tabular-nums"], [pct(d.dc, d.rev).toFixed(1) + "%", "text-right tabular-nums"]]
+      .forEach(function (c, j) { var td = document.createElement(j ? "td" : "th"); if (!j) td.setAttribute("scope", "row"); td.className = c[1]; td.textContent = c[0]; tr.appendChild(td); });
+    tb.appendChild(tr);
+  });
+
+  function draw() {
+    var W = Math.max(260, Math.round(plot.clientWidth || 600)), H = W < 480 ? 250 : 290;
+    var m = { l: 40, r: 8, t: 22, b: 28 }, pw = W - m.l - m.r, ph = H - m.t - m.b;
+    var max = mode === "pct" ? 100 : 65000;
+    var ticks = mode === "pct" ? [0, 25, 50, 75, 100] : [0, 20000, 40000, 60000];
+    var y = function (v) { return m.t + ph - ph * v / max; };
+    var svg = el("svg", { viewBox: "0 0 " + W + " " + H, width: W, height: H, "aria-hidden": "true" });
+    var g = el("g", { "class": "s9-grid" });
+    ticks.forEach(function (t) {
+      g.appendChild(el("line", { x1: m.l, x2: W - m.r, y1: y(t), y2: y(t) }));
+      svg.appendChild(el("text", { x: m.l - 6, y: y(t) + 4, "text-anchor": "end", "class": "s9-tick" }, mode === "pct" ? t + "%" : "$" + t / 1000 + "B"));
+    });
+    svg.insertBefore(g, svg.firstChild);
+    var slot = pw / D.length, bw = Math.min(64, slot * 0.6);
+    var fmt = slot < 56 ? function (v) { return "$" + Math.round(v / 1000) + "B"; } : bn;
+    D.forEach(function (d, i) {
+      var cx = m.l + slot * i + slot / 2, x = cx - bw / 2, base = 0;
+      [["dc", "s9-f-dc"], ["gm", "s9-f-gm"], ["ot", "s9-f-ot"]].forEach(function (s) {
+        var v = mode === "pct" ? 100 * d[s[0]] / d.rev : d[s[0]];
+        var y0 = y(base), y1 = y(base + v);
+        svg.appendChild(el("rect", { x: x, y: y1, width: bw, height: Math.max(0, y0 - y1), "class": s[1] }));
+        if (s[0] === "dc" && y0 - y1 > 18) {
+          svg.appendChild(el("text", { x: cx, y: y1 + 14, "text-anchor": "middle", "class": "s9-in" }, mode === "pct" ? Math.round(v) + "%" : fmt(d.dc)));
+        }
+        base += v;
+      });
+      if (mode === "abs") svg.appendChild(el("text", { x: cx, y: y(d.rev) - 6, "text-anchor": "middle", "class": "s9-tot" }, fmt(d.rev)));
+      svg.appendChild(el("text", { x: cx, y: H - 8, "text-anchor": "middle", "class": "s9-xl" }, (slot < 60 ? "FY" + String(d.fy).slice(2) : "FY" + d.fy)));
+    });
+    svg.appendChild(el("line", { x1: m.l, x2: W - m.r, y1: y(0), y2: y(0), "class": "s9-axis" }));
+    plot.textContent = ""; plot.appendChild(svg);
+  }
+
+  function read() {
+    var a = D[0], c = D[3], e = D[4], r = document.getElementById("mixRead");
+    if (mode === "pct") {
+      r.textContent = "Data centre went from " + Math.round(pct(a.dc, a.rev)) + "% of revenue in FY" + a.fy + " to " + Math.round(pct(e.dc, e.rev)) +
+        "% in FY" + e.fy + "; gaming fell from " + Math.round(pct(a.gm, a.rev)) + "% to " + Math.round(pct(e.gm, e.rev)) + "%. Data centre first passed gaming in FY" + c.fy +
+        ", as much because gaming fell, from " + bn(D[2].gm) + " to " + bn(c.gm) + " in a year with a crypto winter (p. 5), as because data centre grew.";
+    } else {
+      r.textContent = "Revenue was flat between FY2022 and FY2023, then jumped " + (e.rev / c.rev).toFixed(1) + " times to " + bn(e.rev) + " in FY" + e.fy +
+        ". Data centre alone grew " + (e.dc / c.dc).toFixed(1) + " times that year, and on its own was " + (e.dc / a.rev).toFixed(1) + " times NVIDIA's entire revenue in FY" + a.fy + ".";
+    }
+  }
+
+  var segs = box.querySelectorAll("[data-mix]");
+  Array.prototype.forEach.call(segs, function (b) {
+    b.addEventListener("click", function () {
+      mode = b.getAttribute("data-mix");
+      Array.prototype.forEach.call(segs, function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      draw(); read();
+    });
+  });
+  draw(); read();
+  if (window.ResizeObserver) { var lw = 0; new ResizeObserver(function () { var w = Math.round(plot.clientWidth); if (w && w !== lw) { lw = w; draw(); } }).observe(plot); }
+})();
+</script>
+
+<script>
+/* activity 3: strategy-canvas builder. Scores are the page's reading of the case (0-10), not case data. */
+(function () {
+  var box = document.getElementById("canvasBox"), plot = document.getElementById("cvPlot");
+  if (!box || !plot) return;
+  var F = [
+    { n: "Price to buy and run", s: "Price", nv: 9, ev: { nv: "H100 at $25,000–40,000 (p. 4; Exh. 3)", cpu: "total cost of ownership “potentially much lower” (p. 8)", asic: "TPU $2,000–3,000 in-house vs ~$15,000 for NVIDIA; Amazon: about half as expensive (p. 10)" } },
+    { n: "Training performance", s: "Training", nv: 10, ev: { nv: "essential for training, no good alternative in 2024 (p. 8)", cpu: "CPUs work sequentially (p. 3)", asic: "TPUs built for training and inference; Apple trained on TPUs, Anthropic on Trainium (pp. 8, 10)" } },
+    { n: "Inference cost-efficiency", s: "Inference", nv: 4, ev: { nv: "GPUs cost more to buy and run for inference (p. 8)", cpu: "pitched on lower cost for inference (p. 8)", asic: "Inferentia: up to 40–50% better price-performance (p. 10)" } },
+    { n: "Energy efficiency", s: "Energy", nv: 3, ev: { nv: "up to 1,000 W per GPU (p. 4)", cpu: "GPUs use more power for inference (p. 8)", asic: "TPU v4 200–250 W vs 250–400 W (p. 10)" } },
+    { n: "Flexibility across AI models", s: "Flexibility", nv: 9, ev: { nv: "easier to use across types of model (p. 11)", cpu: "accelerators built for inference only (p. 8)", asic: "designed specifically for neural networks (p. 10)" } },
+    { n: "Software ecosystem", s: "Software", nv: 10, ev: { nv: "CUDA: 15+ years, 150+ kits (p. 4)", cpu: "Gaudi2 software less mature than CUDA (p. 9)", asic: "owners back Triton to escape CUDA (p. 11)" } }
+  ];
+  var PRE = { cpu: { name: "CPU + accelerators", v: [4, 2, 7, 6, 4, 4], c: "" },
+              asic: { name: "Custom chip", v: [3, 6, 8, 8, 3, 4], c: "supply" },
+              own: { name: "Your challenger", v: F.map(function (f) { return f.nv; }), c: "" } };
+  var CREATE = [["", "Nothing new"],
+    ["supply", "Supply under the buyer’s own control (p. 10)"],
+    ["portable", "Code that runs on any maker’s chips (Triton, p. 11)"],
+    ["device", "AI on the device, no data centre (p. 8)"]];
+  var CSHORT = { supply: "Own supply", portable: "Portable code", device: "On-device AI" };
+  var cur = "cpu", rv = PRE.cpu.v.slice(), cr = PRE.cpu.c, NS = "http://www.w3.org/2000/svg";
+  function el(tag, at, txt) { var e = document.createElementNS(NS, tag); for (var k in at) e.setAttribute(k, at[k]); if (txt != null) e.textContent = txt; return e; }
+
+  // create selector
+  var sel = document.getElementById("cvCreate");
+  CREATE.forEach(function (o) { var op = document.createElement("option"); op.value = o[0]; op.textContent = o[1]; sel.appendChild(op); });
+  sel.addEventListener("change", function () { cr = sel.value; update(); });
+
+  // factor rows
+  var rows = document.getElementById("cvRows"), scoreEls = [], evEls = [], minus = [], plus = [];
+  F.forEach(function (f, i) {
+    var r = document.createElement("div");
+    r.className = "grid gap-2 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center rounded-lg border border-slate-200 p-3";
+    var l = document.createElement("div"); l.className = "min-w-0";
+    var t = document.createElement("p"); t.className = "text-sm font-semibold text-slate-800"; t.textContent = (i + 1) + ". " + f.n;
+    var e = document.createElement("p"); e.className = "mt-0.5 text-xs text-slate-500 leading-relaxed";
+    l.appendChild(t); l.appendChild(e); evEls.push(e);
+    var c = document.createElement("div"); c.className = "flex items-center gap-2";
+    var nv = document.createElement("span"); nv.className = "text-xs text-slate-500 whitespace-nowrap"; nv.textContent = "NVIDIA " + f.nv;
+    var mi = document.createElement("button"); mi.type = "button"; mi.className = "s9-step"; mi.textContent = "−"; mi.setAttribute("aria-label", "Lower the challenger on " + f.n);
+    var sc = document.createElement("span"); sc.className = "w-6 text-center text-sm font-bold text-slate-900 tabular-nums";
+    var pl = document.createElement("button"); pl.type = "button"; pl.className = "s9-step"; pl.textContent = "+"; pl.setAttribute("aria-label", "Raise the challenger on " + f.n);
+    mi.addEventListener("click", function () { if (rv[i] > 0) { rv[i]--; update(); } });
+    pl.addEventListener("click", function () { if (rv[i] < 10) { rv[i]++; update(); } });
+    c.appendChild(nv); c.appendChild(mi); c.appendChild(sc); c.appendChild(pl);
+    r.appendChild(l); r.appendChild(c); rows.appendChild(r);
+    scoreEls.push(sc); minus.push(mi); plus.push(pl);
+  });
+
+  // presets
+  var pres = box.querySelectorAll("[data-preset]");
+  Array.prototype.forEach.call(pres, function (b) {
+    b.addEventListener("click", function () {
+      cur = b.getAttribute("data-preset"); rv = PRE[cur].v.slice(); cr = PRE[cur].c;
+      Array.prototype.forEach.call(pres, function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      update();
+    });
+  });
+
+  function series() {
+    var nvs = F.map(function (f) { return f.nv; }), rvs = rv.slice(), lab = F.map(function (f) { return f.s; });
+    if (cr) { nvs.push(0); rvs.push(8); lab.push(CSHORT[cr]); }
+    return { nv: nvs, rv: rvs, lab: lab };
+  }
+
+  function draw() {
+    var S = series(), n = S.nv.length;
+    var W = Math.max(260, Math.round(plot.clientWidth || 700)), H = W < 480 ? 230 : 280;
+    var m = { l: 28, r: 12, t: 12, b: 30 }, pw = W - m.l - m.r, ph = H - m.t - m.b, slot = pw / n;
+    var x = function (i) { return m.l + slot * (i + 0.5); }, y = function (v) { return m.t + ph - ph * v / 10; };
+    var svg = el("svg", { viewBox: "0 0 " + W + " " + H, width: W, height: H, "aria-hidden": "true" });
+    if (cr) svg.appendChild(el("rect", { x: m.l + slot * (n - 1), y: m.t, width: slot, height: ph, "class": "s9-new" }));
+    var g = el("g", { "class": "s9-grid" });
+    [0, 5, 10].forEach(function (t) {
+      g.appendChild(el("line", { x1: m.l, x2: W - m.r, y1: y(t), y2: y(t) }));
+      svg.appendChild(el("text", { x: m.l - 6, y: y(t) + 4, "text-anchor": "end", "class": "s9-tick" }, String(t)));
+    });
+    svg.insertBefore(g, svg.firstChild);
+    var useNum = slot < 76;
+    S.lab.forEach(function (lb, i) {
+      svg.appendChild(el("text", { x: x(i), y: H - 10, "text-anchor": "middle", "class": "s9-xl" }, useNum ? String(i + 1) : lb));
+    });
+    function path(v) { return v.map(function (d, i) { return (i ? "L" : "M") + x(i).toFixed(1) + " " + y(d).toFixed(1); }).join(" "); }
+    svg.appendChild(el("path", { d: path(S.nv), "class": "s9-l-nv" }));
+    svg.appendChild(el("path", { d: path(S.rv), "class": "s9-l-rv" }));
+    S.nv.forEach(function (d, i) { svg.appendChild(el("circle", { cx: x(i), cy: y(d), r: 4.5, "class": "s9-d-nv" })); });
+    S.rv.forEach(function (d, i) { svg.appendChild(el("circle", { cx: x(i), cy: y(d), r: 4, "class": "s9-d-rv" })); });
+    plot.textContent = ""; plot.appendChild(svg);
+  }
+
+  function fill(id, items) {
+    var u = document.getElementById(id); u.textContent = "";
+    if (!items.length) { var li = document.createElement("li"); li.className = "text-slate-400"; li.textContent = "None"; u.appendChild(li); return; }
+    items.forEach(function (s) { var li = document.createElement("li"); li.textContent = s; u.appendChild(li); });
+  }
+
+  function update() {
+    document.getElementById("cvRivalKey").textContent = PRE[cur].name;
+    sel.value = cr;
+    F.forEach(function (f, i) {
+      scoreEls[i].textContent = rv[i];
+      minus[i].disabled = rv[i] <= 0; plus[i].disabled = rv[i] >= 10;
+      evEls[i].textContent = "NVIDIA: " + f.ev.nv + (cur === "own" ? " · Challenger: your call" : " · " + PRE[cur].name + ": " + f.ev[cur]);
+    });
+    var E = [], R = [], U = [], ups = 0, downs = 0, gap = 0, maxAbs = 0;
+    F.forEach(function (f, i) {
+      var d = rv[i] - f.nv, tag = f.n + " (" + f.nv + " → " + rv[i] + ")";
+      gap += Math.abs(d); maxAbs = Math.max(maxAbs, Math.abs(d));
+      if (rv[i] === 0 && f.nv > 0) { E.push(tag); downs++; }
+      else if (d <= -2) { R.push(tag); downs++; }
+      else if (d >= 2) { U.push(tag); ups++; }
+    });
+    fill("cvE", E); fill("cvR", R); fill("cvU", U);
+    fill("cvC", cr ? [CREATE.filter(function (o) { return o[0] === cr; })[0][1]] : []);
+    var v;
+    if (maxAbs <= 1 && !cr) v = "Imitation: the same curve as NVIDIA. A challenger with NVIDIA’s curve and none of its history is fighting in the reddest water there is.";
+    else if (ups === 0 && !cr) v = "Same shape, lower level: a little less for a little less. This is a red-ocean move on NVIDIA’s own factors; it wins only on price, and the value–cost trade-off stays intact.";
+    else if (downs === 0 && !cr) v = "More of everything and less of nothing. Unless the challenger’s costs are far lower, this is a race that NVIDIA’s scale favours.";
+    else if (!cr) v = "A divergent curve with no new factor: a focused attack on part of NVIDIA’s existing demand. That can be a good business, but for NVIDIA’s market it is red. Try creating a factor.";
+    else if (ups > 0 && downs > 0) v = "A divergent curve with a new factor: the shape of value innovation. Now test it. Does it bring in buyers NVIDIA never served, or only take NVIDIA’s? Can you write its tag line in one true sentence?";
+    else v = "A new factor, but the rest of the curve tracks NVIDIA’s. Creating alone is not value innovation: what will the challenger eliminate or reduce to pay for it?";
+    var out = document.getElementById("cvVerdict"); out.textContent = "";
+    var h = document.createElement("p"); h.className = "font-semibold text-slate-900"; h.textContent = "Verdict · gap from NVIDIA’s curve: " + gap + " points across six factors";
+    var p = document.createElement("p"); p.className = "mt-1"; p.textContent = v;
+    out.appendChild(h); out.appendChild(p);
+    draw();
+  }
+  update();
+  if (window.ResizeObserver) { var lw = 0; new ResizeObserver(function () { var w = Math.round(plot.clientWidth); if (w && w !== lw) { lw = w; draw(); } }).observe(plot); }
+})();
+</script>
+
+<script>window.SQUIZ = [
+ {
+  "q": "In Kim and Mauborgne (2004), what is a blue ocean?",
+  "o": [
+   "A niche segment where a focused firm faces few rivals",
+   "Any market in which one firm holds a clear technology lead",
+   "Market space not yet in existence, where demand is created rather than fought over",
+   "An industry protected by high barriers to entry"
+  ],
+  "a": 2,
+  "e": "Blue oceans are the industries not in existence today, untainted by competition, where demand is created rather than fought over (p. 3). Most are carved out of red oceans by moving an industry boundary, as Cirque did. A niche or a technology lead can still be a red ocean."
+ },
+ {
+  "q": "Which statement would Kim and Mauborgne reject?",
+  "o": [
+   "Incumbents can create blue oceans, usually within their core business",
+   "Strategy is essentially a choice between differentiation and low cost",
+   "Most blue oceans are created from within red oceans",
+   "A firm can raise buyer value and lower its own costs at the same time"
+  ],
+  "a": 1,
+  "e": "Rejecting the value–cost trade-off is, in their words, the most important feature of blue ocean strategy (2004, pp. 14–15). The other three are findings the article reports (pp. 12, 18)."
+ },
+ {
+  "q": "In the four actions framework, which two actions lower the firm's costs?",
+  "o": [
+   "Eliminate and reduce",
+   "Raise and create",
+   "Reduce and raise",
+   "Eliminate and create"
+  ],
+  "a": 0,
+  "e": "Cost savings come from eliminating and reducing the factors an industry competes on; buyer value rises by raising factors and creating new ones (Kim & Mauborgne, 2004, p. 18; Rothaermel, 2024, p. 232)."
+ },
+ {
+  "q": "On a strategy canvas, a rival's value curve has the same shape as the industry's but sits a little lower on every factor, including price. How would Kim and Mauborgne read it?",
+  "o": [
+   "As value innovation, because it is cheaper",
+   "As a blue ocean with strong focus",
+   "As stuck in the middle by definition",
+   "As a red-ocean curve: a little less for a little less"
+  ],
+  "a": 3,
+  "e": "Rivals that offer a little more for a little less rarely challenge the shape of the industry's curve (Reader, p. 12). A good curve shows focus and divergence (pp. 95–96); this one shows neither."
+ },
+ {
+  "q": "Looking across blue oceans in cars, computers and cinemas, what did Kim and Mauborgne find about technology?",
+  "o": [
+   "Most blue oceans were driven by breakthrough technology",
+   "Most were created by start-ups with new technology",
+   "Most were value pioneering, often built on technology that already existed",
+   "Technology played no part in any of them"
+  ],
+  "a": 2,
+  "e": "Blue oceans were seldom the result of technological innovation as such; they came from linking technology to what buyers valued, often by simplifying it (2004, pp. 11–12). Technology was involved, but it was not the defining feature, and incumbents made most of them (p. 12)."
+ },
+ {
+  "q": "In Rothaermel's markets-and-technology framework, what is an innovation that reconfigures existing technology to attack a new market?",
+  "o": [
+   "Radical",
+   "Architectural",
+   "Incremental",
+   "Disruptive"
+  ],
+  "a": 1,
+  "e": "Architectural innovation reconfigures known components to reach new markets, as Canon's copier did for small offices (pp. 276–277). Radical is new technology for a new market; disruptive is new technology attacking an existing market from below."
+ },
+ {
+  "q": "Which description fits disruptive innovation in Rothaermel's sense?",
+  "o": [
+   "It starts as a cheaper, initially inferior answer to an existing need, improves faster than buyers need, and invades from the bottom up",
+   "It outperforms the incumbent's product from launch",
+   "It uses new technology to create a market that did not exist",
+   "It is the incumbent's steady improvement of its own product"
+  ],
+  "a": 0,
+  "e": "Disruption begins as a low-cost solution with inferior performance whose rate of improvement outruns what market segments require (Rothaermel, pp. 277–278). CPUs with inference accelerators pitched on lower total cost (case, p. 8) have that shape."
+ },
+ {
+  "q": "According to the case, what turned CUDA from a programming language into a platform?",
+  "o": [
+   "NVIDIA licensed it to AMD and Intel",
+   "It was open-source from its launch in 2006",
+   "It ran on every maker's GPUs",
+   "NVIDIA let outside developers write programs for it and share them, with the development kits free"
+  ],
+  "a": 3,
+  "e": "CUDA morphed into a platform when NVIDIA let third-party developers write and share programs, using free SDKs (case, p. 4). It stayed proprietary: CUDA software ran only on NVIDIA GPUs."
+ },
+ {
+  "q": "NVIDIA gives CUDA's development kits away, but CUDA code runs only on NVIDIA's chips. In Grant's terms, what is NVIDIA balancing?",
+  "o": [
+   "Patents against secrecy",
+   "Market penetration against appropriating the platform's returns",
+   "Lead time against complementary resources",
+   "First-mover against follower advantages"
+  ],
+  "a": 1,
+  "e": "Grant describes the trade-off between penetrating the market and appropriating the returns to platform ownership: JVC licensed VHS and won, IBM's open PC let Intel and Microsoft take the value (p. 236). Free kits build the bandwagon; the hardware lock captures the value."
+ },
+ {
+  "q": "In which fiscal year did NVIDIA's data-centre revenue first exceed its gaming revenue (case Exhibit 1a)?",
+  "o": [
+   "FY2021",
+   "FY2022",
+   "FY2023",
+   "FY2024"
+  ],
+  "a": 2,
+  "e": "FY2023: data centre $15,005 million against gaming $9,067 million. In FY2022 gaming still led, $12,462 million to $10,613 million. The FY2023 crossover owed as much to gaming's fall as to data-centre growth; the explosion came in FY2024."
+ },
+ {
+  "q": "Why did Intel's CTO say OpenAI's Triton \"essentially breaks the CUDA lock-in\"?",
+  "o": [
+   "Triton code can run on many makers' chips, so leaving NVIDIA costs developers less",
+   "Triton runs faster than CUDA on NVIDIA GPUs",
+   "Intel owns Triton",
+   "Triton replaces GPUs with CPUs for training"
+  ],
+  "a": 0,
+  "e": "Triton lets researchers without CUDA experience write efficient GPU code that runs on NVIDIA and other chips (case, p. 11). It attacks the switching costs that network externalities create (Grant, p. 234), not NVIDIA's hardware."
+ }
+];</script>
+<script>
+(function () {
+  /* ---------------- quiz ---------------- */
+  var QUIZ = window.SQUIZ || [];
+  var qw = document.getElementById("sQuiz");
+  if (qw && QUIZ.length) {
+    var score = 0;
+    document.getElementById("sQuizTotal").textContent = QUIZ.length;
+    function build() {
+      qw.innerHTML = ""; score = 0;
+      document.getElementById("sQuizScore").textContent = "0";
+      QUIZ.forEach(function (item, n) {
+        var d = document.createElement("div");
+        d.className = "card p-5";
+        var opts = item.o.map(function (t, k) {
+          return '<button type="button" class="quiz-option w-full rounded-lg border border-slate-300 px-3 py-2 text-left text-sm text-slate-700" data-k="' + k + '">' +
+            String.fromCharCode(65 + k) + ". " + t + '</button>';
+        }).join("");
+        d.innerHTML = '<p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Question ' + (n + 1) + '</p>' +
+          '<p class="mt-1 text-sm font-semibold text-slate-900">' + item.q + '</p>' +
+          '<div class="mt-3 grid gap-2">' + opts + '</div>' +
+          '<p class="quiz-explanation text-xs text-slate-600 bg-slate-100 p-3 rounded-md border border-slate-200"></p>';
+        var expl = d.querySelector(".quiz-explanation");
+        d.querySelectorAll(".quiz-option").forEach(function (b) {
+          b.addEventListener("click", function () {
+            if (d.dataset.answered) return;
+            d.dataset.answered = "1";
+            var k = parseInt(b.dataset.k, 10);
+            if (k === item.a) { score++; document.getElementById("sQuizScore").textContent = score; }
+            d.querySelectorAll(".quiz-option").forEach(function (x) {
+              x.disabled = true;
+              var xi = parseInt(x.dataset.k, 10);
+              if (xi === item.a) x.classList.add("correct");
+              else if (x === b) x.classList.add("incorrect");
+            });
+            expl.textContent = item.e;
+            expl.classList.add("visible");
+          });
+        });
+        qw.appendChild(d);
+      });
+    }
+    build();
+    var rb = document.getElementById("sQuizReset");
+    if (rb) rb.addEventListener("click", build);
+  }
+})();
+</script>
+
+<style>
+  html.dark [data-workshop]{border-top-color:#a855f7!important}
+  html.dark [data-workshop].border-t-blue-500{border-top-color:#6E72F0!important}
+  html.dark [data-workshop].border-t-teal-500{border-top-color:#2DD4BF!important}
+  html.dark [data-sim]{border-top-color:#f43f5e!important}
+  .ws-body p+p{margin-top:.5rem}
+</style>
+<script>
+/* Shared Session-1 components: tabbed panels, workshops, simulations, reveal buttons.
+   Data comes from window.S_WORKSHOPS and window.S_SIMS (set in a page's scripts.html);
+   markup placeholders live in the body: <div id="ws-x" data-workshop></div>, <div id="sim-x" data-sim></div>. */
+(function () {
+  function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
+
+  /* ---------- tabs: .author-tab[data-author] + .author-panel[data-panel], scoped by [data-tabs] ---------- */
+  var groups = document.querySelectorAll("[data-tabs]");
+  (groups.length ? Array.prototype.slice.call(groups) : [document]).forEach(function (g) {
+    var tabs = g.querySelectorAll(".author-tab"), panels = g.querySelectorAll(".author-panel");
+    if (!tabs.length) return;
+    tabs.forEach(function (t) {
+      t.addEventListener("click", function () {
+        var key = t.getAttribute("data-author");
+        tabs.forEach(function (x) {
+          var on = x === t;
+          x.setAttribute("aria-selected", on ? "true" : "false");
+          x.className = "author-tab -mb-px border-b-2 px-4 py-2.5 text-sm font-semibold " +
+            (on ? "border-blue-600 text-blue-700" : "border-transparent text-slate-500 hover:text-slate-800");
+        });
+        panels.forEach(function (p) { p.classList.toggle("hidden", p.getAttribute("data-panel") !== key); });
+      });
+    });
+  });
+
+  /* ---------- reveal buttons: <button data-reveal="targetId" data-reveal-label="Hide…">Show…</button> ---------- */
+  document.querySelectorAll("[data-reveal]").forEach(function (b) {
+    var target = document.getElementById(b.getAttribute("data-reveal"));
+    if (!target) return;
+    var showLabel = b.textContent, hideLabel = b.getAttribute("data-reveal-label");
+    b.setAttribute("aria-expanded", target.hidden ? "false" : "true");
+    b.addEventListener("click", function () {
+      target.hidden = !target.hidden;
+      b.setAttribute("aria-expanded", target.hidden ? "false" : "true");
+      if (hideLabel) b.textContent = target.hidden ? showLabel : hideLabel;
+    });
+  });
+
+  /* ---------- workshops: one decision, outcome revealed in place ---------- */
+  var WS = window.S_WORKSHOPS || [];
+  WS.forEach(function (w) {
+    var host = document.getElementById(w.id);
+    if (!host) return;
+    host.className = "bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200 border-t-4 " + (w.accent === "blue" ? "border-t-blue-500" : w.accent === "teal" ? "border-t-teal-500" : "border-t-purple-500");
+    if (w.kicker) host.appendChild(el("p", "text-[10px] font-semibold uppercase tracking-wider text-slate-500", w.kicker));
+    host.appendChild(el("h3", "mt-1 text-xl sm:text-2xl font-bold text-slate-800 mb-2", w.title));
+    if (w.setup) host.appendChild(el("div", "text-slate-600 mb-6 text-sm leading-relaxed", w.setup));
+    var grid = el("div", "grid gap-4 " + (w.options.length >= 3 ? "md:grid-cols-3" : "md:grid-cols-2"));
+    var out = el("div", "mt-5 rounded-lg border border-slate-200 bg-slate-50 p-5");
+    out.hidden = true; out.setAttribute("aria-live", "polite");
+    w.options.forEach(function (o) {
+      var b = el("button", "activity-button workshop-button text-left", "<strong>" + o.key + ") " + o.label + ":</strong> " + o.text);
+      b.type = "button"; b.setAttribute("aria-pressed", "false");
+      b.addEventListener("click", function () {
+        grid.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); x.classList.toggle("ring-2", x === b); });
+        out.innerHTML = "";
+        out.appendChild(el("h4", "text-base font-semibold text-slate-900", o.outcome.title));
+        out.appendChild(el("div", "mt-2 text-sm text-slate-700 leading-relaxed ws-body", o.outcome.body));
+        out.hidden = false;
+      });
+      grid.appendChild(b);
+    });
+    host.appendChild(grid);
+    host.appendChild(out);
+    if (w.debrief) { var d = el("p", "mt-4 text-xs text-slate-500 leading-relaxed", w.debrief); host.appendChild(d); }
+  });
+
+  /* ---------- simulations: branching steps with end states ---------- */
+  var SIMS = window.S_SIMS || [];
+  SIMS.forEach(function (s) {
+    var host = document.getElementById(s.id);
+    if (!host) return;
+    host.className = "bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200 border-t-4 border-t-rose-500";
+    if (s.kicker) host.appendChild(el("p", "text-[10px] font-semibold uppercase tracking-wider text-slate-500", s.kicker));
+    host.appendChild(el("h3", "mt-1 text-xl sm:text-2xl font-bold text-slate-800 mb-2", s.title));
+    if (s.setup) host.appendChild(el("div", "text-slate-600 mb-6 text-sm leading-relaxed", s.setup));
+    var box = el("div", "space-y-6");
+    box.setAttribute("aria-live", "polite");
+    host.appendChild(box);
+    var path = [];
+    function step(id) {
+      var st = null;
+      s.steps.forEach(function (x) { if (x.id === id) st = x; });
+      if (!st) return;
+      box.innerHTML = "";
+      if (path.length) {
+        var trail = el("p", "text-xs text-slate-500", "Your path: " + path.map(function (p) { return p; }).join(" &rarr; "));
+        box.appendChild(trail);
+      }
+      if (st.end) {
+        var end = el("div", "p-6 bg-rose-50 rounded-lg border border-rose-200");
+        end.appendChild(el("h4", "text-lg font-semibold text-rose-700 mb-3", st.title));
+        end.appendChild(el("div", "text-sm text-slate-700 leading-relaxed ws-body", st.body));
+        var again = el("button", "mt-4 rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800", "Start again");
+        again.type = "button";
+        again.addEventListener("click", function () { path = []; step(s.start || s.steps[0].id); });
+        end.appendChild(again);
+        box.appendChild(end);
+        return;
+      }
+      var q = el("div", "p-6 bg-slate-100 rounded-lg border border-slate-200");
+      q.appendChild(el("h4", "text-base font-semibold text-slate-800 mb-4", st.q));
+      if (st.context) q.appendChild(el("div", "mb-4 text-sm text-slate-600 leading-relaxed", st.context));
+      var g = el("div", "grid sm:grid-cols-2 gap-4");
+      st.options.forEach(function (o) {
+        var b = el("button", "activity-button simulation-button text-left", o.text);
+        b.type = "button";
+        b.addEventListener("click", function () { path.push(o.short || o.text.replace(/<[^>]+>/g, "").split(":")[0]); step(o.next); });
+        g.appendChild(b);
+      });
+      q.appendChild(g);
+      box.appendChild(q);
+    }
+    step(s.start || s.steps[0].id);
+  });
+})();
+</script>
+
+<script>
+(function () {
+  var SECTIONS = [["recap", "Carried forward"], ["oceans", "Red & blue oceans"], ["canvas", "Canvas & four actions"], ["innovation", "Types of innovation"], ["nvidia", "Graphics to AI"], ["cuda", "CUDA as a platform"], ["rivals", "Rivals & custom chips"], ["redblue", "Blue or red?"], ["decks", "Go deeper"], ["discussion", "Discussion"], ["quiz", "Quiz"], ["readings", "Readings"]];
+  var KEY = "s9-progress-v1";
+  var ACTIVITIES = ["classify", "mix", "canvas", "ocean", "quiz"];
+
+  // ---------- theme ----------
+  var root = document.documentElement;
+  try {
+    // light is the default; dark only when the visitor has asked for it
+    if (localStorage.getItem("s9-theme") === "dark") root.classList.add("dark");
+  } catch (e) {}
+  var themeBtn = document.getElementById("themeBtn");
+  if (themeBtn) {
+    themeBtn.addEventListener("click", function () {
+      root.classList.toggle("dark");
+      try { localStorage.setItem("s9-theme", root.classList.contains("dark") ? "dark" : "light"); } catch (e) {}
+    });
+  }
+
+  // ---------- reading progress ----------
+  var bar = document.getElementById("readbar");
+  var pctEl = document.getElementById("progPct");
+  function onScroll() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? Math.min(100, Math.max(0, (h.scrollTop / max) * 100)) : 0;
+    if (bar) { bar.style.width = p + "%"; bar.setAttribute("aria-valuenow", Math.round(p)); }
+    if (pctEl) pctEl.textContent = Math.round(p);
+  }
+  var ticking = false;
+  window.addEventListener("scroll", function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () { onScroll(); ticking = false; });
+  }, { passive: true });
+  onScroll();
+
+  // ---------- rail + drawer nav ----------
+  var rail = document.getElementById("rail");
+  var dnav = document.getElementById("drawerNav");
+  SECTIONS.forEach(function (s) {
+    if (!document.getElementById(s[0])) return;
+    if (rail) {
+      var a = document.createElement("a");
+      a.href = "#" + s[0];
+      a.dataset.sec = s[0];
+      a.innerHTML = '<span class="dot"></span><span class="lbl">' + s[1] + "</span>";
+      rail.appendChild(a);
+    }
+    if (dnav) {
+      var d = document.createElement("a");
+      d.href = "#" + s[0];
+      d.className = "rounded-lg px-3 py-2.5 text-sm text-slate-700 hover:bg-slate-100";
+      d.textContent = s[1];
+      d.addEventListener("click", closeDrawer);
+      dnav.appendChild(d);
+    }
+  });
+
+  var drawer = document.getElementById("drawer");
+  var drawerBtn = document.getElementById("drawerBtn");
+  function openDrawer() {
+    if (!drawer) return;
+    drawer.classList.remove("hidden");
+    if (drawerBtn) drawerBtn.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  }
+  function closeDrawer() {
+    if (!drawer) return;
+    drawer.classList.add("hidden");
+    if (drawerBtn) drawerBtn.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
+  if (drawerBtn) drawerBtn.addEventListener("click", openDrawer);
+  var dc = document.getElementById("drawerClose");
+  var ds = document.getElementById("drawerScrim");
+  if (dc) dc.addEventListener("click", closeDrawer);
+  if (ds) ds.addEventListener("click", closeDrawer);
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeDrawer(); });
+
+  // ---------- scrollspy for the rail ----------
+  var spy = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting || !rail) return;
+      rail.querySelectorAll("a").forEach(function (a) {
+        a.classList.toggle("on", a.dataset.sec === en.target.id);
+      });
+    });
+  }, { rootMargin: "-45% 0px -50% 0px" });
+  SECTIONS.forEach(function (s) {
+    var el = document.getElementById(s[0]);
+    if (el) spy.observe(el);
+  });
+
+  // ---------- scroll reveal ----------
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduce) {
+    var targets = document.querySelectorAll("section > .container > *");
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.06, rootMargin: "0px 0px -8% 0px" });
+    targets.forEach(function (t, i) {
+      // never hide anything already on screen at load
+      if (t.getBoundingClientRect().top < window.innerHeight) return;
+      t.classList.add("rv");
+      io.observe(t);
+    });
+  }
+
+  // ---------- completion tracking ----------
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { state = {}; }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  function count() { return ACTIVITIES.filter(function (k) { return state[k]; }).length; }
+  function paint() {
+    var n = count(), total = ACTIVITIES.length;
+    var a = document.getElementById("doneCount"); if (a) a.textContent = n;
+    var b = document.getElementById("drawerDone"); if (b) b.textContent = n;
+    var c = document.getElementById("drawerBar"); if (c) c.style.width = (100 * n / total) + "%";
+    ACTIVITIES.forEach(function (k) {
+      var badge = document.querySelector('[data-done-for="' + k + '"]');
+      if (badge) badge.hidden = !state[k];
+    });
+  }
+  function mark(k) { if (!state[k]) { state[k] = true; save(); paint(); } }
+  paint();
+
+  // wire completion to the real interactions already on the page
+  function onClickWithin(sel, key) {
+    var el = document.querySelector(sel);
+    if (el) el.addEventListener("click", function () { mark(key); });
+  }
+  onClickWithin("#classBox", "classify");
+  onClickWithin("#mixBox", "mix");
+  onClickWithin("#canvasBox", "canvas");
+  onClickWithin("#oceanBox", "ocean");
+  onClickWithin("#sQuiz", "quiz");
+
+  // reset control, appended to the readings section if present
+  var readings = document.getElementById("readings");
+  if (readings) {
+    var wrap = readings.querySelector(".container") || readings.querySelector(".max-w-6xl") || readings;
+    if (wrap) {
+      var p = document.createElement("div");
+      p.className = "mt-8 flex flex-wrap items-center gap-3 border-t border-slate-200 pt-6 text-sm";
+      p.innerHTML = '<span class="text-slate-500">Your progress on this page is saved in this browser only.</span>' +
+        '<button type="button" id="resetProg" class="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-100">Reset my progress</button>';
+      wrap.appendChild(p);
+      var rp = document.getElementById("resetProg");
+      if (rp) rp.addEventListener("click", function () {
+        state = {}; save(); paint();
+        rp.textContent = "Reset";
+        setTimeout(function () { rp.textContent = "Reset my progress"; }, 1400);
+      });
+    }
+  }
+})();
+
+</script>
+
+<script>
+/* keep the Chart.js canvases legible in both themes */
+(function(){
+  function chartTheme(){
+    if(!window.Chart||!Chart.getChart) return;
+    var dark=document.documentElement.classList.contains("dark");
+    var tick=dark?"#94A3B8":"#475569";
+    var grid=dark?"rgba(226,232,240,.12)":"rgba(15,23,42,.08)";
+    Chart.defaults.color=tick;
+    document.querySelectorAll("canvas").forEach(function(c){
+      var ch=Chart.getChart(c); if(!ch||!ch.config) return;
+      // Chart.js v4 rebuilds chart.options on update(), so mutate the config
+      var o=ch.config.options=ch.config.options||{};
+      var sc=o.scales=o.scales||{};
+      Object.keys(sc).forEach(function(k){
+        if(!sc[k]) return;
+        sc[k].ticks=sc[k].ticks||{}; sc[k].ticks.color=tick;
+        if(sc[k].grid&&sc[k].grid.display===false) return;
+        sc[k].grid=sc[k].grid||{}; sc[k].grid.color=grid;
+      });
+      var pl=o.plugins=o.plugins||{};
+      if(pl.legend){ pl.legend.labels=pl.legend.labels||{}; pl.legend.labels.color=tick; }
+      ch.update("none");
+    });
+  }
+  var btn=document.getElementById("themeBtn");
+  if(btn) btn.addEventListener("click",function(){ setTimeout(chartTheme,60); });
+
+  var n=0, iv=setInterval(function(){ chartTheme(); if(++n>20) clearInterval(iv); },400);
+})();
+</script>
+</body>
+</html>

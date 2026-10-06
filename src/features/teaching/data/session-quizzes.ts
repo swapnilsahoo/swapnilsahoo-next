@@ -37,6 +37,8 @@ export interface SessionQuiz {
   sessionId: string;
   course: "1-year-mba" | "2-year-mba";
   sessionNumber: number;
+  /** Overrides "Session N" where a bank serves several sessions of the current outline. */
+  sessionLabel?: string;
   title: string;
   questionCount: number;
   questions: QuizQuestion[];
@@ -46,9 +48,19 @@ export interface QuizManifestEntry {
   sessionId: string;
   course: "1-year-mba" | "2-year-mba";
   sessionNumber: number;
+  sessionLabel?: string;
   title: string;
   questionCount: number;
   withExplanations: number;
+}
+
+/** "Session 03" (padded) or "Session 3", unless the bank names its sessions itself. */
+export function sessionLabel(
+  entry: Pick<QuizManifestEntry, "sessionNumber" | "sessionLabel">,
+  padded = false,
+): string {
+  if (entry.sessionLabel) return entry.sessionLabel;
+  return `Session ${padded ? String(entry.sessionNumber).padStart(2, "0") : entry.sessionNumber}`;
 }
 
 const QUIZ_DIR = path.join(process.cwd(), "content", "quizzes");

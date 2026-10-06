@@ -1,0 +1,2261 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 11: Vertical Integration | STRAMGT 221 — Dr. Swapnil Sahoo</title>
+    <meta name="description" content="How many stages of an industry's value chain a firm should own: make, buy or ally, backward and forward integration, benefits and risks, taper integration and strategic outsourcing, and Osegowitsch and Madhok's learning argument, applied to Amazon's delivery, devices, cloud and content moves in the Amazon in 2024 case.">
+    <link rel="canonical" href="https://www.swapnilsahoo.com/teaching/1-year-mba/session11.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Session 11: Vertical Integration">
+    <meta property="og:description" content="How many stages of an industry's value chain a firm should own: make, buy or ally, backward and forward integration, benefits and risks, taper integration and strategic outsourcing, and Osegowitsch and Madhok's learning argument, applied to Amazon's delivery, devices, cloud and content moves in the Amazon in 2024 case.">
+    <meta property="og:url" content="https://www.swapnilsahoo.com/teaching/1-year-mba/session11.html">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter','ui-sans-serif','system-ui','sans-serif'],
+              display: ['Fraunces','ui-serif','Georgia','serif']
+            },
+            colors: {
+              slate: {
+                50:'#F8FAFC',100:'#F1F5F9',200:'#E2E8F0',300:'#CBD5E1',
+                400:'#94A3B8',500:'#64748B',600:'#475569',700:'#334155',
+                800:'#1E293B',900:'#0F172A',950:'#020617'
+              },
+              gray: {
+                50:'#F8FAFC',100:'#F1F5F9',200:'#E2E8F0',300:'#CBD5E1',
+                400:'#94A3B8',500:'#64748B',600:'#475569',700:'#334155',
+                800:'#1E293B',900:'#0F172A'
+              },
+              blue: {
+                50:'#EEF1FF',100:'#E0E5FF',200:'#C6CEFE',300:'#A3AEFB',
+                400:'#818CF8',500:'#6366F1',600:'#4F46E5',700:'#4338CA',
+                800:'#372FA8',900:'#2E2A82',950:'#1B1850'
+              }
+            },
+            boxShadow: {
+              lift: '0 1px 2px rgba(15,23,42,.04), 0 8px 24px -12px rgba(15,23,42,.18)',
+              liftmd: '0 2px 4px rgba(15,23,42,.05), 0 18px 40px -18px rgba(15,23,42,.28)'
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root{
+          --sticky-offset:100px;
+          --paper:#FFFFFF; --ink:#0F172A; --muted:#475569; --line:#E2E8F0;
+          --card:#FFFFFF; --accent:#4F46E5; --accent-soft:#EEF2FF;
+        }
+        html.dark{
+          --paper:#0B1120; --ink:#E2E8F0; --muted:#94A3B8; --line:#1E293B;
+          --card:#111A2E; --accent:#818CF8; --accent-soft:#1E1B4B;
+        }
+        html{scroll-padding-top:120px}
+        body{
+          font-family:'Inter',sans-serif;
+          background:var(--paper); color:var(--ink);
+          -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+        }
+        h1,h2,h3,.display{font-family:'Fraunces',ui-serif,Georgia,serif; letter-spacing:-.02em}
+        h1{font-optical-sizing:auto}
+
+        /* ---- dark-mode repaint of the utility classes already in the markup ---- */
+        html.dark .bg-white{background:var(--card)!important}
+        html.dark .bg-slate-50,html.dark .bg-slate-100,html.dark .bg-gray-50{background:#0F172A!important}
+        html.dark .border-slate-200,html.dark .border-slate-300,html.dark .border-gray-200{border-color:var(--line)!important}
+        html.dark .text-slate-900,html.dark .text-gray-900,html.dark .text-slate-800{color:var(--ink)!important}
+        html.dark .text-slate-600,html.dark .text-slate-700,html.dark .text-gray-600,html.dark .text-gray-700{color:#CBD5E1!important}
+        html.dark .text-slate-500,html.dark .text-slate-400{color:var(--muted)!important}
+        html.dark .divide-slate-100>*+*{border-color:var(--line)!important}
+        html.dark table thead{background:#162032!important}
+
+
+        /* ---- dark: translucent + tinted surfaces ---- */
+        html.dark .bg-white\/85,html.dark .bg-white\/80,html.dark .bg-white\/90{background:rgba(11,17,32,.90)!important}
+        html.dark .bg-blue-50,html.dark .bg-indigo-50{background:#171C3C!important}
+        html.dark .bg-blue-100,html.dark .bg-indigo-100{background:#1F2552!important}
+        html.dark .bg-blue-200{background:#272E60!important}
+        html.dark .bg-amber-50{background:#2A2110!important}
+        html.dark .bg-amber-100{background:#382C14!important}
+        html.dark .bg-rose-50{background:#2C1418!important}
+        html.dark .bg-rose-100,html.dark .bg-red-100{background:#3A181E!important}
+        html.dark .bg-emerald-50{background:#0F261A!important}
+        html.dark .bg-emerald-100{background:#143324!important}
+        html.dark .bg-teal-50{background:#0E2624!important}
+        html.dark .bg-teal-100{background:#12302E!important}
+        html.dark .bg-teal-200{background:#173B38!important}
+        html.dark .bg-cyan-100{background:#102A33!important}
+        html.dark .bg-slate-200{background:#1E293B!important}
+
+        /* dark surfaces: keep bars/cards as raised panels, turn actions into the accent */
+        html.dark div.bg-slate-900,html.dark footer.bg-gray-800{background:#111A2E!important}
+        html.dark a.bg-slate-900,html.dark button.bg-slate-900,html.dark span.bg-slate-900{background:#4F46E5!important;color:#fff!important}
+        html.dark a.bg-slate-900:hover,html.dark button.bg-slate-900:hover{background:#6366F1!important}
+        html.dark .border-gray-700{border-color:var(--line)!important}
+        html.dark .text-slate-100,html.dark .text-slate-200,html.dark .text-slate-300{color:#E2E8F0!important}
+
+        /* dark: tinted text has to lighten to stay legible */
+        html.dark .text-blue-600,html.dark .text-blue-700,html.dark .text-blue-800{color:#A3AEFB!important}
+        html.dark .text-rose-600,html.dark .text-rose-700,html.dark .text-red-600,html.dark .text-red-700{color:#FCA5A5!important}
+        html.dark .text-emerald-600,html.dark .text-emerald-700,html.dark .text-emerald-800{color:#6EE7A8!important}
+        html.dark .text-amber-600,html.dark .text-amber-700,html.dark .text-amber-800{color:#FCD34D!important}
+        html.dark .text-teal-600,html.dark .text-teal-700,html.dark .text-teal-800{color:#5EEAD4!important}
+
+        /* dark: tinted borders */
+        html.dark .border-blue-200,html.dark .border-blue-300,html.dark .border-blue-400{border-color:#2F3670!important}
+        html.dark .border-amber-200,html.dark .border-amber-500{border-color:#4A3A1A!important}
+        html.dark .border-rose-200,html.dark .border-rose-400{border-color:#4A2028!important}
+        html.dark .border-teal-200,html.dark .border-teal-300{border-color:#1C4B47!important}
+
+
+        /* dark: remaining tinted text families + form controls */
+        html.dark .text-blue-900,html.dark .text-indigo-600,html.dark .text-indigo-700,
+        html.dark .text-indigo-800,html.dark .text-purple-800{color:#B4BCFC!important}
+        html.dark .text-red-800,html.dark .text-rose-800{color:#FCA5A5!important}
+        html.dark .text-emerald-900{color:#6EE7A8!important}
+        html.dark .text-amber-900,html.dark .text-orange-600{color:#FBBF24!important}
+        html.dark .text-cyan-700,html.dark .text-cyan-800,html.dark .text-sky-700{color:#67E8F9!important}
+        html.dark input,html.dark textarea,html.dark select{
+          background:#111A2E!important;color:var(--ink)!important;border-color:var(--line)!important}
+        html.dark input::placeholder,html.dark textarea::placeholder{color:#64748B!important}
+
+
+        /* light: lift the few tinted headings that sat under 4.5:1 */
+        html:not(.dark) .text-amber-600{color:#B45309}
+        html:not(.dark) .text-orange-600{color:#C2410C}
+        html:not(.dark) .text-teal-600{color:#0F766E}
+
+
+        /* dark: hover states must not flash a light surface */
+        html.dark .hover\:bg-slate-50:hover,html.dark .hover\:bg-slate-100:hover{background:#1E293B!important}
+        html.dark .hover\:bg-blue-200:hover{background:#2B3268!important}
+        html.dark .hover\:bg-teal-200:hover{background:#17403C!important}
+        html.dark .hover\:bg-rose-100:hover{background:#421C23!important}
+
+        /* ---- reading progress ---- */
+        #readbar{position:fixed;top:0;left:0;height:3px;width:0;z-index:70;
+          background:linear-gradient(90deg,#4F46E5,#818CF8);transition:width .12s linear}
+
+        /* ---- section rail (desktop) ---- */
+        #rail{position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:40;display:none}
+        @media (min-width:1380px){#rail{display:block}}
+        #rail a{position:relative;display:flex;align-items:center;padding:4px 10px 4px 0;color:var(--muted);
+          font-size:11px;text-decoration:none;opacity:.55;transition:opacity .2s}
+        #rail a:hover,#rail a.on{opacity:1;color:var(--accent)}
+        #rail .dot{width:7px;height:7px;border-radius:99px;background:currentColor;flex:none;transition:transform .2s}
+        #rail a.on .dot{transform:scale(1.6)}
+        #rail .lbl{position:absolute;left:18px;top:50%;transform:translate(-4px,-50%);opacity:0;
+          pointer-events:none;white-space:nowrap;transition:opacity .2s,transform .2s;
+          background:var(--card);border:1px solid var(--line);border-radius:6px;padding:1px 7px;
+          box-shadow:0 4px 14px -8px rgba(15,23,42,.35)}
+        #rail a:hover .lbl,#rail a:focus-visible .lbl{opacity:1;transform:translate(0,-50%)}
+        /* the active section keeps its label only where the gutter is wide enough to hold it */
+        @media (min-width:1760px){#rail a.on .lbl{opacity:1;transform:translate(0,-50%)}}
+
+        /* ---- nav ---- */
+        .nav-link{transition:color .18s,border-color .18s;border-bottom:2px solid transparent;
+          padding-bottom:4px;color:var(--muted)}
+        .nav-link:hover,.active-nav{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+
+        /* ---- cards get real depth ---- */
+        .rounded-xl,.rounded-2xl{transition:box-shadow .22s ease,transform .22s ease,border-color .22s}
+        section .bg-white.rounded-2xl,section .bg-white.rounded-xl{box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -14px rgba(15,23,42,.16)}
+        section .bg-white.rounded-2xl:hover,section .bg-white.rounded-xl:hover{
+          box-shadow:0 2px 6px rgba(15,23,42,.06),0 20px 44px -20px rgba(15,23,42,.26);transform:translateY(-2px)}
+
+        /* ---- scroll reveal ---- */
+        .rv{opacity:0;transform:translateY(14px)}
+        .rv.in{opacity:1;transform:none;transition:opacity .55s cubic-bezier(.2,.7,.3,1),transform .55s cubic-bezier(.2,.7,.3,1)}
+
+        /* ---- completion ---- */
+        .done-badge{display:inline-flex;align-items:center;gap:5px;border-radius:99px;
+          background:#DCFCE7;color:#166534;padding:2px 9px;font-size:10px;font-weight:700;
+          text-transform:uppercase;letter-spacing:.06em}
+        html.dark .done-badge{background:#14321F;color:#6EE7A8}
+
+        /* ---- focus, motion, print ---- */
+        a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,[tabindex]:focus-visible{
+          outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+        @media (prefers-reduced-motion:reduce){
+          *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+          .rv{opacity:1;transform:none}
+          html{scroll-behavior:auto}
+        }
+        @media print{#readbar,#rail,#top-bar,#main-header,#drawer,#drawerBtn{display:none!important}}
+
+
+        /* ---- one shell width for every section (no stranded gutters) ---- */
+        body .container,
+        body section.max-w-6xl,
+        body div.max-w-6xl{
+          width:100%;
+          max-width:88rem!important;
+          margin-left:auto;margin-right:auto;
+          padding-left:clamp(1.25rem,3.5vw,2.75rem);
+          padding-right:clamp(1.25rem,3.5vw,2.75rem);
+        }
+        @media (min-width:1700px){
+          body .container,body section.max-w-6xl,body div.max-w-6xl{max-width:96rem!important}
+        }
+
+
+        /* ============ restored component styles (were defined in the original head) ============ */
+        [hidden]{display:none!important}
+        section[id]{scroll-margin-top:var(--sticky-offset)}
+        @media (min-width:768px){.chart-container{height:350px;max-height:400px}}
+
+        .analysis-content{max-height:0;overflow:hidden;opacity:0;margin-top:0;
+          padding-top:0!important;padding-bottom:0!important;border-top-width:0!important;border-bottom-width:0!important;
+          transition:max-height .5s ease-out,opacity .3s ease-out,margin-top .5s ease-out,padding .5s ease-out}
+        .analysis-content.visible{max-height:500px;opacity:1;margin-top:1rem;
+          padding-top:1rem!important;padding-bottom:1rem!important;border-top-width:1px!important;border-bottom-width:1px!important}
+        .analysis-button{transition:background-color .2s ease}
+
+        .quiz-option{cursor:pointer;transition:all .2s ease-in-out}
+        .quiz-option.correct{background-color:#dcfce7!important;border-color:#22c55e!important;color:#15803d!important;font-weight:500}
+        .quiz-option.incorrect{background-color:#fee2e2!important;border-color:#ef4444!important;color:#b91c1c!important;font-weight:500}
+        .quiz-option:disabled{opacity:.8;cursor:default}
+        .quiz-explanation{max-height:0;overflow:hidden;margin-top:0;opacity:0;
+          transition:max-height .5s ease-in-out,margin-top .5s ease-in-out,opacity .5s ease-in-out}
+        .quiz-explanation.visible{opacity:1;margin-top:1rem;max-height:500px}
+
+        .top-bar-link svg,.footer-link svg{width:1.125rem;height:1.125rem;fill:currentColor;transition:color .2s ease-in-out}
+        .hexagon-icon{position:relative;width:28px;height:28px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.3));display:inline-block;vertical-align:middle}
+        .hexagon-icon svg{width:100%;height:100%;animation:glow 2.5s infinite ease-in-out}
+        .hexagon-path{stroke:#B91C1C;stroke-width:1}
+        .hexagon-s{font-family:Georgia,serif;font-weight:bold;font-size:48px;fill:#facc15;text-anchor:middle;dominant-baseline:central}
+        @keyframes glow{0%,100%{filter:drop-shadow(0 0 4px rgba(239,68,68,.7))}50%{filter:drop-shadow(0 0 10px rgba(239,68,68,1))}}
+        #main-header.sticky-nav{position:sticky;z-index:40}
+        #top-bar.sticky-top{position:sticky;top:0;z-index:50}
+        #modal{background-color:rgba(0,0,0,.7)}
+        #modal-content{max-height:calc(100vh - 4rem)}
+
+        .concept-card{background:#fff;border-radius:.75rem;padding:1.5rem;margin-bottom:1.5rem;border-left:4px solid;
+          box-shadow:0 4px 6px -1px rgba(0,0,0,.05),0 2px 4px -2px rgba(0,0,0,.05);
+          transition:transform .3s ease,box-shadow .3s ease;display:flex;flex-direction:column;height:100%}
+        .concept-card:hover{transform:translateY(-4px);box-shadow:0 10px 15px -3px rgba(0,0,0,.07),0 4px 6px -4px rgba(0,0,0,.07)}
+        .concept-card h4{font-size:1.125rem;font-weight:600;margin-bottom:.75rem}
+        .concept-card p.definition{font-style:italic;color:#6b7280;margin-bottom:1rem;font-size:.875rem;flex-grow:1}
+        .concept-card .example{margin-top:1rem;padding-top:1rem;border-top:1px solid #e5e7eb}
+        .concept-card .example:first-of-type{margin-top:0;padding-top:0;border-top:none}
+        .concept-card .example h5{font-weight:600;color:#374151;margin-bottom:.5rem;font-size:.875rem}
+        .concept-card .example p{font-size:.875rem;color:#4b5563;margin-bottom:.25rem;line-height:1.5}
+        .concept-card .example strong{color:#1f2937}
+        .border-needs{border-left-color:#f43f5e}.border-variety{border-left-color:#0ea5e9}.border-access{border-left-color:#10b981}
+        .border-fit1{border-left-color:#fbbf24}.border-fit2{border-left-color:#f97316}.border-fit3{border-left-color:#ef4444}
+
+        .prose-custom p,.prose-custom ul,.prose-custom li{font-size:.875rem;line-height:1.6;color:#374151}
+        .prose-custom p{margin-bottom:1em}
+        .prose-custom ul{margin-top:.5em;margin-bottom:1em;padding-left:1.25em;list-style-type:disc}
+        .prose-custom li{margin-bottom:.25em}
+        .prose-custom strong{font-weight:600;color:#111827}
+
+        .comparison-table th,.comparison-table td{padding:.75rem 1rem;vertical-align:top;font-size:.75rem}
+        .comparison-table thead th{background-color:#f3f4f6;border-bottom:2px solid #e5e7eb}
+        .comparison-table tbody tr:nth-child(even){background-color:#f9fafb}
+        .comparison-table tbody tr:hover{background-color:#eff6ff}
+        .comparison-table th[scope="row"]{white-space:nowrap}
+
+        .activity-button{padding:.75rem 1rem;border-radius:.5rem;text-align:left;transition:all .2s ease-in-out;
+          font-size:.875rem;border-width:1px;display:block;width:100%;height:100%}
+        .activity-button strong{display:block;margin-bottom:.25rem;font-weight:600}
+        .activity-button:focus{outline:none;box-shadow:0 0 0 2px var(--tw-ring-color)}
+        .activity-button:focus-visible{box-shadow:0 0 0 2px var(--tw-ring-color)}
+        .workshop-button{background:#f3e8ff;border-color:#e9d5ff;--tw-ring-color:#c084fc;color:#581c87}
+        .workshop-button:hover{background:#e9d5ff;border-color:#d8b4fe}
+        .workshop-button strong{color:#7e22ce}.workshop-button:hover strong{color:#6b21a8}
+        .news-button{background:#dbeafe;border-color:#bfdbfe;--tw-ring-color:#60a5fa;color:#1e40af}
+        .news-button:hover{background:#bfdbfe;border-color:#93c5fd}
+        .news-button strong{color:#1d4ed8}.news-button:hover strong{color:#1e3a8a}
+        .tradeoff-button{background:#fef3c7;border-color:#fde68a;--tw-ring-color:#fbbf24;color:#78350f}
+        .tradeoff-button:hover{background:#fde68a;border-color:#fcd34d}
+        .tradeoff-button strong{color:#b45309}.tradeoff-button:hover strong{color:#92400e}
+        .simulation-button{background:#ffe4e6;border-color:#fecdd3;--tw-ring-color:#fb7185;color:#881337}
+        .simulation-button:hover{background:#fecdd3;border-color:#fda4af}
+        .simulation-button strong{color:#be123c}.simulation-button:hover strong{color:#9f1239}
+
+        .card{background:#fff;border:1px solid #e2e8f0;border-radius:14px}
+        .pill{display:inline-flex;align-items:center;gap:.4rem;border-radius:9999px;padding:.2rem .7rem;
+          font-size:.7rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+        .opt:disabled{cursor:default}
+        .ref{padding-left:1.6rem;text-indent:-1.6rem}
+        @media print{.no-print{display:none!important}}
+
+        /* ---- dark variants for the restored components ---- */
+        html.dark .card,html.dark .concept-card{background:var(--card)!important;border-color:var(--line)!important}
+        html.dark .concept-card p.definition{color:#94A3B8}
+        html.dark .concept-card .example{border-top-color:var(--line)}
+        html.dark .concept-card .example h5,html.dark .concept-card .example strong{color:#E2E8F0}
+        html.dark .concept-card .example p{color:#CBD5E1}
+        html.dark .prose-custom p,html.dark .prose-custom ul,html.dark .prose-custom li{color:#CBD5E1}
+        html.dark .prose-custom strong{color:var(--ink)}
+        html.dark .comparison-table thead th{background:#162032;border-bottom-color:var(--line)}
+        html.dark .comparison-table tbody tr:nth-child(even){background:#0F172A}
+        html.dark .comparison-table tbody tr:hover{background:#1E2749}
+        html.dark .quiz-option.correct{background-color:#14321F!important;border-color:#2F7D52!important;color:#6EE7A8!important}
+        html.dark .quiz-option.incorrect{background-color:#3A181E!important;border-color:#9B3540!important;color:#FCA5A5!important}
+        html.dark .workshop-button{background:#2A1B3D;border-color:#3D2A55;color:#DCC7F5}
+        html.dark .workshop-button:hover{background:#3D2A55}
+        html.dark .workshop-button strong{color:#C9A7F0}
+        html.dark .news-button{background:#1A2244;border-color:#2B3668;color:#BCC7FA}
+        html.dark .news-button:hover{background:#2B3668}
+        html.dark .news-button strong{color:#A3AEFB}
+        html.dark .tradeoff-button{background:#312512;border-color:#4A3A1A;color:#F3D9A4}
+        html.dark .tradeoff-button:hover{background:#4A3A1A}
+        html.dark .tradeoff-button strong{color:#FBBF24}
+        html.dark .simulation-button{background:#331419;border-color:#4A2028;color:#F6BEC5}
+        html.dark .simulation-button:hover{background:#4A2028}
+        html.dark .simulation-button strong{color:#FCA5A5}
+
+        .chart-container{position:relative;width:100%;max-width:600px;margin-inline:auto;height:300px;max-height:350px}
+        .tabular-nums{font-variant-numeric:tabular-nums}
+    </style>
+    <script>
+      /* theme, resolved before first paint: light unless this visitor chose dark */
+      (function () {
+        try {
+          if (localStorage.getItem("s11-theme") === "dark") {
+            document.documentElement.classList.add("dark");
+          }
+        } catch (e) {}
+      })();
+    </script>
+</head>
+
+<body class="text-slate-700">
+
+<div id="readbar" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+<nav id="rail" aria-label="Section navigation"></nav>
+
+<!-- Top Bar -->
+<div id="top-bar" class="bg-slate-900 text-slate-300 hidden sm:block">
+  <div class="container mx-auto px-6 flex justify-between items-center h-11 text-xs">
+    <div class="flex items-center gap-3 min-w-0">
+      <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="group shrink-0" title="swapnilsahoo.com">
+        <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
+          <svg viewBox="0 0 52 60" aria-label="Swapnil Sahoo" role="img">
+            <defs><linearGradient id="topRedGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
+            <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#topRedGradient)"/><text class="hexagon-s" x="26" y="32">S</text>
+          </svg>
+        </div>
+      </a>
+      <p class="truncate font-medium text-slate-400">&copy; Dr. Swapnil Sahoo 2026 &middot; Great Lakes Institute of Management, Gurgaon</p>
+    </div>
+    <div class="flex items-center gap-4 shrink-0">
+      <a href="https://www.swapnilsahoo.com/teaching/1-year-mba" class="hidden md:inline text-slate-400 hover:text-white transition">STRAMGT 221</a>
+      <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="X/Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.575 2h.093zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" clip-rule="evenodd"/></svg></a>
+      <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- Main Navigation -->
+<nav id="main-header" class="sticky top-0 z-50 border-b border-slate-200 bg-white/85 backdrop-blur-md">
+  <div class="container mx-auto px-6">
+    <div class="flex h-16 items-center justify-between gap-4">
+
+      <div class="flex items-center gap-3 min-w-0">
+        <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-slate-900 text-white font-display text-sm font-semibold">11</span>
+        <div class="min-w-0">
+          <p class="truncate font-display text-base font-semibold leading-tight text-slate-900">Vertical Integration</p>
+          <p class="hidden truncate text-[11px] text-slate-500 sm:block">90 minutes · <span id="progPct">0</span>% read · <span id="doneCount">0</span>/3 activities done</p>
+        </div>
+      </div>
+
+      <div class="hidden xl:flex items-center gap-5 text-sm">
+        <a href="#chain" class="nav-link">Value chain</a>
+        <a href="#tradeoffs" class="nav-link">Benefits & risks</a>
+        <a href="#alternatives" class="nav-link">Alternatives</a>
+        <a href="#amazon" class="nav-link">Amazon</a>
+        <a href="#discussion" class="nav-link">Discussion</a>
+        <a href="#quiz" class="nav-link">Quiz</a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button id="themeBtn" type="button" aria-label="Toggle dark mode"
+          class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 transition">
+          <svg class="h-4 w-4 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="hidden h-4 w-4 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <button id="drawerBtn" type="button" aria-label="Open section menu" aria-expanded="false"
+          class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 transition xl:hidden">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <select id="mobile-nav" class="sr-only" tabindex="-1" aria-hidden="true">
+          <option value="#top">Top</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Slide-out drawer -->
+<div id="drawer" class="fixed inset-0 z-[60] hidden">
+  <div id="drawerScrim" class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"></div>
+  <aside class="absolute right-0 top-0 h-full w-[min(88vw,20rem)] overflow-y-auto bg-white p-5 shadow-2xl">
+    <div class="flex items-center justify-between">
+      <p class="font-display text-lg font-semibold text-slate-900">Session 11</p>
+      <button id="drawerClose" type="button" aria-label="Close menu"
+        class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="mt-3 rounded-xl bg-slate-50 p-3">
+      <div class="flex items-center justify-between text-xs text-slate-500">
+        <span>Progress</span><span><span id="drawerDone">0</span>/3 activities</span>
+      </div>
+      <div class="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-200">
+        <div id="drawerBar" class="h-full rounded-full bg-blue-600 transition-all" style="width:0%"></div>
+      </div>
+    </div>
+    <nav id="drawerNav" class="mt-4 grid gap-0.5" aria-label="Sections"></nav>
+  </aside>
+</div>
+
+<section id="top" class="bg-white border-b border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-10 md:py-12 grid gap-8 md:grid-cols-[1.25fr_.75fr] md:items-center">
+    <div>
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span class="pill bg-blue-50 text-blue-700">Session 11</span>
+        <span class="pill bg-slate-100 text-slate-600">1.5 hours</span>
+        <span class="pill bg-slate-100 text-slate-600">Corporate strategy</span>
+      </div>
+      <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-slate-900">Vertical Integration</h1>
+      <p class="mt-2 font-display text-lg md:text-xl italic text-blue-700">How many stages of the chain to own, and what owning them buys</p>
+      <p class="mt-3 text-slate-600 md:text-lg leading-relaxed max-w-2xl">
+        Session 10 asked where a firm&rsquo;s boundaries should sit. This session takes one of the three dimensions of
+        corporate strategy, the industry value chain, and asks how many of its stages a firm should own. Vertical
+        integration is ownership of the inputs a firm needs or of the channels that carry its output to customers
+        (Rothaermel, 2024, p.&nbsp;311). It can lower costs, raise quality and secure channels. It can also raise costs,
+        lower quality and lock the firm in (pp.&nbsp;315&ndash;316).
+      </p>
+      <p class="mt-3 text-slate-600 leading-relaxed max-w-2xl">
+        Amazon began in 1995 by selling books online. By 2024 it produced films, sold reading devices and voice
+        assistants, designed AI chips, promised two-hour delivery in some cities, ran grocery stores and rented computing
+        to other companies (case, pp.&nbsp;1&ndash;3). Some of those moves are vertical and some are not. Today you sort them,
+        weigh them, and test Osegowitsch and Madhok&rsquo;s (2003) claim that firms now integrate forward mainly to learn from
+        their customers.
+      </p>
+      <div class="mt-6 flex flex-wrap gap-3 text-sm">
+        <a href="#recap" class="rounded-lg bg-slate-900 px-4 py-2.5 font-semibold text-white hover:bg-slate-800">Start with the recap</a>
+        <a href="#readings" class="rounded-lg border border-slate-300 px-4 py-2.5 font-semibold text-slate-700 hover:bg-slate-50">Readings &amp; preparation</a>
+      </div>
+    </div>
+    <div class="card p-5">
+      <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">What this session answers</p>
+      <ol class="mt-3 space-y-3">
+        <li class="flex gap-3"><span class="font-mono text-xs text-blue-600 pt-0.5">01</span><span class="text-sm font-semibold text-slate-800">When does owning the next stage of an industry&rsquo;s value chain beat buying from it or allying with it?</span></li>
+        <li class="flex gap-3"><span class="font-mono text-xs text-blue-600 pt-0.5">02</span><span class="text-sm font-semibold text-slate-800">What does integration buy, what does it cost, and what lies between full ownership and the open market?</span></li>
+        <li class="flex gap-3"><span class="font-mono text-xs text-blue-600 pt-0.5">03</span><span class="text-sm font-semibold text-slate-800">Which of Amazon&rsquo;s moves are vertical at all, and which of them created value rather than destroyed it?</span></li>
+      </ol>
+      <p class="mt-4 pt-4 border-t border-slate-200 text-xs text-slate-500 leading-relaxed">
+        Facts from the Gupta and Rodriguez case (revised July 2024) are marked
+        <span class="pill bg-teal-50 text-teal-800">Case</span>; where this page reads them through a framework, the card is
+        marked <span class="pill bg-amber-50 text-amber-800">Analysis</span>. Where the case is silent, the page says so and
+        asks the question instead. Textbook pages refer to Rothaermel, 6th edition;
+        Osegowitsch and Madhok pages to the <em>Business Horizons</em> print (pp.&nbsp;25&ndash;34).
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="recap" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Carried forward &middot; Session 10</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">From the boundary of the firm to the stages of one chain</h2>
+  <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+    <a href="/teaching/1-year-mba/session10.html" class="font-semibold text-blue-700 hover:underline">Session 10</a> built the
+    tools: Porter&rsquo;s tests for whether a business belongs in the company, and transaction costs for whether an activity
+    belongs inside the firm. Today narrows the second tool to one question. Along a single industry&rsquo;s value chain,
+    which stages should the firm do itself?
+  </p>
+  <div class="mt-6 grid gap-4 md:grid-cols-3">
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Session 10 &middot; transaction costs</p>
+      <h3 class="mt-1 font-bold text-slate-900">Make when the hierarchy is cheaper</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">If an activity costs less to organise inside the firm than to buy
+        through the market, the firm should integrate it; between the two ends sit contracts and alliances
+        (Rothaermel, 2024, pp.&nbsp;303, 306). Today that rule is applied stage by stage, with the specific benefits and risks
+        the textbook lists for vertical moves.</p>
+    </div>
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Session 10 &middot; the three dimensions</p>
+      <h3 class="mt-1 font-bold text-slate-900">One axis at a time</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Corporate strategy sets the firm&rsquo;s boundaries along vertical
+        integration, horizontal diversification and geographic scope (p.&nbsp;298). This session takes the vertical axis.
+        <a href="/teaching/1-year-mba/session12.html" class="font-semibold text-blue-700 hover:underline">Session 12</a> takes
+        geography and <a href="/teaching/1-year-mba/session13.html" class="font-semibold text-blue-700 hover:underline">Session 13</a>
+        takes diversification, both with the same Amazon case.</p>
+    </div>
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Sessions 9 and 10 &middot; NVIDIA</p>
+      <h3 class="mt-1 font-bold text-slate-900">A firm that chose not to integrate</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Session 10 framed NVIDIA as a designer that does not make its chips:
+        it keeps design and sales and outsources manufacturing, mostly to TSMC. That avoided the capital of a fab but gave it
+        less control of its supply. Amazon has the opposite habit. It keeps building stages for itself.</p>
+    </div>
+  </div>
+  <div class="mt-6 rounded-2xl bg-amber-50 border border-amber-200 p-5">
+    <p class="text-[10px] font-semibold uppercase tracking-wider text-amber-800">The trap this session sets</p>
+    <p class="mt-1 text-sm text-slate-700 leading-relaxed">
+      Not every move into something new is vertical. A move is vertical only if it takes the firm into a stage that supplies
+      its existing business or carries that business&rsquo;s output to customers. Entering a neighbouring industry, such as
+      advertising or healthcare, is diversification, which is Session 13&rsquo;s subject. Even the textbook counts AWS as
+      both a backward vertical move and an example of horizontal diversification (pp.&nbsp;297, 301). Keep the two questions
+      apart before you judge any move.
+    </p>
+  </div>
+</section>
+
+
+<section id="chain" class="bg-white border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Vertical integration along the industry value chain &middot; Rothaermel (2024), pp.&nbsp;310&ndash;314</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Upstream, downstream, and how far a firm reaches</h2>
+    <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+      The industry value chain, also called the vertical value chain, is the sequence of stages that turns raw materials
+      into finished goods and services. Each stage is usually a separate industry with its own competitors, so a firm that
+      integrates into a new stage takes on a new set of rivals (Rothaermel, 2024, pp.&nbsp;311&ndash;312). The degree of
+      integration can be measured by value added: the share of a firm&rsquo;s sales generated inside its own boundaries,
+      which tends to track the number of stages it works in (p.&nbsp;311).
+    </p>
+
+    <figure class="mt-6 card p-5">
+      <figcaption class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">A generic industry value chain, redrawn from Rothaermel (2024, Exhibit 8.6, p.&nbsp;311), with the textbook&rsquo;s mobile-phone examples (p.&nbsp;311)</figcaption>
+      <ol class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5" aria-label="Five stages of a generic industry value chain, from upstream to downstream">
+        <li class="s11-stage rounded-2xl p-4"><p class="font-mono text-[10px] text-slate-500">Stage 1 &middot; upstream</p><p class="mt-1 font-semibold text-slate-900">Raw materials</p><p class="mt-1 text-xs text-slate-600 leading-relaxed">Commodities such as chemicals, ceramics, metals and oil for plastic.</p></li>
+        <li class="s11-stage rounded-2xl p-4"><p class="font-mono text-[10px] text-slate-500">Stage 2</p><p class="mt-1 font-semibold text-slate-900">Components and intermediate goods</p><p class="mt-1 text-xs text-slate-600 leading-relaxed">Chips, displays, touchscreens, cameras, batteries.</p></li>
+        <li class="s11-stage rounded-2xl p-4"><p class="font-mono text-[10px] text-slate-500">Stage 3</p><p class="mt-1 font-semibold text-slate-900">Final assembly and manufacturing</p><p class="mt-1 text-xs text-slate-600 leading-relaxed">Contract manufacturers such as Foxconn assemble phones for brand owners.</p></li>
+        <li class="s11-stage rounded-2xl p-4"><p class="font-mono text-[10px] text-slate-500">Stage 4</p><p class="mt-1 font-semibold text-slate-900">Marketing and sales</p><p class="mt-1 text-xs text-slate-600 leading-relaxed">For phones, wireless carriers such as AT&amp;T, Verizon and Airtel that sell the service.</p></li>
+        <li class="s11-stage rounded-2xl p-4"><p class="font-mono text-[10px] text-slate-500">Stage 5 &middot; downstream</p><p class="mt-1 font-semibold text-slate-900">After-sales service and support</p><p class="mt-1 text-xs text-slate-600 leading-relaxed">Service and support after the sale, the stage closest to the end user.</p></li>
+      </ol>
+      <div class="mt-4 grid gap-3 md:grid-cols-2 text-sm">
+        <div class="s11-dir s11-dir-back rounded-xl p-3">
+          <p class="font-semibold text-slate-900"><span aria-hidden="true">&larr;&nbsp;</span>Backward vertical integration</p>
+          <p class="mt-1 text-xs text-slate-600 leading-relaxed">Moving ownership upstream, toward the inputs at the start of the chain (p.&nbsp;313).</p>
+        </div>
+        <div class="s11-dir s11-dir-fwd rounded-xl p-3 md:text-right">
+          <p class="font-semibold text-slate-900">Forward vertical integration<span aria-hidden="true">&nbsp;&rarr;</span></p>
+          <p class="mt-1 text-xs text-slate-600 leading-relaxed">Moving ownership downstream, closer to the end customer (p.&nbsp;313).</p>
+        </div>
+      </div>
+    </figure>
+
+    <h3 class="mt-10 text-xl font-bold text-slate-900">Degrees of integration: from grape to glass, or design only</h3>
+    <p class="mt-2 text-sm text-slate-600 max-w-4xl leading-relaxed">Few firms are fully integrated. Most concentrate on a few
+      stages and some on just one (p.&nbsp;312). The textbook&rsquo;s three examples span the range.</p>
+    <div class="mt-4 grid gap-4 md:grid-cols-3">
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Fully integrated &middot; p.&nbsp;312</p>
+        <h4 class="mt-1 font-bold text-slate-900">E&amp;J Gallo Winery</h4>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Owns its vineyards, bottling plants and distribution and logistics
+          network, and sells online where the law allows. Its value added approaches 100%. Gallo cites scale economies,
+          coordinated scheduling and better control of quality. The price is a different set of competitors at every stage.</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Largely disintegrated &middot; p.&nbsp;312</p>
+        <h4 class="mt-1 font-bold text-slate-900">Apple</h4>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Concentrates on design, marketing and retailing, and outsources
+          everything else. The textbook adds that the stages differ in profit potential: Apple captures about 95% of the value
+          created with an iPhone and Foxconn, which assembles it, about 5% (p.&nbsp;314).</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Moving in both directions &middot; p.&nbsp;313</p>
+        <h4 class="mt-1 font-bold text-slate-900">HTC</h4>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Began as a no-name contract manufacturer, then integrated backward
+          into designing phones and forward into branded sales. It learned the adjacent skills from the brand owners it built
+          for, which had to share their technology to get phones made at scale.</p>
+      </div>
+    </div>
+
+    <div class="mt-8 grid gap-5 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,.9fr)]">
+      <div class="rounded-2xl border border-amber-200 bg-amber-50 p-5">
+        <span class="pill bg-white text-amber-800 border border-amber-200">Analysis</span>
+        <h3 class="mt-2 font-bold text-slate-900">Where is Amazon on its own chain?</h3>
+        <p class="mt-2 text-sm text-slate-700 leading-relaxed">Backward and forward only mean something once you fix the firm&rsquo;s
+          home stage. Amazon started as an online bookseller with a virtual store, unlimited inventory and low fixed costs
+          (case, p.&nbsp;1). This page takes retail, the online store, as its home stage. Upstream of the store sit the
+          things it sells and the inputs it runs on: goods, films and shows, computing. Downstream sit the steps that get a
+          purchase to the customer and the devices through which the customer buys.</p>
+        <p class="mt-2 text-sm text-slate-700 leading-relaxed">Fix a different home stage and the labels change. That is why two
+          careful readers can call the same Amazon device backward or forward, as the next activity shows.</p>
+      </div>
+      <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Two questions to keep apart</p>
+        <ol class="mt-3 space-y-3 text-sm text-slate-700 leading-relaxed">
+          <li><span class="font-semibold text-slate-900">1. Is the move vertical?</span> Does it take the firm into a stage
+            that feeds its existing business or carries that business&rsquo;s output to customers?</li>
+          <li><span class="font-semibold text-slate-900">2. Is it a good move?</span> Do the benefits beat the risks, and beat
+            what a contract, an alliance or a partial stake would deliver?</li>
+        </ol>
+        <p class="mt-3 text-xs text-slate-500 leading-relaxed">The first question is classification. The second is strategy,
+          and it is the subject of the rest of the session.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="placer" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Classify before you judge &middot; case pp.&nbsp;1&ndash;3; Rothaermel (2024), pp.&nbsp;297, 300&ndash;301</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Eleven Amazon moves: backward, forward, or not vertical?</h2>
+  <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+    Jassy&rsquo;s question in the case is whether Amazon should keep going into new businesses or focus on a few core ones
+    (case, p.&nbsp;1). Before anyone can answer it, the moves have to be sorted. Some move Amazon along its own value chain;
+    others take it into new industries, which is diversification and belongs to
+    <a href="/teaching/1-year-mba/session13.html" class="font-semibold text-blue-700 hover:underline">Session 13</a>. Taking
+    the online store as Amazon&rsquo;s home stage, classify each move. Feedback gives the page&rsquo;s reading and its source;
+    three items have two defensible answers.
+  </p>
+
+  <div id="placeBox" class="mt-6 card p-5 sm:p-6">
+    <div class="flex flex-wrap items-baseline justify-between gap-2">
+      <div>
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Activity &middot; value-chain placer</p>
+        <h3 class="mt-1 text-xl font-bold text-slate-900">Place each move on Amazon&rsquo;s chain</h3>
+      </div>
+      <span class="done-badge" data-done-for="placer" hidden>Done</span>
+    </div>
+    <p class="mt-2 max-w-4xl text-sm text-slate-600 leading-relaxed">Choose a direction for each card. Your answer is pinned to
+      the map, marked with a tick if the page accepts it and a cross if not. The map is a text list, so a screen reader
+      reads it in order.</p>
+    <div class="mt-5 grid gap-6 lg:grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)] lg:items-start">
+      <div id="placeList" class="grid gap-3 md:grid-cols-2"></div>
+      <div class="lg:sticky lg:top-24">
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+          <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Amazon&rsquo;s chain, as you have placed it</p>
+          <div class="mt-3 grid gap-3">
+            <div class="s11-col s11-col-b rounded-xl p-3">
+              <p class="text-xs font-semibold text-slate-900"><span aria-hidden="true">&larr;&nbsp;</span>Backward &middot; upstream of the store</p>
+              <p class="text-[11px] text-slate-500">Inputs the store runs on: goods, content, computing</p>
+              <ul id="placeColB" class="mt-2 flex flex-wrap gap-1.5" aria-label="Moves placed as backward integration"></ul>
+            </div>
+            <div class="s11-col s11-col-home rounded-xl p-3">
+              <p class="text-xs font-semibold text-slate-900">Home stage &middot; the online store</p>
+              <p class="text-[11px] text-slate-500">Books from 1995, then music, movies, electronics and general merchandise (case, p.&nbsp;1)</p>
+            </div>
+            <div class="s11-col s11-col-f rounded-xl p-3">
+              <p class="text-xs font-semibold text-slate-900">Forward &middot; between the store and the customer<span aria-hidden="true">&nbsp;&rarr;</span></p>
+              <p class="text-[11px] text-slate-500">Fulfilment, delivery, the devices customers buy through</p>
+              <ul id="placeColF" class="mt-2 flex flex-wrap gap-1.5" aria-label="Moves placed as forward integration"></ul>
+            </div>
+            <div class="s11-col s11-col-n rounded-xl p-3">
+              <p class="text-xs font-semibold text-slate-900">Not vertical &middot; same stage, contracts or new industries</p>
+              <p class="text-[11px] text-slate-500">Buying through contracts, or diversifying (Session 13)</p>
+              <ul id="placeColN" class="mt-2 flex flex-wrap gap-1.5" aria-label="Moves placed as not vertical"></ul>
+            </div>
+          </div>
+          <p id="placeScore" class="mt-4 text-sm font-semibold text-slate-800" aria-live="polite">0 of 11 placed.</p>
+          <button id="placeReset" type="button" class="mt-2 rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-100">Start again</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-6 grid gap-4 md:grid-cols-3">
+    <div class="rounded-2xl border border-slate-200 p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">What the sort shows</p>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Most of Amazon&rsquo;s vertical moves run forward, toward the
+        customer: delivery, and devices that sit in the customer&rsquo;s hand or home. That is the pattern Osegowitsch and
+        Madhok described in 2003, when they observed that forward integration was far more prevalent (p.&nbsp;31).</p>
+    </div>
+    <div class="rounded-2xl border border-slate-200 p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">What it does not show</p>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Classification says nothing about value. The Fire Phone and
+        the Echo are both forward moves into devices; one was written down within months and the other sold over 500 million
+        units (case, p.&nbsp;2). The rest of the session is about telling such moves apart in advance.</p>
+    </div>
+    <div class="rounded-2xl border border-slate-200 p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Where the labels blur</p>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">AWS, Kindle and Whole Foods each have two readings. In each case
+        the disagreement is about which stage is Amazon&rsquo;s home, or about whether the move serves the store or starts a
+        new business. Say which reading you use before you argue about value.</p>
+    </div>
+  </div>
+</section>
+
+
+<section id="tradeoffs" class="bg-white border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Benefits and risks of vertical integration &middot; Rothaermel (2024), pp.&nbsp;315&ndash;317</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Five things integration can buy, four ways it can cost</h2>
+    <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+      The textbook asks leaders to weigh the benefits against countervailing risks at the same time, and warns that the
+      risks can outweigh the benefits (Rothaermel, 2024, pp.&nbsp;315&ndash;316). Several risks are the mirror image of a
+      benefit: integration can lower costs or raise them, improve quality or reduce it. Which one you get depends on the
+      conditions, not on the move.
+    </p>
+
+    <div class="mt-6 grid gap-5 lg:grid-cols-2">
+      <div class="rounded-2xl border border-slate-200 p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-emerald-700">Benefits &middot; p.&nbsp;315</p>
+        <ol class="mt-3 space-y-4">
+          <li><p class="font-semibold text-slate-900">1. Lowering costs</p>
+            <p class="mt-1 text-sm text-slate-600 leading-relaxed">Gallo&rsquo;s full integration gives it scale economies and
+              efficiency from coordinating its stages (p.&nbsp;312).</p></li>
+          <li><p class="font-semibold text-slate-900">2. Improving quality</p>
+            <p class="mt-1 text-sm text-slate-600 leading-relaxed">HTC bought One &amp; Co., a San Francisco design firm, to secure
+              scarce design talent and make better phones (p.&nbsp;315). Gallo says integration lets it control quality (p.&nbsp;312).</p></li>
+          <li><p class="font-semibold text-slate-900">3. Facilitating scheduling and planning</p>
+            <p class="mt-1 text-sm text-slate-600 leading-relaxed">Forward integration into sales lets a firm plan for and respond to
+              changes in demand; HTC sells to carriers and unlocked phones on its own site (p.&nbsp;315).</p></li>
+          <li><p class="font-semibold text-slate-900">4. Facilitating investments in specialised assets</p>
+            <p class="mt-1 text-sm text-slate-600 leading-relaxed">Assets worth far more in their intended use than in the next best:
+              site-specific (bauxite mining next to aluminium smelting), physical-asset-specific (moulds for Gallo&rsquo;s trademarked
+              bottles) or human-asset-specific (skills in one organisation&rsquo;s routines). Such investments invite opportunism;
+              backward integration is often the answer (pp.&nbsp;315&ndash;316).</p></li>
+          <li><p class="font-semibold text-slate-900">5. Securing critical supplies and distribution channels</p>
+            <p class="mt-1 text-sm text-slate-600 leading-relaxed">Delta bought an oil refinery from ConocoPhillips in 2012. It
+              estimates the refinery supplies 80% of its fuel and saves about $300&nbsp;million a year; fuel is some 40% of its
+              operating cost (p.&nbsp;316).</p></li>
+        </ol>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">Risks &middot; p.&nbsp;316</p>
+        <ol class="mt-3 space-y-4">
+          <li><p class="font-semibold text-slate-900">1. Increasing costs</p>
+            <p class="mt-1 text-sm text-slate-600 leading-relaxed">An in-house supplier always has a buyer, so it has less reason to cut
+              costs. Outside suppliers serve a larger market and reach scale the captive unit cannot. Complexity adds administrative
+              costs, such as setting transfer prices between in-house supplier and buyer.</p></li>
+          <li><p class="font-semibold text-slate-900">2. Reducing quality</p>
+            <p class="mt-1 text-sm text-slate-600 leading-relaxed">The same guaranteed buyer weakens the incentive to improve
+              quality or innovate. Outside suppliers, with more customers, learn faster.</p></li>
+          <li><p class="font-semibold text-slate-900">3. Reducing flexibility</p>
+            <p class="mt-1 text-sm text-slate-600 leading-relaxed">When steelmaking technology changed, integrated mills such as
+              U.S. Steel and Bethlehem Steel were tied to their models and could not switch; many went bankrupt, while
+              non-integrated mini-mills such as Nucor and Chaparral took share.</p></li>
+          <li><p class="font-semibold text-slate-900">4. Increasing the potential for legal repercussions</p>
+            <p class="mt-1 text-sm text-slate-600 leading-relaxed">US regulators tend to allow vertical integration because it
+              usually makes firms more efficient, but monopoly concerns mean it has not gone unchallenged.</p></li>
+        </ol>
+        <div class="mt-5 rounded-xl bg-rose-50 border border-rose-200 p-4">
+          <p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">The common thread</p>
+          <p class="mt-1 text-sm text-slate-700 leading-relaxed">The first two risks come from removing market discipline:
+            a captive unit no longer has to win its buyer. The third comes from commitment: assets that suit today&rsquo;s
+            technology can trap the firm when it changes. The fourth comes from the market power that controlling several
+            stages can bring.</p>
+        </div>
+      </div>
+    </div>
+
+
+    <h3 class="mt-10 text-xl font-bold text-slate-900">When does vertical integration make sense?</h3>
+    <p class="mt-2 text-sm text-slate-600 max-w-4xl leading-relaxed">The textbook reads the question through history, then
+      gives one main reason to integrate and one warning (Rothaermel, 2024, p.&nbsp;317).</p>
+    <div class="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Ford &middot; p.&nbsp;317</p>
+        <h4 class="mt-1 font-bold text-slate-900">Owning the whole chain</h4>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Short of materials and parts, Ford came to run mines, rubber
+          plantations, freighters, blast furnaces and glassworks. At River Rouge, raw materials went in at one end and cars came
+          out the other. Over time the costs undid the savings and cost Ford its flexibility.</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Waves &middot; p.&nbsp;317</p>
+        <h4 class="mt-1 font-bold text-slate-900">In, out, and back in</h4>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">In the 1970s Texas Instruments moved downstream into watches and
+          calculators, while Bowmar tried to move upstream into chips and failed. In 2009 GM tried to reacquire Delphi, a parts
+          maker it had sold in 1997. PepsiCo and Coca-Cola bought bottling plants in the 2010s and later divested them.</p>
+      </div>
+      <div class="rounded-2xl border border-blue-200 bg-blue-50 p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">The main reason &middot; p.&nbsp;317</p>
+        <h4 class="mt-1 font-bold text-slate-900">Vertical market failure</h4>
+        <p class="mt-2 text-sm text-slate-700 leading-relaxed">McKinsey advised clients that the main reason to integrate is
+          that transactions along the chain are too risky and the alternatives to integration too costly or hard to
+          administer. The textbook notes that this is the same answer transaction cost economics gives.</p>
+      </div>
+      <div class="rounded-2xl border border-rose-200 bg-rose-50 p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">The warning &middot; p.&nbsp;317</p>
+        <h4 class="mt-1 font-bold text-slate-900">Distance from the core</h4>
+        <p class="mt-2 text-sm text-slate-700 leading-relaxed">Research summarised by <em>The Economist</em> suggests that a company
+          that integrates two or more steps away from its core competency fails two-thirds of the time. Few clothing makers
+          want to own textile mills, with their pollution risks and slim profits.</p>
+      </div>
+    </div>
+    <blockquote class="mt-5 border-l-2 border-blue-600 pl-3 italic text-slate-700 text-sm max-w-4xl">&ldquo;An innovator who can
+      figure out how to eliminate annoyances and poor interfaces in the chain can build an incredible advantage, based on the
+      customers&rsquo; desire for that unique solution.&rdquo;
+      <span class="mt-1 block not-italic text-xs text-slate-500">Rita McGrath, quoted in Rothaermel (2024, p.&nbsp;317), on why
+        integration tempts firms that want to change the customer&rsquo;s whole experience</span></blockquote>
+
+    <div class="mt-8 grid gap-5 lg:grid-cols-2">
+      <div class="rounded-2xl border s11-good bg-emerald-50 p-5">
+        <span class="pill bg-white text-amber-800 border border-amber-200">Analysis</span>
+        <h3 class="mt-2 font-bold text-slate-900">Integration tends to create value when&hellip;</h3>
+        <ul class="mt-3 space-y-2 text-sm text-slate-700 leading-relaxed">
+          <li><span class="font-semibold">the market for the stage fails:</span> specialised assets, few alternative partners,
+            and contracts that cannot specify or enforce what matters (pp.&nbsp;305, 317);</li>
+          <li><span class="font-semibold">the stage sits next to a core competence,</span> one step away rather than two
+            (p.&nbsp;317);</li>
+          <li><span class="font-semibold">owning it yields coordination or learning a contract cannot carry,</span> which is
+            Osegowitsch and Madhok&rsquo;s argument for the customer interface (2003, p.&nbsp;32).</li>
+        </ul>
+      </div>
+      <div class="rounded-2xl border border-rose-200 bg-rose-50 p-5">
+        <span class="pill bg-white text-amber-800 border border-amber-200">Analysis</span>
+        <h3 class="mt-2 font-bold text-slate-900">&hellip;and tends to destroy it when</h3>
+        <ul class="mt-3 space-y-2 text-sm text-slate-700 leading-relaxed">
+          <li><span class="font-semibold">the stage is served by competitive, contractible suppliers</span> who have more scale
+            and learn faster than a captive unit would (p.&nbsp;316);</li>
+          <li><span class="font-semibold">technology or demand is volatile,</span> so a fixed commitment becomes a trap
+            (p.&nbsp;316; Osegowitsch &amp; Madhok, 2003, p.&nbsp;27);</li>
+          <li><span class="font-semibold">the in-house unit is shielded from comparison</span> with the market, so nobody can
+            tell whether it is still competitive (pp.&nbsp;316, 318).</li>
+        </ul>
+      </div>
+    </div>
+    <p class="mt-3 text-xs text-slate-500 max-w-4xl leading-relaxed">The two lists are this page&rsquo;s synthesis of the cited
+      pages, not a checklist from either source. The textbook&rsquo;s own summary sets the same benefits as sources of value
+      and the same risks as sources of cost (Exhibit 8.14, p.&nbsp;330).</p>
+  </div>
+</section>
+
+
+<section id="motives" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Why firms still integrate &middot; Osegowitsch &amp; Madhok (2003), pp.&nbsp;25&ndash;33</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">&ldquo;Vertical integration is dead, or is it?&rdquo;</h2>
+  <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+    Osegowitsch and Madhok wrote against the mood of their time. Equity markets pushed firms to focus and outsource; the
+    academic view was that integration shared the poor record of unrelated diversification; consultants urged firms to
+    &ldquo;unbundle&rdquo; (2003, p.&nbsp;25). Yet integration had proved resilient in pharmaceuticals, defence, utilities,
+    computers and cars, and in services such as media and engineering. Their explanation: the old motives had weakened, and
+    new ones, above all learning from customers, had taken their place (pp.&nbsp;25&ndash;26).
+  </p>
+
+  <div class="mt-6 grid gap-4 lg:grid-cols-3">
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Traditional motive 1 &middot; p.&nbsp;26</p>
+      <h3 class="mt-1 font-bold text-slate-900">Strategic: power and position</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Integration to win the power play against actual and potential
+        rivals:</p>
+      <ul class="mt-2 space-y-1.5 text-sm text-slate-600 leading-relaxed list-disc pl-5">
+        <li>foreclose input or output markets to competitors, or raise their costs;</li>
+        <li>cross-subsidise one stage from another to squeeze focused rivals;</li>
+        <li>raise barriers to entry;</li>
+        <li>keep proprietary knowledge from suppliers and customers who might turn competitor.</li>
+      </ul>
+      <p class="mt-2 text-xs text-slate-500 leading-relaxed">Partial, &ldquo;tapered&rdquo; integration can be enough: it makes the
+        threat of full integration credible and improves terms (pp.&nbsp;26&ndash;27).</p>
+    </div>
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Traditional motive 2 &middot; p.&nbsp;27</p>
+      <h3 class="mt-1 font-bold text-slate-900">Governance: transaction costs and agency</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Integration to cut exposure to opportunism where contracts fail.
+        It pays under:</p>
+      <ul class="mt-2 space-y-1.5 text-sm text-slate-600 leading-relaxed list-disc pl-5">
+        <li>uncertain demand or prices;</li>
+        <li>uncertain quality of inputs or point-of-sale service;</li>
+        <li>poor coordination between stages;</li>
+        <li>failure in markets for knowledge and technology;</li>
+        <li>a partner&rsquo;s performance that is hard to specify or measure.</li>
+      </ul>
+      <p class="mt-2 text-xs text-slate-500 leading-relaxed">Contracting problems become acute under small-numbers bargaining,
+        which arises when assets are specific to the transaction (p.&nbsp;27).</p>
+    </div>
+    <div class="rounded-2xl border border-rose-200 bg-rose-50 p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">The case against &middot; pp.&nbsp;27&ndash;28</p>
+      <h3 class="mt-1 font-bold text-slate-900">Commitment in a turbulent world</h3>
+      <p class="mt-2 text-sm text-slate-700 leading-relaxed">Critics point to higher performance risk where technology is
+        volatile and demand uncertain. Integration can be a premature commitment, costly to undo when exit barriers are high.
+        It also loses market incentives, raises production costs and breeds bureaucracy and loss of focus. On flexibility
+        grounds, the critics say, firms should form alliances instead.</p>
+    </div>
+  </div>
+
+  <h3 class="mt-10 text-xl font-bold text-slate-900">Five contemporary motives</h3>
+  <p class="mt-2 text-sm text-slate-600 max-w-4xl leading-relaxed">From observation across many industries, the authors list
+    the motives they saw driving integration at the time (pp.&nbsp;28&ndash;31). Most of their examples move downstream.</p>
+  <div class="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+    <div class="rounded-2xl border border-slate-200 p-4">
+      <p class="font-mono text-xs text-blue-600">01 &middot; p.&nbsp;28</p>
+      <p class="mt-1 font-semibold text-slate-900">Value migration</p>
+      <p class="mt-2 text-xs text-slate-600 leading-relaxed">With large installed bases, value shifts from making products to
+        servicing them. GE&rsquo;s energy division stopped seeing itself in a $12&nbsp;billion turbine market and started
+        competing for $40&nbsp;billion of utilities&rsquo; operating and maintenance spending.</p>
+    </div>
+    <div class="rounded-2xl border border-slate-200 p-4">
+      <p class="font-mono text-xs text-blue-600">02 &middot; pp.&nbsp;28&ndash;29</p>
+      <p class="mt-1 font-semibold text-slate-900">Differentiation</p>
+      <p class="mt-2 text-xs text-slate-600 leading-relaxed">When the core product is good enough for most buyers, firms add
+        downstream services and manage the whole brand. Ford and GM&rsquo;s bids to enter car retailing aimed partly to remove
+        the unpleasant dealer experience.</p>
+    </div>
+    <div class="rounded-2xl border border-slate-200 p-4">
+      <p class="font-mono text-xs text-blue-600">03 &middot; p.&nbsp;29</p>
+      <p class="mt-1 font-semibold text-slate-900">Integrated solutions</p>
+      <p class="mt-2 text-xs text-slate-600 leading-relaxed">A pull from customers who now outsource and want one supplier for
+        the whole job. Bechtel and Fluor Daniel widened into finance, design, construction and even plant operation.</p>
+    </div>
+    <div class="rounded-2xl border border-slate-200 p-4">
+      <p class="font-mono text-xs text-blue-600">04 &middot; pp.&nbsp;29&ndash;30</p>
+      <p class="mt-1 font-semibold text-slate-900">Synergies</p>
+      <p class="mt-2 text-xs text-slate-600 leading-relaxed">Close links between stages: feedback from marketing to product
+        development, suppliers inside customers&rsquo; inventory planning, design-build firms whose builders advise designers.</p>
+    </div>
+    <div class="rounded-2xl border border-slate-200 p-4">
+      <p class="font-mono text-xs text-blue-600">05 &middot; pp.&nbsp;30&ndash;31</p>
+      <p class="mt-1 font-semibold text-slate-900">Emerging industries</p>
+      <p class="mt-2 text-xs text-slate-600 leading-relaxed">A pioneer may lack the credibility to attract suppliers or
+        customers, as early Ford did, or may need to own complementary stages to make a system work, as Time Warner did by
+        owning both films and cable.</p>
+    </div>
+  </div>
+
+
+  <div class="mt-10 grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Why the old motives weakened &middot; pp.&nbsp;31&ndash;32</p>
+      <h3 class="mt-1 font-bold text-slate-900">Most upstream benefits can now be had without ownership</h3>
+      <ul class="mt-3 space-y-2 text-sm text-slate-600 leading-relaxed">
+        <li><span class="font-semibold text-slate-800">Scheduling:</span> just-in-time supply, vendor-managed inventory and
+          electronic links to the point of sale optimise production across firms as easily as within one.</li>
+        <li><span class="font-semibold text-slate-800">Co-location:</span> savings once credited to integration came from
+          putting stages side by side, which independent suppliers and buyers now do.</li>
+        <li><span class="font-semibold text-slate-800">Technology markets:</span> brokers, consultants and experience with
+          alliances have eased the failures of buying technology from outsiders.</li>
+        <li><span class="font-semibold text-slate-800">The Internet:</span> it is cheaper to search for, compare and switch
+          suppliers or distributors.</li>
+        <li><span class="font-semibold text-slate-800">Globalisation:</span> converging industries and abundant capital erode
+          entry barriers; liberalised trade makes foreclosure futile in many industries.</li>
+      </ul>
+      <p class="mt-3 text-sm text-slate-600 leading-relaxed">Benetton and Nike, they note, achieved tight integration with
+        suppliers without owning them (p.&nbsp;32).</p>
+    </div>
+    <div class="rounded-2xl border border-blue-200 bg-blue-50 p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">The thesis &middot; p.&nbsp;32</p>
+      <h3 class="mt-1 font-bold text-slate-900">Downstream integration is about learning, and learning cannot be outsourced</h3>
+      <p class="mt-2 text-sm text-slate-700 leading-relaxed">Data such as the level of demand are easy to collect. Knowledge of
+        why customers value an offering, how best to provide it and what they will want next comes only from close learning
+        relationships with them. Much of that knowledge is tacit and contextual, so it cannot be delegated to channel partners
+        and fed back in a spreadsheet.</p>
+      <blockquote class="mt-3 border-l-2 border-blue-600 pl-3 italic text-slate-700 text-sm">&ldquo;It is this
+        &lsquo;untradeability&rsquo; of learning that explains the vitality of downstream VI.&rdquo;
+        <span class="mt-1 block not-italic text-xs text-slate-500">Osegowitsch &amp; Madhok (2003, p.&nbsp;32)</span></blockquote>
+      <p class="mt-3 text-sm text-slate-700 leading-relaxed">So the right questions about scope become: do the current vertical
+        boundaries let the firm acquire and process knowledge, and capture its value? If not, would extending them help?</p>
+    </div>
+  </div>
+
+  <div class="mt-5 grid gap-4 md:grid-cols-3">
+    <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">The Internet prediction &middot; p.&nbsp;26</p>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Some predicted that the Net would break firms up by cutting
+        transaction costs. The authors saw a contingent picture instead: some industries de-integrated, others re-integrated,
+        and the Net had helped broad-based incumbents, the &ldquo;clicks-and-bricks&rdquo; operators, more than the pure plays.</p>
+    </div>
+    <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Their caveats &middot; p.&nbsp;33</p>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Integrating firms must keep strong market incentives and
+        flexibility. Where they taper, they must keep existing buyers and suppliers on side. A partial move into retailing may
+        capture the learning without abandoning independent dealers (note 2).</p>
+    </div>
+    <div class="rounded-2xl border border-amber-200 bg-amber-50 p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-amber-800">Amazon, in 2003 &middot; p.&nbsp;33</p>
+      <p class="mt-2 text-sm text-slate-700 leading-relaxed">In a footnote the authors already name Amazon, with Charles Schwab,
+        as a portal that could find out within hours whether customers accepted new offers, prices or page designs (note 3).
+        The customer interface was the asset they had in mind.</p>
+    </div>
+  </div>
+
+  <div class="mt-6 rounded-2xl border border-amber-200 bg-amber-50 p-5">
+    <span class="pill bg-white text-amber-800 border border-amber-200">Analysis</span>
+    <h3 class="mt-2 font-bold text-slate-900">Two lenses that do not always agree</h3>
+    <div class="mt-2 grid gap-4 md:grid-cols-2">
+      <p class="text-sm text-slate-700 leading-relaxed">The textbook&rsquo;s checklist asks whether integration lowers costs,
+        raises quality, secures channels and protects specific investments, against higher costs, lost flexibility and legal
+        exposure. It is a governance lens: integrate where the market fails.</p>
+      <p class="text-sm text-slate-700 leading-relaxed">Osegowitsch and Madhok add a reason the checklist barely names: owning
+        the customer interface to learn. On their lens a forward move can be worth making even when a contract would deliver
+        the goods more cheaply. Hold both when you reach Amazon&rsquo;s devices: the Kindle, the Fire Phone and the Echo were
+        all bids for the customer interface.</p>
+    </div>
+  </div>
+</section>
+
+
+<section id="alternatives" class="bg-white border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Alternatives to vertical integration &middot; Rothaermel (2024), pp.&nbsp;306&ndash;310, 318&ndash;319</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Between owning a stage and buying from it</h2>
+    <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+      Firms would like the benefits of integration without its risks. The textbook names two alternatives, taper integration
+      and strategic outsourcing (Rothaermel, 2024, p.&nbsp;318). The hybrids on
+      <a href="/teaching/1-year-mba/session10.html#boundaries" class="font-semibold text-blue-700 hover:underline">Session 10&rsquo;s make-or-buy continuum</a>,
+      from long-term contracts to joint ventures, are the third family.
+    </p>
+
+    <div class="mt-6 grid gap-5 lg:grid-cols-3">
+      <div class="rounded-2xl border border-blue-200 bg-blue-50 p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Taper integration &middot; p.&nbsp;318</p>
+        <h3 class="mt-1 font-bold text-slate-900">Make some, buy the rest</h3>
+        <p class="mt-2 text-sm text-slate-700 leading-relaxed">The firm is integrated backward but also buys some supplies
+          outside, or integrated forward but also sells through outside distributors. Apple and Nike own retail outlets and
+          also sell through other retailers, physical and online.</p>
+        <ul class="mt-3 space-y-1.5 text-sm text-slate-700 leading-relaxed list-disc pl-5">
+          <li>In-house units face market comparison, and the firm keeps its competencies rather than hollowing them out.</li>
+          <li>Flexibility: when demand falls, cut deliveries to outside retailers and keep stocking your own stores.</li>
+          <li>Internal and external knowledge combine, which can lead to innovation.</li>
+        </ul>
+        <p class="mt-3 text-xs text-slate-600 leading-relaxed">In a study of 3,500 product introductions in the computer industry,
+          firms that tapered outperformed both the more integrated and the more outsourced on innovation and financial
+          results.</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Strategic outsourcing &middot; pp.&nbsp;318&ndash;319</p>
+        <h3 class="mt-1 font-bold text-slate-900">Move an activity out</h3>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Moving one or more value chain activities outside the firm to
+          other firms in the industry value chain. It lowers the degree of integration. Firms hand human-resource systems to
+          specialists that have deep competencies and scale.</p>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Outsourcing to another country is offshoring: Infosys serves many
+          Fortune 100 firms from Bangalore, and US law firms send routine legal work to India. Where to locate activities is
+          <a href="/teaching/1-year-mba/session12.html" class="font-semibold text-blue-700 hover:underline">Session 12</a>&rsquo;s question.</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Contracts and alliances &middot; pp.&nbsp;306&ndash;309</p>
+        <h3 class="mt-1 font-bold text-slate-900">Commit without owning</h3>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Short-term contracts give suppliers no reason to invest in
+          specific assets. Long-term contracts such as licensing, equity alliances and joint ventures support those investments
+          without the internal costs of ownership (pp.&nbsp;306&ndash;307). An equity stake is a credible commitment: difficult
+          and costly to reverse (p.&nbsp;309).</p>
+        <p class="mt-2 text-xs text-slate-500 leading-relaxed">Osegowitsch and Madhok add that partial integration can make the
+          threat of full integration credible and win better terms (2003, pp.&nbsp;26&ndash;27).</p>
+      </div>
+    </div>
+
+    <h3 class="mt-10 text-xl font-bold text-slate-900">Where Amazon sits between make and buy</h3>
+    <p class="mt-2 text-sm text-slate-600 max-w-4xl leading-relaxed">Amazon rarely chooses pure ownership or pure purchase. Four
+      of its stages, read against the alternatives above.</p>
+    <div class="mt-4 overflow-x-auto rounded-2xl border border-slate-200">
+      <table class="w-full min-w-[46rem] text-left text-slate-600 comparison-table">
+        <caption class="sr-only">Four Amazon stages: what it owns, what it buys or contracts, and the reading</caption>
+        <thead class="text-[10px] uppercase tracking-wider text-slate-500">
+          <tr><th scope="col">Stage</th><th scope="col">What Amazon owns</th><th scope="col">What it buys or contracts</th><th scope="col">Reading</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row" class="font-semibold text-slate-800">Video content</th>
+            <td>Amazon Studios, from 2011, producing original content; in 2015 it announced that the Studios would make feature films (case, p.&nbsp;2).</td>
+            <td>Multi-year licensing agreements with Viacom for hundreds of shows; over $200&nbsp;million paid to HBO in 2014 for select shows (p.&nbsp;2).</td>
+            <td><span class="font-semibold text-slate-800">Taper integration</span> backward into content: some made, the rest licensed.</td>
+          </tr>
+          <tr>
+            <th scope="row" class="font-semibold text-slate-800">Selection in the store</th>
+            <td>Its own retail sales, which began with books and widened to music, movies, electronics and general merchandise (case, p.&nbsp;1).</td>
+            <td>Independent sellers on the marketplace since 2000, with more than 60% of the store&rsquo;s 2023 sales (case, p.&nbsp;1).</td>
+            <td><span class="font-semibold text-slate-800">Taper-like</span> (this page&rsquo;s reading): third-party merchants sell their own products through Amazon&rsquo;s platform (case, p.&nbsp;1), so part of the store&rsquo;s selection comes from firms Amazon does not own.</td>
+          </tr>
+          <tr>
+            <th scope="row" class="font-semibold text-slate-800">Access to mobile shoppers</th>
+            <td>The Fire Phone, launched July 2014, written down by $170&nbsp;million three months later (case, p.&nbsp;2).</td>
+            <td>Reaching mobile shoppers on phones whose platforms other firms control; the case notes that Amazon&rsquo;s own AppStore rivalled Google&rsquo;s and Apple&rsquo;s (p.&nbsp;2).</td>
+            <td><span class="font-semibold text-slate-800">Chose to make.</span> Question: what could a phone of its own do that reaching shoppers on other firms&rsquo; phones could not? The case reports only disappointing sales (p.&nbsp;2).</td>
+          </tr>
+          <tr>
+            <th scope="row" class="font-semibold text-slate-800">Computing</th>
+            <td>AWS, offering cloud computing to many companies since 2002 (case, p.&nbsp;1). The textbook treats creating it as backward integration (p.&nbsp;301); the decks under Go deeper describe it as having started as Amazon&rsquo;s internal IT.</td>
+            <td>The case is silent on what AWS buys from outside suppliers. It reports only that Amazon has built its own AI training and inference chips (p.&nbsp;3).</td>
+            <td><span class="font-semibold text-slate-800">Integrated, and selling outside.</span> Outside customers expose the in-house unit to market comparison, the benefit taper offers (p.&nbsp;318).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-2 text-xs text-slate-500">Facts from the case as cited; the readings in the last column are this page&rsquo;s analysis using Rothaermel (2024, p.&nbsp;318).</p>
+  </div>
+</section>
+
+
+<section id="amazon" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">The case &middot; Gupta &amp; Rodriguez (2024)</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Amazon in 2024: the vertical moves, one at a time</h2>
+  <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+    Amazon&rsquo;s revenue grew 12% in 2023, from $514&nbsp;billion to $575&nbsp;billion (case, p.&nbsp;1). Andy Jassy, CEO
+    since 2021, has to decide whether to keep entering seemingly unrelated businesses or focus on a few core ones
+    (p.&nbsp;1). The case closes on the charge that Amazon was &ldquo;defying the basic principle of business &ndash;
+    focus&rdquo; (p.&nbsp;4). This session answers only part of that charge: the moves along Amazon&rsquo;s own value chain.
+    Whether the portfolio as a whole is spread too thin is
+    <a href="/teaching/1-year-mba/session13.html" class="font-semibold text-blue-700 hover:underline">Session 13</a>&rsquo;s
+    question, and its international reach is
+    <a href="/teaching/1-year-mba/session12.html" class="font-semibold text-blue-700 hover:underline">Session 12</a>&rsquo;s.
+  </p>
+
+  <div class="mt-6 grid gap-5 lg:grid-cols-2">
+    <article class="card p-5">
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="pill bg-emerald-50 text-emerald-800">Forward</span>
+        <span class="pill bg-teal-50 text-teal-800">Case &middot; pp.&nbsp;1&ndash;3</span>
+      </div>
+      <h3 class="mt-2 text-lg font-bold text-slate-900">Fulfilment and delivery: the promise behind Prime</h3>
+      <ul class="mt-2 space-y-1.5 text-sm text-slate-600 leading-relaxed">
+        <li>Prime launched in 2005: free two-day shipping for a $79 annual fee. The fee rose to $99 in 2014, $119 in 2018 and
+          $139 in 2022, and membership kept growing (pp.&nbsp;1&ndash;2).</li>
+        <li>By 2023 Amazon had more than 200 million Prime members, who spent more than four times what other customers spent
+          (p.&nbsp;2).</li>
+        <li>Prime Now offered free delivery of tens of thousands of daily essentials within two hours, in several US cities
+          (p.&nbsp;2). Amazon Business added 24-hour delivery to business buyers (p.&nbsp;3).</li>
+      </ul>
+      <p class="mt-3 text-sm text-slate-600 leading-relaxed"><span class="pill bg-blue-50 text-blue-700">Textbook</span>
+        To deliver millions of products in two days or less in the United States, Amazon built a large network of fulfilment
+        centres: a large-scale commitment that lets it exploit economies of scope (Rothaermel, 2024, p.&nbsp;302).</p>
+      <p class="mt-3 text-sm text-slate-600 leading-relaxed"><span class="pill bg-amber-50 text-amber-800">Analysis</span>
+        This is forward integration one step from the store, into the stage that carries a purchase to the door. The
+        benefits that apply are quality the customer sees (speed), scheduling stock against delivery, and a secured channel
+        (p.&nbsp;315). The risk is fixed facilities that cannot shrink if demand falls (p.&nbsp;316).</p>
+      <p class="mt-3 text-sm text-slate-600 leading-relaxed"><span class="font-semibold text-slate-800">Where the case is
+        silent.</span> It does not say who carries parcels the last mile or what delivery costs Amazon. Question: if Amazon
+        owned that last stage too, which benefits would grow, and which risks?</p>
+    </article>
+
+    <article class="card p-5">
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="pill bg-emerald-50 text-emerald-800">Forward, contested</span>
+        <span class="pill bg-teal-50 text-teal-800">Case &middot; p.&nbsp;2</span>
+      </div>
+      <h3 class="mt-2 text-lg font-bold text-slate-900">Devices: Kindle, Fire Phone, Echo</h3>
+      <ul class="mt-2 space-y-1.5 text-sm text-slate-600 leading-relaxed">
+        <li>Kindle launched in 2007 at $399 and sold out in under six hours; after the iPad arrived in 2010, its price fell to
+          about $100. It gave customers a convenient way to shop for and download books and movies from Amazon&rsquo;s store.</li>
+        <li>The Fire Phone, July 2014, had a &ldquo;Firefly&rdquo; button that identified objects to buy on Amazon. Three
+          months later Amazon announced a $170&nbsp;million write-down.</li>
+        <li>Echo&rsquo;s assistant, Alexa, answered questions and placed orders. Over 500 million Echo devices were sold by May
+          2023, yet the <em>Wall Street Journal</em> reported in 2022 that the devices unit had an operating loss of more than $5&nbsp;billion a year.</li>
+        <li>The Dash Button, for reordering household items, was discontinued in 2019 for weak demand.</li>
+      </ul>
+      <p class="mt-3 text-sm text-slate-600 leading-relaxed"><span class="pill bg-teal-50 text-teal-800">Case &middot; p.&nbsp;2</span>
+        Amazon also built an AppStore that rivalled Google&rsquo;s and Apple&rsquo;s. While the devices unit was reportedly under
+        review in 2022, a spokesperson said Amazon was &ldquo;as optimistic about Alexa&rsquo;s future today as we&rsquo;ve ever
+        been&rdquo;, and Amazon planned to bring generative AI to Alexa.</p>
+      <p class="mt-3 text-sm text-slate-600 leading-relaxed"><span class="pill bg-amber-50 text-amber-800">Analysis</span>
+        Every device is a bid for the customer interface, which is Osegowitsch and Madhok&rsquo;s strongest case for
+        integrating forward (2003, p.&nbsp;32), and for a sales channel Amazon controls (Rothaermel, 2024, p.&nbsp;315). The
+        Fire Phone shows the limit: owning the interface did not make customers buy the phone. The case reports
+        disappointing sales and is silent on why.</p>
+      <p class="mt-3 text-sm text-slate-600 leading-relaxed"><span class="font-semibold text-slate-800">Question.</span>
+        Kindle&rsquo;s price fell from $399 to about $100, and Alexa places orders on Amazon. Should a device be judged on its
+        own loss, or on what customers buy through it? What evidence would settle it?</p>
+    </article>
+  </div>
+
+
+  <div class="mt-5 grid gap-5 lg:grid-cols-2">
+    <article class="card p-5">
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="pill bg-blue-50 text-blue-700">Backward, then outward</span>
+        <span class="pill bg-teal-50 text-teal-800">Case &middot; pp.&nbsp;1, 3&ndash;4</span>
+      </div>
+      <h3 class="mt-2 text-lg font-bold text-slate-900">Computing: AWS and its own chips</h3>
+      <ul class="mt-2 space-y-1.5 text-sm text-slate-600 leading-relaxed">
+        <li>AWS launched in 2002, offering companies elastic IT infrastructure that could grow at low cost as needed. Bezos kept
+          investing although analysts questioned it. In 2023 AWS earned over $90&nbsp;billion in revenue and over
+          $24&nbsp;billion in operating income, in a fast-growing but highly competitive market (p.&nbsp;1).</li>
+        <li>For generative AI, Jassy described a stack of three layers, &ldquo;each of which is gigantic, and each of which
+          we&rsquo;re deeply investing&rdquo;: custom chips for training and inference at the bottom, the Bedrock managed
+          service in the middle, and applications such as the Rufus shopping assistant and Alexa on top (pp.&nbsp;3&ndash;4).</li>
+      </ul>
+      <p class="mt-3 text-sm text-slate-600 leading-relaxed"><span class="pill bg-blue-50 text-blue-700">Textbook</span>
+        Rothaermel counts the creation of AWS as a backward integration move (p.&nbsp;301) and also cites AWS as an example of
+        horizontal diversification (p.&nbsp;297). The two decks under Go deeper describe AWS as having started as
+        Amazon&rsquo;s internal IT; the case itself does not say how AWS began.</p>
+      <p class="mt-3 text-sm text-slate-600 leading-relaxed"><span class="pill bg-amber-50 text-amber-800">Analysis</span>
+        On the backward reading, Amazon owns the computing its own businesses run on. Selling that computing to other firms
+        made the input a business in a new industry, which is diversification and goes to Session 13. The chips repeat the
+        pattern one stage further up, a backward move by the cloud business itself. Contrast NVIDIA in Session 10, which
+        designs chips but leaves fabrication to others; the case does not say who makes Amazon&rsquo;s chips.</p>
+      <p class="mt-3 text-sm text-slate-600 leading-relaxed"><span class="font-semibold text-slate-800">Question.</span> Does
+        selling to outside customers make the in-house unit stronger, because it must match the market (Rothaermel, 2024,
+        p.&nbsp;318), or does it pull the unit away from serving Amazon?</p>
+    </article>
+
+    <article class="card p-5">
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="pill bg-blue-50 text-blue-700">Backward, tapered</span>
+        <span class="pill bg-teal-50 text-teal-800">Case &middot; pp.&nbsp;1&ndash;2</span>
+      </div>
+      <h3 class="mt-2 text-lg font-bold text-slate-900">Content: Amazon Studios behind Prime Video</h3>
+      <ul class="mt-2 space-y-1.5 text-sm text-slate-600 leading-relaxed">
+        <li>Amazon launched Unbox for instant video in 2006; Prime Video later offered a large selection of films and shows.
+          Amazon Studios started in 2011 to produce original content, while licensing deals brought in Viacom shows and, in
+          2014, select HBO shows for over $200&nbsp;million (p.&nbsp;2).</li>
+        <li>In 2014 Amazon also launched Prime Music, ad-free music streaming for Prime subscribers (p.&nbsp;1).</li>
+        <li>In 2018 the Studios earned 10 Golden Globe nominations and two wins (p.&nbsp;2).</li>
+        <li>In 2023 Amazon spent over $19&nbsp;billion on TV and music content, including licensing, against Netflix&rsquo;s
+          $13&nbsp;billion, as the streaming war intensified (p.&nbsp;2).</li>
+      </ul>
+      <p class="mt-3 text-sm text-slate-600 leading-relaxed"><span class="pill bg-amber-50 text-amber-800">Analysis</span>
+        Tapered backward integration: Amazon makes some of the content its video service needs and licenses the rest
+        (Rothaermel, 2024, p.&nbsp;318). The risk is the textbook&rsquo;s first, higher costs (p.&nbsp;316), here in a bidding
+        war for content.</p>
+      <p class="mt-3 text-sm text-slate-600 leading-relaxed"><span class="font-semibold text-slate-800">Where the case is
+        silent.</span> It reports content spending and awards but no profit for video, and it does not separate what content
+        and what delivery each do for Prime. Question: should Studios be judged as a film studio, or by its effect on Prime
+        membership and spending (pp.&nbsp;1&ndash;2)? What evidence would tell them apart?</p>
+    </article>
+  </div>
+
+  <div class="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+    <div class="grid gap-4 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,.9fr)]">
+      <div>
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="pill bg-slate-100 text-slate-600">Mostly not vertical</span>
+          <span class="pill bg-teal-50 text-teal-800">Case &middot; p.&nbsp;3</span>
+        </div>
+        <h3 class="mt-2 text-lg font-bold text-slate-900">Whole Foods: a store, not a stage</h3>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">In June 2017 Amazon paid $13.4&nbsp;billion, a 27% premium, for an
+          upscale chain of 460 stores with high-income customers. Whole Foods had a 1.2% share of a US grocery market of about
+          $800&nbsp;billion, against Walmart&rsquo;s 14.5%; AmazonFresh had achieved limited success, and Amazon had not passed a
+          0.2% share in ten years. Many experts expected the deal to help Amazon into grocery; others wondered whether a
+          technology company with a soaring share price should enter so thin-margin an industry.</p>
+      </div>
+      <div class="rounded-xl border border-amber-200 bg-amber-50 p-4">
+        <span class="pill bg-white text-amber-800 border border-amber-200">Analysis</span>
+        <p class="mt-2 text-sm text-slate-700 leading-relaxed">Retail is the stage Amazon already occupies, so buying a
+          grocer is mainly horizontal: a new category and a new format. The textbook offers the forward reading: Amazon&rsquo;s
+          physical stores, including those within Whole Foods, move it closer to the end customer (Rothaermel, 2024,
+          pp.&nbsp;300&ndash;301). Weigh the acquisition as diversification in
+          <a href="/teaching/1-year-mba/session13.html" class="font-semibold text-blue-700 hover:underline">Session 13</a>.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- activity 2: benefits-versus-risks weigher -->
+  <div id="weighBox" class="mt-8 card p-5 sm:p-6">
+    <div class="flex flex-wrap items-baseline justify-between gap-2">
+      <div>
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Activity &middot; benefits-versus-risks weigher</p>
+        <h3 class="mt-1 text-xl font-bold text-slate-900">Weigh one vertical move on the evidence in the case</h3>
+      </div>
+      <span class="done-badge" data-done-for="weigh" hidden>Done</span>
+    </div>
+    <p class="mt-2 max-w-4xl text-sm text-slate-600 leading-relaxed">Pick a move. For each of the textbook&rsquo;s five benefits
+      and four risks (Rothaermel, 2024, pp.&nbsp;315&ndash;316), plus Osegowitsch and Madhok&rsquo;s learning motive (2003,
+      p.&nbsp;32), read the evidence line and score how strongly it applies: 0 for no evidence, 1 for some, 2 for strong. The
+      beam tips toward the heavier side. Then compare your weights with the page&rsquo;s reading. Evidence lines cite the case
+      or the textbook; where the case is silent, the line says so.</p>
+    <div id="weighTabs" class="mt-4 flex flex-wrap gap-2" role="group" aria-label="Choose the move to weigh"></div>
+    <div class="mt-5 grid gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,.65fr)] lg:items-start">
+      <div>
+        <p id="weighMini" class="lg:hidden sticky top-16 z-10 mb-3 rounded-lg border border-slate-200 bg-slate-100 px-3 py-2 text-xs font-semibold text-slate-700 tabular-nums" aria-hidden="true">Benefits 0 &middot; Risks 0</p>
+        <div id="weighRows" class="grid gap-3"></div>
+      </div>
+      <div class="lg:sticky lg:top-24 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">The balance</p>
+        <svg id="weighSvg" viewBox="0 0 320 180" class="mt-2 w-full h-auto" role="img" aria-labelledby="s11BeamT s11BeamD">
+          <title id="s11BeamT">Balance of benefits and risks</title>
+          <desc id="s11BeamD">A beam balance. The left pan holds the benefit score and the right pan the risk score; the heavier side sinks. The scores are also given in text below.</desc>
+          <polygon points="160,92 146,166 174,166" class="s11-fulcrum"/>
+          <line x1="110" y1="170" x2="210" y2="170" class="s11-base"/>
+          <line id="beamBar" x1="40" y1="88" x2="280" y2="88" class="s11-beam"/>
+          <line id="beamStrL" x1="40" y1="88" x2="40" y2="128" class="s11-string"/>
+          <line id="beamStrR" x1="280" y1="88" x2="280" y2="128" class="s11-string"/>
+          <path id="beamPanL" d="" class="s11-pan s11-pan-b"/>
+          <path id="beamPanR" d="" class="s11-pan s11-pan-r"/>
+          <circle cx="160" cy="88" r="5" class="s11-pivot"/>
+        </svg>
+        <div class="mt-1 grid grid-cols-2 gap-2 text-center">
+          <div><p class="text-[10px] font-semibold uppercase tracking-wider text-emerald-700">Benefits</p><p id="weighB" class="font-display text-2xl font-bold text-slate-900 tabular-nums">0</p></div>
+          <div><p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">Risks</p><p id="weighR" class="font-display text-2xl font-bold text-slate-900 tabular-nums">0</p></div>
+        </div>
+        <p id="weighOut" class="mt-3 text-sm text-slate-700 leading-relaxed" aria-live="polite">Score the factors to tip the beam.</p>
+        <button id="weighShow" type="button" class="mt-3 w-full rounded-lg bg-slate-900 px-3 py-2 text-sm font-semibold text-white hover:bg-slate-800" aria-expanded="false" aria-controls="weighRead">Compare with the page&rsquo;s reading</button>
+        <div id="weighRead" class="mt-3 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-slate-700 leading-relaxed" hidden></div>
+      </div>
+    </div>
+    <p class="mt-4 text-xs text-slate-500 leading-relaxed">A teaching device, not a valuation: the factors are not equally
+      important and the scores are not money. Its purpose is to make you say which evidence you are relying on.</p>
+  </div>
+
+  <div class="mt-8 grid gap-5 lg:grid-cols-3">
+    <div class="rounded-2xl border border-slate-200 p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">What the case lets you conclude</p>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">The case reports results for only one vertical stage, computing:
+        AWS revenue and operating income (p.&nbsp;1). For devices it gives a reported loss and a write-down; for content, only
+        spending; for logistics, nothing. Most judgements of value here are inferences, and you should say so when you make
+        them.</p>
+    </div>
+    <div class="rounded-2xl border border-slate-200 p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Can a stage be judged on its own profit?</p>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Inside an integrated firm, what one stage earns depends partly on
+        the transfer prices set between the in-house supplier and its buyer, which the textbook counts among the
+        administrative costs of integration (Rothaermel, 2024, p.&nbsp;316). Before you cite the devices loss (case,
+        p.&nbsp;2), decide which measure fits a captive stage: its own profit, or what the rest of the chain would lose
+        without it.</p>
+    </div>
+    <div class="rounded-2xl border border-slate-200 p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">The pattern across moves</p>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Amazon&rsquo;s forward moves reach for the customer: delivery and
+        devices (case, pp.&nbsp;1&ndash;2). Its backward moves secure inputs: content and chips (pp.&nbsp;2&ndash;3). Owning a
+        stage guaranteed nothing: the Fire Phone sold poorly and was written down within three months (p.&nbsp;2).</p>
+    </div>
+  </div>
+</section>
+
+
+<section id="decks" class="bg-white border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Go deeper</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Two earlier decks on vertical integration</h2>
+    <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">Neither deck was built for this session, and both cover
+      diversification as well. They follow the same textbook chapter and use Amazon throughout. Some of their Amazon facts come
+      from outside this session&rsquo;s case and were not checked for this page; use this page for the case facts.</p>
+    <div class="mt-6 grid gap-5 md:grid-cols-2">
+      <a href="/teaching/1-year-mba/Session8_Corporate%20Strategy_v0.8.html" class="flex flex-col justify-between gap-3 rounded-2xl border border-blue-200 bg-blue-50 p-5 hover:bg-blue-200 transition">
+        <span>
+          <span class="block text-[10px] font-semibold uppercase tracking-wider text-blue-700">Interactive deck &middot; built for an earlier numbering</span>
+          <span class="mt-1 block font-bold text-slate-900 break-words">Corporate Strategy: Vertical Integration &amp; Diversification</span>
+          <span class="mt-1 block text-sm text-slate-600">Its title says Session 8 because it was built when this course
+            numbered its sessions differently. It walks through textbook chapter 8: why firms grow, the three dimensions,
+            transaction costs, backward and forward integration with an Amazon panel and the HTC&ndash;Apple contrast, then
+            diversification, a strategy simulator and a 15-question quiz. Its Amazon panel lists logistics assets the case
+            does not describe, and it files Whole Foods under forward integration, which this page treats as mostly
+            horizontal.</span>
+        </span>
+        <span class="text-sm font-semibold text-blue-700">Open the deck &rarr;</span>
+      </a>
+      <a href="/teaching/2-year-mba/session-14-corporate-strategy-vertical-integration-and-diversification.html" class="flex flex-col justify-between gap-3 rounded-2xl border border-blue-200 bg-blue-50 p-5 hover:bg-blue-200 transition">
+        <span>
+          <span class="block text-[10px] font-semibold uppercase tracking-wider text-blue-700">Interactive deck &middot; 2-year MBA</span>
+          <span class="mt-1 block font-bold text-slate-900 break-words">Corporate Strategy: Vertical Integration &amp; Diversification</span>
+          <span class="mt-1 block text-sm text-slate-600">Session 14 of the 2-year course, one page for three of its sessions,
+            built on the same Amazon case and on Osegowitsch and Madhok. It has a make-or-buy cost simulator, Indian examples of
+            firms and markets, a clickable industry value chain, the Amazon flywheel and a three-decision CEO simulation. Its
+            Amazon figures for 2024 to 2026 come from outside the case.</span>
+        </span>
+        <span class="text-sm font-semibold text-blue-700">Open the deck &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<section id="discussion" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">For class</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Six questions to argue</h2>
+  <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">Come with a position on each, and the page of the case or reading
+    that supports it.</p>
+  <div class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+    <div class="card p-5"><p class="font-mono text-xs text-blue-600">01</p><p class="mt-1 text-sm font-semibold text-slate-800 leading-relaxed">Is AWS backward integration, diversification, or both? The textbook says both (pp.&nbsp;297, 301). Show how your evaluation of AWS changes depending on which reading you adopt, and say what you would need to know about how AWS began, which the case does not tell you.</p></div>
+    <div class="card p-5"><p class="font-mono text-xs text-blue-600">02</p><p class="mt-1 text-sm font-semibold text-slate-800 leading-relaxed">The Fire Phone and the Echo were both forward moves into devices. What separated the one written down within three months from the one that sold over 500 million units? Could Amazon have told them apart in advance?</p></div>
+    <div class="card p-5"><p class="font-mono text-xs text-blue-600">03</p><p class="mt-1 text-sm font-semibold text-slate-800 leading-relaxed">The devices unit reportedly lost more than $5&nbsp;billion a year, yet Alexa places orders on Amazon and Kindle is a way to shop its store (case, p.&nbsp;2). As Jassy, what evidence would you need before cutting or keeping devices?</p></div>
+    <div class="card p-5"><p class="font-mono text-xs text-blue-600">04</p><p class="mt-1 text-sm font-semibold text-slate-800 leading-relaxed">Prime&rsquo;s fee rose from $79 to $139 while membership kept growing. Is that evidence that integrating into fulfilment and delivery created value? What else could explain it?</p></div>
+    <div class="card p-5"><p class="font-mono text-xs text-blue-600">05</p><p class="mt-1 text-sm font-semibold text-slate-800 leading-relaxed">Amazon makes some of its video content and licenses the rest. Using the benefits of taper integration, argue whether it should make more or less, given $19&nbsp;billion of content spending in 2023.</p></div>
+    <div class="card p-5"><p class="font-mono text-xs text-blue-600">06</p><p class="mt-1 text-sm font-semibold text-slate-800 leading-relaxed">Osegowitsch and Madhok say most upstream benefits can be had through closely aligned suppliers. Do Amazon&rsquo;s own AI chips contradict them? Which benefit or motive would justify them, and what would you need to know that the case does not say?</p></div>
+  </div>
+</section>
+
+<section id="quiz" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Knowledge check</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Ten questions</h2>
+  <p class="mt-3 text-slate-600 max-w-3xl leading-relaxed">
+    Answer before you look. Each answer explains itself, and the explanation matters more than the score. The full practice bank for this session is at <a href="/teaching/quiz/1yr-08" class="font-semibold text-blue-700 hover:underline">/teaching/quiz/1yr-08</a>.
+  </p>
+  <div class="mt-4 flex flex-wrap items-center gap-3 text-sm">
+    <span class="text-slate-500"><span id="sQuizScore">0</span> / <span id="sQuizTotal">0</span> correct</span>
+    <button id="sQuizReset" type="button" class="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50">Start again</button>
+  </div>
+  <div id="sQuiz" class="mt-6 grid gap-4"></div>
+</section>
+
+
+<section id="readings" class="bg-white border-y border-slate-200">
+  <div class="container mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Preparation</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Readings for Session 11</h2>
+    <p class="mt-3 text-sm text-slate-600 max-w-4xl leading-relaxed">The case and the articles are copyrighted Harvard
+      Business School Publishing, Harvard Business Review and <em>Business Horizons</em> materials, and the textbook is in
+      copyright. Get them through the course pack or the library; this page does not host or link them.</p>
+    <div class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Required &middot; the case</p>
+        <p class="mt-2 text-sm text-slate-700 ref">Gupta, S., &amp; Rodriguez, M. L. (2024). <em>Amazon in 2024</em> (HBS No. 9-514-025). Harvard Business School Publishing.</p>
+        <p class="mt-2 text-xs text-slate-500">Four pages of text; read all of it. The same case serves Sessions 12 and 13, so note which moves are vertical as you read.</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Required &middot; the outline&rsquo;s reading</p>
+        <p class="mt-2 text-sm text-slate-700 ref">Osegowitsch, T., &amp; Madhok, A. (2003). Vertical integration is dead, or is it? <em>Business Horizons</em>, March&ndash;April, 25&ndash;34.</p>
+        <p class="mt-2 text-xs text-slate-500">The traditional and contemporary motives, and the learning argument for downstream integration. Course-pack reprint BH089.</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Required &middot; the outline&rsquo;s reading</p>
+        <p class="mt-2 text-sm text-slate-700 ref">Buzzell, R. D. (1983). Is vertical integration profitable? <em>Harvard Business Review</em>, January.</p>
+        <p class="mt-2 text-xs text-slate-500">Read for class. Its text was not in the course-pack folder this page was built from, so the page does not summarise it.</p>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Further &middot; course textbook</p>
+        <p class="mt-2 text-sm text-slate-700 ref">Rothaermel, F. T. (2024). <em>Strategic management</em> (6th ed.). McGraw Hill.</p>
+        <p class="mt-2 text-xs text-slate-500">Chapter 8, &ldquo;Corporate strategy: Vertical integration and diversification&rdquo;. Today: section 8.3 and the alternatives (pp.&nbsp;310&ndash;319), with section 8.2 (pp.&nbsp;302&ndash;310) as the Session 10 recap.</p>
+      </div>
+      <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+        <h3 class="font-bold text-slate-900">A note on the figures on this page</h3>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Amazon figures are the case&rsquo;s, as of mid-2024, and some
+          are press reports it cites, such as the devices loss. The case dates AWS to 2002; the textbook gives a different
+          year, and this page follows the case. Textbook and article examples describe those firms when the books were
+          written.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-gray-800 mt-16 sm:mt-24 border-t border-gray-700">
+  <div class="container mx-auto px-6 py-8 text-center">
+    <p class="text-sm text-slate-400">&copy; Dr. Swapnil Sahoo 2026 &middot; Great Lakes Institute of Management, Gurgaon</p>
+    <p class="mt-2 text-xs text-slate-500">STRAMGT 221 &middot; Strategic Management (PGPM) &middot; Session 11</p>
+    <div class="mt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+      <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-400 hover:text-white">swapnilsahoo.com</a>
+      <a href="/teaching/1-year-mba/session10.html" class="text-sm text-slate-400 hover:text-white">&larr; Session 10</a> <a href="/teaching/1-year-mba" class="text-sm text-slate-400 hover:text-white">All sessions</a> <a href="/teaching/1-year-mba/session12.html" class="text-sm text-slate-400 hover:text-white">Session 12 &rarr;</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* Session 11 components; every colour has an html.dark twin */
+  :root{--s11-ink:#334155;--s11-mute:#64748B;--s11-back:#4F46E5;--s11-fwd:#0F766E;--s11-none:#64748B;
+    --s11-ben:#15803D;--s11-risk:#BE123C;--s11-beam:#334155;--s11-fulc:#CBD5E1;--s11-panb:#BBF7D0;--s11-panr:#FECDD3}
+  html.dark{--s11-ink:#CBD5E1;--s11-mute:#94A3B8;--s11-back:#818CF8;--s11-fwd:#2DD4BF;--s11-none:#94A3B8;
+    --s11-ben:#6EE7A8;--s11-risk:#FDA4AF;--s11-beam:#CBD5E1;--s11-fulc:#334155;--s11-panb:#14532D;--s11-panr:#5B1A27}
+
+  /* value-chain figure */
+  .s11-stage{border:1px solid #E2E8F0;border-top:4px solid #94A3B8;background:#fff}
+  html.dark .s11-stage{background:var(--card);border-color:#1E293B;border-top-color:#475569}
+  .s11-dir{border:1px solid #E2E8F0}
+  .s11-dir-back{border-left:4px solid var(--s11-back);background:#EEF1FF}
+  .s11-dir-fwd{border-right:4px solid var(--s11-fwd);background:#F0FDFA}
+  html.dark .s11-dir{border-color:#1E293B}
+  html.dark .s11-dir-back{background:#171C3C;border-left-color:var(--s11-back)}
+  html.dark .s11-dir-fwd{background:#0E2624;border-right-color:var(--s11-fwd)}
+  .s11-good{border-color:#A7F3D0}
+  html.dark .s11-good{border-color:#1F4D36!important}
+
+  /* placer map columns and chips */
+  .s11-col{border:1px solid #E2E8F0;background:#fff;border-left-width:4px}
+  .s11-col-b{border-left-color:var(--s11-back)}
+  .s11-col-f{border-left-color:var(--s11-fwd)}
+  .s11-col-n{border-left-color:var(--s11-none)}
+  .s11-col-home{border-style:dashed;border-left-style:solid;border-left-color:#0F172A;background:#F8FAFC}
+  html.dark .s11-col{background:var(--card);border-color:#1E293B}
+  html.dark .s11-col-b{border-left-color:var(--s11-back)}
+  html.dark .s11-col-f{border-left-color:var(--s11-fwd)}
+  html.dark .s11-col-n{border-left-color:var(--s11-none)}
+  html.dark .s11-col-home{background:#0F172A;border-left-color:#CBD5E1}
+  .s11-chip{display:inline-flex;align-items:center;gap:.3rem;border-radius:9999px;border:1px solid;padding:.1rem .55rem;
+    font-size:.7rem;font-weight:600;line-height:1.4}
+  .s11-chip-ok{background:#F0FDF4;border-color:#86EFAC;color:#166534}
+  .s11-chip-no{background:#FEF2F2;border-color:#FCA5A5;color:#B91C1C}
+  html.dark .s11-chip-ok{background:#0F261A;border-color:#2F7D52;color:#6EE7A8}
+  html.dark .s11-chip-no{background:#2C1418;border-color:#4A2028;color:#FCA5A5}
+
+  /* option buttons, tabs and segmented scores */
+  .s11-opt{border:1px solid #CBD5E1;border-radius:.6rem;background:transparent;color:#334155;
+    padding:.4rem .6rem;font-size:.78rem;font-weight:600;text-align:center;transition:background-color .15s,border-color .15s}
+  .s11-opt:hover{background:#F1F5F9}
+  .s11-opt.s11-right{background:#DCFCE7;border-color:#22C55E;color:#166534}
+  .s11-opt.s11-wrong{background:#FEE2E2;border-color:#EF4444;color:#B91C1C}
+  .s11-opt.s11-also{background:#FFFBEB;border-color:#F59E0B;color:#92400E}
+  .s11-opt:disabled{cursor:default}
+  html.dark .s11-opt{border-color:#334155;color:#CBD5E1}
+  html.dark .s11-opt:hover{background:#1E293B}
+  html.dark .s11-opt.s11-right{background:#14321F;border-color:#2F7D52;color:#6EE7A8}
+  html.dark .s11-opt.s11-wrong{background:#3A181E;border-color:#9B3540;color:#FCA5A5}
+  html.dark .s11-opt.s11-also{background:#2A2110;border-color:#4A3A1A;color:#FCD34D}
+  .s11-card{border-left-width:4px}
+  .s11-card[data-pick="b"]{border-left-color:var(--s11-back)}
+  .s11-card[data-pick="f"]{border-left-color:var(--s11-fwd)}
+  .s11-card[data-pick="n"]{border-left-color:var(--s11-none)}
+  html.dark .s11-card[data-pick="b"]{border-left-color:var(--s11-back)!important}
+  html.dark .s11-card[data-pick="f"]{border-left-color:var(--s11-fwd)!important}
+  html.dark .s11-card[data-pick="n"]{border-left-color:var(--s11-none)!important}
+  .s11-tab{border:1px solid #CBD5E1;border-radius:9999px;background:transparent;color:#334155;
+    padding:.35rem .85rem;font-size:.8rem;font-weight:600;text-align:left}
+  .s11-tab:hover{background:#F1F5F9}
+  .s11-tab span{font-weight:400;color:#64748B}
+  .s11-tab[aria-pressed="true"]{background:#0F172A;border-color:#0F172A;color:#fff}
+  .s11-tab[aria-pressed="true"] span{color:#CBD5E1}
+  html.dark .s11-tab{border-color:#334155;color:#CBD5E1}
+  html.dark .s11-tab span{color:#94A3B8}
+  html.dark .s11-tab:hover{background:#1E293B}
+  html.dark .s11-tab[aria-pressed="true"]{background:#4F46E5;border-color:#6E72F0;color:#fff}
+  html.dark .s11-tab[aria-pressed="true"] span{color:#E0E5FF}
+  .s11-row{border:1px solid #E2E8F0;border-left-width:4px;background:#fff}
+  .s11-row[data-side="b"]{border-left-color:var(--s11-ben)}
+  .s11-row[data-side="r"]{border-left-color:var(--s11-risk)}
+  html.dark .s11-row{background:var(--card);border-color:#1E293B}
+  html.dark .s11-row[data-side="b"]{border-left-color:var(--s11-ben)}
+  html.dark .s11-row[data-side="r"]{border-left-color:var(--s11-risk)}
+  .s11-seg{display:inline-flex;border:1px solid #CBD5E1;border-radius:.6rem;overflow:hidden}
+  .s11-seg button{min-width:2.25rem;padding:.3rem .5rem;font-size:.8rem;font-weight:700;color:#334155;background:transparent}
+  .s11-seg button+button{border-left:1px solid #CBD5E1}
+  .s11-seg button:hover{background:#F1F5F9}
+  .s11-seg button[aria-pressed="true"]{background:#0F172A;color:#fff}
+  html.dark .s11-seg,html.dark .s11-seg button+button{border-color:#334155}
+  html.dark .s11-seg button{color:#CBD5E1}
+  html.dark .s11-seg button:hover{background:#1E293B}
+  html.dark .s11-seg button[aria-pressed="true"]{background:#4F46E5;color:#fff}
+
+  /* balance beam */
+  .s11-fulcrum{fill:var(--s11-fulc)}
+  .s11-base{stroke:var(--s11-mute);stroke-width:2;stroke-linecap:round}
+  .s11-beam{stroke:var(--s11-beam);stroke-width:4;stroke-linecap:round}
+  .s11-string{stroke:var(--s11-mute);stroke-width:1.25}
+  .s11-pan{stroke-width:2}
+  .s11-pan-b{fill:var(--s11-panb);stroke:var(--s11-ben)}
+  .s11-pan-r{fill:var(--s11-panr);stroke:var(--s11-risk)}
+  .s11-pivot{fill:var(--s11-beam)}
+  .s11-ok{color:#166534}.s11-no{color:#B91C1C}.s11-mid{color:#92400E}
+  html.dark .s11-ok{color:#6EE7A8}html.dark .s11-no{color:#FCA5A5}html.dark .s11-mid{color:#FCD34D}
+</style>
+
+<script>
+(function () {
+  /* ---------- activity 1: place Amazon's moves on its value chain (case pp. 1-3; Rothaermel 2024 pp. 297-318) ---------- */
+  var list = document.getElementById("placeList"), score = document.getElementById("placeScore");
+  if (!list) return;
+  var COLS = { b: document.getElementById("placeColB"), f: document.getElementById("placeColF"), n: document.getElementById("placeColN") };
+  var OPTS = [["b", "Backward"], ["f", "Forward"], ["n", "Not vertical"]];
+  var NAMES = { b: "backward", f: "forward", n: "not vertical" };
+  var ITEMS = [
+    { t: "Amazon Studios", d: "Since 2011, Amazon Studios has produced original content for Amazon's video service; in 2015 it announced it would make feature films too.", src: "Case, p. 2", a: ["b"],
+      why: "Backward. Content is an input to the video service Amazon already runs, so making it moves upstream. Because Amazon also licenses shows, this is tapered rather than full integration. The textbook reads Prime Video's original content the same way (Rothaermel, 2024, p. 297)." },
+    { t: "Licensed shows", d: "Multi-year licensing deals bring hundreds of Viacom shows to the video service; in 2014 HBO is paid over $200 million for select shows.", src: "Case, p. 2", a: ["n"],
+      why: "Not vertical. Licensing buys content through long-term contracts, a hybrid on the make-or-buy continuum, not ownership (Rothaermel, 2024, pp. 306–307). Next to Amazon Studios it makes content a case of taper integration (p. 318)." },
+    { t: "AWS", d: "From 2002, AWS offers other companies an elastic IT infrastructure that can expand at low cost as needed.", src: "Case, p. 1; Rothaermel (2024), pp. 297, 301", a: ["b", "n"],
+      why: "Two defensible answers. The textbook calls creating AWS a backward integration move (p. 301): on that reading Amazon owns the computing its own businesses run on. Renting computing to other firms puts Amazon in a new industry, which is diversification; the textbook also cites AWS as an example of horizontal diversification (p. 297). The diversification side belongs to Session 13." },
+    { t: "AI chips", d: "For developers and companies building AI foundation models, Amazon has built its own custom training and inference chips.", src: "Case, p. 3", a: ["b"],
+      why: "Backward. Chips are an input to cloud computing, so designing them moves the cloud business upstream. The case does not say who manufactures them." },
+    { t: "Kindle", d: "Launched in 2007, Kindle gave customers a convenient way to shop for and download books and movies from Amazon's store.", src: "Case, p. 2; Rothaermel (2024), p. 301", a: ["f", "b"],
+      why: "Two defensible answers. Forward if the device is the store's channel into the reader's hands: the case describes Kindle as a way to shop for and download content from Amazon's store (p. 2). Backward if you see Amazon designing a product it sells, which is how the textbook reads Amazon-branded electronics (p. 301). This page uses forward, because the device's stated use is buying from the store." },
+    { t: "Fire Phone", d: "Launched in July 2014; its 'Firefly' button identified objects that could be bought on Amazon. Three months later came a $170 million write-down.", src: "Case, p. 2", a: ["f"],
+      why: "Forward. A phone sits between the customer and the store, and its Firefly button identified objects that could be bought on Amazon (case, p. 2): a sales channel Amazon would control (Rothaermel, 2024, p. 315). The case reports disappointing sales but does not say why they disappointed." },
+    { t: "Echo and Alexa", d: "A voice assistant that answered questions and placed orders on Amazon; over 500 million Echo devices were sold by May 2023.", src: "Case, p. 2", a: ["f"],
+      why: "Forward. Alexa places orders on Amazon (case, p. 2), so the device is an ordering channel between the customer and the store. Ownership moves closer to the end customer, which is the textbook's definition of forward integration (p. 313)." },
+    { t: "Prime Now", d: "Free delivery of tens of thousands of daily essentials to Prime members within two hours, in several US cities.", src: "Case, p. 2; Rothaermel (2024), p. 302", a: ["f"],
+      why: "Forward. Fulfilment and delivery carry a purchase from the store to the door. The textbook notes that Amazon built a large network of fulfilment centres to deliver in two days or less (p. 302). The case is silent on who carries the last mile: would owning that stage too change your view of the value?" },
+    { t: "Marketplace", d: "Since 2000, independent sellers sell on Amazon's platform; in 2023 they made more than 60% of the store's sales.", src: "Case, p. 1", a: ["n"],
+      why: "Not vertical. Third-party merchants sell their own products through Amazon's platform (p. 1), so Amazon does not take ownership of the goods. If anything it is a step back from integration: part of the store's selection comes from firms Amazon does not own." },
+    { t: "Whole Foods", d: "In 2017 Amazon paid $13.4 billion, a 27% premium, for an upscale grocery chain with 460 stores.", src: "Case, p. 3; Rothaermel (2024), pp. 300–301", a: ["n", "f"],
+      why: "Two defensible answers. Mostly horizontal: retail is Amazon's own stage, so the deal adds a category and a format. The textbook gives the forward reading: Amazon's physical stores, including those within Whole Foods, bring it closer to the end customer (pp. 300–301). The acquisition logic belongs to Session 13." },
+    { t: "Ad network", d: "Since 2011, Amazon serves targeted ads to its customers when they visit other sites; over $47 billion of ad revenue in 2023.", src: "Case, p. 2", a: ["n"],
+      why: "Not vertical. Advertising is a new product sold to new customers, advertisers, built on data the store generates. That is diversification, for Session 13." }
+  ];
+  var answered = 0, right = 0;
+
+  function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
+  function upd() {
+    score.textContent = answered + " of " + ITEMS.length + " placed" + (answered ? " · " + right + " accepted." : ".") +
+      (answered === ITEMS.length ? " Check the three two-answer items: did you know why the other reading exists?" : "");
+  }
+
+  function build() {
+    list.innerHTML = ""; answered = 0; right = 0;
+    Object.keys(COLS).forEach(function (k) { if (COLS[k]) COLS[k].innerHTML = ""; });
+    ITEMS.forEach(function (it, n) {
+      var card = el("div", "card s11-card p-4");
+      card.appendChild(el("p", "text-[10px] font-semibold uppercase tracking-wider text-slate-500", (n + 1) + " · " + it.src));
+      card.appendChild(el("p", "mt-1 font-semibold text-slate-900", it.t));
+      card.appendChild(el("p", "mt-1 text-sm text-slate-600 leading-relaxed", it.d));
+      var g = el("div", "mt-3 grid grid-cols-3 gap-2"); g.setAttribute("role", "group"); g.setAttribute("aria-label", "Direction for " + it.t);
+      var fb = el("p", "mt-3 text-xs leading-relaxed text-slate-600"); fb.hidden = true; fb.setAttribute("aria-live", "polite");
+      OPTS.forEach(function (o) {
+        var b = el("button", "s11-opt", o[1]); b.type = "button"; b.setAttribute("data-k", o[0]); b.setAttribute("aria-pressed", "false");
+        b.addEventListener("click", function () {
+          if (card.dataset.done) return;
+          card.dataset.done = "1"; card.setAttribute("data-pick", o[0]);
+          var ok = it.a.indexOf(o[0]) > -1;
+          answered++; if (ok) right++;
+          g.querySelectorAll("button").forEach(function (x) {
+            var k = x.getAttribute("data-k");
+            x.disabled = true;
+            if (x === b) { x.setAttribute("aria-pressed", "true"); x.classList.add(ok ? "s11-right" : "s11-wrong"); }
+            else if (it.a.indexOf(k) > -1) x.classList.add(it.a[0] === k ? "s11-right" : "s11-also");
+          });
+          fb.hidden = false; fb.innerHTML = "";
+          var head = el("span", "font-semibold " + (ok ? "s11-ok" : "s11-no"), ok ? "Accepted. " : "Not the page's reading. ");
+          fb.appendChild(head); fb.appendChild(document.createTextNode(it.why));
+          var col = COLS[o[0]];
+          if (col) {
+            var li = el("li", "s11-chip " + (ok ? "s11-chip-ok" : "s11-chip-no"));
+            li.appendChild(el("span", null, ok ? "✓" : "✗"));
+            li.appendChild(el("span", null, (n + 1) + " " + it.t));
+            li.setAttribute("aria-label", it.t + ", placed as " + NAMES[o[0]] + (ok ? ", accepted" : ", not accepted"));
+            col.appendChild(li);
+          }
+          upd();
+        });
+        g.appendChild(b);
+      });
+      card.appendChild(g); card.appendChild(fb);
+      list.appendChild(card);
+    });
+    upd();
+  }
+  build();
+  var rs = document.getElementById("placeReset");
+  if (rs) rs.addEventListener("click", build);
+})();
+</script>
+
+<script>
+(function () {
+  /* ---------- activity 2: weigh benefits against risks for one vertical move
+     factors: Rothaermel (2024) pp. 315-316; learning: Osegowitsch & Madhok (2003) p. 32; evidence: case and textbook ---------- */
+  var tabs = document.getElementById("weighTabs"), rows = document.getElementById("weighRows");
+  if (!tabs || !rows) return;
+  var outB = document.getElementById("weighB"), outR = document.getElementById("weighR"), out = document.getElementById("weighOut");
+  var showBtn = document.getElementById("weighShow"), read = document.getElementById("weighRead");
+  var FACTORS = [
+    { k: "cost", s: "b", l: "Lowers costs" },
+    { k: "qual", s: "b", l: "Improves quality" },
+    { k: "plan", s: "b", l: "Eases scheduling and planning" },
+    { k: "spec", s: "b", l: "Supports specialised assets" },
+    { k: "secure", s: "b", l: "Secures supplies or channels" },
+    { k: "learn", s: "b", l: "Learning at the customer interface (Osegowitsch & Madhok)" },
+    { k: "rcost", s: "r", l: "Raises costs" },
+    { k: "rqual", s: "r", l: "Reduces quality" },
+    { k: "rflex", s: "r", l: "Reduces flexibility" },
+    { k: "rlegal", s: "r", l: "Increases legal exposure" }
+  ];
+  var MOVES = [
+    { k: "devices", name: "Devices", sub: "Kindle, Fire Phone, Echo",
+      ev: { cost: ["Nothing in the case shows devices lowering Amazon's costs.", 0],
+        qual: ["Kindle made it convenient to shop for and download books and movies from the store (case, p. 2).", 1],
+        plan: ["Nothing in the case.", 0],
+        spec: ["The Fire Phone's Firefly button identified objects that could be bought on Amazon (case, p. 2): a feature built around one store.", 1],
+        secure: ["Alexa places orders on Amazon and Kindle is a way to shop its store; Google and Apple run rival app stores (case, p. 2).", 2],
+        learn: ["Alexa answers customers' questions (case, p. 2); the case is silent on what Amazon learns from its devices.", 1],
+        rcost: ["The devices unit reportedly had an operating loss of more than $5 billion a year (case, p. 2).", 2],
+        rqual: ["Fire Phone sales disappointed (case, p. 2); the case does not say why.", 1],
+        rflex: ["A $170 million Fire Phone write-down within three months; the Dash Button discontinued (case, p. 2).", 1],
+        rlegal: ["Nothing in the case.", 0] },
+      read: "A slight lean toward integrating, and nearly all of it comes from the channel: devices through which customers shop and order on Amazon (case, p. 2), which is the textbook's secured distribution channel and Osegowitsch and Madhok's customer interface. The risk side rests on the only hard numbers, the reported loss and the write-down. The open question is the measure: should a device be judged on its own loss, or on what customers buy through it?" },
+    { k: "delivery", name: "Fulfilment and delivery", sub: "Prime, Prime Now",
+      ev: { cost: ["The textbook says the fulfilment network lets Amazon exploit economies of scope across millions of products (Rothaermel, 2024, p. 302); the case gives no cost figures.", 1],
+        qual: ["Free two-day shipping from 2005, two-hour Prime Now later (case, pp. 1–2): speed is the quality customers see.", 2],
+        plan: ["Two-hour delivery of tens of thousands of items needs stock and delivery planned together (case, p. 2).", 2],
+        spec: ["A large network of fulfilment centres built for two-day delivery (Rothaermel, 2024, p. 302).", 1],
+        secure: ["Delivery is the channel to the customer; Prime members spend more than four times what other customers spend (case, p. 2).", 2],
+        learn: ["Not discussed in the case.", 0],
+        rcost: ["No cost figures in the case; the textbook calls the fulfilment network a large-scale commitment (Rothaermel, 2024, p. 302).", 1],
+        rqual: ["Nothing in the case.", 0],
+        rflex: ["Fixed facilities cannot shrink quickly if demand falls (Rothaermel, 2024, p. 316, applied).", 1],
+        rlegal: ["Nothing in the case.", 0] },
+      read: "The strongest case of the three. Delivery is one step from the store and protects the promise Prime members pay for: the fee rose from $79 to $139 while membership kept growing (case, pp. 1–2). The weakness is evidence: the case has no logistics costs and is silent on who carries the last mile, so the risk side is scored from the textbook's logic rather than from data." },
+    { k: "content", name: "Original content", sub: "Amazon Studios",
+      ev: { cost: ["Not a cost play: Amazon spent over $19 billion on content in 2023 (case, p. 2).", 0],
+        qual: ["10 Golden Globe nominations and two wins in 2018 (case, p. 2).", 1],
+        plan: ["Nothing in the case.", 0],
+        spec: ["Original content is Amazon's own rather than licensed (case, p. 2); how specific it is to Prime Video, the case does not say.", 1],
+        secure: ["Owning a studio secures some content; licensing from Viacom and HBO supplies the rest (case, p. 2).", 1],
+        learn: ["The case is silent on what Amazon learns from viewing.", 0],
+        rcost: ["Over $19 billion in 2023 against Netflix's $13 billion, as the streaming war intensified (case, p. 2).", 2],
+        rqual: ["Awards suggest the Studios can compete on quality (case, p. 2); the case reports no quality problems.", 0],
+        rflex: ["Making feature films commits money long before any return (inference from case, p. 2).", 1],
+        rlegal: ["Nothing in the case.", 0] },
+      read: "Balanced. Judged as a studio, the move is expensive: Amazon outspent Netflix on content in 2023 (case, p. 2). The case reports no profit for video, so any value would have to appear elsewhere, for instance in Prime membership and spending (pp. 1–2), and the case does not separate content's effect from delivery's. Tapering, making some content and licensing the rest, keeps the choice open." }
+  ];
+  var LBL = ["No evidence", "Some", "Strong"];
+  var state = {}; MOVES.forEach(function (m) { state[m.k] = {}; FACTORS.forEach(function (f) { state[m.k][f.k] = 0; }); });
+  var cur = MOVES[0], theta = 0, anim = null;
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
+  function totals(m) {
+    var b = 0, r = 0;
+    FACTORS.forEach(function (f) { var v = state[m.k][f.k]; if (f.s === "b") b += v; else r += v; });
+    return [b, r];
+  }
+  function pageTotals(m) {
+    var b = 0, r = 0;
+    FACTORS.forEach(function (f) { var v = m.ev[f.k][1]; if (f.s === "b") b += v; else r += v; });
+    return [b, r];
+  }
+  function drawBeam(t) {
+    var cx = 160, cy = 88, L = 120, rad = t * Math.PI / 180;
+    var lx = cx - L * Math.cos(rad), ly = cy + L * Math.sin(rad), rx = cx + L * Math.cos(rad), ry = cy - L * Math.sin(rad);
+    var bar = document.getElementById("beamBar");
+    bar.setAttribute("x1", lx.toFixed(1)); bar.setAttribute("y1", ly.toFixed(1)); bar.setAttribute("x2", rx.toFixed(1)); bar.setAttribute("y2", ry.toFixed(1));
+    [["L", lx, ly], ["R", rx, ry]].forEach(function (p) {
+      var s = document.getElementById("beamStr" + p[0]), pan = document.getElementById("beamPan" + p[0]);
+      var py = p[2] + 40;
+      s.setAttribute("x1", p[1].toFixed(1)); s.setAttribute("y1", p[2].toFixed(1)); s.setAttribute("x2", p[1].toFixed(1)); s.setAttribute("y2", py.toFixed(1));
+      pan.setAttribute("d", "M" + (p[1] - 30).toFixed(1) + " " + py.toFixed(1) + " Q" + p[1].toFixed(1) + " " + (py + 18).toFixed(1) + " " + (p[1] + 30).toFixed(1) + " " + py.toFixed(1) + " Z");
+    });
+  }
+  function tipTo(target) {
+    if (anim) cancelAnimationFrame(anim);
+    if (reduce) { theta = target; drawBeam(theta); return; }
+    var start = theta, t0 = null;
+    function step(ts) {
+      if (t0 === null) t0 = ts;
+      var p = Math.min(1, (ts - t0) / 320), e = 1 - Math.pow(1 - p, 3);
+      theta = start + (target - start) * e; drawBeam(theta);
+      if (p < 1) anim = requestAnimationFrame(step);
+    }
+    anim = requestAnimationFrame(step);
+  }
+  function verdict(b, r) {
+    var n = b - r;
+    if (b === 0 && r === 0) return "Score the factors to tip the beam.";
+    if (n >= 3) return "Benefits " + b + ", risks " + r + ". On your weights the evidence favours integrating this stage.";
+    if (n >= 1) return "Benefits " + b + ", risks " + r + ". A modest case for integrating: say which benefit carries it.";
+    if (n === 0) return "Benefits " + b + ", risks " + r + ". Balanced: the case is open, which is when tapering or a contract deserves a look.";
+    if (n >= -2) return "Benefits " + b + ", risks " + r + ". Risks lead: integration looks doubtful unless one benefit is decisive.";
+    return "Benefits " + b + ", risks " + r + ". On your weights this stage would be better bought, contracted or tapered.";
+  }
+  function refresh() {
+    var t = totals(cur);
+    outB.textContent = t[0]; outR.textContent = t[1];
+    var mini = document.getElementById("weighMini");
+    if (mini) mini.textContent = cur.name + ": benefits " + t[0] + " · risks " + t[1] + (t[0] - t[1] > 0 ? " → leans to integrate" : t[0] - t[1] < 0 ? " → leans against" : "");
+    out.textContent = verdict(t[0], t[1]);
+    tipTo(Math.max(-16, Math.min(16, (t[0] - t[1]) * 3.5)));
+    if (!read.hidden) fillRead();
+  }
+  function fillRead() {
+    read.innerHTML = "";
+    var pt = pageTotals(cur), yt = totals(cur);
+    read.appendChild(el("p", "font-semibold text-slate-900", "Page reading: benefits " + pt[0] + ", risks " + pt[1] + " (yours: " + yt[0] + " and " + yt[1] + ")."));
+    read.appendChild(el("p", "mt-1", cur.read));
+    var diffs = FACTORS.filter(function (f) { return state[cur.k][f.k] !== cur.ev[f.k][1]; });
+    if (diffs.length) {
+      read.appendChild(el("p", "mt-2 text-xs font-semibold text-slate-800", "Where your weights differ:"));
+      var ul = el("ul", "mt-1 space-y-0.5 text-xs");
+      diffs.forEach(function (f) { ul.appendChild(el("li", null, f.l + ": you " + state[cur.k][f.k] + ", page " + cur.ev[f.k][1] + ".")); });
+      read.appendChild(ul);
+    } else read.appendChild(el("p", "mt-2 text-xs s11-ok font-semibold", "Your weights match the page's on every factor."));
+  }
+  function renderRows() {
+    rows.innerHTML = "";
+    FACTORS.forEach(function (f, i) {
+      if (i === 0 || i === 6) rows.appendChild(el("p", "text-[10px] font-semibold uppercase tracking-wider " + (f.s === "b" ? "text-emerald-700" : "text-rose-700") + (i ? " mt-2" : ""), f.s === "b" ? "Benefits" : "Risks"));
+      var row = el("div", "s11-row rounded-xl p-3"); row.setAttribute("data-side", f.s);
+      var wrap = el("div", "flex flex-wrap items-start justify-between gap-3");
+      var txt = el("div", "min-w-0 flex-1");
+      txt.appendChild(el("p", "text-sm font-semibold text-slate-900", f.l));
+      txt.appendChild(el("p", "mt-0.5 text-xs text-slate-600 leading-relaxed", cur.ev[f.k][0]));
+      var seg = el("div", "s11-seg shrink-0"); seg.setAttribute("role", "group"); seg.setAttribute("aria-label", "Score for " + f.l);
+      [0, 1, 2].forEach(function (v) {
+        var b = el("button", null, String(v)); b.type = "button"; b.title = LBL[v];
+        b.setAttribute("aria-label", LBL[v] + " (" + v + ")");
+        b.setAttribute("aria-pressed", state[cur.k][f.k] === v ? "true" : "false");
+        b.addEventListener("click", function () {
+          state[cur.k][f.k] = v;
+          seg.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+          refresh();
+        });
+        seg.appendChild(b);
+      });
+      wrap.appendChild(txt); wrap.appendChild(seg); row.appendChild(wrap); rows.appendChild(row);
+    });
+  }
+  MOVES.forEach(function (m, i) {
+    var b = el("button", "s11-tab"); b.type = "button";
+    b.appendChild(document.createTextNode(m.name + " "));
+    b.appendChild(el("span", null, m.sub));
+    b.setAttribute("aria-pressed", i === 0 ? "true" : "false");
+    b.addEventListener("click", function () {
+      cur = m;
+      tabs.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      renderRows(); refresh();
+    });
+    tabs.appendChild(b);
+  });
+  showBtn.addEventListener("click", function () {
+    var open = read.hidden;
+    read.hidden = !open;
+    showBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    showBtn.textContent = open ? "Hide the page’s reading" : "Compare with the page’s reading";
+    if (open) fillRead();
+  });
+  drawBeam(0); renderRows(); refresh();
+})();
+</script>
+
+<script>window.SQUIZ = [
+ {
+  "q": "How does Rothaermel suggest measuring a firm’s degree of vertical integration?",
+  "o": [
+   "By the number of countries in which the firm sells",
+   "By value added: the share of the firm’s sales generated within its own boundaries",
+   "By the number of product lines the firm offers",
+   "By the firm’s market share in its home stage of the chain"
+  ],
+  "a": 1,
+  "e": "Value added asks what percentage of a firm’s sales is generated within its boundaries; it tends to track the number of value-chain stages the firm works in (Rothaermel, 2024, p. 311). Countries and product lines measure geographic scope and horizontal diversification, the other two dimensions."
+ },
+ {
+  "q": "Taking Amazon’s online store as its home stage, which move is a case of backward vertical integration?",
+  "o": [
+   "Buying Whole Foods and its 460 stores",
+   "Launching an ad network that serves targeted ads on other sites",
+   "Offering Prime Now two-hour delivery",
+   "Building its own custom AI training and inference chips"
+  ],
+  "a": 3,
+  "e": "Chips are an input to the computing that AWS provides, which sits upstream of the store, so designing them moves further upstream (case, p. 3). Whole Foods adds stores at the retail stage Amazon already occupies, which is mainly horizontal (the textbook offers a forward reading, pp. 300–301); the ad network is a new product for new customers, which is diversification; Prime Now moves forward, toward the customer."
+ },
+ {
+  "q": "According to Osegowitsch and Madhok (2003), what best explains why downstream vertical integration has stayed popular?",
+  "o": [
+   "Learning at the customer interface, which cannot be delegated to channel partners",
+   "Internal scheduling that just-in-time supply between firms cannot match",
+   "The ability to foreclose distribution channels to rivals in global markets",
+   "Lower bureaucratic costs inside integrated firms"
+  ],
+  "a": 0,
+  "e": "Their thesis is that knowledge gained from customers is tacit and contextual, so it is ‘untradeable’: only firms that own the customer interface get the full learning benefit (p. 32). They argue the opposite on the other options: JIT lets scheduling be optimised across firms, liberalised trade makes foreclosure futile in many industries (pp. 31–32), and critics charge integration with bureaucratisation (p. 28)."
+ },
+ {
+  "q": "Amazon produces original content through Amazon Studios and also licenses shows from Viacom and HBO. In Rothaermel’s terms this is best described as",
+  "o": [
+   "strategic outsourcing",
+   "forward vertical integration",
+   "taper integration",
+   "a joint venture"
+  ],
+  "a": 2,
+  "e": "Taper integration: the firm is backwardly integrated but still relies on outside firms for some of its supplies (Rothaermel, 2024, p. 318; case, p. 2). Strategic outsourcing would move content production out of the firm. Content is an input to the video service, so the direction is backward, not forward."
+ },
+ {
+  "q": "An in-house supplier knows it will always have a buyer. Which two risks of vertical integration does the textbook trace to that fact?",
+  "o": [
+   "Reduced flexibility and legal exposure",
+   "Higher costs and weaker incentives to improve quality or innovate",
+   "Hold-up and information asymmetry",
+   "Search costs and incomplete contracts"
+  ],
+  "a": 1,
+  "e": "A guaranteed buyer reduces the in-house supplier’s incentive to lower costs and to raise quality or innovate; outside suppliers with more customers also reach more scale and learn faster (Rothaermel, 2024, p. 316). Hold-up, information asymmetry, search costs and incomplete contracts are hazards of markets, the problems integration is meant to solve (p. 305)."
+ },
+ {
+  "q": "McKinsey’s main reason for vertical integration, which the textbook says matches transaction cost economics, is",
+  "o": [
+   "vertical market failure: transactions along the chain are too risky, and alternatives too costly or hard to administer",
+   "value migration from manufacturing toward after-sales service",
+   "the need to grow revenue faster than rivals",
+   "economies of scope across unrelated businesses"
+  ],
+  "a": 0,
+  "e": "Vertical market failure (Rothaermel, 2024, p. 317). Value migration is one of Osegowitsch and Madhok’s contemporary motives (2003, p. 28), not McKinsey’s main reason. Growth for its own sake and scope across unrelated businesses are not arguments for integrating along one chain."
+ },
+ {
+  "q": "Osegowitsch and Madhok argue that most benefits of upstream integration can now be had without owning suppliers. Which example do they give?",
+  "o": [
+   "Ford owning railways, ore ships and blast furnaces",
+   "GE moving from turbines into maintaining power plants",
+   "Time Warner owning both films and cable",
+   "Benetton and Nike achieving tight integration with suppliers they do not own"
+  ],
+  "a": 3,
+  "e": "Benetton and Nike achieved tight integration with their suppliers without the need to own them (Osegowitsch and Madhok, 2003, p. 32). Ford and Time Warner are their examples of integration in emerging industries (p. 30), and GE is their example of value migrating downstream (p. 28)."
+ },
+ {
+  "q": "Taking the store as Amazon’s home stage, why is the Echo, whose assistant Alexa places orders on Amazon, classed as forward integration?",
+  "o": [
+   "It supplies an input the store needs in order to operate",
+   "It moves ownership closer to the end customer: it is a channel through which customers order",
+   "It is a new product sold to a new set of customers, advertisers",
+   "It is bought from an outside supplier under a long-term contract"
+  ],
+  "a": 1,
+  "e": "Forward integration moves ownership of activities closer to the end customer (Rothaermel, 2024, p. 313). Alexa answers questions and places orders on Amazon (case, p. 2), so the device is an ordering channel between the customer and the store. An input the store needs would be backward; selling to advertisers is the ad network, which is diversification."
+ },
+ {
+  "q": "Which statement about AWS is best supported by the textbook and the case together?",
+  "o": [
+   "It is forward integration, because it sells services to customers",
+   "It has no link to Amazon’s own value chain",
+   "It is both a backward integration move and an example of horizontal diversification",
+   "It is a joint venture between Amazon and its partner merchants"
+  ],
+  "a": 2,
+  "e": "The textbook calls the creation of AWS a backward vertical integration move (p. 301) and also cites AWS as an example of horizontal diversification (p. 297). Owning the computing Amazon runs on is backward; renting it to many other companies, as the case describes (p. 1), enters a new industry. Nothing in either source describes a joint venture."
+ },
+ {
+  "q": "Early Ford owned railways, ore ships and blast furnaces because suppliers were reluctant to back the ‘horseless carriage’. Which of Osegowitsch and Madhok’s motives does this illustrate?",
+  "o": [
+   "Value migration",
+   "Integrated solutions pulled by customers",
+   "Emerging industries: the pioneer lacks credibility with suppliers",
+   "Differentiation through brand management"
+  ],
+  "a": 2,
+  "e": "In a radically new industry a pioneer may lack the credibility to attract suppliers or distributors, so it has to own the stages itself; Ford is their example (Osegowitsch and Madhok, 2003, p. 30). Value migration, integrated solutions and differentiation describe other forces: value moving downstream, customers asking for one-stop solutions, and firms escaping commoditisation (pp. 28–29)."
+ }
+];</script>
+<script>
+(function () {
+  /* ---------------- quiz ---------------- */
+  var QUIZ = window.SQUIZ || [];
+  var qw = document.getElementById("sQuiz");
+  if (qw && QUIZ.length) {
+    var score = 0;
+    document.getElementById("sQuizTotal").textContent = QUIZ.length;
+    function build() {
+      qw.innerHTML = ""; score = 0;
+      document.getElementById("sQuizScore").textContent = "0";
+      QUIZ.forEach(function (item, n) {
+        var d = document.createElement("div");
+        d.className = "card p-5";
+        var opts = item.o.map(function (t, k) {
+          return '<button type="button" class="quiz-option w-full rounded-lg border border-slate-300 px-3 py-2 text-left text-sm text-slate-700" data-k="' + k + '">' +
+            String.fromCharCode(65 + k) + ". " + t + '</button>';
+        }).join("");
+        d.innerHTML = '<p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Question ' + (n + 1) + '</p>' +
+          '<p class="mt-1 text-sm font-semibold text-slate-900">' + item.q + '</p>' +
+          '<div class="mt-3 grid gap-2">' + opts + '</div>' +
+          '<p class="quiz-explanation text-xs text-slate-600 bg-slate-100 p-3 rounded-md border border-slate-200"></p>';
+        var expl = d.querySelector(".quiz-explanation");
+        d.querySelectorAll(".quiz-option").forEach(function (b) {
+          b.addEventListener("click", function () {
+            if (d.dataset.answered) return;
+            d.dataset.answered = "1";
+            var k = parseInt(b.dataset.k, 10);
+            if (k === item.a) { score++; document.getElementById("sQuizScore").textContent = score; }
+            d.querySelectorAll(".quiz-option").forEach(function (x) {
+              x.disabled = true;
+              var xi = parseInt(x.dataset.k, 10);
+              if (xi === item.a) x.classList.add("correct");
+              else if (x === b) x.classList.add("incorrect");
+            });
+            expl.textContent = item.e;
+            expl.classList.add("visible");
+          });
+        });
+        qw.appendChild(d);
+      });
+    }
+    build();
+    var rb = document.getElementById("sQuizReset");
+    if (rb) rb.addEventListener("click", build);
+  }
+})();
+</script>
+
+<style>
+  html.dark [data-workshop]{border-top-color:#a855f7!important}
+  html.dark [data-workshop].border-t-blue-500{border-top-color:#6E72F0!important}
+  html.dark [data-workshop].border-t-teal-500{border-top-color:#2DD4BF!important}
+  html.dark [data-sim]{border-top-color:#f43f5e!important}
+  .ws-body p+p{margin-top:.5rem}
+</style>
+<script>
+/* Shared Session-1 components: tabbed panels, workshops, simulations, reveal buttons.
+   Data comes from window.S_WORKSHOPS and window.S_SIMS (set in a page's scripts.html);
+   markup placeholders live in the body: <div id="ws-x" data-workshop></div>, <div id="sim-x" data-sim></div>. */
+(function () {
+  function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
+
+  /* ---------- tabs: .author-tab[data-author] + .author-panel[data-panel], scoped by [data-tabs] ---------- */
+  var groups = document.querySelectorAll("[data-tabs]");
+  (groups.length ? Array.prototype.slice.call(groups) : [document]).forEach(function (g) {
+    var tabs = g.querySelectorAll(".author-tab"), panels = g.querySelectorAll(".author-panel");
+    if (!tabs.length) return;
+    tabs.forEach(function (t) {
+      t.addEventListener("click", function () {
+        var key = t.getAttribute("data-author");
+        tabs.forEach(function (x) {
+          var on = x === t;
+          x.setAttribute("aria-selected", on ? "true" : "false");
+          x.className = "author-tab -mb-px border-b-2 px-4 py-2.5 text-sm font-semibold " +
+            (on ? "border-blue-600 text-blue-700" : "border-transparent text-slate-500 hover:text-slate-800");
+        });
+        panels.forEach(function (p) { p.classList.toggle("hidden", p.getAttribute("data-panel") !== key); });
+      });
+    });
+  });
+
+  /* ---------- reveal buttons: <button data-reveal="targetId" data-reveal-label="Hide…">Show…</button> ---------- */
+  document.querySelectorAll("[data-reveal]").forEach(function (b) {
+    var target = document.getElementById(b.getAttribute("data-reveal"));
+    if (!target) return;
+    var showLabel = b.textContent, hideLabel = b.getAttribute("data-reveal-label");
+    b.setAttribute("aria-expanded", target.hidden ? "false" : "true");
+    b.addEventListener("click", function () {
+      target.hidden = !target.hidden;
+      b.setAttribute("aria-expanded", target.hidden ? "false" : "true");
+      if (hideLabel) b.textContent = target.hidden ? showLabel : hideLabel;
+    });
+  });
+
+  /* ---------- workshops: one decision, outcome revealed in place ---------- */
+  var WS = window.S_WORKSHOPS || [];
+  WS.forEach(function (w) {
+    var host = document.getElementById(w.id);
+    if (!host) return;
+    host.className = "bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200 border-t-4 " + (w.accent === "blue" ? "border-t-blue-500" : w.accent === "teal" ? "border-t-teal-500" : "border-t-purple-500");
+    if (w.kicker) host.appendChild(el("p", "text-[10px] font-semibold uppercase tracking-wider text-slate-500", w.kicker));
+    host.appendChild(el("h3", "mt-1 text-xl sm:text-2xl font-bold text-slate-800 mb-2", w.title));
+    if (w.setup) host.appendChild(el("div", "text-slate-600 mb-6 text-sm leading-relaxed", w.setup));
+    var grid = el("div", "grid gap-4 " + (w.options.length >= 3 ? "md:grid-cols-3" : "md:grid-cols-2"));
+    var out = el("div", "mt-5 rounded-lg border border-slate-200 bg-slate-50 p-5");
+    out.hidden = true; out.setAttribute("aria-live", "polite");
+    w.options.forEach(function (o) {
+      var b = el("button", "activity-button workshop-button text-left", "<strong>" + o.key + ") " + o.label + ":</strong> " + o.text);
+      b.type = "button"; b.setAttribute("aria-pressed", "false");
+      b.addEventListener("click", function () {
+        grid.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); x.classList.toggle("ring-2", x === b); });
+        out.innerHTML = "";
+        out.appendChild(el("h4", "text-base font-semibold text-slate-900", o.outcome.title));
+        out.appendChild(el("div", "mt-2 text-sm text-slate-700 leading-relaxed ws-body", o.outcome.body));
+        out.hidden = false;
+      });
+      grid.appendChild(b);
+    });
+    host.appendChild(grid);
+    host.appendChild(out);
+    if (w.debrief) { var d = el("p", "mt-4 text-xs text-slate-500 leading-relaxed", w.debrief); host.appendChild(d); }
+  });
+
+  /* ---------- simulations: branching steps with end states ---------- */
+  var SIMS = window.S_SIMS || [];
+  SIMS.forEach(function (s) {
+    var host = document.getElementById(s.id);
+    if (!host) return;
+    host.className = "bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200 border-t-4 border-t-rose-500";
+    if (s.kicker) host.appendChild(el("p", "text-[10px] font-semibold uppercase tracking-wider text-slate-500", s.kicker));
+    host.appendChild(el("h3", "mt-1 text-xl sm:text-2xl font-bold text-slate-800 mb-2", s.title));
+    if (s.setup) host.appendChild(el("div", "text-slate-600 mb-6 text-sm leading-relaxed", s.setup));
+    var box = el("div", "space-y-6");
+    box.setAttribute("aria-live", "polite");
+    host.appendChild(box);
+    var path = [];
+    function step(id) {
+      var st = null;
+      s.steps.forEach(function (x) { if (x.id === id) st = x; });
+      if (!st) return;
+      box.innerHTML = "";
+      if (path.length) {
+        var trail = el("p", "text-xs text-slate-500", "Your path: " + path.map(function (p) { return p; }).join(" &rarr; "));
+        box.appendChild(trail);
+      }
+      if (st.end) {
+        var end = el("div", "p-6 bg-rose-50 rounded-lg border border-rose-200");
+        end.appendChild(el("h4", "text-lg font-semibold text-rose-700 mb-3", st.title));
+        end.appendChild(el("div", "text-sm text-slate-700 leading-relaxed ws-body", st.body));
+        var again = el("button", "mt-4 rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800", "Start again");
+        again.type = "button";
+        again.addEventListener("click", function () { path = []; step(s.start || s.steps[0].id); });
+        end.appendChild(again);
+        box.appendChild(end);
+        return;
+      }
+      var q = el("div", "p-6 bg-slate-100 rounded-lg border border-slate-200");
+      q.appendChild(el("h4", "text-base font-semibold text-slate-800 mb-4", st.q));
+      if (st.context) q.appendChild(el("div", "mb-4 text-sm text-slate-600 leading-relaxed", st.context));
+      var g = el("div", "grid sm:grid-cols-2 gap-4");
+      st.options.forEach(function (o) {
+        var b = el("button", "activity-button simulation-button text-left", o.text);
+        b.type = "button";
+        b.addEventListener("click", function () { path.push(o.short || o.text.replace(/<[^>]+>/g, "").split(":")[0]); step(o.next); });
+        g.appendChild(b);
+      });
+      q.appendChild(g);
+      box.appendChild(q);
+    }
+    step(s.start || s.steps[0].id);
+  });
+})();
+</script>
+
+<script>
+(function () {
+  var SECTIONS = [["recap", "Carried forward"], ["chain", "The industry value chain"], ["placer", "Sort Amazon's moves"], ["tradeoffs", "Benefits and risks"], ["motives", "Why firms still integrate"], ["alternatives", "Taper and outsource"], ["amazon", "Amazon's vertical moves"], ["decks", "Go deeper"], ["discussion", "Discussion"], ["quiz", "Quiz"], ["readings", "Readings"]];
+  var KEY = "s11-progress-v1";
+  var ACTIVITIES = ["placer", "weigh", "quiz"];
+
+  // ---------- theme ----------
+  var root = document.documentElement;
+  try {
+    // light is the default; dark only when the visitor has asked for it
+    if (localStorage.getItem("s11-theme") === "dark") root.classList.add("dark");
+  } catch (e) {}
+  var themeBtn = document.getElementById("themeBtn");
+  if (themeBtn) {
+    themeBtn.addEventListener("click", function () {
+      root.classList.toggle("dark");
+      try { localStorage.setItem("s11-theme", root.classList.contains("dark") ? "dark" : "light"); } catch (e) {}
+    });
+  }
+
+  // ---------- reading progress ----------
+  var bar = document.getElementById("readbar");
+  var pctEl = document.getElementById("progPct");
+  function onScroll() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? Math.min(100, Math.max(0, (h.scrollTop / max) * 100)) : 0;
+    if (bar) { bar.style.width = p + "%"; bar.setAttribute("aria-valuenow", Math.round(p)); }
+    if (pctEl) pctEl.textContent = Math.round(p);
+  }
+  var ticking = false;
+  window.addEventListener("scroll", function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () { onScroll(); ticking = false; });
+  }, { passive: true });
+  onScroll();
+
+  // ---------- rail + drawer nav ----------
+  var rail = document.getElementById("rail");
+  var dnav = document.getElementById("drawerNav");
+  SECTIONS.forEach(function (s) {
+    if (!document.getElementById(s[0])) return;
+    if (rail) {
+      var a = document.createElement("a");
+      a.href = "#" + s[0];
+      a.dataset.sec = s[0];
+      a.innerHTML = '<span class="dot"></span><span class="lbl">' + s[1] + "</span>";
+      rail.appendChild(a);
+    }
+    if (dnav) {
+      var d = document.createElement("a");
+      d.href = "#" + s[0];
+      d.className = "rounded-lg px-3 py-2.5 text-sm text-slate-700 hover:bg-slate-100";
+      d.textContent = s[1];
+      d.addEventListener("click", closeDrawer);
+      dnav.appendChild(d);
+    }
+  });
+
+  var drawer = document.getElementById("drawer");
+  var drawerBtn = document.getElementById("drawerBtn");
+  function openDrawer() {
+    if (!drawer) return;
+    drawer.classList.remove("hidden");
+    if (drawerBtn) drawerBtn.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  }
+  function closeDrawer() {
+    if (!drawer) return;
+    drawer.classList.add("hidden");
+    if (drawerBtn) drawerBtn.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
+  if (drawerBtn) drawerBtn.addEventListener("click", openDrawer);
+  var dc = document.getElementById("drawerClose");
+  var ds = document.getElementById("drawerScrim");
+  if (dc) dc.addEventListener("click", closeDrawer);
+  if (ds) ds.addEventListener("click", closeDrawer);
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeDrawer(); });
+
+  // ---------- scrollspy for the rail ----------
+  var spy = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting || !rail) return;
+      rail.querySelectorAll("a").forEach(function (a) {
+        a.classList.toggle("on", a.dataset.sec === en.target.id);
+      });
+    });
+  }, { rootMargin: "-45% 0px -50% 0px" });
+  SECTIONS.forEach(function (s) {
+    var el = document.getElementById(s[0]);
+    if (el) spy.observe(el);
+  });
+
+  // ---------- scroll reveal ----------
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduce) {
+    var targets = document.querySelectorAll("section > .container > *");
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.06, rootMargin: "0px 0px -8% 0px" });
+    targets.forEach(function (t, i) {
+      // never hide anything already on screen at load
+      if (t.getBoundingClientRect().top < window.innerHeight) return;
+      t.classList.add("rv");
+      io.observe(t);
+    });
+  }
+
+  // ---------- completion tracking ----------
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { state = {}; }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  function count() { return ACTIVITIES.filter(function (k) { return state[k]; }).length; }
+  function paint() {
+    var n = count(), total = ACTIVITIES.length;
+    var a = document.getElementById("doneCount"); if (a) a.textContent = n;
+    var b = document.getElementById("drawerDone"); if (b) b.textContent = n;
+    var c = document.getElementById("drawerBar"); if (c) c.style.width = (100 * n / total) + "%";
+    ACTIVITIES.forEach(function (k) {
+      var badge = document.querySelector('[data-done-for="' + k + '"]');
+      if (badge) badge.hidden = !state[k];
+    });
+  }
+  function mark(k) { if (!state[k]) { state[k] = true; save(); paint(); } }
+  paint();
+
+  // wire completion to the real interactions already on the page
+  function onClickWithin(sel, key) {
+    var el = document.querySelector(sel);
+    if (el) el.addEventListener("click", function () { mark(key); });
+  }
+  onClickWithin("#placeBox", "placer");
+  onClickWithin("#weighBox", "weigh");
+  onClickWithin("#sQuiz", "quiz");
+
+  // reset control, appended to the readings section if present
+  var readings = document.getElementById("readings");
+  if (readings) {
+    var wrap = readings.querySelector(".container") || readings.querySelector(".max-w-6xl") || readings;
+    if (wrap) {
+      var p = document.createElement("div");
+      p.className = "mt-8 flex flex-wrap items-center gap-3 border-t border-slate-200 pt-6 text-sm";
+      p.innerHTML = '<span class="text-slate-500">Your progress on this page is saved in this browser only.</span>' +
+        '<button type="button" id="resetProg" class="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-100">Reset my progress</button>';
+      wrap.appendChild(p);
+      var rp = document.getElementById("resetProg");
+      if (rp) rp.addEventListener("click", function () {
+        state = {}; save(); paint();
+        rp.textContent = "Reset";
+        setTimeout(function () { rp.textContent = "Reset my progress"; }, 1400);
+      });
+    }
+  }
+})();
+
+</script>
+
+<script>
+/* keep the Chart.js canvases legible in both themes */
+(function(){
+  function chartTheme(){
+    if(!window.Chart||!Chart.getChart) return;
+    var dark=document.documentElement.classList.contains("dark");
+    var tick=dark?"#94A3B8":"#475569";
+    var grid=dark?"rgba(226,232,240,.12)":"rgba(15,23,42,.08)";
+    Chart.defaults.color=tick;
+    document.querySelectorAll("canvas").forEach(function(c){
+      var ch=Chart.getChart(c); if(!ch||!ch.config) return;
+      // Chart.js v4 rebuilds chart.options on update(), so mutate the config
+      var o=ch.config.options=ch.config.options||{};
+      var sc=o.scales=o.scales||{};
+      Object.keys(sc).forEach(function(k){
+        if(!sc[k]) return;
+        sc[k].ticks=sc[k].ticks||{}; sc[k].ticks.color=tick;
+        if(sc[k].grid&&sc[k].grid.display===false) return;
+        sc[k].grid=sc[k].grid||{}; sc[k].grid.color=grid;
+      });
+      var pl=o.plugins=o.plugins||{};
+      if(pl.legend){ pl.legend.labels=pl.legend.labels||{}; pl.legend.labels.color=tick; }
+      ch.update("none");
+    });
+  }
+  var btn=document.getElementById("themeBtn");
+  if(btn) btn.addEventListener("click",function(){ setTimeout(chartTheme,60); });
+
+  var n=0, iv=setInterval(function(){ chartTheme(); if(++n>20) clearInterval(iv); },400);
+})();
+</script>
+</body>
+</html>

@@ -541,7 +541,7 @@
         <p class="mt-2 text-sm text-slate-600 leading-relaxed">Porter roots advantage in value a firm creates for buyers that
           exceeds the cost of creating it, where value is what buyers are willing to pay (Porter, 1985/2004, p. 3). The course
           textbook compresses it to one line: a firm has a competitive advantage when it creates more economic value than its
-          rivals do (Rothaermel, 2023, p. 186).</p>
+          rivals do (Rothaermel, 2024, p. 186).</p>
       </div>
     </div>
 
@@ -959,7 +959,7 @@
       </div>
       <div class="card p-5">
         <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Further &middot; course textbook</p>
-        <p class="mt-2 text-sm text-slate-700 ref">Rothaermel, F. T. (2023). <em>Strategic management</em> (6th ed.). McGraw Hill. Chapter 5, &ldquo;Economic value creation&rdquo;, pp. 186&ndash;191.</p>
+        <p class="mt-2 text-sm text-slate-700 ref">Rothaermel, F. T. (2024). <em>Strategic management</em> (6th ed.). McGraw Hill. Chapter 5, &ldquo;Economic value creation&rdquo;, pp. 186&ndash;191.</p>
       </div>
       <div class="card p-5">
         <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Further &middot; the classic statement</p>
@@ -1630,6 +1630,132 @@ window.S6SCN = [
 })();
 </script>
 
+<style>
+  html.dark [data-workshop]{border-top-color:#a855f7!important}
+  html.dark [data-workshop].border-t-blue-500{border-top-color:#6E72F0!important}
+  html.dark [data-workshop].border-t-teal-500{border-top-color:#2DD4BF!important}
+  html.dark [data-sim]{border-top-color:#f43f5e!important}
+  .ws-body p+p{margin-top:.5rem}
+</style>
+<script>
+/* Shared Session-1 components: tabbed panels, workshops, simulations, reveal buttons.
+   Data comes from window.S_WORKSHOPS and window.S_SIMS (set in a page's scripts.html);
+   markup placeholders live in the body: <div id="ws-x" data-workshop></div>, <div id="sim-x" data-sim></div>. */
+(function () {
+  function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
+
+  /* ---------- tabs: .author-tab[data-author] + .author-panel[data-panel], scoped by [data-tabs] ---------- */
+  var groups = document.querySelectorAll("[data-tabs]");
+  (groups.length ? Array.prototype.slice.call(groups) : [document]).forEach(function (g) {
+    var tabs = g.querySelectorAll(".author-tab"), panels = g.querySelectorAll(".author-panel");
+    if (!tabs.length) return;
+    tabs.forEach(function (t) {
+      t.addEventListener("click", function () {
+        var key = t.getAttribute("data-author");
+        tabs.forEach(function (x) {
+          var on = x === t;
+          x.setAttribute("aria-selected", on ? "true" : "false");
+          x.className = "author-tab -mb-px border-b-2 px-4 py-2.5 text-sm font-semibold " +
+            (on ? "border-blue-600 text-blue-700" : "border-transparent text-slate-500 hover:text-slate-800");
+        });
+        panels.forEach(function (p) { p.classList.toggle("hidden", p.getAttribute("data-panel") !== key); });
+      });
+    });
+  });
+
+  /* ---------- reveal buttons: <button data-reveal="targetId" data-reveal-label="Hide…">Show…</button> ---------- */
+  document.querySelectorAll("[data-reveal]").forEach(function (b) {
+    var target = document.getElementById(b.getAttribute("data-reveal"));
+    if (!target) return;
+    var showLabel = b.textContent, hideLabel = b.getAttribute("data-reveal-label");
+    b.setAttribute("aria-expanded", target.hidden ? "false" : "true");
+    b.addEventListener("click", function () {
+      target.hidden = !target.hidden;
+      b.setAttribute("aria-expanded", target.hidden ? "false" : "true");
+      if (hideLabel) b.textContent = target.hidden ? showLabel : hideLabel;
+    });
+  });
+
+  /* ---------- workshops: one decision, outcome revealed in place ---------- */
+  var WS = window.S_WORKSHOPS || [];
+  WS.forEach(function (w) {
+    var host = document.getElementById(w.id);
+    if (!host) return;
+    host.className = "bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200 border-t-4 " + (w.accent === "blue" ? "border-t-blue-500" : w.accent === "teal" ? "border-t-teal-500" : "border-t-purple-500");
+    if (w.kicker) host.appendChild(el("p", "text-[10px] font-semibold uppercase tracking-wider text-slate-500", w.kicker));
+    host.appendChild(el("h3", "mt-1 text-xl sm:text-2xl font-bold text-slate-800 mb-2", w.title));
+    if (w.setup) host.appendChild(el("div", "text-slate-600 mb-6 text-sm leading-relaxed", w.setup));
+    var grid = el("div", "grid gap-4 " + (w.options.length >= 3 ? "md:grid-cols-3" : "md:grid-cols-2"));
+    var out = el("div", "mt-5 rounded-lg border border-slate-200 bg-slate-50 p-5");
+    out.hidden = true; out.setAttribute("aria-live", "polite");
+    w.options.forEach(function (o) {
+      var b = el("button", "activity-button workshop-button text-left", "<strong>" + o.key + ") " + o.label + ":</strong> " + o.text);
+      b.type = "button"; b.setAttribute("aria-pressed", "false");
+      b.addEventListener("click", function () {
+        grid.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); x.classList.toggle("ring-2", x === b); });
+        out.innerHTML = "";
+        out.appendChild(el("h4", "text-base font-semibold text-slate-900", o.outcome.title));
+        out.appendChild(el("div", "mt-2 text-sm text-slate-700 leading-relaxed ws-body", o.outcome.body));
+        out.hidden = false;
+      });
+      grid.appendChild(b);
+    });
+    host.appendChild(grid);
+    host.appendChild(out);
+    if (w.debrief) { var d = el("p", "mt-4 text-xs text-slate-500 leading-relaxed", w.debrief); host.appendChild(d); }
+  });
+
+  /* ---------- simulations: branching steps with end states ---------- */
+  var SIMS = window.S_SIMS || [];
+  SIMS.forEach(function (s) {
+    var host = document.getElementById(s.id);
+    if (!host) return;
+    host.className = "bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200 border-t-4 border-t-rose-500";
+    if (s.kicker) host.appendChild(el("p", "text-[10px] font-semibold uppercase tracking-wider text-slate-500", s.kicker));
+    host.appendChild(el("h3", "mt-1 text-xl sm:text-2xl font-bold text-slate-800 mb-2", s.title));
+    if (s.setup) host.appendChild(el("div", "text-slate-600 mb-6 text-sm leading-relaxed", s.setup));
+    var box = el("div", "space-y-6");
+    box.setAttribute("aria-live", "polite");
+    host.appendChild(box);
+    var path = [];
+    function step(id) {
+      var st = null;
+      s.steps.forEach(function (x) { if (x.id === id) st = x; });
+      if (!st) return;
+      box.innerHTML = "";
+      if (path.length) {
+        var trail = el("p", "text-xs text-slate-500", "Your path: " + path.map(function (p) { return p; }).join(" &rarr; "));
+        box.appendChild(trail);
+      }
+      if (st.end) {
+        var end = el("div", "p-6 bg-rose-50 rounded-lg border border-rose-200");
+        end.appendChild(el("h4", "text-lg font-semibold text-rose-700 mb-3", st.title));
+        end.appendChild(el("div", "text-sm text-slate-700 leading-relaxed ws-body", st.body));
+        var again = el("button", "mt-4 rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800", "Start again");
+        again.type = "button";
+        again.addEventListener("click", function () { path = []; step(s.start || s.steps[0].id); });
+        end.appendChild(again);
+        box.appendChild(end);
+        return;
+      }
+      var q = el("div", "p-6 bg-slate-100 rounded-lg border border-slate-200");
+      q.appendChild(el("h4", "text-base font-semibold text-slate-800 mb-4", st.q));
+      if (st.context) q.appendChild(el("div", "mb-4 text-sm text-slate-600 leading-relaxed", st.context));
+      var g = el("div", "grid sm:grid-cols-2 gap-4");
+      st.options.forEach(function (o) {
+        var b = el("button", "activity-button simulation-button text-left", o.text);
+        b.type = "button";
+        b.addEventListener("click", function () { path.push(o.short || o.text.replace(/<[^>]+>/g, "").split(":")[0]); step(o.next); });
+        g.appendChild(b);
+      });
+      q.appendChild(g);
+      box.appendChild(q);
+    }
+    step(s.start || s.steps[0].id);
+  });
+})();
+</script>
+
 <script>
 (function () {
   var SECTIONS = [["recap", "Recap"], ["value", "The value wedge"], ["sources", "Sources of advantage"], ["scenario", "Change and readiness"], ["case", "Patagonia's wedge"], ["decks", "Go deeper"], ["discussion", "Discussion"], ["quiz", "Quiz"], ["readings", "Readings"]];
@@ -1773,7 +1899,7 @@ window.S6SCN = [
   // reset control, appended to the readings section if present
   var readings = document.getElementById("readings");
   if (readings) {
-    var wrap = readings.querySelector(".container");
+    var wrap = readings.querySelector(".container") || readings.querySelector(".max-w-6xl") || readings;
     if (wrap) {
       var p = document.createElement("div");
       p.className = "mt-8 flex flex-wrap items-center gap-3 border-t border-slate-200 pt-6 text-sm";

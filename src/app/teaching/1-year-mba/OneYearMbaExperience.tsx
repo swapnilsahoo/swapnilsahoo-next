@@ -65,11 +65,8 @@ const sessionActs = [
   },
 ] as const;
 
-// Interactive session pages: a separate, richer set of standalone HTML pages
-// (public/teaching/1-year-mba/*.html) predates this syllabus and uses its own internal
-// numbering/filenames, which only partially line up with the plan below — several files are
-// mistitled relative to their actual content, and a few cover topics this condensed 13-session
-// plan doesn't include at all. Only sessions with a confident topical match get a link.
+// Every session links the page that the 2026-27 course outline itself links to
+// (/teaching/1-year-mba/session{N}.html). Older interactive decks are linked from those pages.
 const interactive = (file: string) => `/teaching/1-year-mba/${encodeURIComponent(file)}`;
 
 type OneYearSession = {
@@ -79,8 +76,8 @@ type OneYearSession = {
   readings: readonly string[];
   /** Standalone interactive deck for the session, where one exists. */
   interactiveHref?: string;
-  /** Practice bank id under content/quizzes, where the session has one. */
-  quizId?: string;
+  /** Practice bank ids under content/quizzes, where the session has them. */
+  quizIds?: readonly string[];
 };
 
 const sessionPlan: readonly OneYearSession[] = [
@@ -91,9 +88,12 @@ const sessionPlan: readonly OneYearSession[] = [
     readings: [
       "Case · Elon Musk at Tesla (2024)",
       "Article · Porter, M. E. (1996). What Is Strategy? Harvard Business Review.",
-      "Textbook · Chapter 1",
+      "Article · Mintzberg, H. (1987). Crafting Strategy. Harvard Business Review.",
+      "Article · Collis, D. J., & Rukstad, M. G. (2008). Can You Say What Your Strategy Is? Harvard Business Review.",
+      "Textbook · Rothaermel, Ch. 1: What Is Strategy?",
     ],
     interactiveHref: interactive("session1.html"),
+    quizIds: ["1yr-01"],
   },
   {
     number: "02",
@@ -101,11 +101,11 @@ const sessionPlan: readonly OneYearSession[] = [
     topics: ["Vision–Mission–Strategy / Purpose–Values–Strategy", "Strategy as a quest for value"],
     readings: [
       "Case · Elon Musk at Tesla (2024)",
-      "Article · Porter, M. E. (1996). What Is Strategy? Harvard Business Review.",
-      "Textbook · Chapter 2",
+      "Article · Kaplan, R. S., & Norton, D. P. (2008). Developing the Strategy: Vision, Value Gaps, and Analysis. Balanced Scorecard Report.",
+      "Textbook · Rothaermel, Ch. 2: Strategic Leadership: Managing the Strategy Process",
     ],
     interactiveHref: interactive("session2.html"),
-    quizId: "1yr-03",
+    quizIds: ["1yr-02", "1yr-03"],
   },
   {
     number: "03",
@@ -114,10 +114,11 @@ const sessionPlan: readonly OneYearSession[] = [
     readings: [
       "Case · Elon Musk at Tesla (2024)",
       "Article · Porter, M. E. (2008). The Five Competitive Forces That Shape Strategy. Harvard Business Review.",
-      "Textbook · Chapter 3",
+      "Article · Porter, M. E. (1983). Note on the Structural Analysis of Industries. Harvard Business School.",
+      "Textbook · Rothaermel, Ch. 3: External Analysis",
     ],
-    interactiveHref: "/teaching/1-year-mba/session3/five-forces-tesla.html",
-    quizId: "1yr-04",
+    interactiveHref: interactive("session3.html"),
+    quizIds: ["1yr-04"],
   },
   {
     number: "04",
@@ -126,10 +127,10 @@ const sessionPlan: readonly OneYearSession[] = [
     readings: [
       "Case · Elon Musk at Tesla (2024)",
       "Video · Selected videos on Steve Jobs",
-      "Article · Porter, M. E. (2008). The Five Competitive Forces That Shape Strategy. Harvard Business Review.",
-      "Textbook · Chapter 4",
+      "Article · Courtney, H., Kirkland, J., & Viguerie, P. (1997). Strategy Under Uncertainty. Harvard Business Review.",
+      "Textbook · Rothaermel, Ch. 7 (platforms) and Ch. 12 (business models)",
     ],
-    interactiveHref: undefined,
+    interactiveHref: interactive("session4.html"),
   },
   {
     number: "05",
@@ -142,8 +143,9 @@ const sessionPlan: readonly OneYearSession[] = [
     ],
     readings: [
       "Case · Patagonia: “Earth Is Now Our Only Shareholder”",
-      "Article · Porter, M. E. (2008). The Five Competitive Forces That Shape Strategy. Harvard Business Review.",
-      "Textbook · Chapter 5",
+      "Article · Collis, D. J., & Montgomery, C. A. (1995). Competing on Resources. Harvard Business Review.",
+      "Article · Porter, M. E. (1987). From Competitive Advantage to Corporate Strategy. Harvard Business Review.",
+      "Textbook · Rothaermel, Ch. 4: Internal Analysis",
     ],
     interactiveHref: interactive("session5.html"),
   },
@@ -157,8 +159,8 @@ const sessionPlan: readonly OneYearSession[] = [
     ],
     readings: [
       "Case · Patagonia: “Earth Is Now Our Only Shareholder”",
-      "Article · Ghemawat, P., & Rivkin, J. W. (1998). Creating Competitive Advantage.",
-      "Textbook · Chapter 6",
+      "Article · Ghemawat, P., & Rivkin, J. W. (1998). Creating Competitive Advantage. Harvard Business School.",
+      "Textbook · Rothaermel, Ch. 5: Shared Value and Competitive Advantage",
     ],
     interactiveHref: interactive("session6.html"),
   },
@@ -168,8 +170,8 @@ const sessionPlan: readonly OneYearSession[] = [
     topics: ["How competitive advantage is sustained", "Deterrence and preemption"],
     readings: [
       "Case · Patagonia: “Earth Is Now Our Only Shareholder”",
-      "Article · Ghemawat, P., & Pisano, G. P. (1997). Sustaining Superior Performance: Commitments and Capabilities.",
-      "Textbook · Chapter 7",
+      "Article · Ghemawat, P., & Pisano, G. P. (1997). Sustaining Superior Performance: Commitments and Capabilities. Harvard Business School.",
+      "Textbook · Rothaermel, Ch. 4: Internal Analysis (isolating mechanisms)",
     ],
     interactiveHref: interactive("session7.html"),
   },
@@ -179,12 +181,10 @@ const sessionPlan: readonly OneYearSession[] = [
     topics: ["Generic strategies", "Low-cost strategy", "Differentiation and focus strategies"],
     readings: [
       "Case · Patagonia: “Earth Is Now Our Only Shareholder”",
-      "Article · Porter, M. E. (1996). What Is Strategy? Harvard Business Review.",
-      "Textbook · Chapter 8",
+      "Article · Ghemawat, P., & Pisano, G. P. (1997). Sustaining Superior Performance: Commitments and Capabilities. Harvard Business School.",
+      "Textbook · Rothaermel, Ch. 6: Differentiation, Cost Leadership, and Blue Oceans",
     ],
-    interactiveHref: interactive(
-      "Session6_Business Strategy_Differentiation, CostLeadership_BlueOceans_v0.8.html",
-    ),
+    interactiveHref: interactive("session8.html"),
   },
   {
     number: "09",
@@ -192,12 +192,10 @@ const sessionPlan: readonly OneYearSession[] = [
     topics: ["Application of technology", "Innovation-led strategy formulation"],
     readings: [
       "Case · NVIDIA, Inc. in 2024 and the Future of AI",
-      "Article · Ghemawat, P., & Pisano, G. P. (1997). Sustaining Superior Performance: Commitments and Capabilities.",
-      "Textbook · Chapter 9",
+      "Article · Kim, W. C., & Mauborgne, R. (2004). Blue Ocean Strategy. Harvard Business Review.",
+      "Textbook · Rothaermel, Ch. 7: Innovation, Entrepreneurship, and Platforms",
     ],
-    interactiveHref: interactive(
-      "Session_7_Business_Strategy_Innovation_Entrepreneurship_Platforms_V0.003.html",
-    ),
+    interactiveHref: interactive("session9.html"),
   },
   {
     number: "10",
@@ -209,10 +207,11 @@ const sessionPlan: readonly OneYearSession[] = [
     readings: [
       "Case · NVIDIA, Inc. in 2024 and the Future of AI",
       "Article · Porter, M. E. (1987). From Competitive Advantage to Corporate Strategy. Harvard Business Review.",
-      "Textbook · Chapter 10",
+      "Article · Campbell, A., Goold, M., & Alexander, M. (1995). Corporate Strategy: The Quest for Parenting Advantage. Harvard Business Review.",
+      "Textbook · Rothaermel, Ch. 8: Corporate Strategy",
     ],
-    interactiveHref: interactive("Session8_Corporate Strategy_v0.8.html"),
-    quizId: "1yr-08",
+    interactiveHref: interactive("session10.html"),
+    quizIds: ["1yr-08"],
   },
   {
     number: "11",
@@ -224,10 +223,11 @@ const sessionPlan: readonly OneYearSession[] = [
     readings: [
       "Case · Amazon in 2024",
       "Article · Osegowitsch, T., & Madhok, A. (2003). Vertical Integration Is Dead, or Is It? Business Horizons.",
-      "Textbook · Chapter 11",
+      "Article · Buzzell, R. D. (1983). Is Vertical Integration Profitable? Harvard Business Review.",
+      "Textbook · Rothaermel, Ch. 8: Vertical Integration and Diversification",
     ],
-    interactiveHref: interactive("Session8_Corporate Strategy_v0.8.html"),
-    quizId: "1yr-08",
+    interactiveHref: interactive("session11.html"),
+    quizIds: ["1yr-08"],
   },
   {
     number: "12",
@@ -238,10 +238,12 @@ const sessionPlan: readonly OneYearSession[] = [
     ],
     readings: [
       "Case · Amazon in 2024",
-      "Article · Porter, M. E. (1987). From Competitive Advantage to Corporate Strategy. Harvard Business Review.",
-      "Textbook · Chapter 12",
+      "Article · Goold, M., & Luchs, K. (1993). Why Diversify? Four Decades of Management Thinking. Academy of Management Executive.",
+      "Article · Porter, M. E. (1990). The Competitive Advantage of Nations. Harvard Business Review.",
+      "Article · Dewhurst, M., Harris, J., & Heywood, S. (2011). Understanding Your ‘Globalization Penalty’. McKinsey Quarterly.",
+      "Textbook · Rothaermel, Ch. 10: Global Strategy",
     ],
-    interactiveHref: interactive("Session_10_Global_Strategy_v0.84.html"),
+    interactiveHref: interactive("session12.html"),
   },
   {
     number: "13",
@@ -249,11 +251,12 @@ const sessionPlan: readonly OneYearSession[] = [
     topics: ["Motives for diversification", "Competitive advantage from diversification"],
     readings: [
       "Case · Amazon in 2024",
-      "Article · Porter, M. E. (1987). From Competitive Advantage to Corporate Strategy. Harvard Business Review.",
-      "Textbook · Chapter 13",
+      "Article · Goold, M., & Luchs, K. (1993). Why Diversify? Four Decades of Management Thinking. Academy of Management Executive.",
+      "Article · Laeven, L., & Levine, R. (2007). Is There a Diversification Discount in Financial Conglomerates? Journal of Financial Economics, 85(2), 331–367.",
+      "Textbook · Rothaermel, Ch. 8: Vertical Integration and Diversification",
     ],
-    interactiveHref: interactive("Session8_Corporate Strategy_v0.8.html"),
-    quizId: "1yr-08",
+    interactiveHref: interactive("session13.html"),
+    quizIds: ["1yr-08"],
   },
 ] as const;
 
@@ -390,8 +393,8 @@ const courseReadingCanon = [
   "Courtney, H., Kirkland, J., & Viguerie, P. Strategy Under Uncertainty; Eisenmann et al. (2006). Strategies for Two-Sided Markets.",
   "Mankins, M. C., & Steele, R. Turning Great Strategy into Great Performance.",
   "Campbell, A., Goold, M., & Alexander, M. (1995). Corporate Strategy: The Quest for Parenting Advantage.",
-  "Buzzell, R. D. Is Vertical Integration Profitable?; Goold & Campbell. Why Diversify?",
-  "Dewhurst, M., Harris, J., & Heywood, S. Understanding Your Globalization Penalty; Laeven & Levine (2006). Diversification Discount in Financial Conglomerates.",
+  "Buzzell, R. D. Is Vertical Integration Profitable?; Goold & Luchs. Why Diversify?",
+  "Dewhurst, M., Harris, J., & Heywood, S. Understanding Your Globalization Penalty; Laeven & Levine (2007). Diversification Discount in Financial Conglomerates.",
   "Ramachandran, J., Manikandan, K. S., & Pant, A. (2013). Why Conglomerates Thrive.",
   "Kaplan, S. N. Mergers and Acquisitions: A Financial Economics Perspective.",
   "Mintzberg, H. (1987). Crafting Strategy.",
@@ -881,15 +884,16 @@ export function OneYearMbaExperience() {
                         <ArrowRightIcon className="h-3 w-3" aria-hidden="true" />
                       </a>
                     ) : null}
-                    {session.quizId ? (
+                    {session.quizIds?.map((quizId, quizIndex) => (
                       <Link
-                        href={`/teaching/quiz/${session.quizId}`}
+                        key={quizId}
+                        href={`/teaching/quiz/${quizId}`}
                         className="text-brand-700 dark:text-brand-300 link-underline inline-flex items-center gap-1 text-xs font-semibold"
                       >
-                        Practise this session
+                        {quizIndex === 0 ? "Practise this session" : "More practice"}
                         <ArrowRightIcon className="h-3 w-3" aria-hidden="true" />
                       </Link>
-                    ) : null}
+                    ))}
                   </div>
                 </div>
               </details>

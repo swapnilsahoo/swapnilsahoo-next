@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/Container";
 import {
   loadQuizManifest,
   loadSessionQuiz,
+  sessionLabel,
 } from "@/features/teaching/data/session-quizzes";
 
 import { SessionQuiz } from "./SessionQuiz";
@@ -24,10 +25,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const quiz = await loadSessionQuiz(session);
   if (!quiz) return {};
   const programme = quiz.course === "2-year-mba" ? "STRAMGT 206" : "STRAMGT 221";
-  const title = `${quiz.title} — Session ${quiz.sessionNumber} quiz`;
+  const title = `${quiz.title} — ${sessionLabel(quiz)} quiz`;
   return {
     title: `${title} | ${programme}`,
-    description: `${quiz.questionCount} practice questions with worked rationales for Session ${quiz.sessionNumber}, ${quiz.title}.`,
+    description: `${quiz.questionCount} practice questions with worked rationales for ${sessionLabel(quiz)}, ${quiz.title}.`,
     alternates: { canonical: `/teaching/quiz/${quiz.sessionId}` },
     openGraph: {
       type: "article",
@@ -84,12 +85,12 @@ export default async function SessionQuizPage({ params }: PageProps) {
             </Link>
             <span aria-hidden="true">/</span>
             <span aria-current="page" className="text-ink-800 dark:text-ink-100">
-              Session {quiz.sessionNumber}
+              {sessionLabel(quiz)}
             </span>
           </nav>
 
           <p className="eyebrow mb-3">
-            {courseLabel} &middot; Session {String(quiz.sessionNumber).padStart(2, "0")}
+            {courseLabel} &middot; {sessionLabel(quiz, true)}
           </p>
           <h1 className="display max-w-4xl text-4xl font-semibold text-balance sm:text-5xl">
             {quiz.title}
@@ -120,7 +121,7 @@ export default async function SessionQuizPage({ params }: PageProps) {
                   className="border-ink-200 dark:border-ink-700 hover:border-brand-400 rounded-xl border p-4 transition"
                 >
                   <p className="eyebrow mb-1">
-                    Previous &middot; Session {previous.sessionNumber}
+                    Previous &middot; {sessionLabel(previous)}
                   </p>
                   <p className="font-serif text-base font-semibold">{previous.title}</p>
                 </Link>
@@ -132,7 +133,7 @@ export default async function SessionQuizPage({ params }: PageProps) {
                   href={`/teaching/quiz/${next.sessionId}`}
                   className="border-ink-200 dark:border-ink-700 hover:border-brand-400 rounded-xl border p-4 text-right transition"
                 >
-                  <p className="eyebrow mb-1">Next &middot; Session {next.sessionNumber}</p>
+                  <p className="eyebrow mb-1">Next &middot; {sessionLabel(next)}</p>
                   <p className="font-serif text-base font-semibold">{next.title}</p>
                 </Link>
               ) : null}

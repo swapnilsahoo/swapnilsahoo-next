@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { ArrowRightIcon } from "@/components/icons/LineIcons";
 import { Container } from "@/components/ui/Container";
-import { loadQuizManifest } from "@/features/teaching/data/session-quizzes";
+import { loadQuizManifest, sessionLabel } from "@/features/teaching/data/session-quizzes";
 
 const title = "Session quizzes — Strategic Management";
 const description =
@@ -95,7 +95,7 @@ export default async function QuizIndexPage() {
                       className="glass-card group flex h-full flex-col p-5 transition"
                     >
                       <p className="eyebrow mb-2">
-                        Session {String(entry.sessionNumber).padStart(2, "0")}
+                        {sessionLabel(entry, true)}
                       </p>
                       <h3 className="font-serif text-lg leading-snug font-semibold">
                         {entry.title}
