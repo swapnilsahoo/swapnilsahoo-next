@@ -3,15 +3,15 @@ import type { Metadata } from "next";
 import { OneYearMbaExperience } from "./OneYearMbaExperience";
 
 export const metadata: Metadata = {
-  title: "STRAMGT 221: Strategy and Disruption | 1-Year MBA — Strategy at Executive Speed",
+  title: "Strategic Management | 1-Year MBA · PGPM 2026–27",
   description:
-    "A 13-session, research-grounded strategy course for experienced MBA professionals, built around cases, decisions, reflection and primary field evidence.",
+    "The PGPM 2026–27 Strategic Management course: 13 sessions covering analysis, formulation and implementation, with cases, readings and interactive lessons.",
   alternates: { canonical: "/teaching/1-year-mba" },
   openGraph: {
     type: "website",
-    title: "STRAMGT 221: Strategy and Disruption | 1-Year MBA — Strategy at Executive Speed",
+    title: "Strategic Management | 1-Year MBA · PGPM 2026–27",
     description:
-      "Thirteen discussion-intensive sessions connecting professional experience to competitive and corporate strategy.",
+      "Thirteen discussion-intensive sessions connecting professional experience to strategy analysis, formulation and implementation.",
     url: "/teaching/1-year-mba",
     images: ["/images/ai-hackathon/hackathon-demo.jpg"],
   },

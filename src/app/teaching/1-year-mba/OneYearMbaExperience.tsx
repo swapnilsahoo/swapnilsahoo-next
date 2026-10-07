@@ -29,44 +29,35 @@ const executiveStrategyQuestions = [
 const sessionActs = [
   {
     number: "01",
-    sessions: "Sessions 01—04",
-    title: "Read the arena",
-    question: "What is strategy—and what shapes the playing field?",
-    caseStudy: "Tesla",
-    topics: ["Purpose & value", "Industry structure", "Ecosystems & game theory"],
-    citations: [1, 3, 4],
+    sessions: "Sessions 01—06",
+    title: "Analysis",
+    question: "What shapes the playing field—and where can this firm create value?",
+    caseStudy: "Tesla · Patagonia",
+    topics: ["Purpose & value", "Industry structure & ecosystems", "Resources & competitive advantage"],
+    citations: [1, 3, 5],
   },
   {
     number: "02",
-    sessions: "Sessions 05—08",
-    title: "Locate advantage",
-    question: "Why should this firm win—and for how long?",
-    caseStudy: "Patagonia",
-    topics: ["Resources & value chain", "Creating advantage", "Cost vs differentiation"],
-    citations: [1, 5],
-  },
-  {
-    number: "03",
-    sessions: "Sessions 09—10",
-    title: "Redraw the firm",
-    question: "How do technology and corporate scope create value?",
-    caseStudy: "NVIDIA",
-    topics: ["Technology & innovation", "Portfolio logic", "Core competence"],
+    sessions: "Sessions 07—11",
+    title: "Formulation",
+    question: "How should the firm compete, grow and choose its boundaries?",
+    caseStudy: "Patagonia · NVIDIA · Amazon",
+    topics: ["Business strategy & innovation", "Corporate scope, alliances & acquisitions", "Global strategy"],
     citations: [1, 8],
   },
   {
-    number: "04",
-    sessions: "Sessions 11—13",
-    title: "Choose the boundaries",
-    question: "What belongs inside the firm—and across which markets?",
+    number: "03",
+    sessions: "Sessions 12—13",
+    title: "Implementation",
+    question: "How do structure, culture and governance turn strategy into action?",
     caseStudy: "Amazon",
-    topics: ["Vertical integration", "Global strategy", "Diversification"],
-    citations: [1, 6],
+    topics: ["Organizational design", "Structure, culture & control", "Governance, ethics & business models"],
+    citations: [6, 8],
   },
 ] as const;
 
-// Every session links the page that the 2026-27 course outline itself links to
-// (/teaching/1-year-mba/session{N}.html). Older interactive decks are linked from those pages.
+// Sequence and assigned readings follow the PGPM 2026–27 course outline V0.2.
+// Lesson filenames retain their original numbering; link by topic so existing URLs survive.
 const interactive = (file: string) => `/teaching/1-year-mba/${encodeURIComponent(file)}`;
 
 type OneYearSession = {
@@ -76,6 +67,7 @@ type OneYearSession = {
   readings: readonly string[];
   /** Standalone interactive deck for the session, where one exists. */
   interactiveHref?: string;
+  relatedMaterials?: readonly { title: string; href: string }[];
   /** Practice bank ids under content/quizzes, where the session has them. */
   quizIds?: readonly string[];
 };
@@ -90,7 +82,6 @@ const sessionPlan: readonly OneYearSession[] = [
       "Article · Porter, M. E. (1996). What Is Strategy? Harvard Business Review.",
       "Article · Mintzberg, H. (1987). Crafting Strategy. Harvard Business Review.",
       "Article · Collis, D. J., & Rukstad, M. G. (2008). Can You Say What Your Strategy Is? Harvard Business Review.",
-      "Textbook · Rothaermel, Ch. 1: What Is Strategy?",
     ],
     interactiveHref: interactive("session1.html"),
     quizIds: ["1yr-01"],
@@ -101,8 +92,8 @@ const sessionPlan: readonly OneYearSession[] = [
     topics: ["Vision–Mission–Strategy / Purpose–Values–Strategy", "Strategy as a quest for value"],
     readings: [
       "Case · Elon Musk at Tesla (2024)",
-      "Article · Kaplan, R. S., & Norton, D. P. (2008). Developing the Strategy: Vision, Value Gaps, and Analysis. Balanced Scorecard Report.",
-      "Textbook · Rothaermel, Ch. 2: Strategic Leadership: Managing the Strategy Process",
+      "Article · Kaplan, R. S., Norton, D. P., & Barrows, E. A. (2008). Developing the Strategy: Vision, Value Gaps, and Analysis. Balanced Scorecard Report, 10(1), 1–5.",
+      "Article · Collins, J. C., & Porras, J. I. (1996). Building Your Company’s Vision. Harvard Business Review.",
     ],
     interactiveHref: interactive("session2.html"),
     quizIds: ["1yr-02", "1yr-03"],
@@ -114,8 +105,7 @@ const sessionPlan: readonly OneYearSession[] = [
     readings: [
       "Case · Elon Musk at Tesla (2024)",
       "Article · Porter, M. E. (2008). The Five Competitive Forces That Shape Strategy. Harvard Business Review.",
-      "Article · Porter, M. E. (1983). Note on the Structural Analysis of Industries. Harvard Business School.",
-      "Textbook · Rothaermel, Ch. 3: External Analysis",
+      "Article · Porter, M. E. (1983). Note on the Structural Analysis of Industries. Harvard Business School background note 376-054.",
     ],
     interactiveHref: interactive("session3.html"),
     quizIds: ["1yr-04"],
@@ -128,7 +118,7 @@ const sessionPlan: readonly OneYearSession[] = [
       "Case · Elon Musk at Tesla (2024)",
       "Video · Selected videos on Steve Jobs",
       "Article · Courtney, H., Kirkland, J., & Viguerie, P. (1997). Strategy Under Uncertainty. Harvard Business Review.",
-      "Textbook · Rothaermel, Ch. 7 (platforms) and Ch. 12 (business models)",
+      "Article · Brandenburger, A. M., & Nalebuff, B. J. (1995). The Right Game: Use Game Theory to Shape Strategy. Harvard Business Review.",
     ],
     interactiveHref: interactive("session4.html"),
   },
@@ -143,15 +133,14 @@ const sessionPlan: readonly OneYearSession[] = [
     ],
     readings: [
       "Case · Patagonia: “Earth Is Now Our Only Shareholder”",
-      "Article · Collis, D. J., & Montgomery, C. A. (1995). Competing on Resources. Harvard Business Review.",
-      "Article · Porter, M. E. (1987). From Competitive Advantage to Corporate Strategy. Harvard Business Review.",
-      "Textbook · Rothaermel, Ch. 4: Internal Analysis",
+      "Article · Collis, D. J., & Montgomery, C. A. (1995). Competing on Resources: Strategy in the 1990s. Harvard Business Review.",
+      "Article · Prahalad, C. K., & Hamel, G. (1990). The Core Competence of the Corporation. Harvard Business Review.",
     ],
     interactiveHref: interactive("session5.html"),
   },
   {
     number: "06",
-    title: "Creating Competitive Advantage",
+    title: "Shared Value and Competitive Advantage",
     topics: [
       "How a firm can create competitive advantage",
       "External sources of competitive advantage",
@@ -159,47 +148,51 @@ const sessionPlan: readonly OneYearSession[] = [
     ],
     readings: [
       "Case · Patagonia: “Earth Is Now Our Only Shareholder”",
-      "Article · Ghemawat, P., & Rivkin, J. W. (1998). Creating Competitive Advantage. Harvard Business School.",
-      "Textbook · Rothaermel, Ch. 5: Shared Value and Competitive Advantage",
+      "Article · Prahalad, C. K., & Hamel, G. (1990). The Core Competence of the Corporation. Harvard Business Review.",
+      "Article · Ghemawat, P., & Rivkin, J. W. (1998; later revisions). Creating Competitive Advantage. Harvard Business School background note 798-062.",
     ],
     interactiveHref: interactive("session6.html"),
+    relatedMaterials: [
+      { title: "Sustaining competitive advantage", href: interactive("session7.html") },
+    ],
   },
   {
     number: "07",
-    title: "Sustaining Competitive Advantage",
-    topics: ["How competitive advantage is sustained", "Deterrence and preemption"],
-    readings: [
-      "Case · Patagonia: “Earth Is Now Our Only Shareholder”",
-      "Article · Ghemawat, P., & Pisano, G. P. (1997). Sustaining Superior Performance: Commitments and Capabilities. Harvard Business School.",
-      "Textbook · Rothaermel, Ch. 4: Internal Analysis (isolating mechanisms)",
-    ],
-    interactiveHref: interactive("session7.html"),
-  },
-  {
-    number: "08",
-    title: "Differentiation & Cost Leadership",
+    title: "Business Strategy: Differentiation, Cost Leadership & Blue Ocean",
     topics: ["Generic strategies", "Low-cost strategy", "Differentiation and focus strategies"],
     readings: [
       "Case · Patagonia: “Earth Is Now Our Only Shareholder”",
-      "Article · Ghemawat, P., & Pisano, G. P. (1997). Sustaining Superior Performance: Commitments and Capabilities. Harvard Business School.",
-      "Textbook · Rothaermel, Ch. 6: Differentiation, Cost Leadership, and Blue Oceans",
+      "Article · Kim, W. C., & Mauborgne, R. (2004). Blue Ocean Strategy. Harvard Business Review.",
+      "Article · Ghemawat, P., & Pisano, G. P. (1997). Sustaining Superior Performance: Commitments and Capabilities. Harvard Business School background note 798-008.",
     ],
     interactiveHref: interactive("session8.html"),
+    relatedMaterials: [
+      {
+        title: "Differentiation, cost leadership & blue oceans",
+        href: interactive("Session6_Business Strategy_Differentiation, CostLeadership_BlueOceans_v0.8.html"),
+      },
+    ],
   },
   {
-    number: "09",
-    title: "Managing Technology & Innovation",
+    number: "08",
+    title: "Business Strategy: Entrepreneurship, Platforms, Technology & Innovation",
     topics: ["Application of technology", "Innovation-led strategy formulation"],
     readings: [
       "Case · NVIDIA, Inc. in 2024 and the Future of AI",
-      "Article · Kim, W. C., & Mauborgne, R. (2004). Blue Ocean Strategy. Harvard Business Review.",
-      "Textbook · Rothaermel, Ch. 7: Innovation, Entrepreneurship, and Platforms",
+      "Article · Eisenmann, T., Parker, G., & Van Alstyne, M. W. (2006). Strategies for Two-Sided Markets. Harvard Business Review.",
+      "Article · Bower, J. L., & Christensen, C. M. (1995). Disruptive Technologies: Catching the Wave. Harvard Business Review.",
     ],
     interactiveHref: interactive("session9.html"),
+    relatedMaterials: [
+      {
+        title: "Innovation, entrepreneurship & platforms",
+        href: interactive("Session_7_Business_Strategy_Innovation_Entrepreneurship_Platforms_V0.003.html"),
+      },
+    ],
   },
   {
-    number: "10",
-    title: "Introduction to Corporate Strategy",
+    number: "09",
+    title: "Introduction to Corporate Strategy: Vertical Integration & Diversification",
     topics: [
       "Portfolio approach, synergy approach and core competencies",
       "Transaction costs and the scope of the firm",
@@ -208,55 +201,70 @@ const sessionPlan: readonly OneYearSession[] = [
       "Case · NVIDIA, Inc. in 2024 and the Future of AI",
       "Article · Porter, M. E. (1987). From Competitive Advantage to Corporate Strategy. Harvard Business Review.",
       "Article · Campbell, A., Goold, M., & Alexander, M. (1995). Corporate Strategy: The Quest for Parenting Advantage. Harvard Business Review.",
-      "Textbook · Rothaermel, Ch. 8: Corporate Strategy",
     ],
     interactiveHref: interactive("session10.html"),
+    relatedMaterials: [
+      { title: "Vertical integration", href: interactive("session11.html") },
+      { title: "Diversification strategies", href: interactive("session13.html") },
+    ],
     quizIds: ["1yr-08"],
   },
   {
-    number: "11",
-    title: "Vertical Integration",
+    number: "10",
+    title: "Corporate Strategy: Strategic Alliances, Mergers & Acquisitions",
     topics: [
       "Portfolio approach, synergy approach and core competencies",
       "Transaction costs and the scope of the firm",
     ],
     readings: [
       "Case · Amazon in 2024",
-      "Article · Osegowitsch, T., & Madhok, A. (2003). Vertical Integration Is Dead, or Is It? Business Horizons.",
-      "Article · Buzzell, R. D. (1983). Is Vertical Integration Profitable? Harvard Business Review.",
-      "Textbook · Rothaermel, Ch. 8: Vertical Integration and Diversification",
+      "Article · Dyer, J. H., Kale, P., & Singh, H. (2004). When to Ally and When to Acquire. Harvard Business Review.",
+      "Article · Christensen, C. M., Alton, R., Rising, C., & Waldeck, A. (2011). The New M&A Playbook. Harvard Business Review.",
     ],
-    interactiveHref: interactive("session11.html"),
-    quizIds: ["1yr-08"],
+    interactiveHref: interactive("Session_9_Corporate_Strategy_Alliances_Mergers_Acquisitions_v0.91.html"),
+    quizIds: ["1yr-09"],
   },
   {
-    number: "12",
-    title: "Global Strategy & MNC",
+    number: "11",
+    title: "Global Strategy & MNC: Competing Around the World",
     topics: [
       "Competitive advantage in an international context",
       "Multinational strategies: global integration versus national differentiation",
     ],
     readings: [
       "Case · Amazon in 2024",
-      "Article · Goold, M., & Luchs, K. (1993). Why Diversify? Four Decades of Management Thinking. Academy of Management Executive.",
-      "Article · Porter, M. E. (1990). The Competitive Advantage of Nations. Harvard Business Review.",
-      "Article · Dewhurst, M., Harris, J., & Heywood, S. (2011). Understanding Your ‘Globalization Penalty’. McKinsey Quarterly.",
-      "Textbook · Rothaermel, Ch. 10: Global Strategy",
+      "Article · Ghemawat, P. (2001). Distance Still Matters: The Hard Reality of Global Expansion. Harvard Business Review.",
+      "Article · Ghemawat, P. (2007). Managing Differences: The Central Challenge of Global Strategy. Harvard Business Review.",
     ],
     interactiveHref: interactive("session12.html"),
   },
   {
-    number: "13",
-    title: "Diversification Strategies",
-    topics: ["Motives for diversification", "Competitive advantage from diversification"],
+    number: "12",
+    title: "Organizational Design: Structure, Culture, and Control",
+    topics: [
+      "How organizational inertia can lead established firms to failure",
+      "Matching organizational structures with appropriate strategies",
+    ],
     readings: [
       "Case · Amazon in 2024",
-      "Article · Goold, M., & Luchs, K. (1993). Why Diversify? Four Decades of Management Thinking. Academy of Management Executive.",
-      "Article · Laeven, L., & Levine, R. (2007). Is There a Diversification Discount in Financial Conglomerates? Journal of Financial Economics, 85(2), 331–367.",
-      "Textbook · Rothaermel, Ch. 8: Vertical Integration and Diversification",
+      "Article · Neilson, G. L., Martin, K. L., & Powers, E. (2008). The Secrets to Successful Strategy Execution. Harvard Business Review.",
+      "Article · Groysberg, B., Lee, J., Price, J., & Cheng, J. Y.-J. (2018). The Leader’s Guide to Corporate Culture. Harvard Business Review.",
     ],
-    interactiveHref: interactive("session13.html"),
-    quizIds: ["1yr-08"],
+    interactiveHref: interactive("Session_11_Organizational_Design_Structure_Culture_Control_v0.297.html"),
+  },
+  {
+    number: "13",
+    title: "Corporate Governance, Business Ethics, and Business Models",
+    topics: [
+      "Agency theory and governance mechanisms that align principals and agents",
+      "The relationship between strategy and business ethics",
+    ],
+    readings: [
+      "Case · Amazon in 2024",
+      "Article · Bower, J. L., & Paine, L. S. (2017). The Error at the Heart of Corporate Leadership. Harvard Business Review.",
+      "Article · Bazerman, M. H., & Tenbrunsel, A. E. (2011). Ethical Breakdowns. Harvard Business Review.",
+    ],
+    interactiveHref: interactive("Session_12_Corporate_Governance_Business_Ethics_Business_Models_V0.293.html"),
   },
 ] as const;
 
@@ -441,10 +449,10 @@ export function OneYearMbaExperience() {
               <div>
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="rounded-full border border-blue-300/20 bg-blue-300/10 px-3 py-1.5 font-mono text-[10px] tracking-[0.18em] text-blue-100 uppercase">
-                    PGPM · Strategic Management I
+                    PGPM · Strategic Management
                   </span>
                   <span className="font-mono text-[10px] tracking-[0.16em] text-slate-400 uppercase">
-                    PGPM 2024–26 · 2 credits · Term 4
+                    PGPM 2026–27 · 2 credits · Term 4
                   </span>
                 </div>
                 <h1 className="mt-10 max-w-4xl font-serif text-[clamp(3.4rem,7vw,7.7rem)] leading-[0.86] font-semibold tracking-[-0.055em] text-balance">
@@ -455,7 +463,7 @@ export function OneYearMbaExperience() {
                 </h1>
                 <p className="mt-8 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
                   Thirteen discussion-intensive sessions connect professional experience to
-                  decisions about industry, competitive advantage and firm boundaries.
+                  decisions about competitive advantage, firm boundaries and strategy execution.
                 </p>
                 <div className="mt-9 flex flex-wrap gap-3">
                   <a
@@ -701,7 +709,7 @@ export function OneYearMbaExperience() {
                   id="course-profile-title"
                   className="mt-4 font-serif text-4xl leading-[1.04] font-semibold tracking-[-0.035em] sm:text-5xl"
                 >
-                  Strategic Management – 1
+                  Strategic Management
                 </h2>
                 <p className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-7">
                   A rigorous course in gaining and sustaining competitive advantage through
@@ -714,7 +722,7 @@ export function OneYearMbaExperience() {
                 {[
                   ["Course code", "PGPM-G/C-T1-SM1"],
                   ["Instructor", "Dr. Swapnil Sahoo"],
-                  ["Programme / term", "PGPM 2024–26 · Term 4"],
+                  ["Programme / term", "PGPM 2026–27 · Term 4"],
                   ["Credit value", "2 credits"],
                   ["Contact design", "13 × 1.5 hours"],
                   ["Prerequisite", "All core functional areas completed"],
@@ -747,16 +755,16 @@ export function OneYearMbaExperience() {
                 id="course-map-title"
                 className="mt-4 max-w-3xl font-serif text-4xl leading-[1.02] font-semibold tracking-[-0.035em] text-balance sm:text-6xl"
               >
-                Four stages of one strategy course.
+                Analysis, formulation and implementation.
               </h2>
             </div>
             <p className="max-w-md text-sm leading-6 text-slate-300">
-              The cases change as the unit of analysis expands—from an arena, to an advantage, to
-              the scope and boundaries of the firm.
+              The V0.2 course outline moves from analyzing industries and resources, through
+              business and corporate choices, to the organization and governance needed to execute.
             </p>
           </div>
 
-          <div className={`${styles.courseTrack} mt-14 grid gap-4 md:grid-cols-4`}>
+          <div className={`${styles.courseTrack} mt-14 grid gap-4 md:grid-cols-3`}>
             {sessionActs.map((act) => (
               <article
                 key={act.number}
@@ -775,7 +783,7 @@ export function OneYearMbaExperience() {
                 </p>
                 <div className="my-5 h-px bg-white/10" />
                 <p className="font-mono text-[10px] tracking-[0.16em] text-amber-200 uppercase">
-                  Anchor case · {act.caseStudy}
+                  Cases · {act.caseStudy}
                 </p>
                 <ul className="mt-4 space-y-2">
                   {act.topics.map((topic) => (
@@ -804,8 +812,8 @@ export function OneYearMbaExperience() {
               </h2>
             </div>
             <p className="text-ink-600 dark:text-ink-300 max-w-md text-sm leading-6">
-              Each 90-minute session is reproduced from the supplied teaching plan. Open a session
-              to see its exact coverage and preparation.
+              The 13 sessions follow the PGPM 2026–27 course outline, version 0.2. Open each
+              90-minute session for its coverage, assigned readings and lesson materials.
             </p>
           </div>
 
@@ -880,7 +888,7 @@ export function OneYearMbaExperience() {
                         rel="noopener noreferrer"
                         className="text-brand-700 dark:text-brand-300 link-underline inline-flex items-center gap-1 text-xs font-semibold"
                       >
-                        Open the full interactive session
+                        Open the interactive lesson
                         <ArrowRightIcon className="h-3 w-3" aria-hidden="true" />
                       </a>
                     ) : null}
@@ -895,14 +903,37 @@ export function OneYearMbaExperience() {
                       </Link>
                     ))}
                   </div>
+                  {session.relatedMaterials ? (
+                    <div className="mt-5 border-t border-slate-900/10 pt-4 dark:border-white/10">
+                      <p className="text-ink-500 dark:text-ink-400 font-mono text-[10px] tracking-[0.14em] uppercase">
+                        Related lesson materials
+                      </p>
+                      <ul className="mt-3 flex flex-wrap gap-x-6 gap-y-3">
+                        {session.relatedMaterials.map((material) => (
+                          <li key={material.href}>
+                            <a
+                              href={material.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-brand-700 dark:text-brand-300 link-underline inline-flex items-center gap-1 text-xs font-semibold"
+                            >
+                              {material.title}
+                              <ArrowRightIcon className="h-3 w-3" aria-hidden="true" />
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
                 </div>
               </details>
             ))}
           </div>
 
           <p className="text-ink-500 dark:text-ink-400 mt-7 text-xs leading-5">
-            Sequence and coverage may be modified by the instructor in response to initial
-            experience and the mid-course review.
+            Linked lessons may retain earlier session numbers; use the topics and sequence above
+            for this course. Sequence and coverage may be modified by the instructor in response
+            to initial experience and the mid-course review.
           </p>
         </Container>
       </section>
@@ -982,7 +1013,7 @@ export function OneYearMbaExperience() {
                 {[
                   "Classroom lecture and discussion grounded in the core text, references and videos.",
                   "Case analyses across Tesla, Patagonia, NVIDIA and Amazon.",
-                  "One quiz per session, case exercises, an individual project, midterm and end-term examinations.",
+                  "Multiple quizzes, case exercises, a group project, and midterm and end-term examinations.",
                   "Student-led discussion around mandatory papers, enriched by independent literature search.",
                 ].map((method) => (
                   <li key={method} className="flex gap-3">
@@ -1046,12 +1077,12 @@ export function OneYearMbaExperience() {
               </div>
               <div>
                 <p className="max-w-2xl text-sm leading-6 text-blue-100">
-                  Teams connect course frameworks to a live startup decision. Secondary-data-only
-                  profiles do not qualify: the work begins with a human conversation and ends with a
-                  useful recommendation.
+                  Teams connect course frameworks to a live startup decision through direct
+                  engagement with a founder, CXO or senior team member. Secondary data collection
+                  is not allowed. The work ends with a useful recommendation.
                 </p>
                 <span className="mt-5 inline-flex rounded-full border border-amber-200/20 bg-amber-200/10 px-3 py-1.5 font-mono text-[10px] tracking-[0.14em] text-amber-100 uppercase">
-                  20 marks · no secondary-data-only submissions
+                  20 marks · primary fieldwork required
                 </span>
               </div>
             </div>
