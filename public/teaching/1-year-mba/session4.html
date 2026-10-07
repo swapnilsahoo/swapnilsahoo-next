@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Session 4: Beyond the Five Forces | STRAMGT 221 — Dr. Swapnil Sahoo</title>
+    <title>Session 4: Beyond the Five Forces | PGPM 2026–27 — Dr. Swapnil Sahoo</title>
     <meta name="description" content="Ecosystems, business models, game theory and competitor analysis, with Courtney, Kirkland and Viguerie's four levels of uncertainty, applied to Tesla's moves and the incumbents' likely responses.">
     <link rel="canonical" href="https://www.swapnilsahoo.com/teaching/1-year-mba/session4.html">
     <meta property="og:type" content="article">
@@ -323,12 +323,16 @@
       /* theme, resolved before first paint: light unless this visitor chose dark */
       (function () {
         try {
-          if (localStorage.getItem("s4-theme") === "dark") {
+          if ((localStorage.getItem("pgpm-course-theme") || localStorage.getItem("s4-theme")) === "dark") {
             document.documentElement.classList.add("dark");
           }
         } catch (e) {}
       })();
     </script>
+<style id="outline-v02-styles">
+.v02-section{color:var(--ink);scroll-margin-top:120px}.v02-kicker{color:var(--accent);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.13em}.v02-copy{color:var(--muted);line-height:1.8;margin-top:.9rem;max-width:76ch}.v02-grid + .v02-card{margin-top:1rem}.v02-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-top:1.4rem}.v02-card,.v02-panel{padding:1.5rem;border:1px solid var(--line);border-radius:1rem;background:var(--card);min-width:0}.v02-card h3,.v02-panel h3{color:var(--ink)}.v02-section a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}.v02-tabs{margin-top:1.5rem}.v02-tablist{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.8rem}.v02-tablist button,.v02-action{border:1px solid var(--line);border-radius:.65rem;padding:.7rem 1rem;font-size:.85rem;font-weight:600;color:var(--ink);background:var(--card);min-height:44px}.v02-tablist [aria-selected="true"],.v02-action{background:var(--accent);color:white;border-color:var(--accent)}html.dark .v02-action,html.dark .v02-tablist [aria-selected="true"]{background:#4338ca;color:#fff;border-color:#818cf8}.v02-panel[hidden]{display:none}.v02-section button:focus-visible,.v02-section a:focus-visible,.v02-section input:focus-visible,.v02-section select:focus-visible,.v02-section textarea:focus-visible{outline:3px solid var(--accent);outline-offset:3px}.v02-field{display:flex;flex-direction:column;gap:.45rem;font-size:.85rem;font-weight:600;margin:1rem 0;color:var(--ink)}.v02-field textarea,.v02-field input,.v02-field select{font:inherit;font-weight:400;width:100%;padding:.75rem;border:1px solid var(--line);border-radius:.6rem;background:var(--paper);color:var(--ink);min-height:44px}.v02-field textarea{resize:vertical}.v02-field input[type=range]{padding:0;accent-color:var(--accent)}.v02-feedback{margin-top:1rem;padding:1rem;border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 .7rem .7rem 0;line-height:1.7;color:var(--ink);font-size:.9rem}.v02-note{font-size:.75rem;line-height:1.7;color:var(--muted);margin-top:1rem}.v02-flow{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.2rem 0}.v02-flow span{background:var(--accent-soft);padding:.7rem 1rem;border-radius:.65rem;color:var(--ink);font-size:.85rem}.v02-section details{border:1px solid var(--line);border-radius:.8rem;padding:1rem;margin-top:1rem;background:var(--card)}.v02-section summary{cursor:pointer;font-weight:600;line-height:1.6;min-height:28px}.v02-check fieldset{border:1px solid var(--line);border-radius:.8rem;padding:1rem;margin-top:1rem}.v02-check legend{font-weight:600;padding:0 .4rem}.v02-check label{display:flex;align-items:flex-start;gap:.65rem;padding:.65rem;border-radius:.5rem;font-size:.9rem;line-height:1.6;cursor:pointer}.v02-check input{margin-top:.3rem;accent-color:var(--accent);flex:none}.v02-check .v02-feedback:empty{display:none}.v02-stat{font-size:1.7rem;font-family:Fraunces,serif;font-weight:600;display:block;color:var(--accent)}.v02-section ol,.v02-section ul{padding-left:1.3rem;list-style:disc;line-height:1.8;color:var(--muted);margin-top:1rem}.v02-section ol{list-style:decimal}.v02-section li+li{margin-top:.45rem}@media(max-width:640px){.v02-grid{grid-template-columns:1fr}.v02-card,.v02-panel{padding:1.1rem}.v02-tablist button{flex:1 1 140px}.v02-flow span{flex:1 1 160px}.v02-check legend{font-size:.92rem}}@media(prefers-reduced-motion:reduce){.v02-section *{scroll-behavior:auto!important}}@media print{.v02-panel[hidden]{display:block}.v02-tablist{display:none}.v02-section{break-inside:auto}}
+</style>
+    <link rel="stylesheet" href="/teaching/1-year-mba/course-ui.css">
 </head>
 
 <body class="text-slate-700">
@@ -352,7 +356,7 @@
       <p class="truncate font-medium text-slate-400">&copy; Dr. Swapnil Sahoo 2026 &middot; Great Lakes Institute of Management, Gurgaon</p>
     </div>
     <div class="flex items-center gap-4 shrink-0">
-      <a href="https://www.swapnilsahoo.com/teaching/1-year-mba" class="hidden md:inline text-slate-400 hover:text-white transition">STRAMGT 221</a>
+      <a href="https://www.swapnilsahoo.com/teaching/1-year-mba" class="hidden md:inline text-slate-400 hover:text-white transition">PGPM 2026–27</a>
       <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="X/Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
       <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.575 2h.093zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" clip-rule="evenodd"/></svg></a>
       <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg></a>
@@ -369,7 +373,7 @@
         <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-slate-900 text-white font-display text-sm font-semibold">04</span>
         <div class="min-w-0">
           <p class="truncate font-display text-base font-semibold leading-tight text-slate-900">Beyond the Five Forces</p>
-          <p class="hidden truncate text-[11px] text-slate-500 sm:block">90 minutes · <span id="progPct">0</span>% read · <span id="doneCount">0</span>/7 activities done</p>
+          <p class="hidden truncate text-[11px] text-slate-500 sm:block">90 minutes · <span id="progPct">0</span>% read · <span id="doneCount">0</span>/9 activities done</p>
         </div>
       </div>
 
@@ -414,7 +418,7 @@
     </div>
     <div class="mt-3 rounded-xl bg-slate-50 p-3">
       <div class="flex items-center justify-between text-xs text-slate-500">
-        <span>Progress</span><span><span id="drawerDone">0</span>/7 activities</span>
+        <span>Progress</span><span><span id="drawerDone">0</span>/9 activities</span>
       </div>
       <div class="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-200">
         <div id="drawerBar" class="h-full rounded-full bg-blue-600 transition-all" style="width:0%"></div>
@@ -429,8 +433,9 @@
     <div>
       <div class="flex flex-wrap items-center gap-2 mb-3">
         <span class="pill bg-blue-50 text-blue-700">Session 04</span>
+        <span class="pill bg-slate-100 text-slate-600">PGPM 2026–27</span>
         <span class="pill bg-slate-100 text-slate-600">1.5 hours</span>
-        <span class="pill bg-slate-100 text-slate-600">Business &amp; competitive strategy</span>
+        <span class="pill bg-slate-100 text-slate-600">Analysis</span>
       </div>
       <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-slate-900">Beyond the Five Forces</h1>
       <p class="mt-2 font-display text-lg md:text-xl italic text-blue-700">Ecosystems, business models, and rivals who move back</p>
@@ -516,6 +521,7 @@
     </div>
   </div>
 </section>
+<section id="authors" class="v02-section mx-auto max-w-6xl px-4 py-12 md:py-14"><p class="v02-kicker">Two readings · one strategic problem</p><h2 class="mt-2 text-2xl md:text-3xl font-bold">Read with a question in mind</h2><div class="v02-tabs" data-v02-tabs><div class="v02-tablist" role="tablist" aria-label="Assigned reading lenses"><button type="button" role="tab" id="v02-tab-0" aria-controls="v02-panel-0" aria-selected="true">Courtney, Kirkland & Viguerie</button><button type="button" role="tab" id="v02-tab-1" aria-controls="v02-panel-1" aria-selected="false">Brandenburger & Nalebuff</button><button type="button" role="tab" id="v02-tab-2" aria-controls="v02-panel-2" aria-selected="false">Connect the two</button></div><div id="v02-panel-0" class="v02-panel" role="tabpanel" aria-labelledby="v02-tab-0" tabindex="0"><h3 class="text-xl font-bold">How much uncertainty remains after analysis?</h3><p class="v02-copy">Separate what better research can resolve from residual uncertainty. A clear-enough future, a few alternative futures, a range of futures and true ambiguity require different analytical tools. Do not attach a precise probability merely because a spreadsheet requests one.</p><p class="v02-copy">Then separate <strong>posture</strong>—shape, adapt or reserve the right to play—from <strong>moves</strong>—big bets, options and no-regrets actions. A small investment is not automatically an option: it must buy a meaningful future opportunity.</p><p class="v02-copy"><strong>Reading task:</strong> write one observable signpost that would cause a move to expand, stop or change.</p></div><div id="v02-panel-1" class="v02-panel" role="tabpanel" aria-labelledby="v02-tab-1" tabindex="0"><h3 class="text-xl font-bold">Can you change the game itself?</h3><p class="v02-copy"><strong>PARTS:</strong> players, added values, rules, tactics and scope. Map customers, suppliers, competitors and complementors; ask what changes if a participant disappears.</p><p class="v02-copy"><strong>Your application:</strong> choose an EV ecosystem participant. Propose an invitation, contract change, information release or change in the market boundary. Draw who might benefit and who could respond defensively. This is a proposal to test, not a prediction about the case.</p><p class="v02-copy"><a href="https://hbr.org/1995/07/the-right-game-use-game-theory-to-shape-strategy" target="_blank" rel="noopener noreferrer">The Right Game · publisher record ↗</a></p></div><div id="v02-panel-2" class="v02-panel" role="tabpanel" aria-labelledby="v02-tab-2" tabindex="0"><h3 class="text-xl font-bold">A game-changing move is also an uncertain bet</h3><p class="v02-copy">A charging-access proposal may attract new participants while making a new demand forecast necessary. Write both sides: the game element being changed and the uncertainty governing the commitment. A persuasive strategic move needs a plausible response from other players and a way to learn.</p><p class="v02-copy">Carry that logic into the payoff game, competitor profile and uncertainty exercises already on this page.</p></div></div></section>
 
 
 <section id="ecosystem" class="bg-white border-y border-slate-200">
@@ -565,7 +571,7 @@
           the whole profit pool (Grant, 2018, pp.&nbsp;85&ndash;87).</p>
         <p class="mt-2 text-sm text-slate-600 leading-relaxed">Rothaermel defines a platform as a business that enables
           value-creating interactions between external producers and consumers, and names four roles in its ecosystem: owner,
-          providers, producers and consumers (2023, pp.&nbsp;282&ndash;283). Session 9 takes platforms further.</p>
+          providers, producers and consumers (2023, pp.&nbsp;282&ndash;283). Session 8 takes platforms further.</p>
       </div>
     </div>
 
@@ -805,7 +811,7 @@
           stylised situations; with realistic detail it often yields no equilibrium or several. Grant judges it better at
           explaining the past than predicting the future. Its use is to structure the situation and show how to change the
           game. Deterrence and preemption get a full session in
-          <a href="/teaching/1-year-mba/session7.html" class="font-semibold text-blue-700 hover:underline">Session 7</a>.</p>
+          <a href="/teaching/1-year-mba/sustaining-competitive-advantage.html" class="font-semibold text-blue-700 hover:underline">the sustaining-advantage extension</a>.</p>
       </div>
     </div>
 
@@ -1258,7 +1264,7 @@
         <span class="mt-1 block font-bold text-slate-900">Business Strategy, Innovation &amp; Platforms</span>
         <span class="mt-1 block text-sm text-slate-600">From pipelines to platforms and network effects, with Netflix, Reliance Jio and
           Nvidia, plus an innovation CEO simulator. Listed as Session 13 of the 2-year MBA; its own header reads Session 09,
-          Managing Technology &amp; Innovation, so it also previews this course&rsquo;s Session 9.</span>
+          Managing Technology &amp; Innovation, so it also previews this course&rsquo;s Session 8.</span>
       </span>
       <span class="text-sm font-semibold text-blue-700">Open the deck &rarr;</span>
     </a>
@@ -1291,6 +1297,7 @@
   </div>
 </section>
 
+<section id="reading-lab" class="v02-section mx-auto max-w-6xl px-4 py-12 md:py-14"><p class="v02-kicker">Apply · challenge · revise</p><h2 class="mt-2 text-2xl md:text-3xl font-bold">Game studio: change one PART, anticipate a reply</h2><p class="v02-copy">Fictional classroom scenario: an EV charging venture is negotiating with vehicle makers and site owners. Choose one proposal. The feedback identifies a primary PARTS lever and a counter-move to investigate; multiple effects can coexist.</p><div class="v02-grid"><div class="v02-card"><h3 class="text-xl font-bold">1 · Make the move</h3><label class="v02-field" for="v02-parts">Proposed move<select id="v02-parts"><option value="">Choose…</option><option value="players">Invite a fleet operator to join the network</option><option value="added">Build a reliability capability customers cannot easily replace</option><option value="rules">Offer a long-term capacity-reservation contract</option><option value="tactics">Publish independently verified uptime evidence</option><option value="scope">Bundle workplace and highway charging contracts</option></select></label><button type="button" id="v02-parts-check" class="v02-action">Anticipate the response</button><div id="v02-parts-result" class="v02-feedback" role="status" aria-live="polite">Make a choice, then examine its consequences.</div></div><div class="v02-card"><h3 class="text-xl font-bold">2 · Set a learning trigger</h3><label class="v02-field" for="v02-uncertainty">What is actually unknown?<select id="v02-uncertainty"><option value="">Choose…</option><option value="two">A regulator will choose one of two specified rules</option><option value="range">Usage can lie anywhere in a defensible interval</option><option value="research">The team has not yet gathered available traffic data</option></select></label><button type="button" id="v02-uncertainty-check" class="v02-action">Choose an analytical approach</button><div id="v02-uncertainty-result" class="v02-feedback" role="status" aria-live="polite">Make a choice, then examine its consequences.</div></div></div><div class="v02-grid"><div class="v02-card"><h3 class="text-xl font-bold">3 · Write an option, not a wish</h3><label class="v02-field" for="v02-option">Pilot → signal → threshold → action<textarea id="v02-option" rows="3" placeholder="Example structure: trial at two sites; measure utilization; expand only if the threshold holds; specify a stop date."></textarea></label><label class="v02-field" for="v02-option-cost">What does keeping the option cost?<textarea id="v02-option-cost" rows="3" placeholder="Capital, exclusivity, engineering effort, or lost flexibility."></textarea></label></div><div class="v02-card"><h3 class="text-xl font-bold">4 · Red-team the response</h3><label class="v02-field" for="v02-rival-reply">Your partner represents the strongest affected player<textarea id="v02-rival-reply" rows="3" placeholder="What is their best response, given their goals and capabilities?"></textarea></label><label class="v02-field" for="v02-game-revision">Revise your proposal<textarea id="v02-game-revision" rows="3" placeholder="Which promise can you make credibly, and what evidence should be shared?"></textarea></label></div></div></section><section id="studio" class="v02-section mx-auto max-w-6xl px-4 py-12 md:py-14"><p class="v02-kicker">Bring the evidence into the room</p><h2 class="mt-2 text-2xl md:text-3xl font-bold">One decision, two rounds</h2><div class="v02-grid"><div class="v02-card"><h3 class="text-xl font-bold">Case round · 12 minutes</h3><p class="v02-copy">Use the 2024 Tesla case to identify a concrete ecosystem move. Classify its primary PARTS lever, identify one complementor who could also compete, and use the case to support a rival’s likely incentives.</p><label class="v02-field" for="v02-tesla-game">Move / actor / incentive / evidence<textarea id="v02-tesla-game" rows="3" placeholder="Keep the historical date visible."></textarea></label></div><div class="v02-card"><h3 class="text-xl font-bold">Discussion · 5 minutes</h3><p class="v02-copy">Apply the same method to one Steve Jobs video below. Separate a memorable line from evidence of a strategic commitment. What would make the promise credible to a supplier or rival?</p><label class="v02-field" for="v02-jobs-evidence">Claim and credibility<textarea id="v02-jobs-evidence" rows="3" placeholder="Cite the video moment; name the action that supports the claim."></textarea></label></div></div></section><section id="reading-check" class="v02-section mx-auto max-w-6xl px-4 py-12 md:py-14"><p class="v02-kicker">Retrieve · explain · retry</p><h2 class="mt-2 text-2xl md:text-3xl font-bold">Can you use the readings?</h2><p class="v02-copy">Retrieve the reading lenses before you use them in the case. These are concept checks, not a model case answer.</p><form id="v02-check" class="v02-check"><fieldset data-answer="0" data-reason="Analyze the relationship and customer use case. The same organization can compete in one activity and complement another."><legend>1. A rival can also be a complementor when…</legend><label><input type="radio" name="v02-q0" value="0"><span>Its success can increase customers’ value from your offer in one relationship</span></label><label><input type="radio" name="v02-q0" value="1"><span>It signs any contract with you</span></label><label><input type="radio" name="v02-q0" value="2"><span>It never competes on price</span></label><div class="v02-feedback" aria-live="polite"></div></fieldset><fieldset data-answer="1" data-reason="A few identifiable outcomes are different from not being able to define the relevant outcomes. Link your commitment to a signpost."><legend>2. Two clearly defined regulatory outcomes remain unresolved. The best first lens is…</legend><label><input type="radio" name="v02-q1" value="0"><span>A single forecast with many decimals</span></label><label><input type="radio" name="v02-q1" value="1"><span>Alternative futures, with a strategy contingent on the outcome</span></label><label><input type="radio" name="v02-q1" value="2"><span>True ambiguity by default</span></label><div class="v02-feedback" aria-live="polite"></div></fieldset><fieldset data-answer="2" data-reason="Specify the future right, the learning signal, the exercise decision and the cost of maintaining the option."><legend>3. What makes a pilot an option rather than simply a small loss?</legend><label><input type="radio" name="v02-q2" value="0"><span>Small size alone</span></label><label><input type="radio" name="v02-q2" value="1"><span>A public announcement</span></label><label><input type="radio" name="v02-q2" value="2"><span>Learning or access that preserves a valuable later choice</span></label><div class="v02-feedback" aria-live="polite"></div></fieldset><button class="v02-action" type="submit" style="margin-top:1rem">Check my reasoning</button><p id="v02-score" class="v02-feedback" role="status">Your score will appear after you check.</p></form></section>
 <section id="quiz" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
   <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Knowledge check</p>
   <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Ten questions</h2>
@@ -1312,6 +1319,7 @@
     <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Readings for Session 4</h2>
     <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">Readings and cases are available through the course pack.</p>
     <div class="mt-6 grid gap-4 md:grid-cols-2">
+<div class="card p-5"><p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Required · V0.2 game-theory reading</p><p class="mt-2 text-sm text-slate-700 ref">Brandenburger, A. M., &amp; Nalebuff, B. J. (1995). <em>The Right Game: Use Game Theory to Shape Strategy.</em> Harvard Business Review. <a href="https://hbr.org/1995/07/the-right-game-use-game-theory-to-shape-strategy" target="_blank" rel="noopener noreferrer">Publisher record ↗</a></p><p class="mt-2 text-xs text-slate-500">Bring a PARTS proposal and one credible response from another player. Connect your proposal to an uncertainty signpost.</p></div>
       <div class="card p-5">
         <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Required &middot; the article</p>
         <p class="mt-2 text-sm text-slate-700 ref">Courtney, H., Kirkland, J., &amp; Viguerie, P. (1997). Strategy under uncertainty. <em>Harvard Business Review, 75</em>(6).</p>
@@ -1323,7 +1331,7 @@
         <p class="mt-2 text-xs text-slate-500">Carried over from Sessions 2 and 3. Reread pp.&nbsp;5&ndash;13 for Tesla&rsquo;s moves and Exhibits 11a&ndash;11c and 12a for the numbers.</p>
       </div>
       <div class="card p-5">
-        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Required &middot; the companion case</p>
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Supplementary &middot; historical companion case</p>
         <p class="mt-2 text-sm text-slate-700 ref">Sull, D., &amp; Reavis, C. (2019). <em>Tesla&rsquo;s entry into the U.S. auto industry</em> (No. 18-186). MIT Sloan School of Management.</p>
         <p class="mt-2 text-xs text-slate-500">Reread pp.&nbsp;6&ndash;14: competitors&rsquo; EV plans, charging, connectivity, mobility services, the Gigafactory and Tesla&rsquo;s sales and service model. Licensed CC&nbsp;BY-NC-ND&nbsp;3.0.</p>
       </div>
@@ -1354,7 +1362,7 @@
 <footer class="bg-gray-800 mt-16 sm:mt-24 border-t border-gray-700">
   <div class="container mx-auto px-6 py-8 text-center">
     <p class="text-sm text-slate-400">&copy; Dr. Swapnil Sahoo 2026 &middot; Great Lakes Institute of Management, Gurgaon</p>
-    <p class="mt-2 text-xs text-slate-500">STRAMGT 221 &middot; Strategic Management (PGPM) &middot; Session 4</p>
+    <p class="mt-2 text-xs text-slate-500">PGPM 2026–27 &middot; Strategic Management (PGPM) &middot; Session 4</p>
     <div class="mt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
       <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-400 hover:text-white">swapnilsahoo.com</a>
       <a href="/teaching/1-year-mba/session3.html" class="text-sm text-slate-400 hover:text-white">&larr; Session 3</a> <a href="/teaching/1-year-mba" class="text-sm text-slate-400 hover:text-white">All sessions</a> <a href="/teaching/1-year-mba/session5.html" class="text-sm text-slate-400 hover:text-white">Session 5 &rarr;</a>
@@ -2175,21 +2183,21 @@
 
 <script>
 (function () {
-  var SECTIONS = [["recap", "Carried forward"], ["ecosystem", "Ecosystems"], ["models", "Business models"], ["games", "Game theory"], ["rivals", "Competitor analysis"], ["uncertainty", "Uncertainty"], ["tesla", "Tesla's moves"], ["watch", "Steve Jobs videos"], ["decks", "Go deeper"], ["discussion", "Discussion"], ["quiz", "Quiz"], ["readings", "Readings"]];
-  var KEY = "s4-progress-v1";
-  var ACTIVITIES = ["eco", "bm", "game", "rival", "level", "moves", "quiz"];
+  var SECTIONS = [["recap", "Carried forward"], ["authors", "Reading lenses"], ["ecosystem", "Ecosystems"], ["models", "Business models"], ["games", "Game theory"], ["rivals", "Competitor analysis"], ["uncertainty", "Uncertainty"], ["tesla", "Tesla's moves"], ["watch", "Steve Jobs videos"], ["decks", "Go deeper"], ["discussion", "Discussion"], ["reading-lab", "Reading lab"], ["studio", "Studio"], ["reading-check", "Reading check"], ["quiz", "Quiz"], ["readings", "Readings"]];
+  var KEY = "pgpm-v02-session4-progress";
+  var ACTIVITIES = ["eco", "bm", "game", "rival", "level", "moves", "quiz", "readingLab", "readingCheck"];
 
   // ---------- theme ----------
   var root = document.documentElement;
   try {
     // light is the default; dark only when the visitor has asked for it
-    if (localStorage.getItem("s4-theme") === "dark") root.classList.add("dark");
+    if ((localStorage.getItem("pgpm-course-theme") || localStorage.getItem("s4-theme")) === "dark") root.classList.add("dark");
   } catch (e) {}
   var themeBtn = document.getElementById("themeBtn");
   if (themeBtn) {
     themeBtn.addEventListener("click", function () {
       root.classList.toggle("dark");
-      try { localStorage.setItem("s4-theme", root.classList.contains("dark") ? "dark" : "light"); } catch (e) {}
+      try { localStorage.setItem("pgpm-course-theme", root.classList.contains("dark") ? "dark" : "light"); } catch (e) {}
     });
   }
 
@@ -2303,6 +2311,28 @@
   function mark(k) { if (!state[k]) { state[k] = true; save(); paint(); } }
   paint();
 
+  // Completion for the reading lab requires using its feedback controls.
+  var readingLab = document.getElementById('reading-lab');
+  if (readingLab) {
+    var labButtons = Array.from(readingLab.querySelectorAll('.v02-action'));
+    var labUsed = new Set();
+    readingLab.addEventListener('click', function(event) {
+      var button = event.target.closest('.v02-action');
+      if (!button) return;
+      var card = button.closest('.v02-card');
+      if (card && Array.from(card.querySelectorAll('select, input[type="number"]')).some(function(input) { return input.value === '' || !input.checkValidity(); })) return;
+      labUsed.add(button.id);
+      if (labButtons.every(function(item) { return labUsed.has(item.id); })) mark('readingLab');
+    });
+    readingLab.addEventListener('input', function(event) {
+      if (event.target.matches('input[type="range"]')) mark('readingLab');
+    });
+  }
+  var readingCheck = document.getElementById('v02-check');
+  if (readingCheck) readingCheck.addEventListener('submit', function() {
+    if (Array.from(readingCheck.querySelectorAll('fieldset')).every(function(item) { return item.querySelector('input:checked'); })) mark('readingCheck');
+  });
+
   // wire completion to the real interactions already on the page
   function onClickWithin(sel, key) {
     var el = document.querySelector(sel);
@@ -2369,5 +2399,22 @@
   var n=0, iv=setInterval(function(){ chartTheme(); if(++n>20) clearInterval(iv); },400);
 })();
 </script>
+<script>
+(function(){
+
+document.querySelectorAll('[data-v02-tabs]').forEach(function(group){
+ var tabs=Array.from(group.querySelectorAll('[role="tab"]')), panels=Array.from(group.querySelectorAll('[role="tabpanel"]'));
+ function activate(index,focus){tabs.forEach(function(tab,i){tab.setAttribute('aria-selected',String(i===index));tab.tabIndex=i===index?0:-1;panels[i].hidden=i!==index;});if(focus)tabs[index].focus();}
+ tabs.forEach(function(tab,i){tab.addEventListener('click',function(){activate(i,false);});tab.addEventListener('keydown',function(e){var next=i;if(e.key==='ArrowRight')next=(i+1)%tabs.length;else if(e.key==='ArrowLeft')next=(i+tabs.length-1)%tabs.length;else if(e.key==='Home')next=0;else if(e.key==='End')next=tabs.length-1;else return;e.preventDefault();activate(next,true);});});activate(0,false);
+});
+var check=document.getElementById('v02-check');
+if(check){check.addEventListener('submit',function(e){e.preventDefault();var score=0,answered=0;
+ check.querySelectorAll('fieldset').forEach(function(f){var selected=f.querySelector('input:checked'), out=f.querySelector('.v02-feedback');if(!selected){out.textContent='Choose an answer before checking this question.';return;}answered++;var correct=selected.value===f.dataset.answer;if(correct)score++;out.textContent=(correct?'Correct. ':'Revisit this. ')+f.dataset.reason;});
+ var total=check.querySelectorAll('fieldset').length;document.getElementById('v02-score').textContent=score+' / '+total+' correct. '+(answered<total?'Answer all questions, then check again.':'Use the explanations to revise your reasoning; you can retry.');
+ });}
+var partFeedback={players:'Primary lever: Players. The fleet may improve utilization, but could demand volume discounts or priority access. Model how existing customers and site owners would respond.',added:'Primary lever: Added value. Test how much customers lose without this capability and whether another network can supply it. Reliability only helps capture if someone is willing to pay or stay.',rules:'Primary lever: Rules. A reservation contract changes rights and obligations. Examine minimum commitments, congestion, renegotiation and who bears demand risk.',tactics:'Primary lever: Tactics. Verified evidence may change beliefs. Specify what was independently measured and whether the information also helps a rival.',scope:'Primary lever: Scope. Linking two charging contexts may change bargaining across them. Test whether the same customers value both and whether bundling creates unwanted lock-in.'};document.getElementById('v02-parts-check').onclick=function(){document.getElementById('v02-parts-result').textContent=partFeedback[document.getElementById('v02-parts').value]||'Choose a proposal first.';};var uncertaintyFeedback={two:'Alternative futures: assess the move under each rule, monitor the decision and avoid hiding the branches in an average. An option may help if it preserves access until the rule is known.',range:'A range of futures: identify demand drivers, test a useful range of scenarios and specify thresholds. The endpoints are assumptions to defend, not facts merely because they are numeric.',research:'Start with research. Uncollected available information is not automatically residual uncertainty. Gather traffic data, then classify what still cannot be resolved.'};document.getElementById('v02-uncertainty-check').onclick=function(){document.getElementById('v02-uncertainty-result').textContent=uncertaintyFeedback[document.getElementById('v02-uncertainty').value]||'Choose an uncertainty first.';};
+})();
+</script>
+<script src="/teaching/1-year-mba/course-ui.js" data-course-session="4" defer></script>
 </body>
 </html>

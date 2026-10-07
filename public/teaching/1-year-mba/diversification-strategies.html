@@ -1,0 +1,2138 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Further study: Diversification Strategies | PGPM 2026–27 — Dr. Swapnil Sahoo</title>
+    <meta name="description" content="Why firms diversify and when it creates advantage: Rumelt's diversification types, value-creating and managerial motives, the inverted U, the diversification discount and premium, the BCG and core competence–market matrices, applied to whether Amazon in 2024 is spreading itself too thin.">
+    <link rel="canonical" href="https://www.swapnilsahoo.com/teaching/1-year-mba/diversification-strategies.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Further study: Diversification Strategies">
+    <meta property="og:description" content="Why firms diversify and when it creates advantage: Rumelt's diversification types, value-creating and managerial motives, the inverted U, the diversification discount and premium, the BCG and core competence–market matrices, applied to whether Amazon in 2024 is spreading itself too thin.">
+    <meta property="og:url" content="https://www.swapnilsahoo.com/teaching/1-year-mba/diversification-strategies.html">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter','ui-sans-serif','system-ui','sans-serif'],
+              display: ['Fraunces','ui-serif','Georgia','serif']
+            },
+            colors: {
+              slate: {
+                50:'#F8FAFC',100:'#F1F5F9',200:'#E2E8F0',300:'#CBD5E1',
+                400:'#94A3B8',500:'#64748B',600:'#475569',700:'#334155',
+                800:'#1E293B',900:'#0F172A',950:'#020617'
+              },
+              gray: {
+                50:'#F8FAFC',100:'#F1F5F9',200:'#E2E8F0',300:'#CBD5E1',
+                400:'#94A3B8',500:'#64748B',600:'#475569',700:'#334155',
+                800:'#1E293B',900:'#0F172A'
+              },
+              blue: {
+                50:'#EEF1FF',100:'#E0E5FF',200:'#C6CEFE',300:'#A3AEFB',
+                400:'#818CF8',500:'#6366F1',600:'#4F46E5',700:'#4338CA',
+                800:'#372FA8',900:'#2E2A82',950:'#1B1850'
+              }
+            },
+            boxShadow: {
+              lift: '0 1px 2px rgba(15,23,42,.04), 0 8px 24px -12px rgba(15,23,42,.18)',
+              liftmd: '0 2px 4px rgba(15,23,42,.05), 0 18px 40px -18px rgba(15,23,42,.28)'
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root{
+          --sticky-offset:100px;
+          --paper:#FFFFFF; --ink:#0F172A; --muted:#475569; --line:#E2E8F0;
+          --card:#FFFFFF; --accent:#4F46E5; --accent-soft:#EEF2FF;
+        }
+        html.dark{
+          --paper:#0B1120; --ink:#E2E8F0; --muted:#94A3B8; --line:#1E293B;
+          --card:#111A2E; --accent:#818CF8; --accent-soft:#1E1B4B;
+        }
+        html{scroll-padding-top:120px}
+        body{
+          font-family:'Inter',sans-serif;
+          background:var(--paper); color:var(--ink);
+          -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+        }
+        h1,h2,h3,.display{font-family:'Fraunces',ui-serif,Georgia,serif; letter-spacing:-.02em}
+        h1{font-optical-sizing:auto}
+
+        /* ---- dark-mode repaint of the utility classes already in the markup ---- */
+        html.dark .bg-white{background:var(--card)!important}
+        html.dark .bg-slate-50,html.dark .bg-slate-100,html.dark .bg-gray-50{background:#0F172A!important}
+        html.dark .border-slate-200,html.dark .border-slate-300,html.dark .border-gray-200{border-color:var(--line)!important}
+        html.dark .text-slate-900,html.dark .text-gray-900,html.dark .text-slate-800{color:var(--ink)!important}
+        html.dark .text-slate-600,html.dark .text-slate-700,html.dark .text-gray-600,html.dark .text-gray-700{color:#CBD5E1!important}
+        html.dark .text-slate-500,html.dark .text-slate-400{color:var(--muted)!important}
+        html.dark .divide-slate-100>*+*{border-color:var(--line)!important}
+        html.dark table thead{background:#162032!important}
+
+
+        /* ---- dark: translucent + tinted surfaces ---- */
+        html.dark .bg-white\/85,html.dark .bg-white\/80,html.dark .bg-white\/90{background:rgba(11,17,32,.90)!important}
+        html.dark .bg-blue-50,html.dark .bg-indigo-50{background:#171C3C!important}
+        html.dark .bg-blue-100,html.dark .bg-indigo-100{background:#1F2552!important}
+        html.dark .bg-blue-200{background:#272E60!important}
+        html.dark .bg-amber-50{background:#2A2110!important}
+        html.dark .bg-amber-100{background:#382C14!important}
+        html.dark .bg-rose-50{background:#2C1418!important}
+        html.dark .bg-rose-100,html.dark .bg-red-100{background:#3A181E!important}
+        html.dark .bg-emerald-50{background:#0F261A!important}
+        html.dark .bg-emerald-100{background:#143324!important}
+        html.dark .bg-teal-50{background:#0E2624!important}
+        html.dark .bg-teal-100{background:#12302E!important}
+        html.dark .bg-teal-200{background:#173B38!important}
+        html.dark .bg-cyan-100{background:#102A33!important}
+        html.dark .bg-slate-200{background:#1E293B!important}
+
+        /* dark surfaces: keep bars/cards as raised panels, turn actions into the accent */
+        html.dark div.bg-slate-900,html.dark footer.bg-gray-800{background:#111A2E!important}
+        html.dark a.bg-slate-900,html.dark button.bg-slate-900,html.dark span.bg-slate-900{background:#4F46E5!important;color:#fff!important}
+        html.dark a.bg-slate-900:hover,html.dark button.bg-slate-900:hover{background:#6366F1!important}
+        html.dark .border-gray-700{border-color:var(--line)!important}
+        html.dark .text-slate-100,html.dark .text-slate-200,html.dark .text-slate-300{color:#E2E8F0!important}
+
+        /* dark: tinted text has to lighten to stay legible */
+        html.dark .text-blue-600,html.dark .text-blue-700,html.dark .text-blue-800{color:#A3AEFB!important}
+        html.dark .text-rose-600,html.dark .text-rose-700,html.dark .text-red-600,html.dark .text-red-700{color:#FCA5A5!important}
+        html.dark .text-emerald-600,html.dark .text-emerald-700,html.dark .text-emerald-800{color:#6EE7A8!important}
+        html.dark .text-amber-600,html.dark .text-amber-700,html.dark .text-amber-800{color:#FCD34D!important}
+        html.dark .text-teal-600,html.dark .text-teal-700,html.dark .text-teal-800{color:#5EEAD4!important}
+
+        /* dark: tinted borders */
+        html.dark .border-blue-200,html.dark .border-blue-300,html.dark .border-blue-400{border-color:#2F3670!important}
+        html.dark .border-amber-200,html.dark .border-amber-500{border-color:#4A3A1A!important}
+        html.dark .border-rose-200,html.dark .border-rose-400{border-color:#4A2028!important}
+        html.dark .border-teal-200,html.dark .border-teal-300{border-color:#1C4B47!important}
+
+
+        /* dark: remaining tinted text families + form controls */
+        html.dark .text-blue-900,html.dark .text-indigo-600,html.dark .text-indigo-700,
+        html.dark .text-indigo-800,html.dark .text-purple-800{color:#B4BCFC!important}
+        html.dark .text-red-800,html.dark .text-rose-800{color:#FCA5A5!important}
+        html.dark .text-emerald-900{color:#6EE7A8!important}
+        html.dark .text-amber-900,html.dark .text-orange-600{color:#FBBF24!important}
+        html.dark .text-cyan-700,html.dark .text-cyan-800,html.dark .text-sky-700{color:#67E8F9!important}
+        html.dark input,html.dark textarea,html.dark select{
+          background:#111A2E!important;color:var(--ink)!important;border-color:var(--line)!important}
+        html.dark input::placeholder,html.dark textarea::placeholder{color:#64748B!important}
+
+
+        /* light: lift the few tinted headings that sat under 4.5:1 */
+        html:not(.dark) .text-amber-600{color:#B45309}
+        html:not(.dark) .text-orange-600{color:#C2410C}
+        html:not(.dark) .text-teal-600{color:#0F766E}
+
+
+        /* dark: hover states must not flash a light surface */
+        html.dark .hover\:bg-slate-50:hover,html.dark .hover\:bg-slate-100:hover{background:#1E293B!important}
+        html.dark .hover\:bg-blue-200:hover{background:#2B3268!important}
+        html.dark .hover\:bg-teal-200:hover{background:#17403C!important}
+        html.dark .hover\:bg-rose-100:hover{background:#421C23!important}
+
+        /* ---- reading progress ---- */
+        #readbar{position:fixed;top:0;left:0;height:3px;width:0;z-index:70;
+          background:linear-gradient(90deg,#4F46E5,#818CF8);transition:width .12s linear}
+
+        /* ---- section rail (desktop) ---- */
+        #rail{position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:40;display:none}
+        @media (min-width:1380px){#rail{display:block}}
+        #rail a{position:relative;display:flex;align-items:center;padding:4px 10px 4px 0;color:var(--muted);
+          font-size:11px;text-decoration:none;opacity:.55;transition:opacity .2s}
+        #rail a:hover,#rail a.on{opacity:1;color:var(--accent)}
+        #rail .dot{width:7px;height:7px;border-radius:99px;background:currentColor;flex:none;transition:transform .2s}
+        #rail a.on .dot{transform:scale(1.6)}
+        #rail .lbl{position:absolute;left:18px;top:50%;transform:translate(-4px,-50%);opacity:0;
+          pointer-events:none;white-space:nowrap;transition:opacity .2s,transform .2s;
+          background:var(--card);border:1px solid var(--line);border-radius:6px;padding:1px 7px;
+          box-shadow:0 4px 14px -8px rgba(15,23,42,.35)}
+        #rail a:hover .lbl,#rail a:focus-visible .lbl{opacity:1;transform:translate(0,-50%)}
+        /* the active section keeps its label only where the gutter is wide enough to hold it */
+        @media (min-width:1760px){#rail a.on .lbl{opacity:1;transform:translate(0,-50%)}}
+
+        /* ---- nav ---- */
+        .nav-link{transition:color .18s,border-color .18s;border-bottom:2px solid transparent;
+          padding-bottom:4px;color:var(--muted)}
+        .nav-link:hover,.active-nav{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+
+        /* ---- cards get real depth ---- */
+        .rounded-xl,.rounded-2xl{transition:box-shadow .22s ease,transform .22s ease,border-color .22s}
+        section .bg-white.rounded-2xl,section .bg-white.rounded-xl{box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -14px rgba(15,23,42,.16)}
+        section .bg-white.rounded-2xl:hover,section .bg-white.rounded-xl:hover{
+          box-shadow:0 2px 6px rgba(15,23,42,.06),0 20px 44px -20px rgba(15,23,42,.26);transform:translateY(-2px)}
+
+        /* ---- scroll reveal ---- */
+        .rv{opacity:0;transform:translateY(14px)}
+        .rv.in{opacity:1;transform:none;transition:opacity .55s cubic-bezier(.2,.7,.3,1),transform .55s cubic-bezier(.2,.7,.3,1)}
+
+        /* ---- completion ---- */
+        .done-badge{display:inline-flex;align-items:center;gap:5px;border-radius:99px;
+          background:#DCFCE7;color:#166534;padding:2px 9px;font-size:10px;font-weight:700;
+          text-transform:uppercase;letter-spacing:.06em}
+        html.dark .done-badge{background:#14321F;color:#6EE7A8}
+
+        /* ---- focus, motion, print ---- */
+        a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,[tabindex]:focus-visible{
+          outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+        @media (prefers-reduced-motion:reduce){
+          *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+          .rv{opacity:1;transform:none}
+          html{scroll-behavior:auto}
+        }
+        @media print{#readbar,#rail,#top-bar,#main-header,#drawer,#drawerBtn{display:none!important}}
+
+
+        /* ---- one shell width for every section (no stranded gutters) ---- */
+        body .container,
+        body section.max-w-6xl,
+        body div.max-w-6xl{
+          width:100%;
+          max-width:88rem!important;
+          margin-left:auto;margin-right:auto;
+          padding-left:clamp(1.25rem,3.5vw,2.75rem);
+          padding-right:clamp(1.25rem,3.5vw,2.75rem);
+        }
+        @media (min-width:1700px){
+          body .container,body section.max-w-6xl,body div.max-w-6xl{max-width:96rem!important}
+        }
+
+
+        /* ============ restored component styles (were defined in the original head) ============ */
+        [hidden]{display:none!important}
+        section[id]{scroll-margin-top:var(--sticky-offset)}
+        @media (min-width:768px){.chart-container{height:350px;max-height:400px}}
+
+        .analysis-content{max-height:0;overflow:hidden;opacity:0;margin-top:0;
+          padding-top:0!important;padding-bottom:0!important;border-top-width:0!important;border-bottom-width:0!important;
+          transition:max-height .5s ease-out,opacity .3s ease-out,margin-top .5s ease-out,padding .5s ease-out}
+        .analysis-content.visible{max-height:500px;opacity:1;margin-top:1rem;
+          padding-top:1rem!important;padding-bottom:1rem!important;border-top-width:1px!important;border-bottom-width:1px!important}
+        .analysis-button{transition:background-color .2s ease}
+
+        .quiz-option{cursor:pointer;transition:all .2s ease-in-out}
+        .quiz-option.correct{background-color:#dcfce7!important;border-color:#22c55e!important;color:#15803d!important;font-weight:500}
+        .quiz-option.incorrect{background-color:#fee2e2!important;border-color:#ef4444!important;color:#b91c1c!important;font-weight:500}
+        .quiz-option:disabled{opacity:.8;cursor:default}
+        .quiz-explanation{max-height:0;overflow:hidden;margin-top:0;opacity:0;
+          transition:max-height .5s ease-in-out,margin-top .5s ease-in-out,opacity .5s ease-in-out}
+        .quiz-explanation.visible{opacity:1;margin-top:1rem;max-height:500px}
+
+        .top-bar-link svg,.footer-link svg{width:1.125rem;height:1.125rem;fill:currentColor;transition:color .2s ease-in-out}
+        .hexagon-icon{position:relative;width:28px;height:28px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.3));display:inline-block;vertical-align:middle}
+        .hexagon-icon svg{width:100%;height:100%;animation:glow 2.5s infinite ease-in-out}
+        .hexagon-path{stroke:#B91C1C;stroke-width:1}
+        .hexagon-s{font-family:Georgia,serif;font-weight:bold;font-size:48px;fill:#facc15;text-anchor:middle;dominant-baseline:central}
+        @keyframes glow{0%,100%{filter:drop-shadow(0 0 4px rgba(239,68,68,.7))}50%{filter:drop-shadow(0 0 10px rgba(239,68,68,1))}}
+        #main-header.sticky-nav{position:sticky;z-index:40}
+        #top-bar.sticky-top{position:sticky;top:0;z-index:50}
+        #modal{background-color:rgba(0,0,0,.7)}
+        #modal-content{max-height:calc(100vh - 4rem)}
+
+        .concept-card{background:#fff;border-radius:.75rem;padding:1.5rem;margin-bottom:1.5rem;border-left:4px solid;
+          box-shadow:0 4px 6px -1px rgba(0,0,0,.05),0 2px 4px -2px rgba(0,0,0,.05);
+          transition:transform .3s ease,box-shadow .3s ease;display:flex;flex-direction:column;height:100%}
+        .concept-card:hover{transform:translateY(-4px);box-shadow:0 10px 15px -3px rgba(0,0,0,.07),0 4px 6px -4px rgba(0,0,0,.07)}
+        .concept-card h4{font-size:1.125rem;font-weight:600;margin-bottom:.75rem}
+        .concept-card p.definition{font-style:italic;color:#6b7280;margin-bottom:1rem;font-size:.875rem;flex-grow:1}
+        .concept-card .example{margin-top:1rem;padding-top:1rem;border-top:1px solid #e5e7eb}
+        .concept-card .example:first-of-type{margin-top:0;padding-top:0;border-top:none}
+        .concept-card .example h5{font-weight:600;color:#374151;margin-bottom:.5rem;font-size:.875rem}
+        .concept-card .example p{font-size:.875rem;color:#4b5563;margin-bottom:.25rem;line-height:1.5}
+        .concept-card .example strong{color:#1f2937}
+        .border-needs{border-left-color:#f43f5e}.border-variety{border-left-color:#0ea5e9}.border-access{border-left-color:#10b981}
+        .border-fit1{border-left-color:#fbbf24}.border-fit2{border-left-color:#f97316}.border-fit3{border-left-color:#ef4444}
+
+        .prose-custom p,.prose-custom ul,.prose-custom li{font-size:.875rem;line-height:1.6;color:#374151}
+        .prose-custom p{margin-bottom:1em}
+        .prose-custom ul{margin-top:.5em;margin-bottom:1em;padding-left:1.25em;list-style-type:disc}
+        .prose-custom li{margin-bottom:.25em}
+        .prose-custom strong{font-weight:600;color:#111827}
+
+        .comparison-table th,.comparison-table td{padding:.75rem 1rem;vertical-align:top;font-size:.75rem}
+        .comparison-table thead th{background-color:#f3f4f6;border-bottom:2px solid #e5e7eb}
+        .comparison-table tbody tr:nth-child(even){background-color:#f9fafb}
+        .comparison-table tbody tr:hover{background-color:#eff6ff}
+        .comparison-table th[scope="row"]{white-space:nowrap}
+
+        .activity-button{padding:.75rem 1rem;border-radius:.5rem;text-align:left;transition:all .2s ease-in-out;
+          font-size:.875rem;border-width:1px;display:block;width:100%;height:100%}
+        .activity-button strong{display:block;margin-bottom:.25rem;font-weight:600}
+        .activity-button:focus{outline:none;box-shadow:0 0 0 2px var(--tw-ring-color)}
+        .activity-button:focus-visible{box-shadow:0 0 0 2px var(--tw-ring-color)}
+        .workshop-button{background:#f3e8ff;border-color:#e9d5ff;--tw-ring-color:#c084fc;color:#581c87}
+        .workshop-button:hover{background:#e9d5ff;border-color:#d8b4fe}
+        .workshop-button strong{color:#7e22ce}.workshop-button:hover strong{color:#6b21a8}
+        .news-button{background:#dbeafe;border-color:#bfdbfe;--tw-ring-color:#60a5fa;color:#1e40af}
+        .news-button:hover{background:#bfdbfe;border-color:#93c5fd}
+        .news-button strong{color:#1d4ed8}.news-button:hover strong{color:#1e3a8a}
+        .tradeoff-button{background:#fef3c7;border-color:#fde68a;--tw-ring-color:#fbbf24;color:#78350f}
+        .tradeoff-button:hover{background:#fde68a;border-color:#fcd34d}
+        .tradeoff-button strong{color:#b45309}.tradeoff-button:hover strong{color:#92400e}
+        .simulation-button{background:#ffe4e6;border-color:#fecdd3;--tw-ring-color:#fb7185;color:#881337}
+        .simulation-button:hover{background:#fecdd3;border-color:#fda4af}
+        .simulation-button strong{color:#be123c}.simulation-button:hover strong{color:#9f1239}
+
+        .card{background:#fff;border:1px solid #e2e8f0;border-radius:14px}
+        .pill{display:inline-flex;align-items:center;gap:.4rem;border-radius:9999px;padding:.2rem .7rem;
+          font-size:.7rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+        .opt:disabled{cursor:default}
+        .ref{padding-left:1.6rem;text-indent:-1.6rem}
+        @media print{.no-print{display:none!important}}
+
+        /* ---- dark variants for the restored components ---- */
+        html.dark .card,html.dark .concept-card{background:var(--card)!important;border-color:var(--line)!important}
+        html.dark .concept-card p.definition{color:#94A3B8}
+        html.dark .concept-card .example{border-top-color:var(--line)}
+        html.dark .concept-card .example h5,html.dark .concept-card .example strong{color:#E2E8F0}
+        html.dark .concept-card .example p{color:#CBD5E1}
+        html.dark .prose-custom p,html.dark .prose-custom ul,html.dark .prose-custom li{color:#CBD5E1}
+        html.dark .prose-custom strong{color:var(--ink)}
+        html.dark .comparison-table thead th{background:#162032;border-bottom-color:var(--line)}
+        html.dark .comparison-table tbody tr:nth-child(even){background:#0F172A}
+        html.dark .comparison-table tbody tr:hover{background:#1E2749}
+        html.dark .quiz-option.correct{background-color:#14321F!important;border-color:#2F7D52!important;color:#6EE7A8!important}
+        html.dark .quiz-option.incorrect{background-color:#3A181E!important;border-color:#9B3540!important;color:#FCA5A5!important}
+        html.dark .workshop-button{background:#2A1B3D;border-color:#3D2A55;color:#DCC7F5}
+        html.dark .workshop-button:hover{background:#3D2A55}
+        html.dark .workshop-button strong{color:#C9A7F0}
+        html.dark .news-button{background:#1A2244;border-color:#2B3668;color:#BCC7FA}
+        html.dark .news-button:hover{background:#2B3668}
+        html.dark .news-button strong{color:#A3AEFB}
+        html.dark .tradeoff-button{background:#312512;border-color:#4A3A1A;color:#F3D9A4}
+        html.dark .tradeoff-button:hover{background:#4A3A1A}
+        html.dark .tradeoff-button strong{color:#FBBF24}
+        html.dark .simulation-button{background:#331419;border-color:#4A2028;color:#F6BEC5}
+        html.dark .simulation-button:hover{background:#4A2028}
+        html.dark .simulation-button strong{color:#FCA5A5}
+
+        .chart-container{position:relative;width:100%;max-width:600px;margin-inline:auto;height:300px;max-height:350px}
+        .tabular-nums{font-variant-numeric:tabular-nums}
+    </style>
+    <script>
+      /* theme, resolved before first paint: light unless this visitor chose dark */
+      (function () {
+        try {
+          if (localStorage.getItem("pgpm-course-theme") === "dark") {
+            document.documentElement.classList.add("dark");
+          }
+        } catch (e) {}
+      })();
+    </script>
+</head>
+
+<body class="text-slate-700">
+
+<div id="readbar" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+<nav id="rail" aria-label="Section navigation"></nav>
+
+<!-- Top Bar -->
+<div id="top-bar" class="bg-slate-900 text-slate-300 hidden sm:block">
+  <div class="container mx-auto px-6 flex justify-between items-center h-11 text-xs">
+    <div class="flex items-center gap-3 min-w-0">
+      <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="group shrink-0" title="swapnilsahoo.com">
+        <div class="hexagon-icon group-hover:opacity-80 transition-opacity duration-200">
+          <svg viewBox="0 0 52 60" aria-label="Swapnil Sahoo" role="img">
+            <defs><linearGradient id="topRedGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" /><stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" /></linearGradient></defs>
+            <polygon class="hexagon-path" points="26,0 52,15 52,45 26,60 0,45 0,15" fill="url(#topRedGradient)"/><text class="hexagon-s" x="26" y="32">S</text>
+          </svg>
+        </div>
+      </a>
+      <p class="truncate font-medium text-slate-400">&copy; Dr. Swapnil Sahoo 2026 &middot; Great Lakes Institute of Management, Gurgaon</p>
+    </div>
+    <div class="flex items-center gap-4 shrink-0">
+      <a href="https://www.swapnilsahoo.com/teaching/1-year-mba" class="hidden md:inline text-slate-400 hover:text-white transition">PGPM 2026–27</a>
+      <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="X/Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.575 2h.093zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" clip-rule="evenodd"/></svg></a>
+      <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- Main Navigation -->
+<nav id="main-header" class="sticky top-0 z-50 border-b border-slate-200 bg-white/85 backdrop-blur-md">
+  <div class="container mx-auto px-6">
+    <div class="flex h-16 items-center justify-between gap-4">
+
+      <div class="flex items-center gap-3 min-w-0">
+        <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-slate-900 text-white font-display text-sm font-semibold">13</span>
+        <div class="min-w-0">
+          <p class="truncate font-display text-base font-semibold leading-tight text-slate-900">Diversification Strategies</p>
+          <p class="hidden truncate text-[11px] text-slate-500 sm:block">90 minutes · <span id="progPct">0</span>% read · <span id="doneCount">0</span>/4 activities done</p>
+        </div>
+      </div>
+
+      <div class="hidden xl:flex items-center gap-5 text-sm">
+        <a href="#types" class="nav-link">Types</a>
+        <a href="#motives" class="nav-link">Motives</a>
+        <a href="#performance" class="nav-link">Discount</a>
+        <a href="#amazon" class="nav-link">Amazon</a>
+        <a href="#thin" class="nav-link">Too thin?</a>
+        <a href="#discussion" class="nav-link">Discussion</a>
+        <a href="#quiz" class="nav-link">Quiz</a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button id="themeBtn" type="button" aria-label="Toggle dark mode"
+          class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 transition">
+          <svg class="h-4 w-4 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="hidden h-4 w-4 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <button id="drawerBtn" type="button" aria-label="Open section menu" aria-expanded="false"
+          class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 transition xl:hidden">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <select id="mobile-nav" class="sr-only" tabindex="-1" aria-hidden="true">
+          <option value="#top">Top</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Slide-out drawer -->
+<div id="drawer" class="fixed inset-0 z-[60] hidden">
+  <div id="drawerScrim" class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"></div>
+  <aside class="absolute right-0 top-0 h-full w-[min(88vw,20rem)] overflow-y-auto bg-white p-5 shadow-2xl">
+    <div class="flex items-center justify-between">
+      <p class="font-display text-lg font-semibold text-slate-900">Further study</p>
+      <button id="drawerClose" type="button" aria-label="Close menu"
+        class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="mt-3 rounded-xl bg-slate-50 p-3">
+      <div class="flex items-center justify-between text-xs text-slate-500">
+        <span>Progress</span><span><span id="drawerDone">0</span>/4 activities</span>
+      </div>
+      <div class="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-200">
+        <div id="drawerBar" class="h-full rounded-full bg-blue-600 transition-all" style="width:0%"></div>
+      </div>
+    </div>
+    <nav id="drawerNav" class="mt-4 grid gap-0.5" aria-label="Sections"></nav>
+  </aside>
+</div>
+
+<section id="top" class="bg-white border-b border-slate-200">
+<div class="mx-auto max-w-6xl px-4 pt-5 text-sm text-slate-600">Supplementary lesson from the earlier course sequence. <a class="text-blue-700 underline" href="/teaching/1-year-mba#sessions">Return to the current 13-session course map</a>.</div>
+  <div class="mx-auto max-w-6xl px-4 py-10 md:py-12 grid gap-8 md:grid-cols-[1.25fr_.75fr] md:items-center">
+    <div>
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span class="pill bg-blue-50 text-blue-700">Further study</span>
+        <span class="pill bg-slate-100 text-slate-600">1.5 hours</span>
+        <span class="pill bg-slate-100 text-slate-600">Corporate strategy</span>
+        <span class="pill bg-amber-50 text-amber-800">Last session</span>
+      </div>
+      <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-slate-900">Diversification Strategies</h1>
+      <p class="mt-2 font-display text-lg md:text-xl italic text-blue-700">Why firms move into new businesses, when it pays, and whether Amazon has spread itself too thin</p>
+      <p class="mt-3 text-slate-600 md:text-lg leading-relaxed max-w-2xl">
+        Diversification is the second question of corporate strategy: what range of products and services should the firm
+        offer (Rothaermel, 2024, p.&nbsp;319)? The evidence is unkind to both extremes. Firms that stay in one business and
+        conglomerates that own unrelated ones tend to do worse than firms with moderate, related diversification (p.&nbsp;328).
+        So the test of a new business is never whether the firm can enter it. It is whether owning it makes the business,
+        and the firm, worth more.
+      </p>
+      <p class="mt-3 text-slate-600 leading-relaxed max-w-2xl">
+        Amazon started in 1995 selling books online. By 2024 it also ran a cloud business with over $90&nbsp;billion of revenue,
+        an ad network with $47&nbsp;billion, a film studio, a grocery chain bought for $13.4&nbsp;billion and a primary-care
+        company bought for $3.9&nbsp;billion (case, pp.&nbsp;1&ndash;3). The case opens on Andy Jassy deciding whether to keep
+        entering &ldquo;seemingly unrelated businesses&rdquo; or to focus on a few (p.&nbsp;1). Put bluntly: is Amazon spreading
+        itself too thin, or are the businesses more related than they look?
+      </p>
+      <div class="mt-6 flex flex-wrap gap-3 text-sm">
+        <a href="#recap" class="rounded-lg bg-slate-900 px-4 py-2.5 font-semibold text-white hover:bg-slate-800">Start with the recap</a>
+        <a href="#readings" class="rounded-lg border border-slate-300 px-4 py-2.5 font-semibold text-slate-700 hover:bg-slate-50">Readings &amp; preparation</a>
+      </div>
+    </div>
+    <div class="card p-5">
+      <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">What this session answers</p>
+      <ol class="mt-3 space-y-3">
+        <li class="flex gap-3"><span class="font-mono text-xs text-blue-600 pt-0.5">01</span><span class="text-sm font-semibold text-slate-800">What types of diversification are there, and which motives for diversifying serve shareholders rather than managers?</span></li>
+        <li class="flex gap-3"><span class="font-mono text-xs text-blue-600 pt-0.5">02</span><span class="text-sm font-semibold text-slate-800">When does diversification create competitive advantage, and when do markets apply a diversification discount?</span></li>
+        <li class="flex gap-3"><span class="font-mono text-xs text-blue-600 pt-0.5">03</span><span class="text-sm font-semibold text-slate-800">Business by business, is Amazon a coherent related-linked portfolio or a company spreading itself too thin?</span></li>
+      </ol>
+      <p class="mt-4 pt-4 border-t border-slate-200 text-xs text-slate-500 leading-relaxed">
+        Facts from the Gupta and Rodriguez case (rev. July 2024) are marked <span class="pill bg-teal-50 text-teal-800">Case</span>;
+        where this page reads the case through a framework, the card is marked <span class="pill bg-amber-50 text-amber-800">Analysis</span>.
+        Textbook pages refer to Rothaermel (2024), 6th edition.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="recap" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Carried forward &middot; Sessions 10 to 12</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Three dimensions, one company, one axis left</h2>
+  <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+    Corporate strategy sets the firm&rsquo;s boundaries along three dimensions: vertical integration, horizontal
+    diversification and geographic scope (Rothaermel, 2024, p.&nbsp;298). The last three sessions built the tools and
+    walked two of the axes. Today is the horizontal one, and it pulls the other two together.
+  </p>
+  <div class="mt-6 grid gap-4 md:grid-cols-3">
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Session 10 &middot; the tests</p>
+      <h3 class="mt-1 font-bold text-slate-900">Keep the better-off test in hand</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed"><a href="/teaching/1-year-mba/session9.html" class="font-semibold text-blue-700 hover:underline">Session 10</a>
+        gave you Porter&rsquo;s three tests: attractiveness, cost of entry, and better-off, where either the new unit gains
+        advantage from its link with the corporation or the corporation gains from the unit (1987, pp.&nbsp;7&ndash;8).
+        Executives ignore the third test most (p.&nbsp;11). Today it is the one that decides each Amazon business.</p>
+    </div>
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Session 11 &middot; vertical</p>
+      <h3 class="mt-1 font-bold text-slate-900">Up and down one value chain</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed"><a href="/teaching/1-year-mba/vertical-integration.html" class="font-semibold text-blue-700 hover:underline">Session 11</a>
+        read Amazon&rsquo;s vertical moves: its own delivery, devices as a sales channel, and AWS as the infrastructure the store
+        runs on. Those moves change how much of retailing&rsquo;s value chain Amazon owns. Today&rsquo;s question is different:
+        which <em>other</em> businesses Amazon should be in.</p>
+    </div>
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Session 12 &middot; geographic</p>
+      <h3 class="mt-1 font-bold text-slate-900">Where Amazon competes</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed"><a href="/teaching/1-year-mba/session11.html" class="font-semibold text-blue-700 hover:underline">Session 12</a>
+        took the third axis: which countries, and how much to adapt to each. The textbook files geographic expansion under
+        diversification too, and a firm doing both kinds follows a product&ndash;market diversification strategy
+        (Rothaermel, 2024, p.&nbsp;320).</p>
+    </div>
+  </div>
+  <div class="mt-6 grid gap-4 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,.8fr)]">
+    <div class="rounded-2xl bg-amber-50 border border-amber-200 p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-amber-800">One move, two axes</p>
+      <p class="mt-1 text-sm text-slate-700 leading-relaxed">
+        The same move can sit on more than one axis. The textbook uses AWS as its example of both horizontal diversification
+        and vertical integration (p.&nbsp;297). Session&nbsp;11 read AWS as infrastructure Amazon makes for itself; today it is
+        a business that sells to other companies, with over $90&nbsp;billion of revenue and over $24&nbsp;billion of operating
+        income in 2023 (case, p.&nbsp;1). Keep the two readings apart: one asks whether to make an input, the other whether to
+        be in a market.
+      </p>
+    </div>
+    <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">The case&rsquo;s closing line</p>
+      <p class="mt-1 text-sm text-slate-700 leading-relaxed">With so many businesses, the case says, Amazon was defying
+        the basic principle of focus. It ends by asking whether the fundamentals of strategy have changed in the digital era
+        or whether Amazon is heading for failure (p.&nbsp;4). Hold your answer until the scorer near the end.</p>
+    </div>
+  </div>
+</section>
+
+<section id="types" class="bg-white border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Types of diversification &middot; Rothaermel (2024), pp.&nbsp;319&ndash;323</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">How far from the core? Five positions on one ladder</h2>
+    <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+      A firm diversifies when it widens the range of products and services it offers or the regions it serves. Several
+      product markets is a product diversification strategy; several countries, a geographic one; both at once, a
+      product&ndash;market diversification strategy (p.&nbsp;320). To say <em>how</em> diversified a firm is, the textbook
+      uses Richard Rumelt&rsquo;s scheme, which asks two things: what share of revenue comes from the main business, and how
+      far the units share core competencies (p.&nbsp;321).
+    </p>
+
+    <div class="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      <div class="card p-4 flex flex-col">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Type 1</p>
+        <h3 class="mt-0.5 font-bold text-slate-900">Single business</h3>
+        <div class="mt-3 s13-bar" aria-hidden="true"><span class="s13-bar-main" style="width:97%"></span><span class="s13-bar-rest" style="width:3%"></span></div>
+        <p class="mt-1 text-xs font-semibold text-slate-700">More than 95% from one business</p>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed flex-1">The rest is not yet significant. Birkenstock makes one product;
+          Meta earns almost all its revenue from online ads (p.&nbsp;321).</p>
+        <p class="mt-3 text-[11px] text-slate-500">Competencies: used in the one business</p>
+      </div>
+      <div class="card p-4 flex flex-col">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Type 2</p>
+        <h3 class="mt-0.5 font-bold text-slate-900">Dominant business</h3>
+        <div class="mt-3 s13-bar" aria-hidden="true"><span class="s13-bar-main" style="width:82%"></span><span class="s13-bar-rest" style="width:18%"></span></div>
+        <p class="mt-1 text-xs font-semibold text-slate-700">70&ndash;95% from one business</p>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed flex-1">At least one other activity earns the rest. About 80% of
+          Harley-Davidson&rsquo;s revenue is motorcycles; parts, merchandise and logo licensing make up the remainder (p.&nbsp;321).</p>
+        <p class="mt-3 text-[11px] text-slate-500">Competencies: shared by the main and minor businesses</p>
+      </div>
+      <div class="card p-4 flex flex-col">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-teal-700">Type 3a &middot; related</p>
+        <h3 class="mt-0.5 font-bold text-slate-900">Related-constrained</h3>
+        <div class="mt-3 s13-bar" aria-hidden="true"><span class="s13-bar-main" style="width:55%"></span><span class="s13-bar-rest s13-r1" style="width:25%"></span><span class="s13-bar-rest s13-r2" style="width:20%"></span></div>
+        <p class="mt-1 text-xs font-semibold text-slate-700">Under 70% from one business</p>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed flex-1">A new business is entered only if it can use existing
+          resources and competencies. ExxonMobil took its oil exploration skills into shale gas by buying XTO Energy
+          (p.&nbsp;322).</p>
+        <p class="mt-3 text-[11px] text-slate-500">Competencies: generally shared across the businesses</p>
+      </div>
+      <div class="card p-4 flex flex-col s13-hl">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-teal-700">Type 3b &middot; related</p>
+        <h3 class="mt-0.5 font-bold text-slate-900">Related-linked</h3>
+        <div class="mt-3 s13-bar" aria-hidden="true"><span class="s13-bar-main" style="width:50%"></span><span class="s13-bar-rest s13-r1" style="width:30%"></span><span class="s13-bar-rest s13-r3" style="width:20%"></span></div>
+        <p class="mt-1 text-xs font-semibold text-slate-700">Under 70% from one business</p>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed flex-1">Some businesses link to the main one, others do not. The
+          textbook&rsquo;s own example is Amazon (p.&nbsp;322), listed with Disney and GE (p.&nbsp;323).</p>
+        <p class="mt-3 text-[11px] text-slate-500">Competencies: some businesses share them</p>
+      </div>
+      <div class="card p-4 flex flex-col">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">Type 4 &middot; unrelated</p>
+        <h3 class="mt-0.5 font-bold text-slate-900">Conglomerate</h3>
+        <div class="mt-3 s13-bar" aria-hidden="true"><span class="s13-bar-main" style="width:40%"></span><span class="s13-bar-rest s13-r3" style="width:35%"></span><span class="s13-bar-rest s13-r2" style="width:25%"></span></div>
+        <p class="mt-1 text-xs font-semibold text-slate-700">Under 70% from one business</p>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed flex-1">Few if any links. Samsung, Berkshire Hathaway, Yamaha and
+          the Tata group are the textbook&rsquo;s conglomerates (pp.&nbsp;322&ndash;323).</p>
+        <p class="mt-3 text-[11px] text-slate-500">Competencies: few if any shared</p>
+      </div>
+    </div>
+    <p class="mt-3 text-xs text-slate-500 leading-relaxed">The bars only illustrate the revenue thresholds; like the textbook&rsquo;s
+      own schematics, they are not drawn to any firm&rsquo;s numbers. The first variable separates types 1, 2 and the rest; the
+      second separates related from unrelated (p.&nbsp;321). Text version: Rothaermel&rsquo;s Exhibit 8.10, p.&nbsp;323.</p>
+
+    <div class="mt-8 grid gap-5 lg:grid-cols-3">
+      <div class="rounded-2xl border border-blue-200 bg-blue-50 p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">The textbook&rsquo;s verdict on Amazon</p>
+        <h3 class="mt-1 font-bold text-slate-900">Related-linked, not a conglomerate</h3>
+        <p class="mt-2 text-sm text-slate-700 leading-relaxed">Rothaermel traces Amazon from one product, books, to a wide range of
+          goods built on its online retailing capabilities, then a platform open to outside sellers, cloud computing, devices and
+          streamed content for Prime members, and files it under related-linked (p.&nbsp;322). The label claims that the links
+          exist but are uneven. The Amazon section below tests that claim one business at a time.</p>
+      </div>
+      <div class="rounded-2xl border border-teal-200 bg-teal-50 p-5">
+        <p class="pill bg-white text-teal-800 border border-teal-200">Case</p>
+        <h3 class="mt-2 font-bold text-slate-900">What the case lets you measure</h3>
+        <p class="mt-2 text-sm text-slate-700 leading-relaxed">The case does not report revenue by business, so Rumelt&rsquo;s 70%
+          line cannot be applied exactly. It does give three anchors for 2023: total revenue of $575&nbsp;billion, AWS above
+          $90&nbsp;billion and advertising above $47&nbsp;billion (pp.&nbsp;1&ndash;2). That puts AWS at roughly 16% of revenue
+          and advertising at roughly 8% (this page&rsquo;s arithmetic).</p>
+      </div>
+      <div class="rounded-2xl border border-amber-200 bg-amber-50 p-5">
+        <p class="pill bg-white text-amber-800 border border-amber-200">Analysis</p>
+        <h3 class="mt-2 font-bold text-slate-900">Relatedness is a claim about competencies</h3>
+        <p class="mt-2 text-sm text-slate-700 leading-relaxed">Rumelt&rsquo;s second variable is not &ldquo;same industry&rdquo;. It is
+          whether units share competencies in products, services, technology or distribution (p.&nbsp;323). A cloud service and
+          an online store look unrelated by industry code. Whether they are related depends on what they actually share, which is
+          a question about Amazon&rsquo;s resources from <a href="/teaching/1-year-mba/session5.html" class="font-semibold text-blue-700 hover:underline">Session 5</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="motives" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Motives &middot; Rothaermel (2024), pp.&nbsp;299&ndash;300, 334&ndash;335; Porter (1987)</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Why firms diversify, and whose interest each motive serves</h2>
+  <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+    The textbook gives five reasons firms grow: to increase profitability, lower costs, increase market power, reduce risk,
+    and motivate managers and employees (p.&nbsp;299). It then grades them, and they are not equal (pp.&nbsp;334&ndash;335).
+    Sorting a motive is the first step in judging a diversification move, because the same deal can be defended with a good
+    reason and pursued for a bad one.
+  </p>
+
+  <div class="mt-6 grid gap-4 lg:grid-cols-3">
+    <div class="rounded-2xl border border-slate-200 bg-white p-5 s13-edge s13-edge-v">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-emerald-800">Value-creating</p>
+      <h3 class="mt-1 font-bold text-slate-900">Higher profit, lower cost</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Increasing profits and lowering costs are clearly tied to competitive
+        advantage (p.&nbsp;334). For diversification the route is economies of scope: two or more outputs produced together for
+        less than each would cost alone, with the same resources and technology. The textbook&rsquo;s example is Amazon offering
+        many product categories off one retailing expertise and one network of fulfilment centres (p.&nbsp;302).</p>
+    </div>
+    <div class="rounded-2xl border border-slate-200 bg-white p-5 s13-edge s13-edge-c">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-amber-800">Only under conditions</p>
+      <h3 class="mt-1 font-bold text-slate-900">Market power, risk, internal capital</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">More market power can add to advantage but can bring antitrust action
+        (p.&nbsp;334). Growing to reduce risk has fallen out of favour with investors (p.&nbsp;334): shareholders can diversify their
+        own portfolios more cheaply, without paying acquisition premiums, so risk reduction should be a by-product, not the
+        motive (Porter, 1987, pp.&nbsp;7, 11). An internal capital market adds value only if headquarters allocates capital
+        better than outside markets would (Rothaermel, p.&nbsp;332).</p>
+    </div>
+    <div class="rounded-2xl border border-slate-200 bg-white p-5 s13-edge s13-edge-m">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">Managerial</p>
+      <h3 class="mt-1 font-bold text-slate-900">Empire, job security, perks</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Some growth benefits managers more than shareholders: empire building,
+        job security, corporate jets and retreats at expensive resorts. CEO pay often tracks firm size more closely than firm
+        performance (p.&nbsp;300), and the textbook calls perks and job security illegitimate reasons to grow (p.&nbsp;335).
+        Porter&rsquo;s version: executives confuse company size with shareholder value (1987, p.&nbsp;11).</p>
+    </div>
+  </div>
+
+  <!-- activity 1: motive sorter -->
+  <div id="motiveBox" class="mt-8 card p-5 sm:p-6">
+    <div class="flex flex-wrap items-baseline justify-between gap-2">
+      <div>
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Activity &middot; sort the motive</p>
+        <h3 class="mt-1 text-xl font-bold text-slate-900">Nine reasons a board hears for entering a new business. Which kind is each?</h3>
+      </div>
+      <span class="done-badge" data-done-for="motives" hidden>Done</span>
+    </div>
+    <p class="mt-2 text-sm text-slate-600 max-w-4xl leading-relaxed">Pick a category for each statement. The feedback gives the
+      textbook&rsquo;s or Porter&rsquo;s reasoning. Two of them describe moves Amazon made.</p>
+    <div class="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-xs">
+      <span class="s13-key s13-key-v">Value-creating</span>
+      <span class="s13-key s13-key-c">Only under conditions</span>
+      <span class="s13-key s13-key-m">Managerial</span>
+    </div>
+    <div id="motiveList" class="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-3"></div>
+    <p id="motiveScore" class="mt-4 text-sm font-semibold text-slate-700" aria-live="polite"></p>
+  </div>
+</section>
+
+<section id="performance" class="bg-white border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Diversification and performance &middot; Rothaermel (2024), pp.&nbsp;328&ndash;333</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">When diversification pays: the inverted U, the discount and the premium</h2>
+    <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+      The question to ask of any diversified firm is whether its businesses are worth more under its management than they
+      would be if each were managed on its own (p.&nbsp;328). That is Porter&rsquo;s better-off test in other words. The research
+      the textbook summarises answers it by type of diversification.
+    </p>
+
+    <div class="mt-6 grid gap-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,.95fr)]">
+      <figure class="card p-5">
+        <figcaption class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">The diversification&ndash;performance relationship, redrawn from Rothaermel (2024, Exhibit 8.13, p.&nbsp;329). Shape only, not data.</figcaption>
+        <svg viewBox="0 0 420 290" class="mt-3 w-full h-auto max-w-[34rem] mx-auto block" role="img" aria-labelledby="s13uT s13uD">
+          <title id="s13uT">An inverted U</title>
+          <desc id="s13uD">Firm performance rises from single-business firms to dominant-business firms, peaks for related diversification, constrained and linked, and falls again for unrelated diversification.</desc>
+          <line x1="44" y1="226" x2="412" y2="226" class="s13-ax"/>
+          <line x1="44" y1="226" x2="44" y2="22" class="s13-ax"/>
+          <text x="18" y="124" class="s13-sub" transform="rotate(-90 18 124)" text-anchor="middle">Firm performance</text>
+          <polyline class="s13-curve" points="60,210.0 80,176.4 100,146.8 120,121.1 140,99.4 160,81.6 180,67.8 200,57.9 220,52.0 240,50.0 260,52.0 280,57.9 300,67.8 320,81.6 340,99.4 360,121.1 380,146.8 400,176.4"/>
+          <line x1="70" y1="192.7" x2="70" y2="226" class="s13-drop"/>
+          <line x1="140" y1="99.4" x2="140" y2="226" class="s13-drop"/>
+          <line x1="215" y1="53.1" x2="215" y2="226" class="s13-drop"/>
+          <line x1="285" y1="60.0" x2="285" y2="226" class="s13-drop"/>
+          <line x1="370" y1="133.5" x2="370" y2="226" class="s13-drop"/>
+          <circle cx="70" cy="192.7" r="4.5" class="s13-dot"/>
+          <circle cx="140" cy="99.4" r="4.5" class="s13-dot"/>
+          <circle cx="215" cy="53.1" r="5.5" class="s13-dot s13-dot-hi"/>
+          <circle cx="285" cy="60.0" r="5.5" class="s13-dot s13-dot-hi"/>
+          <circle cx="370" cy="133.5" r="4.5" class="s13-dot s13-dot-lo"/>
+          <text x="70" y="246" text-anchor="middle" class="s13-lbl">Single</text>
+          <text x="140" y="246" text-anchor="middle" class="s13-lbl">Dominant</text>
+          <text x="215" y="246" text-anchor="middle" class="s13-lbl">Related-</text>
+          <text x="215" y="261" text-anchor="middle" class="s13-lbl">constrained</text>
+          <text x="285" y="246" text-anchor="middle" class="s13-lbl">Related-</text>
+          <text x="285" y="261" text-anchor="middle" class="s13-lbl">linked</text>
+          <text x="370" y="246" text-anchor="middle" class="s13-lbl">Unrelated</text>
+          <text x="412" y="284" text-anchor="end" class="s13-sub">Level of diversification &#8594;</text>
+          <text x="250" y="36" text-anchor="middle" class="s13-sub">premium zone</text>
+          <text x="362" y="156" text-anchor="end" class="s13-sub">discount</text>
+        </svg>
+        <p class="mt-2 text-xs text-slate-500 leading-relaxed">Low and high diversification are generally linked to lower
+          performance, moderate levels to higher performance (p.&nbsp;328). The textbook adapts the curve from Palich, Cardinal and
+          Miller&rsquo;s review of three decades of studies.</p>
+      </figure>
+
+      <div class="grid gap-4">
+        <div class="rounded-2xl border border-rose-200 bg-rose-50 p-5">
+          <p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">Diversification discount &middot; pp.&nbsp;328&ndash;329</p>
+          <p class="mt-1 text-sm text-slate-700 leading-relaxed">Unrelated diversifiers are often valued at less than the sum of their
+            units. GE Capital earned half of GE&rsquo;s profits on a third of its revenue before the financial crisis and nearly sank the
+            group when credit froze. When GE announced the spin-out in 2015, its stock rose 11%, adding some $28&nbsp;billion of market
+            value: a rough measure of the discount it had carried.</p>
+        </div>
+        <div class="rounded-2xl border border-teal-200 bg-teal-50 p-5">
+          <p class="text-[10px] font-semibold uppercase tracking-wider text-teal-700">Diversification premium &middot; p.&nbsp;329</p>
+          <p class="mt-1 text-sm text-slate-700 leading-relaxed">Related diversifiers are, on average, valued at more than the sum of
+            their units. To earn it, diversification must lower costs through economies of scale, raise value through economies of
+            scope, or do both (p.&nbsp;329).</p>
+        </div>
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">The discount depends on institutions &middot; p.&nbsp;329</p>
+          <p class="mt-1 text-sm text-slate-700 leading-relaxed">The discount holds where capital markets are developed, as in the
+            United States. In emerging economies such as India, unrelated groups like Reliance can gain advantage by filling gaps in
+            capital markets and courts. The business-groups deck under <a href="#decks" class="font-semibold text-blue-700 hover:underline">Go deeper</a> takes this further.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="mt-10 text-xl font-bold text-slate-900">What each kind of diversification can create, and what it costs</h3>
+    <div class="mt-4 grid gap-4 md:grid-cols-2">
+      <div class="card p-5">
+        <p class="font-bold text-slate-900">Related diversification</p>
+        <div class="mt-3 grid gap-3 sm:grid-cols-2 text-sm leading-relaxed">
+          <div class="rounded-xl bg-emerald-50 p-3"><p class="text-[10px] font-semibold uppercase tracking-wider text-emerald-800">Sources of value</p><p class="mt-1 text-slate-700">Economies of scope; economies of scale; financial economies from restructuring and internal capital markets.</p></div>
+          <div class="rounded-xl bg-rose-50 p-3"><p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">Sources of cost</p><p class="mt-1 text-slate-700">Coordination costs, which rise with the number, size and types of linked businesses; influence costs.</p></div>
+        </div>
+      </div>
+      <div class="card p-5">
+        <p class="font-bold text-slate-900">Unrelated diversification</p>
+        <div class="mt-3 grid gap-3 sm:grid-cols-2 text-sm leading-relaxed">
+          <div class="rounded-xl bg-emerald-50 p-3"><p class="text-[10px] font-semibold uppercase tracking-wider text-emerald-800">Sources of value</p><p class="mt-1 text-slate-700">Financial economies only: restructuring and internal capital markets.</p></div>
+          <div class="rounded-xl bg-rose-50 p-3"><p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">Sources of cost</p><p class="mt-1 text-slate-700">Influence costs: managers manoeuvring for capital and resources, and the misallocation that follows.</p></div>
+        </div>
+      </div>
+    </div>
+    <p class="mt-2 text-xs text-slate-500 leading-relaxed">Paraphrased from Rothaermel, Exhibit 8.14 (p.&nbsp;330) and pp.&nbsp;332&ndash;333.
+      Related diversification can create more, but it is also the only one that pays coordination costs: the links have to be managed.</p>
+
+    <h3 class="mt-10 text-xl font-bold text-slate-900">Managing the portfolio: the BCG matrix, internal capital and restructuring</h3>
+    <div class="mt-4 grid gap-6 lg:grid-cols-[minmax(0,.9fr)_minmax(0,1.1fr)]">
+      <div class="grid gap-4 content-start">
+      <figure class="card p-5">
+        <figcaption class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">BCG growth&ndash;share matrix, after Rothaermel (2024, pp.&nbsp;331&ndash;332)</figcaption>
+        <div class="mt-3 grid grid-cols-[1.4rem_1fr] gap-2">
+          <div class="s13-axis text-[10px] font-semibold uppercase tracking-wider text-slate-500">Market growth &uarr;</div>
+          <div class="grid grid-cols-2 gap-2 text-sm">
+            <div class="rounded-xl border border-slate-200 bg-blue-50 p-3"><p class="font-bold text-slate-900">Question mark</p><p class="text-xs text-slate-500">Low share, high growth</p><p class="mt-1 text-xs text-slate-700">Cash flow negative. Build share or harvest and divest.</p></div>
+            <div class="rounded-xl border border-slate-200 bg-teal-50 p-3"><p class="font-bold text-slate-900">Star</p><p class="text-xs text-slate-500">High share, high growth</p><p class="mt-1 text-xs text-slate-700">Earnings high. Hold, or invest for growth.</p></div>
+            <div class="rounded-xl border border-slate-200 bg-rose-50 p-3"><p class="font-bold text-slate-900">Dog</p><p class="text-xs text-slate-500">Low share, low growth</p><p class="mt-1 text-xs text-slate-700">Earnings low, unstable. Harvest or divest.</p></div>
+            <div class="rounded-xl border border-slate-200 bg-amber-50 p-3"><p class="font-bold text-slate-900">Cash cow</p><p class="text-xs text-slate-500">High share, low growth</p><p class="mt-1 text-xs text-slate-700">Cash high and stable. Invest enough to hold.</p></div>
+          </div>
+          <div></div>
+          <p class="text-center text-[10px] font-semibold uppercase tracking-wider text-slate-500">Relative market share &rarr; (low to high)</p>
+        </div>
+        <p class="mt-3 text-xs text-slate-500 leading-relaxed">The firm is treated like a portfolio of stocks. Stars tend to become
+          cash cows as their market matures; question marks become stars or dogs. Manage the portfolio clockwise (p.&nbsp;332).</p>
+      </figure>
+      <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">The outline&rsquo;s two articles</p>
+      <p class="mt-1 text-sm text-slate-700 leading-relaxed">Goold and Luchs (1993) trace four decades of management thinking on why
+        firms diversify; Laeven and Levine (2007) ask whether the diversification discount also applies to financial conglomerates. Neither
+        text was in the course-pack folder this page was built from, so the page does not summarise them. Read both for class and
+        test the textbook&rsquo;s claims above against them; full references are under <a href="#readings" class="font-semibold text-blue-700 hover:underline">Readings</a>.</p>
+    </div>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div class="rounded-2xl border border-slate-200 p-5">
+          <p class="font-semibold text-slate-900">Internal capital markets</p>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">Headquarters knows more about its units than outside investors do,
+            so it can, in principle, send capital to the best returns, sometimes at a lower cost. That creates value only if it
+            allocates better than external capital markets would. GE&rsquo;s AAA-rated finance arm lowered its cost of capital until the
+            crisis cost it the rating in 2009 (p.&nbsp;332).</p>
+        </div>
+        <div class="rounded-2xl border border-slate-200 p-5">
+          <p class="font-semibold text-slate-900">Restructuring and spin-outs</p>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">Restructuring refocuses a firm on its core competencies: spin out weak
+            units, and free strong ones that were subsidising them under extra layers of bureaucracy (p.&nbsp;330). eBay spun out
+            PayPal; Johnson &amp; Johnson and GE split themselves up in 2023&ndash;24 (p.&nbsp;331).</p>
+        </div>
+        <div class="sm:col-span-2 rounded-2xl border border-amber-200 bg-amber-50 p-5">
+          <p class="pill bg-white text-amber-800 border border-amber-200">Analysis</p>
+          <h4 class="mt-2 font-bold text-slate-900">BCG on Amazon: plot only what the case gives you</h4>
+          <ul class="mt-2 space-y-2 text-sm text-slate-700 leading-relaxed">
+            <li><span class="font-semibold">AWS.</span> Growth axis: the cloud market was growing rapidly (case, p.&nbsp;1). Share
+              axis: the case does not say. The textbook&rsquo;s own Amazon case calls AWS Amazon&rsquo;s &ldquo;cash cow&rdquo;
+              (Rothaermel, p.&nbsp;333). On the matrix&rsquo;s axes, though, a cash cow sits in a <em>low</em>-growth market; a
+              high-share unit in a fast-growing one is a star. The label describes the cash AWS throws off, not its position.</li>
+            <li><span class="font-semibold">Whole Foods.</span> Share axis: 1.2% of US grocery against Walmart&rsquo;s 14.5%, a relative
+              share below 0.1 (case, p.&nbsp;3; page&rsquo;s arithmetic). Growth axis: not given. Standing alone, it is at best a question
+              mark, so any case for owning it has to rest on its links to the rest of Amazon, not on grocery itself.</li>
+          </ul>
+          <p class="mt-2 text-xs text-slate-600">Do not fill the missing axis from memory or the news. A matrix with invented data looks
+            rigorous and is not.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="amazon" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">The case &middot; Amazon in 2024 (Gupta &amp; Rodriguez, 2024)</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">What business is Amazon in? Ten businesses on one matrix</h2>
+  <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+    &ldquo;An online retailer&rdquo; does not cover a cloud provider, a film studio, a grocery chain and a primary-care company.
+    The case calls the businesses seemingly unrelated (p.&nbsp;1); the textbook&rsquo;s own Amazon case asks you to classify them
+    with Rumelt&rsquo;s types and to say whether AWS is related to the core at all (Rothaermel, 2024, p.&nbsp;334). Take them one
+    at a time and ask four things: what was the motive, how related is it, which resource does it share, and does Amazon add value
+    as its owner? The first three are below; the fourth is the scorer in <a href="#thin" class="font-semibold text-blue-700 hover:underline">Spreading too thin?</a>
+  </p>
+
+  <div class="mt-6 grid gap-6 lg:grid-cols-[minmax(0,.85fr)_minmax(0,1.15fr)]">
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">The core competence&ndash;market matrix &middot; Rothaermel (2024), pp.&nbsp;324&ndash;326</p>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Hamel and Prahalad&rsquo;s matrix, as the textbook adapts it, crosses
+        existing or new core competencies with existing or new markets. Each quadrant is a different diversification move:</p>
+      <dl class="mt-3 space-y-3 text-sm leading-relaxed">
+        <div><dt class="font-semibold text-slate-900">Leverage <span class="font-normal text-slate-500">&middot; existing competence, existing market</span></dt>
+          <dd class="text-slate-600">Use what you are good at to improve your current position: NationsBank&rsquo;s skill at buying and integrating banks.</dd></div>
+        <div><dt class="font-semibold text-slate-900">Redeploy <span class="font-normal text-slate-500">&middot; existing competence, new market</span></dt>
+          <dd class="text-slate-600">Recombine current competencies to compete in a new market: Bank of America applying the same skill to Merrill Lynch.</dd></div>
+        <div><dt class="font-semibold text-slate-900">Build to protect <span class="font-normal text-slate-500">&middot; new competence, existing market</span></dt>
+          <dd class="text-slate-600">Build a competence to defend or extend your position: Coca-Cola&rsquo;s ten-year effort to create Powerade.</dd></div>
+        <div><dt class="font-semibold text-slate-900">Mega-opportunity <span class="font-normal text-slate-500">&middot; new competence, new market</span></dt>
+          <dd class="text-slate-600">Build new competencies for markets of the future, as Salesforce did in platform services. Likely the hardest of the four (p.&nbsp;325).</dd></div>
+      </dl>
+      <p class="mt-3 text-xs text-slate-500 leading-relaxed">Session 10 introduced the matrix with NVIDIA. Here it does a second job:
+        the further a business sits from the lower-left, the less it borrows from what Amazon already does well.</p>
+    </div>
+
+    <div class="card p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Your map so far</p>
+      <div class="mt-3 grid grid-cols-[1.4rem_1fr] gap-2">
+        <div class="s13-axis text-[10px] font-semibold uppercase tracking-wider text-slate-500">Core competence &uarr;</div>
+        <div class="grid grid-cols-2 gap-2">
+          <div class="s13-quad s13-quad-lg rounded-xl border border-slate-200 p-3"><p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">New &middot; existing market</p><p class="font-bold text-slate-900 text-sm">Build to protect</p><div class="mt-2 flex flex-wrap gap-1" data-quad="B"></div></div>
+          <div class="s13-quad s13-quad-lg rounded-xl border border-slate-200 p-3"><p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">New &middot; new market</p><p class="font-bold text-slate-900 text-sm">Mega-opportunity</p><div class="mt-2 flex flex-wrap gap-1" data-quad="M"></div></div>
+          <div class="s13-quad s13-quad-lg rounded-xl border border-slate-200 p-3"><p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Existing &middot; existing market</p><p class="font-bold text-slate-900 text-sm">Leverage</p><div class="mt-2 flex flex-wrap gap-1" data-quad="L"></div></div>
+          <div class="s13-quad s13-quad-lg rounded-xl border border-slate-200 p-3"><p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Existing &middot; new market</p><p class="font-bold text-slate-900 text-sm">Redeploy</p><div class="mt-2 flex flex-wrap gap-1" data-quad="R"></div></div>
+        </div>
+        <div></div>
+        <p class="text-center text-[10px] font-semibold uppercase tracking-wider text-slate-500">Market &rarr; (existing to new)</p>
+      </div>
+      <p id="mapEmpty" class="mt-3 text-xs text-slate-500">Place businesses with the cards below and they appear here.</p>
+    </div>
+  </div>
+
+  <!-- activity 2: competence-market classifier -->
+  <div id="matrixBox" class="mt-8 card p-5 sm:p-6">
+    <div class="flex flex-wrap items-baseline justify-between gap-2">
+      <div>
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Activity &middot; place and justify</p>
+        <h3 class="mt-1 text-xl font-bold text-slate-900">Place each Amazon business, then name what it borrows from the rest of Amazon</h3>
+      </div>
+      <span class="done-badge" data-done-for="matrix" hidden>Done</span>
+    </div>
+    <p class="mt-2 text-sm text-slate-600 max-w-4xl leading-relaxed">Step 1: choose a quadrant. Step 2: choose the shared resource
+      that justifies it. Facts on each card come from the case; the placements in the feedback are this page&rsquo;s reading of
+      those facts. Several businesses have two defensible placements, and the feedback says so.</p>
+    <div id="matrixList" class="mt-4 grid gap-3 md:grid-cols-2"></div>
+    <p id="matrixScore" class="mt-4 text-sm font-semibold text-slate-700" aria-live="polite"></p>
+  </div>
+
+  <div class="mt-8 grid gap-5 lg:grid-cols-3">
+    <div class="rounded-2xl border border-slate-200 bg-white p-5">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Is AWS related to retailing?</p>
+      <h3 class="mt-1 font-bold text-slate-900">Same infrastructure, different customers</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">The textbook&rsquo;s answer is yes: Amazon had to build huge data
+        centres for its peak holiday demand and put the spare capacity into cloud computing, gaining economies of scope and scale
+        (Rothaermel, p.&nbsp;322). The case shows the other side: AWS sells elastic IT infrastructure to many companies, in a
+        fast-growing market where large technology players compete hard, and Bezos kept investing while analysts questioned it
+        (p.&nbsp;1). The shared resource is real; the customers and the rivals are not retail&rsquo;s.</p>
+      <p class="mt-2 text-xs text-slate-500">The two sources date AWS differently: 2006 in the textbook (p.&nbsp;297), 2002 in the
+        case (p.&nbsp;1). This page follows the case.</p>
+    </div>
+    <div class="rounded-2xl border border-teal-200 bg-teal-50 p-5">
+      <p class="pill bg-white text-teal-800 border border-teal-200">Case</p>
+      <h3 class="mt-2 font-bold text-slate-900">Amazon already prunes</h3>
+      <ul class="mt-2 space-y-2 text-sm text-slate-700 leading-relaxed">
+        <li>Fire Phone: launched July 2014, a $170&nbsp;million write-down three months later.</li>
+        <li>Dash Button: launched in 2015, discontinued in 2019 for weak demand.</li>
+        <li>Amazon Go: 23 stores in May 2024; cost, operational complexity and theft risk led Amazon to close several.</li>
+        <li>Amazon Clinic: folded into One Medical in June 2024.</li>
+      </ul>
+      <p class="mt-2 text-xs text-slate-600">Case, pp.&nbsp;2&ndash;3. Exits are part of a diversification strategy, not proof that it failed.</p>
+    </div>
+    <div class="rounded-2xl border border-amber-200 bg-amber-50 p-5">
+      <p class="pill bg-white text-amber-800 border border-amber-200">Analysis</p>
+      <h3 class="mt-2 font-bold text-slate-900">What the finished map tends to show</h3>
+      <p class="mt-2 text-sm text-slate-700 leading-relaxed">The three businesses with the largest sales figures in the case, AWS, advertising
+        and Amazon Business, all <em>redeploy</em> competencies Amazon already had into new markets. The top row, where Amazon had to
+        build new competencies, holds the long bets and the write-offs alike: Echo, Whole Foods, One Medical, the Fire Phone, the
+        salon. That is the textbook&rsquo;s related-linked pattern: a dense core of links and a periphery with few.</p>
+    </div>
+  </div>
+</section>
+
+<section id="advantage" class="bg-white border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Competitive advantage from diversification &middot; the case; Rothaermel (2024), chs.&nbsp;7, 8 and 12</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">One firm, many rivals: what travels across Amazon&rsquo;s businesses</h2>
+    <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+      Each business puts Amazon against a different specialist. In cloud computing, large technology players compete hard
+      (case, p.&nbsp;1). In video, Amazon spent over $19&nbsp;billion on TV and music content in 2023 against Netflix&rsquo;s
+      $13&nbsp;billion, and its app store rivalled Google&rsquo;s and Apple&rsquo;s (p.&nbsp;2). In business supplies it met
+      W.W.&nbsp;Grainger and regional family-run wholesalers; in grocery, Walmart (p.&nbsp;3). A generalist beats specialists only if
+      something it owns travels from market to market. Read the case for what travels and three candidates stand out.
+    </p>
+
+    <div class="mt-6 grid gap-4 md:grid-cols-3">
+      <div class="card p-5">
+        <div class="flex items-center justify-between gap-2"><p class="font-mono text-xs text-blue-600">01</p><span class="pill bg-amber-50 text-amber-800">Analysis</span></div>
+        <h3 class="mt-1 font-bold text-slate-900">A fulfilment and delivery network</h3>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">The textbook&rsquo;s own example of economies of scope is Amazon: one
+          network of fulfilment centres lets it offer many product categories at lower cost than each would cost alone
+          (p.&nbsp;302). The same promise travels in the case: free two-day shipping launched Prime (p.&nbsp;1), and 24-hour
+          delivery set Amazon Business apart from regional wholesalers (p.&nbsp;3).</p>
+      </div>
+      <div class="card p-5">
+        <div class="flex items-center justify-between gap-2"><p class="font-mono text-xs text-blue-600">02</p><span class="pill bg-amber-50 text-amber-800">Analysis</span></div>
+        <h3 class="mt-1 font-bold text-slate-900">Technology and purchase data</h3>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">The textbook names Amazon&rsquo;s proprietary AI-based recommendation
+          algorithms as a core competency (p.&nbsp;301). In the case, recommendations go back to Amazon&rsquo;s early years, the same
+          shopping data sold over $47&nbsp;billion of advertising in 2023 (p.&nbsp;2), and AWS sells the infrastructure itself
+          (p.&nbsp;1). The textbook&rsquo;s point: a search engine knows what people search for; Amazon knows what each person views
+          and buys (p.&nbsp;334).</p>
+      </div>
+      <div class="card p-5">
+        <div class="flex items-center justify-between gap-2"><p class="font-mono text-xs text-blue-600">03</p><span class="pill bg-amber-50 text-amber-800">Analysis</span></div>
+        <h3 class="mt-1 font-bold text-slate-900">A paying customer relationship</h3>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">More than 200&nbsp;million Prime members spend over four times what other
+          customers spend, and they kept joining as the fee rose from $79 to $139 (case, pp.&nbsp;1&ndash;2). New businesses reach
+          them through it: Prime Music in 2014 (p.&nbsp;1), streamed content free to Prime subscribers (Rothaermel, p.&nbsp;322), One
+          Medical at $9 a month for Prime members (case, p.&nbsp;3).</p>
+      </div>
+    </div>
+
+    <h3 class="mt-10 text-xl font-bold text-slate-900">Two ways the businesses raise each other&rsquo;s value</h3>
+    <div class="mt-4 grid gap-5 lg:grid-cols-2">
+      <div class="rounded-2xl border border-teal-200 bg-teal-50 p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-teal-700">Network effects &middot; Rothaermel, ch.&nbsp;7</p>
+        <h4 class="mt-1 font-bold text-slate-900">The marketplace as a platform</h4>
+        <p class="mt-2 text-sm text-slate-700 leading-relaxed">Network effects arise when a product becomes more valuable as more people
+          use it (p.&nbsp;259). Platforms that match producers with consumers live on them, and markets with strong network effects
+          can tip to a single winner (pp.&nbsp;276, 281&ndash;286); <a href="/teaching/1-year-mba/session8.html" class="font-semibold text-blue-700 hover:underline">Session 9</a>
+          covered the chapter. Amazon opened its store to outside sellers in 2000; by 2023 independent sellers made more than 60%
+          of its sales (case, p.&nbsp;1). More sellers widen the selection that draws shoppers, and more shoppers draw sellers.</p>
+      </div>
+      <div class="rounded-2xl border border-amber-200 bg-amber-50 p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-amber-800">Complements &middot; Rothaermel, ch.&nbsp;12</p>
+        <h4 class="mt-1 font-bold text-slate-900">Razor and razor blades</h4>
+        <p class="mt-2 text-sm text-slate-700 leading-relaxed">In the razor&ndash;razor blade business model, the first product is sold
+          cheaply, even at a loss, to drive demand for the complementary goods that earn the money (p.&nbsp;479). Kindle launched at
+          $399 and fell to about $100 after the iPad, as a convenient way to buy Amazon&rsquo;s digital books and films; Echo takes
+          orders by voice; the Fire Phone&rsquo;s Firefly button identified objects to buy on Amazon (case, p.&nbsp;2). Each device is a
+          way into the store.</p>
+      </div>
+    </div>
+    <div class="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+      <p class="pill bg-amber-50 text-amber-800">Analysis</p>
+      <p class="mt-2 text-sm text-slate-700 leading-relaxed">The textbook defines economies of scope as cost savings from producing
+        several outputs together (p.&nbsp;302). Network effects and complements work on the value side instead: a business is worth
+        more to the same customer because of the others. That changes the test for each link. Ask whether a specialist rival in that
+        one market could copy it. A rival can build a cheaper e-reader; it cannot easily build a store, a delivery network and a
+        membership to go with it.</p>
+    </div>
+
+    <h3 class="mt-10 text-xl font-bold text-slate-900">Complements in practice: Prime, video and Kindle</h3>
+    <div class="mt-4 grid gap-4 md:grid-cols-3">
+      <div class="card p-5">
+        <p class="pill bg-teal-50 text-teal-800">Case</p>
+        <h4 class="mt-2 font-bold text-slate-900">Prime is the hub</h4>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Launched in 2005 as two-day shipping for $79 a year, Prime rose to $99,
+          $119 and then $139 in 2022, and membership kept growing. By 2023 it had more than 200&nbsp;million members, who spent more than
+          four times what other customers spent (case, pp.&nbsp;1&ndash;2).</p>
+      </div>
+      <div class="card p-5">
+        <p class="pill bg-amber-50 text-amber-800">Analysis</p>
+        <h4 class="mt-2 font-bold text-slate-900">Why would a retailer outspend Netflix?</h4>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Amazon spent over $19&nbsp;billion on TV and music content in 2023, more
+          than Netflix&rsquo;s $13&nbsp;billion, and runs a studio that makes films (case, p.&nbsp;2). Read as a stand-alone streaming
+          business, that budget has to be earned back from viewers. Read as a complement to Prime, it is part of what members get for a
+          fee that kept rising while they kept spending. The case gives you the facts; which reading you choose decides how the unit
+          should be judged.</p>
+      </div>
+      <div class="card p-5">
+        <p class="pill bg-amber-50 text-amber-800">Analysis</p>
+        <h4 class="mt-2 font-bold text-slate-900">Which is the razor?</h4>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Kindle sold out at $399 in 2007 and was cut to about $100 after the iPad
+          (case, p.&nbsp;2). The textbook adds that Amazon priced new bestsellers at $9.99 as e-books to promote the Kindle
+          (Rothaermel, p.&nbsp;480). At different times the device and the books were each priced to sell the other. Either way the
+          profit, if there is one, sits in the store, not in either product alone.</p>
+      </div>
+    </div>
+    <div class="mt-4 rounded-2xl border border-amber-200 bg-amber-50 p-5">
+      <p class="pill bg-white text-amber-800 border border-amber-200">Analysis</p>
+      <p class="mt-2 text-sm text-slate-700 leading-relaxed">Porter&rsquo;s better-off test runs both ways: the new unit gains from the
+        corporation, <em>or the corporation gains from the unit</em> (1987, p.&nbsp;8). Video and devices pass it, if at all, mainly the second way.
+        Judged alone, each may look like a loss-maker; judged by what it does for the store and for Prime, it may be the point. Links
+        like these have to be managed, and the textbook warns that coordination costs rise with the number and variety of linked
+        businesses (p.&nbsp;332). So how should the centre judge a unit whose job is to make another unit sell more?</p>
+    </div>
+
+    <h3 class="mt-10 text-xl font-bold text-slate-900">Whole Foods on Porter&rsquo;s three tests</h3>
+    <p class="mt-2 text-sm text-slate-600 max-w-4xl leading-relaxed">In June 2017 Amazon paid $13.4&nbsp;billion, a 27% premium over the
+      chain&rsquo;s trading value, for 460 stores and high-income customers. Experts asked whether a technology company with a soaring
+      share price should enter a thin-margin industry at all (case, p.&nbsp;3). Put the deal through Session 10&rsquo;s tests.</p>
+    <div class="mt-4 grid gap-3 md:grid-cols-3">
+      <div class="rounded-2xl border border-slate-200 p-4"><span class="s13-tag s13-tag-no">Fails on the case&rsquo;s evidence</span><p class="mt-2 font-semibold text-slate-900">Attractiveness</p><p class="mt-1 text-xs text-slate-600 leading-relaxed">Grocery is large, about $800&nbsp;billion of US spending, but highly competitive, with razor-thin margins and most grocers, Whole Foods included, struggling (case, p.&nbsp;3). Porter asks for a structure that supports returns above the cost of capital, or an entrant able to change it (1987, p.&nbsp;8).</p></div>
+      <div class="rounded-2xl border border-slate-200 p-4"><span class="s13-tag s13-tag-maybe">Doubtful</span><p class="mt-2 font-semibold text-slate-900">Cost of entry</p><p class="mt-1 text-xs text-slate-600 leading-relaxed">A 27% premium for a chain with 1.2% of the market against Walmart&rsquo;s 14.5% (case, p.&nbsp;3). Porter&rsquo;s test is that the entry price must not capitalise all the future profits (p.&nbsp;8); the premium has to be earned back by something Amazon adds.</p></div>
+      <div class="rounded-2xl border border-teal-200 bg-teal-50 p-4"><span class="s13-tag s13-tag-maybe">Open: rests on links</span><p class="mt-2 font-semibold text-slate-900">Better-off</p><p class="mt-1 text-xs text-slate-700 leading-relaxed">On its own, Amazon had won no more than 0.2% of grocery in ten years, and AmazonFresh had limited success (case, p.&nbsp;3). Stores, customers, delivery and Prime could make each side better off; palm-scan payment in some stores from 2021 is one visible link (p.&nbsp;3). The case gives no evidence yet of the payoff.</p></div>
+    </div>
+    <p class="mt-3 text-xs text-slate-500 leading-relaxed">The verdict tags are this page&rsquo;s reading of the case against Porter&rsquo;s
+      tests; argue with them in class.</p>
+  </div>
+</section>
+
+<section id="thin" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Decision &middot; the better-off test, business by business</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Spreading too thin? Score Amazon&rsquo;s portfolio</h2>
+  <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+    Relatedness alone does not settle it. A business can share a resource with the rest of Amazon and still be worse off inside
+    it. So score each business twice: how strong its link to the rest of Amazon is, and whether it, or Amazon, is better off
+    because Amazon owns it. The professor&rsquo;s business-groups script names four ways a parent can add value, drawing on Goold,
+    Campbell and Alexander: influence on the unit as a stand-alone business, linkages between units, central functions and
+    services, and corporate development such as acquisitions. Use them to judge the second score.
+  </p>
+
+  <div id="thinBox" class="mt-6 card p-5 sm:p-6">
+    <div class="flex flex-wrap items-baseline justify-between gap-2">
+      <div>
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Activity &middot; portfolio scorer</p>
+        <h3 class="mt-1 text-xl font-bold text-slate-900">Eight businesses, two scores each, one verdict</h3>
+      </div>
+      <span class="done-badge" data-done-for="thin" hidden>Done</span>
+    </div>
+    <div class="mt-3 grid gap-3 md:grid-cols-2 text-xs text-slate-600 leading-relaxed">
+      <p><span class="font-semibold text-slate-800">Link to Amazon</span> &middot; 0 nothing visible in the case &middot; 1 thin, such as a
+        price discount &middot; 2 a real shared resource &middot; 3 it runs on Amazon&rsquo;s core resources</p>
+      <p><span class="font-semibold text-slate-800">Better off inside Amazon</span> &middot; 0 worse off &middot; 1 no visible gain
+        &middot; 2 a clear gain in one direction &middot; 3 a strong gain for the unit and for Amazon</p>
+    </div>
+    <div class="mt-4 flex flex-wrap gap-2">
+      <button type="button" id="thinLoad" class="rounded-lg bg-slate-900 px-3 py-2 text-xs font-semibold text-white hover:bg-slate-800">Load this page&rsquo;s reading</button>
+      <button type="button" id="thinClear" class="rounded-lg border border-slate-300 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50">Clear my scores</button>
+    </div>
+    <div class="mt-5 grid gap-6 xl:grid-cols-[minmax(0,1.15fr)_minmax(0,.85fr)]">
+      <div id="thinRows" class="grid gap-3"></div>
+      <div class="xl:sticky xl:top-24 self-start">
+        <div class="grid grid-cols-[1.4rem_1fr] gap-2">
+          <div class="s13-axis text-[10px] font-semibold uppercase tracking-wider text-slate-500">Better off inside &uarr;</div>
+          <div id="thinGrid" class="grid grid-cols-2 gap-2">
+            <div class="s13-quad rounded-xl border border-slate-200 p-3"><p class="text-xs font-bold text-slate-900">Parenting bet</p><p class="text-[10px] text-slate-500">Weak link, owner adds value</p><div class="mt-2 flex flex-wrap gap-1" data-cell="TL"></div></div>
+            <div class="s13-quad rounded-xl border border-slate-200 p-3"><p class="text-xs font-bold text-slate-900">Core: keep and integrate</p><p class="text-[10px] text-slate-500">Strong link, owner adds value</p><div class="mt-2 flex flex-wrap gap-1" data-cell="TR"></div></div>
+            <div class="s13-quad rounded-xl border border-slate-200 p-3"><p class="text-xs font-bold text-slate-900">Exit, sell or spin off</p><p class="text-[10px] text-slate-500">Weak link, no gain</p><div class="mt-2 flex flex-wrap gap-1" data-cell="BL"></div></div>
+            <div class="s13-quad rounded-xl border border-slate-200 p-3"><p class="text-xs font-bold text-slate-900">Fix the economics or shrink</p><p class="text-[10px] text-slate-500">Strong link, payoff unproven</p><div class="mt-2 flex flex-wrap gap-1" data-cell="BR"></div></div>
+          </div>
+          <div></div>
+          <p class="text-center text-[10px] font-semibold uppercase tracking-wider text-slate-500">Link to Amazon &rarr; (2 or more is strong)</p>
+        </div>
+        <div class="mt-4 rounded-xl bg-slate-50 border border-slate-200 p-4">
+          <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Portfolio verdict</p>
+          <p id="thinVerdict" class="mt-1 text-sm text-slate-700 leading-relaxed" aria-live="polite">Score at least five businesses to get a verdict.</p>
+        </div>
+      </div>
+    </div>
+    <p class="mt-4 text-xs text-slate-500 leading-relaxed">&ldquo;This page&rsquo;s reading&rdquo; is one defensible set of scores built
+      from the case and the textbook; each row explains it. The verdict rule is this page&rsquo;s heuristic, not a formula from the
+      readings: a business needs 2 or more on both scores to count as core.</p>
+  </div>
+
+  <div class="mt-8 grid gap-5 md:grid-cols-2">
+    <div class="rounded-2xl border border-slate-200 bg-white p-5 s13-edge s13-edge-v">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-emerald-800">The case for &ldquo;well positioned&rdquo;</p>
+      <ul class="mt-2 space-y-2 text-sm text-slate-600 leading-relaxed">
+        <li>The textbook files Amazon as related-linked, not as a conglomerate: many of its businesses share competencies with the core (Rothaermel, p.&nbsp;322).</li>
+        <li>AWS earned over $24&nbsp;billion of operating income in 2023 (case, p.&nbsp;1); the textbook&rsquo;s chapter case calls it by far
+          Amazon&rsquo;s most profitable business (p.&nbsp;333).</li>
+        <li>More than 200&nbsp;million Prime members spend over four times what other customers spend (case, p.&nbsp;2): a ready market for each new business.</li>
+        <li>Shopping data became a $47&nbsp;billion ad business in 2023 (case, p.&nbsp;2), built on knowing what people view and buy, not only what they search for (Rothaermel, p.&nbsp;334).</li>
+        <li>Jassy describes generative AI applications being built across every Amazon consumer business, a new shared layer (case, pp.&nbsp;3&ndash;4).</li>
+      </ul>
+    </div>
+    <div class="rounded-2xl border border-slate-200 bg-white p-5 s13-edge s13-edge-m">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-rose-700">The case for &ldquo;spreading too thin&rdquo;</p>
+      <ul class="mt-2 space-y-2 text-sm text-slate-600 leading-relaxed">
+        <li>The devices unit was reported to lose more than $5&nbsp;billion a year, and leadership was said to be reviewing it in 2022 (case, p.&nbsp;2).</li>
+        <li>In grocery, Amazon had won no more than 0.2% share in ten years before buying a chain with 1.2% (case, p.&nbsp;3).</li>
+        <li>Analysts found the hair salon baffling: a personal service that is hard to scale (case, p.&nbsp;3).</li>
+        <li>Every link that creates value also adds coordination cost, which rises with the number and variety of linked businesses (Rothaermel, pp.&nbsp;332&ndash;333).</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="synthesis" class="bg-white border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Course synthesis &middot; Sessions 1 to 13</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Thirteen sessions, one argument</h2>
+    <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">
+      The course asked two questions. How does one business win in its market? And which businesses should a firm own? The second
+      depends on the first: diversified companies do not compete, their business units do (Porter, 1987, p.&nbsp;6).
+    </p>
+    <div class="mt-6 grid gap-5 lg:grid-cols-2">
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Part 1 &middot; business &amp; competitive strategy</p>
+        <ol class="mt-3 space-y-2 text-sm text-slate-600 leading-relaxed">
+          <li><a href="/teaching/1-year-mba/session1.html" class="font-semibold text-blue-700 hover:underline">1</a> &middot; Strategy is a set of choices about where and how to compete.</li>
+          <li><a href="/teaching/1-year-mba/session2.html" class="font-semibold text-blue-700 hover:underline">2</a> &middot; Strategy is a quest for value: purpose and values set the direction.</li>
+          <li><a href="/teaching/1-year-mba/session3.html" class="font-semibold text-blue-700 hover:underline">3</a> &middot; Industry structure, the five forces, sets how much profit is available.</li>
+          <li><a href="/teaching/1-year-mba/session4.html" class="font-semibold text-blue-700 hover:underline">4</a> &middot; Ecosystems, business models and rivals&rsquo; moves reshape that structure.</li>
+          <li><a href="/teaching/1-year-mba/session5.html" class="font-semibold text-blue-700 hover:underline">5</a> &middot; Advantage starts inside: resources, capabilities and the value chain.</li>
+          <li><a href="/teaching/1-year-mba/session6.html" class="font-semibold text-blue-700 hover:underline">6</a> &middot; Advantage is created from external and internal sources.</li>
+          <li><a href="/teaching/1-year-mba/sustaining-competitive-advantage.html" class="font-semibold text-blue-700 hover:underline">7</a> &middot; It lasts only if commitments and capabilities sustain it.</li>
+          <li><a href="/teaching/1-year-mba/session7.html" class="font-semibold text-blue-700 hover:underline">8</a> &middot; A position needs a choice: lower cost, differentiation or focus.</li>
+          <li><a href="/teaching/1-year-mba/session8.html" class="font-semibold text-blue-700 hover:underline">9</a> &middot; Technology and innovation open new sources of advantage.</li>
+        </ol>
+      </div>
+      <div class="card p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Part 2 &middot; corporate strategy</p>
+        <ol class="mt-3 space-y-2 text-sm text-slate-600 leading-relaxed">
+          <li><a href="/teaching/1-year-mba/session9.html" class="font-semibold text-blue-700 hover:underline">10</a> &middot; Owning a business must pass three tests; the centre must add value.</li>
+          <li><a href="/teaching/1-year-mba/vertical-integration.html" class="font-semibold text-blue-700 hover:underline">11</a> &middot; Vertical integration: how much of one value chain to own.</li>
+          <li><a href="/teaching/1-year-mba/session11.html" class="font-semibold text-blue-700 hover:underline">12</a> &middot; Global strategy: where to compete, and how much to adapt.</li>
+          <li><span class="font-semibold text-slate-800">13</span> &middot; Diversification: which other businesses, for whose benefit.</li>
+        </ol>
+        <div class="mt-5 rounded-xl border border-blue-200 bg-blue-50 p-4">
+          <p class="text-sm text-slate-700 leading-relaxed"><span class="font-semibold text-slate-900">The thread.</span> Every corporate
+            move is judged with business-level tools. A new business must sit in an attractive industry (Sessions 3&ndash;4), draw on a
+            real resource (Session 5), and win in its own market (Sessions 6&ndash;9). Porter&rsquo;s three tests from Session 10 are the
+            course in one sentence.</p>
+        </div>
+        <p class="mt-4 text-xs text-slate-500 leading-relaxed">Next on the course calendar: Reflective Note 2 is due by this session,
+          and the end-term examination follows it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="decks" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Go deeper</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Three earlier decks on diversification and business groups</h2>
+  <p class="mt-3 text-slate-600 max-w-4xl leading-relaxed">These interactive decks were built before the 2026-27 outline. Use them
+    for practice; where a figure or example differs from the readings, the note on each card says so.</p>
+  <div class="mt-6 grid gap-4 md:grid-cols-3">
+    <a href="/teaching/1-year-mba/Session8_Corporate%20Strategy_v0.8.html" class="card p-5 block hover:border-blue-300">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Deck &middot; 1-year MBA</p>
+      <h3 class="mt-1 font-bold text-slate-900">Corporate Strategy: Vertical Integration &amp; Diversification</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Built for an earlier course numbering, so its own title says Session 8.
+        Five growth drivers, Rumelt&rsquo;s four types, the inverted U, the competence&ndash;market matrix, a strategy simulator and a
+        15-question check.</p>
+      <p class="mt-3 text-xs text-slate-500 leading-relaxed">It says Apple captures 95% of the &ldquo;profits&rdquo;; the textbook says
+        about 95% of the value created (p.&nbsp;314). Its matrix examples (Honda, Gallo) are not the textbook&rsquo;s.</p>
+    </a>
+    <a href="/teaching/2-year-mba/session-14-corporate-strategy-vertical-integration-and-diversification.html" class="card p-5 block hover:border-blue-300">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Deck &middot; 2-year MBA</p>
+      <h3 class="mt-1 font-bold text-slate-900">Corporate Strategy: Vertical Integration &amp; Diversification</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Built for the two-year course, where it is Session 14. Covers transaction
+        costs, vertical integration, related and unrelated diversification with Indian examples, a discount-versus-premium chart and
+        a three-decision CEO simulation.</p>
+      <p class="mt-3 text-xs text-slate-500 leading-relaxed">Its Amazon figures for 2025&ndash;26 come from outside the readings, and it
+        credits the performance curve to Goold and Luchs (1993), listed there under Goold and Campbell; the textbook credits Palich,
+        Cardinal and Miller (p.&nbsp;329).</p>
+    </a>
+    <a href="/teaching/2-year-mba/session-06-group-projects-discussion.html" class="card p-5 block hover:border-blue-300">
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Deck &middot; 2-year MBA</p>
+      <h3 class="mt-1 font-bold text-slate-900">Business Groups &amp; Corporate Parenting Advantage</h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">Despite its file name, this is the business-groups deck. Why the
+        conglomerate discount that is the default in developed markets often turns into an advantage in India, with the Tata group
+        and a &ldquo;Does this parent add value?&rdquo; tester.</p>
+      <p class="mt-3 text-xs text-slate-500 leading-relaxed">Pairs with the institutions point on p.&nbsp;329 of the textbook and with
+        the second score in today&rsquo;s portfolio scorer.</p>
+    </a>
+  </div>
+</section>
+
+<section id="discussion" class="bg-white border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">For class</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Six questions to argue</h2>
+    <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div class="card p-5"><p class="font-mono text-xs text-blue-600">01</p><p class="mt-1 text-sm font-semibold text-slate-800 leading-relaxed">What business is Amazon in? Give one definition under which AWS, Prime Video and Whole Foods all belong, then name the business your definition cannot explain.</p></div>
+      <div class="card p-5"><p class="font-mono text-xs text-blue-600">02</p><p class="mt-1 text-sm font-semibold text-slate-800 leading-relaxed">The textbook calls Amazon related-linked. Which of its businesses break the link? Would Amazon&rsquo;s shareholders be better off without them, and how would you know?</p></div>
+      <div class="card p-5"><p class="font-mono text-xs text-blue-600">03</p><p class="mt-1 text-sm font-semibold text-slate-800 leading-relaxed">If Prime Video&rsquo;s job is to keep Prime members paying and shopping, how should Amazon measure it? Should Kindle be judged on its own profit, given how Amazon has priced the device and the e-books?</p></div>
+      <div class="card p-5"><p class="font-mono text-xs text-blue-600">04</p><p class="mt-1 text-sm font-semibold text-slate-800 leading-relaxed">Put One Medical through Porter&rsquo;s three tests, using only what the case reports. Does it fare better or worse than Whole Foods?</p></div>
+      <div class="card p-5"><p class="font-mono text-xs text-blue-600">05</p><p class="mt-1 text-sm font-semibold text-slate-800 leading-relaxed">The textbook&rsquo;s chapter case says some investors want AWS spun out as a stand-alone company, and asks whether it is worth more inside Amazon or alone (Rothaermel, p.&nbsp;334). Argue both sides with the discount, the premium and the better-off test.</p></div>
+      <div class="card p-5"><p class="font-mono text-xs text-blue-600">06</p><p class="mt-1 text-sm font-semibold text-slate-800 leading-relaxed">You are Jassy. Name one business to exit and one to double down on. Which motive would a sceptical board member attribute to each choice: value-creating, conditional or managerial?</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Knowledge check</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Ten questions</h2>
+  <p class="mt-3 text-slate-600 max-w-3xl leading-relaxed">
+    Answer before you look. Each answer explains itself, and the explanation matters more than the score. The full practice bank for this session is at <a href="/teaching/quiz/1yr-08" class="font-semibold text-blue-700 hover:underline">/teaching/quiz/1yr-08</a>.
+  </p>
+  <div class="mt-4 flex flex-wrap items-center gap-3 text-sm">
+    <span class="text-slate-500"><span id="sQuizScore">0</span> / <span id="sQuizTotal">0</span> correct</span>
+    <button id="sQuizReset" type="button" class="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50">Start again</button>
+  </div>
+  <div id="sQuiz" class="mt-6 grid gap-4"></div>
+</section>
+
+
+<section id="readings" class="bg-white border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+    <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Readings &amp; preparation</p>
+    <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Readings for Further study</h2>
+    <p class="mt-3 text-sm text-slate-600 max-w-4xl leading-relaxed">Readings are obtained through the course pack. They are not linked
+      or hosted here.</p>
+    <div class="mt-6 grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,.8fr)]">
+      <div class="grid gap-3 content-start">
+        <div class="card p-4">
+          <span class="pill bg-teal-50 text-teal-800">Case &middot; Required</span>
+          <p class="mt-2 text-sm text-slate-700 ref break-words">Gupta, S., &amp; Rodriguez, M. L. (2024). <em>Amazon in 2024</em> (HBS Case No. 9-514-025, rev. July 16, 2024). Harvard Business School Publishing.</p>
+        </div>
+        <div class="card p-4">
+          <span class="pill bg-blue-50 text-blue-700">Required &middot; the outline&rsquo;s reading</span>
+          <p class="mt-2 text-sm text-slate-700 ref break-words">Goold, M., &amp; Luchs, K. (1993). Why diversify? Four decades of management thinking. <em>Academy of Management Executive</em>.</p>
+          <p class="mt-1 text-xs text-slate-500">The course outline lists it under Goold and Campbell. Read for class; this page does not summarise it.</p>
+        </div>
+        <div class="card p-4">
+          <span class="pill bg-blue-50 text-blue-700">Required &middot; the outline&rsquo;s reading</span>
+          <p class="mt-2 text-sm text-slate-700 ref break-words">Laeven, L., &amp; Levine, R. (2007). Is there a diversification discount in financial conglomerates? <em>Journal of Financial Economics, 85</em>(2), 331&ndash;367.</p>
+          <p class="mt-1 text-xs text-slate-500">The course outline gives volume 82 (2006); the published article is volume 85 (2007). Read for class; this page does not summarise it.</p>
+        </div>
+        <div class="card p-4">
+          <span class="pill bg-slate-100 text-slate-600">Further &middot; course textbook</span>
+          <p class="mt-2 text-sm text-slate-700 ref break-words">Rothaermel, F. T. (2024). <em>Strategic management</em> (6th ed.). McGraw Hill.</p>
+          <p class="mt-1 text-xs text-slate-500">Chapter 8, &ldquo;Corporate strategy: Vertical integration and diversification&rdquo;: pp.&nbsp;298&ndash;302 and section 8.4, pp.&nbsp;319&ndash;333. The page also uses ch.&nbsp;7 (network effects and platforms) and ch.&nbsp;12 (business models).</p>
+        </div>
+        <div class="card p-4">
+          <span class="pill bg-slate-100 text-slate-600">Further &middot; Session 10&rsquo;s reading</span>
+          <p class="mt-2 text-sm text-slate-700 ref break-words">Porter, M. E. (1987). From competitive advantage to corporate strategy. <em>Harvard Business Review, 65</em>(3).</p>
+          <p class="mt-1 text-xs text-slate-500">Today uses its three tests and premises. Page numbers follow the 32-page HBR.org print.</p>
+        </div>
+      </div>
+      <div class="grid gap-4 content-start">
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Before class</p>
+          <p class="mt-1 text-sm text-slate-700 leading-relaxed">Read the case (four pages of text) and list every business it mentions
+            with its year. Then read the textbook&rsquo;s section 8.4. The chapter&rsquo;s opening case is also about Amazon, with figures
+            for 2021&ndash;22 that differ from the case; for numbers, use the case.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Also cited on this page</p>
+          <p class="mt-1 text-xs text-slate-600 leading-relaxed">The professor&rsquo;s Further study teaching script, for the session&rsquo;s
+            framing, and his business-groups script, for the four ways a parent can add value used in the portfolio scorer.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-gray-800 mt-16 sm:mt-24 border-t border-gray-700">
+  <div class="container mx-auto px-6 py-8 text-center">
+    <p class="text-sm text-slate-400">&copy; Dr. Swapnil Sahoo 2026 &middot; Great Lakes Institute of Management, Gurgaon</p>
+    <p class="mt-2 text-xs text-slate-500">PGPM 2026–27 &middot; Strategic Management (PGPM) &middot; Further study</p>
+    <div class="mt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+      <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-400 hover:text-white">swapnilsahoo.com</a>
+      <a href="/teaching/1-year-mba/session11.html" class="text-sm text-slate-400 hover:text-white">&larr; Session 12</a> <a href="/teaching/1-year-mba" class="text-sm text-slate-400 hover:text-white">All sessions</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* Further study components; every colour has an html.dark twin */
+  :root{--s13-ink:#334155;--s13-mute:#64748B;--s13-acc:#4F46E5;--s13-line:#CBD5E1;--s13-track:#E2E8F0;
+    --s13-v:#059669;--s13-c:#D97706;--s13-m:#E11D48;--s13-r1:#0F766E;--s13-r2:#B45309;--s13-r3:#94A3B8;--s13-quad:#F8FAFC}
+  html.dark{--s13-ink:#CBD5E1;--s13-mute:#94A3B8;--s13-acc:#818CF8;--s13-line:#334155;--s13-track:#1E293B;
+    --s13-v:#34D399;--s13-c:#FBBF24;--s13-m:#FB7185;--s13-r1:#2DD4BF;--s13-r2:#F59E0B;--s13-r3:#64748B;--s13-quad:#0F172A}
+
+  /* revenue-share bars in the types ladder */
+  .s13-bar{display:flex;height:.6rem;border-radius:9999px;overflow:hidden;background:var(--s13-track);gap:2px}
+  .s13-bar span{display:block;height:100%}
+  .s13-bar-main{background:var(--s13-acc)}
+  .s13-bar-rest{background:var(--s13-r3)}
+  .s13-bar-rest.s13-r1{background:var(--s13-r1)}.s13-bar-rest.s13-r2{background:var(--s13-r2)}.s13-bar-rest.s13-r3{background:var(--s13-r3)}
+  .s13-hl{border:2px solid #A3AEFB!important}
+  html.dark .s13-hl{border-color:#4F46E5!important}
+
+  /* coloured left edges and legend keys: v = value-creating, c = conditional, m = managerial */
+  .s13-edge{border-left-width:4px!important}
+  .s13-edge-v{border-left-color:var(--s13-v)!important}.s13-edge-c{border-left-color:var(--s13-c)!important}.s13-edge-m{border-left-color:var(--s13-m)!important}
+  .s13-key{display:inline-flex;align-items:center;gap:.4rem;font-weight:600;color:#475569}
+  .s13-key::before{content:"";width:.65rem;height:.65rem;border-radius:9999px;background:var(--s13k)}
+  .s13-key-v{--s13k:var(--s13-v)}.s13-key-c{--s13k:var(--s13-c)}.s13-key-m{--s13k:var(--s13-m)}
+  html.dark .s13-key{color:#CBD5E1}
+
+  /* inverted-U figure */
+  .s13-ax{stroke:var(--s13-mute);stroke-width:1.5}
+  .s13-curve{fill:none;stroke:var(--s13-acc);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round}
+  .s13-drop{stroke:var(--s13-line);stroke-width:1;stroke-dasharray:3 4}
+  .s13-dot{fill:var(--s13-mute)}.s13-dot-hi{fill:var(--s13-v)}.s13-dot-lo{fill:var(--s13-m)}
+  .s13-lbl{font:600 13px Inter,system-ui,sans-serif;fill:var(--s13-ink)}
+  .s13-sub{font:400 11.5px Inter,system-ui,sans-serif;fill:var(--s13-mute)}
+
+  /* 2x2 grids */
+  .s13-axis{writing-mode:vertical-rl;transform:rotate(180deg);display:flex;align-items:center;justify-content:center}
+  .s13-quad{background:var(--s13-quad);min-height:5.5rem}
+  @media (min-width:1024px){.s13-quad-lg{min-height:8.75rem}}
+  .s13-chip{display:inline-flex;align-items:center;border-radius:9999px;padding:.1rem .5rem;font-size:.68rem;font-weight:600;
+    background:#EEF1FF;color:#2E2A82;border:1px solid #C6CEFE}
+  .s13-chip.s13-chip-ok{background:#ECFDF5;color:#065F46;border-color:#A7F3D0}
+  .s13-chip.s13-chip-alt{background:#FFFBEB;color:#92400E;border-color:#FCD34D}
+  .s13-chip.s13-chip-no{background:#FEF2F2;color:#B91C1C;border-color:#FCA5A5}
+  html.dark .s13-chip{background:#1F2552;color:#E0E5FF;border-color:#2F3670}
+  html.dark .s13-chip.s13-chip-ok{background:#0F261A;color:#6EE7A8;border-color:#2F7D52}
+  html.dark .s13-chip.s13-chip-alt{background:#2A2110;color:#FCD34D;border-color:#4A3A1A}
+  html.dark .s13-chip.s13-chip-no{background:#2C1418;color:#FCA5A5;border-color:#4A2028}
+
+  /* option buttons */
+  .s13-opt{border:1px solid #CBD5E1;border-radius:.6rem;background:transparent;color:#334155;
+    padding:.4rem .7rem;font-size:.78rem;font-weight:600;text-align:left;transition:background-color .15s,border-color .15s}
+  .s13-opt:hover{background:#F1F5F9}
+  .s13-opt[aria-pressed="true"]{background:#EEF1FF;border-color:#4F46E5;color:#2E2A82}
+  .s13-opt.s13-right{background:#DCFCE7;border-color:#22C55E;color:#166534}
+  .s13-opt.s13-alt{background:#FEF3C7;border-color:#F59E0B;color:#92400E}
+  .s13-opt.s13-wrong{background:#FEE2E2;border-color:#EF4444;color:#B91C1C}
+  .s13-opt:disabled{cursor:default}
+  html.dark .s13-opt{border-color:#334155;color:#CBD5E1}
+  html.dark .s13-opt:hover{background:#1E293B}
+  html.dark .s13-opt[aria-pressed="true"]{background:#1F2552;border-color:#6E72F0;color:#E0E5FF}
+  html.dark .s13-opt.s13-right{background:#14321F;border-color:#2F7D52;color:#6EE7A8}
+  html.dark .s13-opt.s13-alt{background:#2A2110;border-color:#4A3A1A;color:#FCD34D}
+  html.dark .s13-opt.s13-wrong{background:#3A181E;border-color:#9B3540;color:#FCA5A5}
+
+  /* segmented 0-3 controls in the scorer */
+  .s13-seg{display:inline-flex;border:1px solid #CBD5E1;border-radius:.6rem;overflow:hidden}
+  .s13-seg button{min-width:2.1rem;padding:.3rem .5rem;font-size:.78rem;font-weight:700;color:#334155;background:transparent;border-left:1px solid #E2E8F0}
+  .s13-seg button:first-child{border-left:0}
+  .s13-seg button:hover{background:#F1F5F9}
+  .s13-seg button[aria-pressed="true"]{background:#4F46E5;color:#fff}
+  html.dark .s13-seg{border-color:#334155}
+  html.dark .s13-seg button{color:#CBD5E1;border-left-color:#1E293B}
+  html.dark .s13-seg button:hover{background:#1E293B}
+  html.dark .s13-seg button[aria-pressed="true"]{background:#6366F1;color:#fff}
+
+  /* verdict tags */
+  .s13-tag{display:inline-flex;align-items:center;border-radius:9999px;padding:.1rem .55rem;font-size:.68rem;font-weight:700;border:1px solid}
+  .s13-tag-ok{background:#F0FDF4;border-color:#86EFAC;color:#166534}
+  .s13-tag-no{background:#FEF2F2;border-color:#FCA5A5;color:#B91C1C}
+  .s13-tag-maybe{background:#FFFBEB;border-color:#FCD34D;color:#92400E}
+  html.dark .s13-tag-ok{background:#0F261A;border-color:#2F7D52;color:#6EE7A8}
+  html.dark .s13-tag-no{background:#2C1418;border-color:#4A2028;color:#FCA5A5}
+  html.dark .s13-tag-maybe{background:#2A2110;border-color:#4A3A1A;color:#FCD34D}
+  .s13-ok{color:#166534}.s13-no{color:#B91C1C}.s13-maybe{color:#92400E}
+  html.dark .s13-ok{color:#6EE7A8}html.dark .s13-no{color:#FCA5A5}html.dark .s13-maybe{color:#FCD34D}
+
+  /* activity cards: coloured edge once answered */
+  .s13-card{border-left-width:4px}
+  .s13-card[data-pick="v"]{border-left-color:var(--s13-v)}.s13-card[data-pick="c"]{border-left-color:var(--s13-c)}.s13-card[data-pick="m"]{border-left-color:var(--s13-m)}
+  .s13-card[data-state="ok"]{border-left-color:var(--s13-v)}.s13-card[data-state="alt"]{border-left-color:var(--s13-c)}.s13-card[data-state="no"]{border-left-color:var(--s13-m)}
+  html.dark .s13-card[data-pick="v"],html.dark .s13-card[data-state="ok"],html.dark .s13-edge-v{border-left-color:var(--s13-v)!important}
+  html.dark .s13-card[data-pick="c"],html.dark .s13-card[data-state="alt"],html.dark .s13-edge-c{border-left-color:var(--s13-c)!important}
+  html.dark .s13-card[data-pick="m"],html.dark .s13-card[data-state="no"],html.dark .s13-edge-m{border-left-color:var(--s13-m)!important}
+  html.dark .hover\:border-blue-300:hover{border-color:#4F46E5!important}
+</style>
+<script>
+(function () {
+  /* ---------- activity 1: sort growth motives (Rothaermel 2024, pp. 299-302, 332-335; Porter 1987) ---------- */
+  var wrap = document.getElementById("motiveList"), score = document.getElementById("motiveScore");
+  if (!wrap) return;
+  var OPTS = [["v", "Value-creating"], ["c", "Only under conditions"], ["m", "Managerial"]];
+  var ITEMS = [
+    { d: "Enter a product category that ships through the fulfilment centres and delivery network the firm already runs, so each order costs less to serve.", src: "Rothaermel, p. 302", a: "v",
+      why: "Economies of scope, and the textbook's own Amazon example: many categories served off one fulfilment network cost less than serving each on its own (p. 302)." },
+    { d: "Grow revenue quickly because the CEO's pay package moves with the size of the firm.", src: "Rothaermel, p. 300", a: "m",
+      why: "CEO pay often correlates more strongly with firm size than with firm performance (p. 300). Growth for that reason serves the manager, not the owner." },
+    { d: "Buy a business in an unrelated industry so that the group's earnings swing less from year to year.", src: "Rothaermel, p. 334; Porter, pp. 7, 11", a: "c",
+      why: "At best conditional. Investors have turned against growth to reduce risk (Rothaermel, p. 334), and shareholders can diversify their own portfolios more cheaply, without acquisition premiums (Porter, 1987, p. 7). Risk reduction should be a by-product, not the motive (p. 11)." },
+    { d: "Use what the store knows about customers' actual purchases to sell targeted advertising.", src: "Case, p. 2; Rothaermel, p. 334", a: "v",
+      why: "An existing resource, shopping data, put to work in a new market. Amazon's ad network earned over $47 billion in 2023 (case, p. 2); the textbook's point is that Amazon knows what each person views and buys, not only what they search for (p. 334)." },
+    { d: "Keep funding a weak unit because closing it would shrink a senior executive's empire and put the executive's job at risk.", src: "Rothaermel, pp. 300, 335", a: "m",
+      why: "Empire building and job security are the textbook's examples of growth that benefits managers more than shareholders (p. 300), and it calls them illegitimate reasons to grow (p. 335)." },
+    { d: "Raise money centrally and send it to the units with the best prospects, on the grounds that headquarters knows its units better than outside investors do.", src: "Rothaermel, p. 332", a: "c",
+      why: "An internal capital market creates value only if headquarters allocates capital more efficiently than external capital markets would (p. 332). The private information is real; the better allocation has to be shown." },
+    { d: "Buy two competitors so the industry has fewer rivals and the firm gains bargaining power over suppliers and buyers.", src: "Rothaermel, pp. 300, 334", a: "c",
+      why: "Fewer competitors and more bargaining power can raise profitability (p. 300), but the textbook warns that market power can bring legal trouble such as antitrust lawsuits (p. 334)." },
+    { d: "Expand into new businesses because a bigger firm justifies corporate jets and executive retreats at expensive resorts.", src: "Rothaermel, pp. 300, 335", a: "m",
+      why: "Perks are the textbook's own example of a managerial motive (p. 300), and it rules perks out as a legitimate reason to grow (p. 335)." },
+    { d: "Enter a new market where a competence the firm already has, such as its technology infrastructure, gives it lower cost or higher value than entrants without it.", src: "Rothaermel, pp. 301, 324-325", a: "v",
+      why: "Value-creating if the competence is real and transferable: core competencies let a firm offer more value, or the same value at lower cost (p. 301). Taking them into a new market is the redeploy quadrant of the competence-market matrix (pp. 324-325)." }
+  ];
+  var answered = 0, right = 0;
+  function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
+  function upd() {
+    score.textContent = answered + " of " + ITEMS.length + " sorted" + (answered ? " · " + right + " match the readings." : ".") +
+      (answered === ITEMS.length ? " The managerial motives rarely appear in a board paper; that is why the better-off test matters." : "");
+  }
+  ITEMS.forEach(function (it, n) {
+    var card = el("div", "card s13-card p-4");
+    card.appendChild(el("p", "text-[10px] font-semibold uppercase tracking-wider text-slate-500", "Statement " + (n + 1)));
+    card.appendChild(el("p", "mt-1 text-sm font-semibold text-slate-800 leading-relaxed", it.d));
+    var g = el("div", "mt-3 flex flex-wrap gap-2"); g.setAttribute("role", "group"); g.setAttribute("aria-label", "Motive for statement " + (n + 1));
+    var fb = el("p", "mt-3 text-xs leading-relaxed"); fb.hidden = true; fb.setAttribute("aria-live", "polite");
+    OPTS.forEach(function (o) {
+      var b = el("button", "s13-opt", o[1]); b.type = "button"; b.setAttribute("data-k", o[0]);
+      b.addEventListener("click", function () {
+        if (card.dataset.done) return;
+        card.dataset.done = "1"; card.setAttribute("data-pick", it.a);
+        var ok = o[0] === it.a; answered++; if (ok) right++;
+        g.querySelectorAll("button").forEach(function (x) {
+          x.disabled = true;
+          var k = x.getAttribute("data-k");
+          if (k === it.a) x.classList.add("s13-right"); else if (k === o[0]) x.classList.add("s13-wrong");
+        });
+        fb.textContent = "";
+        fb.appendChild(el("span", "font-semibold " + (ok ? "s13-ok" : "s13-no"), ok ? "Matches the readings. " : "The readings put it elsewhere. "));
+        fb.appendChild(el("span", "text-slate-600", it.why + " "));
+        fb.appendChild(el("span", "text-slate-500", "[" + it.src + "]"));
+        fb.hidden = false;
+        upd();
+      });
+      g.appendChild(b);
+    });
+    card.appendChild(g); card.appendChild(fb);
+    wrap.appendChild(card);
+  });
+  upd();
+})();
+</script>
+<script>
+(function () {
+  /* ---------- activity 2: place Amazon's businesses on the core competence-market matrix (Rothaermel 2024, pp. 324-326) ---------- */
+  var wrap = document.getElementById("matrixList"), score = document.getElementById("matrixScore"), empty = document.getElementById("mapEmpty");
+  if (!wrap) return;
+  var QUADS = [["L", "Leverage"], ["R", "Redeploy"], ["B", "Build to protect"], ["M", "Mega-opportunity"]];
+  var RES = [["tech", "Technology infrastructure"], ["data", "Shopping and purchase data"], ["del", "Delivery network"],
+    ["prime", "Shoppers and Prime members"], ["none", "Little or nothing visible"]];
+  var ITEMS = [
+    { n: "AWS", y: "2002", f: "Sells cloud computing to many companies: elastic IT infrastructure that grows at low cost as needed. Over $90 billion of revenue and over $24 billion of operating income in 2023, in a fast-growing market where large technology players compete hard (case, p. 1).",
+      q: ["R"], qa: ["M"], qw: "Redeploy. Running large-scale IT infrastructure was Amazon's own competence; the textbook says AWS put data-centre capacity built for the store to work (p. 322). The market, companies buying computing, was new. Mega-opportunity is arguable if you think selling to companies needed competencies a retailer did not have.",
+      r: ["tech"], ra: [], rw: "Technology infrastructure: the same kind of data centres that run the store (Rothaermel, p. 322)." },
+    { n: "Prime Video & Studios", y: "2006 / 2011", f: "Streaming began as Unbox in 2006; Amazon Studios (2011) makes original shows and, later, films. Licensing deals with Viacom and HBO, Twitch bought for nearly $1 billion, and over $19 billion spent on TV and music content in 2023 (case, p. 2).",
+      q: ["B"], qa: ["M"], qw: "Build to protect. Making and licensing content was a new competence, but the audience was Amazon's own: the textbook notes that the content is free to Prime subscribers (p. 322). Mega-opportunity is arguable, since streaming is also a market of its own where Amazon outspent Netflix.",
+      r: ["prime"], ra: ["tech"], rw: "Shoppers and Prime members: the content reaches customers Amazon already has. Streaming technology is a secondary link." },
+    { n: "Amazon Business", y: "2012", f: "Launched as AmazonSupply for business buyers. In a wholesale trade of regional, family-run firms selling through personal relationships, its easy website, 24-hour delivery and low prices were unusual. $35 billion of annualised sales to over 6 million business customers by 2023 (case, p. 3).",
+      q: ["R"], qa: [], qw: "Redeploy. Everything that set it apart, the website, the delivery and the prices, came from the consumer store; the customers, businesses buying wholesale, were new.",
+      r: ["del", "tech"], ra: [], rw: "Delivery or the web platform. Both are real shared resources; 24-hour delivery is the one the case singles out." },
+    { n: "Kindle", y: "2007", f: "Launched at $399 and sold out in under six hours; cut to about $100 after the iPad arrived in 2010. A convenient way to shop for and download digital books and films from Amazon's store (case, p. 2).",
+      q: ["B"], qa: [], qw: "Build to protect. Designing and selling hardware was a new competence; the customers, Amazon's book buyers, were not new. The device defends and extends the book business.",
+      r: ["prime"], ra: ["tech"], rw: "Amazon's shoppers and its store: the Kindle sells into a customer base Amazon already had. The digital store's technology is a secondary link." },
+    { n: "Advertising", y: "2011", f: "Amazon pioneered recommendations based on what similar customers bought. Its ad network can tag a shopper who looked at a camera without buying and show a camera ad on another site later. Over $47 billion of ad revenue in 2023, up almost 24% (case, p. 2).",
+      q: ["R"], qa: [], qw: "Redeploy. Using shopping data to predict what a customer wants is the store's competence (the textbook calls the recommendation algorithms a core competency, p. 301); advertisers are a new market.",
+      r: ["data"], ra: [], rw: "Shopping and purchase data: Amazon knows what each person views and buys, not only what they search for (Rothaermel, p. 334)." },
+    { n: "Whole Foods", y: "2017", f: "Bought for $13.4 billion, a 27% premium: 460 stores and high-income customers in a thin-margin grocery market. Whole Foods had a 1.2% share to Walmart's 14.5%; Amazon itself had won no more than 0.2% in ten years (case, p. 3).",
+      q: ["M"], qa: ["B"], qw: "Mega-opportunity. Running physical stores was a new competence, and grocery was a market where Amazon had made little headway. Build to protect is defensible if you read the deal as a way to keep existing Amazon customers buying more often.",
+      r: ["prime", "del"], ra: [], rw: "Shoppers and Prime members, or delivery. Those are the links the deal has to exploit; the case does not yet show the payoff." },
+    { n: "Echo & Alexa", y: "after 2014", f: "Launched soon after the Fire Phone: a voice assistant that answers questions and places orders on Amazon. Over 500 million Echo devices sold by May 2023, but the devices unit was reported to lose more than $5 billion a year (case, p. 2).",
+      q: ["B"], qa: ["M"], qw: "Build to protect: a new hardware and voice competence pointed at existing shoppers, as another way to order. Mega-opportunity is arguable if you read the voice assistant as a market of its own.",
+      r: ["prime"], ra: ["tech", "data"], rw: "Shoppers: Echo is another way into the store. Technology and data are secondary links." },
+    { n: "One Medical", y: "2023", f: "Bought for $3.9 billion: over 200 offices and about 815,000 members paying a small monthly fee, $9 for Prime members. It follows PillPack (2018), Amazon Pharmacy (2020) and Amazon Clinic (2022), folded into One Medical in June 2024 (case, p. 3).",
+      q: ["M"], qa: [], qw: "Mega-opportunity: primary care needs competencies Amazon did not have, in a market it had not served. The textbook calls this quadrant likely the most challenging (p. 325).",
+      r: ["prime", "none"], ra: [], rw: "The Prime discount is the only link the case shows, and it is thin. 'Little or nothing' is an equally honest answer." },
+    { n: "Fire Phone", y: "2014", f: "3D-like images and a Firefly button that identified objects to buy on Amazon. Three months after the July 2014 launch, Amazon took a $170 million write-down (case, p. 2).",
+      q: ["B"], qa: ["M"], qw: "Build to protect: a new hardware competence aimed at existing shoppers, with the Firefly button as a route to the store. It failed in the market, which is the risk of the top row. Mega-opportunity is arguable, since phones were a new market.",
+      r: ["prime"], ra: ["data"], rw: "Shoppers: the Firefly button sent people to Amazon's store." },
+    { n: "Amazon Salon", y: "2021", f: "A two-floor salon of over 1,500 square feet with a prominent UK stylist, testing augmented-reality hair colours and point-and-learn product screens. Analysts found it baffling: hairstyling is personal and hard to scale (case, p. 3).",
+      q: ["M"], qa: [], qw: "Mega-opportunity: new competence, new market. Its only visible tie to the rest of Amazon is the technology it tests.",
+      r: ["none", "tech"], ra: [], rw: "Little beyond the technology being tested. That is a weak basis for owning a business." }
+  ];
+  var placed = 0, match = 0, arguable = 0, named = 0;
+  function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
+  function has(a, k) { return a.indexOf(k) >= 0; }
+  function upd() {
+    score.textContent = placed + " of " + ITEMS.length + " placed · " + match + " match this page's reading" +
+      (arguable ? ", " + arguable + " arguable" : "") + " · " + named + " shared resources named.";
+  }
+  function feedback(p, state, lead, txt) {
+    p.textContent = "";
+    p.appendChild(el("span", "font-semibold " + (state === "ok" ? "s13-ok" : state === "alt" ? "s13-maybe" : "s13-no"), lead));
+    p.appendChild(el("span", "text-slate-600", txt));
+    p.hidden = false;
+  }
+  ITEMS.forEach(function (it, n) {
+    var card = el("div", "card s13-card p-4");
+    card.appendChild(el("p", "text-[10px] font-semibold uppercase tracking-wider text-slate-500", (n + 1) + " · " + it.y));
+    card.appendChild(el("p", "mt-0.5 font-bold text-slate-900", it.n));
+    card.appendChild(el("p", "mt-1 text-xs text-slate-600 leading-relaxed", it.f));
+    card.appendChild(el("p", "mt-3 text-[10px] font-semibold uppercase tracking-wider text-blue-700", "Step 1 · quadrant"));
+    var g1 = el("div", "mt-1 grid grid-cols-2 gap-2"); g1.setAttribute("role", "group"); g1.setAttribute("aria-label", "Quadrant for " + it.n);
+    var f1 = el("p", "mt-2 text-xs leading-relaxed"); f1.hidden = true; f1.setAttribute("aria-live", "polite");
+    var step2 = el("div", "mt-3"); step2.hidden = true;
+    step2.appendChild(el("p", "text-[10px] font-semibold uppercase tracking-wider text-blue-700", "Step 2 · what it borrows from the rest of Amazon"));
+    var g2 = el("div", "mt-1 flex flex-wrap gap-2"); g2.setAttribute("role", "group"); g2.setAttribute("aria-label", "Shared resource for " + it.n);
+    var f2 = el("p", "mt-2 text-xs leading-relaxed"); f2.hidden = true; f2.setAttribute("aria-live", "polite");
+    step2.appendChild(g2); step2.appendChild(f2);
+    QUADS.forEach(function (o) {
+      var b = el("button", "s13-opt", o[1]); b.type = "button"; b.setAttribute("data-k", o[0]);
+      b.addEventListener("click", function () {
+        if (card.dataset.q) return;
+        card.dataset.q = o[0];
+        var st = has(it.q, o[0]) ? "ok" : has(it.qa, o[0]) ? "alt" : "no";
+        card.setAttribute("data-state", st);
+        placed++; if (st === "ok") match++; if (st === "alt") arguable++;
+        g1.querySelectorAll("button").forEach(function (x) {
+          x.disabled = true; var k = x.getAttribute("data-k");
+          if (has(it.q, k)) x.classList.add("s13-right");
+          else if (has(it.qa, k)) x.classList.add("s13-alt");
+          else if (k === o[0]) x.classList.add("s13-wrong");
+        });
+        feedback(f1, st, st === "ok" ? "Matches this page's reading. " : st === "alt" ? "Arguable; this page reads it differently. " : "Not on the case's evidence. ", it.qw);
+        var cell = document.querySelector('[data-quad="' + o[0] + '"]');
+        if (cell) cell.appendChild(el("span", "s13-chip s13-chip-" + st, it.n));
+        if (empty) empty.hidden = true;
+        step2.hidden = false;
+        upd();
+      });
+      g1.appendChild(b);
+    });
+    RES.forEach(function (o) {
+      var b = el("button", "s13-opt", o[1]); b.type = "button"; b.setAttribute("data-k", o[0]);
+      b.addEventListener("click", function () {
+        if (card.dataset.r) return;
+        card.dataset.r = o[0];
+        var st = has(it.r, o[0]) ? "ok" : has(it.ra, o[0]) ? "alt" : "no";
+        if (st !== "no") named++;
+        g2.querySelectorAll("button").forEach(function (x) {
+          x.disabled = true; var k = x.getAttribute("data-k");
+          if (has(it.r, k)) x.classList.add("s13-right");
+          else if (has(it.ra, k)) x.classList.add("s13-alt");
+          else if (k === o[0]) x.classList.add("s13-wrong");
+        });
+        feedback(f2, st, st === "ok" ? "Yes. " : st === "alt" ? "A secondary link. " : "Not the main link. ", it.rw);
+        upd();
+      });
+      g2.appendChild(b);
+    });
+    card.appendChild(g1); card.appendChild(f1); card.appendChild(step2);
+    wrap.appendChild(card);
+  });
+  upd();
+})();
+</script>
+<script>
+(function () {
+  /* ---------- activity 3: "spreading too thin?" portfolio scorer (page heuristic; Porter's better-off test) ---------- */
+  var rows = document.getElementById("thinRows"), verdict = document.getElementById("thinVerdict");
+  if (!rows) return;
+  var BIZ = [
+    { n: "AWS", l: 2, b: 2, w: "Link 2: it shares technology infrastructure with the store (Rothaermel, p. 322) but sells to different customers against different rivals (case, p. 1). Better off 2: Amazon kept investing while analysts doubted it (case, p. 1); now some investors want it spun out (Rothaermel, p. 334), so the gain may run mainly from AWS to Amazon." },
+    { n: "Advertising", l: 3, b: 3, w: "Link 3: it runs on the store's shopping data (case, p. 2). Better off 3: without Amazon's data there is no business, and Amazon gains one with over $47 billion of revenue in 2023 (case, p. 2)." },
+    { n: "Amazon Business", l: 3, b: 3, w: "Link 3: the same website, delivery and prices as the store (case, p. 3). Better off 3: business buyers get what regional wholesalers did not offer, and Amazon gets $35 billion of annualised sales (case, p. 3)." },
+    { n: "Prime Video & Studios", l: 2, b: 2, w: "Link 2: it shares the Prime membership, but making content is a new competence (case, p. 2; Rothaermel, p. 322). Better off 2 if you accept that video helps hold Prime members; the case does not show the return on $19 billion of content, so score lower if you do not." },
+    { n: "Kindle", l: 3, b: 2, w: "Link 3: it sells straight into Amazon's store (case, p. 2). Better off 2: its price was cut to about $100 after the iPad arrived (case, p. 2); its value to Amazon lies in what is bought through it, not in the device." },
+    { n: "Echo & Alexa", l: 2, b: 1, w: "Link 2: another way to order from Amazon (case, p. 2). Better off 1: the devices unit was reported to lose more than $5 billion a year and was under review in 2022 (case, p. 2). The payoff is not yet visible." },
+    { n: "Whole Foods", l: 2, b: 1, w: "Link 2 in principle: customers, delivery and Prime. Better off 1: a 1.2% share in a razor-thin-margin industry, bought at a 27% premium, and no evidence yet in the case that the links pay (case, p. 3)." },
+    { n: "One Medical", l: 1, b: 1, w: "Link 1: the only tie in the case is the $9 monthly price for Prime members (case, p. 3). Better off 1: nothing in the case shows Amazon running primary care better than One Medical did on its own." }
+  ];
+  var CELLS = { TL: "Parenting bet", TR: "Core: keep and integrate", BL: "Exit, sell or spin off", BR: "Fix the economics or shrink" };
+  var score = BIZ.map(function () { return { l: null, b: null }; });
+  var notes = [];
+  function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
+  function cellOf(s) { return (s.b >= 2 ? "T" : "B") + (s.l >= 2 ? "R" : "L"); }
+  function seg(i, key, label) {
+    var wrap = el("div", "flex items-center gap-2");
+    wrap.appendChild(el("span", "w-24 shrink-0 text-[11px] font-semibold text-slate-500", label));
+    var g = el("div", "s13-seg"); g.setAttribute("role", "group"); g.setAttribute("aria-label", label + " for " + BIZ[i].n);
+    for (var v = 0; v <= 3; v++) {
+      (function (v) {
+        var b = el("button", "", String(v)); b.type = "button"; b.setAttribute("aria-pressed", "false");
+        b.setAttribute("aria-label", label + " " + v + " for " + BIZ[i].n); b.setAttribute("data-v", v);
+        b.addEventListener("click", function () { score[i][key] = v; paint(); });
+        g.appendChild(b);
+      })(v);
+    }
+    wrap.appendChild(g);
+    return wrap;
+  }
+  BIZ.forEach(function (biz, i) {
+    var r = el("div", "rounded-xl border border-slate-200 p-3");
+    var top = el("div", "flex flex-wrap items-center justify-between gap-x-4 gap-y-2");
+    top.appendChild(el("p", "font-semibold text-slate-900 text-sm", biz.n));
+    var ctr = el("div", "flex flex-wrap gap-x-4 gap-y-2");
+    ctr.appendChild(seg(i, "l", "Link to Amazon"));
+    ctr.appendChild(seg(i, "b", "Better off inside"));
+    top.appendChild(ctr); r.appendChild(top);
+    var note = el("p", "mt-2 text-xs text-slate-600 leading-relaxed"); note.hidden = true; note.setAttribute("aria-live", "polite");
+    r.appendChild(note); notes.push(note);
+    r.setAttribute("data-row", i);
+    rows.appendChild(r);
+  });
+  function paint() {
+    rows.querySelectorAll("[data-row]").forEach(function (r) {
+      var i = +r.getAttribute("data-row"), s = score[i];
+      r.querySelectorAll(".s13-seg").forEach(function (g, gi) {
+        var val = gi === 0 ? s.l : s.b;
+        g.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", String(+b.getAttribute("data-v") === val)); });
+      });
+      var full = s.l !== null && s.b !== null;
+      notes[i].hidden = !full;
+      if (full) notes[i].textContent = "This page's reading. " + BIZ[i].w;
+    });
+    document.querySelectorAll("#thinGrid [data-cell]").forEach(function (c) { c.textContent = ""; });
+    var done = [], count = { TL: 0, TR: 0, BL: 0, BR: 0 };
+    score.forEach(function (s, i) {
+      if (s.l === null || s.b === null) return;
+      var c = cellOf(s); count[c]++; done.push({ n: BIZ[i].n, c: c });
+      var box = document.querySelector('#thinGrid [data-cell="' + c + '"]');
+      if (box) box.appendChild(el("span", "s13-chip" + (c === "TR" ? " s13-chip-ok" : c === "BL" ? " s13-chip-no" : " s13-chip-alt"), BIZ[i].n));
+    });
+    var k = done.length;
+    if (k < 5) { verdict.textContent = "Score at least five businesses to get a verdict (" + k + " scored so far)."; return; }
+    var edge = done.filter(function (d) { return d.c !== "TR"; }).map(function (d) { return d.n + " (" + CELLS[d.c].toLowerCase() + ")"; });
+    var below = count.BL + count.BR;
+    if (count.TR / k >= 0.6) {
+      verdict.textContent = "Coherent core. " + count.TR + " of " + k + " businesses you scored share a real resource and are better off inside Amazon, so the textbook's related-linked label fits. The question is the edge" +
+        (edge.length ? ": " + edge.join("; ") + "." : ", and you left none.") + " On your scores, Jassy's choice is about pruning, not about refocusing.";
+    } else if (below >= k / 2) {
+      verdict.textContent = "Spreading thin. " + below + " of " + k + " businesses sit below the line: linked but unproven, or barely linked. On your scores Amazon is drifting towards the unrelated end of the inverted U, where the diversification discount lives. Name the two you would exit first.";
+    } else {
+      verdict.textContent = "Mixed. " + count.TR + " of " + k + " are core, " + count.TL + " rest on Amazon's value as an owner rather than on a shared resource, and " + below + " sit below the line. A parenting bet needs evidence that the owner adds value; ask what the case shows for each.";
+    }
+  }
+  document.getElementById("thinLoad").addEventListener("click", function () {
+    BIZ.forEach(function (biz, i) { score[i] = { l: biz.l, b: biz.b }; }); paint();
+  });
+  document.getElementById("thinClear").addEventListener("click", function () {
+    score = BIZ.map(function () { return { l: null, b: null }; }); paint();
+  });
+  paint();
+})();
+</script>
+
+<script>window.SQUIZ = [
+ {
+  "q": "Rothaermel classifies Amazon as related-linked rather than related-constrained. Which observation best supports “linked” rather than “constrained”?",
+  "o": [
+   "Amazon earns less than 70% of its revenue from any single business it operates",
+   "Every Amazon business draws on the same core competence in online retailing",
+   "Some businesses reuse the store’s site and delivery; others, such as One Medical, share little beyond a Prime discount",
+   "Amazon has entered more of its new businesses by acquisition than by building them itself"
+  ],
+  "a": 2,
+  "e": "A related-constrained firm enters only businesses that use its existing competencies; in a related-linked firm some businesses share linkages with the main business and others do not (Rothaermel, 2024, p. 322). The 70% threshold applies to both, so it cannot separate them. Amazon Business runs on the store’s site and 24-hour delivery; One Medical’s visible tie is the $9 Prime price (case, p. 3)."
+ },
+ {
+  "q": "A board keeps approving acquisitions that add revenue but fail Porter’s better-off test, and the CEO’s pay rises with company size. Which motive is at work, and how does the textbook judge it?",
+  "o": [
+   "Lowering costs through economies of scale; legitimate once minimum efficient scale is reached",
+   "A managerial motive; the textbook says perks and job security are not legitimate reasons to grow",
+   "Reducing risk; still the motive investors favour most",
+   "Increasing market power; always legitimate because fewer rivals mean higher profits"
+  ],
+  "a": 1,
+  "e": "CEO pay often correlates more strongly with firm size than with performance, and some managers pursue empire building, job security and perks (Rothaermel, 2024, p. 300). The textbook calls such managerial motives illegitimate reasons to grow (p. 335). Porter’s version: executives confuse company size with shareholder value (1987, p. 11)."
+ },
+ {
+  "q": "The textbook lists the sources of cost for each corporate strategy. Which cost does related diversification carry that unrelated diversification does not?",
+  "o": [
+   "Influence costs",
+   "The acquisition premium",
+   "Higher taxes on transfers between units",
+   "Coordination costs"
+  ],
+  "a": 3,
+  "e": "Both kinds carry influence costs, the political manoeuvring for capital and resources. Only related diversification adds coordination costs, because its links have to be managed; they rise with the number, size and types of businesses linked (Rothaermel, 2024, Exhibit 8.14, p. 330; pp. 332–333)."
+ },
+ {
+  "q": "When GE announced the spin-out of GE Capital in 2015, its stock rose 11%, adding some $28 billion of market value. What does the textbook read this as evidence of?",
+  "o": [
+   "A diversification discount: the conglomerate had been valued at less than the sum of its parts",
+   "A diversification premium earned by GE Capital",
+   "Economies of scope between GE’s industrial units and its finance arm",
+   "The success of GE’s internal capital market"
+  ],
+  "a": 0,
+  "e": "The textbook treats the jump as a rough measure of the discount that unrelated diversifiers can carry (Rothaermel, 2024, pp. 328–329). GE Capital had earned half of GE’s profits on a third of its revenue and nearly sank the group when credit froze."
+ },
+ {
+  "q": "Amazon Studios makes original shows and films, and Amazon’s streamed content is free to Prime subscribers (case, p. 2; Rothaermel, p. 322). On the core competence–market matrix, the closest fit is:",
+  "o": [
+   "Leverage existing competencies to improve the current market position",
+   "Redeploy existing competencies into a new market",
+   "Build new competencies to protect and extend the current market position",
+   "Build new competencies for a new market: a mega-opportunity"
+  ],
+  "a": 2,
+  "e": "Making and licensing content was a new competence, but the audience was Amazon’s own customers. That is the upper-left quadrant (Rothaermel, 2024, pp. 324–325). Mega-opportunity is arguable if you treat streaming as a market of its own, where Amazon outspent Netflix in 2023 (case, p. 2)."
+ },
+ {
+  "q": "The case says the cloud market “was growing rapidly” (p. 1), and the textbook’s Amazon case calls AWS Amazon’s “cash cow” (p. 333). If AWS also holds a high relative market share, where does the BCG matrix itself place it?",
+  "o": [
+   "Cash cow",
+   "Star",
+   "Question mark",
+   "Dog"
+  ],
+  "a": 1,
+  "e": "A cash cow is a high-share business in a low-growth market; a high-share business in a fast-growing market is a star (Rothaermel, 2024, pp. 331–332). The “cash cow” label describes the cash AWS generates, not its position on the matrix. The case does not report AWS’s share, which is why the question says “if”."
+ },
+ {
+  "q": "Suppose Prime Video loses money when judged on its own. How could it still pass one of Porter’s three tests?",
+  "o": [
+   "It cannot: a unit that loses money on its own fails all three",
+   "Through the attractiveness test, because streaming is a growing industry",
+   "Through the cost-of-entry test, because Amazon built its studio rather than buying one",
+   "Through the better-off test, if Amazon’s store and Prime gain advantage from the link"
+  ],
+  "a": 3,
+  "e": "The better-off test asks that either the new unit gains competitive advantage from its link with the corporation, or vice versa (Porter, 1987, p. 8). A complement can look poor on its own profit and still pass if the rest of the corporation gains. Whether Amazon’s does is a question the case leaves open."
+ },
+ {
+  "q": "The case gives AWS’s 2023 revenue (over $90 billion) and Amazon’s total ($575 billion). Why can you not settle Amazon’s Rumelt type from the case’s revenue figures alone?",
+  "o": [
+   "The case does not report revenue for the retail business, so you cannot tell whether any one business earns more than 70%",
+   "Rumelt’s scheme applies only to geographic diversification",
+   "AWS’s share of about 16% already proves Amazon is a single-business firm",
+   "Rumelt’s scheme ignores revenue and uses only market value"
+  ],
+  "a": 0,
+  "e": "Rumelt’s first variable is the share of revenue from the main business, with thresholds at 95% and 70%; the scheme concerns product markets, not geography (Rothaermel, 2024, p. 321). The case reports AWS, advertising and the total, but not retail, so the second variable, how far competencies are shared, has to do the work."
+ },
+ {
+  "q": "Amazon paid a 27% premium for Whole Foods, a chain with 1.2% of US grocery in an industry with razor-thin margins (case, p. 3). Which of Porter’s tests does the premium most directly put at risk?",
+  "o": [
+   "The attractiveness test",
+   "The better-off test",
+   "The cost-of-entry test",
+   "A test of the internal capital market"
+  ],
+  "a": 2,
+  "e": "The cost-of-entry test says the price of entry must not capitalise all the future profits (Porter, 1987, p. 8). A premium on a struggling, low-share chain has to be earned back by something Amazon adds, which shifts the burden onto the better-off test."
+ },
+ {
+  "q": "By 2023 independent sellers made more than 60% of sales in the Amazon store (case, p. 1). In the textbook’s terms, what makes such a marketplace hard for a rival to dislodge?",
+  "o": [
+   "Economies of scale in warehousing alone",
+   "Network effects: more sellers make the platform more valuable to shoppers, and more shoppers make it more valuable to sellers",
+   "A razor–razor blade model in which sellers are subsidised",
+   "Backward vertical integration into manufacturing"
+  ],
+  "a": 1,
+  "e": "Network effects arise when a product becomes more valuable as more people use it; platforms that match producers with consumers depend on them, and such markets can tip to a single winner (Rothaermel, 2024, pp. 259, 276, 281–286)."
+ }
+];</script>
+<script>
+(function () {
+  /* ---------------- quiz ---------------- */
+  var QUIZ = window.SQUIZ || [];
+  var qw = document.getElementById("sQuiz");
+  if (qw && QUIZ.length) {
+    var score = 0;
+    document.getElementById("sQuizTotal").textContent = QUIZ.length;
+    function build() {
+      qw.innerHTML = ""; score = 0;
+      document.getElementById("sQuizScore").textContent = "0";
+      QUIZ.forEach(function (item, n) {
+        var d = document.createElement("div");
+        d.className = "card p-5";
+        var opts = item.o.map(function (t, k) {
+          return '<button type="button" class="quiz-option w-full rounded-lg border border-slate-300 px-3 py-2 text-left text-sm text-slate-700" data-k="' + k + '">' +
+            String.fromCharCode(65 + k) + ". " + t + '</button>';
+        }).join("");
+        d.innerHTML = '<p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Question ' + (n + 1) + '</p>' +
+          '<p class="mt-1 text-sm font-semibold text-slate-900">' + item.q + '</p>' +
+          '<div class="mt-3 grid gap-2">' + opts + '</div>' +
+          '<p class="quiz-explanation text-xs text-slate-600 bg-slate-100 p-3 rounded-md border border-slate-200"></p>';
+        var expl = d.querySelector(".quiz-explanation");
+        d.querySelectorAll(".quiz-option").forEach(function (b) {
+          b.addEventListener("click", function () {
+            if (d.dataset.answered) return;
+            d.dataset.answered = "1";
+            var k = parseInt(b.dataset.k, 10);
+            if (k === item.a) { score++; document.getElementById("sQuizScore").textContent = score; }
+            d.querySelectorAll(".quiz-option").forEach(function (x) {
+              x.disabled = true;
+              var xi = parseInt(x.dataset.k, 10);
+              if (xi === item.a) x.classList.add("correct");
+              else if (x === b) x.classList.add("incorrect");
+            });
+            expl.textContent = item.e;
+            expl.classList.add("visible");
+          });
+        });
+        qw.appendChild(d);
+      });
+    }
+    build();
+    var rb = document.getElementById("sQuizReset");
+    if (rb) rb.addEventListener("click", build);
+  }
+})();
+</script>
+
+<style>
+  html.dark [data-workshop]{border-top-color:#a855f7!important}
+  html.dark [data-workshop].border-t-blue-500{border-top-color:#6E72F0!important}
+  html.dark [data-workshop].border-t-teal-500{border-top-color:#2DD4BF!important}
+  html.dark [data-sim]{border-top-color:#f43f5e!important}
+  .ws-body p+p{margin-top:.5rem}
+</style>
+<script>
+/* Shared Session-1 components: tabbed panels, workshops, simulations, reveal buttons.
+   Data comes from window.S_WORKSHOPS and window.S_SIMS (set in a page's scripts.html);
+   markup placeholders live in the body: <div id="ws-x" data-workshop></div>, <div id="sim-x" data-sim></div>. */
+(function () {
+  function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
+
+  /* ---------- tabs: .author-tab[data-author] + .author-panel[data-panel], scoped by [data-tabs] ---------- */
+  var groups = document.querySelectorAll("[data-tabs]");
+  (groups.length ? Array.prototype.slice.call(groups) : [document]).forEach(function (g) {
+    var tabs = g.querySelectorAll(".author-tab"), panels = g.querySelectorAll(".author-panel");
+    if (!tabs.length) return;
+    tabs.forEach(function (t) {
+      t.addEventListener("click", function () {
+        var key = t.getAttribute("data-author");
+        tabs.forEach(function (x) {
+          var on = x === t;
+          x.setAttribute("aria-selected", on ? "true" : "false");
+          x.className = "author-tab -mb-px border-b-2 px-4 py-2.5 text-sm font-semibold " +
+            (on ? "border-blue-600 text-blue-700" : "border-transparent text-slate-500 hover:text-slate-800");
+        });
+        panels.forEach(function (p) { p.classList.toggle("hidden", p.getAttribute("data-panel") !== key); });
+      });
+    });
+  });
+
+  /* ---------- reveal buttons: <button data-reveal="targetId" data-reveal-label="Hide…">Show…</button> ---------- */
+  document.querySelectorAll("[data-reveal]").forEach(function (b) {
+    var target = document.getElementById(b.getAttribute("data-reveal"));
+    if (!target) return;
+    var showLabel = b.textContent, hideLabel = b.getAttribute("data-reveal-label");
+    b.setAttribute("aria-expanded", target.hidden ? "false" : "true");
+    b.addEventListener("click", function () {
+      target.hidden = !target.hidden;
+      b.setAttribute("aria-expanded", target.hidden ? "false" : "true");
+      if (hideLabel) b.textContent = target.hidden ? showLabel : hideLabel;
+    });
+  });
+
+  /* ---------- workshops: one decision, outcome revealed in place ---------- */
+  var WS = window.S_WORKSHOPS || [];
+  WS.forEach(function (w) {
+    var host = document.getElementById(w.id);
+    if (!host) return;
+    host.className = "bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200 border-t-4 " + (w.accent === "blue" ? "border-t-blue-500" : w.accent === "teal" ? "border-t-teal-500" : "border-t-purple-500");
+    if (w.kicker) host.appendChild(el("p", "text-[10px] font-semibold uppercase tracking-wider text-slate-500", w.kicker));
+    host.appendChild(el("h3", "mt-1 text-xl sm:text-2xl font-bold text-slate-800 mb-2", w.title));
+    if (w.setup) host.appendChild(el("div", "text-slate-600 mb-6 text-sm leading-relaxed", w.setup));
+    var grid = el("div", "grid gap-4 " + (w.options.length >= 3 ? "md:grid-cols-3" : "md:grid-cols-2"));
+    var out = el("div", "mt-5 rounded-lg border border-slate-200 bg-slate-50 p-5");
+    out.hidden = true; out.setAttribute("aria-live", "polite");
+    w.options.forEach(function (o) {
+      var b = el("button", "activity-button workshop-button text-left", "<strong>" + o.key + ") " + o.label + ":</strong> " + o.text);
+      b.type = "button"; b.setAttribute("aria-pressed", "false");
+      b.addEventListener("click", function () {
+        grid.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); x.classList.toggle("ring-2", x === b); });
+        out.innerHTML = "";
+        out.appendChild(el("h4", "text-base font-semibold text-slate-900", o.outcome.title));
+        out.appendChild(el("div", "mt-2 text-sm text-slate-700 leading-relaxed ws-body", o.outcome.body));
+        out.hidden = false;
+      });
+      grid.appendChild(b);
+    });
+    host.appendChild(grid);
+    host.appendChild(out);
+    if (w.debrief) { var d = el("p", "mt-4 text-xs text-slate-500 leading-relaxed", w.debrief); host.appendChild(d); }
+  });
+
+  /* ---------- simulations: branching steps with end states ---------- */
+  var SIMS = window.S_SIMS || [];
+  SIMS.forEach(function (s) {
+    var host = document.getElementById(s.id);
+    if (!host) return;
+    host.className = "bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200 border-t-4 border-t-rose-500";
+    if (s.kicker) host.appendChild(el("p", "text-[10px] font-semibold uppercase tracking-wider text-slate-500", s.kicker));
+    host.appendChild(el("h3", "mt-1 text-xl sm:text-2xl font-bold text-slate-800 mb-2", s.title));
+    if (s.setup) host.appendChild(el("div", "text-slate-600 mb-6 text-sm leading-relaxed", s.setup));
+    var box = el("div", "space-y-6");
+    box.setAttribute("aria-live", "polite");
+    host.appendChild(box);
+    var path = [];
+    function step(id) {
+      var st = null;
+      s.steps.forEach(function (x) { if (x.id === id) st = x; });
+      if (!st) return;
+      box.innerHTML = "";
+      if (path.length) {
+        var trail = el("p", "text-xs text-slate-500", "Your path: " + path.map(function (p) { return p; }).join(" &rarr; "));
+        box.appendChild(trail);
+      }
+      if (st.end) {
+        var end = el("div", "p-6 bg-rose-50 rounded-lg border border-rose-200");
+        end.appendChild(el("h4", "text-lg font-semibold text-rose-700 mb-3", st.title));
+        end.appendChild(el("div", "text-sm text-slate-700 leading-relaxed ws-body", st.body));
+        var again = el("button", "mt-4 rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800", "Start again");
+        again.type = "button";
+        again.addEventListener("click", function () { path = []; step(s.start || s.steps[0].id); });
+        end.appendChild(again);
+        box.appendChild(end);
+        return;
+      }
+      var q = el("div", "p-6 bg-slate-100 rounded-lg border border-slate-200");
+      q.appendChild(el("h4", "text-base font-semibold text-slate-800 mb-4", st.q));
+      if (st.context) q.appendChild(el("div", "mb-4 text-sm text-slate-600 leading-relaxed", st.context));
+      var g = el("div", "grid sm:grid-cols-2 gap-4");
+      st.options.forEach(function (o) {
+        var b = el("button", "activity-button simulation-button text-left", o.text);
+        b.type = "button";
+        b.addEventListener("click", function () { path.push(o.short || o.text.replace(/<[^>]+>/g, "").split(":")[0]); step(o.next); });
+        g.appendChild(b);
+      });
+      q.appendChild(g);
+      box.appendChild(q);
+    }
+    step(s.start || s.steps[0].id);
+  });
+})();
+</script>
+
+<script>
+(function () {
+  var SECTIONS = [["recap", "Carried forward"], ["types", "Types of diversification"], ["motives", "Motives"], ["performance", "Discount & premium"], ["amazon", "Amazon's businesses"], ["advantage", "Advantage across businesses"], ["thin", "Spreading too thin?"], ["synthesis", "Course synthesis"], ["decks", "Go deeper"], ["discussion", "Discussion"], ["quiz", "Quiz"], ["readings", "Readings"]];
+  var KEY = "pgpm-diversification-strategies-progress-v02";
+  var ACTIVITIES = ["motives", "matrix", "thin", "quiz"];
+
+  // ---------- theme ----------
+  var root = document.documentElement;
+  try {
+    // light is the default; dark only when the visitor has asked for it
+    if (localStorage.getItem("pgpm-course-theme") === "dark") root.classList.add("dark");
+  } catch (e) {}
+  var themeBtn = document.getElementById("themeBtn");
+  if (themeBtn) {
+    themeBtn.addEventListener("click", function () {
+      root.classList.toggle("dark");
+      try { localStorage.setItem("pgpm-course-theme", root.classList.contains("dark") ? "dark" : "light"); } catch (e) {}
+    });
+  }
+
+  // ---------- reading progress ----------
+  var bar = document.getElementById("readbar");
+  var pctEl = document.getElementById("progPct");
+  function onScroll() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? Math.min(100, Math.max(0, (h.scrollTop / max) * 100)) : 0;
+    if (bar) { bar.style.width = p + "%"; bar.setAttribute("aria-valuenow", Math.round(p)); }
+    if (pctEl) pctEl.textContent = Math.round(p);
+  }
+  var ticking = false;
+  window.addEventListener("scroll", function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () { onScroll(); ticking = false; });
+  }, { passive: true });
+  onScroll();
+
+  // ---------- rail + drawer nav ----------
+  var rail = document.getElementById("rail");
+  var dnav = document.getElementById("drawerNav");
+  SECTIONS.forEach(function (s) {
+    if (!document.getElementById(s[0])) return;
+    if (rail) {
+      var a = document.createElement("a");
+      a.href = "#" + s[0];
+      a.dataset.sec = s[0];
+      a.innerHTML = '<span class="dot"></span><span class="lbl">' + s[1] + "</span>";
+      rail.appendChild(a);
+    }
+    if (dnav) {
+      var d = document.createElement("a");
+      d.href = "#" + s[0];
+      d.className = "rounded-lg px-3 py-2.5 text-sm text-slate-700 hover:bg-slate-100";
+      d.textContent = s[1];
+      d.addEventListener("click", closeDrawer);
+      dnav.appendChild(d);
+    }
+  });
+
+  var drawer = document.getElementById("drawer");
+  var drawerBtn = document.getElementById("drawerBtn");
+  function openDrawer() {
+    if (!drawer) return;
+    drawer.classList.remove("hidden");
+    if (drawerBtn) drawerBtn.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  }
+  function closeDrawer() {
+    if (!drawer) return;
+    drawer.classList.add("hidden");
+    if (drawerBtn) drawerBtn.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
+  if (drawerBtn) drawerBtn.addEventListener("click", openDrawer);
+  var dc = document.getElementById("drawerClose");
+  var ds = document.getElementById("drawerScrim");
+  if (dc) dc.addEventListener("click", closeDrawer);
+  if (ds) ds.addEventListener("click", closeDrawer);
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeDrawer(); });
+
+  // ---------- scrollspy for the rail ----------
+  var spy = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting || !rail) return;
+      rail.querySelectorAll("a").forEach(function (a) {
+        a.classList.toggle("on", a.dataset.sec === en.target.id);
+      });
+    });
+  }, { rootMargin: "-45% 0px -50% 0px" });
+  SECTIONS.forEach(function (s) {
+    var el = document.getElementById(s[0]);
+    if (el) spy.observe(el);
+  });
+
+  // ---------- scroll reveal ----------
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduce) {
+    var targets = document.querySelectorAll("section > .container > *");
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.06, rootMargin: "0px 0px -8% 0px" });
+    targets.forEach(function (t, i) {
+      // never hide anything already on screen at load
+      if (t.getBoundingClientRect().top < window.innerHeight) return;
+      t.classList.add("rv");
+      io.observe(t);
+    });
+  }
+
+  // ---------- completion tracking ----------
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { state = {}; }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  function count() { return ACTIVITIES.filter(function (k) { return state[k]; }).length; }
+  function paint() {
+    var n = count(), total = ACTIVITIES.length;
+    var a = document.getElementById("doneCount"); if (a) a.textContent = n;
+    var b = document.getElementById("drawerDone"); if (b) b.textContent = n;
+    var c = document.getElementById("drawerBar"); if (c) c.style.width = (100 * n / total) + "%";
+    ACTIVITIES.forEach(function (k) {
+      var badge = document.querySelector('[data-done-for="' + k + '"]');
+      if (badge) badge.hidden = !state[k];
+    });
+  }
+  function mark(k) { if (!state[k]) { state[k] = true; save(); paint(); } }
+  paint();
+
+  // wire completion to the real interactions already on the page
+  function onClickWithin(sel, key) {
+    var el = document.querySelector(sel);
+    if (el) el.addEventListener("click", function () { mark(key); });
+  }
+  onClickWithin("#motiveBox", "motives");
+  onClickWithin("#matrixBox", "matrix");
+  onClickWithin("#thinBox", "thin");
+  onClickWithin("#sQuiz", "quiz");
+
+  // reset control, appended to the readings section if present
+  var readings = document.getElementById("readings");
+  if (readings) {
+    var wrap = readings.querySelector(".container") || readings.querySelector(".max-w-6xl") || readings;
+    if (wrap) {
+      var p = document.createElement("div");
+      p.className = "mt-8 flex flex-wrap items-center gap-3 border-t border-slate-200 pt-6 text-sm";
+      p.innerHTML = '<span class="text-slate-500">Your progress on this page is saved in this browser only.</span>' +
+        '<button type="button" id="resetProg" class="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-100">Reset my progress</button>';
+      wrap.appendChild(p);
+      var rp = document.getElementById("resetProg");
+      if (rp) rp.addEventListener("click", function () {
+        state = {}; save(); paint();
+        rp.textContent = "Reset";
+        setTimeout(function () { rp.textContent = "Reset my progress"; }, 1400);
+      });
+    }
+  }
+})();
+
+</script>
+
+<script>
+/* keep the Chart.js canvases legible in both themes */
+(function(){
+  function chartTheme(){
+    if(!window.Chart||!Chart.getChart) return;
+    var dark=document.documentElement.classList.contains("dark");
+    var tick=dark?"#94A3B8":"#475569";
+    var grid=dark?"rgba(226,232,240,.12)":"rgba(15,23,42,.08)";
+    Chart.defaults.color=tick;
+    document.querySelectorAll("canvas").forEach(function(c){
+      var ch=Chart.getChart(c); if(!ch||!ch.config) return;
+      // Chart.js v4 rebuilds chart.options on update(), so mutate the config
+      var o=ch.config.options=ch.config.options||{};
+      var sc=o.scales=o.scales||{};
+      Object.keys(sc).forEach(function(k){
+        if(!sc[k]) return;
+        sc[k].ticks=sc[k].ticks||{}; sc[k].ticks.color=tick;
+        if(sc[k].grid&&sc[k].grid.display===false) return;
+        sc[k].grid=sc[k].grid||{}; sc[k].grid.color=grid;
+      });
+      var pl=o.plugins=o.plugins||{};
+      if(pl.legend){ pl.legend.labels=pl.legend.labels||{}; pl.legend.labels.color=tick; }
+      ch.update("none");
+    });
+  }
+  var btn=document.getElementById("themeBtn");
+  if(btn) btn.addEventListener("click",function(){ setTimeout(chartTheme,60); });
+
+  var n=0, iv=setInterval(function(){ chartTheme(); if(++n>20) clearInterval(iv); },400);
+})();
+</script>
+</body>
+</html>

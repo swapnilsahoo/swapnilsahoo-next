@@ -4,19 +4,20 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/check-media-provenance.mjs && node scripts/check-teaching-lessons.mjs && node scripts/check-scripture-corpora.mjs && node scripts/check-guesstimates.mjs",
+    "prebuild": "node scripts/check-media-provenance.mjs && node scripts/check-teaching-lessons.mjs && node scripts/check-one-year-course.mjs && node scripts/check-scripture-corpora.mjs && node scripts/check-guesstimates.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "check:media": "node scripts/check-media-provenance.mjs",
     "check:lessons": "node scripts/check-teaching-lessons.mjs",
+    "check:course": "node scripts/check-one-year-course.mjs",
     "check:scriptures": "node scripts/check-scripture-corpora.mjs",
     "check:scriptures:partial": "node scripts/check-scripture-corpora.mjs --allow-partial-manas",
     "scaffold:manas-word-study": "node scripts/scaffold-ramcharitmanas-word-study.mjs",
     "manifest:manas-word-study": "node scripts/build-ramcharitmanas-word-study-manifest.mjs",
     "test:smoke": "playwright test release-smoke.spec.mjs --reporter=line --workers=1",
-    "check": "eslint && tsc --noEmit && node scripts/check-media-provenance.mjs && node scripts/check-teaching-lessons.mjs && node scripts/check-scripture-corpora.mjs && node scripts/check-guesstimates.mjs",
+    "check": "eslint && tsc --noEmit && node scripts/check-media-provenance.mjs && node scripts/check-teaching-lessons.mjs && node scripts/check-one-year-course.mjs && node scripts/check-scripture-corpora.mjs && node scripts/check-guesstimates.mjs",
     "check:guesstimates": "node scripts/check-guesstimates.mjs"
   },
   "dependencies": {

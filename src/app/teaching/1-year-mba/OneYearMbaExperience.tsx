@@ -57,7 +57,7 @@ const sessionActs = [
 ] as const;
 
 // Sequence and assigned readings follow the PGPM 2026–27 course outline V0.2.
-// Lesson filenames retain their original numbering; link by topic so existing URLs survive.
+// Canonical lesson numbers follow V0.2; earlier standalone topics remain as supplements.
 const interactive = (file: string) => `/teaching/1-year-mba/${encodeURIComponent(file)}`;
 
 type OneYearSession = {
@@ -153,7 +153,7 @@ const sessionPlan: readonly OneYearSession[] = [
     ],
     interactiveHref: interactive("session6.html"),
     relatedMaterials: [
-      { title: "Sustaining competitive advantage", href: interactive("session7.html") },
+      { title: "Sustaining competitive advantage", href: interactive("sustaining-competitive-advantage.html") },
     ],
   },
   {
@@ -165,7 +165,7 @@ const sessionPlan: readonly OneYearSession[] = [
       "Article · Kim, W. C., & Mauborgne, R. (2004). Blue Ocean Strategy. Harvard Business Review.",
       "Article · Ghemawat, P., & Pisano, G. P. (1997). Sustaining Superior Performance: Commitments and Capabilities. Harvard Business School background note 798-008.",
     ],
-    interactiveHref: interactive("session8.html"),
+    interactiveHref: interactive("session7.html"),
     relatedMaterials: [
       {
         title: "Differentiation, cost leadership & blue oceans",
@@ -182,7 +182,7 @@ const sessionPlan: readonly OneYearSession[] = [
       "Article · Eisenmann, T., Parker, G., & Van Alstyne, M. W. (2006). Strategies for Two-Sided Markets. Harvard Business Review.",
       "Article · Bower, J. L., & Christensen, C. M. (1995). Disruptive Technologies: Catching the Wave. Harvard Business Review.",
     ],
-    interactiveHref: interactive("session9.html"),
+    interactiveHref: interactive("session8.html"),
     relatedMaterials: [
       {
         title: "Innovation, entrepreneurship & platforms",
@@ -202,10 +202,10 @@ const sessionPlan: readonly OneYearSession[] = [
       "Article · Porter, M. E. (1987). From Competitive Advantage to Corporate Strategy. Harvard Business Review.",
       "Article · Campbell, A., Goold, M., & Alexander, M. (1995). Corporate Strategy: The Quest for Parenting Advantage. Harvard Business Review.",
     ],
-    interactiveHref: interactive("session10.html"),
+    interactiveHref: interactive("session9.html"),
     relatedMaterials: [
-      { title: "Vertical integration", href: interactive("session11.html") },
-      { title: "Diversification strategies", href: interactive("session13.html") },
+      { title: "Vertical integration", href: interactive("vertical-integration.html") },
+      { title: "Diversification strategies", href: interactive("diversification-strategies.html") },
     ],
     quizIds: ["1yr-08"],
   },
@@ -221,7 +221,7 @@ const sessionPlan: readonly OneYearSession[] = [
       "Article · Dyer, J. H., Kale, P., & Singh, H. (2004). When to Ally and When to Acquire. Harvard Business Review.",
       "Article · Christensen, C. M., Alton, R., Rising, C., & Waldeck, A. (2011). The New M&A Playbook. Harvard Business Review.",
     ],
-    interactiveHref: interactive("Session_9_Corporate_Strategy_Alliances_Mergers_Acquisitions_v0.91.html"),
+    interactiveHref: interactive("session10.html"),
     quizIds: ["1yr-09"],
   },
   {
@@ -236,7 +236,7 @@ const sessionPlan: readonly OneYearSession[] = [
       "Article · Ghemawat, P. (2001). Distance Still Matters: The Hard Reality of Global Expansion. Harvard Business Review.",
       "Article · Ghemawat, P. (2007). Managing Differences: The Central Challenge of Global Strategy. Harvard Business Review.",
     ],
-    interactiveHref: interactive("session12.html"),
+    interactiveHref: interactive("session11.html"),
   },
   {
     number: "12",
@@ -250,7 +250,7 @@ const sessionPlan: readonly OneYearSession[] = [
       "Article · Neilson, G. L., Martin, K. L., & Powers, E. (2008). The Secrets to Successful Strategy Execution. Harvard Business Review.",
       "Article · Groysberg, B., Lee, J., Price, J., & Cheng, J. Y.-J. (2018). The Leader’s Guide to Corporate Culture. Harvard Business Review.",
     ],
-    interactiveHref: interactive("Session_11_Organizational_Design_Structure_Culture_Control_v0.297.html"),
+    interactiveHref: interactive("session12.html"),
   },
   {
     number: "13",
@@ -264,7 +264,7 @@ const sessionPlan: readonly OneYearSession[] = [
       "Article · Bower, J. L., & Paine, L. S. (2017). The Error at the Heart of Corporate Leadership. Harvard Business Review.",
       "Article · Bazerman, M. H., & Tenbrunsel, A. E. (2011). Ethical Breakdowns. Harvard Business Review.",
     ],
-    interactiveHref: interactive("Session_12_Corporate_Governance_Business_Ethics_Business_Models_V0.293.html"),
+    interactiveHref: interactive("session13.html"),
   },
 ] as const;
 
@@ -931,9 +931,9 @@ export function OneYearMbaExperience() {
           </div>
 
           <p className="text-ink-500 dark:text-ink-400 mt-7 text-xs leading-5">
-            Linked lessons may retain earlier session numbers; use the topics and sequence above
-            for this course. Sequence and coverage may be modified by the instructor in response
-            to initial experience and the mid-course review.
+            The main lessons follow this sequence. Related lesson materials offer further
+            practice and may retain earlier numbering. Sequence and coverage may be modified by
+            the instructor in response to initial experience and the mid-course review.
           </p>
         </Container>
       </section>

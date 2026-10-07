@@ -3,9 +3,10 @@ import path from "node:path";
 
 const publicRoot = path.resolve(process.cwd(), "public");
 const lessonFiles = [
-  "teaching/1-year-mba/session1.html",
-  "teaching/1-year-mba/session3.html",
-  "teaching/1-year-mba/session4.html",
+  ...Array.from({ length: 13 }, (_, index) => `teaching/1-year-mba/session${index + 1}.html`),
+  "teaching/1-year-mba/sustaining-competitive-advantage.html",
+  "teaching/1-year-mba/vertical-integration.html",
+  "teaching/1-year-mba/diversification-strategies.html",
   "teaching/1-year-mba/Session6_Business Strategy_Differentiation, CostLeadership_BlueOceans_v0.8.html",
   "teaching/1-year-mba/Session_7_Business_Strategy_Innovation_Entrepreneurship_Platforms_V0.003.html",
   "teaching/1-year-mba/Session8_Corporate Strategy_v0.8.html",

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Session 5: Internal Analysis & Resource-Based View | STRAMGT 221 — Dr. Swapnil Sahoo</title>
+    <title>Session 5: Internal Analysis & Resource-Based View | PGPM 2026–27 — Dr. Swapnil Sahoo</title>
     <meta name="description" content="Resources, capabilities, VRIO, the value chain and SWOT, applied to Patagonia: why a firm can tell customers not to buy its jacket and a rival cannot copy the move.">
     <link rel="canonical" href="https://www.swapnilsahoo.com/teaching/1-year-mba/session5.html">
     <meta property="og:type" content="article">
@@ -323,12 +323,16 @@
       /* theme, resolved before first paint: light unless this visitor chose dark */
       (function () {
         try {
-          if (localStorage.getItem("s5-theme") === "dark") {
+          if ((localStorage.getItem("pgpm-course-theme") || localStorage.getItem("s5-theme")) === "dark") {
             document.documentElement.classList.add("dark");
           }
         } catch (e) {}
       })();
     </script>
+<style id="outline-v02-styles">
+.v02-section{color:var(--ink);scroll-margin-top:120px}.v02-kicker{color:var(--accent);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.13em}.v02-copy{color:var(--muted);line-height:1.8;margin-top:.9rem;max-width:76ch}.v02-grid + .v02-card{margin-top:1rem}.v02-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-top:1.4rem}.v02-card,.v02-panel{padding:1.5rem;border:1px solid var(--line);border-radius:1rem;background:var(--card);min-width:0}.v02-card h3,.v02-panel h3{color:var(--ink)}.v02-section a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}.v02-tabs{margin-top:1.5rem}.v02-tablist{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.8rem}.v02-tablist button,.v02-action{border:1px solid var(--line);border-radius:.65rem;padding:.7rem 1rem;font-size:.85rem;font-weight:600;color:var(--ink);background:var(--card);min-height:44px}.v02-tablist [aria-selected="true"],.v02-action{background:var(--accent);color:white;border-color:var(--accent)}html.dark .v02-action,html.dark .v02-tablist [aria-selected="true"]{background:#4338ca;color:#fff;border-color:#818cf8}.v02-panel[hidden]{display:none}.v02-section button:focus-visible,.v02-section a:focus-visible,.v02-section input:focus-visible,.v02-section select:focus-visible,.v02-section textarea:focus-visible{outline:3px solid var(--accent);outline-offset:3px}.v02-field{display:flex;flex-direction:column;gap:.45rem;font-size:.85rem;font-weight:600;margin:1rem 0;color:var(--ink)}.v02-field textarea,.v02-field input,.v02-field select{font:inherit;font-weight:400;width:100%;padding:.75rem;border:1px solid var(--line);border-radius:.6rem;background:var(--paper);color:var(--ink);min-height:44px}.v02-field textarea{resize:vertical}.v02-field input[type=range]{padding:0;accent-color:var(--accent)}.v02-feedback{margin-top:1rem;padding:1rem;border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 .7rem .7rem 0;line-height:1.7;color:var(--ink);font-size:.9rem}.v02-note{font-size:.75rem;line-height:1.7;color:var(--muted);margin-top:1rem}.v02-flow{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.2rem 0}.v02-flow span{background:var(--accent-soft);padding:.7rem 1rem;border-radius:.65rem;color:var(--ink);font-size:.85rem}.v02-section details{border:1px solid var(--line);border-radius:.8rem;padding:1rem;margin-top:1rem;background:var(--card)}.v02-section summary{cursor:pointer;font-weight:600;line-height:1.6;min-height:28px}.v02-check fieldset{border:1px solid var(--line);border-radius:.8rem;padding:1rem;margin-top:1rem}.v02-check legend{font-weight:600;padding:0 .4rem}.v02-check label{display:flex;align-items:flex-start;gap:.65rem;padding:.65rem;border-radius:.5rem;font-size:.9rem;line-height:1.6;cursor:pointer}.v02-check input{margin-top:.3rem;accent-color:var(--accent);flex:none}.v02-check .v02-feedback:empty{display:none}.v02-stat{font-size:1.7rem;font-family:Fraunces,serif;font-weight:600;display:block;color:var(--accent)}.v02-section ol,.v02-section ul{padding-left:1.3rem;list-style:disc;line-height:1.8;color:var(--muted);margin-top:1rem}.v02-section ol{list-style:decimal}.v02-section li+li{margin-top:.45rem}@media(max-width:640px){.v02-grid{grid-template-columns:1fr}.v02-card,.v02-panel{padding:1.1rem}.v02-tablist button{flex:1 1 140px}.v02-flow span{flex:1 1 160px}.v02-check legend{font-size:.92rem}}@media(prefers-reduced-motion:reduce){.v02-section *{scroll-behavior:auto!important}}@media print{.v02-panel[hidden]{display:block}.v02-tablist{display:none}.v02-section{break-inside:auto}}
+</style>
+    <link rel="stylesheet" href="/teaching/1-year-mba/course-ui.css">
 </head>
 
 <body class="text-slate-700">
@@ -352,7 +356,7 @@
       <p class="truncate font-medium text-slate-400">&copy; Dr. Swapnil Sahoo 2026 &middot; Great Lakes Institute of Management, Gurgaon</p>
     </div>
     <div class="flex items-center gap-4 shrink-0">
-      <a href="https://www.swapnilsahoo.com/teaching/1-year-mba" class="hidden md:inline text-slate-400 hover:text-white transition">STRAMGT 221</a>
+      <a href="https://www.swapnilsahoo.com/teaching/1-year-mba" class="hidden md:inline text-slate-400 hover:text-white transition">PGPM 2026–27</a>
       <a href="https://x.com/swapnilsahoo" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="X/Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
       <a href="https://www.instagram.com/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.575 2h.093zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" clip-rule="evenodd"/></svg></a>
       <a href="https://www.linkedin.com/in/swapnilsahoo/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white top-bar-link" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.71-1.38 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28 1.16 3.28 4.26z"/></svg></a>
@@ -369,7 +373,7 @@
         <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-slate-900 text-white font-display text-sm font-semibold">05</span>
         <div class="min-w-0">
           <p class="truncate font-display text-base font-semibold leading-tight text-slate-900">Internal Analysis & RBV</p>
-          <p class="hidden truncate text-[11px] text-slate-500 sm:block">90 minutes · <span id="progPct">0</span>% read · <span id="doneCount">0</span>/7 activities done</p>
+          <p class="hidden truncate text-[11px] text-slate-500 sm:block">90 minutes · <span id="progPct">0</span>% read · <span id="doneCount">0</span>/9 activities done</p>
         </div>
       </div>
 
@@ -414,7 +418,7 @@
     </div>
     <div class="mt-3 rounded-xl bg-slate-50 p-3">
       <div class="flex items-center justify-between text-xs text-slate-500">
-        <span>Progress</span><span><span id="drawerDone">0</span>/7 activities</span>
+        <span>Progress</span><span><span id="drawerDone">0</span>/9 activities</span>
       </div>
       <div class="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-200">
         <div id="drawerBar" class="h-full rounded-full bg-blue-600 transition-all" style="width:0%"></div>
@@ -430,8 +434,9 @@
     <div>
       <div class="flex flex-wrap items-center gap-2 mb-3">
         <span class="pill bg-blue-50 text-blue-700">Session 05</span>
+        <span class="pill bg-slate-100 text-slate-600">PGPM 2026–27</span>
         <span class="pill bg-slate-100 text-slate-600">1.5 hours</span>
-        <span class="pill bg-slate-100 text-slate-600">Business &amp; competitive strategy</span>
+        <span class="pill bg-slate-100 text-slate-600">Analysis</span>
       </div>
       <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-slate-900">Internal Analysis &amp; Resource-Based View</h1>
       <p class="mt-2 font-display text-lg md:text-xl italic text-blue-700">What Patagonia has that a rival cannot buy</p>
@@ -470,7 +475,7 @@
   <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Carried forward &middot; Sessions 2 to 4</p>
   <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">The outside view is done. Now open the firm.</h2>
   <p class="mt-3 text-slate-600 max-w-5xl leading-relaxed">
-    Session 2 put analysis third in Kaplan and Norton&rsquo;s sequence, under one question: what are the key issues our
+    Session 2 put analysis third in Kaplan, Norton and Barrows&rsquo;s sequence, under one question: what are the key issues our
     strategy must address? That step had three parts: external analysis, internal analysis and SWOT.
     <a href="/teaching/1-year-mba/session3.html" class="font-semibold text-blue-700 hover:underline">Session 3</a> and
     <a href="/teaching/1-year-mba/session4.html" class="font-semibold text-blue-700 hover:underline">Session 4</a> did the
@@ -507,6 +512,7 @@
     </p>
   </div>
 </section>
+<section id="authors" class="v02-section mx-auto max-w-6xl px-4 py-12 md:py-14"><p class="v02-kicker">Two readings · one strategic problem</p><h2 class="mt-2 text-2xl md:text-3xl font-bold">Read with a question in mind</h2><div class="v02-tabs" data-v02-tabs><div class="v02-tablist" role="tablist" aria-label="Assigned reading lenses"><button type="button" role="tab" id="v02-tab-0" aria-controls="v02-panel-0" aria-selected="true">Collis & Montgomery</button><button type="button" role="tab" id="v02-tab-1" aria-controls="v02-panel-1" aria-selected="false">Prahalad & Hamel</button><button type="button" role="tab" id="v02-tab-2" aria-controls="v02-panel-2" aria-selected="false">Connect the two</button></div><div id="v02-panel-0" class="v02-panel" role="tabpanel" aria-labelledby="v02-tab-0" tabindex="0"><h3 class="text-xl font-bold">Which resource survives a serious challenge?</h3><p class="v02-copy"><strong>Five tests:</strong> inimitability, durability, appropriability, substitutability and competitive superiority. Compare a resource with alternatives, not just the firm’s own history.</p><p class="v02-copy"><strong>Your application:</strong> call a Patagonia resource “valuable” only after naming a customer benefit or cost effect, a comparison and evidence. Then challenge who keeps the returns and what could make the resource obsolete.</p><p class="v02-copy"><a href="https://hbr.org/1995/07/competing-on-resources-strategy-in-the-1990s" target="_blank" rel="noopener noreferrer">Competing on Resources · assigned 1995 article ↗</a></p></div><div id="v02-panel-1" class="v02-panel" role="tabpanel" aria-labelledby="v02-tab-1" tabindex="0"><h3 class="text-xl font-bold">What capability travels beyond one product?</h3><p class="v02-copy">Core competence connects collective learning across businesses. Test access to multiple markets, customer benefit and difficulty of imitation.</p><p class="v02-copy"><strong>Your application:</strong> start with a repairable garment. Work backwards to the material, design, service and knowledge-sharing routines needed to keep it useful. Now name a second product where those routines might help—and one where they might not.</p><p class="v02-copy"><a href="https://hbr.org/1990/05/the-core-competence-of-the-corporation" target="_blank" rel="noopener noreferrer">The Core Competence of the Corporation · assigned reading ↗</a></p></div><div id="v02-panel-2" class="v02-panel" role="tabpanel" aria-labelledby="v02-tab-2" tabindex="0"><h3 class="text-xl font-bold">Resource inventory → competence → strategic choice</h3><p class="v02-copy">A trademark is an asset; a repeatable ability to coordinate design and repair is a capability hypothesis. A strong product line does not itself prove that the underlying learning transfers elsewhere. Use the resource tests to challenge the capability, then use the competence tests to challenge the proposed new market.</p><p class="v02-copy">Bring one claim that fails. The learning value of internal analysis often lies in discovering where an apparent strength stops being useful.</p></div></div></section>
 
 
 <section id="inside" class="bg-white border-y border-slate-200">
@@ -642,7 +648,7 @@
       <p class="mt-2 text-sm text-slate-600 leading-relaxed">Rivals attack an advantage by direct imitation or by substitution.
         Copying is costly when the resource depends on history (<strong>path dependence</strong>), when nobody can say exactly
         what causes the result (<strong>causal ambiguity</strong>), or when it lives in many interacting systems
-        (<strong>social complexity</strong>). Session 7 develops these as isolating mechanisms.</p>
+        (<strong>social complexity</strong>). The sustaining-advantage extension develops these as isolating mechanisms; Session 7 applies commitments and capabilities to positioning.</p>
     </div>
     <div class="card p-5">
       <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Organised</p>
@@ -749,14 +755,14 @@
         <h3 class="mt-1 font-bold text-slate-900">Difference, or cost?</h3>
         <p class="mt-2 text-sm text-slate-600 leading-relaxed">Every activity adds some value and some cost. Value chain analysis
           asks which activities generate the firm&rsquo;s differentiation and which drive its costs (Rothaermel, 2024, p. 154).
-          Which of the two Patagonia should compete on is Session 8&rsquo;s question.</p>
+          Which of the two Patagonia should compete on is Session 7&rsquo;s question.</p>
       </div>
     </div>
     <div class="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-5">
-      <h3 class="font-bold text-slate-900">Why a corporate-strategy article is assigned here</h3>
+      <h3 class="font-bold text-slate-900">Why the value-chain extension helps here</h3>
       <p class="mt-2 text-sm text-slate-600 leading-relaxed">Porter (1987) introduces the value chain to judge diversified firms:
-        a corporate parent adds value only by transferring skills between similar value chains or by sharing activities, such
-        as a common sales force or logistics network. Sessions 10 to 13 return to that use. Today the tool is applied to a single
+        a corporate parent can add value through mechanisms such as transferring skills between similar value chains or by sharing activities, such
+        as a common sales force or logistics network. Session 9 returns to that corporate-strategy use. Today the tool is applied to a single
         business, which is how it starts in the article: advantage is built activity by activity, inside one unit.</p>
     </div>
 
@@ -984,9 +990,7 @@
         <h3 class="font-bold text-slate-900">What comes next</h3>
         <p class="mt-2 text-sm text-slate-600 leading-relaxed">In September 2022 the Chouinard family moved all of Patagonia&rsquo;s
           voting stock into a purpose trust and all of its non-voting stock into a nonprofit, the Holdfast Collective (p. 11).
-          <a href="/teaching/1-year-mba/session7.html" class="font-semibold text-blue-700 hover:underline">Session 7</a> asks
-          whether that makes the resource harder to copy. Session 6 asks how much value it creates, and Session 8 what position
-          it supports.</p>
+          <a href="/teaching/1-year-mba/session6.html" class="font-semibold text-blue-700 hover:underline">Session 6</a> distinguishes shared value from the distribution of profits. Session 7 asks which competitive position these activities support. The sustaining-advantage extension examines imitation.</p>
       </div>
     </div>
   </div>
@@ -1018,13 +1022,13 @@
       </span>
       <span class="text-sm font-semibold text-blue-700">Open the deck &rarr;</span>
     </a>
-    <a href="/teaching/2-year-mba/session-10-resources-capabilities-and-core-competencies.html" class="flex flex-col justify-between gap-3 rounded-2xl border border-slate-200 bg-white p-5 hover:bg-slate-50 transition">
+    <a href="/teaching/1-year-mba/sustaining-competitive-advantage.html" class="flex flex-col justify-between gap-3 rounded-2xl border border-slate-200 bg-white p-5 hover:bg-slate-50 transition">
       <span>
-        <span class="block text-[10px] font-semibold uppercase tracking-wider text-slate-500">Preview &middot; Session 7</span>
+        <span class="block text-[10px] font-semibold uppercase tracking-wider text-slate-500">Extension &middot; sustaining advantage</span>
         <span class="mt-1 block font-bold text-slate-900">Sustaining Competitive Advantage: commitments and capabilities</span>
         <span class="mt-1 block text-sm text-slate-600">Patagonia&rsquo;s defences classified as commitments or capabilities, with a
           &ldquo;moat tester&rdquo;. Its own title reads &ldquo;Official Session 07&rdquo;: it was built for an earlier course
-          numbering and covers the ground of this course&rsquo;s Session 7.</span>
+          numbering. Use it to extend Session 7&rsquo;s commitments-and-capabilities lens.</span>
       </span>
       <span class="text-sm font-semibold text-blue-700">Open the deck &rarr;</span>
     </a>
@@ -1046,6 +1050,7 @@
   </div>
 </section>
 
+<section id="reading-lab" class="v02-section mx-auto max-w-6xl px-4 py-12 md:py-14"><p class="v02-kicker">Apply · challenge · revise</p><h2 class="mt-2 text-2xl md:text-3xl font-bold">Resource studio: try to disprove the advantage</h2><p class="v02-copy">The prompts below are hypothetical resource claims for analysis. They are not reported facts about Patagonia. Select the test most directly threatened, then apply the method to a cited case fact.</p><div class="v02-grid"><div class="v02-card"><h3 class="text-xl font-bold">1 · Who keeps the returns?</h3><p class="v02-copy">A celebrated designer can leave and take customers with them. The company owns the office and logo, but not the relationship.</p><label class="v02-field" for="v02-resource-test">Which test is most directly in doubt?<select id="v02-resource-test"><option value="">Choose…</option><option value="durability">Durability</option><option value="appropriability">Appropriability</option><option value="superiority">Competitive superiority</option></select></label><button type="button" id="v02-resource-check" class="v02-action">Challenge the claim</button><div id="v02-resource-result" class="v02-feedback" role="status" aria-live="polite">Make a choice, then examine its consequences.</div></div><div class="v02-card"><h3 class="text-xl font-bold">2 · Can the learning travel?</h3><p class="v02-copy">A venture’s only claimed competence is “our best-selling jacket.”</p><label class="v02-field" for="v02-competence-choice">The next useful question is…<select id="v02-competence-choice"><option value="">Choose…</option><option value="rank">How high is its sales rank?</option><option value="routine">Which integrated routines create its benefit, and where else can they work?</option><option value="size">How large is its head office?</option></select></label><button type="button" id="v02-competence-check" class="v02-action">Move below the product</button><div id="v02-competence-result" class="v02-feedback" role="status" aria-live="polite">Make a choice, then examine its consequences.</div></div></div><div class="v02-card"><h3 class="text-xl font-bold">3 · Build a competence map</h3><div class="v02-flow"><span>Evidence of a customer benefit</span><span>↓ Integrated routines</span><span>↓ Shared skills and learning</span><span>→ A second application</span></div><div class="v02-grid"><label class="v02-field" for="v02-benefit">Visible benefit and case evidence<textarea id="v02-benefit" rows="3" placeholder="What becomes better, cheaper or more reliable for the customer?"></textarea></label><label class="v02-field" for="v02-routines">Routines that make it repeatable<textarea id="v02-routines" rows="3" placeholder="Show how at least two functions coordinate."></textarea></label><label class="v02-field" for="v02-transfer">A plausible second application<textarea id="v02-transfer" rows="3" placeholder="What transfers; what new capability must still be built?"></textarea></label><label class="v02-field" for="v02-transfer-fail">An application that should be refused<textarea id="v02-transfer-fail" rows="3" placeholder="Explain the missing link, not just “poor fit”."></textarea></label></div></div></section><section id="studio" class="v02-section mx-auto max-w-6xl px-4 py-12 md:py-14"><p class="v02-kicker">Bring the evidence into the room</p><h2 class="mt-2 text-2xl md:text-3xl font-bold">One decision, two rounds</h2><div class="v02-grid"><div class="v02-card"><h3 class="text-xl font-bold">Case round · 12 minutes</h3><p class="v02-copy">Choose one Patagonia activity from the value-chain exercise below. Explain which resource it builds, which core-competence hypothesis it supports, and which of the five resource tests remains unproven.</p><label class="v02-field" for="v02-resource-ledger">Activity → resource → test → evidence gap<textarea id="v02-resource-ledger" rows="3" placeholder="Cite a case page or exhibit. Do not treat a good reputation as proof of every test."></textarea></label></div><div class="v02-card"><h3 class="text-xl font-bold">Peer challenge · 5 minutes</h3><p class="v02-copy">Your partner is a capable rival. They may copy the visible product but must explain the cost, time and coordination needed to reproduce the underlying routines. Then consider substitution: can customers get the benefit differently?</p><label class="v02-field" for="v02-rival-resource">The strongest imitation or substitution challenge<textarea id="v02-rival-resource" rows="3" placeholder="Revise the original claim after the challenge."></textarea></label></div></div></section><section id="reading-check" class="v02-section mx-auto max-w-6xl px-4 py-12 md:py-14"><p class="v02-kicker">Retrieve · explain · retry</p><h2 class="mt-2 text-2xl md:text-3xl font-bold">Can you use the readings?</h2><p class="v02-copy">Retrieve the reading lenses before you use them in the case. These are concept checks, not a model case answer.</p><form id="v02-check" class="v02-check"><fieldset data-answer="0" data-reason="A rival need not reproduce your resource if it can supply the benefit through a different route."><legend>1. A resource is hard to copy, but a new technology provides the same benefit. Which threat matters?</legend><label><input type="radio" name="v02-q0" value="0"><span>Substitution</span></label><label><input type="radio" name="v02-q0" value="1"><span>Only imitation</span></label><label><input type="radio" name="v02-q0" value="2"><span>None: hard to copy guarantees permanence</span></label><div class="v02-feedback" aria-live="polite"></div></fieldset><fieldset data-answer="1" data-reason="The hypothesis names integrated, reusable learning. It still needs evidence of customer benefit, transfer and imitation difficulty."><legend>2. Which is the better competence hypothesis?</legend><label><input type="radio" name="v02-q1" value="0"><span>A popular jacket model</span></label><label><input type="radio" name="v02-q1" value="1"><span>Coordinating materials knowledge, repair feedback and design across product lines</span></label><label><input type="radio" name="v02-q1" value="2"><span>A quarterly sales target</span></label><div class="v02-feedback" aria-live="polite"></div></fieldset><fieldset data-answer="1" data-reason="You can improve relative to your own past while falling behind the alternatives customers can choose."><legend>3. Why is a five-year-old internal benchmark insufficient to establish superiority?</legend><label><input type="radio" name="v02-q2" value="0"><span>Internal data never matter</span></label><label><input type="radio" name="v02-q2" value="1"><span>Superiority requires comparison with relevant competing alternatives</span></label><label><input type="radio" name="v02-q2" value="2"><span>Every resource improves with age</span></label><div class="v02-feedback" aria-live="polite"></div></fieldset><button class="v02-action" type="submit" style="margin-top:1rem">Check my reasoning</button><p id="v02-score" class="v02-feedback" role="status">Your score will appear after you check.</p></form></section>
 <section id="quiz" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
   <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Knowledge check</p>
   <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Ten questions</h2>
@@ -1066,10 +1071,11 @@
   <p class="mt-3 text-slate-600 max-w-5xl leading-relaxed">All readings are in the course pack. They are copyrighted and are not
     posted on this site.</p>
   <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+<div class="card p-5"><p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Required · V0.2 core-competence reading</p><p class="mt-2 text-sm text-slate-700 ref">Prahalad, C. K., &amp; Hamel, G. (1990). <em>The Core Competence of the Corporation.</em> Harvard Business Review. <a href="https://hbr.org/1990/05/the-core-competence-of-the-corporation" target="_blank" rel="noopener noreferrer">Publisher record ↗</a></p><p class="mt-2 text-xs text-slate-500">Bring a capability hypothesis, a customer benefit, a plausible second application and one reason the transfer could fail.</p></div>
     <div class="card p-5">
       <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Required &middot; the case</p>
       <p class="mt-2 text-sm text-slate-700 ref">Trelstad, B., Hsieh, N.-h., Norris, M., &amp; Pinckney, S. (2023). <em>Patagonia: &ldquo;Earth is now our only shareholder&rdquo;</em> (HBS No. 9-323-057). Harvard Business School Publishing.</p>
-      <p class="mt-2 text-xs text-slate-500">For this session read pages 1&ndash;6 and Exhibits 2, 5 and 9 closely: the history, not the ownership decision. The ownership decision returns in Session 7.</p>
+      <p class="mt-2 text-xs text-slate-500">For this session read pages 1&ndash;6 and Exhibits 2, 5 and 9 closely: the history, not the ownership decision. Connect ownership and operating choices to shared value in Session 6, then competitive positioning in Session 7.</p>
     </div>
     <div class="card p-5">
       <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Required &middot; the resource-based view</p>
@@ -1077,12 +1083,12 @@
       <p class="mt-2 text-xs text-slate-500">Bring their tests for a valuable resource and compare them with VRIO.</p>
     </div>
     <div class="card p-5">
-      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Required &middot; the value chain</p>
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Supplementary &middot; the value chain</p>
       <p class="mt-2 text-sm text-slate-700 ref">Porter, M. E. (1987). From competitive advantage to corporate strategy. <em>Harvard Business Review, 65</em>(3), 43&ndash;59.</p>
       <p class="mt-2 text-xs text-slate-500">For today, the section on the value chain and the nine categories of value activities. The rest of the article returns with corporate strategy.</p>
     </div>
     <div class="card p-5">
-      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Required &middot; textbook</p>
+      <p class="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Supplementary &middot; textbook</p>
       <p class="mt-2 text-sm text-slate-700 ref">Rothaermel, F. T. (2024). <em>Strategic management</em> (6th ed.). McGraw Hill. Chapter 4, Internal analysis: Resources, capabilities, and core competencies.</p>
       <p class="mt-2 text-xs text-slate-500">Sections 4.2&ndash;4.6: resources and capabilities, VRIO, the value chain and SWOT.</p>
     </div>
@@ -1102,7 +1108,7 @@
 <footer class="bg-gray-800 mt-16 sm:mt-24 border-t border-gray-700">
   <div class="container mx-auto px-6 py-8 text-center">
     <p class="text-sm text-slate-400">&copy; Dr. Swapnil Sahoo 2026 &middot; Great Lakes Institute of Management, Gurgaon</p>
-    <p class="mt-2 text-xs text-slate-500">STRAMGT 221 &middot; Strategic Management (PGPM) &middot; Session 5</p>
+    <p class="mt-2 text-xs text-slate-500">PGPM 2026–27 &middot; Strategic Management (PGPM) &middot; Session 5</p>
     <div class="mt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
       <a href="https://www.swapnilsahoo.com" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-400 hover:text-white">swapnilsahoo.com</a>
       <a href="/teaching/1-year-mba/session4.html" class="text-sm text-slate-400 hover:text-white">&larr; Session 4</a> <a href="/teaching/1-year-mba" class="text-sm text-slate-400 hover:text-white">All sessions</a> <a href="/teaching/1-year-mba/session6.html" class="text-sm text-slate-400 hover:text-white">Session 6 &rarr;</a>
@@ -1572,7 +1578,7 @@
     { y: 2017, l: "G", h: "Sues over Bears Ears", t: "Opposes removing federal protection from 2 million acres of public land and joins a lawsuit; runs its first television ad; boycott calls follow.", p: "5" },
     { y: 2018, l: "C", h: "A new mission", t: "“We’re in business to save our home planet.”", p: "6" },
     { y: 2020, l: "G", h: "Nearly $200 million given", t: "Nearly $200 million donated to environmental organisations since 1980; a B Impact score of 151.4.", p: "6" },
-    { y: 2022, l: "C", h: "Ownership to a trust and a nonprofit", t: "All voting stock to the Patagonia Purpose Trust, all non-voting stock to the Holdfast Collective. Session 7 takes this up.", p: "11" }
+    { y: 2022, l: "C", h: "Ownership to a trust and a nonprofit", t: "All voting stock to the Patagonia Purpose Trust, all non-voting stock to the Holdfast Collective. Session 6 examines how this differs from shared value through operations.", p: "11" }
   ];
   var root = document.getElementById("tlRoot"), svg = document.getElementById("tlSvg"), plot = document.getElementById("tlPlot");
   if (!root || !svg) return;
@@ -1956,21 +1962,21 @@
 
 <script>
 (function () {
-  var SECTIONS = [["recap", "Recap"], ["inside", "Resources & capabilities"], ["vrio", "VRIO"], ["valuechain", "Value chain"], ["swot", "SWOT"], ["case", "Patagonia"], ["decks", "Go deeper"], ["discussion", "Discussion"], ["quiz", "Quiz"], ["readings", "Readings"]];
-  var KEY = "s5-progress-v1";
-  var ACTIVITIES = ["sort", "vrio", "fit", "chain", "swot", "timeline", "quiz"];
+  var SECTIONS = [["recap", "Recap"], ["authors", "Reading lenses"], ["inside", "Resources & capabilities"], ["vrio", "VRIO"], ["valuechain", "Value chain"], ["swot", "SWOT"], ["case", "Patagonia"], ["decks", "Go deeper"], ["discussion", "Discussion"], ["reading-lab", "Reading lab"], ["studio", "Studio"], ["reading-check", "Reading check"], ["quiz", "Quiz"], ["readings", "Readings"]];
+  var KEY = "pgpm-v02-session5-progress";
+  var ACTIVITIES = ["sort", "vrio", "fit", "chain", "swot", "timeline", "quiz", "readingLab", "readingCheck"];
 
   // ---------- theme ----------
   var root = document.documentElement;
   try {
     // light is the default; dark only when the visitor has asked for it
-    if (localStorage.getItem("s5-theme") === "dark") root.classList.add("dark");
+    if ((localStorage.getItem("pgpm-course-theme") || localStorage.getItem("s5-theme")) === "dark") root.classList.add("dark");
   } catch (e) {}
   var themeBtn = document.getElementById("themeBtn");
   if (themeBtn) {
     themeBtn.addEventListener("click", function () {
       root.classList.toggle("dark");
-      try { localStorage.setItem("s5-theme", root.classList.contains("dark") ? "dark" : "light"); } catch (e) {}
+      try { localStorage.setItem("pgpm-course-theme", root.classList.contains("dark") ? "dark" : "light"); } catch (e) {}
     });
   }
 
@@ -2084,6 +2090,28 @@
   function mark(k) { if (!state[k]) { state[k] = true; save(); paint(); } }
   paint();
 
+  // Completion for the reading lab requires using its feedback controls.
+  var readingLab = document.getElementById('reading-lab');
+  if (readingLab) {
+    var labButtons = Array.from(readingLab.querySelectorAll('.v02-action'));
+    var labUsed = new Set();
+    readingLab.addEventListener('click', function(event) {
+      var button = event.target.closest('.v02-action');
+      if (!button) return;
+      var card = button.closest('.v02-card');
+      if (card && Array.from(card.querySelectorAll('select, input[type="number"]')).some(function(input) { return input.value === '' || !input.checkValidity(); })) return;
+      labUsed.add(button.id);
+      if (labButtons.every(function(item) { return labUsed.has(item.id); })) mark('readingLab');
+    });
+    readingLab.addEventListener('input', function(event) {
+      if (event.target.matches('input[type="range"]')) mark('readingLab');
+    });
+  }
+  var readingCheck = document.getElementById('v02-check');
+  if (readingCheck) readingCheck.addEventListener('submit', function() {
+    if (Array.from(readingCheck.querySelectorAll('fieldset')).every(function(item) { return item.querySelector('input:checked'); })) mark('readingCheck');
+  });
+
   // wire completion to the real interactions already on the page
   function onClickWithin(sel, key) {
     var el = document.querySelector(sel);
@@ -2150,5 +2178,22 @@
   var n=0, iv=setInterval(function(){ chartTheme(); if(++n>20) clearInterval(iv); },400);
 })();
 </script>
+<script>
+(function(){
+
+document.querySelectorAll('[data-v02-tabs]').forEach(function(group){
+ var tabs=Array.from(group.querySelectorAll('[role="tab"]')), panels=Array.from(group.querySelectorAll('[role="tabpanel"]'));
+ function activate(index,focus){tabs.forEach(function(tab,i){tab.setAttribute('aria-selected',String(i===index));tab.tabIndex=i===index?0:-1;panels[i].hidden=i!==index;});if(focus)tabs[index].focus();}
+ tabs.forEach(function(tab,i){tab.addEventListener('click',function(){activate(i,false);});tab.addEventListener('keydown',function(e){var next=i;if(e.key==='ArrowRight')next=(i+1)%tabs.length;else if(e.key==='ArrowLeft')next=(i+tabs.length-1)%tabs.length;else if(e.key==='Home')next=0;else if(e.key==='End')next=tabs.length-1;else return;e.preventDefault();activate(next,true);});});activate(0,false);
+});
+var check=document.getElementById('v02-check');
+if(check){check.addEventListener('submit',function(e){e.preventDefault();var score=0,answered=0;
+ check.querySelectorAll('fieldset').forEach(function(f){var selected=f.querySelector('input:checked'), out=f.querySelector('.v02-feedback');if(!selected){out.textContent='Choose an answer before checking this question.';return;}answered++;var correct=selected.value===f.dataset.answer;if(correct)score++;out.textContent=(correct?'Correct. ':'Revisit this. ')+f.dataset.reason;});
+ var total=check.querySelectorAll('fieldset').length;document.getElementById('v02-score').textContent=score+' / '+total+' correct. '+(answered<total?'Answer all questions, then check again.':'Use the explanations to revise your reasoning; you can retry.');
+ });}
+document.getElementById('v02-resource-check').onclick=function(){var v=document.getElementById('v02-resource-test').value;document.getElementById('v02-resource-result').textContent=!v?'Choose a test first.':v==='appropriability'?'Appropriability is the direct issue: the designer may capture the returns or transfer the relationship. Investigate contracts, team routines and customer attachment before claiming a firm-owned advantage.':'The direct question is who captures the returns. Durability asks how long value persists; superiority asks how the resource compares with alternatives.';};document.getElementById('v02-competence-check').onclick=function(){var v=document.getElementById('v02-competence-choice').value;document.getElementById('v02-competence-result').textContent=!v?'Choose the next question first.':v==='routine'?'Yes. Trace the product’s benefit back to coordinated routines, then test transfer. A successful product is evidence to investigate, not the competence itself.':'Sales rank or office size does not identify the reusable learning. Ask which routines create the benefit and what happens when they are applied elsewhere.';};
+})();
+</script>
+<script src="/teaching/1-year-mba/course-ui.js" data-course-session="5" defer></script>
 </body>
 </html>
