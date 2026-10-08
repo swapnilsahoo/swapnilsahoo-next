@@ -84,9 +84,14 @@ export function LabShell({
               Free self-paced courses and proposed programmes for adults aged 18 and over.
               Registration of interest is free and does not reserve a paid place.
             </p>
+            <p className="lab-small">
+              Currently run on a not-for-profit basis. Voluntary support helps improve learning
+              content and infrastructure; the free courses remain free.
+            </p>
           </div>
           <nav aria-label="Learning Lab information">
             <Link href="/learning-lab/free-courses">Free courses</Link>
+            <Link href="/learning-lab/support">Support the Lab</Link>
             <Link href="/digital-guide">Swapnil’s digital guide</Link>
             <Link href="/learning-lab/faq">FAQs</Link>
             <Link href="/learning-lab/contact">Contact</Link>

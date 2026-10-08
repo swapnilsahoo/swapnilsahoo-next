@@ -9,7 +9,7 @@ const draftReview = {
   heading: "Draft status and operator details",
   paragraphs: [
     "Draft prepared on 8 October 2026 for founder and professional review. It is not a statement that the initiative is legally compliant, and it is not an approved paid-service agreement.",
-    "Swapnil Sahoo Learning Lab is a founder-led professional education initiative hosted on swapnilsahoo.com, proposed to be operated by Dr. Swapnil Sahoo. It is presently unincorporated. The founder has supplied the contact email shown on the contact page. The operator address and any applicable tax details remain to be confirmed before paid enrolment. Academic employers and institutions do not sponsor or operate the Lab by virtue of the founder's biography or contact email.",
+    "Swapnil Sahoo Learning Lab is a founder-led edtech initiative hosted on swapnilsahoo.com, independently run by Dr. Swapnil Sahoo and currently operated on a not-for-profit basis. This describes its present purpose, not registered-charity status or tax-deductibility. It is presently unincorporated. The founder has supplied the contact email shown on the contact page. The operator address and any applicable tax details remain to be confirmed before paid enrolment. Academic employers and institutions do not sponsor or operate the Lab by virtue of the founder's biography or contact email.",
   ],
 };
 
@@ -26,6 +26,13 @@ export const labPolicies: LabPolicy[] = [
         paragraphs: [
           "The Lab proposes adult professional education in management, strategy, entrepreneurship and applied AI. Programme descriptions state expected skills and learner outputs. They do not promise employment, salaries, promotion, funding or business success.",
           "Public demonstrations use original hypothetical learning examples. The proposed service is not a degree, a recognised qualification or a claim of accreditation. A Certificate of Completion, if issued after the configured requirements, records completion of the specified Lab programme only.",
+        ],
+      },
+      {
+        heading: "Voluntary support",
+        paragraphs: [
+          "The Lab welcomes voluntary assistance, expertise and donations intended to improve its infrastructure and learning content. The support page provides an email route to discuss an offer of help. It does not collect funds or submit a message automatically. Donation payment instructions are not yet published.",
+          "No contribution is required to access the six free courses. A donation does not purchase enrolment, assessment, a certificate, preferential treatment or institutional affiliation. Financial support is separate from any future approved course fee; no registered-charity status or tax deduction is promised.",
         ],
       },
       {
@@ -71,6 +78,12 @@ export const labPolicies: LabPolicy[] = [
           "The enquiry form asks for your name, email address and programme of interest. Institutional enquiries also ask for the institution or organisation name, with optional role, approximate adult learner count and preferred timetable. Your message is optional. The form requires confirmation that you are aged 18 or over and acknowledgement of enquiry processing. Please do not include student lists or sensitive personal, student or employer information.",
           "These details are used to record and handle the enquiry, avoid duplicate records and discuss a proposed programme or institutional pilot. Optional permission to receive programme updates is separate, unticked by default and not required to enquire. Registering interest does not enrol you.",
           "The current source field records the Lab page path and, if present, limited campaign parameters such as utm_source, utm_medium and utm_campaign. It is not cross-site tracking. Anti-spam controls use limited technical request information and keyed identifiers for rate limiting. Database and hosting providers may also maintain their own operational logs; the final notice must identify the chosen processors and their practices.",
+        ],
+      },
+      {
+        heading: "Support enquiries by email",
+        paragraphs: [
+          "If you choose to email about voluntary assistance or donations, your email provider and the recipient's email service process the message. Share only the information needed to discuss your offer. The support page has no donor form, payment collection or public donor list, and clicking its email link does not send a message. Donor names, messages and contributions are not published without separate permission.",
         ],
       },
       {

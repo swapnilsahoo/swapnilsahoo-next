@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: { absolute: labPublicConfig.name },
   alternates: { canonical: "/learning-lab" },
   description:
-    "A founder-led professional education initiative hosted on swapnilsahoo.com. Practise applied AI, strategy and entrepreneurship through decisions, exercises and feedback.",
+    "A founder-led edtech initiative, currently run on a not-for-profit basis. Explore free learning in applied AI, strategy and entrepreneurship, and ways to support its content and infrastructure.",
 };
 
 export default async function LearningLabPage() {
@@ -26,8 +26,7 @@ export default async function LearningLabPage() {
             "@context": "https://schema.org",
             "@type": "CollectionPage",
             name: labPublicConfig.name,
-            description:
-              "A founder-led professional education initiative hosted on swapnilsahoo.com.",
+            description: labPublicConfig.description,
             url: "https://www.swapnilsahoo.com/learning-lab",
             hasPart: programmes.map((programme) => ({
               "@type": "WebPage",
@@ -40,7 +39,7 @@ export default async function LearningLabPage() {
       <LabHero
         eyebrow="Think clearly. Practise deliberately."
         title={labPublicConfig.name}
-        description="Practise applied AI, strategy and entrepreneurship. Build a useful piece of work, test your reasoning and revise your decisions against a clear rubric. Explore original lessons for adult learners."
+        description="A founder-led edtech initiative, currently run on a not-for-profit basis. Practise applied AI, strategy and entrepreneurship through original lessons, realistic decisions and useful work."
       >
         <Link href="/learning-lab/free-courses" className="lab-button">
           Start a free course <span aria-hidden="true">→</span>
@@ -49,6 +48,25 @@ export default async function LearningLabPage() {
           Discuss a college pilot
         </Link>
       </LabHero>
+      <LabSection eyebrow="Built for learning. Supported by people." title="Help the Lab grow.">
+        <div className="lab-split">
+          <p className="lab-lead" style={{ marginTop: 0 }}>
+            Your voluntary assistance or donations can help improve the learning infrastructure and
+            create better content. Contributions of time, expertise and resources are welcome. The
+            six free courses remain open whether or not you contribute.
+          </p>
+          <div className="lab-callout">
+            <p>
+              “I would be grateful for any assistance that helps make the Learning Lab more useful
+              and accessible.”
+            </p>
+            <p className="lab-small">— Dr. Swapnil Sahoo</p>
+            <Link href="/learning-lab/support" className="lab-text-link">
+              Support the Lab <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+        </div>
+      </LabSection>
       <LabSection
         className="lab-band"
         eyebrow="The open classroom"

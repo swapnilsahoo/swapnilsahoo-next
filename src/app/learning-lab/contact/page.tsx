@@ -53,6 +53,11 @@ export default async function ContactPage() {
             <Link href="/learning-lab/for-colleges#pilot-enquiry" className="lab-text-link">
               Representing an institution? Use the pilot enquiry →
             </Link>
+            <p>
+              <Link href="/learning-lab/support" className="lab-text-link">
+                Help improve the Lab’s content and infrastructure →
+              </Link>
+            </p>
             <div className="lab-divider" />
             <p className="lab-small">
               Operator: {labPublicConfig.operatorName}. The initiative is founder-led and is not
@@ -62,10 +67,16 @@ export default async function ContactPage() {
               <p className="lab-small">{labPublicConfig.businessAddress}</p>
             )}
             {!labPublicConfig.businessAddress && (
-              <p className="lab-small">Operator address and paid-service details remain unconfirmed.</p>
+              <p className="lab-small">
+                Operator address and paid-service details remain unconfirmed.
+              </p>
             )}
           </div>
-          <EnquiryForm programmes={programmes} available={isLabServiceConfigured()} contactEmail={labPublicConfig.businessEmail} />
+          <EnquiryForm
+            programmes={programmes}
+            available={isLabServiceConfigured()}
+            contactEmail={labPublicConfig.businessEmail}
+          />
         </div>
       </LabSection>
     </>

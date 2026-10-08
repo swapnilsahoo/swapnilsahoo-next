@@ -15,7 +15,7 @@ export default function FounderPage() {
       <LabHero
         eyebrow="About the founder"
         title="Dr. Swapnil Sahoo"
-        description="A founder interested in how people make decisions, build useful things and act when resources are limited. The Learning Lab brings that focus to proposed programmes in strategy, entrepreneurship and applied AI."
+        description="A founder interested in how people make decisions, build useful things and act when resources are limited. The Learning Lab is currently run on a not-for-profit basis, with free learning in strategy, entrepreneurship and applied AI."
       />
       <LabSection>
         <div className="lab-split">
@@ -49,8 +49,12 @@ export default function FounderPage() {
               partnership with the Lab.
             </p>
             <p>
-              This is a new professional education initiative. Its proposed programmes and
-              demonstrations are separate from his prior teaching and industry work.
+              The Lab is currently run on a not-for-profit basis. Voluntary assistance and donations
+              are welcome to help improve its learning content and infrastructure. The free courses
+              remain free; support does not purchase enrolment, assessment or a certificate.
+            </p>
+            <p>
+              <Link href="/learning-lab/support">Explore ways to support the Lab →</Link>
             </p>
           </aside>
         </div>

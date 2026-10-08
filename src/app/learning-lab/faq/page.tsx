@@ -1,17 +1,22 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { LabHero, LabSection } from "@/features/learning-lab/components/LabShell";
 
 export const metadata: Metadata = {
   title: "Frequently Asked Questions",
   alternates: { canonical: "/learning-lab/faq" },
   description:
-    "Practical answers about Learning Lab availability, adult participation, proposed certificates, fees, AI usage and institutional pilots.",
+    "Practical answers about free learning, voluntary support, Learning Lab availability, adult participation, proposed certificates and institutional pilots.",
 };
 
 const questions = [
   [
     "What is the Learning Lab?",
-    "Swapnil Sahoo Learning Lab is a founder-led professional education initiative hosted on swapnilsahoo.com. It is not currently presented as an incorporated company.",
+    "Swapnil Sahoo Learning Lab is a founder-led education initiative hosted on swapnilsahoo.com, currently run on a not-for-profit basis. Its focus is accessible learning in applied AI, strategy and entrepreneurship.",
+  ],
+  [
+    "How can I support the Lab?",
+    "Voluntary assistance and donations are welcome to help improve learning content and infrastructure. You can offer content feedback, subject expertise, accessibility help or technical assistance. Use the Support the Lab page to discuss a contribution by email. The free courses remain free, and support does not purchase enrolment, individual assessment or a certificate. No donation payment route is currently published.",
   ],
   [
     "Can I enrol or pay now?",
@@ -65,7 +70,7 @@ export default function FaqPage() {
       <LabHero
         eyebrow="Practical questions"
         title="Know what you are signing up for."
-        description="Clear answers about the proposed programmes, enquiry process and the current stage of the initiative."
+        description="Clear answers about free learning, voluntary support, proposed programmes and the current stage of the initiative."
       />
       <LabSection>
         <div className="lab-prose">
@@ -73,6 +78,11 @@ export default function FaqPage() {
             <details key={question} className="lab-faq">
               <summary>{question}</summary>
               <p>{answer}</p>
+              {question === "How can I support the Lab?" && (
+                <p>
+                  <Link href="/learning-lab/support">Support the Lab →</Link>
+                </p>
+              )}
             </details>
           ))}
         </div>

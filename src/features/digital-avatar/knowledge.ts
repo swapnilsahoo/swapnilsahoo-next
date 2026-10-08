@@ -14,6 +14,7 @@ const free = `${lab}/free-courses`;
 const programmes = `${lab}/programmes`;
 const contact = { label: "Contact the Learning Lab", href: `${lab}/contact` };
 const freeLibrary = { label: "Explore all six free courses", href: free };
+const support = { label: "Support the Lab", href: `${lab}/support` };
 
 export const starters = [
   "What can I learn for free?",
@@ -39,6 +40,15 @@ function answer(
 // Prepared website guidance only. This module has no network, storage, account,
 // assessment or payment actions and does not generate answers with a language model.
 const topics: GuidedTopic[] = [
+  {
+    matches:
+      /\b(donat\w*|voluntary (support|contribution\w*|assistance)|volunteer\w*|non[- ]?profit|not[- ]for[- ]profit|(learning lab|lab|initiative) (run |operated |a )?for[- ]profit|is (this|it) for[- ]profit|financial support|support (the |your |this )?(learning lab|lab|initiative)|contribut\w* (to|towards?|for) (the |your |this )?(learning lab|lab|initiative|infrastructure|content)|help (improve|build|fund|develop|create) (the |your |lab )?(learning )?(content|infrastructure))\b/i,
+    reply: answer(
+      "The Learning Lab is currently run on a not-for-profit basis. Voluntary assistance and donations are welcome to help improve learning content and infrastructure. The free courses remain free, and a contribution does not purchase enrolment, assessment or a certificate. Visit Support the Lab to discuss content, accessibility, technical or financial assistance by email. No donation payment route is currently published, and this guide cannot take funds or verify a transfer.",
+      [support, freeLibrary, contact],
+      ["How can I support the Lab?", "What can I learn for free?", "Contact the Lab"],
+    ),
+  },
   {
     matches:
       /\b(who are you|are you (a human|human|real|ai|dr\.?|professor|swapnil|sahoo|the founder)|is this (a human|human|ai|dr\.?|professor|swapnil|sahoo)|live (person|teacher|professor)|digital avatar|chat ?bot|guided answers?|how (does|do) (this|you) work)\b/i,
@@ -69,7 +79,7 @@ const topics: GuidedTopic[] = [
     matches:
       /\b(mba|pgpm|13[ -]?sessions?|thirteen sessions?|session\s*\d+|course[- ]map|course outline|revised outline|one[- ]year course|1[- ]year course)\b/i,
     reply: answer(
-      "The one-year MBA strategy course has a 13-session course map on the academic teaching website. Start with that map to see the sequence and open the session pages. Session 1 provides the introduction and starting activities. These academic teaching pages are separate from the Learning Lab’s free mini-courses and proposed commercial programmes; the assistant does not record attendance, assess work or enrol you in the MBA course.",
+      "The one-year MBA strategy course has a 13-session course map on the academic teaching website. Start with that map to see the sequence and open the session pages. Session 1 provides the introduction and starting activities. These academic teaching pages are separate from the Learning Lab’s free mini-courses and proposed full programmes; the assistant does not record attendance, assess work or enrol you in the MBA course.",
       [
         { label: "Open the 13-session MBA course map", href: "/teaching/1-year-mba#course-map" },
         { label: "Start with MBA Session 1", href: "/teaching/1-year-mba/session1.html" },

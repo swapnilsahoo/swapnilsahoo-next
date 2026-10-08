@@ -43,6 +43,7 @@ const routes = [
     "resources",
     "faq",
     "contact",
+    "support",
     "policies",
   ].map((slug) => ({
     path: `/learning-lab/${slug}`,
