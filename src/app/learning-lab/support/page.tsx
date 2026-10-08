@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { LabHero, LabSection } from "@/features/learning-lab/components/LabShell";
 import { labPublicConfig } from "@/features/learning-lab/config";
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
 };
 
 const supportEmail = `mailto:${labPublicConfig.businessEmail}?subject=${encodeURIComponent("Learning Lab: voluntary support")}`;
+const donationQr = "/images/learning-lab/phonepe-donation-qr.jpg";
 
 export default function SupportLabPage() {
   return (
@@ -20,13 +22,55 @@ export default function SupportLabPage() {
         title="Help make useful learning accessible."
         description="The Learning Lab is a founder-led edtech initiative, currently run on a not-for-profit basis. Voluntary assistance and donations can help improve its infrastructure and learning content."
       >
-        <a href={supportEmail} className="lab-button">
+        <a href="#donate" className="lab-button">
+          Make a voluntary donation <span aria-hidden="true">→</span>
+        </a>
+        <a href={supportEmail} className="lab-button lab-button-secondary">
           Offer your support <span aria-hidden="true">→</span>
         </a>
-        <Link href="/learning-lab/free-courses" className="lab-button lab-button-secondary">
-          Explore the free courses
-        </Link>
       </LabHero>
+      <LabSection id="donate" eyebrow="Voluntary donations" title="Support the Lab with any amount.">
+        <div className="lab-split">
+          <div className="lab-prose">
+            <p>
+              Your contribution can help improve the Lab’s infrastructure and learning content.
+              Choose an amount that feels right to you; there is no minimum donation.
+            </p>
+            <p>
+              Scan this original PhonePe QR. The name printed on the image is{" "}
+              <strong>SWAPNIL SAHOO</strong>. Check the recipient shown in your payment app
+              before confirming your transfer.
+            </p>
+            <a href={donationQr} download="Swapnil-Sahoo-PhonePe-QR.jpg" className="lab-button">
+              Download the original QR
+            </a>
+            <p className="lab-small">
+              The full image is provided unchanged. Payments happen in your payment app; this
+              website does not verify a transfer or issue an automatic receipt.
+            </p>
+            <p>
+              For a question about your contribution, email{" "}
+              <a href={supportEmail}>{labPublicConfig.businessEmail}</a>. Include only the date,
+              amount and transaction reference needed to identify the transfer.
+            </p>
+            <p>
+              <Link href="/learning-lab/free-courses">All six free courses remain free →</Link>
+            </p>
+          </div>
+          <figure className="lab-donation-qr">
+            <Image
+              src={donationQr}
+              alt="Original PhonePe payment QR for Swapnil Sahoo"
+              width={887}
+              height={1600}
+              unoptimized
+            />
+            <figcaption className="lab-small">
+              Voluntary support for Learning Lab infrastructure and content.
+            </figcaption>
+          </figure>
+        </div>
+      </LabSection>
       <LabSection
         className="lab-band"
         eyebrow="Where your help can make a difference"
@@ -87,8 +131,8 @@ export default function SupportLabPage() {
               not purchase enrolment, assessment, a certificate or preferential treatment.
             </p>
             <p>
-              Donation payment instructions are not yet available on this website. Please email
-              Swapnil to discuss the purpose and receiving details before sending funds.
+              Use the original PhonePe QR above to make an optional donation, or email Swapnil
+              to offer your time and expertise. Donations are separate from any course fee.
             </p>
             <p className="lab-small">
               “Not-for-profit” describes the Lab’s current purpose. The Lab is independently run by

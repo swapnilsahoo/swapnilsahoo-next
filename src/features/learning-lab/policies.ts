@@ -31,7 +31,7 @@ export const labPolicies: LabPolicy[] = [
       {
         heading: "Voluntary support",
         paragraphs: [
-          "The Lab welcomes voluntary assistance, expertise and donations intended to improve its infrastructure and learning content. The support page provides an email route to discuss an offer of help. It does not collect funds or submit a message automatically. Donation payment instructions are not yet published.",
+          "The Lab welcomes voluntary assistance, expertise and donations intended to improve its infrastructure and learning content. The support page provides an email route to offer help and the founder’s original PhonePe QR for an optional manual donation of any amount. The image prints the payee name SWAPNIL SAHOO; check the recipient in your payment app before sending. The payment app handles the transfer. The website does not verify transactions, issue automatic confirmations or submit an email automatically.",
           "No contribution is required to access the six free courses. A donation does not purchase enrolment, assessment, a certificate, preferential treatment or institutional affiliation. Financial support is separate from any future approved course fee; no registered-charity status or tax deduction is promised.",
         ],
       },
@@ -39,7 +39,7 @@ export const labPolicies: LabPolicy[] = [
         heading: "Interest enquiries and availability",
         paragraphs: [
           "An interest enquiry records your request for information. It does not reserve a place, confirm a cohort, create paid enrolment or charge a fee. A saved-enquiry confirmation does not mean an email was sent. The site must report an error if it cannot save your enquiry.",
-          "Before an approved paid cohort, the operator must provide the actual dates, format, capacity, total fee and tax presentation, workload, access period, assessment and cancellation terms. Payments remain disabled until operator eligibility, policies, programme details and accountant-reviewed receipt or invoice handling are confirmed.",
+          "Before an approved paid cohort, the operator must provide the actual dates, format, capacity, total fee and tax presentation, workload, access period, assessment and cancellation terms. Paid course checkout remains closed until operator eligibility, policies, programme details and accountant-reviewed receipt or invoice handling are confirmed. Optional manual donations are separate from course fees.",
         ],
       },
       {
@@ -81,9 +81,10 @@ export const labPolicies: LabPolicy[] = [
         ],
       },
       {
-        heading: "Support enquiries by email",
+        heading: "Voluntary support and external payments",
         paragraphs: [
-          "If you choose to email about voluntary assistance or donations, your email provider and the recipient's email service process the message. Share only the information needed to discuss your offer. The support page has no donor form, payment collection or public donor list, and clicking its email link does not send a message. Donor names, messages and contributions are not published without separate permission.",
+          "If you choose to email about voluntary assistance or donations, your email provider and the recipient's email service process the message. Share only the information needed to discuss your offer. Clicking an email link does not send a message. Donor names, messages and contributions are not published without separate permission.",
+          "Optional manual donations use the original QR displayed on the support page. Your chosen payment app, bank and payment services process the transfer under their own terms and privacy notices. This website has no donor form, payment gateway, public donor list or transaction-verification service. It does not receive an automatic payment confirmation or issue an automatic receipt. A transfer does not create a learner account, enrolment or certificate eligibility.",
         ],
       },
       {
@@ -97,7 +98,7 @@ export const labPolicies: LabPolicy[] = [
         heading: "Cookies, demonstrations and external services",
         paragraphs: [
           "Authentication requires essential session cookies. Free-course and demonstration notes stay on the page unless you choose to save them in this browser or download a worksheet. They are not sent to the Lab by these exercises. A separate learner-workspace submission is required for assessment. Browser-stored notes can be cleared in the exercise or using your browser's site-data controls.",
-          "Public exercises do not send your work to an AI provider. External marketing email, analytics and payment collection are not configured in this release. External resource links have the destination provider's own privacy terms.",
+          "Public exercises do not send your work to an AI provider. External marketing email, analytics and paid course checkout are not configured in this release. Optional manual QR donations are processed in your chosen payment app, not on this website. External resource links have the destination provider's own privacy terms.",
         ],
       },
       {
@@ -135,7 +136,7 @@ export const labPolicies: LabPolicy[] = [
     slug: "refunds",
     title: "Refund and cancellation policy",
     summary:
-      "Draft for founder, accountant and legal review. Payments are disabled; registration of interest has no fee or cancellation charge.",
+      "Draft for founder, accountant and legal review. Paid course checkout remains closed; registration of interest has no fee or cancellation charge. Optional manual donations are separate from paid bookings.",
     sections: [
       draftReview,
       {
@@ -147,7 +148,7 @@ export const labPolicies: LabPolicy[] = [
       {
         heading: "Terms needed before a paid offer",
         paragraphs: [
-          "Before accepting any payment, publish the exact fee and tax display, refund request channel, cancellation cut-offs, cohort minimum, rescheduling options and handling of partially delivered learning. State how and when accepted refunds will be processed and how provider delays or fees are handled. These details must be approved and shown before checkout.",
+          "Before accepting a paid course fee, publish the exact fee and tax display, refund request channel, cancellation cut-offs, cohort minimum, rescheduling options and handling of partially delivered learning. State how and when accepted refunds will be processed and how provider delays or fees are handled. These details must be approved and shown before course checkout.",
           "A proposed principle is a full refund if the Lab cancels an approved cohort before delivery, with a choice of refund rather than a forced credit if a material reschedule is unacceptable. The founder and lawyer must settle the exact learner-withdrawal and partially delivered service rules. This draft creates no blanket non-refundable fee and does not limit mandatory consumer rights.",
         ],
       },

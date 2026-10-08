@@ -274,6 +274,19 @@
   gap: 3rem;
   align-items: start;
 }
+.lab-donation-qr {
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+}
+.lab-donation-qr img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.lab-donation-qr figcaption {
+  margin-top: 0.8rem;
+}
 .lab-callout {
   border-left: 3px solid var(--lab-accent);
   padding: 1.5rem 1.7rem;

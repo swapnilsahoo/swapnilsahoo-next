@@ -15,6 +15,7 @@ const programmes = `${lab}/programmes`;
 const contact = { label: "Contact the Learning Lab", href: `${lab}/contact` };
 const freeLibrary = { label: "Explore all six free courses", href: free };
 const support = { label: "Support the Lab", href: `${lab}/support` };
+const donationQr = { label: "View the optional donation QR", href: `${lab}/support#donate` };
 
 export const starters = [
   "What can I learn for free?",
@@ -44,8 +45,8 @@ const topics: GuidedTopic[] = [
     matches:
       /\b(donat\w*|voluntary (support|contribution\w*|assistance)|volunteer\w*|non[- ]?profit|not[- ]for[- ]profit|(learning lab|lab|initiative) (run |operated |a )?for[- ]profit|is (this|it) for[- ]profit|financial support|support (the |your |this )?(learning lab|lab|initiative)|contribut\w* (to|towards?|for) (the |your |this )?(learning lab|lab|initiative|infrastructure|content)|help (improve|build|fund|develop|create) (the |your |lab )?(learning )?(content|infrastructure))\b/i,
     reply: answer(
-      "The Learning Lab is currently run on a not-for-profit basis. Voluntary assistance and donations are welcome to help improve learning content and infrastructure. The free courses remain free, and a contribution does not purchase enrolment, assessment or a certificate. Visit Support the Lab to discuss content, accessibility, technical or financial assistance by email. No donation payment route is currently published, and this guide cannot take funds or verify a transfer.",
-      [support, freeLibrary, contact],
+      "The Learning Lab is currently run on a not-for-profit basis. Voluntary assistance and donations help improve learning content and infrastructure. Visit Support the Lab to offer expertise or use the original PhonePe QR to donate any amount. The image prints SWAPNIL SAHOO; check the recipient in your payment app before sending. All six free courses remain ₹0. A donation does not purchase enrolment, assessment or a certificate. This website cannot verify a transfer or issue an automatic confirmation; paid course checkout remains closed.",
+      [support, donationQr, freeLibrary],
       ["How can I support the Lab?", "What can I learn for free?", "Contact the Lab"],
     ),
   },
@@ -70,9 +71,9 @@ const topics: GuidedTopic[] = [
   {
     matches: /\b(qr|upi|payment code|scan to pay|payee|bank details|account number)\b/i,
     reply: answer(
-      "Payment instructions are not currently published. Check programme availability or contact Dr. Swapnil Sahoo before making any payment. This guide cannot create a payment code, confirm a payee or verify a transfer. No payment or place reservation is created here.",
-      [contact],
-      ["Are paid courses open?", "What can I learn for free?", "Contact the Lab"],
+      "The Support the Lab page displays Dr. Swapnil Sahoo’s original PhonePe QR for optional donations of any amount. The image prints the payee name SWAPNIL SAHOO; check the recipient shown in your payment app before sending. Your payment app handles the transfer. This website has no donation checkout or transaction verification, and it cannot confirm receipt automatically. Donations support infrastructure and content, not course enrolment or certificates. Paid course checkout remains closed, and the six free courses remain ₹0.",
+      [donationQr, support, contact],
+      ["How can I support the Lab?", "What can I learn for free?", "Contact the Lab"],
     ),
   },
   {
@@ -179,8 +180,8 @@ const topics: GuidedTopic[] = [
     matches:
       /\b(fees?|price|pricing|paid|purchase|pay|payments?|checkout|refund\w*|enrol\w*|enroll\w*|register|registration|cohort|start date|dates?|schedule|timetable|rupees?)\b|₹|\brs\.?\s*\d+/i,
     reply: answer(
-      "The free mini-courses cost ₹0 and require no account. Full Learning Lab programmes remain proposed: payable fees, dates and places are unconfirmed, and checkout is not ready. This guide cannot take payment, reserve a place or confirm enrolment. Email the Lab to ask about a programme; opening the email link does not send it automatically. Rely on the published offer and applicable terms once a specific paid programme is available.",
-      [freeLibrary, { label: "Check programme availability", href: programmes }, contact],
+      "The six free mini-courses cost ₹0 and require no account. Full Learning Lab programmes remain proposed: payable fees, dates and places are unconfirmed, and paid course checkout remains closed. Optional donations through the Support the Lab QR are separate from course fees and do not reserve a place or confirm enrolment. This guide cannot take payment or verify a transfer. Email the Lab to ask about a programme; opening the email link does not send it automatically.",
+      [freeLibrary, { label: "Check programme availability", href: programmes }, support, contact],
       ["What can I learn for free?", "Is a payment QR available?", "How do the certificates work?"],
     ),
   },

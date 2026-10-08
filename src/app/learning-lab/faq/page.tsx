@@ -16,11 +16,11 @@ const questions = [
   ],
   [
     "How can I support the Lab?",
-    "Voluntary assistance and donations are welcome to help improve learning content and infrastructure. You can offer content feedback, subject expertise, accessibility help or technical assistance. Use the Support the Lab page to discuss a contribution by email. The free courses remain free, and support does not purchase enrolment, individual assessment or a certificate. No donation payment route is currently published.",
+    "Voluntary assistance and donations are welcome to help improve learning content and infrastructure. You can offer content feedback, subject expertise, accessibility help or technical assistance, or choose any amount using the original PhonePe QR on the Support the Lab page. The image prints the payee name SWAPNIL SAHOO; check the recipient in your payment app before sending. All six free courses remain ₹0. Support does not purchase enrolment, assessment or a certificate, and this website does not verify transfers or issue an automatic confirmation.",
   ],
   [
     "Can I enrol or pay now?",
-    "The programmes are proposed. You can email a programme question using the approved contact on the contact page. Online interest forms will open after secure service setup. Fees, dates, capacity and delivery details are unconfirmed. Payments are disabled. An enquiry does not reserve a place or create an enrolment.",
+    "The full programmes are proposed. You can email a programme question using the approved contact on the contact page. Online interest forms will open after secure service setup. Fees, dates, capacity and delivery details are unconfirmed, and paid course checkout remains closed. Optional QR donations are separate from course fees. An enquiry or donation does not reserve a place or create an enrolment.",
   ],
   [
     "Who are the programmes for?",
