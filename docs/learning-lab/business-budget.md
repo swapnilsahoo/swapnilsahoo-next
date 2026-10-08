@@ -2,7 +2,11 @@
 
 Private planning material, 8 October 2026. No prices, cohort dates, capacity, costs, revenue or margins here are approved or achieved. Scenarios test feasibility; they are not forecasts. Obtain actual vendor quotes and CA review before using these amounts in an offer.
 
-## Offer assumptions
+## Updated founder preference
+
+The founder subsequently requested very low introductory pricing, suggesting approximately **₹100**, and a free-course library. The six self-paced mini-courses are ₹0. Treat a ₹100 online workshop as a separate bounded launch experiment; schedule, exact scope, tax presentation and delivery terms remain unsettled. The historical full-cohort scenarios below are retained for cost comparison and are not the current launch-price recommendation. No fee is being collected. See [free-courses.md](free-courses.md).
+
+## Historical offer assumptions
 
 | Programme | Proposed format | Private provisional fee range per adult | Cost assumptions to validate |
 |---|---|---|---|

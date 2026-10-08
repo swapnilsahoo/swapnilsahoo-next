@@ -68,13 +68,13 @@ const ddl = [
   `CREATE TABLE IF NOT EXISTS lab_verification (id TEXT PRIMARY KEY, identifier TEXT NOT NULL, value TEXT NOT NULL, expires_at INTEGER NOT NULL, created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL)`,
   `CREATE TABLE IF NOT EXISTS lab_auth_rate_limit (id TEXT PRIMARY KEY, key TEXT NOT NULL UNIQUE, count INTEGER NOT NULL, last_request INTEGER NOT NULL)`,
   `CREATE TABLE IF NOT EXISTS lab_member (user_id TEXT PRIMARY KEY REFERENCES lab_user(id) ON DELETE CASCADE, role TEXT NOT NULL CHECK(role IN ('admin','learner')), is_demo INTEGER NOT NULL DEFAULT 0, must_change_password INTEGER NOT NULL DEFAULT 1)`,
-  `CREATE TABLE IF NOT EXISTS lab_programme (slug TEXT PRIMARY KEY, content TEXT NOT NULL, status TEXT NOT NULL DEFAULT 'register-interest', starts_at TEXT, fee_inr INTEGER, capacity INTEGER, updated_at INTEGER NOT NULL)`,
+  `CREATE TABLE IF NOT EXISTS lab_programme (slug TEXT PRIMARY KEY, content TEXT NOT NULL, status TEXT NOT NULL DEFAULT 'register-interest', starts_at TEXT, fee_inr INTEGER, capacity INTEGER, offer_details TEXT, updated_at INTEGER NOT NULL)`,
   `CREATE TABLE IF NOT EXISTS lab_cohort (id TEXT PRIMARY KEY, programme_slug TEXT NOT NULL REFERENCES lab_programme(slug), title TEXT NOT NULL, status TEXT NOT NULL DEFAULT 'draft', is_demo INTEGER NOT NULL DEFAULT 0, created_at INTEGER NOT NULL)`,
   `CREATE TABLE IF NOT EXISTS lab_enrolment (id TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES lab_user(id) ON DELETE CASCADE, programme_slug TEXT NOT NULL REFERENCES lab_programme(slug), cohort_id TEXT REFERENCES lab_cohort(id), status TEXT NOT NULL DEFAULT 'active', attendance_percent INTEGER NOT NULL DEFAULT 0, created_at INTEGER NOT NULL, UNIQUE(user_id, programme_slug))`,
   `CREATE TABLE IF NOT EXISTS lab_progress (enrolment_id TEXT NOT NULL REFERENCES lab_enrolment(id) ON DELETE CASCADE, lesson_index INTEGER NOT NULL, completed_at INTEGER NOT NULL, PRIMARY KEY(enrolment_id, lesson_index))`,
   `CREATE TABLE IF NOT EXISTS lab_submission (id TEXT PRIMARY KEY, enrolment_id TEXT NOT NULL UNIQUE REFERENCES lab_enrolment(id) ON DELETE CASCADE, user_id TEXT NOT NULL REFERENCES lab_user(id) ON DELETE CASCADE, body TEXT NOT NULL, attachment_name TEXT, revision INTEGER NOT NULL DEFAULT 1, score INTEGER CHECK(score BETWEEN 0 AND 100), rubric_scores TEXT, feedback TEXT, approved INTEGER NOT NULL DEFAULT 0, reviewer_id TEXT REFERENCES lab_user(id), submitted_at INTEGER NOT NULL, reviewed_at INTEGER)`,
   `CREATE TABLE IF NOT EXISTS lab_certificate (id TEXT PRIMARY KEY, enrolment_id TEXT NOT NULL UNIQUE REFERENCES lab_enrolment(id) ON DELETE CASCADE, verification_id TEXT NOT NULL UNIQUE, display_name TEXT, publish_name INTEGER NOT NULL DEFAULT 0, issued_at INTEGER NOT NULL, issuer_id TEXT NOT NULL REFERENCES lab_user(id), revoked_at INTEGER)`,
-  `CREATE TABLE IF NOT EXISTS lab_enquiry (id TEXT PRIMARY KEY, kind TEXT NOT NULL, name TEXT NOT NULL, email TEXT NOT NULL, programme_slug TEXT NOT NULL, organisation TEXT, message TEXT, marketing_consent INTEGER NOT NULL DEFAULT 0, consent_at INTEGER, source TEXT, status TEXT NOT NULL DEFAULT 'new', owner_user_id TEXT REFERENCES lab_user(id) ON DELETE SET NULL, next_action TEXT, next_action_at INTEGER, is_demo INTEGER NOT NULL DEFAULT 0, created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL, dedup_key TEXT NOT NULL UNIQUE)`,
+  `CREATE TABLE IF NOT EXISTS lab_enquiry (id TEXT PRIMARY KEY, kind TEXT NOT NULL, name TEXT NOT NULL, email TEXT NOT NULL, programme_slug TEXT NOT NULL, organisation TEXT, role TEXT, learner_count INTEGER, preferred_timetable TEXT, message TEXT, marketing_consent INTEGER NOT NULL DEFAULT 0, consent_at INTEGER, source TEXT, status TEXT NOT NULL DEFAULT 'new', owner_user_id TEXT REFERENCES lab_user(id) ON DELETE SET NULL, next_action TEXT, next_action_at INTEGER, is_demo INTEGER NOT NULL DEFAULT 0, created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL, dedup_key TEXT NOT NULL UNIQUE)`,
   `CREATE TABLE IF NOT EXISTS lab_rate_limit (key TEXT PRIMARY KEY, count INTEGER NOT NULL, expires_at INTEGER NOT NULL)`,
   `CREATE TABLE IF NOT EXISTS lab_audit (id TEXT PRIMARY KEY, actor_id TEXT, action TEXT NOT NULL, entity_id TEXT, created_at INTEGER NOT NULL)`,
   `CREATE INDEX IF NOT EXISTS lab_submission_user ON lab_submission(user_id)`,
@@ -110,11 +110,17 @@ async function initialise() {
       await migration.execute(
         "ALTER TABLE lab_submission ADD COLUMN revision INTEGER NOT NULL DEFAULT 1"
       );
+    const programmeColumns = (await migration.execute("PRAGMA table_info(lab_programme)")).rows;
+    if (!programmeColumns.some((column) => column.name === "offer_details"))
+      await migration.execute("ALTER TABLE lab_programme ADD COLUMN offer_details TEXT");
     const enquiryColumns = (await migration.execute("PRAGMA table_info(lab_enquiry)")).rows;
     for (const [name, definition] of [
       ["owner_user_id", "TEXT REFERENCES lab_user(id) ON DELETE SET NULL"],
       ["next_action", "TEXT"],
       ["next_action_at", "INTEGER"],
+      ["role", "TEXT"],
+      ["learner_count", "INTEGER"],
+      ["preferred_timetable", "TEXT"],
     ])
       if (!enquiryColumns.some((column) => column.name === name))
         await migration.execute(`ALTER TABLE lab_enquiry ADD COLUMN ${name} ${definition}`);

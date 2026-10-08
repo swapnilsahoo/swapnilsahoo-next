@@ -20,14 +20,22 @@ export default async function ProgrammesPage() {
         eyebrow="The proposed programme catalogue"
         title="Start with the work you want to do."
         description="Three proposed programmes. Each includes an original demonstration lesson, a capstone and a published assessment rubric. Explore the curriculum before registering interest."
-      />
+      >
+        <Link href="/learning-lab/free-courses" className="lab-button lab-button-secondary">
+          Start with a free mini-course →
+        </Link>
+      </LabHero>
       <LabSection>
         <div className="lab-grid">
           {programmes.map((p, i) => (
             <article className="lab-card" key={p.slug}>
               <p className="lab-card-number">0{i + 1}</p>
               <span className="lab-tag">
-                {p.availability.status === "closed" ? "Interest closed" : p.availability.status === "pilot-open" ? "Approved pilot" : "Proposed programme"}
+                {p.availability.status === "closed"
+                  ? "Interest closed"
+                  : p.availability.status === "pilot-open"
+                    ? "Approved pilot"
+                    : "Proposed programme"}
               </span>
               <h2 style={{ fontSize: "1.9rem" }}>{p.title}</h2>
               <p>{p.tagline}</p>

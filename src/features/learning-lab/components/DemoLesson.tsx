@@ -9,18 +9,25 @@ const buttonClass =
 const secondaryClass =
   "lab-button lab-button-secondary inline-flex min-h-11 items-center justify-center rounded-full border border-ink-300 px-5 py-2.5 text-sm font-semibold text-ink-800 transition hover:bg-ink-100 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-600 disabled:cursor-not-allowed disabled:opacity-50 dark:border-ink-600 dark:text-ink-100 dark:hover:bg-ink-800";
 
-export function DemoLesson({ programme }: { programme: LabProgramme }) {
+type PracticeMaterial = Pick<LabProgramme, "title" | "demo" | "sources"> & { slug: string };
+
+export function DemoLesson({
+  programme,
+  freeCourse = false,
+}: {
+  programme: PracticeMaterial;
+  freeCourse?: boolean;
+}) {
+  const lessonDecisions =
+    programme.demo.decisions || demoDecisions[programme.slug as LabProgramme["slug"]] || [];
   const componentId = useId();
   const prefix = `${programme.slug}-${componentId}`;
-  const [choices, setChoices] = useState<(number | null)[]>(
-    (programme.demo.decisions || demoDecisions[programme.slug]).map(() => null)
-  );
+  const [choices, setChoices] = useState<(number | null)[]>(lessonDecisions.map(() => null));
   const [answer, setAnswer] = useState<number | null>(null);
   const [checked, setChecked] = useState(false);
   const [reflections, setReflections] = useState<string[]>(programme.demo.prompts.map(() => ""));
   const [noteStatus, setNoteStatus] = useState("");
-  const lessonDecisions = programme.demo.decisions || demoDecisions[programme.slug];
-  const storageKey = `learning-lab-demo-notes-v1:${programme.slug}`;
+  const storageKey = `learning-lab-${freeCourse ? "free-course" : "demo"}-notes-v1:${programme.slug}`;
   const hasNotes = reflections.some((reflection) => reflection.trim().length > 0);
 
   function saveNotes() {
@@ -77,7 +84,7 @@ export function DemoLesson({ programme }: { programme: LabProgramme }) {
 
   function downloadWorksheet() {
     const lines = [
-      "Swapnil Sahoo Learning Lab — demonstration worksheet",
+      `Swapnil Sahoo Learning Lab — ${freeCourse ? "free course" : "demonstration"} worksheet`,
       programme.title,
       programme.demo.title,
       "Original hypothetical exercise. Self-practice only; not an assessed submission or certificate record.",
@@ -105,7 +112,7 @@ export function DemoLesson({ programme }: { programme: LabProgramme }) {
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = `${programme.slug}-demo-worksheet.txt`;
+    link.download = `${programme.slug}-${freeCourse ? "course" : "demo"}-worksheet.txt`;
     document.body.appendChild(link);
     link.click();
     link.remove();
@@ -120,7 +127,9 @@ export function DemoLesson({ programme }: { programme: LabProgramme }) {
     >
       <header className="space-y-3">
         <p className="text-brand-700 dark:text-brand-300 text-xs font-semibold tracking-widest uppercase">
-          Try a lesson · about 15–20 minutes
+          {freeCourse
+            ? "Put the idea to work · guided practice"
+            : "Try a lesson · about 15–20 minutes"}
         </p>
         <h2 id={`${prefix}-heading`} className="font-serif text-2xl leading-tight sm:text-3xl">
           {programme.demo.title}

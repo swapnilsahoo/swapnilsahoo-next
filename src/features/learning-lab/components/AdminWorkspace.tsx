@@ -3,6 +3,7 @@
 import { useId, useState, type FormEvent, type ReactNode } from "react";
 import type { LabActor } from "../server/auth";
 import type { LabProgramme } from "../types";
+import { defaultOfferDetails, type ProgrammeOfferDetails } from "../config";
 import { programmes as defaultProgrammes } from "../programmes";
 import { useLabHydrated } from "./useLabHydrated";
 import {
@@ -23,6 +24,9 @@ type Lead = {
   email: string;
   programme_slug: string;
   organisation: string | null;
+  role: string | null;
+  learner_count: number | null;
+  preferred_timetable: string | null;
   message: string | null;
   marketing_consent: number;
   source: string | null;
@@ -84,6 +88,7 @@ type ProgrammeRow = {
   starts_at: string | null;
   fee_inr: number | null;
   capacity: number | null;
+  offer_details: string | null;
 };
 type Certificate = {
   id: string;
@@ -134,6 +139,36 @@ function programmeContent(row?: ProgrammeRow): LabProgramme | undefined {
     return undefined;
   }
 }
+function programmeOfferDetails(row?: ProgrammeRow): ProgrammeOfferDetails {
+  if (!row?.offer_details) return defaultOfferDetails;
+  try {
+    return { ...defaultOfferDetails, ...JSON.parse(row.offer_details) } as ProgrammeOfferDetails;
+  } catch {
+    return defaultOfferDetails;
+  }
+}
+
+const pilotTextFields = [
+  { key: "timetableIst", label: "Session timetable (IST)", maxLength: 2000, rows: 3 },
+  { key: "taxDisplay", label: "Fee and tax presentation", maxLength: 300, rows: 2 },
+  { key: "instructor", label: "Named instructor", maxLength: 160, rows: 1 },
+  { key: "format", label: "Delivery format", maxLength: 500, rows: 2 },
+  { key: "learningOutput", label: "Finished learner output", maxLength: 1000, rows: 3 },
+  {
+    key: "accessTerms",
+    label: "Access period and attendance alternatives",
+    maxLength: 2000,
+    rows: 3,
+  },
+  { key: "supportTerms", label: "Support, feedback and reassessment", maxLength: 2000, rows: 3 },
+  {
+    key: "cancellationTerms",
+    label: "Minimum cohort, cancellation and refund terms",
+    maxLength: 3000,
+    rows: 4,
+  },
+] as const;
+
 function localDateTime(timestamp: number | null) {
   if (timestamp === null) return "";
   const date = new Date(timestamp);
@@ -358,6 +393,30 @@ function AdminRecords({ actor, launchApproved }: { actor: LabActor; launchApprov
                         ?.title || lead.programme_slug}{" "}
                       · {new Date(lead.created_at).toLocaleDateString("en-GB")}
                     </p>
+                    {lead.kind === "institution" && (
+                      <dl className="my-4 space-y-2 text-sm">
+                        {lead.role && (
+                          <div>
+                            <dt className="font-semibold">Enquirer role</dt>
+                            <dd className="break-words">{lead.role}</dd>
+                          </div>
+                        )}
+                        {lead.learner_count != null && (
+                          <div>
+                            <dt className="font-semibold">Approximate adult learners</dt>
+                            <dd>{lead.learner_count}</dd>
+                          </div>
+                        )}
+                        {lead.preferred_timetable && (
+                          <div>
+                            <dt className="font-semibold">Preferred timetable</dt>
+                            <dd className="break-words whitespace-pre-wrap">
+                              {lead.preferred_timetable}
+                            </dd>
+                          </div>
+                        )}
+                      </dl>
+                    )}
                     {lead.message && (
                       <p className="my-4 text-sm whitespace-pre-wrap">{lead.message}</p>
                     )}
@@ -1027,6 +1086,7 @@ function ProgrammeEditor({
 }) {
   const instanceId = useId();
   const [json, setJson] = useState(JSON.stringify(programme, null, 2));
+  const offerDetails = programmeOfferDetails(row);
   return (
     <article className="border-ink-200 dark:border-ink-700 space-y-5 rounded-2xl border p-5">
       <h3>{programme.title}</h3>
@@ -1060,6 +1120,68 @@ function ProgrammeEditor({
               Preserve the slug. Changing duration or format does not confirm a schedule. Download
               or copy the current JSON before replacing it.
             </p>
+          </ActionForm>
+        </div>
+      </details>
+      <details>
+        <summary className="cursor-pointer font-semibold">Pilot offer details</summary>
+        <div className="mt-4 space-y-4">
+          <p className="lab-small">
+            Save private draft details here before launch approval. They appear publicly only when
+            founder launch approval is configured and this programme is set to Approved pilot
+            availability below. Leave undecided fields blank. Saving these details does not collect
+            payment, send email, reserve a place or enrol a learner.
+          </p>
+          <ActionForm
+            action="pilot-details"
+            prepare={(form) => ({
+              slug: programme.slug,
+              offerDetails: {
+                timetableIst: String(form.get("timetableIst") || "").trim() || null,
+                taxDisplay: String(form.get("taxDisplay") || "").trim() || null,
+                minCohort: form.get("minCohort") ? Number(form.get("minCohort")) : null,
+                instructor: String(form.get("instructor") || "").trim() || null,
+                accessTerms: String(form.get("accessTerms") || "").trim() || null,
+                supportTerms: String(form.get("supportTerms") || "").trim() || null,
+                cancellationTerms: String(form.get("cancellationTerms") || "").trim() || null,
+                format: String(form.get("format") || "").trim() || null,
+                learningOutput: String(form.get("learningOutput") || "").trim() || null,
+              },
+            })}
+            onSaved={reload}
+            button="Save pilot offer details"
+          >
+            {pilotTextFields.map((field) => (
+              <Field
+                key={field.key}
+                label={`${field.label} (optional)`}
+                name={`${field.key}-${instanceId}`}
+              >
+                <textarea
+                  id={`${field.key}-${instanceId}`}
+                  name={field.key}
+                  defaultValue={offerDetails[field.key] || ""}
+                  maxLength={field.maxLength}
+                  rows={field.rows}
+                  className={workspaceField}
+                />
+              </Field>
+            ))}
+            <Field
+              label="Minimum paid learners to run the cohort (optional)"
+              name={`minimum-${instanceId}`}
+            >
+              <input
+                id={`minimum-${instanceId}`}
+                name="minCohort"
+                type="number"
+                min={1}
+                max={500}
+                step={1}
+                defaultValue={offerDetails.minCohort ?? ""}
+                className={workspaceField}
+              />
+            </Field>
           </ActionForm>
         </div>
       </details>

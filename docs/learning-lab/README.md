@@ -6,6 +6,8 @@ Start with [the audit and product brief](site-audit-and-launch-brief.md), then [
 
 The [8 October audit response](audit-response-2026-10-08.md) records the subsequent founder decisions, contact/download improvements and enquiry follow-up workflow.
 
+The [free-course library](free-courses.md) adds six immediately available, original self-paced courses with interactive practice and worksheets. The homepage and navigation lead into this open classroom. The founder's approximately ₹100 introductory-workshop preference is recorded separately; paid scheduling, terms and merchant activation remain unresolved. Private pilot details and additional institution enquiry fields are implemented, without enabling payment or making unapproved drafts public.
+
 ## Architecture
 
 The existing Next.js 16 / React / TypeScript / Tailwind stack is preserved. Public routes live under `/learning-lab`; academic pages retain their existing URLs and navigation. A pathname boundary replaces the academic header/footer only inside the Lab. Cream, indigo, Poppins and Fraunces continue the site's identity, with light/dark themes and mobile navigation.

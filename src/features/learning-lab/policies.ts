@@ -68,7 +68,7 @@ export const labPolicies: LabPolicy[] = [
       {
         heading: "Interest and institutional enquiries",
         paragraphs: [
-          "The enquiry form asks for your name, email address and programme of interest. Institutional enquiries also ask for the institution or organisation name. Your message is optional. The form requires confirmation that you are aged 18 or over and acknowledgement of enquiry processing. Please do not include sensitive personal, student or employer information.",
+          "The enquiry form asks for your name, email address and programme of interest. Institutional enquiries also ask for the institution or organisation name, with optional role, approximate adult learner count and preferred timetable. Your message is optional. The form requires confirmation that you are aged 18 or over and acknowledgement of enquiry processing. Please do not include student lists or sensitive personal, student or employer information.",
           "These details are used to record and handle the enquiry, avoid duplicate records and discuss a proposed programme or institutional pilot. Optional permission to receive programme updates is separate, unticked by default and not required to enquire. Registering interest does not enrol you.",
           "The current source field records the Lab page path and, if present, limited campaign parameters such as utm_source, utm_medium and utm_campaign. It is not cross-site tracking. Anti-spam controls use limited technical request information and keyed identifiers for rate limiting. Database and hosting providers may also maintain their own operational logs; the final notice must identify the chosen processors and their practices.",
         ],
@@ -83,7 +83,7 @@ export const labPolicies: LabPolicy[] = [
       {
         heading: "Cookies, demonstrations and external services",
         paragraphs: [
-          "Authentication requires essential session cookies. Demonstration notes may be kept in your browser for your convenience; they become an assessed submission only when you explicitly submit them through the learner workflow. Browser-stored notes can be removed using your browser's site-data controls.",
+          "Authentication requires essential session cookies. Free-course and demonstration notes stay on the page unless you choose to save them in this browser or download a worksheet. They are not sent to the Lab by these exercises. A separate learner-workspace submission is required for assessment. Browser-stored notes can be cleared in the exercise or using your browser's site-data controls.",
           "The first release does not configure external marketing email, analytics, AI processing or payment collection. Your exercise is not sent to an AI provider by the Lab. External resource links have the destination provider's own privacy terms. Any later integration needs a revised notice, suitable processor arrangements and any required consent before use.",
         ],
       },

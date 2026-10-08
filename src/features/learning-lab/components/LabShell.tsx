@@ -4,6 +4,7 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { labPublicConfig } from "../config";
 
 const navigation = [
+  ["Free courses", "/learning-lab/free-courses"],
   ["Programmes", "/learning-lab/programmes"],
   ["For colleges", "/learning-lab/for-colleges"],
   ["For professionals", "/learning-lab/for-professionals"],
@@ -32,7 +33,9 @@ export function LabShell({
         </Link>
         <div className="lab-masthead-actions">
           <Link
-            href={learnerAccessAvailable ? "/learning-lab/login" : "/learning-lab/login?unavailable=1"}
+            href={
+              learnerAccessAvailable ? "/learning-lab/login" : "/learning-lab/login?unavailable=1"
+            }
             className="lab-text-link"
             aria-label={learnerAccessAvailable ? "Learner sign in" : "Learner access coming soon"}
           >
@@ -74,15 +77,16 @@ export function LabShell({
             <p className="lab-eyebrow">{labPublicConfig.name}</p>
             <p className="lab-small">{labPublicConfig.description}</p>
             <p className="lab-small">
-              Independently run by Dr. Swapnil Sahoo. His academic and professional affiliations
-              do not imply sponsorship or endorsement of the Lab.
+              Independently run by Dr. Swapnil Sahoo. His academic and professional affiliations do
+              not imply sponsorship or endorsement of the Lab.
             </p>
             <p className="lab-small">
-              Proposed programmes for adults aged 18 and over. Registration of interest is free and
-              does not reserve a paid place.
+              Free self-paced courses and proposed programmes for adults aged 18 and over.
+              Registration of interest is free and does not reserve a paid place.
             </p>
           </div>
           <nav aria-label="Learning Lab information">
+            <Link href="/learning-lab/free-courses">Free courses</Link>
             <Link href="/learning-lab/faq">FAQs</Link>
             <Link href="/learning-lab/contact">Contact</Link>
             {labPublicConfig.businessEmail && (

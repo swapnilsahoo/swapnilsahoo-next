@@ -20,7 +20,11 @@ export default async function ResourcesPage() {
         eyebrow="Open learning resources"
         title="Try a small piece of the work."
         description="The demonstration lessons use original fictional scenarios. Make an attempt, compare the feedback and reflect on what you would change. No account is required."
-      />
+      >
+        <Link href="/learning-lab/free-courses" className="lab-button">
+          Explore six free courses →
+        </Link>
+      </LabHero>
       <LabSection eyebrow="Original demonstrations" title="One usable exercise for each programme.">
         <div className="lab-grid">
           {programmes.map((p) => (
@@ -40,7 +44,11 @@ export default async function ResourcesPage() {
           ))}
         </div>
       </LabSection>
-      <LabSection className="lab-band" eyebrow="See the learner output" title="From a task brief to an adoption decision.">
+      <LabSection
+        className="lab-band"
+        eyebrow="See the learner output"
+        title="From a task brief to an adoption decision."
+      >
         <div className="lab-prose">
           <p>
             Explore a fictional AI workflow example with a reusable task brief, ten-case evaluation
@@ -51,8 +59,8 @@ export default async function ResourcesPage() {
             Download the worked example (.txt) ↓
           </a>
           <p className="lab-small">
-            Original teaching material with invented results. It is not a measured AI benchmark or
-            a Lab learner outcome.
+            Original teaching material with invented results. It is not a measured AI benchmark or a
+            Lab learner outcome.
           </p>
         </div>
       </LabSection>

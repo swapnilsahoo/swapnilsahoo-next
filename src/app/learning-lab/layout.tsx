@@ -6,7 +6,7 @@ import "@/features/learning-lab/components/lab.css";
 export const metadata: Metadata = {
   title: { default: "Swapnil Sahoo Learning Lab", template: "%s | Swapnil Sahoo Learning Lab" },
   description:
-    "A founder-led professional education initiative hosted on swapnilsahoo.com. Explore proposed programmes in applied AI, strategy and entrepreneurship.",
+    "Free self-paced courses and proposed programmes in applied AI, strategy and entrepreneurship, led by Dr. Swapnil Sahoo.",
   openGraph: {
     type: "website",
     siteName: "Swapnil Sahoo Learning Lab",
@@ -17,7 +17,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary",
     title: "Swapnil Sahoo Learning Lab",
-    description: "Proposed programmes in applied AI, strategy and entrepreneurship.",
+    description:
+      "Free courses and proposed programmes in applied AI, strategy and entrepreneurship.",
     images: [],
   },
 };

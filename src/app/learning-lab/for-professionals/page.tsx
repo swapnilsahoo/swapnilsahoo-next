@@ -35,8 +35,8 @@ export default function ProfessionalsPage() {
         title="Choose a skill you can demonstrate."
         description="Work on decisions you can explain and outputs you can revise. The proposed programmes combine short concepts, original exercises and a capstone with human assessment."
       >
-        <Link href="/learning-lab/programmes" className="lab-button">
-          Compare the programmes →
+        <Link href="/learning-lab/free-courses" className="lab-button">
+          Start a free course →
         </Link>
         <Link href="/learning-lab/contact" className="lab-button lab-button-secondary">
           Register interest

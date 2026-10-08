@@ -27,7 +27,7 @@ const questions = [
   ],
   [
     "Can I try a lesson without an account?",
-    "Yes. Each proposed programme includes an original demonstration lesson with a fictional scenario, an exercise and practice feedback. These public demonstrations do not contribute to certification.",
+    "Yes. The Free courses library offers six self-paced mini-courses with readings, fictional scenarios, interactive decisions, checkpoints and downloadable worksheets. No account, payment or paid software is needed. Each proposed full programme also includes an original demonstration. This public self-practice does not include live teaching, individual assessment or certification.",
   ],
   [
     "Does the Lab guarantee a job or business success?",

@@ -7,6 +7,7 @@ import { DemoLesson } from "@/features/learning-lab/components/DemoLesson";
 import { getPublicProgramme, getPublicProgrammes } from "@/features/learning-lab/store";
 import { isLabServiceConfigured } from "@/features/learning-lab/server/capabilities";
 import { labPublicConfig } from "@/features/learning-lab/config";
+import { ProgrammeOfferSummary } from "@/features/learning-lab/components/ProgrammeOfferSummary";
 
 export const dynamic = "force-dynamic";
 
@@ -51,7 +52,7 @@ export default async function ProgrammePage({ params }: Props) {
   return (
     <>
       <LabHero
-        eyebrow="Proposed programme · Adults 18+"
+        eyebrow={pilotOpen ? "Approved pilot · Adults 18+" : "Proposed programme · Adults 18+"}
         title={programme.title}
         description={programme.tagline}
       >
@@ -66,6 +67,7 @@ export default async function ProgrammePage({ params }: Props) {
         </a>
       </LabHero>
       <div className="lab-container">
+        <ProgrammeOfferSummary programme={programme} />
         <div className="lab-stat-row">
           <div>
             <span>Proposed duration</span>
@@ -82,7 +84,9 @@ export default async function ProgrammePage({ params }: Props) {
                 ? "Registration of interest closed"
                 : pilotOpen
                   ? "Approved pilot · enquire about joining"
-                  : onlineEnquiries ? "Register interest · details unconfirmed" : "Email a question · details unconfirmed"}
+                  : onlineEnquiries
+                    ? "Register interest · details unconfirmed"
+                    : "Email a question · details unconfirmed"}
             </strong>
             {confirmedDetails.length > 0 && (
               <p className="lab-small">{confirmedDetails.join(" · ")}</p>

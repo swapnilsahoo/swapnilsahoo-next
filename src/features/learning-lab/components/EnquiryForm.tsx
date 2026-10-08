@@ -49,6 +49,10 @@ export function EnquiryForm({
     const email = String(data.get("email") ?? "").trim();
     const selectedProgramme = String(data.get("programmeSlug") ?? "");
     const organisation = String(data.get("organisation") ?? "").trim();
+    const role = String(data.get("role") ?? "").trim();
+    const learnerCountInput = String(data.get("learnerCount") ?? "").trim();
+    const learnerCount = learnerCountInput ? Number(learnerCountInput) : null;
+    const preferredTimetable = String(data.get("preferredTimetable") ?? "").trim();
     const fields: FieldErrors = {};
     if (name.length < 2 || name.length > 100) fields.name = "Enter your name (2–100 characters).";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254)
@@ -57,6 +61,16 @@ export function EnquiryForm({
       fields.programmeSlug = "Choose a programme.";
     if (kind === "institution" && (organisation.length < 2 || organisation.length > 160))
       fields.organisation = "Enter your institution or organisation name.";
+    if (kind === "institution") {
+      if (role.length > 120) fields.role = "Keep your role to 120 characters or fewer.";
+      if (
+        learnerCount !== null &&
+        (!Number.isInteger(learnerCount) || learnerCount < 1 || learnerCount > 10000)
+      )
+        fields.learnerCount = "Enter a whole number of adult learners between 1 and 10,000.";
+      if (preferredTimetable.length > 500)
+        fields.preferredTimetable = "Keep your preferred timetable to 500 characters or fewer.";
+    }
     if (!data.has("adultConfirmed"))
       fields.adultConfirmed = "Please confirm that you are aged 18 or over.";
     if (!data.has("privacyAccepted"))
@@ -87,6 +101,9 @@ export function EnquiryForm({
           email,
           programmeSlug: selectedProgramme,
           organisation: kind === "institution" ? organisation : undefined,
+          role: kind === "institution" ? role || null : null,
+          learnerCount: kind === "institution" ? learnerCount : null,
+          preferredTimetable: kind === "institution" ? preferredTimetable || null : null,
           message: String(data.get("message") ?? "").trim(),
           adultConfirmed: true,
           privacyAccepted: true,
@@ -122,8 +139,8 @@ export function EnquiryForm({
       <aside className="lab-callout" aria-label="Enquiry availability">
         <h3>{contactEmail ? "Email the Lab" : "Enquiries opening soon"}</h3>
         <p>
-          Online forms will open after secure service setup. You can explore the public lessons
-          and email a question about a programme or an institutional pilot now.
+          Online forms will open after secure service setup. You can explore the public lessons and
+          email a question about a programme or an institutional pilot now.
         </p>
         {contactEmail && (
           <p>
@@ -230,18 +247,61 @@ export function EnquiryForm({
           </div>
         </div>
         {kind === "institution" && (
-          <div className="lab-field">
-            <label htmlFor={`${prefix}-organisation`}>Institution / organisation *</label>
-            <input
-              id={`${prefix}-organisation`}
-              name="organisation"
-              autoComplete="organization"
-              maxLength={160}
-              required
-              {...fieldProps("organisation")}
-            />
-            {fieldError("organisation")}
-          </div>
+          <>
+            <div className="lab-field">
+              <label htmlFor={`${prefix}-organisation`}>Institution / organisation *</label>
+              <input
+                id={`${prefix}-organisation`}
+                name="organisation"
+                autoComplete="organization"
+                maxLength={160}
+                required
+                {...fieldProps("organisation")}
+              />
+              {fieldError("organisation")}
+            </div>
+            <div className="lab-form-grid">
+              <div className="lab-field">
+                <label htmlFor={`${prefix}-role`}>Your role (optional)</label>
+                <input
+                  id={`${prefix}-role`}
+                  name="role"
+                  autoComplete="organization-title"
+                  maxLength={120}
+                  {...fieldProps("role")}
+                />
+                {fieldError("role")}
+              </div>
+              <div className="lab-field">
+                <label htmlFor={`${prefix}-learnerCount`}>
+                  Approximate adult learners (optional)
+                </label>
+                <input
+                  id={`${prefix}-learnerCount`}
+                  name="learnerCount"
+                  type="number"
+                  min={1}
+                  max={10000}
+                  step={1}
+                  inputMode="numeric"
+                  {...fieldProps("learnerCount")}
+                />
+                {fieldError("learnerCount")}
+              </div>
+            </div>
+            <div className="lab-field">
+              <label htmlFor={`${prefix}-preferredTimetable`}>Preferred timetable (optional)</label>
+              <textarea
+                id={`${prefix}-preferredTimetable`}
+                name="preferredTimetable"
+                maxLength={500}
+                rows={2}
+                placeholder="For example: weekday evenings, IST, during November."
+                {...fieldProps("preferredTimetable")}
+              />
+              {fieldError("preferredTimetable")}
+            </div>
+          </>
         )}
         <div className="lab-field">
           <label htmlFor={`${prefix}-programmeSlug`}>Programme of interest *</label>

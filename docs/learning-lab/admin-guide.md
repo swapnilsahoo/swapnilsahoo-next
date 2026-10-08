@@ -75,6 +75,12 @@ The certificate is a **Certificate of Completion**, not a degree, recognised qua
 
 Use **Revoke this certificate** after the approved review procedure if it was issued in error or eligibility needs reassessment. The public record then states revoked. Reissue runs eligibility checks again, creates a new verification identifier, resets public-name permission to hidden and makes the previous identifier unavailable. Preserve an appropriate operational audit of the decision and notify the learner through the approved channel; the control itself sends no notification.
 
+## Pilot offer drafts and institutional enquiries
+
+In **Content → Pilot offer details**, save the IST timetable, tax presentation, minimum cohort, instructor, delivery format, learner output, access/attendance alternatives, support/feedback and cancellation terms. Blank fields remain undecided. Saving a draft works before launch approval; public pages and programme outlines show it only when deployment launch approval is configured and the programme is set to an approved open pilot. The server rejects a minimum cohort above capacity, including a later capacity reduction below the saved minimum. These controls do not enable checkout or create enrolment.
+
+Institutional forms accept optional role, approximate adult learner count and preferred timetable. These appear on enquiry cards and in lead exports. Updating a duplicate enquiry preserves its workflow stage, owner and next action. Do not request student lists at this stage.
+
 ## Reporting and CSV export
 
 **Overview** shows real enquiry/enrolment/submission/valid-certificate counts and the mean score of reviewed real submissions. Demo records and revoked certificates are excluded from those applicable totals. Enquiries count only the latest 200 records shown; this is not a lifetime total. The mean is an operational score average, not proof of learning improvement, and counts are not placements, sales or causal impact.
@@ -83,7 +89,7 @@ The links **Export real leads as CSV**, **Export real enrolments as CSV** and **
 
 | Export      | Included fields                                                                                                                                                                  |
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Leads       | ID, kind, name, email, programme, organisation, marketing permission, status, administrator owner ID, next action, due timestamp, creation and update dates; latest 200 records. |
+| Leads       | ID, kind, name, email, programme, organisation, role, approximate adult learner count, preferred timetable, marketing permission, status, administrator owner ID, next action, due timestamp, creation and update dates; latest 200 records. |
 | Enrolments  | ID, name, email, programme, attendance percentage and enrolment status.                                                                                                          |
 | Submissions | ID, name, email, programme, score, approval and submission date; not submission text or feedback.                                                                                |
 

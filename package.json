@@ -23,6 +23,8 @@
     "lab:test:browser": "node --import tsx scripts/test-learning-lab-browser.mjs",
     "lab:test:workspace": "node scripts/test-learning-lab-workspace.mjs",
     "lab:test:availability": "node --conditions=react-server --import tsx scripts/test-learning-lab-availability.mts",
+    "lab:test:pilot-details": "node --conditions=react-server --import tsx scripts/test-learning-lab-pilot-details.mts",
+    "lab:test:free-courses": "node --import tsx scripts/test-learning-lab-free-courses.mjs",
     "lab:test:unconfigured": "node scripts/test-learning-lab-unconfigured.mjs",
     "lab:preview": "node scripts/learning-lab-preview.mjs",
     "check:scriptures": "node scripts/check-scripture-corpora.mjs",

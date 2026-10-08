@@ -31,3 +31,29 @@ export const defaultAvailability: ProgrammeAvailability = {
   feeInr: null,
   capacity: null,
 };
+
+// These fields may be saved privately as a draft. Public pages receive them only
+// for an explicitly approved, open pilot; feeInr remains the total payable fee.
+export type ProgrammeOfferDetails = {
+  timetableIst: string | null;
+  taxDisplay: string | null;
+  minCohort: number | null;
+  instructor: string | null;
+  accessTerms: string | null;
+  supportTerms: string | null;
+  cancellationTerms: string | null;
+  format: string | null;
+  learningOutput: string | null;
+};
+
+export const defaultOfferDetails: ProgrammeOfferDetails = {
+  timetableIst: null,
+  taxDisplay: null,
+  minCohort: null,
+  instructor: null,
+  accessTerms: null,
+  supportTerms: null,
+  cancellationTerms: null,
+  format: null,
+  learningOutput: null,
+};

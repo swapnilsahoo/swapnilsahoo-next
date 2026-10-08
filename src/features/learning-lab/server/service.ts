@@ -9,6 +9,7 @@ import type { LabProgramme } from "../types";
 import { seedProgrammeContent } from "../store";
 import { getDatabase, getAuthSecret } from "./database";
 import { LabHttpError, type LabActor } from "./errors";
+import { offerDetailsSchema } from "./offers";
 
 const slugSchema = z.enum([
   "ai-for-managers",
@@ -26,6 +27,9 @@ export const enquirySchema = z
       .transform((v) => v.trim().toLowerCase()),
     programmeSlug: slugSchema,
     organisation: z.string().trim().max(160).optional().default(""),
+    role: z.string().trim().max(120).nullable().optional().default(null),
+    learnerCount: z.number().int().min(1).max(10000).nullable().optional().default(null),
+    preferredTimetable: z.string().trim().max(500).nullable().optional().default(null),
     message: z.string().trim().max(2000).optional().default(""),
     adultConfirmed: z.literal(true),
     privacyAccepted: z.literal(true),
@@ -37,7 +41,15 @@ export const enquirySchema = z
   .refine((v) => v.kind !== "institution" || v.organisation.length >= 2, {
     path: ["organisation"],
     message: "Enter the institution or organisation name.",
-  });
+  })
+  .refine(
+    (v) =>
+      v.kind === "institution" || (!v.role && v.learnerCount === null && !v.preferredTimetable),
+    {
+      path: ["kind"],
+      message: "Institution details are accepted only for institutional enquiries.",
+    }
+  );
 export function parse<T>(schema: z.ZodType<T>, data: unknown): T {
   const result = schema.safeParse(data);
   if (!result.success)
@@ -99,7 +111,7 @@ export async function saveEnquiry(raw: unknown, ip: string) {
         "This programme is not accepting new enquiries. Explore another programme or return when registration of interest reopens."
       );
     return tx.execute({
-      sql: `INSERT INTO lab_enquiry(id,kind,name,email,programme_slug,organisation,message,marketing_consent,consent_at,source,created_at,updated_at,dedup_key) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT(dedup_key) DO UPDATE SET name=excluded.name,message=excluded.message,marketing_consent=excluded.marketing_consent,consent_at=excluded.consent_at,updated_at=excluded.updated_at RETURNING id`,
+      sql: `INSERT INTO lab_enquiry(id,kind,name,email,programme_slug,organisation,role,learner_count,preferred_timetable,message,marketing_consent,consent_at,source,created_at,updated_at,dedup_key) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT(dedup_key) DO UPDATE SET name=excluded.name,role=excluded.role,learner_count=excluded.learner_count,preferred_timetable=excluded.preferred_timetable,message=excluded.message,marketing_consent=excluded.marketing_consent,consent_at=excluded.consent_at,updated_at=excluded.updated_at RETURNING id`,
       args: [
         randomUUID(),
         v.kind,
@@ -107,6 +119,9 @@ export async function saveEnquiry(raw: unknown, ip: string) {
         v.email,
         v.programmeSlug,
         v.organisation || null,
+        v.role || null,
+        v.learnerCount,
+        v.preferredTimetable || null,
         v.message || null,
         Number(v.marketingConsent),
         v.marketingConsent ? now : null,
@@ -352,7 +367,7 @@ export async function adminRecords() {
   const [leads, users, cohorts, enrolments, submissions, content, certificates] = await Promise.all(
     [
       db.execute(
-        "SELECT id,kind,name,email,programme_slug,organisation,message,marketing_consent,source,status,owner_user_id,next_action,next_action_at,is_demo,created_at,updated_at FROM lab_enquiry ORDER BY created_at DESC LIMIT 200"
+        "SELECT id,kind,name,email,programme_slug,organisation,role,learner_count,preferred_timetable,message,marketing_consent,source,status,owner_user_id,next_action,next_action_at,is_demo,created_at,updated_at FROM lab_enquiry ORDER BY created_at DESC LIMIT 200"
       ),
       db.execute(
         "SELECT u.id,u.name,u.email,m.role,m.is_demo,m.must_change_password FROM lab_user u JOIN lab_member m ON m.user_id=u.id ORDER BY u.created_at DESC"
@@ -477,6 +492,7 @@ const programmeSchema = z
   });
 
 export async function adminMutation(actor: LabActor, action: string, data: unknown) {
+  if (actor.role !== "admin") throw new LabHttpError(403, "Administrator access is required.");
   const db = await getDatabase();
   if (action === "user") {
     const v = parse(
@@ -670,6 +686,43 @@ export async function adminMutation(actor: LabActor, action: string, data: unkno
     await audit(actor, "programme.updated", v.slug);
     return { ok: true };
   }
+  if (action === "pilot-details") {
+    const v = parse(
+      z.object({ slug: slugSchema, offerDetails: offerDetailsSchema }).strict(),
+      data
+    );
+    await seedProgrammeContent();
+    await writeTransaction(async (tx) => {
+      const programme = (
+        await tx.execute({
+          sql: "SELECT capacity FROM lab_programme WHERE slug=?",
+          args: [v.slug],
+        })
+      ).rows[0];
+      if (!programme) throw new LabHttpError(404, "This programme no longer exists.");
+      if (
+        v.offerDetails.minCohort !== null &&
+        programme.capacity !== null &&
+        v.offerDetails.minCohort > Number(programme.capacity)
+      )
+        throw new LabHttpError(422, "The minimum cohort cannot exceed the programme capacity.", {
+          "offerDetails.minCohort": "Choose a minimum no greater than the programme capacity.",
+        });
+      await tx.execute({
+        sql: "UPDATE lab_programme SET offer_details=?,updated_at=? WHERE slug=?",
+        args: [JSON.stringify(v.offerDetails), Date.now(), v.slug],
+      });
+      await tx.execute({
+        sql: "INSERT INTO lab_audit(id,actor_id,action,entity_id,created_at) VALUES(?,?,?,?,?)",
+        args: [randomUUID(), actor.id, "programme.pilot-details", v.slug, Date.now()],
+      });
+    });
+    return {
+      ok: true,
+      message:
+        "Pilot details saved. They appear publicly only for an approved open pilot. No payment or enrolment has been created.",
+    };
+  }
   if (action === "availability") {
     const v = parse(
       z.object({
@@ -693,11 +746,49 @@ export async function adminMutation(actor: LabActor, action: string, data: unkno
         "Founder approval must be recorded in deployment configuration before publishing fees, dates, capacity or enrolment availability."
       );
     await seedProgrammeContent();
-    await db.execute({
-      sql: "UPDATE lab_programme SET status=?,starts_at=?,fee_inr=?,capacity=?,updated_at=? WHERE slug=?",
-      args: [v.status, v.startsAt, v.feeInr, v.capacity, Date.now(), v.slug],
+    await writeTransaction(async (tx) => {
+      const programme = (
+        await tx.execute({
+          sql: "SELECT offer_details FROM lab_programme WHERE slug=?",
+          args: [v.slug],
+        })
+      ).rows[0];
+      if (!programme) throw new LabHttpError(404, "This programme no longer exists.");
+      let storedDetails: unknown = null;
+      if (programme.offer_details) {
+        try {
+          storedDetails = JSON.parse(String(programme.offer_details));
+        } catch {
+          throw new LabHttpError(
+            409,
+            "Save valid pilot delivery details before changing availability."
+          );
+        }
+      }
+      const details = programme.offer_details ? offerDetailsSchema.safeParse(storedDetails) : null;
+      if (programme.offer_details && !details?.success)
+        throw new LabHttpError(
+          409,
+          "Save valid pilot delivery details before changing availability."
+        );
+      if (
+        v.capacity !== null &&
+        details?.success &&
+        details.data.minCohort !== null &&
+        v.capacity < details.data.minCohort
+      )
+        throw new LabHttpError(422, "The programme capacity cannot be below its minimum cohort.", {
+          capacity: "Choose a capacity no smaller than the minimum cohort.",
+        });
+      await tx.execute({
+        sql: "UPDATE lab_programme SET status=?,starts_at=?,fee_inr=?,capacity=?,updated_at=? WHERE slug=?",
+        args: [v.status, v.startsAt, v.feeInr, v.capacity, Date.now(), v.slug],
+      });
+      await tx.execute({
+        sql: "INSERT INTO lab_audit(id,actor_id,action,entity_id,created_at) VALUES(?,?,?,?,?)",
+        args: [randomUUID(), actor.id, "programme.availability", v.slug, Date.now()],
+      });
     });
-    await audit(actor, "programme.availability", v.slug);
     return { ok: true };
   }
   if (action === "review") {

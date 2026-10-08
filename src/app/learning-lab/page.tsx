@@ -3,6 +3,8 @@ import Link from "next/link";
 import { LabHero, LabSection } from "@/features/learning-lab/components/LabShell";
 import { getPublicProgrammes } from "@/features/learning-lab/store";
 import { labPublicConfig } from "@/features/learning-lab/config";
+import { freeCourses } from "@/features/learning-lab/free-courses";
+import { CourseMotif } from "@/features/learning-lab/components/FreeCourseLibrary";
 
 export const dynamic = "force-dynamic";
 
@@ -40,14 +42,55 @@ export default async function LearningLabPage() {
         title={labPublicConfig.name}
         description="Practise applied AI, strategy and entrepreneurship. Build a useful piece of work, test your reasoning and revise your decisions against a clear rubric. Explore original lessons for adult learners."
       >
-        <Link href="/learning-lab/programmes" className="lab-button">
-          Explore the programmes <span aria-hidden="true">→</span>
+        <Link href="/learning-lab/free-courses" className="lab-button">
+          Start a free course <span aria-hidden="true">→</span>
         </Link>
         <Link href="/learning-lab/for-colleges" className="lab-button lab-button-secondary">
           Discuss a college pilot
         </Link>
       </LabHero>
-      <LabSection eyebrow="The first offer" title="Three ways to put judgement to work.">
+      <LabSection
+        className="lab-band"
+        eyebrow="The open classroom"
+        title="One new idea. Something useful to keep."
+      >
+        <p className="lab-lead">
+          Six free mini-courses. Start anytime, read at your own pace and test your decisions. No
+          account or software purchase required.
+        </p>
+        <div className="lab-grid">
+          {freeCourses
+            .filter((_, index) => index % 2 === 0)
+            .map((course) => (
+              <article className="lab-card lab-course-card" key={course.slug}>
+                <CourseMotif category={course.category} />
+                <div className="lab-course-card-body">
+                  <div className="lab-course-meta">
+                    <span>{course.category}</span>
+                    <span className="lab-course-free">Free · ₹0</span>
+                  </div>
+                  <h3>{course.title}</h3>
+                  <p>{course.intro}</p>
+                  <p className="lab-small">
+                    About {course.minutes} min · self-paced reading + practice
+                  </p>
+                  <Link
+                    className="lab-text-link"
+                    href={`/learning-lab/free-courses/${course.slug}`}
+                  >
+                    Start learning →
+                  </Link>
+                </div>
+              </article>
+            ))}
+        </div>
+        <div className="lab-actions">
+          <Link href="/learning-lab/free-courses" className="lab-button lab-button-secondary">
+            Explore all six free courses →
+          </Link>
+        </div>
+      </LabSection>
+      <LabSection eyebrow="The longer learning paths" title="Three ways to put judgement to work.">
         <p className="lab-lead">
           Explore an original demonstration lesson before registering interest. Each proposed
           programme is built around something you can explain, test and improve.
@@ -57,7 +100,11 @@ export default async function LearningLabPage() {
             <article className="lab-card" key={p.slug}>
               <span className="lab-card-number">0{i + 1} / Programme</span>
               <span className="lab-tag">
-                {p.availability.status === "closed" ? "Interest closed" : p.availability.status === "pilot-open" ? "Approved pilot" : "Proposed programme"}
+                {p.availability.status === "closed"
+                  ? "Interest closed"
+                  : p.availability.status === "pilot-open"
+                    ? "Approved pilot"
+                    : "Proposed programme"}
               </span>
               <h3>{p.title}</h3>
               <p>{p.tagline}</p>
@@ -69,8 +116,9 @@ export default async function LearningLabPage() {
           ))}
         </div>
         <p className="lab-small" style={{ marginTop: "1.4rem" }}>
-          Programmes are in preparation. Fees, dates and places are unconfirmed; payments are
-          disabled.
+          {programmes.some((p) => p.availability.status === "pilot-open")
+            ? "Review approved pilot details on the programme page and enquire about joining. Payments remain disabled."
+            : "Full programmes are in preparation. Fees, dates and places are unconfirmed; payments are disabled."}
         </p>
       </LabSection>
       <LabSection
