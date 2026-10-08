@@ -364,7 +364,7 @@
   font-size: 1.4rem;
   margin: 1.8rem 0 0.8rem;
 }
-.lab-prose a {
+.lab-prose a:not(.lab-button) {
   color: var(--lab-accent);
   text-decoration: underline;
 }
