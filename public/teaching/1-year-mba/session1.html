@@ -1776,12 +1776,12 @@
   </div>
 
   <div class="mt-4 card p-5">
-    <h3 class="font-bold text-slate-900">Last eight minutes &mdash; retrieval, no screens</h3>
+    <h3 class="font-bold text-slate-900">Last 12 minutes &mdash; the in-class quiz (graded)</h3>
     <p class="mt-2 text-sm text-slate-600 leading-relaxed">
-      On one side of A4, by hand: define strategy without using the words <em>best</em>,
+      Every class ends with a graded quiz on its three questions and the case. To be ready, check that
+      you can do three things without notes: define strategy without using the words <em>best</em>,
       <em>leading</em> or <em>world-class</em>; name one trade-off your own employer has made; and
-      name one strategy there that emerged rather than being planned. Ungraded. The point is to
-      find out which of the three you cannot yet do.
+      name one strategy there that emerged rather than being planned.
     </p>
   </div>
 </section>
@@ -3450,7 +3450,8 @@ QUIZ.forEach((item,i)=>{
     txt(G.x0 - 6, G.y1, "low", "end", "pf-tick");
     txt(G.x0, G.y1 + 16, "high", "start", "pf-tick");
     txt(G.x1, G.y1 + 16, "low", "end", "pf-tick");
-    txt((G.x0 + G.x1) / 2, H - 8, "Relative cost position", "middle", "pf-axis-title");
+    // Porter's exhibit runs cost from high (left) to low (right); say so, because it reverses the usual direction.
+    txt((G.x0 + G.x1) / 2, H - 8, narrow ? "Relative cost · cheaper →" : "Relative cost position · cheaper to the right →", "middle", "pf-axis-title");
     var my = (G.y0 + G.y1) / 2;
     txt(13, my, "Nonprice buyer value delivered", "middle", "pf-axis-title")
       .setAttribute("transform", "rotate(-90 13 " + my + ")");

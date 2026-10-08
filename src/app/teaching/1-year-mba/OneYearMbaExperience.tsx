@@ -56,8 +56,8 @@ const sessionActs = [
   },
 ] as const;
 
-// Sequence and assigned readings follow the PGPM 2026–27 course outline V0.2.
-// Canonical lesson numbers follow V0.2; earlier standalone topics remain as supplements.
+// Sequence and assigned readings follow the PGPM 2026–27 course outline V0.3.
+// Canonical lesson numbers follow V0.3; earlier standalone topics remain as supplements.
 const interactive = (file: string) => `/teaching/1-year-mba/${encodeURIComponent(file)}`;
 
 type OneYearSession = {
@@ -301,9 +301,9 @@ const studioRhythm = [
     text: "Listen, challenge, compare experience and make the trade-offs visible.",
   },
   {
-    step: "Last 8 minutes",
-    title: "Retrieve without a screen",
-    text: "Handwrite the central idea and apply it while the reasoning is still alive.",
+    step: "Last 12 minutes",
+    title: "Answer the in-class quiz",
+    text: "A graded quiz on the session’s ideas and case closes every class. Consistency is rewarded.",
   },
 ] as const;
 
@@ -336,28 +336,28 @@ const assessmentPlan = [
     alignment: "CO1 / PO1 · 5  |  CO2 / PO2 · 5",
   },
   {
-    title: "Midterm examination",
+    title: "Class test (mid-term)",
     marks: "15",
     instrument: "Embedded questions",
     alignment: "CO1 / PO1 · 10  |  CO2 / PO2 · 5",
   },
   {
     title: "End-term examination",
-    marks: "30",
+    marks: "25",
     instrument: "Embedded questions",
-    alignment: "CO1 / PO1 · 15  |  CO2 / PO2 · 15",
+    alignment: "CO1 / PO1 · 10  |  CO2 / PO2 · 15",
   },
   {
     title: "Field analysis on startups",
-    marks: "20",
+    marks: "25",
     instrument: "Rubric",
-    alignment: "CO1 / PO1 · 10  |  CO2 / PO2 · 10",
+    alignment: "CO1 / PO1 · 15  |  CO2 / PO2 · 10",
   },
 ] as const;
 
 const deliverables = [
   ["By Session 06", "Reflective Note 1", "Handwritten submission"],
-  ["Before Session 08", "Midterm exam", "Concepts, analysis and decisions"],
+  ["Before Session 08", "Class test (mid-term)", "Concepts, analysis and decisions"],
   ["By Session 11", "Group assignment", "Report/recommendation emailed to the founder or CEO"],
   ["By Session 13", "Reflective Note 2", "Handwritten submission"],
   ["After Session 13", "End-term exam", "Cumulative course assessment"],
@@ -383,7 +383,7 @@ const programmeOutcomes = [
 
 const classroomStandards = [
   "Preparation, active listening and participation directly determine the quality of the shared learning experience.",
-  "Use the final eight minutes for a handwritten, ungraded practice quiz on one A4 sheet.",
+  "In the last 12 minutes of each class you sit a graded in-class quiz; consistency is rewarded.",
   "Phones, laptops and entertainment devices remain off during class.",
   "Attribute ideas and words rigorously; plagiarism is prohibited.",
   "Maintain respectful discourse without interruptions, off-topic remarks or personal critiques.",
@@ -759,7 +759,7 @@ export function OneYearMbaExperience() {
               </h2>
             </div>
             <p className="max-w-md text-sm leading-6 text-slate-300">
-              The V0.2 course outline moves from analyzing industries and resources, through
+              The V0.3 course outline moves from analyzing industries and resources, through
               business and corporate choices, to the organization and governance needed to execute.
             </p>
           </div>
@@ -1157,7 +1157,7 @@ export function OneYearMbaExperience() {
               <div
                 className={`${styles.assessmentRing} mt-10`}
                 role="img"
-                aria-label="Assessment allocation totalling 100 marks: quizzes 25, reflections 10, midterm 15, end term 30, startup field analysis 20"
+                aria-label="Assessment allocation totalling 100 marks: quizzes 25, reflections 10, class test 15, end term 25, startup field analysis 25"
               >
                 <div className={`${styles.assessmentValue} text-center`}>
                   <strong className="block font-serif text-6xl leading-none font-semibold">
