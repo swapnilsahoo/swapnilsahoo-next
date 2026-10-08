@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 
 import { researchBranches } from "@/features/research/data/researchAgenda";
 import { blogPosts } from "@/features/writing/data/catalog";
+import { programmes } from "@/features/learning-lab/programmes";
+import { labPolicies } from "@/features/learning-lab/policies";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.swapnilsahoo.com";
 
@@ -19,6 +21,31 @@ const writingPostRoutes = blogPosts.map((post) => ({
 
 const routes = [
   { path: "", changeFrequency: "monthly", priority: 1 },
+  { path: "/learning-lab", changeFrequency: "monthly", priority: 0.85 },
+  { path: "/learning-lab/programmes", changeFrequency: "monthly", priority: 0.8 },
+  ...programmes.map((programme) => ({
+    path: `/learning-lab/programmes/${programme.slug}`,
+    changeFrequency: "monthly" as const,
+    priority: 0.75,
+  })),
+  ...[
+    "for-colleges",
+    "for-professionals",
+    "founder",
+    "resources",
+    "faq",
+    "contact",
+    "policies",
+  ].map((slug) => ({
+    path: `/learning-lab/${slug}`,
+    changeFrequency: "monthly" as const,
+    priority: 0.65,
+  })),
+  ...labPolicies.map((policy) => ({
+    path: `/learning-lab/policies/${policy.slug}`,
+    changeFrequency: "monthly" as const,
+    priority: 0.45,
+  })),
   { path: "/research", changeFrequency: "monthly", priority: 0.9 },
   ...researchBranchRoutes,
   { path: "/research/phd-coursework", changeFrequency: "monthly", priority: 0.82 },

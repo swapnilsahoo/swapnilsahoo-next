@@ -3,6 +3,7 @@ import { Fraunces, JetBrains_Mono, Noto_Serif_Devanagari, Poppins } from "next/f
 
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { AcademicChromeBoundary } from "@/components/providers/AcademicChromeBoundary";
 import { Footer } from "@/features/profile/components/Footer";
 import { StickyNav } from "@/features/profile/components/StickyNav";
 import { profile } from "@/features/profile/data/profile";
@@ -173,9 +174,9 @@ export default function RootLayout({
         />
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <ScrollProgress />
-          <StickyNav />
+          <AcademicChromeBoundary><StickyNav /></AcademicChromeBoundary>
           {children}
-          <Footer />
+          <AcademicChromeBoundary><Footer /></AcademicChromeBoundary>
         </ThemeProvider>
       </body>
     </html>

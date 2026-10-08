@@ -189,6 +189,7 @@ export const moreDropdown: NavDropdown = {
   label: "More",
   href: "/#gallery",
   items: [
+    { label: "Learning Lab", href: "/learning-lab" },
     { label: "Gallery", href: "/#gallery" },
     { label: "Writing", href: "/writing" },
     {
