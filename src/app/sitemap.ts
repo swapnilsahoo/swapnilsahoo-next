@@ -22,6 +22,7 @@ const writingPostRoutes = blogPosts.map((post) => ({
 
 const routes = [
   { path: "", changeFrequency: "monthly", priority: 1 },
+  { path: "/digital-guide", changeFrequency: "monthly", priority: 0.65 },
   { path: "/learning-lab", changeFrequency: "monthly", priority: 0.85 },
   { path: "/learning-lab/free-courses", changeFrequency: "monthly", priority: 0.82 },
   ...freeCourses.map((course) => ({

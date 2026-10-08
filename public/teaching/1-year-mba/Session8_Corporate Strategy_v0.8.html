@@ -193,10 +193,83 @@
             @apply mt-4 p-4 bg-slate-800 border-l-4 border-blue-500 shadow-inner rounded-r-lg text-slate-300 hidden; 
         }
         .explanation.visible { display: block; }
+        .sim-btn {
+            display: block; width: 100%; min-height: 44px; padding: 1rem;
+            text-align: left; background: #1e293b; color: #e2e8f0;
+            border: 1px solid #475569; border-radius: .75rem;
+        }
+        .sim-btn:hover:not(:disabled) { border-color: #d97706; }
+        .sim-btn:disabled { cursor: not-allowed; opacity: .6; }
+
+        /* Start light on every visit; the original palette is available by choice. */
+        html { color-scheme: light; }
+        html.dark { color-scheme: dark; }
+        html:not(.dark) body { background: #f8fafc; color: #334155; }
+        html:not(.dark) [class*="bg-slate-9"] { background-color: #f1f5f9; }
+        html:not(.dark) [class*="bg-slate-8"] { background-color: #fff; }
+        html:not(.dark) [class*="bg-slate-7"],
+        html:not(.dark) [class*="bg-slate-6"] { background-color: #e2e8f0; }
+        html:not(.dark) [class*="from-slate-"] { background-image: linear-gradient(135deg, #fff, #f1f5f9); }
+        html:not(.dark) [class*="border-slate-"] { border-color: #cbd5e1; }
+        html:not(.dark) [class~="text-white"],
+        html:not(.dark) [class*="text-slate-"],
+        html:not(.dark) .section-title { color: #1e293b; }
+        html:not(.dark) [class*="text-amber-"] { color: #92400e; }
+        html:not(.dark) [class*="text-blue-"],
+        html:not(.dark) [class*="text-indigo-"] { color: #1d4ed8; }
+        html:not(.dark) [class*="text-green-"],
+        html:not(.dark) [class*="text-emerald-"] { color: #166534; }
+        html:not(.dark) [class*="text-red-"],
+        html:not(.dark) [class*="text-rose-"] { color: #b91c1c; }
+        html:not(.dark) [class*="text-purple-"] { color: #6b21a8; }
+        html:not(.dark) [class*="text-cyan-"] { color: #155e75; }
+        html:not(.dark) [class*="bg-green-9"] { background-color: #f0fdf4; }
+        html:not(.dark) [class*="bg-emerald-9"] { background-color: #ecfdf5; }
+        html:not(.dark) [class*="bg-blue-9"],
+        html:not(.dark) [class*="bg-indigo-9"] { background-color: #eff6ff; }
+        html:not(.dark) [class*="bg-red-9"] { background-color: #fef2f2; }
+        html:not(.dark) [class*="bg-amber-9"] { background-color: #fffbeb; }
+        html:not(.dark) button[class*="bg-amber-"],
+        html:not(.dark) [class*="from-amber-6"] { color: #fff; }
+        html:not(.dark) .nav-link { color: #475569; }
+        html:not(.dark) .nav-link:hover,
+        html:not(.dark) .active-nav { color: #92400e; border-bottom-color: #b45309; text-shadow: none; }
+        html:not(.dark) #mobile-nav { background-color: #fff; color: #1e293b; border-color: #cbd5e1; }
+        html:not(.dark) .card,
+        html:not(.dark) .chain-node,
+        html:not(.dark) .sim-intro-btn,
+        html:not(.dark) .sim-choice-btn,
+        html:not(.dark) .sim-btn,
+        html:not(.dark) .quiz-option,
+        html:not(.dark) .explanation { background-color: #fff; color: #334155; border-color: #cbd5e1; }
+        html:not(.dark) .provocative-q { color: #78350f; }
+        html:not(.dark) .quiz-option.correct { background: #f0fdf4; color: #166534; }
+        html:not(.dark) .quiz-option.incorrect { background: #fef2f2; color: #b91c1c; }
+        html:not(.dark) .matrix-table th { background: #f1f5f9; color: #92400e; }
+        html:not(.dark) .matrix-table td { color: #334155; }
+        #deck-theme-toggle {
+            position: fixed; right: 1rem; bottom: 1rem; z-index: 60;
+            min-height: 44px; padding: .6rem 1rem; border-radius: 999px;
+            border: 1px solid #cbd5e1; background: #fff; color: #334155;
+            font-size: .875rem; font-weight: 600; box-shadow: 0 4px 14px #0f172a20;
+        }
+        html.dark #deck-theme-toggle { background: #1e293b; color: #e2e8f0; border-color: #475569; }
     </style>
     <link rel="stylesheet" href="/teaching/responsive.css">
 </head>
 <body class="bg-slate-950 selection:bg-amber-500 selection:text-white">
+    <button id="deck-theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">Dark mode</button>
+    <script>
+        document.documentElement.classList.remove('dark');
+        document.getElementById('deck-theme-toggle').addEventListener('click', function () {
+            var dark = document.documentElement.classList.toggle('dark');
+            this.textContent = dark ? 'Light mode' : 'Dark mode';
+            this.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+            this.setAttribute('aria-pressed', String(dark));
+            var chart = typeof Chart !== 'undefined' && Chart.getChart('divChart');
+            if (chart) { chart.options.scales.x.ticks.color = dark ? '#94a3b8' : '#475569'; chart.update(); }
+        });
+    </script>
 
     <!-- HEADER -->
     <header id="main-header" class="shadow-xl shadow-black/20">
@@ -876,7 +949,7 @@
                         responsive: true,
                         maintainAspectRatio: false,
                         plugins: { legend: { display: false } },
-                        scales: { y: { display: false, min: 0, max: 100 }, x: { grid: { display: false }, ticks: { color: '#94a3b8' } } }
+                        scales: { y: { display: false, min: 0, max: 100 }, x: { grid: { display: false }, ticks: { color: document.documentElement.classList.contains('dark') ? '#94a3b8' : '#475569' } } }
                     }
                 });
             }

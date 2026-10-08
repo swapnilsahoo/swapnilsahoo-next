@@ -8,8 +8,8 @@ export default function manifest(): MetadataRoute.Manifest {
       "Research, teaching and field practice in strategy, entrepreneurship, innovation and AI-enabled management education.",
     start_url: "/",
     display: "standalone",
-    background_color: "#f8fbff",
-    theme_color: "#0a2540",
+    background_color: "#f7f7f5",
+    theme_color: "#f7f7f5",
     icons: [
       {
         src: "/icon.svg?v=superman",

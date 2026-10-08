@@ -244,10 +244,10 @@
           .af-lens-chart{position:static}}
     </style>
     <script>
-      /* theme, resolved before first paint: light unless this visitor chose dark (shared with Session 1) */
+      /* Always start in light mode; dark mode is an optional switch for this page. */
       (function () {
         try {
-          if (localStorage.getItem("s1-theme") === "dark") document.documentElement.classList.add("dark");
+          document.documentElement.classList.remove("dark");
         } catch (e) {}
       })();
     </script>
@@ -937,7 +937,6 @@
   var themeBtn = document.getElementById("themeBtn");
   if (themeBtn) themeBtn.addEventListener("click", function () {
     root.classList.toggle("dark");
-    try { localStorage.setItem("s1-theme", root.classList.contains("dark") ? "dark" : "light"); } catch (e) {}
   });
 
   var bar = document.getElementById("readbar"), pctEl = document.getElementById("progPct");

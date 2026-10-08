@@ -7,6 +7,7 @@ const footerLinks = [
   { label: "Research", href: "/research" },
   { label: "Publications", href: "/#publications" },
   { label: "PhD supervision", href: "/#phd" },
+  { label: "Digital guide", href: "/digital-guide" },
 ];
 
 const socials = [

@@ -1,0 +1,54 @@
+# Swapnil’s digital guide and optional video avatar
+
+Prepared 8 October 2026. The user authorised use of his portrait and publication, requested a Section-style Superhuman agent, and specified light mode as the default.
+
+## Implemented experience
+
+`/digital-guide` introduces the guide using the existing authentic `/images/profile_pic.jpg`. A floating portrait launcher opens a native modal on public Next.js pages. The 13 MBA session pages link to this guide through their shared navigation. Private Lab access pages suppress the launcher.
+
+Guided answers are deterministic, browser-side website guidance, explicitly labelled as prepared answers rather than a live human or generative AI conversation. They cover six free lessons, the academic course map, proposed programmes, founder, contact, payment availability and certificate boundaries. Unknown questions receive clarification and source links. Messages are held only in React state, bounded to 30; reset/reload clears them. Optional read-aloud uses standard browser/device speech, never a cloned founder voice. Browser/device voice services may process the text.
+
+Light mode starts every new document, even with stored dark preferences or a dark OS theme. A deliberate dark switch lasts through client navigation until refresh. The 17 active static MBA/session-topic pages also start light and retain their dark toggle. Historical archive files are preserved.
+
+## 1mind: Section-style Superhuman
+
+Direct read-only inspection of Section’s current homepage on 8 October 2026 found a 1mind launcher. The reference establishes the provider, not permission to reuse Section’s account, avatar, knowledge or deployment. [1mind’s official product page](https://www.1mind.com/) describes realistic Superhumans and website integration. Its public [privacy notice](https://www.1mind.com/privacy-policy) explains provider processing; actual customer terms/settings must also be reviewed.
+
+The site accepts an owner-supplied, provider-issued public embed/share URL in `ONEMIND_EMBED_URL`. Only HTTPS `deployment-….1mind.com` URLs with an optional public `access-code`/`display_mode` parameter are accepted. API keys, private admin URLs and arbitrary hosts are rejected. The integration uses a contained iframe, loaded only after an explicit visitor choice. It allows microphone/autoplay/fullscreen and does not grant camera or screen capture. Closing or changing mode removes the frame. The view also closes after five minutes; this UI timer is **not a provider billing or session-limit guarantee**.
+
+Set privately in Vercel and rebuild:
+
+```text
+DIGITAL_AVATAR_ENABLED=true
+DIGITAL_AVATAR_PROVIDER=1mind
+ONEMIND_EMBED_URL=<your own provider-issued public embed URL>
+ONEMIND_DEPLOYMENT_APPROVED=true
+```
+
+Before setting the approval flag: create the owner’s deployment with the provider, complete its required likeness/voice verification, use an approved recording of Swapnil, review the visible AI identity, publish accurate provider/retention disclosures, configure allowed domains and provider-side cost/session limits, set the provider’s UI to light, and test the exact embed URL with a real microphone on desktop/mobile. The website cannot force the theme or settings inside a cross-origin provider frame. Do not fabricate a consent recording, use another customer’s deployment, or purchase a plan without owner authorisation.
+
+The public deployment URL is intentionally sent to the browser after configuration; it must be a public embed credential, never an API secret. If the provider requires its launcher SDK instead of a public iframe URL, obtain its account-specific embed instructions and adapt this boundary before approval. No owner deployment or live 1mind conversation has been supplied or tested.
+
+## Alternative: Tavus API adapter
+
+The server-only adapter implements current [create conversation](https://docs.tavus.io/api-reference/conversations/create-conversation), [end conversation](https://docs.tavus.io/api-reference/conversations/end-conversation) and [iframe embedding](https://docs.tavus.io/sections/integrations/embedding-cvi) contracts. Current naming is Face and PAL. Use the owner’s approved Face and reviewed PAL. A photo can create a face with a separately attached voice; creating Swapnil’s own voice needs authorised audio/video. See [the recording and creation brief](digital-avatar-recording-brief.md).
+
+Set `DIGITAL_AVATAR_PROVIDER=tavus`, `DIGITAL_AVATAR_ENABLED=true`, `TAVUS_API_KEY`, `TAVUS_FACE_ID`, `TAVUS_PAL_ID`, `DIGITAL_AVATAR_BASE_URL`, an independent 32+ character `DIGITAL_AVATAR_SESSION_SECRET`, and an explicit `DIGITAL_AVATAR_DAILY_SESSION_LIMIT` (1–100). Shared persistent remote `LAB_DATABASE_URL`/`LAB_DATABASE_AUTH_TOKEN` is required in production. Off Vercel only, explicit local file mode supports mocked tests. Secrets stay server-side.
+
+POST `/api/digital-avatar/session` requires same-origin JSON `{consent:true}`. Admission uses atomic shared daily attempt and per-client hourly limits and a global concurrency ceiling of two. Failed/ambiguous attempts consume budget conservatively. Provider settings enforce a five-minute call, absence/left timeouts, private authenticated rooms and no recording. A fixed disclosure/scope context is supplied. Review the PAL’s underlying instructions and tools before enabling: conversation context is not a security boundary against a misconfigured PAL.
+
+The browser receives a conversation ID, expiry and participant URL with its short-lived meeting token. A signed HttpOnly SameSite cookie binds DELETE to the current session; clients cannot choose arbitrary provider conversation IDs. DELETE confirms provider termination or returns an honest error. Provider errors are sanitised; keys, raw upstream replies, microphone data and transcripts are not logged/stored by this website. Rate/session bookkeeping stores HMAC client buckets and provider room IDs with expiry, not chats. No real provider request is made by the disabled configuration or mocked tests.
+
+## Activation and verification limits
+
+Default production settings keep live video hidden. Missing provider credentials, approved deployment or budget/storage settings cannot produce a fake connected state. The portrait guide remains usable without a database, microphone or external AI account.
+
+Response headers keep frames and microphone access closed by default. Enabling a selected provider at build time permits its exact origin: the approved owner-specific 1mind deployment or `https://tavus.daily.co`. Camera and screen capture remain blocked. Rebuild after changing provider settings; headers and statically rendered guide availability must agree.
+
+No avatar account, training footage, owner-specific deployment, provider charge, cloned voice or real microphone conversation was created during implementation. Actual audiovisual quality, provider retention and end-to-end service behaviour require verification with the owner’s configured service. Do not describe the static portrait guide as an animated talking avatar.
+
+Run `node scripts/test-digital-guide.mjs` against the local preview (default localhost:3112), or set `GUIDE_TEST_BASE_URL` and `GUIDE_TEST_PROFILE`. This browser script blocks HTTP writes; its guided questions cannot create provider sessions or payments. Results/screenshots are under ignored `artifacts/learning-lab/digital-guide/`.
+
+## Verification for this release
+
+The production build and scoped ESLint checks passed. Fourteen server checks passed with every provider request mocked, including session ownership, concurrency, spending limits and honest failure handling. Browser checks passed for 16 public route/viewport combinations (320–1440 pixels), keyboard focus, prepared source links, input escaping, reset/reload privacy, private-route suppression, all 13 MBA session entry links and light defaults despite a dark OS/old saved preference. The actively linked older corporate-strategy deck also received a light palette and explicit dark toggle. Explicit read-aloud and cancellation were checked using a local speech mock; this does not verify the founder's voice or real device audio. The local guide returned HTTP 200, appeared in the sitemap, and retained closed frame/microphone headers while video was disabled. No real provider conversation, likeness training, purchase or payment was performed.

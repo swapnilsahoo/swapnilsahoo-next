@@ -84,7 +84,14 @@ export const labPolicies: LabPolicy[] = [
         heading: "Cookies, demonstrations and external services",
         paragraphs: [
           "Authentication requires essential session cookies. Free-course and demonstration notes stay on the page unless you choose to save them in this browser or download a worksheet. They are not sent to the Lab by these exercises. A separate learner-workspace submission is required for assessment. Browser-stored notes can be cleared in the exercise or using your browser's site-data controls.",
-          "The first release does not configure external marketing email, analytics, AI processing or payment collection. Your exercise is not sent to an AI provider by the Lab. External resource links have the destination provider's own privacy terms. Any later integration needs a revised notice, suitable processor arrangements and any required consent before use.",
+          "Public exercises do not send your work to an AI provider. External marketing email, analytics and payment collection are not configured in this release. External resource links have the destination provider's own privacy terms.",
+        ],
+      },
+      {
+        heading: "Swapnil’s digital guide",
+        paragraphs: [
+          "The portrait-based guide is an automated website guide, not a live conversation with Dr. Swapnil Sahoo. Guided answers are prepared from published website information and run in your browser. The website does not save these conversations; resetting or refreshing clears them. Optional read-aloud uses a standard browser or device voice, not a clone of the founder's voice; processing depends on your browser and device.",
+          "Live AI video is a separate optional mode that appears only when available. Before connecting, the guide identifies the provider (1mind or Tavus) and asks you to choose to start. The provider and its video infrastructure process your microphone audio and conversation under the linked provider privacy notice. The website does not request your camera. Provider settings govern transcripts, recording and retention; review the provider notice before starting. Do not share confidential information, student records or sensitive personal information.",
         ],
       },
       {

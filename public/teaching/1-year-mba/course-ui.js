@@ -45,7 +45,10 @@
   const inner = node('div', 'course-path-inner');
   const map = node('a', 'course-map-link', '← Course map');
   map.href = '/teaching/1-year-mba#course-map';
-  inner.append(map, node('span', 'course-phase', `${phase} · Session ${number} of 13`));
+  const guide = node('a', 'course-guide-link', 'Digital guide ↗');
+  guide.href = '/digital-guide';
+  guide.setAttribute('aria-label', 'Open Swapnil’s digital learning guide');
+  inner.append(map, guide, node('span', 'course-phase', `${phase} · Session ${number} of 13`));
   const switcher = node('div', 'course-switcher');
   const label = node('label', '', 'Go to');
   label.htmlFor = 'course-session-select';

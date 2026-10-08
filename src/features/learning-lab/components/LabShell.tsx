@@ -87,6 +87,7 @@ export function LabShell({
           </div>
           <nav aria-label="Learning Lab information">
             <Link href="/learning-lab/free-courses">Free courses</Link>
+            <Link href="/digital-guide">Swapnil’s digital guide</Link>
             <Link href="/learning-lab/faq">FAQs</Link>
             <Link href="/learning-lab/contact">Contact</Link>
             {labPublicConfig.businessEmail && (

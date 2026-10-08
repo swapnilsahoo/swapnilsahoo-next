@@ -7,6 +7,8 @@ import { AcademicChromeBoundary } from "@/components/providers/AcademicChromeBou
 import { Footer } from "@/features/profile/components/Footer";
 import { StickyNav } from "@/features/profile/components/StickyNav";
 import { profile } from "@/features/profile/data/profile";
+import { DigitalAvatar } from "@/features/digital-avatar/DigitalAvatar";
+import { getAvatarAvailability } from "@/features/digital-avatar/server";
 
 import "./globals.css";
 
@@ -109,11 +111,8 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  colorScheme: "light dark",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f7f7f5" },
-    { media: "(prefers-color-scheme: dark)", color: "#0b0e13" },
-  ],
+  colorScheme: "light",
+  themeColor: "#f7f7f5",
 };
 
 const jsonLd = {
@@ -155,6 +154,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const avatar = getAvatarAvailability();
   return (
     <html
       lang="en"
@@ -177,6 +177,7 @@ export default function RootLayout({
           <AcademicChromeBoundary><StickyNav /></AcademicChromeBoundary>
           {children}
           <AcademicChromeBoundary><Footer /></AcademicChromeBoundary>
+          <DigitalAvatar liveVideoAvailable={avatar.liveVideo} oneMindEmbedUrl={avatar.oneMindEmbedUrl} />
         </ThemeProvider>
       </body>
     </html>

@@ -20,7 +20,14 @@
  * all enforced normally.
  */
 
+import { getAvatarFrameOrigins } from "./src/features/digital-avatar/embed-config";
+
 const isDev = process.env.NODE_ENV === "development";
+const avatarFrameOrigins = getAvatarFrameOrigins();
+const avatarFrameSources = avatarFrameOrigins.length ? avatarFrameOrigins.join(" ") : "'none'";
+const microphonePolicy = avatarFrameOrigins.length
+  ? `(self ${avatarFrameOrigins.map((origin) => `"${origin}"`).join(" ")})`
+  : "()";
 
 /** Matches any path ending in `.html`, i.e. the static decks under `public/`. */
 export const STATIC_DECK_SOURCE = "/:path(.*\\.html)";
@@ -45,7 +52,7 @@ const APP_CSP = collapse(`
   base-uri 'self';
   object-src 'none';
   frame-ancestors 'self';
-  frame-src 'none';
+  frame-src ${avatarFrameSources};
   form-action 'self';
   script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""};
   style-src 'self' 'unsafe-inline';
@@ -90,7 +97,7 @@ export const BASE_SECURITY_HEADERS = [
   {
     key: "Permissions-Policy",
     value:
-      "camera=(), microphone=(), geolocation=(), browsing-topics=(), payment=(), usb=(), interest-cohort=()",
+      `camera=(), display-capture=(), microphone=${microphonePolicy}, geolocation=(), browsing-topics=(), payment=(), usb=(), interest-cohort=()`,
   },
   { key: "X-DNS-Prefetch-Control", value: "on" },
   {

@@ -5,6 +5,7 @@
 .course-path-inner { max-width: 72rem; margin: auto; padding: .8rem 1rem; display: flex; align-items: center; flex-wrap: wrap; gap: .65rem 1.25rem; font: 500 .75rem/1.5 Inter, sans-serif; }
 .course-map-link { color: var(--accent, #4f46e5); text-decoration: none; white-space: nowrap; }
 .course-map-link:hover { text-decoration: underline; }
+.course-guide-link { display: inline-flex; align-items: center; min-height: 40px; color: var(--accent, #4f46e5); text-decoration: underline; text-underline-offset: 3px; }
 .course-phase { color: var(--muted, #475569); margin-right: auto; }
 .course-switcher { display: flex; align-items: center; gap: .5rem; min-width: 0; max-width: 100%; }
 .course-switcher label { color: var(--muted, #475569); }

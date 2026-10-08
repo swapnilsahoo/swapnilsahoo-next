@@ -320,12 +320,10 @@
         .tabular-nums{font-variant-numeric:tabular-nums}
     </style>
     <script>
-      /* theme, resolved before first paint: light unless this visitor chose dark */
+      /* Always start in light mode; dark mode is an optional switch for this page. */
       (function () {
         try {
-          if ((localStorage.getItem("pgpm-course-theme") || localStorage.getItem("s10-theme")) === "dark") {
-            document.documentElement.classList.add("dark");
-          }
+          document.documentElement.classList.remove("dark");
         } catch (e) {}
       })();
     </script>
@@ -2069,14 +2067,13 @@
   // ---------- theme ----------
   var root = document.documentElement;
   try {
-    // light is the default; dark only when the visitor has asked for it
-    if ((localStorage.getItem("pgpm-course-theme") || localStorage.getItem("s10-theme")) === "dark") root.classList.add("dark");
+    // Each fresh document starts light; the toggle remains available.
+    root.classList.remove("dark");
   } catch (e) {}
   var themeBtn = document.getElementById("themeBtn");
   if (themeBtn) {
     themeBtn.addEventListener("click", function () {
       root.classList.toggle("dark");
-      try { localStorage.setItem("pgpm-course-theme", root.classList.contains("dark") ? "dark" : "light"); } catch (e) {}
     });
   }
 
