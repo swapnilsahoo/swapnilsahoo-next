@@ -3,6 +3,7 @@ import { getLabAuth } from "@/features/learning-lab/server/auth";
 import { LabUnavailable } from "@/features/learning-lab/server/database";
 export const runtime = "nodejs";
 const allowed = new Set(["sign-in/email", "sign-out", "get-session"]);
+const errorHeaders = { "Cache-Control": "no-store", Vary: "Cookie" };
 async function handle(request: Request) {
   const action = new URL(request.url).pathname.split("/auth/")[1] || "";
   if (!allowed.has(action))
@@ -10,7 +11,7 @@ async function handle(request: Request) {
       {
         error: "Public account creation and recovery are not enabled. Contact the pilot organiser.",
       },
-      { status: 404 }
+      { status: 404, headers: errorHeaders }
     );
   try {
     const handlers = toNextJsHandler(await getLabAuth());
@@ -24,11 +25,11 @@ async function handle(request: Request) {
     if (error instanceof LabUnavailable)
       return Response.json(
         { error: "Learner access is awaiting secure service configuration." },
-        { status: 503 }
+        { status: 503, headers: errorHeaders }
       );
     return Response.json(
       { error: "Sign-in is temporarily unavailable. Please try again." },
-      { status: 503 }
+      { status: 503, headers: errorHeaders }
     );
   }
 }

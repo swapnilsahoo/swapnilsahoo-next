@@ -55,8 +55,15 @@ for (const path of [
 ]) {
   const response = await fetch(base + path);
   assert.equal(response.status, 503);
+  assert.equal(response.headers.get("cache-control"), "no-store");
+  assert.match(response.headers.get("vary") || "", /cookie/i);
   results.push({ path: path.replace(/A{43}/, "<random-token>"), status: 503, failClosed: true });
 }
+const disabledSignup = await fetch(base + "/api/learning-lab/auth/sign-up/email");
+assert.equal(disabledSignup.status, 404);
+assert.equal(disabledSignup.headers.get("cache-control"), "no-store");
+assert.match(disabledSignup.headers.get("vary") || "", /cookie/i);
+results.push({ path: "/api/learning-lab/auth/sign-up/email", status: 404, noStore: true });
 const payment = await fetch(base + "/api/learning-lab/checkout", { method: "POST" });
 assert.equal(payment.status, 409);
 results.push({ path: "/api/learning-lab/checkout", status: 409, disabled: true });

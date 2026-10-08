@@ -2,6 +2,12 @@
 
 Verified locally on 8 October 2026 before publication. These checks used synthetic records and made no institutional outreach, purchase, payment or legal commitment. The founder subsequently explicitly authorised public publication with “go live”. Unrelated working-tree changes were preserved.
 
+## Public production release
+
+Vercel deployed `adbb94d` to [swapnilsahoo.com/learning-lab](https://www.swapnilsahoo.com/learning-lab) on 8 October 2026. An independent HTTP check confirmed all 18 public Lab pages and login returned 200. Chromium then passed 41 route/viewport checks: the 18 public pages plus login at 1440px and 375px, and the existing homepage, MBA course map and Session 1. All three original demos passed branching-feedback changes, incorrect/correct checkpoint retry, browser-only note save/restore/clear, worksheet download and checkpoint reset. Theme switching persisted after reload. No browser page errors, failed Next assets or horizontal overflow were observed.
+
+The live contact, college and programme pages show “Enquiries opening soon”, and login shows “Workspace opening soon”, without asking for email/password data. Production private APIs correctly return 503 while configuration is missing; the payment endpoint returns 409. No production accounts, enquiries, cohorts or certificates were created. Live evidence is retained privately in ignored `artifacts/learning-lab/live-results.json` and screenshots.
+
 ## Executed checks
 
 | Check actually run | Result |
