@@ -18,11 +18,20 @@ await context.addInitScript(() => {
   } catch { /* Browser storage may be unavailable. */ }
 });
 const page = await context.newPage();
-const errors = [], blockedWrites = [], checks = [];
+const errors = [], blockedWrites = [], isolatedEmbeds = [], checks = [];
 page.on("pageerror", (error) => errors.push(error.message));
 await context.route("**/*", (route) => {
-  if (!["GET", "HEAD", "OPTIONS"].includes(route.request().method())) {
-    blockedWrites.push(route.request().url());
+  const request = route.request();
+  const resource = new URL(request.url());
+  const address = `${resource.origin}${resource.pathname}`;
+  // Teaching decks contain existing YouTube embeds. They are outside this
+  // guide check; isolate them so their telemetry cannot obscure guide writes.
+  if (request.resourceType() === "document" && request.frame().parentFrame() && resource.origin !== new URL(base).origin) {
+    isolatedEmbeds.push(address);
+    return route.abort("blockedbyclient");
+  }
+  if (!["GET", "HEAD", "OPTIONS"].includes(request.method())) {
+    blockedWrites.push(address);
     return route.abort("blockedbyclient");
   }
   return route.continue();
@@ -36,7 +45,7 @@ const visit = async (path) => {
   await page.waitForLoadState("load", { timeout: 90000 });
   return response;
 };
-const report = { base, profile, runAt: new Date().toISOString(), checks, errors, blockedWrites };
+const report = { base, profile, runAt: new Date().toISOString(), checks, errors, blockedWrites, isolatedEmbeds };
 try {
   for (const path of ["/", "/learning-lab", "/learning-lab/free-courses", "/digital-guide"]) {
     for (const width of [320, 390, 768, 1440]) {
@@ -90,6 +99,8 @@ try {
   await page.getByRole("button", { name: "Read answer using standard device voice" }).first().click();
   assert(await page.evaluate(() => window.guideSpeechCheck.spoken[0].includes("website’s digital guide")), "Read aloud did not use the visible answer");
   await testId("close").click();
+  // Native dialog close events are queued after the click; wait for cleanup.
+  await page.waitForFunction(() => window.guideSpeechCheck.cancelled === 1);
   assert(await page.evaluate(() => window.guideSpeechCheck.cancelled) === 1, "Closing did not cancel speech");
   checks.push({ deviceSpeech: "Explicit read-aloud and close cancellation passed with a local mock" });
   await testId("launcher").click();
