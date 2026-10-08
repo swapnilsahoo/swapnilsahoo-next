@@ -1,8 +1,10 @@
 # Learning Lab implementation and local handover
 
-Prepared 8 October 2026. The founder explicitly authorised publication with “go live”. The public release includes the programme catalogue, original interactive demonstration lessons and draft policy disclosures. Production database/authentication credentials and business contact details remain outstanding; enquiries and sign-in display opening-soon notices until configured. No purchase, outreach, paid offer or incorporation is authorised by this release.
+Prepared 8 October 2026. The founder explicitly authorised publication with “go live”. The public release includes the programme catalogue, original interactive demonstration lessons and draft policy disclosures. The founder subsequently supplied `swapnil.s@greatlakes.edu.in` as the published contact, providing a direct email route. Production database/authentication credentials and the operator address remain outstanding; online forms and sign-in display opening-soon notices until configured. No purchase, outreach, paid offer or incorporation is authorised by this release.
 
 Start with [the audit and product brief](site-audit-and-launch-brief.md), then [the curriculum](curriculum.md), [the administrator guide](admin-guide.md), [the pilot plan](pilot-90-days.md), [the proposal](institutional-proposal.md), [the private budget](business-budget.md), and [the incorporation and launch review](incorporation-and-launch.md). These planning documents are not served by the website.
+
+The [8 October audit response](audit-response-2026-10-08.md) records the subsequent founder decisions, contact/download improvements and enquiry follow-up workflow.
 
 ## Architecture
 
@@ -72,7 +74,7 @@ The integration suite requires a running local server pointing at the same datab
 | `LAB_DATABASE_AUTH_TOKEN` | Empty for local file | Secret database token with needed database access |
 | `LAB_AUTH_SECRET` | Generated private local random file | Independently generated secret, at least 32 characters; store in hosting secret manager |
 | `LAB_LOCAL_MODE` | `true` only on workstation | **Unset or false**; never true on Vercel |
-| `LAB_BUSINESS_EMAIL`, `LAB_BUSINESS_ADDRESS` | Empty; honest missing-detail states | Confirm approved business contact/address and operator disclosures |
+| `LAB_BUSINESS_EMAIL`, `LAB_BUSINESS_ADDRESS` | Founder-approved email defaults to `swapnil.s@greatlakes.edu.in`; address empty | Confirm operator address; email can be overridden with an approved replacement |
 | `LAB_OPERATOR_NAME` | Defaults to Dr. Swapnil Sahoo | Approved actual operator; a name change does not transfer contracts or establish incorporation |
 | `LAB_LAUNCH_APPROVED` | `false` | Founder-approved programme/operator/policy decisions before exposing confirmed availability |
 | Payments | Disabled in code | Deferred integration and separate approval, credentials and provider eligibility |

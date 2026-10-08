@@ -27,8 +27,12 @@ type Lead = {
   marketing_consent: number;
   source: string | null;
   status: string;
+  owner_user_id: string | null;
+  next_action: string | null;
+  next_action_at: number | null;
   is_demo: number;
   created_at: number;
+  updated_at: number;
 };
 type Member = {
   id: string;
@@ -129,6 +133,11 @@ function programmeContent(row?: ProgrammeRow): LabProgramme | undefined {
   } catch {
     return undefined;
   }
+}
+function localDateTime(timestamp: number | null) {
+  if (timestamp === null) return "";
+  const date = new Date(timestamp);
+  return new Date(timestamp - date.getTimezoneOffset() * 60_000).toISOString().slice(0, 16);
 }
 function DemoFlag({ value }: { value: number }) {
   return value ? (
@@ -322,6 +331,11 @@ function AdminRecords({ actor, launchApproved }: { actor: LabActor; launchApprov
           {section === "Enquiries" && (
             <>
               <h2>Learner and institutional enquiries</h2>
+              <p className="lab-small">
+                Assign an administrator and record the next action. Stages are manual operational
+                labels; a booking or delivery label does not confirm payment, access or attendance.
+                This list contains the latest 200 enquiries.
+              </p>
               {data.leads.length === 0 ? (
                 <p className="lab-callout">No enquiries have been recorded.</p>
               ) : (
@@ -354,9 +368,17 @@ function AdminRecords({ actor, launchApproved }: { actor: LabActor; launchApprov
                     </p>
                     <ActionForm
                       action="lead"
-                      prepare={(form) => ({ id: lead.id, status: String(form.get("status")) })}
+                      prepare={(form) => ({
+                        id: lead.id,
+                        status: String(form.get("status")),
+                        ownerUserId: String(form.get("ownerUserId") || "") || null,
+                        nextAction: String(form.get("nextAction") || "") || null,
+                        nextActionAt: form.get("nextActionAt")
+                          ? new Date(String(form.get("nextActionAt"))).getTime()
+                          : null,
+                      })}
                       onSaved={reload}
-                      button="Save enquiry status"
+                      button="Save enquiry workflow"
                     >
                       <Field label="Operational status" name={`lead-${lead.id}`}>
                         <select
@@ -365,10 +387,62 @@ function AdminRecords({ actor, launchApproved }: { actor: LabActor; launchApprov
                           className={workspaceField}
                           defaultValue={lead.status}
                         >
-                          {["new", "qualified", "contacted", "closed"].map((status) => (
-                            <option key={status}>{status}</option>
+                          {[
+                            ["new", "New"],
+                            ["contacted", "Contacted"],
+                            ["qualified", "Qualified"],
+                            ["proposal-sent", "Proposal sent"],
+                            ["booked", "Booked"],
+                            ["delivered", "Delivered"],
+                            ["lost", "Lost"],
+                            ["closed", "Closed (legacy)"],
+                          ].map(([value, label]) => (
+                            <option key={value} value={value}>
+                              {label}
+                            </option>
                           ))}
                         </select>
+                      </Field>
+                      <Field label="Responsible administrator" name={`owner-${lead.id}`}>
+                        <select
+                          id={`owner-${lead.id}`}
+                          name="ownerUserId"
+                          className={workspaceField}
+                          defaultValue={lead.owner_user_id || ""}
+                        >
+                          <option value="">Unassigned</option>
+                          {data.users
+                            .filter((member) => member.role === "admin")
+                            .map((member) => (
+                              <option key={member.id} value={member.id}>
+                                {member.name} ({member.email})
+                              </option>
+                            ))}
+                        </select>
+                      </Field>
+                      <Field label="Next action (optional)" name={`next-action-${lead.id}`}>
+                        <textarea
+                          id={`next-action-${lead.id}`}
+                          name="nextAction"
+                          className={workspaceField}
+                          defaultValue={lead.next_action || ""}
+                          maxLength={500}
+                          rows={3}
+                        />
+                      </Field>
+                      <Field
+                        label="Next action due (your local time, optional)"
+                        name={`next-due-${lead.id}`}
+                      >
+                        <input
+                          id={`next-due-${lead.id}`}
+                          name="nextActionAt"
+                          type="datetime-local"
+                          min="1970-01-01T00:00"
+                          max="9999-12-31T23:59"
+                          className={workspaceField}
+                          defaultValue={localDateTime(lead.next_action_at)}
+                        />
                       </Field>
                     </ActionForm>
                   </article>

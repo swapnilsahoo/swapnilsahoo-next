@@ -4,7 +4,7 @@ Private operational planning, prepared and sources checked **8 October 2026**. P
 
 ## Current position
 
-The public identity is **“Swapnil Sahoo Learning Lab: A founder-led professional education initiative hosted on swapnilsahoo.com.”** Dr. Swapnil Sahoo is the intended initial operator; the initiative is unincorporated. No operator address, independent business email, GSTIN, CIN, bank/merchant approval or paid cohort approval has been supplied. Do not invent any of these or use academic contact details. Keep public programmes at Register Interest, with unconfirmed dates, fees and capacity.
+The public identity is **“Swapnil Sahoo Learning Lab: A founder-led professional education initiative hosted on swapnilsahoo.com.”** Dr. Swapnil Sahoo is the intended initial operator; the initiative is unincorporated. Following the initial review, the founder explicitly supplied `swapnil.s@greatlakes.edu.in` as the published contact. This replaces the earlier contact-channel recommendation and does not imply institutional endorsement. No operator address, GSTIN, CIN, bank/merchant approval or paid cohort approval has been supplied. Do not invent them. Keep public programmes proposed, with unconfirmed dates, fees and capacity.
 
 The new brief explicitly requires separate authorisation before publishing, changing DNS, buying services, charging learners, contacting institutions or making legal commitments. Earlier approval to publish academic course pages does not approve this venture's launch. A working local build and synthetic demo accounts do not establish production readiness or achieved Lab outcomes.
 

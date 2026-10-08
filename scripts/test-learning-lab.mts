@@ -74,7 +74,7 @@ await db.execute("DELETE FROM lab_auth_rate_limit");
 const adminEmail = `admin-${run}@demo.invalid`,
   aEmail = `learner-a-${run}@demo.invalid`,
   bEmail = `learner-b-${run}@demo.invalid`;
-await createMember(
+const adminId = await createMember(
   {
     name: "Synthetic preview administrator",
     email: adminEmail,
@@ -273,25 +273,111 @@ try {
     await post(anonymous, "enquiries", { ...lead, website: "spam" }, 422);
     await post(anonymous, "enquiries", { ...lead, startedAt: Date.now() }, 422);
   });
-  await check("Enquiry persists and duplicate updates the same record", async () => {
+  const nextActionAt = Date.now() + 86400000;
+  await check("Enquiry persists with an unassigned workflow", async () => {
     const saved = await post(anonymous, "enquiries", lead);
     leadIds.push(saved.id);
     await db.execute({ sql: "UPDATE lab_enquiry SET is_demo=1 WHERE id=?", args: [saved.id] });
+    const row = (
+      await db.execute({ sql: "SELECT * FROM lab_enquiry WHERE id=?", args: [saved.id] })
+    ).rows[0];
+    assert.equal(row.status, "new");
+    assert.equal(row.owner_user_id, null);
+    assert.equal(row.next_action, null);
+    assert.equal(row.next_action_at, null);
+    assert.match(saved.message, /No confirmation email/);
+  });
+  await check(
+    "Admin assigns an enquiry workflow and rejects invalid owners or missing leads",
+    async () => {
+      const workflow = {
+        id: leadIds[0],
+        status: "proposal-sent",
+        ownerUserId: adminId,
+        nextAction: "Confirm the institutional pilot scope",
+        nextActionAt,
+      };
+      await post(admin, "admin/lead", workflow);
+      await post(a, "admin/lead", workflow, 403);
+      await post(admin, "admin/lead", { ...workflow, ownerUserId: aId }, 422);
+      await post(admin, "admin/lead", { ...workflow, ownerUserId: randomUUID() }, 422);
+      await post(admin, "admin/lead", { ...workflow, id: randomUUID() }, 404);
+      await post(admin, "admin/lead", { ...workflow, nextAction: "x".repeat(501) }, 422);
+      await post(admin, "admin/lead", { ...workflow, nextActionAt: -1 }, 422);
+      await post(admin, "admin/lead", { ...workflow, status: "payment-confirmed" }, 422);
+      const records = await (await admin.get("/api/learning-lab/admin")).json();
+      const saved = records.data.leads.find((record: { id: string }) => record.id === leadIds[0]);
+      assert.equal(saved.status, workflow.status);
+      assert.equal(saved.owner_user_id, adminId);
+      assert.equal(saved.next_action, workflow.nextAction);
+      assert.equal(Number(saved.next_action_at), nextActionAt);
+      assert.equal(
+        Number(
+          (
+            await db.execute({
+              sql: "SELECT COUNT(*) AS n FROM lab_audit WHERE entity_id=? AND action='enquiry.workflow'",
+              args: [leadIds[0]],
+            })
+          ).rows[0].n
+        ),
+        1
+      );
+    }
+  );
+  await check("Duplicate enquiry updates the same record and preserves its workflow", async () => {
     const second = await post(anonymous, "enquiries", {
       ...lead,
       message: "Updated synthetic message",
     });
-    assert.equal(second.id, saved.id);
+    assert.equal(second.id, leadIds[0]);
     const rows = (
-      await db.execute({ sql: "SELECT * FROM lab_enquiry WHERE id=?", args: [saved.id] })
+      await db.execute({ sql: "SELECT * FROM lab_enquiry WHERE id=?", args: [leadIds[0]] })
     ).rows;
     assert.equal(rows.length, 1);
     assert.equal(rows[0].message, "Updated synthetic message");
     assert.equal(rows[0].marketing_consent, 0);
     assert.equal(rows[0].consent_at, null);
     assert.equal(rows[0].source, lead.source);
-    assert.match(saved.message, /No confirmation email/);
+    assert.equal(rows[0].status, "proposal-sent");
+    assert.equal(rows[0].owner_user_id, adminId);
+    assert.equal(rows[0].next_action, "Confirm the institutional pilot scope");
+    assert.equal(Number(rows[0].next_action_at), nextActionAt);
   });
+  await check(
+    "All enquiry stages remain manual; legacy payloads preserve and explicit nulls clear workflow",
+    async () => {
+      for (const status of [
+        "new",
+        "contacted",
+        "qualified",
+        "proposal-sent",
+        "booked",
+        "delivered",
+        "lost",
+        "closed",
+      ])
+        await post(admin, "admin/lead", { id: leadIds[0], status });
+      let row = (
+        await db.execute({ sql: "SELECT * FROM lab_enquiry WHERE id=?", args: [leadIds[0]] })
+      ).rows[0];
+      assert.equal(row.status, "closed");
+      assert.equal(row.owner_user_id, adminId);
+      assert.equal(row.next_action, "Confirm the institutional pilot scope");
+      assert.equal(Number(row.next_action_at), nextActionAt);
+      await post(admin, "admin/lead", {
+        id: leadIds[0],
+        status: "lost",
+        ownerUserId: null,
+        nextAction: null,
+        nextActionAt: null,
+      });
+      row = (await db.execute({ sql: "SELECT * FROM lab_enquiry WHERE id=?", args: [leadIds[0]] }))
+        .rows[0];
+      assert.equal(row.owner_user_id, null);
+      assert.equal(row.next_action, null);
+      assert.equal(row.next_action_at, null);
+    }
+  );
   await check("Separate optional marketing consent persists", async () => {
     await post(anonymous, "enquiries", { ...lead, marketingConsent: true });
     const row = (
@@ -551,6 +637,7 @@ try {
       assert.ok(!(await exportResponse.text()).includes("@demo.invalid"));
     }
     assert.match(csv([{ name: "=SUM(1,2)" }], ["name"]), /"'=SUM/);
+    assert.match(csv([{ next_action: "=SUM(1,2)" }], ["next_action"]), /"'=SUM/);
   });
   await mkdir(".data", { recursive: true });
   await writeFile(

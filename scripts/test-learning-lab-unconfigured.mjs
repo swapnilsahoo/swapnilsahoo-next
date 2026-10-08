@@ -14,7 +14,8 @@ for (const path of [
   const response = await fetch(base + path);
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, path.endsWith("/login") ? /Workspace opening soon/ : /Enquiries opening soon/);
+  assert.match(html, path.endsWith("/login") ? /Workspace opening soon/ : /Email the Lab/);
+  assert.match(html, /mailto:swapnil.s@greatlakes.edu.in/);
   assert.doesNotMatch(html, /name="(?:email|password)"/);
   results.push({ path, status: 200, noUnusableForm: true });
 }

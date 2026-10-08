@@ -74,7 +74,7 @@ const ddl = [
   `CREATE TABLE IF NOT EXISTS lab_progress (enrolment_id TEXT NOT NULL REFERENCES lab_enrolment(id) ON DELETE CASCADE, lesson_index INTEGER NOT NULL, completed_at INTEGER NOT NULL, PRIMARY KEY(enrolment_id, lesson_index))`,
   `CREATE TABLE IF NOT EXISTS lab_submission (id TEXT PRIMARY KEY, enrolment_id TEXT NOT NULL UNIQUE REFERENCES lab_enrolment(id) ON DELETE CASCADE, user_id TEXT NOT NULL REFERENCES lab_user(id) ON DELETE CASCADE, body TEXT NOT NULL, attachment_name TEXT, revision INTEGER NOT NULL DEFAULT 1, score INTEGER CHECK(score BETWEEN 0 AND 100), rubric_scores TEXT, feedback TEXT, approved INTEGER NOT NULL DEFAULT 0, reviewer_id TEXT REFERENCES lab_user(id), submitted_at INTEGER NOT NULL, reviewed_at INTEGER)`,
   `CREATE TABLE IF NOT EXISTS lab_certificate (id TEXT PRIMARY KEY, enrolment_id TEXT NOT NULL UNIQUE REFERENCES lab_enrolment(id) ON DELETE CASCADE, verification_id TEXT NOT NULL UNIQUE, display_name TEXT, publish_name INTEGER NOT NULL DEFAULT 0, issued_at INTEGER NOT NULL, issuer_id TEXT NOT NULL REFERENCES lab_user(id), revoked_at INTEGER)`,
-  `CREATE TABLE IF NOT EXISTS lab_enquiry (id TEXT PRIMARY KEY, kind TEXT NOT NULL, name TEXT NOT NULL, email TEXT NOT NULL, programme_slug TEXT NOT NULL, organisation TEXT, message TEXT, marketing_consent INTEGER NOT NULL DEFAULT 0, consent_at INTEGER, source TEXT, status TEXT NOT NULL DEFAULT 'new', is_demo INTEGER NOT NULL DEFAULT 0, created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL, dedup_key TEXT NOT NULL UNIQUE)`,
+  `CREATE TABLE IF NOT EXISTS lab_enquiry (id TEXT PRIMARY KEY, kind TEXT NOT NULL, name TEXT NOT NULL, email TEXT NOT NULL, programme_slug TEXT NOT NULL, organisation TEXT, message TEXT, marketing_consent INTEGER NOT NULL DEFAULT 0, consent_at INTEGER, source TEXT, status TEXT NOT NULL DEFAULT 'new', owner_user_id TEXT REFERENCES lab_user(id) ON DELETE SET NULL, next_action TEXT, next_action_at INTEGER, is_demo INTEGER NOT NULL DEFAULT 0, created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL, dedup_key TEXT NOT NULL UNIQUE)`,
   `CREATE TABLE IF NOT EXISTS lab_rate_limit (key TEXT PRIMARY KEY, count INTEGER NOT NULL, expires_at INTEGER NOT NULL)`,
   `CREATE TABLE IF NOT EXISTS lab_audit (id TEXT PRIMARY KEY, actor_id TEXT, action TEXT NOT NULL, entity_id TEXT, created_at INTEGER NOT NULL)`,
   `CREATE INDEX IF NOT EXISTS lab_submission_user ON lab_submission(user_id)`,
@@ -101,12 +101,30 @@ async function initialise() {
   const client = createClient({ url, authToken: process.env.LAB_DATABASE_AUTH_TOKEN });
   await client.execute("PRAGMA foreign_keys = ON");
   await client.batch(ddl, "write");
-  // Additive migration for local pilot databases created before revision checks.
-  const columns = (await client.execute("PRAGMA table_info(lab_submission)")).rows;
-  if (!columns.some((column) => column.name === "revision"))
-    await client.execute(
-      "ALTER TABLE lab_submission ADD COLUMN revision INTEGER NOT NULL DEFAULT 1"
-    );
+  // Serialize additive migrations so simultaneous cold starts cannot add the same
+  // column twice. Existing lead stages and enquiry data remain unchanged.
+  const migration = await client.transaction("write");
+  try {
+    const submissionColumns = (await migration.execute("PRAGMA table_info(lab_submission)")).rows;
+    if (!submissionColumns.some((column) => column.name === "revision"))
+      await migration.execute(
+        "ALTER TABLE lab_submission ADD COLUMN revision INTEGER NOT NULL DEFAULT 1"
+      );
+    const enquiryColumns = (await migration.execute("PRAGMA table_info(lab_enquiry)")).rows;
+    for (const [name, definition] of [
+      ["owner_user_id", "TEXT REFERENCES lab_user(id) ON DELETE SET NULL"],
+      ["next_action", "TEXT"],
+      ["next_action_at", "INTEGER"],
+    ])
+      if (!enquiryColumns.some((column) => column.name === name))
+        await migration.execute(`ALTER TABLE lab_enquiry ADD COLUMN ${name} ${definition}`);
+    await migration.commit();
+  } catch (error) {
+    await migration.rollback();
+    throw error;
+  } finally {
+    migration.close();
+  }
   return client;
 }
 

@@ -15,7 +15,7 @@ const questions = [
   ],
   [
     "Can I enrol or pay now?",
-    "The programmes are proposed. Interest enquiries will open where indicated after secure service setup. Fees, dates, capacity and final delivery details are unconfirmed. Payments are disabled. An enquiry does not reserve a place or create an enrolment.",
+    "The programmes are proposed. You can email a programme question using the approved contact on the contact page. Online interest forms will open after secure service setup. Fees, dates, capacity and delivery details are unconfirmed. Payments are disabled. An enquiry does not reserve a place or create an enrolment.",
   ],
   [
     "Who are the programmes for?",

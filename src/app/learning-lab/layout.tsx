@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { LabShell } from "@/features/learning-lab/components/LabShell";
+import { isLabServiceConfigured } from "@/features/learning-lab/server/capabilities";
 import "@/features/learning-lab/components/lab.css";
 
 export const metadata: Metadata = {
@@ -22,5 +23,5 @@ export const metadata: Metadata = {
 };
 
 export default function LearningLabLayout({ children }: { children: React.ReactNode }) {
-  return <LabShell>{children}</LabShell>;
+  return <LabShell learnerAccessAvailable={isLabServiceConfigured()}>{children}</LabShell>;
 }

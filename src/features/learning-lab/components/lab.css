@@ -682,3 +682,15 @@
 .lab-masthead-actions button {
   color: var(--lab-ink);
 }
+.lab-signin-short {
+  display: none;
+}
+
+@media (max-width: 680px) {
+  .lab-signin-full {
+    display: none;
+  }
+  .lab-signin-short {
+    display: inline;
+  }
+}

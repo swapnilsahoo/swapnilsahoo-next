@@ -4,6 +4,7 @@ import { LabHero, LabSection } from "@/features/learning-lab/components/LabShell
 import { EnquiryForm } from "@/features/learning-lab/components/EnquiryForm";
 import { getPublicProgrammes } from "@/features/learning-lab/store";
 import { isLabServiceConfigured } from "@/features/learning-lab/server/capabilities";
+import { labPublicConfig } from "@/features/learning-lab/config";
 
 export const dynamic = "force-dynamic";
 
@@ -136,6 +137,7 @@ export default async function CollegesPage() {
           </div>
           <EnquiryForm
             available={isLabServiceConfigured()}
+            contactEmail={labPublicConfig.businessEmail}
             kind="institution"
             programmes={programmes.filter((p) => p.availability.status !== "closed")}
           />

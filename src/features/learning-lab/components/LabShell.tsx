@@ -11,7 +11,13 @@ const navigation = [
   ["Resources", "/learning-lab/resources"],
 ] as const;
 
-export function LabShell({ children }: { children: ReactNode }) {
+export function LabShell({
+  children,
+  learnerAccessAvailable = false,
+}: {
+  children: ReactNode;
+  learnerAccessAvailable?: boolean;
+}) {
   return (
     <div className="lab">
       <div className="lab-container lab-masthead">
@@ -25,9 +31,18 @@ export function LabShell({ children }: { children: ReactNode }) {
           </span>
         </Link>
         <div className="lab-masthead-actions">
-          <Link href="/learning-lab/login" className="lab-text-link">
-            <span className="lab-signin-full">Learner sign in</span>
-            <span className="lab-signin-short">Sign in</span> <span aria-hidden="true">↗</span>
+          <Link
+            href={learnerAccessAvailable ? "/learning-lab/login" : "/learning-lab/login?unavailable=1"}
+            className="lab-text-link"
+            aria-label={learnerAccessAvailable ? "Learner sign in" : "Learner access coming soon"}
+          >
+            <span className="lab-signin-full">
+              {learnerAccessAvailable ? "Learner sign in" : "Learner access coming soon"}
+            </span>
+            <span className="lab-signin-short">
+              {learnerAccessAvailable ? "Sign in" : "Access soon"}
+            </span>{" "}
+            <span aria-hidden="true">↗</span>
           </Link>
           <ThemeToggle />
         </div>
@@ -59,6 +74,10 @@ export function LabShell({ children }: { children: ReactNode }) {
             <p className="lab-eyebrow">{labPublicConfig.name}</p>
             <p className="lab-small">{labPublicConfig.description}</p>
             <p className="lab-small">
+              Independently run by Dr. Swapnil Sahoo. His academic and professional affiliations
+              do not imply sponsorship or endorsement of the Lab.
+            </p>
+            <p className="lab-small">
               Proposed programmes for adults aged 18 and over. Registration of interest is free and
               does not reserve a paid place.
             </p>
@@ -66,6 +85,9 @@ export function LabShell({ children }: { children: ReactNode }) {
           <nav aria-label="Learning Lab information">
             <Link href="/learning-lab/faq">FAQs</Link>
             <Link href="/learning-lab/contact">Contact</Link>
+            {labPublicConfig.businessEmail && (
+              <a href={`mailto:${labPublicConfig.businessEmail}`}>Email the Lab</a>
+            )}
             <Link href="/learning-lab/policies">Draft policies</Link>
             <Link href="/learning-lab/policies/privacy">Privacy</Link>
             <Link href="/">Founder’s academic website</Link>

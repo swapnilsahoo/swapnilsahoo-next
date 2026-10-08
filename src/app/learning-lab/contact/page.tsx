@@ -24,7 +24,7 @@ export default async function ContactPage() {
       <LabHero
         eyebrow="Start a conversation"
         title="Tell us what you want to learn."
-        description="Register interest in a proposed programme. Colleges and learning teams can use the institutional pilot enquiry. No payment is collected and no place is reserved."
+        description="Email a programme question or discuss an institutional pilot. Online registration of interest will open after secure service setup. No payment is collected and no place is reserved."
       />
       <LabSection>
         <div className="lab-split">
@@ -32,8 +32,8 @@ export default async function ContactPage() {
             <p className="lab-eyebrow">Learner interest</p>
             <h2>A focused enquiry is enough.</h2>
             <p className="lab-muted">
-              Your name, email address and programme choice help the Lab understand your interest. A
-              message and permission for marketing updates are optional.
+              Start with the programme you are interested in and the skill or business problem you
+              want to work on. Institutions can briefly describe their adult learner audience.
             </p>
             <p className="lab-small">
               Do not include student records, sensitive personal information or confidential
@@ -47,8 +47,7 @@ export default async function ContactPage() {
               </p>
             ) : (
               <p className="lab-small">
-                A dedicated business email and operator address are being finalised before enquiries open.
-                Employer contact channels are not used for the Lab.
+                A contact channel is being finalised before online enquiries open.
               </p>
             )}
             <Link href="/learning-lab/for-colleges#pilot-enquiry" className="lab-text-link">
@@ -62,8 +61,11 @@ export default async function ContactPage() {
             {labPublicConfig.businessAddress && (
               <p className="lab-small">{labPublicConfig.businessAddress}</p>
             )}
+            {!labPublicConfig.businessAddress && (
+              <p className="lab-small">Operator address and paid-service details remain unconfirmed.</p>
+            )}
           </div>
-          <EnquiryForm programmes={programmes} available={isLabServiceConfigured()} />
+          <EnquiryForm programmes={programmes} available={isLabServiceConfigured()} contactEmail={labPublicConfig.businessEmail} />
         </div>
       </LabSection>
     </>

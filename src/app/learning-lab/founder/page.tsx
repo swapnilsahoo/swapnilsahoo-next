@@ -22,9 +22,10 @@ export default function FounderPage() {
           <div className="lab-prose">
             <h2>Background that informs the teaching.</h2>
             <p>
-              The founder’s academic profile lists a Ph.D. in Entrepreneurship from XLRI Jamshedpur,
-              an MBA from XIMB and a B.Tech from Utkal University. It describes an industry career
-              preceding academia and a research focus on entrepreneurial resourcefulness.
+              Dr. Swapnil Sahoo holds a Ph.D. from XLRI Jamshedpur, specialising in Entrepreneurship
+              and Innovation, an MBA from XIMB and a B.Tech from Utkal University. He brings 17 years
+              of corporate experience in strategic and partnership roles to his teaching and
+              research on entrepreneurial resourcefulness.
             </p>
             <p>
               His public website documents teaching in strategy and entrepreneurship and resources
@@ -41,14 +42,15 @@ export default function FounderPage() {
             </p>
           </div>
           <aside className="lab-callout">
-            <h3>Founder history and Lab history are different.</h3>
+            <h3>An independent initiative.</h3>
             <p>
-              The Lab is a new, founder-led professional education initiative. It is not presented
-              as an incorporated company, an employer programme or an accredited institution.
+              Dr. Swapnil Sahoo runs the Learning Lab independently. His academic and professional
+              affiliations describe his background; they do not imply sponsorship, endorsement or
+              partnership with the Lab.
             </p>
             <p>
-              No employment relationship, institutional endorsement, partnership or prior teaching
-              outcome is used as evidence of the Lab’s success.
+              This is a new professional education initiative. Its proposed programmes and
+              demonstrations are separate from his prior teaching and industry work.
             </p>
           </aside>
         </div>

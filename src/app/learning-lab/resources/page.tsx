@@ -31,8 +31,29 @@ export default async function ResourcesPage() {
               <Link href={`/learning-lab/programmes/${p.slug}#demo`} className="lab-text-link">
                 Open the exercise →
               </Link>
+              <p className="lab-small">
+                <a href={`/learning-lab/programmes/${p.slug}/outline`} className="lab-text-link">
+                  Download the programme outline (.txt) ↓
+                </a>
+              </p>
             </article>
           ))}
+        </div>
+      </LabSection>
+      <LabSection className="lab-band" eyebrow="See the learner output" title="From a task brief to an adoption decision.">
+        <div className="lab-prose">
+          <p>
+            Explore a fictional AI workflow example with a reusable task brief, ten-case evaluation
+            sheet and a decision memo. Spot the critical failure and decide what evidence you would
+            need before approving a pilot.
+          </p>
+          <a href="/learning-lab/ai-workflow-example.txt" download className="lab-text-link">
+            Download the worked example (.txt) ↓
+          </a>
+          <p className="lab-small">
+            Original teaching material with invented results. It is not a measured AI benchmark or
+            a Lab learner outcome.
+          </p>
         </div>
       </LabSection>
       <LabSection

@@ -5,7 +5,9 @@ Private draft, 8 October 2026. Replace every bracketed field, obtain founder/leg
 **To:** [College / corporate learning team and authorised contact]
 **From:** Dr. Swapnil Sahoo, for Swapnil Sahoo Learning Lab — a founder-led professional education initiative hosted on swapnilsahoo.com
 **Date / version:** [Date and proposal version]
-**Business contact and operator address:** [Approved independent business details; do not use the employer's email/address]
+**Founder-approved contact:** swapnil.s@greatlakes.edu.in
+
+**Operator address:** [Awaiting approved address; do not invent]
 **Status:** Proposed pilot; dates, fees and capacity subject to agreement.
 
 ## Problem and purpose

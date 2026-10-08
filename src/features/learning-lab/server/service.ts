@@ -352,7 +352,7 @@ export async function adminRecords() {
   const [leads, users, cohorts, enrolments, submissions, content, certificates] = await Promise.all(
     [
       db.execute(
-        "SELECT id,kind,name,email,programme_slug,organisation,message,marketing_consent,source,status,is_demo,created_at FROM lab_enquiry ORDER BY created_at DESC LIMIT 200"
+        "SELECT id,kind,name,email,programme_slug,organisation,message,marketing_consent,source,status,owner_user_id,next_action,next_action_at,is_demo,created_at,updated_at FROM lab_enquiry ORDER BY created_at DESC LIMIT 200"
       ),
       db.execute(
         "SELECT u.id,u.name,u.email,m.role,m.is_demo,m.must_change_password FROM lab_user u JOIN lab_member m ON m.user_id=u.id ORDER BY u.created_at DESC"
@@ -590,15 +590,61 @@ export async function adminMutation(actor: LabActor, action: string, data: unkno
   }
   if (action === "lead") {
     const v = parse(
-      z.object({ id: z.uuid(), status: z.enum(["new", "qualified", "contacted", "closed"]) }),
+      z.object({
+        id: z.uuid(),
+        status: z.enum([
+          "new",
+          "contacted",
+          "qualified",
+          "proposal-sent",
+          "booked",
+          "delivered",
+          "lost",
+          "closed",
+        ]),
+        ownerUserId: z.uuid().nullable().optional(),
+        nextAction: z.string().trim().max(500).nullable().optional(),
+        nextActionAt: z.number().int().min(0).max(253402300799999).nullable().optional(),
+      }),
       data
     );
-    await db.execute({
-      sql: "UPDATE lab_enquiry SET status=?,updated_at=? WHERE id=?",
-      args: [v.status, Date.now(), v.id],
+    await writeTransaction(async (tx) => {
+      const lead = (
+        await tx.execute({
+          sql: "SELECT owner_user_id,next_action,next_action_at FROM lab_enquiry WHERE id=?",
+          args: [v.id],
+        })
+      ).rows[0];
+      if (!lead) throw new LabHttpError(404, "This enquiry no longer exists.");
+      if (v.ownerUserId) {
+        const owner = (
+          await tx.execute({
+            sql: "SELECT user_id FROM lab_member WHERE user_id=? AND role='admin'",
+            args: [v.ownerUserId],
+          })
+        ).rows[0];
+        if (!owner) throw new LabHttpError(422, "Choose an existing administrator as the owner.");
+      }
+      await tx.execute({
+        sql: "UPDATE lab_enquiry SET status=?,owner_user_id=?,next_action=?,next_action_at=?,updated_at=? WHERE id=?",
+        args: [
+          v.status,
+          v.ownerUserId === undefined ? lead.owner_user_id : v.ownerUserId,
+          v.nextAction === undefined ? lead.next_action : v.nextAction || null,
+          v.nextActionAt === undefined ? lead.next_action_at : v.nextActionAt,
+          Date.now(),
+          v.id,
+        ],
+      });
+      await tx.execute({
+        sql: "INSERT INTO lab_audit(id,actor_id,action,entity_id,created_at) VALUES(?,?,?,?,?)",
+        args: [randomUUID(), actor.id, "enquiry.workflow", v.id, Date.now()],
+      });
     });
-    await audit(actor, "enquiry.status", v.id);
-    return { ok: true };
+    return {
+      ok: true,
+      message: "Enquiry workflow saved. No email, payment or enrolment has been created.",
+    };
   }
   if (action === "programme") {
     const v = parse(programmeSchema, data);

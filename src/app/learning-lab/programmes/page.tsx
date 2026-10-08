@@ -27,7 +27,7 @@ export default async function ProgrammesPage() {
             <article className="lab-card" key={p.slug}>
               <p className="lab-card-number">0{i + 1}</p>
               <span className="lab-tag">
-                {p.availability.status === "closed" ? "Interest closed" : "Register interest"}
+                {p.availability.status === "closed" ? "Interest closed" : p.availability.status === "pilot-open" ? "Approved pilot" : "Proposed programme"}
               </span>
               <h2 style={{ fontSize: "1.9rem" }}>{p.title}</h2>
               <p>{p.tagline}</p>

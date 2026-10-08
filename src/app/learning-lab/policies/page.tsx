@@ -6,7 +6,7 @@ import { labPolicies } from "@/features/learning-lab/policies";
 export const metadata: Metadata = {
   title: "Draft Policies",
   description:
-    "Draft Learning Lab terms, privacy, cancellation, participation, recording and certificate policies, subject to review before enquiries or paid enrolment open.",
+    "Draft Learning Lab terms, privacy, cancellation, participation, recording and certificate policies, subject to review before online registration or paid enrolment open.",
   alternates: { canonical: "/learning-lab/policies" },
 };
 
@@ -16,7 +16,7 @@ export default function PoliciesPage() {
       <LabHero
         eyebrow="Drafts for professional review"
         title="Clear expectations before participation."
-        description="These policies are working drafts for the proposed service. They need professional review and confirmed operator details before collecting enquiries or opening paid enrolment."
+        description="These policies are working drafts for the proposed service. They need professional review and confirmed operator details before online registration or paid enrolment opens."
       />
       <LabSection>
         <div className="lab-callout">

@@ -1,5 +1,5 @@
 // Public operator details are deliberately separate from the academic profile.
-// No institutional contact or endorsement is inherited by the Lab.
+// Contact details are set explicitly by the founder; they imply no institutional endorsement.
 const brandOwner = "Swapnil Sahoo";
 const brandLabel = "Learning Lab";
 const name = `${brandOwner} ${brandLabel}`;
@@ -11,7 +11,7 @@ export const labPublicConfig = {
   description,
   positioning: `${name}: ${description}`,
   operatorName: process.env.LAB_OPERATOR_NAME || "Dr. Swapnil Sahoo",
-  businessEmail: process.env.LAB_BUSINESS_EMAIL || null,
+  businessEmail: process.env.LAB_BUSINESS_EMAIL || "swapnil.s@greatlakes.edu.in",
   businessAddress: process.env.LAB_BUSINESS_ADDRESS || null,
   launchApproved: process.env.LAB_LAUNCH_APPROVED === "true",
   paymentsEnabled: false,

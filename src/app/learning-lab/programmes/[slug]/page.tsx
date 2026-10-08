@@ -6,6 +6,7 @@ import { EnquiryForm } from "@/features/learning-lab/components/EnquiryForm";
 import { DemoLesson } from "@/features/learning-lab/components/DemoLesson";
 import { getPublicProgramme, getPublicProgrammes } from "@/features/learning-lab/store";
 import { isLabServiceConfigured } from "@/features/learning-lab/server/capabilities";
+import { labPublicConfig } from "@/features/learning-lab/config";
 
 export const dynamic = "force-dynamic";
 
@@ -35,6 +36,7 @@ export default async function ProgrammePage({ params }: Props) {
   const programmes = await getPublicProgrammes();
   const closed = programme.availability.status === "closed";
   const pilotOpen = programme.availability.status === "pilot-open";
+  const onlineEnquiries = isLabServiceConfigured();
   const confirmedDetails = [
     programme.availability.startsAt
       ? `Start: ${new Date(programme.availability.startsAt).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric", timeZone: "Asia/Kolkata" })}`
@@ -57,7 +59,10 @@ export default async function ProgrammePage({ params }: Props) {
           Try the demonstration lesson →
         </a>
         <a href="#interest" className="lab-button lab-button-secondary">
-          {closed ? "View availability" : "Register interest"}
+          {closed ? "View availability" : "Ask about this programme"}
+        </a>
+        <a href={`/learning-lab/programmes/${slug}/outline`} className="lab-text-link">
+          Download programme outline (.txt) ↓
         </a>
       </LabHero>
       <div className="lab-container">
@@ -77,7 +82,7 @@ export default async function ProgrammePage({ params }: Props) {
                 ? "Registration of interest closed"
                 : pilotOpen
                   ? "Approved pilot · enquire about joining"
-                  : "Register interest · details unconfirmed"}
+                  : onlineEnquiries ? "Register interest · details unconfirmed" : "Email a question · details unconfirmed"}
             </strong>
             {confirmedDetails.length > 0 && (
               <p className="lab-small">{confirmedDetails.join(" · ")}</p>
@@ -91,7 +96,7 @@ export default async function ProgrammePage({ params }: Props) {
           <a href="#demo">Sample lesson</a>
           <a href="#assessment">Assessment</a>
           <a href="#certificate">Certificate criteria</a>
-          <a href="#interest">Register interest</a>
+          <a href="#interest">Questions and availability</a>
         </nav>
       </div>
       <LabSection id="audience">
@@ -174,6 +179,13 @@ export default async function ProgrammePage({ params }: Props) {
         <div className="lab-callout">
           <h3>The capstone</h3>
           <p>{programme.capstone}</p>
+          {programme.slug === "ai-for-managers" && (
+            <p>
+              <a href="/learning-lab/ai-workflow-example.txt" download className="lab-text-link">
+                See a fictional task brief, evaluation sheet and decision memo (.txt) ↓
+              </a>
+            </p>
+          )}
           <p className="lab-small">
             Human instructors review assessed work. Automated lesson checks are practice feedback,
             not a final certification decision.
@@ -290,7 +302,8 @@ export default async function ProgrammePage({ params }: Props) {
             </aside>
           ) : (
             <EnquiryForm
-              available={isLabServiceConfigured()}
+              available={onlineEnquiries}
+              contactEmail={labPublicConfig.businessEmail}
               programmes={programmes.filter((p) => p.availability.status !== "closed")}
               programmeSlug={slug}
             />

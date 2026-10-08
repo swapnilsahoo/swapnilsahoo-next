@@ -9,7 +9,7 @@ const draftReview = {
   heading: "Draft status and operator details",
   paragraphs: [
     "Draft prepared on 8 October 2026 for founder and professional review. It is not a statement that the initiative is legally compliant, and it is not an approved paid-service agreement.",
-    "Swapnil Sahoo Learning Lab is a founder-led professional education initiative hosted on swapnilsahoo.com, proposed to be operated by Dr. Swapnil Sahoo. It is presently unincorporated. An independent business contact, operator address and any applicable tax details must be confirmed before collecting enquiries or opening paid enrolment. Academic employers and institutions do not sponsor or operate the Lab by virtue of the founder's biography.",
+    "Swapnil Sahoo Learning Lab is a founder-led professional education initiative hosted on swapnilsahoo.com, proposed to be operated by Dr. Swapnil Sahoo. It is presently unincorporated. The founder has supplied the contact email shown on the contact page. The operator address and any applicable tax details remain to be confirmed before paid enrolment. Academic employers and institutions do not sponsor or operate the Lab by virtue of the founder's biography or contact email.",
   ],
 };
 
@@ -18,7 +18,7 @@ export const labPolicies: LabPolicy[] = [
     slug: "terms",
     title: "Terms of participation and website use",
     summary:
-      "Draft for founder and legal review. Interest enquiries will open after secure service setup; fees, dates and enrolment are not confirmed.",
+      "Draft for founder and legal review. Email questions are welcome through the contact page; online interest forms await secure service setup. Fees, dates and enrolment are not confirmed.",
     sections: [
       draftReview,
       {
@@ -98,12 +98,12 @@ export const labPolicies: LabPolicy[] = [
         heading: "Retention, withdrawal and requests",
         paragraphs: [
           "Proposed retention decisions for approval are a review of unconverted enquiries after six months and programme records after 24 months. Security, audit, accounting and certificate records need separate justified periods, processor settings and a deletion or anonymisation procedure. These are recommendations, not a claim that automatic deletion is already configured.",
-          "Before launch, the operator must publish an independently controlled business contact for withdrawal of optional marketing permission, access, correction, deletion and complaints, and approve a workable response process. No academic email or invented contact is substituted here. Some records may need to be retained for a documented legal or dispute purpose; this must be explained rather than used as an unlimited retention rule.",
+          "Use the founder-approved email on the contact page for questions about optional marketing permission, access, correction, deletion or complaints. The response process and final retention schedule still require approval before online registration opens. Some records may need to be retained for a documented legal or dispute purpose; this must be explained rather than used as an unlimited retention rule.",
           "The initial offer is for adults only. Do not submit a child's information. If the operator learns that an enquiry or account belongs to someone under 18, it should restrict the record and arrange appropriate deletion or other legally reviewed handling.",
         ],
       },
       {
-        heading: "Review before public collection",
+        heading: "Review before online registration",
         paragraphs: [
           "The final notice must name the actual operator and processors, explain hosting and any cross-border processing, state the approved retention schedule and give an accessible rights and grievance contact. Indian privacy rules have phased commencement; this draft does not assert that every provision is already effective or that the Lab is compliant. The launch checklist records dated primary sources for professional review.",
         ],
@@ -171,7 +171,7 @@ export const labPolicies: LabPolicy[] = [
         heading: "Completion and fair review",
         paragraphs: [
           "Certificate eligibility depends on the assigned programme's configured lesson completion, attendance and approved capstone score, together with instructor approval. An enquiry, a payment, a login or a completed demonstration does not qualify a learner for a certificate.",
-          "Before launch, approve deadlines, late work, accessible alternatives, a reassessment or appeal route, and a fair procedure for participation concerns. Do not change published requirements retrospectively to improve completion statistics.",
+          "Before an assessed cohort opens, approve deadlines, late work, accessible alternatives, a reassessment or appeal route, and a fair procedure for participation concerns. Do not change published requirements retrospectively to improve completion statistics.",
         ],
       },
     ],
@@ -236,7 +236,7 @@ export const labPolicies: LabPolicy[] = [
       {
         heading: "Corrections, reassessment and revocation",
         paragraphs: [
-          "Before launch, approve a staffed process for name corrections, disputed assessment, certificate errors and revocation. An erroneous or invalid issue should be reviewed by an authorised instructor or administrator with an audit record and a fair opportunity for the learner to respond.",
+          "Before issuing assessed certificates, approve a staffed process for name corrections, disputed assessment, certificate errors and revocation. An erroneous or invalid issue should be reviewed by an authorised instructor or administrator with an audit record and a fair opportunity for the learner to respond.",
           "A changed submission needs a new instructor review; eligibility must not be silently preserved after a material change. If revoked, verification should state that status without publishing unnecessary personal reasons. Future incorporation does not automatically transfer old certificate obligations or change the historical issuer.",
         ],
       },

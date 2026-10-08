@@ -38,7 +38,7 @@ export default async function LearningLabPage() {
       <LabHero
         eyebrow="Think clearly. Practise deliberately."
         title={labPublicConfig.name}
-        description={`${labPublicConfig.description} Practise applied AI, strategy and entrepreneurship through proposed programmes for adult management students and early-career professionals.`}
+        description="Practise applied AI, strategy and entrepreneurship. Build a useful piece of work, test your reasoning and revise your decisions against a clear rubric. Explore original lessons for adult learners."
       >
         <Link href="/learning-lab/programmes" className="lab-button">
           Explore the programmes <span aria-hidden="true">→</span>
@@ -57,7 +57,7 @@ export default async function LearningLabPage() {
             <article className="lab-card" key={p.slug}>
               <span className="lab-card-number">0{i + 1} / Programme</span>
               <span className="lab-tag">
-                {p.availability.status === "closed" ? "Interest closed" : "Register interest"}
+                {p.availability.status === "closed" ? "Interest closed" : p.availability.status === "pilot-open" ? "Approved pilot" : "Proposed programme"}
               </span>
               <h3>{p.title}</h3>
               <p>{p.tagline}</p>

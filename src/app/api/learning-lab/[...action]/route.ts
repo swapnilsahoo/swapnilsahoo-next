@@ -101,7 +101,11 @@ async function handle(request: Request, context: { params: Promise<{ action: str
                   "organisation",
                   "marketing_consent",
                   "status",
+                  "owner_user_id",
+                  "next_action",
+                  "next_action_at",
                   "created_at",
+                  "updated_at",
                 ];
         const rows =
           kind === "submissions"

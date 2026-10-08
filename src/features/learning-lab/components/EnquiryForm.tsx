@@ -12,11 +12,13 @@ export function EnquiryForm({
   programmes,
   programmeSlug = "",
   available = true,
+  contactEmail = null,
 }: {
   kind?: "learner" | "institution";
   programmes: ProgrammeOption[];
   programmeSlug?: string;
   available?: boolean;
+  contactEmail?: string | null;
 }) {
   const formRef = useRef<HTMLFormElement>(null);
   const hydrated = useLabHydrated();
@@ -118,10 +120,24 @@ export function EnquiryForm({
   if (!available)
     return (
       <aside className="lab-callout" aria-label="Enquiry availability">
-        <h3>Enquiries opening soon</h3>
+        <h3>{contactEmail ? "Email the Lab" : "Enquiries opening soon"}</h3>
         <p>
-          The public lessons are ready to explore. Enquiries will open once secure storage and
-          operator contact details are in place. No personal information is collected here yet.
+          Online forms will open after secure service setup. You can explore the public lessons
+          and email a question about a programme or an institutional pilot now.
+        </p>
+        {contactEmail && (
+          <p>
+            <a
+              href={`mailto:${contactEmail}?subject=${encodeURIComponent(kind === "institution" ? "Learning Lab: institutional pilot discussion" : `Learning Lab: ${programmeSlug || "programme"} enquiry`)}`}
+              className="lab-text-link"
+            >
+              Email {contactEmail} →
+            </a>
+          </p>
+        )}
+        <p className="lab-small">
+          This opens your email app; the website does not save or send a form. Include only your
+          question and programme choice, and avoid sensitive or confidential information.
         </p>
         <Link href="/learning-lab/programmes" className="lab-text-link">
           Explore the demonstration lessons →

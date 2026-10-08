@@ -156,7 +156,7 @@ try {
     const result = await db.batch(
       [
         {
-          sql: "DELETE FROM lab_enquiry WHERE status IN ('new','closed') AND updated_at<?",
+          sql: "DELETE FROM lab_enquiry WHERE status IN ('new','closed','lost') AND updated_at<?",
           args: [now - 180 * 86400000],
         },
         { sql: "DELETE FROM lab_rate_limit WHERE expires_at<?", args: [now] },
