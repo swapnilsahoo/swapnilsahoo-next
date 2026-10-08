@@ -4,9 +4,11 @@ Prepared 8 October 2026. The user authorised use of his portrait and publication
 
 ## Implemented experience
 
-`/digital-guide` introduces the guide using the existing authentic `/images/profile_pic.jpg`. A floating portrait launcher opens a native modal on public Next.js pages. The 13 MBA session pages link to this guide through their shared navigation. Private Lab access pages suppress the launcher.
+`/digital-guide` introduces the guide using the existing authentic `/images/profile_pic.jpg`. A floating portrait launcher opens a small, anchored native **nonmodal** popup on public Next.js pages. Visitors can keep using the page without a backdrop or focus trap. Voice is the default when video is unavailable; a configured video provider becomes the default, with a separate explicit start. Text remains a fallback. The 13 MBA session pages link to this guide through their shared navigation. Private Lab access pages suppress the launcher.
 
 Guided answers are deterministic, browser-side website guidance, explicitly labelled as prepared answers rather than a live human or generative AI conversation. They cover six free lessons, the academic course map, proposed programmes, founder, contact, payment availability and certificate boundaries. Unknown questions receive clarification and source links. Messages are held only in React state, bounded to 30; reset/reload clears them. Optional read-aloud uses standard browser/device speech, never a cloned founder voice. Browser/device voice services may process the text.
+
+Optional voice questions use feature-detected `SpeechRecognition` or `webkitSpeechRecognition`, after a separate consent choice and an explicit Ask by voice click. Each start accepts one final English question, bounded to 500 characters; recognition is aborted before the prepared reply is read aloud. There is no automatic listening loop. A microphone request times out after 30 seconds; active listening is limited to 20 seconds. Unsupported browsers and permission/service errors retain a text alternative. Closing, resetting, changing mode/page, hiding the tab and unmounting stop listening/playback. The browser speech service may process audio remotely; this is disclosed before consent. The website does not upload/store microphone audio or send the question to an AI service. A still portrait and device voice are explicitly distinguished from Swapnil’s personal audio/video avatar.
 
 Light mode starts every new document, even with stored dark preferences or a dark OS theme. A deliberate dark switch lasts through client navigation until refresh. The 17 active static MBA/session-topic pages also start light and retain their dark toggle. Historical archive files are preserved.
 
@@ -41,16 +43,24 @@ The browser receives a conversation ID, expiry and participant URL with its shor
 
 ## Activation and verification limits
 
-Default production settings keep live video hidden. Missing provider credentials, approved deployment or budget/storage settings cannot produce a fake connected state. The portrait guide remains usable without a database, microphone or external AI account.
+Default production settings keep live video disabled; its panel truthfully explains availability. Missing provider credentials, approved deployment or budget/storage settings cannot produce a fake connected state. The portrait guide’s text fallback remains usable without a database, microphone or external AI account.
 
-Response headers keep frames and microphone access closed by default. Enabling a selected provider at build time permits its exact origin: the approved owner-specific 1mind deployment or `https://tavus.daily.co`. Camera and screen capture remain blocked. Rebuild after changing provider settings; headers and statically rendered guide availability must agree.
+Response headers allow same-origin microphone access for opt-in browser voice while keeping external frames closed by default. Enabling a selected video provider at build time permits its exact frame/microphone origin: the approved owner-specific 1mind deployment or `https://tavus.daily.co`. Camera and screen capture remain blocked. Permission policy does not grant user microphone consent. Rebuild after changing provider settings; headers and statically rendered guide availability must agree.
 
 No avatar account, training footage, owner-specific deployment, provider charge, cloned voice or real microphone conversation was created during implementation. Actual audiovisual quality, provider retention and end-to-end service behaviour require verification with the owner’s configured service. Do not describe the static portrait guide as an animated talking avatar.
 
 Run `node scripts/test-digital-guide.mjs` against the local preview (default localhost:3112), or set `GUIDE_TEST_BASE_URL` and `GUIDE_TEST_PROFILE`. This browser script blocks HTTP writes; its guided questions cannot create provider sessions or payments. Results/screenshots are under ignored `artifacts/learning-lab/digital-guide/`.
 
-## Verification for this release
+## Earlier production verification
 
 The production build and scoped ESLint checks passed. Fourteen server checks passed with every provider request mocked, including session ownership, concurrency, spending limits and honest failure handling. Browser checks passed for 16 public route/viewport combinations (320–1440 pixels), keyboard focus, prepared source links, input escaping, reset/reload privacy, private-route suppression, all 13 MBA session entry links and light defaults despite a dark OS/old saved preference. The actively linked older corporate-strategy deck also received a light palette and explicit dark toggle. Explicit read-aloud and cancellation were checked using a local speech mock; this does not verify the founder's voice or real device audio. The local guide returned HTTP 200, appeared in the sitemap, and retained closed frame/microphone headers while video was disabled. No real provider conversation, likeness training, purchase or payment was performed.
 
 The same public browser checks passed against `https://www.swapnilsahoo.com` after publication, including the linked older deck. Production HTTP, sitemap and disabled-provider headers also passed. Existing third-party teaching-video embeds were isolated during this guide check, and HTTP writes were blocked throughout; teaching-video playback was outside its scope.
+
+## Compact popup and browser voice verification
+
+Run `node scripts/test-digital-guide.mjs` and `node scripts/test-digital-guide-voice.mjs` against the local preview. The voice checks replace recognition, microphone access and synthesis before application code loads; they never use real audio, browser speech services or avatar sessions. Their results establish UI behaviour under mocks, not real device recognition, voice quality or a generated likeness. The earlier closed microphone header is superseded by the opt-in same-origin permission described above.
+
+The final production build and scoped ESLint passed. Local checks passed: all 16 public route/viewport combinations, nonmodal keyboard/background access, prepared text answers/source links, reset/reload, private-route suppression and the existing MBA guide links/light defaults. All 16 mocked voice checks passed, including standard/prefixed recognition, opt-in capture, bounded final text, spoken answers, errors, no automatic restart, and close/reset/mode/route/visibility cleanup. No HTTP writes or browser errors occurred. Visual review passed at 1440 × 900, 390 × 900, 320 × 600 and 844 × 390; the final narrow-screen stylesheet was also checked directly in the browser. HTTP 200, same-origin microphone permission and closed external frame permission were verified locally.
+
+The video client now waits for cookie-bound session cleanup before permitting another creation request; cancelled or malformed successful starts also finish cleanup before releasing that lock. This change was reviewed in code. An actual configured provider conversation and personal audio/video quality remain untested and disabled.

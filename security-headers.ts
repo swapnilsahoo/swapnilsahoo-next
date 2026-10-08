@@ -27,7 +27,7 @@ const avatarFrameOrigins = getAvatarFrameOrigins();
 const avatarFrameSources = avatarFrameOrigins.length ? avatarFrameOrigins.join(" ") : "'none'";
 const microphonePolicy = avatarFrameOrigins.length
   ? `(self ${avatarFrameOrigins.map((origin) => `"${origin}"`).join(" ")})`
-  : "()";
+  : "(self)";
 
 /** Matches any path ending in `.html`, i.e. the static decks under `public/`. */
 export const STATIC_DECK_SOURCE = "/:path(.*\\.html)";
@@ -96,8 +96,7 @@ export const BASE_SECURITY_HEADERS = [
   { key: "X-Frame-Options", value: "SAMEORIGIN" },
   {
     key: "Permissions-Policy",
-    value:
-      `camera=(), display-capture=(), microphone=${microphonePolicy}, geolocation=(), browsing-topics=(), payment=(), usb=(), interest-cohort=()`,
+    value: `camera=(), display-capture=(), microphone=${microphonePolicy}, geolocation=(), browsing-topics=(), payment=(), usb=(), interest-cohort=()`,
   },
   { key: "X-DNS-Prefetch-Control", value: "on" },
   {

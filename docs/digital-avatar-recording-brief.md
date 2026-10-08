@@ -1,6 +1,6 @@
 # Create Swapnil’s speaking audio/video avatar
 
-8 October 2026. Target: a conversational avatar with Swapnil’s face and voice, synchronised speaking/listening video, and course guidance in the website’s existing light theme. The implemented portrait guide is a separate interim experience; no generated talking video exists yet.
+8 October 2026. Target: a conversational avatar with Swapnil’s face and voice, synchronised speaking/listening video, and course guidance in the website’s existing light theme. The website now uses a small floating popup that stays beside the page. Its interim portrait guide offers optional browser voice and text; no generated talking video or cloned founder voice exists yet. Once an approved personal video provider is connected, the popup opens in video mode and waits for the visitor to start.
 
 ## Recommended creation path
 

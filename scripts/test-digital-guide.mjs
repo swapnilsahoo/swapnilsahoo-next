@@ -38,6 +38,11 @@ await context.route("**/*", (route) => {
 });
 const assert = (value, message) => { if (!value) throw new Error(message); };
 const testId = (name) => page.getByTestId(`digital-guide-${name}`);
+const chooseText = async () => {
+  const button = page.getByRole("button", { name: "Use text instead", exact: true });
+  if (await button.isVisible()) await button.click();
+  await testId("input").waitFor({ state: "visible" });
+};
 const visit = async (path) => {
   const response = await page.goto(`${base}${path}`, { waitUntil: "networkidle", timeout: 90000 });
   // CDN-backed static decks can still be parsing when there are no network
@@ -61,11 +66,14 @@ try {
           overflow: document.documentElement.scrollWidth - innerWidth,
           modal: element.matches(":modal") };
       });
-      assert(dimensions.modal, `${path}: expected native modal`);
+      assert(!dimensions.modal, `${path}: expected a nonmodal floating popup`);
+      assert(dimensions.right - dimensions.left <= 400, `${path} ${width}: popup is wider than 400px`);
       assert(dimensions.left >= -1 && dimensions.right <= width + 1 && dimensions.top >= -1 && dimensions.bottom <= 901, `${path} ${width}: dialog outside viewport`);
       assert(dimensions.overflow <= 1, `${path} ${width}: horizontal page overflow`);
       assert(await testId("dialog").locator('img[src*="profile_pic"]').count() > 0, "Portrait is missing");
       assert(await testId("dialog").locator("iframe").count() === 0, "Guided mode should not start a video connection");
+      assert(await page.locator("dialog:modal").count() === 0, "Floating guide created a modal backdrop");
+      assert(await page.getByRole("button", { name: "Use text instead", exact: true }).isVisible(), "Unconfigured video should open the voice view with a text alternative");
       if (path === "/digital-guide" && [390, 1440].includes(width)) await page.screenshot({ path: `${dir}/${profile}-${width}.png` });
       await page.keyboard.press("Escape");
       assert(!(await testId("dialog").isVisible()), "Escape did not close guide");
@@ -76,11 +84,28 @@ try {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await visit("/learning-lab");
   await testId("launcher").click();
+  await testId("close").focus();
+  let focusLeftPopup = false;
   for (let i = 0; i < 35; i++) {
     await page.keyboard.press("Tab");
-    assert(await testId("dialog").evaluate((dialog) => dialog.contains(document.activeElement)), "Keyboard focus escaped the modal");
+    if (!(await testId("dialog").evaluate((dialog) => dialog.contains(document.activeElement)))) {
+      focusLeftPopup = true;
+      break;
+    }
   }
+  assert(focusLeftPopup, "Keyboard focus was trapped in the nonmodal popup");
+  // Clicking the underlying site must remain possible and must not have its
+  // focus stolen by popup cleanup after an outside dismissal.
+  const backgroundTheme = page.getByRole("button", { name: "Switch to dark theme" });
+  assert(!(await backgroundTheme.evaluate((element) => element.closest("[inert]") !== null)), "Underlying website is inert");
+  await backgroundTheme.click();
+  await page.waitForFunction(() => document.documentElement.classList.contains("dark"));
+  assert(await page.getByRole("button", { name: "Switch to light theme" }).evaluate((element) => document.activeElement === element), "Closing from outside stole focus from the background control");
+  await page.getByRole("button", { name: "Switch to light theme" }).click();
+  if (!(await testId("dialog").isVisible())) await testId("launcher").click();
+  await testId("close").focus();
   await page.keyboard.press("Escape");
+  assert(!(await testId("dialog").isVisible()), "Escape did not dismiss the focused popup");
   assert(await testId("launcher").evaluate((element) => document.activeElement === element), "Focus did not return to launcher");
   // Intercept device speech locally: verify explicit playback/cancellation
   // without sending text to a speech service or claiming audiovisual quality.
@@ -95,15 +120,17 @@ try {
     });
   });
   await testId("launcher").click();
+  await chooseText();
   assert(await page.evaluate(() => window.guideSpeechCheck.spoken.length) === 0, "Speech started automatically");
+  const visibleWelcome = await testId("messages").locator(".avatar-guide-message-guide .avatar-guide-message-text").first().innerText();
   await page.getByRole("button", { name: "Read answer using standard device voice" }).first().click();
-  assert(await page.evaluate(() => window.guideSpeechCheck.spoken[0].includes("website’s digital guide")), "Read aloud did not use the visible answer");
+  assert(await page.evaluate((answer) => window.guideSpeechCheck.spoken[0] === answer, visibleWelcome), "Read aloud did not use the visible answer");
+  const cancellationsBeforeClose = await page.evaluate(() => window.guideSpeechCheck.cancelled);
   await testId("close").click();
-  // Native dialog close events are queued after the click; wait for cleanup.
-  await page.waitForFunction(() => window.guideSpeechCheck.cancelled === 1);
-  assert(await page.evaluate(() => window.guideSpeechCheck.cancelled) === 1, "Closing did not cancel speech");
+  await page.waitForFunction((previous) => window.guideSpeechCheck.cancelled > previous, cancellationsBeforeClose);
   checks.push({ deviceSpeech: "Explicit read-aloud and close cancellation passed with a local mock" });
   await testId("launcher").click();
+  await chooseText();
   const questions = [
     ["Help me write an AI task brief", "write-an-ai-task-brief"],
     ["How do I evaluate an AI workflow?", "test-ai-before-adoption"],
@@ -128,11 +155,13 @@ try {
   assert(await testId("messages").locator("img").count() === 0, "Input was interpreted as HTML");
   assert(await testId("input").getAttribute("maxlength") === "500", "Input length is not bounded");
   await testId("reset").click();
+  await chooseText();
   assert(await testId("messages").getByText("What is the weather on Mars?", { exact: true }).count() === 0, "Reset left previous messages");
   await testId("input").fill("Privacy check unique message");
   await testId("send").click();
   await page.reload({ waitUntil: "networkidle" });
   await testId("launcher").click();
+  await chooseText();
   assert(await testId("messages").getByText("Privacy check unique message", { exact: true }).count() === 0, "Conversation survived reload");
   await testId("close").click();
   await page.getByRole("button", { name: "Switch to dark theme" }).click();
@@ -143,6 +172,7 @@ try {
 
   await visit("/digital-guide");
   await page.getByRole("button", { name: "Ask the guide" }).first().click();
+  await chooseText();
   assert(await testId("messages").getByText("Where should I start with AI?", { exact: true }).count() > 0, "Learning-path CTA did not prefill question");
   await testId("close").click();
   for (const path of ["/learning-lab/login", "/learning-lab/admin", "/learning-lab/learner"]) {
@@ -172,7 +202,7 @@ try {
   assert(errors.length === 0, `Browser errors: ${errors.join("; ")}`);
   assert(blockedWrites.length === 0, `Guided mode attempted HTTP writes: ${blockedWrites.join("; ")}`);
   report.status = "PASS";
-  console.log("PASS portrait guide: 16 route/viewport combinations, keyboard focus, grounded answers, reset/reload privacy, dark mode, path CTAs, private-route suppression and MBA entry links; no HTTP writes");
+  console.log("PASS compact guide: 16 route/viewport combinations, nonmodal keyboard/background access, grounded text answers, reset/reload privacy, dark mode, path CTAs, private-route suppression and MBA entry links; no HTTP writes");
 } catch (error) {
   report.status = "FAIL";
   report.failure = error.message;

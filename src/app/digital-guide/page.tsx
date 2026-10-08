@@ -7,7 +7,7 @@ import { OpenGuideButton } from "@/features/digital-avatar/OpenGuideButton";
 export const metadata: Metadata = {
   title: "Swapnil’s digital guide",
   description:
-    "Find your next lesson in AI, strategy and entrepreneurship with Swapnil’s portrait-based website guide.",
+    "Explore AI, strategy and entrepreneurship with Swapnil’s compact website assistant, optional browser voice and published lesson links.",
   alternates: { canonical: "/digital-guide" },
   openGraph: {
     title: "Swapnil’s digital guide",
@@ -52,15 +52,15 @@ export default function DigitalGuidePage() {
               <span className="text-indigo-800 italic dark:text-indigo-300">digital guide.</span>
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-slate-600 dark:text-slate-300">
-              Explore AI, strategy and entrepreneurship through a conversation. Find a free lesson,
-              choose a learning path or get oriented before your next class.
+              Ask a question by voice while you browse. Find a free lesson, choose a learning path
+              or get oriented before your next class in a small popup beside the page.
             </p>
             <div className="mt-7">
               <OpenGuideButton>Open my digital guide</OpenGuideButton>
             </div>
             <p className="mt-4 max-w-md text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-              The portrait is Dr. Swapnil Sahoo. The guide gives prepared answers from this website;
-              it is not a live conversation with him.
+              The portrait is Dr. Swapnil Sahoo. The assistant uses prepared website answers and a
+              standard device voice. His personal talking video avatar is not available yet.
             </p>
           </div>
           <div className="overflow-hidden rounded-2xl border border-indigo-950/10 bg-white dark:border-white/10 dark:bg-slate-900">
@@ -142,15 +142,17 @@ export default function DigitalGuidePage() {
               Your conversation, your choice
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-              Guided answers run in your browser. This website does not save the conversation;
-              resetting or refreshing clears it. Optional read-aloud uses your browser or device’s
-              standard voice, not a clone of Swapnil’s voice. Voice processing depends on your
-              browser and device.
+              You choose whether to enable the microphone and start each spoken question. Browser
+              voice may send audio to its speech service. Replies use a standard device voice, not a
+              clone of Swapnil’s voice. Voice support depends on your browser; text is always
+              available. Listening and playback stop when you close the popup, switch modes, change
+              pages or leave this tab.
             </p>
             <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-              Live AI video is a separate mode and appears only when available. It requires your
-              explicit choice before connecting to the video provider. Keep private, student and
-              employer information out of your questions.
+              Prepared answers run in your browser. This website does not save your audio or
+              conversation; resetting or refreshing clears the text. Live AI video is a separate
+              mode that requires your choice before connecting to a provider, once available. Keep
+              private, student and employer information out of your questions.
             </p>
           </div>
         </section>
