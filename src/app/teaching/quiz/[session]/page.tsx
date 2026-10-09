@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { session } = await params;
   const quiz = await loadSessionQuiz(session);
   if (!quiz) return {};
-  const programme = quiz.course === "2-year-mba" ? "STRAMGT 206" : "STRAMGT 221";
+  const programme = quiz.course === "2-year-mba" ? "STRAMGT 206" : "PGPM 2026–27";
   const title = `${quiz.title} — ${sessionLabel(quiz)} quiz`;
   return {
     title: `${title} | ${programme}`,
@@ -54,7 +54,7 @@ export default async function SessionQuizPage({ params }: PageProps) {
   const courseLabel =
     quiz.course === "2-year-mba"
       ? "STRAMGT 206: Strategic Management"
-      : "STRAMGT 221: Strategy and Disruption";
+      : "PGPM 2026–27: Strategic Management";
   const withRationale = quiz.questions.filter((q) => q.explanation).length;
 
   return (

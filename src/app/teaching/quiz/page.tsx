@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 const COURSE_LABEL: Record<string, string> = {
   "2-year-mba": "STRAMGT 206: Strategic Management",
-  "1-year-mba": "STRAMGT 221: Strategy and Disruption",
+  "1-year-mba": "PGPM 2026–27: Strategic Management",
 };
 
 export default async function QuizIndexPage() {
