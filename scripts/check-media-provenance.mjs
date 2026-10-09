@@ -16,6 +16,10 @@ const openAiMarkers = [
 // no longer exists in the file; no replacement entry is needed.
 const approvedOpenAiAssets = new Map([
   [
+    "public/images/digital-avatar/swapnil-speaking-sprites.png",
+    "1bd97094eebb012b07b35f856f19e3071da2c31652997400f5b9ba7ea96fd21b",
+  ],
+  [
     "public/images/spirituality/ramcharitmanas/comics/bala-kanda-opening-004-comic-v1.png",
     "990751f2261208cb15b97762f294e8aa0853208ae601715937ac539eb67f444b",
   ],

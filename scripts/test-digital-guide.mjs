@@ -70,10 +70,11 @@ try {
       assert(dimensions.right - dimensions.left <= 400, `${path} ${width}: popup is wider than 400px`);
       assert(dimensions.left >= -1 && dimensions.right <= width + 1 && dimensions.top >= -1 && dimensions.bottom <= 901, `${path} ${width}: dialog outside viewport`);
       assert(dimensions.overflow <= 1, `${path} ${width}: horizontal page overflow`);
-      assert(await testId("dialog").locator('img[src*="profile_pic"]').count() > 0, "Portrait is missing");
+      assert(await testId("dialog").getByRole("img", { name: "Digitally created likeness of Dr. Swapnil Sahoo", exact: true }).isVisible(), "Generated avatar likeness is missing");
+      assert(await testId("dialog").getByText("AI-created likeness", { exact: true }).isVisible(), "Generated likeness disclosure is missing");
       assert(await testId("dialog").locator("iframe").count() === 0, "Guided mode should not start a video connection");
       assert(await page.locator("dialog:modal").count() === 0, "Floating guide created a modal backdrop");
-      assert(await page.getByRole("button", { name: "Use text instead", exact: true }).isVisible(), "Unconfigured video should open the voice view with a text alternative");
+      assert(await page.getByRole("button", { name: "Use text instead", exact: true }).isVisible(), "The local voice guide should retain a text alternative");
       if (path === "/digital-guide" && [390, 1440].includes(width)) await page.screenshot({ path: `${dir}/${profile}-${width}.png` });
       await page.keyboard.press("Escape");
       assert(!(await testId("dialog").isVisible()), "Escape did not close guide");
@@ -140,7 +141,7 @@ try {
     ["How do I interview customers?", "ask-better-customer-questions"],
     ["Show me the 13-session MBA course", "/teaching/1-year-mba#course-map"],
     ["Are paid courses open?", "/learning-lab/programmes"],
-    ["Is a payment QR available?", "/learning-lab/contact"],
+    ["Is a payment QR available?", "/learning-lab/support#donate"],
     ["What is the weather on Mars?", "/learning-lab/contact"],
   ];
   for (const [question, href] of questions) {

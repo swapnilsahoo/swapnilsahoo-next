@@ -1,12 +1,14 @@
 # Create Swapnil’s speaking audio/video avatar
 
-8 October 2026. Target: a conversational avatar with Swapnil’s face and voice, synchronised speaking/listening video, and course guidance in the website’s existing light theme. The website now uses a small floating popup that stays beside the page. Its interim portrait guide offers optional browser voice and text; no generated talking video or cloned founder voice exists yet. Once an approved personal video provider is connected, the popup opens in video mode and waits for the visitor to start.
+Updated 9 October 2026. The small floating popup now contains an AI-created animated likeness of Swapnil, optional browser voice questions and spoken prepared answers, and a prerecorded speaking welcome video with captions and a transcript. The welcome uses a stock synthetic voice. No cloned founder voice or trained live conversational video replica is connected. See [the creation handover](digital-avatar-created.md) for the delivered assets and tests.
+
+The remaining target is a trained conversational replica with Swapnil’s own voice and synchronised video. Recording is only necessary for that personal voice/face training; it is not required to use the animated guide already created. Once an approved provider is connected, the popup opens in video mode and waits for the visitor to start.
 
 ## Recommended creation path
 
 Use a fresh recording to create the face and voice together. Tavus’s current [video training guide](https://docs.tavus.io/sections/faces/phoenix-45-video-requirements) says Phoenix-4.5 creates the default voice from the video audio. This matches the requested personal audio/video avatar. The website already contains a disabled Tavus conversation adapter and a separate 1mind embed option.
 
-The existing website portrait is 480 × 321 pixels. It is suitable for the website guide, but falls below Tavus’s [512 × 512 photo-training minimum](https://docs.tavus.io/sections/faces/phoenix-45-image-requirements). A photo-based avatar also needs an attached stock or trained voice; a photograph cannot supply Swapnil’s own voice.
+The existing website portrait is 480 × 321 pixels. It supplied the identity reference for the generated likeness, but falls below Tavus’s [512 × 512 photo-training minimum](https://docs.tavus.io/sections/faces/phoenix-45-image-requirements). The current [Create Face API](https://docs.tavus.io/api-reference/faces/create-face) offers `auto_fix_training_image` for preparation; this is a provider option, not a guarantee that the existing photograph will train well. A higher-resolution original remains preferable. A photo-based avatar also needs an attached stock or trained voice; a photograph cannot supply Swapnil’s own voice. Preview any result before enabling it.
 
 ## One recording to prepare
 

@@ -54,7 +54,7 @@ const topics: GuidedTopic[] = [
     matches:
       /\b(who are you|are you (a human|human|real|ai|dr\.?|professor|swapnil|sahoo|the founder)|is this (a human|human|ai|dr\.?|professor|swapnil|sahoo)|live (person|teacher|professor)|digital avatar|chat ?bot|guided answers?|how (does|do) (this|you) work)\b/i,
     reply: answer(
-      "This is a website guide with prepared answers about Dr. Swapnil Sahoo’s published teaching and Learning Lab resources. The portrait identifies whose website you are visiting; replies are not a live conversation with Dr. Sahoo or a human instructor. Choose a topic below to find a useful next page.",
+      "This is a website guide with prepared answers about Dr. Swapnil Sahoo’s published teaching and Learning Lab resources. Its AI-created likeness uses simple mouth animation with a standard device voice, and the Video tab offers a prerecorded synthetic-voice introduction. This is not Dr. Sahoo speaking live or a trained conversational video replica; no founder voice has been cloned. Choose a topic below to find a useful next page.",
       [freeLibrary, { label: "Meet the founder", href: `${lab}/founder` }, contact],
       ["What can I learn for free?", "Show me the 13-session MBA course", "Contact the Lab"],
     ),

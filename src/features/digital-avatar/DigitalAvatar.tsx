@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useId, useRef, useState, type FormEvent } from "react";
 import { getGuidedReply, starters } from "./knowledge";
 import { useBrowserVoice } from "./useBrowserVoice";
+import { AnimatedAvatar } from "./AnimatedAvatar";
 import "./digital-avatar.css";
 
 type Mode = "voice" | "video" | "guided";
@@ -67,6 +68,8 @@ export function DigitalAvatar({
   const messageCounter = useRef(0);
   const mountedRef = useRef(false);
   const speechRef = useRef<SpeechSynthesisUtterance | null>(null);
+  const welcomeVideoRef = useRef<HTMLVideoElement | null>(null);
+  const welcomeSourceFailuresRef = useRef(new Set<EventTarget>());
   const videoRef = useRef<VideoSession | null>(null);
   const videoTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const requestGeneration = useRef(0);
@@ -78,19 +81,27 @@ export function DigitalAvatar({
   const [question, setQuestion] = useState("");
   const [status, setStatus] = useState("");
   const [readingId, setReadingId] = useState<string | null>(null);
+  const [speaking, setSpeaking] = useState(false);
   const [voiceConsent, setVoiceConsent] = useState(false);
   const [video, setVideo] = useState<VideoSession | null>(null);
   const [videoConsent, setVideoConsent] = useState(false);
   const [startingVideo, setStartingVideo] = useState(false);
+  const [welcomeVideoFailed, setWelcomeVideoFailed] = useState(false);
 
   const cancelSpeech = useCallback(() => {
     if (speechRef.current) {
       speechRef.current.onend = null;
       speechRef.current.onerror = null;
+      speechRef.current.onstart = null;
+      speechRef.current.onpause = null;
+      speechRef.current.onresume = null;
       speechRef.current = null;
       if ("speechSynthesis" in window) window.speechSynthesis.cancel();
     }
-    if (mountedRef.current) setReadingId(null);
+    if (mountedRef.current) {
+      setReadingId(null);
+      setSpeaking(false);
+    }
   }, []);
 
   const playMessage = useCallback(
@@ -103,17 +114,27 @@ export function DigitalAvatar({
       const utterance = new SpeechSynthesisUtterance(message.text);
       utterance.lang = "en-IN";
       utterance.rate = 1;
+      utterance.onstart = utterance.onresume = () => {
+        if (mountedRef.current && speechRef.current === utterance) setSpeaking(true);
+      };
+      utterance.onpause = () => {
+        if (mountedRef.current && speechRef.current === utterance) setSpeaking(false);
+      };
       utterance.onend = () => {
+        if (speechRef.current !== utterance) return;
         speechRef.current = null;
         if (mountedRef.current) {
           setReadingId(null);
+          setSpeaking(false);
           setStatus("Read aloud finished.");
         }
       };
       utterance.onerror = () => {
+        if (speechRef.current !== utterance) return;
         speechRef.current = null;
         if (mountedRef.current) {
           setReadingId(null);
+          setSpeaking(false);
           setStatus("Read aloud could not play. The full answer is shown here.");
         }
       };
@@ -141,6 +162,11 @@ export function DigitalAvatar({
 
   const stopVideo = useCallback(
     (updateUI = true) => {
+      const welcomeVideo = welcomeVideoRef.current;
+      if (welcomeVideo) {
+        welcomeVideo.pause();
+        welcomeVideo.currentTime = 0;
+      }
       const generation = ++requestGeneration.current;
       const active = videoRef.current;
       videoRef.current = null;
@@ -547,7 +573,9 @@ export function DigitalAvatar({
                 ? "Browser voice · website guidance"
                 : mode === "guided"
                   ? "Prepared website answers"
-                  : "AI video · not Dr. Sahoo speaking live"}
+                  : liveVideoAvailable
+                    ? "AI video · not Dr. Sahoo speaking live"
+                    : "Prerecorded animated introduction"}
             </p>
           </div>
           <button
@@ -562,15 +590,11 @@ export function DigitalAvatar({
         </div>
         <div className="avatar-guide-body">
           <aside className="avatar-guide-stage" aria-label="About your digital guide">
-            <div className="avatar-guide-portrait">
-              <Image
-                src="/images/profile_pic.jpg"
-                alt="Dr. Swapnil Sahoo"
-                width={480}
-                height={321}
-              />
-              <span className="avatar-guide-portrait-label">Dr. Swapnil Sahoo · portrait</span>
-            </div>
+            <AnimatedAvatar
+              active={open && mode !== "video"}
+              speaking={speaking}
+              listening={voicePhase !== "idle"}
+            />
           </aside>
           <div className="avatar-guide-conversation">
             <div className="avatar-guide-toolbar">
@@ -616,7 +640,8 @@ export function DigitalAvatar({
                 </div>
                 <p>
                   Browser voice may send your audio to its speech service. Replies use a standard
-                  device voice, not Dr. Sahoo’s voice. This portrait is not talking video.
+                  device voice, not Dr. Sahoo’s voice. The digitally created likeness uses simple
+                  mouth animation during playback, not a trained live video replica.
                 </p>
                 <label className="avatar-guide-consent">
                   <input
@@ -778,11 +803,82 @@ export function DigitalAvatar({
                   </>
                 ) : !liveVideoAvailable ? (
                   <div className="avatar-guide-video-intro">
-                    <h3>Video conversations are coming soon.</h3>
+                    <h3>A welcome from the digital guide.</h3>
+                    <video
+                      data-testid="digital-guide-welcome-video"
+                      ref={welcomeVideoRef}
+                      controls
+                      playsInline
+                      preload="none"
+                      poster="/images/profile_pic.jpg"
+                      aria-label="Prerecorded animated welcome with a standard synthetic voice"
+                      onError={(event) => {
+                        // An unsupported first source can fail while the fallback plays.
+                        if (event.target instanceof HTMLSourceElement) {
+                          welcomeSourceFailuresRef.current.add(event.target);
+                          if (
+                            welcomeSourceFailuresRef.current.size >=
+                            event.currentTarget.querySelectorAll("source").length
+                          ) setWelcomeVideoFailed(true);
+                        } else if (event.target === event.currentTarget && event.currentTarget.error) {
+                          setWelcomeVideoFailed(true);
+                        }
+                      }}
+                      onLoadStart={() => {
+                        welcomeSourceFailuresRef.current.clear();
+                        setWelcomeVideoFailed(false);
+                      }}
+                      onLoadedData={() => {
+                        welcomeSourceFailuresRef.current.clear();
+                        setWelcomeVideoFailed(false);
+                      }}
+                      onPlay={() => {
+                        cancelSpeech();
+                        stopListening();
+                      }}
+                    >
+                      <source src="/videos/digital-avatar/welcome.mp4" type="video/mp4" />
+                      <source src="/videos/digital-avatar/welcome.webm" type="video/webm" />
+                      <track
+                        default
+                        kind="captions"
+                        src="/videos/digital-avatar/captions.vtt"
+                        srcLang="en"
+                        label="English"
+                      />
+                      Your browser does not support this video. You can use the voice guide below.
+                    </video>
+                    {welcomeVideoFailed && (
+                      <p role="status">
+                        The welcome video could not play in this browser. Read the captions or
+                        use the voice guide below.
+                      </p>
+                    )}
                     <p>
-                      The personal talking avatar isn’t available yet. The voice guide can help you
-                      explore this website now.
+                      This short introduction is prerecorded, with a digitally created likeness
+                      and a standard synthetic voice. It does not listen or answer questions.
+                      Choose the voice guide for prepared spoken website answers. A trained
+                      conversational video replica is not connected.
                     </p>
+                    <p>
+                      <a href="/videos/digital-avatar/transcript.txt">
+                        Read the welcome transcript
+                      </a>
+                      {" · "}
+                      <a href="/videos/digital-avatar/captions.vtt" download>Download captions</a>
+                    </p>
+                    <details>
+                      <summary>Welcome transcript</summary>
+                      <p>
+                        Hello. I’m Swapnil’s digital learning guide. This is an animated likeness
+                        with a synthetic voice, rather than Swapnil speaking live. Welcome to the
+                        Learning Lab. Explore six free mini-courses in AI, strategy and
+                        entrepreneurship. Read a short lesson, try a business decision, and keep
+                        your worksheet. Open the guide and choose a question by voice or text.
+                        Voluntary support helps improve our learning content and infrastructure.
+                        The free courses remain free.
+                      </p>
+                    </details>
                     <button
                       className="avatar-guide-secondary"
                       type="button"

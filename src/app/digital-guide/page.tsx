@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { OpenGuideButton } from "@/features/digital-avatar/OpenGuideButton";
+import { AnimatedAvatar } from "@/features/digital-avatar/AnimatedAvatar";
 
 export const metadata: Metadata = {
   title: "Swapnil’s digital guide",
   description:
-    "Explore AI, strategy and entrepreneurship with Swapnil’s compact website assistant, optional browser voice and published lesson links.",
+    "Meet Swapnil’s digitally created likeness, watch a prerecorded welcome, and explore lessons with optional device-voice guidance.",
   alternates: { canonical: "/digital-guide" },
   openGraph: {
     title: "Swapnil’s digital guide",
@@ -52,26 +52,23 @@ export default function DigitalGuidePage() {
               <span className="text-indigo-800 italic dark:text-indigo-300">digital guide.</span>
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-slate-600 dark:text-slate-300">
-              Ask a question by voice while you browse. Find a free lesson, choose a learning path
-              or get oriented before your next class in a small popup beside the page.
+              Meet my digitally created likeness in a small popup beside the page. Watch the
+              welcome video, then ask by voice to find a free lesson, choose a learning path or
+              get oriented before your next class.
             </p>
             <div className="mt-7">
               <OpenGuideButton>Open my digital guide</OpenGuideButton>
             </div>
             <p className="mt-4 max-w-md text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-              The portrait is Dr. Swapnil Sahoo. The assistant uses prepared website answers and a
-              standard device voice. His personal talking video avatar is not available yet.
+              The likeness is AI-created from Swapnil’s portrait. Prepared answers use a standard
+              device voice with simple mouth animation. The welcome video is prerecorded; a
+              trained conversational video replica is not connected.
             </p>
           </div>
           <div className="overflow-hidden rounded-2xl border border-indigo-950/10 bg-white dark:border-white/10 dark:bg-slate-900">
-            <Image
-              src="/images/profile_pic.jpg"
-              alt="Dr. Swapnil Sahoo, whose portrait represents the digital guide"
-              width={480}
-              height={321}
-              className="aspect-[4/3] w-full object-cover object-[center_35%]"
-              priority
-            />
+            <div className="avatar-guide avatar-guide-avatar-hero">
+              <AnimatedAvatar active={false} />
+            </div>
             <div className="flex items-center justify-between gap-4 px-5 py-5">
               <div>
                 <p className="font-serif text-xl text-slate-950 dark:text-white">
@@ -82,7 +79,7 @@ export default function DigitalGuidePage() {
                 </p>
               </div>
               <span className="rounded-full bg-indigo-50 px-3 py-2 text-xs font-medium text-indigo-900 dark:bg-indigo-950 dark:text-indigo-200">
-                Digital guide
+                Animated likeness
               </span>
             </div>
           </div>
@@ -150,8 +147,9 @@ export default function DigitalGuidePage() {
             </p>
             <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
               Prepared answers run in your browser. This website does not save your audio or
-              conversation; resetting or refreshing clears the text. Live AI video is a separate
-              mode that requires your choice before connecting to a provider, once available. Keep
+              conversation; resetting or refreshing clears the text. The welcome video uses a
+              synthetic voice and plays only when you start it. Live AI video is a separate mode
+              that requires your choice before connecting to a provider, once available. Keep
               private, student and employer information out of your questions.
             </p>
           </div>
