@@ -6,11 +6,13 @@ Run [the PowerShell helper](../../scripts/activate-learning-lab.ps1) in the owne
 
 ## One-time account and database preparation
 
-The discovery session found authenticated GitHub deployment access, but no installed Vercel/Turso CLI, Vercel project link, relevant process credentials or available signed-in browser. This is an account-access limitation, not an absent backend. No provider account or database was created.
+Initial discovery found authenticated GitHub deployment access but no Vercel/Turso CLI or private service credentials. The official Vercel CLI **63.1.0** is now installed globally; owner approval of its OAuth device login is pending. Its folder, `C:\Users\swapn\AppData\Local\npm-global`, was added to the user PATH for future terminals. An existing terminal may need that folder prepended to its process PATH, or the full `vercel.cmd` path. No provider account, database or production service has been created or activated by these preparation steps.
 
 1. Install the official Vercel CLI if needed (`npm.cmd install --global vercel`) and complete `vercel login` yourself. The helper uses its existing session, not a copied API token. Confirm the existing project `swapnil-sahoo-s-projects/swapnilsahoo-next` is yours.
-2. Select a fresh, empty **libSQL** database in your owner-controlled Turso account. Turso's current [free plan](https://turso.tech/pricing) needs no credit card; review current limits and keep paid overages disabled. The current [quickstart](https://docs.turso.tech/quickstart) distinguishes engines: `turso db create <name>` creates libSQL; **do not use `--tursodb`** for this app's existing driver. Creating the account/database or minting a token remains an owner action. Existing compatible hosted libSQL storage also works.
+2. Select a fresh, empty **libSQL** database in your owner-controlled Turso account. Turso's current [free plan](https://turso.tech/pricing) needs no credit card; review current limits and keep paid overages disabled. The current [quickstart](https://docs.turso.tech/quickstart) distinguishes engines: `turso db create <name>` creates libSQL; **do not use `--tursodb`** for this app's existing driver. Provider preparation is separate from this helper. Existing compatible hosted libSQL storage also works.
 3. Obtain its URL and restricted database token privately. The Turso CLI is optional when those existing credentials are supplied; if available, the helper checks `turso auth whoami`. `-DatabaseName <existing-name>` additionally checks that CLI lookup matches the supplied URL. It never calls a create or token-mint command.
+
+Alternatively, after Vercel authentication, inspect the project's existing [Turso Cloud Marketplace resources](https://vercel.com/marketplace/tursocloud/database) before creating anything. The installed [Vercel integration CLI](https://vercel.com/docs/cli/integration) can provision and connect a database without a separate Windows Turso installation. Verify the actual free plan and deployment region first. Link only the existing project, connect only `production`, and use `--no-env-pull` to avoid writing plaintext credentials locally. Installation terms may require the account owner's interactive confirmation. Do not upgrade billing or add a payment method as part of this setup. Map the integration's `TURSO_DATABASE_URL` and `TURSO_AUTH_TOKEN` privately to this helper's `LAB_DATABASE_URL` and `LAB_DATABASE_AUTH_TOKEN`; never print or commit their values. This route has been researched but has not been provisioned or tested in the owner's account.
 
 Set credentials in the current process using masked input, without putting values in command history or a plaintext file:
 
@@ -49,11 +51,35 @@ After the preflight passes, explicitly run:
 .\scripts\activate-learning-lab.ps1 -Activate
 ```
 
-Use the same optional database/deployment arguments if needed. `-Activate` prompts twice for the owner's administrator password, generates an independent authentication secret, and saves a Windows DPAPI-encrypted recovery copy under ignored `.data/lab-activation-<project-id>/auth-secret.dpapi`. That directory permits only the current Windows user; no database token or administrator password is saved there. Preserve it securely before any future backup: the authentication secret is also the key for existing Lab encrypted backups. DPAPI recovery requires the same Windows account and its keys; a copied file alone is insufficient.
+Use the same optional database/deployment arguments if needed. `-Activate` prompts twice for the owner's administrator password, generates an independent authentication secret, and saves a Windows DPAPI-encrypted recovery copy under ignored `.data/lab-activation-<project-id>/auth-secret.dpapi`. That directory permits only the current Windows user; the ordinary masked-prompt mode saves no administrator password, and neither mode saves a database token. Preserve it securely before any future backup: the authentication secret is also the key for existing Lab encrypted backups. DPAPI recovery requires the same Windows account and its keys; a copied file alone is insufficient.
+
+For an explicitly authorised activation without an interactive password prompt, use:
+
+```powershell
+.\scripts\activate-learning-lab.ps1 -Activate -GenerateAdminPassword
+```
+
+This generates an independent random temporary administrator password and stores **only its DPAPI-encrypted copy** as `admin-password.dpapi` beside `auth-secret.dpapi`. No password appears in console output, command arguments, Vercel environment values or chat. The helper sets the bootstrap-only `LAB_ADMIN_MUST_CHANGE_PASSWORD=true` while provisioning, then restores the caller's original setting. The new administrator must replace the temporary password at first sign-in; both the workspace UI and server reject other admin actions until replacement. The ordinary masked-prompt mode and unflagged `lab:admin` command retain their existing behaviour. Neither mode overwrites or promotes an existing account.
+
+To use the generated password, recover it privately on the same Windows account. Keep clipboard history/sync disabled for this step. This copies the recovered value to the local clipboard without printing it:
+
+```powershell
+$labTemporaryPassword = Get-Content -LiteralPath '.data/lab-activation-EXACT-PROJECT-ID/admin-password.dpapi' -Raw |
+    ConvertTo-SecureString
+$labPasswordPointer = [Runtime.InteropServices.Marshal]::SecureStringToBSTR($labTemporaryPassword)
+try {
+    Set-Clipboard -Value ([Runtime.InteropServices.Marshal]::PtrToStringBSTR($labPasswordPointer))
+} finally {
+    [Runtime.InteropServices.Marshal]::ZeroFreeBSTR($labPasswordPointer)
+    $labTemporaryPassword.Dispose()
+}
+```
+
+Paste it only into the owner's HTTPS Lab sign-in and temporary-password fields, then choose a new private password in the required change screen. Clear the clipboard afterwards with `Set-Clipboard -Value ''`. Do not paste either password into chat, a transcript or a plaintext file. The encrypted recovery copy remains protected; after successful replacement it is no longer a valid login password.
 
 The helper then runs the existing schema/content initialiser and first-administrator bootstrap, creates four **sensitive production-only** Vercel variables through private stdin, retains `LAB_LOCAL_MODE=false` and `LAB_LAUNCH_APPROVED=false`, checks that all six keys exist, and redeploys the already-published production source. It does not upload this working tree or its untracked files. The first administrator defaults to the approved `swapnil.s@greatlakes.edu.in`; `-AdminEmail` is available for an approved replacement. No learner or invitation email is created. Course checkout remains hard-disabled in application code.
 
-This uses Vercel's authenticated [API command and stdin input](https://vercel.com/docs/cli/api), [sensitive environment values](https://vercel.com/docs/cli/env) and [production redeployment](https://vercel.com/docs/cli/redeploy). It never requests `upsert=true`, `--force`, variable deletion, value decryption or `.env` export. Child command output is captured; failure messages do not echo provider responses that might contain credentials. Process settings changed for bootstrap are restored even on failure.
+This uses Vercel's authenticated [API command and stdin input](https://vercel.com/docs/cli/api), [sensitive environment values](https://vercel.com/docs/cli/env) and [production redeployment](https://vercel.com/docs/cli/redeploy). It never requests `upsert=true`, `--force`, variable deletion, value decryption or `.env` export. Child stdout is captured privately and stderr is suppressed, so CLI banners cannot contaminate JSON and failure messages cannot echo provider credentials. Process settings changed for bootstrap are restored even on failure.
 
 ## If activation stops after a write
 
@@ -78,6 +104,8 @@ $env:LAB_LAUNCH_APPROVED = 'false'
 
 Keep the original owner-controlled URL/token loaded. Confirm which steps succeeded. The existing `init` command does not overwrite edited programme content; `admin` refuses to overwrite or promote an existing administrator. Review these commands in [the administrator guide](admin-guide.md) before resuming them. A schema/account failure needs diagnosis before any production redeployment.
 
+If a manual resume still needs to create the first administrator with the generated temporary password, recover `admin-password.dpapi` using the same BSTR pattern into process `LAB_ADMIN_PASSWORD`, and set process `LAB_ADMIN_MUST_CHANGE_PASSWORD=true` for that bootstrap only. Clear both afterwards. Never retry `admin` to repair an account already created; diagnose the stopped step privately first.
+
 If only a confirmed missing Vercel variable remains, first link the exact existing project with `vercel link --project swapnilsahoo-next --scope swapnil-sahoo-s-projects`. This writes project metadata, not credentials. Set `$labMissingName` to that one **confirmed missing** key, then pass its existing process value privately on stdin, capturing output rather than echoing it:
 
 ```powershell
@@ -99,6 +127,8 @@ Do not use force/update to resolve a conflict. Confirm both launch flags are `fa
 
 Run one controlled enquiry with the owner's consent; verify persistence and administrator visibility, duplicates and honest failure behaviour. Check HTTPS sign-in, password change/session revocation, anonymous/admin/learner boundaries and cross-learner denial using separately authorised test identities. Verify submissions, human review, attendance and certificate eligibility without treating an enquiry or donation as enrolment. Take an encrypted backup and restore it into a separate empty test database. Do not run the existing synthetic integration suite directly against the real production database.
 
-Validation on 9 October 2026: PowerShell AST parsing and 15 isolated mocked scenarios passed, covering read-only defaults, missing access, populated storage, existing credentials, unsafe flags, wrong project/deployment, invalid provider JSON, activation order, private production values, process restoration and failure redaction. Metadata that reported an unsafe flag or an exposed core value after creation also stopped deployment. A synthetic DPAPI round trip, protected owner-only directory ACL and refusal to overwrite an existing recovery copy also passed. The real read-only preflight correctly reported missing Vercel CLI/session and missing libSQL URL/token; no infrastructure was changed.
+Validation on 9 October 2026: PowerShell AST parsing and 18 isolated mocked scenarios passed, including generated-mode preflight, prompt-free provisioning, bootstrap flag restoration and failure handling. An actual local child process confirmed that a stderr banner does not contaminate JSON stdout. Both synthetic recovery secrets passed DPAPI round trips, owner-only directory ACL checks and refusal to overwrite existing files.
+
+Four isolated local checks exercised the real administrator CLI, Better Auth and API handlers: unflagged bootstrap behaviour stayed unchanged; flagged administrators authenticated but received 403 on records; password replacement enabled records and invalidated the temporary password; repeated bootstrap preserved the existing account/password. Unused Next page-header/navigation helpers were stubbed for this direct handler test; it was not a browser or deployed-service test. Scoped ESLint and whitespace checks passed. The earlier real read-only preflight correctly reported missing CLI/session and database credentials; the CLI has since been installed and owner OAuth approval remains pending. No production infrastructure was changed by these tests.
 
 These checks validate the helper, not an activated service. Real production enquiries, sign-in, email delivery, learner admission and provider audiovisual quality remain unverified until performed.

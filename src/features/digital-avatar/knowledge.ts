@@ -180,7 +180,7 @@ const topics: GuidedTopic[] = [
     matches:
       /\b(fees?|price|pricing|paid|purchase|pay|payments?|checkout|refund\w*|enrol\w*|enroll\w*|register|registration|cohort|start date|dates?|schedule|timetable|rupees?)\b|₹|\brs\.?\s*\d+/i,
     reply: answer(
-      "The six free mini-courses cost ₹0 and require no account. Full Learning Lab programmes remain proposed: payable fees, dates and places are unconfirmed, and paid course checkout remains closed. Optional donations through the Support the Lab QR are separate from course fees and do not reserve a place or confirm enrolment. This guide cannot take payment or verify a transfer. Email the Lab to ask about a programme; opening the email link does not send it automatically.",
+      "The six free mini-courses cost ₹0 and require no account. Full Learning Lab programmes remain proposed: payable fees, dates and places are unconfirmed, and paid course checkout remains closed. Optional donations through the Support the Lab QR are separate from course fees and do not reserve a place or confirm enrolment. This guide cannot take payment or verify a transfer. Visit Contact for current enquiry options, or email the Lab to ask about a programme; opening the email link does not send it automatically.",
       [freeLibrary, { label: "Check programme availability", href: programmes }, support, contact],
       ["What can I learn for free?", "Is a payment QR available?", "How do the certificates work?"],
     ),

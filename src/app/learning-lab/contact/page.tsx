@@ -16,6 +16,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ContactPage() {
+  const enquiriesAvailable = isLabServiceConfigured();
   const programmes = (await getPublicProgrammes()).filter(
     (p) => p.availability.status !== "closed"
   );
@@ -24,7 +25,11 @@ export default async function ContactPage() {
       <LabHero
         eyebrow="Start a conversation"
         title="Tell us what you want to learn."
-        description="Email a programme question or discuss an institutional pilot. Online registration of interest will open after secure service setup. No payment is collected and no place is reserved."
+        description={
+          enquiriesAvailable
+            ? "Register interest using the form, email a programme question or discuss an institutional pilot. No payment is collected and no place is reserved."
+            : "Email a programme question or discuss an institutional pilot. Online registration of interest will open after secure service setup. No payment is collected and no place is reserved."
+        }
       />
       <LabSection>
         <div className="lab-split">
@@ -74,7 +79,7 @@ export default async function ContactPage() {
           </div>
           <EnquiryForm
             programmes={programmes}
-            available={isLabServiceConfigured()}
+            available={enquiriesAvailable}
             contactEmail={labPublicConfig.businessEmail}
           />
         </div>

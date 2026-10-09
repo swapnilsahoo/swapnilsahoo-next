@@ -4,8 +4,8 @@
 Read-only first-activation preflight; -Activate explicitly enables production changes.
 .DESCRIPTION
 Uses an existing owner-controlled libSQL database and an authenticated Vercel CLI.
-Never creates accounts, databases, tokens, paid plans, learner accounts or course offers.
-Credentials are read from process environment or masked prompts, never arguments/files.
+Never creates provider accounts, databases, tokens, paid plans, learners or course offers.
+Credentials use process memory, masked prompts and encrypted recovery, never native argv/plaintext files.
 See docs/learning-lab/activation.md before running -Activate.
 #>
 [CmdletBinding()]
@@ -18,6 +18,7 @@ param(
     [string]$DatabaseName = '',
     [string]$ProductionDeploymentUrl = '',
     [string]$AdminEmail = 'swapnil.s@greatlakes.edu.in',
+    [switch]$GenerateAdminPassword,
     [switch]$PassThru
 )
 
@@ -39,16 +40,17 @@ function Find-OwnerCommand([string[]]$Names) {
 
 function Invoke-PrivateCommand {
     param([string]$Command, [string[]]$Arguments, [string]$InputText, [string]$Label)
-    # Capture both streams: provider errors may contain URLs, tokens or submitted values.
+    # Capture stdout privately and discard stderr; CLI banners must not contaminate JSON.
+    # Provider errors may contain URLs, tokens or submitted values and are never echoed.
     # Values travel only on stdin or inherited process environment, never in argv.
     $previousPreference = $ErrorActionPreference
     try {
         $ErrorActionPreference = 'Continue'
         $global:LASTEXITCODE = 0
         if ($PSBoundParameters.ContainsKey('InputText')) {
-            $captured = @($InputText | & $Command @Arguments 2>&1)
+            $captured = @($InputText | & $Command @Arguments 2>$null)
         } else {
-            $captured = @(& $Command @Arguments 2>&1)
+            $captured = @(& $Command @Arguments 2>$null)
         }
         $code = $LASTEXITCODE
     } finally { $ErrorActionPreference = $previousPreference }
@@ -82,9 +84,21 @@ function Read-PlainSecret([string]$Prompt) {
     }
 }
 
-function Save-EncryptedRecoverySecret([string]$Secret, [string]$Directory) {
+function New-RandomSecret([ValidateRange(32, 64)][int]$ByteCount = 48) {
+    $bytes = [byte[]]::new($ByteCount)
+    $rng = [Security.Cryptography.RandomNumberGenerator]::Create()
+    try {
+        $rng.GetBytes($bytes)
+        return [Convert]::ToBase64String($bytes)
+    } finally {
+        [Array]::Clear($bytes, 0, $bytes.Length)
+        $rng.Dispose()
+    }
+}
+
+function Save-EncryptedRecoverySecret([string]$Secret, [string]$Directory, [string]$AdminPassword = '') {
     # Windows DPAPI binds this encrypted recovery copy to the current Windows account.
-    # The dedicated directory inherits no broader ACL and contains no database token/password.
+    # The directory inherits no broader ACL; no database token/plaintext password is saved.
     if (Test-Path -LiteralPath $Directory) {
         throw 'An activation recovery directory already exists. Preserve it and use the documented manual recovery path.'
     }
@@ -97,14 +111,20 @@ function Save-EncryptedRecoverySecret([string]$Secret, [string]$Directory) {
     )
     $acl.AddAccessRule($rule)
     Set-Acl -LiteralPath $Directory -AclObject $acl
-    $secure = ConvertTo-SecureString $Secret -AsPlainText -Force
+    $recoveryValues = [ordered]@{ 'auth-secret.dpapi' = $Secret }
+    if ($AdminPassword) { $recoveryValues['admin-password.dpapi'] = $AdminPassword }
     try {
-        $encrypted = ConvertFrom-SecureString $secure
-        $file = Join-Path $Directory 'auth-secret.dpapi'
-        $stream = [IO.File]::Open($file, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write)
-        $writer = [IO.StreamWriter]::new($stream, [Text.UTF8Encoding]::new($false))
-        try { $writer.Write($encrypted) } finally { $writer.Dispose() }
-    } finally { $secure.Dispose() }
+        foreach ($name in $recoveryValues.Keys) {
+            $secure = ConvertTo-SecureString $recoveryValues[$name] -AsPlainText -Force
+            try {
+                $encrypted = ConvertFrom-SecureString $secure
+                $file = Join-Path $Directory $name
+                $stream = [IO.File]::Open($file, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write)
+                $writer = [IO.StreamWriter]::new($stream, [Text.UTF8Encoding]::new($false))
+                try { $writer.Write($encrypted) } finally { $writer.Dispose() }
+            } finally { $secure.Dispose() }
+        }
+    } finally { $recoveryValues.Clear() }
 }
 
 $node = Find-OwnerCommand @('node.exe', 'node')
@@ -224,17 +244,20 @@ try {
     }
 
     if ($AdminEmail -notmatch '^[^\s@]+@[^\s@]+\.[^\s@]+$') { throw 'Supply the approved administrator email.' }
-    $password = Read-PlainSecret 'Choose the administrator password (at least 12 characters; masked)'
-    $confirmation = Read-PlainSecret 'Confirm the administrator password (masked)'
-    if ($password.Length -lt 12 -or $password -cne $confirmation) { throw 'Passwords did not match or were too short. No writes were made.' }
-    $confirmation = $null
-    $bytes = [byte[]]::new(48)
-    $rng = [Security.Cryptography.RandomNumberGenerator]::Create()
-    try { $rng.GetBytes($bytes) } finally { $rng.Dispose() }
-    $authSecret = [Convert]::ToBase64String($bytes)
-    [Array]::Clear($bytes, 0, $bytes.Length)
-    Save-EncryptedRecoverySecret -Secret $authSecret -Directory $recoveryDirectory
+    if ($GenerateAdminPassword) {
+        $password = 'Aa7!' + (New-RandomSecret -ByteCount 32)
+    } else {
+        $password = Read-PlainSecret 'Choose the administrator password (at least 12 characters; masked)'
+        $confirmation = Read-PlainSecret 'Confirm the administrator password (masked)'
+        if ($password.Length -lt 12 -or $password -cne $confirmation) { throw 'Passwords did not match or were too short. No writes were made.' }
+        $confirmation = $null
+    }
+    $authSecret = New-RandomSecret
+    $recoveryArguments = @{ Secret = $authSecret; Directory = $recoveryDirectory }
+    if ($GenerateAdminPassword) { $recoveryArguments.AdminPassword = $password }
+    try { Save-EncryptedRecoverySecret @recoveryArguments } finally { $recoveryArguments.Clear() }
     Write-Host 'Saved a Windows-account-encrypted recovery copy under ignored .data. No secret was printed.'
+    if ($GenerateAdminPassword) { Write-Host 'The encrypted temporary administrator password is alongside the auth secret. First sign-in requires replacement.' }
     $settings = [ordered]@{
         LAB_DATABASE_URL = $databaseUrl; LAB_DATABASE_AUTH_TOKEN = $databaseToken
         LAB_AUTH_SECRET = $authSecret; LAB_BASE_URL = $baseUrl
@@ -242,7 +265,9 @@ try {
     }
     $saved = @{}
     try {
-        foreach ($name in @($settings.Keys) + @('LAB_ADMIN_EMAIL', 'LAB_ADMIN_NAME', 'LAB_ADMIN_PASSWORD', 'NODE_ENV', 'VERCEL')) {
+        $bootstrapNames = @('LAB_ADMIN_EMAIL', 'LAB_ADMIN_NAME', 'LAB_ADMIN_PASSWORD', 'NODE_ENV', 'VERCEL')
+        if ($GenerateAdminPassword) { $bootstrapNames += 'LAB_ADMIN_MUST_CHANGE_PASSWORD' }
+        foreach ($name in @($settings.Keys) + $bootstrapNames) {
             $saved[$name] = [Environment]::GetEnvironmentVariable($name, 'Process')
         }
         foreach ($name in $settings.Keys) { [Environment]::SetEnvironmentVariable($name, $settings[$name], 'Process') }
@@ -251,6 +276,7 @@ try {
         [Environment]::SetEnvironmentVariable('LAB_ADMIN_EMAIL', $AdminEmail, 'Process')
         [Environment]::SetEnvironmentVariable('LAB_ADMIN_NAME', 'Dr. Swapnil Sahoo', 'Process')
         [Environment]::SetEnvironmentVariable('LAB_ADMIN_PASSWORD', $password, 'Process')
+        if ($GenerateAdminPassword) { [Environment]::SetEnvironmentVariable('LAB_ADMIN_MUST_CHANGE_PASSWORD', 'true', 'Process') }
         # Recheck the empty database immediately before this first write, without importing getDatabase.
         $raw = Invoke-PrivateCommand -Command $node -Arguments @('--input-type=module') -InputText $probe -Label 'Final read-only database check'
         if (($raw | ConvertFrom-Json).tables -ne 0) { throw 'The database changed after preflight; refusing initialisation.' }

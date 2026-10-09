@@ -35,7 +35,7 @@ try {
         "An administrator already exists. This bootstrap command cannot promote or overwrite accounts."
       );
     await seedProgrammeContent();
-    await createMember(
+    const adminId = await createMember(
       {
         email,
         password,
@@ -44,6 +44,19 @@ try {
       },
       true
     );
+    if (process.env.LAB_ADMIN_MUST_CHANGE_PASSWORD === "true") {
+      await db.execute({
+        sql: "UPDATE lab_member SET must_change_password=1 WHERE user_id=? AND role='admin'",
+        args: [adminId],
+      });
+      if (
+        (await db.execute({
+          sql: "SELECT must_change_password FROM lab_member WHERE user_id=? AND role='admin'",
+          args: [adminId],
+        })).rows[0]?.must_change_password !== 1
+      )
+        throw new Error("Temporary administrator password replacement was not confirmed.");
+    }
     console.log(
       "Administrator provisioned. No email sent. Remove bootstrap password variables after use."
     );
