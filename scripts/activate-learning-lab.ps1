@@ -44,7 +44,11 @@ function Invoke-PrivateCommand {
     # Provider errors may contain URLs, tokens or submitted values and are never echoed.
     # Values travel only on stdin or inherited process environment, never in argv.
     $previousPreference = $ErrorActionPreference
+    $previousUpdateNotifier = [Environment]::GetEnvironmentVariable('NO_UPDATE_NOTIFIER', 'Process')
     try {
+        # Keep an unrelated automatic CLI upgrade from changing the outcome or
+        # replacing the installed CLI during activation. Restore the caller value.
+        [Environment]::SetEnvironmentVariable('NO_UPDATE_NOTIFIER', '1', 'Process')
         $ErrorActionPreference = 'Continue'
         $global:LASTEXITCODE = 0
         if ($PSBoundParameters.ContainsKey('InputText')) {
@@ -53,7 +57,10 @@ function Invoke-PrivateCommand {
             $captured = @(& $Command @Arguments 2>$null)
         }
         $code = $LASTEXITCODE
-    } finally { $ErrorActionPreference = $previousPreference }
+    } finally {
+        $ErrorActionPreference = $previousPreference
+        [Environment]::SetEnvironmentVariable('NO_UPDATE_NOTIFIER', $previousUpdateNotifier, 'Process')
+    }
     if ($code -ne 0) { throw "$Label failed (exit $code). Raw output was suppressed to protect credentials." }
     return (($captured | ForEach-Object { $_.ToString() }) -join "`n")
 }
@@ -72,6 +79,24 @@ function Get-ProductionEnvironment {
     elseif ($response -is [array]) { $records = @($response) }
     else { throw 'Unexpected Vercel environment-list shape; refusing to infer missing credentials.' }
     return @($records | Where-Object { @($_.target) -contains 'production' })
+}
+
+function Test-SecretEnvironmentVariable([object]$Record) {
+    # Match the installed official CLI's isSecretEnvVar metadata rule. Newer
+    # metadata exposes visibility; older sensitive records need no such field.
+    return ($Record.PSObject.Properties['type'] -and $Record.type -eq 'sensitive') -or
+        ($Record.PSObject.Properties['visibility'] -and $Record.visibility -eq 'secret')
+}
+
+function Assert-ProductionSetting([string]$Name, [object[]]$Environment) {
+    $confirmed = @($Environment | Where-Object { $_.key -eq $Name })
+    if ($confirmed.Count -ne 1) { throw "Production $Name was not uniquely confirmed. Do not redeploy; use the recovery guide." }
+    if ($coreNames -contains $Name -and -not (Test-SecretEnvironmentVariable $confirmed[0])) {
+        throw "Production $Name was not confirmed as secret. Do not redeploy; use the recovery guide."
+    }
+    if ($flagNames -contains $Name -and ($confirmed[0].type -ne 'plain' -or $confirmed[0].value -ne 'false')) {
+        throw "Production $Name was not confirmed as false. Do not redeploy; use the recovery guide."
+    }
 }
 
 function Read-PlainSecret([string]$Prompt) {
@@ -284,30 +309,36 @@ try {
         $null = Invoke-PrivateCommand -Command $node -Arguments @('--conditions=react-server', '--import', 'tsx', 'scripts/learning-lab.mts', 'admin') -Label 'First administrator provisioning'
         Write-Host 'Fresh schema and administrator provisioned. No invitation email was sent.'
         # No upsert/force, and no updates/deletes: an existing key is always preserved.
-        $records = @()
         foreach ($name in $settings.Keys) {
-            if (@($productionEnvironment | Where-Object { $_.key -eq $name }).Count) { continue }
-            $records += @{ key = $name; value = $settings[$name]; type = $(if ($coreNames -contains $name) { 'sensitive' } else { 'plain' }); target = @('production') }
-        }
-        $body = ConvertTo-Json -InputObject $records -Depth 5 -Compress
-        $raw = Invoke-PrivateCommand -Command $vercel -Arguments @(
-            'api', "/v10/projects/$($project.id)/env?upsert=false", '-X', 'POST', '--input', '-',
-            '--scope', $VercelScope, '--raw', '--no-color', '--non-interactive'
-        ) -InputText $body -Label 'Private production environment creation'
-        $created = $raw | ConvertFrom-Json
-        if ($created.PSObject.Properties['failed'] -and @($created.failed).Count) {
-            throw 'Vercel reported one or more environment creation failures. Do not redeploy; use the recovery guide.'
+            $current = @(Get-ProductionEnvironment)
+            $existing = @($current | Where-Object { $_.key -eq $name })
+            if ($existing.Count) {
+                if ($coreNames -contains $name) {
+                    throw "Production $name appeared after preflight and was preserved. Do not redeploy; use the recovery guide."
+                }
+                Assert-ProductionSetting -Name $name -Environment $current
+                continue
+            }
+            # Send one JSON object on private stdin. This request shape was
+            # verified with the current CLI/API; never send a root array, force,
+            # upsert, update or delete. Queryless create defaults to no upsert.
+            $record = @{ key = $name; value = $settings[$name]; type = $(if ($coreNames -contains $name) { 'sensitive' } else { 'plain' }); target = @('production') }
+            $body = ConvertTo-Json -InputObject $record -Depth 5 -Compress
+            $raw = Invoke-PrivateCommand -Command $vercel -Arguments @(
+                'api', "/v10/projects/$($project.id)/env", '-X', 'POST', '--input', '-',
+                '--scope', $VercelScope, '--raw', '--no-color', '--non-interactive'
+            ) -InputText $body -Label "Private production $name creation"
+            try { $created = $raw | ConvertFrom-Json }
+            catch { throw 'Vercel environment creation returned invalid JSON. Do not redeploy; use the recovery guide. No raw response was printed.' }
+            if ($created.PSObject.Properties['failed'] -and @($created.failed).Count) {
+                throw 'Vercel reported an environment creation failure. Do not redeploy; use the recovery guide.'
+            }
+            Assert-ProductionSetting -Name $name -Environment @(Get-ProductionEnvironment)
+            $record = $null; $body = $null; $raw = $null; $created = $null
         }
         $after = @(Get-ProductionEnvironment)
         foreach ($name in $settings.Keys) {
-            $confirmed = @($after | Where-Object { $_.key -eq $name })
-            if ($confirmed.Count -ne 1) { throw "Production $name was not uniquely confirmed. Do not redeploy; use the recovery guide." }
-            if ($coreNames -contains $name -and $confirmed[0].type -ne 'sensitive') {
-                throw "Production $name was not confirmed as sensitive. Do not redeploy; use the recovery guide."
-            }
-            if ($flagNames -contains $name -and ($confirmed[0].type -ne 'plain' -or $confirmed[0].value -ne 'false')) {
-                throw "Production $name was not confirmed as false. Do not redeploy; use the recovery guide."
-            }
+            Assert-ProductionSetting -Name $name -Environment $after
         }
         Write-Host 'Private production settings added; paid offers remain unapproved and course checkout remains disabled.'
         $null = Invoke-PrivateCommand -Command $vercel -Arguments @(
@@ -317,6 +348,6 @@ try {
         if ($PassThru) { [pscustomobject]@{ Ready = $true; Mode = 'Activated'; BaseUrl = $baseUrl } }
     } finally {
         foreach ($name in $saved.Keys) { [Environment]::SetEnvironmentVariable($name, $saved[$name], 'Process') }
-        $password = $null; $authSecret = $null; $body = $null; $records = $null; $settings = $null; $raw = $null
+        $password = $null; $authSecret = $null; $body = $null; $record = $null; $created = $null; $settings = $null; $raw = $null
     }
 } finally { Pop-Location }

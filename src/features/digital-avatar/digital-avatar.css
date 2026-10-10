@@ -904,11 +904,35 @@ body > .avatar-guide {
   .avatar-guide-composer input {
     font-size: 16px;
   }
+}
+@media (max-width: 600px) {
   .avatar-guide-launcher {
     right: max(12px, env(safe-area-inset-right));
     bottom: max(12px, env(safe-area-inset-bottom));
-    gap: 9px;
-    padding: 7px 13px 7px 7px;
+    width: 56px;
+    height: 56px;
+    gap: 0;
+    justify-content: center;
+    padding: 7px;
+    border-radius: 50%;
+  }
+  .avatar-guide-launcher > span:not(.avatar-guide-launcher-photo) {
+    display: none;
+  }
+  .avatar-guide-launcher::after {
+    content: "AI";
+    position: absolute;
+    right: -1px;
+    bottom: -1px;
+    padding: 2px 4px;
+    border: 2px solid var(--guide-white);
+    border-radius: 20px;
+    background: var(--guide-indigo);
+    color: var(--guide-white);
+    font-size: 9px;
+    font-weight: 600;
+    line-height: 1.3;
+    pointer-events: none;
   }
   .avatar-guide-launcher-photo {
     width: 40px;
