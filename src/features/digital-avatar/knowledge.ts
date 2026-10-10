@@ -1,3 +1,6 @@
+import type { MentorLesson } from "./lesson-manifest";
+import { lessonExplanation } from "./mentor";
+
 export type AvatarReply = {
   text: string;
   links: { label: string; href: string }[];
@@ -26,11 +29,7 @@ export const starters = [
   "Who is Dr. Swapnil Sahoo?",
 ];
 
-function answer(
-  text: string,
-  links: AvatarReply["links"],
-  suggestions: string[],
-): AvatarReply {
+function answer(text: string, links: AvatarReply["links"], suggestions: string[]): AvatarReply {
   return {
     text: `Guided answer from the published website: ${text}`,
     links,
@@ -47,16 +46,16 @@ const topics: GuidedTopic[] = [
     reply: answer(
       "The Learning Lab is currently run on a not-for-profit basis. Voluntary assistance and donations help improve learning content and infrastructure. Visit Support the Lab to offer expertise or use the original PhonePe QR to donate any amount. The image prints SWAPNIL SAHOO; check the recipient in your payment app before sending. All six free courses remain ₹0. A donation does not purchase enrolment, assessment or a certificate. This website cannot verify a transfer or issue an automatic confirmation; paid course checkout remains closed.",
       [support, donationQr, freeLibrary],
-      ["How can I support the Lab?", "What can I learn for free?", "Contact the Lab"],
+      ["How can I support the Lab?", "What can I learn for free?", "Contact the Lab"]
     ),
   },
   {
     matches:
-      /\b(who are you|are you (a human|human|real|ai|dr\.?|professor|swapnil|sahoo|the founder)|is this (a human|human|ai|dr\.?|professor|swapnil|sahoo)|live (person|teacher|professor)|digital avatar|chat ?bot|guided answers?|how (does|do) (this|you) work)\b/i,
+      /\b(who are you|are you (a human|human|real|ai|dr\.?|professor|swapnil|sahoo|the founder)|is this (a human|human|ai|dr\.?|professor|swapnil|sahoo)|live (person|teacher|professor)|digital avatar|ai mentor|chat ?bot|guided answers?|how (does|do) (this|you) work)\b/i,
     reply: answer(
-      "This is a website guide with prepared answers about Dr. Swapnil Sahoo’s published teaching and Learning Lab resources. Its AI-created likeness uses simple mouth animation with a standard device voice, and the Video tab offers a prerecorded synthetic-voice introduction. This is not Dr. Sahoo speaking live or a trained conversational video replica; no founder voice has been cloned. Choose a topic below to find a useful next page.",
+      "This is an AI Mentor with prepared guidance based on Dr. Swapnil Sahoo’s published teaching materials. Choose Find my path, Explain this lesson, Practise a case or Review my reasoning. Arithmetic checks and checklist feedback are automated practice support, not formal grading. Its AI-created likeness uses simple mouth animation with a standard device voice, and the Video tab offers a prerecorded synthetic-voice introduction. This is not Dr. Sahoo speaking live or a trained conversational video replica; no founder voice has been cloned.",
       [freeLibrary, { label: "Meet the founder", href: `${lab}/founder` }, contact],
-      ["What can I learn for free?", "Show me the 13-session MBA course", "Contact the Lab"],
+      ["What can I learn for free?", "Show me the 13-session MBA course", "Contact the Lab"]
     ),
   },
   {
@@ -65,7 +64,7 @@ const topics: GuidedTopic[] = [
     reply: answer(
       "Guided answers are selected in your browser, and this assistant does not save conversations. Optional read-aloud uses your browser or device voice service; speech processing depends on the selected service. Avoid entering personal, student, employer or confidential information. Free-course notes have a separate, optional ‘Save in this browser’ control; those notes can be read by someone using the same browser profile and can be cleared there. Opening an email link uses your own email app, where you decide whether to send the message. Read the published privacy notice for the wider Learning Lab service.",
       [{ label: "Read the Lab privacy notice", href: `${lab}/policies/privacy` }, freeLibrary],
-      ["What can I learn for free?", "How do the certificates work?", "Contact the Lab"],
+      ["What can I learn for free?", "How do the certificates work?", "Contact the Lab"]
     ),
   },
   {
@@ -73,7 +72,7 @@ const topics: GuidedTopic[] = [
     reply: answer(
       "The Support the Lab page displays Dr. Swapnil Sahoo’s original PhonePe QR for optional donations of any amount. The image prints the payee name SWAPNIL SAHOO; check the recipient shown in your payment app before sending. Your payment app handles the transfer. This website has no donation checkout or transaction verification, and it cannot confirm receipt automatically. Donations support infrastructure and content, not course enrolment or certificates. Paid course checkout remains closed, and the six free courses remain ₹0.",
       [donationQr, support, contact],
-      ["How can I support the Lab?", "What can I learn for free?", "Contact the Lab"],
+      ["How can I support the Lab?", "What can I learn for free?", "Contact the Lab"]
     ),
   },
   {
@@ -86,7 +85,11 @@ const topics: GuidedTopic[] = [
         { label: "Start with MBA Session 1", href: "/teaching/1-year-mba/session1.html" },
         { label: "Academic teaching resources", href: "/teaching" },
       ],
-      ["Help me make a strategic trade-off", "What can I learn for free?", "Who is Dr. Swapnil Sahoo?"],
+      [
+        "Help me make a strategic trade-off",
+        "What can I learn for free?",
+        "Who is Dr. Swapnil Sahoo?",
+      ]
     ),
   },
   {
@@ -99,7 +102,7 @@ const topics: GuidedTopic[] = [
         { label: "Explore programme rubrics", href: programmes },
         freeLibrary,
       ],
-      ["What can I learn for free?", "Are paid courses open?", "Contact the Lab"],
+      ["What can I learn for free?", "Are paid courses open?", "Contact the Lab"]
     ),
   },
   {
@@ -111,7 +114,11 @@ const topics: GuidedTopic[] = [
         { label: "Start the free AI task-brief course", href: `${free}/write-an-ai-task-brief` },
         { label: "Explore AI for Managers", href: `${programmes}/ai-for-managers` },
       ],
-      ["How do I evaluate an AI workflow?", "What can I learn for free?", "How do the certificates work?"],
+      [
+        "How do I evaluate an AI workflow?",
+        "What can I learn for free?",
+        "How do the certificates work?",
+      ]
     ),
   },
   {
@@ -123,7 +130,7 @@ const topics: GuidedTopic[] = [
         { label: "Start the free AI evaluation course", href: `${free}/test-ai-before-adoption` },
         { label: "Explore AI for Managers", href: `${programmes}/ai-for-managers` },
       ],
-      ["Help me write an AI task brief", "What can I learn for free?", "Are paid courses open?"],
+      ["Help me write an AI task brief", "What can I learn for free?", "Are paid courses open?"]
     ),
   },
   {
@@ -133,9 +140,16 @@ const topics: GuidedTopic[] = [
       "Use ‘Read your unit economics before you grow’. Define a unit and period, subtract variable cost from price to find contribution and compare break-even volume with feasible capacity. In the fictional lunch case, ₹150 price minus ₹90 variable cost leaves ₹60 contribution; ₹12,000 fixed costs require 200 lunches. A ₹120 price leaves ₹30 contribution and requires 400 lunches, above the stated 300-lunch capacity. These are simplified educational inputs, not a price recommendation or complete accounting result.",
       [
         { label: "Start the free unit-economics course", href: `${free}/read-your-unit-economics` },
-        { label: "Explore Strategy and Case Thinking", href: `${programmes}/strategy-case-thinking` },
+        {
+          label: "Explore Strategy and Case Thinking",
+          href: `${programmes}/strategy-case-thinking`,
+        },
       ],
-      ["Help me make a strategic trade-off", "How do I test a business idea?", "What can I learn for free?"],
+      [
+        "Help me make a strategic trade-off",
+        "How do I test a business idea?",
+        "What can I learn for free?",
+      ]
     ),
   },
   {
@@ -145,9 +159,16 @@ const topics: GuidedTopic[] = [
       "Try ‘Set an affordable loss for your first experiment’. List the means you already have, set cash and time limits and divide the experiment into stages. Each stage should answer a specific uncertainty before you commit more. The fictional plant-care founder tests conversations and a few scoped appointments instead of buying a full launch kit. Write stop and continue rules based on observed behaviour; spending the budget or receiving compliments is not evidence to expand.",
       [
         { label: "Start the free affordable-loss course", href: `${free}/set-an-affordable-loss` },
-        { label: "Explore Entrepreneurship Under Constraint", href: `${programmes}/entrepreneurship-under-constraint` },
+        {
+          label: "Explore Entrepreneurship Under Constraint",
+          href: `${programmes}/entrepreneurship-under-constraint`,
+        },
       ],
-      ["How do I interview customers?", "How do I calculate unit economics?", "What can I learn for free?"],
+      [
+        "How do I interview customers?",
+        "How do I calculate unit economics?",
+        "What can I learn for free?",
+      ]
     ),
   },
   {
@@ -156,11 +177,21 @@ const topics: GuidedTopic[] = [
     reply: answer(
       "Start with ‘Ask customer questions that reveal behaviour’. Ask about the last time the problem occurred, what the person did, the alternative used and the actual effort or cost. The free course provides a five-question guide and an evidence log. Keep reported behaviour, your interpretation and contrary evidence separate. Interest in receiving details, a booking, attendance, payment and repeat use are different events. The next test should examine one remaining uncertainty with people who voluntarily opt in.",
       [
-        { label: "Start the free customer-discovery course", href: `${free}/ask-better-customer-questions` },
+        {
+          label: "Start the free customer-discovery course",
+          href: `${free}/ask-better-customer-questions`,
+        },
         { label: "Set an affordable-loss limit", href: `${free}/set-an-affordable-loss` },
-        { label: "Explore Entrepreneurship Under Constraint", href: `${programmes}/entrepreneurship-under-constraint` },
+        {
+          label: "Explore Entrepreneurship Under Constraint",
+          href: `${programmes}/entrepreneurship-under-constraint`,
+        },
       ],
-      ["How do I set an affordable loss?", "How do I calculate unit economics?", "What can I learn for free?"],
+      [
+        "How do I set an affordable loss?",
+        "How do I calculate unit economics?",
+        "What can I learn for free?",
+      ]
     ),
   },
   {
@@ -169,11 +200,21 @@ const topics: GuidedTopic[] = [
     reply: answer(
       "For strategy, begin with ‘Make a strategic choice you can defend’, then try the unit-economics course. Choose a specific customer promise, connect it to supporting activities and name a request you will decline to protect that promise. The fictional delivery case makes the capacity conflict visible. Write the uncertain assumption that could reverse your choice and a bounded test of it. Strategy and Case Thinking is the proposed deeper programme, with a published capstone and rubric.",
       [
-        { label: "Start the free strategic-choice course", href: `${free}/make-a-strategic-tradeoff` },
+        {
+          label: "Start the free strategic-choice course",
+          href: `${free}/make-a-strategic-tradeoff`,
+        },
         { label: "Check the unit economics", href: `${free}/read-your-unit-economics` },
-        { label: "Explore Strategy and Case Thinking", href: `${programmes}/strategy-case-thinking` },
+        {
+          label: "Explore Strategy and Case Thinking",
+          href: `${programmes}/strategy-case-thinking`,
+        },
       ],
-      ["Show me the 13-session MBA course", "How do I calculate unit economics?", "Are paid courses open?"],
+      [
+        "Show me the 13-session MBA course",
+        "How do I calculate unit economics?",
+        "Are paid courses open?",
+      ]
     ),
   },
   {
@@ -182,11 +223,12 @@ const topics: GuidedTopic[] = [
     reply: answer(
       "The six free mini-courses cost ₹0 and require no account. Full Learning Lab programmes remain proposed: payable fees, dates and places are unconfirmed, and paid course checkout remains closed. Optional donations through the Support the Lab QR are separate from course fees and do not reserve a place or confirm enrolment. This guide cannot take payment or verify a transfer. Visit Contact for current enquiry options, or email the Lab to ask about a programme; opening the email link does not send it automatically.",
       [freeLibrary, { label: "Check programme availability", href: programmes }, support, contact],
-      ["What can I learn for free?", "Is a payment QR available?", "How do the certificates work?"],
+      ["What can I learn for free?", "Is a payment QR available?", "How do the certificates work?"]
     ),
   },
   {
-    matches: /\b(contact|email|speak|talk to|support|college\w*|institution\w*|team training|book a call|booking)\b/i,
+    matches:
+      /\b(contact|email|speak|talk to|support|college\w*|institution\w*|team training|book a call|booking)\b/i,
     reply: answer(
       "The approved published contact is swapnil.s@greatlakes.edu.in. Use the Lab’s contact page for a programme question or the college page to discuss an online institutional pilot. The email route opens your own email app; you must review and send the message. This assistant does not send an enquiry, make a booking or promise a response time. Academic affiliations describe the founder’s background and do not imply sponsorship of the Lab.",
       [
@@ -194,11 +236,12 @@ const topics: GuidedTopic[] = [
         { label: "Discuss an institutional pilot", href: `${lab}/for-colleges` },
         { label: "Open an email to the Lab", href: "mailto:swapnil.s@greatlakes.edu.in" },
       ],
-      ["Who is Dr. Swapnil Sahoo?", "Are paid courses open?", "What can I learn for free?"],
+      ["Who is Dr. Swapnil Sahoo?", "Are paid courses open?", "What can I learn for free?"]
     ),
   },
   {
-    matches: /\b(swapnil|sahoo|founder|profile|biograph\w*|xlri|ximb|great lakes|faculty|corporate experience|qualifications?|credentials?)\b/i,
+    matches:
+      /\b(swapnil|sahoo|founder|profile|biograph\w*|xlri|ximb|great lakes|faculty|corporate experience|qualifications?|credentials?)\b/i,
     reply: answer(
       "Dr. Swapnil Sahoo holds a Ph.D. from XLRI Jamshedpur in Entrepreneurship and Innovation, an MBA from XIMB and a B.Tech from Utkal University. His published founder page describes 17 years of corporate experience in strategic and partnership roles. His teaching focuses on strategy, entrepreneurship and applied AI in management. The Learning Lab is an independent initiative; prior affiliations do not establish institutional sponsorship or Lab learner outcomes.",
       [
@@ -206,11 +249,12 @@ const topics: GuidedTopic[] = [
         { label: "Open the academic profile", href: "/#about" },
         { label: "Explore academic teaching", href: "/teaching" },
       ],
-      ["What can I learn for free?", "Show me the 13-session MBA course", "Contact the Lab"],
+      ["What can I learn for free?", "Show me the 13-session MBA course", "Contact the Lab"]
     ),
   },
   {
-    matches: /\b(ai|artificial intelligence|generative ai|automation|machine learning|ai for managers)\b/i,
+    matches:
+      /\b(ai|artificial intelligence|generative ai|automation|machine learning|ai for managers)\b/i,
     reply: answer(
       "For applied AI, start with two free courses: write a task brief, then evaluate the whole workflow. You will practise permitted inputs, output checks, human review and a small synthetic test set. No paid software or coding is required for these exercises. AI for Managers is the proposed deeper learning path, built around a workflow pilot, evaluation evidence and a human-owned adoption decision.",
       [
@@ -218,19 +262,31 @@ const topics: GuidedTopic[] = [
         { label: "Evaluate an AI workflow", href: `${free}/test-ai-before-adoption` },
         { label: "Explore AI for Managers", href: `${programmes}/ai-for-managers` },
       ],
-      ["Help me write an AI task brief", "How do I evaluate an AI workflow?", "Are paid courses open?"],
+      [
+        "Help me write an AI task brief",
+        "How do I evaluate an AI workflow?",
+        "Are paid courses open?",
+      ]
     ),
   },
   {
-    matches: /\b(entrepreneur\w*|startup\w*|start[- ]up|venture\w*|start a business|start my business|budget|constraints?)\b/i,
+    matches:
+      /\b(entrepreneur\w*|startup\w*|start[- ]up|venture\w*|start a business|start my business|budget|constraints?)\b/i,
     reply: answer(
       "For entrepreneurship, combine the free affordable-loss and customer-discovery courses. Bound the money, time and promises of your first test, then ask about recent customer behaviour before committing to a solution. Keep observations distinct from forecasts and compliments. Entrepreneurship Under Constraint is the proposed deeper programme, with a published capstone and rubric focused on evidence, resource commitments and the next decision.",
       [
         { label: "Set an affordable-loss limit", href: `${free}/set-an-affordable-loss` },
         { label: "Ask better customer questions", href: `${free}/ask-better-customer-questions` },
-        { label: "Explore Entrepreneurship Under Constraint", href: `${programmes}/entrepreneurship-under-constraint` },
+        {
+          label: "Explore Entrepreneurship Under Constraint",
+          href: `${programmes}/entrepreneurship-under-constraint`,
+        },
       ],
-      ["How do I set an affordable loss?", "How do I interview customers?", "How do I calculate unit economics?"],
+      [
+        "How do I set an affordable loss?",
+        "How do I interview customers?",
+        "How do I calculate unit economics?",
+      ]
     ),
   },
   {
@@ -239,19 +295,37 @@ const topics: GuidedTopic[] = [
     reply: answer(
       "Choose one of six free, self-paced mini-courses in applied AI, strategy and entrepreneurship. Each has three short lessons, a fictional decision exercise with written feedback, a checkpoint and a downloadable worksheet. Most take about 20–25 minutes; no account, payment or paid AI tool is required. Start with the skill you need today, keep your work and use the related programme page to explore a deeper path.",
       [freeLibrary, { label: "Explore the proposed full programmes", href: programmes }],
-      ["Help me write an AI task brief", "Help me make a strategic trade-off", "How do I test a business idea?"],
+      [
+        "Help me write an AI task brief",
+        "Help me make a strategic trade-off",
+        "How do I test a business idea?",
+      ]
     ),
   },
 ];
 
-export function getGuidedReply(message: string): AvatarReply {
+export function getGuidedReply(message: string, lesson?: MentorLesson): AvatarReply {
   const query = message.trim().normalize("NFKC").slice(0, 1200);
+  if (
+    lesson &&
+    /\b(explain|summari[sz]e|what (is|does)|help me understand)\b.*\b(this|current|the) lesson\b|\bexplain this\b/i.test(
+      query
+    )
+  ) {
+    return answer(
+      lessonExplanation(lesson),
+      [{ label: `Source: ${lesson.title}`, href: new URL(lesson.canonicalUrl).pathname }],
+      ["What can I learn for free?", "Who are you?", "Contact the Lab"]
+    );
+  }
   const topic = topics.find((item) => item.matches.test(query));
-  const reply = topic?.reply ?? answer(
-    "I can point you to the published learning resources and explain their stated availability. Which would help: an AI task brief, AI evaluation, a strategic trade-off, unit economics, an affordable-loss experiment, customer discovery or the 13-session MBA course? For a personal, programme-specific or unsupported question, contact the Lab directly. This guided mode does not invent an answer or contact anyone on your behalf.",
-    [freeLibrary, contact],
-    ["What can I learn for free?", "Show me the 13-session MBA course", "Contact the Lab"],
-  );
+  const reply =
+    topic?.reply ??
+    answer(
+      "I can point you to the published learning resources and explain their stated availability. Which would help: an AI task brief, AI evaluation, a strategic trade-off, unit economics, an affordable-loss experiment, customer discovery or the 13-session MBA course? For a personal, programme-specific or unsupported question, contact the Lab directly. This guided mode does not invent an answer or contact anyone on your behalf.",
+      [freeLibrary, contact],
+      ["What can I learn for free?", "Show me the 13-session MBA course", "Contact the Lab"]
+    );
 
   // Return fresh arrays so a caller cannot change the shared prepared replies.
   return {

@@ -1,6 +1,6 @@
 # Swapnil’s digital guide and optional video avatar
 
-Updated 9 October 2026. The user authorised use of his portrait and publication, requested a Section-style Superhuman agent, and specified light mode as the default.
+Updated 10 October 2026. The user authorised use of his portrait and publication, requested a Section-style Superhuman agent, and specified light mode as the default.
 
 ## Implemented experience
 
@@ -39,9 +39,13 @@ The server-only adapter implements current [create conversation](https://docs.ta
 
 Set `DIGITAL_AVATAR_PROVIDER=tavus`, `DIGITAL_AVATAR_ENABLED=true`, `TAVUS_API_KEY`, `TAVUS_FACE_ID`, `TAVUS_PAL_ID`, `DIGITAL_AVATAR_BASE_URL`, an independent 32+ character `DIGITAL_AVATAR_SESSION_SECRET`, and an explicit `DIGITAL_AVATAR_DAILY_SESSION_LIMIT` (1–100). Shared persistent remote `LAB_DATABASE_URL`/`LAB_DATABASE_AUTH_TOKEN` is required in production. Off Vercel only, explicit local file mode supports mocked tests. Secrets stay server-side.
 
-POST `/api/digital-avatar/session` requires same-origin JSON `{consent:true}`. Admission uses atomic shared daily attempt and per-client hourly limits and a global concurrency ceiling of two. Failed/ambiguous attempts consume budget conservatively. Provider settings enforce a five-minute call, absence/left timeouts, private authenticated rooms and no recording. A fixed disclosure/scope context is supplied. Review the PAL’s underlying instructions and tools before enabling: conversation context is not a security boundary against a misconfigured PAL.
+POST `/api/digital-avatar/session` requires same-origin JSON `{consent:true}`. Optional `lessonId` must name one of the six published free lessons; optional `mode` must be `find-path`, `explain`, `practice` or `review`. Extra fields, arbitrary URLs and unknown lessons are rejected before quota reservation or a provider request. Teaching context is resolved from the server's versioned original-lesson manifest, never supplied as learner-controlled source text.
 
-The browser receives a conversation ID, expiry and participant URL with its short-lived meeting token. A signed HttpOnly SameSite cookie binds DELETE to the current session; clients cannot choose arbitrary provider conversation IDs. DELETE confirms provider termination or returns an honest error. Provider errors are sanitised; keys, raw upstream replies, microphone data and transcripts are not logged/stored by this website. Rate/session bookkeeping stores HMAC client buckets and provider room IDs with expiry, not chats. No real provider request is made by the disabled configuration or mocked tests.
+Admission uses atomic shared daily attempt and per-client hourly limits and a global concurrency ceiling of two. Failed/ambiguous attempts consume budget conservatively. `DIGITAL_AVATAR_SESSION_SECONDS` defaults to 300 and accepts 60–300 seconds. The requested provider configuration includes that duration, absence/left timeouts, private authenticated rooms, empty participant tags for stateless operation and recording disabled. These settings require real provider verification before activation; local mocks do not prove provider enforcement. Review the PAL's underlying instructions and tools before enabling: conversation context is not a security boundary against a misconfigured PAL.
+
+Optional `TAVUS_LESSON_DOCUMENT_IDS` is a private JSON mapping of approved lesson slugs to processed provider document IDs. Only the selected lesson's IDs are sent with balanced retrieval; client document IDs or source URLs are never accepted. Document ingestion and retrieval have not been performed in an owner account. The adapter uses direct HTTP API v2, checked against the official create/end/knowledge-base documentation on 10 October 2026; no Tavus SDK was added. See [the provider's knowledge-base guide](https://docs.tavus.io/sections/conversational-video-interface/knowledge-base).
+
+The browser receives a conversation ID, expiry and participant URL with its short-lived meeting token. A signed HttpOnly SameSite cookie binds DELETE to the current session; clients cannot choose arbitrary provider conversation IDs. DELETE confirms provider termination or returns an honest error. Elapsed local time alone does not mark a room as provider-confirmed ended. A failed stop retains the ownership cookie and unfinished record so it can be retried. Provider errors are sanitised; keys, raw upstream replies, microphone data and transcripts are not logged/stored by this website. Rate/session bookkeeping stores HMAC client buckets and provider room IDs with expiry, not chats. No real provider request is made by the disabled configuration or mocked tests.
 
 ## Activation and verification limits
 
@@ -49,7 +53,7 @@ Default production settings keep live video disabled; its panel truthfully expla
 
 Response headers allow same-origin microphone access for opt-in browser voice while keeping external frames closed by default. Enabling a selected video provider at build time permits its exact frame/microphone origin: the approved owner-specific 1mind deployment or `https://tavus.daily.co`. Camera and screen capture remain blocked. Permission policy does not grant user microphone consent. Rebuild after changing provider settings; headers and statically rendered guide availability must agree.
 
-No avatar account, training footage, owner-specific deployment, provider charge, cloned voice or real microphone conversation was created during implementation. Actual audiovisual quality, provider retention and end-to-end service behaviour require verification with the owner’s configured service. Do not describe the static portrait guide as an animated talking avatar.
+No avatar account, training footage, owner-specific deployment, provider charge, cloned voice or real microphone conversation was created during implementation. Actual audiovisual quality, provider retention and end-to-end service behaviour require verification with the owner's configured service. The delivered animated likeness and prerecorded welcome must not be presented as a trained live conversational replica.
 
 Run `node scripts/test-digital-guide.mjs` against the local preview (default localhost:3112), or set `GUIDE_TEST_BASE_URL` and `GUIDE_TEST_PROFILE`. This browser script blocks HTTP writes; its guided questions cannot create provider sessions or payments. Results/screenshots are under ignored `artifacts/learning-lab/digital-guide/`.
 

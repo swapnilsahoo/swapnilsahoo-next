@@ -1,0 +1,29 @@
+.lab-catalogue-controls { display: grid; grid-template-columns: minmax(200px, 2fr) minmax(140px, 1fr) minmax(140px, 1fr) auto; align-items: end; gap: 1rem; margin-block: 1.5rem; }
+.lab-catalogue-controls > div { min-width: 0; }
+.lab-catalogue-controls .lab-library-search { max-width: none; }
+.lab-catalogue-controls label { display: block; font-size: .75rem; margin-bottom: .35rem; }
+.lab-catalogue-controls select { width: 100%; min-height: 44px; border: 1px solid var(--lab-line); border-radius: 3px; background: var(--lab-surface); color: var(--lab-ink); padding: .65rem .8rem; font-size: .8rem; }
+.lab-catalogue-reset { min-height: 44px; }
+.lab-catalogue-status { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 1rem; margin-block: 1rem 1.5rem; }
+.lab-catalogue-badges { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; margin-bottom: .8rem; }
+.lab-catalogue-card .lab-catalogue-access { margin-bottom: 1.2rem; }
+.lab-catalogue-details { margin-top: 1rem; font-size: .8rem; color: var(--lab-muted); }
+.lab-catalogue-details summary { min-height: 44px; cursor: pointer; padding-block: .7rem; color: var(--lab-accent); }
+.lab-catalogue-details dl { display: grid; grid-template-columns: minmax(90px, .7fr) minmax(0, 2fr); gap: .5rem .8rem; margin-bottom: .8rem; }
+.lab-catalogue-details dt { font-weight: 600; }
+.lab-catalogue-details dd { margin: 0; overflow-wrap: anywhere; }
+.lab-path-card h3 { max-width: 20ch; }
+.lab-path-plan { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 2rem; align-items: start; }
+.lab-path-steps { list-style: none; padding: 0; margin-block: 2rem 0; display: grid; gap: 1rem; }
+.lab .lab-path-step { display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: 1rem; }
+.lab-path-step-number { font-family: var(--font-jetbrains-mono), monospace; color: var(--lab-accent); font-size: 1.3rem; }
+.lab-path-step p:first-child { margin-top: 0; }
+.lab-path-step-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1.25rem; }
+.lab-path-step-actions label { display: inline-flex; align-items: center; gap: .65rem; min-height: 44px; cursor: pointer; font-size: .8rem; }
+.lab-path-step-actions input { width: 18px; height: 18px; accent-color: var(--lab-accent); }
+.lab-path-draft-label { display: block; font-weight: 600; margin-block: 1.5rem .5rem; }
+.lab-path-plan textarea { width: 100%; min-height: 180px; resize: vertical; padding: 1rem; border: 1px solid var(--lab-line); border-radius: 3px; background: var(--lab-surface); color: var(--lab-ink); font: inherit; font-size: .9rem; }
+.lab-path-storage { align-items: center; }
+.lab-path-hero-meta { border-block: 1px solid var(--lab-line); padding-block: 1rem; margin-top: 1.5rem; }
+@media (max-width: 850px) { .lab-catalogue-controls { grid-template-columns: repeat(2, minmax(0, 1fr)); } .lab-catalogue-controls .lab-library-search { grid-column: 1 / -1; } .lab-path-plan { grid-template-columns: 1fr; gap: 1.5rem; } }
+@media (max-width: 560px) { .lab-catalogue-controls { grid-template-columns: 1fr; } .lab-catalogue-controls .lab-library-search { grid-column: auto; } .lab .lab-path-step { grid-template-columns: 1fr; gap: .5rem; } .lab-catalogue-details dl { grid-template-columns: 1fr; gap: .2rem; } .lab-catalogue-details dd { margin-bottom: .6rem; } .lab-path-storage .lab-button { width: 100%; } .lab-path-storage { align-items: stretch; } }

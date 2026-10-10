@@ -5,6 +5,9 @@ import { getPublicProgrammes } from "@/features/learning-lab/store";
 import { labPublicConfig } from "@/features/learning-lab/config";
 import { freeCourses } from "@/features/learning-lab/free-courses";
 import { CourseMotif } from "@/features/learning-lab/components/FreeCourseLibrary";
+import { LearningPathCards } from "@/features/learning-lab/components/LearningPathCards";
+import { learningPaths } from "@/features/learning-lab/catalogue";
+import "@/features/learning-lab/components/catalogue.css";
 
 export const dynamic = "force-dynamic";
 
@@ -39,33 +42,23 @@ export default async function LearningLabPage() {
       <LabHero
         eyebrow="Think clearly. Practise deliberately."
         title={labPublicConfig.name}
-        description="A founder-led edtech initiative, currently run on a not-for-profit basis. Practise applied AI, strategy and entrepreneurship through original lessons, realistic decisions and useful work."
+        description="Build confidence in a business decision, an AI workflow, an interview or a venture test. Start with an open lesson, practise your reasoning and keep useful work."
       >
-        <Link href="/learning-lab/free-courses" className="lab-button">
-          Start a free course <span aria-hidden="true">→</span>
+        <Link href="/learning-lab/catalogue" className="lab-button">
+          Find your learning path <span aria-hidden="true">→</span>
         </Link>
-        <Link href="/learning-lab/for-colleges" className="lab-button lab-button-secondary">
-          Discuss a college pilot
+        <Link href="/learning-lab/free-courses" className="lab-button lab-button-secondary">
+          Start a short free course
         </Link>
       </LabHero>
-      <LabSection eyebrow="Built for learning. Supported by people." title="Help the Lab grow.">
-        <div className="lab-split">
-          <p className="lab-lead" style={{ marginTop: 0 }}>
-            Your voluntary assistance or donations can help improve the learning infrastructure and
-            create better content. Contributions of time, expertise and resources are welcome. The
-            six free courses remain open whether or not you contribute.
-          </p>
-          <div className="lab-callout">
-            <p>
-              “I would be grateful for any assistance that helps make the Learning Lab more useful
-              and accessible.”
-            </p>
-            <p className="lab-small">— Dr. Swapnil Sahoo</p>
-            <Link href="/learning-lab/support" className="lab-text-link">
-              Support the Lab <span aria-hidden="true">→</span>
-            </Link>
-          </div>
+      <LabSection eyebrow="Choose a useful direction" title="Four goals. A clear place to begin.">
+        <LearningPathCards paths={learningPaths} />
+        <div className="lab-actions">
+          <Link href="/learning-lab/catalogue#resources" className="lab-text-link">
+            Search lessons, cases and startup guides →
+          </Link>
         </div>
+        <p className="lab-small">Open self-practice, with optional academic resources clearly labelled. No account required.</p>
       </LabSection>
       <LabSection
         className="lab-band"
@@ -108,7 +101,21 @@ export default async function LearningLabPage() {
           </Link>
         </div>
       </LabSection>
-      <LabSection eyebrow="The longer learning paths" title="Three ways to put judgement to work.">
+      <LabSection eyebrow="Built for learning. Supported by people." title="Help the Lab grow.">
+        <div className="lab-split">
+          <p className="lab-lead" style={{ marginTop: 0 }}>
+            Currently run on a not-for-profit basis, the Lab welcomes voluntary assistance or
+            donations to improve infrastructure and content. Contributions of time, expertise and
+            resources are welcome. The free courses remain open whether or not you contribute.
+          </p>
+          <div className="lab-callout">
+            <p>“I would be grateful for any assistance that helps make the Learning Lab more useful and accessible.”</p>
+            <p className="lab-small">— Dr. Swapnil Sahoo</p>
+            <Link href="/learning-lab/support" className="lab-text-link">Support the Lab →</Link>
+          </div>
+        </div>
+      </LabSection>
+      <LabSection eyebrow="Proposed facilitated programmes" title="Explore a deeper programme.">
         <p className="lab-lead">
           Explore an original demonstration lesson before registering interest. Each proposed
           programme is built around something you can explain, test and improve.

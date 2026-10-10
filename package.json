@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/check-media-provenance.mjs && node scripts/check-teaching-lessons.mjs && node scripts/check-one-year-course.mjs && node scripts/check-scripture-corpora.mjs && node scripts/check-guesstimates.mjs",
+    "prebuild": "node scripts/check-media-provenance.mjs && node scripts/check-teaching-lessons.mjs && node scripts/check-one-year-course.mjs && node scripts/check-scripture-corpora.mjs && node scripts/check-guesstimates.mjs && node --import tsx scripts/check-learning-catalogue.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
@@ -12,6 +12,8 @@
     "check:media": "node scripts/check-media-provenance.mjs",
     "check:lessons": "node scripts/check-teaching-lessons.mjs",
     "check:course": "node scripts/check-one-year-course.mjs",
+    "check:catalogue": "node --import tsx scripts/check-learning-catalogue.mjs",
+    "test:mentor": "node scripts/test-digital-mentor.mjs",
     "lab:setup": "node --conditions=react-server --import tsx scripts/learning-lab.mts init",
     "lab:admin": "node --conditions=react-server --import tsx scripts/learning-lab.mts admin",
     "lab:demo": "node --conditions=react-server --import tsx scripts/learning-lab.mts demo",

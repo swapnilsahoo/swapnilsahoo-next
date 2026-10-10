@@ -812,8 +812,9 @@ export function OneYearMbaExperience() {
               </h2>
             </div>
             <p className="text-ink-600 dark:text-ink-300 max-w-md text-sm leading-6">
-              The 13 sessions follow the PGPM 2026–27 course outline, version 0.2. Open each
-              90-minute session for its coverage, assigned readings and lesson materials.
+              The 13 sessions follow the PGPM 2026–27 course outline, version 0.3. Open each
+              session for its coverage, assigned readings and lesson materials. Sessions 1–12
+              are 90 minutes; Session 13 is two hours.
             </p>
           </div>
 
@@ -1082,7 +1083,7 @@ export function OneYearMbaExperience() {
                   is not allowed. The work ends with a useful recommendation.
                 </p>
                 <span className="mt-5 inline-flex rounded-full border border-amber-200/20 bg-amber-200/10 px-3 py-1.5 font-mono text-[10px] tracking-[0.14em] text-amber-100 uppercase">
-                  20 marks · primary fieldwork required
+                  25 marks · primary fieldwork required
                 </span>
               </div>
             </div>
@@ -1102,7 +1103,7 @@ export function OneYearMbaExperience() {
 
             <div className="relative mt-12 border-t border-white/10 pt-8">
               <p className="font-mono text-[10px] tracking-[0.16em] text-blue-200 uppercase">
-                Project rubric · 20 marks
+                Project rubric · 25 marks
               </p>
               <div className="mt-5 grid gap-3 md:grid-cols-3">
                 {[
@@ -1112,7 +1113,7 @@ export function OneYearMbaExperience() {
                     "Understand and apply concepts, tools and frameworks for strategy formulation and execution.",
                   ],
                   [
-                    "05 marks",
+                    "10 marks",
                     "Critical decision-making",
                     "Demonstrate conceptual, analytical and critical-thinking capability in the recommendation.",
                   ],

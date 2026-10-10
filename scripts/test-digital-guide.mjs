@@ -57,7 +57,7 @@ try {
       await page.setViewportSize({ width, height: 900 });
       assert((await visit(path))?.status() === 200, `${path}: HTTP failure`);
       assert(!(await page.evaluate(() => document.documentElement.classList.contains("dark"))), `${path}: did not default to light with dark OS/saved preferences`);
-      await (path === "/digital-guide" ? page.getByRole("button", { name: "Open my digital guide" }) : testId("launcher")).click();
+      await (path === "/digital-guide" ? page.getByRole("button", { name: "Open my AI mentor" }) : testId("launcher")).click();
       await testId("dialog").waitFor({ state: "visible" });
       const dimensions = await testId("dialog").evaluate((element) => {
         const rect = element.getBoundingClientRect();

@@ -1,6 +1,6 @@
 # Create Swapnil’s speaking audio/video avatar
 
-Updated 9 October 2026. The small floating popup now contains an AI-created animated likeness of Swapnil, optional browser voice questions and spoken prepared answers, and a prerecorded speaking welcome video with captions and a transcript. The welcome uses a stock synthetic voice. No cloned founder voice or trained live conversational video replica is connected. See [the creation handover](digital-avatar-created.md) for the delivered assets and tests.
+Updated 10 October 2026. The small floating Dr. Swapnil Sahoo AI Mentor popup contains an AI-created animated likeness, optional browser voice questions and spoken prepared answers, and a prerecorded speaking welcome video with captions and a transcript. It also offers prepared learning-path suggestions, explanations, progressive unit-economics practice and a reasoning self-check. The welcome uses a stock synthetic voice. No cloned founder voice or trained live conversational video replica is connected. See [the creation handover](digital-avatar-created.md) for the delivered assets and [the lesson-aware mentor handover](learning-lab/mentor-and-catalogue.md) for the new teaching behaviour.
 
 The remaining target is a trained conversational replica with Swapnil’s own voice and synchronised video. Recording is only necessary for that personal voice/face training; it is not required to use the animated guide already created. Once an approved provider is connected, the popup opens in video mode and waits for the visitor to start.
 
@@ -24,7 +24,7 @@ Read in your normal voice. If you finish early, continue naturally on the same t
 
 Original script for the generated avatar, after the real face/voice has been trained and approved:
 
-> Hello. I’m Swapnil’s AI learning guide, a digital avatar rather than Swapnil speaking live. What would you like to practise today: using AI, making a strategic choice, or testing a business idea? You can start with a free lesson, work through a decision and keep your worksheet. Ask me to help you find a starting point.
+> Hello. I’m an AI learning mentor based on Dr. Swapnil Sahoo’s teaching materials, rather than Swapnil speaking live. Would you like to find a learning path, understand a concept, practise a case or review your reasoning? Start with a free lesson, try a decision and ask for a hint when you need one.
 
 Keep the visible AI label throughout the conversation. The guide’s job is course orientation and brief learning practice. Human teaching, assessments, certificate decisions and personal replies remain with Swapnil.
 

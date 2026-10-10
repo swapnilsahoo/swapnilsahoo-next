@@ -5,6 +5,7 @@ import { blogPosts } from "@/features/writing/data/catalog";
 import { programmes } from "@/features/learning-lab/programmes";
 import { labPolicies } from "@/features/learning-lab/policies";
 import { freeCourses } from "@/features/learning-lab/free-courses";
+import { learningPaths } from "@/features/learning-lab/catalogue";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.swapnilsahoo.com";
 
@@ -24,6 +25,12 @@ const routes = [
   { path: "", changeFrequency: "monthly", priority: 1 },
   { path: "/digital-guide", changeFrequency: "monthly", priority: 0.65 },
   { path: "/learning-lab", changeFrequency: "monthly", priority: 0.85 },
+  { path: "/learning-lab/catalogue", changeFrequency: "monthly", priority: 0.82 },
+  ...learningPaths.map((learningPath) => ({
+    path: `/learning-lab/paths/${learningPath.slug}`,
+    changeFrequency: "monthly" as const,
+    priority: 0.78,
+  })),
   { path: "/learning-lab/free-courses", changeFrequency: "monthly", priority: 0.82 },
   ...freeCourses.map((course) => ({
     path: `/learning-lab/free-courses/${course.slug}`,

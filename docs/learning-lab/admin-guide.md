@@ -1,6 +1,6 @@
 # Learning Lab — pilot administrator guide
 
-Prepared 8 October 2026 from the implemented UI and server API. This guide describes controls, not test results or permission to launch. Complete the gates in [incorporation-and-launch.md](incorporation-and-launch.md) before collecting real enquiries, admitting learners or accepting any payment. No admin control sends email, charges a learner or contacts an institution.
+Updated 9 October 2026 from the implemented UI and server API. This guide describes controls, not deployed-service test results. Use [the activation guide](activation.md) for storage, administrator setup and enquiry acceptance checks. Review the relevant operating decisions in [incorporation-and-launch.md](incorporation-and-launch.md) before admitting learners or accepting course fees. No admin control sends email, charges a learner or contacts an institution.
 
 ## Access and first administrator
 
@@ -37,7 +37,7 @@ Repeated enquiries for the same kind/email/programme/organisation update the exi
 
 In **Accounts**, enter the learner's name, valid email and a unique temporary password of at least 12 characters. Mark **Synthetic demo account** only for invented demonstration identities. Confirm identity and agreed pilot access, then choose **Create learner account**. This creates a learner role only; it cannot promote someone to administrator.
 
-Before provisioning a real person, confirm that they are aged 18 or over and have agreed to the approved pilot terms/privacy notice. Do not import academic student lists or provision a minor. The public enquiry form records an adult declaration; direct operator invitations need the same manual eligibility check.
+Before provisioning a real person, confirm that they are aged 18 or over and have agreed to the approved pilot terms/privacy notice. Do not import academic student lists or provision a minor. The public enquiry form requires an adult declaration and privacy acknowledgement, and the server validates them on submission. The current record does not retain those declarations or a notice-version acknowledgement; its consent timestamp concerns optional marketing permission only. Direct operator invitations need a separate manual eligibility and participation check.
 
 No invitation email is sent. Confirm the recipient and provide the login URL and temporary password through the approved private process; do not use a public enquiry response, student distribution list or shared password sheet. Keep enough operational evidence of who authorised the invitation. The learner must replace the temporary password before accessing programme records or submitting work; changing it revokes other sessions. An account alone has no programme until assigned.
 

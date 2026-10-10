@@ -7,6 +7,8 @@ import { useCallback, useEffect, useId, useRef, useState, type FormEvent } from 
 import { getGuidedReply, starters } from "./knowledge";
 import { useBrowserVoice } from "./useBrowserVoice";
 import { AnimatedAvatar } from "./AnimatedAvatar";
+import { MentorPanel } from "./MentorPanel";
+import { getMentorLessonForPath, type MentorMode } from "./lesson-manifest";
 import "./digital-avatar.css";
 
 type Mode = "voice" | "video" | "guided";
@@ -26,7 +28,7 @@ type VideoSession = {
 const welcome: GuideMessage = {
   id: "welcome",
   role: "guide",
-  text: "Hello. I’m Swapnil’s website guide. I can help you find courses, explore his teaching and Learning Lab, or find the right way to get in touch. What would you like to explore?",
+  text: "Hello. I’m an AI learning guide based on Dr. Swapnil Sahoo’s published materials. Choose a learning path, explain a lesson, practise a case or review your reasoning. My local replies are prepared guidance, not a live human conversation or a formal assessment.",
   links: [],
   suggestions: [],
 };
@@ -50,6 +52,7 @@ export function DigitalAvatar({
 }) {
   const providerLabel = oneMindEmbedUrl ? "1mind" : "Tavus";
   const pathname = usePathname();
+  const currentLesson = getMentorLessonForPath(pathname);
   const privatePage = privatePaths.some(
     (path) => pathname === path || pathname.startsWith(`${path}/`)
   );
@@ -66,6 +69,7 @@ export function DigitalAvatar({
   const restoreFocusRef = useRef(false);
   const openRef = useRef(false);
   const messageCounter = useRef(0);
+  const lastMentorActionRef = useRef<MentorMode | null>(null);
   const mountedRef = useRef(false);
   const speechRef = useRef<SpeechSynthesisUtterance | null>(null);
   const welcomeVideoRef = useRef<HTMLVideoElement | null>(null);
@@ -87,6 +91,7 @@ export function DigitalAvatar({
   const [videoConsent, setVideoConsent] = useState(false);
   const [startingVideo, setStartingVideo] = useState(false);
   const [welcomeVideoFailed, setWelcomeVideoFailed] = useState(false);
+  const [mentorAction, setMentorAction] = useState<MentorMode | null>(null);
 
   const cancelSpeech = useCallback(() => {
     if (speechRef.current) {
@@ -202,27 +207,30 @@ export function DigitalAvatar({
     [endOwnedVideoSession]
   );
 
-  const askQuestion = useCallback((value: string): GuideMessage | null => {
-    const text = value.trim().slice(0, 500);
-    if (!text) return null;
-    const answer = getGuidedReply(text);
-    const id = ++messageCounter.current;
-    const reply: GuideMessage = {
-      id: `guide-${id}`,
-      role: "guide",
-      text: answer.text,
-      links: answer.links,
-      suggestions: answer.suggestions,
-    };
-    setMessages((previous) => [
-      ...previous.slice(-28),
-      { id: `visitor-${id}`, role: "visitor", text, links: [], suggestions: [] },
-      reply,
-    ]);
-    setQuestion("");
-    setStatus("");
-    return reply;
-  }, []);
+  const askQuestion = useCallback(
+    (value: string): GuideMessage | null => {
+      const text = value.trim().slice(0, 500);
+      if (!text) return null;
+      const answer = getGuidedReply(text, currentLesson);
+      const id = ++messageCounter.current;
+      const reply: GuideMessage = {
+        id: `guide-${id}`,
+        role: "guide",
+        text: answer.text,
+        links: answer.links,
+        suggestions: answer.suggestions,
+      };
+      setMessages((previous) => [
+        ...previous.slice(-28),
+        { id: `visitor-${id}`, role: "visitor", text, links: [], suggestions: [] },
+        reply,
+      ]);
+      setQuestion("");
+      setStatus("");
+      return reply;
+    },
+    [currentLesson]
+  );
 
   const onVoiceQuestion = useCallback(
     (text: string) => {
@@ -246,6 +254,8 @@ export function DigitalAvatar({
     stopListening();
     stopVideo();
     setOpen(false);
+    setMentorAction(null);
+    lastMentorActionRef.current = null;
     setVoiceConsent(false);
     if (restoreFocusRef.current) {
       const target = returnFocusRef.current || launcherRef.current;
@@ -372,6 +382,8 @@ export function DigitalAvatar({
     setMessages([welcome]);
     setQuestion("");
     setStatus("Conversation cleared. No chat history has been saved.");
+    setMentorAction(null);
+    lastMentorActionRef.current = null;
     if (mode === "guided") queueMicrotask(() => inputRef.current?.focus({ preventScroll: true }));
   }
 
@@ -388,10 +400,33 @@ export function DigitalAvatar({
     stopListening();
     stopVideo();
     setMode(next);
+    setMentorAction(null);
     setVoiceConsent(false);
     setStatus("");
     if (next === "guided")
       requestAnimationFrame(() => inputRef.current?.focus({ preventScroll: true }));
+  }
+
+  function chooseMentorAction(action: MentorMode) {
+    cancelSpeech();
+    stopListening();
+    stopVideo();
+    setVoiceConsent(false);
+    setStatus("");
+    setMode("guided");
+    setMentorAction(action);
+    lastMentorActionRef.current = action;
+  }
+
+  function readMentorText(text: string) {
+    stopListening();
+    playMessage({
+      id: `mentor-${++messageCounter.current}`,
+      role: "guide",
+      text,
+      links: [],
+      suggestions: [],
+    });
   }
 
   async function startVideo() {
@@ -424,7 +459,11 @@ export function DigitalAvatar({
       const response = await fetch("/api/digital-avatar/session", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ consent: true }),
+        body: JSON.stringify({
+          consent: true,
+          ...(currentLesson ? { lessonId: currentLesson.lessonId } : {}),
+          ...(lastMentorActionRef.current ? { mode: lastMentorActionRef.current } : {}),
+        }),
       });
       needsCleanup = response.ok;
       const result: Partial<VideoSession> = await response.json();
@@ -546,9 +585,9 @@ export function DigitalAvatar({
             <Image src="/images/profile_pic.jpg" alt="" width={48} height={48} />
           </span>
           <span>
-            <strong>Swapnil’s digital assistant</strong>
+            <strong>Dr. Swapnil Sahoo AI Mentor</strong>
             <span className="avatar-guide-launcher-hint">
-              Voice · courses · teaching <span aria-hidden="true">↗</span>
+              Voice · lessons · practice <span aria-hidden="true">↗</span>
             </span>
           </span>
         </button>
@@ -557,6 +596,7 @@ export function DigitalAvatar({
         data-testid="digital-guide-dialog"
         className="avatar-guide-dialog"
         data-mode={mode}
+        data-mentor={Boolean(mentorAction)}
         data-live-video={Boolean(video)}
         id={dialogId}
         ref={dialogRef}
@@ -566,8 +606,8 @@ export function DigitalAvatar({
       >
         <div className="avatar-guide-topbar">
           <div>
-            <p className="avatar-guide-eyebrow">Your website companion</p>
-            <h2 id={titleId}>Swapnil’s digital assistant</h2>
+            <p className="avatar-guide-eyebrow">Your learning companion</p>
+            <h2 id={titleId}>Dr. Swapnil Sahoo AI Mentor</h2>
             <p className="avatar-guide-mode" id={modeId}>
               {mode === "voice"
                 ? "Browser voice · website guidance"
@@ -576,6 +616,9 @@ export function DigitalAvatar({
                   : liveVideoAvailable
                     ? "AI video · not Dr. Sahoo speaking live"
                     : "Prerecorded animated introduction"}
+            </p>
+            <p className="avatar-guide-identity">
+              AI tutor based on Dr. Swapnil Sahoo’s published teaching materials.
             </p>
           </div>
           <button
@@ -589,6 +632,25 @@ export function DigitalAvatar({
           </button>
         </div>
         <div className="avatar-guide-body">
+          <div className="avatar-mentor-shortcuts" role="group" aria-label="Learning actions">
+            {(
+              [
+                { action: "find-path", label: "Find my path" },
+                { action: "explain", label: "Explain this lesson" },
+                { action: "practice", label: "Practise a case" },
+                { action: "review", label: "Review my reasoning" },
+              ] as const
+            ).map((item) => (
+              <button
+                type="button"
+                key={item.action}
+                aria-pressed={mentorAction === item.action}
+                onClick={() => chooseMentorAction(item.action)}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
           <aside className="avatar-guide-stage" aria-label="About your digital guide">
             <AnimatedAvatar
               active={open && mode !== "video"}
@@ -627,7 +689,11 @@ export function DigitalAvatar({
             </div>
             {mode === "voice" ? (
               <div className="avatar-guide-voice-panel">
-                <p>Ask about courses, MBA sessions or the Learning Lab.</p>
+                <p>
+                  {currentLesson
+                    ? `You are reading “${currentLesson.title}”. Ask to explain this lesson, or choose a learning action above.`
+                    : "Ask about courses, MBA sessions or the Learning Lab, or choose a learning action above."}
+                </p>
                 <div
                   data-testid="digital-guide-voice-state"
                   className="avatar-guide-voice-state"
@@ -708,76 +774,112 @@ export function DigitalAvatar({
               </div>
             ) : mode === "guided" ? (
               <div className="avatar-guide-guided-panel">
-                <div
-                  data-testid="digital-guide-messages"
-                  className="avatar-guide-transcript"
-                  ref={transcriptRef}
-                  role="log"
-                  aria-label="Guided conversation"
-                  aria-live="polite"
-                  aria-relevant="additions text"
-                >
-                  {messages.map((message) => (
-                    <article
-                      className={`avatar-guide-message avatar-guide-message-${message.role}`}
-                      key={message.id}
-                    >
-                      <p className="avatar-guide-message-label">
-                        {message.role === "guide" ? "Digital guide" : "You"}
-                      </p>
-                      {message.role === "guide" ? (
-                        answerContents(message)
-                      ) : (
-                        <p className="avatar-guide-message-text">{message.text}</p>
-                      )}
-                    </article>
-                  ))}
-                </div>
-                <div className="avatar-guide-starters" aria-label="Suggested questions">
-                  {suggestions.map((suggestion) => (
-                    <button
-                      key={suggestion}
-                      type="button"
-                      onClick={() => chooseQuestion(suggestion)}
-                    >
-                      {suggestion}
-                      <span aria-hidden="true"> ↗</span>
-                    </button>
-                  ))}
-                </div>
-                <form
-                  className="avatar-guide-composer"
-                  onSubmit={submitQuestion}
-                  aria-label="Ask the digital guide"
-                >
-                  <label className="avatar-guide-input-label" htmlFor={`${dialogId}-question`}>
-                    Your question
-                  </label>
-                  <div>
-                    <input
-                      data-testid="digital-guide-input"
-                      ref={inputRef}
-                      id={`${dialogId}-question`}
-                      type="text"
-                      value={question}
-                      onChange={(event) => setQuestion(event.target.value)}
-                      maxLength={500}
-                      autoComplete="off"
-                      placeholder="What would you like to explore?"
+                {mentorAction ? (
+                  <>
+                    <MentorPanel
+                      key={`${pathname}-${mentorAction}`}
+                      action={mentorAction}
+                      lesson={currentLesson}
+                      onRead={readMentorText}
+                      onStopAudio={cancelSpeech}
+                      onNavigate={closeGuide}
                     />
-                    <button
-                      data-testid="digital-guide-send"
-                      type="submit"
-                      disabled={!question.trim()}
+                    <div className="avatar-mentor-return">
+                      <button
+                        className="avatar-guide-secondary"
+                        type="button"
+                        onClick={() => {
+                          cancelSpeech();
+                          setMentorAction(null);
+                        }}
+                      >
+                        Ask a website question
+                      </button>
+                      {readingId && (
+                        <button
+                          className="avatar-guide-secondary"
+                          type="button"
+                          onClick={cancelSpeech}
+                        >
+                          Stop audio
+                        </button>
+                      )}
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div
+                      data-testid="digital-guide-messages"
+                      className="avatar-guide-transcript"
+                      ref={transcriptRef}
+                      role="log"
+                      aria-label="Guided conversation"
+                      aria-live="polite"
+                      aria-relevant="additions text"
                     >
-                      Send <span aria-hidden="true">↗</span>
-                    </button>
-                  </div>
-                </form>
-                <p className="avatar-guide-disclosure">
-                  Prepared replies use published website information. This website does not save
-                  your conversation. Read aloud uses a standard device voice.
-                </p>
+                      {messages.map((message) => (
+                        <article
+                          className={`avatar-guide-message avatar-guide-message-${message.role}`}
+                          key={message.id}
+                        >
+                          <p className="avatar-guide-message-label">
+                            {message.role === "guide" ? "Digital guide" : "You"}
+                          </p>
+                          {message.role === "guide" ? (
+                            answerContents(message)
+                          ) : (
+                            <p className="avatar-guide-message-text">{message.text}</p>
+                          )}
+                        </article>
+                      ))}
+                    </div>
+                    <div className="avatar-guide-starters" aria-label="Suggested questions">
+                      {suggestions.map((suggestion) => (
+                        <button
+                          key={suggestion}
+                          type="button"
+                          onClick={() => chooseQuestion(suggestion)}
+                        >
+                          {suggestion}
+                          <span aria-hidden="true"> ↗</span>
+                        </button>
+                      ))}
+                    </div>
+                    <form
+                      className="avatar-guide-composer"
+                      onSubmit={submitQuestion}
+                      aria-label="Ask the digital guide"
+                    >
+                      <label className="avatar-guide-input-label" htmlFor={`${dialogId}-question`}>
+                        Your question
+                      </label>
+                      <div>
+                        <input
+                          data-testid="digital-guide-input"
+                          ref={inputRef}
+                          id={`${dialogId}-question`}
+                          type="text"
+                          value={question}
+                          onChange={(event) => setQuestion(event.target.value)}
+                          maxLength={500}
+                          autoComplete="off"
+                          placeholder="What would you like to explore?"
+                        />
+                        <button
+                          data-testid="digital-guide-send"
+                          type="submit"
+                          disabled={!question.trim()}
+                        >
+                          Send <span aria-hidden="true">↗</span>
+                        </button>
+                      </div>
+                    </form>
+                    <p className="avatar-guide-disclosure">
+                      Prepared replies use published website information. This website does not save
+                      your conversation. Read aloud uses a standard device voice.
+                    </p>
+                  </>
+                )}
               </div>
             ) : (
               <div className="avatar-guide-video-panel">
@@ -819,8 +921,12 @@ export function DigitalAvatar({
                           if (
                             welcomeSourceFailuresRef.current.size >=
                             event.currentTarget.querySelectorAll("source").length
-                          ) setWelcomeVideoFailed(true);
-                        } else if (event.target === event.currentTarget && event.currentTarget.error) {
+                          )
+                            setWelcomeVideoFailed(true);
+                        } else if (
+                          event.target === event.currentTarget &&
+                          event.currentTarget.error
+                        ) {
                           setWelcomeVideoFailed(true);
                         }
                       }}
@@ -850,22 +956,24 @@ export function DigitalAvatar({
                     </video>
                     {welcomeVideoFailed && (
                       <p role="status">
-                        The welcome video could not play in this browser. Read the captions or
-                        use the voice guide below.
+                        The welcome video could not play in this browser. Read the captions or use
+                        the voice guide below.
                       </p>
                     )}
                     <p>
-                      This short introduction is prerecorded, with a digitally created likeness
-                      and a standard synthetic voice. It does not listen or answer questions.
-                      Choose the voice guide for prepared spoken website answers. A trained
-                      conversational video replica is not connected.
+                      This short introduction is prerecorded, with a digitally created likeness and
+                      a standard synthetic voice. It does not listen or answer questions. Choose the
+                      voice guide for prepared spoken website answers. A trained conversational
+                      video replica is not connected.
                     </p>
                     <p>
                       <a href="/videos/digital-avatar/transcript.txt">
                         Read the welcome transcript
                       </a>
                       {" · "}
-                      <a href="/videos/digital-avatar/captions.vtt" download>Download captions</a>
+                      <a href="/videos/digital-avatar/captions.vtt" download>
+                        Download captions
+                      </a>
                     </p>
                     <details>
                       <summary>Welcome transcript</summary>
@@ -875,8 +983,8 @@ export function DigitalAvatar({
                         Learning Lab. Explore six free mini-courses in AI, strategy and
                         entrepreneurship. Read a short lesson, try a business decision, and keep
                         your worksheet. Open the guide and choose a question by voice or text.
-                        Voluntary support helps improve our learning content and infrastructure.
-                        The free courses remain free.
+                        Voluntary support helps improve our learning content and infrastructure. The
+                        free courses remain free.
                       </p>
                     </details>
                     <button

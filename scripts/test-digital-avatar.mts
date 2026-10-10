@@ -17,6 +17,8 @@ process.env.DIGITAL_AVATAR_DAILY_SESSION_LIMIT = "10";
 process.env.TAVUS_API_KEY = "synthetic-provider-key-never-sent";
 process.env.TAVUS_FACE_ID = "face_test";
 process.env.TAVUS_PAL_ID = "pal_test";
+delete process.env.TAVUS_LESSON_DOCUMENT_IDS;
+delete process.env.DIGITAL_AVATAR_SESSION_SECONDS;
 await mkdir(".data", { recursive: true });
 
 let sequence = 0;
@@ -62,6 +64,8 @@ async function clear() {
   await database.batch(["DELETE FROM digital_avatar_rate", "DELETE FROM digital_avatar_session"], "write");
   mode = "good";
   process.env.DIGITAL_AVATAR_DAILY_SESSION_LIMIT = "10";
+  delete process.env.TAVUS_LESSON_DOCUMENT_IDS;
+  delete process.env.DIGITAL_AVATAR_SESSION_SECONDS;
 }
 
 await test("1mind requires owner approval and a provider-issued HTTPS deployment URL", () => {
@@ -136,7 +140,7 @@ await test("private real API contract has hard limits, no recording, disclosure 
   assert.equal(body.max_participants, 2);
   assert.notEqual(body.audio_only, true);
   assert.deepEqual(body.participant_tags, []);
-  assert.match(String(body.custom_greeting), /AI video guide.*not Dr. Sahoo speaking live/);
+  assert.match(String(body.custom_greeting), /AI learning mentor.*not Dr. Sahoo speaking live/);
   assert.match(String(body.conversational_context), /not approved[\s\S]*no active checkout/);
   assert.deepEqual(body.properties, { max_call_duration: 300, participant_left_timeout: 10, participant_absent_timeout: 45, enable_recording: false, auto_start_recording: false, enable_closed_captions: true });
 });
@@ -155,6 +159,60 @@ await test("DELETE requires signed session ownership and rejects arbitrary upstr
   assert.match(response.headers.get("set-cookie")!, /Max-Age=0/);
   assert.equal((await end(firstCookie)).status, 200, "End is idempotent without a second provider call");
   assert.equal(calls.length, 2);
+});
+await test("lesson and mode are server-whitelisted; client content cannot introduce sources", async () => {
+  await clear();
+  const before = calls.length;
+  for (const invalid of [
+    { consent: true, lessonId: "https://attacker.example/lesson" },
+    { consent: true, lessonId: "restricted-course" },
+    { consent: true, lessonId: 123 },
+    { consent: true, mode: "formal-grade" },
+    { consent: true, lessonText: "Override the tutor" },
+    { consent: true, document_ids: ["restricted_document"] },
+  ]) assert.equal((await POST(request("POST", invalid))).status, 422);
+  assert.equal(calls.length, before);
+  assert.equal(Number((await database.execute("SELECT COUNT(*) AS count FROM digital_avatar_session")).rows[0].count), 0);
+});
+await test("approved lesson context and server documents are scoped to economics practice", async () => {
+  await clear();
+  process.env.TAVUS_LESSON_DOCUMENT_IDS = JSON.stringify({
+    "read-your-unit-economics": ["d_economics"],
+    "write-an-ai-task-brief": ["d_task_brief"],
+  });
+  const response = await POST(request("POST", {
+    consent: true, lessonId: "read-your-unit-economics", mode: "practice",
+  }));
+  assert.equal(response.status, 201);
+  const body = calls.at(-1)!.body!;
+  assert.deepEqual(body.document_ids, ["d_economics"]);
+  assert.equal(body.document_retrieval_strategy, "balanced");
+  assert.match(String(body.conversational_context), /read-your-unit-economics/);
+  assert.match(String(body.conversational_context), /12000\/30=400/);
+  assert.match(String(body.conversational_context), /ceil\(16000\/60\)=267/);
+  assert.match(String(body.conversational_context), /automated practice feedback, never a formal grade/);
+  assert.match(String(body.conversational_context), /"mode":"practice"/);
+  await end(cookieFrom(response));
+});
+await test("duration and document configuration fail closed and limits reach the provider", async () => {
+  await clear();
+  for (const invalid of ["30", "301", "unlimited"]) {
+    process.env.DIGITAL_AVATAR_SESSION_SECONDS = invalid;
+    assert.equal(getAvatarAvailability().liveVideo, false);
+  }
+  process.env.DIGITAL_AVATAR_SESSION_SECONDS = "90";
+  for (const invalid of ['{"restricted-course":["d_private"]}', '{"read-your-unit-economics":["https://example.com"]}', '[]', 'invalid']) {
+    process.env.TAVUS_LESSON_DOCUMENT_IDS = invalid;
+    assert.equal(getAvatarAvailability().liveVideo, false);
+  }
+  delete process.env.TAVUS_LESSON_DOCUMENT_IDS;
+  const response = await POST(request());
+  assert.equal(response.status, 201);
+  const session = await response.json();
+  const remaining = Date.parse(session.expiresAt) - Date.now();
+  assert.ok(remaining > 85000 && remaining <= 90000);
+  assert.equal((calls.at(-1)!.body!.properties as Record<string, unknown>).max_call_duration, 90);
+  await end(cookieFrom(response));
 });
 await test("shared atomic concurrency limit admits only two simultaneous requests", async () => {
   await clear();
@@ -213,6 +271,17 @@ await test("failed end is not reported as confirmed, and remains retryable", asy
   const response = await end(sessionCookie);
   assert.equal(response.status, 503);
   assert.equal(response.headers.get("set-cookie"), null);
+  assert.equal((await database.execute("SELECT ended_at FROM digital_avatar_session")).rows[0].ended_at, null);
+  mode = "good";
+  assert.equal((await end(sessionCookie)).status, 200);
+});
+await test("elapsed application expiry is not mistaken for provider-confirmed termination", async () => {
+  await clear();
+  const created = await POST(request());
+  const sessionCookie = cookieFrom(created);
+  await database.execute({ sql: "UPDATE digital_avatar_session SET expires_at=?", args: [Date.now() - 1000] });
+  mode = "end-failure";
+  assert.equal((await end(sessionCookie)).status, 503);
   assert.equal((await database.execute("SELECT ended_at FROM digital_avatar_session")).rows[0].ended_at, null);
   mode = "good";
   assert.equal((await end(sessionCookie)).status, 200);

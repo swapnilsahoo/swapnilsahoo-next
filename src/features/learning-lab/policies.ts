@@ -18,7 +18,7 @@ export const labPolicies: LabPolicy[] = [
     slug: "terms",
     title: "Terms of participation and website use",
     summary:
-      "Draft for founder and legal review. Email questions are welcome through the contact page; online interest forms await secure service setup. Fees, dates and enrolment are not confirmed.",
+      "Paid-service terms remain a draft for founder and legal review. Email questions are welcome; online forms, when available, record interest only. Fees, dates and enrolment are not confirmed.",
     sections: [
       draftReview,
       {
@@ -45,7 +45,7 @@ export const labPolicies: LabPolicy[] = [
       {
         heading: "Accounts and acceptable use",
         paragraphs: [
-          "The initial learner area is invitation-only and limited to adults aged 18 or over. Use your own account, protect your credentials and do not access another learner's records. Report suspected unauthorised access through the approved business contact once it is published.",
+          "The initial learner area is invitation-only and limited to adults aged 18 or over. Use your own account, protect your credentials and do not access another learner's records. Report suspected unauthorised access through the contact email on the contact page.",
           "Do not submit confidential employer information, personal information about other people, proprietary teaching cases or materials that you lack permission to use. Submit original work and disclose permitted AI assistance. Assessment, feedback and certificate decisions remain with a human instructor.",
         ],
       },
@@ -69,15 +69,22 @@ export const labPolicies: LabPolicy[] = [
     slug: "privacy",
     title: "Privacy notice",
     summary:
-      "Draft privacy notice for founder and professional review. Public data collection needs approved operator contact details, retention decisions and configured storage before launch.",
+      "How the website handles enquiry details, optional marketing permission and learning records. Online forms depend on configured storage; paid-service policies remain drafts.",
     sections: [
-      draftReview,
+      {
+        heading: "Operator and current enquiry handling",
+        paragraphs: [
+          "Updated on 10 October 2026 to describe the website's enquiry handling. The operator is Dr. Swapnil Sahoo; contact swapnil.s@greatlakes.edu.in for an enquiry or privacy question. The Lab is independently run, presently unincorporated and operated on a not-for-profit basis. Academic employers and institutions do not sponsor or operate it by virtue of the founder's biography or contact email.",
+          "The contact page shows whether online enquiries are available. When a form is offered, your entries are sent to the website when you submit it. A saved confirmation means the enquiry was accepted into configured storage; it does not confirm an email, enrolment or booking. If online forms are unavailable, the email link opens your email app and the website does not save or send that message.",
+          "This notice describes the implemented workflow and does not certify legal compliance. Paid-service terms remain drafts; no paid course checkout is enabled.",
+        ],
+      },
       {
         heading: "Interest and institutional enquiries",
         paragraphs: [
           "The enquiry form asks for your name, email address and programme of interest. Institutional enquiries also ask for the institution or organisation name, with optional role, approximate adult learner count and preferred timetable. Your message is optional. The form requires confirmation that you are aged 18 or over and acknowledgement of enquiry processing. Please do not include student lists or sensitive personal, student or employer information.",
           "These details are used to record and handle the enquiry, avoid duplicate records and discuss a proposed programme or institutional pilot. Optional permission to receive programme updates is separate, unticked by default and not required to enquire. Registering interest does not enrol you.",
-          "The current source field records the Lab page path and, if present, limited campaign parameters such as utm_source, utm_medium and utm_campaign. It is not cross-site tracking. Anti-spam controls use limited technical request information and keyed identifiers for rate limiting. Database and hosting providers may also maintain their own operational logs; the final notice must identify the chosen processors and their practices.",
+          "The current source field records the Lab page path and, if present, limited campaign parameters such as utm_source, utm_medium and utm_campaign. It is not cross-site tracking. Anti-spam controls use limited technical request information and keyed identifiers for rate limiting. Vercel hosts this website and may maintain operational request logs. Database provider details and data location must follow the actual online-enquiry storage configuration when activated; no hosted enquiry database is connected at this update.",
         ],
       },
       {
@@ -119,15 +126,16 @@ export const labPolicies: LabPolicy[] = [
       {
         heading: "Retention, withdrawal and requests",
         paragraphs: [
-          "Proposed retention decisions for approval are a review of unconverted enquiries after six months and programme records after 24 months. Security, audit, accounting and certificate records need separate justified periods, processor settings and a deletion or anonymisation procedure. These are recommendations, not a claim that automatic deletion is already configured.",
-          "Use the founder-approved email on the contact page for questions about optional marketing permission, access, correction, deletion or complaints. The response process and final retention schedule still require approval before online registration opens. Some records may need to be retained for a documented legal or dispute purpose; this must be explained rather than used as an unlimited retention rule.",
+          "There is no scheduled automatic deletion in this release. Retention periods remain under review: the proposed review points are six months for unconverted enquiries and 24 months for programme records. These are proposals, not an automatic deletion promise. Security, audit, accounting and certificate records, together with provider logs and backups, need separate retention decisions and a manual deletion or anonymisation procedure.",
+          "Email swapnil.s@greatlakes.edu.in for questions about optional marketing permission, access, correction, deletion or complaints. Requests go to the operator for manual handling; the website has no automatic privacy-request workflow. Some records may need to be retained for a documented legal or dispute purpose; the operator should explain any such reason in the reply.",
           "The initial offer is for adults only. Do not submit a child's information. If the operator learns that an enquiry or account belongs to someone under 18, it should restrict the record and arrange appropriate deletion or other legally reviewed handling.",
         ],
       },
       {
-        heading: "Review before online registration",
+        heading: "Service configuration and future paid programmes",
         paragraphs: [
-          "The final notice must name the actual operator and processors, explain hosting and any cross-border processing, state the approved retention schedule and give an accessible rights and grievance contact. Indian privacy rules have phased commencement; this draft does not assert that every provision is already effective or that the Lab is compliant. The launch checklist records dated primary sources for professional review.",
+          "Online-enquiry availability depends on the private hosting and storage configuration. The published provider details and retention information need to follow the actual setup and any later changes. The contact email above is the route for privacy questions; no response-time guarantee or automated deletion is offered.",
+          "Invited learning, recordings and any future paid programme need their own agreed scope and policies. This notice does not turn a saved enquiry into permission to enrol someone, publish their work, record them or send unrelated marketing. The remaining paid-service drafts and launch checklist support founder and professional review.",
         ],
       },
     ],

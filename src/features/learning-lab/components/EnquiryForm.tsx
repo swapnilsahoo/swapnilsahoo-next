@@ -368,8 +368,8 @@ export function EnquiryForm({
           </span>
         </label>
         <p className="lab-small">
-          Policy drafts require professional review before public launch. Submission confirms a
-          saved enquiry only; it does not imply that an email has been sent.
+          A saved confirmation means your enquiry reached the Lab. Follow-up is handled separately;
+          the website sends no confirmation email and creates no enrolment or booking.
         </p>
         <button type="submit" className="lab-button" aria-busy={pending}>
           {pending ? "Saving enquiry…" : "Save my enquiry"}

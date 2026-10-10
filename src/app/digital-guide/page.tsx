@@ -5,12 +5,12 @@ import { OpenGuideButton } from "@/features/digital-avatar/OpenGuideButton";
 import { AnimatedAvatar } from "@/features/digital-avatar/AnimatedAvatar";
 
 export const metadata: Metadata = {
-  title: "Swapnil’s digital guide",
+  title: "Dr. Swapnil Sahoo AI Mentor",
   description:
-    "Meet Swapnil’s digitally created likeness, watch a prerecorded welcome, and explore lessons with optional device-voice guidance.",
+    "Find a learning path, explain a concept, practise a case and review your reasoning with prepared guidance and optional device voice.",
   alternates: { canonical: "/digital-guide" },
   openGraph: {
-    title: "Swapnil’s digital guide",
+    title: "Dr. Swapnil Sahoo AI Mentor",
     description: "A personal starting point for your next learning decision.",
     images: ["/images/profile_pic.jpg"],
   },
@@ -49,15 +49,15 @@ export default function DigitalGuidePage() {
             <h1 className="font-serif text-4xl leading-tight text-slate-950 md:text-6xl dark:text-slate-50">
               Meet Swapnil’s
               <br />
-              <span className="text-indigo-800 italic dark:text-indigo-300">digital guide.</span>
+              <span className="text-indigo-800 italic dark:text-indigo-300">AI learning mentor.</span>
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-slate-600 dark:text-slate-300">
               Meet my digitally created likeness in a small popup beside the page. Watch the
-              welcome video, then ask by voice to find a free lesson, choose a learning path or
-              get oriented before your next class.
+              welcome video, then find a learning path, explain a concept, practise a case or
+              review your reasoning. Start with a free lesson and try a decision one step at a time.
             </p>
             <div className="mt-7">
-              <OpenGuideButton>Open my digital guide</OpenGuideButton>
+              <OpenGuideButton>Open my AI mentor</OpenGuideButton>
             </div>
             <p className="mt-4 max-w-md text-xs leading-relaxed text-slate-600 dark:text-slate-400">
               The likeness is AI-created from Swapnil’s portrait. Prepared answers use a standard
@@ -120,13 +120,18 @@ export default function DigitalGuidePage() {
               A clear place to begin
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-              The guide connects you to published lessons and programme information. It cannot
-              assess work, issue a certificate, confirm a payment or make a booking. Follow the
+              The mentor connects you to published lessons and programme information. Prepared
+              practice tools check arithmetic and help you review a reasoning checklist; they do
+              not grade your prose or certify learning. It cannot issue a certificate, confirm a payment or make a booking. Follow the
               linked pages for current availability and contact Swapnil for a personal reply.
             </p>
             <p className="mt-4 text-sm">
               <Link href="/learning-lab/free-courses" className="underline underline-offset-4">
                 Browse all six free courses
+              </Link>
+              <span aria-hidden="true"> · </span>
+              <Link href="/learning-lab/catalogue" className="underline underline-offset-4">
+                Explore learning paths
               </Link>
               <span aria-hidden="true"> · </span>
               <a href="mailto:swapnil.s@greatlakes.edu.in" className="underline underline-offset-4">
@@ -147,7 +152,8 @@ export default function DigitalGuidePage() {
             </p>
             <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
               Prepared answers run in your browser. This website does not save your audio or
-              conversation; resetting or refreshing clears the text. The welcome video uses a
+              conversation; closing, resetting or navigating clears practice attempts, and
+              refreshing clears the text. The welcome video uses a
               synthetic voice and plays only when you start it. Live AI video is a separate mode
               that requires your choice before connecting to a provider, once available. Keep
               private, student and employer information out of your questions.

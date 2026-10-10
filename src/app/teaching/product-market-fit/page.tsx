@@ -131,7 +131,7 @@ export default function ProductMarketFitPage() {
                 href="#curves"
                 className="focus-visible:ring-brand-300 inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:outline-none"
               >
-                Read the five modules
+                Read the four modules
               </a>
             </div>
           </div>

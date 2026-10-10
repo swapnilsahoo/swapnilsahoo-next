@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const policy = labPolicies.find((p) => p.slug === slug);
   return policy
     ? {
-        title: `${policy.title} — Draft`,
+        title: policy.slug === "privacy" ? policy.title : `${policy.title} — Draft`,
         description: policy.summary,
         alternates: { canonical: `/learning-lab/policies/${slug}` },
       }
@@ -25,17 +25,18 @@ export default async function PolicyPage({ params }: Props) {
   return (
     <>
       <LabHero
-        eyebrow="Draft policy · Professional review required"
+        eyebrow={slug === "privacy" ? "Current website and enquiry handling" : "Draft policy · Professional review required"}
         title={policy.title}
         description={policy.summary}
       />
       <LabSection>
         <div className="lab-prose">
           <aside className="lab-callout">
-            <h3>A working draft, not a compliance declaration.</h3>
+            <h3>{slug === "privacy" ? "How the current workflow handles information." : "A working draft, not a compliance declaration."}</h3>
             <p>
-              This document needs professional review, confirmed operator details and approval for
-              the final service. Programmes remain proposed and payments are disabled.
+              {slug === "privacy"
+                ? "The contact page shows online-enquiry availability. This notice describes the implemented workflow; it does not certify legal compliance. Programme terms remain drafts and paid course checkout is disabled."
+                : "This document needs professional review, confirmed operator details and approval for the final service. Programmes remain proposed and paid course checkout is disabled."}
             </p>
           </aside>
           {policy.sections.map((section) => (
@@ -48,7 +49,7 @@ export default async function PolicyPage({ params }: Props) {
           ))}
           <div className="lab-divider" />
           <Link href="/learning-lab/policies" className="lab-text-link">
-            ← All draft policies
+            ← Privacy and programme policies
           </Link>
           <br />
           <Link href="/learning-lab/contact" className="lab-text-link">
