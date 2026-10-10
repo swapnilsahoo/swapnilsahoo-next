@@ -68,7 +68,7 @@ function getQuestions(enquiriesAvailable: boolean) {
     ],
     [
       "Are the policies final?",
-      "No. The published policies are drafts for professional review. Operator contact details, approved commercial terms and other launch requirements must be settled before a public paid launch.",
+      "The privacy notice describes current website and enquiry handling. Programme, cancellation, recording and certificate terms remain drafts for review. The approved offer and paid-service details must be settled before a public paid launch.",
     ],
   ];
 }

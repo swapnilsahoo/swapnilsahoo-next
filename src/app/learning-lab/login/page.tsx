@@ -14,6 +14,7 @@ export default async function LoginPage({
   searchParams: Promise<{ unavailable?: string }>;
 }) {
   const params = await searchParams;
+  const available = isLabServiceConfigured();
   return (
     <>
       <LabHero
@@ -22,13 +23,13 @@ export default async function LoginPage({
         description="Access your assigned lessons, submissions and instructor feedback."
       />
       <LabSection>
-        {params.unavailable && (
+        {params.unavailable && !available && (
           <p role="status" className="lab-callout">
             The workspace is awaiting persistent storage and secure configuration. Public
             demonstration lessons remain available; no account has been created.
           </p>
         )}
-        <LoginForm available={isLabServiceConfigured()} />
+        <LoginForm available={available} />
       </LabSection>
     </>
   );

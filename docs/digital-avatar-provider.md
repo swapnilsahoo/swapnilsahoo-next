@@ -47,6 +47,31 @@ Optional `TAVUS_LESSON_DOCUMENT_IDS` is a private JSON mapping of approved lesso
 
 The browser receives a conversation ID, expiry and participant URL with its short-lived meeting token. A signed HttpOnly SameSite cookie binds DELETE to the current session; clients cannot choose arbitrary provider conversation IDs. DELETE confirms provider termination or returns an honest error. Elapsed local time alone does not mark a room as provider-confirmed ended. A failed stop retains the ownership cookie and unfinished record so it can be retried. Provider errors are sanitised; keys, raw upstream replies, microphone data and transcripts are not logged/stored by this website. Rate/session bookkeeping stores HMAC client buckets and provider room IDs with expiry, not chats. No real provider request is made by the disabled configuration or mocked tests.
 
+## Read-only Tavus readiness check
+
+The owner reports a Tavus account and a Turso database have been created. Tavus production API credentials, owner-specific Face/PAL readiness and a real audiovisual preview have not yet been verified. An account-home URL is not an avatar embed or proof of a trained personal face/voice. Keep `DIGITAL_AVATAR_ENABLED=false` while these checks remain incomplete.
+
+Run the reproducible helper with `TAVUS_API_KEY`, `TAVUS_FACE_ID` and `TAVUS_PAL_ID` supplied privately in the process environment:
+
+```text
+node --import tsx scripts/check-tavus-readiness.mts
+```
+
+It makes only read-only GET requests to Tavus's configured [Face](https://docs.tavus.io/api-reference/faces/get-face), [PAL](https://docs.tavus.io/api-reference/pals/get-pal) and effective [Tavus Voice](https://docs.tavus.io/api-reference/voices/get-voice) resources. It does not load dotenv files automatically, modify settings, upload likeness/audio, create or start a conversation, purchase a plan, or touch the Lab database. Output contains fixed redacted pass/warning messages, never raw PAL JSON, IDs, API keys, headers, prompts or upstream errors. Do not print raw PAL responses yourself: their schema can include private external LLM/TTS credentials. Missing configuration exits `2` without a request; blocking resource/settings checks exit `1`; structurally passed API checks exit `0` with owner-review warnings. None of these exits approves launch or proves audiovisual quality.
+
+The helper passed 29 mocked response and CLI checks, including GET-only boundaries, status/voice precedence, invalid IDs, failed or malformed responses, secret redaction and unchanged activation flags. Scoped ESLint and TypeScript checks passed. These tests did not read a real account, train a face/voice or consume conversation quota. The local mock harness is retained under ignored `artifacts/learning-lab/digital-guide/test-tavus-readiness.mjs` and runs with `node --import tsx`.
+
+Check these distinctions in the private account:
+
+- **Face:** `status=completed` establishes usability. For Phoenix-4.5 it means the zero-shot preview is ready; `finetune_status=completed` separately establishes background tuning completion. A reviewed preview may be usable but must not be described as fully tuned. A user-created Face type does not prove it depicts Swapnil or that likeness verification is complete. Confirm the selected identity and authorised assets privately. [Get Face status fields](https://docs.tavus.io/api-reference/faces/get-face)
+- **PAL:** the GET endpoint returns the live PAL, never unpublished Maker drafts. After a PAL has a deployment, press Maker's **Update** to apply a reviewed draft; do not call the removed Publish PAL endpoint. Review its teaching instructions, sources, attached tools/skills, English support and unknown-question boundaries. [PAL editing lifecycle](https://docs.tavus.io/sections/conversational-video-interface/pal/editing-lifecycle)
+- **Effective voice:** PAL `voice_id` overrides Face `default_voice_id`; an external voice overrides the Face default too. A Tavus Voice must report `status=completed`. A stock voice requires a stock/synthetic disclosure; a custom resource does not prove it is Swapnil's voice. Approve the actual listening preview, pronunciation and authorised source audio before making that claim. External-provider voices require separate private readiness review. [TTS voice precedence](https://docs.tavus.io/sections/conversational-video-interface/pal/tts)
+- **AI identity and perception:** use clear visual/verbal AI identity with `disclosure_type=always`. To honour the original teaching brief, set `layers.perception.perception_model=off`, or explicitly `emotion_recognition=limited` and review remaining awareness queries/tools. Camera blocking alone does not stop Tavus's default audio emotion analysis; `auto` is not a substitute for this explicit boundary. These are product settings to match the brief, not a certification of legal compliance. [PAL disclosure](https://docs.tavus.io/api-reference/pals/get-pal), [Perception configuration](https://docs.tavus.io/sections/conversational-video-interface/pal/perception)
+
+When optional lesson-document mappings are used, separately confirm every approved document reports `status=ready`; the helper does not ingest, crawl or validate documents. Review the PAL's other document attachments and tags, since session context alone cannot restrict an improperly configured PAL. [Get Document](https://docs.tavus.io/api-reference/documents/get-document)
+
+Finally, review actual account quota/spending, provider retention and recording settings, then test the approved face/voice, source-grounded teaching, captions, microphone start/stop, interruption, mobile light layout and confirmed session termination. A real preview/conversation can consume provider quota and is a separate authorised action; the readiness helper never starts one. Only after those checks should the owner enable the existing private production settings and rebuild. Keep the generated stock-voice welcome and prepared guide accurately labelled throughout.
+
 ## Activation and verification limits
 
 Default production settings keep live video disabled; its panel truthfully explains availability. Missing provider credentials, approved deployment or budget/storage settings cannot produce a fake connected state. The portrait guide’s text fallback remains usable without a database, microphone or external AI account.

@@ -4,6 +4,8 @@ Updated 10 October 2026. The small floating Dr. Swapnil Sahoo AI Mentor popup co
 
 The remaining target is a trained conversational replica with Swapnil’s own voice and synchronised video. Recording is only necessary for that personal voice/face training; it is not required to use the animated guide already created. Once an approved provider is connected, the popup opens in video mode and waits for the visitor to start.
 
+The owner confirmed on 10 October that the Tavus account is created but the personal avatar is not trained. No new face/voice recording or private Tavus API credential has been supplied to this build. Turso's free production connection and empty-database preflight passed separately; database readiness does not create a face or voice.
+
 ## Recommended creation path
 
 Use a fresh recording to create the face and voice together. Tavus’s current [video training guide](https://docs.tavus.io/sections/faces/phoenix-45-video-requirements) says Phoenix-4.5 creates the default voice from the video audio. This matches the requested personal audio/video avatar. The website already contains a disabled Tavus conversation adapter and a separate 1mind embed option.
