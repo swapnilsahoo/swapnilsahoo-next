@@ -1,14 +1,14 @@
 # Swapnil's digitally created speaking guide
 
-Created 9 October 2026 at the owner's request, using his existing portrait with permission. This handover distinguishes the delivered animation and prerecorded video from the still-unconnected trained conversational replica.
+Created 9 October 2026; UI updated 11 October at the owner's request. The original portrait was used with permission. This handover distinguishes the delivered animation and prerecorded video from the still-unconnected trained conversational replica.
 
 ## Delivered
 
 - An original six-expression likeness in `public/images/digital-avatar/swapnil-speaking-sprites.png`, generated with the built-in image generation tool from `public/images/profile_pic.jpg`. The reference portrait remains unchanged.
 - A short speaking welcome in `public/videos/digital-avatar/welcome.mp4` and `welcome.webm`. MP4 uses H.264/AAC, 512 × 576, 25 FPS; its container duration is approximately 35 seconds. The voice is **Microsoft David Desktop**, a stock synthetic voice, not Swapnil's voice.
-- Default English captions in `captions.vtt`, a downloadable `transcript.txt`, and an HTML transcript in the popup. The video contains a persistent AI/synthetic/prerecorded label.
-- A small nonmodal popup with Voice, Video and text choices. The welcome waits for Play. Voice questions require opt-in; prepared replies animate the likeness only during speech playback. The light theme remains the document default.
-- Speech, microphone recognition and video stop on close, reset, mode change, page navigation, hidden tab or unmount. Reduced-motion preferences keep the interactive likeness still.
+- Default English captions in `captions.vtt` and a linked downloadable `transcript.txt`. The video contains a persistent AI/synthetic/prerecorded label.
+- A small nonmodal popup that opens with video first. Text and voice share one conversation beneath the same media frame; a single Learning tools select provides the teaching actions. The welcome waits for Play. Voice questions require opt-in; prepared replies animate the likeness only during speech playback. The light theme remains the document default.
+- Speech, microphone recognition and video stop on close, reset, navigation, hidden tab or unmount. Playing the welcome stops local voice; typed/spoken questions and read-aloud pause the welcome. Reduced-motion preferences keep the interactive likeness still.
 
 The welcome is a real generated audiovisual file. It is prerecorded, cannot answer questions and does not start a provider conversation. Interactive responses are browser-side prepared website guidance spoken by a standard device voice, with simple mouth animation rather than phoneme synchronisation. A personal live video replica, unrestricted generative answers and cloned founder voice are not connected.
 
@@ -37,6 +37,8 @@ Exact final prompt, with the authentic portrait supplied as the reference:
 
 ## Verification and remaining access
 
+On 11 October, the unified video-first interface passed 16 public route/viewport combinations, 20 mocked voice/media lifecycle checks, 14 muted native-video checks and seven mentor workflow groups. These checks cover the shared composer, no playback/capture on opening, mutual interruption between welcome playback and local speech/listening, late-result rejection, captions and fallback, reset/navigation cleanup and phone layouts. All four suites recorded zero browser errors and zero HTTP writes. Desktop and narrow-phone screenshots were visually reviewed. This UI change does not establish a trained personal live avatar or real microphone accuracy.
+
 The production build and scoped ESLint passed. Eight targeted browser checks passed for speech-driven animation, pause/resume/end, stale callbacks, cleanup, 320-pixel layout and reduced motion. Sixteen existing mocked voice checks also passed. The full public guide suite passed its 16 route/viewport combinations, keyboard access, grounded answers, reset/privacy, private-page suppression and all 13 MBA entry links. These voice tests used mocked speech services; they do not establish real microphone accuracy, founder pronunciation or personal voice quality.
 
 Actual native-media checks passed in installed Chrome (MP4 H.264/AAC) and bundled Chromium (WebM VP9/Opus fallback): opt-in controls, decoded playback, all nine default caption cues, finite 34.76-second duration, seeking/end, close/pause/reset, both-source failure feedback, a pointer-operable close button at 320 × 600, transcript/caption endpoints, free-course links and the donation image. No browser errors or HTTP writes occurred. FFmpeg independently decoded the MP4 and found a nonsilent AAC audio track. Sample video frames were visually reviewed. This establishes local playback and media content, not human verification of the stock voice's pronunciation. The browser checks mute playback and never use a real microphone.
@@ -45,4 +47,4 @@ Re-run `node scripts/test-digital-guide-video.mjs` against a local production pr
 
 Owner-controlled avatar-provider access is still required for a trained conversational video replica. HeyGen was offered as an available connection but was not connected in this session. Tavus and 1mind adapters remain disabled pending the owner's approved deployment and private configuration. See [the provider handover](digital-avatar-provider.md) and [personal-voice recording brief](digital-avatar-recording-brief.md).
 
-Persistent production enquiries and learner/admin accounts are a separate access-dependent item. A tested, read-only-by-default [activation helper and guide](learning-lab/activation.md) are supplied. No owner Vercel session or hosted libSQL credentials were available, so real production activation, account access and learner workflows are not claimed as completed. The six free courses, approved email route and voluntary donation QR remain independent of that setup.
+Since this original creation, persistent production enquiries, invitation-only sign-in and permanent administrator access have been activated and checked; daily encrypted backup/cloud-readback operations were also verified. See [the current operations closure](learning-lab/operations-closure.md). Those services do not establish personal avatar training or real audiovisual quality. The six free courses, approved contact and voluntary original donation QR remain available.

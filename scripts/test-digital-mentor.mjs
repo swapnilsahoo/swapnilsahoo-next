@@ -52,7 +52,14 @@ page.on("pageerror", (error) => errors.push(error.message));
 const base = (process.env.GUIDE_TEST_BASE_URL || "http://localhost:3112").replace(/\/$/, "");
 const guide = page.getByTestId("digital-guide-dialog");
 const panel = page.getByTestId("mentor-panel");
-const button = (name) => guide.getByRole("button", { name, exact: true });
+const learningTools = guide.getByRole("combobox", { name: "Learning tools", exact: true });
+const actionValues = {
+  "Find my path": "find-path",
+  "Explain this lesson": "explain",
+  "Practise a case": "practice",
+  "Review my reasoning": "review",
+};
+const chooseAction = (name) => learningTools.selectOption(actionValues[name]);
 async function arithmetic(value) {
   await panel.getByTestId("mentor-number").fill(String(value));
   await panel.getByRole("button", { name: "Check calculation", exact: true }).click();
@@ -72,9 +79,10 @@ try {
     "Practise a case",
     "Review my reasoning",
   ])
-    assert.ok(await button(action).isVisible());
-  assert.ok((await guide.innerText()).includes("published teaching materials"));
-  await button("Explain this lesson").click();
+    assert.equal(await learningTools.getByRole("option", { name: action, exact: true }).count(), 1);
+  assert.ok(await learningTools.isVisible());
+  assert.ok(/prepared guidance.*published materials/s.test(await guide.innerText()));
+  await chooseAction("Explain this lesson");
   assert.ok((await panel.innerText()).includes("Current lesson:"));
   assert.equal(
     await panel.getByRole("link", { name: "Open the original lesson ↗" }).getAttribute("href"),
@@ -87,10 +95,11 @@ try {
       document.querySelector('[data-testid="digital-guide-animated-avatar"]').dataset.speaking ===
       "true"
   );
-  await button("Practise a case").click();
-  assert.equal(
-    await guide.getByTestId("digital-guide-animated-avatar").getAttribute("data-speaking"),
-    "false"
+  await chooseAction("Practise a case");
+  const activeLikeness = guide.getByTestId("digital-guide-animated-avatar");
+  assert.ok(
+    (await activeLikeness.count()) === 0 ||
+      (await activeLikeness.getAttribute("data-speaking")) === "false"
   );
   checks.push(
     "Four actions, validated current-lesson source, explicit stock read-aloud and action cleanup"
@@ -165,18 +174,18 @@ try {
   );
   await page.getByTestId("digital-guide-close").click();
   await page.getByTestId("digital-guide-launcher").click();
-  await button("Practise a case").click();
+  await chooseAction("Practise a case");
   assert.ok((await panel.innerText()).includes("TiffinTrail"));
   assert.equal(await panel.getByTestId("mentor-number").inputValue(), "");
   await page.getByTestId("digital-guide-reset").click();
   assert.equal(await panel.count(), 0);
-  await button("Review my reasoning").click();
+  await chooseAction("Review my reasoning");
   assert.equal(await panel.getByTestId("mentor-reasoning").inputValue(), "");
   checks.push("Closing and Reset clear transient practice and reasoning state");
   await page.getByTestId("digital-guide-close").click();
   await page.goto(`${base}/learning-lab`, { waitUntil: "networkidle" });
   await page.getByTestId("digital-guide-launcher").click();
-  await button("Find my path").click();
+  await chooseAction("Find my path");
   await panel.getByRole("combobox").nth(0).selectOption("applied-ai-for-managers");
   await panel.getByRole("combobox").nth(1).selectOption("practised");
   assert.equal(
@@ -188,7 +197,7 @@ try {
     "Goal and self-selected starting-point recommendation links to verified learning path"
   );
   await page.setViewportSize({ width: 320, height: 600 });
-  await button("Practise a case").click();
+  await chooseAction("Practise a case");
   await panel.getByTestId("mentor-number").fill("60");
   await panel.getByRole("button", { name: "Check calculation", exact: true }).click();
   await page.screenshot({ path: `${directory}/${profile}-mentor-mobile.png` });

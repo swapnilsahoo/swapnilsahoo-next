@@ -53,7 +53,7 @@ const topics: GuidedTopic[] = [
     matches:
       /\b(who are you|are you (a human|human|real|ai|dr\.?|professor|swapnil|sahoo|the founder)|is this (a human|human|ai|dr\.?|professor|swapnil|sahoo)|live (person|teacher|professor)|digital avatar|ai mentor|chat ?bot|guided answers?|how (does|do) (this|you) work)\b/i,
     reply: answer(
-      "This is an AI Mentor with prepared guidance based on Dr. Swapnil Sahoo’s published teaching materials. Choose Find my path, Explain this lesson, Practise a case or Review my reasoning. Arithmetic checks and checklist feedback are automated practice support, not formal grading. Its AI-created likeness uses simple mouth animation with a standard device voice, and the Video tab offers a prerecorded synthetic-voice introduction. This is not Dr. Sahoo speaking live or a trained conversational video replica; no founder voice has been cloned.",
+      "This is an AI Mentor with prepared guidance based on Dr. Swapnil Sahoo’s published teaching materials. Open Learning tools to find a path, explain a lesson, practise a case or review reasoning. Arithmetic checks and checklist feedback are automated practice support, not formal grading. The popup opens with a prerecorded synthetic-voice welcome; voice and text share the conversation below it. Spoken prepared answers animate an AI-created likeness with a standard device voice. This is not Dr. Sahoo speaking live or a trained conversational video replica; no founder voice has been cloned.",
       [freeLibrary, { label: "Meet the founder", href: `${lab}/founder` }, contact],
       ["What can I learn for free?", "Show me the 13-session MBA course", "Contact the Lab"]
     ),

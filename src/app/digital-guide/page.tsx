@@ -49,20 +49,22 @@ export default function DigitalGuidePage() {
             <h1 className="font-serif text-4xl leading-tight text-slate-950 md:text-6xl dark:text-slate-50">
               Meet Swapnil’s
               <br />
-              <span className="text-indigo-800 italic dark:text-indigo-300">AI learning mentor.</span>
+              <span className="text-indigo-800 italic dark:text-indigo-300">
+                AI learning mentor.
+              </span>
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-slate-600 dark:text-slate-300">
-              Meet my digitally created likeness in a small popup beside the page. Watch the
-              welcome video, then find a learning path, explain a concept, practise a case or
-              review your reasoning. Start with a free lesson and try a decision one step at a time.
+              Open a small video popup beside the page. Watch the welcome, type a question or enable
+              voice in the same conversation. Use Learning tools to find a path, explain a concept,
+              practise a case or review your reasoning.
             </p>
             <div className="mt-7">
               <OpenGuideButton>Open my AI mentor</OpenGuideButton>
             </div>
             <p className="mt-4 max-w-md text-xs leading-relaxed text-slate-600 dark:text-slate-400">
               The likeness is AI-created from Swapnil’s portrait. Prepared answers use a standard
-              device voice with simple mouth animation. The welcome video is prerecorded; a
-              trained conversational video replica is not connected.
+              device voice with simple mouth animation. The welcome video is prerecorded; a trained
+              conversational video replica is not connected.
             </p>
           </div>
           <div className="overflow-hidden rounded-2xl border border-indigo-950/10 bg-white dark:border-white/10 dark:bg-slate-900">
@@ -121,9 +123,10 @@ export default function DigitalGuidePage() {
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
               The mentor connects you to published lessons and programme information. Prepared
-              practice tools check arithmetic and help you review a reasoning checklist; they do
-              not grade your prose or certify learning. It cannot issue a certificate, confirm a payment or make a booking. Follow the
-              linked pages for current availability and contact Swapnil for a personal reply.
+              practice tools check arithmetic and help you review a reasoning checklist; they do not
+              grade your prose or certify learning. It cannot issue a certificate, confirm a payment
+              or make a booking. Follow the linked pages for current availability and contact
+              Swapnil for a personal reply.
             </p>
             <p className="mt-4 text-sm">
               <Link href="/learning-lab/free-courses" className="underline underline-offset-4">
@@ -147,16 +150,17 @@ export default function DigitalGuidePage() {
               You choose whether to enable the microphone and start each spoken question. Browser
               voice may send audio to its speech service. Replies use a standard device voice, not a
               clone of Swapnil’s voice. Voice support depends on your browser; text is always
-              available. Listening and playback stop when you close the popup, switch modes, change
-              pages or leave this tab.
+              available beside the video. Listening and playback stop when you close the popup,
+              reset, change pages or leave this tab. Starting video, voice or a spoken answer pauses
+              the other playback or listening.
             </p>
             <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
               Prepared answers run in your browser. This website does not save your audio or
               conversation; closing, resetting or navigating clears practice attempts, and
-              refreshing clears the text. The welcome video uses a
-              synthetic voice and plays only when you start it. Live AI video is a separate mode
-              that requires your choice before connecting to a provider, once available. Keep
-              private, student and employer information out of your questions.
+              refreshing clears the text. The welcome video uses a synthetic voice and plays only
+              when you start it. Once available, live AI video opens in this same popup after your
+              consent and explicit start. Keep private, student and employer information out of your
+              questions.
             </p>
           </div>
         </section>
