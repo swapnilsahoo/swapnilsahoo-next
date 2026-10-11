@@ -377,7 +377,10 @@ export function DigitalAvatar({
 
   useEffect(() => {
     const transcript = transcriptRef.current;
-    if (transcript) transcript.scrollTop = transcript.scrollHeight;
+    const answer = transcript?.querySelector(".avatar-guide-message-guide:last-of-type");
+    if (transcript && answer)
+      transcript.scrollTop +=
+        answer.getBoundingClientRect().top - transcript.getBoundingClientRect().top;
   }, [messages, mentorAction]);
 
   function resetGuide() {

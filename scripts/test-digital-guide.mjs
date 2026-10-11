@@ -146,6 +146,64 @@ try {
           .count()) === 0,
         "Obsolete conversation-mode switches remain"
       );
+      if (path === "/learning-lab" && [320, 1440].includes(width)) {
+        const answerViewportHeight = width === 320 ? 600 : 900;
+        if (width === 320) await page.setViewportSize({ width, height: answerViewportHeight });
+        await testId("input").fill("How do I calculate unit economics?");
+        await testId("send").click();
+        // Check the readable result, independent of which scroll API is used.
+        // A long answer must open at its beginning rather than at the chips below it.
+        await page.waitForFunction(
+          () => {
+            const transcript = document.querySelector('[data-testid="digital-guide-messages"]');
+            const answer = transcript?.querySelector(
+              ".avatar-guide-message-guide:last-of-type .avatar-guide-message-text"
+            );
+            if (!transcript || !answer?.textContent?.includes("₹12,000") || !answer.firstChild)
+              return false;
+            const range = document.createRange();
+            range.setStart(answer.firstChild, 0);
+            range.setEnd(answer.firstChild, Math.min(8, answer.firstChild.textContent.length));
+            const firstLine = range.getBoundingClientRect();
+            const container = transcript.getBoundingClientRect();
+            return (
+              firstLine.top >= Math.max(container.top, 0) - 1 &&
+              firstLine.bottom <= Math.min(container.bottom, innerHeight) + 1
+            );
+          },
+          undefined,
+          { timeout: 10000 }
+        );
+        const answerVisibility = await testId("messages").evaluate((transcript) => {
+          const article = transcript.querySelector(".avatar-guide-message-guide:last-of-type");
+          const paragraph = article.querySelector(".avatar-guide-message-text");
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 0);
+          range.setEnd(paragraph.firstChild, Math.min(8, paragraph.firstChild.textContent.length));
+          const firstLine = range.getBoundingClientRect();
+          const container = transcript.getBoundingClientRect();
+          return {
+            articleHeight: article.getBoundingClientRect().height,
+            transcriptHeight: transcript.clientHeight,
+            firstLineTop: firstLine.top,
+            firstLineBottom: firstLine.bottom,
+            containerTop: container.top,
+            containerBottom: container.bottom,
+          };
+        });
+        assert(
+          answerVisibility.articleHeight > answerVisibility.transcriptHeight,
+          `${width}: the answer must exceed the transcript viewport to exercise scrolling`
+        );
+        checks.push({
+          latestAnswerBeginning: "Visible after sending a long answer",
+          width,
+          height: answerViewportHeight,
+          ...answerVisibility,
+        });
+        await page.screenshot({ path: `${dir}/${profile}-answer-start-${width}.png` });
+        if (width === 320) await page.setViewportSize({ width, height: 900 });
+      }
       if (path === "/digital-guide" && [390, 1440].includes(width))
         await page.screenshot({ path: `${dir}/${profile}-${width}.png` });
       await page.keyboard.press("Escape");
